@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final dispatch = IDispatch(ptr);
   test('Can instantiate IDispatch.getTypeInfoCount', () {
@@ -35,5 +35,6 @@ void main() {
     expect(dispatch.invoke, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

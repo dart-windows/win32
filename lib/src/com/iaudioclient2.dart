@@ -22,37 +22,24 @@ const IID_IAudioClient2 = '{726778cd-f60a-4eda-82de-e47610cd78aa}';
 /// {@category com}
 class IAudioClient2 extends IAudioClient {
   // vtable begins at 15, is 3 entries long.
-  IAudioClient2(super.ptr);
+  IAudioClient2(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioClient2Vtbl>().ref;
+
+  final IAudioClient2Vtbl _vtable;
 
   factory IAudioClient2.from(IUnknown interface) =>
       IAudioClient2(interface.toInterface(IID_IAudioClient2));
 
-  int isOffloadCapable(int Category, Pointer<Int32> pbOffloadCapable) => ptr
-          .ref.vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Int32 Category,
-                          Pointer<Int32> pbOffloadCapable)>>>()
-          .value
-          .asFunction<
+  int isOffloadCapable(int Category, Pointer<Int32> pbOffloadCapable) =>
+      _vtable.IsOffloadCapable.asFunction<
               int Function(
                   Pointer, int Category, Pointer<Int32> pbOffloadCapable)>()(
-      ptr.ref.lpVtbl, Category, pbOffloadCapable);
+          ptr.ref.lpVtbl, Category, pbOffloadCapable);
 
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
-      ptr.ref.vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer,
-                              Pointer<AudioClientProperties> pProperties)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer, Pointer<AudioClientProperties> pProperties)>()(
+      _vtable.SetClientProperties.asFunction<
+              int Function(
+                  Pointer, Pointer<AudioClientProperties> pProperties)>()(
           ptr.ref.lpVtbl, pProperties);
 
   int getBufferSizeLimits(
@@ -60,24 +47,35 @@ class IAudioClient2 extends IAudioClient {
           int bEventDriven,
           Pointer<Int64> phnsMinBufferDuration,
           Pointer<Int64> phnsMaxBufferDuration) =>
-      ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<WAVEFORMATEX> pFormat,
-                              Int32 bEventDriven,
-                              Pointer<Int64> phnsMinBufferDuration,
-                              Pointer<Int64> phnsMaxBufferDuration)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<WAVEFORMATEX> pFormat,
-                      int bEventDriven,
-                      Pointer<Int64> phnsMinBufferDuration,
-                      Pointer<Int64> phnsMaxBufferDuration)>()(ptr.ref.lpVtbl,
+      _vtable.GetBufferSizeLimits.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<WAVEFORMATEX> pFormat,
+                  int bEventDriven,
+                  Pointer<Int64> phnsMinBufferDuration,
+                  Pointer<Int64> phnsMaxBufferDuration)>()(ptr.ref.lpVtbl,
           pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
+}
+
+/// @nodoc
+base class IAudioClient2Vtbl extends Struct {
+  external IAudioClientVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Int32 Category, Pointer<Int32> pbOffloadCapable)>>
+      IsOffloadCapable;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<AudioClientProperties> pProperties)>>
+      SetClientProperties;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<WAVEFORMATEX> pFormat,
+              Int32 bEventDriven,
+              Pointer<Int64> phnsMinBufferDuration,
+              Pointer<Int64> phnsMaxBufferDuration)>> GetBufferSizeLimits;
 }

@@ -202,7 +202,19 @@ factory $shortName.from(IUnknown interface) =>
 
   String get constructor => inheritsFrom.isEmpty
       ? '$shortName(this.ptr);\n\nPointer<COMObject> ptr;'
-      : '$shortName(super.ptr);';
+      : hasMethods
+          ? '$shortName(super.ptr) : _vtable = ptr.ref.vtable.cast<${shortName}Vtbl>().ref;'
+          : '$shortName(super.ptr);';
+
+  String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';
+
+  String get vtableStruct => '''
+/// @nodoc
+base class ${shortName}Vtbl extends Struct {
+  external ${inheritsFrom}Vtbl baseVtbl;
+  ${methodProjections.map((p) => 'external Pointer<NativeFunction<${p.nativePrototype}>> ${p.name};').join('\n')}
+}
+''';
 
   @override
   String toString() => '''
@@ -215,9 +227,13 @@ class $shortName $extendsClause {
   // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
   $constructor
 
+  $vtableField
+
   $fromInterfaceConstructor
 
   ${methodProjections.map((p) => p.toString()).join('\n')}
 }
+
+$vtableStruct
 ''';
 }

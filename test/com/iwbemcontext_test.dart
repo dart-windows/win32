@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final wbemcontext = IWbemContext(ptr);
   test('Can instantiate IWbemContext.clone', () {
@@ -50,5 +50,6 @@ void main() {
     expect(wbemcontext.deleteAll, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

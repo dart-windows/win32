@@ -23,28 +23,31 @@ const IID_IFileDialog2 = '{61744fc7-85b5-4791-a9b0-272276309b13}';
 /// {@category com}
 class IFileDialog2 extends IFileDialog {
   // vtable begins at 27, is 2 entries long.
-  IFileDialog2(super.ptr);
+  IFileDialog2(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IFileDialog2Vtbl>().ref;
+
+  final IFileDialog2Vtbl _vtable;
 
   factory IFileDialog2.from(IUnknown interface) =>
       IFileDialog2(interface.toInterface(IID_IFileDialog2));
 
-  int setCancelButtonLabel(Pointer<Utf16> pszLabel) => ptr.ref.vtable
-          .elementAt(27)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Utf16> pszLabel)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Utf16> pszLabel)>()(
-      ptr.ref.lpVtbl, pszLabel);
+  int setCancelButtonLabel(Pointer<Utf16> pszLabel) =>
+      _vtable.SetCancelButtonLabel.asFunction<
+          int Function(
+              Pointer, Pointer<Utf16> pszLabel)>()(ptr.ref.lpVtbl, pszLabel);
 
-  int setNavigationRoot(Pointer<COMObject> psi) => ptr.ref.vtable
-          .elementAt(28)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<COMObject> psi)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<COMObject> psi)>()(
-      ptr.ref.lpVtbl, psi);
+  int setNavigationRoot(Pointer<COMObject> psi) =>
+      _vtable.SetNavigationRoot.asFunction<
+          int Function(Pointer, Pointer<COMObject> psi)>()(ptr.ref.lpVtbl, psi);
+}
+
+/// @nodoc
+base class IFileDialog2Vtbl extends Struct {
+  external IFileDialogVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Utf16> pszLabel)>>
+      SetCancelButtonLabel;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> psi)>>
+      SetNavigationRoot;
 }

@@ -24,55 +24,36 @@ const IID_IUIAutomationCacheRequest = '{b32a92b5-bc25-4078-9c08-d7ee95c48e03}';
 /// {@category com}
 class IUIAutomationCacheRequest extends IUnknown {
   // vtable begins at 3, is 9 entries long.
-  IUIAutomationCacheRequest(super.ptr);
+  IUIAutomationCacheRequest(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationCacheRequestVtbl>().ref;
+
+  final IUIAutomationCacheRequestVtbl _vtable;
 
   factory IUIAutomationCacheRequest.from(IUnknown interface) =>
       IUIAutomationCacheRequest(
           interface.toInterface(IID_IUIAutomationCacheRequest));
 
-  int addProperty(int propertyId) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<NativeFunction<Int32 Function(Pointer, Uint32 propertyId)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, int propertyId)>()(ptr.ref.lpVtbl, propertyId);
+  int addProperty(int propertyId) =>
+      _vtable.AddProperty.asFunction<int Function(Pointer, int propertyId)>()(
+          ptr.ref.lpVtbl, propertyId);
 
-  int addPattern(int patternId) => ptr.ref.vtable
-      .elementAt(4)
-      .cast<
-          Pointer<NativeFunction<Int32 Function(Pointer, Uint32 patternId)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, int patternId)>()(ptr.ref.lpVtbl, patternId);
+  int addPattern(int patternId) =>
+      _vtable.AddPattern.asFunction<int Function(Pointer, int patternId)>()(
+          ptr.ref.lpVtbl, patternId);
 
-  int clone(Pointer<Pointer<COMObject>> clonedRequest) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer,
-                          Pointer<Pointer<COMObject>> clonedRequest)>>>()
-          .value
-          .asFunction<
+  int clone(Pointer<Pointer<COMObject>> clonedRequest) =>
+      _vtable.Clone.asFunction<
               int Function(
                   Pointer, Pointer<Pointer<COMObject>> clonedRequest)>()(
-      ptr.ref.lpVtbl, clonedRequest);
+          ptr.ref.lpVtbl, clonedRequest);
 
   int get treeScope {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> scope)>>>()
-              .value
+      final hr = _vtable.get_TreeScope
               .asFunction<int Function(Pointer, Pointer<Int32> scope)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -83,28 +64,17 @@ class IUIAutomationCacheRequest extends IUnknown {
   }
 
   set treeScope(int value) {
-    final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 scope)>>>()
-        .value
+    final hr = _vtable.put_TreeScope
         .asFunction<int Function(Pointer, int scope)>()(ptr.ref.lpVtbl, value);
-
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Pointer<COMObject> get treeFilter {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> filter)>>>()
-            .value
+    final hr = _vtable.get_TreeFilter
             .asFunction<int Function(Pointer, Pointer<COMObject> filter)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -114,16 +84,9 @@ class IUIAutomationCacheRequest extends IUnknown {
   }
 
   set treeFilter(Pointer<COMObject> value) {
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> filter)>>>()
-            .value
+    final hr = _vtable.put_TreeFilter
             .asFunction<int Function(Pointer, Pointer<COMObject> filter)>()(
         ptr.ref.lpVtbl, value);
-
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -131,16 +94,9 @@ class IUIAutomationCacheRequest extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> mode)>>>()
-              .value
+      final hr = _vtable.get_AutomationElementMode
               .asFunction<int Function(Pointer, Pointer<Int32> mode)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -151,12 +107,36 @@ class IUIAutomationCacheRequest extends IUnknown {
   }
 
   set automationElementMode(int value) {
-    final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 mode)>>>()
-        .value
+    final hr = _vtable.put_AutomationElementMode
         .asFunction<int Function(Pointer, int mode)>()(ptr.ref.lpVtbl, value);
-
     if (FAILED(hr)) throw WindowsException(hr);
   }
+}
+
+/// @nodoc
+base class IUIAutomationCacheRequestVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 propertyId)>>
+      AddProperty;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 patternId)>>
+      AddPattern;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Pointer<Pointer<COMObject>> clonedRequest)>> Clone;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> scope)>>
+      get_TreeScope;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 scope)>>
+      put_TreeScope;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> filter)>>
+      get_TreeFilter;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> filter)>>
+      put_TreeFilter;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Int32> mode)>>
+      get_AutomationElementMode;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 mode)>>
+      put_AutomationElementMode;
 }

@@ -22,7 +22,11 @@ const IID_IWebAuthenticationCoreManagerInterop =
 /// {@category com}
 class IWebAuthenticationCoreManagerInterop extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IWebAuthenticationCoreManagerInterop(super.ptr);
+  IWebAuthenticationCoreManagerInterop(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IWebAuthenticationCoreManagerInteropVtbl>().ref;
+
+  final IWebAuthenticationCoreManagerInteropVtbl _vtable;
 
   factory IWebAuthenticationCoreManagerInterop.from(IUnknown interface) =>
       IWebAuthenticationCoreManagerInterop(
@@ -30,25 +34,9 @@ class IWebAuthenticationCoreManagerInterop extends IInspectable {
 
   int requestTokenForWindowAsync(int appWindow, Pointer<COMObject> request,
           Pointer<GUID> riid, Pointer<Pointer> asyncInfo) =>
-      ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              IntPtr appWindow,
-                              Pointer<COMObject> request,
-                              Pointer<GUID> riid,
-                              Pointer<Pointer> asyncInfo)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int appWindow,
-                      Pointer<COMObject> request,
-                      Pointer<GUID> riid,
-                      Pointer<Pointer> asyncInfo)>()(
+      _vtable.RequestTokenForWindowAsync.asFunction<
+              int Function(Pointer, int appWindow, Pointer<COMObject> request,
+                  Pointer<GUID> riid, Pointer<Pointer> asyncInfo)>()(
           ptr.ref.lpVtbl, appWindow, request, riid, asyncInfo);
 
   int requestTokenWithWebAccountForWindowAsync(
@@ -57,26 +45,36 @@ class IWebAuthenticationCoreManagerInterop extends IInspectable {
           Pointer<COMObject> webAccount,
           Pointer<GUID> riid,
           Pointer<Pointer> asyncInfo) =>
-      ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              IntPtr appWindow,
-                              Pointer<COMObject> request,
-                              Pointer<COMObject> webAccount,
-                              Pointer<GUID> riid,
-                              Pointer<Pointer> asyncInfo)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int appWindow,
-                      Pointer<COMObject> request,
-                      Pointer<COMObject> webAccount,
-                      Pointer<GUID> riid,
-                      Pointer<Pointer> asyncInfo)>()(
+      _vtable.RequestTokenWithWebAccountForWindowAsync.asFunction<
+              int Function(
+                  Pointer,
+                  int appWindow,
+                  Pointer<COMObject> request,
+                  Pointer<COMObject> webAccount,
+                  Pointer<GUID> riid,
+                  Pointer<Pointer> asyncInfo)>()(
           ptr.ref.lpVtbl, appWindow, request, webAccount, riid, asyncInfo);
+}
+
+/// @nodoc
+base class IWebAuthenticationCoreManagerInteropVtbl extends Struct {
+  external IInspectableVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              IntPtr appWindow,
+              Pointer<COMObject> request,
+              Pointer<GUID> riid,
+              Pointer<Pointer> asyncInfo)>> RequestTokenForWindowAsync;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer,
+                  IntPtr appWindow,
+                  Pointer<COMObject> request,
+                  Pointer<COMObject> webAccount,
+                  Pointer<GUID> riid,
+                  Pointer<Pointer> asyncInfo)>>
+      RequestTokenWithWebAccountForWindowAsync;
 }

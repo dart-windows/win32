@@ -19,23 +19,28 @@ const IID_IUIAutomationCustomNavigationPattern =
 /// {@category com}
 class IUIAutomationCustomNavigationPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationCustomNavigationPattern(super.ptr);
+  IUIAutomationCustomNavigationPattern(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IUIAutomationCustomNavigationPatternVtbl>().ref;
+
+  final IUIAutomationCustomNavigationPatternVtbl _vtable;
 
   factory IUIAutomationCustomNavigationPattern.from(IUnknown interface) =>
       IUIAutomationCustomNavigationPattern(
           interface.toInterface(IID_IUIAutomationCustomNavigationPattern));
 
-  int navigate(int direction, Pointer<Pointer<COMObject>> pRetVal) => ptr
-          .ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Int32 direction,
-                          Pointer<Pointer<COMObject>> pRetVal)>>>()
-          .value
-          .asFunction<
+  int navigate(int direction, Pointer<Pointer<COMObject>> pRetVal) =>
+      _vtable.Navigate.asFunction<
               int Function(Pointer, int direction,
                   Pointer<Pointer<COMObject>> pRetVal)>()(
-      ptr.ref.lpVtbl, direction, pRetVal);
+          ptr.ref.lpVtbl, direction, pRetVal);
+}
+
+/// @nodoc
+base class IUIAutomationCustomNavigationPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Int32 direction,
+              Pointer<Pointer<COMObject>> pRetVal)>> Navigate;
 }

@@ -19,19 +19,25 @@ const IID_ISpellCheckerChangedEventHandler =
 /// {@category com}
 class ISpellCheckerChangedEventHandler extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  ISpellCheckerChangedEventHandler(super.ptr);
+  ISpellCheckerChangedEventHandler(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<ISpellCheckerChangedEventHandlerVtbl>().ref;
+
+  final ISpellCheckerChangedEventHandlerVtbl _vtable;
 
   factory ISpellCheckerChangedEventHandler.from(IUnknown interface) =>
       ISpellCheckerChangedEventHandler(
           interface.toInterface(IID_ISpellCheckerChangedEventHandler));
 
-  int invoke(Pointer<COMObject> sender) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<COMObject> sender)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<COMObject> sender)>()(
-      ptr.ref.lpVtbl, sender);
+  int invoke(Pointer<COMObject> sender) => _vtable.Invoke.asFunction<
+      int Function(
+          Pointer, Pointer<COMObject> sender)>()(ptr.ref.lpVtbl, sender);
+}
+
+/// @nodoc
+base class ISpellCheckerChangedEventHandlerVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> sender)>>
+      Invoke;
 }

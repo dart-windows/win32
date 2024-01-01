@@ -22,7 +22,10 @@ const IID_IWbemLocator = '{dc12a687-737f-11cf-884d-00aa004b2e24}';
 /// {@category com}
 class IWbemLocator extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IWbemLocator(super.ptr);
+  IWbemLocator(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IWbemLocatorVtbl>().ref;
+
+  final IWbemLocatorVtbl _vtable;
 
   factory IWbemLocator.from(IUnknown interface) =>
       IWbemLocator(interface.toInterface(IID_IWbemLocator));
@@ -36,33 +39,17 @@ class IWbemLocator extends IUnknown {
           Pointer<Utf16> strAuthority,
           Pointer<COMObject> pCtx,
           Pointer<Pointer<COMObject>> ppNamespace) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Utf16> strNetworkResource,
-                              Pointer<Utf16> strUser,
-                              Pointer<Utf16> strPassword,
-                              Pointer<Utf16> strLocale,
-                              Int32 lSecurityFlags,
-                              Pointer<Utf16> strAuthority,
-                              Pointer<COMObject> pCtx,
-                              Pointer<Pointer<COMObject>> ppNamespace)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Utf16> strNetworkResource,
-                      Pointer<Utf16> strUser,
-                      Pointer<Utf16> strPassword,
-                      Pointer<Utf16> strLocale,
-                      int lSecurityFlags,
-                      Pointer<Utf16> strAuthority,
-                      Pointer<COMObject> pCtx,
-                      Pointer<Pointer<COMObject>> ppNamespace)>()(
+      _vtable.ConnectServer.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Utf16> strNetworkResource,
+                  Pointer<Utf16> strUser,
+                  Pointer<Utf16> strPassword,
+                  Pointer<Utf16> strLocale,
+                  int lSecurityFlags,
+                  Pointer<Utf16> strAuthority,
+                  Pointer<COMObject> pCtx,
+                  Pointer<Pointer<COMObject>> ppNamespace)>()(
           ptr.ref.lpVtbl,
           strNetworkResource,
           strUser,
@@ -72,6 +59,23 @@ class IWbemLocator extends IUnknown {
           strAuthority,
           pCtx,
           ppNamespace);
+}
+
+/// @nodoc
+base class IWbemLocatorVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Utf16> strNetworkResource,
+              Pointer<Utf16> strUser,
+              Pointer<Utf16> strPassword,
+              Pointer<Utf16> strLocale,
+              Int32 lSecurityFlags,
+              Pointer<Utf16> strAuthority,
+              Pointer<COMObject> pCtx,
+              Pointer<Pointer<COMObject>> ppNamespace)>> ConnectServer;
 }
 
 /// @nodoc

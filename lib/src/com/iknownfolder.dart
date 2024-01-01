@@ -24,113 +24,92 @@ const IID_IKnownFolder = '{3aa7af7e-9b36-420c-a8e3-f77d4674a488}';
 /// {@category com}
 class IKnownFolder extends IUnknown {
   // vtable begins at 3, is 9 entries long.
-  IKnownFolder(super.ptr);
+  IKnownFolder(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IKnownFolderVtbl>().ref;
+
+  final IKnownFolderVtbl _vtable;
 
   factory IKnownFolder.from(IUnknown interface) =>
       IKnownFolder(interface.toInterface(IID_IKnownFolder));
 
-  int getId(Pointer<GUID> pkfid) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Pointer<GUID> pkfid)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, Pointer<GUID> pkfid)>()(ptr.ref.lpVtbl, pkfid);
+  int getId(Pointer<GUID> pkfid) =>
+      _vtable.GetId.asFunction<int Function(Pointer, Pointer<GUID> pkfid)>()(
+          ptr.ref.lpVtbl, pkfid);
 
-  int getCategory(Pointer<Int32> pCategory) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Int32> pCategory)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Int32> pCategory)>()(
-      ptr.ref.lpVtbl, pCategory);
+  int getCategory(Pointer<Int32> pCategory) => _vtable.GetCategory.asFunction<
+      int Function(
+          Pointer, Pointer<Int32> pCategory)>()(ptr.ref.lpVtbl, pCategory);
 
   int getShellItem(int dwFlags, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
-      ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Uint32 dwFlags,
-                          Pointer<GUID> riid, Pointer<Pointer> ppv)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int dwFlags, Pointer<GUID> riid,
-                  Pointer<Pointer> ppv)>()(ptr.ref.lpVtbl, dwFlags, riid, ppv);
+      _vtable.GetShellItem.asFunction<
+          int Function(Pointer, int dwFlags, Pointer<GUID> riid,
+              Pointer<Pointer> ppv)>()(ptr.ref.lpVtbl, dwFlags, riid, ppv);
 
-  int getPath(int dwFlags, Pointer<Pointer<Utf16>> ppszPath) => ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Uint32 dwFlags,
-                          Pointer<Pointer<Utf16>> ppszPath)>>>()
-          .value
-          .asFunction<
+  int getPath(int dwFlags, Pointer<Pointer<Utf16>> ppszPath) =>
+      _vtable.GetPath.asFunction<
               int Function(
                   Pointer, int dwFlags, Pointer<Pointer<Utf16>> ppszPath)>()(
-      ptr.ref.lpVtbl, dwFlags, ppszPath);
+          ptr.ref.lpVtbl, dwFlags, ppszPath);
 
-  int setPath(int dwFlags, Pointer<Utf16> pszPath) => ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Uint32 dwFlags, Pointer<Utf16> pszPath)>>>()
-          .value
-          .asFunction<
+  int setPath(int dwFlags, Pointer<Utf16> pszPath) =>
+      _vtable.SetPath.asFunction<
               int Function(Pointer, int dwFlags, Pointer<Utf16> pszPath)>()(
-      ptr.ref.lpVtbl, dwFlags, pszPath);
+          ptr.ref.lpVtbl, dwFlags, pszPath);
 
-  int getIDList(int dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl) => ptr
-          .ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Uint32 dwFlags,
-                          Pointer<Pointer<ITEMIDLIST>> ppidl)>>>()
-          .value
-          .asFunction<
+  int getIDList(int dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl) =>
+      _vtable.GetIDList.asFunction<
               int Function(
                   Pointer, int dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl)>()(
-      ptr.ref.lpVtbl, dwFlags, ppidl);
+          ptr.ref.lpVtbl, dwFlags, ppidl);
 
-  int getFolderType(Pointer<GUID> pftid) => ptr.ref.vtable
-      .elementAt(9)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Pointer<GUID> pftid)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, Pointer<GUID> pftid)>()(ptr.ref.lpVtbl, pftid);
+  int getFolderType(Pointer<GUID> pftid) => _vtable.GetFolderType.asFunction<
+      int Function(Pointer, Pointer<GUID> pftid)>()(ptr.ref.lpVtbl, pftid);
 
-  int getRedirectionCapabilities(Pointer<Uint32> pCapabilities) => ptr
-      .ref.vtable
-      .elementAt(10)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer<Uint32> pCapabilities)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer,
-              Pointer<Uint32> pCapabilities)>()(ptr.ref.lpVtbl, pCapabilities);
+  int getRedirectionCapabilities(Pointer<Uint32> pCapabilities) =>
+      _vtable.GetRedirectionCapabilities.asFunction<
+              int Function(Pointer, Pointer<Uint32> pCapabilities)>()(
+          ptr.ref.lpVtbl, pCapabilities);
 
-  int getFolderDefinition(Pointer<KNOWNFOLDER_DEFINITION> pKFD) => ptr
-          .ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<KNOWNFOLDER_DEFINITION> pKFD)>>>()
-          .value
-          .asFunction<
+  int getFolderDefinition(Pointer<KNOWNFOLDER_DEFINITION> pKFD) =>
+      _vtable.GetFolderDefinition.asFunction<
               int Function(Pointer, Pointer<KNOWNFOLDER_DEFINITION> pKFD)>()(
-      ptr.ref.lpVtbl, pKFD);
+          ptr.ref.lpVtbl, pKFD);
+}
+
+/// @nodoc
+base class IKnownFolderVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<GUID> pkfid)>>
+      GetId;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> pCategory)>>
+      GetCategory;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Uint32 dwFlags, Pointer<GUID> riid,
+              Pointer<Pointer> ppv)>> GetShellItem;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Uint32 dwFlags, Pointer<Pointer<Utf16>> ppszPath)>>
+      GetPath;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Uint32 dwFlags, Pointer<Utf16> pszPath)>>
+      SetPath;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Uint32 dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl)>>
+      GetIDList;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<GUID> pftid)>>
+      GetFolderType;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Uint32> pCapabilities)>>
+      GetRedirectionCapabilities;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<KNOWNFOLDER_DEFINITION> pKFD)>>
+      GetFolderDefinition;
 }

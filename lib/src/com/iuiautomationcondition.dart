@@ -22,3 +22,8 @@ class IUIAutomationCondition extends IUnknown {
   factory IUIAutomationCondition.from(IUnknown interface) =>
       IUIAutomationCondition(interface.toInterface(IID_IUIAutomationCondition));
 }
+
+/// @nodoc
+base class IUIAutomationConditionVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+}

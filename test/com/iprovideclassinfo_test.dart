@@ -19,12 +19,13 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final provideclassinfo = IProvideClassInfo(ptr);
   test('Can instantiate IProvideClassInfo.getClassInfo', () {
     expect(provideclassinfo.getClassInfo, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

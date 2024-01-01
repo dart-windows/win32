@@ -24,7 +24,10 @@ const IID_IUIAutomationProxyFactory = '{85b94ecd-849d-42b6-b94d-d6db23fdf5a4}';
 /// {@category com}
 class IUIAutomationProxyFactory extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IUIAutomationProxyFactory(super.ptr);
+  IUIAutomationProxyFactory(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationProxyFactoryVtbl>().ref;
+
+  final IUIAutomationProxyFactoryVtbl _vtable;
 
   factory IUIAutomationProxyFactory.from(IUnknown interface) =>
       IUIAutomationProxyFactory(
@@ -32,39 +35,18 @@ class IUIAutomationProxyFactory extends IUnknown {
 
   int createProvider(int hwnd, int idObject, int idChild,
           Pointer<Pointer<COMObject>> provider) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              IntPtr hwnd,
-                              Int32 idObject,
-                              Int32 idChild,
-                              Pointer<Pointer<COMObject>> provider)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, int hwnd, int idObject, int idChild,
-                      Pointer<Pointer<COMObject>> provider)>()(
+      _vtable.CreateProvider.asFunction<
+              int Function(Pointer, int hwnd, int idObject, int idChild,
+                  Pointer<Pointer<COMObject>> provider)>()(
           ptr.ref.lpVtbl, hwnd, idObject, idChild, provider);
 
   Pointer<Utf16> get proxyFactoryId {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> factoryId)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> factoryId)>()(
+      final hr = _vtable.get_ProxyFactoryId.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> factoryId)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,4 +55,17 @@ class IUIAutomationProxyFactory extends IUnknown {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationProxyFactoryVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, IntPtr hwnd, Int32 idObject, Int32 idChild,
+              Pointer<Pointer<COMObject>> provider)>> CreateProvider;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> factoryId)>>
+      get_ProxyFactoryId;
 }

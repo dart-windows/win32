@@ -19,17 +19,22 @@ const IID_ISupportErrorInfo = '{df0b3d60-548f-101b-8e65-08002b2bd119}';
 /// {@category com}
 class ISupportErrorInfo extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  ISupportErrorInfo(super.ptr);
+  ISupportErrorInfo(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISupportErrorInfoVtbl>().ref;
+
+  final ISupportErrorInfoVtbl _vtable;
 
   factory ISupportErrorInfo.from(IUnknown interface) =>
       ISupportErrorInfo(interface.toInterface(IID_ISupportErrorInfo));
 
-  int interfaceSupportsErrorInfo(Pointer<GUID> riid) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Pointer<GUID> riid)>>>()
-      .value
-      .asFunction<
+  int interfaceSupportsErrorInfo(Pointer<GUID> riid) =>
+      _vtable.InterfaceSupportsErrorInfo.asFunction<
           int Function(Pointer, Pointer<GUID> riid)>()(ptr.ref.lpVtbl, riid);
+}
+
+/// @nodoc
+base class ISupportErrorInfoVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<GUID> riid)>>
+      InterfaceSupportsErrorInfo;
 }

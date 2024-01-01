@@ -22,7 +22,10 @@ const IID_IApplicationActivationManager =
 /// {@category com}
 class IApplicationActivationManager extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  IApplicationActivationManager(super.ptr);
+  IApplicationActivationManager(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IApplicationActivationManagerVtbl>().ref;
+
+  final IApplicationActivationManagerVtbl _vtable;
 
   factory IApplicationActivationManager.from(IUnknown interface) =>
       IApplicationActivationManager(
@@ -30,25 +33,13 @@ class IApplicationActivationManager extends IUnknown {
 
   int activateApplication(Pointer<Utf16> appUserModelId,
           Pointer<Utf16> arguments, int options, Pointer<Uint32> processId) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Utf16> appUserModelId,
-                              Pointer<Utf16> arguments,
-                              Int32 options,
-                              Pointer<Uint32> processId)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Utf16> appUserModelId,
-                      Pointer<Utf16> arguments,
-                      int options,
-                      Pointer<Uint32> processId)>()(
+      _vtable.ActivateApplication.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Utf16> appUserModelId,
+                  Pointer<Utf16> arguments,
+                  int options,
+                  Pointer<Uint32> processId)>()(
           ptr.ref.lpVtbl, appUserModelId, arguments, options, processId);
 
   int activateForFile(
@@ -56,47 +47,49 @@ class IApplicationActivationManager extends IUnknown {
           Pointer<COMObject> itemArray,
           Pointer<Utf16> verb,
           Pointer<Uint32> processId) =>
-      ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Utf16> appUserModelId,
-                              Pointer<COMObject> itemArray,
-                              Pointer<Utf16> verb,
-                              Pointer<Uint32> processId)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Utf16> appUserModelId,
-                      Pointer<COMObject> itemArray,
-                      Pointer<Utf16> verb,
-                      Pointer<Uint32> processId)>()(
+      _vtable.ActivateForFile.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Utf16> appUserModelId,
+                  Pointer<COMObject> itemArray,
+                  Pointer<Utf16> verb,
+                  Pointer<Uint32> processId)>()(
           ptr.ref.lpVtbl, appUserModelId, itemArray, verb, processId);
 
   int activateForProtocol(Pointer<Utf16> appUserModelId,
           Pointer<COMObject> itemArray, Pointer<Uint32> processId) =>
-      ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Utf16> appUserModelId,
-                              Pointer<COMObject> itemArray,
-                              Pointer<Uint32> processId)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Utf16> appUserModelId,
-                      Pointer<COMObject> itemArray,
-                      Pointer<Uint32> processId)>()(
+      _vtable.ActivateForProtocol.asFunction<
+              int Function(Pointer, Pointer<Utf16> appUserModelId,
+                  Pointer<COMObject> itemArray, Pointer<Uint32> processId)>()(
           ptr.ref.lpVtbl, appUserModelId, itemArray, processId);
+}
+
+/// @nodoc
+base class IApplicationActivationManagerVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Utf16> appUserModelId,
+              Pointer<Utf16> arguments,
+              Int32 options,
+              Pointer<Uint32> processId)>> ActivateApplication;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Utf16> appUserModelId,
+              Pointer<COMObject> itemArray,
+              Pointer<Utf16> verb,
+              Pointer<Uint32> processId)>> ActivateForFile;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Utf16> appUserModelId,
+              Pointer<COMObject> itemArray,
+              Pointer<Uint32> processId)>> ActivateForProtocol;
 }
 
 /// @nodoc

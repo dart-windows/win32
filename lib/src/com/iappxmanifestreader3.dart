@@ -19,41 +19,40 @@ const IID_IAppxManifestReader3 = '{c43825ab-69b7-400a-9709-cc37f5a72d24}';
 /// {@category com}
 class IAppxManifestReader3 extends IAppxManifestReader2 {
   // vtable begins at 13, is 2 entries long.
-  IAppxManifestReader3(super.ptr);
+  IAppxManifestReader3(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAppxManifestReader3Vtbl>().ref;
+
+  final IAppxManifestReader3Vtbl _vtable;
 
   factory IAppxManifestReader3.from(IUnknown interface) =>
       IAppxManifestReader3(interface.toInterface(IID_IAppxManifestReader3));
 
   int getCapabilitiesByCapabilityClass(
           int capabilityClass, Pointer<Pointer<COMObject>> capabilities) =>
-      ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Int32 capabilityClass,
-                              Pointer<Pointer<COMObject>> capabilities)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, int capabilityClass,
-                      Pointer<Pointer<COMObject>> capabilities)>()(
+      _vtable.GetCapabilitiesByCapabilityClass.asFunction<
+              int Function(Pointer, int capabilityClass,
+                  Pointer<Pointer<COMObject>> capabilities)>()(
           ptr.ref.lpVtbl, capabilityClass, capabilities);
 
-  int
-      getTargetDeviceFamilies(
-              Pointer<Pointer<COMObject>> targetDeviceFamilies) =>
-          ptr.ref.vtable
-                  .elementAt(14)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              Int32 Function(
-                                  Pointer,
-                                  Pointer<Pointer<COMObject>>
-                                      targetDeviceFamilies)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer,
-                          Pointer<Pointer<COMObject>> targetDeviceFamilies)>()(
-              ptr.ref.lpVtbl, targetDeviceFamilies);
+  int getTargetDeviceFamilies(
+          Pointer<Pointer<COMObject>> targetDeviceFamilies) =>
+      _vtable.GetTargetDeviceFamilies.asFunction<
+              int Function(
+                  Pointer, Pointer<Pointer<COMObject>> targetDeviceFamilies)>()(
+          ptr.ref.lpVtbl, targetDeviceFamilies);
+}
+
+/// @nodoc
+base class IAppxManifestReader3Vtbl extends Struct {
+  external IAppxManifestReader2Vtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Int32 capabilityClass,
+                  Pointer<Pointer<COMObject>> capabilities)>>
+      GetCapabilitiesByCapabilityClass;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Pointer<COMObject>> targetDeviceFamilies)>>
+      GetTargetDeviceFamilies;
 }

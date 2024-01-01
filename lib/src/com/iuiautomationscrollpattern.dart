@@ -22,53 +22,35 @@ const IID_IUIAutomationScrollPattern = '{88f4d42a-e881-459d-a77c-73bbbb7e02dc}';
 /// {@category com}
 class IUIAutomationScrollPattern extends IUnknown {
   // vtable begins at 3, is 14 entries long.
-  IUIAutomationScrollPattern(super.ptr);
+  IUIAutomationScrollPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationScrollPatternVtbl>().ref;
+
+  final IUIAutomationScrollPatternVtbl _vtable;
 
   factory IUIAutomationScrollPattern.from(IUnknown interface) =>
       IUIAutomationScrollPattern(
           interface.toInterface(IID_IUIAutomationScrollPattern));
 
-  int scroll(int horizontalAmount, int verticalAmount) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Int32 horizontalAmount,
-                          Int32 verticalAmount)>>>()
-          .value
-          .asFunction<
+  int scroll(
+          int horizontalAmount, int verticalAmount) =>
+      _vtable.Scroll.asFunction<
               int Function(
                   Pointer, int horizontalAmount, int verticalAmount)>()(
-      ptr.ref.lpVtbl, horizontalAmount, verticalAmount);
+          ptr.ref.lpVtbl, horizontalAmount, verticalAmount);
 
-  int setScrollPercent(double horizontalPercent, double verticalPercent) => ptr
-          .ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Double horizontalPercent,
-                          Double verticalPercent)>>>()
-          .value
-          .asFunction<
+  int setScrollPercent(double horizontalPercent, double verticalPercent) =>
+      _vtable.SetScrollPercent.asFunction<
               int Function(
                   Pointer, double horizontalPercent, double verticalPercent)>()(
-      ptr.ref.lpVtbl, horizontalPercent, verticalPercent);
+          ptr.ref.lpVtbl, horizontalPercent, verticalPercent);
 
   double get currentHorizontalScrollPercent {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentHorizontalScrollPercent
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -82,16 +64,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentVerticalScrollPercent
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -105,16 +80,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentHorizontalViewSize
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -128,16 +96,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentVerticalViewSize
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -151,16 +112,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentHorizontallyScrollable
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -174,16 +128,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentVerticallyScrollable
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -197,16 +144,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedHorizontalScrollPercent
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -220,16 +160,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedVerticalScrollPercent
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -243,16 +176,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedHorizontalViewSize
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -266,16 +192,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedVerticalViewSize
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -289,16 +208,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedHorizontallyScrollable
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -312,16 +224,9 @@ class IUIAutomationScrollPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedVerticallyScrollable
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -330,4 +235,54 @@ class IUIAutomationScrollPattern extends IUnknown {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationScrollPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Int32 horizontalAmount, Int32 verticalAmount)>> Scroll;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Double horizontalPercent, Double verticalPercent)>>
+      SetScrollPercent;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentHorizontalScrollPercent;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentVerticalScrollPercent;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentHorizontalViewSize;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentVerticalViewSize;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentHorizontallyScrollable;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentVerticallyScrollable;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedHorizontalScrollPercent;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedVerticalScrollPercent;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedHorizontalViewSize;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedVerticalViewSize;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedHorizontallyScrollable;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedVerticallyScrollable;
 }

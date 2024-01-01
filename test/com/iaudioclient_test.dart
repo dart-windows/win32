@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final audioclient = IAudioClient(ptr);
   test('Can instantiate IAudioClient.initialize', () {
@@ -59,5 +59,6 @@ void main() {
     expect(audioclient.getService, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

@@ -25,7 +25,10 @@ const IID_IUIAutomationOrCondition = '{8753f032-3db1-47b5-a1fc-6e34a266c712}';
 /// {@category com}
 class IUIAutomationOrCondition extends IUIAutomationCondition {
   // vtable begins at 3, is 3 entries long.
-  IUIAutomationOrCondition(super.ptr);
+  IUIAutomationOrCondition(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationOrConditionVtbl>().ref;
+
+  final IUIAutomationOrConditionVtbl _vtable;
 
   factory IUIAutomationOrCondition.from(IUnknown interface) =>
       IUIAutomationOrCondition(
@@ -35,17 +38,9 @@ class IUIAutomationOrCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Int32> childCount)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer,
-                  Pointer<Int32> childCount)>()(ptr.ref.lpVtbl, retValuePtr);
-
+      final hr = _vtable.get_ChildCount
+              .asFunction<int Function(Pointer, Pointer<Int32> childCount)>()(
+          ptr.ref.lpVtbl, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,32 +52,33 @@ class IUIAutomationOrCondition extends IUIAutomationCondition {
 
   int getChildrenAsNativeArray(Pointer<Pointer<Pointer<COMObject>>> childArray,
           Pointer<Int32> childArrayCount) =>
-      ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Pointer<Pointer<COMObject>>> childArray,
-                              Pointer<Int32> childArrayCount)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Pointer<Pointer<COMObject>>> childArray,
-                      Pointer<Int32> childArrayCount)>()(
+      _vtable.GetChildrenAsNativeArray.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Pointer<Pointer<COMObject>>> childArray,
+                  Pointer<Int32> childArrayCount)>()(
           ptr.ref.lpVtbl, childArray, childArrayCount);
 
-  int getChildren(Pointer<Pointer<SAFEARRAY>> childArray) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<SAFEARRAY>> childArray)>>>()
-          .value
-          .asFunction<
+  int getChildren(Pointer<Pointer<SAFEARRAY>> childArray) =>
+      _vtable.GetChildren.asFunction<
               int Function(Pointer, Pointer<Pointer<SAFEARRAY>> childArray)>()(
-      ptr.ref.lpVtbl, childArray);
+          ptr.ref.lpVtbl, childArray);
+}
+
+/// @nodoc
+base class IUIAutomationOrConditionVtbl extends Struct {
+  external IUIAutomationConditionVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> childCount)>>
+      get_ChildCount;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Pointer<Pointer<COMObject>>> childArray,
+              Pointer<Int32> childArrayCount)>> GetChildrenAsNativeArray;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<SAFEARRAY>> childArray)>>
+      GetChildren;
 }

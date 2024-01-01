@@ -19,22 +19,27 @@ const IID_IUIAutomationObjectModelPattern =
 /// {@category com}
 class IUIAutomationObjectModelPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationObjectModelPattern(super.ptr);
+  IUIAutomationObjectModelPattern(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IUIAutomationObjectModelPatternVtbl>().ref;
+
+  final IUIAutomationObjectModelPatternVtbl _vtable;
 
   factory IUIAutomationObjectModelPattern.from(IUnknown interface) =>
       IUIAutomationObjectModelPattern(
           interface.toInterface(IID_IUIAutomationObjectModelPattern));
 
-  int getUnderlyingObjectModel(Pointer<Pointer<COMObject>> retVal) => ptr
-          .ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-          .value
-          .asFunction<
+  int getUnderlyingObjectModel(Pointer<Pointer<COMObject>> retVal) =>
+      _vtable.GetUnderlyingObjectModel.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-      ptr.ref.lpVtbl, retVal);
+          ptr.ref.lpVtbl, retVal);
+}
+
+/// @nodoc
+base class IUIAutomationObjectModelPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetUnderlyingObjectModel;
 }

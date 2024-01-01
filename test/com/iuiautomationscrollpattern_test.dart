@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomationscrollpattern = IUIAutomationScrollPattern(ptr);
   test('Can instantiate IUIAutomationScrollPattern.scroll', () {
@@ -29,5 +29,6 @@ void main() {
     expect(uiautomationscrollpattern.setScrollPercent, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

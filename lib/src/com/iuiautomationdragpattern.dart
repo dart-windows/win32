@@ -24,7 +24,10 @@ const IID_IUIAutomationDragPattern = '{1dc7b570-1f54-4bad-bcda-d36a722fb7bd}';
 /// {@category com}
 class IUIAutomationDragPattern extends IUnknown {
   // vtable begins at 3, is 8 entries long.
-  IUIAutomationDragPattern(super.ptr);
+  IUIAutomationDragPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationDragPatternVtbl>().ref;
+
+  final IUIAutomationDragPatternVtbl _vtable;
 
   factory IUIAutomationDragPattern.from(IUnknown interface) =>
       IUIAutomationDragPattern(
@@ -34,16 +37,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentIsGrabbed
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,16 +53,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedIsGrabbed
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -80,18 +69,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CurrentDropEffect.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -105,18 +85,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CachedDropEffect.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -130,18 +101,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<SAFEARRAY>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>()(
+      final hr = _vtable.get_CurrentDropEffects.asFunction<
+              int Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -155,18 +117,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<SAFEARRAY>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>()(
+      final hr = _vtable.get_CachedDropEffects.asFunction<
+              int Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -177,28 +130,47 @@ class IUIAutomationDragPattern extends IUnknown {
   }
 
   int getCurrentGrabbedItems(Pointer<Pointer<COMObject>> retVal) =>
-      ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
+      _vtable.GetCurrentGrabbedItems.asFunction<
+              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
           ptr.ref.lpVtbl, retVal);
 
   int getCachedGrabbedItems(Pointer<Pointer<COMObject>> retVal) =>
-      ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
+      _vtable.GetCachedGrabbedItems.asFunction<
+              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
           ptr.ref.lpVtbl, retVal);
+}
+
+/// @nodoc
+base class IUIAutomationDragPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentIsGrabbed;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedIsGrabbed;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CurrentDropEffect;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CachedDropEffect;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+      get_CurrentDropEffects;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+      get_CachedDropEffects;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetCurrentGrabbedItems;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetCachedGrabbedItems;
 }

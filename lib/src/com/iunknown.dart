@@ -10,6 +10,7 @@ import '../combase.dart';
 import '../exceptions.dart';
 import '../guid.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 
 /// @nodoc
@@ -27,11 +28,13 @@ class IUnknown {
   // vtable begins at 0, is 3 entries long.
   Pointer<COMObject> ptr;
 
-  IUnknown(this.ptr) {
+  IUnknown(this.ptr) : _vtable = ptr.ref.vtable.cast<IUnknownVtbl>().ref {
     if (!ptr.ref.isNull) {
       _finalizer.attach(this, ptr, detach: this);
     }
   }
+
+  final IUnknownVtbl _vtable;
 
   static final _finalizer = Finalizer<Pointer<COMObject>>((ptr) {
     // Decrement the reference count of the object only when COM is initialized,
@@ -42,9 +45,9 @@ class IUnknown {
 
   /// Decrements the reference count of the object referenced by [ptr].
   static int _release(Pointer<COMObject> ptr) => ptr.ref.vtable
-      .elementAt(2)
-      .cast<Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>>()
-      .value
+      .cast<IUnknownVtbl>()
+      .ref
+      .Release
       .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
   factory IUnknown.from(IUnknown interface) =>
@@ -55,28 +58,17 @@ class IUnknown {
   ///
   /// If the COM object implements the interface, then it returns a pointer to
   /// that interface after calling `addRef` on it.
-  int queryInterface(Pointer<GUID> riid, Pointer<Pointer> ppvObject) => ptr
-      .ref.vtable
-      .elementAt(0)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer<GUID> riid,
-                      Pointer<Pointer> ppvObject)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, Pointer<GUID> riid,
+  int queryInterface(Pointer<GUID> riid, Pointer<Pointer> ppvObject) =>
+      _vtable.QueryInterface.asFunction<
+          int Function(VTablePointer, Pointer<GUID> riid,
               Pointer<Pointer> ppvObject)>()(ptr.ref.lpVtbl, riid, ppvObject);
 
   /// Increments the reference count for an interface pointer to a COM object.
   ///
   /// You should call this method whenever you make a copy of an interface
   /// pointer.
-  int addRef() => ptr.ref.vtable
-      .elementAt(1)
-      .cast<Pointer<NativeFunction<Uint32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int addRef() =>
+      _vtable.AddRef.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
   /// Decrements the reference count for an interface on a COM object.
   ///
@@ -87,11 +79,8 @@ class IUnknown {
   ///
   /// Calling this method with [Finalizer] attached may result in use after
   /// free and cause the process to crash.
-  int release() => ptr.ref.vtable
-      .elementAt(2)
-      .cast<Pointer<NativeFunction<Uint32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int release() =>
+      _vtable.Release.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
   /// Detaches the object from the `Finalizer`.
   ///
@@ -115,4 +104,14 @@ class IUnknown {
       free(pIID);
     }
   }
+}
+
+/// @nodoc
+base class IUnknownVtbl extends Struct {
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> riid,
+              Pointer<Pointer> ppvObject)>> QueryInterface;
+  external Pointer<NativeFunction<Uint32 Function(Pointer lpVtbl)>> AddRef;
+  external Pointer<NativeFunction<Uint32 Function(Pointer lpVtbl)>> Release;
 }

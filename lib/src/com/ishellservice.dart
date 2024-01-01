@@ -19,18 +19,23 @@ const IID_IShellService = '{5836fb00-8187-11cf-a12b-00aa004ae837}';
 /// {@category com}
 class IShellService extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IShellService(super.ptr);
+  IShellService(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IShellServiceVtbl>().ref;
+
+  final IShellServiceVtbl _vtable;
 
   factory IShellService.from(IUnknown interface) =>
       IShellService(interface.toInterface(IID_IShellService));
 
-  int setOwner(Pointer<COMObject> punkOwner) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<COMObject> punkOwner)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<COMObject> punkOwner)>()(
-      ptr.ref.lpVtbl, punkOwner);
+  int setOwner(Pointer<COMObject> punkOwner) => _vtable.SetOwner.asFunction<
+      int Function(
+          Pointer, Pointer<COMObject> punkOwner)>()(ptr.ref.lpVtbl, punkOwner);
+}
+
+/// @nodoc
+base class IShellServiceVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> punkOwner)>>
+      SetOwner;
 }

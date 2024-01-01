@@ -19,73 +19,62 @@ const IID_IEnumWbemClassObject = '{027947e1-d731-11ce-a357-000000000001}';
 /// {@category com}
 class IEnumWbemClassObject extends IUnknown {
   // vtable begins at 3, is 5 entries long.
-  IEnumWbemClassObject(super.ptr);
+  IEnumWbemClassObject(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IEnumWbemClassObjectVtbl>().ref;
+
+  final IEnumWbemClassObjectVtbl _vtable;
 
   factory IEnumWbemClassObject.from(IUnknown interface) =>
       IEnumWbemClassObject(interface.toInterface(IID_IEnumWbemClassObject));
 
-  int reset() => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int reset() =>
+      _vtable.Reset.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
   int next(int lTimeout, int uCount, Pointer<Pointer<COMObject>> apObjects,
           Pointer<Uint32> puReturned) =>
-      ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Int32 lTimeout,
-                              Uint32 uCount,
-                              Pointer<Pointer<COMObject>> apObjects,
-                              Pointer<Uint32> puReturned)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int lTimeout,
-                      int uCount,
-                      Pointer<Pointer<COMObject>> apObjects,
-                      Pointer<Uint32> puReturned)>()(
+      _vtable.Next.asFunction<
+              int Function(
+                  Pointer,
+                  int lTimeout,
+                  int uCount,
+                  Pointer<Pointer<COMObject>> apObjects,
+                  Pointer<Uint32> puReturned)>()(
           ptr.ref.lpVtbl, lTimeout, uCount, apObjects, puReturned);
 
-  int nextAsync(int uCount, Pointer<COMObject> pSink) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Uint32 uCount, Pointer<COMObject> pSink)>>>()
-          .value
-          .asFunction<
+  int nextAsync(int uCount, Pointer<COMObject> pSink) =>
+      _vtable.NextAsync.asFunction<
               int Function(Pointer, int uCount, Pointer<COMObject> pSink)>()(
-      ptr.ref.lpVtbl, uCount, pSink);
+          ptr.ref.lpVtbl, uCount, pSink);
 
-  int clone(Pointer<Pointer<COMObject>> ppEnum) => ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> ppEnum)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>()(
+  int clone(Pointer<Pointer<COMObject>> ppEnum) => _vtable.Clone.asFunction<
+          int Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>()(
       ptr.ref.lpVtbl, ppEnum);
 
-  int skip(int lTimeout, int nCount) =>
-      ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Int32 lTimeout, Uint32 nCount)>>>()
-              .value
-              .asFunction<int Function(Pointer, int lTimeout, int nCount)>()(
-          ptr.ref.lpVtbl, lTimeout, nCount);
+  int skip(int lTimeout, int nCount) => _vtable.Skip.asFunction<
+          int Function(Pointer, int lTimeout, int nCount)>()(
+      ptr.ref.lpVtbl, lTimeout, nCount);
+}
+
+/// @nodoc
+base class IEnumWbemClassObjectVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Reset;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Int32 lTimeout,
+              Uint32 uCount,
+              Pointer<Pointer<COMObject>> apObjects,
+              Pointer<Uint32> puReturned)>> Next;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Uint32 uCount, Pointer<COMObject> pSink)>>
+      NextAsync;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>> Clone;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Int32 lTimeout, Uint32 nCount)>> Skip;
 }

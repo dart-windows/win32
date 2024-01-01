@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final audiosessioncontrol = IAudioSessionControl(ptr);
   test('Can instantiate IAudioSessionControl.getState', () {
@@ -55,5 +55,6 @@ void main() {
         isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

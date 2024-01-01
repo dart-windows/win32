@@ -19,61 +19,53 @@ const IID_IUIAutomationTableItemPattern =
 /// {@category com}
 class IUIAutomationTableItemPattern extends IUnknown {
   // vtable begins at 3, is 4 entries long.
-  IUIAutomationTableItemPattern(super.ptr);
+  IUIAutomationTableItemPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationTableItemPatternVtbl>().ref;
+
+  final IUIAutomationTableItemPatternVtbl _vtable;
 
   factory IUIAutomationTableItemPattern.from(IUnknown interface) =>
       IUIAutomationTableItemPattern(
           interface.toInterface(IID_IUIAutomationTableItemPattern));
 
-  int getCurrentRowHeaderItems(Pointer<Pointer<COMObject>> retVal) => ptr
-          .ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-          .value
-          .asFunction<
+  int getCurrentRowHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
+      _vtable.GetCurrentRowHeaderItems.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-      ptr.ref.lpVtbl, retVal);
+          ptr.ref.lpVtbl, retVal);
 
   int getCurrentColumnHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
-      ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
+      _vtable.GetCurrentColumnHeaderItems.asFunction<
+              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
           ptr.ref.lpVtbl, retVal);
 
   int getCachedRowHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
-      ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
+      _vtable.GetCachedRowHeaderItems.asFunction<
+              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
           ptr.ref.lpVtbl, retVal);
 
   int getCachedColumnHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
-      ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<COMObject>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
+      _vtable.GetCachedColumnHeaderItems.asFunction<
+              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
           ptr.ref.lpVtbl, retVal);
+}
+
+/// @nodoc
+base class IUIAutomationTableItemPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetCurrentRowHeaderItems;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetCurrentColumnHeaderItems;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetCachedRowHeaderItems;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+      GetCachedColumnHeaderItems;
 }

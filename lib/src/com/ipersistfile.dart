@@ -22,60 +22,53 @@ const IID_IPersistFile = '{0000010b-0000-0000-c000-000000000046}';
 /// {@category com}
 class IPersistFile extends IPersist {
   // vtable begins at 4, is 5 entries long.
-  IPersistFile(super.ptr);
+  IPersistFile(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IPersistFileVtbl>().ref;
+
+  final IPersistFileVtbl _vtable;
 
   factory IPersistFile.from(IUnknown interface) =>
       IPersistFile(interface.toInterface(IID_IPersistFile));
 
-  int isDirty() => ptr.ref.vtable
-      .elementAt(4)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int isDirty() =>
+      _vtable.IsDirty.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
-  int load(Pointer<Utf16> pszFileName, int dwMode) => ptr.ref.vtable
-      .elementAt(5)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(
-                      Pointer, Pointer<Utf16> pszFileName, Uint32 dwMode)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, Pointer<Utf16> pszFileName,
-              int dwMode)>()(ptr.ref.lpVtbl, pszFileName, dwMode);
+  int load(Pointer<Utf16> pszFileName, int dwMode) => _vtable.Load.asFunction<
+          int Function(Pointer, Pointer<Utf16> pszFileName, int dwMode)>()(
+      ptr.ref.lpVtbl, pszFileName, dwMode);
 
-  int save(Pointer<Utf16> pszFileName, int fRemember) => ptr.ref.vtable
-      .elementAt(6)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(
-                      Pointer, Pointer<Utf16> pszFileName, Int32 fRemember)>>>()
-      .value
-      .asFunction<
+  int save(Pointer<Utf16> pszFileName, int fRemember) =>
+      _vtable.Save.asFunction<
           int Function(Pointer, Pointer<Utf16> pszFileName,
               int fRemember)>()(ptr.ref.lpVtbl, pszFileName, fRemember);
 
-  int saveCompleted(Pointer<Utf16> pszFileName) => ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Utf16> pszFileName)>>>()
-          .value
+  int saveCompleted(Pointer<Utf16> pszFileName) => _vtable.SaveCompleted
           .asFunction<int Function(Pointer, Pointer<Utf16> pszFileName)>()(
       ptr.ref.lpVtbl, pszFileName);
 
-  int getCurFile(Pointer<Pointer<Utf16>> ppszFileName) => ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<Utf16>> ppszFileName)>>>()
-          .value
-          .asFunction<
+  int getCurFile(Pointer<Pointer<Utf16>> ppszFileName) =>
+      _vtable.GetCurFile.asFunction<
               int Function(Pointer, Pointer<Pointer<Utf16>> ppszFileName)>()(
-      ptr.ref.lpVtbl, ppszFileName);
+          ptr.ref.lpVtbl, ppszFileName);
+}
+
+/// @nodoc
+base class IPersistFileVtbl extends Struct {
+  external IPersistVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> IsDirty;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Pointer<Utf16> pszFileName, Uint32 dwMode)>> Load;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Pointer<Utf16> pszFileName, Int32 fRemember)>> Save;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Utf16> pszFileName)>>
+      SaveCompleted;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> ppszFileName)>>
+      GetCurFile;
 }

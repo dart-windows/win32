@@ -17,23 +17,28 @@ const IID_IAppxManifestReader6 = '{34deaca4-d3c0-4e3e-b312-e42625e3807e}';
 /// {@category com}
 class IAppxManifestReader6 extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IAppxManifestReader6(super.ptr);
+  IAppxManifestReader6(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAppxManifestReader6Vtbl>().ref;
+
+  final IAppxManifestReader6Vtbl _vtable;
 
   factory IAppxManifestReader6.from(IUnknown interface) =>
       IAppxManifestReader6(interface.toInterface(IID_IAppxManifestReader6));
 
   int getIsNonQualifiedResourcePackage(
           Pointer<Int32> isNonQualifiedResourcePackage) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer,
-                              Pointer<Int32> isNonQualifiedResourcePackage)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer, Pointer<Int32> isNonQualifiedResourcePackage)>()(
+      _vtable.GetIsNonQualifiedResourcePackage.asFunction<
+              int Function(
+                  Pointer, Pointer<Int32> isNonQualifiedResourcePackage)>()(
           ptr.ref.lpVtbl, isNonQualifiedResourcePackage);
+}
+
+/// @nodoc
+base class IAppxManifestReader6Vtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Int32> isNonQualifiedResourcePackage)>>
+      GetIsNonQualifiedResourcePackage;
 }

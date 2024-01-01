@@ -18,33 +18,36 @@ const IID_ISequentialStream = '{0c733a30-2a1c-11ce-ade5-00aa0044773d}';
 /// {@category com}
 class ISequentialStream extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  ISequentialStream(super.ptr);
+  ISequentialStream(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISequentialStreamVtbl>().ref;
+
+  final ISequentialStreamVtbl _vtable;
 
   factory ISequentialStream.from(IUnknown interface) =>
       ISequentialStream(interface.toInterface(IID_ISequentialStream));
 
-  int read(Pointer pv, int cb, Pointer<Uint32> pcbRead) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer pv, Uint32 cb,
-                      Pointer<Uint32> pcbRead)>>>()
-      .value
-      .asFunction<
+  int read(Pointer pv, int cb, Pointer<Uint32> pcbRead) =>
+      _vtable.Read.asFunction<
           int Function(Pointer, Pointer pv, int cb,
               Pointer<Uint32> pcbRead)>()(ptr.ref.lpVtbl, pv, cb, pcbRead);
 
-  int write(Pointer pv, int cb, Pointer<Uint32> pcbWritten) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer pv, Uint32 cb,
-                          Pointer<Uint32> pcbWritten)>>>()
-          .value
-          .asFunction<
+  int write(Pointer pv, int cb, Pointer<Uint32> pcbWritten) =>
+      _vtable.Write.asFunction<
               int Function(
                   Pointer, Pointer pv, int cb, Pointer<Uint32> pcbWritten)>()(
-      ptr.ref.lpVtbl, pv, cb, pcbWritten);
+          ptr.ref.lpVtbl, pv, cb, pcbWritten);
+}
+
+/// @nodoc
+base class ISequentialStreamVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Pointer pv, Uint32 cb, Pointer<Uint32> pcbRead)>> Read;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer pv, Uint32 cb, Pointer<Uint32> pcbWritten)>>
+      Write;
 }

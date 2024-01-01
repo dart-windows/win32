@@ -21,3 +21,8 @@ class IAgileObject extends IUnknown {
   factory IAgileObject.from(IUnknown interface) =>
       IAgileObject(interface.toInterface(IID_IAgileObject));
 }
+
+/// @nodoc
+base class IAgileObjectVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+}

@@ -20,7 +20,10 @@ const IID_IUIAutomationTextRange3 = '{6a315d69-5512-4c2e-85f0-53fce6dd4bc2}';
 /// {@category com}
 class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
   // vtable begins at 22, is 3 entries long.
-  IUIAutomationTextRange3(super.ptr);
+  IUIAutomationTextRange3(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextRange3Vtbl>().ref;
+
+  final IUIAutomationTextRange3Vtbl _vtable;
 
   factory IUIAutomationTextRange3.from(IUnknown interface) =>
       IUIAutomationTextRange3(
@@ -28,54 +31,46 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
 
   int getEnclosingElementBuildCache(Pointer<COMObject> cacheRequest,
           Pointer<Pointer<COMObject>> enclosingElement) =>
-      ptr.ref.vtable
-              .elementAt(22)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<COMObject> cacheRequest,
-                              Pointer<Pointer<COMObject>> enclosingElement)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<COMObject> cacheRequest,
-                      Pointer<Pointer<COMObject>> enclosingElement)>()(
+      _vtable.GetEnclosingElementBuildCache.asFunction<
+              int Function(Pointer, Pointer<COMObject> cacheRequest,
+                  Pointer<Pointer<COMObject>> enclosingElement)>()(
           ptr.ref.lpVtbl, cacheRequest, enclosingElement);
 
   int getChildrenBuildCache(Pointer<COMObject> cacheRequest,
           Pointer<Pointer<COMObject>> children) =>
-      ptr.ref.vtable
-          .elementAt(23)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<COMObject> cacheRequest,
-                          Pointer<Pointer<COMObject>> children)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer,
-                  Pointer<COMObject> cacheRequest,
-                  Pointer<Pointer<COMObject>>
-                      children)>()(ptr.ref.lpVtbl, cacheRequest, children);
+      _vtable.GetChildrenBuildCache.asFunction<
+              int Function(Pointer, Pointer<COMObject> cacheRequest,
+                  Pointer<Pointer<COMObject>> children)>()(
+          ptr.ref.lpVtbl, cacheRequest, children);
 
   int getAttributeValues(Pointer<Uint32> attributeIds, int attributeIdCount,
           Pointer<Pointer<SAFEARRAY>> attributeValues) =>
-      ptr.ref.vtable
-              .elementAt(24)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Uint32> attributeIds,
-                              Int32 attributeIdCount,
-                              Pointer<Pointer<SAFEARRAY>> attributeValues)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Uint32> attributeIds,
-                      int attributeIdCount,
-                      Pointer<Pointer<SAFEARRAY>> attributeValues)>()(
+      _vtable.GetAttributeValues.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Uint32> attributeIds,
+                  int attributeIdCount,
+                  Pointer<Pointer<SAFEARRAY>> attributeValues)>()(
           ptr.ref.lpVtbl, attributeIds, attributeIdCount, attributeValues);
+}
+
+/// @nodoc
+base class IUIAutomationTextRange3Vtbl extends Struct {
+  external IUIAutomationTextRange2Vtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<COMObject> cacheRequest,
+                  Pointer<Pointer<COMObject>> enclosingElement)>>
+      GetEnclosingElementBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<COMObject> cacheRequest,
+              Pointer<Pointer<COMObject>> children)>> GetChildrenBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Uint32> attributeIds,
+              Int32 attributeIdCount,
+              Pointer<Pointer<SAFEARRAY>> attributeValues)>> GetAttributeValues;
 }

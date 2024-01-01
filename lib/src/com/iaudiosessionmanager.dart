@@ -22,50 +22,48 @@ const IID_IAudioSessionManager = '{bfa971f1-4d5e-40bb-935e-967039bfbee4}';
 /// {@category com}
 class IAudioSessionManager extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IAudioSessionManager(super.ptr);
+  IAudioSessionManager(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioSessionManagerVtbl>().ref;
+
+  final IAudioSessionManagerVtbl _vtable;
 
   factory IAudioSessionManager.from(IUnknown interface) =>
       IAudioSessionManager(interface.toInterface(IID_IAudioSessionManager));
 
   int getAudioSessionControl(Pointer<GUID> AudioSessionGuid, int StreamFlags,
           Pointer<Pointer<COMObject>> SessionControl) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<GUID> AudioSessionGuid,
-                              Uint32 StreamFlags,
-                              Pointer<Pointer<COMObject>> SessionControl)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<GUID> AudioSessionGuid,
-                      int StreamFlags,
-                      Pointer<Pointer<COMObject>> SessionControl)>()(
+      _vtable.GetAudioSessionControl.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<GUID> AudioSessionGuid,
+                  int StreamFlags,
+                  Pointer<Pointer<COMObject>> SessionControl)>()(
           ptr.ref.lpVtbl, AudioSessionGuid, StreamFlags, SessionControl);
 
   int getSimpleAudioVolume(Pointer<GUID> AudioSessionGuid, int StreamFlags,
           Pointer<Pointer<COMObject>> AudioVolume) =>
-      ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<GUID> AudioSessionGuid,
-                              Uint32 StreamFlags,
-                              Pointer<Pointer<COMObject>> AudioVolume)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<GUID> AudioSessionGuid,
-                      int StreamFlags,
-                      Pointer<Pointer<COMObject>> AudioVolume)>()(
+      _vtable.GetSimpleAudioVolume.asFunction<
+              int Function(Pointer, Pointer<GUID> AudioSessionGuid,
+                  int StreamFlags, Pointer<Pointer<COMObject>> AudioVolume)>()(
           ptr.ref.lpVtbl, AudioSessionGuid, StreamFlags, AudioVolume);
+}
+
+/// @nodoc
+base class IAudioSessionManagerVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer,
+                  Pointer<GUID> AudioSessionGuid,
+                  Uint32 StreamFlags,
+                  Pointer<Pointer<COMObject>> SessionControl)>>
+      GetAudioSessionControl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<GUID> AudioSessionGuid,
+              Uint32 StreamFlags,
+              Pointer<Pointer<COMObject>> AudioVolume)>> GetSimpleAudioVolume;
 }

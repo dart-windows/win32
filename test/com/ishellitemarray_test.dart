@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final shellitemarray = IShellItemArray(ptr);
   test('Can instantiate IShellItemArray.bindToHandler', () {
@@ -44,5 +44,6 @@ void main() {
     expect(shellitemarray.enumItems, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

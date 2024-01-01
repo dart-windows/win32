@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final networklistmanager = INetworkListManager(ptr);
   test('Can instantiate INetworkListManager.getNetworks', () {
@@ -44,5 +44,6 @@ void main() {
     expect(networklistmanager.clearSimulatedProfileInfo, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

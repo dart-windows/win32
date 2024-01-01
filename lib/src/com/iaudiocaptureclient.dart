@@ -20,7 +20,10 @@ const IID_IAudioCaptureClient = '{c8adbd64-e71e-48a0-a4de-185c395cd317}';
 /// {@category com}
 class IAudioCaptureClient extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  IAudioCaptureClient(super.ptr);
+  IAudioCaptureClient(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioCaptureClientVtbl>().ref;
+
+  final IAudioCaptureClientVtbl _vtable;
 
   factory IAudioCaptureClient.from(IUnknown interface) =>
       IAudioCaptureClient(interface.toInterface(IID_IAudioCaptureClient));
@@ -31,54 +34,43 @@ class IAudioCaptureClient extends IUnknown {
           Pointer<Uint32> pdwFlags,
           Pointer<Uint64> pu64DevicePosition,
           Pointer<Uint64> pu64QPCPosition) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Pointer<Uint8>> ppData,
-                              Pointer<Uint32> pNumFramesToRead,
-                              Pointer<Uint32> pdwFlags,
-                              Pointer<Uint64> pu64DevicePosition,
-                              Pointer<Uint64> pu64QPCPosition)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Pointer<Uint8>> ppData,
-                      Pointer<Uint32> pNumFramesToRead,
-                      Pointer<Uint32> pdwFlags,
-                      Pointer<Uint64> pu64DevicePosition,
-                      Pointer<Uint64> pu64QPCPosition)>()(
-          ptr.ref.lpVtbl,
-          ppData,
-          pNumFramesToRead,
-          pdwFlags,
-          pu64DevicePosition,
-          pu64QPCPosition);
+      _vtable.GetBuffer.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Pointer<Uint8>> ppData,
+                  Pointer<Uint32> pNumFramesToRead,
+                  Pointer<Uint32> pdwFlags,
+                  Pointer<Uint64> pu64DevicePosition,
+                  Pointer<Uint64> pu64QPCPosition)>()(ptr.ref.lpVtbl, ppData,
+          pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
 
-  int releaseBuffer(int NumFramesRead) => ptr.ref.vtable
-      .elementAt(4)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Uint32 NumFramesRead)>>>()
-      .value
-      .asFunction<
-          int Function(
-              Pointer, int NumFramesRead)>()(ptr.ref.lpVtbl, NumFramesRead);
+  int releaseBuffer(int NumFramesRead) => _vtable.ReleaseBuffer.asFunction<
+      int Function(
+          Pointer, int NumFramesRead)>()(ptr.ref.lpVtbl, NumFramesRead);
 
-  int getNextPacketSize(Pointer<Uint32> pNumFramesInNextPacket) => ptr
-          .ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Uint32> pNumFramesInNextPacket)>>>()
-          .value
-          .asFunction<
+  int getNextPacketSize(Pointer<Uint32> pNumFramesInNextPacket) =>
+      _vtable.GetNextPacketSize.asFunction<
               int Function(Pointer, Pointer<Uint32> pNumFramesInNextPacket)>()(
-      ptr.ref.lpVtbl, pNumFramesInNextPacket);
+          ptr.ref.lpVtbl, pNumFramesInNextPacket);
+}
+
+/// @nodoc
+base class IAudioCaptureClientVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Pointer<Uint8>> ppData,
+              Pointer<Uint32> pNumFramesToRead,
+              Pointer<Uint32> pdwFlags,
+              Pointer<Uint64> pu64DevicePosition,
+              Pointer<Uint64> pu64QPCPosition)>> GetBuffer;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Uint32 NumFramesRead)>>
+      ReleaseBuffer;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Uint32> pNumFramesInNextPacket)>>
+      GetNextPacketSize;
 }

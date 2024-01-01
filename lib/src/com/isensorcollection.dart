@@ -19,69 +19,57 @@ const IID_ISensorCollection = '{23571e11-e545-4dd8-a337-b89bf44b10df}';
 /// {@category com}
 class ISensorCollection extends IUnknown {
   // vtable begins at 3, is 6 entries long.
-  ISensorCollection(super.ptr);
+  ISensorCollection(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISensorCollectionVtbl>().ref;
+
+  final ISensorCollectionVtbl _vtable;
 
   factory ISensorCollection.from(IUnknown interface) =>
       ISensorCollection(interface.toInterface(IID_ISensorCollection));
 
-  int getAt(int ulIndex, Pointer<Pointer<COMObject>> ppSensor) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Uint32 ulIndex,
-                          Pointer<Pointer<COMObject>> ppSensor)>>>()
-          .value
-          .asFunction<
+  int getAt(int ulIndex, Pointer<Pointer<COMObject>> ppSensor) =>
+      _vtable.GetAt.asFunction<
               int Function(Pointer, int ulIndex,
                   Pointer<Pointer<COMObject>> ppSensor)>()(
-      ptr.ref.lpVtbl, ulIndex, ppSensor);
+          ptr.ref.lpVtbl, ulIndex, ppSensor);
 
-  int getCount(Pointer<Uint32> pCount) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Uint32> pCount)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Uint32> pCount)>()(
-      ptr.ref.lpVtbl, pCount);
+  int getCount(Pointer<Uint32> pCount) => _vtable.GetCount.asFunction<
+      int Function(Pointer, Pointer<Uint32> pCount)>()(ptr.ref.lpVtbl, pCount);
 
-  int add(Pointer<COMObject> pSensor) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<COMObject> pSensor)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<COMObject> pSensor)>()(
-      ptr.ref.lpVtbl, pSensor);
+  int add(Pointer<COMObject> pSensor) => _vtable.Add.asFunction<
+      int Function(
+          Pointer, Pointer<COMObject> pSensor)>()(ptr.ref.lpVtbl, pSensor);
 
-  int remove(Pointer<COMObject> pSensor) => ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<COMObject> pSensor)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<COMObject> pSensor)>()(
-      ptr.ref.lpVtbl, pSensor);
+  int remove(Pointer<COMObject> pSensor) => _vtable.Remove.asFunction<
+      int Function(
+          Pointer, Pointer<COMObject> pSensor)>()(ptr.ref.lpVtbl, pSensor);
 
-  int removeByID(Pointer<GUID> sensorID) => ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<GUID> sensorID)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<GUID> sensorID)>()(
-      ptr.ref.lpVtbl, sensorID);
+  int removeByID(Pointer<GUID> sensorID) => _vtable.RemoveByID.asFunction<
+      int Function(
+          Pointer, Pointer<GUID> sensorID)>()(ptr.ref.lpVtbl, sensorID);
 
-  int clear() => ptr.ref.vtable
-      .elementAt(8)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int clear() =>
+      _vtable.Clear.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+}
+
+/// @nodoc
+base class ISensorCollectionVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Uint32 ulIndex,
+              Pointer<Pointer<COMObject>> ppSensor)>> GetAt;
+  external Pointer<
+      NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pCount)>> GetCount;
+  external Pointer<
+      NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pSensor)>> Add;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pSensor)>>
+      Remove;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<GUID> sensorID)>>
+      RemoveByID;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Clear;
 }
 
 /// @nodoc

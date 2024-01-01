@@ -17,53 +17,50 @@ const IID_IShellLinkDataList = '{45e2b4ae-b1c3-11d0-b92f-00a0c90312e1}';
 /// {@category com}
 class IShellLinkDataList extends IUnknown {
   // vtable begins at 3, is 5 entries long.
-  IShellLinkDataList(super.ptr);
+  IShellLinkDataList(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IShellLinkDataListVtbl>().ref;
+
+  final IShellLinkDataListVtbl _vtable;
 
   factory IShellLinkDataList.from(IUnknown interface) =>
       IShellLinkDataList(interface.toInterface(IID_IShellLinkDataList));
 
-  int addDataBlock(Pointer pDataBlock) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Pointer pDataBlock)>>>()
-      .value
-      .asFunction<
-          int Function(
-              Pointer, Pointer pDataBlock)>()(ptr.ref.lpVtbl, pDataBlock);
+  int addDataBlock(Pointer pDataBlock) => _vtable.AddDataBlock.asFunction<
+      int Function(Pointer, Pointer pDataBlock)>()(ptr.ref.lpVtbl, pDataBlock);
 
-  int copyDataBlock(int dwSig, Pointer<Pointer> ppDataBlock) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Uint32 dwSig,
-                          Pointer<Pointer> ppDataBlock)>>>()
-          .value
-          .asFunction<
+  int copyDataBlock(int dwSig, Pointer<Pointer> ppDataBlock) =>
+      _vtable.CopyDataBlock.asFunction<
               int Function(Pointer, int dwSig, Pointer<Pointer> ppDataBlock)>()(
-      ptr.ref.lpVtbl, dwSig, ppDataBlock);
+          ptr.ref.lpVtbl, dwSig, ppDataBlock);
 
-  int removeDataBlock(int dwSig) => ptr.ref.vtable
-      .elementAt(5)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwSig)>>>()
-      .value
-      .asFunction<int Function(Pointer, int dwSig)>()(ptr.ref.lpVtbl, dwSig);
+  int removeDataBlock(int dwSig) =>
+      _vtable.RemoveDataBlock.asFunction<int Function(Pointer, int dwSig)>()(
+          ptr.ref.lpVtbl, dwSig);
 
-  int getFlags(Pointer<Uint32> pdwFlags) => ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Uint32> pdwFlags)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Uint32> pdwFlags)>()(
-      ptr.ref.lpVtbl, pdwFlags);
+  int getFlags(Pointer<Uint32> pdwFlags) => _vtable.GetFlags.asFunction<
+      int Function(
+          Pointer, Pointer<Uint32> pdwFlags)>()(ptr.ref.lpVtbl, pdwFlags);
 
-  int setFlags(int dwFlags) => ptr.ref.vtable
-      .elementAt(7)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwFlags)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, int dwFlags)>()(ptr.ref.lpVtbl, dwFlags);
+  int setFlags(int dwFlags) =>
+      _vtable.SetFlags.asFunction<int Function(Pointer, int dwFlags)>()(
+          ptr.ref.lpVtbl, dwFlags);
+}
+
+/// @nodoc
+base class IShellLinkDataListVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer pDataBlock)>>
+      AddDataBlock;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Uint32 dwSig, Pointer<Pointer> ppDataBlock)>>
+      CopyDataBlock;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwSig)>>
+      RemoveDataBlock;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pdwFlags)>>
+      GetFlags;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwFlags)>>
+      SetFlags;
 }

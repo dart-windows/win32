@@ -19,19 +19,25 @@ const IID_INetworkListManagerEvents = '{dcb00001-570f-4a9b-8d69-199fdba5723b}';
 /// {@category com}
 class INetworkListManagerEvents extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  INetworkListManagerEvents(super.ptr);
+  INetworkListManagerEvents(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<INetworkListManagerEventsVtbl>().ref;
+
+  final INetworkListManagerEventsVtbl _vtable;
 
   factory INetworkListManagerEvents.from(IUnknown interface) =>
       INetworkListManagerEvents(
           interface.toInterface(IID_INetworkListManagerEvents));
 
-  int connectivityChanged(int newConnectivity) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Int32 newConnectivity)>>>()
-      .value
-      .asFunction<
+  int connectivityChanged(int newConnectivity) =>
+      _vtable.ConnectivityChanged.asFunction<
           int Function(
               Pointer, int newConnectivity)>()(ptr.ref.lpVtbl, newConnectivity);
+}
+
+/// @nodoc
+base class INetworkListManagerEventsVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Int32 newConnectivity)>>
+      ConnectivityChanged;
 }

@@ -20,18 +20,22 @@ const IID_IAudioClockAdjustment = '{f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c}';
 /// {@category com}
 class IAudioClockAdjustment extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IAudioClockAdjustment(super.ptr);
+  IAudioClockAdjustment(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioClockAdjustmentVtbl>().ref;
+
+  final IAudioClockAdjustmentVtbl _vtable;
 
   factory IAudioClockAdjustment.from(IUnknown interface) =>
       IAudioClockAdjustment(interface.toInterface(IID_IAudioClockAdjustment));
 
-  int setSampleRate(double flSampleRate) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Float flSampleRate)>>>()
-      .value
-      .asFunction<
-          int Function(
-              Pointer, double flSampleRate)>()(ptr.ref.lpVtbl, flSampleRate);
+  int setSampleRate(double flSampleRate) => _vtable.SetSampleRate.asFunction<
+      int Function(
+          Pointer, double flSampleRate)>()(ptr.ref.lpVtbl, flSampleRate);
+}
+
+/// @nodoc
+base class IAudioClockAdjustmentVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Float flSampleRate)>>
+      SetSampleRate;
 }

@@ -18,41 +18,40 @@ const IID_IAppxManifestPackageDependenciesEnumerator =
 /// {@category com}
 class IAppxManifestPackageDependenciesEnumerator extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  IAppxManifestPackageDependenciesEnumerator(super.ptr);
+  IAppxManifestPackageDependenciesEnumerator(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<IAppxManifestPackageDependenciesEnumeratorVtbl>()
+            .ref;
+
+  final IAppxManifestPackageDependenciesEnumeratorVtbl _vtable;
 
   factory IAppxManifestPackageDependenciesEnumerator.from(IUnknown interface) =>
       IAppxManifestPackageDependenciesEnumerator(interface
           .toInterface(IID_IAppxManifestPackageDependenciesEnumerator));
 
-  int getCurrent(Pointer<Pointer<COMObject>> dependency) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> dependency)>>>()
-          .value
-          .asFunction<
+  int getCurrent(Pointer<Pointer<COMObject>> dependency) =>
+      _vtable.GetCurrent.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> dependency)>()(
-      ptr.ref.lpVtbl, dependency);
+          ptr.ref.lpVtbl, dependency);
 
-  int getHasCurrent(Pointer<Int32> hasCurrent) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Int32> hasCurrent)>>>()
-          .value
+  int getHasCurrent(Pointer<Int32> hasCurrent) => _vtable.GetHasCurrent
           .asFunction<int Function(Pointer, Pointer<Int32> hasCurrent)>()(
       ptr.ref.lpVtbl, hasCurrent);
 
-  int moveNext(Pointer<Int32> hasNext) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Int32> hasNext)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Int32> hasNext)>()(
-      ptr.ref.lpVtbl, hasNext);
+  int moveNext(Pointer<Int32> hasNext) => _vtable.MoveNext.asFunction<
+      int Function(Pointer, Pointer<Int32> hasNext)>()(ptr.ref.lpVtbl, hasNext);
+}
+
+/// @nodoc
+base class IAppxManifestPackageDependenciesEnumeratorVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> dependency)>>
+      GetCurrent;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> hasCurrent)>>
+      GetHasCurrent;
+  external Pointer<
+      NativeFunction<Int32 Function(Pointer, Pointer<Int32> hasNext)>> MoveNext;
 }

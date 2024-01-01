@@ -24,44 +24,34 @@ const IID_IUIAutomationSelectionItemPattern =
 /// {@category com}
 class IUIAutomationSelectionItemPattern extends IUnknown {
   // vtable begins at 3, is 7 entries long.
-  IUIAutomationSelectionItemPattern(super.ptr);
+  IUIAutomationSelectionItemPattern(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IUIAutomationSelectionItemPatternVtbl>().ref;
+
+  final IUIAutomationSelectionItemPatternVtbl _vtable;
 
   factory IUIAutomationSelectionItemPattern.from(IUnknown interface) =>
       IUIAutomationSelectionItemPattern(
           interface.toInterface(IID_IUIAutomationSelectionItemPattern));
 
-  int select() => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int select() =>
+      _vtable.Select.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
-  int addToSelection() => ptr.ref.vtable
-      .elementAt(4)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int addToSelection() =>
+      _vtable.AddToSelection.asFunction<int Function(Pointer)>()(
+          ptr.ref.lpVtbl);
 
-  int removeFromSelection() => ptr.ref.vtable
-      .elementAt(5)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int removeFromSelection() =>
+      _vtable.RemoveFromSelection.asFunction<int Function(Pointer)>()(
+          ptr.ref.lpVtbl);
 
   int get currentIsSelected {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentIsSelected
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -74,16 +64,9 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
   Pointer<COMObject> get currentSelectionContainer {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> retVal)>>>()
-            .value
+    final hr = _vtable.get_CurrentSelectionContainer
             .asFunction<int Function(Pointer, Pointer<COMObject> retVal)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -96,16 +79,9 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedIsSelected
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -118,16 +94,9 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
   Pointer<COMObject> get cachedSelectionContainer {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> retVal)>>>()
-            .value
+    final hr = _vtable.get_CachedSelectionContainer
             .asFunction<int Function(Pointer, Pointer<COMObject> retVal)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -135,4 +104,24 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
 
     return retValuePtr;
   }
+}
+
+/// @nodoc
+base class IUIAutomationSelectionItemPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Select;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> AddToSelection;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> RemoveFromSelection;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentIsSelected;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> retVal)>>
+      get_CurrentSelectionContainer;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedIsSelected;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> retVal)>>
+      get_CachedSelectionContainer;
 }

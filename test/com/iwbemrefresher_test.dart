@@ -19,12 +19,13 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final wbemrefresher = IWbemRefresher(ptr);
   test('Can instantiate IWbemRefresher.refresh', () {
     expect(wbemrefresher.refresh, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

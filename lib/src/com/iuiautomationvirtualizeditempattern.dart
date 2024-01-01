@@ -18,15 +18,22 @@ const IID_IUIAutomationVirtualizedItemPattern =
 /// {@category com}
 class IUIAutomationVirtualizedItemPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationVirtualizedItemPattern(super.ptr);
+  IUIAutomationVirtualizedItemPattern(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IUIAutomationVirtualizedItemPatternVtbl>().ref;
+
+  final IUIAutomationVirtualizedItemPatternVtbl _vtable;
 
   factory IUIAutomationVirtualizedItemPattern.from(IUnknown interface) =>
       IUIAutomationVirtualizedItemPattern(
           interface.toInterface(IID_IUIAutomationVirtualizedItemPattern));
 
-  int realize() => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int realize() =>
+      _vtable.Realize.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+}
+
+/// @nodoc
+base class IUIAutomationVirtualizedItemPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Realize;
 }

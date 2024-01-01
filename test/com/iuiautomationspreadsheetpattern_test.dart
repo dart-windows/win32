@@ -19,12 +19,13 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomationspreadsheetpattern = IUIAutomationSpreadsheetPattern(ptr);
   test('Can instantiate IUIAutomationSpreadsheetPattern.getItemByName', () {
     expect(uiautomationspreadsheetpattern.getItemByName, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

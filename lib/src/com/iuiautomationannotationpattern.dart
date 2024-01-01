@@ -23,7 +23,10 @@ const IID_IUIAutomationAnnotationPattern =
 /// {@category com}
 class IUIAutomationAnnotationPattern extends IUnknown {
   // vtable begins at 3, is 10 entries long.
-  IUIAutomationAnnotationPattern(super.ptr);
+  IUIAutomationAnnotationPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationAnnotationPatternVtbl>().ref;
+
+  final IUIAutomationAnnotationPatternVtbl _vtable;
 
   factory IUIAutomationAnnotationPattern.from(IUnknown interface) =>
       IUIAutomationAnnotationPattern(
@@ -33,16 +36,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Uint32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentAnnotationTypeId
               .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,18 +52,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CurrentAnnotationTypeName.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -81,18 +68,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CurrentAuthor.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -106,18 +84,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CurrentDateTime.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -130,16 +99,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
   Pointer<COMObject> get currentTarget {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> retVal)>>>()
-            .value
+    final hr = _vtable.get_CurrentTarget
             .asFunction<int Function(Pointer, Pointer<COMObject> retVal)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -152,16 +114,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Uint32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedAnnotationTypeId
               .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -175,18 +130,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CachedAnnotationTypeName.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -200,18 +146,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CachedAuthor.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -225,18 +162,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CachedDateTime.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -249,16 +177,9 @@ class IUIAutomationAnnotationPattern extends IUnknown {
   Pointer<COMObject> get cachedTarget {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> retVal)>>>()
-            .value
+    final hr = _vtable.get_CachedTarget
             .asFunction<int Function(Pointer, Pointer<COMObject> retVal)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -266,4 +187,45 @@ class IUIAutomationAnnotationPattern extends IUnknown {
 
     return retValuePtr;
   }
+}
+
+/// @nodoc
+base class IUIAutomationAnnotationPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+      get_CurrentAnnotationTypeId;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CurrentAnnotationTypeName;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CurrentAuthor;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CurrentDateTime;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> retVal)>>
+      get_CurrentTarget;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+      get_CachedAnnotationTypeId;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CachedAnnotationTypeName;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CachedAuthor;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CachedDateTime;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> retVal)>>
+      get_CachedTarget;
 }

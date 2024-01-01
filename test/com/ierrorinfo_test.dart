@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final errorinfo = IErrorInfo(ptr);
   test('Can instantiate IErrorInfo.getGUID', () {
@@ -38,5 +38,6 @@ void main() {
     expect(errorinfo.getHelpContext, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

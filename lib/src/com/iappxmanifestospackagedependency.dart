@@ -17,29 +17,32 @@ const IID_IAppxManifestOSPackageDependency =
 /// {@category com}
 class IAppxManifestOSPackageDependency extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IAppxManifestOSPackageDependency(super.ptr);
+  IAppxManifestOSPackageDependency(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IAppxManifestOSPackageDependencyVtbl>().ref;
+
+  final IAppxManifestOSPackageDependencyVtbl _vtable;
 
   factory IAppxManifestOSPackageDependency.from(IUnknown interface) =>
       IAppxManifestOSPackageDependency(
           interface.toInterface(IID_IAppxManifestOSPackageDependency));
 
-  int getName(Pointer<Pointer<Utf16>> name) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Pointer<Utf16>> name)>()(
-      ptr.ref.lpVtbl, name);
+  int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
+      int Function(
+          Pointer, Pointer<Pointer<Utf16>> name)>()(ptr.ref.lpVtbl, name);
 
-  int getVersion(Pointer<Uint64> version) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Uint64> version)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Uint64> version)>()(
-      ptr.ref.lpVtbl, version);
+  int getVersion(Pointer<Uint64> version) => _vtable.GetVersion.asFunction<
+      int Function(
+          Pointer, Pointer<Uint64> version)>()(ptr.ref.lpVtbl, version);
+}
+
+/// @nodoc
+base class IAppxManifestOSPackageDependencyVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>
+      GetName;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint64> version)>>
+      GetVersion;
 }

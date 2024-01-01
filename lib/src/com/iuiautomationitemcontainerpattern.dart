@@ -20,7 +20,11 @@ const IID_IUIAutomationItemContainerPattern =
 /// {@category com}
 class IUIAutomationItemContainerPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationItemContainerPattern(super.ptr);
+  IUIAutomationItemContainerPattern(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IUIAutomationItemContainerPatternVtbl>().ref;
+
+  final IUIAutomationItemContainerPatternVtbl _vtable;
 
   factory IUIAutomationItemContainerPattern.from(IUnknown interface) =>
       IUIAutomationItemContainerPattern(
@@ -28,24 +32,25 @@ class IUIAutomationItemContainerPattern extends IUnknown {
 
   int findItemByProperty(Pointer<COMObject> pStartAfter, int propertyId,
           VARIANT value, Pointer<Pointer<COMObject>> pFound) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<COMObject> pStartAfter,
-                              Uint32 propertyId,
-                              VARIANT value,
-                              Pointer<Pointer<COMObject>> pFound)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<COMObject> pStartAfter,
-                      int propertyId,
-                      VARIANT value,
-                      Pointer<Pointer<COMObject>> pFound)>()(
+      _vtable.FindItemByProperty.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<COMObject> pStartAfter,
+                  int propertyId,
+                  VARIANT value,
+                  Pointer<Pointer<COMObject>> pFound)>()(
           ptr.ref.lpVtbl, pStartAfter, propertyId, value, pFound);
+}
+
+/// @nodoc
+base class IUIAutomationItemContainerPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<COMObject> pStartAfter,
+              Uint32 propertyId,
+              VARIANT value,
+              Pointer<Pointer<COMObject>> pFound)>> FindItemByProperty;
 }

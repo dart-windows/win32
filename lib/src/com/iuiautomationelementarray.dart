@@ -22,7 +22,10 @@ const IID_IUIAutomationElementArray = '{14314595-b4bc-4055-95f2-58f2e42c9855}';
 /// {@category com}
 class IUIAutomationElementArray extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IUIAutomationElementArray(super.ptr);
+  IUIAutomationElementArray(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationElementArrayVtbl>().ref;
+
+  final IUIAutomationElementArrayVtbl _vtable;
 
   factory IUIAutomationElementArray.from(IUnknown interface) =>
       IUIAutomationElementArray(
@@ -32,16 +35,9 @@ class IUIAutomationElementArray extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> length)>>>()
-              .value
+      final hr = _vtable.get_Length
               .asFunction<int Function(Pointer, Pointer<Int32> length)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,17 +47,22 @@ class IUIAutomationElementArray extends IUnknown {
     }
   }
 
-  int getElement(int index, Pointer<Pointer<COMObject>> element) => ptr
-          .ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Int32 index,
-                          Pointer<Pointer<COMObject>> element)>>>()
-          .value
-          .asFunction<
+  int getElement(int index, Pointer<Pointer<COMObject>> element) =>
+      _vtable.GetElement.asFunction<
               int Function(
                   Pointer, int index, Pointer<Pointer<COMObject>> element)>()(
-      ptr.ref.lpVtbl, index, element);
+          ptr.ref.lpVtbl, index, element);
+}
+
+/// @nodoc
+base class IUIAutomationElementArrayVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> length)>>
+      get_Length;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Int32 index, Pointer<Pointer<COMObject>> element)>>
+      GetElement;
 }

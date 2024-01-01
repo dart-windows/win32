@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomationtextpattern2 = IUIAutomationTextPattern2(ptr);
   test('Can instantiate IUIAutomationTextPattern2.rangeFromAnnotation', () {
@@ -29,5 +29,6 @@ void main() {
     expect(uiautomationtextpattern2.getCaretRange, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

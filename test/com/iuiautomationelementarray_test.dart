@@ -19,12 +19,13 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomationelementarray = IUIAutomationElementArray(ptr);
   test('Can instantiate IUIAutomationElementArray.getElement', () {
     expect(uiautomationelementarray.getElement, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

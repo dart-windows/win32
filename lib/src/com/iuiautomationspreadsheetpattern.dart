@@ -21,23 +21,28 @@ const IID_IUIAutomationSpreadsheetPattern =
 /// {@category com}
 class IUIAutomationSpreadsheetPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationSpreadsheetPattern(super.ptr);
+  IUIAutomationSpreadsheetPattern(super.ptr)
+      : _vtable =
+            ptr.ref.vtable.cast<IUIAutomationSpreadsheetPatternVtbl>().ref;
+
+  final IUIAutomationSpreadsheetPatternVtbl _vtable;
 
   factory IUIAutomationSpreadsheetPattern.from(IUnknown interface) =>
       IUIAutomationSpreadsheetPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetPattern));
 
   int getItemByName(Pointer<Utf16> name, Pointer<Pointer<COMObject>> element) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Utf16> name,
-                              Pointer<Pointer<COMObject>> element)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Utf16> name,
-                      Pointer<Pointer<COMObject>> element)>()(
+      _vtable.GetItemByName.asFunction<
+              int Function(Pointer, Pointer<Utf16> name,
+                  Pointer<Pointer<COMObject>> element)>()(
           ptr.ref.lpVtbl, name, element);
+}
+
+/// @nodoc
+base class IUIAutomationSpreadsheetPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<Utf16> name,
+              Pointer<Pointer<COMObject>> element)>> GetItemByName;
 }

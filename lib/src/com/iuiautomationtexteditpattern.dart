@@ -21,33 +21,35 @@ const IID_IUIAutomationTextEditPattern =
 /// {@category com}
 class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
   // vtable begins at 9, is 2 entries long.
-  IUIAutomationTextEditPattern(super.ptr);
+  IUIAutomationTextEditPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextEditPatternVtbl>().ref;
+
+  final IUIAutomationTextEditPatternVtbl _vtable;
 
   factory IUIAutomationTextEditPattern.from(IUnknown interface) =>
       IUIAutomationTextEditPattern(
           interface.toInterface(IID_IUIAutomationTextEditPattern));
 
-  int getActiveComposition(Pointer<Pointer<COMObject>> range) => ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> range)>>>()
-          .value
-          .asFunction<
+  int getActiveComposition(Pointer<Pointer<COMObject>> range) =>
+      _vtable.GetActiveComposition.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> range)>()(
-      ptr.ref.lpVtbl, range);
+          ptr.ref.lpVtbl, range);
 
-  int getConversionTarget(Pointer<Pointer<COMObject>> range) => ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> range)>>>()
-          .value
-          .asFunction<
+  int getConversionTarget(Pointer<Pointer<COMObject>> range) =>
+      _vtable.GetConversionTarget.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> range)>()(
-      ptr.ref.lpVtbl, range);
+          ptr.ref.lpVtbl, range);
+}
+
+/// @nodoc
+base class IUIAutomationTextEditPatternVtbl extends Struct {
+  external IUIAutomationTextPatternVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> range)>>
+      GetActiveComposition;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> range)>>
+      GetConversionTarget;
 }

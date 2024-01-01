@@ -19,7 +19,10 @@ const IID_IRestrictedErrorInfo = '{82ba7092-4c88-427d-a7bc-16dd93feb67e}';
 /// {@category com}
 class IRestrictedErrorInfo extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IRestrictedErrorInfo(super.ptr);
+  IRestrictedErrorInfo(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IRestrictedErrorInfoVtbl>().ref;
+
+  final IRestrictedErrorInfoVtbl _vtable;
 
   factory IRestrictedErrorInfo.from(IUnknown interface) =>
       IRestrictedErrorInfo(interface.toInterface(IID_IRestrictedErrorInfo));
@@ -29,36 +32,34 @@ class IRestrictedErrorInfo extends IUnknown {
           Pointer<Int32> error,
           Pointer<Pointer<Utf16>> restrictedDescription,
           Pointer<Pointer<Utf16>> capabilitySid) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Pointer<Utf16>> description,
-                              Pointer<Int32> error,
-                              Pointer<Pointer<Utf16>> restrictedDescription,
-                              Pointer<Pointer<Utf16>> capabilitySid)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      Pointer<Pointer<Utf16>> description,
-                      Pointer<Int32> error,
-                      Pointer<Pointer<Utf16>> restrictedDescription,
-                      Pointer<Pointer<Utf16>> capabilitySid)>()(ptr.ref.lpVtbl,
+      _vtable.GetErrorDetails.asFunction<
+              int Function(
+                  Pointer,
+                  Pointer<Pointer<Utf16>> description,
+                  Pointer<Int32> error,
+                  Pointer<Pointer<Utf16>> restrictedDescription,
+                  Pointer<Pointer<Utf16>> capabilitySid)>()(ptr.ref.lpVtbl,
           description, error, restrictedDescription, capabilitySid);
 
-  int getReference(Pointer<Pointer<Utf16>> reference) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<Utf16>> reference)>>>()
-          .value
-          .asFunction<
+  int getReference(Pointer<Pointer<Utf16>> reference) =>
+      _vtable.GetReference.asFunction<
               int Function(Pointer, Pointer<Pointer<Utf16>> reference)>()(
-      ptr.ref.lpVtbl, reference);
+          ptr.ref.lpVtbl, reference);
+}
+
+/// @nodoc
+base class IRestrictedErrorInfoVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Pointer<Pointer<Utf16>> description,
+              Pointer<Int32> error,
+              Pointer<Pointer<Utf16>> restrictedDescription,
+              Pointer<Pointer<Utf16>> capabilitySid)>> GetErrorDetails;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> reference)>>
+      GetReference;
 }

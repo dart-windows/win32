@@ -18,13 +18,7 @@ abstract class ComPropertyProjection extends ComMethodProjection {
     bool freeRetValOnFailure = false,
   }) =>
       [
-        '''
-    final hr = ptr.ref.vtable
-        .elementAt($vtableOffset)
-        .cast<Pointer<NativeFunction<$nativePrototype>>>()
-        .value
-        .asFunction<$dartPrototype>()(ptr.ref.lpVtbl, $identifier);
-''',
+        'final hr = _vtable.$name.asFunction<$dartPrototype>()(ptr.ref.lpVtbl, $identifier);',
         if (freeRetValOnFailure)
           'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
         else

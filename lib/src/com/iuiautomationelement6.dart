@@ -23,7 +23,10 @@ const IID_IUIAutomationElement6 = '{4780d450-8bca-4977-afa5-a4a517f555e3}';
 /// {@category com}
 class IUIAutomationElement6 extends IUIAutomationElement5 {
   // vtable begins at 108, is 2 entries long.
-  IUIAutomationElement6(super.ptr);
+  IUIAutomationElement6(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement6Vtbl>().ref;
+
+  final IUIAutomationElement6Vtbl _vtable;
 
   factory IUIAutomationElement6.from(IUnknown interface) =>
       IUIAutomationElement6(interface.toInterface(IID_IUIAutomationElement6));
@@ -32,18 +35,9 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(108)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CurrentFullDescription.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,18 +51,9 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(109)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CachedFullDescription.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -77,4 +62,17 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationElement6Vtbl extends Struct {
+  external IUIAutomationElement5Vtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CurrentFullDescription;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CachedFullDescription;
 }

@@ -19,26 +19,27 @@ const IID_IAudioClock2 = '{6f49ff73-6727-49ac-a008-d98cf5e70048}';
 /// {@category com}
 class IAudioClock2 extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IAudioClock2(super.ptr);
+  IAudioClock2(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioClock2Vtbl>().ref;
+
+  final IAudioClock2Vtbl _vtable;
 
   factory IAudioClock2.from(IUnknown interface) =>
       IAudioClock2(interface.toInterface(IID_IAudioClock2));
 
-  int
-      getDevicePosition(
-              Pointer<Uint64> DevicePosition, Pointer<Uint64> QPCPosition) =>
-          ptr.ref.vtable
-                  .elementAt(3)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              Int32 Function(
-                                  Pointer,
-                                  Pointer<Uint64> DevicePosition,
-                                  Pointer<Uint64> QPCPosition)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, Pointer<Uint64> DevicePosition,
-                          Pointer<Uint64> QPCPosition)>()(
-              ptr.ref.lpVtbl, DevicePosition, QPCPosition);
+  int getDevicePosition(
+          Pointer<Uint64> DevicePosition, Pointer<Uint64> QPCPosition) =>
+      _vtable.GetDevicePosition.asFunction<
+              int Function(Pointer, Pointer<Uint64> DevicePosition,
+                  Pointer<Uint64> QPCPosition)>()(
+          ptr.ref.lpVtbl, DevicePosition, QPCPosition);
+}
+
+/// @nodoc
+base class IAudioClock2Vtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<Uint64> DevicePosition,
+              Pointer<Uint64> QPCPosition)>> GetDevicePosition;
 }

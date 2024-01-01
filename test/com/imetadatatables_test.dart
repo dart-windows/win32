@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final metadatatables = IMetaDataTables(ptr);
   test('Can instantiate IMetaDataTables.getStringHeapSize', () {
@@ -80,5 +80,6 @@ void main() {
     expect(metadatatables.getNextUserString, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

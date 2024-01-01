@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final mmdevicecollection = IMMDeviceCollection(ptr);
   test('Can instantiate IMMDeviceCollection.getCount', () {
@@ -29,5 +29,6 @@ void main() {
     expect(mmdevicecollection.item, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

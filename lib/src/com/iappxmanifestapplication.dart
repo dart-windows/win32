@@ -18,35 +18,36 @@ const IID_IAppxManifestApplication = '{5da89bf4-3773-46be-b650-7e744863b7e8}';
 /// {@category com}
 class IAppxManifestApplication extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IAppxManifestApplication(super.ptr);
+  IAppxManifestApplication(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAppxManifestApplicationVtbl>().ref;
+
+  final IAppxManifestApplicationVtbl _vtable;
 
   factory IAppxManifestApplication.from(IUnknown interface) =>
       IAppxManifestApplication(
           interface.toInterface(IID_IAppxManifestApplication));
 
-  int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) => ptr
-      .ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer<Utf16> name,
-                      Pointer<Pointer<Utf16>> value)>>>()
-      .value
-      .asFunction<
+  int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
+      _vtable.GetStringValue.asFunction<
           int Function(Pointer, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>()(ptr.ref.lpVtbl, name, value);
 
-  int getAppUserModelId(Pointer<Pointer<Utf16>> appUserModelId) => ptr
-          .ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<Utf16>> appUserModelId)>>>()
-          .value
-          .asFunction<
+  int getAppUserModelId(Pointer<Pointer<Utf16>> appUserModelId) =>
+      _vtable.GetAppUserModelId.asFunction<
               int Function(Pointer, Pointer<Pointer<Utf16>> appUserModelId)>()(
-      ptr.ref.lpVtbl, appUserModelId);
+          ptr.ref.lpVtbl, appUserModelId);
+}
+
+/// @nodoc
+base class IAppxManifestApplicationVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Utf16> name, Pointer<Pointer<Utf16>> value)>>
+      GetStringValue;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> appUserModelId)>>
+      GetAppUserModelId;
 }

@@ -41,11 +41,8 @@ class ComMethodProjection extends MethodProjection {
   String toString() {
     try {
       return '''
-      ${returnType.dartType} $camelCasedName($methodParams) => ptr.ref.vtable
-        .elementAt($vtableOffset)
-        .cast<Pointer<NativeFunction<$nativePrototype>>>()
-        .value
-        .asFunction<$dartPrototype>()($identifiers);
+      ${returnType.dartType} $camelCasedName($methodParams) =>
+          _vtable.$name.asFunction<$dartPrototype>()($identifiers);
     ''';
     } on Exception {
       // Print an error if we're unable to project a method, but don't

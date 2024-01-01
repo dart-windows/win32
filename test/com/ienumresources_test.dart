@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final enumresources = IEnumResources(ptr);
   test('Can instantiate IEnumResources.next', () {
@@ -35,5 +35,6 @@ void main() {
     expect(enumresources.clone, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

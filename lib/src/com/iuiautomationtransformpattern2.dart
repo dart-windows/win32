@@ -25,41 +25,30 @@ const IID_IUIAutomationTransformPattern2 =
 /// {@category com}
 class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
   // vtable begins at 12, is 10 entries long.
-  IUIAutomationTransformPattern2(super.ptr);
+  IUIAutomationTransformPattern2(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationTransformPattern2Vtbl>().ref;
+
+  final IUIAutomationTransformPattern2Vtbl _vtable;
 
   factory IUIAutomationTransformPattern2.from(IUnknown interface) =>
       IUIAutomationTransformPattern2(
           interface.toInterface(IID_IUIAutomationTransformPattern2));
 
-  int zoom(double zoomValue) => ptr.ref.vtable
-      .elementAt(12)
-      .cast<
-          Pointer<NativeFunction<Int32 Function(Pointer, Double zoomValue)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, double zoomValue)>()(ptr.ref.lpVtbl, zoomValue);
+  int zoom(double zoomValue) =>
+      _vtable.Zoom.asFunction<int Function(Pointer, double zoomValue)>()(
+          ptr.ref.lpVtbl, zoomValue);
 
-  int zoomByUnit(int zoomUnit) => ptr.ref.vtable
-      .elementAt(13)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 zoomUnit)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, int zoomUnit)>()(ptr.ref.lpVtbl, zoomUnit);
+  int zoomByUnit(int zoomUnit) =>
+      _vtable.ZoomByUnit.asFunction<int Function(Pointer, int zoomUnit)>()(
+          ptr.ref.lpVtbl, zoomUnit);
 
   int get currentCanZoom {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentCanZoom
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,16 +62,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedCanZoom
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -96,16 +78,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentZoomLevel
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -119,16 +94,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedZoomLevel
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -142,16 +110,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentZoomMinimum
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -165,16 +126,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedZoomMinimum
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -188,16 +142,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(20)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentZoomMaximum
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -211,16 +158,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Double>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(21)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Double> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedZoomMaximum
               .asFunction<int Function(Pointer, Pointer<Double> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -229,4 +169,37 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationTransformPattern2Vtbl extends Struct {
+  external IUIAutomationTransformPatternVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Double zoomValue)>>
+      Zoom;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 zoomUnit)>>
+      ZoomByUnit;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentCanZoom;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedCanZoom;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentZoomLevel;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedZoomLevel;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentZoomMinimum;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedZoomMinimum;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CurrentZoomMaximum;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Double> retVal)>>
+      get_CachedZoomMaximum;
 }

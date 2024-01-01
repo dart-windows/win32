@@ -19,41 +19,40 @@ const IID_IAppxManifestPackageDependency =
 /// {@category com}
 class IAppxManifestPackageDependency extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  IAppxManifestPackageDependency(super.ptr);
+  IAppxManifestPackageDependency(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAppxManifestPackageDependencyVtbl>().ref;
+
+  final IAppxManifestPackageDependencyVtbl _vtable;
 
   factory IAppxManifestPackageDependency.from(IUnknown interface) =>
       IAppxManifestPackageDependency(
           interface.toInterface(IID_IAppxManifestPackageDependency));
 
-  int getName(Pointer<Pointer<Utf16>> name) => ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>>()
-          .value
-          .asFunction<int Function(Pointer, Pointer<Pointer<Utf16>> name)>()(
-      ptr.ref.lpVtbl, name);
+  int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
+      int Function(
+          Pointer, Pointer<Pointer<Utf16>> name)>()(ptr.ref.lpVtbl, name);
 
-  int getPublisher(Pointer<Pointer<Utf16>> publisher) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<Utf16>> publisher)>>>()
-          .value
-          .asFunction<
+  int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
+      _vtable.GetPublisher.asFunction<
               int Function(Pointer, Pointer<Pointer<Utf16>> publisher)>()(
-      ptr.ref.lpVtbl, publisher);
+          ptr.ref.lpVtbl, publisher);
 
-  int getMinVersion(Pointer<Uint64> minVersion) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Uint64> minVersion)>>>()
-          .value
+  int getMinVersion(Pointer<Uint64> minVersion) => _vtable.GetMinVersion
           .asFunction<int Function(Pointer, Pointer<Uint64> minVersion)>()(
       ptr.ref.lpVtbl, minVersion);
+}
+
+/// @nodoc
+base class IAppxManifestPackageDependencyVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>
+      GetName;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> publisher)>>
+      GetPublisher;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint64> minVersion)>>
+      GetMinVersion;
 }

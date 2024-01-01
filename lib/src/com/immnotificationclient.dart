@@ -22,69 +22,61 @@ const IID_IMMNotificationClient = '{7991eec9-7e89-4d85-8390-6c703cec60c0}';
 /// {@category com}
 class IMMNotificationClient extends IUnknown {
   // vtable begins at 3, is 5 entries long.
-  IMMNotificationClient(super.ptr);
+  IMMNotificationClient(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IMMNotificationClientVtbl>().ref;
+
+  final IMMNotificationClientVtbl _vtable;
 
   factory IMMNotificationClient.from(IUnknown interface) =>
       IMMNotificationClient(interface.toInterface(IID_IMMNotificationClient));
 
   int onDeviceStateChanged(Pointer<Utf16> pwstrDeviceId, int dwNewState) =>
-      ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId,
-                          Uint32 dwNewState)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, Pointer<Utf16> pwstrDeviceId,
-                  int dwNewState)>()(ptr.ref.lpVtbl, pwstrDeviceId, dwNewState);
+      _vtable.OnDeviceStateChanged.asFunction<
+          int Function(Pointer, Pointer<Utf16> pwstrDeviceId,
+              int dwNewState)>()(ptr.ref.lpVtbl, pwstrDeviceId, dwNewState);
 
-  int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId)>>>()
-          .value
+  int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) => _vtable.OnDeviceAdded
           .asFunction<int Function(Pointer, Pointer<Utf16> pwstrDeviceId)>()(
       ptr.ref.lpVtbl, pwstrDeviceId);
 
-  int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId)>>>()
-          .value
+  int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) => _vtable.OnDeviceRemoved
           .asFunction<int Function(Pointer, Pointer<Utf16> pwstrDeviceId)>()(
       ptr.ref.lpVtbl, pwstrDeviceId);
 
   int onDefaultDeviceChanged(
           int flow, int role, Pointer<Utf16> pwstrDefaultDeviceId) =>
-      ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Int32 flow, Int32 role,
-                              Pointer<Utf16> pwstrDefaultDeviceId)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, int flow, int role,
-                      Pointer<Utf16> pwstrDefaultDeviceId)>()(
+      _vtable.OnDefaultDeviceChanged.asFunction<
+              int Function(Pointer, int flow, int role,
+                  Pointer<Utf16> pwstrDefaultDeviceId)>()(
           ptr.ref.lpVtbl, flow, role, pwstrDefaultDeviceId);
 
   int onPropertyValueChanged(Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key) =>
-      ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId,
-                          PROPERTYKEY key)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, Pointer<Utf16> pwstrDeviceId,
-                  PROPERTYKEY key)>()(ptr.ref.lpVtbl, pwstrDeviceId, key);
+      _vtable.OnPropertyValueChanged.asFunction<
+          int Function(Pointer, Pointer<Utf16> pwstrDeviceId,
+              PROPERTYKEY key)>()(ptr.ref.lpVtbl, pwstrDeviceId, key);
+}
+
+/// @nodoc
+base class IMMNotificationClientVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Utf16> pwstrDeviceId, Uint32 dwNewState)>>
+      OnDeviceStateChanged;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId)>>
+      OnDeviceAdded;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId)>>
+      OnDeviceRemoved;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Int32 flow, Int32 role,
+              Pointer<Utf16> pwstrDefaultDeviceId)>> OnDefaultDeviceChanged;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key)>>
+      OnPropertyValueChanged;
 }

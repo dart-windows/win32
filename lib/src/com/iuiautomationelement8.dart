@@ -22,7 +22,10 @@ const IID_IUIAutomationElement8 = '{8c60217d-5411-4cde-bcc0-1ceda223830c}';
 /// {@category com}
 class IUIAutomationElement8 extends IUIAutomationElement7 {
   // vtable begins at 115, is 2 entries long.
-  IUIAutomationElement8(super.ptr);
+  IUIAutomationElement8(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement8Vtbl>().ref;
+
+  final IUIAutomationElement8Vtbl _vtable;
 
   factory IUIAutomationElement8.from(IUnknown interface) =>
       IUIAutomationElement8(interface.toInterface(IID_IUIAutomationElement8));
@@ -31,16 +34,9 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(115)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Uint32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentHeadingLevel
               .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -54,16 +50,9 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(116)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Uint32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedHeadingLevel
               .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,4 +61,15 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationElement8Vtbl extends Struct {
+  external IUIAutomationElement7Vtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+      get_CurrentHeadingLevel;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+      get_CachedHeadingLevel;
 }

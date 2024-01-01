@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final fileisinuse = IFileIsInUse(ptr);
   test('Can instantiate IFileIsInUse.getAppName', () {
@@ -38,5 +38,6 @@ void main() {
     expect(fileisinuse.closeFile, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

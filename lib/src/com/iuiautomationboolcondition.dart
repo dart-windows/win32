@@ -23,7 +23,10 @@ const IID_IUIAutomationBoolCondition = '{1b4e1f2e-75eb-4d0b-8952-5a69988e2307}';
 /// {@category com}
 class IUIAutomationBoolCondition extends IUIAutomationCondition {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationBoolCondition(super.ptr);
+  IUIAutomationBoolCondition(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationBoolConditionVtbl>().ref;
+
+  final IUIAutomationBoolConditionVtbl _vtable;
 
   factory IUIAutomationBoolCondition.from(IUnknown interface) =>
       IUIAutomationBoolCondition(
@@ -33,16 +36,9 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> boolVal)>>>()
-              .value
+      final hr = _vtable.get_BooleanValue
               .asFunction<int Function(Pointer, Pointer<Int32> boolVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,4 +47,12 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationBoolConditionVtbl extends Struct {
+  external IUIAutomationConditionVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> boolVal)>>
+      get_BooleanValue;
 }

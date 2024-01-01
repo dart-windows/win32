@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final speechobjecttoken = ISpeechObjectToken(ptr);
   test('Can instantiate ISpeechObjectToken.getDescription', () {
@@ -53,5 +53,6 @@ void main() {
     expect(speechobjecttoken.matchesAttributes, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

@@ -19,34 +19,36 @@ const IID_IFileOpenDialog = '{d57c7288-d4ad-4768-be02-9d969532d960}';
 /// {@category com}
 class IFileOpenDialog extends IFileDialog {
   // vtable begins at 27, is 2 entries long.
-  IFileOpenDialog(super.ptr);
+  IFileOpenDialog(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IFileOpenDialogVtbl>().ref;
+
+  final IFileOpenDialogVtbl _vtable;
 
   factory IFileOpenDialog.from(IUnknown interface) =>
       IFileOpenDialog(interface.toInterface(IID_IFileOpenDialog));
 
-  int getResults(Pointer<Pointer<COMObject>> ppenum) => ptr.ref.vtable
-          .elementAt(27)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> ppenum)>>>()
-          .value
-          .asFunction<
+  int getResults(Pointer<Pointer<COMObject>> ppenum) =>
+      _vtable.GetResults.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> ppenum)>()(
-      ptr.ref.lpVtbl, ppenum);
+          ptr.ref.lpVtbl, ppenum);
 
-  int getSelectedItems(Pointer<Pointer<COMObject>> ppsai) => ptr.ref.vtable
-          .elementAt(28)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> ppsai)>>>()
-          .value
-          .asFunction<
+  int getSelectedItems(Pointer<Pointer<COMObject>> ppsai) =>
+      _vtable.GetSelectedItems.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> ppsai)>()(
-      ptr.ref.lpVtbl, ppsai);
+          ptr.ref.lpVtbl, ppsai);
+}
+
+/// @nodoc
+base class IFileOpenDialogVtbl extends Struct {
+  external IFileDialogVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppenum)>>
+      GetResults;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppsai)>>
+      GetSelectedItems;
 }
 
 /// @nodoc

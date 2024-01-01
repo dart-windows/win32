@@ -58,8 +58,8 @@ class ComClassProjection extends ComInterfaceProjection {
 
   @override
   String get guidConstants => '''
-  /// @nodoc
-  const CLSID_$shortName = '${typeDef.guid}';
+/// @nodoc
+const CLSID_$shortName = '${typeDef.guid}';
 ''';
 
   @override

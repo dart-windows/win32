@@ -22,49 +22,46 @@ const IID_ISensorDataReport = '{0ab9df9b-c4b5-4796-8898-0470706a2e1d}';
 /// {@category com}
 class ISensorDataReport extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  ISensorDataReport(super.ptr);
+  ISensorDataReport(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISensorDataReportVtbl>().ref;
+
+  final ISensorDataReportVtbl _vtable;
 
   factory ISensorDataReport.from(IUnknown interface) =>
       ISensorDataReport(interface.toInterface(IID_ISensorDataReport));
 
-  int getTimestamp(Pointer<SYSTEMTIME> pTimeStamp) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer<SYSTEMTIME> pTimeStamp)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer,
-              Pointer<SYSTEMTIME> pTimeStamp)>()(ptr.ref.lpVtbl, pTimeStamp);
+  int getTimestamp(Pointer<SYSTEMTIME> pTimeStamp) => _vtable.GetTimestamp
+          .asFunction<int Function(Pointer, Pointer<SYSTEMTIME> pTimeStamp)>()(
+      ptr.ref.lpVtbl, pTimeStamp);
 
   int getSensorValue(Pointer<PROPERTYKEY> pKey, Pointer<PROPVARIANT> pValue) =>
-      ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<PROPERTYKEY> pKey,
-                          Pointer<PROPVARIANT> pValue)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, Pointer<PROPERTYKEY> pKey,
-                  Pointer<PROPVARIANT> pValue)>()(ptr.ref.lpVtbl, pKey, pValue);
+      _vtable.GetSensorValue.asFunction<
+          int Function(Pointer, Pointer<PROPERTYKEY> pKey,
+              Pointer<PROPVARIANT> pValue)>()(ptr.ref.lpVtbl, pKey, pValue);
 
   int getSensorValues(
           Pointer<COMObject> pKeys, Pointer<Pointer<COMObject>> ppValues) =>
-      ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<COMObject> pKeys,
-                              Pointer<Pointer<COMObject>> ppValues)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<COMObject> pKeys,
-                      Pointer<Pointer<COMObject>> ppValues)>()(
+      _vtable.GetSensorValues.asFunction<
+              int Function(Pointer, Pointer<COMObject> pKeys,
+                  Pointer<Pointer<COMObject>> ppValues)>()(
           ptr.ref.lpVtbl, pKeys, ppValues);
+}
+
+/// @nodoc
+base class ISensorDataReportVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<SYSTEMTIME> pTimeStamp)>>
+      GetTimestamp;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<PROPERTYKEY> pKey,
+              Pointer<PROPVARIANT> pValue)>> GetSensorValue;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<COMObject> pKeys,
+              Pointer<Pointer<COMObject>> ppValues)>> GetSensorValues;
 }
 
 /// @nodoc

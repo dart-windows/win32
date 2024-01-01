@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final audiostreamvolume = IAudioStreamVolume(ptr);
   test('Can instantiate IAudioStreamVolume.getChannelCount', () {
@@ -38,5 +38,6 @@ void main() {
     expect(audiostreamvolume.getAllVolumes, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

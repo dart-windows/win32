@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomationtextrange3 = IUIAutomationTextRange3(ptr);
   test('Can instantiate IUIAutomationTextRange3.getEnclosingElementBuildCache',
@@ -34,5 +34,6 @@ void main() {
     expect(uiautomationtextrange3.getAttributeValues, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

@@ -19,12 +19,13 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final spellchecker2 = ISpellChecker2(ptr);
   test('Can instantiate ISpellChecker2.remove', () {
     expect(spellchecker2.remove, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

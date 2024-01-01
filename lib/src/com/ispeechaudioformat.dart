@@ -21,7 +21,10 @@ const IID_ISpeechAudioFormat = '{e6e9c590-3e18-40e3-8299-061f98bde7c7}';
 /// {@category com}
 class ISpeechAudioFormat extends IDispatch {
   // vtable begins at 7, is 6 entries long.
-  ISpeechAudioFormat(super.ptr);
+  ISpeechAudioFormat(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISpeechAudioFormatVtbl>().ref;
+
+  final ISpeechAudioFormatVtbl _vtable;
 
   factory ISpeechAudioFormat.from(IUnknown interface) =>
       ISpeechAudioFormat(interface.toInterface(IID_ISpeechAudioFormat));
@@ -30,17 +33,9 @@ class ISpeechAudioFormat extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Int32> AudioFormat)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer,
-                  Pointer<Int32> AudioFormat)>()(ptr.ref.lpVtbl, retValuePtr);
-
+      final hr = _vtable.get_Type
+              .asFunction<int Function(Pointer, Pointer<Int32> AudioFormat)>()(
+          ptr.ref.lpVtbl, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,15 +46,9 @@ class ISpeechAudioFormat extends IDispatch {
   }
 
   set type(int value) {
-    final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<Int32 Function(Pointer, Int32 AudioFormat)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, int AudioFormat)>()(ptr.ref.lpVtbl, value);
-
+    final hr =
+        _vtable.put_Type.asFunction<int Function(Pointer, int AudioFormat)>()(
+            ptr.ref.lpVtbl, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -67,17 +56,9 @@ class ISpeechAudioFormat extends IDispatch {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Pointer<Utf16>> Guid)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer,
-                  Pointer<Pointer<Utf16>> Guid)>()(ptr.ref.lpVtbl, retValuePtr);
-
+      final hr = _vtable.get_Guid.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> Guid)>()(
+          ptr.ref.lpVtbl, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -88,42 +69,44 @@ class ISpeechAudioFormat extends IDispatch {
   }
 
   set guid(Pointer<Utf16> value) {
-    final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<Int32 Function(Pointer, Pointer<Utf16> Guid)>>>()
-        .value
-        .asFunction<
-            int Function(
-                Pointer, Pointer<Utf16> Guid)>()(ptr.ref.lpVtbl, value);
-
+    final hr = _vtable.put_Guid
+            .asFunction<int Function(Pointer, Pointer<Utf16> Guid)>()(
+        ptr.ref.lpVtbl, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int getWaveFormatEx(Pointer<Pointer<COMObject>> SpeechWaveFormatEx) => ptr
-          .ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer,
-                          Pointer<Pointer<COMObject>> SpeechWaveFormatEx)>>>()
-          .value
-          .asFunction<
+  int getWaveFormatEx(Pointer<Pointer<COMObject>> SpeechWaveFormatEx) =>
+      _vtable.GetWaveFormatEx.asFunction<
               int Function(
                   Pointer, Pointer<Pointer<COMObject>> SpeechWaveFormatEx)>()(
-      ptr.ref.lpVtbl, SpeechWaveFormatEx);
+          ptr.ref.lpVtbl, SpeechWaveFormatEx);
 
-  int setWaveFormatEx(Pointer<COMObject> SpeechWaveFormatEx) => ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<COMObject> SpeechWaveFormatEx)>>>()
-          .value
-          .asFunction<
+  int setWaveFormatEx(Pointer<COMObject> SpeechWaveFormatEx) =>
+      _vtable.SetWaveFormatEx.asFunction<
               int Function(Pointer, Pointer<COMObject> SpeechWaveFormatEx)>()(
-      ptr.ref.lpVtbl, SpeechWaveFormatEx);
+          ptr.ref.lpVtbl, SpeechWaveFormatEx);
+}
+
+/// @nodoc
+base class ISpeechAudioFormatVtbl extends Struct {
+  external IDispatchVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> AudioFormat)>>
+      get_Type;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 AudioFormat)>>
+      put_Type;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> Guid)>>
+      get_Guid;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> Guid)>>
+      put_Guid;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Pointer<COMObject>> SpeechWaveFormatEx)>>
+      GetWaveFormatEx;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<COMObject> SpeechWaveFormatEx)>>
+      SetWaveFormatEx;
 }

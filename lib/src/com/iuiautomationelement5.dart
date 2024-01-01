@@ -23,7 +23,10 @@ const IID_IUIAutomationElement5 = '{98141c1d-0d0e-4175-bbe2-6bff455842a7}';
 /// {@category com}
 class IUIAutomationElement5 extends IUIAutomationElement4 {
   // vtable begins at 104, is 4 entries long.
-  IUIAutomationElement5(super.ptr);
+  IUIAutomationElement5(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement5Vtbl>().ref;
+
+  final IUIAutomationElement5Vtbl _vtable;
 
   factory IUIAutomationElement5.from(IUnknown interface) =>
       IUIAutomationElement5(interface.toInterface(IID_IUIAutomationElement5));
@@ -32,16 +35,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(104)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Uint32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentLandmarkType
               .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -55,18 +51,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(105)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -80,16 +67,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(106)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Uint32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedLandmarkType
               .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -103,18 +83,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(107)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Pointer<Utf16>> retVal)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
+      final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
+              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -123,4 +94,23 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationElement5Vtbl extends Struct {
+  external IUIAutomationElement4Vtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+      get_CurrentLandmarkType;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CurrentLocalizedLandmarkType;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+      get_CachedLandmarkType;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+      get_CachedLocalizedLandmarkType;
 }

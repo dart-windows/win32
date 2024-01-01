@@ -22,33 +22,26 @@ const IID_IUIAutomationDockPattern = '{fde5ef97-1464-48f6-90bf-43d0948e86ec}';
 /// {@category com}
 class IUIAutomationDockPattern extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  IUIAutomationDockPattern(super.ptr);
+  IUIAutomationDockPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationDockPatternVtbl>().ref;
+
+  final IUIAutomationDockPatternVtbl _vtable;
 
   factory IUIAutomationDockPattern.from(IUnknown interface) =>
       IUIAutomationDockPattern(
           interface.toInterface(IID_IUIAutomationDockPattern));
 
-  int setDockPosition(int dockPos) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 dockPos)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, int dockPos)>()(ptr.ref.lpVtbl, dockPos);
+  int setDockPosition(int dockPos) =>
+      _vtable.SetDockPosition.asFunction<int Function(Pointer, int dockPos)>()(
+          ptr.ref.lpVtbl, dockPos);
 
   int get currentDockPosition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentDockPosition
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -62,16 +55,9 @@ class IUIAutomationDockPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedDockPosition
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -80,4 +66,17 @@ class IUIAutomationDockPattern extends IUnknown {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationDockPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 dockPos)>>
+      SetDockPosition;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentDockPosition;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedDockPosition;
 }

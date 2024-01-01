@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final unknown = IUnknown(ptr);
   test('Can instantiate IUnknown.queryInterface', () {
@@ -32,5 +32,6 @@ void main() {
     expect(unknown.release, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

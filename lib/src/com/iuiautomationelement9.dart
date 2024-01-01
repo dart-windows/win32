@@ -22,7 +22,10 @@ const IID_IUIAutomationElement9 = '{39325fac-039d-440e-a3a3-5eb81a5cecc3}';
 /// {@category com}
 class IUIAutomationElement9 extends IUIAutomationElement8 {
   // vtable begins at 117, is 2 entries long.
-  IUIAutomationElement9(super.ptr);
+  IUIAutomationElement9(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement9Vtbl>().ref;
+
+  final IUIAutomationElement9Vtbl _vtable;
 
   factory IUIAutomationElement9.from(IUnknown interface) =>
       IUIAutomationElement9(interface.toInterface(IID_IUIAutomationElement9));
@@ -31,16 +34,9 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(117)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CurrentIsDialog
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -54,16 +50,9 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(118)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> retVal)>>>()
-              .value
+      final hr = _vtable.get_CachedIsDialog
               .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,4 +61,15 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationElement9Vtbl extends Struct {
+  external IUIAutomationElement8Vtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CurrentIsDialog;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+      get_CachedIsDialog;
 }

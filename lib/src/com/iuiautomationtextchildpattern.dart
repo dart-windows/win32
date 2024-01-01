@@ -24,7 +24,10 @@ const IID_IUIAutomationTextChildPattern =
 /// {@category com}
 class IUIAutomationTextChildPattern extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IUIAutomationTextChildPattern(super.ptr);
+  IUIAutomationTextChildPattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextChildPatternVtbl>().ref;
+
+  final IUIAutomationTextChildPatternVtbl _vtable;
 
   factory IUIAutomationTextChildPattern.from(IUnknown interface) =>
       IUIAutomationTextChildPattern(
@@ -33,17 +36,9 @@ class IUIAutomationTextChildPattern extends IUnknown {
   Pointer<COMObject> get textContainer {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-        .elementAt(3)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    Int32 Function(Pointer, Pointer<COMObject> container)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer,
-                Pointer<COMObject> container)>()(ptr.ref.lpVtbl, retValuePtr);
-
+    final hr = _vtable.get_TextContainer
+            .asFunction<int Function(Pointer, Pointer<COMObject> container)>()(
+        ptr.ref.lpVtbl, retValuePtr);
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -55,16 +50,9 @@ class IUIAutomationTextChildPattern extends IUnknown {
   Pointer<COMObject> get textRange {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(4)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(Pointer, Pointer<COMObject> range)>>>()
-            .value
+    final hr = _vtable.get_TextRange
             .asFunction<int Function(Pointer, Pointer<COMObject> range)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -72,4 +60,15 @@ class IUIAutomationTextChildPattern extends IUnknown {
 
     return retValuePtr;
   }
+}
+
+/// @nodoc
+base class IUIAutomationTextChildPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> container)>>
+      get_TextContainer;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> range)>>
+      get_TextRange;
 }

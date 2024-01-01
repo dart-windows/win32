@@ -20,16 +20,24 @@ const IID_IWbemRefresher = '{49353c99-516b-11d1-aea6-00c04fb68820}';
 /// {@category com}
 class IWbemRefresher extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IWbemRefresher(super.ptr);
+  IWbemRefresher(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IWbemRefresherVtbl>().ref;
+
+  final IWbemRefresherVtbl _vtable;
 
   factory IWbemRefresher.from(IUnknown interface) =>
       IWbemRefresher(interface.toInterface(IID_IWbemRefresher));
 
-  int refresh(int lFlags) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 lFlags)>>>()
-      .value
-      .asFunction<int Function(Pointer, int lFlags)>()(ptr.ref.lpVtbl, lFlags);
+  int refresh(int lFlags) =>
+      _vtable.Refresh.asFunction<int Function(Pointer, int lFlags)>()(
+          ptr.ref.lpVtbl, lFlags);
+}
+
+/// @nodoc
+base class IWbemRefresherVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 lFlags)>>
+      Refresh;
 }
 
 /// @nodoc

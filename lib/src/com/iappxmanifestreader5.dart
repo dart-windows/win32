@@ -18,25 +18,28 @@ const IID_IAppxManifestReader5 = '{8d7ae132-a690-4c00-b75a-6aae1feaac80}';
 /// {@category com}
 class IAppxManifestReader5 extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IAppxManifestReader5(super.ptr);
+  IAppxManifestReader5(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAppxManifestReader5Vtbl>().ref;
+
+  final IAppxManifestReader5Vtbl _vtable;
 
   factory IAppxManifestReader5.from(IUnknown interface) =>
       IAppxManifestReader5(interface.toInterface(IID_IAppxManifestReader5));
 
   int getMainPackageDependencies(
           Pointer<Pointer<COMObject>> mainPackageDependencies) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Pointer<COMObject>>
-                                  mainPackageDependencies)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer,
-                      Pointer<Pointer<COMObject>> mainPackageDependencies)>()(
+      _vtable.GetMainPackageDependencies.asFunction<
+              int Function(Pointer,
+                  Pointer<Pointer<COMObject>> mainPackageDependencies)>()(
           ptr.ref.lpVtbl, mainPackageDependencies);
+}
+
+/// @nodoc
+base class IAppxManifestReader5Vtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer,
+                  Pointer<Pointer<COMObject>> mainPackageDependencies)>>
+      GetMainPackageDependencies;
 }

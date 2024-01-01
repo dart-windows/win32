@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomation5 = IUIAutomation5(ptr);
   test('Can instantiate IUIAutomation5.addNotificationEventHandler', () {
@@ -29,5 +29,6 @@ void main() {
     expect(uiautomation5.removeNotificationEventHandler, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

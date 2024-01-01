@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final appxmanifestreader3 = IAppxManifestReader3(ptr);
   test('Can instantiate IAppxManifestReader3.getCapabilitiesByCapabilityClass',
@@ -31,5 +31,6 @@ void main() {
     expect(appxmanifestreader3.getTargetDeviceFamilies, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

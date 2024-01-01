@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final stream = IStream(ptr);
   test('Can instantiate IStream.seek', () {
@@ -50,5 +50,6 @@ void main() {
     expect(stream.clone, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

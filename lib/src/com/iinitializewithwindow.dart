@@ -17,14 +17,22 @@ const IID_IInitializeWithWindow = '{3e68d4bd-7135-4d10-8018-9fb6d9f33fa1}';
 /// {@category com}
 class IInitializeWithWindow extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IInitializeWithWindow(super.ptr);
+  IInitializeWithWindow(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IInitializeWithWindowVtbl>().ref;
+
+  final IInitializeWithWindowVtbl _vtable;
 
   factory IInitializeWithWindow.from(IUnknown interface) =>
       IInitializeWithWindow(interface.toInterface(IID_IInitializeWithWindow));
 
-  int initialize(int hwnd) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, IntPtr hwnd)>>>()
-      .value
-      .asFunction<int Function(Pointer, int hwnd)>()(ptr.ref.lpVtbl, hwnd);
+  int initialize(int hwnd) =>
+      _vtable.Initialize.asFunction<int Function(Pointer, int hwnd)>()(
+          ptr.ref.lpVtbl, hwnd);
+}
+
+/// @nodoc
+base class IInitializeWithWindowVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, IntPtr hwnd)>>
+      Initialize;
 }

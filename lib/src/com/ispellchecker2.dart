@@ -23,17 +23,22 @@ const IID_ISpellChecker2 = '{e7ed1c71-87f7-4378-a840-c9200dacee47}';
 /// {@category com}
 class ISpellChecker2 extends ISpellChecker {
   // vtable begins at 17, is 1 entries long.
-  ISpellChecker2(super.ptr);
+  ISpellChecker2(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISpellChecker2Vtbl>().ref;
+
+  final ISpellChecker2Vtbl _vtable;
 
   factory ISpellChecker2.from(IUnknown interface) =>
       ISpellChecker2(interface.toInterface(IID_ISpellChecker2));
 
-  int remove(Pointer<Utf16> word) => ptr.ref.vtable
-      .elementAt(17)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Pointer<Utf16> word)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, Pointer<Utf16> word)>()(ptr.ref.lpVtbl, word);
+  int remove(Pointer<Utf16> word) =>
+      _vtable.Remove.asFunction<int Function(Pointer, Pointer<Utf16> word)>()(
+          ptr.ref.lpVtbl, word);
+}
+
+/// @nodoc
+base class ISpellChecker2Vtbl extends Struct {
+  external ISpellCheckerVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> word)>>
+      Remove;
 }

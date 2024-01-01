@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final connectionpointcontainer = IConnectionPointContainer(ptr);
   test('Can instantiate IConnectionPointContainer.enumConnectionPoints', () {
@@ -29,5 +29,6 @@ void main() {
     expect(connectionpointcontainer.findConnectionPoint, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

@@ -17,22 +17,29 @@ const IID_IUIAutomationSynchronizedInputPattern =
 /// {@category com}
 class IUIAutomationSynchronizedInputPattern extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IUIAutomationSynchronizedInputPattern(super.ptr);
+  IUIAutomationSynchronizedInputPattern(super.ptr)
+      : _vtable = ptr.ref.vtable
+            .cast<IUIAutomationSynchronizedInputPatternVtbl>()
+            .ref;
+
+  final IUIAutomationSynchronizedInputPatternVtbl _vtable;
 
   factory IUIAutomationSynchronizedInputPattern.from(IUnknown interface) =>
       IUIAutomationSynchronizedInputPattern(
           interface.toInterface(IID_IUIAutomationSynchronizedInputPattern));
 
-  int startListening(int inputType) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 inputType)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, int inputType)>()(ptr.ref.lpVtbl, inputType);
+  int startListening(int inputType) =>
+      _vtable.StartListening.asFunction<int Function(Pointer, int inputType)>()(
+          ptr.ref.lpVtbl, inputType);
 
-  int cancel() => ptr.ref.vtable
-      .elementAt(4)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int cancel() =>
+      _vtable.Cancel.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+}
+
+/// @nodoc
+base class IUIAutomationSynchronizedInputPatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 inputType)>>
+      StartListening;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Cancel;
 }

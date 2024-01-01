@@ -21,7 +21,10 @@ const IID_IAudioClient = '{1cb9ad4c-dbfa-4c32-b178-c2f568a703b2}';
 /// {@category com}
 class IAudioClient extends IUnknown {
   // vtable begins at 3, is 12 entries long.
-  IAudioClient(super.ptr);
+  IAudioClient(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioClientVtbl>().ref;
+
+  final IAudioClientVtbl _vtable;
 
   factory IAudioClient.from(IUnknown interface) =>
       IAudioClient(interface.toInterface(IID_IAudioClient));
@@ -33,29 +36,15 @@ class IAudioClient extends IUnknown {
           int hnsPeriodicity,
           Pointer<WAVEFORMATEX> pFormat,
           Pointer<GUID> AudioSessionGuid) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Int32 ShareMode,
-                              Uint32 StreamFlags,
-                              Int64 hnsBufferDuration,
-                              Int64 hnsPeriodicity,
-                              Pointer<WAVEFORMATEX> pFormat,
-                              Pointer<GUID> AudioSessionGuid)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int ShareMode,
-                      int StreamFlags,
-                      int hnsBufferDuration,
-                      int hnsPeriodicity,
-                      Pointer<WAVEFORMATEX> pFormat,
-                      Pointer<GUID> AudioSessionGuid)>()(
+      _vtable.Initialize.asFunction<
+              int Function(
+                  Pointer,
+                  int ShareMode,
+                  int StreamFlags,
+                  int hnsBufferDuration,
+                  int hnsPeriodicity,
+                  Pointer<WAVEFORMATEX> pFormat,
+                  Pointer<GUID> AudioSessionGuid)>()(
           ptr.ref.lpVtbl,
           ShareMode,
           StreamFlags,
@@ -65,131 +54,108 @@ class IAudioClient extends IUnknown {
           AudioSessionGuid);
 
   int getBufferSize(Pointer<Uint32> pNumBufferFrames) =>
-      ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Uint32> pNumBufferFrames)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Uint32> pNumBufferFrames)>()(
+      _vtable.GetBufferSize.asFunction<
+              int Function(Pointer, Pointer<Uint32> pNumBufferFrames)>()(
           ptr.ref.lpVtbl, pNumBufferFrames);
 
-  int getStreamLatency(Pointer<Int64> phnsLatency) => ptr.ref.vtable
-          .elementAt(5)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Int64> phnsLatency)>>>()
-          .value
+  int getStreamLatency(Pointer<Int64> phnsLatency) => _vtable.GetStreamLatency
           .asFunction<int Function(Pointer, Pointer<Int64> phnsLatency)>()(
       ptr.ref.lpVtbl, phnsLatency);
 
-  int getCurrentPadding(Pointer<Uint32> pNumPaddingFrames) => ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Uint32> pNumPaddingFrames)>>>()
-          .value
-          .asFunction<
+  int getCurrentPadding(Pointer<Uint32> pNumPaddingFrames) =>
+      _vtable.GetCurrentPadding.asFunction<
               int Function(Pointer, Pointer<Uint32> pNumPaddingFrames)>()(
-      ptr.ref.lpVtbl, pNumPaddingFrames);
+          ptr.ref.lpVtbl, pNumPaddingFrames);
 
-  int
-      isFormatSupported(int ShareMode, Pointer<WAVEFORMATEX> pFormat,
-              Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch) =>
-          ptr.ref.vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              Int32 Function(
-                                  Pointer,
-                                  Int32 ShareMode,
-                                  Pointer<WAVEFORMATEX> pFormat,
-                                  Pointer<Pointer<WAVEFORMATEX>>
-                                      ppClosestMatch)>>>()
-                  .value
-                  .asFunction<
-                      int Function(
-                          Pointer,
-                          int ShareMode,
-                          Pointer<WAVEFORMATEX> pFormat,
-                          Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>()(
-              ptr.ref.lpVtbl, ShareMode, pFormat, ppClosestMatch);
+  int isFormatSupported(int ShareMode, Pointer<WAVEFORMATEX> pFormat,
+          Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch) =>
+      _vtable.IsFormatSupported.asFunction<
+              int Function(
+                  Pointer,
+                  int ShareMode,
+                  Pointer<WAVEFORMATEX> pFormat,
+                  Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>()(
+          ptr.ref.lpVtbl, ShareMode, pFormat, ppClosestMatch);
 
-  int getMixFormat(Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat) => ptr
-          .ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer,
-                          Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>>>()
-          .value
-          .asFunction<
+  int getMixFormat(Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat) =>
+      _vtable.GetMixFormat.asFunction<
               int Function(
                   Pointer, Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>()(
-      ptr.ref.lpVtbl, ppDeviceFormat);
+          ptr.ref.lpVtbl, ppDeviceFormat);
 
   int getDevicePeriod(Pointer<Int64> phnsDefaultDevicePeriod,
           Pointer<Int64> phnsMinimumDevicePeriod) =>
-      ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Pointer<Int64> phnsDefaultDevicePeriod,
-                              Pointer<Int64> phnsMinimumDevicePeriod)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Int64> phnsDefaultDevicePeriod,
-                      Pointer<Int64> phnsMinimumDevicePeriod)>()(
+      _vtable.GetDevicePeriod.asFunction<
+              int Function(Pointer, Pointer<Int64> phnsDefaultDevicePeriod,
+                  Pointer<Int64> phnsMinimumDevicePeriod)>()(
           ptr.ref.lpVtbl, phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
 
-  int start() => ptr.ref.vtable
-      .elementAt(10)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int start() =>
+      _vtable.Start.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
-  int stop() => ptr.ref.vtable
-      .elementAt(11)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int stop() =>
+      _vtable.Stop.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
-  int reset() => ptr.ref.vtable
-      .elementAt(12)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int reset() =>
+      _vtable.Reset.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
 
-  int setEventHandle(int eventHandle) => ptr.ref.vtable
-      .elementAt(13)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, IntPtr eventHandle)>>>()
-      .value
-      .asFunction<
-          int Function(
-              Pointer, int eventHandle)>()(ptr.ref.lpVtbl, eventHandle);
+  int setEventHandle(int eventHandle) => _vtable.SetEventHandle.asFunction<
+      int Function(Pointer, int eventHandle)>()(ptr.ref.lpVtbl, eventHandle);
 
-  int getService(Pointer<GUID> riid, Pointer<Pointer> ppv) => ptr.ref.vtable
-      .elementAt(14)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(
-                      Pointer, Pointer<GUID> riid, Pointer<Pointer> ppv)>>>()
-      .value
-      .asFunction<
+  int getService(Pointer<GUID> riid, Pointer<Pointer> ppv) =>
+      _vtable.GetService.asFunction<
           int Function(Pointer, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr.ref.lpVtbl, riid, ppv);
+}
+
+/// @nodoc
+base class IAudioClientVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Int32 ShareMode,
+              Uint32 StreamFlags,
+              Int64 hnsBufferDuration,
+              Int64 hnsPeriodicity,
+              Pointer<WAVEFORMATEX> pFormat,
+              Pointer<GUID> AudioSessionGuid)>> Initialize;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Uint32> pNumBufferFrames)>>
+      GetBufferSize;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int64> phnsLatency)>>
+      GetStreamLatency;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Uint32> pNumPaddingFrames)>>
+      GetCurrentPadding;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer,
+                  Int32 ShareMode,
+                  Pointer<WAVEFORMATEX> pFormat,
+                  Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>>
+      IsFormatSupported;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>>
+      GetMixFormat;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<Int64> phnsDefaultDevicePeriod,
+              Pointer<Int64> phnsMinimumDevicePeriod)>> GetDevicePeriod;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Start;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Stop;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Reset;
+  external Pointer<NativeFunction<Int32 Function(Pointer, IntPtr eventHandle)>>
+      SetEventHandle;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Pointer<GUID> riid, Pointer<Pointer> ppv)>> GetService;
 }

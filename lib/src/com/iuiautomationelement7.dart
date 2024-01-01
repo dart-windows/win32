@@ -19,7 +19,10 @@ const IID_IUIAutomationElement7 = '{204e8572-cfc3-4c11-b0c8-7da7420750b7}';
 /// {@category com}
 class IUIAutomationElement7 extends IUIAutomationElement6 {
   // vtable begins at 110, is 5 entries long.
-  IUIAutomationElement7(super.ptr);
+  IUIAutomationElement7(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement7Vtbl>().ref;
+
+  final IUIAutomationElement7Vtbl _vtable;
 
   factory IUIAutomationElement7.from(IUnknown interface) =>
       IUIAutomationElement7(interface.toInterface(IID_IUIAutomationElement7));
@@ -30,27 +33,14 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           int traversalOptions,
           Pointer<COMObject> root,
           Pointer<Pointer<COMObject>> found) =>
-      ptr.ref.vtable
-              .elementAt(110)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Int32 scope,
-                              Pointer<COMObject> condition,
-                              Int32 traversalOptions,
-                              Pointer<COMObject> root,
-                              Pointer<Pointer<COMObject>> found)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int scope,
-                      Pointer<COMObject> condition,
-                      int traversalOptions,
-                      Pointer<COMObject> root,
-                      Pointer<Pointer<COMObject>> found)>()(
+      _vtable.FindFirstWithOptions.asFunction<
+              int Function(
+                  Pointer,
+                  int scope,
+                  Pointer<COMObject> condition,
+                  int traversalOptions,
+                  Pointer<COMObject> root,
+                  Pointer<Pointer<COMObject>> found)>()(
           ptr.ref.lpVtbl, scope, condition, traversalOptions, root, found);
 
   int findAllWithOptions(
@@ -59,27 +49,14 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           int traversalOptions,
           Pointer<COMObject> root,
           Pointer<Pointer<COMObject>> found) =>
-      ptr.ref.vtable
-              .elementAt(111)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Int32 scope,
-                              Pointer<COMObject> condition,
-                              Int32 traversalOptions,
-                              Pointer<COMObject> root,
-                              Pointer<Pointer<COMObject>> found)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int scope,
-                      Pointer<COMObject> condition,
-                      int traversalOptions,
-                      Pointer<COMObject> root,
-                      Pointer<Pointer<COMObject>> found)>()(
+      _vtable.FindAllWithOptions.asFunction<
+              int Function(
+                  Pointer,
+                  int scope,
+                  Pointer<COMObject> condition,
+                  int traversalOptions,
+                  Pointer<COMObject> root,
+                  Pointer<Pointer<COMObject>> found)>()(
           ptr.ref.lpVtbl, scope, condition, traversalOptions, root, found);
 
   int findFirstWithOptionsBuildCache(
@@ -89,30 +66,16 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           int traversalOptions,
           Pointer<COMObject> root,
           Pointer<Pointer<COMObject>> found) =>
-      ptr.ref.vtable
-              .elementAt(112)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Int32 scope,
-                              Pointer<COMObject> condition,
-                              Pointer<COMObject> cacheRequest,
-                              Int32 traversalOptions,
-                              Pointer<COMObject> root,
-                              Pointer<Pointer<COMObject>> found)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int scope,
-                      Pointer<COMObject> condition,
-                      Pointer<COMObject> cacheRequest,
-                      int traversalOptions,
-                      Pointer<COMObject> root,
-                      Pointer<Pointer<COMObject>> found)>()(ptr.ref.lpVtbl,
-          scope, condition, cacheRequest, traversalOptions, root, found);
+      _vtable.FindFirstWithOptionsBuildCache.asFunction<
+              int Function(
+                  Pointer,
+                  int scope,
+                  Pointer<COMObject> condition,
+                  Pointer<COMObject> cacheRequest,
+                  int traversalOptions,
+                  Pointer<COMObject> root,
+                  Pointer<Pointer<COMObject>> found)>()(ptr.ref.lpVtbl, scope,
+          condition, cacheRequest, traversalOptions, root, found);
 
   int findAllWithOptionsBuildCache(
           int scope,
@@ -121,47 +84,69 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           int traversalOptions,
           Pointer<COMObject> root,
           Pointer<Pointer<COMObject>> found) =>
-      ptr.ref.vtable
-              .elementAt(113)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Int32 scope,
-                              Pointer<COMObject> condition,
-                              Pointer<COMObject> cacheRequest,
-                              Int32 traversalOptions,
-                              Pointer<COMObject> root,
-                              Pointer<Pointer<COMObject>> found)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer,
-                      int scope,
-                      Pointer<COMObject> condition,
-                      Pointer<COMObject> cacheRequest,
-                      int traversalOptions,
-                      Pointer<COMObject> root,
-                      Pointer<Pointer<COMObject>> found)>()(ptr.ref.lpVtbl,
-          scope, condition, cacheRequest, traversalOptions, root, found);
+      _vtable.FindAllWithOptionsBuildCache.asFunction<
+              int Function(
+                  Pointer,
+                  int scope,
+                  Pointer<COMObject> condition,
+                  Pointer<COMObject> cacheRequest,
+                  int traversalOptions,
+                  Pointer<COMObject> root,
+                  Pointer<Pointer<COMObject>> found)>()(ptr.ref.lpVtbl, scope,
+          condition, cacheRequest, traversalOptions, root, found);
 
-  int
-      getCurrentMetadataValue(
-              int targetId, int metadataId, Pointer<VARIANT> returnVal) =>
-          ptr.ref.vtable
-                  .elementAt(114)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              Int32 Function(
-                                  Pointer,
-                                  Int32 targetId,
-                                  Uint32 metadataId,
-                                  Pointer<VARIANT> returnVal)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int targetId, int metadataId,
-                          Pointer<VARIANT> returnVal)>()(
-              ptr.ref.lpVtbl, targetId, metadataId, returnVal);
+  int getCurrentMetadataValue(
+          int targetId, int metadataId, Pointer<VARIANT> returnVal) =>
+      _vtable.GetCurrentMetadataValue.asFunction<
+              int Function(Pointer, int targetId, int metadataId,
+                  Pointer<VARIANT> returnVal)>()(
+          ptr.ref.lpVtbl, targetId, metadataId, returnVal);
+}
+
+/// @nodoc
+base class IUIAutomationElement7Vtbl extends Struct {
+  external IUIAutomationElement6Vtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Int32 scope,
+              Pointer<COMObject> condition,
+              Int32 traversalOptions,
+              Pointer<COMObject> root,
+              Pointer<Pointer<COMObject>> found)>> FindFirstWithOptions;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Int32 scope,
+              Pointer<COMObject> condition,
+              Int32 traversalOptions,
+              Pointer<COMObject> root,
+              Pointer<Pointer<COMObject>> found)>> FindAllWithOptions;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer,
+                  Int32 scope,
+                  Pointer<COMObject> condition,
+                  Pointer<COMObject> cacheRequest,
+                  Int32 traversalOptions,
+                  Pointer<COMObject> root,
+                  Pointer<Pointer<COMObject>> found)>>
+      FindFirstWithOptionsBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Int32 scope,
+              Pointer<COMObject> condition,
+              Pointer<COMObject> cacheRequest,
+              Int32 traversalOptions,
+              Pointer<COMObject> root,
+              Pointer<Pointer<COMObject>> found)>> FindAllWithOptionsBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Int32 targetId, Uint32 metadataId,
+              Pointer<VARIANT> returnVal)>> GetCurrentMetadataValue;
 }

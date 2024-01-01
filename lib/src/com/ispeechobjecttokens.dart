@@ -24,7 +24,10 @@ const IID_ISpeechObjectTokens = '{9285b776-2e7b-4bc0-b53e-580eb6fa967f}';
 /// {@category com}
 class ISpeechObjectTokens extends IDispatch {
   // vtable begins at 7, is 3 entries long.
-  ISpeechObjectTokens(super.ptr);
+  ISpeechObjectTokens(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<ISpeechObjectTokensVtbl>().ref;
+
+  final ISpeechObjectTokensVtbl _vtable;
 
   factory ISpeechObjectTokens.from(IUnknown interface) =>
       ISpeechObjectTokens(interface.toInterface(IID_ISpeechObjectTokens));
@@ -33,16 +36,9 @@ class ISpeechObjectTokens extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> Count)>>>()
-              .value
+      final hr = _vtable.get_Count
               .asFunction<int Function(Pointer, Pointer<Int32> Count)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,34 +48,19 @@ class ISpeechObjectTokens extends IDispatch {
     }
   }
 
-  int item(int Index, Pointer<Pointer<COMObject>> Token) => ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Int32 Index,
-                          Pointer<Pointer<COMObject>> Token)>>>()
-          .value
-          .asFunction<
+  int item(
+          int Index, Pointer<Pointer<COMObject>> Token) =>
+      _vtable.Item.asFunction<
               int Function(
                   Pointer, int Index, Pointer<Pointer<COMObject>> Token)>()(
-      ptr.ref.lpVtbl, Index, Token);
+          ptr.ref.lpVtbl, Index, Token);
 
   Pointer<COMObject> get newEnum {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(
-                            Pointer, Pointer<COMObject> ppEnumVARIANT)>>>()
-            .value
-            .asFunction<
-                int Function(Pointer, Pointer<COMObject> ppEnumVARIANT)>()(
+    final hr = _vtable.get__NewEnum.asFunction<
+            int Function(Pointer, Pointer<COMObject> ppEnumVARIANT)>()(
         ptr.ref.lpVtbl, retValuePtr);
-
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -87,4 +68,19 @@ class ISpeechObjectTokens extends IDispatch {
 
     return retValuePtr;
   }
+}
+
+/// @nodoc
+base class ISpeechObjectTokensVtbl extends Struct {
+  external IDispatchVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<Int32 Function(Pointer, Pointer<Int32> Count)>> get_Count;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, Int32 Index, Pointer<Pointer<COMObject>> Token)>> Item;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<COMObject> ppEnumVARIANT)>>
+      get__NewEnum;
 }

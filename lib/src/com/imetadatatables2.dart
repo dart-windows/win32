@@ -18,40 +18,44 @@ const IID_IMetaDataTables2 = '{badb5f70-58da-43a9-a1c6-d74819f19b15}';
 /// {@category com}
 class IMetaDataTables2 extends IMetaDataTables {
   // vtable begins at 22, is 2 entries long.
-  IMetaDataTables2(super.ptr);
+  IMetaDataTables2(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IMetaDataTables2Vtbl>().ref;
+
+  final IMetaDataTables2Vtbl _vtable;
 
   factory IMetaDataTables2.from(IUnknown interface) =>
       IMetaDataTables2(interface.toInterface(IID_IMetaDataTables2));
 
   int getMetaDataStorage(Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd) =>
-      ptr.ref.vtable
-          .elementAt(22)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Pointer> ppvMd,
-                          Pointer<Uint32> pcbMd)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, Pointer<Pointer> ppvMd,
-                  Pointer<Uint32> pcbMd)>()(ptr.ref.lpVtbl, ppvMd, pcbMd);
+      _vtable.GetMetaDataStorage.asFunction<
+          int Function(Pointer, Pointer<Pointer> ppvMd,
+              Pointer<Uint32> pcbMd)>()(ptr.ref.lpVtbl, ppvMd, pcbMd);
 
   int getMetaDataStreamInfo(int ix, Pointer<Pointer<Int8>> ppchName,
           Pointer<Pointer> ppv, Pointer<Uint32> pcb) =>
-      ptr.ref.vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer,
-                              Uint32 ix,
-                              Pointer<Pointer<Int8>> ppchName,
-                              Pointer<Pointer> ppv,
-                              Pointer<Uint32> pcb)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, int ix, Pointer<Pointer<Int8>> ppchName,
-                      Pointer<Pointer> ppv, Pointer<Uint32> pcb)>()(
-          ptr.ref.lpVtbl, ix, ppchName, ppv, pcb);
+      _vtable.GetMetaDataStreamInfo.asFunction<
+          int Function(
+              Pointer,
+              int ix,
+              Pointer<Pointer<Int8>> ppchName,
+              Pointer<Pointer> ppv,
+              Pointer<Uint32> pcb)>()(ptr.ref.lpVtbl, ix, ppchName, ppv, pcb);
+}
+
+/// @nodoc
+base class IMetaDataTables2Vtbl extends Struct {
+  external IMetaDataTablesVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd)>>
+      GetMetaDataStorage;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer,
+              Uint32 ix,
+              Pointer<Pointer<Int8>> ppchName,
+              Pointer<Pointer> ppv,
+              Pointer<Uint32> pcb)>> GetMetaDataStreamInfo;
 }

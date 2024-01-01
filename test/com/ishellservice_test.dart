@@ -19,12 +19,13 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final shellservice = IShellService(ptr);
   test('Can instantiate IShellService.setOwner', () {
     expect(shellservice.setOwner, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

@@ -17,15 +17,21 @@ const IID_IUIAutomationInvokePattern = '{fb377fbe-8ea6-46d5-9c73-6499642d3059}';
 /// {@category com}
 class IUIAutomationInvokePattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IUIAutomationInvokePattern(super.ptr);
+  IUIAutomationInvokePattern(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationInvokePatternVtbl>().ref;
+
+  final IUIAutomationInvokePatternVtbl _vtable;
 
   factory IUIAutomationInvokePattern.from(IUnknown interface) =>
       IUIAutomationInvokePattern(
           interface.toInterface(IID_IUIAutomationInvokePattern));
 
-  int invoke() => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer)>>>()
-      .value
-      .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+  int invoke() =>
+      _vtable.Invoke.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+}
+
+/// @nodoc
+base class IUIAutomationInvokePatternVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer)>> Invoke;
 }

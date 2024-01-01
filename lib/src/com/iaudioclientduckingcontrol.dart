@@ -18,16 +18,23 @@ const IID_IAudioClientDuckingControl = '{c789d381-a28c-4168-b28f-d3a837924dc3}';
 /// {@category com}
 class IAudioClientDuckingControl extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IAudioClientDuckingControl(super.ptr);
+  IAudioClientDuckingControl(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAudioClientDuckingControlVtbl>().ref;
+
+  final IAudioClientDuckingControlVtbl _vtable;
 
   factory IAudioClientDuckingControl.from(IUnknown interface) =>
       IAudioClientDuckingControl(
           interface.toInterface(IID_IAudioClientDuckingControl));
 
-  int setDuckingOptionsForCurrentStream(int options) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<Pointer<NativeFunction<Int32 Function(Pointer, Int32 options)>>>()
-      .value
-      .asFunction<
+  int setDuckingOptionsForCurrentStream(int options) =>
+      _vtable.SetDuckingOptionsForCurrentStream.asFunction<
           int Function(Pointer, int options)>()(ptr.ref.lpVtbl, options);
+}
+
+/// @nodoc
+base class IAudioClientDuckingControlVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 options)>>
+      SetDuckingOptionsForCurrentStream;
 }

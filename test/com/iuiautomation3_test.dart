@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>();
+  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
 
   final uiautomation3 = IUIAutomation3(ptr);
   test('Can instantiate IUIAutomation3.addTextEditTextChangedEventHandler', () {
@@ -31,5 +31,6 @@ void main() {
         uiautomation3.removeTextEditTextChangedEventHandler, isA<Function>());
   });
 
+  free(ptr.ref.lpVtbl);
   free(ptr);
 }

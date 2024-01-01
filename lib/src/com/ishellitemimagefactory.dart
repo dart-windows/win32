@@ -19,20 +19,25 @@ const IID_IShellItemImageFactory = '{bcc18b79-ba16-442f-80c4-8a59c30c463b}';
 /// {@category com}
 class IShellItemImageFactory extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IShellItemImageFactory(super.ptr);
+  IShellItemImageFactory(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IShellItemImageFactoryVtbl>().ref;
+
+  final IShellItemImageFactoryVtbl _vtable;
 
   factory IShellItemImageFactory.from(IUnknown interface) =>
       IShellItemImageFactory(interface.toInterface(IID_IShellItemImageFactory));
 
-  int getImage(SIZE size, int flags, Pointer<IntPtr> phbm) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, SIZE size, Int32 flags,
-                      Pointer<IntPtr> phbm)>>>()
-      .value
-      .asFunction<
+  int getImage(SIZE size, int flags, Pointer<IntPtr> phbm) =>
+      _vtable.GetImage.asFunction<
           int Function(Pointer, SIZE size, int flags,
               Pointer<IntPtr> phbm)>()(ptr.ref.lpVtbl, size, flags, phbm);
+}
+
+/// @nodoc
+base class IShellItemImageFactoryVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              Pointer, SIZE size, Int32 flags, Pointer<IntPtr> phbm)>> GetImage;
 }

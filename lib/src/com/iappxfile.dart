@@ -19,65 +19,56 @@ const IID_IAppxFile = '{91df827b-94fd-468f-827b-57f41b2f6f2e}';
 /// {@category com}
 class IAppxFile extends IUnknown {
   // vtable begins at 3, is 5 entries long.
-  IAppxFile(super.ptr);
+  IAppxFile(super.ptr) : _vtable = ptr.ref.vtable.cast<IAppxFileVtbl>().ref;
+
+  final IAppxFileVtbl _vtable;
 
   factory IAppxFile.from(IUnknown interface) =>
       IAppxFile(interface.toInterface(IID_IAppxFile));
 
   int getCompressionOption(Pointer<Int32> compressionOption) =>
-      ptr.ref.vtable
-              .elementAt(3)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<Int32> compressionOption)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<Int32> compressionOption)>()(
+      _vtable.GetCompressionOption.asFunction<
+              int Function(Pointer, Pointer<Int32> compressionOption)>()(
           ptr.ref.lpVtbl, compressionOption);
 
-  int getContentType(Pointer<Pointer<Utf16>> contentType) => ptr.ref.vtable
-          .elementAt(4)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<Utf16>> contentType)>>>()
-          .value
-          .asFunction<
+  int getContentType(Pointer<Pointer<Utf16>> contentType) =>
+      _vtable.GetContentType.asFunction<
               int Function(Pointer, Pointer<Pointer<Utf16>> contentType)>()(
-      ptr.ref.lpVtbl, contentType);
+          ptr.ref.lpVtbl, contentType);
 
-  int getName(Pointer<Pointer<Utf16>> fileName) => ptr.ref.vtable
-      .elementAt(5)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer<Pointer<Utf16>> fileName)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer,
-              Pointer<Pointer<Utf16>> fileName)>()(ptr.ref.lpVtbl, fileName);
+  int getName(Pointer<Pointer<Utf16>> fileName) => _vtable.GetName.asFunction<
+          int Function(Pointer, Pointer<Pointer<Utf16>> fileName)>()(
+      ptr.ref.lpVtbl, fileName);
 
-  int getSize(Pointer<Uint64> size) => ptr.ref.vtable
-      .elementAt(6)
-      .cast<
-          Pointer<
-              NativeFunction<Int32 Function(Pointer, Pointer<Uint64> size)>>>()
-      .value
-      .asFunction<
-          int Function(Pointer, Pointer<Uint64> size)>()(ptr.ref.lpVtbl, size);
+  int getSize(Pointer<Uint64> size) =>
+      _vtable.GetSize.asFunction<int Function(Pointer, Pointer<Uint64> size)>()(
+          ptr.ref.lpVtbl, size);
 
-  int getStream(Pointer<Pointer<COMObject>> stream) => ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(
-                          Pointer, Pointer<Pointer<COMObject>> stream)>>>()
-          .value
-          .asFunction<
+  int getStream(
+          Pointer<Pointer<COMObject>> stream) =>
+      _vtable.GetStream.asFunction<
               int Function(Pointer, Pointer<Pointer<COMObject>> stream)>()(
-      ptr.ref.lpVtbl, stream);
+          ptr.ref.lpVtbl, stream);
+}
+
+/// @nodoc
+base class IAppxFileVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Int32> compressionOption)>>
+      GetCompressionOption;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<Utf16>> contentType)>>
+      GetContentType;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(Pointer, Pointer<Pointer<Utf16>> fileName)>> GetName;
+  external Pointer<
+      NativeFunction<Int32 Function(Pointer, Pointer<Uint64> size)>> GetSize;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<Pointer<COMObject>> stream)>>
+      GetStream;
 }

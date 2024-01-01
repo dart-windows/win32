@@ -19,34 +19,37 @@ const IID_IAppxManifestProperties = '{03faf64d-f26f-4b2c-aaf7-8fe7789b8bca}';
 /// {@category com}
 class IAppxManifestProperties extends IUnknown {
   // vtable begins at 3, is 2 entries long.
-  IAppxManifestProperties(super.ptr);
+  IAppxManifestProperties(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IAppxManifestPropertiesVtbl>().ref;
+
+  final IAppxManifestPropertiesVtbl _vtable;
 
   factory IAppxManifestProperties.from(IUnknown interface) =>
       IAppxManifestProperties(
           interface.toInterface(IID_IAppxManifestProperties));
 
-  int getBoolValue(Pointer<Utf16> name, Pointer<Int32> value) => ptr.ref.vtable
-      .elementAt(3)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(
-                      Pointer, Pointer<Utf16> name, Pointer<Int32> value)>>>()
-      .value
-      .asFunction<
+  int getBoolValue(Pointer<Utf16> name, Pointer<Int32> value) =>
+      _vtable.GetBoolValue.asFunction<
           int Function(Pointer, Pointer<Utf16> name,
               Pointer<Int32> value)>()(ptr.ref.lpVtbl, name, value);
 
-  int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) => ptr
-      .ref.vtable
-      .elementAt(4)
-      .cast<
-          Pointer<
-              NativeFunction<
-                  Int32 Function(Pointer, Pointer<Utf16> name,
-                      Pointer<Pointer<Utf16>> value)>>>()
-      .value
-      .asFunction<
+  int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
+      _vtable.GetStringValue.asFunction<
           int Function(Pointer, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>()(ptr.ref.lpVtbl, name, value);
+}
+
+/// @nodoc
+base class IAppxManifestPropertiesVtbl extends Struct {
+  external IUnknownVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Utf16> name, Pointer<Int32> value)>>
+      GetBoolValue;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  Pointer, Pointer<Utf16> name, Pointer<Pointer<Utf16>> value)>>
+      GetStringValue;
 }

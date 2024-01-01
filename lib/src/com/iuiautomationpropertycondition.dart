@@ -25,7 +25,10 @@ const IID_IUIAutomationPropertyCondition =
 /// {@category com}
 class IUIAutomationPropertyCondition extends IUIAutomationCondition {
   // vtable begins at 3, is 3 entries long.
-  IUIAutomationPropertyCondition(super.ptr);
+  IUIAutomationPropertyCondition(super.ptr)
+      : _vtable = ptr.ref.vtable.cast<IUIAutomationPropertyConditionVtbl>().ref;
+
+  final IUIAutomationPropertyConditionVtbl _vtable;
 
   factory IUIAutomationPropertyCondition.from(IUnknown interface) =>
       IUIAutomationPropertyCondition(
@@ -35,17 +38,9 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = ptr.ref.vtable
-          .elementAt(3)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      Int32 Function(Pointer, Pointer<Uint32> propertyId)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer,
-                  Pointer<Uint32> propertyId)>()(ptr.ref.lpVtbl, retValuePtr);
-
+      final hr = _vtable.get_PropertyId
+              .asFunction<int Function(Pointer, Pointer<Uint32> propertyId)>()(
+          ptr.ref.lpVtbl, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -59,18 +54,9 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<VARIANT>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(4)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(
-                              Pointer, Pointer<VARIANT> propertyValue)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, Pointer<VARIANT> propertyValue)>()(
+      final hr = _vtable.get_PropertyValue.asFunction<
+              int Function(Pointer, Pointer<VARIANT> propertyValue)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.ref;
@@ -84,16 +70,9 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(5)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          Int32 Function(Pointer, Pointer<Int32> flags)>>>()
-              .value
+      final hr = _vtable.get_PropertyConditionFlags
               .asFunction<int Function(Pointer, Pointer<Int32> flags)>()(
           ptr.ref.lpVtbl, retValuePtr);
-
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -102,4 +81,19 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
       free(retValuePtr);
     }
   }
+}
+
+/// @nodoc
+base class IUIAutomationPropertyConditionVtbl extends Struct {
+  external IUIAutomationConditionVtbl baseVtbl;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> propertyId)>>
+      get_PropertyId;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(Pointer, Pointer<VARIANT> propertyValue)>>
+      get_PropertyValue;
+  external Pointer<
+          NativeFunction<Int32 Function(Pointer, Pointer<Int32> flags)>>
+      get_PropertyConditionFlags;
 }
