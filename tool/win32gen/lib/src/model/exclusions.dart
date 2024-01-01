@@ -38,7 +38,21 @@ const excludedComInterfaces = <String>{
   'Windows.Win32.System.Performance.DISystemMonitorEvents',
 };
 
-const excludedTypes = <String>[
+final excludedImports = <String>{
+  'Windows.Win32.Foundation.BOOL',
+  'Windows.Win32.Foundation.BSTR',
+  'Windows.Win32.Foundation.HANDLE',
+  'Windows.Win32.Foundation.HRESULT',
+  'Windows.Win32.Foundation.HWND',
+  'Windows.Win32.Foundation.LPARAM',
+  'Windows.Win32.Foundation.PSTR',
+  'Windows.Win32.Foundation.PWSTR',
+  'Windows.Win32.Foundation.VARIANT_BOOL',
+  'Windows.Win32.Foundation.WPARAM',
+  'Windows.Win32.System.WinRT.HSTRING',
+};
+
+const excludedTypes = <String>{
   ...excludedWin32Structs,
   ...excludedComInterfaces
-];
+};

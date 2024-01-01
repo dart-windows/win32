@@ -60,19 +60,19 @@ class ComClassProjection extends ComInterfaceProjection {
   String get guidConstants => '''
   /// @nodoc
   const CLSID_$shortName = '${typeDef.guid}';
-  ''';
+''';
 
   @override
   String toString() => '''
-    ${interface.toString()}
-    $guidConstants
+${interface.toString()}
+$guidConstants
 
-    $classPreamble
-    class $shortName extends ${interface.shortName} {
-      $shortName(super.ptr);
+$classPreamble
+class $shortName extends ${interface.shortName} {
+  $shortName(super.ptr);
 
-      factory $shortName.createInstance() => $shortName(
-          COMObject.createFromID(CLSID_$shortName, IID_${interface.shortName}));
-    }
+  factory $shortName.createInstance() => $shortName(
+      COMObject.createFromID(CLSID_$shortName, IID_${interface.shortName}));
+}
 ''';
 }

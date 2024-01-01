@@ -224,7 +224,7 @@ void generateComApis(Scope scope, Map<String, String> comTypesToGenerate) {
     final comment = comTypesToGenerate[interface] ?? '';
     final interfaceProjection = ComInterfaceProjection(typeDef, comment);
 
-    // In v2, we put classes and interfaces in the same file.
+    // Put classes and interfaces in the same file.
     final className = ComClassProjection.generateClassName(typeDef);
     final classNameExists = scope.findTypeDef(className) != null;
 

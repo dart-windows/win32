@@ -4,7 +4,6 @@ import 'dart:collection';
 
 import 'package:winmd/winmd.dart';
 
-import '../model/exclusions.dart';
 import '../model/false_properties.dart';
 import 'safenames.dart';
 import 'type.dart';
@@ -144,10 +143,6 @@ extension CamelCaseConversion on String {
 }
 
 String importForWin32Type(TypeIdentifier identifier) {
-  if (excludedWin32Structs.contains(identifier.name)) {
-    return 'specialTypes.dart';
-  }
-
   final folder = folderFromNamespace(identifier.name);
   if (identifier.type != null && identifier.type!.isDelegate) {
     return '$folder/callbacks.g.dart';

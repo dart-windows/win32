@@ -1,10 +1,12 @@
 import 'package:winmd/winmd.dart';
 
 import '../model/exclusions.dart';
+import 'com_class.dart';
 import 'com_method.dart';
 import 'com_property.dart';
 import 'method.dart';
 import 'safenames.dart';
+import 'type.dart';
 import 'utils.dart';
 
 class ComInterfaceProjection {
@@ -59,50 +61,58 @@ class ComInterfaceProjection {
     return projection;
   }
 
-  // TODO: May need to review suffix stripping on v3
-  String get shortName => stripAnsiUnicodeSuffix(
-      stripLeadingUnderscores(safeIdentifierForTypeDef(typeDef)));
+  String get shortName =>
+      stripAnsiUnicodeSuffix(safeIdentifierForTypeDef(typeDef));
 
   String get inheritsFrom => typeDef.interfaces.isNotEmpty
       ? safeIdentifierForTypeDef(typeDef.interfaces.first)
       : '';
 
-  String getImportForTypeDef(TypeDef typeDef) {
-    if (typeDef.isDelegate) {
-      return '${folderFromNamespace(typeDef.name)}/callbacks.g.dart';
-    } else if (typeDef.isInterface) {
-      return '${folderFromNamespace(typeDef.name)}/${stripAnsiUnicodeSuffix(lastComponent(typeDef.name)).toLowerCase()}.dart';
-    } else {
-      return '${folderFromNamespace(typeDef.name)}/structs.g.dart';
-    }
-  }
+  String get header => '''
+// ${shortName.toLowerCase()}.dart
 
-  String? getImportForTypeIdentifier(TypeIdentifier typeIdentifier) {
-    if (excludedTypes.contains(typeIdentifier.name)) return 'specialTypes.dart';
-    if (typeIdentifier.name == 'System.Guid') return '../guid.dart';
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-    if (typeIdentifier.name.startsWith('Windows')) {
-      return getImportForTypeDef(typeIdentifier.type!);
-    }
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+''';
 
-    return null;
-  }
+  Set<String> get coreImports => {'dart:ffi'};
 
-  // TODO: Find duplicates. This is the "correct" one.
+  String? getImportForTypeDef(TypeDef typeDef) => switch (typeDef) {
+        _ when typeDef.isDelegate => '../callbacks.dart',
+        _ when typeDef.isInterface => '../combase.dart',
+        _ when typeDef.isStruct && specialTypes.containsKey(typeDef.name) =>
+          'package:ffi/ffi.dart',
+
+        // These structs are manually generated
+        _ when typeDef.isStruct && typeDef.name.endsWith('PROPERTYKEY') =>
+          '../propertykey.dart',
+        _ when typeDef.isStruct && typeDef.name.endsWith('VARIANT') =>
+          '../variant.dart',
+
+        //
+        _ when typeDef.isStruct && !excludedImports.contains(typeDef.name) =>
+          '../structs.g.dart',
+        _ => null
+      };
+
+  String? getImportForTypeIdentifier(TypeIdentifier typeIdentifier) =>
+      switch (typeIdentifier) {
+        _ when typeIdentifier.name == 'System.Guid' => '../guid.dart',
+        _ when typeIdentifier.name.startsWith('Windows') =>
+          getImportForTypeDef(typeIdentifier.type!),
+        _ => null
+      };
+
   Set<String> get importsForClass {
-    final importList = <String>{};
-    final methods = {
-      ...typeDef.methods,
-      // Also add the methods in typeDef's interfaces
-      ...[for (final typeDef in typeDef.interfaces) ...typeDef.methods]
-    };
+    final imports = <String>{};
 
-    for (final method in methods) {
+    for (final method in typeDef.methods) {
       final paramsAndReturnType = [...method.parameters, method.returnType];
       for (final param in paramsAndReturnType) {
         // Add imports for a parameter itself (e.g. VARIANT)
         final import = getImportForTypeIdentifier(param.typeIdentifier);
-        if (import != null) importList.add(import);
+        if (import != null) imports.add(import);
 
         // Add imports for a type within a pointer (e.g. Pointer<VARIANT>). Keep
         // unwrapping until there are no types left.
@@ -110,27 +120,13 @@ class ComInterfaceProjection {
         while (refType.typeArg != null) {
           refType = refType.typeArg!;
           final import = getImportForTypeIdentifier(refType);
-          if (import != null) importList.add(import);
+          if (import != null) imports.add(import);
         }
       }
     }
 
-    return importList;
+    return imports;
   }
-
-  late final pathToSrc = '../' * (typeDef.name.split('.').length - 3);
-
-  String get header => '''
-    // ${shortName.toLowerCase()}.dart
-
-    // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
-
-    // ignore_for_file: unused_import
-    // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-    // ignore_for_file: no_leading_underscores_for_local_identifiers
-  ''';
-
-  List<String> get coreImports => ['dart:ffi', 'package:ffi/ffi.dart'];
 
   // COM interfaces can only inherit from one parent
   Set<String> get interfaceImports {
@@ -145,36 +141,46 @@ class ComInterfaceProjection {
     return {};
   }
 
-  List<String> get extraImports => [
-        '../callbacks.dart',
-        '../combase.dart',
-        '../constants.dart',
-        '../exceptions.dart',
-        '../guid.dart',
-        '../macros.dart',
-        '../propertykey.dart',
-        '../structs.g.dart',
-        '../utils.dart',
-        '../variant.dart',
-        '../win32/ole32.g.dart',
-      ];
+  Set<String> get extraImports => {
+        // If a COM class will be generated for this interface, `combase.dart`
+        // needs to be imported to gain access to the `COMObject.createFromID`
+        // method from the generated COM class.
+        if (MetadataStore.getMetadataForType(
+                ComClassProjection.generateClassName(typeDef)) !=
+            null)
+          '../combase.dart',
+
+        // COM getters need these imports to allocate memory, do `FAILED` check,
+        // and free memory.
+        if (hasGetters) ...{
+          'package:ffi/ffi.dart',
+          '../exceptions.dart',
+          '../macros.dart',
+          '../utils.dart',
+        },
+      };
 
   String get importHeader {
-    final imports = {...coreImports, ...interfaceImports, ...extraImports};
+    final imports = {
+      ...coreImports,
+      ...importsForClass,
+      ...interfaceImports,
+      ...extraImports
+    };
     return sortImports(
       imports.map((import) => "import '$import';").toList(),
     ).join('\n');
   }
 
   String get guidConstants => '''
-    /// @nodoc
-    const IID_$shortName = '${typeDef.guid}';
-  ''';
+/// @nodoc
+const IID_$shortName = '${typeDef.guid}';
+''';
 
-  String get fromCOMObjectHelper => '''
-  factory $shortName.from(IUnknown interface) =>
-      $shortName(interface.toInterface(IID_$shortName));
-  ''';
+  String get fromInterfaceConstructor => '''
+factory $shortName.from(IUnknown interface) =>
+    $shortName(interface.toInterface(IID_$shortName));
+''';
 
   String get category => 'com';
 
@@ -187,27 +193,31 @@ class ComInterfaceProjection {
         : categoryComment;
   }
 
+  String get extendsClause =>
+      inheritsFrom.isEmpty ? '' : 'extends $inheritsFrom';
+
+  bool get hasGetters => typeDef.methods.any((m) => m.isGetProperty);
+
+  bool get hasMethods => typeDef.methods.isNotEmpty;
+
+  String get constructor => inheritsFrom.isEmpty
+      ? '$shortName(this.ptr);\n\nPointer<COMObject> ptr;'
+      : '$shortName(super.ptr);';
+
   @override
-  String toString() {
-    final extendsClause = inheritsFrom.isEmpty ? '' : 'extends $inheritsFrom';
-    final constructor = inheritsFrom.isEmpty
-        ? 'Pointer<COMObject> ptr;\n\n$shortName(this.ptr);'
-        : '$shortName(super.ptr);';
+  String toString() => '''
+$header
+$importHeader
+$guidConstants
 
-    return '''
-      $header
-      $importHeader
-      $guidConstants
+$classPreamble
+class $shortName $extendsClause {
+  // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
+  $constructor
 
-      $classPreamble
-      class $shortName $extendsClause {
-        // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
-        $constructor
+  $fromInterfaceConstructor
 
-        $fromCOMObjectHelper
-
-        ${methodProjections.map((p) => p.toString()).join('\n')}
-      }
-  ''';
-  }
+  ${methodProjections.map((p) => p.toString()).join('\n')}
+}
+''';
 }
