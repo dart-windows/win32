@@ -185,7 +185,7 @@
 ## 3.0.1
 
 - Improve projection of Map, Vector, and reference Windows Runtime types, with
-  thanks as ever to Halil İbrahim Durmuş (@halildurmus).
+  thanks as ever to Halil Durmus (@halildurmus).
 - Add CryptoAPI functions (`CryptProtectData`, `CryptProtectMemory` etc.)
 - Add pointer and touch APIs
 - Fix WinRT FilePicker demo
@@ -246,8 +246,8 @@ write:
 ## 2.7.0
 
 - [BREAKING CHANGE] Major work on Windows Runtime APIs, with huge thanks to
-  Halil İbrahim Durmuş (@halildurmus). Breaking changes are limited to WinRT
-  APIs, which are now more idiomatic for Dart. Includes full implementation of
+  Halil Durmus (@halildurmus). Breaking changes are limited to WinRT APIs, which
+  are now more idiomatic for Dart. Includes full implementation of
   Windows.Globalization.Calendar that is the new reference design for WinRT APIs.
 - Restructure generation code into a separate package in tool\generator.
 - Use super parameters introduced in Dart 2.17, with matching dependency
