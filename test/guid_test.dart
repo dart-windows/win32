@@ -14,10 +14,7 @@ extension Uint8Helper on Pointer<Uint8> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint8>`.
-  ///
-  /// {@category winrt}
-  List<int> toList({int length = 1}) =>
-      Uint8List.fromList(this.asTypedList(length));
+  List<int> toList({int length = 1}) => Uint8List.fromList(asTypedList(length));
 }
 
 void main() {
