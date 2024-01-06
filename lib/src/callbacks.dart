@@ -151,6 +151,19 @@ typedef MonitorEnumProc = Int32 Function(
 /// you defined by specifying a child dialog template.
 typedef OFNHookProc = UINT_PTR Function(HWND, UINT, WPARAM, LPARAM);
 
+/// Application-defined callback function that provides special verification
+/// for smart card searches.
+typedef OpenCardCheckProc = Int32 Function(IntPtr, IntPtr, Pointer);
+
+/// Application-defined callback function that allows callers to perform
+/// additional processing to connect to the smart card.
+typedef OpenCardConnProc = IntPtr Function(
+    IntPtr, Pointer<Utf16>, Pointer<Utf16>, Pointer);
+
+/// Application-defined callback function that can be used for disconnecting
+/// smart cards.
+typedef OpenCardDisconnProc = Void Function(IntPtr, IntPtr, Pointer);
+
 /// Application-defined callback function used with the GrayString function. It
 /// is used to draw a string.
 typedef OutputProc = Int32 Function(IntPtr Arg1, IntPtr Arg2, Int32 Arg3);
@@ -222,16 +235,3 @@ typedef WindowProc = LRESULT Function(
 /// register and unregister notifications on all wireless interfaces.
 typedef WlanNotificationCallback = Void Function(
     Pointer<L2_NOTIFICATION_DATA>, Pointer);
-
-/// Application-defined callback function that provides special verification
-/// for smart card searches.
-typedef OpenCardCheckProc = Int32 Function(IntPtr, IntPtr, Pointer);
-
-/// Application-defined callback function that allows callers to perform
-/// additional processing to connect to the smart card.
-typedef OpenCardConnProc = IntPtr Function(
-    IntPtr, Pointer<Utf16>, Pointer<Utf16>, Pointer);
-
-/// Application-defined callback function that can be used for disconnecting
-/// smart cards.
-typedef OpenCardDisconnProc = Void Function(IntPtr, IntPtr, Pointer);
