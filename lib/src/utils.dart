@@ -84,7 +84,6 @@ bool get isCOMInitialized {
 bool isWindowsRuntimeAvailable() {
   try {
     DynamicLibrary.open('api-ms-win-core-winrt-l1-1-0.dll');
-    // ignore: avoid_catching_errors
   } on ArgumentError {
     return false;
   }
