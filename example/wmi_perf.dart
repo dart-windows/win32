@@ -30,7 +30,7 @@ void initializeCOM() {
   if (FAILED(hr)) throw WindowsException(hr);
 }
 
-int connectWMI(WbemLocator pLoc, Pointer<Pointer<COMObject>> ppNamespace) {
+int connectWMI(WbemLocator pLoc, Pointer<Pointer<VTablePointer>> ppNamespace) {
   // Connect to the root\cimv2 namespace with the current user and obtain
   // pointer pSvc to make IWbemServices calls.
   var hr = pLoc.connectServer(
@@ -67,13 +67,13 @@ void main() {
 
   using((Arena arena) {
     final pLoc = WbemLocator.createInstance();
-    final ppNamespace = calloc<Pointer<COMObject>>();
+    final ppNamespace = calloc<Pointer<VTablePointer>>();
 
     connectWMI(pLoc, ppNamespace);
 
     final refresher = WbemRefresher.createInstance();
     final pConfig = IWbemConfigureRefresher.from(refresher);
-    final ppRefreshable = calloc<Pointer<COMObject>>();
+    final ppRefreshable = calloc<Pointer<VTablePointer>>();
 
     final pszQuery =
         'Win32_PerfRawData_PerfProc_Process.Name="$processToMonitor"'

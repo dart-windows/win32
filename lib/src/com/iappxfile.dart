@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +19,7 @@ const IID_IAppxFile = '{91df827b-94fd-468f-827b-57f41b2f6f2e}';
 /// {@category com}
 class IAppxFile extends IUnknown {
   // vtable begins at 3, is 5 entries long.
-  IAppxFile(super.ptr) : _vtable = ptr.ref.vtable.cast<IAppxFileVtbl>().ref;
+  IAppxFile(super.ptr) : _vtable = ptr.value.value.cast<IAppxFileVtbl>().ref;
 
   final IAppxFileVtbl _vtable;
 
@@ -28,27 +28,25 @@ class IAppxFile extends IUnknown {
 
   int getCompressionOption(Pointer<Int32> compressionOption) =>
       _vtable.GetCompressionOption.asFunction<
-              int Function(Pointer, Pointer<Int32> compressionOption)>()(
-          ptr.ref.lpVtbl, compressionOption);
+              int Function(VTablePointer, Pointer<Int32> compressionOption)>()(
+          ptr.value, compressionOption);
 
   int getContentType(Pointer<Pointer<Utf16>> contentType) =>
       _vtable.GetContentType.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> contentType)>()(
-          ptr.ref.lpVtbl, contentType);
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> contentType)>()(ptr.value, contentType);
 
   int getName(Pointer<Pointer<Utf16>> fileName) => _vtable.GetName.asFunction<
-          int Function(Pointer, Pointer<Pointer<Utf16>> fileName)>()(
-      ptr.ref.lpVtbl, fileName);
+          int Function(VTablePointer, Pointer<Pointer<Utf16>> fileName)>()(
+      ptr.value, fileName);
 
-  int getSize(Pointer<Uint64> size) =>
-      _vtable.GetSize.asFunction<int Function(Pointer, Pointer<Uint64> size)>()(
-          ptr.ref.lpVtbl, size);
+  int getSize(Pointer<Uint64> size) => _vtable.GetSize.asFunction<
+      int Function(VTablePointer, Pointer<Uint64> size)>()(ptr.value, size);
 
-  int getStream(
-          Pointer<Pointer<COMObject>> stream) =>
+  int getStream(Pointer<Pointer<VTablePointer>> stream) =>
       _vtable.GetStream.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> stream)>()(
-          ptr.ref.lpVtbl, stream);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> stream)>()(ptr.value, stream);
 }
 
 /// @nodoc
@@ -56,19 +54,23 @@ base class IAppxFileVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Int32> compressionOption)>>
+              Int32 Function(VTablePointer, Pointer<Int32> compressionOption)>>
       GetCompressionOption;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> contentType)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> contentType)>>
       GetContentType;
   external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<Pointer<Utf16>> fileName)>> GetName;
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> fileName)>>
+      GetName;
   external Pointer<
-      NativeFunction<Int32 Function(Pointer, Pointer<Uint64> size)>> GetSize;
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint64> size)>>
+      GetSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> stream)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> stream)>>
       GetStream;
 }

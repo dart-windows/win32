@@ -20,7 +20,7 @@ void main() {
   // Replace this with the sensor category you're looking for.
   final sampleDateTimeSensorCategory =
       GUIDFromString('{062A5C3B-44C1-4ad1-8EFC-0F65B2E4AD48}');
-  final pSensorsColl = calloc<Pointer<COMObject>>();
+  final pSensorsColl = calloc<Pointer<VTablePointer>>();
   final hr = sensorManager.getSensorsByCategory(
       sampleDateTimeSensorCategory, pSensorsColl);
   if (FAILED(hr)) throw WindowsException(hr);

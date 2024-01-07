@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iuiautomation2.dart';
 import 'iunknown.dart';
 
@@ -20,7 +20,7 @@ const IID_IUIAutomation3 = '{73d768da-9b51-4b89-936e-c209290973e7}';
 class IUIAutomation3 extends IUIAutomation2 {
   // vtable begins at 64, is 2 entries long.
   IUIAutomation3(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomation3Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomation3Vtbl>().ref;
 
   final IUIAutomation3Vtbl _vtable;
 
@@ -28,43 +28,44 @@ class IUIAutomation3 extends IUIAutomation2 {
       IUIAutomation3(interface.toInterface(IID_IUIAutomation3));
 
   int addTextEditTextChangedEventHandler(
-          Pointer<COMObject> element,
+          Pointer<VTablePointer> element,
           int scope,
           int textEditChangeType,
-          Pointer<COMObject> cacheRequest,
-          Pointer<COMObject> handler) =>
+          Pointer<VTablePointer> cacheRequest,
+          Pointer<VTablePointer> handler) =>
       _vtable.AddTextEditTextChangedEventHandler.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> element,
+                  VTablePointer,
+                  Pointer<VTablePointer> element,
                   int scope,
                   int textEditChangeType,
-                  Pointer<COMObject> cacheRequest,
-                  Pointer<COMObject> handler)>()(ptr.ref.lpVtbl, element, scope,
-          textEditChangeType, cacheRequest, handler);
+                  Pointer<VTablePointer> cacheRequest,
+                  Pointer<VTablePointer> handler)>()(
+          ptr.value, element, scope, textEditChangeType, cacheRequest, handler);
 
   int removeTextEditTextChangedEventHandler(
-          Pointer<COMObject> element, Pointer<COMObject> handler) =>
+          Pointer<VTablePointer> element, Pointer<VTablePointer> handler) =>
       _vtable.RemoveTextEditTextChangedEventHandler.asFunction<
-          int Function(Pointer, Pointer<COMObject> element,
-              Pointer<COMObject> handler)>()(ptr.ref.lpVtbl, element, handler);
+          int Function(VTablePointer, Pointer<VTablePointer> element,
+              Pointer<VTablePointer> handler)>()(ptr.value, element, handler);
 }
 
 /// @nodoc
 base class IUIAutomation3Vtbl extends Struct {
   external IUIAutomation2Vtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              Pointer,
-              Pointer<COMObject> element,
-              Int32 scope,
-              Int32 textEditChangeType,
-              Pointer<COMObject> cacheRequest,
-              Pointer<COMObject> handler)>> AddTextEditTextChangedEventHandler;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer,
+                  Pointer<VTablePointer> element,
+                  Int32 scope,
+                  Int32 textEditChangeType,
+                  Pointer<VTablePointer> cacheRequest,
+                  Pointer<VTablePointer> handler)>>
+      AddTextEditTextChangedEventHandler;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<COMObject> element,
-                  Pointer<COMObject> handler)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> element,
+                  Pointer<VTablePointer> handler)>>
       RemoveTextEditTextChangedEventHandler;
 }

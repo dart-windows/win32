@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement7.dart';
 import 'iunknown.dart';
@@ -23,7 +24,7 @@ const IID_IUIAutomationElement8 = '{8c60217d-5411-4cde-bcc0-1ceda223830c}';
 class IUIAutomationElement8 extends IUIAutomationElement7 {
   // vtable begins at 115, is 2 entries long.
   IUIAutomationElement8(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement8Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationElement8Vtbl>().ref;
 
   final IUIAutomationElement8Vtbl _vtable;
 
@@ -34,9 +35,9 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_CurrentHeadingLevel
-              .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_CurrentHeadingLevel.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -50,9 +51,9 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_CachedHeadingLevel
-              .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_CachedHeadingLevel.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -67,9 +68,9 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
 base class IUIAutomationElement8Vtbl extends Struct {
   external IUIAutomationElement7Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
       get_CurrentHeadingLevel;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
       get_CachedHeadingLevel;
 }

@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,8 +20,9 @@ const IID_IUIAutomationCustomNavigationPattern =
 class IUIAutomationCustomNavigationPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationCustomNavigationPattern(super.ptr)
-      : _vtable =
-            ptr.ref.vtable.cast<IUIAutomationCustomNavigationPatternVtbl>().ref;
+      : _vtable = ptr.value.value
+            .cast<IUIAutomationCustomNavigationPatternVtbl>()
+            .ref;
 
   final IUIAutomationCustomNavigationPatternVtbl _vtable;
 
@@ -29,11 +30,11 @@ class IUIAutomationCustomNavigationPattern extends IUnknown {
       IUIAutomationCustomNavigationPattern(
           interface.toInterface(IID_IUIAutomationCustomNavigationPattern));
 
-  int navigate(int direction, Pointer<Pointer<COMObject>> pRetVal) =>
+  int navigate(int direction, Pointer<Pointer<VTablePointer>> pRetVal) =>
       _vtable.Navigate.asFunction<
-              int Function(Pointer, int direction,
-                  Pointer<Pointer<COMObject>> pRetVal)>()(
-          ptr.ref.lpVtbl, direction, pRetVal);
+              int Function(VTablePointer, int direction,
+                  Pointer<Pointer<VTablePointer>> pRetVal)>()(
+          ptr.value, direction, pRetVal);
 }
 
 /// @nodoc
@@ -41,6 +42,6 @@ base class IUIAutomationCustomNavigationPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 direction,
-              Pointer<Pointer<COMObject>> pRetVal)>> Navigate;
+          Int32 Function(VTablePointer, Int32 direction,
+              Pointer<Pointer<VTablePointer>> pRetVal)>> Navigate;
 }

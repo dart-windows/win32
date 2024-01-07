@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
 
   final uiautomationwindowpattern = IUIAutomationWindowPattern(ptr);
   test('Can instantiate IUIAutomationWindowPattern.close', () {
@@ -32,6 +32,6 @@ void main() {
     expect(uiautomationwindowpattern.setWindowVisualState, isA<Function>());
   });
 
-  free(ptr.ref.lpVtbl);
+  free(ptr.value);
   free(ptr);
 }

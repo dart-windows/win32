@@ -34,7 +34,7 @@ void main(List<String> args) {
   spellCheckerFactory.isSupported(languageTagPtr, supportedPtr);
 
   if (supportedPtr.value == 1) {
-    final spellCheckerPtr = calloc<COMObject>();
+    final spellCheckerPtr = calloc<VTablePointer>();
     spellCheckerFactory.createSpellChecker(
         languageTagPtr, spellCheckerPtr.cast());
 
@@ -45,12 +45,12 @@ void main(List<String> args) {
     // custom dictionary. We cast to that purely as an example.
     final spellChecker2 = ISpellChecker2.from(spellChecker);
 
-    final errorsPtr = calloc<COMObject>();
+    final errorsPtr = calloc<VTablePointer>();
     final textPtr = text.toNativeUtf16();
     spellChecker2.check(textPtr, errorsPtr.cast());
 
     final errors = IEnumSpellingError(errorsPtr);
-    final errorPtr = calloc<COMObject>();
+    final errorPtr = calloc<VTablePointer>();
 
     print('Input: "$text"');
     print('Errors:');
@@ -84,7 +84,7 @@ void main(List<String> args) {
           print(' - suggestions:');
 
           final wordPtr = word.toNativeUtf16();
-          final suggestionsPtr = calloc<COMObject>();
+          final suggestionsPtr = calloc<VTablePointer>();
           spellChecker2.suggest(wordPtr, suggestionsPtr.cast());
           final suggestions = IEnumString(suggestionsPtr);
 

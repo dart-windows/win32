@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import 'iaudioclient2.dart';
 import 'iunknown.dart';
 
@@ -24,7 +25,7 @@ const IID_IAudioClient3 = '{7ed4ee07-8e67-4cd4-8c1a-2b7a5987ad42}';
 class IAudioClient3 extends IAudioClient2 {
   // vtable begins at 18, is 3 entries long.
   IAudioClient3(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAudioClient3Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAudioClient3Vtbl>().ref;
 
   final IAudioClient3Vtbl _vtable;
 
@@ -39,13 +40,13 @@ class IAudioClient3 extends IAudioClient2 {
           Pointer<Uint32> pMaxPeriodInFrames) =>
       _vtable.GetSharedModeEnginePeriod.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<Uint32> pDefaultPeriodInFrames,
                   Pointer<Uint32> pFundamentalPeriodInFrames,
                   Pointer<Uint32> pMinPeriodInFrames,
                   Pointer<Uint32> pMaxPeriodInFrames)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           pFormat,
           pDefaultPeriodInFrames,
           pFundamentalPeriodInFrames,
@@ -55,20 +56,22 @@ class IAudioClient3 extends IAudioClient2 {
   int getCurrentSharedModeEnginePeriod(Pointer<Pointer<WAVEFORMATEX>> ppFormat,
           Pointer<Uint32> pCurrentPeriodInFrames) =>
       _vtable.GetCurrentSharedModeEnginePeriod.asFunction<
-              int Function(Pointer, Pointer<Pointer<WAVEFORMATEX>> ppFormat,
+              int Function(
+                  VTablePointer,
+                  Pointer<Pointer<WAVEFORMATEX>> ppFormat,
                   Pointer<Uint32> pCurrentPeriodInFrames)>()(
-          ptr.ref.lpVtbl, ppFormat, pCurrentPeriodInFrames);
+          ptr.value, ppFormat, pCurrentPeriodInFrames);
 
   int initializeSharedAudioStream(int StreamFlags, int PeriodInFrames,
           Pointer<WAVEFORMATEX> pFormat, Pointer<GUID> AudioSessionGuid) =>
       _vtable.InitializeSharedAudioStream.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int StreamFlags,
                   int PeriodInFrames,
                   Pointer<WAVEFORMATEX> pFormat,
-                  Pointer<GUID> AudioSessionGuid)>()(ptr.ref.lpVtbl,
-          StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
+                  Pointer<GUID> AudioSessionGuid)>()(
+          ptr.value, StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
 }
 
 /// @nodoc
@@ -77,7 +80,7 @@ base class IAudioClient3Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<WAVEFORMATEX> pFormat,
               Pointer<Uint32> pDefaultPeriodInFrames,
               Pointer<Uint32> pFundamentalPeriodInFrames,
@@ -85,13 +88,15 @@ base class IAudioClient3Vtbl extends Struct {
               Pointer<Uint32> pMaxPeriodInFrames)>> GetSharedModeEnginePeriod;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<WAVEFORMATEX>> ppFormat,
+              Int32 Function(
+                  VTablePointer,
+                  Pointer<Pointer<WAVEFORMATEX>> ppFormat,
                   Pointer<Uint32> pCurrentPeriodInFrames)>>
       GetCurrentSharedModeEnginePeriod;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 StreamFlags,
               Uint32 PeriodInFrames,
               Pointer<WAVEFORMATEX> pFormat,

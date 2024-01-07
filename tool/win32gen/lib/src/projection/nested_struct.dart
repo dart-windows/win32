@@ -12,13 +12,16 @@ import 'utils.dart';
 /// anonymous nested types, of which there are many in more complex Win32
 /// structs.
 class NestedStructProjection extends StructProjection {
+  NestedStructProjection(
+    super.typeDef,
+    super.structName, {
+    required this.suffix,
+    required this.rootTypePackingAlignment,
+  }) : rootType = _getRootTypeDef(typeDef);
+
   final int suffix;
   final int rootTypePackingAlignment;
   final TypeDef rootType;
-
-  NestedStructProjection(super.typeDef, super.structName,
-      {required this.suffix, required this.rootTypePackingAlignment})
-      : rootType = _getRootTypeDef(typeDef);
 
   /// Finds the topmost [TypeDef] in the nested tree. This is the one that
   /// should be extended.

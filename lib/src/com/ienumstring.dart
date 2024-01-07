@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +20,8 @@ const IID_IEnumString = '{00000101-0000-0000-c000-000000000046}';
 /// {@category com}
 class IEnumString extends IUnknown {
   // vtable begins at 3, is 4 entries long.
-  IEnumString(super.ptr) : _vtable = ptr.ref.vtable.cast<IEnumStringVtbl>().ref;
+  IEnumString(super.ptr)
+      : _vtable = ptr.value.value.cast<IEnumStringVtbl>().ref;
 
   final IEnumStringVtbl _vtable;
 
@@ -30,20 +31,23 @@ class IEnumString extends IUnknown {
   int next(int celt, Pointer<Pointer<Utf16>> rgelt,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(Pointer, int celt, Pointer<Pointer<Utf16>> rgelt,
+              int Function(
+                  VTablePointer,
+                  int celt,
+                  Pointer<Pointer<Utf16>> rgelt,
                   Pointer<Uint32> pceltFetched)>()(
-          ptr.ref.lpVtbl, celt, rgelt, pceltFetched);
+          ptr.value, celt, rgelt, pceltFetched);
 
   int skip(int celt) =>
-      _vtable.Skip.asFunction<int Function(Pointer, int celt)>()(
-          ptr.ref.lpVtbl, celt);
+      _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
+          ptr.value, celt);
 
   int reset() =>
-      _vtable.Reset.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
 
-  int clone(Pointer<Pointer<COMObject>> ppenum) => _vtable.Clone.asFunction<
-          int Function(Pointer, Pointer<Pointer<COMObject>> ppenum)>()(
-      ptr.ref.lpVtbl, ppenum);
+  int clone(Pointer<Pointer<VTablePointer>> ppenum) => _vtable.Clone.asFunction<
+      int Function(VTablePointer,
+          Pointer<Pointer<VTablePointer>> ppenum)>()(ptr.value, ppenum);
 }
 
 /// @nodoc
@@ -51,11 +55,16 @@ base class IEnumStringVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 celt, Pointer<Pointer<Utf16>> rgelt,
+          Int32 Function(
+              VTablePointer,
+              Uint32 celt,
+              Pointer<Pointer<Utf16>> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Reset;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
+      Skip;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppenum)>> Clone;
+          Int32 Function(
+              VTablePointer, Pointer<Pointer<VTablePointer>> ppenum)>> Clone;
 }

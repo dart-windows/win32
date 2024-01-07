@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +22,7 @@ const IID_IAudioClockAdjustment = '{f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c}';
 class IAudioClockAdjustment extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IAudioClockAdjustment(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAudioClockAdjustmentVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAudioClockAdjustmentVtbl>().ref;
 
   final IAudioClockAdjustmentVtbl _vtable;
 
@@ -30,12 +31,13 @@ class IAudioClockAdjustment extends IUnknown {
 
   int setSampleRate(double flSampleRate) => _vtable.SetSampleRate.asFunction<
       int Function(
-          Pointer, double flSampleRate)>()(ptr.ref.lpVtbl, flSampleRate);
+          VTablePointer, double flSampleRate)>()(ptr.value, flSampleRate);
 }
 
 /// @nodoc
 base class IAudioClockAdjustmentVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Float flSampleRate)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Float flSampleRate)>>
       SetSampleRate;
 }

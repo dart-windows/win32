@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,61 +21,65 @@ const IID_IAppxManifestReader = '{4e1bd148-55a0-4480-a3d1-15544710637c}';
 class IAppxManifestReader extends IUnknown {
   // vtable begins at 3, is 9 entries long.
   IAppxManifestReader(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestReaderVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestReaderVtbl>().ref;
 
   final IAppxManifestReaderVtbl _vtable;
 
   factory IAppxManifestReader.from(IUnknown interface) =>
       IAppxManifestReader(interface.toInterface(IID_IAppxManifestReader));
 
-  int getPackageId(Pointer<Pointer<COMObject>> packageId) =>
+  int getPackageId(Pointer<Pointer<VTablePointer>> packageId) =>
       _vtable.GetPackageId.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> packageId)>()(
-          ptr.ref.lpVtbl, packageId);
+              int Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> packageId)>()(
+          ptr.value, packageId);
 
-  int getProperties(Pointer<Pointer<COMObject>> packageProperties) =>
+  int getProperties(Pointer<Pointer<VTablePointer>> packageProperties) =>
       _vtable.GetProperties.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> packageProperties)>()(
-          ptr.ref.lpVtbl, packageProperties);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> packageProperties)>()(
+          ptr.value, packageProperties);
 
-  int getPackageDependencies(Pointer<Pointer<COMObject>> dependencies) =>
+  int getPackageDependencies(Pointer<Pointer<VTablePointer>> dependencies) =>
       _vtable.GetPackageDependencies.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> dependencies)>()(
-          ptr.ref.lpVtbl, dependencies);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> dependencies)>()(
+          ptr.value, dependencies);
 
-  int getCapabilities(Pointer<Int32> capabilities) => _vtable.GetCapabilities
-          .asFunction<int Function(Pointer, Pointer<Int32> capabilities)>()(
-      ptr.ref.lpVtbl, capabilities);
+  int getCapabilities(Pointer<Int32> capabilities) =>
+      _vtable.GetCapabilities.asFunction<
+              int Function(VTablePointer, Pointer<Int32> capabilities)>()(
+          ptr.value, capabilities);
 
-  int getResources(Pointer<Pointer<COMObject>> resources) =>
+  int getResources(Pointer<Pointer<VTablePointer>> resources) =>
       _vtable.GetResources.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> resources)>()(
-          ptr.ref.lpVtbl, resources);
-
-  int getDeviceCapabilities(Pointer<Pointer<COMObject>> deviceCapabilities) =>
-      _vtable.GetDeviceCapabilities.asFunction<
               int Function(
-                  Pointer, Pointer<Pointer<COMObject>> deviceCapabilities)>()(
-          ptr.ref.lpVtbl, deviceCapabilities);
+                  VTablePointer, Pointer<Pointer<VTablePointer>> resources)>()(
+          ptr.value, resources);
+
+  int getDeviceCapabilities(
+          Pointer<Pointer<VTablePointer>> deviceCapabilities) =>
+      _vtable.GetDeviceCapabilities.asFunction<
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> deviceCapabilities)>()(
+          ptr.value, deviceCapabilities);
 
   int getPrerequisite(Pointer<Utf16> name, Pointer<Uint64> value) =>
       _vtable.GetPrerequisite.asFunction<
-          int Function(Pointer, Pointer<Utf16> name,
-              Pointer<Uint64> value)>()(ptr.ref.lpVtbl, name, value);
+          int Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Uint64> value)>()(ptr.value, name, value);
 
-  int getApplications(Pointer<Pointer<COMObject>> applications) =>
+  int getApplications(Pointer<Pointer<VTablePointer>> applications) =>
       _vtable.GetApplications.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> applications)>()(
-          ptr.ref.lpVtbl, applications);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> applications)>()(
+          ptr.value, applications);
 
-  int getStream(Pointer<Pointer<COMObject>> manifestStream) =>
+  int getStream(Pointer<Pointer<VTablePointer>> manifestStream) =>
       _vtable.GetStream.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> manifestStream)>()(
-          ptr.ref.lpVtbl, manifestStream);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> manifestStream)>()(
+          ptr.value, manifestStream);
 }
 
 /// @nodoc
@@ -83,42 +87,45 @@ base class IAppxManifestReaderVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> packageId)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> packageId)>>
       GetPackageId;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> packageProperties)>>
+              Int32 Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> packageProperties)>>
       GetProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> dependencies)>>
+                  VTablePointer, Pointer<Pointer<VTablePointer>> dependencies)>>
       GetPackageDependencies;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> capabilities)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int32> capabilities)>>
       GetCapabilities;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> resources)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> resources)>>
       GetResources;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> deviceCapabilities)>>
+              Int32 Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> deviceCapabilities)>>
       GetDeviceCapabilities;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Utf16> name, Pointer<Uint64> value)>>
+                  VTablePointer, Pointer<Utf16> name, Pointer<Uint64> value)>>
       GetPrerequisite;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> applications)>>
+                  VTablePointer, Pointer<Pointer<VTablePointer>> applications)>>
       GetApplications;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              Pointer, Pointer<Pointer<COMObject>> manifestStream)>> GetStream;
+          Int32 Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> manifestStream)>> GetStream;
 }

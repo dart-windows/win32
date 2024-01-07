@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +20,7 @@ const IID_IAppxManifestPackageId = '{283ce2d7-7153-4a91-9649-7a0f7240945f}';
 class IAppxManifestPackageId extends IUnknown {
   // vtable begins at 3, is 8 entries long.
   IAppxManifestPackageId(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestPackageIdVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestPackageIdVtbl>().ref;
 
   final IAppxManifestPackageIdVtbl _vtable;
 
@@ -28,75 +29,82 @@ class IAppxManifestPackageId extends IUnknown {
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
       int Function(
-          Pointer, Pointer<Pointer<Utf16>> name)>()(ptr.ref.lpVtbl, name);
+          VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr.value, name);
 
-  int getArchitecture(Pointer<Int32> architecture) => _vtable.GetArchitecture
-          .asFunction<int Function(Pointer, Pointer<Int32> architecture)>()(
-      ptr.ref.lpVtbl, architecture);
+  int getArchitecture(Pointer<Int32> architecture) =>
+      _vtable.GetArchitecture.asFunction<
+              int Function(VTablePointer, Pointer<Int32> architecture)>()(
+          ptr.value, architecture);
 
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> publisher)>()(
-          ptr.ref.lpVtbl, publisher);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>()(
+          ptr.value, publisher);
 
-  int getVersion(Pointer<Uint64> packageVersion) => _vtable.GetVersion
-          .asFunction<int Function(Pointer, Pointer<Uint64> packageVersion)>()(
-      ptr.ref.lpVtbl, packageVersion);
+  int getVersion(Pointer<Uint64> packageVersion) =>
+      _vtable.GetVersion.asFunction<
+              int Function(VTablePointer, Pointer<Uint64> packageVersion)>()(
+          ptr.value, packageVersion);
 
   int getResourceId(Pointer<Pointer<Utf16>> resourceId) =>
       _vtable.GetResourceId.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> resourceId)>()(
-          ptr.ref.lpVtbl, resourceId);
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> resourceId)>()(ptr.value, resourceId);
 
   int comparePublisher(Pointer<Utf16> other, Pointer<Int32> isSame) =>
       _vtable.ComparePublisher.asFunction<
-          int Function(Pointer, Pointer<Utf16> other,
-              Pointer<Int32> isSame)>()(ptr.ref.lpVtbl, other, isSame);
+          int Function(VTablePointer, Pointer<Utf16> other,
+              Pointer<Int32> isSame)>()(ptr.value, other, isSame);
 
   int getPackageFullName(Pointer<Pointer<Utf16>> packageFullName) =>
       _vtable.GetPackageFullName.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> packageFullName)>()(
-          ptr.ref.lpVtbl, packageFullName);
+              int Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> packageFullName)>()(
+          ptr.value, packageFullName);
 
   int getPackageFamilyName(Pointer<Pointer<Utf16>> packageFamilyName) =>
       _vtable.GetPackageFamilyName.asFunction<
               int Function(
-                  Pointer, Pointer<Pointer<Utf16>> packageFamilyName)>()(
-          ptr.ref.lpVtbl, packageFamilyName);
+                  VTablePointer, Pointer<Pointer<Utf16>> packageFamilyName)>()(
+          ptr.value, packageFamilyName);
 }
 
 /// @nodoc
 base class IAppxManifestPackageIdVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>
-      GetName;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> name)>> GetName;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> architecture)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int32> architecture)>>
       GetArchitecture;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> publisher)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>>
       GetPublisher;
   external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<Uint64> packageVersion)>> GetVersion;
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint64> packageVersion)>>
+      GetVersion;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> resourceId)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> resourceId)>>
       GetResourceId;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Utf16> other, Pointer<Int32> isSame)>>
+                  VTablePointer, Pointer<Utf16> other, Pointer<Int32> isSame)>>
       ComparePublisher;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> packageFullName)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> packageFullName)>>
       GetPackageFullName;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Pointer<Utf16>> packageFamilyName)>>
+                  VTablePointer, Pointer<Pointer<Utf16>> packageFamilyName)>>
       GetPackageFamilyName;
 }

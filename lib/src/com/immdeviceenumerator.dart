@@ -8,7 +8,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +22,7 @@ const IID_IMMDeviceEnumerator = '{a95664d2-9614-4f35-a746-de8db63617e6}';
 class IMMDeviceEnumerator extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IMMDeviceEnumerator(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IMMDeviceEnumeratorVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IMMDeviceEnumeratorVtbl>().ref;
 
   final IMMDeviceEnumeratorVtbl _vtable;
 
@@ -29,34 +30,35 @@ class IMMDeviceEnumerator extends IUnknown {
       IMMDeviceEnumerator(interface.toInterface(IID_IMMDeviceEnumerator));
 
   int enumAudioEndpoints(int dataFlow, int dwStateMask,
-          Pointer<Pointer<COMObject>> ppDevices) =>
+          Pointer<Pointer<VTablePointer>> ppDevices) =>
       _vtable.EnumAudioEndpoints.asFunction<
-              int Function(Pointer, int dataFlow, int dwStateMask,
-                  Pointer<Pointer<COMObject>> ppDevices)>()(
-          ptr.ref.lpVtbl, dataFlow, dwStateMask, ppDevices);
+              int Function(VTablePointer, int dataFlow, int dwStateMask,
+                  Pointer<Pointer<VTablePointer>> ppDevices)>()(
+          ptr.value, dataFlow, dwStateMask, ppDevices);
 
   int getDefaultAudioEndpoint(
-          int dataFlow, int role, Pointer<Pointer<COMObject>> ppEndpoint) =>
+          int dataFlow, int role, Pointer<Pointer<VTablePointer>> ppEndpoint) =>
       _vtable.GetDefaultAudioEndpoint.asFunction<
-              int Function(Pointer, int dataFlow, int role,
-                  Pointer<Pointer<COMObject>> ppEndpoint)>()(
-          ptr.ref.lpVtbl, dataFlow, role, ppEndpoint);
+              int Function(VTablePointer, int dataFlow, int role,
+                  Pointer<Pointer<VTablePointer>> ppEndpoint)>()(
+          ptr.value, dataFlow, role, ppEndpoint);
 
-  int getDevice(Pointer<Utf16> pwstrId, Pointer<Pointer<COMObject>> ppDevice) =>
+  int getDevice(
+          Pointer<Utf16> pwstrId, Pointer<Pointer<VTablePointer>> ppDevice) =>
       _vtable.GetDevice.asFunction<
-              int Function(Pointer, Pointer<Utf16> pwstrId,
-                  Pointer<Pointer<COMObject>> ppDevice)>()(
-          ptr.ref.lpVtbl, pwstrId, ppDevice);
+              int Function(VTablePointer, Pointer<Utf16> pwstrId,
+                  Pointer<Pointer<VTablePointer>> ppDevice)>()(
+          ptr.value, pwstrId, ppDevice);
 
-  int registerEndpointNotificationCallback(Pointer<COMObject> pClient) =>
+  int registerEndpointNotificationCallback(Pointer<VTablePointer> pClient) =>
       _vtable.RegisterEndpointNotificationCallback.asFunction<
-          int Function(
-              Pointer, Pointer<COMObject> pClient)>()(ptr.ref.lpVtbl, pClient);
+              int Function(VTablePointer, Pointer<VTablePointer> pClient)>()(
+          ptr.value, pClient);
 
-  int unregisterEndpointNotificationCallback(Pointer<COMObject> pClient) =>
+  int unregisterEndpointNotificationCallback(Pointer<VTablePointer> pClient) =>
       _vtable.UnregisterEndpointNotificationCallback.asFunction<
-          int Function(
-              Pointer, Pointer<COMObject> pClient)>()(ptr.ref.lpVtbl, pClient);
+              int Function(VTablePointer, Pointer<VTablePointer> pClient)>()(
+          ptr.value, pClient);
 }
 
 /// @nodoc
@@ -64,21 +66,24 @@ base class IMMDeviceEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 dataFlow, Uint32 dwStateMask,
-              Pointer<Pointer<COMObject>> ppDevices)>> EnumAudioEndpoints;
+          Int32 Function(VTablePointer, Int32 dataFlow, Uint32 dwStateMask,
+              Pointer<Pointer<VTablePointer>> ppDevices)>> EnumAudioEndpoints;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Int32 dataFlow, Int32 role,
+                  Pointer<Pointer<VTablePointer>> ppEndpoint)>>
+      GetDefaultAudioEndpoint;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 dataFlow, Int32 role,
-              Pointer<Pointer<COMObject>> ppEndpoint)>> GetDefaultAudioEndpoint;
+          Int32 Function(VTablePointer, Pointer<Utf16> pwstrId,
+              Pointer<Pointer<VTablePointer>> ppDevice)>> GetDevice;
   external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> pwstrId,
-              Pointer<Pointer<COMObject>> ppDevice)>> GetDevice;
-  external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pClient)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> pClient)>>
       RegisterEndpointNotificationCallback;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pClient)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> pClient)>>
       UnregisterEndpointNotificationCallback;
 }
 
@@ -89,7 +94,6 @@ const CLSID_MMDeviceEnumerator = '{bcde0395-e52f-467c-8e3d-c4579291692e}';
 class MMDeviceEnumerator extends IMMDeviceEnumerator {
   MMDeviceEnumerator(super.ptr);
 
-  factory MMDeviceEnumerator.createInstance() =>
-      MMDeviceEnumerator(COMObject.createFromID(
-          CLSID_MMDeviceEnumerator, IID_IMMDeviceEnumerator));
+  factory MMDeviceEnumerator.createInstance() => MMDeviceEnumerator(
+      createCOMObject(CLSID_MMDeviceEnumerator, IID_IMMDeviceEnumerator));
 }

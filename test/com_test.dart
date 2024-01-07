@@ -62,8 +62,8 @@ void main() {
     });
 
     test('create COM object with CoGetClassObject', () {
-      final ptrFactory = calloc<COMObject>();
-      final ptrSaveDialog = calloc<COMObject>();
+      final ptrFactory = calloc<VTablePointer>();
+      final ptrSaveDialog = calloc<VTablePointer>();
       final clsid = GUIDFromString(CLSID_FileSaveDialog);
       final iidClassFactory = GUIDFromString(IID_IClassFactory);
       final iidFileSaveDialog = GUIDFromString(IID_IFileSaveDialog);
@@ -92,14 +92,14 @@ void main() {
     test('dialog object exists', () {
       final dialog = FileOpenDialog.createInstance();
       expect(dialog.ptr.address, isNonZero);
-      expect(dialog.ptr.ref.lpVtbl.address, isNonZero);
+      expect(dialog.ptr.value.address, isNonZero);
     });
 
     test('can cast to IUnknown', () {
       final dialog = FileOpenDialog.createInstance();
       final unk = IUnknown.from(dialog);
       expect(unk.ptr.address, isNonZero);
-      expect(unk.ptr.ref.lpVtbl.address, isNonZero);
+      expect(unk.ptr.value.address, isNonZero);
     });
 
     test('cast to random interface fails', () {

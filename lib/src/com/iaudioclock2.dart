@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_IAudioClock2 = '{6f49ff73-6727-49ac-a008-d98cf5e70048}';
 class IAudioClock2 extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IAudioClock2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAudioClock2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAudioClock2Vtbl>().ref;
 
   final IAudioClock2Vtbl _vtable;
 
@@ -30,9 +31,9 @@ class IAudioClock2 extends IUnknown {
   int getDevicePosition(
           Pointer<Uint64> DevicePosition, Pointer<Uint64> QPCPosition) =>
       _vtable.GetDevicePosition.asFunction<
-              int Function(Pointer, Pointer<Uint64> DevicePosition,
+              int Function(VTablePointer, Pointer<Uint64> DevicePosition,
                   Pointer<Uint64> QPCPosition)>()(
-          ptr.ref.lpVtbl, DevicePosition, QPCPosition);
+          ptr.value, DevicePosition, QPCPosition);
 }
 
 /// @nodoc
@@ -40,6 +41,6 @@ base class IAudioClock2Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Uint64> DevicePosition,
+          Int32 Function(VTablePointer, Pointer<Uint64> DevicePosition,
               Pointer<Uint64> QPCPosition)>> GetDevicePosition;
 }

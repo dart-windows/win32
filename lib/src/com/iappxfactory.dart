@@ -8,8 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../structs.g.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +22,7 @@ const IID_IAppxFactory = '{beb94909-e451-438b-b5a7-d79e767b75d8}';
 class IAppxFactory extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IAppxFactory(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxFactoryVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxFactoryVtbl>().ref;
 
   final IAppxFactoryVtbl _vtable;
 
@@ -29,82 +30,84 @@ class IAppxFactory extends IUnknown {
       IAppxFactory(interface.toInterface(IID_IAppxFactory));
 
   int createPackageWriter(
-          Pointer<COMObject> outputStream,
+          Pointer<VTablePointer> outputStream,
           Pointer<APPX_PACKAGE_SETTINGS> settings,
-          Pointer<Pointer<COMObject>> packageWriter) =>
+          Pointer<Pointer<VTablePointer>> packageWriter) =>
       _vtable.CreatePackageWriter.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> outputStream,
+                  VTablePointer,
+                  Pointer<VTablePointer> outputStream,
                   Pointer<APPX_PACKAGE_SETTINGS> settings,
-                  Pointer<Pointer<COMObject>> packageWriter)>()(
-          ptr.ref.lpVtbl, outputStream, settings, packageWriter);
+                  Pointer<Pointer<VTablePointer>> packageWriter)>()(
+          ptr.value, outputStream, settings, packageWriter);
 
-  int createPackageReader(Pointer<COMObject> inputStream,
-          Pointer<Pointer<COMObject>> packageReader) =>
+  int createPackageReader(Pointer<VTablePointer> inputStream,
+          Pointer<Pointer<VTablePointer>> packageReader) =>
       _vtable.CreatePackageReader.asFunction<
-              int Function(Pointer, Pointer<COMObject> inputStream,
-                  Pointer<Pointer<COMObject>> packageReader)>()(
-          ptr.ref.lpVtbl, inputStream, packageReader);
+              int Function(VTablePointer, Pointer<VTablePointer> inputStream,
+                  Pointer<Pointer<VTablePointer>> packageReader)>()(
+          ptr.value, inputStream, packageReader);
 
-  int createManifestReader(Pointer<COMObject> inputStream,
-          Pointer<Pointer<COMObject>> manifestReader) =>
+  int createManifestReader(Pointer<VTablePointer> inputStream,
+          Pointer<Pointer<VTablePointer>> manifestReader) =>
       _vtable.CreateManifestReader.asFunction<
-              int Function(Pointer, Pointer<COMObject> inputStream,
-                  Pointer<Pointer<COMObject>> manifestReader)>()(
-          ptr.ref.lpVtbl, inputStream, manifestReader);
+              int Function(VTablePointer, Pointer<VTablePointer> inputStream,
+                  Pointer<Pointer<VTablePointer>> manifestReader)>()(
+          ptr.value, inputStream, manifestReader);
 
-  int createBlockMapReader(Pointer<COMObject> inputStream,
-          Pointer<Pointer<COMObject>> blockMapReader) =>
+  int createBlockMapReader(Pointer<VTablePointer> inputStream,
+          Pointer<Pointer<VTablePointer>> blockMapReader) =>
       _vtable.CreateBlockMapReader.asFunction<
-              int Function(Pointer, Pointer<COMObject> inputStream,
-                  Pointer<Pointer<COMObject>> blockMapReader)>()(
-          ptr.ref.lpVtbl, inputStream, blockMapReader);
+              int Function(VTablePointer, Pointer<VTablePointer> inputStream,
+                  Pointer<Pointer<VTablePointer>> blockMapReader)>()(
+          ptr.value, inputStream, blockMapReader);
 
   int createValidatedBlockMapReader(
-          Pointer<COMObject> blockMapStream,
+          Pointer<VTablePointer> blockMapStream,
           Pointer<Utf16> signatureFileName,
-          Pointer<Pointer<COMObject>> blockMapReader) =>
+          Pointer<Pointer<VTablePointer>> blockMapReader) =>
       _vtable.CreateValidatedBlockMapReader.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> blockMapStream,
+                  VTablePointer,
+                  Pointer<VTablePointer> blockMapStream,
                   Pointer<Utf16> signatureFileName,
-                  Pointer<Pointer<COMObject>> blockMapReader)>()(
-          ptr.ref.lpVtbl, blockMapStream, signatureFileName, blockMapReader);
+                  Pointer<Pointer<VTablePointer>> blockMapReader)>()(
+          ptr.value, blockMapStream, signatureFileName, blockMapReader);
 }
 
 /// @nodoc
 base class IAppxFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              Pointer,
-              Pointer<COMObject> outputStream,
-              Pointer<APPX_PACKAGE_SETTINGS> settings,
-              Pointer<Pointer<COMObject>> packageWriter)>> CreatePackageWriter;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> inputStream,
-              Pointer<Pointer<COMObject>> packageReader)>> CreatePackageReader;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer,
+                  Pointer<VTablePointer> outputStream,
+                  Pointer<APPX_PACKAGE_SETTINGS> settings,
+                  Pointer<Pointer<VTablePointer>> packageWriter)>>
+      CreatePackageWriter;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<COMObject> inputStream,
-                  Pointer<Pointer<COMObject>> manifestReader)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> inputStream,
+                  Pointer<Pointer<VTablePointer>> packageReader)>>
+      CreatePackageReader;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> inputStream,
+                  Pointer<Pointer<VTablePointer>> manifestReader)>>
       CreateManifestReader;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<COMObject> inputStream,
-                  Pointer<Pointer<COMObject>> blockMapReader)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> inputStream,
+                  Pointer<Pointer<VTablePointer>> blockMapReader)>>
       CreateBlockMapReader;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer,
-                  Pointer<COMObject> blockMapStream,
+                  VTablePointer,
+                  Pointer<VTablePointer> blockMapStream,
                   Pointer<Utf16> signatureFileName,
-                  Pointer<Pointer<COMObject>> blockMapReader)>>
+                  Pointer<Pointer<VTablePointer>> blockMapReader)>>
       CreateValidatedBlockMapReader;
 }
 
@@ -116,5 +119,5 @@ class AppxFactory extends IAppxFactory {
   AppxFactory(super.ptr);
 
   factory AppxFactory.createInstance() =>
-      AppxFactory(COMObject.createFromID(CLSID_AppxFactory, IID_IAppxFactory));
+      AppxFactory(createCOMObject(CLSID_AppxFactory, IID_IAppxFactory));
 }

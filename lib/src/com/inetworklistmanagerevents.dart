@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_INetworkListManagerEvents = '{dcb00001-570f-4a9b-8d69-199fdba5723b}';
 class INetworkListManagerEvents extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   INetworkListManagerEvents(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<INetworkListManagerEventsVtbl>().ref;
+      : _vtable = ptr.value.value.cast<INetworkListManagerEventsVtbl>().ref;
 
   final INetworkListManagerEventsVtbl _vtable;
 
@@ -28,16 +29,15 @@ class INetworkListManagerEvents extends IUnknown {
       INetworkListManagerEvents(
           interface.toInterface(IID_INetworkListManagerEvents));
 
-  int connectivityChanged(int newConnectivity) =>
-      _vtable.ConnectivityChanged.asFunction<
-          int Function(
-              Pointer, int newConnectivity)>()(ptr.ref.lpVtbl, newConnectivity);
+  int connectivityChanged(int newConnectivity) => _vtable.ConnectivityChanged
+          .asFunction<int Function(VTablePointer, int newConnectivity)>()(
+      ptr.value, newConnectivity);
 }
 
 /// @nodoc
 base class INetworkListManagerEventsVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Int32 newConnectivity)>>
+          NativeFunction<Int32 Function(VTablePointer, Int32 newConnectivity)>>
       ConnectivityChanged;
 }

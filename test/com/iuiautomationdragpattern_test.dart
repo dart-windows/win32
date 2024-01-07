@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
 
   final uiautomationdragpattern = IUIAutomationDragPattern(ptr);
   test('Can instantiate IUIAutomationDragPattern.getCurrentGrabbedItems', () {
@@ -29,6 +29,6 @@ void main() {
     expect(uiautomationdragpattern.getCachedGrabbedItems, isA<Function>());
   });
 
-  free(ptr.ref.lpVtbl);
+  free(ptr.value);
   free(ptr);
 }

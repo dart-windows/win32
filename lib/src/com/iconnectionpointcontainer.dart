@@ -6,8 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +19,7 @@ const IID_IConnectionPointContainer = '{b196b284-bab4-101a-b69c-00aa00341d07}';
 class IConnectionPointContainer extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IConnectionPointContainer(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IConnectionPointContainerVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IConnectionPointContainerVtbl>().ref;
 
   final IConnectionPointContainerVtbl _vtable;
 
@@ -27,16 +27,16 @@ class IConnectionPointContainer extends IUnknown {
       IConnectionPointContainer(
           interface.toInterface(IID_IConnectionPointContainer));
 
-  int enumConnectionPoints(Pointer<Pointer<COMObject>> ppEnum) =>
+  int enumConnectionPoints(Pointer<Pointer<VTablePointer>> ppEnum) =>
       _vtable.EnumConnectionPoints.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>()(
-          ptr.ref.lpVtbl, ppEnum);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppEnum)>()(ptr.value, ppEnum);
 
   int findConnectionPoint(
-          Pointer<GUID> riid, Pointer<Pointer<COMObject>> ppCP) =>
+          Pointer<GUID> riid, Pointer<Pointer<VTablePointer>> ppCP) =>
       _vtable.FindConnectionPoint.asFunction<
-          int Function(Pointer, Pointer<GUID> riid,
-              Pointer<Pointer<COMObject>> ppCP)>()(ptr.ref.lpVtbl, riid, ppCP);
+          int Function(VTablePointer, Pointer<GUID> riid,
+              Pointer<Pointer<VTablePointer>> ppCP)>()(ptr.value, riid, ppCP);
 }
 
 /// @nodoc
@@ -44,10 +44,11 @@ base class IConnectionPointContainerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppEnum)>>
       EnumConnectionPoints;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<GUID> riid,
-              Pointer<Pointer<COMObject>> ppCP)>> FindConnectionPoint;
+          Int32 Function(VTablePointer, Pointer<GUID> riid,
+              Pointer<Pointer<VTablePointer>> ppCP)>> FindConnectionPoint;
 }

@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,69 +20,66 @@ const IID_IAppxPackageReader = '{b5c49650-99bc-481c-9a34-3d53a4106708}';
 class IAppxPackageReader extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IAppxPackageReader(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxPackageReaderVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxPackageReaderVtbl>().ref;
 
   final IAppxPackageReaderVtbl _vtable;
 
   factory IAppxPackageReader.from(IUnknown interface) =>
       IAppxPackageReader(interface.toInterface(IID_IAppxPackageReader));
 
-  int getBlockMap(Pointer<Pointer<COMObject>> blockMapReader) =>
+  int getBlockMap(Pointer<Pointer<VTablePointer>> blockMapReader) =>
       _vtable.GetBlockMap.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> blockMapReader)>()(
-          ptr.ref.lpVtbl, blockMapReader);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> blockMapReader)>()(
+          ptr.value, blockMapReader);
 
-  int getFootprintFile(int type, Pointer<Pointer<COMObject>> file) =>
+  int getFootprintFile(int type, Pointer<Pointer<VTablePointer>> file) =>
       _vtable.GetFootprintFile.asFunction<
-          int Function(Pointer, int type,
-              Pointer<Pointer<COMObject>> file)>()(ptr.ref.lpVtbl, type, file);
+          int Function(VTablePointer, int type,
+              Pointer<Pointer<VTablePointer>> file)>()(ptr.value, type, file);
 
   int getPayloadFile(
-          Pointer<Utf16> fileName, Pointer<Pointer<COMObject>> file) =>
+          Pointer<Utf16> fileName, Pointer<Pointer<VTablePointer>> file) =>
       _vtable.GetPayloadFile.asFunction<
-              int Function(Pointer, Pointer<Utf16> fileName,
-                  Pointer<Pointer<COMObject>> file)>()(
-          ptr.ref.lpVtbl, fileName, file);
+              int Function(VTablePointer, Pointer<Utf16> fileName,
+                  Pointer<Pointer<VTablePointer>> file)>()(
+          ptr.value, fileName, file);
 
-  int getPayloadFiles(Pointer<Pointer<COMObject>> filesEnumerator) =>
+  int getPayloadFiles(Pointer<Pointer<VTablePointer>> filesEnumerator) =>
       _vtable.GetPayloadFiles.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> filesEnumerator)>()(
-          ptr.ref.lpVtbl, filesEnumerator);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> filesEnumerator)>()(
+          ptr.value, filesEnumerator);
 
-  int getManifest(Pointer<Pointer<COMObject>> manifestReader) =>
+  int getManifest(Pointer<Pointer<VTablePointer>> manifestReader) =>
       _vtable.GetManifest.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> manifestReader)>()(
-          ptr.ref.lpVtbl, manifestReader);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> manifestReader)>()(
+          ptr.value, manifestReader);
 }
 
 /// @nodoc
 base class IAppxPackageReaderVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> blockMapReader)>>
-      GetBlockMap;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Int32 type, Pointer<Pointer<COMObject>> file)>>
-      GetFootprintFile;
+      NativeFunction<
+          Int32 Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> blockMapReader)>> GetBlockMap;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> fileName,
-              Pointer<Pointer<COMObject>> file)>> GetPayloadFile;
+          Int32 Function(VTablePointer, Int32 type,
+              Pointer<Pointer<VTablePointer>> file)>> GetFootprintFile;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Utf16> fileName,
+              Pointer<Pointer<VTablePointer>> file)>> GetPayloadFile;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> filesEnumerator)>>
+              Int32 Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> filesEnumerator)>>
       GetPayloadFiles;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> manifestReader)>>
-      GetManifest;
+      NativeFunction<
+          Int32 Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> manifestReader)>> GetManifest;
 }

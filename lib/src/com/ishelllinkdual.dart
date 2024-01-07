@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import '../variant.dart';
 import 'idispatch.dart';
@@ -22,7 +23,7 @@ const IID_IShellLinkDual = '{88a05c00-f000-11ce-8350-444553540000}';
 class IShellLinkDual extends IDispatch {
   // vtable begins at 7, is 16 entries long.
   IShellLinkDual(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IShellLinkDualVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IShellLinkDualVtbl>().ref;
 
   final IShellLinkDualVtbl _vtable;
 
@@ -33,9 +34,9 @@ class IShellLinkDual extends IDispatch {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = _vtable.get_Path
-              .asFunction<int Function(Pointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_Path.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -46,9 +47,9 @@ class IShellLinkDual extends IDispatch {
   }
 
   set path(Pointer<Utf16> value) {
-    final hr =
-        _vtable.put_Path.asFunction<int Function(Pointer, Pointer<Utf16> bs)>()(
-            ptr.ref.lpVtbl, value);
+    final hr = _vtable.put_Path
+            .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -56,9 +57,9 @@ class IShellLinkDual extends IDispatch {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = _vtable.get_Description
-              .asFunction<int Function(Pointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_Description.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,8 +71,8 @@ class IShellLinkDual extends IDispatch {
 
   set description(Pointer<Utf16> value) {
     final hr = _vtable.put_Description
-            .asFunction<int Function(Pointer, Pointer<Utf16> bs)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -79,9 +80,9 @@ class IShellLinkDual extends IDispatch {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = _vtable.get_WorkingDirectory
-              .asFunction<int Function(Pointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_WorkingDirectory.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -93,8 +94,8 @@ class IShellLinkDual extends IDispatch {
 
   set workingDirectory(Pointer<Utf16> value) {
     final hr = _vtable.put_WorkingDirectory
-            .asFunction<int Function(Pointer, Pointer<Utf16> bs)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -102,9 +103,9 @@ class IShellLinkDual extends IDispatch {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
-      final hr = _vtable.get_Arguments
-              .asFunction<int Function(Pointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_Arguments.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -116,8 +117,8 @@ class IShellLinkDual extends IDispatch {
 
   set arguments(Pointer<Utf16> value) {
     final hr = _vtable.put_Arguments
-            .asFunction<int Function(Pointer, Pointer<Utf16> bs)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -126,8 +127,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_Hotkey
-              .asFunction<int Function(Pointer, Pointer<Int32> piHK)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> piHK)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -138,8 +139,8 @@ class IShellLinkDual extends IDispatch {
   }
 
   set hotkey(int value) {
-    final hr = _vtable.put_Hotkey.asFunction<int Function(Pointer, int iHK)>()(
-        ptr.ref.lpVtbl, value);
+    final hr = _vtable.put_Hotkey
+        .asFunction<int Function(VTablePointer, int iHK)>()(ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -148,8 +149,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_ShowCommand.asFunction<
-              int Function(Pointer, Pointer<Int32> piShowCommand)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Int32> piShowCommand)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -161,72 +162,82 @@ class IShellLinkDual extends IDispatch {
 
   set showCommand(int value) {
     final hr = _vtable.put_ShowCommand
-            .asFunction<int Function(Pointer, int iShowCommand)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, int iShowCommand)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int resolve(int fFlags) =>
-      _vtable.Resolve.asFunction<int Function(Pointer, int fFlags)>()(
-          ptr.ref.lpVtbl, fFlags);
+      _vtable.Resolve.asFunction<int Function(VTablePointer, int fFlags)>()(
+          ptr.value, fFlags);
 
   int getIconLocation(Pointer<Pointer<Utf16>> pbs, Pointer<Int32> piIcon) =>
       _vtable.GetIconLocation.asFunction<
-          int Function(Pointer, Pointer<Pointer<Utf16>> pbs,
-              Pointer<Int32> piIcon)>()(ptr.ref.lpVtbl, pbs, piIcon);
+          int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs,
+              Pointer<Int32> piIcon)>()(ptr.value, pbs, piIcon);
 
-  int setIconLocation(Pointer<Utf16> bs, int iIcon) => _vtable.SetIconLocation
-          .asFunction<int Function(Pointer, Pointer<Utf16> bs, int iIcon)>()(
-      ptr.ref.lpVtbl, bs, iIcon);
+  int setIconLocation(Pointer<Utf16> bs, int iIcon) =>
+      _vtable.SetIconLocation.asFunction<
+              int Function(VTablePointer, Pointer<Utf16> bs, int iIcon)>()(
+          ptr.value, bs, iIcon);
 
   int save(VARIANT vWhere) =>
-      _vtable.Save.asFunction<int Function(Pointer, VARIANT vWhere)>()(
-          ptr.ref.lpVtbl, vWhere);
+      _vtable.Save.asFunction<int Function(VTablePointer, VARIANT vWhere)>()(
+          ptr.value, vWhere);
 }
 
 /// @nodoc
 base class IShellLinkDualVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> pbs)>>
-      get_Path;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> bs)>>
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>> get_Path;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> bs)>>
       put_Path;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> pbs)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>>
       get_Description;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> bs)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> bs)>>
       put_Description;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> pbs)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>>
       get_WorkingDirectory;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> bs)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> bs)>>
       put_WorkingDirectory;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> pbs)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>>
       get_Arguments;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> bs)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> bs)>>
       put_Arguments;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Int32> piHK)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> piHK)>>
       get_Hotkey;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 iHK)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 iHK)>>
       put_Hotkey;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> piShowCommand)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int32> piShowCommand)>>
       get_ShowCommand;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 iShowCommand)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Int32 iShowCommand)>>
       put_ShowCommand;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 fFlags)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 fFlags)>>
       Resolve;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<Utf16>> pbs, Pointer<Int32> piIcon)>>
-      GetIconLocation;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pbs,
+              Pointer<Int32> piIcon)>> GetIconLocation;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Utf16> bs, Int32 iIcon)>>
+              Int32 Function(VTablePointer, Pointer<Utf16> bs, Int32 iIcon)>>
       SetIconLocation;
-  external Pointer<NativeFunction<Int32 Function(Pointer, VARIANT vWhere)>>
-      Save;
+  external Pointer<
+      NativeFunction<Int32 Function(VTablePointer, VARIANT vWhere)>> Save;
 }

@@ -16,6 +16,14 @@ import 'utils.dart';
 ///
 /// Methods have names, a list of parameters, and may return a type.
 abstract class MethodProjection {
+  MethodProjection(this.method, this.vtableOffset)
+      : name = uniquelyNameMethod(method),
+        returnType = TypeProjection(method.returnType.typeIdentifier),
+        parameters = method.parameters
+            .map((param) => ParameterProjection(
+                param.name, TypeProjection(param.typeIdentifier)))
+            .toList();
+
   /// The retrieved Windows metadata for the method or property.
   final Method method;
 
@@ -26,18 +34,10 @@ abstract class MethodProjection {
   final String name;
 
   /// Projections for the parameters of the method.
-  List<ParameterProjection> parameters;
+  final List<ParameterProjection> parameters;
 
   /// Projection for the return type.
   final TypeProjection returnType;
-
-  MethodProjection(this.method, this.vtableOffset)
-      : name = uniquelyNameMethod(method),
-        returnType = TypeProjection(method.returnType.typeIdentifier),
-        parameters = method.parameters
-            .map((param) => ParameterProjection(
-                param.name, TypeProjection(param.typeIdentifier)))
-            .toList();
 
   /// Uniquely name the method.
   ///
@@ -104,8 +104,7 @@ abstract class MethodProjection {
   }
 
   /// The parameters exposed by a projected Dart method.
-  String get methodParams =>
-      parameters.map((param) => param.paramProjection).join(', ');
+  String get methodParams => parameters.map((p) => p.dartProjection).join(', ');
 
   /// A shortened version of the method declaration for use in mappers.
   ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)

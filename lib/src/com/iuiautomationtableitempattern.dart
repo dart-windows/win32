@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +20,7 @@ const IID_IUIAutomationTableItemPattern =
 class IUIAutomationTableItemPattern extends IUnknown {
   // vtable begins at 3, is 4 entries long.
   IUIAutomationTableItemPattern(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationTableItemPatternVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationTableItemPatternVtbl>().ref;
 
   final IUIAutomationTableItemPatternVtbl _vtable;
 
@@ -28,25 +28,25 @@ class IUIAutomationTableItemPattern extends IUnknown {
       IUIAutomationTableItemPattern(
           interface.toInterface(IID_IUIAutomationTableItemPattern));
 
-  int getCurrentRowHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
+  int getCurrentRowHeaderItems(Pointer<Pointer<VTablePointer>> retVal) =>
       _vtable.GetCurrentRowHeaderItems.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
 
-  int getCurrentColumnHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
+  int getCurrentColumnHeaderItems(Pointer<Pointer<VTablePointer>> retVal) =>
       _vtable.GetCurrentColumnHeaderItems.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
 
-  int getCachedRowHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
+  int getCachedRowHeaderItems(Pointer<Pointer<VTablePointer>> retVal) =>
       _vtable.GetCachedRowHeaderItems.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
 
-  int getCachedColumnHeaderItems(Pointer<Pointer<COMObject>> retVal) =>
+  int getCachedColumnHeaderItems(Pointer<Pointer<VTablePointer>> retVal) =>
       _vtable.GetCachedColumnHeaderItems.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
 }
 
 /// @nodoc
@@ -54,18 +54,22 @@ base class IUIAutomationTableItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
       GetCurrentRowHeaderItems;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
       GetCurrentColumnHeaderItems;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
       GetCachedRowHeaderItems;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
       GetCachedColumnHeaderItems;
 }

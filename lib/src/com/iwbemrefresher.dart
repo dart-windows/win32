@@ -6,7 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +22,7 @@ const IID_IWbemRefresher = '{49353c99-516b-11d1-aea6-00c04fb68820}';
 class IWbemRefresher extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IWbemRefresher(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IWbemRefresherVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IWbemRefresherVtbl>().ref;
 
   final IWbemRefresherVtbl _vtable;
 
@@ -29,14 +30,14 @@ class IWbemRefresher extends IUnknown {
       IWbemRefresher(interface.toInterface(IID_IWbemRefresher));
 
   int refresh(int lFlags) =>
-      _vtable.Refresh.asFunction<int Function(Pointer, int lFlags)>()(
-          ptr.ref.lpVtbl, lFlags);
+      _vtable.Refresh.asFunction<int Function(VTablePointer, int lFlags)>()(
+          ptr.value, lFlags);
 }
 
 /// @nodoc
 base class IWbemRefresherVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 lFlags)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 lFlags)>>
       Refresh;
 }
 
@@ -47,6 +48,6 @@ const CLSID_WbemRefresher = '{c71566f2-561e-11d1-ad87-00c04fd8fdff}';
 class WbemRefresher extends IWbemRefresher {
   WbemRefresher(super.ptr);
 
-  factory WbemRefresher.createInstance() => WbemRefresher(
-      COMObject.createFromID(CLSID_WbemRefresher, IID_IWbemRefresher));
+  factory WbemRefresher.createInstance() =>
+      WbemRefresher(createCOMObject(CLSID_WbemRefresher, IID_IWbemRefresher));
 }

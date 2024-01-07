@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +20,8 @@ const IID_IUIAutomationScrollItemPattern =
 class IUIAutomationScrollItemPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationScrollItemPattern(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationScrollItemPatternVtbl>().ref;
+      : _vtable =
+            ptr.value.value.cast<IUIAutomationScrollItemPatternVtbl>().ref;
 
   final IUIAutomationScrollItemPatternVtbl _vtable;
 
@@ -28,12 +30,13 @@ class IUIAutomationScrollItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationScrollItemPattern));
 
   int scrollIntoView() =>
-      _vtable.ScrollIntoView.asFunction<int Function(Pointer)>()(
-          ptr.ref.lpVtbl);
+      _vtable.ScrollIntoView.asFunction<int Function(VTablePointer)>()(
+          ptr.value);
 }
 
 /// @nodoc
 base class IUIAutomationScrollItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> ScrollIntoView;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+      ScrollIntoView;
 }

@@ -6,8 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +19,7 @@ const IID_IEnumResources = '{2dd81fe3-a83c-4da9-a330-47249d345ba1}';
 class IEnumResources extends IUnknown {
   // vtable begins at 3, is 4 entries long.
   IEnumResources(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IEnumResourcesVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IEnumResourcesVtbl>().ref;
 
   final IEnumResourcesVtbl _vtable;
 
@@ -29,20 +29,24 @@ class IEnumResources extends IUnknown {
   int next(int celt, Pointer<SHELL_ITEM_RESOURCE> psir,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(Pointer, int celt, Pointer<SHELL_ITEM_RESOURCE> psir,
+              int Function(
+                  VTablePointer,
+                  int celt,
+                  Pointer<SHELL_ITEM_RESOURCE> psir,
                   Pointer<Uint32> pceltFetched)>()(
-          ptr.ref.lpVtbl, celt, psir, pceltFetched);
+          ptr.value, celt, psir, pceltFetched);
 
   int skip(int celt) =>
-      _vtable.Skip.asFunction<int Function(Pointer, int celt)>()(
-          ptr.ref.lpVtbl, celt);
+      _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
+          ptr.value, celt);
 
   int reset() =>
-      _vtable.Reset.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
 
-  int clone(Pointer<Pointer<COMObject>> ppenumr) => _vtable.Clone.asFunction<
-          int Function(Pointer, Pointer<Pointer<COMObject>> ppenumr)>()(
-      ptr.ref.lpVtbl, ppenumr);
+  int clone(Pointer<Pointer<VTablePointer>> ppenumr) =>
+      _vtable.Clone.asFunction<
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppenumr)>()(ptr.value, ppenumr);
 }
 
 /// @nodoc
@@ -51,13 +55,15 @@ base class IEnumResourcesVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 celt,
               Pointer<SHELL_ITEM_RESOURCE> psir,
               Pointer<Uint32> pceltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Reset;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
+      Skip;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppenumr)>> Clone;
+          Int32 Function(
+              VTablePointer, Pointer<Pointer<VTablePointer>> ppenumr)>> Clone;
 }

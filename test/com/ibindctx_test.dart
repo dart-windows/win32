@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
 
   final bindctx = IBindCtx(ptr);
   test('Can instantiate IBindCtx.registerObjectBound', () {
@@ -53,6 +53,6 @@ void main() {
     expect(bindctx.revokeObjectParam, isA<Function>());
   });
 
-  free(ptr.ref.lpVtbl);
+  free(ptr.value);
   free(ptr);
 }

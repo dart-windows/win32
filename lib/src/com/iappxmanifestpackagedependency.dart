@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,8 @@ const IID_IAppxManifestPackageDependency =
 class IAppxManifestPackageDependency extends IUnknown {
   // vtable begins at 3, is 3 entries long.
   IAppxManifestPackageDependency(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestPackageDependencyVtbl>().ref;
+      : _vtable =
+            ptr.value.value.cast<IAppxManifestPackageDependencyVtbl>().ref;
 
   final IAppxManifestPackageDependencyVtbl _vtable;
 
@@ -30,29 +32,32 @@ class IAppxManifestPackageDependency extends IUnknown {
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
       int Function(
-          Pointer, Pointer<Pointer<Utf16>> name)>()(ptr.ref.lpVtbl, name);
+          VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr.value, name);
 
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> publisher)>()(
-          ptr.ref.lpVtbl, publisher);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>()(
+          ptr.value, publisher);
 
-  int getMinVersion(Pointer<Uint64> minVersion) => _vtable.GetMinVersion
-          .asFunction<int Function(Pointer, Pointer<Uint64> minVersion)>()(
-      ptr.ref.lpVtbl, minVersion);
+  int getMinVersion(
+          Pointer<Uint64> minVersion) =>
+      _vtable.GetMinVersion.asFunction<
+              int Function(VTablePointer, Pointer<Uint64> minVersion)>()(
+          ptr.value, minVersion);
 }
 
 /// @nodoc
 base class IAppxManifestPackageDependencyVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>
-      GetName;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> name)>> GetName;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> publisher)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>>
       GetPublisher;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint64> minVersion)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint64> minVersion)>>
       GetMinVersion;
 }

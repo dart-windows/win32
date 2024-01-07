@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,42 +21,47 @@ const IID_IAudioClock = '{cd63314f-3fba-4a1b-812c-ef96358728e7}';
 /// {@category com}
 class IAudioClock extends IUnknown {
   // vtable begins at 3, is 3 entries long.
-  IAudioClock(super.ptr) : _vtable = ptr.ref.vtable.cast<IAudioClockVtbl>().ref;
+  IAudioClock(super.ptr)
+      : _vtable = ptr.value.value.cast<IAudioClockVtbl>().ref;
 
   final IAudioClockVtbl _vtable;
 
   factory IAudioClock.from(IUnknown interface) =>
       IAudioClock(interface.toInterface(IID_IAudioClock));
 
-  int getFrequency(Pointer<Uint64> pu64Frequency) => _vtable.GetFrequency
-          .asFunction<int Function(Pointer, Pointer<Uint64> pu64Frequency)>()(
-      ptr.ref.lpVtbl, pu64Frequency);
+  int getFrequency(Pointer<Uint64> pu64Frequency) =>
+      _vtable.GetFrequency.asFunction<
+              int Function(VTablePointer, Pointer<Uint64> pu64Frequency)>()(
+          ptr.value, pu64Frequency);
 
   int getPosition(
           Pointer<Uint64> pu64Position, Pointer<Uint64> pu64QPCPosition) =>
       _vtable.GetPosition.asFunction<
-              int Function(Pointer, Pointer<Uint64> pu64Position,
+              int Function(VTablePointer, Pointer<Uint64> pu64Position,
                   Pointer<Uint64> pu64QPCPosition)>()(
-          ptr.ref.lpVtbl, pu64Position, pu64QPCPosition);
+          ptr.value, pu64Position, pu64QPCPosition);
 
   int getCharacteristics(Pointer<Uint32> pdwCharacteristics) =>
       _vtable.GetCharacteristics.asFunction<
-              int Function(Pointer, Pointer<Uint32> pdwCharacteristics)>()(
-          ptr.ref.lpVtbl, pdwCharacteristics);
+              int Function(
+                  VTablePointer, Pointer<Uint32> pdwCharacteristics)>()(
+          ptr.value, pdwCharacteristics);
 }
 
 /// @nodoc
 base class IAudioClockVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<Uint64> pu64Frequency)>> GetFrequency;
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint64> pu64Frequency)>>
+      GetFrequency;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Uint64> pu64Position,
+          Int32 Function(VTablePointer, Pointer<Uint64> pu64Position,
               Pointer<Uint64> pu64QPCPosition)>> GetPosition;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Uint32> pdwCharacteristics)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Uint32> pdwCharacteristics)>>
       GetCharacteristics;
 }

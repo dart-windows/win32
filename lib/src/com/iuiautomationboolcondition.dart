@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationcondition.dart';
 import 'iunknown.dart';
@@ -24,7 +25,7 @@ const IID_IUIAutomationBoolCondition = '{1b4e1f2e-75eb-4d0b-8952-5a69988e2307}';
 class IUIAutomationBoolCondition extends IUIAutomationCondition {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationBoolCondition(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationBoolConditionVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationBoolConditionVtbl>().ref;
 
   final IUIAutomationBoolConditionVtbl _vtable;
 
@@ -36,9 +37,9 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_BooleanValue
-              .asFunction<int Function(Pointer, Pointer<Int32> boolVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_BooleanValue.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> boolVal)>()(ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -53,6 +54,6 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
 base class IUIAutomationBoolConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> boolVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> boolVal)>>
       get_BooleanValue;
 }

@@ -6,8 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,23 +20,23 @@ const IID_IClassFactory = '{00000001-0000-0000-c000-000000000046}';
 class IClassFactory extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IClassFactory(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IClassFactoryVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IClassFactoryVtbl>().ref;
 
   final IClassFactoryVtbl _vtable;
 
   factory IClassFactory.from(IUnknown interface) =>
       IClassFactory(interface.toInterface(IID_IClassFactory));
 
-  int createInstance(Pointer<COMObject> pUnkOuter, Pointer<GUID> riid,
+  int createInstance(Pointer<VTablePointer> pUnkOuter, Pointer<GUID> riid,
           Pointer<Pointer> ppvObject) =>
       _vtable.CreateInstance.asFunction<
-              int Function(Pointer, Pointer<COMObject> pUnkOuter,
+              int Function(VTablePointer, Pointer<VTablePointer> pUnkOuter,
                   Pointer<GUID> riid, Pointer<Pointer> ppvObject)>()(
-          ptr.ref.lpVtbl, pUnkOuter, riid, ppvObject);
+          ptr.value, pUnkOuter, riid, ppvObject);
 
   int lockServer(int fLock) =>
-      _vtable.LockServer.asFunction<int Function(Pointer, int fLock)>()(
-          ptr.ref.lpVtbl, fLock);
+      _vtable.LockServer.asFunction<int Function(VTablePointer, int fLock)>()(
+          ptr.value, fLock);
 }
 
 /// @nodoc
@@ -44,8 +44,8 @@ base class IClassFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> pUnkOuter,
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pUnkOuter,
               Pointer<GUID> riid, Pointer<Pointer> ppvObject)>> CreateInstance;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 fLock)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 fLock)>>
       LockServer;
 }

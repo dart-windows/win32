@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +22,7 @@ const IID_IAudioCaptureClient = '{c8adbd64-e71e-48a0-a4de-185c395cd317}';
 class IAudioCaptureClient extends IUnknown {
   // vtable begins at 3, is 3 entries long.
   IAudioCaptureClient(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAudioCaptureClientVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAudioCaptureClientVtbl>().ref;
 
   final IAudioCaptureClientVtbl _vtable;
 
@@ -36,22 +37,23 @@ class IAudioCaptureClient extends IUnknown {
           Pointer<Uint64> pu64QPCPosition) =>
       _vtable.GetBuffer.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer<Uint8>> ppData,
                   Pointer<Uint32> pNumFramesToRead,
                   Pointer<Uint32> pdwFlags,
                   Pointer<Uint64> pu64DevicePosition,
-                  Pointer<Uint64> pu64QPCPosition)>()(ptr.ref.lpVtbl, ppData,
+                  Pointer<Uint64> pu64QPCPosition)>()(ptr.value, ppData,
           pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
 
   int releaseBuffer(int NumFramesRead) => _vtable.ReleaseBuffer.asFunction<
       int Function(
-          Pointer, int NumFramesRead)>()(ptr.ref.lpVtbl, NumFramesRead);
+          VTablePointer, int NumFramesRead)>()(ptr.value, NumFramesRead);
 
   int getNextPacketSize(Pointer<Uint32> pNumFramesInNextPacket) =>
       _vtable.GetNextPacketSize.asFunction<
-              int Function(Pointer, Pointer<Uint32> pNumFramesInNextPacket)>()(
-          ptr.ref.lpVtbl, pNumFramesInNextPacket);
+              int Function(
+                  VTablePointer, Pointer<Uint32> pNumFramesInNextPacket)>()(
+          ptr.value, pNumFramesInNextPacket);
 }
 
 /// @nodoc
@@ -60,17 +62,18 @@ base class IAudioCaptureClientVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer<Uint8>> ppData,
               Pointer<Uint32> pNumFramesToRead,
               Pointer<Uint32> pdwFlags,
               Pointer<Uint64> pu64DevicePosition,
               Pointer<Uint64> pu64QPCPosition)>> GetBuffer;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Uint32 NumFramesRead)>>
+          NativeFunction<Int32 Function(VTablePointer, Uint32 NumFramesRead)>>
       ReleaseBuffer;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Uint32> pNumFramesInNextPacket)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Uint32> pNumFramesInNextPacket)>>
       GetNextPacketSize;
 }

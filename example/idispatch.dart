@@ -27,7 +27,7 @@ class Dispatcher {
     final ptrProgID = progID.toNativeUtf16();
     final clsid = calloc<GUID>();
     final pIID_IDispatch = calloc<GUID>()..ref.setGUID(IID_IDispatch);
-    final ppv = calloc<COMObject>();
+    final ppv = calloc<VTablePointer>();
 
     try {
       var hr = CLSIDFromProgID(ptrProgID, clsid);

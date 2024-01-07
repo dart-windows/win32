@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement8.dart';
 import 'iunknown.dart';
@@ -23,7 +24,7 @@ const IID_IUIAutomationElement9 = '{39325fac-039d-440e-a3a3-5eb81a5cecc3}';
 class IUIAutomationElement9 extends IUIAutomationElement8 {
   // vtable begins at 117, is 2 entries long.
   IUIAutomationElement9(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement9Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationElement9Vtbl>().ref;
 
   final IUIAutomationElement9Vtbl _vtable;
 
@@ -35,8 +36,8 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
 
     try {
       final hr = _vtable.get_CurrentIsDialog
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,8 +52,8 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
 
     try {
       final hr = _vtable.get_CachedIsDialog
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -67,9 +68,9 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
 base class IUIAutomationElement9Vtbl extends Struct {
   external IUIAutomationElement8Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentIsDialog;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedIsDialog;
 }

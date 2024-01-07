@@ -14,9 +14,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 
 final _api_ms_win_core_winrt_error_l1_1_0 =
@@ -31,11 +31,13 @@ final _api_ms_win_core_winrt_error_l1_1_0 =
 /// );
 /// ```
 /// {@category winrt}
-int GetRestrictedErrorInfo(Pointer<Pointer<COMObject>> ppRestrictedErrorInfo) =>
+int GetRestrictedErrorInfo(
+        Pointer<Pointer<VTablePointer>> ppRestrictedErrorInfo) =>
     _GetRestrictedErrorInfo(ppRestrictedErrorInfo);
 
 final _GetRestrictedErrorInfo =
     _api_ms_win_core_winrt_error_l1_1_0.lookupFunction<
-            Int32 Function(Pointer<Pointer<COMObject>> ppRestrictedErrorInfo),
-            int Function(Pointer<Pointer<COMObject>> ppRestrictedErrorInfo)>(
-        'GetRestrictedErrorInfo');
+        Int32 Function(Pointer<Pointer<VTablePointer>> ppRestrictedErrorInfo),
+        int Function(
+            Pointer<Pointer<VTablePointer>>
+                ppRestrictedErrorInfo)>('GetRestrictedErrorInfo');

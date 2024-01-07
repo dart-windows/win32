@@ -7,6 +7,7 @@
 import 'dart:ffi';
 
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -18,7 +19,7 @@ const IID_IInspectable = '{af86e2e0-b12d-4c6a-9c5a-d7aa65101e90}';
 class IInspectable extends IUnknown {
   // vtable begins at 3, is 3 entries long.
   IInspectable(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IInspectableVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IInspectableVtbl>().ref;
 
   final IInspectableVtbl _vtable;
 
@@ -27,17 +28,17 @@ class IInspectable extends IUnknown {
 
   int getIids(Pointer<Uint32> iidCount, Pointer<Pointer<GUID>> iids) =>
       _vtable.GetIids.asFunction<
-          int Function(Pointer, Pointer<Uint32> iidCount,
-              Pointer<Pointer<GUID>> iids)>()(ptr.ref.lpVtbl, iidCount, iids);
+          int Function(VTablePointer, Pointer<Uint32> iidCount,
+              Pointer<Pointer<GUID>> iids)>()(ptr.value, iidCount, iids);
 
   int getRuntimeClassName(Pointer<IntPtr> className) =>
       _vtable.GetRuntimeClassName.asFunction<
-          int Function(
-              Pointer, Pointer<IntPtr> className)>()(ptr.ref.lpVtbl, className);
+              int Function(VTablePointer, Pointer<IntPtr> className)>()(
+          ptr.value, className);
 
   int getTrustLevel(Pointer<Int32> trustLevel) => _vtable.GetTrustLevel
-          .asFunction<int Function(Pointer, Pointer<Int32> trustLevel)>()(
-      ptr.ref.lpVtbl, trustLevel);
+          .asFunction<int Function(VTablePointer, Pointer<Int32> trustLevel)>()(
+      ptr.value, trustLevel);
 }
 
 /// @nodoc
@@ -45,12 +46,14 @@ base class IInspectableVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Uint32> iidCount,
+          Int32 Function(VTablePointer, Pointer<Uint32> iidCount,
               Pointer<Pointer<GUID>> iids)>> GetIids;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<IntPtr> className)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<IntPtr> className)>>
       GetRuntimeClassName;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> trustLevel)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int32> trustLevel)>>
       GetTrustLevel;
 }

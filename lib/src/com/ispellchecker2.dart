@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'ispellchecker.dart';
 import 'iunknown.dart';
 
@@ -24,21 +25,21 @@ const IID_ISpellChecker2 = '{e7ed1c71-87f7-4378-a840-c9200dacee47}';
 class ISpellChecker2 extends ISpellChecker {
   // vtable begins at 17, is 1 entries long.
   ISpellChecker2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISpellChecker2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISpellChecker2Vtbl>().ref;
 
   final ISpellChecker2Vtbl _vtable;
 
   factory ISpellChecker2.from(IUnknown interface) =>
       ISpellChecker2(interface.toInterface(IID_ISpellChecker2));
 
-  int remove(Pointer<Utf16> word) =>
-      _vtable.Remove.asFunction<int Function(Pointer, Pointer<Utf16> word)>()(
-          ptr.ref.lpVtbl, word);
+  int remove(Pointer<Utf16> word) => _vtable.Remove.asFunction<
+      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr.value, word);
 }
 
 /// @nodoc
 base class ISpellChecker2Vtbl extends Struct {
   external ISpellCheckerVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> word)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> word)>>
       Remove;
 }

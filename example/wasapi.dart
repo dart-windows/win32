@@ -85,7 +85,7 @@ void main() {
 
   // Retrieve the list of available audio output devices.
   final pDeviceEnumerator = MMDeviceEnumerator.createInstance();
-  final ppDevices = calloc<COMObject>();
+  final ppDevices = calloc<VTablePointer>();
   check(pDeviceEnumerator.enumAudioEndpoints(
       0, // dataflow: rendering device
       1, // device state: only enumerate active device
@@ -101,7 +101,7 @@ void main() {
   // Print available audio output devices
   for (var i = 0; i < deviceCount; i++) {
     // Get audio device from the device collection.
-    final ppEndpoint = calloc<COMObject>();
+    final ppEndpoint = calloc<VTablePointer>();
     check(pDevices.item(i, ppEndpoint.cast()));
     final pEndpoint = IMMDevice(ppEndpoint);
 
@@ -113,7 +113,7 @@ void main() {
     free(idPtr);
 
     // Retrieve the current device properties.
-    final ppProps = calloc<COMObject>();
+    final ppProps = calloc<VTablePointer>();
     check(pEndpoint.openPropertyStore(
         STGM.STGM_READ, // Storage-access mode: read
         ppProps.cast()));
@@ -142,7 +142,7 @@ void main() {
   }
 
   // Retrieve the default audio output device.
-  final ppDevice = calloc<COMObject>();
+  final ppDevice = calloc<VTablePointer>();
   check(pDeviceEnumerator.getDefaultAudioEndpoint(
       0, // dataflow: rendering device
       0, // role: system notification sound
@@ -151,7 +151,7 @@ void main() {
   // Activate an IAudioClient interface for the output device.
   final pDevice = IMMDevice(ppDevice);
   final iidAudioClient = convertToIID(IID_IAudioClient3);
-  final ppAudioClient = calloc<COMObject>();
+  final ppAudioClient = calloc<VTablePointer>();
   check(pDevice.activate(
       iidAudioClient, CLSCTX_ALL, nullptr, ppAudioClient.cast()));
   free(iidAudioClient);
@@ -172,7 +172,7 @@ void main() {
 
   // Activate an IAudioRenderClient interface.
   final iidAudioRenderClient = convertToIID(IID_IAudioRenderClient);
-  final ppAudioRenderClient = calloc<COMObject>();
+  final ppAudioRenderClient = calloc<VTablePointer>();
   check(pAudioClient.getService(
       iidAudioRenderClient, ppAudioRenderClient.cast()));
   free(iidAudioRenderClient);

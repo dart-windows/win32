@@ -7,6 +7,7 @@
 import 'dart:ffi';
 
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_ISupportErrorInfo = '{df0b3d60-548f-101b-8e65-08002b2bd119}';
 class ISupportErrorInfo extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   ISupportErrorInfo(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISupportErrorInfoVtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISupportErrorInfoVtbl>().ref;
 
   final ISupportErrorInfoVtbl _vtable;
 
@@ -29,12 +30,13 @@ class ISupportErrorInfo extends IUnknown {
 
   int interfaceSupportsErrorInfo(Pointer<GUID> riid) =>
       _vtable.InterfaceSupportsErrorInfo.asFunction<
-          int Function(Pointer, Pointer<GUID> riid)>()(ptr.ref.lpVtbl, riid);
+          int Function(VTablePointer, Pointer<GUID> riid)>()(ptr.value, riid);
 }
 
 /// @nodoc
 base class ISupportErrorInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<GUID> riid)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> riid)>>
       InterfaceSupportsErrorInfo;
 }

@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +22,7 @@ const IID_IAudioRenderClient = '{f294acfc-3146-4483-a7bf-addca7c260e2}';
 class IAudioRenderClient extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IAudioRenderClient(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAudioRenderClientVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAudioRenderClientVtbl>().ref;
 
   final IAudioRenderClientVtbl _vtable;
 
@@ -30,14 +31,14 @@ class IAudioRenderClient extends IUnknown {
 
   int getBuffer(int NumFramesRequested, Pointer<Pointer<Uint8>> ppData) =>
       _vtable.GetBuffer.asFunction<
-              int Function(Pointer, int NumFramesRequested,
+              int Function(VTablePointer, int NumFramesRequested,
                   Pointer<Pointer<Uint8>> ppData)>()(
-          ptr.ref.lpVtbl, NumFramesRequested, ppData);
+          ptr.value, NumFramesRequested, ppData);
 
   int releaseBuffer(int NumFramesWritten, int dwFlags) =>
       _vtable.ReleaseBuffer.asFunction<
-              int Function(Pointer, int NumFramesWritten, int dwFlags)>()(
-          ptr.ref.lpVtbl, NumFramesWritten, dwFlags);
+              int Function(VTablePointer, int NumFramesWritten, int dwFlags)>()(
+          ptr.value, NumFramesWritten, dwFlags);
 }
 
 /// @nodoc
@@ -45,10 +46,11 @@ base class IAudioRenderClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 NumFramesRequested,
+          Int32 Function(VTablePointer, Uint32 NumFramesRequested,
               Pointer<Pointer<Uint8>> ppData)>> GetBuffer;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Uint32 NumFramesWritten, Uint32 dwFlags)>>
+              Int32 Function(
+                  VTablePointer, Uint32 NumFramesWritten, Uint32 dwFlags)>>
       ReleaseBuffer;
 }

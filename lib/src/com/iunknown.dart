@@ -6,7 +6,6 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../guid.dart';
 import '../macros.dart';
@@ -25,18 +24,16 @@ const IID_IUnknown = '{00000000-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IUnknown {
-  // vtable begins at 0, is 3 entries long.
-  Pointer<COMObject> ptr;
-
-  IUnknown(this.ptr) : _vtable = ptr.ref.vtable.cast<IUnknownVtbl>().ref {
-    if (!ptr.ref.isNull) {
+  IUnknown(this.ptr) : _vtable = ptr.value.value.cast<IUnknownVtbl>().ref {
+    if (ptr.value != nullptr) {
       _finalizer.attach(this, ptr, detach: this);
     }
   }
 
+  final Pointer<VTablePointer> ptr;
   final IUnknownVtbl _vtable;
 
-  static final _finalizer = Finalizer<Pointer<COMObject>>((ptr) {
+  static final _finalizer = Finalizer<Pointer<VTablePointer>>((ptr) {
     // Decrement the reference count of the object only when COM is initialized,
     // otherwise this will cause the program to crash.
     if (isCOMInitialized) _release(ptr);
@@ -44,11 +41,11 @@ class IUnknown {
   });
 
   /// Decrements the reference count of the object referenced by [ptr].
-  static int _release(Pointer<COMObject> ptr) => ptr.ref.vtable
+  static int _release(Pointer<VTablePointer> ptr) => ptr.value.value
       .cast<IUnknownVtbl>()
       .ref
       .Release
-      .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
+      .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.value);
 
   factory IUnknown.from(IUnknown interface) =>
       IUnknown(interface.toInterface(IID_IUnknown));
@@ -61,14 +58,14 @@ class IUnknown {
   int queryInterface(Pointer<GUID> riid, Pointer<Pointer> ppvObject) =>
       _vtable.QueryInterface.asFunction<
           int Function(VTablePointer, Pointer<GUID> riid,
-              Pointer<Pointer> ppvObject)>()(ptr.ref.lpVtbl, riid, ppvObject);
+              Pointer<Pointer> ppvObject)>()(ptr.value, riid, ppvObject);
 
   /// Increments the reference count for an interface pointer to a COM object.
   ///
   /// You should call this method whenever you make a copy of an interface
   /// pointer.
   int addRef() =>
-      _vtable.AddRef.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.AddRef.asFunction<int Function(VTablePointer)>()(ptr.value);
 
   /// Decrements the reference count for an interface on a COM object.
   ///
@@ -80,7 +77,7 @@ class IUnknown {
   /// Calling this method with [Finalizer] attached may result in use after
   /// free and cause the process to crash.
   int release() =>
-      _vtable.Release.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Release.asFunction<int Function(VTablePointer)>()(ptr.value);
 
   /// Detaches the object from the `Finalizer`.
   ///
@@ -92,16 +89,16 @@ class IUnknown {
   ///
   /// Takes a string (typically a constant such as `IID_IModalWindow`) and does
   /// a COM QueryInterface to return a reference to that interface.
-  Pointer<COMObject> toInterface(String iid) {
-    final pIID = convertToIID(iid);
-    final objectPtr = calloc<COMObject>();
+  Pointer<VTablePointer> toInterface(String iid) {
+    final riid = convertToIID(iid);
+    final ppvObject = calloc<VTablePointer>();
 
     try {
-      final hr = queryInterface(pIID, objectPtr.cast());
+      final hr = queryInterface(riid, ppvObject.cast());
       if (FAILED(hr)) throw WindowsException(hr);
-      return objectPtr;
+      return ppvObject;
     } finally {
-      free(pIID);
+      free(riid);
     }
   }
 }
@@ -112,6 +109,8 @@ base class IUnknownVtbl extends Struct {
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<Pointer> ppvObject)>> QueryInterface;
-  external Pointer<NativeFunction<Uint32 Function(Pointer lpVtbl)>> AddRef;
-  external Pointer<NativeFunction<Uint32 Function(Pointer lpVtbl)>> Release;
+  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
+      AddRef;
+  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
+      Release;
 }

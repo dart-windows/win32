@@ -6,10 +6,10 @@ class ComMethodProjection extends MethodProjection {
 
   @override
   String get nativeParams => [
-        'Pointer',
+        'VTablePointer',
         ...parameters.map((param) => switch (param.type.dartType) {
-              'Pointer<Pointer<COMObject>>' when method.isGetProperty =>
-                'Pointer<COMObject> ${safeIdentifierForString(param.name)}',
+              'Pointer<Pointer<VTablePointer>>' when method.isGetProperty =>
+                'Pointer<VTablePointer> ${safeIdentifierForString(param.name)}',
               _ => param.ffiProjection
             }),
       ].join(', ');
@@ -20,10 +20,10 @@ class ComMethodProjection extends MethodProjection {
 
   @override
   String get dartParams => [
-        'Pointer',
+        'VTablePointer',
         ...parameters.map((param) => switch (param.type.dartType) {
-              'Pointer<Pointer<COMObject>>' when method.isGetProperty =>
-                'Pointer<COMObject> ${safeIdentifierForString(param.name)}',
+              'Pointer<Pointer<VTablePointer>>' when method.isGetProperty =>
+                'Pointer<VTablePointer> ${safeIdentifierForString(param.name)}',
               _ => param.dartProjection
             }),
       ].join(', ');
@@ -32,10 +32,8 @@ class ComMethodProjection extends MethodProjection {
   String get dartPrototype => '${returnType.dartType} Function($dartParams)';
 
   @override
-  String get identifiers => [
-        'ptr.ref.lpVtbl',
-        ...parameters.map((param) => param.identifier)
-      ].join(', ');
+  String get identifiers =>
+      ['ptr.value', ...parameters.map((param) => param.identifier)].join(', ');
 
   @override
   String toString() {

@@ -19,9 +19,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 ''';
 
@@ -42,8 +42,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import 'callbacks.dart';
-import 'combase.dart';
 import 'guid.dart';
+import 'types.dart';
 import 'variant.dart';
 ''';
 

@@ -38,7 +38,7 @@ void main() {
 
   // Obtain the initial locator to Windows Management
   // on a particular host computer.
-  final pLoc = IWbemLocator(calloc<COMObject>());
+  final pLoc = IWbemLocator(calloc<VTablePointer>());
 
   final clsid = calloc<GUID>()..ref.setGUID(CLSID_WbemLocator);
   final iid = calloc<GUID>()..ref.setGUID(IID_IWbemLocator);
@@ -54,7 +54,7 @@ void main() {
     throw exception;
   }
 
-  final proxy = calloc<Pointer<COMObject>>();
+  final proxy = calloc<Pointer<VTablePointer>>();
 
   // Connect to the root\cimv2 namespace with the
   // current user and obtain pointer pSvc
@@ -105,7 +105,7 @@ void main() {
 
   // Use the IWbemServices pointer to make requests of WMI.
 
-  final pEnumerator = calloc<Pointer<COMObject>>();
+  final pEnumerator = calloc<Pointer<VTablePointer>>();
   IEnumWbemClassObject enumerator;
 
   // For example, query for all the running processes

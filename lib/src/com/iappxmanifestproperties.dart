@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_IAppxManifestProperties = '{03faf64d-f26f-4b2c-aaf7-8fe7789b8bca}';
 class IAppxManifestProperties extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IAppxManifestProperties(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestPropertiesVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestPropertiesVtbl>().ref;
 
   final IAppxManifestPropertiesVtbl _vtable;
 
@@ -30,13 +31,13 @@ class IAppxManifestProperties extends IUnknown {
 
   int getBoolValue(Pointer<Utf16> name, Pointer<Int32> value) =>
       _vtable.GetBoolValue.asFunction<
-          int Function(Pointer, Pointer<Utf16> name,
-              Pointer<Int32> value)>()(ptr.ref.lpVtbl, name, value);
+          int Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Int32> value)>()(ptr.value, name, value);
 
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
-          int Function(Pointer, Pointer<Utf16> name,
-              Pointer<Pointer<Utf16>> value)>()(ptr.ref.lpVtbl, name, value);
+          int Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Pointer<Utf16>> value)>()(ptr.value, name, value);
 }
 
 /// @nodoc
@@ -45,11 +46,10 @@ base class IAppxManifestPropertiesVtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Utf16> name, Pointer<Int32> value)>>
+                  VTablePointer, Pointer<Utf16> name, Pointer<Int32> value)>>
       GetBoolValue;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Utf16> name, Pointer<Pointer<Utf16>> value)>>
-      GetStringValue;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Pointer<Utf16>> value)>> GetStringValue;
 }

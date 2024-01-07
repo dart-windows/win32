@@ -14,9 +14,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 
 final _shell32 = DynamicLibrary.open('shell32.dll');
@@ -93,16 +93,16 @@ final _FindExecutable = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHCreateItemFromParsingName(Pointer<Utf16> pszPath, Pointer<COMObject> pbc,
-        Pointer<GUID> riid, Pointer<Pointer> ppv) =>
+int SHCreateItemFromParsingName(Pointer<Utf16> pszPath,
+        Pointer<VTablePointer> pbc, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
     _SHCreateItemFromParsingName(pszPath, pbc, riid, ppv);
 
 final _SHCreateItemFromParsingName = _shell32.lookupFunction<
-    Int32 Function(Pointer<Utf16> pszPath, Pointer<COMObject> pbc,
+    Int32 Function(Pointer<Utf16> pszPath, Pointer<VTablePointer> pbc,
         Pointer<GUID> riid, Pointer<Pointer> ppv),
     int Function(
         Pointer<Utf16> pszPath,
-        Pointer<COMObject> pbc,
+        Pointer<VTablePointer> pbc,
         Pointer<GUID> riid,
         Pointer<Pointer> ppv)>('SHCreateItemFromParsingName');
 
@@ -256,12 +256,12 @@ final _SHFreeNameMappings = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHGetDesktopFolder(Pointer<Pointer<COMObject>> ppshf) =>
+int SHGetDesktopFolder(Pointer<Pointer<VTablePointer>> ppshf) =>
     _SHGetDesktopFolder(ppshf);
 
 final _SHGetDesktopFolder = _shell32.lookupFunction<
-    Int32 Function(Pointer<Pointer<COMObject>> ppshf),
-    int Function(Pointer<Pointer<COMObject>> ppshf)>('SHGetDesktopFolder');
+    Int32 Function(Pointer<Pointer<VTablePointer>> ppshf),
+    int Function(Pointer<Pointer<VTablePointer>> ppshf)>('SHGetDesktopFolder');
 
 /// Retrieves disk space information for a disk volume.
 ///

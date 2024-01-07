@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -18,7 +19,7 @@ const IID_IInitializeWithWindow = '{3e68d4bd-7135-4d10-8018-9fb6d9f33fa1}';
 class IInitializeWithWindow extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IInitializeWithWindow(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IInitializeWithWindowVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IInitializeWithWindowVtbl>().ref;
 
   final IInitializeWithWindowVtbl _vtable;
 
@@ -26,13 +27,13 @@ class IInitializeWithWindow extends IUnknown {
       IInitializeWithWindow(interface.toInterface(IID_IInitializeWithWindow));
 
   int initialize(int hwnd) =>
-      _vtable.Initialize.asFunction<int Function(Pointer, int hwnd)>()(
-          ptr.ref.lpVtbl, hwnd);
+      _vtable.Initialize.asFunction<int Function(VTablePointer, int hwnd)>()(
+          ptr.value, hwnd);
 }
 
 /// @nodoc
 base class IInitializeWithWindowVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, IntPtr hwnd)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, IntPtr hwnd)>>
       Initialize;
 }

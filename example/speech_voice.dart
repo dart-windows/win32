@@ -16,23 +16,23 @@ void main() {
   CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
 
   final speechVoice =
-      ISpeechVoice(COMObject.createFromID(CLSID_SpVoice, IID_ISpeechVoice));
+      ISpeechVoice(createCOMObject(CLSID_SpVoice, IID_ISpeechVoice));
   final pText = textToSpeak.toNativeUtf16();
 
-  final pTokens = calloc<COMObject>();
+  final pTokens = calloc<VTablePointer>();
   final voices = speechVoice.getVoices(nullptr, nullptr, pTokens.cast());
   if (FAILED(voices)) throw WindowsException(voices);
 
-  if (!pTokens.ref.isNull) {
+  if (pTokens.value != nullptr) {
     final tokens = ISpeechObjectTokens(pTokens);
     print('There are ${tokens.count} voices available for text-to-speech:');
 
     for (var i = 0; i < tokens.count; i++) {
-      final pToken = calloc<COMObject>();
+      final pToken = calloc<VTablePointer>();
       var hr = tokens.item(i, pToken.cast());
       if (FAILED(hr)) throw WindowsException(hr);
 
-      if (!pToken.ref.isNull) {
+      if (pToken.value != nullptr) {
         final token = ISpeechObjectToken(pToken);
 
         final pDescription = calloc<Pointer<Utf16>>();
@@ -43,7 +43,7 @@ void main() {
 
         // Set the current voice for text-to-speech
         hr = speechVoice
-            .putref_Voice(token.ptr.cast<Pointer<COMObject>>().value);
+            .putref_Voice(token.ptr.cast<Pointer<VTablePointer>>().value);
         if (FAILED(hr)) throw WindowsException(hr);
 
         hr = speechVoice.speak(pText, SPEAKFLAGS.SPF_IS_NOT_XML, nullptr);

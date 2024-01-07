@@ -8,8 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../structs.g.dart';
+import '../types.dart';
+import '../utils.dart';
 import '../variant.dart';
 import 'iunknown.dart';
 
@@ -25,91 +26,92 @@ const IID_IWbemContext = '{44aca674-e8fc-11d0-a07c-00c04fb68820}';
 class IWbemContext extends IUnknown {
   // vtable begins at 3, is 9 entries long.
   IWbemContext(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IWbemContextVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IWbemContextVtbl>().ref;
 
   final IWbemContextVtbl _vtable;
 
   factory IWbemContext.from(IUnknown interface) =>
       IWbemContext(interface.toInterface(IID_IWbemContext));
 
-  int clone(Pointer<Pointer<COMObject>> ppNewCopy) => _vtable.Clone.asFunction<
-          int Function(Pointer, Pointer<Pointer<COMObject>> ppNewCopy)>()(
-      ptr.ref.lpVtbl, ppNewCopy);
+  int clone(Pointer<Pointer<VTablePointer>> ppNewCopy) =>
+      _vtable.Clone.asFunction<
+              int Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppNewCopy)>()(
+          ptr.value, ppNewCopy);
 
   int getNames(int lFlags, Pointer<Pointer<SAFEARRAY>> pNames) =>
       _vtable.GetNames.asFunction<
-              int Function(
-                  Pointer, int lFlags, Pointer<Pointer<SAFEARRAY>> pNames)>()(
-          ptr.ref.lpVtbl, lFlags, pNames);
+          int Function(VTablePointer, int lFlags,
+              Pointer<Pointer<SAFEARRAY>> pNames)>()(ptr.value, lFlags, pNames);
 
-  int beginEnumeration(int lFlags) =>
-      _vtable.BeginEnumeration.asFunction<int Function(Pointer, int lFlags)>()(
-          ptr.ref.lpVtbl, lFlags);
+  int beginEnumeration(int lFlags) => _vtable.BeginEnumeration.asFunction<
+      int Function(VTablePointer, int lFlags)>()(ptr.value, lFlags);
 
   int next(int lFlags, Pointer<Pointer<Utf16>> pstrName,
           Pointer<VARIANT> pValue) =>
       _vtable.Next.asFunction<
-              int Function(Pointer, int lFlags,
-                  Pointer<Pointer<Utf16>> pstrName, Pointer<VARIANT> pValue)>()(
-          ptr.ref.lpVtbl, lFlags, pstrName, pValue);
+          int Function(
+              VTablePointer,
+              int lFlags,
+              Pointer<Pointer<Utf16>> pstrName,
+              Pointer<VARIANT> pValue)>()(ptr.value, lFlags, pstrName, pValue);
 
   int endEnumeration() =>
-      _vtable.EndEnumeration.asFunction<int Function(Pointer)>()(
-          ptr.ref.lpVtbl);
+      _vtable.EndEnumeration.asFunction<int Function(VTablePointer)>()(
+          ptr.value);
 
   int setValue(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pValue) =>
       _vtable.SetValue.asFunction<
-              int Function(Pointer, Pointer<Utf16> wszName, int lFlags,
-                  Pointer<VARIANT> pValue)>()(
-          ptr.ref.lpVtbl, wszName, lFlags, pValue);
+          int Function(VTablePointer, Pointer<Utf16> wszName, int lFlags,
+              Pointer<VARIANT> pValue)>()(ptr.value, wszName, lFlags, pValue);
 
   int getValue(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pValue) =>
       _vtable.GetValue.asFunction<
-              int Function(Pointer, Pointer<Utf16> wszName, int lFlags,
-                  Pointer<VARIANT> pValue)>()(
-          ptr.ref.lpVtbl, wszName, lFlags, pValue);
+          int Function(VTablePointer, Pointer<Utf16> wszName, int lFlags,
+              Pointer<VARIANT> pValue)>()(ptr.value, wszName, lFlags, pValue);
 
   int deleteValue(Pointer<Utf16> wszName, int lFlags) =>
       _vtable.DeleteValue.asFunction<
-              int Function(Pointer, Pointer<Utf16> wszName, int lFlags)>()(
-          ptr.ref.lpVtbl, wszName, lFlags);
+          int Function(VTablePointer, Pointer<Utf16> wszName,
+              int lFlags)>()(ptr.value, wszName, lFlags);
 
   int deleteAll() =>
-      _vtable.DeleteAll.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.DeleteAll.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
 base class IWbemContextVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppNewCopy)>>
-      Clone;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer, Pointer<Pointer<VTablePointer>> ppNewCopy)>> Clone;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Int32 lFlags, Pointer<Pointer<SAFEARRAY>> pNames)>>
-      GetNames;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 lFlags)>>
+      NativeFunction<
+          Int32 Function(VTablePointer, Int32 lFlags,
+              Pointer<Pointer<SAFEARRAY>> pNames)>> GetNames;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 lFlags)>>
       BeginEnumeration;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 lFlags,
+          Int32 Function(VTablePointer, Int32 lFlags,
               Pointer<Pointer<Utf16>> pstrName, Pointer<VARIANT> pValue)>> Next;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> EndEnumeration;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+      EndEnumeration;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> wszName, Int32 lFlags,
+          Int32 Function(VTablePointer, Pointer<Utf16> wszName, Int32 lFlags,
               Pointer<VARIANT> pValue)>> SetValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> wszName, Int32 lFlags,
+          Int32 Function(VTablePointer, Pointer<Utf16> wszName, Int32 lFlags,
               Pointer<VARIANT> pValue)>> GetValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Utf16> wszName, Int32 lFlags)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Utf16> wszName, Int32 lFlags)>>
       DeleteValue;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> DeleteAll;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> DeleteAll;
 }
 
 /// @nodoc
@@ -120,5 +122,5 @@ class WbemContext extends IWbemContext {
   WbemContext(super.ptr);
 
   factory WbemContext.createInstance() =>
-      WbemContext(COMObject.createFromID(CLSID_WbemContext, IID_IWbemContext));
+      WbemContext(createCOMObject(CLSID_WbemContext, IID_IWbemContext));
 }

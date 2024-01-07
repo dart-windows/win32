@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -23,7 +23,7 @@ class IUIAutomationSpreadsheetPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationSpreadsheetPattern(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<IUIAutomationSpreadsheetPatternVtbl>().ref;
+            ptr.value.value.cast<IUIAutomationSpreadsheetPatternVtbl>().ref;
 
   final IUIAutomationSpreadsheetPatternVtbl _vtable;
 
@@ -31,11 +31,12 @@ class IUIAutomationSpreadsheetPattern extends IUnknown {
       IUIAutomationSpreadsheetPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetPattern));
 
-  int getItemByName(Pointer<Utf16> name, Pointer<Pointer<COMObject>> element) =>
+  int getItemByName(
+          Pointer<Utf16> name, Pointer<Pointer<VTablePointer>> element) =>
       _vtable.GetItemByName.asFunction<
-              int Function(Pointer, Pointer<Utf16> name,
-                  Pointer<Pointer<COMObject>> element)>()(
-          ptr.ref.lpVtbl, name, element);
+              int Function(VTablePointer, Pointer<Utf16> name,
+                  Pointer<Pointer<VTablePointer>> element)>()(
+          ptr.value, name, element);
 }
 
 /// @nodoc
@@ -43,6 +44,6 @@ base class IUIAutomationSpreadsheetPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> name,
-              Pointer<Pointer<COMObject>> element)>> GetItemByName;
+          Int32 Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Pointer<VTablePointer>> element)>> GetItemByName;
 }

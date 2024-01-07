@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +20,7 @@ const IID_IAppxManifestApplication = '{5da89bf4-3773-46be-b650-7e744863b7e8}';
 class IAppxManifestApplication extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IAppxManifestApplication(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestApplicationVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestApplicationVtbl>().ref;
 
   final IAppxManifestApplicationVtbl _vtable;
 
@@ -29,25 +30,26 @@ class IAppxManifestApplication extends IUnknown {
 
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
-          int Function(Pointer, Pointer<Utf16> name,
-              Pointer<Pointer<Utf16>> value)>()(ptr.ref.lpVtbl, name, value);
+          int Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Pointer<Utf16>> value)>()(ptr.value, name, value);
 
   int getAppUserModelId(Pointer<Pointer<Utf16>> appUserModelId) =>
       _vtable.GetAppUserModelId.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> appUserModelId)>()(
-          ptr.ref.lpVtbl, appUserModelId);
+              int Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> appUserModelId)>()(
+          ptr.value, appUserModelId);
 }
 
 /// @nodoc
 base class IAppxManifestApplicationVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Utf16> name, Pointer<Pointer<Utf16>> value)>>
-      GetStringValue;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<Pointer<Utf16>> value)>> GetStringValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> appUserModelId)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> appUserModelId)>>
       GetAppUserModelId;
 }

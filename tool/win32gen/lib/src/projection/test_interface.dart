@@ -60,12 +60,12 @@ import 'package:win32/win32.dart';
 $header
 
 void main() {
-  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
 
   final $instanceName = $interfaceName(ptr);
   ${projection.methodProjections.map((p) => testMethod(interfaceName, instanceName, p)).join()}
 
-  free(ptr.ref.lpVtbl);
+  free(ptr.value);
   free(ptr);
 }
   """;

@@ -31,13 +31,11 @@ void main() {
       variant.ref.punkVal = spVoice;
       final unk = variant.ref.punkVal;
       expect(unk.ptr.address, isNonZero);
-      expect(unk.ptr.ref.isNull, isFalse);
       expect(refCount(unk), equals(2));
 
       variant.ref.punkVal = spellChecker;
       final unk2 = variant.ref.punkVal;
       expect(unk2.ptr.address, isNonZero);
-      expect(unk2.ptr.ref.isNull, isFalse);
       expect(refCount(unk2), equals(2));
 
       VariantClear(variant);
@@ -52,22 +50,19 @@ void main() {
       VariantInit(variant);
       variant.ref.vt = VARENUM.VT_UNKNOWN | VARENUM.VT_BYREF;
 
-      final ppunkval = calloc<Pointer<COMObject>>()
-        ..value = (calloc<COMObject>()..ref.lpVtbl = spVoice.ptr.ref.lpVtbl);
+      final ppunkval = calloc<Pointer<VTablePointer>>()
+        ..value = (calloc<VTablePointer>()..value = spVoice.ptr.value);
       variant.ref.ppunkVal = ppunkval;
       final unk = IUnknown(variant.ref.ppunkVal.value);
       expect(unk.ptr.address, isNonZero);
-      expect(unk.ptr.ref.isNull, isFalse);
       expect(refCount(unk), equals(2));
       free(ppunkval);
 
-      final ppunkval2 = calloc<Pointer<COMObject>>()
-        ..value =
-            (calloc<COMObject>()..ref.lpVtbl = spellChecker.ptr.ref.lpVtbl);
+      final ppunkval2 = calloc<Pointer<VTablePointer>>()
+        ..value = (calloc<VTablePointer>()..value = spellChecker.ptr.value);
       variant.ref.ppunkVal = ppunkval2;
       final unk2 = IUnknown(variant.ref.ppunkVal.value);
       expect(unk2.ptr.address, isNonZero);
-      expect(unk2.ptr.ref.isNull, isFalse);
       expect(refCount(unk2), equals(2));
       free(ppunkval2);
 

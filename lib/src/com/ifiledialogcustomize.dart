@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_IFileDialogCustomize = '{e6fdd21a-163f-4975-9c8c-a69f1ba37034}';
 class IFileDialogCustomize extends IUnknown {
   // vtable begins at 3, is 27 entries long.
   IFileDialogCustomize(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IFileDialogCustomizeVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IFileDialogCustomizeVtbl>().ref;
 
   final IFileDialogCustomizeVtbl _vtable;
 
@@ -28,232 +29,240 @@ class IFileDialogCustomize extends IUnknown {
       IFileDialogCustomize(interface.toInterface(IID_IFileDialogCustomize));
 
   int enableOpenDropDown(int dwIDCtl) => _vtable.EnableOpenDropDown.asFunction<
-      int Function(Pointer, int dwIDCtl)>()(ptr.ref.lpVtbl, dwIDCtl);
+      int Function(VTablePointer, int dwIDCtl)>()(ptr.value, dwIDCtl);
 
   int addMenu(int dwIDCtl, Pointer<Utf16> pszLabel) =>
       _vtable.AddMenu.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszLabel)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszLabel);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszLabel)>()(ptr.value, dwIDCtl, pszLabel);
 
   int addPushButton(int dwIDCtl, Pointer<Utf16> pszLabel) =>
       _vtable.AddPushButton.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszLabel)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszLabel);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszLabel)>()(ptr.value, dwIDCtl, pszLabel);
 
-  int addComboBox(int dwIDCtl) =>
-      _vtable.AddComboBox.asFunction<int Function(Pointer, int dwIDCtl)>()(
-          ptr.ref.lpVtbl, dwIDCtl);
+  int addComboBox(int dwIDCtl) => _vtable.AddComboBox.asFunction<
+      int Function(VTablePointer, int dwIDCtl)>()(ptr.value, dwIDCtl);
 
   int addRadioButtonList(int dwIDCtl) => _vtable.AddRadioButtonList.asFunction<
-      int Function(Pointer, int dwIDCtl)>()(ptr.ref.lpVtbl, dwIDCtl);
+      int Function(VTablePointer, int dwIDCtl)>()(ptr.value, dwIDCtl);
 
   int addCheckButton(int dwIDCtl, Pointer<Utf16> pszLabel, int bChecked) =>
       _vtable.AddCheckButton.asFunction<
-          int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszLabel,
-              int bChecked)>()(ptr.ref.lpVtbl, dwIDCtl, pszLabel, bChecked);
+          int Function(VTablePointer, int dwIDCtl, Pointer<Utf16> pszLabel,
+              int bChecked)>()(ptr.value, dwIDCtl, pszLabel, bChecked);
 
   int addEditBox(int dwIDCtl, Pointer<Utf16> pszText) =>
       _vtable.AddEditBox.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszText)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszText);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszText)>()(ptr.value, dwIDCtl, pszText);
 
-  int addSeparator(int dwIDCtl) =>
-      _vtable.AddSeparator.asFunction<int Function(Pointer, int dwIDCtl)>()(
-          ptr.ref.lpVtbl, dwIDCtl);
+  int addSeparator(int dwIDCtl) => _vtable.AddSeparator.asFunction<
+      int Function(VTablePointer, int dwIDCtl)>()(ptr.value, dwIDCtl);
 
   int addText(int dwIDCtl, Pointer<Utf16> pszText) =>
       _vtable.AddText.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszText)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszText);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszText)>()(ptr.value, dwIDCtl, pszText);
 
   int setControlLabel(int dwIDCtl, Pointer<Utf16> pszLabel) =>
       _vtable.SetControlLabel.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszLabel)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszLabel);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszLabel)>()(ptr.value, dwIDCtl, pszLabel);
 
   int getControlState(int dwIDCtl, Pointer<Int32> pdwState) =>
       _vtable.GetControlState.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Int32> pdwState)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pdwState);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Int32> pdwState)>()(ptr.value, dwIDCtl, pdwState);
 
   int setControlState(int dwIDCtl, int dwState) => _vtable.SetControlState
-          .asFunction<int Function(Pointer, int dwIDCtl, int dwState)>()(
-      ptr.ref.lpVtbl, dwIDCtl, dwState);
+          .asFunction<int Function(VTablePointer, int dwIDCtl, int dwState)>()(
+      ptr.value, dwIDCtl, dwState);
 
   int getEditBoxText(int dwIDCtl, Pointer<Pointer<Uint16>> ppszText) =>
       _vtable.GetEditBoxText.asFunction<
-              int Function(
-                  Pointer, int dwIDCtl, Pointer<Pointer<Uint16>> ppszText)>()(
-          ptr.ref.lpVtbl, dwIDCtl, ppszText);
+              int Function(VTablePointer, int dwIDCtl,
+                  Pointer<Pointer<Uint16>> ppszText)>()(
+          ptr.value, dwIDCtl, ppszText);
 
   int setEditBoxText(int dwIDCtl, Pointer<Utf16> pszText) =>
       _vtable.SetEditBoxText.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszText)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszText);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszText)>()(ptr.value, dwIDCtl, pszText);
 
   int getCheckButtonState(int dwIDCtl, Pointer<Int32> pbChecked) =>
       _vtable.GetCheckButtonState.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Int32> pbChecked)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pbChecked);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Int32> pbChecked)>()(ptr.value, dwIDCtl, pbChecked);
 
   int setCheckButtonState(int dwIDCtl, int bChecked) =>
       _vtable.SetCheckButtonState.asFunction<
-              int Function(Pointer, int dwIDCtl, int bChecked)>()(
-          ptr.ref.lpVtbl, dwIDCtl, bChecked);
+              int Function(VTablePointer, int dwIDCtl, int bChecked)>()(
+          ptr.value, dwIDCtl, bChecked);
 
   int addControlItem(int dwIDCtl, int dwIDItem, Pointer<Utf16> pszLabel) =>
       _vtable.AddControlItem.asFunction<
-              int Function(Pointer, int dwIDCtl, int dwIDItem,
+              int Function(VTablePointer, int dwIDCtl, int dwIDItem,
                   Pointer<Utf16> pszLabel)>()(
-          ptr.ref.lpVtbl, dwIDCtl, dwIDItem, pszLabel);
+          ptr.value, dwIDCtl, dwIDItem, pszLabel);
 
   int removeControlItem(int dwIDCtl, int dwIDItem) => _vtable.RemoveControlItem
-          .asFunction<int Function(Pointer, int dwIDCtl, int dwIDItem)>()(
-      ptr.ref.lpVtbl, dwIDCtl, dwIDItem);
+          .asFunction<int Function(VTablePointer, int dwIDCtl, int dwIDItem)>()(
+      ptr.value, dwIDCtl, dwIDItem);
 
   int removeAllControlItems(int dwIDCtl) =>
       _vtable.RemoveAllControlItems.asFunction<
-          int Function(Pointer, int dwIDCtl)>()(ptr.ref.lpVtbl, dwIDCtl);
+          int Function(VTablePointer, int dwIDCtl)>()(ptr.value, dwIDCtl);
 
   int getControlItemState(int dwIDCtl, int dwIDItem, Pointer<Int32> pdwState) =>
       _vtable.GetControlItemState.asFunction<
-              int Function(Pointer, int dwIDCtl, int dwIDItem,
+              int Function(VTablePointer, int dwIDCtl, int dwIDItem,
                   Pointer<Int32> pdwState)>()(
-          ptr.ref.lpVtbl, dwIDCtl, dwIDItem, pdwState);
+          ptr.value, dwIDCtl, dwIDItem, pdwState);
 
   int setControlItemState(int dwIDCtl, int dwIDItem, int dwState) =>
       _vtable.SetControlItemState.asFunction<
-              int Function(Pointer, int dwIDCtl, int dwIDItem, int dwState)>()(
-          ptr.ref.lpVtbl, dwIDCtl, dwIDItem, dwState);
+          int Function(VTablePointer, int dwIDCtl, int dwIDItem,
+              int dwState)>()(ptr.value, dwIDCtl, dwIDItem, dwState);
 
   int getSelectedControlItem(int dwIDCtl, Pointer<Uint32> pdwIDItem) =>
       _vtable.GetSelectedControlItem.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Uint32> pdwIDItem)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pdwIDItem);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Uint32> pdwIDItem)>()(ptr.value, dwIDCtl, pdwIDItem);
 
   int setSelectedControlItem(int dwIDCtl, int dwIDItem) =>
       _vtable.SetSelectedControlItem.asFunction<
-              int Function(Pointer, int dwIDCtl, int dwIDItem)>()(
-          ptr.ref.lpVtbl, dwIDCtl, dwIDItem);
+              int Function(VTablePointer, int dwIDCtl, int dwIDItem)>()(
+          ptr.value, dwIDCtl, dwIDItem);
 
   int startVisualGroup(int dwIDCtl, Pointer<Utf16> pszLabel) =>
       _vtable.StartVisualGroup.asFunction<
-              int Function(Pointer, int dwIDCtl, Pointer<Utf16> pszLabel)>()(
-          ptr.ref.lpVtbl, dwIDCtl, pszLabel);
+          int Function(VTablePointer, int dwIDCtl,
+              Pointer<Utf16> pszLabel)>()(ptr.value, dwIDCtl, pszLabel);
 
   int endVisualGroup() =>
-      _vtable.EndVisualGroup.asFunction<int Function(Pointer)>()(
-          ptr.ref.lpVtbl);
+      _vtable.EndVisualGroup.asFunction<int Function(VTablePointer)>()(
+          ptr.value);
 
-  int makeProminent(int dwIDCtl) =>
-      _vtable.MakeProminent.asFunction<int Function(Pointer, int dwIDCtl)>()(
-          ptr.ref.lpVtbl, dwIDCtl);
+  int makeProminent(int dwIDCtl) => _vtable.MakeProminent.asFunction<
+      int Function(VTablePointer, int dwIDCtl)>()(ptr.value, dwIDCtl);
 
   int setControlItemText(int dwIDCtl, int dwIDItem, Pointer<Utf16> pszLabel) =>
       _vtable.SetControlItemText.asFunction<
-              int Function(Pointer, int dwIDCtl, int dwIDItem,
+              int Function(VTablePointer, int dwIDCtl, int dwIDItem,
                   Pointer<Utf16> pszLabel)>()(
-          ptr.ref.lpVtbl, dwIDCtl, dwIDItem, pszLabel);
+          ptr.value, dwIDCtl, dwIDItem, pszLabel);
 }
 
 /// @nodoc
 base class IFileDialogCustomizeVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwIDCtl)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 dwIDCtl)>>
       EnableOpenDropDown;
   external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
-      AddMenu;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
-      AddPushButton;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwIDCtl)>>
-      AddComboBox;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwIDCtl)>>
-      AddRadioButtonList;
-  external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel,
-              Int32 bChecked)>> AddCheckButton;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszText)>>
-      AddEditBox;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwIDCtl)>>
-      AddSeparator;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszText)>>
-      AddText;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
-      SetControlLabel;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Int32> pdwState)>>
-      GetControlState;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Int32 dwState)>>
-      SetControlState;
+          Int32 Function(
+              VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>> AddMenu;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Uint32 dwIDCtl, Pointer<Pointer<Uint16>> ppszText)>>
-      GetEditBoxText;
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
+      AddPushButton;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 dwIDCtl)>>
+      AddComboBox;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 dwIDCtl)>>
+      AddRadioButtonList;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel,
+              Int32 bChecked)>> AddCheckButton;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszText)>>
+              Int32 Function(
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszText)>>
+      AddEditBox;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 dwIDCtl)>>
+      AddSeparator;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszText)>> AddText;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
+      SetControlLabel;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Int32> pdwState)>>
+      GetControlState;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Uint32 dwIDCtl, Int32 dwState)>>
+      SetControlState;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint32 dwIDCtl,
+              Pointer<Pointer<Uint16>> ppszText)>> GetEditBoxText;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszText)>>
       SetEditBoxText;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Uint32 dwIDCtl, Pointer<Int32> pbChecked)>>
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Int32> pbChecked)>>
       GetCheckButtonState;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Int32 bChecked)>>
+              Int32 Function(VTablePointer, Uint32 dwIDCtl, Int32 bChecked)>>
       SetCheckButtonState;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 dwIDCtl, Uint32 dwIDItem,
+          Int32 Function(VTablePointer, Uint32 dwIDCtl, Uint32 dwIDItem,
               Pointer<Utf16> pszLabel)>> AddControlItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Uint32 dwIDItem)>>
+              Int32 Function(VTablePointer, Uint32 dwIDCtl, Uint32 dwIDItem)>>
       RemoveControlItem;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwIDCtl)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 dwIDCtl)>>
       RemoveAllControlItems;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 dwIDCtl, Uint32 dwIDItem,
+          Int32 Function(VTablePointer, Uint32 dwIDCtl, Uint32 dwIDItem,
               Pointer<Int32> pdwState)>> GetControlItemState;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Uint32 dwIDCtl, Uint32 dwIDItem, Int32 dwState)>>
-      SetControlItemState;
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint32 dwIDCtl, Uint32 dwIDItem,
+              Int32 dwState)>> SetControlItemState;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Uint32 dwIDCtl, Pointer<Uint32> pdwIDItem)>>
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Uint32> pdwIDItem)>>
       GetSelectedControlItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Uint32 dwIDItem)>>
+              Int32 Function(VTablePointer, Uint32 dwIDCtl, Uint32 dwIDItem)>>
       SetSelectedControlItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
+              Int32 Function(
+                  VTablePointer, Uint32 dwIDCtl, Pointer<Utf16> pszLabel)>>
       StartVisualGroup;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> EndVisualGroup;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwIDCtl)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+      EndVisualGroup;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 dwIDCtl)>>
       MakeProminent;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 dwIDCtl, Uint32 dwIDItem,
+          Int32 Function(VTablePointer, Uint32 dwIDCtl, Uint32 dwIDItem,
               Pointer<Utf16> pszLabel)>> SetControlItemText;
 }

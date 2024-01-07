@@ -72,7 +72,7 @@ class $shortName extends ${interface.shortName} {
   $shortName(super.ptr);
 
   factory $shortName.createInstance() => $shortName(
-      COMObject.createFromID(CLSID_$shortName, IID_${interface.shortName}));
+      createCOMObject(CLSID_$shortName, IID_${interface.shortName}));
 }
 ''';
 }

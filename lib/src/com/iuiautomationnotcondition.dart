@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iuiautomationcondition.dart';
 import 'iunknown.dart';
 
@@ -19,7 +19,7 @@ const IID_IUIAutomationNotCondition = '{f528b657-847b-498c-8896-d52b565407a1}';
 class IUIAutomationNotCondition extends IUIAutomationCondition {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationNotCondition(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationNotConditionVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationNotConditionVtbl>().ref;
 
   final IUIAutomationNotConditionVtbl _vtable;
 
@@ -27,10 +27,11 @@ class IUIAutomationNotCondition extends IUIAutomationCondition {
       IUIAutomationNotCondition(
           interface.toInterface(IID_IUIAutomationNotCondition));
 
-  int getChild(Pointer<Pointer<COMObject>> condition) =>
+  int getChild(Pointer<Pointer<VTablePointer>> condition) =>
       _vtable.GetChild.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> condition)>()(
-          ptr.ref.lpVtbl, condition);
+              int Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> condition)>()(
+          ptr.value, condition);
 }
 
 /// @nodoc
@@ -38,6 +39,7 @@ base class IUIAutomationNotConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> condition)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> condition)>>
       GetChild;
 }

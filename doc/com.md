@@ -28,20 +28,20 @@ You can create COM objects using the [C
 library](https://learn.microsoft.com/windows/win32/learnwin32/creating-an-object-in-com):
 
 ```dart
-hr = CoCreateInstance(clsid, nullptr, CLSCTX_INPROC_SERVER, iid, ppv);
+hr = CoCreateInstance(clsid, nullptr, CLSCTX_INPROC_SERVER, riid, ppv);
 ```
 
-However, rather than manually allocate GUID structs for the `clsid` and `iid`
+However, rather than manually allocate GUID structs for the `clsid` and `riid`
 values, checking the `hr` result code and deal with casting the `ppv` return
-object, it is easier to use the `createFromID` static helper function:
+object, it is easier to use the `createCOMObject` helper function:
 
 ```dart
 final fileDialog2 = IFileDialog2(
-    COMObject.createFromID(CLSID_FileOpenDialog, IID_IFileDialog2));
+    createCOMObject(CLSID_FileOpenDialog, IID_IFileDialog2));
 ```
 
-`createFromID` returns a `Pointer<COMObject>` containing the requested object,
-which can then be cast into the appropriate interface as shown above.
+`createCOMObject` returns a `Pointer<VTablePointer>` containing the requested
+object, which can then be cast into the appropriate interface as shown above.
 
 ### Asking a COM object for an interface
 
@@ -68,8 +68,8 @@ or, you can use the `from` constructor that wraps the `toInterface` for you:
   final modalWindow = IModalWindow.from(fileDialog2);
 ```
 
-Where `createFromID` creates a new COM object, `toInterface` casts an existing
-COM object to a new interface.
+Where `createCOMObject` creates a new COM object, `toInterface` casts an
+existing COM object to a new interface.
 
 Attempting to cast a COM object to an interface it does not support will fail,
 of course. A `WindowsException` will be thrown with an hr of `E_NOINTERFACE`.

@@ -6,7 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'ifiledialog.dart';
 import 'iunknown.dart';
 
@@ -21,69 +22,75 @@ const IID_IFileSaveDialog = '{84bccd23-5fde-4cdb-aea4-af64b83d78ab}';
 class IFileSaveDialog extends IFileDialog {
   // vtable begins at 27, is 5 entries long.
   IFileSaveDialog(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IFileSaveDialogVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IFileSaveDialogVtbl>().ref;
 
   final IFileSaveDialogVtbl _vtable;
 
   factory IFileSaveDialog.from(IUnknown interface) =>
       IFileSaveDialog(interface.toInterface(IID_IFileSaveDialog));
 
-  int setSaveAsItem(Pointer<COMObject> psi) => _vtable.SetSaveAsItem.asFunction<
-      int Function(Pointer, Pointer<COMObject> psi)>()(ptr.ref.lpVtbl, psi);
-
-  int setProperties(Pointer<COMObject> pStore) =>
-      _vtable.SetProperties.asFunction<
+  int setSaveAsItem(
+          Pointer<VTablePointer> psi) =>
+      _vtable.SetSaveAsItem.asFunction<
           int Function(
-              Pointer, Pointer<COMObject> pStore)>()(ptr.ref.lpVtbl, pStore);
+              VTablePointer, Pointer<VTablePointer> psi)>()(ptr.value, psi);
 
-  int setCollectedProperties(Pointer<COMObject> pList, int fAppendDefault) =>
+  int setProperties(Pointer<VTablePointer> pStore) =>
+      _vtable.SetProperties.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> pStore)>()(
+          ptr.value, pStore);
+
+  int setCollectedProperties(
+          Pointer<VTablePointer> pList, int fAppendDefault) =>
       _vtable.SetCollectedProperties.asFunction<
-          int Function(Pointer, Pointer<COMObject> pList,
-              int fAppendDefault)>()(ptr.ref.lpVtbl, pList, fAppendDefault);
+          int Function(VTablePointer, Pointer<VTablePointer> pList,
+              int fAppendDefault)>()(ptr.value, pList, fAppendDefault);
 
-  int getProperties(Pointer<Pointer<COMObject>> ppStore) =>
+  int getProperties(Pointer<Pointer<VTablePointer>> ppStore) =>
       _vtable.GetProperties.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppStore)>()(
-          ptr.ref.lpVtbl, ppStore);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppStore)>()(ptr.value, ppStore);
 
-  int applyProperties(Pointer<COMObject> psi, Pointer<COMObject> pStore,
-          int hwnd, Pointer<COMObject> pSink) =>
+  int applyProperties(Pointer<VTablePointer> psi, Pointer<VTablePointer> pStore,
+          int hwnd, Pointer<VTablePointer> pSink) =>
       _vtable.ApplyProperties.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> psi,
-                  Pointer<COMObject> pStore,
+                  VTablePointer,
+                  Pointer<VTablePointer> psi,
+                  Pointer<VTablePointer> pStore,
                   int hwnd,
-                  Pointer<COMObject> pSink)>()(
-          ptr.ref.lpVtbl, psi, pStore, hwnd, pSink);
+                  Pointer<VTablePointer> pSink)>()(
+          ptr.value, psi, pStore, hwnd, pSink);
 }
 
 /// @nodoc
 base class IFileSaveDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> psi)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> psi)>>
       SetSaveAsItem;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pStore)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> pStore)>>
       SetProperties;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pList,
+              Int32 fAppendDefault)>> SetCollectedProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<COMObject> pList, Int32 fAppendDefault)>>
-      SetCollectedProperties;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppStore)>>
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppStore)>>
       GetProperties;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
-              Pointer<COMObject> psi,
-              Pointer<COMObject> pStore,
+              VTablePointer,
+              Pointer<VTablePointer> psi,
+              Pointer<VTablePointer> pStore,
               IntPtr hwnd,
-              Pointer<COMObject> pSink)>> ApplyProperties;
+              Pointer<VTablePointer> pSink)>> ApplyProperties;
 }
 
 /// @nodoc
@@ -94,5 +101,5 @@ class FileSaveDialog extends IFileSaveDialog {
   FileSaveDialog(super.ptr);
 
   factory FileSaveDialog.createInstance() => FileSaveDialog(
-      COMObject.createFromID(CLSID_FileSaveDialog, IID_IFileSaveDialog));
+      createCOMObject(CLSID_FileSaveDialog, IID_IFileSaveDialog));
 }

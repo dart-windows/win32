@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -24,72 +24,71 @@ const IID_IMetaDataImport = '{7dac8207-d3ae-4c75-9b67-92801a497d44}';
 class IMetaDataImport extends IUnknown {
   // vtable begins at 3, is 62 entries long.
   IMetaDataImport(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IMetaDataImportVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IMetaDataImportVtbl>().ref;
 
   final IMetaDataImportVtbl _vtable;
 
   factory IMetaDataImport.from(IUnknown interface) =>
       IMetaDataImport(interface.toInterface(IID_IMetaDataImport));
 
-  void closeEnum(Pointer hEnum) =>
-      _vtable.CloseEnum.asFunction<void Function(Pointer, Pointer hEnum)>()(
-          ptr.ref.lpVtbl, hEnum);
+  void closeEnum(Pointer hEnum) => _vtable.CloseEnum.asFunction<
+      void Function(VTablePointer, Pointer hEnum)>()(ptr.value, hEnum);
 
   int countEnum(Pointer hEnum, Pointer<Uint32> pulCount) =>
       _vtable.CountEnum.asFunction<
-              int Function(Pointer, Pointer hEnum, Pointer<Uint32> pulCount)>()(
-          ptr.ref.lpVtbl, hEnum, pulCount);
+          int Function(VTablePointer, Pointer hEnum,
+              Pointer<Uint32> pulCount)>()(ptr.value, hEnum, pulCount);
 
   int resetEnum(Pointer hEnum, int ulPos) => _vtable.ResetEnum.asFunction<
       int Function(
-          Pointer, Pointer hEnum, int ulPos)>()(ptr.ref.lpVtbl, hEnum, ulPos);
+          VTablePointer, Pointer hEnum, int ulPos)>()(ptr.value, hEnum, ulPos);
 
   int enumTypeDefs(Pointer<Pointer> phEnum, Pointer<Uint32> rTypeDefs, int cMax,
           Pointer<Uint32> pcTypeDefs) =>
       _vtable.EnumTypeDefs.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rTypeDefs,
                   int cMax,
                   Pointer<Uint32> pcTypeDefs)>()(
-          ptr.ref.lpVtbl, phEnum, rTypeDefs, cMax, pcTypeDefs);
+          ptr.value, phEnum, rTypeDefs, cMax, pcTypeDefs);
 
   int enumInterfaceImpls(Pointer<Pointer> phEnum, int td,
           Pointer<Uint32> rImpls, int cMax, Pointer<Uint32> pcImpls) =>
       _vtable.EnumInterfaceImpls.asFunction<
-              int Function(Pointer, Pointer<Pointer> phEnum, int td,
+              int Function(VTablePointer, Pointer<Pointer> phEnum, int td,
                   Pointer<Uint32> rImpls, int cMax, Pointer<Uint32> pcImpls)>()(
-          ptr.ref.lpVtbl, phEnum, td, rImpls, cMax, pcImpls);
+          ptr.value, phEnum, td, rImpls, cMax, pcImpls);
 
   int enumTypeRefs(Pointer<Pointer> phEnum, Pointer<Uint32> rTypeRefs, int cMax,
           Pointer<Uint32> pcTypeRefs) =>
       _vtable.EnumTypeRefs.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rTypeRefs,
                   int cMax,
                   Pointer<Uint32> pcTypeRefs)>()(
-          ptr.ref.lpVtbl, phEnum, rTypeRefs, cMax, pcTypeRefs);
+          ptr.value, phEnum, rTypeRefs, cMax, pcTypeRefs);
 
   int findTypeDefByName(Pointer<Utf16> szTypeDef, int tkEnclosingClass,
           Pointer<Uint32> ptd) =>
       _vtable.FindTypeDefByName.asFunction<
-              int Function(Pointer, Pointer<Utf16> szTypeDef,
+              int Function(VTablePointer, Pointer<Utf16> szTypeDef,
                   int tkEnclosingClass, Pointer<Uint32> ptd)>()(
-          ptr.ref.lpVtbl, szTypeDef, tkEnclosingClass, ptd);
+          ptr.value, szTypeDef, tkEnclosingClass, ptd);
 
   int getScopeProps(Pointer<Utf16> szName, int cchName, Pointer<Uint32> pchName,
           Pointer<GUID> pmvid) =>
       _vtable.GetScopeProps.asFunction<
-              int Function(Pointer, Pointer<Utf16> szName, int cchName,
+              int Function(VTablePointer, Pointer<Utf16> szName, int cchName,
                   Pointer<Uint32> pchName, Pointer<GUID> pmvid)>()(
-          ptr.ref.lpVtbl, szName, cchName, pchName, pmvid);
+          ptr.value, szName, cchName, pchName, pmvid);
 
   int getModuleFromScope(Pointer<Uint32> pmd) =>
       _vtable.GetModuleFromScope.asFunction<
-          int Function(Pointer, Pointer<Uint32> pmd)>()(ptr.ref.lpVtbl, pmd);
+          int Function(VTablePointer, Pointer<Uint32> pmd)>()(ptr.value, pmd);
 
   int getTypeDefProps(
           int td,
@@ -100,55 +99,54 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> ptkExtends) =>
       _vtable.GetTypeDefProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int td,
                   Pointer<Utf16> szTypeDef,
                   int cchTypeDef,
                   Pointer<Uint32> pchTypeDef,
                   Pointer<Uint32> pdwTypeDefFlags,
-                  Pointer<Uint32> ptkExtends)>()(ptr.ref.lpVtbl, td, szTypeDef,
+                  Pointer<Uint32> ptkExtends)>()(ptr.value, td, szTypeDef,
           cchTypeDef, pchTypeDef, pdwTypeDefFlags, ptkExtends);
 
   int getInterfaceImplProps(
           int iiImpl, Pointer<Uint32> pClass, Pointer<Uint32> ptkIface) =>
       _vtable.GetInterfaceImplProps.asFunction<
-              int Function(Pointer, int iiImpl, Pointer<Uint32> pClass,
-                  Pointer<Uint32> ptkIface)>()(
-          ptr.ref.lpVtbl, iiImpl, pClass, ptkIface);
+          int Function(VTablePointer, int iiImpl, Pointer<Uint32> pClass,
+              Pointer<Uint32> ptkIface)>()(ptr.value, iiImpl, pClass, ptkIface);
 
   int getTypeRefProps(int tr, Pointer<Uint32> ptkResolutionScope,
           Pointer<Utf16> szName, int cchName, Pointer<Uint32> pchName) =>
       _vtable.GetTypeRefProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int tr,
                   Pointer<Uint32> ptkResolutionScope,
                   Pointer<Utf16> szName,
                   int cchName,
                   Pointer<Uint32> pchName)>()(
-          ptr.ref.lpVtbl, tr, ptkResolutionScope, szName, cchName, pchName);
+          ptr.value, tr, ptkResolutionScope, szName, cchName, pchName);
 
   int resolveTypeRef(int tr, Pointer<GUID> riid,
-          Pointer<Pointer<COMObject>> ppIScope, Pointer<Uint32> ptd) =>
+          Pointer<Pointer<VTablePointer>> ppIScope, Pointer<Uint32> ptd) =>
       _vtable.ResolveTypeRef.asFunction<
           int Function(
-              Pointer,
+              VTablePointer,
               int tr,
               Pointer<GUID> riid,
-              Pointer<Pointer<COMObject>> ppIScope,
-              Pointer<Uint32> ptd)>()(ptr.ref.lpVtbl, tr, riid, ppIScope, ptd);
+              Pointer<Pointer<VTablePointer>> ppIScope,
+              Pointer<Uint32> ptd)>()(ptr.value, tr, riid, ppIScope, ptd);
 
   int enumMembers(Pointer<Pointer> phEnum, int cl, Pointer<Uint32> rMembers,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumMembers.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int cl,
                   Pointer<Uint32> rMembers,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, cl, rMembers, cMax, pcTokens);
+          ptr.value, phEnum, cl, rMembers, cMax, pcTokens);
 
   int enumMembersWithName(
           Pointer<Pointer> phEnum,
@@ -159,26 +157,26 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcTokens) =>
       _vtable.EnumMembersWithName.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int cl,
                   Pointer<Utf16> szName,
                   Pointer<Uint32> rMembers,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, cl, szName, rMembers, cMax, pcTokens);
+          ptr.value, phEnum, cl, szName, rMembers, cMax, pcTokens);
 
   int enumMethods(Pointer<Pointer> phEnum, int cl, Pointer<Uint32> rMethods,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumMethods.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int cl,
                   Pointer<Uint32> rMethods,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, cl, rMethods, cMax, pcTokens);
+          ptr.value, phEnum, cl, rMethods, cMax, pcTokens);
 
   int enumMethodsWithName(
           Pointer<Pointer> phEnum,
@@ -189,63 +187,63 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcTokens) =>
       _vtable.EnumMethodsWithName.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int cl,
                   Pointer<Utf16> szName,
                   Pointer<Uint32> rMethods,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, cl, szName, rMethods, cMax, pcTokens);
+          ptr.value, phEnum, cl, szName, rMethods, cMax, pcTokens);
 
   int enumFields(Pointer<Pointer> phEnum, int cl, Pointer<Uint32> rFields,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumFields.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int cl,
                   Pointer<Uint32> rFields,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, cl, rFields, cMax, pcTokens);
+          ptr.value, phEnum, cl, rFields, cMax, pcTokens);
 
   int enumFieldsWithName(Pointer<Pointer> phEnum, int cl, Pointer<Utf16> szName,
           Pointer<Uint32> rFields, int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumFieldsWithName.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int cl,
                   Pointer<Utf16> szName,
                   Pointer<Uint32> rFields,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, cl, szName, rFields, cMax, pcTokens);
+          ptr.value, phEnum, cl, szName, rFields, cMax, pcTokens);
 
   int enumParams(Pointer<Pointer> phEnum, int mb, Pointer<Uint32> rParams,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumParams.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int mb,
                   Pointer<Uint32> rParams,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, mb, rParams, cMax, pcTokens);
+          ptr.value, phEnum, mb, rParams, cMax, pcTokens);
 
   int enumMemberRefs(Pointer<Pointer> phEnum, int tkParent,
           Pointer<Uint32> rMemberRefs, int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumMemberRefs.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int tkParent,
                   Pointer<Uint32> rMemberRefs,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, tkParent, rMemberRefs, cMax, pcTokens);
+          ptr.value, phEnum, tkParent, rMemberRefs, cMax, pcTokens);
 
   int enumMethodImpls(
           Pointer<Pointer> phEnum,
@@ -256,75 +254,75 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcTokens) =>
       _vtable.EnumMethodImpls.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int td,
                   Pointer<Uint32> rMethodBody,
                   Pointer<Uint32> rMethodDecl,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, td, rMethodBody, rMethodDecl, cMax, pcTokens);
+          ptr.value, phEnum, td, rMethodBody, rMethodDecl, cMax, pcTokens);
 
   int enumPermissionSets(Pointer<Pointer> phEnum, int tk, int dwActions,
           Pointer<Uint32> rPermission, int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumPermissionSets.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int tk,
                   int dwActions,
                   Pointer<Uint32> rPermission,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, tk, dwActions, rPermission, cMax, pcTokens);
+          ptr.value, phEnum, tk, dwActions, rPermission, cMax, pcTokens);
 
   int findMember(int td, Pointer<Utf16> szName, Pointer<Uint8> pvSigBlob,
           int cbSigBlob, Pointer<Uint32> pmb) =>
       _vtable.FindMember.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int td,
                   Pointer<Utf16> szName,
                   Pointer<Uint8> pvSigBlob,
                   int cbSigBlob,
                   Pointer<Uint32> pmb)>()(
-          ptr.ref.lpVtbl, td, szName, pvSigBlob, cbSigBlob, pmb);
+          ptr.value, td, szName, pvSigBlob, cbSigBlob, pmb);
 
   int findMethod(int td, Pointer<Utf16> szName, Pointer<Uint8> pvSigBlob,
           int cbSigBlob, Pointer<Uint32> pmb) =>
       _vtable.FindMethod.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int td,
                   Pointer<Utf16> szName,
                   Pointer<Uint8> pvSigBlob,
                   int cbSigBlob,
                   Pointer<Uint32> pmb)>()(
-          ptr.ref.lpVtbl, td, szName, pvSigBlob, cbSigBlob, pmb);
+          ptr.value, td, szName, pvSigBlob, cbSigBlob, pmb);
 
   int findField(int td, Pointer<Utf16> szName, Pointer<Uint8> pvSigBlob,
           int cbSigBlob, Pointer<Uint32> pmb) =>
       _vtable.FindField.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int td,
                   Pointer<Utf16> szName,
                   Pointer<Uint8> pvSigBlob,
                   int cbSigBlob,
                   Pointer<Uint32> pmb)>()(
-          ptr.ref.lpVtbl, td, szName, pvSigBlob, cbSigBlob, pmb);
+          ptr.value, td, szName, pvSigBlob, cbSigBlob, pmb);
 
   int findMemberRef(int td, Pointer<Utf16> szName, Pointer<Uint8> pvSigBlob,
           int cbSigBlob, Pointer<Uint32> pmr) =>
       _vtable.FindMemberRef.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int td,
                   Pointer<Utf16> szName,
                   Pointer<Uint8> pvSigBlob,
                   int cbSigBlob,
                   Pointer<Uint32> pmr)>()(
-          ptr.ref.lpVtbl, td, szName, pvSigBlob, cbSigBlob, pmr);
+          ptr.value, td, szName, pvSigBlob, cbSigBlob, pmr);
 
   int getMethodProps(
           int mb,
@@ -339,7 +337,7 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pdwImplFlags) =>
       _vtable.GetMethodProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int mb,
                   Pointer<Uint32> pClass,
                   Pointer<Utf16> szMethod,
@@ -350,7 +348,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> pcbSigBlob,
                   Pointer<Uint32> pulCodeRVA,
                   Pointer<Uint32> pdwImplFlags)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           mb,
           pClass,
           szMethod,
@@ -372,14 +370,14 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pbSig) =>
       _vtable.GetMemberRefProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int mr,
                   Pointer<Uint32> ptk,
                   Pointer<Utf16> szMember,
                   int cchMember,
                   Pointer<Uint32> pchMember,
                   Pointer<Pointer<Uint8>> ppvSigBlob,
-                  Pointer<Uint32> pbSig)>()(ptr.ref.lpVtbl, mr, ptk, szMember,
+                  Pointer<Uint32> pbSig)>()(ptr.value, mr, ptk, szMember,
           cchMember, pchMember, ppvSigBlob, pbSig);
 
   int enumProperties(
@@ -390,25 +388,25 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcProperties) =>
       _vtable.EnumProperties.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int td,
                   Pointer<Uint32> rProperties,
                   int cMax,
                   Pointer<Uint32> pcProperties)>()(
-          ptr.ref.lpVtbl, phEnum, td, rProperties, cMax, pcProperties);
+          ptr.value, phEnum, td, rProperties, cMax, pcProperties);
 
   int enumEvents(Pointer<Pointer> phEnum, int td, Pointer<Uint32> rEvents,
           int cMax, Pointer<Uint32> pcEvents) =>
       _vtable.EnumEvents.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int td,
                   Pointer<Uint32> rEvents,
                   int cMax,
                   Pointer<Uint32> pcEvents)>()(
-          ptr.ref.lpVtbl, phEnum, td, rEvents, cMax, pcEvents);
+          ptr.value, phEnum, td, rEvents, cMax, pcEvents);
 
   int getEventProps(
           int ev,
@@ -426,7 +424,7 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcOtherMethod) =>
       _vtable.GetEventProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int ev,
                   Pointer<Uint32> pClass,
                   Pointer<Utf16> szEvent,
@@ -440,7 +438,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> rmdOtherMethod,
                   int cMax,
                   Pointer<Uint32> pcOtherMethod)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           ev,
           pClass,
           szEvent,
@@ -459,20 +457,20 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> rEventProp, int cMax, Pointer<Uint32> pcEventProp) =>
       _vtable.EnumMethodSemantics.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int mb,
                   Pointer<Uint32> rEventProp,
                   int cMax,
                   Pointer<Uint32> pcEventProp)>()(
-          ptr.ref.lpVtbl, phEnum, mb, rEventProp, cMax, pcEventProp);
+          ptr.value, phEnum, mb, rEventProp, cMax, pcEventProp);
 
   int getMethodSemantics(
           int mb, int tkEventProp, Pointer<Uint32> pdwSemanticsFlags) =>
       _vtable.GetMethodSemantics.asFunction<
-              int Function(Pointer, int mb, int tkEventProp,
+              int Function(VTablePointer, int mb, int tkEventProp,
                   Pointer<Uint32> pdwSemanticsFlags)>()(
-          ptr.ref.lpVtbl, mb, tkEventProp, pdwSemanticsFlags);
+          ptr.value, mb, tkEventProp, pdwSemanticsFlags);
 
   int getClassLayout(
           int td,
@@ -483,97 +481,99 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pulClassSize) =>
       _vtable.GetClassLayout.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int td,
                   Pointer<Uint32> pdwPackSize,
                   Pointer<COR_FIELD_OFFSET> rFieldOffset,
                   int cMax,
                   Pointer<Uint32> pcFieldOffset,
-                  Pointer<Uint32> pulClassSize)>()(ptr.ref.lpVtbl, td,
-          pdwPackSize, rFieldOffset, cMax, pcFieldOffset, pulClassSize);
+                  Pointer<Uint32> pulClassSize)>()(ptr.value, td, pdwPackSize,
+          rFieldOffset, cMax, pcFieldOffset, pulClassSize);
 
   int getFieldMarshal(int tk, Pointer<Pointer<Uint8>> ppvNativeType,
           Pointer<Uint32> pcbNativeType) =>
       _vtable.GetFieldMarshal.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int tk,
                   Pointer<Pointer<Uint8>> ppvNativeType,
                   Pointer<Uint32> pcbNativeType)>()(
-          ptr.ref.lpVtbl, tk, ppvNativeType, pcbNativeType);
+          ptr.value, tk, ppvNativeType, pcbNativeType);
 
   int getRVA(
           int tk, Pointer<Uint32> pulCodeRVA, Pointer<Uint32> pdwImplFlags) =>
       _vtable.GetRVA.asFunction<
-              int Function(Pointer, int tk, Pointer<Uint32> pulCodeRVA,
+              int Function(VTablePointer, int tk, Pointer<Uint32> pulCodeRVA,
                   Pointer<Uint32> pdwImplFlags)>()(
-          ptr.ref.lpVtbl, tk, pulCodeRVA, pdwImplFlags);
+          ptr.value, tk, pulCodeRVA, pdwImplFlags);
 
   int getPermissionSetProps(int pm, Pointer<Uint32> pdwAction,
           Pointer<Pointer> ppvPermission, Pointer<Uint32> pcbPermission) =>
       _vtable.GetPermissionSetProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int pm,
                   Pointer<Uint32> pdwAction,
                   Pointer<Pointer> ppvPermission,
                   Pointer<Uint32> pcbPermission)>()(
-          ptr.ref.lpVtbl, pm, pdwAction, ppvPermission, pcbPermission);
+          ptr.value, pm, pdwAction, ppvPermission, pcbPermission);
 
   int getSigFromToken(
           int mdSig, Pointer<Pointer<Uint8>> ppvSig, Pointer<Uint32> pcbSig) =>
       _vtable.GetSigFromToken.asFunction<
-          int Function(Pointer, int mdSig, Pointer<Pointer<Uint8>> ppvSig,
-              Pointer<Uint32> pcbSig)>()(ptr.ref.lpVtbl, mdSig, ppvSig, pcbSig);
+          int Function(VTablePointer, int mdSig, Pointer<Pointer<Uint8>> ppvSig,
+              Pointer<Uint32> pcbSig)>()(ptr.value, mdSig, ppvSig, pcbSig);
 
   int getModuleRefProps(int mur, Pointer<Utf16> szName, int cchName,
           Pointer<Uint32> pchName) =>
       _vtable.GetModuleRefProps.asFunction<
-              int Function(Pointer, int mur, Pointer<Utf16> szName, int cchName,
-                  Pointer<Uint32> pchName)>()(
-          ptr.ref.lpVtbl, mur, szName, cchName, pchName);
+              int Function(VTablePointer, int mur, Pointer<Utf16> szName,
+                  int cchName, Pointer<Uint32> pchName)>()(
+          ptr.value, mur, szName, cchName, pchName);
 
   int enumModuleRefs(Pointer<Pointer> phEnum, Pointer<Uint32> rModuleRefs,
           int cmax, Pointer<Uint32> pcModuleRefs) =>
       _vtable.EnumModuleRefs.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rModuleRefs,
                   int cmax,
                   Pointer<Uint32> pcModuleRefs)>()(
-          ptr.ref.lpVtbl, phEnum, rModuleRefs, cmax, pcModuleRefs);
+          ptr.value, phEnum, rModuleRefs, cmax, pcModuleRefs);
 
   int getTypeSpecFromToken(int typespec, Pointer<Pointer<Uint8>> ppvSig,
           Pointer<Uint32> pcbSig) =>
       _vtable.GetTypeSpecFromToken.asFunction<
-              int Function(Pointer, int typespec,
-                  Pointer<Pointer<Uint8>> ppvSig, Pointer<Uint32> pcbSig)>()(
-          ptr.ref.lpVtbl, typespec, ppvSig, pcbSig);
+          int Function(
+              VTablePointer,
+              int typespec,
+              Pointer<Pointer<Uint8>> ppvSig,
+              Pointer<Uint32> pcbSig)>()(ptr.value, typespec, ppvSig, pcbSig);
 
   int getNameFromToken(int tk, Pointer<Pointer<Int8>> pszUtf8NamePtr) =>
       _vtable.GetNameFromToken.asFunction<
-              int Function(
-                  Pointer, int tk, Pointer<Pointer<Int8>> pszUtf8NamePtr)>()(
-          ptr.ref.lpVtbl, tk, pszUtf8NamePtr);
+              int Function(VTablePointer, int tk,
+                  Pointer<Pointer<Int8>> pszUtf8NamePtr)>()(
+          ptr.value, tk, pszUtf8NamePtr);
 
   int enumUnresolvedMethods(Pointer<Pointer> phEnum, Pointer<Uint32> rMethods,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumUnresolvedMethods.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rMethods,
                   int cMax,
                   Pointer<Uint32> pcTokens)>()(
-          ptr.ref.lpVtbl, phEnum, rMethods, cMax, pcTokens);
+          ptr.value, phEnum, rMethods, cMax, pcTokens);
 
   int getUserString(int stk, Pointer<Utf16> szString, int cchString,
           Pointer<Uint32> pchString) =>
       _vtable.GetUserString.asFunction<
-              int Function(Pointer, int stk, Pointer<Utf16> szString,
+              int Function(VTablePointer, int stk, Pointer<Utf16> szString,
                   int cchString, Pointer<Uint32> pchString)>()(
-          ptr.ref.lpVtbl, stk, szString, cchString, pchString);
+          ptr.value, stk, szString, cchString, pchString);
 
   int getPinvokeMap(
           int tk,
@@ -584,14 +584,14 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pmrImportDLL) =>
       _vtable.GetPinvokeMap.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int tk,
                   Pointer<Uint32> pdwMappingFlags,
                   Pointer<Utf16> szImportName,
                   int cchImportName,
                   Pointer<Uint32> pchImportName,
                   Pointer<Uint32> pmrImportDLL)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           tk,
           pdwMappingFlags,
           szImportName,
@@ -603,39 +603,39 @@ class IMetaDataImport extends IUnknown {
           int cmax, Pointer<Uint32> pcSignatures) =>
       _vtable.EnumSignatures.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rSignatures,
                   int cmax,
                   Pointer<Uint32> pcSignatures)>()(
-          ptr.ref.lpVtbl, phEnum, rSignatures, cmax, pcSignatures);
+          ptr.value, phEnum, rSignatures, cmax, pcSignatures);
 
   int enumTypeSpecs(Pointer<Pointer> phEnum, Pointer<Uint32> rTypeSpecs,
           int cmax, Pointer<Uint32> pcTypeSpecs) =>
       _vtable.EnumTypeSpecs.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rTypeSpecs,
                   int cmax,
                   Pointer<Uint32> pcTypeSpecs)>()(
-          ptr.ref.lpVtbl, phEnum, rTypeSpecs, cmax, pcTypeSpecs);
+          ptr.value, phEnum, rTypeSpecs, cmax, pcTypeSpecs);
 
   int enumUserStrings(Pointer<Pointer> phEnum, Pointer<Uint32> rStrings,
           int cmax, Pointer<Uint32> pcStrings) =>
       _vtable.EnumUserStrings.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   Pointer<Uint32> rStrings,
                   int cmax,
                   Pointer<Uint32> pcStrings)>()(
-          ptr.ref.lpVtbl, phEnum, rStrings, cmax, pcStrings);
+          ptr.value, phEnum, rStrings, cmax, pcStrings);
 
   int getParamForMethodIndex(int md, int ulParamSeq, Pointer<Uint32> ppd) =>
       _vtable.GetParamForMethodIndex.asFunction<
-          int Function(Pointer, int md, int ulParamSeq,
-              Pointer<Uint32> ppd)>()(ptr.ref.lpVtbl, md, ulParamSeq, ppd);
+          int Function(VTablePointer, int md, int ulParamSeq,
+              Pointer<Uint32> ppd)>()(ptr.value, md, ulParamSeq, ppd);
 
   int enumCustomAttributes(
           Pointer<Pointer> phEnum,
@@ -646,14 +646,14 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcCustomAttributes) =>
       _vtable.EnumCustomAttributes.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Pointer> phEnum,
                   int tk,
                   int tkType,
                   Pointer<Uint32> rCustomAttributes,
                   int cMax,
-                  Pointer<Uint32> pcCustomAttributes)>()(ptr.ref.lpVtbl, phEnum,
-          tk, tkType, rCustomAttributes, cMax, pcCustomAttributes);
+                  Pointer<Uint32> pcCustomAttributes)>()(ptr.value, phEnum, tk,
+          tkType, rCustomAttributes, cMax, pcCustomAttributes);
 
   int getCustomAttributeProps(
           int cv,
@@ -663,20 +663,20 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcbSize) =>
       _vtable.GetCustomAttributeProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int cv,
                   Pointer<Uint32> ptkObj,
                   Pointer<Uint32> ptkType,
                   Pointer<Pointer> ppBlob,
                   Pointer<Uint32> pcbSize)>()(
-          ptr.ref.lpVtbl, cv, ptkObj, ptkType, ppBlob, pcbSize);
+          ptr.value, cv, ptkObj, ptkType, ppBlob, pcbSize);
 
   int findTypeRef(
           int tkResolutionScope, Pointer<Utf16> szName, Pointer<Uint32> ptr_) =>
       _vtable.FindTypeRef.asFunction<
-              int Function(Pointer, int tkResolutionScope,
+              int Function(VTablePointer, int tkResolutionScope,
                   Pointer<Utf16> szName, Pointer<Uint32> ptr_)>()(
-          ptr.ref.lpVtbl, tkResolutionScope, szName, ptr_);
+          ptr.value, tkResolutionScope, szName, ptr_);
 
   int getMemberProps(
           int mb,
@@ -694,7 +694,7 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcchValue) =>
       _vtable.GetMemberProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int mb,
                   Pointer<Uint32> pClass,
                   Pointer<Utf16> szMember,
@@ -708,7 +708,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> pdwCPlusTypeFlag,
                   Pointer<Pointer> ppValue,
                   Pointer<Uint32> pcchValue)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           mb,
           pClass,
           szMember,
@@ -737,7 +737,7 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcchValue) =>
       _vtable.GetFieldProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int mb,
                   Pointer<Uint32> pClass,
                   Pointer<Utf16> szField,
@@ -749,7 +749,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> pdwCPlusTypeFlag,
                   Pointer<Pointer> ppValue,
                   Pointer<Uint32> pcchValue)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           mb,
           pClass,
           szField,
@@ -781,7 +781,7 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcOtherMethod) =>
       _vtable.GetPropertyProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int prop,
                   Pointer<Uint32> pClass,
                   Pointer<Utf16> szProperty,
@@ -798,7 +798,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> rmdOtherMethod,
                   int cMax,
                   Pointer<Uint32> pcOtherMethod)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           prop,
           pClass,
           szProperty,
@@ -829,7 +829,7 @@ class IMetaDataImport extends IUnknown {
           Pointer<Uint32> pcchValue) =>
       _vtable.GetParamProps.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int tk,
                   Pointer<Uint32> pmd,
                   Pointer<Uint32> pulSequence,
@@ -840,7 +840,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> pdwCPlusTypeFlag,
                   Pointer<Pointer> ppValue,
                   Pointer<Uint32> pcchValue)>()(
-          ptr.ref.lpVtbl,
+          ptr.value,
           tk,
           pmd,
           pulSequence,
@@ -855,49 +855,50 @@ class IMetaDataImport extends IUnknown {
   int getCustomAttributeByName(int tkObj, Pointer<Utf16> szName,
           Pointer<Pointer> ppData, Pointer<Uint32> pcbData) =>
       _vtable.GetCustomAttributeByName.asFunction<
-              int Function(Pointer, int tkObj, Pointer<Utf16> szName,
+              int Function(VTablePointer, int tkObj, Pointer<Utf16> szName,
                   Pointer<Pointer> ppData, Pointer<Uint32> pcbData)>()(
-          ptr.ref.lpVtbl, tkObj, szName, ppData, pcbData);
+          ptr.value, tkObj, szName, ppData, pcbData);
 
   int isValidToken(int tk) =>
-      _vtable.IsValidToken.asFunction<int Function(Pointer, int tk)>()(
-          ptr.ref.lpVtbl, tk);
+      _vtable.IsValidToken.asFunction<int Function(VTablePointer, int tk)>()(
+          ptr.value, tk);
 
   int getNestedClassProps(
           int tdNestedClass, Pointer<Uint32> ptdEnclosingClass) =>
       _vtable.GetNestedClassProps.asFunction<
-              int Function(Pointer, int tdNestedClass,
+              int Function(VTablePointer, int tdNestedClass,
                   Pointer<Uint32> ptdEnclosingClass)>()(
-          ptr.ref.lpVtbl, tdNestedClass, ptdEnclosingClass);
+          ptr.value, tdNestedClass, ptdEnclosingClass);
 
   int getNativeCallConvFromSig(
           Pointer pvSig, int cbSig, Pointer<Uint32> pCallConv) =>
       _vtable.GetNativeCallConvFromSig.asFunction<
-              int Function(Pointer, Pointer pvSig, int cbSig,
-                  Pointer<Uint32> pCallConv)>()(
-          ptr.ref.lpVtbl, pvSig, cbSig, pCallConv);
+          int Function(VTablePointer, Pointer pvSig, int cbSig,
+              Pointer<Uint32> pCallConv)>()(ptr.value, pvSig, cbSig, pCallConv);
 
   int isGlobal(int pd, Pointer<Int32> pbGlobal) => _vtable.IsGlobal.asFunction<
-          int Function(Pointer, int pd, Pointer<Int32> pbGlobal)>()(
-      ptr.ref.lpVtbl, pd, pbGlobal);
+          int Function(VTablePointer, int pd, Pointer<Int32> pbGlobal)>()(
+      ptr.value, pd, pbGlobal);
 }
 
 /// @nodoc
 base class IMetaDataImportVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Void Function(Pointer, Pointer hEnum)>>
+  external Pointer<NativeFunction<Void Function(VTablePointer, Pointer hEnum)>>
       CloseEnum;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer hEnum, Pointer<Uint32> pulCount)>>
+              Int32 Function(
+                  VTablePointer, Pointer hEnum, Pointer<Uint32> pulCount)>>
       CountEnum;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer hEnum, Uint32 ulPos)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer hEnum, Uint32 ulPos)>>
       ResetEnum;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rTypeDefs,
               Uint32 cMax,
@@ -905,7 +906,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 td,
               Pointer<Uint32> rImpls,
@@ -914,25 +915,26 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rTypeRefs,
               Uint32 cMax,
               Pointer<Uint32> pcTypeRefs)>> EnumTypeRefs;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> szTypeDef,
+          Int32 Function(VTablePointer, Pointer<Utf16> szTypeDef,
               Uint32 tkEnclosingClass, Pointer<Uint32> ptd)>> FindTypeDefByName;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Utf16> szName, Uint32 cchName,
+          Int32 Function(VTablePointer, Pointer<Utf16> szName, Uint32 cchName,
               Pointer<Uint32> pchName, Pointer<GUID> pmvid)>> GetScopeProps;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pmd)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> pmd)>>
       GetModuleFromScope;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 td,
               Pointer<Utf16> szTypeDef,
               Uint32 cchTypeDef,
@@ -941,12 +943,12 @@ base class IMetaDataImportVtbl extends Struct {
               Pointer<Uint32> ptkExtends)>> GetTypeDefProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 iiImpl, Pointer<Uint32> pClass,
+          Int32 Function(VTablePointer, Uint32 iiImpl, Pointer<Uint32> pClass,
               Pointer<Uint32> ptkIface)>> GetInterfaceImplProps;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 tr,
               Pointer<Uint32> ptkResolutionScope,
               Pointer<Utf16> szName,
@@ -955,15 +957,15 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 tr,
               Pointer<GUID> riid,
-              Pointer<Pointer<COMObject>> ppIScope,
+              Pointer<Pointer<VTablePointer>> ppIScope,
               Pointer<Uint32> ptd)>> ResolveTypeRef;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 cl,
               Pointer<Uint32> rMembers,
@@ -972,7 +974,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 cl,
               Pointer<Utf16> szName,
@@ -982,7 +984,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 cl,
               Pointer<Uint32> rMethods,
@@ -991,7 +993,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 cl,
               Pointer<Utf16> szName,
@@ -1001,7 +1003,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 cl,
               Pointer<Uint32> rFields,
@@ -1010,7 +1012,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 cl,
               Pointer<Utf16> szName,
@@ -1020,7 +1022,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 mb,
               Pointer<Uint32> rParams,
@@ -1029,7 +1031,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 tkParent,
               Pointer<Uint32> rMemberRefs,
@@ -1038,7 +1040,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 td,
               Pointer<Uint32> rMethodBody,
@@ -1048,7 +1050,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 tk,
               Uint32 dwActions,
@@ -1058,7 +1060,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 td,
               Pointer<Utf16> szName,
               Pointer<Uint8> pvSigBlob,
@@ -1067,7 +1069,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 td,
               Pointer<Utf16> szName,
               Pointer<Uint8> pvSigBlob,
@@ -1076,7 +1078,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 td,
               Pointer<Utf16> szName,
               Pointer<Uint8> pvSigBlob,
@@ -1085,7 +1087,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 td,
               Pointer<Utf16> szName,
               Pointer<Uint8> pvSigBlob,
@@ -1094,7 +1096,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 mb,
               Pointer<Uint32> pClass,
               Pointer<Utf16> szMethod,
@@ -1108,7 +1110,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 mr,
               Pointer<Uint32> ptk,
               Pointer<Utf16> szMember,
@@ -1119,7 +1121,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 td,
               Pointer<Uint32> rProperties,
@@ -1128,7 +1130,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 td,
               Pointer<Uint32> rEvents,
@@ -1137,7 +1139,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 ev,
               Pointer<Uint32> pClass,
               Pointer<Utf16> szEvent,
@@ -1154,7 +1156,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 mb,
               Pointer<Uint32> rEventProp,
@@ -1162,12 +1164,12 @@ base class IMetaDataImportVtbl extends Struct {
               Pointer<Uint32> pcEventProp)>> EnumMethodSemantics;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 mb, Uint32 tkEventProp,
+          Int32 Function(VTablePointer, Uint32 mb, Uint32 tkEventProp,
               Pointer<Uint32> pdwSemanticsFlags)>> GetMethodSemantics;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 td,
               Pointer<Uint32> pdwPackSize,
               Pointer<COR_FIELD_OFFSET> rFieldOffset,
@@ -1177,34 +1179,37 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 tk,
               Pointer<Pointer<Uint8>> ppvNativeType,
               Pointer<Uint32> pcbNativeType)>> GetFieldMarshal;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 tk, Pointer<Uint32> pulCodeRVA,
+          Int32 Function(VTablePointer, Uint32 tk, Pointer<Uint32> pulCodeRVA,
               Pointer<Uint32> pdwImplFlags)>> GetRVA;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 pm,
               Pointer<Uint32> pdwAction,
               Pointer<Pointer> ppvPermission,
               Pointer<Uint32> pcbPermission)>> GetPermissionSetProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 mdSig, Pointer<Pointer<Uint8>> ppvSig,
+          Int32 Function(
+              VTablePointer,
+              Uint32 mdSig,
+              Pointer<Pointer<Uint8>> ppvSig,
               Pointer<Uint32> pcbSig)>> GetSigFromToken;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 mur, Pointer<Utf16> szName,
+          Int32 Function(VTablePointer, Uint32 mur, Pointer<Utf16> szName,
               Uint32 cchName, Pointer<Uint32> pchName)>> GetModuleRefProps;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rModuleRefs,
               Uint32 cmax,
@@ -1212,31 +1217,30 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 typespec,
               Pointer<Pointer<Uint8>> ppvSig,
               Pointer<Uint32> pcbSig)>> GetTypeSpecFromToken;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Uint32 tk, Pointer<Pointer<Int8>> pszUtf8NamePtr)>>
-      GetNameFromToken;
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint32 tk,
+              Pointer<Pointer<Int8>> pszUtf8NamePtr)>> GetNameFromToken;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rMethods,
               Uint32 cMax,
               Pointer<Uint32> pcTokens)>> EnumUnresolvedMethods;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 stk, Pointer<Utf16> szString,
+          Int32 Function(VTablePointer, Uint32 stk, Pointer<Utf16> szString,
               Uint32 cchString, Pointer<Uint32> pchString)>> GetUserString;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 tk,
               Pointer<Uint32> pdwMappingFlags,
               Pointer<Utf16> szImportName,
@@ -1246,7 +1250,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rSignatures,
               Uint32 cmax,
@@ -1254,7 +1258,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rTypeSpecs,
               Uint32 cmax,
@@ -1262,20 +1266,19 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rStrings,
               Uint32 cmax,
               Pointer<Uint32> pcStrings)>> EnumUserStrings;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Uint32 md, Uint32 ulParamSeq, Pointer<Uint32> ppd)>>
-      GetParamForMethodIndex;
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint32 md, Uint32 ulParamSeq,
+              Pointer<Uint32> ppd)>> GetParamForMethodIndex;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Pointer> phEnum,
               Uint32 tk,
               Uint32 tkType,
@@ -1285,7 +1288,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 cv,
               Pointer<Uint32> ptkObj,
               Pointer<Uint32> ptkType,
@@ -1293,12 +1296,12 @@ base class IMetaDataImportVtbl extends Struct {
               Pointer<Uint32> pcbSize)>> GetCustomAttributeProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 tkResolutionScope,
+          Int32 Function(VTablePointer, Uint32 tkResolutionScope,
               Pointer<Utf16> szName, Pointer<Uint32> ptr_)>> FindTypeRef;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 mb,
               Pointer<Uint32> pClass,
               Pointer<Utf16> szMember,
@@ -1315,7 +1318,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 mb,
               Pointer<Uint32> pClass,
               Pointer<Utf16> szField,
@@ -1330,7 +1333,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 prop,
               Pointer<Uint32> pClass,
               Pointer<Utf16> szProperty,
@@ -1350,7 +1353,7 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 tk,
               Pointer<Uint32> pmd,
               Pointer<Uint32> pulSequence,
@@ -1364,23 +1367,23 @@ base class IMetaDataImportVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 tkObj,
               Pointer<Utf16> szName,
               Pointer<Pointer> ppData,
               Pointer<Uint32> pcbData)>> GetCustomAttributeByName;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 tk)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 tk)>>
       IsValidToken;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 tdNestedClass,
+          Int32 Function(VTablePointer, Uint32 tdNestedClass,
               Pointer<Uint32> ptdEnclosingClass)>> GetNestedClassProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer pvSig, Uint32 cbSig,
+          Int32 Function(VTablePointer, Pointer pvSig, Uint32 cbSig,
               Pointer<Uint32> pCallConv)>> GetNativeCallConvFromSig;
   external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Uint32 pd, Pointer<Int32> pbGlobal)>>
-      IsGlobal;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer, Uint32 pd, Pointer<Int32> pbGlobal)>> IsGlobal;
 }

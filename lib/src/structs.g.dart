@@ -16,8 +16,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import 'callbacks.dart';
-import 'combase.dart';
 import 'guid.dart';
+import 'types.dart';
 import 'variant.dart';
 
 /// Defines an accelerator key used in an accelerator table.
@@ -162,7 +162,7 @@ base class APPX_PACKAGE_SETTINGS extends Struct {
   @Int32()
   external int forceZip32;
 
-  external Pointer<COMObject> hashMethod;
+  external Pointer<VTablePointer> hashMethod;
 }
 
 /// Describes an array, its element type, and its dimension.

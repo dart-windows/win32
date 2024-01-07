@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +21,7 @@ const IID_IWbemConfigureRefresher = '{49353c92-516b-11d1-aea6-00c04fb68820}';
 class IWbemConfigureRefresher extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IWbemConfigureRefresher(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IWbemConfigureRefresherVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IWbemConfigureRefresherVtbl>().ref;
 
   final IWbemConfigureRefresherVtbl _vtable;
 
@@ -30,68 +30,71 @@ class IWbemConfigureRefresher extends IUnknown {
           interface.toInterface(IID_IWbemConfigureRefresher));
 
   int addObjectByPath(
-          Pointer<COMObject> pNamespace,
+          Pointer<VTablePointer> pNamespace,
           Pointer<Utf16> wszPath,
           int lFlags,
-          Pointer<COMObject> pContext,
-          Pointer<Pointer<COMObject>> ppRefreshable,
+          Pointer<VTablePointer> pContext,
+          Pointer<Pointer<VTablePointer>> ppRefreshable,
           Pointer<Int32> plId) =>
       _vtable.AddObjectByPath.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> pNamespace,
+                  VTablePointer,
+                  Pointer<VTablePointer> pNamespace,
                   Pointer<Utf16> wszPath,
                   int lFlags,
-                  Pointer<COMObject> pContext,
-                  Pointer<Pointer<COMObject>> ppRefreshable,
-                  Pointer<Int32> plId)>()(ptr.ref.lpVtbl, pNamespace, wszPath,
+                  Pointer<VTablePointer> pContext,
+                  Pointer<Pointer<VTablePointer>> ppRefreshable,
+                  Pointer<Int32> plId)>()(ptr.value, pNamespace, wszPath,
           lFlags, pContext, ppRefreshable, plId);
 
   int addObjectByTemplate(
-          Pointer<COMObject> pNamespace,
-          Pointer<COMObject> pTemplate,
+          Pointer<VTablePointer> pNamespace,
+          Pointer<VTablePointer> pTemplate,
           int lFlags,
-          Pointer<COMObject> pContext,
-          Pointer<Pointer<COMObject>> ppRefreshable,
+          Pointer<VTablePointer> pContext,
+          Pointer<Pointer<VTablePointer>> ppRefreshable,
           Pointer<Int32> plId) =>
       _vtable.AddObjectByTemplate.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> pNamespace,
-                  Pointer<COMObject> pTemplate,
+                  VTablePointer,
+                  Pointer<VTablePointer> pNamespace,
+                  Pointer<VTablePointer> pTemplate,
                   int lFlags,
-                  Pointer<COMObject> pContext,
-                  Pointer<Pointer<COMObject>> ppRefreshable,
-                  Pointer<Int32> plId)>()(ptr.ref.lpVtbl, pNamespace, pTemplate,
+                  Pointer<VTablePointer> pContext,
+                  Pointer<Pointer<VTablePointer>> ppRefreshable,
+                  Pointer<Int32> plId)>()(ptr.value, pNamespace, pTemplate,
           lFlags, pContext, ppRefreshable, plId);
 
   int addRefresher(
-          Pointer<COMObject> pRefresher, int lFlags, Pointer<Int32> plId) =>
+          Pointer<VTablePointer> pRefresher, int lFlags, Pointer<Int32> plId) =>
       _vtable.AddRefresher.asFunction<
-          int Function(Pointer, Pointer<COMObject> pRefresher, int lFlags,
-              Pointer<Int32> plId)>()(ptr.ref.lpVtbl, pRefresher, lFlags, plId);
+          int Function(
+              VTablePointer,
+              Pointer<VTablePointer> pRefresher,
+              int lFlags,
+              Pointer<Int32> plId)>()(ptr.value, pRefresher, lFlags, plId);
 
-  int remove(int lId, int lFlags) =>
-      _vtable.Remove.asFunction<int Function(Pointer, int lId, int lFlags)>()(
-          ptr.ref.lpVtbl, lId, lFlags);
+  int remove(int lId, int lFlags) => _vtable.Remove.asFunction<
+      int Function(
+          VTablePointer, int lId, int lFlags)>()(ptr.value, lId, lFlags);
 
   int addEnum(
-          Pointer<COMObject> pNamespace,
+          Pointer<VTablePointer> pNamespace,
           Pointer<Utf16> wszClassName,
           int lFlags,
-          Pointer<COMObject> pContext,
-          Pointer<Pointer<COMObject>> ppEnum,
+          Pointer<VTablePointer> pContext,
+          Pointer<Pointer<VTablePointer>> ppEnum,
           Pointer<Int32> plId) =>
       _vtable.AddEnum.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> pNamespace,
+                  VTablePointer,
+                  Pointer<VTablePointer> pNamespace,
                   Pointer<Utf16> wszClassName,
                   int lFlags,
-                  Pointer<COMObject> pContext,
-                  Pointer<Pointer<COMObject>> ppEnum,
-                  Pointer<Int32> plId)>()(ptr.ref.lpVtbl, pNamespace,
-          wszClassName, lFlags, pContext, ppEnum, plId);
+                  Pointer<VTablePointer> pContext,
+                  Pointer<Pointer<VTablePointer>> ppEnum,
+                  Pointer<Int32> plId)>()(
+          ptr.value, pNamespace, wszClassName, lFlags, pContext, ppEnum, plId);
 }
 
 /// @nodoc
@@ -100,37 +103,38 @@ base class IWbemConfigureRefresherVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
-              Pointer<COMObject> pNamespace,
+              VTablePointer,
+              Pointer<VTablePointer> pNamespace,
               Pointer<Utf16> wszPath,
               Int32 lFlags,
-              Pointer<COMObject> pContext,
-              Pointer<Pointer<COMObject>> ppRefreshable,
+              Pointer<VTablePointer> pContext,
+              Pointer<Pointer<VTablePointer>> ppRefreshable,
               Pointer<Int32> plId)>> AddObjectByPath;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
-              Pointer<COMObject> pNamespace,
-              Pointer<COMObject> pTemplate,
+              VTablePointer,
+              Pointer<VTablePointer> pNamespace,
+              Pointer<VTablePointer> pTemplate,
               Int32 lFlags,
-              Pointer<COMObject> pContext,
-              Pointer<Pointer<COMObject>> ppRefreshable,
+              Pointer<VTablePointer> pContext,
+              Pointer<Pointer<VTablePointer>> ppRefreshable,
               Pointer<Int32> plId)>> AddObjectByTemplate;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> pRefresher, Int32 lFlags,
-              Pointer<Int32> plId)>> AddRefresher;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pRefresher,
+              Int32 lFlags, Pointer<Int32> plId)>> AddRefresher;
   external Pointer<
-      NativeFunction<Int32 Function(Pointer, Int32 lId, Int32 lFlags)>> Remove;
+      NativeFunction<
+          Int32 Function(VTablePointer, Int32 lId, Int32 lFlags)>> Remove;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
-              Pointer<COMObject> pNamespace,
+              VTablePointer,
+              Pointer<VTablePointer> pNamespace,
               Pointer<Utf16> wszClassName,
               Int32 lFlags,
-              Pointer<COMObject> pContext,
-              Pointer<Pointer<COMObject>> ppEnum,
+              Pointer<VTablePointer> pContext,
+              Pointer<Pointer<VTablePointer>> ppEnum,
               Pointer<Int32> plId)>> AddEnum;
 }

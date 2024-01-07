@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iuiautomation.dart';
 import 'iunknown.dart';
@@ -25,7 +25,7 @@ const IID_IUIAutomation2 = '{34723aff-0c9d-49d0-9896-7ab52df8cd8a}';
 class IUIAutomation2 extends IUIAutomation {
   // vtable begins at 58, is 6 entries long.
   IUIAutomation2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomation2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomation2Vtbl>().ref;
 
   final IUIAutomation2Vtbl _vtable;
 
@@ -36,9 +36,9 @@ class IUIAutomation2 extends IUIAutomation {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_AutoSetFocus
-              .asFunction<int Function(Pointer, Pointer<Int32> autoSetFocus)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_AutoSetFocus.asFunction<
+              int Function(VTablePointer, Pointer<Int32> autoSetFocus)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -50,8 +50,8 @@ class IUIAutomation2 extends IUIAutomation {
 
   set autoSetFocus(int value) {
     final hr = _vtable.put_AutoSetFocus
-            .asFunction<int Function(Pointer, int autoSetFocus)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, int autoSetFocus)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -59,9 +59,9 @@ class IUIAutomation2 extends IUIAutomation {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_ConnectionTimeout
-              .asFunction<int Function(Pointer, Pointer<Uint32> timeout)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_ConnectionTimeout.asFunction<
+              int Function(VTablePointer, Pointer<Uint32> timeout)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,8 +73,8 @@ class IUIAutomation2 extends IUIAutomation {
 
   set connectionTimeout(int value) {
     final hr = _vtable.put_ConnectionTimeout
-            .asFunction<int Function(Pointer, int timeout)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, int timeout)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -82,9 +82,9 @@ class IUIAutomation2 extends IUIAutomation {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_TransactionTimeout
-              .asFunction<int Function(Pointer, Pointer<Uint32> timeout)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_TransactionTimeout.asFunction<
+              int Function(VTablePointer, Pointer<Uint32> timeout)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -96,8 +96,8 @@ class IUIAutomation2 extends IUIAutomation {
 
   set transactionTimeout(int value) {
     final hr = _vtable.put_TransactionTimeout
-            .asFunction<int Function(Pointer, int timeout)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, int timeout)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }
@@ -106,19 +106,25 @@ class IUIAutomation2 extends IUIAutomation {
 base class IUIAutomation2Vtbl extends Struct {
   external IUIAutomationVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> autoSetFocus)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int32> autoSetFocus)>>
       get_AutoSetFocus;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 autoSetFocus)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Int32 autoSetFocus)>>
       put_AutoSetFocus;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> timeout)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint32> timeout)>>
       get_ConnectionTimeout;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 timeout)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 timeout)>>
       put_ConnectionTimeout;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> timeout)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint32> timeout)>>
       get_TransactionTimeout;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 timeout)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Uint32 timeout)>>
       put_TransactionTimeout;
 }
 
@@ -129,6 +135,6 @@ const CLSID_CUIAutomation8 = '{e22ad333-b25f-460c-83d0-0581107395c9}';
 class CUIAutomation8 extends IUIAutomation2 {
   CUIAutomation8(super.ptr);
 
-  factory CUIAutomation8.createInstance() => CUIAutomation8(
-      COMObject.createFromID(CLSID_CUIAutomation8, IID_IUIAutomation2));
+  factory CUIAutomation8.createInstance() =>
+      CUIAutomation8(createCOMObject(CLSID_CUIAutomation8, IID_IUIAutomation2));
 }

@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'idispatch.dart';
 import 'iunknown.dart';
@@ -25,7 +25,7 @@ const IID_ISpeechObjectTokens = '{9285b776-2e7b-4bc0-b53e-580eb6fa967f}';
 class ISpeechObjectTokens extends IDispatch {
   // vtable begins at 7, is 3 entries long.
   ISpeechObjectTokens(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISpeechObjectTokensVtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISpeechObjectTokensVtbl>().ref;
 
   final ISpeechObjectTokensVtbl _vtable;
 
@@ -37,8 +37,8 @@ class ISpeechObjectTokens extends IDispatch {
 
     try {
       final hr = _vtable.get_Count
-              .asFunction<int Function(Pointer, Pointer<Int32> Count)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> Count)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -48,19 +48,18 @@ class ISpeechObjectTokens extends IDispatch {
     }
   }
 
-  int item(
-          int Index, Pointer<Pointer<COMObject>> Token) =>
+  int item(int Index, Pointer<Pointer<VTablePointer>> Token) =>
       _vtable.Item.asFunction<
-              int Function(
-                  Pointer, int Index, Pointer<Pointer<COMObject>> Token)>()(
-          ptr.ref.lpVtbl, Index, Token);
+              int Function(VTablePointer, int Index,
+                  Pointer<Pointer<VTablePointer>> Token)>()(
+          ptr.value, Index, Token);
 
-  Pointer<COMObject> get newEnum {
-    final retValuePtr = calloc<COMObject>();
+  Pointer<VTablePointer> get newEnum {
+    final retValuePtr = calloc<VTablePointer>();
 
     final hr = _vtable.get__NewEnum.asFunction<
-            int Function(Pointer, Pointer<COMObject> ppEnumVARIANT)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        int Function(VTablePointer,
+            Pointer<VTablePointer> ppEnumVARIANT)>()(ptr.value, retValuePtr);
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -74,13 +73,15 @@ class ISpeechObjectTokens extends IDispatch {
 base class ISpeechObjectTokensVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-      NativeFunction<Int32 Function(Pointer, Pointer<Int32> Count)>> get_Count;
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> Count)>>
+      get_Count;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              Pointer, Int32 Index, Pointer<Pointer<COMObject>> Token)>> Item;
+          Int32 Function(VTablePointer, Int32 Index,
+              Pointer<Pointer<VTablePointer>> Token)>> Item;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<COMObject> ppEnumVARIANT)>>
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> ppEnumVARIANT)>>
       get__NewEnum;
 }

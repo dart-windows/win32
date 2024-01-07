@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iunknown.dart';
 
@@ -24,7 +24,7 @@ const IID_IUIAutomationTextRangeArray =
 class IUIAutomationTextRangeArray extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IUIAutomationTextRangeArray(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextRangeArrayVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationTextRangeArrayVtbl>().ref;
 
   final IUIAutomationTextRangeArrayVtbl _vtable;
 
@@ -37,8 +37,8 @@ class IUIAutomationTextRangeArray extends IUnknown {
 
     try {
       final hr = _vtable.get_Length
-              .asFunction<int Function(Pointer, Pointer<Int32> length)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -48,22 +48,21 @@ class IUIAutomationTextRangeArray extends IUnknown {
     }
   }
 
-  int getElement(int index, Pointer<Pointer<COMObject>> element) =>
+  int getElement(int index, Pointer<Pointer<VTablePointer>> element) =>
       _vtable.GetElement.asFunction<
-              int Function(
-                  Pointer, int index, Pointer<Pointer<COMObject>> element)>()(
-          ptr.ref.lpVtbl, index, element);
+              int Function(VTablePointer, int index,
+                  Pointer<Pointer<VTablePointer>> element)>()(
+          ptr.value, index, element);
 }
 
 /// @nodoc
 base class IUIAutomationTextRangeArrayVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> length)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> length)>>
       get_Length;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Int32 index, Pointer<Pointer<COMObject>> element)>>
-      GetElement;
+      NativeFunction<
+          Int32 Function(VTablePointer, Int32 index,
+              Pointer<Pointer<VTablePointer>> element)>> GetElement;
 }

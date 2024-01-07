@@ -6,8 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +19,7 @@ const IID_IConnectionPoint = '{b196b286-bab4-101a-b69c-00aa00341d07}';
 class IConnectionPoint extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IConnectionPoint(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IConnectionPointVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IConnectionPointVtbl>().ref;
 
   final IConnectionPointVtbl _vtable;
 
@@ -28,46 +28,48 @@ class IConnectionPoint extends IUnknown {
 
   int getConnectionInterface(Pointer<GUID> pIID) =>
       _vtable.GetConnectionInterface.asFunction<
-          int Function(Pointer, Pointer<GUID> pIID)>()(ptr.ref.lpVtbl, pIID);
+          int Function(VTablePointer, Pointer<GUID> pIID)>()(ptr.value, pIID);
 
-  int getConnectionPointContainer(Pointer<Pointer<COMObject>> ppCPC) =>
+  int getConnectionPointContainer(Pointer<Pointer<VTablePointer>> ppCPC) =>
       _vtable.GetConnectionPointContainer.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppCPC)>()(
-          ptr.ref.lpVtbl, ppCPC);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppCPC)>()(ptr.value, ppCPC);
 
-  int advise(Pointer<COMObject> pUnkSink, Pointer<Uint32> pdwCookie) =>
+  int advise(Pointer<VTablePointer> pUnkSink, Pointer<Uint32> pdwCookie) =>
       _vtable.Advise.asFunction<
-              int Function(Pointer, Pointer<COMObject> pUnkSink,
-                  Pointer<Uint32> pdwCookie)>()(
-          ptr.ref.lpVtbl, pUnkSink, pdwCookie);
+          int Function(VTablePointer, Pointer<VTablePointer> pUnkSink,
+              Pointer<Uint32> pdwCookie)>()(ptr.value, pUnkSink, pdwCookie);
 
   int unadvise(int dwCookie) =>
-      _vtable.Unadvise.asFunction<int Function(Pointer, int dwCookie)>()(
-          ptr.ref.lpVtbl, dwCookie);
+      _vtable.Unadvise.asFunction<int Function(VTablePointer, int dwCookie)>()(
+          ptr.value, dwCookie);
 
-  int enumConnections(Pointer<Pointer<COMObject>> ppEnum) =>
+  int enumConnections(Pointer<Pointer<VTablePointer>> ppEnum) =>
       _vtable.EnumConnections.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>()(
-          ptr.ref.lpVtbl, ppEnum);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppEnum)>()(ptr.value, ppEnum);
 }
 
 /// @nodoc
 base class IConnectionPointVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<GUID> pIID)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pIID)>>
       GetConnectionInterface;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppCPC)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppCPC)>>
       GetConnectionPointContainer;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> pUnkSink,
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pUnkSink,
               Pointer<Uint32> pdwCookie)>> Advise;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 dwCookie)>>
-      Unadvise;
+  external Pointer<
+      NativeFunction<Int32 Function(VTablePointer, Uint32 dwCookie)>> Unadvise;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppEnum)>>
       EnumConnections;
 }

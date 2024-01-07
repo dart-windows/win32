@@ -73,6 +73,33 @@ Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
   }
 }
 
+/// Create an instance of a COM object using its class identifier, cast to the
+/// specified interface.
+///
+/// The caller is responsible for disposing of the memory of the returned
+/// object when it is no longer required. A FFI `Arena` may be passed as a
+/// custom allocator for ease of memory management.
+///
+/// {@category com}
+Pointer<VTablePointer> createCOMObject(
+  String clsid,
+  String iid, {
+  Allocator allocator = calloc,
+}) {
+  final rclsid = convertToCLSID(clsid);
+  final riid = convertToIID(iid);
+  final ppv = calloc<VTablePointer>();
+
+  try {
+    final hr = CoCreateInstance(rclsid, nullptr, CLSCTX_ALL, riid, ppv.cast());
+    if (FAILED(hr)) throw WindowsException(hr);
+    return ppv;
+  } finally {
+    free(riid);
+    free(rclsid);
+  }
+}
+
 /// Sets up a WinMain function with all the relevant information.
 ///
 /// Add the following line to your command line app:

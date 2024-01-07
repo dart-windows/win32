@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iunknown.dart';
 
@@ -25,7 +25,7 @@ const IID_IUIAutomationProxyFactory = '{85b94ecd-849d-42b6-b94d-d6db23fdf5a4}';
 class IUIAutomationProxyFactory extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IUIAutomationProxyFactory(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationProxyFactoryVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationProxyFactoryVtbl>().ref;
 
   final IUIAutomationProxyFactoryVtbl _vtable;
 
@@ -34,19 +34,19 @@ class IUIAutomationProxyFactory extends IUnknown {
           interface.toInterface(IID_IUIAutomationProxyFactory));
 
   int createProvider(int hwnd, int idObject, int idChild,
-          Pointer<Pointer<COMObject>> provider) =>
+          Pointer<Pointer<VTablePointer>> provider) =>
       _vtable.CreateProvider.asFunction<
-              int Function(Pointer, int hwnd, int idObject, int idChild,
-                  Pointer<Pointer<COMObject>> provider)>()(
-          ptr.ref.lpVtbl, hwnd, idObject, idChild, provider);
+              int Function(VTablePointer, int hwnd, int idObject, int idChild,
+                  Pointer<Pointer<VTablePointer>> provider)>()(
+          ptr.value, hwnd, idObject, idChild, provider);
 
   Pointer<Utf16> get proxyFactoryId {
     final retValuePtr = calloc<Pointer<Utf16>>();
 
     try {
       final hr = _vtable.get_ProxyFactoryId.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> factoryId)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> factoryId)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -62,10 +62,14 @@ base class IUIAutomationProxyFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, IntPtr hwnd, Int32 idObject, Int32 idChild,
-              Pointer<Pointer<COMObject>> provider)>> CreateProvider;
+          Int32 Function(
+              VTablePointer,
+              IntPtr hwnd,
+              Int32 idObject,
+              Int32 idChild,
+              Pointer<Pointer<VTablePointer>> provider)>> CreateProvider;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> factoryId)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> factoryId)>>
       get_ProxyFactoryId;
 }

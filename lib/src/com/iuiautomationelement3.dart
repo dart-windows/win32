@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement2.dart';
 import 'iunknown.dart';
@@ -23,7 +24,7 @@ const IID_IUIAutomationElement3 = '{8471df34-aee0-4a01-a7de-7db9af12c296}';
 class IUIAutomationElement3 extends IUIAutomationElement2 {
   // vtable begins at 91, is 3 entries long.
   IUIAutomationElement3(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement3Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationElement3Vtbl>().ref;
 
   final IUIAutomationElement3Vtbl _vtable;
 
@@ -31,16 +32,16 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
       IUIAutomationElement3(interface.toInterface(IID_IUIAutomationElement3));
 
   int showContextMenu() =>
-      _vtable.ShowContextMenu.asFunction<int Function(Pointer)>()(
-          ptr.ref.lpVtbl);
+      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(
+          ptr.value);
 
   int get currentIsPeripheral {
     final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_CurrentIsPeripheral
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -55,8 +56,8 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
 
     try {
       final hr = _vtable.get_CachedIsPeripheral
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,11 +71,12 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
 /// @nodoc
 base class IUIAutomationElement3Vtbl extends Struct {
   external IUIAutomationElement2Vtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> ShowContextMenu;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+      ShowContextMenu;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentIsPeripheral;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedIsPeripheral;
 }

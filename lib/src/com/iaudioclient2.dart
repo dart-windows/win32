@@ -7,6 +7,7 @@
 import 'dart:ffi';
 
 import '../structs.g.dart';
+import '../types.dart';
 import 'iaudioclient.dart';
 import 'iunknown.dart';
 
@@ -23,7 +24,7 @@ const IID_IAudioClient2 = '{726778cd-f60a-4eda-82de-e47610cd78aa}';
 class IAudioClient2 extends IAudioClient {
   // vtable begins at 15, is 3 entries long.
   IAudioClient2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAudioClient2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAudioClient2Vtbl>().ref;
 
   final IAudioClient2Vtbl _vtable;
 
@@ -32,15 +33,15 @@ class IAudioClient2 extends IAudioClient {
 
   int isOffloadCapable(int Category, Pointer<Int32> pbOffloadCapable) =>
       _vtable.IsOffloadCapable.asFunction<
-              int Function(
-                  Pointer, int Category, Pointer<Int32> pbOffloadCapable)>()(
-          ptr.ref.lpVtbl, Category, pbOffloadCapable);
+              int Function(VTablePointer, int Category,
+                  Pointer<Int32> pbOffloadCapable)>()(
+          ptr.value, Category, pbOffloadCapable);
 
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
       _vtable.SetClientProperties.asFunction<
               int Function(
-                  Pointer, Pointer<AudioClientProperties> pProperties)>()(
-          ptr.ref.lpVtbl, pProperties);
+                  VTablePointer, Pointer<AudioClientProperties> pProperties)>()(
+          ptr.value, pProperties);
 
   int getBufferSizeLimits(
           Pointer<WAVEFORMATEX> pFormat,
@@ -49,31 +50,30 @@ class IAudioClient2 extends IAudioClient {
           Pointer<Int64> phnsMaxBufferDuration) =>
       _vtable.GetBufferSizeLimits.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<WAVEFORMATEX> pFormat,
                   int bEventDriven,
                   Pointer<Int64> phnsMinBufferDuration,
-                  Pointer<Int64> phnsMaxBufferDuration)>()(ptr.ref.lpVtbl,
-          pFormat, bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
+                  Pointer<Int64> phnsMaxBufferDuration)>()(ptr.value, pFormat,
+          bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
 }
 
 /// @nodoc
 base class IAudioClient2Vtbl extends Struct {
   external IAudioClientVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Int32 Category, Pointer<Int32> pbOffloadCapable)>>
-      IsOffloadCapable;
+      NativeFunction<
+          Int32 Function(VTablePointer, Int32 Category,
+              Pointer<Int32> pbOffloadCapable)>> IsOffloadCapable;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<AudioClientProperties> pProperties)>>
+                  VTablePointer, Pointer<AudioClientProperties> pProperties)>>
       SetClientProperties;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<WAVEFORMATEX> pFormat,
               Int32 bEventDriven,
               Pointer<Int64> phnsMinBufferDuration,

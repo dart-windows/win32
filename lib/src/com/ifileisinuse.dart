@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -23,7 +24,7 @@ const IID_IFileIsInUse = '{64a1cbf0-3a1a-4461-9158-376969693950}';
 class IFileIsInUse extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IFileIsInUse(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IFileIsInUseVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IFileIsInUseVtbl>().ref;
 
   final IFileIsInUseVtbl _vtable;
 
@@ -33,24 +34,24 @@ class IFileIsInUse extends IUnknown {
   int getAppName(
           Pointer<Pointer<Utf16>> ppszName) =>
       _vtable.GetAppName.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> ppszName)>()(
-          ptr.ref.lpVtbl, ppszName);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> ppszName)>()(
+          ptr.value, ppszName);
 
-  int getUsage(Pointer<Int32> pfut) =>
-      _vtable.GetUsage.asFunction<int Function(Pointer, Pointer<Int32> pfut)>()(
-          ptr.ref.lpVtbl, pfut);
+  int getUsage(Pointer<Int32> pfut) => _vtable.GetUsage.asFunction<
+      int Function(VTablePointer, Pointer<Int32> pfut)>()(ptr.value, pfut);
 
-  int getCapabilities(Pointer<Uint32> pdwCapFlags) => _vtable.GetCapabilities
-          .asFunction<int Function(Pointer, Pointer<Uint32> pdwCapFlags)>()(
-      ptr.ref.lpVtbl, pdwCapFlags);
+  int getCapabilities(Pointer<Uint32> pdwCapFlags) =>
+      _vtable.GetCapabilities.asFunction<
+              int Function(VTablePointer, Pointer<Uint32> pdwCapFlags)>()(
+          ptr.value, pdwCapFlags);
 
   int getSwitchToHWND(Pointer<IntPtr> phwnd) =>
       _vtable.GetSwitchToHWND.asFunction<
           int Function(
-              Pointer, Pointer<IntPtr> phwnd)>()(ptr.ref.lpVtbl, phwnd);
+              VTablePointer, Pointer<IntPtr> phwnd)>()(ptr.value, phwnd);
 
   int closeFile() =>
-      _vtable.CloseFile.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.CloseFile.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
@@ -58,15 +59,17 @@ base class IFileIsInUseVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> ppszName)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> ppszName)>>
       GetAppName;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Int32> pfut)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> pfut)>>
       GetUsage;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pdwCapFlags)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint32> pdwCapFlags)>>
       GetCapabilities;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<IntPtr> phwnd)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<IntPtr> phwnd)>>
       GetSwitchToHWND;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> CloseFile;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> CloseFile;
 }

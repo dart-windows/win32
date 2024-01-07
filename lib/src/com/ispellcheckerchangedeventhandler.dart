@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +21,7 @@ class ISpellCheckerChangedEventHandler extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   ISpellCheckerChangedEventHandler(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<ISpellCheckerChangedEventHandlerVtbl>().ref;
+            ptr.value.value.cast<ISpellCheckerChangedEventHandlerVtbl>().ref;
 
   final ISpellCheckerChangedEventHandlerVtbl _vtable;
 
@@ -29,15 +29,15 @@ class ISpellCheckerChangedEventHandler extends IUnknown {
       ISpellCheckerChangedEventHandler(
           interface.toInterface(IID_ISpellCheckerChangedEventHandler));
 
-  int invoke(Pointer<COMObject> sender) => _vtable.Invoke.asFunction<
+  int invoke(Pointer<VTablePointer> sender) => _vtable.Invoke.asFunction<
       int Function(
-          Pointer, Pointer<COMObject> sender)>()(ptr.ref.lpVtbl, sender);
+          VTablePointer, Pointer<VTablePointer> sender)>()(ptr.value, sender);
 }
 
 /// @nodoc
 base class ISpellCheckerChangedEventHandlerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> sender)>>
-      Invoke;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<VTablePointer> sender)>> Invoke;
 }

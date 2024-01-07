@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'idispatch.dart';
 import 'iunknown.dart';
@@ -26,19 +26,19 @@ const IID_IEnumNetworks = '{dcb00003-570f-4a9b-8d69-199fdba5723b}';
 class IEnumNetworks extends IDispatch {
   // vtable begins at 7, is 5 entries long.
   IEnumNetworks(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IEnumNetworksVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IEnumNetworksVtbl>().ref;
 
   final IEnumNetworksVtbl _vtable;
 
   factory IEnumNetworks.from(IUnknown interface) =>
       IEnumNetworks(interface.toInterface(IID_IEnumNetworks));
 
-  Pointer<COMObject> get newEnum {
-    final retValuePtr = calloc<COMObject>();
+  Pointer<VTablePointer> get newEnum {
+    final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get__NewEnum
-            .asFunction<int Function(Pointer, Pointer<COMObject> ppEnumVar)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    final hr = _vtable.get__NewEnum.asFunction<
+            int Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>()(
+        ptr.value, retValuePtr);
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -47,44 +47,49 @@ class IEnumNetworks extends IDispatch {
     return retValuePtr;
   }
 
-  int next(int celt, Pointer<Pointer<COMObject>> rgelt,
+  int next(int celt, Pointer<Pointer<VTablePointer>> rgelt,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(Pointer, int celt, Pointer<Pointer<COMObject>> rgelt,
+              int Function(
+                  VTablePointer,
+                  int celt,
+                  Pointer<Pointer<VTablePointer>> rgelt,
                   Pointer<Uint32> pceltFetched)>()(
-          ptr.ref.lpVtbl, celt, rgelt, pceltFetched);
+          ptr.value, celt, rgelt, pceltFetched);
 
   int skip(int celt) =>
-      _vtable.Skip.asFunction<int Function(Pointer, int celt)>()(
-          ptr.ref.lpVtbl, celt);
+      _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
+          ptr.value, celt);
 
   int reset() =>
-      _vtable.Reset.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
 
-  int clone(Pointer<Pointer<COMObject>> ppEnumNetwork) =>
+  int clone(Pointer<Pointer<VTablePointer>> ppEnumNetwork) =>
       _vtable.Clone.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> ppEnumNetwork)>()(
-          ptr.ref.lpVtbl, ppEnumNetwork);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> ppEnumNetwork)>()(
+          ptr.value, ppEnumNetwork);
 }
 
 /// @nodoc
 base class IEnumNetworksVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> ppEnumVar)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>>
       get__NewEnum;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 celt,
-              Pointer<Pointer<COMObject>> rgelt,
+              Pointer<Pointer<VTablePointer>> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Reset;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
+      Skip;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              Pointer, Pointer<Pointer<COMObject>> ppEnumNetwork)>> Clone;
+          Int32 Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppEnumNetwork)>> Clone;
 }

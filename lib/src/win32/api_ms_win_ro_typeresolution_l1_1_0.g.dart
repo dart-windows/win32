@@ -14,9 +14,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 
 final _api_ms_win_ro_typeresolution_l1_1_0 =
@@ -37,9 +37,9 @@ final _api_ms_win_ro_typeresolution_l1_1_0 =
 /// {@category winrt}
 int RoGetMetaDataFile(
         int name,
-        Pointer<COMObject> metaDataDispenser,
+        Pointer<VTablePointer> metaDataDispenser,
         Pointer<IntPtr> metaDataFilePath,
-        Pointer<Pointer<COMObject>> metaDataImport,
+        Pointer<Pointer<VTablePointer>> metaDataImport,
         Pointer<Uint32> typeDefToken) =>
     _RoGetMetaDataFile(name, metaDataDispenser, metaDataFilePath,
         metaDataImport, typeDefToken);
@@ -47,13 +47,13 @@ int RoGetMetaDataFile(
 final _RoGetMetaDataFile = _api_ms_win_ro_typeresolution_l1_1_0.lookupFunction<
     Int32 Function(
         IntPtr name,
-        Pointer<COMObject> metaDataDispenser,
+        Pointer<VTablePointer> metaDataDispenser,
         Pointer<IntPtr> metaDataFilePath,
-        Pointer<Pointer<COMObject>> metaDataImport,
+        Pointer<Pointer<VTablePointer>> metaDataImport,
         Pointer<Uint32> typeDefToken),
     int Function(
         int name,
-        Pointer<COMObject> metaDataDispenser,
+        Pointer<VTablePointer> metaDataDispenser,
         Pointer<IntPtr> metaDataFilePath,
-        Pointer<Pointer<COMObject>> metaDataImport,
+        Pointer<Pointer<VTablePointer>> metaDataImport,
         Pointer<Uint32> typeDefToken)>('RoGetMetaDataFile');

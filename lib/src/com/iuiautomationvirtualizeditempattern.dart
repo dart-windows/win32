@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ class IUIAutomationVirtualizedItemPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationVirtualizedItemPattern(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<IUIAutomationVirtualizedItemPatternVtbl>().ref;
+            ptr.value.value.cast<IUIAutomationVirtualizedItemPatternVtbl>().ref;
 
   final IUIAutomationVirtualizedItemPatternVtbl _vtable;
 
@@ -29,11 +30,11 @@ class IUIAutomationVirtualizedItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationVirtualizedItemPattern));
 
   int realize() =>
-      _vtable.Realize.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Realize.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
 base class IUIAutomationVirtualizedItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Realize;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Realize;
 }

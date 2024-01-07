@@ -8,7 +8,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -23,7 +24,7 @@ const IID_IApplicationActivationManager =
 class IApplicationActivationManager extends IUnknown {
   // vtable begins at 3, is 3 entries long.
   IApplicationActivationManager(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IApplicationActivationManagerVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IApplicationActivationManagerVtbl>().ref;
 
   final IApplicationActivationManagerVtbl _vtable;
 
@@ -35,33 +36,36 @@ class IApplicationActivationManager extends IUnknown {
           Pointer<Utf16> arguments, int options, Pointer<Uint32> processId) =>
       _vtable.ActivateApplication.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Utf16> appUserModelId,
                   Pointer<Utf16> arguments,
                   int options,
                   Pointer<Uint32> processId)>()(
-          ptr.ref.lpVtbl, appUserModelId, arguments, options, processId);
+          ptr.value, appUserModelId, arguments, options, processId);
 
   int activateForFile(
           Pointer<Utf16> appUserModelId,
-          Pointer<COMObject> itemArray,
+          Pointer<VTablePointer> itemArray,
           Pointer<Utf16> verb,
           Pointer<Uint32> processId) =>
       _vtable.ActivateForFile.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Utf16> appUserModelId,
-                  Pointer<COMObject> itemArray,
+                  Pointer<VTablePointer> itemArray,
                   Pointer<Utf16> verb,
                   Pointer<Uint32> processId)>()(
-          ptr.ref.lpVtbl, appUserModelId, itemArray, verb, processId);
+          ptr.value, appUserModelId, itemArray, verb, processId);
 
   int activateForProtocol(Pointer<Utf16> appUserModelId,
-          Pointer<COMObject> itemArray, Pointer<Uint32> processId) =>
+          Pointer<VTablePointer> itemArray, Pointer<Uint32> processId) =>
       _vtable.ActivateForProtocol.asFunction<
-              int Function(Pointer, Pointer<Utf16> appUserModelId,
-                  Pointer<COMObject> itemArray, Pointer<Uint32> processId)>()(
-          ptr.ref.lpVtbl, appUserModelId, itemArray, processId);
+              int Function(
+                  VTablePointer,
+                  Pointer<Utf16> appUserModelId,
+                  Pointer<VTablePointer> itemArray,
+                  Pointer<Uint32> processId)>()(
+          ptr.value, appUserModelId, itemArray, processId);
 }
 
 /// @nodoc
@@ -70,7 +74,7 @@ base class IApplicationActivationManagerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Utf16> appUserModelId,
               Pointer<Utf16> arguments,
               Int32 options,
@@ -78,17 +82,17 @@ base class IApplicationActivationManagerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Utf16> appUserModelId,
-              Pointer<COMObject> itemArray,
+              Pointer<VTablePointer> itemArray,
               Pointer<Utf16> verb,
               Pointer<Uint32> processId)>> ActivateForFile;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Utf16> appUserModelId,
-              Pointer<COMObject> itemArray,
+              Pointer<VTablePointer> itemArray,
               Pointer<Uint32> processId)>> ActivateForProtocol;
 }
 
@@ -101,7 +105,7 @@ class ApplicationActivationManager extends IApplicationActivationManager {
   ApplicationActivationManager(super.ptr);
 
   factory ApplicationActivationManager.createInstance() =>
-      ApplicationActivationManager(COMObject.createFromID(
+      ApplicationActivationManager(createCOMObject(
           CLSID_ApplicationActivationManager,
           IID_IApplicationActivationManager));
 }

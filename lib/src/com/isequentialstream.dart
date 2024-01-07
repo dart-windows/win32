@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +20,7 @@ const IID_ISequentialStream = '{0c733a30-2a1c-11ce-ade5-00aa0044773d}';
 class ISequentialStream extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   ISequentialStream(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISequentialStreamVtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISequentialStreamVtbl>().ref;
 
   final ISequentialStreamVtbl _vtable;
 
@@ -28,14 +29,13 @@ class ISequentialStream extends IUnknown {
 
   int read(Pointer pv, int cb, Pointer<Uint32> pcbRead) =>
       _vtable.Read.asFunction<
-          int Function(Pointer, Pointer pv, int cb,
-              Pointer<Uint32> pcbRead)>()(ptr.ref.lpVtbl, pv, cb, pcbRead);
+          int Function(VTablePointer, Pointer pv, int cb,
+              Pointer<Uint32> pcbRead)>()(ptr.value, pv, cb, pcbRead);
 
   int write(Pointer pv, int cb, Pointer<Uint32> pcbWritten) =>
       _vtable.Write.asFunction<
-              int Function(
-                  Pointer, Pointer pv, int cb, Pointer<Uint32> pcbWritten)>()(
-          ptr.ref.lpVtbl, pv, cb, pcbWritten);
+          int Function(VTablePointer, Pointer pv, int cb,
+              Pointer<Uint32> pcbWritten)>()(ptr.value, pv, cb, pcbWritten);
 }
 
 /// @nodoc
@@ -43,11 +43,10 @@ base class ISequentialStreamVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              Pointer, Pointer pv, Uint32 cb, Pointer<Uint32> pcbRead)>> Read;
+          Int32 Function(VTablePointer, Pointer pv, Uint32 cb,
+              Pointer<Uint32> pcbRead)>> Read;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer pv, Uint32 cb, Pointer<Uint32> pcbWritten)>>
-      Write;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer pv, Uint32 cb,
+              Pointer<Uint32> pcbWritten)>> Write;
 }

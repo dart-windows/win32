@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import '../variant.dart';
 import 'iuiautomationelement6.dart';
 import 'iunknown.dart';
@@ -20,7 +20,7 @@ const IID_IUIAutomationElement7 = '{204e8572-cfc3-4c11-b0c8-7da7420750b7}';
 class IUIAutomationElement7 extends IUIAutomationElement6 {
   // vtable begins at 110, is 5 entries long.
   IUIAutomationElement7(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement7Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationElement7Vtbl>().ref;
 
   final IUIAutomationElement7Vtbl _vtable;
 
@@ -29,78 +29,78 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
 
   int findFirstWithOptions(
           int scope,
-          Pointer<COMObject> condition,
+          Pointer<VTablePointer> condition,
           int traversalOptions,
-          Pointer<COMObject> root,
-          Pointer<Pointer<COMObject>> found) =>
+          Pointer<VTablePointer> root,
+          Pointer<Pointer<VTablePointer>> found) =>
       _vtable.FindFirstWithOptions.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int scope,
-                  Pointer<COMObject> condition,
+                  Pointer<VTablePointer> condition,
                   int traversalOptions,
-                  Pointer<COMObject> root,
-                  Pointer<Pointer<COMObject>> found)>()(
-          ptr.ref.lpVtbl, scope, condition, traversalOptions, root, found);
+                  Pointer<VTablePointer> root,
+                  Pointer<Pointer<VTablePointer>> found)>()(
+          ptr.value, scope, condition, traversalOptions, root, found);
 
   int findAllWithOptions(
           int scope,
-          Pointer<COMObject> condition,
+          Pointer<VTablePointer> condition,
           int traversalOptions,
-          Pointer<COMObject> root,
-          Pointer<Pointer<COMObject>> found) =>
+          Pointer<VTablePointer> root,
+          Pointer<Pointer<VTablePointer>> found) =>
       _vtable.FindAllWithOptions.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int scope,
-                  Pointer<COMObject> condition,
+                  Pointer<VTablePointer> condition,
                   int traversalOptions,
-                  Pointer<COMObject> root,
-                  Pointer<Pointer<COMObject>> found)>()(
-          ptr.ref.lpVtbl, scope, condition, traversalOptions, root, found);
+                  Pointer<VTablePointer> root,
+                  Pointer<Pointer<VTablePointer>> found)>()(
+          ptr.value, scope, condition, traversalOptions, root, found);
 
   int findFirstWithOptionsBuildCache(
           int scope,
-          Pointer<COMObject> condition,
-          Pointer<COMObject> cacheRequest,
+          Pointer<VTablePointer> condition,
+          Pointer<VTablePointer> cacheRequest,
           int traversalOptions,
-          Pointer<COMObject> root,
-          Pointer<Pointer<COMObject>> found) =>
+          Pointer<VTablePointer> root,
+          Pointer<Pointer<VTablePointer>> found) =>
       _vtable.FindFirstWithOptionsBuildCache.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int scope,
-                  Pointer<COMObject> condition,
-                  Pointer<COMObject> cacheRequest,
+                  Pointer<VTablePointer> condition,
+                  Pointer<VTablePointer> cacheRequest,
                   int traversalOptions,
-                  Pointer<COMObject> root,
-                  Pointer<Pointer<COMObject>> found)>()(ptr.ref.lpVtbl, scope,
+                  Pointer<VTablePointer> root,
+                  Pointer<Pointer<VTablePointer>> found)>()(ptr.value, scope,
           condition, cacheRequest, traversalOptions, root, found);
 
   int findAllWithOptionsBuildCache(
           int scope,
-          Pointer<COMObject> condition,
-          Pointer<COMObject> cacheRequest,
+          Pointer<VTablePointer> condition,
+          Pointer<VTablePointer> cacheRequest,
           int traversalOptions,
-          Pointer<COMObject> root,
-          Pointer<Pointer<COMObject>> found) =>
+          Pointer<VTablePointer> root,
+          Pointer<Pointer<VTablePointer>> found) =>
       _vtable.FindAllWithOptionsBuildCache.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int scope,
-                  Pointer<COMObject> condition,
-                  Pointer<COMObject> cacheRequest,
+                  Pointer<VTablePointer> condition,
+                  Pointer<VTablePointer> cacheRequest,
                   int traversalOptions,
-                  Pointer<COMObject> root,
-                  Pointer<Pointer<COMObject>> found)>()(ptr.ref.lpVtbl, scope,
+                  Pointer<VTablePointer> root,
+                  Pointer<Pointer<VTablePointer>> found)>()(ptr.value, scope,
           condition, cacheRequest, traversalOptions, root, found);
 
   int getCurrentMetadataValue(
           int targetId, int metadataId, Pointer<VARIANT> returnVal) =>
       _vtable.GetCurrentMetadataValue.asFunction<
-              int Function(Pointer, int targetId, int metadataId,
+              int Function(VTablePointer, int targetId, int metadataId,
                   Pointer<VARIANT> returnVal)>()(
-          ptr.ref.lpVtbl, targetId, metadataId, returnVal);
+          ptr.value, targetId, metadataId, returnVal);
 }
 
 /// @nodoc
@@ -109,44 +109,45 @@ base class IUIAutomationElement7Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Int32 scope,
-              Pointer<COMObject> condition,
+              Pointer<VTablePointer> condition,
               Int32 traversalOptions,
-              Pointer<COMObject> root,
-              Pointer<Pointer<COMObject>> found)>> FindFirstWithOptions;
+              Pointer<VTablePointer> root,
+              Pointer<Pointer<VTablePointer>> found)>> FindFirstWithOptions;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Int32 scope,
-              Pointer<COMObject> condition,
+              Pointer<VTablePointer> condition,
               Int32 traversalOptions,
-              Pointer<COMObject> root,
-              Pointer<Pointer<COMObject>> found)>> FindAllWithOptions;
+              Pointer<VTablePointer> root,
+              Pointer<Pointer<VTablePointer>> found)>> FindAllWithOptions;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer,
+                  VTablePointer,
                   Int32 scope,
-                  Pointer<COMObject> condition,
-                  Pointer<COMObject> cacheRequest,
+                  Pointer<VTablePointer> condition,
+                  Pointer<VTablePointer> cacheRequest,
                   Int32 traversalOptions,
-                  Pointer<COMObject> root,
-                  Pointer<Pointer<COMObject>> found)>>
+                  Pointer<VTablePointer> root,
+                  Pointer<Pointer<VTablePointer>> found)>>
       FindFirstWithOptionsBuildCache;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              Pointer,
-              Int32 scope,
-              Pointer<COMObject> condition,
-              Pointer<COMObject> cacheRequest,
-              Int32 traversalOptions,
-              Pointer<COMObject> root,
-              Pointer<Pointer<COMObject>> found)>> FindAllWithOptionsBuildCache;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer,
+                  Int32 scope,
+                  Pointer<VTablePointer> condition,
+                  Pointer<VTablePointer> cacheRequest,
+                  Int32 traversalOptions,
+                  Pointer<VTablePointer> root,
+                  Pointer<Pointer<VTablePointer>> found)>>
+      FindAllWithOptionsBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 targetId, Uint32 metadataId,
+          Int32 Function(VTablePointer, Int32 targetId, Uint32 metadataId,
               Pointer<VARIANT> returnVal)>> GetCurrentMetadataValue;
 }

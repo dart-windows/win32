@@ -80,7 +80,7 @@ class ComInterfaceProjection {
 
   String? getImportForTypeDef(TypeDef typeDef) => switch (typeDef) {
         _ when typeDef.isDelegate => '../callbacks.dart',
-        _ when typeDef.isInterface => '../combase.dart',
+        _ when typeDef.isInterface => '../types.dart',
         _ when typeDef.isStruct && specialTypes.containsKey(typeDef.name) =>
           'package:ffi/ffi.dart',
 
@@ -142,13 +142,15 @@ class ComInterfaceProjection {
   }
 
   Set<String> get extraImports => {
-        // If a COM class will be generated for this interface, `combase.dart`
-        // needs to be imported to gain access to the `COMObject.createFromID`
-        // method from the generated COM class.
+        // If a COM class will be generated for this interface, `utils.dart`
+        // needs to be imported to gain access to the `createCOMObject` function
+        // from the generated COM class.
         if (MetadataStore.getMetadataForType(
                 ComClassProjection.generateClassName(typeDef)) !=
             null)
-          '../combase.dart',
+          '../utils.dart',
+
+        if (hasMethods) '../types.dart',
 
         // COM getters need these imports to allocate memory, do `FAILED` check,
         // and free memory.
@@ -201,9 +203,9 @@ factory $shortName.from(IUnknown interface) =>
   bool get hasMethods => typeDef.methods.isNotEmpty;
 
   String get constructor => inheritsFrom.isEmpty
-      ? '$shortName(this.ptr);\n\nPointer<COMObject> ptr;'
+      ? '$shortName(this.ptr);\n\nfinal Pointer<VTablePointer> ptr;'
       : hasMethods
-          ? '$shortName(super.ptr) : _vtable = ptr.ref.vtable.cast<${shortName}Vtbl>().ref;'
+          ? '$shortName(super.ptr) : _vtable = ptr.value.value.cast<${shortName}Vtbl>().ref;'
           : '$shortName(super.ptr);';
 
   String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';

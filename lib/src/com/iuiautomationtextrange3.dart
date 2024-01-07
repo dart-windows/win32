@@ -6,8 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import 'iuiautomationtextrange2.dart';
 import 'iunknown.dart';
 
@@ -21,7 +21,7 @@ const IID_IUIAutomationTextRange3 = '{6a315d69-5512-4c2e-85f0-53fce6dd4bc2}';
 class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
   // vtable begins at 22, is 3 entries long.
   IUIAutomationTextRange3(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextRange3Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationTextRange3Vtbl>().ref;
 
   final IUIAutomationTextRange3Vtbl _vtable;
 
@@ -29,29 +29,29 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
       IUIAutomationTextRange3(
           interface.toInterface(IID_IUIAutomationTextRange3));
 
-  int getEnclosingElementBuildCache(Pointer<COMObject> cacheRequest,
-          Pointer<Pointer<COMObject>> enclosingElement) =>
+  int getEnclosingElementBuildCache(Pointer<VTablePointer> cacheRequest,
+          Pointer<Pointer<VTablePointer>> enclosingElement) =>
       _vtable.GetEnclosingElementBuildCache.asFunction<
-              int Function(Pointer, Pointer<COMObject> cacheRequest,
-                  Pointer<Pointer<COMObject>> enclosingElement)>()(
-          ptr.ref.lpVtbl, cacheRequest, enclosingElement);
+              int Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
+                  Pointer<Pointer<VTablePointer>> enclosingElement)>()(
+          ptr.value, cacheRequest, enclosingElement);
 
-  int getChildrenBuildCache(Pointer<COMObject> cacheRequest,
-          Pointer<Pointer<COMObject>> children) =>
+  int getChildrenBuildCache(Pointer<VTablePointer> cacheRequest,
+          Pointer<Pointer<VTablePointer>> children) =>
       _vtable.GetChildrenBuildCache.asFunction<
-              int Function(Pointer, Pointer<COMObject> cacheRequest,
-                  Pointer<Pointer<COMObject>> children)>()(
-          ptr.ref.lpVtbl, cacheRequest, children);
+              int Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
+                  Pointer<Pointer<VTablePointer>> children)>()(
+          ptr.value, cacheRequest, children);
 
   int getAttributeValues(Pointer<Uint32> attributeIds, int attributeIdCount,
           Pointer<Pointer<SAFEARRAY>> attributeValues) =>
       _vtable.GetAttributeValues.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<Uint32> attributeIds,
                   int attributeIdCount,
                   Pointer<Pointer<SAFEARRAY>> attributeValues)>()(
-          ptr.ref.lpVtbl, attributeIds, attributeIdCount, attributeValues);
+          ptr.value, attributeIds, attributeIdCount, attributeValues);
 }
 
 /// @nodoc
@@ -59,17 +59,17 @@ base class IUIAutomationTextRange3Vtbl extends Struct {
   external IUIAutomationTextRange2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<COMObject> cacheRequest,
-                  Pointer<Pointer<COMObject>> enclosingElement)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
+                  Pointer<Pointer<VTablePointer>> enclosingElement)>>
       GetEnclosingElementBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> cacheRequest,
-              Pointer<Pointer<COMObject>> children)>> GetChildrenBuildCache;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
+              Pointer<Pointer<VTablePointer>> children)>> GetChildrenBuildCache;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<Uint32> attributeIds,
               Int32 attributeIdCount,
               Pointer<Pointer<SAFEARRAY>> attributeValues)>> GetAttributeValues;

@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iuiautomationtextpattern.dart';
 import 'iunknown.dart';
 
@@ -19,7 +19,7 @@ const IID_IUIAutomationTextPattern2 = '{506a921a-fcc9-409f-b23b-37eb74106872}';
 class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
   // vtable begins at 9, is 2 entries long.
   IUIAutomationTextPattern2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextPattern2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationTextPattern2Vtbl>().ref;
 
   final IUIAutomationTextPattern2Vtbl _vtable;
 
@@ -27,19 +27,19 @@ class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
       IUIAutomationTextPattern2(
           interface.toInterface(IID_IUIAutomationTextPattern2));
 
-  int rangeFromAnnotation(
-          Pointer<COMObject> annotation, Pointer<Pointer<COMObject>> range) =>
+  int rangeFromAnnotation(Pointer<VTablePointer> annotation,
+          Pointer<Pointer<VTablePointer>> range) =>
       _vtable.RangeFromAnnotation.asFunction<
-              int Function(Pointer, Pointer<COMObject> annotation,
-                  Pointer<Pointer<COMObject>> range)>()(
-          ptr.ref.lpVtbl, annotation, range);
+              int Function(VTablePointer, Pointer<VTablePointer> annotation,
+                  Pointer<Pointer<VTablePointer>> range)>()(
+          ptr.value, annotation, range);
 
   int getCaretRange(
-          Pointer<Int32> isActive, Pointer<Pointer<COMObject>> range) =>
+          Pointer<Int32> isActive, Pointer<Pointer<VTablePointer>> range) =>
       _vtable.GetCaretRange.asFunction<
-              int Function(Pointer, Pointer<Int32> isActive,
-                  Pointer<Pointer<COMObject>> range)>()(
-          ptr.ref.lpVtbl, isActive, range);
+              int Function(VTablePointer, Pointer<Int32> isActive,
+                  Pointer<Pointer<VTablePointer>> range)>()(
+          ptr.value, isActive, range);
 }
 
 /// @nodoc
@@ -47,10 +47,10 @@ base class IUIAutomationTextPattern2Vtbl extends Struct {
   external IUIAutomationTextPatternVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> annotation,
-              Pointer<Pointer<COMObject>> range)>> RangeFromAnnotation;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> annotation,
+              Pointer<Pointer<VTablePointer>> range)>> RangeFromAnnotation;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<Int32> isActive,
-              Pointer<Pointer<COMObject>> range)>> GetCaretRange;
+          Int32 Function(VTablePointer, Pointer<Int32> isActive,
+              Pointer<Pointer<VTablePointer>> range)>> GetCaretRange;
 }

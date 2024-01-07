@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'imetadatatables.dart';
 import 'iunknown.dart';
 
@@ -19,7 +20,7 @@ const IID_IMetaDataTables2 = '{badb5f70-58da-43a9-a1c6-d74819f19b15}';
 class IMetaDataTables2 extends IMetaDataTables {
   // vtable begins at 22, is 2 entries long.
   IMetaDataTables2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IMetaDataTables2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IMetaDataTables2Vtbl>().ref;
 
   final IMetaDataTables2Vtbl _vtable;
 
@@ -28,32 +29,31 @@ class IMetaDataTables2 extends IMetaDataTables {
 
   int getMetaDataStorage(Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd) =>
       _vtable.GetMetaDataStorage.asFunction<
-          int Function(Pointer, Pointer<Pointer> ppvMd,
-              Pointer<Uint32> pcbMd)>()(ptr.ref.lpVtbl, ppvMd, pcbMd);
+          int Function(VTablePointer, Pointer<Pointer> ppvMd,
+              Pointer<Uint32> pcbMd)>()(ptr.value, ppvMd, pcbMd);
 
   int getMetaDataStreamInfo(int ix, Pointer<Pointer<Int8>> ppchName,
           Pointer<Pointer> ppv, Pointer<Uint32> pcb) =>
       _vtable.GetMetaDataStreamInfo.asFunction<
           int Function(
-              Pointer,
+              VTablePointer,
               int ix,
               Pointer<Pointer<Int8>> ppchName,
               Pointer<Pointer> ppv,
-              Pointer<Uint32> pcb)>()(ptr.ref.lpVtbl, ix, ppchName, ppv, pcb);
+              Pointer<Uint32> pcb)>()(ptr.value, ix, ppchName, ppv, pcb);
 }
 
 /// @nodoc
 base class IMetaDataTables2Vtbl extends Struct {
   external IMetaDataTablesVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd)>>
-      GetMetaDataStorage;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Pointer> ppvMd,
+              Pointer<Uint32> pcbMd)>> GetMetaDataStorage;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Uint32 ix,
               Pointer<Pointer<Int8>> ppchName,
               Pointer<Pointer> ppv,

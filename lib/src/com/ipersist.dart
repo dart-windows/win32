@@ -7,6 +7,7 @@
 import 'dart:ffi';
 
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_IPersist = '{0000010c-0000-0000-c000-000000000046}';
 /// {@category com}
 class IPersist extends IUnknown {
   // vtable begins at 3, is 1 entries long.
-  IPersist(super.ptr) : _vtable = ptr.ref.vtable.cast<IPersistVtbl>().ref;
+  IPersist(super.ptr) : _vtable = ptr.value.value.cast<IPersistVtbl>().ref;
 
   final IPersistVtbl _vtable;
 
@@ -29,13 +30,13 @@ class IPersist extends IUnknown {
 
   int getClassID(Pointer<GUID> pClassID) => _vtable.GetClassID.asFunction<
       int Function(
-          Pointer, Pointer<GUID> pClassID)>()(ptr.ref.lpVtbl, pClassID);
+          VTablePointer, Pointer<GUID> pClassID)>()(ptr.value, pClassID);
 }
 
 /// @nodoc
 base class IPersistVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<GUID> pClassID)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pClassID)>>
       GetClassID;
 }

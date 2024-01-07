@@ -75,7 +75,7 @@ String getDesktopPath2() {
 /// Get the path for a known Winodws folder, using the COM API
 String getDesktopPath3() {
   final appsFolder = GUIDFromString(FOLDERID_Desktop);
-  final ppkf = calloc<COMObject>();
+  final ppkf = calloc<VTablePointer>();
   final ppszPath = calloc<LPWSTR>();
 
   CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);

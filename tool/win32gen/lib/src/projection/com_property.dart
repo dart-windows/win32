@@ -18,7 +18,7 @@ abstract class ComPropertyProjection extends ComMethodProjection {
     bool freeRetValOnFailure = false,
   }) =>
       [
-        'final hr = _vtable.$name.asFunction<$dartPrototype>()(ptr.ref.lpVtbl, $identifier);',
+        'final hr = _vtable.$name.asFunction<$dartPrototype>()(ptr.value, $identifier);',
         if (freeRetValOnFailure)
           'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
         else
@@ -34,10 +34,10 @@ class ComGetPropertyProjection extends ComPropertyProjection {
   @override
   String toString() {
     final returnValue = dereference(parameters.first.type);
-    if (returnValue.dartType == 'Pointer<COMObject>') {
+    if (returnValue.dartType == 'Pointer<VTablePointer>') {
       return '''
         ${returnValue.dartType} get $exposedMethodName {
-          final retValuePtr = calloc<COMObject>();
+          final retValuePtr = calloc<VTablePointer>();
 
           ${ffiCall(identifier: 'retValuePtr', freeRetValOnFailure: true)}
 

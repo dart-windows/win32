@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -18,7 +19,7 @@ const IID_IUIAutomationSynchronizedInputPattern =
 class IUIAutomationSynchronizedInputPattern extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IUIAutomationSynchronizedInputPattern(super.ptr)
-      : _vtable = ptr.ref.vtable
+      : _vtable = ptr.value.value
             .cast<IUIAutomationSynchronizedInputPatternVtbl>()
             .ref;
 
@@ -28,18 +29,18 @@ class IUIAutomationSynchronizedInputPattern extends IUnknown {
       IUIAutomationSynchronizedInputPattern(
           interface.toInterface(IID_IUIAutomationSynchronizedInputPattern));
 
-  int startListening(int inputType) =>
-      _vtable.StartListening.asFunction<int Function(Pointer, int inputType)>()(
-          ptr.ref.lpVtbl, inputType);
+  int startListening(int inputType) => _vtable.StartListening.asFunction<
+      int Function(VTablePointer, int inputType)>()(ptr.value, inputType);
 
   int cancel() =>
-      _vtable.Cancel.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Cancel.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
 base class IUIAutomationSynchronizedInputPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 inputType)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Int32 inputType)>>
       StartListening;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Cancel;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Cancel;
 }

@@ -6,8 +6,9 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../guid.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_IVirtualDesktopManager = '{a5cd92ff-29be-454c-8d04-d82879fb3f1b}';
 class IVirtualDesktopManager extends IUnknown {
   // vtable begins at 3, is 3 entries long.
   IVirtualDesktopManager(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IVirtualDesktopManagerVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IVirtualDesktopManagerVtbl>().ref;
 
   final IVirtualDesktopManagerVtbl _vtable;
 
@@ -30,21 +31,19 @@ class IVirtualDesktopManager extends IUnknown {
   int isWindowOnCurrentVirtualDesktop(
           int topLevelWindow, Pointer<Int32> onCurrentDesktop) =>
       _vtable.IsWindowOnCurrentVirtualDesktop.asFunction<
-              int Function(Pointer, int topLevelWindow,
+              int Function(VTablePointer, int topLevelWindow,
                   Pointer<Int32> onCurrentDesktop)>()(
-          ptr.ref.lpVtbl, topLevelWindow, onCurrentDesktop);
+          ptr.value, topLevelWindow, onCurrentDesktop);
 
   int getWindowDesktopId(int topLevelWindow, Pointer<GUID> desktopId) =>
       _vtable.GetWindowDesktopId.asFunction<
-              int Function(
-                  Pointer, int topLevelWindow, Pointer<GUID> desktopId)>()(
-          ptr.ref.lpVtbl, topLevelWindow, desktopId);
+          int Function(VTablePointer, int topLevelWindow,
+              Pointer<GUID> desktopId)>()(ptr.value, topLevelWindow, desktopId);
 
   int moveWindowToDesktop(int topLevelWindow, Pointer<GUID> desktopId) =>
       _vtable.MoveWindowToDesktop.asFunction<
-              int Function(
-                  Pointer, int topLevelWindow, Pointer<GUID> desktopId)>()(
-          ptr.ref.lpVtbl, topLevelWindow, desktopId);
+          int Function(VTablePointer, int topLevelWindow,
+              Pointer<GUID> desktopId)>()(ptr.value, topLevelWindow, desktopId);
 }
 
 /// @nodoc
@@ -52,19 +51,17 @@ base class IVirtualDesktopManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, IntPtr topLevelWindow,
+              Int32 Function(VTablePointer, IntPtr topLevelWindow,
                   Pointer<Int32> onCurrentDesktop)>>
       IsWindowOnCurrentVirtualDesktop;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, IntPtr topLevelWindow, Pointer<GUID> desktopId)>>
-      GetWindowDesktopId;
+      NativeFunction<
+          Int32 Function(VTablePointer, IntPtr topLevelWindow,
+              Pointer<GUID> desktopId)>> GetWindowDesktopId;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, IntPtr topLevelWindow, Pointer<GUID> desktopId)>>
-      MoveWindowToDesktop;
+      NativeFunction<
+          Int32 Function(VTablePointer, IntPtr topLevelWindow,
+              Pointer<GUID> desktopId)>> MoveWindowToDesktop;
 }
 
 /// @nodoc
@@ -74,7 +71,6 @@ const CLSID_VirtualDesktopManager = '{aa509086-5ca9-4c25-8f95-589d3c07b48a}';
 class VirtualDesktopManager extends IVirtualDesktopManager {
   VirtualDesktopManager(super.ptr);
 
-  factory VirtualDesktopManager.createInstance() =>
-      VirtualDesktopManager(COMObject.createFromID(
-          CLSID_VirtualDesktopManager, IID_IVirtualDesktopManager));
+  factory VirtualDesktopManager.createInstance() => VirtualDesktopManager(
+      createCOMObject(CLSID_VirtualDesktopManager, IID_IVirtualDesktopManager));
 }

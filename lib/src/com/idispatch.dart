@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 import 'iunknown.dart';
 
@@ -23,7 +23,7 @@ const IID_IDispatch = '{00020400-0000-0000-c000-000000000046}';
 /// {@category com}
 class IDispatch extends IUnknown {
   // vtable begins at 3, is 4 entries long.
-  IDispatch(super.ptr) : _vtable = ptr.ref.vtable.cast<IDispatchVtbl>().ref;
+  IDispatch(super.ptr) : _vtable = ptr.value.value.cast<IDispatchVtbl>().ref;
 
   final IDispatchVtbl _vtable;
 
@@ -33,25 +33,26 @@ class IDispatch extends IUnknown {
   int getTypeInfoCount(Pointer<Uint32> pctinfo) =>
       _vtable.GetTypeInfoCount.asFunction<
           int Function(
-              Pointer, Pointer<Uint32> pctinfo)>()(ptr.ref.lpVtbl, pctinfo);
+              VTablePointer, Pointer<Uint32> pctinfo)>()(ptr.value, pctinfo);
 
-  int getTypeInfo(int iTInfo, int lcid, Pointer<Pointer<COMObject>> ppTInfo) =>
+  int getTypeInfo(
+          int iTInfo, int lcid, Pointer<Pointer<VTablePointer>> ppTInfo) =>
       _vtable.GetTypeInfo.asFunction<
-              int Function(Pointer, int iTInfo, int lcid,
-                  Pointer<Pointer<COMObject>> ppTInfo)>()(
-          ptr.ref.lpVtbl, iTInfo, lcid, ppTInfo);
+              int Function(VTablePointer, int iTInfo, int lcid,
+                  Pointer<Pointer<VTablePointer>> ppTInfo)>()(
+          ptr.value, iTInfo, lcid, ppTInfo);
 
   int getIDsOfNames(Pointer<GUID> riid, Pointer<Pointer<Utf16>> rgszNames,
           int cNames, int lcid, Pointer<Int32> rgDispId) =>
       _vtable.GetIDsOfNames.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   Pointer<GUID> riid,
                   Pointer<Pointer<Utf16>> rgszNames,
                   int cNames,
                   int lcid,
                   Pointer<Int32> rgDispId)>()(
-          ptr.ref.lpVtbl, riid, rgszNames, cNames, lcid, rgDispId);
+          ptr.value, riid, rgszNames, cNames, lcid, rgDispId);
 
   int invoke(
           int dispIdMember,
@@ -64,7 +65,7 @@ class IDispatch extends IUnknown {
           Pointer<Uint32> puArgErr) =>
       _vtable.Invoke.asFunction<
               int Function(
-                  Pointer,
+                  VTablePointer,
                   int dispIdMember,
                   Pointer<GUID> riid,
                   int lcid,
@@ -72,24 +73,25 @@ class IDispatch extends IUnknown {
                   Pointer<DISPPARAMS> pDispParams,
                   Pointer<VARIANT> pVarResult,
                   Pointer<EXCEPINFO> pExcepInfo,
-                  Pointer<Uint32> puArgErr)>()(ptr.ref.lpVtbl, dispIdMember,
-          riid, lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
+                  Pointer<Uint32> puArgErr)>()(ptr.value, dispIdMember, riid,
+          lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
 }
 
 /// @nodoc
 base class IDispatchVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pctinfo)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint32> pctinfo)>>
       GetTypeInfoCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 iTInfo, Uint32 lcid,
-              Pointer<Pointer<COMObject>> ppTInfo)>> GetTypeInfo;
+          Int32 Function(VTablePointer, Uint32 iTInfo, Uint32 lcid,
+              Pointer<Pointer<VTablePointer>> ppTInfo)>> GetTypeInfo;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Pointer<GUID> riid,
               Pointer<Pointer<Utf16>> rgszNames,
               Uint32 cNames,
@@ -98,7 +100,7 @@ base class IDispatchVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
+              VTablePointer,
               Int32 dispIdMember,
               Pointer<GUID> riid,
               Uint32 lcid,

@@ -110,9 +110,6 @@ export 'src/win32/api_ms_win_ro_typeresolution_l1_1_1.g.dart';
 export 'src/win32/api_ms_win_shcore_scaling_l1_1_1.g.dart';
 export 'src/win32/api_ms_win_wsl_api_l1_1_0.g.dart';
 
-// COM foundational exports
-export 'src/combase.dart';
-
 // COM interfaces
 export 'src/com/iagileobject.dart';
 export 'src/com/iapplicationactivationmanager.dart';

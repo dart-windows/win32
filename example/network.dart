@@ -43,14 +43,14 @@ void main() {
       print('Not connected to the Internet.');
     }
 
-    final enumPtr = calloc<COMObject>();
+    final enumPtr = calloc<VTablePointer>();
     hr = netManager.getNetworks(
         NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_ALL, enumPtr.cast());
     if (FAILED(hr)) throw WindowsException(hr);
 
     print('\nNetworks (connected and disconnected) on this machine:');
     final enumerator = IEnumNetworkConnections(enumPtr);
-    var netPtr = calloc<COMObject>();
+    var netPtr = calloc<VTablePointer>();
     hr = enumerator.next(1, netPtr.cast(), elements);
     while (elements.value == 1) {
       final network = INetwork(netPtr);
@@ -62,7 +62,7 @@ void main() {
             '$networkName: ${isNetworkConnected ? 'connected' : 'disconnected'}');
       }
 
-      netPtr = calloc<COMObject>();
+      netPtr = calloc<VTablePointer>();
       hr = enumerator.next(1, netPtr.cast(), elements);
     }
   } finally {

@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iuiautomationtextrange.dart';
 import 'iunknown.dart';
 
@@ -19,7 +20,7 @@ const IID_IUIAutomationTextRange2 = '{bb9b40e0-5e04-46bd-9be0-4b601b9afad4}';
 class IUIAutomationTextRange2 extends IUIAutomationTextRange {
   // vtable begins at 21, is 1 entries long.
   IUIAutomationTextRange2(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextRange2Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationTextRange2Vtbl>().ref;
 
   final IUIAutomationTextRange2Vtbl _vtable;
 
@@ -28,12 +29,13 @@ class IUIAutomationTextRange2 extends IUIAutomationTextRange {
           interface.toInterface(IID_IUIAutomationTextRange2));
 
   int showContextMenu() =>
-      _vtable.ShowContextMenu.asFunction<int Function(Pointer)>()(
-          ptr.ref.lpVtbl);
+      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(
+          ptr.value);
 }
 
 /// @nodoc
 base class IUIAutomationTextRange2Vtbl extends Struct {
   external IUIAutomationTextRangeVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> ShowContextMenu;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+      ShowContextMenu;
 }

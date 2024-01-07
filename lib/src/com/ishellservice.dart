@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,22 +20,23 @@ const IID_IShellService = '{5836fb00-8187-11cf-a12b-00aa004ae837}';
 class IShellService extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IShellService(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IShellServiceVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IShellServiceVtbl>().ref;
 
   final IShellServiceVtbl _vtable;
 
   factory IShellService.from(IUnknown interface) =>
       IShellService(interface.toInterface(IID_IShellService));
 
-  int setOwner(Pointer<COMObject> punkOwner) => _vtable.SetOwner.asFunction<
-      int Function(
-          Pointer, Pointer<COMObject> punkOwner)>()(ptr.ref.lpVtbl, punkOwner);
+  int setOwner(Pointer<VTablePointer> punkOwner) => _vtable.SetOwner.asFunction<
+          int Function(VTablePointer, Pointer<VTablePointer> punkOwner)>()(
+      ptr.value, punkOwner);
 }
 
 /// @nodoc
 base class IShellServiceVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> punkOwner)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> punkOwner)>>
       SetOwner;
 }

@@ -4,6 +4,8 @@ import '../model/load_json.dart';
 import 'utils.dart';
 
 class TypeTuple {
+  const TypeTuple(this.nativeType, this.dartType, {this.attribute});
+
   /// The type, as represented in the native function (e.g. `Uint64`)
   final String nativeType;
 
@@ -12,17 +14,13 @@ class TypeTuple {
 
   /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
   final String? attribute;
-
-  /// The type, as represented in a method declaration prior to conversion (e.g. `DateTime`)
-  final String? methodParamType;
-
-  const TypeTuple(this.nativeType, this.dartType,
-      {this.attribute, this.methodParamType});
 }
 
 const Map<BaseType, TypeTuple> baseNativeMapping = {
-  BaseType.voidType: TypeTuple('Void', 'void'),
   BaseType.booleanType: TypeTuple('Bool', 'bool', attribute: '@Bool()'),
+  BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
+  BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
   BaseType.int8Type: TypeTuple('Int8', 'int', attribute: '@Int8()'),
   BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
   BaseType.int16Type: TypeTuple('Int16', 'int', attribute: '@Int16()'),
@@ -33,39 +31,31 @@ const Map<BaseType, TypeTuple> baseNativeMapping = {
   BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
   BaseType.intPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
   BaseType.uintPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
-  BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
-  BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
-  BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.voidType: TypeTuple('Void', 'void'),
 };
 
 const Map<String, TypeTuple> specialTypes = {
+  'System.Guid': TypeTuple('GUID', 'GUID'),
   'Windows.Win32.Foundation.BSTR':
       TypeTuple('Pointer<Utf16>', 'Pointer<Utf16>'),
+  'Windows.Win32.Foundation.PSTR': TypeTuple('Pointer<Utf8>', 'Pointer<Utf8>'),
   'Windows.Win32.Foundation.PWSTR':
       TypeTuple('Pointer<Utf16>', 'Pointer<Utf16>'),
-  'Windows.Win32.Foundation.PSTR': TypeTuple('Pointer<Utf8>', 'Pointer<Utf8>'),
-  'System.Guid': TypeTuple('GUID', 'GUID'),
 };
 
 final callbackTypeMapping = loadMap('win32_callbacks.json');
 
 class TypeProjection {
-  final TypeIdentifier typeIdentifier;
-  TypeTuple? _projection;
-
-  TypeTuple get projection {
-    _projection ??= projectType();
-
-    return _projection!;
-  }
-
   TypeProjection(this.typeIdentifier);
+
+  final TypeIdentifier typeIdentifier;
+
+  TypeTuple? _projection;
+  TypeTuple get projection => _projection ??= projectType();
 
   String get attribute => projection.attribute ?? '';
   String get nativeType => projection.nativeType;
   String get dartType => projection.dartType;
-  String get methodParamType =>
-      projection.methodParamType ?? projection.dartType;
   int? get arrayUpperBound => typeIdentifier.arrayDimensions?.first;
 
   /// Is the resultant Dart type atomic?
@@ -247,7 +237,8 @@ class TypeProjection {
     if (isWin32Delegate) return unwrapCallbackType();
 
     if (isInterface) {
-      return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
+      return const TypeTuple(
+          'Pointer<VTablePointer>', 'Pointer<VTablePointer>');
     }
 
     // default: return the name as returned by metadata

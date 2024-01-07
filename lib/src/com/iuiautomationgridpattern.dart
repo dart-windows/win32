@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iunknown.dart';
 
@@ -25,7 +25,7 @@ const IID_IUIAutomationGridPattern = '{414c3cdc-856b-4f5b-8538-3131c6302550}';
 class IUIAutomationGridPattern extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IUIAutomationGridPattern(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationGridPatternVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationGridPatternVtbl>().ref;
 
   final IUIAutomationGridPatternVtbl _vtable;
 
@@ -33,19 +33,19 @@ class IUIAutomationGridPattern extends IUnknown {
       IUIAutomationGridPattern(
           interface.toInterface(IID_IUIAutomationGridPattern));
 
-  int getItem(int row, int column, Pointer<Pointer<COMObject>> element) =>
+  int getItem(int row, int column, Pointer<Pointer<VTablePointer>> element) =>
       _vtable.GetItem.asFunction<
-              int Function(Pointer, int row, int column,
-                  Pointer<Pointer<COMObject>> element)>()(
-          ptr.ref.lpVtbl, row, column, element);
+              int Function(VTablePointer, int row, int column,
+                  Pointer<Pointer<VTablePointer>> element)>()(
+          ptr.value, row, column, element);
 
   int get currentRowCount {
     final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_CurrentRowCount
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -60,8 +60,8 @@ class IUIAutomationGridPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentColumnCount
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -76,8 +76,8 @@ class IUIAutomationGridPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedRowCount
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -92,8 +92,8 @@ class IUIAutomationGridPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedColumnCount
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -109,18 +109,18 @@ base class IUIAutomationGridPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 row, Int32 column,
-              Pointer<Pointer<COMObject>> element)>> GetItem;
+          Int32 Function(VTablePointer, Int32 row, Int32 column,
+              Pointer<Pointer<VTablePointer>> element)>> GetItem;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentRowCount;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentColumnCount;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedRowCount;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedColumnCount;
 }

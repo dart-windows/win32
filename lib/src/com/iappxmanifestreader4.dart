@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iappxmanifestreader3.dart';
 import 'iunknown.dart';
 
@@ -20,18 +20,19 @@ const IID_IAppxManifestReader4 = '{4579bb7c-741d-4161-b5a1-47bd3b78ad9b}';
 class IAppxManifestReader4 extends IAppxManifestReader3 {
   // vtable begins at 15, is 1 entries long.
   IAppxManifestReader4(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestReader4Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestReader4Vtbl>().ref;
 
   final IAppxManifestReader4Vtbl _vtable;
 
   factory IAppxManifestReader4.from(IUnknown interface) =>
       IAppxManifestReader4(interface.toInterface(IID_IAppxManifestReader4));
 
-  int getOptionalPackageInfo(Pointer<Pointer<COMObject>> optionalPackageInfo) =>
+  int getOptionalPackageInfo(
+          Pointer<Pointer<VTablePointer>> optionalPackageInfo) =>
       _vtable.GetOptionalPackageInfo.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> optionalPackageInfo)>()(
-          ptr.ref.lpVtbl, optionalPackageInfo);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> optionalPackageInfo)>()(
+          ptr.value, optionalPackageInfo);
 }
 
 /// @nodoc
@@ -39,7 +40,7 @@ base class IAppxManifestReader4Vtbl extends Struct {
   external IAppxManifestReader3Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> optionalPackageInfo)>>
+              Int32 Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> optionalPackageInfo)>>
       GetOptionalPackageInfo;
 }

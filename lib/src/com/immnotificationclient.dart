@@ -9,6 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../propertykey.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -23,7 +24,7 @@ const IID_IMMNotificationClient = '{7991eec9-7e89-4d85-8390-6c703cec60c0}';
 class IMMNotificationClient extends IUnknown {
   // vtable begins at 3, is 5 entries long.
   IMMNotificationClient(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IMMNotificationClientVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IMMNotificationClientVtbl>().ref;
 
   final IMMNotificationClientVtbl _vtable;
 
@@ -32,51 +33,53 @@ class IMMNotificationClient extends IUnknown {
 
   int onDeviceStateChanged(Pointer<Utf16> pwstrDeviceId, int dwNewState) =>
       _vtable.OnDeviceStateChanged.asFunction<
-          int Function(Pointer, Pointer<Utf16> pwstrDeviceId,
-              int dwNewState)>()(ptr.ref.lpVtbl, pwstrDeviceId, dwNewState);
+          int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId,
+              int dwNewState)>()(ptr.value, pwstrDeviceId, dwNewState);
 
-  int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) => _vtable.OnDeviceAdded
-          .asFunction<int Function(Pointer, Pointer<Utf16> pwstrDeviceId)>()(
-      ptr.ref.lpVtbl, pwstrDeviceId);
+  int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) =>
+      _vtable.OnDeviceAdded.asFunction<
+              int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId)>()(
+          ptr.value, pwstrDeviceId);
 
-  int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) => _vtable.OnDeviceRemoved
-          .asFunction<int Function(Pointer, Pointer<Utf16> pwstrDeviceId)>()(
-      ptr.ref.lpVtbl, pwstrDeviceId);
+  int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) =>
+      _vtable.OnDeviceRemoved.asFunction<
+              int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId)>()(
+          ptr.value, pwstrDeviceId);
 
   int onDefaultDeviceChanged(
           int flow, int role, Pointer<Utf16> pwstrDefaultDeviceId) =>
       _vtable.OnDefaultDeviceChanged.asFunction<
-              int Function(Pointer, int flow, int role,
+              int Function(VTablePointer, int flow, int role,
                   Pointer<Utf16> pwstrDefaultDeviceId)>()(
-          ptr.ref.lpVtbl, flow, role, pwstrDefaultDeviceId);
+          ptr.value, flow, role, pwstrDefaultDeviceId);
 
   int onPropertyValueChanged(Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key) =>
       _vtable.OnPropertyValueChanged.asFunction<
-          int Function(Pointer, Pointer<Utf16> pwstrDeviceId,
-              PROPERTYKEY key)>()(ptr.ref.lpVtbl, pwstrDeviceId, key);
+          int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId,
+              PROPERTYKEY key)>()(ptr.value, pwstrDeviceId, key);
 }
 
 /// @nodoc
 base class IMMNotificationClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Utf16> pwstrDeviceId, Uint32 dwNewState)>>
-      OnDeviceStateChanged;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Utf16> pwstrDeviceId,
+              Uint32 dwNewState)>> OnDeviceStateChanged;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Utf16> pwstrDeviceId)>>
       OnDeviceAdded;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Utf16> pwstrDeviceId)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Utf16> pwstrDeviceId)>>
       OnDeviceRemoved;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 flow, Int32 role,
+          Int32 Function(VTablePointer, Int32 flow, Int32 role,
               Pointer<Utf16> pwstrDefaultDeviceId)>> OnDefaultDeviceChanged;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key)>>
-      OnPropertyValueChanged;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Utf16> pwstrDeviceId,
+              PROPERTYKEY key)>> OnPropertyValueChanged;
 }

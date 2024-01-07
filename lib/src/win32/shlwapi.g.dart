@@ -14,9 +14,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 
 final _shlwapi = DynamicLibrary.open('shlwapi.dll');
@@ -31,10 +31,10 @@ final _shlwapi = DynamicLibrary.open('shlwapi.dll');
 /// );
 /// ```
 /// {@category shell32}
-Pointer<COMObject> SHCreateMemStream(Pointer<Uint8> pInit, int cbInit) =>
+Pointer<VTablePointer> SHCreateMemStream(Pointer<Uint8> pInit, int cbInit) =>
     _SHCreateMemStream(pInit, cbInit);
 
 final _SHCreateMemStream = _shlwapi.lookupFunction<
-    Pointer<COMObject> Function(Pointer<Uint8> pInit, Uint32 cbInit),
-    Pointer<COMObject> Function(
+    Pointer<VTablePointer> Function(Pointer<Uint8> pInit, Uint32 cbInit),
+    Pointer<VTablePointer> Function(
         Pointer<Uint8> pInit, int cbInit)>('SHCreateMemStream');

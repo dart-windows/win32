@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -21,7 +21,7 @@ class IUIAutomationObjectModelPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationObjectModelPattern(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<IUIAutomationObjectModelPatternVtbl>().ref;
+            ptr.value.value.cast<IUIAutomationObjectModelPatternVtbl>().ref;
 
   final IUIAutomationObjectModelPatternVtbl _vtable;
 
@@ -29,10 +29,10 @@ class IUIAutomationObjectModelPattern extends IUnknown {
       IUIAutomationObjectModelPattern(
           interface.toInterface(IID_IUIAutomationObjectModelPattern));
 
-  int getUnderlyingObjectModel(Pointer<Pointer<COMObject>> retVal) =>
+  int getUnderlyingObjectModel(Pointer<Pointer<VTablePointer>> retVal) =>
       _vtable.GetUnderlyingObjectModel.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
 }
 
 /// @nodoc
@@ -40,6 +40,7 @@ base class IUIAutomationObjectModelPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
       GetUnderlyingObjectModel;
 }

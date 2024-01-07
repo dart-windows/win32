@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -18,7 +19,7 @@ const IID_IUIAutomationInvokePattern = '{fb377fbe-8ea6-46d5-9c73-6499642d3059}';
 class IUIAutomationInvokePattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationInvokePattern(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationInvokePatternVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationInvokePatternVtbl>().ref;
 
   final IUIAutomationInvokePatternVtbl _vtable;
 
@@ -27,11 +28,11 @@ class IUIAutomationInvokePattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationInvokePattern));
 
   int invoke() =>
-      _vtable.Invoke.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Invoke.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
 base class IUIAutomationInvokePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Invoke;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Invoke;
 }

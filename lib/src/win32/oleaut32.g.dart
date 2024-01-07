@@ -14,9 +14,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 
 final _oleaut32 = DynamicLibrary.open('oleaut32.dll');
@@ -53,14 +53,14 @@ final _DosDateTimeToVariantTime = _oleaut32.lookupFunction<
 /// ```
 /// {@category oleaut32}
 int GetActiveObject(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<Pointer<COMObject>> ppunk) =>
+        Pointer<Pointer<VTablePointer>> ppunk) =>
     _GetActiveObject(rclsid, pvReserved, ppunk);
 
 final _GetActiveObject = _oleaut32.lookupFunction<
     Int32 Function(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<Pointer<COMObject>> ppunk),
+        Pointer<Pointer<VTablePointer>> ppunk),
     int Function(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<Pointer<COMObject>> ppunk)>('GetActiveObject');
+        Pointer<Pointer<VTablePointer>> ppunk)>('GetActiveObject');
 
 /// Allocates a new string and copies the passed string into it.
 ///

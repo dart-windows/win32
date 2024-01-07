@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iappxmanifestreader2.dart';
 import 'iunknown.dart';
 
@@ -20,7 +20,7 @@ const IID_IAppxManifestReader3 = '{c43825ab-69b7-400a-9709-cc37f5a72d24}';
 class IAppxManifestReader3 extends IAppxManifestReader2 {
   // vtable begins at 13, is 2 entries long.
   IAppxManifestReader3(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestReader3Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestReader3Vtbl>().ref;
 
   final IAppxManifestReader3Vtbl _vtable;
 
@@ -28,18 +28,18 @@ class IAppxManifestReader3 extends IAppxManifestReader2 {
       IAppxManifestReader3(interface.toInterface(IID_IAppxManifestReader3));
 
   int getCapabilitiesByCapabilityClass(
-          int capabilityClass, Pointer<Pointer<COMObject>> capabilities) =>
+          int capabilityClass, Pointer<Pointer<VTablePointer>> capabilities) =>
       _vtable.GetCapabilitiesByCapabilityClass.asFunction<
-              int Function(Pointer, int capabilityClass,
-                  Pointer<Pointer<COMObject>> capabilities)>()(
-          ptr.ref.lpVtbl, capabilityClass, capabilities);
+              int Function(VTablePointer, int capabilityClass,
+                  Pointer<Pointer<VTablePointer>> capabilities)>()(
+          ptr.value, capabilityClass, capabilities);
 
   int getTargetDeviceFamilies(
-          Pointer<Pointer<COMObject>> targetDeviceFamilies) =>
+          Pointer<Pointer<VTablePointer>> targetDeviceFamilies) =>
       _vtable.GetTargetDeviceFamilies.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> targetDeviceFamilies)>()(
-          ptr.ref.lpVtbl, targetDeviceFamilies);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> targetDeviceFamilies)>()(
+          ptr.value, targetDeviceFamilies);
 }
 
 /// @nodoc
@@ -47,12 +47,12 @@ base class IAppxManifestReader3Vtbl extends Struct {
   external IAppxManifestReader2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Int32 capabilityClass,
-                  Pointer<Pointer<COMObject>> capabilities)>>
+              Int32 Function(VTablePointer, Int32 capabilityClass,
+                  Pointer<Pointer<VTablePointer>> capabilities)>>
       GetCapabilitiesByCapabilityClass;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> targetDeviceFamilies)>>
+              Int32 Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> targetDeviceFamilies)>>
       GetTargetDeviceFamilies;
 }

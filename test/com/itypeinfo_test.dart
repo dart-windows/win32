@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
 
   final typeinfo = ITypeInfo(ptr);
   test('Can instantiate ITypeInfo.getTypeAttr', () {
@@ -80,6 +80,6 @@ void main() {
     expect(typeinfo.releaseVarDesc, isA<Function>());
   });
 
-  free(ptr.ref.lpVtbl);
+  free(ptr.value);
   free(ptr);
 }

@@ -14,9 +14,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../callbacks.dart';
-import '../combase.dart';
 import '../guid.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../variant.dart';
 
 final _api_ms_win_core_winrt_l1_1_0 =
@@ -32,14 +32,14 @@ final _api_ms_win_core_winrt_l1_1_0 =
 /// ```
 /// {@category winrt}
 int RoActivateInstance(
-        int activatableClassId, Pointer<Pointer<COMObject>> instance) =>
+        int activatableClassId, Pointer<Pointer<VTablePointer>> instance) =>
     _RoActivateInstance(activatableClassId, instance);
 
 final _RoActivateInstance = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
     Int32 Function(
-        IntPtr activatableClassId, Pointer<Pointer<COMObject>> instance),
+        IntPtr activatableClassId, Pointer<Pointer<VTablePointer>> instance),
     int Function(int activatableClassId,
-        Pointer<Pointer<COMObject>> instance)>('RoActivateInstance');
+        Pointer<Pointer<VTablePointer>> instance)>('RoActivateInstance');
 
 /// Gets the activation factory for the specified runtime class.
 ///

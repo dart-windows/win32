@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<COMObject>()..ref.lpVtbl = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
 
   final uiautomationlegacyiaccessiblepattern =
       IUIAutomationLegacyIAccessiblePattern(ptr);
@@ -52,6 +52,6 @@ void main() {
         uiautomationlegacyiaccessiblepattern.getIAccessible, isA<Function>());
   });
 
-  free(ptr.ref.lpVtbl);
+  free(ptr.value);
   free(ptr);
 }

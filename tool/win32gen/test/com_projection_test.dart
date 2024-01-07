@@ -72,8 +72,8 @@ void main() {
     final param = getNetworkConnections.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
 
-    expect(projection.dartType, equals('Pointer<Pointer<COMObject>>'));
-    expect(projection.nativeType, equals('Pointer<Pointer<COMObject>>'));
+    expect(projection.dartType, equals('Pointer<Pointer<VTablePointer>>'));
+    expect(projection.nativeType, equals('Pointer<Pointer<VTablePointer>>'));
   });
 
   test('Properties are projected accurately', () {
@@ -87,7 +87,7 @@ void main() {
     expect(projection.nativeType, equals('Pointer<Int16>'));
   });
 
-  test('Properties that return Pointer<COMObject> are projected accurately',
+  test('Properties that return Pointer<VTablePointer> are projected accurately',
       () {
     final textPattern = scope.findTypeDef(
         'Windows.Win32.UI.Accessibility.IUIAutomationTextPattern')!;
@@ -95,9 +95,9 @@ void main() {
     final documentRangeProjection = interfaceProjection.methodProjections
         .firstWhere((method) => method.name == 'get_DocumentRange');
     expect(documentRangeProjection.nativePrototype,
-        equals('Int32 Function(Pointer, Pointer<COMObject> range)'));
+        equals('Int32 Function(VTablePointer, Pointer<VTablePointer> range)'));
     expect(documentRangeProjection.dartPrototype,
-        equals('int Function(Pointer, Pointer<COMObject> range)'));
+        equals('int Function(VTablePointer, Pointer<VTablePointer> range)'));
   });
 
   group('Projection of INetwork', () {
@@ -179,9 +179,9 @@ void main() {
         .firstWhere((method) => method.name == 'get__NewEnum');
     expect(newEnum.parameters.length, equals(1));
     expect(newEnum.parameters.first.type.nativeType,
-        equals('Pointer<Pointer<COMObject>>'));
+        equals('Pointer<Pointer<VTablePointer>>'));
     expect(newEnum.parameters.first.type.dartType,
-        equals('Pointer<Pointer<COMObject>>'));
+        equals('Pointer<Pointer<VTablePointer>>'));
   });
 
   test(
@@ -206,8 +206,9 @@ void main() {
         .parameters.last.typeIdentifier; // ISpellChecker **value
     final typeProjection = TypeProjection(type);
 
-    expect(typeProjection.nativeType, equals('Pointer<Pointer<COMObject>>'));
-    expect(typeProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
+    expect(
+        typeProjection.nativeType, equals('Pointer<Pointer<VTablePointer>>'));
+    expect(typeProjection.dartType, equals('Pointer<Pointer<VTablePointer>>'));
   });
 
   test('Interfaces differentiate between methods and properties 1', () {

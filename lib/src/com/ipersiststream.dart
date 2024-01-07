@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'ipersist.dart';
 import 'iunknown.dart';
 
@@ -20,7 +20,7 @@ const IID_IPersistStream = '{00000109-0000-0000-c000-000000000046}';
 class IPersistStream extends IPersist {
   // vtable begins at 4, is 4 entries long.
   IPersistStream(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IPersistStreamVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IPersistStreamVtbl>().ref;
 
   final IPersistStreamVtbl _vtable;
 
@@ -28,32 +28,35 @@ class IPersistStream extends IPersist {
       IPersistStream(interface.toInterface(IID_IPersistStream));
 
   int isDirty() =>
-      _vtable.IsDirty.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr.value);
 
-  int load(Pointer<COMObject> pStm) =>
-      _vtable.Load.asFunction<int Function(Pointer, Pointer<COMObject> pStm)>()(
-          ptr.ref.lpVtbl, pStm);
+  int load(Pointer<VTablePointer> pStm) => _vtable.Load.asFunction<
+      int Function(
+          VTablePointer, Pointer<VTablePointer> pStm)>()(ptr.value, pStm);
 
-  int save(Pointer<COMObject> pStm, int fClearDirty) => _vtable.Save.asFunction<
-          int Function(Pointer, Pointer<COMObject> pStm, int fClearDirty)>()(
-      ptr.ref.lpVtbl, pStm, fClearDirty);
+  int save(
+          Pointer<VTablePointer> pStm, int fClearDirty) =>
+      _vtable.Save.asFunction<
+          int Function(VTablePointer, Pointer<VTablePointer> pStm,
+              int fClearDirty)>()(ptr.value, pStm, fClearDirty);
 
   int getSizeMax(Pointer<Uint64> pcbSize) => _vtable.GetSizeMax.asFunction<
       int Function(
-          Pointer, Pointer<Uint64> pcbSize)>()(ptr.ref.lpVtbl, pcbSize);
+          VTablePointer, Pointer<Uint64> pcbSize)>()(ptr.value, pcbSize);
 }
 
 /// @nodoc
 base class IPersistStreamVtbl extends Struct {
   external IPersistVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> IsDirty;
-  external Pointer<
-      NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pStm)>> Load;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> IsDirty;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              Pointer, Pointer<COMObject> pStm, Int32 fClearDirty)>> Save;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pStm)>> Load;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint64> pcbSize)>>
-      GetSizeMax;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pStm,
+              Int32 fClearDirty)>> Save;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Uint64> pcbSize)>> GetSizeMax;
 }

@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'ipersist.dart';
 import 'iunknown.dart';
 
@@ -18,7 +19,7 @@ const IID_IPersistMemory = '{bd1ae5e0-a6ae-11ce-bd37-504200c10000}';
 class IPersistMemory extends IPersist {
   // vtable begins at 4, is 5 entries long.
   IPersistMemory(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IPersistMemoryVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IPersistMemoryVtbl>().ref;
 
   final IPersistMemoryVtbl _vtable;
 
@@ -26,38 +27,38 @@ class IPersistMemory extends IPersist {
       IPersistMemory(interface.toInterface(IID_IPersistMemory));
 
   int isDirty() =>
-      _vtable.IsDirty.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr.value);
 
   int load(Pointer pMem, int cbSize) => _vtable.Load.asFunction<
       int Function(
-          Pointer, Pointer pMem, int cbSize)>()(ptr.ref.lpVtbl, pMem, cbSize);
+          VTablePointer, Pointer pMem, int cbSize)>()(ptr.value, pMem, cbSize);
 
   int save(Pointer pMem, int fClearDirty, int cbSize) =>
       _vtable.Save.asFunction<
-          int Function(Pointer, Pointer pMem, int fClearDirty,
-              int cbSize)>()(ptr.ref.lpVtbl, pMem, fClearDirty, cbSize);
+          int Function(VTablePointer, Pointer pMem, int fClearDirty,
+              int cbSize)>()(ptr.value, pMem, fClearDirty, cbSize);
 
   int getSizeMax(Pointer<Uint32> pCbSize) => _vtable.GetSizeMax.asFunction<
       int Function(
-          Pointer, Pointer<Uint32> pCbSize)>()(ptr.ref.lpVtbl, pCbSize);
+          VTablePointer, Pointer<Uint32> pCbSize)>()(ptr.value, pCbSize);
 
   int initNew() =>
-      _vtable.InitNew.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.InitNew.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
 base class IPersistMemoryVtbl extends Struct {
   external IPersistVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> IsDirty;
-  external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer pMem, Uint32 cbSize)>>
-      Load;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> IsDirty;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              Pointer, Pointer pMem, Int32 fClearDirty, Uint32 cbSize)>> Save;
+          Int32 Function(VTablePointer, Pointer pMem, Uint32 cbSize)>> Load;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pCbSize)>>
-      GetSizeMax;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> InitNew;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer pMem, Int32 fClearDirty,
+              Uint32 cbSize)>> Save;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Uint32> pCbSize)>> GetSizeMax;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> InitNew;
 }

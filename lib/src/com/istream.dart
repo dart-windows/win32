@@ -6,8 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import 'isequentialstream.dart';
 import 'iunknown.dart';
 
@@ -23,7 +23,7 @@ const IID_IStream = '{0000000c-0000-0000-c000-000000000046}';
 /// {@category com}
 class IStream extends ISequentialStream {
   // vtable begins at 5, is 9 entries long.
-  IStream(super.ptr) : _vtable = ptr.ref.vtable.cast<IStreamVtbl>().ref;
+  IStream(super.ptr) : _vtable = ptr.value.value.cast<IStreamVtbl>().ref;
 
   final IStreamVtbl _vtable;
 
@@ -32,46 +32,46 @@ class IStream extends ISequentialStream {
 
   int seek(int dlibMove, int dwOrigin, Pointer<Uint64> plibNewPosition) =>
       _vtable.Seek.asFunction<
-              int Function(Pointer, int dlibMove, int dwOrigin,
+              int Function(VTablePointer, int dlibMove, int dwOrigin,
                   Pointer<Uint64> plibNewPosition)>()(
-          ptr.ref.lpVtbl, dlibMove, dwOrigin, plibNewPosition);
+          ptr.value, dlibMove, dwOrigin, plibNewPosition);
 
   int setSize(int libNewSize) =>
-      _vtable.SetSize.asFunction<int Function(Pointer, int libNewSize)>()(
-          ptr.ref.lpVtbl, libNewSize);
+      _vtable.SetSize.asFunction<int Function(VTablePointer, int libNewSize)>()(
+          ptr.value, libNewSize);
 
-  int copyTo(Pointer<COMObject> pstm, int cb, Pointer<Uint64> pcbRead,
+  int copyTo(Pointer<VTablePointer> pstm, int cb, Pointer<Uint64> pcbRead,
           Pointer<Uint64> pcbWritten) =>
       _vtable.CopyTo.asFunction<
-              int Function(Pointer, Pointer<COMObject> pstm, int cb,
+              int Function(VTablePointer, Pointer<VTablePointer> pstm, int cb,
                   Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>()(
-          ptr.ref.lpVtbl, pstm, cb, pcbRead, pcbWritten);
+          ptr.value, pstm, cb, pcbRead, pcbWritten);
 
-  int commit(int grfCommitFlags) =>
-      _vtable.Commit.asFunction<int Function(Pointer, int grfCommitFlags)>()(
-          ptr.ref.lpVtbl, grfCommitFlags);
+  int commit(int grfCommitFlags) => _vtable.Commit.asFunction<
+      int Function(
+          VTablePointer, int grfCommitFlags)>()(ptr.value, grfCommitFlags);
 
   int revert() =>
-      _vtable.Revert.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Revert.asFunction<int Function(VTablePointer)>()(ptr.value);
 
   int lockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.LockRegion.asFunction<
-              int Function(Pointer, int libOffset, int cb, int dwLockType)>()(
-          ptr.ref.lpVtbl, libOffset, cb, dwLockType);
+          int Function(VTablePointer, int libOffset, int cb,
+              int dwLockType)>()(ptr.value, libOffset, cb, dwLockType);
 
   int unlockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.UnlockRegion.asFunction<
-              int Function(Pointer, int libOffset, int cb, int dwLockType)>()(
-          ptr.ref.lpVtbl, libOffset, cb, dwLockType);
+          int Function(VTablePointer, int libOffset, int cb,
+              int dwLockType)>()(ptr.value, libOffset, cb, dwLockType);
 
   int stat(Pointer<STATSTG> pstatstg, int grfStatFlag) =>
       _vtable.Stat.asFunction<
-          int Function(Pointer, Pointer<STATSTG> pstatstg,
-              int grfStatFlag)>()(ptr.ref.lpVtbl, pstatstg, grfStatFlag);
+          int Function(VTablePointer, Pointer<STATSTG> pstatstg,
+              int grfStatFlag)>()(ptr.value, pstatstg, grfStatFlag);
 
-  int clone(Pointer<Pointer<COMObject>> ppstm) => _vtable.Clone.asFunction<
-      int Function(
-          Pointer, Pointer<Pointer<COMObject>> ppstm)>()(ptr.ref.lpVtbl, ppstm);
+  int clone(Pointer<Pointer<VTablePointer>> ppstm) => _vtable.Clone.asFunction<
+          int Function(VTablePointer, Pointer<Pointer<VTablePointer>> ppstm)>()(
+      ptr.value, ppstm);
 }
 
 /// @nodoc
@@ -79,32 +79,33 @@ base class IStreamVtbl extends Struct {
   external ISequentialStreamVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int64 dlibMove, Uint32 dwOrigin,
+          Int32 Function(VTablePointer, Int64 dlibMove, Uint32 dwOrigin,
               Pointer<Uint64> plibNewPosition)>> Seek;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Uint64 libNewSize)>>
-      SetSize;
+  external Pointer<
+      NativeFunction<Int32 Function(VTablePointer, Uint64 libNewSize)>> SetSize;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> pstm, Uint64 cb,
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pstm, Uint64 cb,
               Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>> CopyTo;
   external Pointer<
-      NativeFunction<Int32 Function(Pointer, Int32 grfCommitFlags)>> Commit;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Revert;
+          NativeFunction<Int32 Function(VTablePointer, Int32 grfCommitFlags)>>
+      Commit;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Revert;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint64 libOffset, Uint64 cb,
+              Int32 dwLockType)>> LockRegion;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint64 libOffset, Uint64 cb,
+              Uint32 dwLockType)>> UnlockRegion;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Uint64 libOffset, Uint64 cb, Int32 dwLockType)>>
-      LockRegion;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Uint64 libOffset, Uint64 cb, Uint32 dwLockType)>>
-      UnlockRegion;
+                  VTablePointer, Pointer<STATSTG> pstatstg, Int32 grfStatFlag)>>
+      Stat;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer, Pointer<STATSTG> pstatstg, Int32 grfStatFlag)>> Stat;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppstm)>> Clone;
+              VTablePointer, Pointer<Pointer<VTablePointer>> ppstm)>> Clone;
 }

@@ -7,6 +7,7 @@
 import 'dart:ffi';
 
 import '../structs.g.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,7 +21,7 @@ const IID_IShellItemImageFactory = '{bcc18b79-ba16-442f-80c4-8a59c30c463b}';
 class IShellItemImageFactory extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IShellItemImageFactory(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IShellItemImageFactoryVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IShellItemImageFactoryVtbl>().ref;
 
   final IShellItemImageFactoryVtbl _vtable;
 
@@ -29,15 +30,16 @@ class IShellItemImageFactory extends IUnknown {
 
   int getImage(SIZE size, int flags, Pointer<IntPtr> phbm) =>
       _vtable.GetImage.asFunction<
-          int Function(Pointer, SIZE size, int flags,
-              Pointer<IntPtr> phbm)>()(ptr.ref.lpVtbl, size, flags, phbm);
+          int Function(VTablePointer, SIZE size, int flags,
+              Pointer<IntPtr> phbm)>()(ptr.value, size, flags, phbm);
 }
 
 /// @nodoc
 base class IShellItemImageFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              Pointer, SIZE size, Int32 flags, Pointer<IntPtr> phbm)>> GetImage;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, SIZE size, Int32 flags, Pointer<IntPtr> phbm)>>
+      GetImage;
 }

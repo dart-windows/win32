@@ -10,7 +10,7 @@ import 'package:win32/win32.dart';
 
 /// Get the root element of the given [uiAutomation].
 IUIAutomationElement getRootElement(IUIAutomation uiAutomation) {
-  final pElement = calloc<COMObject>();
+  final pElement = calloc<VTablePointer>();
   final hr = uiAutomation.getRootElement(pElement.cast());
   if (FAILED(hr)) {
     free(pElement);
@@ -32,7 +32,7 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
   valueParam.ref.intVal = processId;
 
   try {
-    final pCondition = calloc<COMObject>();
+    final pCondition = calloc<VTablePointer>();
     var hr = uiAutomation.createPropertyCondition(
         UIA_ProcessIdPropertyId, valueParam.ref, pCondition.cast());
     if (FAILED(hr)) {
@@ -41,17 +41,17 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
     }
     final propertyCondition = IUIAutomationPropertyCondition(pCondition);
 
-    final pElement = calloc<COMObject>();
+    final pElement = calloc<VTablePointer>();
     hr = root.findFirst(
         TreeScope.TreeScope_Children,
-        propertyCondition.ptr.cast<Pointer<COMObject>>().value,
+        propertyCondition.ptr.cast<Pointer<VTablePointer>>().value,
         pElement.cast());
     if (FAILED(hr)) {
       free(pElement);
       throw WindowsException(hr);
     }
 
-    if (pElement.ref.isNull) {
+    if (pElement.value == nullptr) {
       free(pElement);
       throw Exception('Could not find the window');
     }
@@ -89,14 +89,14 @@ IUIAutomationWindowPattern getWindowPattern(IUIAutomationElement element) {
     throw Exception('Window pattern is not available for this element');
   }
 
-  final pPattern = calloc<COMObject>();
+  final pPattern = calloc<VTablePointer>();
   final hr = element.getCurrentPattern(UIA_WindowPatternId, pPattern.cast());
   if (FAILED(hr)) {
     free(pPattern);
     throw WindowsException(hr);
   }
 
-  if (pPattern.ref.isNull) {
+  if (pPattern.value == nullptr) {
     free(pPattern);
     throw Exception('Could not get the window pattern');
   }

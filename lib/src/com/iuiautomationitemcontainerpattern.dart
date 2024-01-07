@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import '../variant.dart';
 import 'iunknown.dart';
 
@@ -22,7 +22,7 @@ class IUIAutomationItemContainerPattern extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IUIAutomationItemContainerPattern(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<IUIAutomationItemContainerPatternVtbl>().ref;
+            ptr.value.value.cast<IUIAutomationItemContainerPatternVtbl>().ref;
 
   final IUIAutomationItemContainerPatternVtbl _vtable;
 
@@ -30,16 +30,16 @@ class IUIAutomationItemContainerPattern extends IUnknown {
       IUIAutomationItemContainerPattern(
           interface.toInterface(IID_IUIAutomationItemContainerPattern));
 
-  int findItemByProperty(Pointer<COMObject> pStartAfter, int propertyId,
-          VARIANT value, Pointer<Pointer<COMObject>> pFound) =>
+  int findItemByProperty(Pointer<VTablePointer> pStartAfter, int propertyId,
+          VARIANT value, Pointer<Pointer<VTablePointer>> pFound) =>
       _vtable.FindItemByProperty.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> pStartAfter,
+                  VTablePointer,
+                  Pointer<VTablePointer> pStartAfter,
                   int propertyId,
                   VARIANT value,
-                  Pointer<Pointer<COMObject>> pFound)>()(
-          ptr.ref.lpVtbl, pStartAfter, propertyId, value, pFound);
+                  Pointer<Pointer<VTablePointer>> pFound)>()(
+          ptr.value, pStartAfter, propertyId, value, pFound);
 }
 
 /// @nodoc
@@ -48,9 +48,9 @@ base class IUIAutomationItemContainerPatternVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
-              Pointer<COMObject> pStartAfter,
+              VTablePointer,
+              Pointer<VTablePointer> pStartAfter,
               Uint32 propertyId,
               VARIANT value,
-              Pointer<Pointer<COMObject>> pFound)>> FindItemByProperty;
+              Pointer<Pointer<VTablePointer>> pFound)>> FindItemByProperty;
 }

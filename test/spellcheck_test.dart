@@ -20,7 +20,7 @@ void main() {
     test('supportedLanguages', () {
       final spellCheckerFactory = SpellCheckerFactory.createInstance();
       final pEnumString = spellCheckerFactory.supportedLanguages;
-      expect(pEnumString.ref.isNull, isFalse);
+      expect(pEnumString.value.address, isNonZero);
       final enumString = IEnumString(pEnumString);
 
       final pElementsFetched = calloc<Uint32>();
@@ -64,31 +64,31 @@ void main() {
       expect(hr, equals(S_OK));
 
       if (supportedPtr.value == 1) {
-        final spellCheckerPtr = calloc<COMObject>();
+        final spellCheckerPtr = calloc<VTablePointer>();
         hr = spellCheckerFactory.createSpellChecker(
             languageTagPtr, spellCheckerPtr.cast());
         expect(hr, equals(S_OK));
-        expect(spellCheckerPtr.ref.isNull, isFalse);
+        expect(spellCheckerPtr.value.address, isNonZero);
 
         final spellChecker = ISpellChecker(spellCheckerPtr);
 
-        final errorsPtr = calloc<COMObject>();
+        final errorsPtr = calloc<VTablePointer>();
         final textPtr = 'haev'.toNativeUtf16();
         hr = spellChecker.check(textPtr, errorsPtr.cast());
         expect(hr, equals(S_OK));
-        expect(errorsPtr.ref.isNull, isFalse);
+        expect(errorsPtr.value.address, isNonZero);
 
         final errors = IEnumSpellingError(errorsPtr);
-        var errorPtr = calloc<COMObject>();
+        var errorPtr = calloc<VTablePointer>();
 
         while (errors.next(errorPtr.cast()) == S_OK) {
-          expect(errorPtr.ref.isNull, isFalse);
+          expect(errorPtr.value.address, isNonZero);
           final error = ISpellingError(errorPtr);
           expect(error.correctiveAction, equals(CORRECTIVE_ACTION.REPLACE));
           final replacement = error.replacement;
           expect(replacement.toDartString(), equals('have'));
           WindowsDeleteString(replacement.address);
-          errorPtr = calloc<COMObject>();
+          errorPtr = calloc<VTablePointer>();
         }
 
         free(errorPtr);

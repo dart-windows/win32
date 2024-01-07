@@ -87,6 +87,10 @@ typedef ULONG64 = Uint64;
 typedef ULONGLONG = Uint64;
 typedef ULONG_PTR = IntPtr;
 typedef USHORT = Uint16;
+
+/// Type alias that represents a Pointer to the COM v-table.
+typedef VTablePointer = Pointer<Pointer<IntPtr>>;
+
 typedef WCHAR = Uint16;
 typedef WORD = Uint16;
 typedef WPARAM = UINT_PTR;

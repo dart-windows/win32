@@ -6,7 +6,8 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'ifiledialog.dart';
 import 'iunknown.dart';
 
@@ -20,22 +21,22 @@ const IID_IFileOpenDialog = '{d57c7288-d4ad-4768-be02-9d969532d960}';
 class IFileOpenDialog extends IFileDialog {
   // vtable begins at 27, is 2 entries long.
   IFileOpenDialog(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IFileOpenDialogVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IFileOpenDialogVtbl>().ref;
 
   final IFileOpenDialogVtbl _vtable;
 
   factory IFileOpenDialog.from(IUnknown interface) =>
       IFileOpenDialog(interface.toInterface(IID_IFileOpenDialog));
 
-  int getResults(Pointer<Pointer<COMObject>> ppenum) =>
+  int getResults(Pointer<Pointer<VTablePointer>> ppenum) =>
       _vtable.GetResults.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppenum)>()(
-          ptr.ref.lpVtbl, ppenum);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppenum)>()(ptr.value, ppenum);
 
-  int getSelectedItems(Pointer<Pointer<COMObject>> ppsai) =>
+  int getSelectedItems(Pointer<Pointer<VTablePointer>> ppsai) =>
       _vtable.GetSelectedItems.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppsai)>()(
-          ptr.ref.lpVtbl, ppsai);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppsai)>()(ptr.value, ppsai);
 }
 
 /// @nodoc
@@ -43,11 +44,13 @@ base class IFileOpenDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppenum)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppenum)>>
       GetResults;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppsai)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppsai)>>
       GetSelectedItems;
 }
 
@@ -59,5 +62,5 @@ class FileOpenDialog extends IFileOpenDialog {
   FileOpenDialog(super.ptr);
 
   factory FileOpenDialog.createInstance() => FileOpenDialog(
-      COMObject.createFromID(CLSID_FileOpenDialog, IID_IFileOpenDialog));
+      createCOMObject(CLSID_FileOpenDialog, IID_IFileOpenDialog));
 }

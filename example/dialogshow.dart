@@ -65,7 +65,7 @@ void main() {
         throw WindowsException(hr);
       }
     } else {
-      final ppsi = calloc<COMObject>();
+      final ppsi = calloc<VTablePointer>();
       hr = fileDialog.getResult(ppsi.cast());
       if (!SUCCEEDED(hr)) throw WindowsException(hr);
 

@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'idispatch.dart';
 import 'iunknown.dart';
@@ -22,7 +22,7 @@ const IID_ISpeechAudioFormat = '{e6e9c590-3e18-40e3-8299-061f98bde7c7}';
 class ISpeechAudioFormat extends IDispatch {
   // vtable begins at 7, is 6 entries long.
   ISpeechAudioFormat(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISpeechAudioFormatVtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISpeechAudioFormatVtbl>().ref;
 
   final ISpeechAudioFormatVtbl _vtable;
 
@@ -33,9 +33,9 @@ class ISpeechAudioFormat extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_Type
-              .asFunction<int Function(Pointer, Pointer<Int32> AudioFormat)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_Type.asFunction<
+              int Function(VTablePointer, Pointer<Int32> AudioFormat)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -46,9 +46,9 @@ class ISpeechAudioFormat extends IDispatch {
   }
 
   set type(int value) {
-    final hr =
-        _vtable.put_Type.asFunction<int Function(Pointer, int AudioFormat)>()(
-            ptr.ref.lpVtbl, value);
+    final hr = _vtable.put_Type
+            .asFunction<int Function(VTablePointer, int AudioFormat)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -57,8 +57,8 @@ class ISpeechAudioFormat extends IDispatch {
 
     try {
       final hr = _vtable.get_Guid.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> Guid)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> Guid)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,43 +70,48 @@ class ISpeechAudioFormat extends IDispatch {
 
   set guid(Pointer<Utf16> value) {
     final hr = _vtable.put_Guid
-            .asFunction<int Function(Pointer, Pointer<Utf16> Guid)>()(
-        ptr.ref.lpVtbl, value);
+            .asFunction<int Function(VTablePointer, Pointer<Utf16> Guid)>()(
+        ptr.value, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int getWaveFormatEx(Pointer<Pointer<COMObject>> SpeechWaveFormatEx) =>
+  int getWaveFormatEx(Pointer<Pointer<VTablePointer>> SpeechWaveFormatEx) =>
       _vtable.GetWaveFormatEx.asFunction<
-              int Function(
-                  Pointer, Pointer<Pointer<COMObject>> SpeechWaveFormatEx)>()(
-          ptr.ref.lpVtbl, SpeechWaveFormatEx);
+              int Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> SpeechWaveFormatEx)>()(
+          ptr.value, SpeechWaveFormatEx);
 
-  int setWaveFormatEx(Pointer<COMObject> SpeechWaveFormatEx) =>
+  int setWaveFormatEx(Pointer<VTablePointer> SpeechWaveFormatEx) =>
       _vtable.SetWaveFormatEx.asFunction<
-              int Function(Pointer, Pointer<COMObject> SpeechWaveFormatEx)>()(
-          ptr.ref.lpVtbl, SpeechWaveFormatEx);
+              int Function(
+                  VTablePointer, Pointer<VTablePointer> SpeechWaveFormatEx)>()(
+          ptr.value, SpeechWaveFormatEx);
 }
 
 /// @nodoc
 base class ISpeechAudioFormatVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> AudioFormat)>>
-      get_Type;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 AudioFormat)>>
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Int32> AudioFormat)>> get_Type;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Int32 AudioFormat)>>
       put_Type;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> Guid)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> Guid)>>
       get_Guid;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<Utf16> Guid)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> Guid)>>
       put_Guid;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  Pointer, Pointer<Pointer<COMObject>> SpeechWaveFormatEx)>>
+              Int32 Function(VTablePointer,
+                  Pointer<Pointer<VTablePointer>> SpeechWaveFormatEx)>>
       GetWaveFormatEx;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<COMObject> SpeechWaveFormatEx)>>
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> SpeechWaveFormatEx)>>
       SetWaveFormatEx;
 }

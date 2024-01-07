@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -18,7 +19,7 @@ const IID_IAppxManifestReader6 = '{34deaca4-d3c0-4e3e-b312-e42625e3807e}';
 class IAppxManifestReader6 extends IUnknown {
   // vtable begins at 3, is 1 entries long.
   IAppxManifestReader6(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IAppxManifestReader6Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IAppxManifestReader6Vtbl>().ref;
 
   final IAppxManifestReader6Vtbl _vtable;
 
@@ -28,9 +29,9 @@ class IAppxManifestReader6 extends IUnknown {
   int getIsNonQualifiedResourcePackage(
           Pointer<Int32> isNonQualifiedResourcePackage) =>
       _vtable.GetIsNonQualifiedResourcePackage.asFunction<
-              int Function(
-                  Pointer, Pointer<Int32> isNonQualifiedResourcePackage)>()(
-          ptr.ref.lpVtbl, isNonQualifiedResourcePackage);
+              int Function(VTablePointer,
+                  Pointer<Int32> isNonQualifiedResourcePackage)>()(
+          ptr.value, isNonQualifiedResourcePackage);
 }
 
 /// @nodoc
@@ -39,6 +40,6 @@ base class IAppxManifestReader6Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Int32> isNonQualifiedResourcePackage)>>
+                  VTablePointer, Pointer<Int32> isNonQualifiedResourcePackage)>>
       GetIsNonQualifiedResourcePackage;
 }

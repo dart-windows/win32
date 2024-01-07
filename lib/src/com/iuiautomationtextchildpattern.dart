@@ -8,9 +8,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iunknown.dart';
 
@@ -25,7 +25,7 @@ const IID_IUIAutomationTextChildPattern =
 class IUIAutomationTextChildPattern extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IUIAutomationTextChildPattern(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationTextChildPatternVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationTextChildPatternVtbl>().ref;
 
   final IUIAutomationTextChildPatternVtbl _vtable;
 
@@ -33,12 +33,12 @@ class IUIAutomationTextChildPattern extends IUnknown {
       IUIAutomationTextChildPattern(
           interface.toInterface(IID_IUIAutomationTextChildPattern));
 
-  Pointer<COMObject> get textContainer {
-    final retValuePtr = calloc<COMObject>();
+  Pointer<VTablePointer> get textContainer {
+    final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_TextContainer
-            .asFunction<int Function(Pointer, Pointer<COMObject> container)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    final hr = _vtable.get_TextContainer.asFunction<
+            int Function(VTablePointer, Pointer<VTablePointer> container)>()(
+        ptr.value, retValuePtr);
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -47,12 +47,12 @@ class IUIAutomationTextChildPattern extends IUnknown {
     return retValuePtr;
   }
 
-  Pointer<COMObject> get textRange {
-    final retValuePtr = calloc<COMObject>();
+  Pointer<VTablePointer> get textRange {
+    final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_TextRange
-            .asFunction<int Function(Pointer, Pointer<COMObject> range)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    final hr = _vtable.get_TextRange.asFunction<
+            int Function(VTablePointer, Pointer<VTablePointer> range)>()(
+        ptr.value, retValuePtr);
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -66,9 +66,11 @@ class IUIAutomationTextChildPattern extends IUnknown {
 base class IUIAutomationTextChildPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> container)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> container)>>
       get_TextContainer;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> range)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
       get_TextRange;
 }

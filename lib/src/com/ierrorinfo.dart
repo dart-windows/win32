@@ -9,6 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../guid.dart';
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -23,58 +24,61 @@ const IID_IErrorInfo = '{1cf2b120-547d-101b-8e65-08002b2bd119}';
 /// {@category com}
 class IErrorInfo extends IUnknown {
   // vtable begins at 3, is 5 entries long.
-  IErrorInfo(super.ptr) : _vtable = ptr.ref.vtable.cast<IErrorInfoVtbl>().ref;
+  IErrorInfo(super.ptr) : _vtable = ptr.value.value.cast<IErrorInfoVtbl>().ref;
 
   final IErrorInfoVtbl _vtable;
 
   factory IErrorInfo.from(IUnknown interface) =>
       IErrorInfo(interface.toInterface(IID_IErrorInfo));
 
-  int getGUID(Pointer<GUID> pGUID) =>
-      _vtable.GetGUID.asFunction<int Function(Pointer, Pointer<GUID> pGUID)>()(
-          ptr.ref.lpVtbl, pGUID);
+  int getGUID(Pointer<GUID> pGUID) => _vtable.GetGUID.asFunction<
+      int Function(VTablePointer, Pointer<GUID> pGUID)>()(ptr.value, pGUID);
 
   int getSource(Pointer<Pointer<Utf16>> pBstrSource) =>
       _vtable.GetSource.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> pBstrSource)>()(
-          ptr.ref.lpVtbl, pBstrSource);
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> pBstrSource)>()(ptr.value, pBstrSource);
 
   int getDescription(Pointer<Pointer<Utf16>> pBstrDescription) =>
       _vtable.GetDescription.asFunction<
               int Function(
-                  Pointer, Pointer<Pointer<Utf16>> pBstrDescription)>()(
-          ptr.ref.lpVtbl, pBstrDescription);
+                  VTablePointer, Pointer<Pointer<Utf16>> pBstrDescription)>()(
+          ptr.value, pBstrDescription);
 
   int getHelpFile(Pointer<Pointer<Utf16>> pBstrHelpFile) =>
       _vtable.GetHelpFile.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> pBstrHelpFile)>()(
-          ptr.ref.lpVtbl, pBstrHelpFile);
+              int Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> pBstrHelpFile)>()(
+          ptr.value, pBstrHelpFile);
 
-  int getHelpContext(Pointer<Uint32> pdwHelpContext) => _vtable.GetHelpContext
-          .asFunction<int Function(Pointer, Pointer<Uint32> pdwHelpContext)>()(
-      ptr.ref.lpVtbl, pdwHelpContext);
+  int getHelpContext(Pointer<Uint32> pdwHelpContext) =>
+      _vtable.GetHelpContext.asFunction<
+              int Function(VTablePointer, Pointer<Uint32> pdwHelpContext)>()(
+          ptr.value, pdwHelpContext);
 }
 
 /// @nodoc
 base class IErrorInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Pointer<GUID> pGUID)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pGUID)>>
       GetGUID;
   external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> pBstrSource)>>
-      GetSource;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer, Pointer<Pointer<Utf16>> pBstrSource)>> GetSource;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<Pointer<Utf16>> pBstrDescription)>>
+                  VTablePointer, Pointer<Pointer<Utf16>> pBstrDescription)>>
       GetDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> pBstrHelpFile)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<Utf16>> pBstrHelpFile)>>
       GetHelpFile;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Uint32> pdwHelpContext)>>
+              Int32 Function(VTablePointer, Pointer<Uint32> pdwHelpContext)>>
       GetHelpContext;
 }

@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
+import '../types.dart';
 import 'iuiautomation3.dart';
 import 'iunknown.dart';
 
@@ -20,7 +20,7 @@ const IID_IUIAutomation4 = '{1189c02a-05f8-4319-8e21-e817e3db2860}';
 class IUIAutomation4 extends IUIAutomation3 {
   // vtable begins at 66, is 2 entries long.
   IUIAutomation4(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomation4Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomation4Vtbl>().ref;
 
   final IUIAutomation4Vtbl _vtable;
 
@@ -28,28 +28,28 @@ class IUIAutomation4 extends IUIAutomation3 {
       IUIAutomation4(interface.toInterface(IID_IUIAutomation4));
 
   int addChangesEventHandler(
-          Pointer<COMObject> element,
+          Pointer<VTablePointer> element,
           int scope,
           Pointer<Int32> changeTypes,
           int changesCount,
-          Pointer<COMObject> pCacheRequest,
-          Pointer<COMObject> handler) =>
+          Pointer<VTablePointer> pCacheRequest,
+          Pointer<VTablePointer> handler) =>
       _vtable.AddChangesEventHandler.asFunction<
               int Function(
-                  Pointer,
-                  Pointer<COMObject> element,
+                  VTablePointer,
+                  Pointer<VTablePointer> element,
                   int scope,
                   Pointer<Int32> changeTypes,
                   int changesCount,
-                  Pointer<COMObject> pCacheRequest,
-                  Pointer<COMObject> handler)>()(ptr.ref.lpVtbl, element, scope,
+                  Pointer<VTablePointer> pCacheRequest,
+                  Pointer<VTablePointer> handler)>()(ptr.value, element, scope,
           changeTypes, changesCount, pCacheRequest, handler);
 
   int removeChangesEventHandler(
-          Pointer<COMObject> element, Pointer<COMObject> handler) =>
+          Pointer<VTablePointer> element, Pointer<VTablePointer> handler) =>
       _vtable.RemoveChangesEventHandler.asFunction<
-          int Function(Pointer, Pointer<COMObject> element,
-              Pointer<COMObject> handler)>()(ptr.ref.lpVtbl, element, handler);
+          int Function(VTablePointer, Pointer<VTablePointer> element,
+              Pointer<VTablePointer> handler)>()(ptr.value, element, handler);
 }
 
 /// @nodoc
@@ -58,15 +58,15 @@ base class IUIAutomation4Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              Pointer,
-              Pointer<COMObject> element,
+              VTablePointer,
+              Pointer<VTablePointer> element,
               Int32 scope,
               Pointer<Int32> changeTypes,
               Int32 changesCount,
-              Pointer<COMObject> pCacheRequest,
-              Pointer<COMObject> handler)>> AddChangesEventHandler;
+              Pointer<VTablePointer> pCacheRequest,
+              Pointer<VTablePointer> handler)>> AddChangesEventHandler;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Pointer<COMObject> element,
-              Pointer<COMObject> handler)>> RemoveChangesEventHandler;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
+              Pointer<VTablePointer> handler)>> RemoveChangesEventHandler;
 }

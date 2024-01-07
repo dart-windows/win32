@@ -6,8 +6,9 @@
 
 import 'dart:ffi';
 
-import '../combase.dart';
 import '../guid.dart';
+import '../types.dart';
+import '../utils.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -20,36 +21,36 @@ const IID_ISensorCollection = '{23571e11-e545-4dd8-a337-b89bf44b10df}';
 class ISensorCollection extends IUnknown {
   // vtable begins at 3, is 6 entries long.
   ISensorCollection(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISensorCollectionVtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISensorCollectionVtbl>().ref;
 
   final ISensorCollectionVtbl _vtable;
 
   factory ISensorCollection.from(IUnknown interface) =>
       ISensorCollection(interface.toInterface(IID_ISensorCollection));
 
-  int getAt(int ulIndex, Pointer<Pointer<COMObject>> ppSensor) =>
+  int getAt(int ulIndex, Pointer<Pointer<VTablePointer>> ppSensor) =>
       _vtable.GetAt.asFunction<
-              int Function(Pointer, int ulIndex,
-                  Pointer<Pointer<COMObject>> ppSensor)>()(
-          ptr.ref.lpVtbl, ulIndex, ppSensor);
+              int Function(VTablePointer, int ulIndex,
+                  Pointer<Pointer<VTablePointer>> ppSensor)>()(
+          ptr.value, ulIndex, ppSensor);
 
   int getCount(Pointer<Uint32> pCount) => _vtable.GetCount.asFunction<
-      int Function(Pointer, Pointer<Uint32> pCount)>()(ptr.ref.lpVtbl, pCount);
+      int Function(VTablePointer, Pointer<Uint32> pCount)>()(ptr.value, pCount);
 
-  int add(Pointer<COMObject> pSensor) => _vtable.Add.asFunction<
+  int add(Pointer<VTablePointer> pSensor) => _vtable.Add.asFunction<
       int Function(
-          Pointer, Pointer<COMObject> pSensor)>()(ptr.ref.lpVtbl, pSensor);
+          VTablePointer, Pointer<VTablePointer> pSensor)>()(ptr.value, pSensor);
 
-  int remove(Pointer<COMObject> pSensor) => _vtable.Remove.asFunction<
+  int remove(Pointer<VTablePointer> pSensor) => _vtable.Remove.asFunction<
       int Function(
-          Pointer, Pointer<COMObject> pSensor)>()(ptr.ref.lpVtbl, pSensor);
+          VTablePointer, Pointer<VTablePointer> pSensor)>()(ptr.value, pSensor);
 
   int removeByID(Pointer<GUID> sensorID) => _vtable.RemoveByID.asFunction<
       int Function(
-          Pointer, Pointer<GUID> sensorID)>()(ptr.ref.lpVtbl, sensorID);
+          VTablePointer, Pointer<GUID> sensorID)>()(ptr.value, sensorID);
 
   int clear() =>
-      _vtable.Clear.asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+      _vtable.Clear.asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
@@ -57,19 +58,22 @@ base class ISensorCollectionVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 ulIndex,
-              Pointer<Pointer<COMObject>> ppSensor)>> GetAt;
+          Int32 Function(VTablePointer, Uint32 ulIndex,
+              Pointer<Pointer<VTablePointer>> ppSensor)>> GetAt;
   external Pointer<
-      NativeFunction<Int32 Function(Pointer, Pointer<Uint32> pCount)>> GetCount;
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> pCount)>>
+      GetCount;
   external Pointer<
-      NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pSensor)>> Add;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<VTablePointer> pSensor)>> Add;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<COMObject> pSensor)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> pSensor)>>
       Remove;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<GUID> sensorID)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> sensorID)>>
       RemoveByID;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Clear;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Clear;
 }
 
 /// @nodoc
@@ -80,5 +84,5 @@ class SensorCollection extends ISensorCollection {
   SensorCollection(super.ptr);
 
   factory SensorCollection.createInstance() => SensorCollection(
-      COMObject.createFromID(CLSID_SensorCollection, IID_ISensorCollection));
+      createCOMObject(CLSID_SensorCollection, IID_ISensorCollection));
 }

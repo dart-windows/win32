@@ -11,6 +11,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../macros.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iunknown.dart';
 
@@ -26,7 +27,7 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
   // vtable begins at 3, is 6 entries long.
   IUIAutomationMultipleViewPattern(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<IUIAutomationMultipleViewPatternVtbl>().ref;
+            ptr.value.value.cast<IUIAutomationMultipleViewPatternVtbl>().ref;
 
   final IUIAutomationMultipleViewPatternVtbl _vtable;
 
@@ -36,20 +37,19 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
 
   int getViewName(int view, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetViewName.asFunction<
-              int Function(Pointer, int view, Pointer<Pointer<Utf16>> name)>()(
-          ptr.ref.lpVtbl, view, name);
+          int Function(VTablePointer, int view,
+              Pointer<Pointer<Utf16>> name)>()(ptr.value, view, name);
 
-  int setCurrentView(int view) =>
-      _vtable.SetCurrentView.asFunction<int Function(Pointer, int view)>()(
-          ptr.ref.lpVtbl, view);
+  int setCurrentView(int view) => _vtable.SetCurrentView.asFunction<
+      int Function(VTablePointer, int view)>()(ptr.value, view);
 
   int get currentCurrentView {
     final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_CurrentCurrentView
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -61,16 +61,16 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
 
   int getCurrentSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCurrentSupportedViews.asFunction<
-              int Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retVal);
 
   int get cachedCurrentView {
     final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_CachedCurrentView
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -82,31 +82,34 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
 
   int getCachedSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCachedSupportedViews.asFunction<
-              int Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>()(
-          ptr.ref.lpVtbl, retVal);
+          int Function(VTablePointer,
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retVal);
 }
 
 /// @nodoc
 base class IUIAutomationMultipleViewPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              Pointer, Int32 view, Pointer<Pointer<Utf16>> name)>> GetViewName;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 view)>>
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Int32 view, Pointer<Pointer<Utf16>> name)>>
+      GetViewName;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 view)>>
       SetCurrentView;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentCurrentView;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
       GetCurrentSupportedViews;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedCurrentView;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+              Int32 Function(
+                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
       GetCachedSupportedViews;
 }

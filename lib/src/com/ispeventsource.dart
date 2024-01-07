@@ -7,6 +7,7 @@
 import 'dart:ffi';
 
 import '../structs.g.dart';
+import '../types.dart';
 import 'ispnotifysource.dart';
 import 'iunknown.dart';
 
@@ -23,7 +24,7 @@ const IID_ISpEventSource = '{be7a9cce-5f9e-11d2-960f-00c04f8ee628}';
 class ISpEventSource extends ISpNotifySource {
   // vtable begins at 10, is 3 entries long.
   ISpEventSource(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<ISpEventSourceVtbl>().ref;
+      : _vtable = ptr.value.value.cast<ISpEventSourceVtbl>().ref;
 
   final ISpEventSourceVtbl _vtable;
 
@@ -32,35 +33,38 @@ class ISpEventSource extends ISpNotifySource {
 
   int setInterest(int ullEventInterest, int ullQueuedInterest) =>
       _vtable.SetInterest.asFunction<
-              int Function(
-                  Pointer, int ullEventInterest, int ullQueuedInterest)>()(
-          ptr.ref.lpVtbl, ullEventInterest, ullQueuedInterest);
+              int Function(VTablePointer, int ullEventInterest,
+                  int ullQueuedInterest)>()(
+          ptr.value, ullEventInterest, ullQueuedInterest);
 
   int getEvents(int ulCount, Pointer<SPEVENT> pEventArray,
           Pointer<Uint32> pulFetched) =>
       _vtable.GetEvents.asFunction<
-              int Function(Pointer, int ulCount, Pointer<SPEVENT> pEventArray,
-                  Pointer<Uint32> pulFetched)>()(
-          ptr.ref.lpVtbl, ulCount, pEventArray, pulFetched);
+              int Function(VTablePointer, int ulCount,
+                  Pointer<SPEVENT> pEventArray, Pointer<Uint32> pulFetched)>()(
+          ptr.value, ulCount, pEventArray, pulFetched);
 
   int getInfo(Pointer<SPEVENTSOURCEINFO> pInfo) => _vtable.GetInfo.asFunction<
       int Function(
-          Pointer, Pointer<SPEVENTSOURCEINFO> pInfo)>()(ptr.ref.lpVtbl, pInfo);
+          VTablePointer, Pointer<SPEVENTSOURCEINFO> pInfo)>()(ptr.value, pInfo);
 }
 
 /// @nodoc
 base class ISpEventSourceVtbl extends Struct {
   external ISpNotifySourceVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  Pointer, Uint64 ullEventInterest, Uint64 ullQueuedInterest)>>
-      SetInterest;
+      NativeFunction<
+          Int32 Function(VTablePointer, Uint64 ullEventInterest,
+              Uint64 ullQueuedInterest)>> SetInterest;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Uint32 ulCount, Pointer<SPEVENT> pEventArray,
+          Int32 Function(
+              VTablePointer,
+              Uint32 ulCount,
+              Pointer<SPEVENT> pEventArray,
               Pointer<Uint32> pulFetched)>> GetEvents;
   external Pointer<
-      NativeFunction<
-          Int32 Function(Pointer, Pointer<SPEVENTSOURCEINFO> pInfo)>> GetInfo;
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<SPEVENTSOURCEINFO> pInfo)>>
+      GetInfo;
 }

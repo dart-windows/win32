@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import '../variant.dart';
 import 'iuiautomationcondition.dart';
@@ -26,7 +27,8 @@ const IID_IUIAutomationPropertyCondition =
 class IUIAutomationPropertyCondition extends IUIAutomationCondition {
   // vtable begins at 3, is 3 entries long.
   IUIAutomationPropertyCondition(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationPropertyConditionVtbl>().ref;
+      : _vtable =
+            ptr.value.value.cast<IUIAutomationPropertyConditionVtbl>().ref;
 
   final IUIAutomationPropertyConditionVtbl _vtable;
 
@@ -38,9 +40,9 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_PropertyId
-              .asFunction<int Function(Pointer, Pointer<Uint32> propertyId)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_PropertyId.asFunction<
+              int Function(VTablePointer, Pointer<Uint32> propertyId)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -55,8 +57,8 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_PropertyValue.asFunction<
-              int Function(Pointer, Pointer<VARIANT> propertyValue)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<VARIANT> propertyValue)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.ref;
@@ -71,8 +73,8 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_PropertyConditionFlags
-              .asFunction<int Function(Pointer, Pointer<Int32> flags)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> flags)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -87,13 +89,14 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
 base class IUIAutomationPropertyConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> propertyId)>>
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Uint32> propertyId)>>
       get_PropertyId;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<VARIANT> propertyValue)>>
+              Int32 Function(VTablePointer, Pointer<VARIANT> propertyValue)>>
       get_PropertyValue;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> flags)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> flags)>>
       get_PropertyConditionFlags;
 }

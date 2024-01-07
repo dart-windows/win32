@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../types.dart';
 import 'iunknown.dart';
 
 /// @nodoc
@@ -19,7 +20,7 @@ class IAppxManifestOSPackageDependency extends IUnknown {
   // vtable begins at 3, is 2 entries long.
   IAppxManifestOSPackageDependency(super.ptr)
       : _vtable =
-            ptr.ref.vtable.cast<IAppxManifestOSPackageDependencyVtbl>().ref;
+            ptr.value.value.cast<IAppxManifestOSPackageDependencyVtbl>().ref;
 
   final IAppxManifestOSPackageDependencyVtbl _vtable;
 
@@ -29,20 +30,20 @@ class IAppxManifestOSPackageDependency extends IUnknown {
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
       int Function(
-          Pointer, Pointer<Pointer<Utf16>> name)>()(ptr.ref.lpVtbl, name);
+          VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr.value, name);
 
   int getVersion(Pointer<Uint64> version) => _vtable.GetVersion.asFunction<
       int Function(
-          Pointer, Pointer<Uint64> version)>()(ptr.ref.lpVtbl, version);
+          VTablePointer, Pointer<Uint64> version)>()(ptr.value, version);
 }
 
 /// @nodoc
 base class IAppxManifestOSPackageDependencyVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Pointer<Utf16>> name)>>
-      GetName;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> name)>> GetName;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint64> version)>>
-      GetVersion;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<Uint64> version)>> GetVersion;
 }

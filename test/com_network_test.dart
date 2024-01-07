@@ -24,8 +24,8 @@ void main() {
 
     test('can enumerate a network connection', () {
       final nlm = NetworkListManager.createInstance();
-      final enumPtr = calloc<COMObject>();
-      final netPtr = calloc<COMObject>();
+      final enumPtr = calloc<VTablePointer>();
+      final netPtr = calloc<VTablePointer>();
 
       expect(
           nlm.getNetworks(
@@ -44,8 +44,8 @@ void main() {
 
     test('first network connection has a description', () {
       final nlm = NetworkListManager.createInstance();
-      final enumPtr = calloc<COMObject>();
-      final netPtr = calloc<COMObject>();
+      final enumPtr = calloc<VTablePointer>();
+      final netPtr = calloc<VTablePointer>();
       final descPtr = calloc<Pointer<Utf16>>();
 
       expect(

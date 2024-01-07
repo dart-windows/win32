@@ -8,11 +8,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../combase.dart';
 import '../exceptions.dart';
 import '../guid.dart';
 import '../macros.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'idispatch.dart';
 import 'iunknown.dart';
@@ -27,44 +27,44 @@ const IID_INetworkListManager = '{dcb00000-570f-4a9b-8d69-199fdba5723b}';
 class INetworkListManager extends IDispatch {
   // vtable begins at 7, is 9 entries long.
   INetworkListManager(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<INetworkListManagerVtbl>().ref;
+      : _vtable = ptr.value.value.cast<INetworkListManagerVtbl>().ref;
 
   final INetworkListManagerVtbl _vtable;
 
   factory INetworkListManager.from(IUnknown interface) =>
       INetworkListManager(interface.toInterface(IID_INetworkListManager));
 
-  int getNetworks(int Flags, Pointer<Pointer<COMObject>> ppEnumNetwork) =>
+  int getNetworks(int Flags, Pointer<Pointer<VTablePointer>> ppEnumNetwork) =>
       _vtable.GetNetworks.asFunction<
-              int Function(Pointer, int Flags,
-                  Pointer<Pointer<COMObject>> ppEnumNetwork)>()(
-          ptr.ref.lpVtbl, Flags, ppEnumNetwork);
+              int Function(VTablePointer, int Flags,
+                  Pointer<Pointer<VTablePointer>> ppEnumNetwork)>()(
+          ptr.value, Flags, ppEnumNetwork);
 
-  int getNetwork(GUID gdNetworkId, Pointer<Pointer<COMObject>> ppNetwork) =>
+  int getNetwork(GUID gdNetworkId, Pointer<Pointer<VTablePointer>> ppNetwork) =>
       _vtable.GetNetwork.asFunction<
-              int Function(Pointer, GUID gdNetworkId,
-                  Pointer<Pointer<COMObject>> ppNetwork)>()(
-          ptr.ref.lpVtbl, gdNetworkId, ppNetwork);
+              int Function(VTablePointer, GUID gdNetworkId,
+                  Pointer<Pointer<VTablePointer>> ppNetwork)>()(
+          ptr.value, gdNetworkId, ppNetwork);
 
-  int getNetworkConnections(Pointer<Pointer<COMObject>> ppEnum) =>
+  int getNetworkConnections(Pointer<Pointer<VTablePointer>> ppEnum) =>
       _vtable.GetNetworkConnections.asFunction<
-              int Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>()(
-          ptr.ref.lpVtbl, ppEnum);
+          int Function(VTablePointer,
+              Pointer<Pointer<VTablePointer>> ppEnum)>()(ptr.value, ppEnum);
 
   int getNetworkConnection(GUID gdNetworkConnectionId,
-          Pointer<Pointer<COMObject>> ppNetworkConnection) =>
+          Pointer<Pointer<VTablePointer>> ppNetworkConnection) =>
       _vtable.GetNetworkConnection.asFunction<
-              int Function(Pointer, GUID gdNetworkConnectionId,
-                  Pointer<Pointer<COMObject>> ppNetworkConnection)>()(
-          ptr.ref.lpVtbl, gdNetworkConnectionId, ppNetworkConnection);
+              int Function(VTablePointer, GUID gdNetworkConnectionId,
+                  Pointer<Pointer<VTablePointer>> ppNetworkConnection)>()(
+          ptr.value, gdNetworkConnectionId, ppNetworkConnection);
 
   int get isConnectedToInternet {
     final retValuePtr = calloc<Int16>();
 
     try {
       final hr = _vtable.get_IsConnectedToInternet.asFunction<
-              int Function(Pointer, Pointer<Int16> pbIsConnected)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Int16> pbIsConnected)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -79,8 +79,8 @@ class INetworkListManager extends IDispatch {
 
     try {
       final hr = _vtable.get_IsConnected.asFunction<
-              int Function(Pointer, Pointer<Int16> pbIsConnected)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Int16> pbIsConnected)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -90,20 +90,20 @@ class INetworkListManager extends IDispatch {
     }
   }
 
-  int getConnectivity(Pointer<Int32> pConnectivity) => _vtable.GetConnectivity
-          .asFunction<int Function(Pointer, Pointer<Int32> pConnectivity)>()(
-      ptr.ref.lpVtbl, pConnectivity);
+  int getConnectivity(Pointer<Int32> pConnectivity) =>
+      _vtable.GetConnectivity.asFunction<
+              int Function(VTablePointer, Pointer<Int32> pConnectivity)>()(
+          ptr.value, pConnectivity);
 
   int setSimulatedProfileInfo(
           Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo) =>
       _vtable.SetSimulatedProfileInfo.asFunction<
-              int Function(Pointer,
+              int Function(VTablePointer,
                   Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo)>()(
-          ptr.ref.lpVtbl, pSimulatedInfo);
+          ptr.value, pSimulatedInfo);
 
-  int clearSimulatedProfileInfo() =>
-      _vtable.ClearSimulatedProfileInfo.asFunction<int Function(Pointer)>()(
-          ptr.ref.lpVtbl);
+  int clearSimulatedProfileInfo() => _vtable.ClearSimulatedProfileInfo
+      .asFunction<int Function(VTablePointer)>()(ptr.value);
 }
 
 /// @nodoc
@@ -111,36 +111,40 @@ base class INetworkListManagerVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, Int32 Flags,
-              Pointer<Pointer<COMObject>> ppEnumNetwork)>> GetNetworks;
+          Int32 Function(VTablePointer, Int32 Flags,
+              Pointer<Pointer<VTablePointer>> ppEnumNetwork)>> GetNetworks;
   external Pointer<
       NativeFunction<
-          Int32 Function(Pointer, GUID gdNetworkId,
-              Pointer<Pointer<COMObject>> ppNetwork)>> GetNetwork;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<COMObject>> ppEnum)>>
-      GetNetworkConnections;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(Pointer, GUID gdNetworkConnectionId,
-                  Pointer<Pointer<COMObject>> ppNetworkConnection)>>
-      GetNetworkConnection;
-  external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int16> pbIsConnected)>>
-      get_IsConnectedToInternet;
-  external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int16> pbIsConnected)>>
-      get_IsConnected;
-  external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> pConnectivity)>>
-      GetConnectivity;
+          Int32 Function(VTablePointer, GUID gdNetworkId,
+              Pointer<Pointer<VTablePointer>> ppNetwork)>> GetNetwork;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  Pointer, Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo)>>
+                  VTablePointer, Pointer<Pointer<VTablePointer>> ppEnum)>>
+      GetNetworkConnections;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, GUID gdNetworkConnectionId,
+                  Pointer<Pointer<VTablePointer>> ppNetworkConnection)>>
+      GetNetworkConnection;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int16> pbIsConnected)>>
+      get_IsConnectedToInternet;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int16> pbIsConnected)>>
+      get_IsConnected;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<Int32> pConnectivity)>>
+      GetConnectivity;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer,
+                  Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo)>>
       SetSimulatedProfileInfo;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
       ClearSimulatedProfileInfo;
 }
 
@@ -151,7 +155,6 @@ const CLSID_NetworkListManager = '{dcb00c01-570f-4a9b-8d69-199fdba5723b}';
 class NetworkListManager extends INetworkListManager {
   NetworkListManager(super.ptr);
 
-  factory NetworkListManager.createInstance() =>
-      NetworkListManager(COMObject.createFromID(
-          CLSID_NetworkListManager, IID_INetworkListManager));
+  factory NetworkListManager.createInstance() => NetworkListManager(
+      createCOMObject(CLSID_NetworkListManager, IID_INetworkListManager));
 }

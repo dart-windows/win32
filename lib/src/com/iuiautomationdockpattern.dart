@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iunknown.dart';
 
@@ -23,7 +24,7 @@ const IID_IUIAutomationDockPattern = '{fde5ef97-1464-48f6-90bf-43d0948e86ec}';
 class IUIAutomationDockPattern extends IUnknown {
   // vtable begins at 3, is 3 entries long.
   IUIAutomationDockPattern(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationDockPatternVtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationDockPatternVtbl>().ref;
 
   final IUIAutomationDockPatternVtbl _vtable;
 
@@ -31,17 +32,16 @@ class IUIAutomationDockPattern extends IUnknown {
       IUIAutomationDockPattern(
           interface.toInterface(IID_IUIAutomationDockPattern));
 
-  int setDockPosition(int dockPos) =>
-      _vtable.SetDockPosition.asFunction<int Function(Pointer, int dockPos)>()(
-          ptr.ref.lpVtbl, dockPos);
+  int setDockPosition(int dockPos) => _vtable.SetDockPosition.asFunction<
+      int Function(VTablePointer, int dockPos)>()(ptr.value, dockPos);
 
   int get currentDockPosition {
     final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_CurrentDockPosition
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,8 +56,8 @@ class IUIAutomationDockPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDockPosition
-              .asFunction<int Function(Pointer, Pointer<Int32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -71,12 +71,12 @@ class IUIAutomationDockPattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationDockPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(Pointer, Int32 dockPos)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 dockPos)>>
       SetDockPosition;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentDockPosition;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Int32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedDockPosition;
 }

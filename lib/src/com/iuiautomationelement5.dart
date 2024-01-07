@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
 import '../macros.dart';
+import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement4.dart';
 import 'iunknown.dart';
@@ -24,7 +25,7 @@ const IID_IUIAutomationElement5 = '{98141c1d-0d0e-4175-bbe2-6bff455842a7}';
 class IUIAutomationElement5 extends IUIAutomationElement4 {
   // vtable begins at 104, is 4 entries long.
   IUIAutomationElement5(super.ptr)
-      : _vtable = ptr.ref.vtable.cast<IUIAutomationElement5Vtbl>().ref;
+      : _vtable = ptr.value.value.cast<IUIAutomationElement5Vtbl>().ref;
 
   final IUIAutomationElement5Vtbl _vtable;
 
@@ -35,9 +36,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_CurrentLandmarkType
-              .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_CurrentLandmarkType.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,8 +53,8 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 
     try {
       final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -67,9 +68,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_CachedLandmarkType
-              .asFunction<int Function(Pointer, Pointer<Uint32> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+      final hr = _vtable.get_CachedLandmarkType.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -84,8 +85,8 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 
     try {
       final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
-              int Function(Pointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -100,17 +101,17 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 base class IUIAutomationElement5Vtbl extends Struct {
   external IUIAutomationElement4Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
       get_CurrentLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentLocalizedLandmarkType;
   external Pointer<
-          NativeFunction<Int32 Function(Pointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
       get_CachedLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(Pointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedLocalizedLandmarkType;
 }

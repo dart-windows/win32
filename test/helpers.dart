@@ -17,14 +17,12 @@ import 'package:win32/win32.dart';
 ///   test('dialog object exists', () {
 ///     final dialog = FileOpenDialog.createInstance();
 ///     expect(dialog.ptr.address, isNonZero);
-///     expect(dialog.ptr.ref.lpVtbl.address, isNonZero);
 ///   });
 ///
 ///   test('can cast to IUnknown', () {
 ///     final dialog = FileOpenDialog.createInstance();
 ///     final unk = IUnknown.from(dialog);
 ///     expect(unk.ptr.address, isNonZero);
-///     expect(unk.ptr.ref.lpVtbl.address, isNonZero);
 ///   });
 ///
 ///   tearDown(forceGC);
