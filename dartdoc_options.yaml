@@ -50,6 +50,8 @@ dartdoc:
       markdown: doc/onecore.md
     'setupapi':
       markdown: doc/setupapi.md
+    'shlwapi':
+      markdown: doc/shlwapi.md
     'version':
       markdown: doc/version.md
     'xinput':
@@ -89,6 +91,7 @@ dartdoc:
       'onecore',
       'psapi',
       'setupapi',
+      'shlwapi',
       'version',
       'xinput',
       'advapi32',
