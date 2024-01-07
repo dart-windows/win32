@@ -37,6 +37,9 @@ void main() {
 
       free(pElements);
       free(pElementsFetched);
+
+      enumString.release();
+      spellCheckerFactory.release();
     });
 
     test('isSupported', () {
@@ -53,6 +56,8 @@ void main() {
       expect(supportedPtr.value, equals(1));
 
       free(languageTagPtr);
+
+      spellCheckerFactory.release();
     });
 
     test('check', () {
@@ -90,14 +95,20 @@ void main() {
           final replacement = error.replacement;
           expect(replacement.toDartString(), equals('have'));
           WindowsDeleteString(replacement.address);
+          error.release();
         }
 
         free(errorPtr);
         free(textPtr);
+
+        errors.release();
+        spellChecker.release();
       }
 
       free(supportedPtr);
       free(languageTagPtr);
+
+      spellCheckerFactory.release();
     });
 
     tearDown(forceGC);

@@ -56,7 +56,13 @@ void main() {
     }
   }
 
+  fileOpenDialog.release();
+  modalWindow.release();
+  fileDialog2.release();
+  fileDialog.release();
+
   // Clear up
   free(pTitle);
+  CoUninitialize();
   print('All done!');
 }

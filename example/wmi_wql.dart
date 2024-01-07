@@ -155,10 +155,14 @@ void main() {
       // Free BSTRs in the returned variants
       VariantClear(vtProp);
       free(vtProp);
+      clsObj.release();
     }
     print('$idx processes found.');
+    enumerator.release();
   }
 
   free(pEnumerator);
+  pSvc.release();
+  locator.release();
   CoUninitialize();
 }

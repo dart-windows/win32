@@ -19,7 +19,7 @@ void main() {
 
   // Replace this with the sensor category you're looking for.
   final sampleDateTimeSensorCategory =
-      GUIDFromString('{062A5C3B-44C1-4ad1-8EFC-0F65B2E4AD48}');
+      GUIDFromString('{062a5c3b-44c1-4ad1-8efc-0f65b2e4ad48}');
   final pSensorsColl = calloc<VTablePointer>();
   final hr = sensorManager.getSensorsByCategory(
       sampleDateTimeSensorCategory, pSensorsColl);
@@ -32,7 +32,12 @@ void main() {
     print('Found items');
   }
 
+  coll.release();
+  sensorManager.release();
+
   free(pCount);
   free(pSensorsColl);
   free(sampleDateTimeSensorCategory);
+
+  CoUninitialize();
 }

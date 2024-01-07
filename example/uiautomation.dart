@@ -40,7 +40,7 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
       free(pCondition);
       throw WindowsException(hr);
     }
-    
+
     final propertyCondition = IUIAutomationPropertyCondition(pCondition.value);
     free(pCondition);
 
@@ -63,6 +63,7 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
   } finally {
     VariantClear(valueParam);
     free(valueParam);
+    uiAutomation.release();
   }
 }
 
@@ -143,4 +144,7 @@ void main() async {
   }
 
   closeWindow(window);
+
+  window.release();
+  notepad.release();
 }

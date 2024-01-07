@@ -75,11 +75,15 @@ void main() {
     hr = item.getDisplayName(SIGDN.SIGDN_FILESYSPATH, pathPtr);
     if (FAILED(hr)) throw WindowsException(hr);
 
+    item.release();
+
     // MAX_PATH may truncate early if long filename support is enabled
     final path = pathPtr.value.toDartString();
 
     print('Result: $path');
   }
+
+  fileDialog.release();
 
   CoUninitialize();
   print('All done!');

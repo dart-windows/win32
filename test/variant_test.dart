@@ -32,14 +32,19 @@ void main() {
       final unk = variant.ref.punkVal;
       expect(unk.ptr.address, isNonZero);
       expect(refCount(unk), equals(2));
+      unk.release();
 
       variant.ref.punkVal = spellChecker;
       final unk2 = variant.ref.punkVal;
       expect(unk2.ptr.address, isNonZero);
       expect(refCount(unk2), equals(2));
+      unk2.release();
 
       VariantClear(variant);
       free(variant);
+
+      spellChecker.release();
+      spVoice.release();
     });
 
     test('reference to an IUnknown interface pointer', () {
@@ -56,6 +61,7 @@ void main() {
       expect(unk.ptr.address, isNonZero);
       expect(refCount(unk), equals(2));
       free(ppunkval);
+      unk.release();
 
       final ppunkval2 = calloc<VTablePointer>()..value = spellChecker.ptr;
       variant.ref.ppunkVal = ppunkval2;
@@ -63,9 +69,13 @@ void main() {
       expect(unk2.ptr.address, isNonZero);
       expect(refCount(unk2), equals(2));
       free(ppunkval2);
+      unk2.release();
 
       VariantClear(variant);
       free(variant);
+
+      spellChecker.release();
+      spVoice.release();
     });
 
     test('time representation from DOS date/time', () {

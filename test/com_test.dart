@@ -48,13 +48,15 @@ void main() {
     setUpAll(initializeCOM);
 
     test('create COM object with CoCreateInstance', () {
-      final ptr = calloc<Pointer>();
+      final ptr = calloc<VTablePointer>();
       final clsid = GUIDFromString(CLSID_FileSaveDialog);
       final iid = GUIDFromString(IID_IFileSaveDialog);
 
       final hr = CoCreateInstance(clsid, nullptr, CLSCTX_ALL, iid, ptr);
       expect(hr, equals(S_OK));
-      expect(ptr.address, isNonZero);
+      expect(ptr.value.address, isNonZero);
+
+      IFileSaveDialog(ptr.value).release();
 
       free(iid);
       free(clsid);
@@ -78,7 +80,10 @@ void main() {
       hr = classFactory.createInstance(
           nullptr, iidFileSaveDialog, ptrSaveDialog);
       expect(hr, equals(S_OK));
-      expect(ptrSaveDialog.address, isNonZero);
+      expect(ptrSaveDialog.value.address, isNonZero);
+
+      IFileSaveDialog(ptrSaveDialog.value).release();
+      classFactory.release();
 
       free(iidFileSaveDialog);
       free(iidClassFactory);
@@ -86,14 +91,11 @@ void main() {
       free(ptrSaveDialog);
     });
 
-    test('create COM object through class method', () {
-      expect(FileOpenDialog.createInstance, returnsNormally);
-    });
-
     test('dialog object exists', () {
       final dialog = FileOpenDialog.createInstance();
       expect(dialog.ptr.address, isNonZero);
       expect(dialog.ptr.value.address, isNonZero);
+      dialog.release();
     });
 
     test('can cast to IUnknown', () {
@@ -101,6 +103,8 @@ void main() {
       final unk = IUnknown.from(dialog);
       expect(unk.ptr.address, isNonZero);
       expect(unk.ptr.value.address, isNonZero);
+      unk.release();
+      dialog.release();
     });
 
     test('cast to random interface fails', () {
@@ -111,6 +115,7 @@ void main() {
               .having((e) => e.hr, 'hr', equals(E_NOINTERFACE))
               .having((e) => e.toString(), 'message',
                   contains('No such interface supported'))));
+      dialog.release();
     });
 
     test('addRef / release', () {
@@ -127,6 +132,8 @@ void main() {
 
       refs = dialog.release();
       expect(refs, equals(1));
+
+      dialog.release();
     });
 
     test('can cast to various supported interfaces', () {
@@ -137,6 +144,8 @@ void main() {
       expect(() => IFileOpenDialog.from(dialog), returnsNormally);
       expect(() => IFileDialog.from(dialog), returnsNormally);
       expect(() => IFileDialog2.from(dialog), returnsNormally);
+
+      dialog.release();
     });
 
     test('cannot cast to various unsupported interfaces', () {
@@ -150,6 +159,8 @@ void main() {
           () => ISpeechObjectToken.from(dialog),
           throwsA(isA<WindowsException>()
               .having((e) => e.hr, 'hr', equals(E_NOINTERFACE))));
+
+      dialog.release();
     });
 
     tearDown(forceGC);

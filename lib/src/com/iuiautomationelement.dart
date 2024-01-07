@@ -9,6 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../exceptions.dart';
+import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../macros.dart';
 import '../structs.g.dart';

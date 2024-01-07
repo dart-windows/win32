@@ -49,9 +49,16 @@ void main() {
 
         hr = speechVoice.speak(pText, SPEAKFLAGS.SPF_IS_NOT_XML, nullptr);
         if (FAILED(hr)) throw WindowsException(hr);
+
+        token.release();
       }
     }
+
+    tokens.release();
   }
 
+  speechVoice.release();
+
   free(pText);
+  CoUninitialize();
 }

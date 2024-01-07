@@ -39,6 +39,8 @@ void main() {
     // Get response text
     final responseText = winHttpRequest.responseText.toDartString();
     print(responseText);
+
+    winHttpRequest.release();
   } finally {
     VariantClear(varFalse);
     VariantClear(varEmpty);
@@ -47,4 +49,6 @@ void main() {
     method.free();
     url.free();
   }
+
+  CoUninitialize();
 }

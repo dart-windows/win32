@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../extensions/iunknown.dart';
 import '../types.dart';
 import 'iuiautomationcondition.dart';
 import 'iunknown.dart';

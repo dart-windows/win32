@@ -62,4 +62,7 @@ void main() {
 
   printWallpaper();
   printBackgroundColor();
+
+  wallpaper.release();
+  CoUninitialize();
 }

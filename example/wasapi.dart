@@ -140,6 +140,9 @@ void main() {
     } else {
       print(" Unknown device");
     }
+
+    pProps.release();
+    pEndpoint.release();
   }
 
   // Retrieve the default audio output device.
@@ -223,5 +226,10 @@ void main() {
   free(pData);
   free(ppFormat);
 
+  pAudioRenderClient.release();
+  pAudioClient.release();
+  pDevice.release();
+  pDeviceEnumerator.release();
+  CoUninitialize();
   print('All done!');
 }

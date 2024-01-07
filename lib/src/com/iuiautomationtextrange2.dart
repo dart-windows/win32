@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../extensions/iunknown.dart';
 import '../types.dart';
 import 'iuiautomationtextrange.dart';
 import 'iunknown.dart';

@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../propertykey.dart';
 import '../structs.g.dart';

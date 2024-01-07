@@ -11,8 +11,10 @@ import 'package:win32/win32.dart';
 
 void main() {
   CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+
   XInputEnable(TRUE);
   final state = calloc<XINPUT_STATE>();
+
   for (var controller = 0; controller < XUSER_MAX_COUNT; controller++) {
     ZeroMemory(state, sizeOf<XINPUT_STATE>());
     final dwResult = XInputGetState(controller, state);
@@ -26,5 +28,6 @@ void main() {
   }
 
   free(state);
+  CoUninitialize();
   print('All done');
 }

@@ -76,7 +76,7 @@ class ComInterfaceProjection {
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 ''';
 
-  Set<String> get coreImports => {'dart:ffi'};
+  Set<String> get coreImports => {'dart:ffi', '../extensions/iunknown.dart'};
 
   String? getImportForTypeDef(TypeDef typeDef) => switch (typeDef) {
         _ when typeDef.isDelegate => '../callbacks.dart',
@@ -203,20 +203,23 @@ factory $shortName.from(IUnknown interface) =>
   bool get hasMethods => typeDef.methods.isNotEmpty;
 
   String get constructor => inheritsFrom.isEmpty
-      ? '$shortName(this.ptr);\n\nfinal VTablePointer ptr;'
+      ? '$shortName(this.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;\n\nfinal VTablePointer ptr;'
       : hasMethods
           ? '$shortName(super.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;'
           : '$shortName(super.ptr);';
 
   String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';
 
-  String get vtableStruct => '''
+  String get vtableStruct => [
+        '''
 /// @nodoc
-base class ${shortName}Vtbl extends Struct {
-  external ${inheritsFrom}Vtbl baseVtbl;
-  ${methodProjections.map((p) => 'external Pointer<NativeFunction<${p.nativePrototype}>> ${p.name};').join('\n')}
+base class ${shortName}Vtbl extends Struct {''',
+        if (inheritsFrom.isNotEmpty) 'external ${inheritsFrom}Vtbl baseVtbl;',
+        '''
+${methodProjections.map((p) => 'external Pointer<NativeFunction<${p.nativePrototype}>> ${p.name};').join('\n')}
 }
-''';
+'''
+      ].join('\n');
 
   @override
   String toString() => '''

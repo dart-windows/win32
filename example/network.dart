@@ -52,6 +52,7 @@ void main() {
     free(enumPtr);
     var netPtr = calloc<VTablePointer>();
     hr = enumerator.next(1, netPtr, elements);
+
     while (elements.value == 1) {
       final network = INetwork(netPtr.value);
       free(netPtr);
@@ -63,12 +64,19 @@ void main() {
             '$networkName: ${isNetworkConnected ? 'connected' : 'disconnected'}');
       }
 
+      network.release();
       netPtr = calloc<VTablePointer>();
       hr = enumerator.next(1, netPtr, elements);
     }
+
+    enumerator.release();
+    netManager.release();
   } finally {
     free(elements);
     free(descPtr);
     free(nlmConnectivity);
   }
+
+  CoUninitialize();
+  print('All done');
 }

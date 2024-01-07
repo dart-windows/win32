@@ -62,14 +62,13 @@ int connectWMI(WbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
 void main() {
   const processToMonitor = 'winlogon';
 
-  // Initialize COM
   initializeCOM();
 
   using((Arena arena) {
-    final pLoc = WbemLocator.createInstance();
+    final locator = WbemLocator.createInstance();
     final ppNamespace = calloc<VTablePointer>();
 
-    connectWMI(pLoc, ppNamespace);
+    connectWMI(locator, ppNamespace);
 
     final refresher = WbemRefresher.createInstance();
     final pConfig = IWbemConfigureRefresher.from(refresher);
@@ -85,26 +84,34 @@ void main() {
     free(ppNamespace);
     if (FAILED(hr)) throw WindowsException(hr);
 
-    final pObj = IWbemClassObject(ppRefreshable.value);
+    final classObject = IWbemClassObject(ppRefreshable.value);
     free(ppRefreshable);
-    final pAccess = IWbemObjectAccess.from(pObj);
+    final objectAccess = IWbemObjectAccess.from(classObject);
+    classObject.release();
 
     final pszVirtualBytes = 'WorkingSet'.toNativeUtf16(allocator: arena);
     final cimType = arena<Int32>();
     final plHandle = arena<Int32>();
 
-    hr = pAccess.getPropertyHandle(pszVirtualBytes, cimType, plHandle);
+    hr = objectAccess.getPropertyHandle(pszVirtualBytes, cimType, plHandle);
     if (FAILED(hr)) throw WindowsException(hr);
 
     final dwWorkingSetBytes = arena<DWORD>();
     for (var x = 0; x < 10; x++) {
       refresher.refresh(WBEM_REFRESHER_FLAGS.WBEM_FLAG_REFRESH_AUTO_RECONNECT);
-      hr = pAccess.readDWORD(plHandle.value, dwWorkingSetBytes);
+      hr = objectAccess.readDWORD(plHandle.value, dwWorkingSetBytes);
       if (FAILED(hr)) throw WindowsException(hr);
       print('Winlogon process is using ${dwWorkingSetBytes.value / 1000}'
           ' kilobytes of working set.');
 
       Sleep(1000); // Sleep for a second.
     }
+
+    objectAccess.release();
+    pConfig.release();
+    refresher.release();
+    locator.release();
   });
+
+  CoUninitialize();
 }

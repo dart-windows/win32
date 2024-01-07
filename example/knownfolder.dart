@@ -59,10 +59,7 @@ String getDesktopPath2() {
   try {
     final hr =
         SHGetKnownFolderPath(appsFolder, KF_FLAG_DEFAULT, NULL, ppszPath);
-
-    if (FAILED(hr)) {
-      throw WindowsException(hr);
-    }
+    if (FAILED(hr)) throw WindowsException(hr);
 
     final path = ppszPath.value.toDartString();
     return path;
@@ -88,6 +85,8 @@ String getDesktopPath3() {
     free(ppkf);
     hr = knownFolder.getPath(0, ppszPath);
     if (FAILED(hr)) throw WindowsException(hr);
+    knownFolder.release();
+    knownFolderManager.release();
 
     final path = ppszPath.value.toDartString();
     return path;

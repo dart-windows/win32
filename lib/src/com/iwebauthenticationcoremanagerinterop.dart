@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../types.dart';
 import 'iinspectable.dart';

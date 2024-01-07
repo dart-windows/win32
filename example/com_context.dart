@@ -149,5 +149,5 @@ void main() async {
   // Now spin up a number of threads
   await createIsolates();
 
-  // COM will automatically get torn down when the process ends.
+  CoUninitialize();
 }

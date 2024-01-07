@@ -15,11 +15,13 @@ void main() {
     test('network is connected', () {
       final nlm = NetworkListManager.createInstance();
       expect(nlm.isConnected, equals(VARIANT_TRUE));
+      nlm.release();
     });
 
     test('network is connected to the internet', () {
       final nlm = NetworkListManager.createInstance();
       expect(nlm.isConnectedToInternet, equals(VARIANT_TRUE));
+      nlm.release();
     });
 
     test('can enumerate a network connection', () {
@@ -41,6 +43,10 @@ void main() {
       // network should be connected, given the filter
       expect(network.isConnected,
           anyOf(equals(VARIANT_TRUE), equals(VARIANT_FALSE)));
+
+      network.release();
+      enumerator.release();
+      nlm.release();
     });
 
     test('first network connection has a description', () {
@@ -60,6 +66,10 @@ void main() {
       final network = INetwork(netPtr.value);
       free(netPtr);
       expect(network.getDescription(descPtr), equals(S_OK));
+
+      network.release();
+      enumerator.release();
+      nlm.release();
 
       // This is a wireless network or Ethernet network name. Assume that it's
       // more than one character long, and test for that.

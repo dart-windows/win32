@@ -44,6 +44,7 @@ void main(List<String> args) {
     // ISpellChecker2 extends it with the ability to remove words from the
     // custom dictionary. We cast to that purely as an example.
     final spellChecker2 = ISpellChecker2.from(spellChecker);
+    spellChecker.release();
 
     final errorsPtr = calloc<VTablePointer>();
     final textPtr = text.toNativeUtf16();
@@ -100,11 +101,18 @@ void main(List<String> args) {
             WindowsDeleteString(suggestionPtr.value.address);
           }
       }
+
+      error.release();
     }
 
+    errors.release();
     free(textPtr);
+    spellChecker2.release();
   }
 
   free(supportedPtr);
   free(languageTagPtr);
+  spellCheckerFactory.release();
+  CoUninitialize();
+  print('All done');
 }

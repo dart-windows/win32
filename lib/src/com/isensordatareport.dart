@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+import '../extensions/iunknown.dart';
 import '../propertykey.dart';
 import '../structs.g.dart';
 import '../types.dart';

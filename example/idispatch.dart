@@ -31,9 +31,7 @@ class Dispatcher {
 
     try {
       var hr = CLSIDFromProgID(ptrProgID, clsid);
-      if (FAILED(hr)) {
-        throw WindowsException(hr);
-      }
+      if (FAILED(hr)) throw WindowsException(hr);
 
       hr = CoCreateInstance(
           clsid, nullptr, CLSCTX_INPROC_SERVER, pIID_IDispatch, ppv);
@@ -108,7 +106,10 @@ class Dispatcher {
     }
   }
 
-  void dispose() => free(IID_NULL);
+  void dispose() {
+    free(IID_NULL);
+    disp.release();
+  }
 }
 
 void main() {

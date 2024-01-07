@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../extensions/iunknown.dart';
 import '../types.dart';
 import 'iunknown.dart';
 import 'iwbemclassobject.dart';

@@ -2,6 +2,14 @@
 // inadvertent change of signatures that path_provider (and transitively,
 // Flutter) depends upon.
 
+// ignore_for_file: override_on_non_overriding_member
+// ignore_for_file: omit_local_variable_types
+// ignore_for_file: prefer_conditional_assignment
+// ignore_for_file: annotate_overrides
+// ignore_for_file: always_declare_return_types
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: comment_references
+
 import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
@@ -10,14 +18,6 @@ import 'package:ffi/ffi.dart';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-
-// ignore_for_file: override_on_non_overriding_member
-// ignore_for_file: omit_local_variable_types
-// ignore_for_file: prefer_conditional_assignment
-// ignore_for_file: annotate_overrides
-// ignore_for_file: always_declare_return_types
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: comment_references
 
 /// A class containing the GUID references for each of the documented Windows
 /// known folders. A property of this class may be passed to the `getPath`
