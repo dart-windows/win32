@@ -69,13 +69,14 @@ void main() {
       final iidFileSaveDialog = GUIDFromString(IID_IFileSaveDialog);
 
       var hr = CoGetClassObject(
-          clsid, CLSCTX_ALL, nullptr, iidClassFactory, ptrFactory.cast());
+          clsid, CLSCTX_ALL, nullptr, iidClassFactory, ptrFactory);
       expect(hr, equals(S_OK));
       expect(ptrFactory.address, isNonZero);
 
-      final classFactory = IClassFactory(ptrFactory);
+      final classFactory = IClassFactory(ptrFactory.value);
+      free(ptrFactory);
       hr = classFactory.createInstance(
-          nullptr, iidFileSaveDialog, ptrSaveDialog.cast());
+          nullptr, iidFileSaveDialog, ptrSaveDialog);
       expect(hr, equals(S_OK));
       expect(ptrSaveDialog.address, isNonZero);
 

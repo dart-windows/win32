@@ -24,7 +24,7 @@ const IID_ITypeInfo = '{00020401-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class ITypeInfo extends IUnknown {
-  ITypeInfo(super.ptr) : _vtable = ptr.value.value.cast<ITypeInfoVtbl>().ref;
+  ITypeInfo(super.ptr) : _vtable = ptr.value.cast<ITypeInfoVtbl>().ref;
 
   final ITypeInfoVtbl _vtable;
 
@@ -34,24 +34,23 @@ class ITypeInfo extends IUnknown {
   int getTypeAttr(Pointer<Pointer<TYPEATTR>> ppTypeAttr) =>
       _vtable.GetTypeAttr.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<TYPEATTR>> ppTypeAttr)>()(ptr.value, ppTypeAttr);
+              Pointer<Pointer<TYPEATTR>> ppTypeAttr)>()(ptr, ppTypeAttr);
 
-  int getTypeComp(Pointer<Pointer<VTablePointer>> ppTComp) =>
+  int getTypeComp(
+          Pointer<VTablePointer> ppTComp) =>
       _vtable.GetTypeComp.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppTComp)>()(ptr.value, ppTComp);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ppTComp)>()(ptr, ppTComp);
 
   int getFuncDesc(int index, Pointer<Pointer<FUNCDESC>> ppFuncDesc) =>
       _vtable.GetFuncDesc.asFunction<
-              int Function(VTablePointer, int index,
-                  Pointer<Pointer<FUNCDESC>> ppFuncDesc)>()(
-          ptr.value, index, ppFuncDesc);
+          int Function(VTablePointer, int index,
+              Pointer<Pointer<FUNCDESC>> ppFuncDesc)>()(ptr, index, ppFuncDesc);
 
   int getVarDesc(int index, Pointer<Pointer<VARDESC>> ppVarDesc) =>
       _vtable.GetVarDesc.asFunction<
-              int Function(VTablePointer, int index,
-                  Pointer<Pointer<VARDESC>> ppVarDesc)>()(
-          ptr.value, index, ppVarDesc);
+          int Function(VTablePointer, int index,
+              Pointer<Pointer<VARDESC>> ppVarDesc)>()(ptr, index, ppVarDesc);
 
   int getNames(int memid, Pointer<Pointer<Utf16>> rgBstrNames, int cMaxNames,
           Pointer<Uint32> pcNames) =>
@@ -62,18 +61,17 @@ class ITypeInfo extends IUnknown {
                   Pointer<Pointer<Utf16>> rgBstrNames,
                   int cMaxNames,
                   Pointer<Uint32> pcNames)>()(
-          ptr.value, memid, rgBstrNames, cMaxNames, pcNames);
+          ptr, memid, rgBstrNames, cMaxNames, pcNames);
 
   int getRefTypeOfImplType(int index, Pointer<Uint32> pRefType) =>
       _vtable.GetRefTypeOfImplType.asFunction<
           int Function(VTablePointer, int index,
-              Pointer<Uint32> pRefType)>()(ptr.value, index, pRefType);
+              Pointer<Uint32> pRefType)>()(ptr, index, pRefType);
 
   int getImplTypeFlags(int index, Pointer<Int32> pImplTypeFlags) =>
       _vtable.GetImplTypeFlags.asFunction<
-              int Function(
-                  VTablePointer, int index, Pointer<Int32> pImplTypeFlags)>()(
-          ptr.value, index, pImplTypeFlags);
+          int Function(VTablePointer, int index,
+              Pointer<Int32> pImplTypeFlags)>()(ptr, index, pImplTypeFlags);
 
   int getIDsOfNames(Pointer<Pointer<Utf16>> rgszNames, int cNames,
           Pointer<Int32> pMemId) =>
@@ -82,7 +80,7 @@ class ITypeInfo extends IUnknown {
               VTablePointer,
               Pointer<Pointer<Utf16>> rgszNames,
               int cNames,
-              Pointer<Int32> pMemId)>()(ptr.value, rgszNames, cNames, pMemId);
+              Pointer<Int32> pMemId)>()(ptr, rgszNames, cNames, pMemId);
 
   int invoke(
           Pointer pvInstance,
@@ -101,8 +99,8 @@ class ITypeInfo extends IUnknown {
                   Pointer<DISPPARAMS> pDispParams,
                   Pointer<VARIANT> pVarResult,
                   Pointer<EXCEPINFO> pExcepInfo,
-                  Pointer<Uint32> puArgErr)>()(ptr.value, pvInstance, memid,
-          wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
+                  Pointer<Uint32> puArgErr)>()(ptr, pvInstance, memid, wFlags,
+          pDispParams, pVarResult, pExcepInfo, puArgErr);
 
   int getDocumentation(
           int memid,
@@ -117,8 +115,8 @@ class ITypeInfo extends IUnknown {
                   Pointer<Pointer<Utf16>> pBstrName,
                   Pointer<Pointer<Utf16>> pBstrDocString,
                   Pointer<Uint32> pdwHelpContext,
-                  Pointer<Pointer<Utf16>> pBstrHelpFile)>()(ptr.value, memid,
-          pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
+                  Pointer<Pointer<Utf16>> pBstrHelpFile)>()(
+          ptr, memid, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
 
   int getDllEntry(int memid, int invKind, Pointer<Pointer<Utf16>> pBstrDllName,
           Pointer<Pointer<Utf16>> pBstrName, Pointer<Uint16> pwOrdinal) =>
@@ -130,54 +128,52 @@ class ITypeInfo extends IUnknown {
                   Pointer<Pointer<Utf16>> pBstrDllName,
                   Pointer<Pointer<Utf16>> pBstrName,
                   Pointer<Uint16> pwOrdinal)>()(
-          ptr.value, memid, invKind, pBstrDllName, pBstrName, pwOrdinal);
+          ptr, memid, invKind, pBstrDllName, pBstrName, pwOrdinal);
 
-  int getRefTypeInfo(int hRefType, Pointer<Pointer<VTablePointer>> ppTInfo) =>
+  int getRefTypeInfo(int hRefType, Pointer<VTablePointer> ppTInfo) =>
       _vtable.GetRefTypeInfo.asFunction<
-              int Function(VTablePointer, int hRefType,
-                  Pointer<Pointer<VTablePointer>> ppTInfo)>()(
-          ptr.value, hRefType, ppTInfo);
+          int Function(VTablePointer, int hRefType,
+              Pointer<VTablePointer> ppTInfo)>()(ptr, hRefType, ppTInfo);
 
   int addressOfMember(int memid, int invKind, Pointer<Pointer> ppv) =>
       _vtable.AddressOfMember.asFunction<
           int Function(VTablePointer, int memid, int invKind,
-              Pointer<Pointer> ppv)>()(ptr.value, memid, invKind, ppv);
+              Pointer<Pointer> ppv)>()(ptr, memid, invKind, ppv);
 
-  int createInstance(Pointer<VTablePointer> pUnkOuter, Pointer<GUID> riid,
+  int createInstance(VTablePointer pUnkOuter, Pointer<GUID> riid,
           Pointer<Pointer> ppvObj) =>
       _vtable.CreateInstance.asFunction<
           int Function(
               VTablePointer,
-              Pointer<VTablePointer> pUnkOuter,
+              VTablePointer pUnkOuter,
               Pointer<GUID> riid,
-              Pointer<Pointer> ppvObj)>()(ptr.value, pUnkOuter, riid, ppvObj);
+              Pointer<Pointer> ppvObj)>()(ptr, pUnkOuter, riid, ppvObj);
 
   int getMops(int memid, Pointer<Pointer<Utf16>> pBstrMops) =>
       _vtable.GetMops.asFunction<
-              int Function(VTablePointer, int memid,
-                  Pointer<Pointer<Utf16>> pBstrMops)>()(
-          ptr.value, memid, pBstrMops);
+          int Function(VTablePointer, int memid,
+              Pointer<Pointer<Utf16>> pBstrMops)>()(ptr, memid, pBstrMops);
 
   int getContainingTypeLib(
-          Pointer<Pointer<VTablePointer>> ppTLib, Pointer<Uint32> pIndex) =>
+          Pointer<VTablePointer> ppTLib, Pointer<Uint32> pIndex) =>
       _vtable.GetContainingTypeLib.asFunction<
-          int Function(VTablePointer, Pointer<Pointer<VTablePointer>> ppTLib,
-              Pointer<Uint32> pIndex)>()(ptr.value, ppTLib, pIndex);
+          int Function(VTablePointer, Pointer<VTablePointer> ppTLib,
+              Pointer<Uint32> pIndex)>()(ptr, ppTLib, pIndex);
 
   void releaseTypeAttr(Pointer<TYPEATTR> pTypeAttr) =>
       _vtable.ReleaseTypeAttr.asFunction<
-              void Function(VTablePointer, Pointer<TYPEATTR> pTypeAttr)>()(
-          ptr.value, pTypeAttr);
+          void Function(
+              VTablePointer, Pointer<TYPEATTR> pTypeAttr)>()(ptr, pTypeAttr);
 
   void releaseFuncDesc(Pointer<FUNCDESC> pFuncDesc) =>
       _vtable.ReleaseFuncDesc.asFunction<
-              void Function(VTablePointer, Pointer<FUNCDESC> pFuncDesc)>()(
-          ptr.value, pFuncDesc);
+          void Function(
+              VTablePointer, Pointer<FUNCDESC> pFuncDesc)>()(ptr, pFuncDesc);
 
   void releaseVarDesc(Pointer<VARDESC> pVarDesc) =>
       _vtable.ReleaseVarDesc.asFunction<
           void Function(
-              VTablePointer, Pointer<VARDESC> pVarDesc)>()(ptr.value, pVarDesc);
+              VTablePointer, Pointer<VARDESC> pVarDesc)>()(ptr, pVarDesc);
 }
 
 /// @nodoc
@@ -190,8 +186,7 @@ base class ITypeInfoVtbl extends Struct {
       GetTypeAttr;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppTComp)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppTComp)>>
       GetTypeComp;
   external Pointer<
       NativeFunction<
@@ -255,14 +250,14 @@ base class ITypeInfoVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint32 hRefType,
-              Pointer<Pointer<VTablePointer>> ppTInfo)>> GetRefTypeInfo;
+              Pointer<VTablePointer> ppTInfo)>> GetRefTypeInfo;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 memid, Int32 invKind,
               Pointer<Pointer> ppv)>> AddressOfMember;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pUnkOuter,
+          Int32 Function(VTablePointer, VTablePointer pUnkOuter,
               Pointer<GUID> riid, Pointer<Pointer> ppvObj)>> CreateInstance;
   external Pointer<
       NativeFunction<
@@ -270,7 +265,7 @@ base class ITypeInfoVtbl extends Struct {
               Pointer<Pointer<Utf16>> pBstrMops)>> GetMops;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Pointer<VTablePointer>> ppTLib,
+          Int32 Function(VTablePointer, Pointer<VTablePointer> ppTLib,
               Pointer<Uint32> pIndex)>> GetContainingTypeLib;
   external Pointer<
           NativeFunction<

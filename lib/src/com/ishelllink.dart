@@ -20,7 +20,7 @@ const IID_IShellLink = '{000214f9-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IShellLink extends IUnknown {
-  IShellLink(super.ptr) : _vtable = ptr.value.value.cast<IShellLinkVtbl>().ref;
+  IShellLink(super.ptr) : _vtable = ptr.value.cast<IShellLinkVtbl>().ref;
 
   final IShellLinkVtbl _vtable;
 
@@ -35,84 +35,77 @@ class IShellLink extends IUnknown {
               Pointer<Utf16> pszFile,
               int cch,
               Pointer<WIN32_FIND_DATA> pfd,
-              int fFlags)>()(ptr.value, pszFile, cch, pfd, fFlags);
+              int fFlags)>()(ptr, pszFile, cch, pfd, fFlags);
 
   int getIDList(
           Pointer<Pointer<ITEMIDLIST>> ppidl) =>
       _vtable.GetIDList.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<ITEMIDLIST>> ppidl)>()(ptr.value, ppidl);
+          int Function(
+              VTablePointer, Pointer<Pointer<ITEMIDLIST>> ppidl)>()(ptr, ppidl);
 
   int setIDList(Pointer<ITEMIDLIST> pidl) => _vtable.SetIDList.asFunction<
-      int Function(VTablePointer, Pointer<ITEMIDLIST> pidl)>()(ptr.value, pidl);
+      int Function(VTablePointer, Pointer<ITEMIDLIST> pidl)>()(ptr, pidl);
 
   int getDescription(Pointer<Utf16> pszName, int cch) =>
       _vtable.GetDescription.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pszName, int cch)>()(
-          ptr.value, pszName, cch);
+          ptr, pszName, cch);
 
   int setDescription(Pointer<Utf16> pszName) =>
       _vtable.SetDescription.asFunction<
-          int Function(
-              VTablePointer, Pointer<Utf16> pszName)>()(ptr.value, pszName);
+          int Function(VTablePointer, Pointer<Utf16> pszName)>()(ptr, pszName);
 
   int getWorkingDirectory(Pointer<Utf16> pszDir, int cch) =>
       _vtable.GetWorkingDirectory.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pszDir, int cch)>()(
-          ptr.value, pszDir, cch);
+          ptr, pszDir, cch);
 
   int setWorkingDirectory(Pointer<Utf16> pszDir) =>
       _vtable.SetWorkingDirectory.asFunction<
-          int Function(
-              VTablePointer, Pointer<Utf16> pszDir)>()(ptr.value, pszDir);
+          int Function(VTablePointer, Pointer<Utf16> pszDir)>()(ptr, pszDir);
 
   int getArguments(Pointer<Utf16> pszArgs, int cch) =>
       _vtable.GetArguments.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pszArgs, int cch)>()(
-          ptr.value, pszArgs, cch);
+          ptr, pszArgs, cch);
 
   int setArguments(Pointer<Utf16> pszArgs) => _vtable.SetArguments.asFunction<
-      int Function(
-          VTablePointer, Pointer<Utf16> pszArgs)>()(ptr.value, pszArgs);
+      int Function(VTablePointer, Pointer<Utf16> pszArgs)>()(ptr, pszArgs);
 
   int getHotkey(Pointer<Uint16> pwHotkey) => _vtable.GetHotkey.asFunction<
-      int Function(
-          VTablePointer, Pointer<Uint16> pwHotkey)>()(ptr.value, pwHotkey);
+      int Function(VTablePointer, Pointer<Uint16> pwHotkey)>()(ptr, pwHotkey);
 
   int setHotkey(int wHotkey) =>
       _vtable.SetHotkey.asFunction<int Function(VTablePointer, int wHotkey)>()(
-          ptr.value, wHotkey);
+          ptr, wHotkey);
 
   int getShowCmd(Pointer<Int32> piShowCmd) => _vtable.GetShowCmd.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> piShowCmd)>()(ptr.value, piShowCmd);
+      int Function(VTablePointer, Pointer<Int32> piShowCmd)>()(ptr, piShowCmd);
 
   int setShowCmd(int iShowCmd) => _vtable.SetShowCmd.asFunction<
-      int Function(VTablePointer, int iShowCmd)>()(ptr.value, iShowCmd);
+      int Function(VTablePointer, int iShowCmd)>()(ptr, iShowCmd);
 
   int getIconLocation(
           Pointer<Utf16> pszIconPath, int cch, Pointer<Int32> piIcon) =>
       _vtable.GetIconLocation.asFunction<
           int Function(VTablePointer, Pointer<Utf16> pszIconPath, int cch,
-              Pointer<Int32> piIcon)>()(ptr.value, pszIconPath, cch, piIcon);
+              Pointer<Int32> piIcon)>()(ptr, pszIconPath, cch, piIcon);
 
   int setIconLocation(Pointer<Utf16> pszIconPath, int iIcon) =>
       _vtable.SetIconLocation.asFunction<
           int Function(VTablePointer, Pointer<Utf16> pszIconPath,
-              int iIcon)>()(ptr.value, pszIconPath, iIcon);
+              int iIcon)>()(ptr, pszIconPath, iIcon);
 
   int setRelativePath(Pointer<Utf16> pszPathRel, int dwReserved) =>
       _vtable.SetRelativePath.asFunction<
           int Function(VTablePointer, Pointer<Utf16> pszPathRel,
-              int dwReserved)>()(ptr.value, pszPathRel, dwReserved);
+              int dwReserved)>()(ptr, pszPathRel, dwReserved);
 
   int resolve(int hwnd, int fFlags) => _vtable.Resolve.asFunction<
-      int Function(
-          VTablePointer, int hwnd, int fFlags)>()(ptr.value, hwnd, fFlags);
+      int Function(VTablePointer, int hwnd, int fFlags)>()(ptr, hwnd, fFlags);
 
   int setPath(Pointer<Utf16> pszFile) => _vtable.SetPath.asFunction<
-      int Function(
-          VTablePointer, Pointer<Utf16> pszFile)>()(ptr.value, pszFile);
+      int Function(VTablePointer, Pointer<Utf16> pszFile)>()(ptr, pszFile);
 }
 
 /// @nodoc

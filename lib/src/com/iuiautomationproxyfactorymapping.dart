@@ -27,8 +27,7 @@ const IID_IUIAutomationProxyFactoryMapping =
 /// {@category com}
 class IUIAutomationProxyFactoryMapping extends IUnknown {
   IUIAutomationProxyFactoryMapping(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationProxyFactoryMappingVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationProxyFactoryMappingVtbl>().ref;
 
   final IUIAutomationProxyFactoryMappingVtbl _vtable;
 
@@ -42,7 +41,7 @@ class IUIAutomationProxyFactoryMapping extends IUnknown {
     try {
       final hr = _vtable.get_Count
               .asFunction<int Function(VTablePointer, Pointer<Uint32> count)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -54,40 +53,38 @@ class IUIAutomationProxyFactoryMapping extends IUnknown {
 
   int getTable(Pointer<Pointer<SAFEARRAY>> table) =>
       _vtable.GetTable.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<SAFEARRAY>> table)>()(
-          ptr.value, table);
+          int Function(
+              VTablePointer, Pointer<Pointer<SAFEARRAY>> table)>()(ptr, table);
 
-  int getEntry(int index, Pointer<Pointer<VTablePointer>> entry) =>
+  int getEntry(int index, Pointer<VTablePointer> entry) =>
       _vtable.GetEntry.asFunction<
-              int Function(VTablePointer, int index,
-                  Pointer<Pointer<VTablePointer>> entry)>()(
-          ptr.value, index, entry);
+          int Function(VTablePointer, int index,
+              Pointer<VTablePointer> entry)>()(ptr, index, entry);
 
   int setTable(Pointer<SAFEARRAY> factoryList) => _vtable.SetTable.asFunction<
-          int Function(VTablePointer, Pointer<SAFEARRAY> factoryList)>()(
-      ptr.value, factoryList);
+      int Function(
+          VTablePointer, Pointer<SAFEARRAY> factoryList)>()(ptr, factoryList);
 
   int insertEntries(int before, Pointer<SAFEARRAY> factoryList) =>
       _vtable.InsertEntries.asFunction<
-              int Function(
-                  VTablePointer, int before, Pointer<SAFEARRAY> factoryList)>()(
-          ptr.value, before, factoryList);
-
-  int insertEntry(int before, Pointer<VTablePointer> factory) =>
-      _vtable.InsertEntry.asFunction<
           int Function(VTablePointer, int before,
-              Pointer<VTablePointer> factory)>()(ptr.value, before, factory);
+              Pointer<SAFEARRAY> factoryList)>()(ptr, before, factoryList);
+
+  int insertEntry(int before, VTablePointer factory) =>
+      _vtable.InsertEntry.asFunction<
+              int Function(VTablePointer, int before, VTablePointer factory)>()(
+          ptr, before, factory);
 
   int removeEntry(int index) =>
       _vtable.RemoveEntry.asFunction<int Function(VTablePointer, int index)>()(
-          ptr.value, index);
+          ptr, index);
 
   int clearTable() =>
-      _vtable.ClearTable.asFunction<int Function(VTablePointer)>()(ptr.value);
+      _vtable.ClearTable.asFunction<int Function(VTablePointer)>()(ptr);
 
   int restoreDefaultTable() =>
       _vtable.RestoreDefaultTable.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+          ptr);
 }
 
 /// @nodoc
@@ -101,9 +98,10 @@ base class IUIAutomationProxyFactoryMappingVtbl extends Struct {
               Int32 Function(VTablePointer, Pointer<Pointer<SAFEARRAY>> table)>>
       GetTable;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Uint32 index,
-              Pointer<Pointer<VTablePointer>> entry)>> GetEntry;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Uint32 index, Pointer<VTablePointer> entry)>>
+      GetEntry;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<SAFEARRAY> factoryList)>>
@@ -113,9 +111,10 @@ base class IUIAutomationProxyFactoryMappingVtbl extends Struct {
           Int32 Function(VTablePointer, Uint32 before,
               Pointer<SAFEARRAY> factoryList)>> InsertEntries;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Uint32 before,
-              Pointer<VTablePointer> factory)>> InsertEntry;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Uint32 before, VTablePointer factory)>>
+      InsertEntry;
   external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 index)>>
       RemoveEntry;
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>> ClearTable;

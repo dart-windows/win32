@@ -20,7 +20,7 @@ const IID_INetworkListManagerEvents = '{dcb00001-570f-4a9b-8d69-199fdba5723b}';
 /// {@category com}
 class INetworkListManagerEvents extends IUnknown {
   INetworkListManagerEvents(super.ptr)
-      : _vtable = ptr.value.value.cast<INetworkListManagerEventsVtbl>().ref;
+      : _vtable = ptr.value.cast<INetworkListManagerEventsVtbl>().ref;
 
   final INetworkListManagerEventsVtbl _vtable;
 
@@ -28,9 +28,10 @@ class INetworkListManagerEvents extends IUnknown {
       INetworkListManagerEvents(
           interface.toInterface(IID_INetworkListManagerEvents));
 
-  int connectivityChanged(int newConnectivity) => _vtable.ConnectivityChanged
-          .asFunction<int Function(VTablePointer, int newConnectivity)>()(
-      ptr.value, newConnectivity);
+  int connectivityChanged(int newConnectivity) =>
+      _vtable.ConnectivityChanged.asFunction<
+          int Function(
+              VTablePointer, int newConnectivity)>()(ptr, newConnectivity);
 }
 
 /// @nodoc

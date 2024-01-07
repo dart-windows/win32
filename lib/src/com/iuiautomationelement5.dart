@@ -24,7 +24,7 @@ const IID_IUIAutomationElement5 = '{98141c1d-0d0e-4175-bbe2-6bff455842a7}';
 /// {@category com}
 class IUIAutomationElement5 extends IUIAutomationElement4 {
   IUIAutomationElement5(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElement5Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElement5Vtbl>().ref;
 
   final IUIAutomationElement5Vtbl _vtable;
 
@@ -37,7 +37,7 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     try {
       final hr = _vtable.get_CurrentLandmarkType
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -53,7 +53,7 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     try {
       final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -69,7 +69,7 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     try {
       final hr = _vtable.get_CachedLandmarkType
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -85,7 +85,7 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     try {
       final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

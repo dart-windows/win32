@@ -26,7 +26,7 @@ const IID_IEnumNetworkConnections = '{dcb00006-570f-4a9b-8d69-199fdba5723b}';
 /// {@category com}
 class IEnumNetworkConnections extends IDispatch {
   IEnumNetworkConnections(super.ptr)
-      : _vtable = ptr.value.value.cast<IEnumNetworkConnectionsVtbl>().ref;
+      : _vtable = ptr.value.cast<IEnumNetworkConnectionsVtbl>().ref;
 
   final IEnumNetworkConnectionsVtbl _vtable;
 
@@ -34,42 +34,37 @@ class IEnumNetworkConnections extends IDispatch {
       IEnumNetworkConnections(
           interface.toInterface(IID_IEnumNetworkConnections));
 
-  Pointer<VTablePointer> get newEnum {
+  VTablePointer get newEnum {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get__NewEnum.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get__NewEnum.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
-  int next(int celt, Pointer<Pointer<VTablePointer>> rgelt,
+  int next(int celt, Pointer<VTablePointer> rgelt,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(
-                  VTablePointer,
-                  int celt,
-                  Pointer<Pointer<VTablePointer>> rgelt,
-                  Pointer<Uint32> pceltFetched)>()(
-          ptr.value, celt, rgelt, pceltFetched);
+          int Function(VTablePointer, int celt, Pointer<VTablePointer> rgelt,
+              Pointer<Uint32> pceltFetched)>()(ptr, celt, rgelt, pceltFetched);
 
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
-          ptr.value, celt);
+          ptr, celt);
 
-  int reset() =>
-      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int clone(Pointer<Pointer<VTablePointer>> ppEnumNetwork) =>
-      _vtable.Clone.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> ppEnumNetwork)>()(
-          ptr.value, ppEnumNetwork);
+  int clone(Pointer<VTablePointer> ppEnumNetwork) => _vtable.Clone.asFunction<
+          int Function(VTablePointer, Pointer<VTablePointer> ppEnumNetwork)>()(
+      ptr, ppEnumNetwork);
 }
 
 /// @nodoc
@@ -84,13 +79,13 @@ base class IEnumNetworkConnectionsVtbl extends Struct {
           Int32 Function(
               VTablePointer,
               Uint32 celt,
-              Pointer<Pointer<VTablePointer>> rgelt,
+              Pointer<VTablePointer> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
   external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
       Skip;
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppEnumNetwork)>> Clone;
+          Int32 Function(
+              VTablePointer, Pointer<VTablePointer> ppEnumNetwork)>> Clone;
 }

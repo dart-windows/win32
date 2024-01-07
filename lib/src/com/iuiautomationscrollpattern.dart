@@ -23,7 +23,7 @@ const IID_IUIAutomationScrollPattern = '{88f4d42a-e881-459d-a77c-73bbbb7e02dc}';
 /// {@category com}
 class IUIAutomationScrollPattern extends IUnknown {
   IUIAutomationScrollPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationScrollPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationScrollPatternVtbl>().ref;
 
   final IUIAutomationScrollPatternVtbl _vtable;
 
@@ -34,15 +34,14 @@ class IUIAutomationScrollPattern extends IUnknown {
   int scroll(
           int horizontalAmount, int verticalAmount) =>
       _vtable.Scroll.asFunction<
-              int Function(
-                  VTablePointer, int horizontalAmount, int verticalAmount)>()(
-          ptr.value, horizontalAmount, verticalAmount);
+          int Function(VTablePointer, int horizontalAmount,
+              int verticalAmount)>()(ptr, horizontalAmount, verticalAmount);
 
   int setScrollPercent(double horizontalPercent, double verticalPercent) =>
       _vtable.SetScrollPercent.asFunction<
               int Function(VTablePointer, double horizontalPercent,
                   double verticalPercent)>()(
-          ptr.value, horizontalPercent, verticalPercent);
+          ptr, horizontalPercent, verticalPercent);
 
   double get currentHorizontalScrollPercent {
     final retValuePtr = calloc<Double>();
@@ -50,7 +49,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentHorizontalScrollPercent.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -66,7 +65,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentVerticalScrollPercent.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -82,7 +81,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentHorizontalViewSize.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -98,7 +97,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentVerticalViewSize.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -114,7 +113,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentHorizontallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -130,7 +129,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentVerticallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -146,7 +145,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedHorizontalScrollPercent.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -162,7 +161,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedVerticalScrollPercent.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -178,7 +177,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedHorizontalViewSize.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -194,7 +193,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedVerticalViewSize.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -210,7 +209,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedHorizontallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -226,7 +225,7 @@ class IUIAutomationScrollPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedVerticallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

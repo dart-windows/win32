@@ -21,75 +21,58 @@ const IID_IFileSaveDialog = '{84bccd23-5fde-4cdb-aea4-af64b83d78ab}';
 /// {@category com}
 class IFileSaveDialog extends IFileDialog {
   IFileSaveDialog(super.ptr)
-      : _vtable = ptr.value.value.cast<IFileSaveDialogVtbl>().ref;
+      : _vtable = ptr.value.cast<IFileSaveDialogVtbl>().ref;
 
   final IFileSaveDialogVtbl _vtable;
 
   factory IFileSaveDialog.from(IUnknown interface) =>
       IFileSaveDialog(interface.toInterface(IID_IFileSaveDialog));
 
-  int setSaveAsItem(
-          Pointer<VTablePointer> psi) =>
-      _vtable.SetSaveAsItem.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> psi)>()(ptr.value, psi);
+  int setSaveAsItem(VTablePointer psi) => _vtable.SetSaveAsItem.asFunction<
+      int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
 
-  int setProperties(Pointer<VTablePointer> pStore) =>
-      _vtable.SetProperties.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pStore)>()(
-          ptr.value, pStore);
+  int setProperties(VTablePointer pStore) => _vtable.SetProperties.asFunction<
+      int Function(VTablePointer, VTablePointer pStore)>()(ptr, pStore);
 
-  int setCollectedProperties(
-          Pointer<VTablePointer> pList, int fAppendDefault) =>
+  int setCollectedProperties(VTablePointer pList, int fAppendDefault) =>
       _vtable.SetCollectedProperties.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> pList,
-              int fAppendDefault)>()(ptr.value, pList, fAppendDefault);
+          int Function(VTablePointer, VTablePointer pList,
+              int fAppendDefault)>()(ptr, pList, fAppendDefault);
 
-  int getProperties(Pointer<Pointer<VTablePointer>> ppStore) =>
+  int getProperties(Pointer<VTablePointer> ppStore) =>
       _vtable.GetProperties.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppStore)>()(ptr.value, ppStore);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ppStore)>()(ptr, ppStore);
 
-  int applyProperties(Pointer<VTablePointer> psi, Pointer<VTablePointer> pStore,
-          int hwnd, Pointer<VTablePointer> pSink) =>
+  int applyProperties(VTablePointer psi, VTablePointer pStore, int hwnd,
+          VTablePointer pSink) =>
       _vtable.ApplyProperties.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> psi,
-                  Pointer<VTablePointer> pStore,
-                  int hwnd,
-                  Pointer<VTablePointer> pSink)>()(
-          ptr.value, psi, pStore, hwnd, pSink);
+          int Function(VTablePointer, VTablePointer psi, VTablePointer pStore,
+              int hwnd, VTablePointer pSink)>()(ptr, psi, pStore, hwnd, pSink);
 }
 
 /// @nodoc
 base class IFileSaveDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> psi)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
       SetSaveAsItem;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> pStore)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer pStore)>>
       SetProperties;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pList,
-              Int32 fAppendDefault)>> SetCollectedProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppStore)>>
+                  VTablePointer, VTablePointer pList, Int32 fAppendDefault)>>
+      SetCollectedProperties;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppStore)>>
       GetProperties;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer,
-              Pointer<VTablePointer> psi,
-              Pointer<VTablePointer> pStore,
-              IntPtr hwnd,
-              Pointer<VTablePointer> pSink)>> ApplyProperties;
+          Int32 Function(VTablePointer, VTablePointer psi, VTablePointer pStore,
+              IntPtr hwnd, VTablePointer pSink)>> ApplyProperties;
 }
 
 /// @nodoc

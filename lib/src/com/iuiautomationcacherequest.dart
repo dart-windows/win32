@@ -24,7 +24,7 @@ const IID_IUIAutomationCacheRequest = '{b32a92b5-bc25-4078-9c08-d7ee95c48e03}';
 /// {@category com}
 class IUIAutomationCacheRequest extends IUnknown {
   IUIAutomationCacheRequest(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationCacheRequestVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationCacheRequestVtbl>().ref;
 
   final IUIAutomationCacheRequestVtbl _vtable;
 
@@ -33,16 +33,14 @@ class IUIAutomationCacheRequest extends IUnknown {
           interface.toInterface(IID_IUIAutomationCacheRequest));
 
   int addProperty(int propertyId) => _vtable.AddProperty.asFunction<
-      int Function(VTablePointer, int propertyId)>()(ptr.value, propertyId);
+      int Function(VTablePointer, int propertyId)>()(ptr, propertyId);
 
   int addPattern(int patternId) => _vtable.AddPattern.asFunction<
-      int Function(VTablePointer, int patternId)>()(ptr.value, patternId);
+      int Function(VTablePointer, int patternId)>()(ptr, patternId);
 
-  int clone(Pointer<Pointer<VTablePointer>> clonedRequest) =>
-      _vtable.Clone.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> clonedRequest)>()(
-          ptr.value, clonedRequest);
+  int clone(Pointer<VTablePointer> clonedRequest) => _vtable.Clone.asFunction<
+          int Function(VTablePointer, Pointer<VTablePointer> clonedRequest)>()(
+      ptr, clonedRequest);
 
   int get treeScope {
     final retValuePtr = calloc<Int32>();
@@ -50,7 +48,7 @@ class IUIAutomationCacheRequest extends IUnknown {
     try {
       final hr = _vtable.get_TreeScope
               .asFunction<int Function(VTablePointer, Pointer<Int32> scope)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -62,28 +60,30 @@ class IUIAutomationCacheRequest extends IUnknown {
 
   set treeScope(int value) {
     final hr = _vtable.put_TreeScope
-        .asFunction<int Function(VTablePointer, int scope)>()(ptr.value, value);
+        .asFunction<int Function(VTablePointer, int scope)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  Pointer<VTablePointer> get treeFilter {
+  VTablePointer get treeFilter {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_TreeFilter.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> filter)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_TreeFilter.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> filter)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
-  set treeFilter(Pointer<VTablePointer> value) {
-    final hr = _vtable.put_TreeFilter.asFunction<
-        int Function(
-            VTablePointer, Pointer<VTablePointer> filter)>()(ptr.value, value);
+  set treeFilter(VTablePointer value) {
+    final hr = _vtable.put_TreeFilter
+            .asFunction<int Function(VTablePointer, VTablePointer filter)>()(
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -93,7 +93,7 @@ class IUIAutomationCacheRequest extends IUnknown {
     try {
       final hr = _vtable.get_AutomationElementMode
               .asFunction<int Function(VTablePointer, Pointer<Int32> mode)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -105,7 +105,7 @@ class IUIAutomationCacheRequest extends IUnknown {
 
   set automationElementMode(int value) {
     final hr = _vtable.put_AutomationElementMode
-        .asFunction<int Function(VTablePointer, int mode)>()(ptr.value, value);
+        .asFunction<int Function(VTablePointer, int mode)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }
@@ -121,8 +121,8 @@ base class IUIAutomationCacheRequestVtbl extends Struct {
       AddPattern;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> clonedRequest)>> Clone;
+          Int32 Function(
+              VTablePointer, Pointer<VTablePointer> clonedRequest)>> Clone;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> scope)>>
       get_TreeScope;
@@ -133,8 +133,7 @@ base class IUIAutomationCacheRequestVtbl extends Struct {
               Int32 Function(VTablePointer, Pointer<VTablePointer> filter)>>
       get_TreeFilter;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> filter)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer filter)>>
       put_TreeFilter;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> mode)>>

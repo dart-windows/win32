@@ -21,8 +21,7 @@ const IID_IUIAutomationSpreadsheetPattern =
 /// {@category com}
 class IUIAutomationSpreadsheetPattern extends IUnknown {
   IUIAutomationSpreadsheetPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationSpreadsheetPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationSpreadsheetPatternVtbl>().ref;
 
   final IUIAutomationSpreadsheetPatternVtbl _vtable;
 
@@ -30,12 +29,10 @@ class IUIAutomationSpreadsheetPattern extends IUnknown {
       IUIAutomationSpreadsheetPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetPattern));
 
-  int getItemByName(
-          Pointer<Utf16> name, Pointer<Pointer<VTablePointer>> element) =>
+  int getItemByName(Pointer<Utf16> name, Pointer<VTablePointer> element) =>
       _vtable.GetItemByName.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> name,
-                  Pointer<Pointer<VTablePointer>> element)>()(
-          ptr.value, name, element);
+          int Function(VTablePointer, Pointer<Utf16> name,
+              Pointer<VTablePointer> element)>()(ptr, name, element);
 }
 
 /// @nodoc
@@ -44,5 +41,5 @@ base class IUIAutomationSpreadsheetPatternVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> name,
-              Pointer<Pointer<VTablePointer>> element)>> GetItemByName;
+              Pointer<VTablePointer> element)>> GetItemByName;
 }

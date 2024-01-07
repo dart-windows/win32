@@ -20,7 +20,7 @@ const IID_IPersist = '{0000010c-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IPersist extends IUnknown {
-  IPersist(super.ptr) : _vtable = ptr.value.value.cast<IPersistVtbl>().ref;
+  IPersist(super.ptr) : _vtable = ptr.value.cast<IPersistVtbl>().ref;
 
   final IPersistVtbl _vtable;
 
@@ -28,8 +28,7 @@ class IPersist extends IUnknown {
       IPersist(interface.toInterface(IID_IPersist));
 
   int getClassID(Pointer<GUID> pClassID) => _vtable.GetClassID.asFunction<
-      int Function(
-          VTablePointer, Pointer<GUID> pClassID)>()(ptr.value, pClassID);
+      int Function(VTablePointer, Pointer<GUID> pClassID)>()(ptr, pClassID);
 }
 
 /// @nodoc

@@ -89,10 +89,11 @@ void main() {
   check(pDeviceEnumerator.enumAudioEndpoints(
       0, // dataflow: rendering device
       1, // device state: only enumerate active device
-      ppDevices.cast()));
+      ppDevices));
 
   // Get the number of available audio output devices.
-  final pDevices = IMMDeviceCollection(ppDevices);
+  final pDevices = IMMDeviceCollection(ppDevices.value);
+  free(ppDevices);
   final pcDevices = calloc<Uint32>();
   check(pDevices.getCount(pcDevices));
   final deviceCount = pcDevices.value;
@@ -102,8 +103,9 @@ void main() {
   for (var i = 0; i < deviceCount; i++) {
     // Get audio device from the device collection.
     final ppEndpoint = calloc<VTablePointer>();
-    check(pDevices.item(i, ppEndpoint.cast()));
-    final pEndpoint = IMMDevice(ppEndpoint);
+    check(pDevices.item(i, ppEndpoint));
+    final pEndpoint = IMMDevice(ppEndpoint.value);
+    free(ppEndpoint);
 
     // Retrieve the current device id
     final idPtr = calloc<Pointer<Utf16>>();
@@ -116,15 +118,16 @@ void main() {
     final ppProps = calloc<VTablePointer>();
     check(pEndpoint.openPropertyStore(
         STGM.STGM_READ, // Storage-access mode: read
-        ppProps.cast()));
+        ppProps));
 
     // Build property key to get device friendly name.
-    final pProps = IPropertyStore(ppProps.cast());
+    final pProps = IPropertyStore(ppProps.value);
+    free(ppProps);
     final pPropKey = PROPERTYKEY.DeviceInterface_FriendlyName();
 
     // Retrieve the current device friendly name.
     final pVal = calloc<PROPVARIANT>();
-    check(pProps.getValue(pPropKey.cast(), pVal));
+    check(pProps.getValue(pPropKey, pVal));
     free(pPropKey);
 
     // Check the retrieved device friendly name.
@@ -137,8 +140,6 @@ void main() {
     } else {
       print(" Unknown device");
     }
-
-    free(ppEndpoint);
   }
 
   // Retrieve the default audio output device.
@@ -146,16 +147,17 @@ void main() {
   check(pDeviceEnumerator.getDefaultAudioEndpoint(
       0, // dataflow: rendering device
       0, // role: system notification sound
-      ppDevice.cast()));
+      ppDevice));
 
-  // Activate an IAudioClient interface for the output device.
-  final pDevice = IMMDevice(ppDevice);
+  // Activate an IAudioClient interface for fthe output device.
+  final pDevice = IMMDevice(ppDevice.value);
+  free(ppDevice);
   final iidAudioClient = convertToIID(IID_IAudioClient3);
   final ppAudioClient = calloc<VTablePointer>();
-  check(pDevice.activate(
-      iidAudioClient, CLSCTX_ALL, nullptr, ppAudioClient.cast()));
+  check(pDevice.activate(iidAudioClient, CLSCTX_ALL, nullptr, ppAudioClient));
   free(iidAudioClient);
-  final pAudioClient = IAudioClient3(ppAudioClient);
+  final pAudioClient = IAudioClient3(ppAudioClient.value);
+  free(ppAudioClient);
 
   // Initialize the audio stream.
   final ppFormat = calloc<Pointer<WAVEFORMATEX>>();
@@ -173,10 +175,10 @@ void main() {
   // Activate an IAudioRenderClient interface.
   final iidAudioRenderClient = convertToIID(IID_IAudioRenderClient);
   final ppAudioRenderClient = calloc<VTablePointer>();
-  check(pAudioClient.getService(
-      iidAudioRenderClient, ppAudioRenderClient.cast()));
+  check(pAudioClient.getService(iidAudioRenderClient, ppAudioRenderClient));
   free(iidAudioRenderClient);
-  final pAudioRenderClient = IAudioRenderClient(ppAudioRenderClient);
+  final pAudioRenderClient = IAudioRenderClient(ppAudioRenderClient.value);
+  free(ppAudioRenderClient);
 
   // Grab the entire buffer for the initial fill operation.
   final bufferFrameCount = getBufferFrameCount(pAudioClient);

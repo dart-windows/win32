@@ -18,7 +18,7 @@ const IID_IMMDeviceCollection = '{0bd7a1be-7a1a-44db-8397-cc5392387b5e}';
 /// {@category com}
 class IMMDeviceCollection extends IUnknown {
   IMMDeviceCollection(super.ptr)
-      : _vtable = ptr.value.value.cast<IMMDeviceCollectionVtbl>().ref;
+      : _vtable = ptr.value.cast<IMMDeviceCollectionVtbl>().ref;
 
   final IMMDeviceCollectionVtbl _vtable;
 
@@ -26,14 +26,13 @@ class IMMDeviceCollection extends IUnknown {
       IMMDeviceCollection(interface.toInterface(IID_IMMDeviceCollection));
 
   int getCount(Pointer<Uint32> pcDevices) => _vtable.GetCount.asFunction<
-      int Function(
-          VTablePointer, Pointer<Uint32> pcDevices)>()(ptr.value, pcDevices);
+      int Function(VTablePointer, Pointer<Uint32> pcDevices)>()(ptr, pcDevices);
 
-  int item(int nDevice, Pointer<Pointer<VTablePointer>> ppDevice) =>
+  int item(
+          int nDevice, Pointer<VTablePointer> ppDevice) =>
       _vtable.Item.asFunction<
-              int Function(VTablePointer, int nDevice,
-                  Pointer<Pointer<VTablePointer>> ppDevice)>()(
-          ptr.value, nDevice, ppDevice);
+          int Function(VTablePointer, int nDevice,
+              Pointer<VTablePointer> ppDevice)>()(ptr, nDevice, ppDevice);
 }
 
 /// @nodoc
@@ -45,5 +44,5 @@ base class IMMDeviceCollectionVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint32 nDevice,
-              Pointer<Pointer<VTablePointer>> ppDevice)>> Item;
+              Pointer<VTablePointer> ppDevice)>> Item;
 }

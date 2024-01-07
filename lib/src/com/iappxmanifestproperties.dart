@@ -20,7 +20,7 @@ const IID_IAppxManifestProperties = '{03faf64d-f26f-4b2c-aaf7-8fe7789b8bca}';
 /// {@category com}
 class IAppxManifestProperties extends IUnknown {
   IAppxManifestProperties(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestPropertiesVtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestPropertiesVtbl>().ref;
 
   final IAppxManifestPropertiesVtbl _vtable;
 
@@ -31,12 +31,12 @@ class IAppxManifestProperties extends IUnknown {
   int getBoolValue(Pointer<Utf16> name, Pointer<Int32> value) =>
       _vtable.GetBoolValue.asFunction<
           int Function(VTablePointer, Pointer<Utf16> name,
-              Pointer<Int32> value)>()(ptr.value, name, value);
+              Pointer<Int32> value)>()(ptr, name, value);
 
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
           int Function(VTablePointer, Pointer<Utf16> name,
-              Pointer<Pointer<Utf16>> value)>()(ptr.value, name, value);
+              Pointer<Pointer<Utf16>> value)>()(ptr, name, value);
 }
 
 /// @nodoc

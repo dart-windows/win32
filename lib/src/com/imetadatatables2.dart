@@ -19,7 +19,7 @@ const IID_IMetaDataTables2 = '{badb5f70-58da-43a9-a1c6-d74819f19b15}';
 /// {@category com}
 class IMetaDataTables2 extends IMetaDataTables {
   IMetaDataTables2(super.ptr)
-      : _vtable = ptr.value.value.cast<IMetaDataTables2Vtbl>().ref;
+      : _vtable = ptr.value.cast<IMetaDataTables2Vtbl>().ref;
 
   final IMetaDataTables2Vtbl _vtable;
 
@@ -29,7 +29,7 @@ class IMetaDataTables2 extends IMetaDataTables {
   int getMetaDataStorage(Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd) =>
       _vtable.GetMetaDataStorage.asFunction<
           int Function(VTablePointer, Pointer<Pointer> ppvMd,
-              Pointer<Uint32> pcbMd)>()(ptr.value, ppvMd, pcbMd);
+              Pointer<Uint32> pcbMd)>()(ptr, ppvMd, pcbMd);
 
   int getMetaDataStreamInfo(int ix, Pointer<Pointer<Int8>> ppchName,
           Pointer<Pointer> ppv, Pointer<Uint32> pcb) =>
@@ -39,7 +39,7 @@ class IMetaDataTables2 extends IMetaDataTables {
               int ix,
               Pointer<Pointer<Int8>> ppchName,
               Pointer<Pointer> ppv,
-              Pointer<Uint32> pcb)>()(ptr.value, ix, ppchName, ppv, pcb);
+              Pointer<Uint32> pcb)>()(ptr, ix, ppchName, ppv, pcb);
 }
 
 /// @nodoc

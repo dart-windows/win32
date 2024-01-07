@@ -22,7 +22,7 @@ const IID_IDispatch = '{00020400-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IDispatch extends IUnknown {
-  IDispatch(super.ptr) : _vtable = ptr.value.value.cast<IDispatchVtbl>().ref;
+  IDispatch(super.ptr) : _vtable = ptr.value.cast<IDispatchVtbl>().ref;
 
   final IDispatchVtbl _vtable;
 
@@ -31,15 +31,12 @@ class IDispatch extends IUnknown {
 
   int getTypeInfoCount(Pointer<Uint32> pctinfo) =>
       _vtable.GetTypeInfoCount.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> pctinfo)>()(ptr.value, pctinfo);
+          int Function(VTablePointer, Pointer<Uint32> pctinfo)>()(ptr, pctinfo);
 
-  int getTypeInfo(
-          int iTInfo, int lcid, Pointer<Pointer<VTablePointer>> ppTInfo) =>
+  int getTypeInfo(int iTInfo, int lcid, Pointer<VTablePointer> ppTInfo) =>
       _vtable.GetTypeInfo.asFunction<
-              int Function(VTablePointer, int iTInfo, int lcid,
-                  Pointer<Pointer<VTablePointer>> ppTInfo)>()(
-          ptr.value, iTInfo, lcid, ppTInfo);
+          int Function(VTablePointer, int iTInfo, int lcid,
+              Pointer<VTablePointer> ppTInfo)>()(ptr, iTInfo, lcid, ppTInfo);
 
   int getIDsOfNames(Pointer<GUID> riid, Pointer<Pointer<Utf16>> rgszNames,
           int cNames, int lcid, Pointer<Int32> rgDispId) =>
@@ -51,7 +48,7 @@ class IDispatch extends IUnknown {
                   int cNames,
                   int lcid,
                   Pointer<Int32> rgDispId)>()(
-          ptr.value, riid, rgszNames, cNames, lcid, rgDispId);
+          ptr, riid, rgszNames, cNames, lcid, rgDispId);
 
   int invoke(
           int dispIdMember,
@@ -72,8 +69,8 @@ class IDispatch extends IUnknown {
                   Pointer<DISPPARAMS> pDispParams,
                   Pointer<VARIANT> pVarResult,
                   Pointer<EXCEPINFO> pExcepInfo,
-                  Pointer<Uint32> puArgErr)>()(ptr.value, dispIdMember, riid,
-          lcid, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
+                  Pointer<Uint32> puArgErr)>()(ptr, dispIdMember, riid, lcid,
+          wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
 }
 
 /// @nodoc
@@ -86,7 +83,7 @@ base class IDispatchVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint32 iTInfo, Uint32 lcid,
-              Pointer<Pointer<VTablePointer>> ppTInfo)>> GetTypeInfo;
+              Pointer<VTablePointer> ppTInfo)>> GetTypeInfo;
   external Pointer<
       NativeFunction<
           Int32 Function(

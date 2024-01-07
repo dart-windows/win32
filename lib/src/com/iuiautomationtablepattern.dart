@@ -23,7 +23,7 @@ const IID_IUIAutomationTablePattern = '{620e691c-ea96-4710-a850-754b24ce2417}';
 /// {@category com}
 class IUIAutomationTablePattern extends IUnknown {
   IUIAutomationTablePattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTablePatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTablePatternVtbl>().ref;
 
   final IUIAutomationTablePatternVtbl _vtable;
 
@@ -31,15 +31,15 @@ class IUIAutomationTablePattern extends IUnknown {
       IUIAutomationTablePattern(
           interface.toInterface(IID_IUIAutomationTablePattern));
 
-  int getCurrentRowHeaders(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getCurrentRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentRowHeaders.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int getCurrentColumnHeaders(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getCurrentColumnHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentColumnHeaders.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get currentRowOrColumnMajor {
     final retValuePtr = calloc<Int32>();
@@ -47,7 +47,7 @@ class IUIAutomationTablePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentRowOrColumnMajor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,15 +57,15 @@ class IUIAutomationTablePattern extends IUnknown {
     }
   }
 
-  int getCachedRowHeaders(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getCachedRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedRowHeaders.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int getCachedColumnHeaders(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getCachedColumnHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedColumnHeaders.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get cachedRowOrColumnMajor {
     final retValuePtr = calloc<Int32>();
@@ -73,7 +73,7 @@ class IUIAutomationTablePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedRowOrColumnMajor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -89,26 +89,22 @@ base class IUIAutomationTablePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetCurrentRowHeaders;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetCurrentColumnHeaders;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentRowOrColumnMajor;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetCachedRowHeaders;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetCachedColumnHeaders;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>

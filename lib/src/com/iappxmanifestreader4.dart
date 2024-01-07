@@ -19,19 +19,18 @@ const IID_IAppxManifestReader4 = '{4579bb7c-741d-4161-b5a1-47bd3b78ad9b}';
 /// {@category com}
 class IAppxManifestReader4 extends IAppxManifestReader3 {
   IAppxManifestReader4(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestReader4Vtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestReader4Vtbl>().ref;
 
   final IAppxManifestReader4Vtbl _vtable;
 
   factory IAppxManifestReader4.from(IUnknown interface) =>
       IAppxManifestReader4(interface.toInterface(IID_IAppxManifestReader4));
 
-  int getOptionalPackageInfo(
-          Pointer<Pointer<VTablePointer>> optionalPackageInfo) =>
+  int getOptionalPackageInfo(Pointer<VTablePointer> optionalPackageInfo) =>
       _vtable.GetOptionalPackageInfo.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> optionalPackageInfo)>()(
-          ptr.value, optionalPackageInfo);
+              int Function(
+                  VTablePointer, Pointer<VTablePointer> optionalPackageInfo)>()(
+          ptr, optionalPackageInfo);
 }
 
 /// @nodoc
@@ -39,7 +38,7 @@ base class IAppxManifestReader4Vtbl extends Struct {
   external IAppxManifestReader3Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> optionalPackageInfo)>>
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> optionalPackageInfo)>>
       GetOptionalPackageInfo;
 }

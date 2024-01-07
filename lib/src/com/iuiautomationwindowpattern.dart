@@ -22,7 +22,7 @@ const IID_IUIAutomationWindowPattern = '{0faef453-9208-43ef-bbb2-3b485177864f}';
 /// {@category com}
 class IUIAutomationWindowPattern extends IUnknown {
   IUIAutomationWindowPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationWindowPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationWindowPatternVtbl>().ref;
 
   final IUIAutomationWindowPatternVtbl _vtable;
 
@@ -30,16 +30,15 @@ class IUIAutomationWindowPattern extends IUnknown {
       IUIAutomationWindowPattern(
           interface.toInterface(IID_IUIAutomationWindowPattern));
 
-  int close() =>
-      _vtable.Close.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int close() => _vtable.Close.asFunction<int Function(VTablePointer)>()(ptr);
 
   int waitForInputIdle(int milliseconds, Pointer<Int32> success) =>
       _vtable.WaitForInputIdle.asFunction<
           int Function(VTablePointer, int milliseconds,
-              Pointer<Int32> success)>()(ptr.value, milliseconds, success);
+              Pointer<Int32> success)>()(ptr, milliseconds, success);
 
   int setWindowVisualState(int state) => _vtable.SetWindowVisualState
-      .asFunction<int Function(VTablePointer, int state)>()(ptr.value, state);
+      .asFunction<int Function(VTablePointer, int state)>()(ptr, state);
 
   int get currentCanMaximize {
     final retValuePtr = calloc<Int32>();
@@ -47,7 +46,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCanMaximize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -63,7 +62,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCanMinimize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -79,7 +78,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentIsModal
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -95,7 +94,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentIsTopmost
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -111,7 +110,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentWindowVisualState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -127,7 +126,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentWindowInteractionState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -143,7 +142,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCanMaximize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -159,7 +158,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCanMinimize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -175,7 +174,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedIsModal
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -191,7 +190,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedIsTopmost
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -207,7 +206,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedWindowVisualState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -223,7 +222,7 @@ class IUIAutomationWindowPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedWindowInteractionState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

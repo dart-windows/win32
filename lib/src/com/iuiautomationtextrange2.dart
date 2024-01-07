@@ -19,7 +19,7 @@ const IID_IUIAutomationTextRange2 = '{bb9b40e0-5e04-46bd-9be0-4b601b9afad4}';
 /// {@category com}
 class IUIAutomationTextRange2 extends IUIAutomationTextRange {
   IUIAutomationTextRange2(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTextRange2Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTextRange2Vtbl>().ref;
 
   final IUIAutomationTextRange2Vtbl _vtable;
 
@@ -28,8 +28,7 @@ class IUIAutomationTextRange2 extends IUIAutomationTextRange {
           interface.toInterface(IID_IUIAutomationTextRange2));
 
   int showContextMenu() =>
-      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

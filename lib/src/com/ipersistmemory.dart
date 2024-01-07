@@ -18,7 +18,7 @@ const IID_IPersistMemory = '{bd1ae5e0-a6ae-11ce-bd37-504200c10000}';
 /// {@category com}
 class IPersistMemory extends IPersist {
   IPersistMemory(super.ptr)
-      : _vtable = ptr.value.value.cast<IPersistMemoryVtbl>().ref;
+      : _vtable = ptr.value.cast<IPersistMemoryVtbl>().ref;
 
   final IPersistMemoryVtbl _vtable;
 
@@ -26,23 +26,22 @@ class IPersistMemory extends IPersist {
       IPersistMemory(interface.toInterface(IID_IPersistMemory));
 
   int isDirty() =>
-      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr.value);
+      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr);
 
   int load(Pointer pMem, int cbSize) => _vtable.Load.asFunction<
       int Function(
-          VTablePointer, Pointer pMem, int cbSize)>()(ptr.value, pMem, cbSize);
+          VTablePointer, Pointer pMem, int cbSize)>()(ptr, pMem, cbSize);
 
   int save(Pointer pMem, int fClearDirty, int cbSize) =>
       _vtable.Save.asFunction<
           int Function(VTablePointer, Pointer pMem, int fClearDirty,
-              int cbSize)>()(ptr.value, pMem, fClearDirty, cbSize);
+              int cbSize)>()(ptr, pMem, fClearDirty, cbSize);
 
   int getSizeMax(Pointer<Uint32> pCbSize) => _vtable.GetSizeMax.asFunction<
-      int Function(
-          VTablePointer, Pointer<Uint32> pCbSize)>()(ptr.value, pCbSize);
+      int Function(VTablePointer, Pointer<Uint32> pCbSize)>()(ptr, pCbSize);
 
   int initNew() =>
-      _vtable.InitNew.asFunction<int Function(VTablePointer)>()(ptr.value);
+      _vtable.InitNew.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

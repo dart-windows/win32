@@ -1,5 +1,4 @@
 import 'method.dart';
-import 'safenames.dart';
 
 class ComMethodProjection extends MethodProjection {
   ComMethodProjection(super.method, super.vtableOffset);
@@ -7,11 +6,7 @@ class ComMethodProjection extends MethodProjection {
   @override
   String get nativeParams => [
         'VTablePointer',
-        ...parameters.map((param) => switch (param.type.dartType) {
-              'Pointer<Pointer<VTablePointer>>' when method.isGetProperty =>
-                'Pointer<VTablePointer> ${safeIdentifierForString(param.name)}',
-              _ => param.ffiProjection
-            }),
+        ...parameters.map((param) => param.ffiProjection)
       ].join(', ');
 
   @override
@@ -21,11 +16,7 @@ class ComMethodProjection extends MethodProjection {
   @override
   String get dartParams => [
         'VTablePointer',
-        ...parameters.map((param) => switch (param.type.dartType) {
-              'Pointer<Pointer<VTablePointer>>' when method.isGetProperty =>
-                'Pointer<VTablePointer> ${safeIdentifierForString(param.name)}',
-              _ => param.dartProjection
-            }),
+        ...parameters.map((param) => param.dartProjection)
       ].join(', ');
 
   @override
@@ -33,7 +24,7 @@ class ComMethodProjection extends MethodProjection {
 
   @override
   String get identifiers =>
-      ['ptr.value', ...parameters.map((param) => param.identifier)].join(', ');
+      ['ptr', ...parameters.map((param) => param.identifier)].join(', ');
 
   @override
   String toString() {

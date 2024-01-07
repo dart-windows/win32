@@ -20,8 +20,7 @@ const IID_IUIAutomationItemContainerPattern =
 /// {@category com}
 class IUIAutomationItemContainerPattern extends IUnknown {
   IUIAutomationItemContainerPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationItemContainerPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationItemContainerPatternVtbl>().ref;
 
   final IUIAutomationItemContainerPatternVtbl _vtable;
 
@@ -29,16 +28,16 @@ class IUIAutomationItemContainerPattern extends IUnknown {
       IUIAutomationItemContainerPattern(
           interface.toInterface(IID_IUIAutomationItemContainerPattern));
 
-  int findItemByProperty(Pointer<VTablePointer> pStartAfter, int propertyId,
-          VARIANT value, Pointer<Pointer<VTablePointer>> pFound) =>
+  int findItemByProperty(VTablePointer pStartAfter, int propertyId,
+          VARIANT value, Pointer<VTablePointer> pFound) =>
       _vtable.FindItemByProperty.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> pStartAfter,
+                  VTablePointer pStartAfter,
                   int propertyId,
                   VARIANT value,
-                  Pointer<Pointer<VTablePointer>> pFound)>()(
-          ptr.value, pStartAfter, propertyId, value, pFound);
+                  Pointer<VTablePointer> pFound)>()(
+          ptr, pStartAfter, propertyId, value, pFound);
 }
 
 /// @nodoc
@@ -48,8 +47,8 @@ base class IUIAutomationItemContainerPatternVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pStartAfter,
+              VTablePointer pStartAfter,
               Int32 propertyId,
               VARIANT value,
-              Pointer<Pointer<VTablePointer>> pFound)>> FindItemByProperty;
+              Pointer<VTablePointer> pFound)>> FindItemByProperty;
 }

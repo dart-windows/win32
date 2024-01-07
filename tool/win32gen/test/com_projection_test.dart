@@ -72,8 +72,8 @@ void main() {
     final param = getNetworkConnections.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
 
-    expect(projection.dartType, equals('Pointer<Pointer<VTablePointer>>'));
-    expect(projection.nativeType, equals('Pointer<Pointer<VTablePointer>>'));
+    expect(projection.dartType, equals('Pointer<VTablePointer>'));
+    expect(projection.nativeType, equals('Pointer<VTablePointer>'));
   });
 
   test('Properties are projected accurately', () {
@@ -179,9 +179,9 @@ void main() {
         .firstWhere((method) => method.name == 'get__NewEnum');
     expect(newEnum.parameters.length, equals(1));
     expect(newEnum.parameters.first.type.nativeType,
-        equals('Pointer<Pointer<VTablePointer>>'));
+        equals('Pointer<VTablePointer>'));
     expect(newEnum.parameters.first.type.dartType,
-        equals('Pointer<Pointer<VTablePointer>>'));
+        equals('Pointer<VTablePointer>'));
   });
 
   test(
@@ -206,9 +206,8 @@ void main() {
         .parameters.last.typeIdentifier; // ISpellChecker **value
     final typeProjection = TypeProjection(type);
 
-    expect(
-        typeProjection.nativeType, equals('Pointer<Pointer<VTablePointer>>'));
-    expect(typeProjection.dartType, equals('Pointer<Pointer<VTablePointer>>'));
+    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
+    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
   });
 
   test('Interfaces differentiate between methods and properties 1', () {

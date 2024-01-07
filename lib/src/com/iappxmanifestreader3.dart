@@ -19,7 +19,7 @@ const IID_IAppxManifestReader3 = '{c43825ab-69b7-400a-9709-cc37f5a72d24}';
 /// {@category com}
 class IAppxManifestReader3 extends IAppxManifestReader2 {
   IAppxManifestReader3(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestReader3Vtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestReader3Vtbl>().ref;
 
   final IAppxManifestReader3Vtbl _vtable;
 
@@ -27,18 +27,17 @@ class IAppxManifestReader3 extends IAppxManifestReader2 {
       IAppxManifestReader3(interface.toInterface(IID_IAppxManifestReader3));
 
   int getCapabilitiesByCapabilityClass(
-          int capabilityClass, Pointer<Pointer<VTablePointer>> capabilities) =>
+          int capabilityClass, Pointer<VTablePointer> capabilities) =>
       _vtable.GetCapabilitiesByCapabilityClass.asFunction<
               int Function(VTablePointer, int capabilityClass,
-                  Pointer<Pointer<VTablePointer>> capabilities)>()(
-          ptr.value, capabilityClass, capabilities);
+                  Pointer<VTablePointer> capabilities)>()(
+          ptr, capabilityClass, capabilities);
 
-  int getTargetDeviceFamilies(
-          Pointer<Pointer<VTablePointer>> targetDeviceFamilies) =>
+  int getTargetDeviceFamilies(Pointer<VTablePointer> targetDeviceFamilies) =>
       _vtable.GetTargetDeviceFamilies.asFunction<
               int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> targetDeviceFamilies)>()(
-          ptr.value, targetDeviceFamilies);
+                  Pointer<VTablePointer> targetDeviceFamilies)>()(
+          ptr, targetDeviceFamilies);
 }
 
 /// @nodoc
@@ -47,11 +46,11 @@ base class IAppxManifestReader3Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Int32 capabilityClass,
-                  Pointer<Pointer<VTablePointer>> capabilities)>>
+                  Pointer<VTablePointer> capabilities)>>
       GetCapabilitiesByCapabilityClass;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> targetDeviceFamilies)>>
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> targetDeviceFamilies)>>
       GetTargetDeviceFamilies;
 }

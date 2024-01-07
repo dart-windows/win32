@@ -19,32 +19,25 @@ const IID_IUIAutomation5 = '{25f700c8-d816-4057-a9dc-3cbdee77e256}';
 /// {@category com}
 class IUIAutomation5 extends IUIAutomation4 {
   IUIAutomation5(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomation5Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomation5Vtbl>().ref;
 
   final IUIAutomation5Vtbl _vtable;
 
   factory IUIAutomation5.from(IUnknown interface) =>
       IUIAutomation5(interface.toInterface(IID_IUIAutomation5));
 
-  int addNotificationEventHandler(
-          Pointer<VTablePointer> element,
-          int scope,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<VTablePointer> handler) =>
+  int addNotificationEventHandler(VTablePointer element, int scope,
+          VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddNotificationEventHandler.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  int scope,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<VTablePointer> handler)>()(
-          ptr.value, element, scope, cacheRequest, handler);
+              int Function(VTablePointer, VTablePointer element, int scope,
+                  VTablePointer cacheRequest, VTablePointer handler)>()(
+          ptr, element, scope, cacheRequest, handler);
 
   int removeNotificationEventHandler(
-          Pointer<VTablePointer> element, Pointer<VTablePointer> handler) =>
+          VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveNotificationEventHandler.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<VTablePointer> handler)>()(ptr.value, element, handler);
+          int Function(VTablePointer, VTablePointer element,
+              VTablePointer handler)>()(ptr, element, handler);
 }
 
 /// @nodoc
@@ -54,12 +47,13 @@ base class IUIAutomation5Vtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> element,
+              VTablePointer element,
               Int32 scope,
-              Pointer<VTablePointer> cacheRequest,
-              Pointer<VTablePointer> handler)>> AddNotificationEventHandler;
+              VTablePointer cacheRequest,
+              VTablePointer handler)>> AddNotificationEventHandler;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<VTablePointer> handler)>> RemoveNotificationEventHandler;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, VTablePointer element, VTablePointer handler)>>
+      RemoveNotificationEventHandler;
 }

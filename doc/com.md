@@ -40,8 +40,8 @@ final fileDialog2 = IFileDialog2(
     createCOMObject(CLSID_FileOpenDialog, IID_IFileDialog2));
 ```
 
-`createCOMObject` returns a `Pointer<VTablePointer>` containing the requested
-object, which can then be cast into the appropriate interface as shown above.
+`createCOMObject` returns a `VTablePointer` containing the requested object,
+which can then be cast into the appropriate interface as shown above.
 
 ### Asking a COM object for an interface
 

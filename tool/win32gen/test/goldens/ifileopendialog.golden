@@ -20,22 +20,22 @@ const IID_IFileOpenDialog = '{d57c7288-d4ad-4768-be02-9d969532d960}';
 /// {@category com}
 class IFileOpenDialog extends IFileDialog {
   IFileOpenDialog(super.ptr)
-      : _vtable = ptr.value.value.cast<IFileOpenDialogVtbl>().ref;
+      : _vtable = ptr.value.cast<IFileOpenDialogVtbl>().ref;
 
   final IFileOpenDialogVtbl _vtable;
 
   factory IFileOpenDialog.from(IUnknown interface) =>
       IFileOpenDialog(interface.toInterface(IID_IFileOpenDialog));
 
-  int getResults(Pointer<Pointer<VTablePointer>> ppenum) =>
+  int getResults(Pointer<VTablePointer> ppenum) =>
       _vtable.GetResults.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppenum)>()(ptr.value, ppenum);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
 
-  int getSelectedItems(Pointer<Pointer<VTablePointer>> ppsai) =>
+  int getSelectedItems(Pointer<VTablePointer> ppsai) =>
       _vtable.GetSelectedItems.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppsai)>()(ptr.value, ppsai);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ppsai)>()(ptr, ppsai);
 }
 
 /// @nodoc
@@ -43,13 +43,11 @@ base class IFileOpenDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppenum)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppenum)>>
       GetResults;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppsai)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppsai)>>
       GetSelectedItems;
 }
 

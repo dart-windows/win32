@@ -23,7 +23,7 @@ const IID_IUIAutomationElement2 = '{6749c683-f70d-4487-a698-5f79d55290d6}';
 /// {@category com}
 class IUIAutomationElement2 extends IUIAutomationElement {
   IUIAutomationElement2(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElement2Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElement2Vtbl>().ref;
 
   final IUIAutomationElement2Vtbl _vtable;
 
@@ -36,7 +36,7 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     try {
       final hr = _vtable.get_CurrentOptimizeForVisualContent
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,7 +52,7 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     try {
       final hr = _vtable.get_CachedOptimizeForVisualContent
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -68,7 +68,7 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     try {
       final hr = _vtable.get_CurrentLiveSetting
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -84,7 +84,7 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     try {
       final hr = _vtable.get_CachedLiveSetting
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -94,32 +94,36 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     }
   }
 
-  Pointer<VTablePointer> get currentFlowsFrom {
+  VTablePointer get currentFlowsFrom {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CurrentFlowsFrom.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CurrentFlowsFrom.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
-  Pointer<VTablePointer> get cachedFlowsFrom {
+  VTablePointer get cachedFlowsFrom {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CachedFlowsFrom.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CachedFlowsFrom.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 

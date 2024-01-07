@@ -15,17 +15,15 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final spellchecker2 = ISpellChecker2(ptr);
   test('Can instantiate ISpellChecker2.remove', () {
     expect(spellchecker2.remove, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

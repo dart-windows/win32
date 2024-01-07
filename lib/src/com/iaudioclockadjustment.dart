@@ -21,7 +21,7 @@ const IID_IAudioClockAdjustment = '{f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c}';
 /// {@category com}
 class IAudioClockAdjustment extends IUnknown {
   IAudioClockAdjustment(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioClockAdjustmentVtbl>().ref;
+      : _vtable = ptr.value.cast<IAudioClockAdjustmentVtbl>().ref;
 
   final IAudioClockAdjustmentVtbl _vtable;
 
@@ -29,8 +29,7 @@ class IAudioClockAdjustment extends IUnknown {
       IAudioClockAdjustment(interface.toInterface(IID_IAudioClockAdjustment));
 
   int setSampleRate(double flSampleRate) => _vtable.SetSampleRate.asFunction<
-      int Function(
-          VTablePointer, double flSampleRate)>()(ptr.value, flSampleRate);
+      int Function(VTablePointer, double flSampleRate)>()(ptr, flSampleRate);
 }
 
 /// @nodoc

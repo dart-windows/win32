@@ -24,58 +24,54 @@ const IID_IRunningObjectTable = '{00000010-0000-0000-c000-000000000046}';
 /// {@category com}
 class IRunningObjectTable extends IUnknown {
   IRunningObjectTable(super.ptr)
-      : _vtable = ptr.value.value.cast<IRunningObjectTableVtbl>().ref;
+      : _vtable = ptr.value.cast<IRunningObjectTableVtbl>().ref;
 
   final IRunningObjectTableVtbl _vtable;
 
   factory IRunningObjectTable.from(IUnknown interface) =>
       IRunningObjectTable(interface.toInterface(IID_IRunningObjectTable));
 
-  int register(int grfFlags, Pointer<VTablePointer> punkObject,
-          Pointer<VTablePointer> pmkObjectName, Pointer<Uint32> pdwRegister) =>
+  int register(int grfFlags, VTablePointer punkObject,
+          VTablePointer pmkObjectName, Pointer<Uint32> pdwRegister) =>
       _vtable.Register.asFunction<
               int Function(
                   VTablePointer,
                   int grfFlags,
-                  Pointer<VTablePointer> punkObject,
-                  Pointer<VTablePointer> pmkObjectName,
+                  VTablePointer punkObject,
+                  VTablePointer pmkObjectName,
                   Pointer<Uint32> pdwRegister)>()(
-          ptr.value, grfFlags, punkObject, pmkObjectName, pdwRegister);
+          ptr, grfFlags, punkObject, pmkObjectName, pdwRegister);
 
   int revoke(int dwRegister) =>
       _vtable.Revoke.asFunction<int Function(VTablePointer, int dwRegister)>()(
-          ptr.value, dwRegister);
+          ptr, dwRegister);
 
-  int isRunning(Pointer<VTablePointer> pmkObjectName) =>
-      _vtable.IsRunning.asFunction<
-              int Function(
-                  VTablePointer, Pointer<VTablePointer> pmkObjectName)>()(
-          ptr.value, pmkObjectName);
+  int isRunning(VTablePointer pmkObjectName) => _vtable.IsRunning.asFunction<
+      int Function(
+          VTablePointer, VTablePointer pmkObjectName)>()(ptr, pmkObjectName);
 
-  int getObject(Pointer<VTablePointer> pmkObjectName,
-          Pointer<Pointer<VTablePointer>> ppunkObject) =>
+  int getObject(
+          VTablePointer pmkObjectName, Pointer<VTablePointer> ppunkObject) =>
       _vtable.GetObject.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pmkObjectName,
-                  Pointer<Pointer<VTablePointer>> ppunkObject)>()(
-          ptr.value, pmkObjectName, ppunkObject);
+              int Function(VTablePointer, VTablePointer pmkObjectName,
+                  Pointer<VTablePointer> ppunkObject)>()(
+          ptr, pmkObjectName, ppunkObject);
 
   int noteChangeTime(int dwRegister, Pointer<FILETIME> pfiletime) =>
       _vtable.NoteChangeTime.asFunction<
           int Function(VTablePointer, int dwRegister,
-              Pointer<FILETIME> pfiletime)>()(ptr.value, dwRegister, pfiletime);
+              Pointer<FILETIME> pfiletime)>()(ptr, dwRegister, pfiletime);
 
   int getTimeOfLastChange(
-          Pointer<VTablePointer> pmkObjectName, Pointer<FILETIME> pfiletime) =>
+          VTablePointer pmkObjectName, Pointer<FILETIME> pfiletime) =>
       _vtable.GetTimeOfLastChange.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pmkObjectName,
-                  Pointer<FILETIME> pfiletime)>()(
-          ptr.value, pmkObjectName, pfiletime);
+          int Function(VTablePointer, VTablePointer pmkObjectName,
+              Pointer<FILETIME> pfiletime)>()(ptr, pmkObjectName, pfiletime);
 
-  int enumRunning(Pointer<Pointer<VTablePointer>> ppenumMoniker) =>
+  int enumRunning(Pointer<VTablePointer> ppenumMoniker) =>
       _vtable.EnumRunning.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> ppenumMoniker)>()(
-          ptr.value, ppenumMoniker);
+          int Function(VTablePointer,
+              Pointer<VTablePointer> ppenumMoniker)>()(ptr, ppenumMoniker);
 }
 
 /// @nodoc
@@ -86,29 +82,30 @@ base class IRunningObjectTableVtbl extends Struct {
           Int32 Function(
               VTablePointer,
               Uint32 grfFlags,
-              Pointer<VTablePointer> punkObject,
-              Pointer<VTablePointer> pmkObjectName,
+              VTablePointer punkObject,
+              VTablePointer pmkObjectName,
               Pointer<Uint32> pdwRegister)>> Register;
   external Pointer<
       NativeFunction<Int32 Function(VTablePointer, Uint32 dwRegister)>> Revoke;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<VTablePointer> pmkObjectName)>> IsRunning;
+          NativeFunction<
+              Int32 Function(VTablePointer, VTablePointer pmkObjectName)>>
+      IsRunning;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pmkObjectName,
-              Pointer<Pointer<VTablePointer>> ppunkObject)>> GetObject;
+          Int32 Function(VTablePointer, VTablePointer pmkObjectName,
+              Pointer<VTablePointer> ppunkObject)>> GetObject;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint32 dwRegister,
               Pointer<FILETIME> pfiletime)>> NoteChangeTime;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pmkObjectName,
+          Int32 Function(VTablePointer, VTablePointer pmkObjectName,
               Pointer<FILETIME> pfiletime)>> GetTimeOfLastChange;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppenumMoniker)>> EnumRunning;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> ppenumMoniker)>>
+      EnumRunning;
 }

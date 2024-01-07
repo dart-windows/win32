@@ -24,7 +24,7 @@ const IID_IUIAutomation2 = '{34723aff-0c9d-49d0-9896-7ab52df8cd8a}';
 /// {@category com}
 class IUIAutomation2 extends IUIAutomation {
   IUIAutomation2(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomation2Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomation2Vtbl>().ref;
 
   final IUIAutomation2Vtbl _vtable;
 
@@ -36,8 +36,8 @@ class IUIAutomation2 extends IUIAutomation {
 
     try {
       final hr = _vtable.get_AutoSetFocus.asFunction<
-              int Function(VTablePointer, Pointer<Int32> autoSetFocus)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> autoSetFocus)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -50,7 +50,7 @@ class IUIAutomation2 extends IUIAutomation {
   set autoSetFocus(int value) {
     final hr = _vtable.put_AutoSetFocus
             .asFunction<int Function(VTablePointer, int autoSetFocus)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -59,8 +59,8 @@ class IUIAutomation2 extends IUIAutomation {
 
     try {
       final hr = _vtable.get_ConnectionTimeout.asFunction<
-              int Function(VTablePointer, Pointer<Uint32> timeout)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Uint32> timeout)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,8 +72,7 @@ class IUIAutomation2 extends IUIAutomation {
 
   set connectionTimeout(int value) {
     final hr = _vtable.put_ConnectionTimeout
-            .asFunction<int Function(VTablePointer, int timeout)>()(
-        ptr.value, value);
+        .asFunction<int Function(VTablePointer, int timeout)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -82,8 +81,8 @@ class IUIAutomation2 extends IUIAutomation {
 
     try {
       final hr = _vtable.get_TransactionTimeout.asFunction<
-              int Function(VTablePointer, Pointer<Uint32> timeout)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Uint32> timeout)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -95,8 +94,7 @@ class IUIAutomation2 extends IUIAutomation {
 
   set transactionTimeout(int value) {
     final hr = _vtable.put_TransactionTimeout
-            .asFunction<int Function(VTablePointer, int timeout)>()(
-        ptr.value, value);
+        .asFunction<int Function(VTablePointer, int timeout)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }

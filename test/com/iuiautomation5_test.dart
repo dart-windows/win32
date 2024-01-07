@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final uiautomation5 = IUIAutomation5(ptr);
   test('Can instantiate IUIAutomation5.addNotificationEventHandler', () {
@@ -29,6 +28,5 @@ void main() {
     expect(uiautomation5.removeNotificationEventHandler, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

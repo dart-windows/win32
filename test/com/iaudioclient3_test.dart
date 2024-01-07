@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final audioclient3 = IAudioClient3(ptr);
   test('Can instantiate IAudioClient3.getSharedModeEnginePeriod', () {
@@ -32,6 +31,5 @@ void main() {
     expect(audioclient3.initializeSharedAudioStream, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

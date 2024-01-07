@@ -24,8 +24,7 @@ const IID_IUIAutomationSelectionItemPattern =
 /// {@category com}
 class IUIAutomationSelectionItemPattern extends IUnknown {
   IUIAutomationSelectionItemPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationSelectionItemPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationSelectionItemPatternVtbl>().ref;
 
   final IUIAutomationSelectionItemPatternVtbl _vtable;
 
@@ -33,16 +32,14 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
       IUIAutomationSelectionItemPattern(
           interface.toInterface(IID_IUIAutomationSelectionItemPattern));
 
-  int select() =>
-      _vtable.Select.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int select() => _vtable.Select.asFunction<int Function(VTablePointer)>()(ptr);
 
   int addToSelection() =>
-      _vtable.AddToSelection.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+      _vtable.AddToSelection.asFunction<int Function(VTablePointer)>()(ptr);
 
   int removeFromSelection() =>
       _vtable.RemoveFromSelection.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+          ptr);
 
   int get currentIsSelected {
     final retValuePtr = calloc<Int32>();
@@ -50,7 +47,7 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentIsSelected
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -60,18 +57,20 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     }
   }
 
-  Pointer<VTablePointer> get currentSelectionContainer {
+  VTablePointer get currentSelectionContainer {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CurrentSelectionContainer.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CurrentSelectionContainer.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   int get cachedIsSelected {
@@ -80,7 +79,7 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedIsSelected
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -90,18 +89,20 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     }
   }
 
-  Pointer<VTablePointer> get cachedSelectionContainer {
+  VTablePointer get cachedSelectionContainer {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CachedSelectionContainer.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CachedSelectionContainer.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 

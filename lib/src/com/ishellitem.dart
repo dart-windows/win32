@@ -22,44 +22,40 @@ const IID_IShellItem = '{43826d1e-e718-42ee-bc55-a1e261c37bfe}';
 ///
 /// {@category com}
 class IShellItem extends IUnknown {
-  IShellItem(super.ptr) : _vtable = ptr.value.value.cast<IShellItemVtbl>().ref;
+  IShellItem(super.ptr) : _vtable = ptr.value.cast<IShellItemVtbl>().ref;
 
   final IShellItemVtbl _vtable;
 
   factory IShellItem.from(IUnknown interface) =>
       IShellItem(interface.toInterface(IID_IShellItem));
 
-  int bindToHandler(Pointer<VTablePointer> pbc, Pointer<GUID> bhid,
-          Pointer<GUID> riid, Pointer<Pointer> ppv) =>
+  int bindToHandler(VTablePointer pbc, Pointer<GUID> bhid, Pointer<GUID> riid,
+          Pointer<Pointer> ppv) =>
       _vtable.BindToHandler.asFunction<
           int Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
+              VTablePointer pbc,
               Pointer<GUID> bhid,
               Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>()(ptr.value, pbc, bhid, riid, ppv);
+              Pointer<Pointer> ppv)>()(ptr, pbc, bhid, riid, ppv);
 
-  int getParent(Pointer<Pointer<VTablePointer>> ppsi) =>
-      _vtable.GetParent.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppsi)>()(ptr.value, ppsi);
+  int getParent(Pointer<VTablePointer> ppsi) => _vtable.GetParent.asFunction<
+      int Function(VTablePointer, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
   int getDisplayName(int sigdnName, Pointer<Pointer<Utf16>> ppszName) =>
       _vtable.GetDisplayName.asFunction<
-              int Function(VTablePointer, int sigdnName,
-                  Pointer<Pointer<Utf16>> ppszName)>()(
-          ptr.value, sigdnName, ppszName);
+          int Function(VTablePointer, int sigdnName,
+              Pointer<Pointer<Utf16>> ppszName)>()(ptr, sigdnName, ppszName);
 
   int getAttributes(int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
-              int Function(VTablePointer, int sfgaoMask,
-                  Pointer<Uint32> psfgaoAttribs)>()(
-          ptr.value, sfgaoMask, psfgaoAttribs);
+          int Function(VTablePointer, int sfgaoMask,
+              Pointer<Uint32> psfgaoAttribs)>()(ptr, sfgaoMask, psfgaoAttribs);
 
-  int compare(Pointer<VTablePointer> psi, int hint, Pointer<Int32> piOrder) =>
+  int compare(VTablePointer psi, int hint, Pointer<Int32> piOrder) =>
       _vtable.Compare.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> psi, int hint,
-              Pointer<Int32> piOrder)>()(ptr.value, psi, hint, piOrder);
+          int Function(VTablePointer, VTablePointer psi, int hint,
+              Pointer<Int32> piOrder)>()(ptr, psi, hint, piOrder);
 }
 
 /// @nodoc
@@ -67,16 +63,12 @@ base class IShellItemVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<GUID> bhid,
-              Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>> BindToHandler;
+          Int32 Function(VTablePointer, VTablePointer pbc, Pointer<GUID> bhid,
+              Pointer<GUID> riid, Pointer<Pointer> ppv)>> BindToHandler;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> ppsi)>> GetParent;
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppsi)>>
+      GetParent;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 sigdnName,
@@ -87,7 +79,7 @@ base class IShellItemVtbl extends Struct {
               Pointer<Uint32> psfgaoAttribs)>> GetAttributes;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> psi, Uint32 hint,
+          Int32 Function(VTablePointer, VTablePointer psi, Uint32 hint,
               Pointer<Int32> piOrder)>> Compare;
 }
 

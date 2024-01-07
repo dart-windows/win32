@@ -18,7 +18,7 @@ const IID_IAppxManifestReader6 = '{34deaca4-d3c0-4e3e-b312-e42625e3807e}';
 /// {@category com}
 class IAppxManifestReader6 extends IUnknown {
   IAppxManifestReader6(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestReader6Vtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestReader6Vtbl>().ref;
 
   final IAppxManifestReader6Vtbl _vtable;
 
@@ -30,7 +30,7 @@ class IAppxManifestReader6 extends IUnknown {
       _vtable.GetIsNonQualifiedResourcePackage.asFunction<
               int Function(VTablePointer,
                   Pointer<Int32> isNonQualifiedResourcePackage)>()(
-          ptr.value, isNonQualifiedResourcePackage);
+          ptr, isNonQualifiedResourcePackage);
 }
 
 /// @nodoc

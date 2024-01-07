@@ -21,7 +21,7 @@ const IID_IAudioRenderClient = '{f294acfc-3146-4483-a7bf-addca7c260e2}';
 /// {@category com}
 class IAudioRenderClient extends IUnknown {
   IAudioRenderClient(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioRenderClientVtbl>().ref;
+      : _vtable = ptr.value.cast<IAudioRenderClientVtbl>().ref;
 
   final IAudioRenderClientVtbl _vtable;
 
@@ -32,12 +32,12 @@ class IAudioRenderClient extends IUnknown {
       _vtable.GetBuffer.asFunction<
               int Function(VTablePointer, int NumFramesRequested,
                   Pointer<Pointer<Uint8>> ppData)>()(
-          ptr.value, NumFramesRequested, ppData);
+          ptr, NumFramesRequested, ppData);
 
   int releaseBuffer(int NumFramesWritten, int dwFlags) =>
       _vtable.ReleaseBuffer.asFunction<
               int Function(VTablePointer, int NumFramesWritten, int dwFlags)>()(
-          ptr.value, NumFramesWritten, dwFlags);
+          ptr, NumFramesWritten, dwFlags);
 }
 
 /// @nodoc

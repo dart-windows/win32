@@ -18,33 +18,31 @@ const IID_IAppxManifestReader7 = '{8efe6f27-0ce0-4988-b32d-738eb63db3b7}';
 /// {@category com}
 class IAppxManifestReader7 extends IUnknown {
   IAppxManifestReader7(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestReader7Vtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestReader7Vtbl>().ref;
 
   final IAppxManifestReader7Vtbl _vtable;
 
   factory IAppxManifestReader7.from(IUnknown interface) =>
       IAppxManifestReader7(interface.toInterface(IID_IAppxManifestReader7));
 
-  int getDriverDependencies(
-          Pointer<Pointer<VTablePointer>> driverDependencies) =>
+  int getDriverDependencies(Pointer<VTablePointer> driverDependencies) =>
       _vtable.GetDriverDependencies.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> driverDependencies)>()(
-          ptr.value, driverDependencies);
+              int Function(
+                  VTablePointer, Pointer<VTablePointer> driverDependencies)>()(
+          ptr, driverDependencies);
 
-  int getOSPackageDependencies(
-          Pointer<Pointer<VTablePointer>> osPackageDependencies) =>
+  int getOSPackageDependencies(Pointer<VTablePointer> osPackageDependencies) =>
       _vtable.GetOSPackageDependencies.asFunction<
               int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> osPackageDependencies)>()(
-          ptr.value, osPackageDependencies);
+                  Pointer<VTablePointer> osPackageDependencies)>()(
+          ptr, osPackageDependencies);
 
   int getHostRuntimeDependencies(
-          Pointer<Pointer<VTablePointer>> hostRuntimeDependencies) =>
+          Pointer<VTablePointer> hostRuntimeDependencies) =>
       _vtable.GetHostRuntimeDependencies.asFunction<
               int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> hostRuntimeDependencies)>()(
-          ptr.value, hostRuntimeDependencies);
+                  Pointer<VTablePointer> hostRuntimeDependencies)>()(
+          ptr, hostRuntimeDependencies);
 }
 
 /// @nodoc
@@ -52,17 +50,17 @@ base class IAppxManifestReader7Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> driverDependencies)>>
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> driverDependencies)>>
       GetDriverDependencies;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> osPackageDependencies)>>
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> osPackageDependencies)>>
       GetOSPackageDependencies;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> hostRuntimeDependencies)>>
+                  Pointer<VTablePointer> hostRuntimeDependencies)>>
       GetHostRuntimeDependencies;
 }

@@ -23,7 +23,7 @@ const IID_IUIAutomationTextPattern = '{32eba289-3583-42c9-9c59-3b6d9a1e9b6a}';
 /// {@category com}
 class IUIAutomationTextPattern extends IUnknown {
   IUIAutomationTextPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTextPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTextPatternVtbl>().ref;
 
   final IUIAutomationTextPatternVtbl _vtable;
 
@@ -31,40 +31,40 @@ class IUIAutomationTextPattern extends IUnknown {
       IUIAutomationTextPattern(
           interface.toInterface(IID_IUIAutomationTextPattern));
 
-  int rangeFromPoint(POINT pt, Pointer<Pointer<VTablePointer>> range) =>
+  int rangeFromPoint(POINT pt, Pointer<VTablePointer> range) =>
       _vtable.RangeFromPoint.asFunction<
           int Function(VTablePointer, POINT pt,
-              Pointer<Pointer<VTablePointer>> range)>()(ptr.value, pt, range);
+              Pointer<VTablePointer> range)>()(ptr, pt, range);
 
-  int rangeFromChild(Pointer<VTablePointer> child,
-          Pointer<Pointer<VTablePointer>> range) =>
+  int rangeFromChild(VTablePointer child, Pointer<VTablePointer> range) =>
       _vtable.RangeFromChild.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> child,
-                  Pointer<Pointer<VTablePointer>> range)>()(
-          ptr.value, child, range);
+          int Function(VTablePointer, VTablePointer child,
+              Pointer<VTablePointer> range)>()(ptr, child, range);
 
-  int getSelection(Pointer<Pointer<VTablePointer>> ranges) =>
+  int getSelection(Pointer<VTablePointer> ranges) =>
       _vtable.GetSelection.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ranges)>()(ptr.value, ranges);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
-  int getVisibleRanges(Pointer<Pointer<VTablePointer>> ranges) =>
+  int getVisibleRanges(Pointer<VTablePointer> ranges) =>
       _vtable.GetVisibleRanges.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ranges)>()(ptr.value, ranges);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
-  Pointer<VTablePointer> get documentRange {
+  VTablePointer get documentRange {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_DocumentRange.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> range)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_DocumentRange.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   int get supportedTextSelection {
@@ -73,7 +73,7 @@ class IUIAutomationTextPattern extends IUnknown {
     try {
       final hr = _vtable.get_SupportedTextSelection.asFunction<
           int Function(VTablePointer,
-              Pointer<Int32> supportedTextSelection)>()(ptr.value, retValuePtr);
+              Pointer<Int32> supportedTextSelection)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -88,22 +88,21 @@ class IUIAutomationTextPattern extends IUnknown {
 base class IUIAutomationTextPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, POINT pt,
-              Pointer<Pointer<VTablePointer>> range)>> RangeFromPoint;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> child,
-              Pointer<Pointer<VTablePointer>> range)>> RangeFromChild;
-  external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ranges)>>
+                  VTablePointer, POINT pt, Pointer<VTablePointer> range)>>
+      RangeFromPoint;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, VTablePointer child,
+              Pointer<VTablePointer> range)>> RangeFromChild;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ranges)>>
       GetSelection;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ranges)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ranges)>>
       GetVisibleRanges;
   external Pointer<
           NativeFunction<

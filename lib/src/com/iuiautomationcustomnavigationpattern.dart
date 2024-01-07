@@ -19,9 +19,8 @@ const IID_IUIAutomationCustomNavigationPattern =
 /// {@category com}
 class IUIAutomationCustomNavigationPattern extends IUnknown {
   IUIAutomationCustomNavigationPattern(super.ptr)
-      : _vtable = ptr.value.value
-            .cast<IUIAutomationCustomNavigationPatternVtbl>()
-            .ref;
+      : _vtable =
+            ptr.value.cast<IUIAutomationCustomNavigationPatternVtbl>().ref;
 
   final IUIAutomationCustomNavigationPatternVtbl _vtable;
 
@@ -29,11 +28,10 @@ class IUIAutomationCustomNavigationPattern extends IUnknown {
       IUIAutomationCustomNavigationPattern(
           interface.toInterface(IID_IUIAutomationCustomNavigationPattern));
 
-  int navigate(int direction, Pointer<Pointer<VTablePointer>> pRetVal) =>
+  int navigate(int direction, Pointer<VTablePointer> pRetVal) =>
       _vtable.Navigate.asFunction<
-              int Function(VTablePointer, int direction,
-                  Pointer<Pointer<VTablePointer>> pRetVal)>()(
-          ptr.value, direction, pRetVal);
+          int Function(VTablePointer, int direction,
+              Pointer<VTablePointer> pRetVal)>()(ptr, direction, pRetVal);
 }
 
 /// @nodoc
@@ -42,5 +40,5 @@ base class IUIAutomationCustomNavigationPatternVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 direction,
-              Pointer<Pointer<VTablePointer>> pRetVal)>> Navigate;
+              Pointer<VTablePointer> pRetVal)>> Navigate;
 }

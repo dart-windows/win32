@@ -24,7 +24,7 @@ const IID_ISpeechVoiceStatus = '{8be47b07-57f6-11d2-9eee-00c04f797396}';
 /// {@category com}
 class ISpeechVoiceStatus extends IDispatch {
   ISpeechVoiceStatus(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpeechVoiceStatusVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpeechVoiceStatusVtbl>().ref;
 
   final ISpeechVoiceStatusVtbl _vtable;
 
@@ -36,8 +36,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_CurrentStreamNumber.asFunction<
-              int Function(VTablePointer, Pointer<Int32> StreamNumber)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> StreamNumber)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,8 +52,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_LastStreamNumberQueued.asFunction<
-              int Function(VTablePointer, Pointer<Int32> StreamNumber)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> StreamNumber)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -69,7 +69,7 @@ class ISpeechVoiceStatus extends IDispatch {
     try {
       final hr = _vtable.get_LastHResult.asFunction<
           int Function(
-              VTablePointer, Pointer<Int32> HResult)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Int32> HResult)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -85,7 +85,7 @@ class ISpeechVoiceStatus extends IDispatch {
     try {
       final hr = _vtable.get_RunningState
               .asFunction<int Function(VTablePointer, Pointer<Int32> State)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -100,8 +100,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_InputWordPosition.asFunction<
-              int Function(VTablePointer, Pointer<Int32> Position)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> Position)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -117,7 +117,7 @@ class ISpeechVoiceStatus extends IDispatch {
     try {
       final hr = _vtable.get_InputWordLength
               .asFunction<int Function(VTablePointer, Pointer<Int32> Length)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -132,8 +132,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_InputSentencePosition.asFunction<
-              int Function(VTablePointer, Pointer<Int32> Position)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> Position)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -149,7 +149,7 @@ class ISpeechVoiceStatus extends IDispatch {
     try {
       final hr = _vtable.get_InputSentenceLength
               .asFunction<int Function(VTablePointer, Pointer<Int32> Length)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -165,7 +165,7 @@ class ISpeechVoiceStatus extends IDispatch {
     try {
       final hr = _vtable.get_LastBookmark.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> Bookmark)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -180,8 +180,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_LastBookmarkId.asFunction<
-              int Function(VTablePointer, Pointer<Int32> BookmarkId)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> BookmarkId)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -197,7 +197,7 @@ class ISpeechVoiceStatus extends IDispatch {
     try {
       final hr = _vtable.get_PhonemeId.asFunction<
           int Function(
-              VTablePointer, Pointer<Int16> PhoneId)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Int16> PhoneId)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -212,8 +212,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_VisemeId.asFunction<
-              int Function(VTablePointer, Pointer<Int16> VisemeId)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> VisemeId)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

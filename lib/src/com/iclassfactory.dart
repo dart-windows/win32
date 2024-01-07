@@ -18,24 +18,25 @@ const IID_IClassFactory = '{00000001-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IClassFactory extends IUnknown {
-  IClassFactory(super.ptr)
-      : _vtable = ptr.value.value.cast<IClassFactoryVtbl>().ref;
+  IClassFactory(super.ptr) : _vtable = ptr.value.cast<IClassFactoryVtbl>().ref;
 
   final IClassFactoryVtbl _vtable;
 
   factory IClassFactory.from(IUnknown interface) =>
       IClassFactory(interface.toInterface(IID_IClassFactory));
 
-  int createInstance(Pointer<VTablePointer> pUnkOuter, Pointer<GUID> riid,
+  int createInstance(VTablePointer pUnkOuter, Pointer<GUID> riid,
           Pointer<Pointer> ppvObject) =>
       _vtable.CreateInstance.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pUnkOuter,
-                  Pointer<GUID> riid, Pointer<Pointer> ppvObject)>()(
-          ptr.value, pUnkOuter, riid, ppvObject);
+          int Function(
+              VTablePointer,
+              VTablePointer pUnkOuter,
+              Pointer<GUID> riid,
+              Pointer<Pointer> ppvObject)>()(ptr, pUnkOuter, riid, ppvObject);
 
   int lockServer(int fLock) =>
       _vtable.LockServer.asFunction<int Function(VTablePointer, int fLock)>()(
-          ptr.value, fLock);
+          ptr, fLock);
 }
 
 /// @nodoc
@@ -43,7 +44,7 @@ base class IClassFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pUnkOuter,
+          Int32 Function(VTablePointer, VTablePointer pUnkOuter,
               Pointer<GUID> riid, Pointer<Pointer> ppvObject)>> CreateInstance;
   external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 fLock)>>
       LockServer;

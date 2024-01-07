@@ -26,8 +26,7 @@ const IID_IUIAutomationPropertyCondition =
 /// {@category com}
 class IUIAutomationPropertyCondition extends IUIAutomationCondition {
   IUIAutomationPropertyCondition(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationPropertyConditionVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationPropertyConditionVtbl>().ref;
 
   final IUIAutomationPropertyConditionVtbl _vtable;
 
@@ -40,8 +39,8 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_PropertyId.asFunction<
-              int Function(VTablePointer, Pointer<Int32> propertyId)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> propertyId)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,7 +56,7 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     try {
       final hr = _vtable.get_PropertyValue.asFunction<
               int Function(VTablePointer, Pointer<VARIANT> propertyValue)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.ref;
@@ -73,7 +72,7 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     try {
       final hr = _vtable.get_PropertyConditionFlags
               .asFunction<int Function(VTablePointer, Pointer<Int32> flags)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

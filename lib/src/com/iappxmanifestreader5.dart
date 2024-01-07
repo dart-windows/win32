@@ -18,7 +18,7 @@ const IID_IAppxManifestReader5 = '{8d7ae132-a690-4c00-b75a-6aae1feaac80}';
 /// {@category com}
 class IAppxManifestReader5 extends IUnknown {
   IAppxManifestReader5(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestReader5Vtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestReader5Vtbl>().ref;
 
   final IAppxManifestReader5Vtbl _vtable;
 
@@ -26,11 +26,11 @@ class IAppxManifestReader5 extends IUnknown {
       IAppxManifestReader5(interface.toInterface(IID_IAppxManifestReader5));
 
   int getMainPackageDependencies(
-          Pointer<Pointer<VTablePointer>> mainPackageDependencies) =>
+          Pointer<VTablePointer> mainPackageDependencies) =>
       _vtable.GetMainPackageDependencies.asFunction<
               int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> mainPackageDependencies)>()(
-          ptr.value, mainPackageDependencies);
+                  Pointer<VTablePointer> mainPackageDependencies)>()(
+          ptr, mainPackageDependencies);
 }
 
 /// @nodoc
@@ -39,6 +39,6 @@ base class IAppxManifestReader5Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> mainPackageDependencies)>>
+                  Pointer<VTablePointer> mainPackageDependencies)>>
       GetMainPackageDependencies;
 }

@@ -19,7 +19,7 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final unknown = IUnknown(ptr);
   test('Can instantiate IUnknown.queryInterface', () {
@@ -32,6 +32,5 @@ void main() {
     expect(unknown.release, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

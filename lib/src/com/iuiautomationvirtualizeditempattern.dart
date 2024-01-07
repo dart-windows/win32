@@ -19,8 +19,7 @@ const IID_IUIAutomationVirtualizedItemPattern =
 /// {@category com}
 class IUIAutomationVirtualizedItemPattern extends IUnknown {
   IUIAutomationVirtualizedItemPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationVirtualizedItemPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationVirtualizedItemPatternVtbl>().ref;
 
   final IUIAutomationVirtualizedItemPatternVtbl _vtable;
 
@@ -29,7 +28,7 @@ class IUIAutomationVirtualizedItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationVirtualizedItemPattern));
 
   int realize() =>
-      _vtable.Realize.asFunction<int Function(VTablePointer)>()(ptr.value);
+      _vtable.Realize.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

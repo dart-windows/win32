@@ -21,22 +21,22 @@ const IID_ISpNotifySource = '{5eff4aef-8487-11d2-961c-00c04f8ee628}';
 /// {@category com}
 class ISpNotifySource extends IUnknown {
   ISpNotifySource(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpNotifySourceVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpNotifySourceVtbl>().ref;
 
   final ISpNotifySourceVtbl _vtable;
 
   factory ISpNotifySource.from(IUnknown interface) =>
       ISpNotifySource(interface.toInterface(IID_ISpNotifySource));
 
-  int setNotifySink(Pointer<VTablePointer> pNotifySink) =>
+  int setNotifySink(VTablePointer pNotifySink) =>
       _vtable.SetNotifySink.asFunction<
-          int Function(VTablePointer,
-              Pointer<VTablePointer> pNotifySink)>()(ptr.value, pNotifySink);
+          int Function(
+              VTablePointer, VTablePointer pNotifySink)>()(ptr, pNotifySink);
 
   int setNotifyWindowMessage(int hWnd, int Msg, int wParam, int lParam) =>
       _vtable.SetNotifyWindowMessage.asFunction<
           int Function(VTablePointer, int hWnd, int Msg, int wParam,
-              int lParam)>()(ptr.value, hWnd, Msg, wParam, lParam);
+              int lParam)>()(ptr, hWnd, Msg, wParam, lParam);
 
   int setNotifyCallbackFunction(
           Pointer<Pointer<NativeFunction<SpNotifyCallback>>> pfnCallback,
@@ -47,29 +47,26 @@ class ISpNotifySource extends IUnknown {
               VTablePointer,
               Pointer<Pointer<NativeFunction<SpNotifyCallback>>> pfnCallback,
               int wParam,
-              int lParam)>()(ptr.value, pfnCallback, wParam, lParam);
+              int lParam)>()(ptr, pfnCallback, wParam, lParam);
 
   int setNotifyCallbackInterface(
-          Pointer<VTablePointer> pSpCallback, int wParam, int lParam) =>
+          VTablePointer pSpCallback, int wParam, int lParam) =>
       _vtable.SetNotifyCallbackInterface.asFunction<
-          int Function(
-              VTablePointer,
-              Pointer<VTablePointer> pSpCallback,
-              int wParam,
-              int lParam)>()(ptr.value, pSpCallback, wParam, lParam);
+          int Function(VTablePointer, VTablePointer pSpCallback, int wParam,
+              int lParam)>()(ptr, pSpCallback, wParam, lParam);
 
   int setNotifyWin32Event() =>
       _vtable.SetNotifyWin32Event.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+          ptr);
 
   int waitForNotifyEvent(int dwMilliseconds) =>
       _vtable.WaitForNotifyEvent.asFunction<
           int Function(
-              VTablePointer, int dwMilliseconds)>()(ptr.value, dwMilliseconds);
+              VTablePointer, int dwMilliseconds)>()(ptr, dwMilliseconds);
 
   int getNotifyEventHandle() =>
       _vtable.GetNotifyEventHandle.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+          ptr);
 }
 
 /// @nodoc
@@ -77,8 +74,7 @@ base class ISpNotifySourceVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> pNotifySink)>>
+              Int32 Function(VTablePointer, VTablePointer pNotifySink)>>
       SetNotifySink;
   external Pointer<
       NativeFunction<
@@ -93,7 +89,7 @@ base class ISpNotifySourceVtbl extends Struct {
               IntPtr lParam)>> SetNotifyCallbackFunction;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pSpCallback,
+          Int32 Function(VTablePointer, VTablePointer pSpCallback,
               IntPtr wParam, IntPtr lParam)>> SetNotifyCallbackInterface;
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
       SetNotifyWin32Event;

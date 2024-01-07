@@ -24,8 +24,7 @@ const IID_IUIAutomationExpandCollapsePattern =
 /// {@category com}
 class IUIAutomationExpandCollapsePattern extends IUnknown {
   IUIAutomationExpandCollapsePattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationExpandCollapsePatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationExpandCollapsePatternVtbl>().ref;
 
   final IUIAutomationExpandCollapsePatternVtbl _vtable;
 
@@ -33,11 +32,10 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
       IUIAutomationExpandCollapsePattern(
           interface.toInterface(IID_IUIAutomationExpandCollapsePattern));
 
-  int expand() =>
-      _vtable.Expand.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int expand() => _vtable.Expand.asFunction<int Function(VTablePointer)>()(ptr);
 
   int collapse() =>
-      _vtable.Collapse.asFunction<int Function(VTablePointer)>()(ptr.value);
+      _vtable.Collapse.asFunction<int Function(VTablePointer)>()(ptr);
 
   int get currentExpandCollapseState {
     final retValuePtr = calloc<Int32>();
@@ -45,7 +43,7 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentExpandCollapseState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -61,7 +59,7 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedExpandCollapseState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

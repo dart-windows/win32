@@ -20,20 +20,22 @@ void main() {
   final pText = textToSpeak.toNativeUtf16();
 
   final pTokens = calloc<VTablePointer>();
-  final voices = speechVoice.getVoices(nullptr, nullptr, pTokens.cast());
+  final voices = speechVoice.getVoices(nullptr, nullptr, pTokens);
   if (FAILED(voices)) throw WindowsException(voices);
 
   if (pTokens.value != nullptr) {
-    final tokens = ISpeechObjectTokens(pTokens);
+    final tokens = ISpeechObjectTokens(pTokens.value);
+    free(pTokens);
     print('There are ${tokens.count} voices available for text-to-speech:');
 
     for (var i = 0; i < tokens.count; i++) {
       final pToken = calloc<VTablePointer>();
-      var hr = tokens.item(i, pToken.cast());
+      var hr = tokens.item(i, pToken);
       if (FAILED(hr)) throw WindowsException(hr);
 
-      if (pToken.value != nullptr) {
-        final token = ISpeechObjectToken(pToken);
+      if (pTokens.value != nullptr) {
+        final token = ISpeechObjectToken(pToken.value);
+        free(pToken);
 
         final pDescription = calloc<Pointer<Utf16>>();
         hr = token.getDescription(0, pDescription);
@@ -42,8 +44,7 @@ void main() {
         print(' - Voice ${i + 1}: $description');
 
         // Set the current voice for text-to-speech
-        hr = speechVoice
-            .putref_Voice(token.ptr.cast<Pointer<VTablePointer>>().value);
+        hr = speechVoice.putref_Voice(token.ptr);
         if (FAILED(hr)) throw WindowsException(hr);
 
         hr = speechVoice.speak(pText, SPEAKFLAGS.SPF_IS_NOT_XML, nullptr);

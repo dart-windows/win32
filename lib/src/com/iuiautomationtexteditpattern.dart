@@ -21,7 +21,7 @@ const IID_IUIAutomationTextEditPattern =
 /// {@category com}
 class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
   IUIAutomationTextEditPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTextEditPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTextEditPatternVtbl>().ref;
 
   final IUIAutomationTextEditPatternVtbl _vtable;
 
@@ -29,15 +29,15 @@ class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
       IUIAutomationTextEditPattern(
           interface.toInterface(IID_IUIAutomationTextEditPattern));
 
-  int getActiveComposition(Pointer<Pointer<VTablePointer>> range) =>
+  int getActiveComposition(Pointer<VTablePointer> range) =>
       _vtable.GetActiveComposition.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> range)>()(ptr.value, range);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> range)>()(ptr, range);
 
-  int getConversionTarget(Pointer<Pointer<VTablePointer>> range) =>
+  int getConversionTarget(Pointer<VTablePointer> range) =>
       _vtable.GetConversionTarget.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> range)>()(ptr.value, range);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> range)>()(ptr, range);
 }
 
 /// @nodoc
@@ -45,12 +45,10 @@ base class IUIAutomationTextEditPatternVtbl extends Struct {
   external IUIAutomationTextPatternVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> range)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
       GetActiveComposition;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> range)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
       GetConversionTarget;
 }

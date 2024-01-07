@@ -18,8 +18,7 @@ const IID_IAppxManifestApplicationsEnumerator =
 /// {@category com}
 class IAppxManifestApplicationsEnumerator extends IUnknown {
   IAppxManifestApplicationsEnumerator(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IAppxManifestApplicationsEnumeratorVtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestApplicationsEnumeratorVtbl>().ref;
 
   final IAppxManifestApplicationsEnumeratorVtbl _vtable;
 
@@ -27,29 +26,27 @@ class IAppxManifestApplicationsEnumerator extends IUnknown {
       IAppxManifestApplicationsEnumerator(
           interface.toInterface(IID_IAppxManifestApplicationsEnumerator));
 
-  int getCurrent(Pointer<Pointer<VTablePointer>> application) =>
+  int getCurrent(Pointer<VTablePointer> application) =>
       _vtable.GetCurrent.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> application)>()(
-          ptr.value, application);
+          int Function(VTablePointer,
+              Pointer<VTablePointer> application)>()(ptr, application);
 
-  int getHasCurrent(Pointer<Int32> hasCurrent) => _vtable.GetHasCurrent
-          .asFunction<int Function(VTablePointer, Pointer<Int32> hasCurrent)>()(
-      ptr.value, hasCurrent);
+  int getHasCurrent(Pointer<Int32> hasCurrent) =>
+      _vtable.GetHasCurrent.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> hasCurrent)>()(ptr, hasCurrent);
 
   int moveNext(Pointer<Int32> hasNext) => _vtable.MoveNext.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> hasNext)>()(ptr.value, hasNext);
+      int Function(VTablePointer, Pointer<Int32> hasNext)>()(ptr, hasNext);
 }
 
 /// @nodoc
 base class IAppxManifestApplicationsEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> application)>>
-      GetCurrent;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer, Pointer<VTablePointer> application)>> GetCurrent;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Int32> hasCurrent)>>

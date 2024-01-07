@@ -24,7 +24,7 @@ const IID_IUIAutomationProxyFactory = '{85b94ecd-849d-42b6-b94d-d6db23fdf5a4}';
 /// {@category com}
 class IUIAutomationProxyFactory extends IUnknown {
   IUIAutomationProxyFactory(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationProxyFactoryVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationProxyFactoryVtbl>().ref;
 
   final IUIAutomationProxyFactoryVtbl _vtable;
 
@@ -33,11 +33,11 @@ class IUIAutomationProxyFactory extends IUnknown {
           interface.toInterface(IID_IUIAutomationProxyFactory));
 
   int createProvider(int hwnd, int idObject, int idChild,
-          Pointer<Pointer<VTablePointer>> provider) =>
+          Pointer<VTablePointer> provider) =>
       _vtable.CreateProvider.asFunction<
               int Function(VTablePointer, int hwnd, int idObject, int idChild,
-                  Pointer<Pointer<VTablePointer>> provider)>()(
-          ptr.value, hwnd, idObject, idChild, provider);
+                  Pointer<VTablePointer> provider)>()(
+          ptr, hwnd, idObject, idChild, provider);
 
   Pointer<Utf16> get proxyFactoryId {
     final retValuePtr = calloc<Pointer<Utf16>>();
@@ -45,7 +45,7 @@ class IUIAutomationProxyFactory extends IUnknown {
     try {
       final hr = _vtable.get_ProxyFactoryId.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> factoryId)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -61,12 +61,8 @@ base class IUIAutomationProxyFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer,
-              IntPtr hwnd,
-              Int32 idObject,
-              Int32 idChild,
-              Pointer<Pointer<VTablePointer>> provider)>> CreateProvider;
+          Int32 Function(VTablePointer, IntPtr hwnd, Int32 idObject,
+              Int32 idChild, Pointer<VTablePointer> provider)>> CreateProvider;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> factoryId)>>

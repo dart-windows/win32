@@ -21,7 +21,7 @@ const IID_IAudioCaptureClient = '{c8adbd64-e71e-48a0-a4de-185c395cd317}';
 /// {@category com}
 class IAudioCaptureClient extends IUnknown {
   IAudioCaptureClient(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioCaptureClientVtbl>().ref;
+      : _vtable = ptr.value.cast<IAudioCaptureClientVtbl>().ref;
 
   final IAudioCaptureClientVtbl _vtable;
 
@@ -41,18 +41,17 @@ class IAudioCaptureClient extends IUnknown {
                   Pointer<Uint32> pNumFramesToRead,
                   Pointer<Uint32> pdwFlags,
                   Pointer<Uint64> pu64DevicePosition,
-                  Pointer<Uint64> pu64QPCPosition)>()(ptr.value, ppData,
+                  Pointer<Uint64> pu64QPCPosition)>()(ptr, ppData,
           pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
 
   int releaseBuffer(int NumFramesRead) => _vtable.ReleaseBuffer.asFunction<
-      int Function(
-          VTablePointer, int NumFramesRead)>()(ptr.value, NumFramesRead);
+      int Function(VTablePointer, int NumFramesRead)>()(ptr, NumFramesRead);
 
   int getNextPacketSize(Pointer<Uint32> pNumFramesInNextPacket) =>
       _vtable.GetNextPacketSize.asFunction<
               int Function(
                   VTablePointer, Pointer<Uint32> pNumFramesInNextPacket)>()(
-          ptr.value, pNumFramesInNextPacket);
+          ptr, pNumFramesInNextPacket);
 }
 
 /// @nodoc

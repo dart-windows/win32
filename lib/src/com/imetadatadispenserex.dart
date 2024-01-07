@@ -24,7 +24,7 @@ const IID_IMetaDataDispenserEx = '{31bcfce2-dafb-11d2-9f81-00c04f79a0a3}';
 /// {@category com}
 class IMetaDataDispenserEx extends IMetaDataDispenser {
   IMetaDataDispenserEx(super.ptr)
-      : _vtable = ptr.value.value.cast<IMetaDataDispenserExVtbl>().ref;
+      : _vtable = ptr.value.cast<IMetaDataDispenserExVtbl>().ref;
 
   final IMetaDataDispenserExVtbl _vtable;
 
@@ -34,30 +34,26 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
   int setOption(Pointer<GUID> optionid, Pointer<VARIANT> value) =>
       _vtable.SetOption.asFunction<
           int Function(VTablePointer, Pointer<GUID> optionid,
-              Pointer<VARIANT> value)>()(ptr.value, optionid, value);
+              Pointer<VARIANT> value)>()(ptr, optionid, value);
 
   int getOption(Pointer<GUID> optionid, Pointer<VARIANT> pvalue) =>
       _vtable.GetOption.asFunction<
           int Function(VTablePointer, Pointer<GUID> optionid,
-              Pointer<VARIANT> pvalue)>()(ptr.value, optionid, pvalue);
+              Pointer<VARIANT> pvalue)>()(ptr, optionid, pvalue);
 
-  int openScopeOnITypeInfo(Pointer<VTablePointer> pITI, int dwOpenFlags,
-          Pointer<GUID> riid, Pointer<Pointer<VTablePointer>> ppIUnk) =>
+  int openScopeOnITypeInfo(VTablePointer pITI, int dwOpenFlags,
+          Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScopeOnITypeInfo.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> pITI,
-                  int dwOpenFlags,
-                  Pointer<GUID> riid,
-                  Pointer<Pointer<VTablePointer>> ppIUnk)>()(
-          ptr.value, pITI, dwOpenFlags, riid, ppIUnk);
+              int Function(VTablePointer, VTablePointer pITI, int dwOpenFlags,
+                  Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk)>()(
+          ptr, pITI, dwOpenFlags, riid, ppIUnk);
 
   int getCORSystemDirectory(
           Pointer<Utf16> szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
       _vtable.GetCORSystemDirectory.asFunction<
               int Function(VTablePointer, Pointer<Utf16> szBuffer,
                   int cchBuffer, Pointer<Uint32> pchBuffer)>()(
-          ptr.value, szBuffer, cchBuffer, pchBuffer);
+          ptr, szBuffer, cchBuffer, pchBuffer);
 
   int findAssembly(
           Pointer<Utf16> szAppBase,
@@ -76,7 +72,7 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
                   Pointer<Utf16> szAssemblyName,
                   Pointer<Utf16> szName,
                   int cchName,
-                  Pointer<Uint32> pcName)>()(ptr.value, szAppBase, szPrivateBin,
+                  Pointer<Uint32> pcName)>()(ptr, szAppBase, szPrivateBin,
           szGlobalBin, szAssemblyName, szName, cchName, pcName);
 
   int findAssemblyModule(
@@ -98,7 +94,7 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
                   Pointer<Utf16> szModuleName,
                   Pointer<Utf16> szName,
                   int cchName,
-                  Pointer<Uint32> pcName)>()(ptr.value, szAppBase, szPrivateBin,
+                  Pointer<Uint32> pcName)>()(ptr, szAppBase, szPrivateBin,
           szGlobalBin, szAssemblyName, szModuleName, szName, cchName, pcName);
 }
 
@@ -117,10 +113,10 @@ base class IMetaDataDispenserExVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pITI,
+              VTablePointer pITI,
               Uint32 dwOpenFlags,
               Pointer<GUID> riid,
-              Pointer<Pointer<VTablePointer>> ppIUnk)>> OpenScopeOnITypeInfo;
+              Pointer<VTablePointer> ppIUnk)>> OpenScopeOnITypeInfo;
   external Pointer<
       NativeFunction<
           Int32 Function(

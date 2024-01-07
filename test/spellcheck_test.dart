@@ -66,29 +66,30 @@ void main() {
       if (supportedPtr.value == 1) {
         final spellCheckerPtr = calloc<VTablePointer>();
         hr = spellCheckerFactory.createSpellChecker(
-            languageTagPtr, spellCheckerPtr.cast());
+            languageTagPtr, spellCheckerPtr);
         expect(hr, equals(S_OK));
         expect(spellCheckerPtr.value.address, isNonZero);
 
-        final spellChecker = ISpellChecker(spellCheckerPtr);
+        final spellChecker = ISpellChecker(spellCheckerPtr.value);
+        free(spellCheckerPtr);
 
         final errorsPtr = calloc<VTablePointer>();
         final textPtr = 'haev'.toNativeUtf16();
-        hr = spellChecker.check(textPtr, errorsPtr.cast());
+        hr = spellChecker.check(textPtr, errorsPtr);
         expect(hr, equals(S_OK));
         expect(errorsPtr.value.address, isNonZero);
 
-        final errors = IEnumSpellingError(errorsPtr);
-        var errorPtr = calloc<VTablePointer>();
+        final errors = IEnumSpellingError(errorsPtr.value);
+        free(errorsPtr);
+        final errorPtr = calloc<VTablePointer>();
 
-        while (errors.next(errorPtr.cast()) == S_OK) {
+        while (errors.next(errorPtr) == S_OK) {
           expect(errorPtr.value.address, isNonZero);
-          final error = ISpellingError(errorPtr);
+          final error = ISpellingError(errorPtr.value);
           expect(error.correctiveAction, equals(CORRECTIVE_ACTION.REPLACE));
           final replacement = error.replacement;
           expect(replacement.toDartString(), equals('have'));
           WindowsDeleteString(replacement.address);
-          errorPtr = calloc<VTablePointer>();
         }
 
         free(errorPtr);

@@ -22,8 +22,7 @@ const IID_IAudioClient2 = '{726778cd-f60a-4eda-82de-e47610cd78aa}';
 ///
 /// {@category com}
 class IAudioClient2 extends IAudioClient {
-  IAudioClient2(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioClient2Vtbl>().ref;
+  IAudioClient2(super.ptr) : _vtable = ptr.value.cast<IAudioClient2Vtbl>().ref;
 
   final IAudioClient2Vtbl _vtable;
 
@@ -34,13 +33,12 @@ class IAudioClient2 extends IAudioClient {
       _vtable.IsOffloadCapable.asFunction<
               int Function(VTablePointer, int Category,
                   Pointer<Int32> pbOffloadCapable)>()(
-          ptr.value, Category, pbOffloadCapable);
+          ptr, Category, pbOffloadCapable);
 
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
       _vtable.SetClientProperties.asFunction<
-              int Function(
-                  VTablePointer, Pointer<AudioClientProperties> pProperties)>()(
-          ptr.value, pProperties);
+          int Function(VTablePointer,
+              Pointer<AudioClientProperties> pProperties)>()(ptr, pProperties);
 
   int getBufferSizeLimits(
           Pointer<WAVEFORMATEX> pFormat,
@@ -53,7 +51,7 @@ class IAudioClient2 extends IAudioClient {
                   Pointer<WAVEFORMATEX> pFormat,
                   int bEventDriven,
                   Pointer<Int64> phnsMinBufferDuration,
-                  Pointer<Int64> phnsMaxBufferDuration)>()(ptr.value, pFormat,
+                  Pointer<Int64> phnsMaxBufferDuration)>()(ptr, pFormat,
           bEventDriven, phnsMinBufferDuration, phnsMaxBufferDuration);
 }
 

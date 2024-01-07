@@ -19,7 +19,7 @@ const IID_ISequentialStream = '{0c733a30-2a1c-11ce-ade5-00aa0044773d}';
 /// {@category com}
 class ISequentialStream extends IUnknown {
   ISequentialStream(super.ptr)
-      : _vtable = ptr.value.value.cast<ISequentialStreamVtbl>().ref;
+      : _vtable = ptr.value.cast<ISequentialStreamVtbl>().ref;
 
   final ISequentialStreamVtbl _vtable;
 
@@ -29,12 +29,12 @@ class ISequentialStream extends IUnknown {
   int read(Pointer pv, int cb, Pointer<Uint32> pcbRead) =>
       _vtable.Read.asFunction<
           int Function(VTablePointer, Pointer pv, int cb,
-              Pointer<Uint32> pcbRead)>()(ptr.value, pv, cb, pcbRead);
+              Pointer<Uint32> pcbRead)>()(ptr, pv, cb, pcbRead);
 
   int write(Pointer pv, int cb, Pointer<Uint32> pcbWritten) =>
       _vtable.Write.asFunction<
           int Function(VTablePointer, Pointer pv, int cb,
-              Pointer<Uint32> pcbWritten)>()(ptr.value, pv, cb, pcbWritten);
+              Pointer<Uint32> pcbWritten)>()(ptr, pv, cb, pcbWritten);
 }
 
 /// @nodoc

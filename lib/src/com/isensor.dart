@@ -22,7 +22,7 @@ const IID_ISensor = '{5fa08f80-2657-458e-af75-46f73fa6ac5c}';
 ///
 /// {@category com}
 class ISensor extends IUnknown {
-  ISensor(super.ptr) : _vtable = ptr.value.value.cast<ISensorVtbl>().ref;
+  ISensor(super.ptr) : _vtable = ptr.value.cast<ISensorVtbl>().ref;
 
   final ISensorVtbl _vtable;
 
@@ -30,84 +30,75 @@ class ISensor extends IUnknown {
       ISensor(interface.toInterface(IID_ISensor));
 
   int getID(Pointer<GUID> pID) => _vtable.GetID.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pID)>()(ptr.value, pID);
+      int Function(VTablePointer, Pointer<GUID> pID)>()(ptr, pID);
 
   int getCategory(Pointer<GUID> pSensorCategory) =>
       _vtable.GetCategory.asFunction<
               int Function(VTablePointer, Pointer<GUID> pSensorCategory)>()(
-          ptr.value, pSensorCategory);
+          ptr, pSensorCategory);
 
   int getType(Pointer<GUID> pSensorType) => _vtable.GetType.asFunction<
       int Function(
-          VTablePointer, Pointer<GUID> pSensorType)>()(ptr.value, pSensorType);
+          VTablePointer, Pointer<GUID> pSensorType)>()(ptr, pSensorType);
 
   int getFriendlyName(Pointer<Pointer<Utf16>> pFriendlyName) =>
       _vtable.GetFriendlyName.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pFriendlyName)>()(
-          ptr.value, pFriendlyName);
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> pFriendlyName)>()(ptr, pFriendlyName);
 
   int getProperty(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> pProperty) =>
       _vtable.GetProperty.asFunction<
           int Function(VTablePointer, Pointer<PROPERTYKEY> key,
-              Pointer<PROPVARIANT> pProperty)>()(ptr.value, key, pProperty);
+              Pointer<PROPVARIANT> pProperty)>()(ptr, key, pProperty);
 
-  int getProperties(Pointer<VTablePointer> pKeys,
-          Pointer<Pointer<VTablePointer>> ppProperties) =>
+  int getProperties(VTablePointer pKeys, Pointer<VTablePointer> ppProperties) =>
       _vtable.GetProperties.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pKeys,
-                  Pointer<Pointer<VTablePointer>> ppProperties)>()(
-          ptr.value, pKeys, ppProperties);
+          int Function(VTablePointer, VTablePointer pKeys,
+              Pointer<VTablePointer> ppProperties)>()(ptr, pKeys, ppProperties);
 
-  int getSupportedDataFields(Pointer<Pointer<VTablePointer>> ppDataFields) =>
+  int getSupportedDataFields(Pointer<VTablePointer> ppDataFields) =>
       _vtable.GetSupportedDataFields.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> ppDataFields)>()(
-          ptr.value, ppDataFields);
+          int Function(VTablePointer,
+              Pointer<VTablePointer> ppDataFields)>()(ptr, ppDataFields);
 
-  int setProperties(Pointer<VTablePointer> pProperties,
-          Pointer<Pointer<VTablePointer>> ppResults) =>
+  int setProperties(
+          VTablePointer pProperties, Pointer<VTablePointer> ppResults) =>
       _vtable.SetProperties.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pProperties,
-                  Pointer<Pointer<VTablePointer>> ppResults)>()(
-          ptr.value, pProperties, ppResults);
+          int Function(VTablePointer, VTablePointer pProperties,
+              Pointer<VTablePointer> ppResults)>()(ptr, pProperties, ppResults);
 
   int supportsDataField(
           Pointer<PROPERTYKEY> key, Pointer<Int16> pIsSupported) =>
       _vtable.SupportsDataField.asFunction<
           int Function(VTablePointer, Pointer<PROPERTYKEY> key,
-              Pointer<Int16> pIsSupported)>()(ptr.value, key, pIsSupported);
+              Pointer<Int16> pIsSupported)>()(ptr, key, pIsSupported);
 
   int getState(Pointer<Int32> pState) => _vtable.GetState.asFunction<
-      int Function(VTablePointer, Pointer<Int32> pState)>()(ptr.value, pState);
+      int Function(VTablePointer, Pointer<Int32> pState)>()(ptr, pState);
 
-  int getData(Pointer<Pointer<VTablePointer>> ppDataReport) =>
+  int getData(Pointer<VTablePointer> ppDataReport) =>
       _vtable.GetData.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> ppDataReport)>()(
-          ptr.value, ppDataReport);
+          int Function(VTablePointer,
+              Pointer<VTablePointer> ppDataReport)>()(ptr, ppDataReport);
 
   int supportsEvent(Pointer<GUID> eventGuid, Pointer<Int16> pIsSupported) =>
       _vtable.SupportsEvent.asFunction<
-              int Function(VTablePointer, Pointer<GUID> eventGuid,
-                  Pointer<Int16> pIsSupported)>()(
-          ptr.value, eventGuid, pIsSupported);
+          int Function(VTablePointer, Pointer<GUID> eventGuid,
+              Pointer<Int16> pIsSupported)>()(ptr, eventGuid, pIsSupported);
 
   int getEventInterest(
           Pointer<Pointer<GUID>> ppValues, Pointer<Uint32> pCount) =>
       _vtable.GetEventInterest.asFunction<
           int Function(VTablePointer, Pointer<Pointer<GUID>> ppValues,
-              Pointer<Uint32> pCount)>()(ptr.value, ppValues, pCount);
+              Pointer<Uint32> pCount)>()(ptr, ppValues, pCount);
 
   int setEventInterest(Pointer<GUID> pValues, int count) =>
       _vtable.SetEventInterest.asFunction<
               int Function(VTablePointer, Pointer<GUID> pValues, int count)>()(
-          ptr.value, pValues, count);
+          ptr, pValues, count);
 
-  int setEventSink(Pointer<VTablePointer> pEvents) =>
-      _vtable.SetEventSink.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pEvents)>()(
-          ptr.value, pEvents);
+  int setEventSink(VTablePointer pEvents) => _vtable.SetEventSink.asFunction<
+      int Function(VTablePointer, VTablePointer pEvents)>()(ptr, pEvents);
 }
 
 /// @nodoc
@@ -133,17 +124,17 @@ base class ISensorVtbl extends Struct {
               Pointer<PROPVARIANT> pProperty)>> GetProperty;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pKeys,
-              Pointer<Pointer<VTablePointer>> ppProperties)>> GetProperties;
+          Int32 Function(VTablePointer, VTablePointer pKeys,
+              Pointer<VTablePointer> ppProperties)>> GetProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppDataFields)>>
+                  VTablePointer, Pointer<VTablePointer> ppDataFields)>>
       GetSupportedDataFields;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pProperties,
-              Pointer<Pointer<VTablePointer>> ppResults)>> SetProperties;
+          Int32 Function(VTablePointer, VTablePointer pProperties,
+              Pointer<VTablePointer> ppResults)>> SetProperties;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<PROPERTYKEY> key,
@@ -152,10 +143,9 @@ base class ISensorVtbl extends Struct {
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> pState)>>
       GetState;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppDataReport)>>
-      GetData;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer, Pointer<VTablePointer> ppDataReport)>> GetData;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<GUID> eventGuid,
@@ -170,8 +160,7 @@ base class ISensorVtbl extends Struct {
                   VTablePointer, Pointer<GUID> pValues, Uint32 count)>>
       SetEventInterest;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> pEvents)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer pEvents)>>
       SetEventSink;
 }
 

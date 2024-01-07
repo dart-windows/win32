@@ -23,7 +23,7 @@ const IID_IUIAutomationValuePattern = '{a94cd8b1-0844-4cd6-9d2d-640537ab39e9}';
 /// {@category com}
 class IUIAutomationValuePattern extends IUnknown {
   IUIAutomationValuePattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationValuePatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationValuePatternVtbl>().ref;
 
   final IUIAutomationValuePatternVtbl _vtable;
 
@@ -32,7 +32,7 @@ class IUIAutomationValuePattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationValuePattern));
 
   int setValue(Pointer<Utf16> val) => _vtable.SetValue.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> val)>()(ptr.value, val);
+      int Function(VTablePointer, Pointer<Utf16> val)>()(ptr, val);
 
   Pointer<Utf16> get currentValue {
     final retValuePtr = calloc<Pointer<Utf16>>();
@@ -40,7 +40,7 @@ class IUIAutomationValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentValue.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,7 +56,7 @@ class IUIAutomationValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,7 +72,7 @@ class IUIAutomationValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedValue.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -88,7 +88,7 @@ class IUIAutomationValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

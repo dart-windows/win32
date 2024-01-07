@@ -151,8 +151,8 @@ void main() {
     final type = api!.parameters.first.typeIdentifier; // IUnknown
     final typeProjection = TypeProjection(type);
 
-    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
-    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
+    expect(typeProjection.dartType, equals('VTablePointer'));
+    expect(typeProjection.nativeType, equals('VTablePointer'));
   });
 
   test('Inherited COM interface parameter', () {
@@ -164,9 +164,8 @@ void main() {
     final type = api!.parameters.first.typeIdentifier; // IMoniker*
     final typeProjection = TypeProjection(type);
 
-    expect(typeProjection.dartType, equals('Pointer<Pointer<VTablePointer>>'));
-    expect(
-        typeProjection.nativeType, equals('Pointer<Pointer<VTablePointer>>'));
+    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
+    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
   });
 
   test('Pass pointers to COM interfaces', () {
@@ -178,8 +177,8 @@ void main() {
     final param = api!.parameters[1].typeIdentifier; // LPUNKNOWN
     final typeProjection = TypeProjection(param);
 
-    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
-    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
+    expect(typeProjection.dartType, equals('VTablePointer'));
+    expect(typeProjection.nativeType, equals('VTablePointer'));
   });
 
   test('Pass double pointers to COM interfaces', () {
@@ -191,9 +190,8 @@ void main() {
     final type = api!.parameters.last.typeIdentifier; // IUnknown **
     final typeProjection = TypeProjection(type);
 
-    expect(
-        typeProjection.nativeType, equals('Pointer<Pointer<VTablePointer>>'));
-    expect(typeProjection.dartType, equals('Pointer<Pointer<VTablePointer>>'));
+    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
+    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
   });
 
   test('OLECHAR is represented correctly', () {

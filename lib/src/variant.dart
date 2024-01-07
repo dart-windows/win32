@@ -79,8 +79,8 @@ sealed class _VARIANT_Anonymous_2 extends Union {
   external Pointer/*<CY>*/ pcyVal;
   external Pointer<Double> pdate;
   external Pointer<Pointer<Utf16>> pbstrVal;
-  external Pointer<Pointer<VTablePointer>> ppunkVal;
-  external Pointer<Pointer<VTablePointer>> ppdispVal;
+  external Pointer<VTablePointer> ppunkVal;
+  external Pointer<VTablePointer> ppdispVal;
   external Pointer<Pointer/*<SAFEARRAY>*/ > pparray;
   external Pointer<VARIANT> pvarVal;
   external Pointer byref;
@@ -210,18 +210,16 @@ base class VARIANT extends Struct {
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.bstrVal = value;
 
   // IUnknown
-  IUnknown get punkVal => IUnknown(calloc<VTablePointer>()
-    ..value = __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.punkVal);
+  IUnknown get punkVal =>
+      IUnknown(__VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.punkVal);
   set punkVal(IUnknown value) =>
-      __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.punkVal =
-          value.ptr.value;
+      __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.punkVal = value.ptr;
 
   // IDispatch
-  IDispatch get pdispVal => IDispatch(calloc<VTablePointer>()
-    ..value = __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.pdispVal);
+  IDispatch get pdispVal =>
+      IDispatch(__VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.pdispVal);
   set pdispVal(IDispatch value) =>
-      __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.pdispVal =
-          value.ptr.value;
+      __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.pdispVal = value.ptr;
 
   Pointer get parray =>
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.parray;
@@ -289,14 +287,14 @@ base class VARIANT extends Struct {
   set pbstrVal(Pointer<Pointer<Utf16>> value) =>
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.pbstrVal = value;
 
-  Pointer<Pointer<VTablePointer>> get ppunkVal =>
+  Pointer<VTablePointer> get ppunkVal =>
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.ppunkVal;
-  set ppunkVal(Pointer<Pointer<VTablePointer>> value) =>
+  set ppunkVal(Pointer<VTablePointer> value) =>
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.ppunkVal = value;
 
-  Pointer<Pointer<VTablePointer>> get ppdispVal =>
+  Pointer<VTablePointer> get ppdispVal =>
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.ppdispVal;
-  set ppdispVal(Pointer<Pointer<VTablePointer>> value) =>
+  set ppdispVal(Pointer<VTablePointer> value) =>
       __VARIANT_NAME_1.__VARIANT_NAME_2.__VARIANT_NAME_3.ppdispVal = value;
 
   Pointer<Pointer> get pparray =>
@@ -395,14 +393,10 @@ base class VARIANT extends Struct {
   set pvRecord(Pointer value) => __VARIANT_NAME_1
       .__VARIANT_NAME_2.__VARIANT_NAME_3.__VARIANT_NAME_4.pvRecord = value;
 
-  Pointer<VTablePointer> get pRecInfo => calloc<VTablePointer>()
-    ..value = __VARIANT_NAME_1
-        .__VARIANT_NAME_2.__VARIANT_NAME_3.__VARIANT_NAME_4.pRecInfo;
-  set pRecInfo(Pointer<VTablePointer> value) => __VARIANT_NAME_1
-      .__VARIANT_NAME_2
-      .__VARIANT_NAME_3
-      .__VARIANT_NAME_4
-      .pRecInfo = value.value;
+  VTablePointer get pRecInfo => __VARIANT_NAME_1
+      .__VARIANT_NAME_2.__VARIANT_NAME_3.__VARIANT_NAME_4.pRecInfo;
+  set pRecInfo(VTablePointer value) => __VARIANT_NAME_1
+      .__VARIANT_NAME_2.__VARIANT_NAME_3.__VARIANT_NAME_4.pRecInfo = value;
 }
 
 /// The PROPVARIANT structure is used in the ReadMultiple and WriteMultiple

@@ -19,7 +19,7 @@ const IID_IUIAutomation3 = '{73d768da-9b51-4b89-936e-c209290973e7}';
 /// {@category com}
 class IUIAutomation3 extends IUIAutomation2 {
   IUIAutomation3(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomation3Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomation3Vtbl>().ref;
 
   final IUIAutomation3Vtbl _vtable;
 
@@ -27,44 +27,43 @@ class IUIAutomation3 extends IUIAutomation2 {
       IUIAutomation3(interface.toInterface(IID_IUIAutomation3));
 
   int addTextEditTextChangedEventHandler(
-          Pointer<VTablePointer> element,
+          VTablePointer element,
           int scope,
           int textEditChangeType,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<VTablePointer> handler) =>
+          VTablePointer cacheRequest,
+          VTablePointer handler) =>
       _vtable.AddTextEditTextChangedEventHandler.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> element,
+                  VTablePointer element,
                   int scope,
                   int textEditChangeType,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<VTablePointer> handler)>()(
-          ptr.value, element, scope, textEditChangeType, cacheRequest, handler);
+                  VTablePointer cacheRequest,
+                  VTablePointer handler)>()(
+          ptr, element, scope, textEditChangeType, cacheRequest, handler);
 
   int removeTextEditTextChangedEventHandler(
-          Pointer<VTablePointer> element, Pointer<VTablePointer> handler) =>
+          VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveTextEditTextChangedEventHandler.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<VTablePointer> handler)>()(ptr.value, element, handler);
+          int Function(VTablePointer, VTablePointer element,
+              VTablePointer handler)>()(ptr, element, handler);
 }
 
 /// @nodoc
 base class IUIAutomation3Vtbl extends Struct {
   external IUIAutomation2Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Int32 scope,
-                  Int32 textEditChangeType,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<VTablePointer> handler)>>
-      AddTextEditTextChangedEventHandler;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              Int32 scope,
+              Int32 textEditChangeType,
+              VTablePointer cacheRequest,
+              VTablePointer handler)>> AddTextEditTextChangedEventHandler;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> handler)>>
+              Int32 Function(
+                  VTablePointer, VTablePointer element, VTablePointer handler)>>
       RemoveTextEditTextChangedEventHandler;
 }

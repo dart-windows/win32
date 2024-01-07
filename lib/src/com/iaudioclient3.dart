@@ -23,8 +23,7 @@ const IID_IAudioClient3 = '{7ed4ee07-8e67-4cd4-8c1a-2b7a5987ad42}';
 ///
 /// {@category com}
 class IAudioClient3 extends IAudioClient2 {
-  IAudioClient3(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioClient3Vtbl>().ref;
+  IAudioClient3(super.ptr) : _vtable = ptr.value.cast<IAudioClient3Vtbl>().ref;
 
   final IAudioClient3Vtbl _vtable;
 
@@ -45,7 +44,7 @@ class IAudioClient3 extends IAudioClient2 {
                   Pointer<Uint32> pFundamentalPeriodInFrames,
                   Pointer<Uint32> pMinPeriodInFrames,
                   Pointer<Uint32> pMaxPeriodInFrames)>()(
-          ptr.value,
+          ptr,
           pFormat,
           pDefaultPeriodInFrames,
           pFundamentalPeriodInFrames,
@@ -59,7 +58,7 @@ class IAudioClient3 extends IAudioClient2 {
                   VTablePointer,
                   Pointer<Pointer<WAVEFORMATEX>> ppFormat,
                   Pointer<Uint32> pCurrentPeriodInFrames)>()(
-          ptr.value, ppFormat, pCurrentPeriodInFrames);
+          ptr, ppFormat, pCurrentPeriodInFrames);
 
   int initializeSharedAudioStream(int StreamFlags, int PeriodInFrames,
           Pointer<WAVEFORMATEX> pFormat, Pointer<GUID> AudioSessionGuid) =>
@@ -70,7 +69,7 @@ class IAudioClient3 extends IAudioClient2 {
                   int PeriodInFrames,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<GUID> AudioSessionGuid)>()(
-          ptr.value, StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
+          ptr, StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
 }
 
 /// @nodoc

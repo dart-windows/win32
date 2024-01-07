@@ -23,8 +23,7 @@ const IID_ISpellChecker = '{b6fd0b71-e2bc-4653-8d05-f197e412770b}';
 ///
 /// {@category com}
 class ISpellChecker extends IUnknown {
-  ISpellChecker(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpellCheckerVtbl>().ref;
+  ISpellChecker(super.ptr) : _vtable = ptr.value.cast<ISpellCheckerVtbl>().ref;
 
   final ISpellCheckerVtbl _vtable;
 
@@ -37,7 +36,7 @@ class ISpellChecker extends IUnknown {
     try {
       final hr = _vtable.get_LanguageTag.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -47,44 +46,46 @@ class ISpellChecker extends IUnknown {
     }
   }
 
-  int check(Pointer<Utf16> text, Pointer<Pointer<VTablePointer>> value) =>
+  int check(Pointer<Utf16> text, Pointer<VTablePointer> value) =>
       _vtable.Check.asFunction<
           int Function(VTablePointer, Pointer<Utf16> text,
-              Pointer<Pointer<VTablePointer>> value)>()(ptr.value, text, value);
+              Pointer<VTablePointer> value)>()(ptr, text, value);
 
-  int suggest(Pointer<Utf16> word, Pointer<Pointer<VTablePointer>> value) =>
+  int suggest(Pointer<Utf16> word, Pointer<VTablePointer> value) =>
       _vtable.Suggest.asFunction<
           int Function(VTablePointer, Pointer<Utf16> word,
-              Pointer<Pointer<VTablePointer>> value)>()(ptr.value, word, value);
+              Pointer<VTablePointer> value)>()(ptr, word, value);
 
   int add(Pointer<Utf16> word) => _vtable.Add.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr.value, word);
+      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr, word);
 
   int ignore(Pointer<Utf16> word) => _vtable.Ignore.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr.value, word);
+      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr, word);
 
   int autoCorrect(Pointer<Utf16> from, Pointer<Utf16> to) =>
       _vtable.AutoCorrect.asFunction<
           int Function(VTablePointer, Pointer<Utf16> from,
-              Pointer<Utf16> to)>()(ptr.value, from, to);
+              Pointer<Utf16> to)>()(ptr, from, to);
 
   int getOptionValue(Pointer<Utf16> optionId, Pointer<Uint8> value) =>
       _vtable.GetOptionValue.asFunction<
           int Function(VTablePointer, Pointer<Utf16> optionId,
-              Pointer<Uint8> value)>()(ptr.value, optionId, value);
+              Pointer<Uint8> value)>()(ptr, optionId, value);
 
-  Pointer<VTablePointer> get optionIds {
+  VTablePointer get optionIds {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_OptionIds.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> value)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_OptionIds.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> value)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   Pointer<Utf16> get id {
@@ -93,7 +94,7 @@ class ISpellChecker extends IUnknown {
     try {
       final hr = _vtable.get_Id.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -109,7 +110,7 @@ class ISpellChecker extends IUnknown {
     try {
       final hr = _vtable.get_LocalizedName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -120,28 +121,26 @@ class ISpellChecker extends IUnknown {
   }
 
   int add_SpellCheckerChanged(
-          Pointer<VTablePointer> handler, Pointer<Uint32> eventCookie) =>
+          VTablePointer handler, Pointer<Uint32> eventCookie) =>
       _vtable.add_SpellCheckerChanged.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> handler,
-              Pointer<Uint32> eventCookie)>()(ptr.value, handler, eventCookie);
+          int Function(VTablePointer, VTablePointer handler,
+              Pointer<Uint32> eventCookie)>()(ptr, handler, eventCookie);
 
   int remove_SpellCheckerChanged(int eventCookie) =>
       _vtable.remove_SpellCheckerChanged
               .asFunction<int Function(VTablePointer, int eventCookie)>()(
-          ptr.value, eventCookie);
+          ptr, eventCookie);
 
   int getOptionDescription(
-          Pointer<Utf16> optionId, Pointer<Pointer<VTablePointer>> value) =>
+          Pointer<Utf16> optionId, Pointer<VTablePointer> value) =>
       _vtable.GetOptionDescription.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> optionId,
-                  Pointer<Pointer<VTablePointer>> value)>()(
-          ptr.value, optionId, value);
+          int Function(VTablePointer, Pointer<Utf16> optionId,
+              Pointer<VTablePointer> value)>()(ptr, optionId, value);
 
-  int comprehensiveCheck(
-          Pointer<Utf16> text, Pointer<Pointer<VTablePointer>> value) =>
+  int comprehensiveCheck(Pointer<Utf16> text, Pointer<VTablePointer> value) =>
       _vtable.ComprehensiveCheck.asFunction<
           int Function(VTablePointer, Pointer<Utf16> text,
-              Pointer<Pointer<VTablePointer>> value)>()(ptr.value, text, value);
+              Pointer<VTablePointer> value)>()(ptr, text, value);
 }
 
 /// @nodoc
@@ -154,11 +153,11 @@ base class ISpellCheckerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> text,
-              Pointer<Pointer<VTablePointer>> value)>> Check;
+              Pointer<VTablePointer> value)>> Check;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> word,
-              Pointer<Pointer<VTablePointer>> value)>> Suggest;
+              Pointer<VTablePointer> value)>> Suggest;
   external Pointer<
       NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> word)>> Add;
   external Pointer<
@@ -186,7 +185,7 @@ base class ISpellCheckerVtbl extends Struct {
       get_LocalizedName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> handler,
+          Int32 Function(VTablePointer, VTablePointer handler,
               Pointer<Uint32> eventCookie)>> add_SpellCheckerChanged;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Uint32 eventCookie)>>
@@ -194,9 +193,9 @@ base class ISpellCheckerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> optionId,
-              Pointer<Pointer<VTablePointer>> value)>> GetOptionDescription;
+              Pointer<VTablePointer> value)>> GetOptionDescription;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> text,
-              Pointer<Pointer<VTablePointer>> value)>> ComprehensiveCheck;
+              Pointer<VTablePointer> value)>> ComprehensiveCheck;
 }

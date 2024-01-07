@@ -19,27 +19,27 @@ const IID_IShellItemArray = '{b63ea76d-1f85-456f-a19c-48159efa858b}';
 /// {@category com}
 class IShellItemArray extends IUnknown {
   IShellItemArray(super.ptr)
-      : _vtable = ptr.value.value.cast<IShellItemArrayVtbl>().ref;
+      : _vtable = ptr.value.cast<IShellItemArrayVtbl>().ref;
 
   final IShellItemArrayVtbl _vtable;
 
   factory IShellItemArray.from(IUnknown interface) =>
       IShellItemArray(interface.toInterface(IID_IShellItemArray));
 
-  int bindToHandler(Pointer<VTablePointer> pbc, Pointer<GUID> bhid,
-          Pointer<GUID> riid, Pointer<Pointer> ppvOut) =>
+  int bindToHandler(VTablePointer pbc, Pointer<GUID> bhid, Pointer<GUID> riid,
+          Pointer<Pointer> ppvOut) =>
       _vtable.BindToHandler.asFunction<
           int Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
+              VTablePointer pbc,
               Pointer<GUID> bhid,
               Pointer<GUID> riid,
-              Pointer<Pointer> ppvOut)>()(ptr.value, pbc, bhid, riid, ppvOut);
+              Pointer<Pointer> ppvOut)>()(ptr, pbc, bhid, riid, ppvOut);
 
   int getPropertyStore(int flags, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetPropertyStore.asFunction<
           int Function(VTablePointer, int flags, Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>()(ptr.value, flags, riid, ppv);
+              Pointer<Pointer> ppv)>()(ptr, flags, riid, ppv);
 
   int getPropertyDescriptionList(Pointer<PROPERTYKEY> keyType,
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
@@ -48,30 +48,29 @@ class IShellItemArray extends IUnknown {
               VTablePointer,
               Pointer<PROPERTYKEY> keyType,
               Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>()(ptr.value, keyType, riid, ppv);
+              Pointer<Pointer> ppv)>()(ptr, keyType, riid, ppv);
 
   int getAttributes(
           int AttribFlags, int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
               int Function(VTablePointer, int AttribFlags, int sfgaoMask,
                   Pointer<Uint32> psfgaoAttribs)>()(
-          ptr.value, AttribFlags, sfgaoMask, psfgaoAttribs);
+          ptr, AttribFlags, sfgaoMask, psfgaoAttribs);
 
   int getCount(Pointer<Uint32> pdwNumItems) => _vtable.GetCount.asFunction<
-          int Function(VTablePointer, Pointer<Uint32> pdwNumItems)>()(
-      ptr.value, pdwNumItems);
+      int Function(
+          VTablePointer, Pointer<Uint32> pdwNumItems)>()(ptr, pdwNumItems);
 
-  int getItemAt(int dwIndex, Pointer<Pointer<VTablePointer>> ppsi) =>
+  int getItemAt(int dwIndex, Pointer<VTablePointer> ppsi) =>
       _vtable.GetItemAt.asFunction<
-              int Function(VTablePointer, int dwIndex,
-                  Pointer<Pointer<VTablePointer>> ppsi)>()(
-          ptr.value, dwIndex, ppsi);
+          int Function(VTablePointer, int dwIndex,
+              Pointer<VTablePointer> ppsi)>()(ptr, dwIndex, ppsi);
 
-  int enumItems(Pointer<Pointer<VTablePointer>> ppenumShellItems) =>
+  int enumItems(Pointer<VTablePointer> ppenumShellItems) =>
       _vtable.EnumItems.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> ppenumShellItems)>()(
-          ptr.value, ppenumShellItems);
+              int Function(
+                  VTablePointer, Pointer<VTablePointer> ppenumShellItems)>()(
+          ptr, ppenumShellItems);
 }
 
 /// @nodoc
@@ -79,12 +78,8 @@ base class IShellItemArrayVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<GUID> bhid,
-              Pointer<GUID> riid,
-              Pointer<Pointer> ppvOut)>> BindToHandler;
+          Int32 Function(VTablePointer, VTablePointer pbc, Pointer<GUID> bhid,
+              Pointer<GUID> riid, Pointer<Pointer> ppvOut)>> BindToHandler;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 flags, Pointer<GUID> riid,
@@ -104,11 +99,13 @@ base class IShellItemArrayVtbl extends Struct {
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Uint32> pdwNumItems)>> GetCount;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Uint32 dwIndex,
-              Pointer<Pointer<VTablePointer>> ppsi)>> GetItemAt;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Uint32 dwIndex, Pointer<VTablePointer> ppsi)>>
+      GetItemAt;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppenumShellItems)>> EnumItems;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Pointer<VTablePointer> ppenumShellItems)>>
+      EnumItems;
 }

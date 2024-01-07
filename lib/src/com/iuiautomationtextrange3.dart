@@ -20,7 +20,7 @@ const IID_IUIAutomationTextRange3 = '{6a315d69-5512-4c2e-85f0-53fce6dd4bc2}';
 /// {@category com}
 class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
   IUIAutomationTextRange3(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTextRange3Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTextRange3Vtbl>().ref;
 
   final IUIAutomationTextRange3Vtbl _vtable;
 
@@ -28,19 +28,18 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
       IUIAutomationTextRange3(
           interface.toInterface(IID_IUIAutomationTextRange3));
 
-  int getEnclosingElementBuildCache(Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> enclosingElement) =>
+  int getEnclosingElementBuildCache(VTablePointer cacheRequest,
+          Pointer<VTablePointer> enclosingElement) =>
       _vtable.GetEnclosingElementBuildCache.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> enclosingElement)>()(
-          ptr.value, cacheRequest, enclosingElement);
+              int Function(VTablePointer, VTablePointer cacheRequest,
+                  Pointer<VTablePointer> enclosingElement)>()(
+          ptr, cacheRequest, enclosingElement);
 
-  int getChildrenBuildCache(Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> children) =>
+  int getChildrenBuildCache(
+          VTablePointer cacheRequest, Pointer<VTablePointer> children) =>
       _vtable.GetChildrenBuildCache.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> children)>()(
-          ptr.value, cacheRequest, children);
+          int Function(VTablePointer, VTablePointer cacheRequest,
+              Pointer<VTablePointer> children)>()(ptr, cacheRequest, children);
 
   int getAttributeValues(Pointer<Int32> attributeIds, int attributeIdCount,
           Pointer<Pointer<SAFEARRAY>> attributeValues) =>
@@ -50,7 +49,7 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
                   Pointer<Int32> attributeIds,
                   int attributeIdCount,
                   Pointer<Pointer<SAFEARRAY>> attributeValues)>()(
-          ptr.value, attributeIds, attributeIdCount, attributeValues);
+          ptr, attributeIds, attributeIdCount, attributeValues);
 }
 
 /// @nodoc
@@ -58,13 +57,13 @@ base class IUIAutomationTextRange3Vtbl extends Struct {
   external IUIAutomationTextRange2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> enclosingElement)>>
+              Int32 Function(VTablePointer, VTablePointer cacheRequest,
+                  Pointer<VTablePointer> enclosingElement)>>
       GetEnclosingElementBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> cacheRequest,
-              Pointer<Pointer<VTablePointer>> children)>> GetChildrenBuildCache;
+          Int32 Function(VTablePointer, VTablePointer cacheRequest,
+              Pointer<VTablePointer> children)>> GetChildrenBuildCache;
   external Pointer<
       NativeFunction<
           Int32 Function(

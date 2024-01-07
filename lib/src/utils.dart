@@ -76,16 +76,14 @@ Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
 /// Create an instance of a COM object using its class identifier, cast to the
 /// specified interface.
 ///
-/// The caller is responsible for disposing of the memory of the returned
-/// object when it is no longer required. A FFI `Arena` may be passed as a
-/// custom allocator for ease of memory management.
+/// Example:
+/// ```dart
+/// final dialog = FileOpenDialog(
+///     createCOMObject(CLSID_FileOpenDialog, IID_IFileOpenDialog));
+/// ```
 ///
 /// {@category com}
-Pointer<VTablePointer> createCOMObject(
-  String clsid,
-  String iid, {
-  Allocator allocator = calloc,
-}) {
+VTablePointer createCOMObject(String clsid, String iid) {
   final rclsid = convertToCLSID(clsid);
   final riid = convertToIID(iid);
   final ppv = calloc<VTablePointer>();
@@ -93,8 +91,9 @@ Pointer<VTablePointer> createCOMObject(
   try {
     final hr = CoCreateInstance(rclsid, nullptr, CLSCTX_ALL, riid, ppv.cast());
     if (FAILED(hr)) throw WindowsException(hr);
-    return ppv;
+    return ppv.value;
   } finally {
+    free(ppv);
     free(riid);
     free(rclsid);
   }

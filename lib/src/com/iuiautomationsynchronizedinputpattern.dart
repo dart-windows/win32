@@ -18,9 +18,8 @@ const IID_IUIAutomationSynchronizedInputPattern =
 /// {@category com}
 class IUIAutomationSynchronizedInputPattern extends IUnknown {
   IUIAutomationSynchronizedInputPattern(super.ptr)
-      : _vtable = ptr.value.value
-            .cast<IUIAutomationSynchronizedInputPatternVtbl>()
-            .ref;
+      : _vtable =
+            ptr.value.cast<IUIAutomationSynchronizedInputPatternVtbl>().ref;
 
   final IUIAutomationSynchronizedInputPatternVtbl _vtable;
 
@@ -29,10 +28,9 @@ class IUIAutomationSynchronizedInputPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationSynchronizedInputPattern));
 
   int startListening(int inputType) => _vtable.StartListening.asFunction<
-      int Function(VTablePointer, int inputType)>()(ptr.value, inputType);
+      int Function(VTablePointer, int inputType)>()(ptr, inputType);
 
-  int cancel() =>
-      _vtable.Cancel.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int cancel() => _vtable.Cancel.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

@@ -19,7 +19,7 @@ const IID_IAudioClientDuckingControl = '{c789d381-a28c-4168-b28f-d3a837924dc3}';
 /// {@category com}
 class IAudioClientDuckingControl extends IUnknown {
   IAudioClientDuckingControl(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioClientDuckingControlVtbl>().ref;
+      : _vtable = ptr.value.cast<IAudioClientDuckingControlVtbl>().ref;
 
   final IAudioClientDuckingControlVtbl _vtable;
 
@@ -29,7 +29,7 @@ class IAudioClientDuckingControl extends IUnknown {
 
   int setDuckingOptionsForCurrentStream(int options) =>
       _vtable.SetDuckingOptionsForCurrentStream.asFunction<
-          int Function(VTablePointer, int options)>()(ptr.value, options);
+          int Function(VTablePointer, int options)>()(ptr, options);
 }
 
 /// @nodoc

@@ -50,16 +50,14 @@ void main() {
       VariantInit(variant);
       variant.ref.vt = VARENUM.VT_UNKNOWN | VARENUM.VT_BYREF;
 
-      final ppunkval = calloc<Pointer<VTablePointer>>()
-        ..value = (calloc<VTablePointer>()..value = spVoice.ptr.value);
+      final ppunkval = calloc<VTablePointer>()..value = spVoice.ptr;
       variant.ref.ppunkVal = ppunkval;
       final unk = IUnknown(variant.ref.ppunkVal.value);
       expect(unk.ptr.address, isNonZero);
       expect(refCount(unk), equals(2));
       free(ppunkval);
 
-      final ppunkval2 = calloc<Pointer<VTablePointer>>()
-        ..value = (calloc<VTablePointer>()..value = spellChecker.ptr.value);
+      final ppunkval2 = calloc<VTablePointer>()..value = spellChecker.ptr;
       variant.ref.ppunkVal = ppunkval2;
       final unk2 = IUnknown(variant.ref.ppunkVal.value);
       expect(unk2.ptr.address, isNonZero);

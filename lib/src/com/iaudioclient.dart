@@ -21,8 +21,7 @@ const IID_IAudioClient = '{1cb9ad4c-dbfa-4c32-b178-c2f568a703b2}';
 ///
 /// {@category com}
 class IAudioClient extends IUnknown {
-  IAudioClient(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioClientVtbl>().ref;
+  IAudioClient(super.ptr) : _vtable = ptr.value.cast<IAudioClientVtbl>().ref;
 
   final IAudioClientVtbl _vtable;
 
@@ -45,7 +44,7 @@ class IAudioClient extends IUnknown {
                   int hnsPeriodicity,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<GUID> AudioSessionGuid)>()(
-          ptr.value,
+          ptr,
           ShareMode,
           StreamFlags,
           hnsBufferDuration,
@@ -56,17 +55,17 @@ class IAudioClient extends IUnknown {
   int getBufferSize(Pointer<Uint32> pNumBufferFrames) =>
       _vtable.GetBufferSize.asFunction<
               int Function(VTablePointer, Pointer<Uint32> pNumBufferFrames)>()(
-          ptr.value, pNumBufferFrames);
+          ptr, pNumBufferFrames);
 
   int getStreamLatency(Pointer<Int64> phnsLatency) =>
       _vtable.GetStreamLatency.asFunction<
-              int Function(VTablePointer, Pointer<Int64> phnsLatency)>()(
-          ptr.value, phnsLatency);
+          int Function(
+              VTablePointer, Pointer<Int64> phnsLatency)>()(ptr, phnsLatency);
 
   int getCurrentPadding(Pointer<Uint32> pNumPaddingFrames) =>
       _vtable.GetCurrentPadding.asFunction<
               int Function(VTablePointer, Pointer<Uint32> pNumPaddingFrames)>()(
-          ptr.value, pNumPaddingFrames);
+          ptr, pNumPaddingFrames);
 
   int isFormatSupported(int ShareMode, Pointer<WAVEFORMATEX> pFormat,
           Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch) =>
@@ -76,13 +75,13 @@ class IAudioClient extends IUnknown {
                   int ShareMode,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>()(
-          ptr.value, ShareMode, pFormat, ppClosestMatch);
+          ptr, ShareMode, pFormat, ppClosestMatch);
 
   int getMixFormat(Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat) =>
       _vtable.GetMixFormat.asFunction<
               int Function(VTablePointer,
                   Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>()(
-          ptr.value, ppDeviceFormat);
+          ptr, ppDeviceFormat);
 
   int getDevicePeriod(Pointer<Int64> phnsDefaultDevicePeriod,
           Pointer<Int64> phnsMinimumDevicePeriod) =>
@@ -91,24 +90,21 @@ class IAudioClient extends IUnknown {
                   VTablePointer,
                   Pointer<Int64> phnsDefaultDevicePeriod,
                   Pointer<Int64> phnsMinimumDevicePeriod)>()(
-          ptr.value, phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
+          ptr, phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
 
-  int start() =>
-      _vtable.Start.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int start() => _vtable.Start.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int stop() =>
-      _vtable.Stop.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int stop() => _vtable.Stop.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int reset() =>
-      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
 
   int setEventHandle(int eventHandle) => _vtable.SetEventHandle.asFunction<
-      int Function(VTablePointer, int eventHandle)>()(ptr.value, eventHandle);
+      int Function(VTablePointer, int eventHandle)>()(ptr, eventHandle);
 
   int getService(Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetService.asFunction<
           int Function(VTablePointer, Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>()(ptr.value, riid, ppv);
+              Pointer<Pointer> ppv)>()(ptr, riid, ppv);
 }
 
 /// @nodoc

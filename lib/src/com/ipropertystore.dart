@@ -20,7 +20,7 @@ const IID_IPropertyStore = '{886d8eeb-8cf2-4446-8d02-cdba1dbdcf99}';
 /// {@category com}
 class IPropertyStore extends IUnknown {
   IPropertyStore(super.ptr)
-      : _vtable = ptr.value.value.cast<IPropertyStoreVtbl>().ref;
+      : _vtable = ptr.value.cast<IPropertyStoreVtbl>().ref;
 
   final IPropertyStoreVtbl _vtable;
 
@@ -28,24 +28,23 @@ class IPropertyStore extends IUnknown {
       IPropertyStore(interface.toInterface(IID_IPropertyStore));
 
   int getCount(Pointer<Uint32> cProps) => _vtable.GetCount.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> cProps)>()(ptr.value, cProps);
+      int Function(VTablePointer, Pointer<Uint32> cProps)>()(ptr, cProps);
 
   int getAt(int iProp, Pointer<PROPERTYKEY> pkey) => _vtable.GetAt.asFunction<
           int Function(VTablePointer, int iProp, Pointer<PROPERTYKEY> pkey)>()(
-      ptr.value, iProp, pkey);
+      ptr, iProp, pkey);
 
   int getValue(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> pv) =>
       _vtable.GetValue.asFunction<
           int Function(VTablePointer, Pointer<PROPERTYKEY> key,
-              Pointer<PROPVARIANT> pv)>()(ptr.value, key, pv);
+              Pointer<PROPVARIANT> pv)>()(ptr, key, pv);
 
   int setValue(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> propvar) =>
       _vtable.SetValue.asFunction<
           int Function(VTablePointer, Pointer<PROPERTYKEY> key,
-              Pointer<PROPVARIANT> propvar)>()(ptr.value, key, propvar);
+              Pointer<PROPVARIANT> propvar)>()(ptr, key, propvar);
 
-  int commit() =>
-      _vtable.Commit.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int commit() => _vtable.Commit.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

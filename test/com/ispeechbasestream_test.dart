@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final speechbasestream = ISpeechBaseStream(ptr);
   test('Can instantiate ISpeechBaseStream.putref_Format', () {
@@ -35,6 +34,5 @@ void main() {
     expect(speechbasestream.seek, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

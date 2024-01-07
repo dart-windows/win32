@@ -18,7 +18,7 @@ const IID_IUIAutomationInvokePattern = '{fb377fbe-8ea6-46d5-9c73-6499642d3059}';
 /// {@category com}
 class IUIAutomationInvokePattern extends IUnknown {
   IUIAutomationInvokePattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationInvokePatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationInvokePatternVtbl>().ref;
 
   final IUIAutomationInvokePatternVtbl _vtable;
 
@@ -26,8 +26,7 @@ class IUIAutomationInvokePattern extends IUnknown {
       IUIAutomationInvokePattern(
           interface.toInterface(IID_IUIAutomationInvokePattern));
 
-  int invoke() =>
-      _vtable.Invoke.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int invoke() => _vtable.Invoke.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

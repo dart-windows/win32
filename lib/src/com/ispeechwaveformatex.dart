@@ -22,7 +22,7 @@ const IID_ISpeechWaveFormatEx = '{7a1ef0d5-1581-4741-88e4-209a49f11a10}';
 /// {@category com}
 class ISpeechWaveFormatEx extends IDispatch {
   ISpeechWaveFormatEx(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpeechWaveFormatExVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpeechWaveFormatExVtbl>().ref;
 
   final ISpeechWaveFormatExVtbl _vtable;
 
@@ -34,8 +34,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_FormatTag.asFunction<
-              int Function(VTablePointer, Pointer<Int16> FormatTag)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> FormatTag)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -47,8 +47,7 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   set formatTag(int value) {
     final hr = _vtable.put_FormatTag
-            .asFunction<int Function(VTablePointer, int FormatTag)>()(
-        ptr.value, value);
+        .asFunction<int Function(VTablePointer, int FormatTag)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -57,8 +56,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_Channels.asFunction<
-              int Function(VTablePointer, Pointer<Int16> Channels)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> Channels)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,8 +69,7 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   set channels(int value) {
     final hr = _vtable.put_Channels
-            .asFunction<int Function(VTablePointer, int Channels)>()(
-        ptr.value, value);
+        .asFunction<int Function(VTablePointer, int Channels)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -80,8 +78,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_SamplesPerSec.asFunction<
-              int Function(VTablePointer, Pointer<Int32> SamplesPerSec)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> SamplesPerSec)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -94,7 +92,7 @@ class ISpeechWaveFormatEx extends IDispatch {
   set samplesPerSec(int value) {
     final hr = _vtable.put_SamplesPerSec
             .asFunction<int Function(VTablePointer, int SamplesPerSec)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -104,7 +102,7 @@ class ISpeechWaveFormatEx extends IDispatch {
     try {
       final hr = _vtable.get_AvgBytesPerSec.asFunction<
               int Function(VTablePointer, Pointer<Int32> AvgBytesPerSec)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -117,7 +115,7 @@ class ISpeechWaveFormatEx extends IDispatch {
   set avgBytesPerSec(int value) {
     final hr = _vtable.put_AvgBytesPerSec
             .asFunction<int Function(VTablePointer, int AvgBytesPerSec)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -126,8 +124,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_BlockAlign.asFunction<
-              int Function(VTablePointer, Pointer<Int16> BlockAlign)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> BlockAlign)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -139,8 +137,7 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   set blockAlign(int value) {
     final hr = _vtable.put_BlockAlign
-            .asFunction<int Function(VTablePointer, int BlockAlign)>()(
-        ptr.value, value);
+        .asFunction<int Function(VTablePointer, int BlockAlign)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -149,8 +146,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_BitsPerSample.asFunction<
-              int Function(VTablePointer, Pointer<Int16> BitsPerSample)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> BitsPerSample)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -163,7 +160,7 @@ class ISpeechWaveFormatEx extends IDispatch {
   set bitsPerSample(int value) {
     final hr = _vtable.put_BitsPerSample
             .asFunction<int Function(VTablePointer, int BitsPerSample)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -172,8 +169,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_ExtraData.asFunction<
-              int Function(VTablePointer, Pointer<VARIANT> ExtraData)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<VARIANT> ExtraData)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.ref;
@@ -186,7 +183,7 @@ class ISpeechWaveFormatEx extends IDispatch {
   set extraData(VARIANT value) {
     final hr = _vtable.put_ExtraData
             .asFunction<int Function(VTablePointer, VARIANT ExtraData)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }

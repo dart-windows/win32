@@ -21,7 +21,7 @@ const IID_IWbemRefresher = '{49353c99-516b-11d1-aea6-00c04fb68820}';
 /// {@category com}
 class IWbemRefresher extends IUnknown {
   IWbemRefresher(super.ptr)
-      : _vtable = ptr.value.value.cast<IWbemRefresherVtbl>().ref;
+      : _vtable = ptr.value.cast<IWbemRefresherVtbl>().ref;
 
   final IWbemRefresherVtbl _vtable;
 
@@ -30,7 +30,7 @@ class IWbemRefresher extends IUnknown {
 
   int refresh(int lFlags) =>
       _vtable.Refresh.asFunction<int Function(VTablePointer, int lFlags)>()(
-          ptr.value, lFlags);
+          ptr, lFlags);
 }
 
 /// @nodoc

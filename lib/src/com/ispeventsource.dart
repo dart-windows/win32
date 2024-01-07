@@ -23,7 +23,7 @@ const IID_ISpEventSource = '{be7a9cce-5f9e-11d2-960f-00c04f8ee628}';
 /// {@category com}
 class ISpEventSource extends ISpNotifySource {
   ISpEventSource(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpEventSourceVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpEventSourceVtbl>().ref;
 
   final ISpEventSourceVtbl _vtable;
 
@@ -34,18 +34,18 @@ class ISpEventSource extends ISpNotifySource {
       _vtable.SetInterest.asFunction<
               int Function(VTablePointer, int ullEventInterest,
                   int ullQueuedInterest)>()(
-          ptr.value, ullEventInterest, ullQueuedInterest);
+          ptr, ullEventInterest, ullQueuedInterest);
 
   int getEvents(int ulCount, Pointer<SPEVENT> pEventArray,
           Pointer<Uint32> pulFetched) =>
       _vtable.GetEvents.asFunction<
               int Function(VTablePointer, int ulCount,
                   Pointer<SPEVENT> pEventArray, Pointer<Uint32> pulFetched)>()(
-          ptr.value, ulCount, pEventArray, pulFetched);
+          ptr, ulCount, pEventArray, pulFetched);
 
   int getInfo(Pointer<SPEVENTSOURCEINFO> pInfo) => _vtable.GetInfo.asFunction<
       int Function(
-          VTablePointer, Pointer<SPEVENTSOURCEINFO> pInfo)>()(ptr.value, pInfo);
+          VTablePointer, Pointer<SPEVENTSOURCEINFO> pInfo)>()(ptr, pInfo);
 }
 
 /// @nodoc

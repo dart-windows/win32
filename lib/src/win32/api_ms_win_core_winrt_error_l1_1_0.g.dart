@@ -31,13 +31,11 @@ final _api_ms_win_core_winrt_error_l1_1_0 =
 /// );
 /// ```
 /// {@category winrt}
-int GetRestrictedErrorInfo(
-        Pointer<Pointer<VTablePointer>> ppRestrictedErrorInfo) =>
+int GetRestrictedErrorInfo(Pointer<VTablePointer> ppRestrictedErrorInfo) =>
     _GetRestrictedErrorInfo(ppRestrictedErrorInfo);
 
 final _GetRestrictedErrorInfo =
     _api_ms_win_core_winrt_error_l1_1_0.lookupFunction<
-        Int32 Function(Pointer<Pointer<VTablePointer>> ppRestrictedErrorInfo),
-        int Function(
-            Pointer<Pointer<VTablePointer>>
-                ppRestrictedErrorInfo)>('GetRestrictedErrorInfo');
+            Int32 Function(Pointer<VTablePointer> ppRestrictedErrorInfo),
+            int Function(Pointer<VTablePointer> ppRestrictedErrorInfo)>(
+        'GetRestrictedErrorInfo');

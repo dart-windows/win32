@@ -24,7 +24,7 @@ const IID_ISpeechObjectTokens = '{9285b776-2e7b-4bc0-b53e-580eb6fa967f}';
 /// {@category com}
 class ISpeechObjectTokens extends IDispatch {
   ISpeechObjectTokens(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpeechObjectTokensVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpeechObjectTokensVtbl>().ref;
 
   final ISpeechObjectTokensVtbl _vtable;
 
@@ -37,7 +37,7 @@ class ISpeechObjectTokens extends IDispatch {
     try {
       final hr = _vtable.get_Count
               .asFunction<int Function(VTablePointer, Pointer<Int32> Count)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -47,24 +47,24 @@ class ISpeechObjectTokens extends IDispatch {
     }
   }
 
-  int item(int Index, Pointer<Pointer<VTablePointer>> Token) =>
-      _vtable.Item.asFunction<
-              int Function(VTablePointer, int Index,
-                  Pointer<Pointer<VTablePointer>> Token)>()(
-          ptr.value, Index, Token);
+  int item(int Index, Pointer<VTablePointer> Token) => _vtable.Item.asFunction<
+      int Function(VTablePointer, int Index,
+          Pointer<VTablePointer> Token)>()(ptr, Index, Token);
 
-  Pointer<VTablePointer> get newEnum {
+  VTablePointer get newEnum {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get__NewEnum.asFunction<
-        int Function(VTablePointer,
-            Pointer<VTablePointer> ppEnumVARIANT)>()(ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get__NewEnum.asFunction<
+          int Function(VTablePointer,
+              Pointer<VTablePointer> ppEnumVARIANT)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 
@@ -76,8 +76,8 @@ base class ISpeechObjectTokensVtbl extends Struct {
       get_Count;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 Index,
-              Pointer<Pointer<VTablePointer>> Token)>> Item;
+          Int32 Function(
+              VTablePointer, Int32 Index, Pointer<VTablePointer> Token)>> Item;
   external Pointer<
           NativeFunction<
               Int32 Function(

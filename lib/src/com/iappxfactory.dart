@@ -20,8 +20,7 @@ const IID_IAppxFactory = '{beb94909-e451-438b-b5a7-d79e767b75d8}';
 ///
 /// {@category com}
 class IAppxFactory extends IUnknown {
-  IAppxFactory(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxFactoryVtbl>().ref;
+  IAppxFactory(super.ptr) : _vtable = ptr.value.cast<IAppxFactoryVtbl>().ref;
 
   final IAppxFactoryVtbl _vtable;
 
@@ -29,84 +28,80 @@ class IAppxFactory extends IUnknown {
       IAppxFactory(interface.toInterface(IID_IAppxFactory));
 
   int createPackageWriter(
-          Pointer<VTablePointer> outputStream,
+          VTablePointer outputStream,
           Pointer<APPX_PACKAGE_SETTINGS> settings,
-          Pointer<Pointer<VTablePointer>> packageWriter) =>
+          Pointer<VTablePointer> packageWriter) =>
       _vtable.CreatePackageWriter.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> outputStream,
+                  VTablePointer outputStream,
                   Pointer<APPX_PACKAGE_SETTINGS> settings,
-                  Pointer<Pointer<VTablePointer>> packageWriter)>()(
-          ptr.value, outputStream, settings, packageWriter);
+                  Pointer<VTablePointer> packageWriter)>()(
+          ptr, outputStream, settings, packageWriter);
 
-  int createPackageReader(Pointer<VTablePointer> inputStream,
-          Pointer<Pointer<VTablePointer>> packageReader) =>
+  int createPackageReader(
+          VTablePointer inputStream, Pointer<VTablePointer> packageReader) =>
       _vtable.CreatePackageReader.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> inputStream,
-                  Pointer<Pointer<VTablePointer>> packageReader)>()(
-          ptr.value, inputStream, packageReader);
+              int Function(VTablePointer, VTablePointer inputStream,
+                  Pointer<VTablePointer> packageReader)>()(
+          ptr, inputStream, packageReader);
 
-  int createManifestReader(Pointer<VTablePointer> inputStream,
-          Pointer<Pointer<VTablePointer>> manifestReader) =>
+  int createManifestReader(
+          VTablePointer inputStream, Pointer<VTablePointer> manifestReader) =>
       _vtable.CreateManifestReader.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> inputStream,
-                  Pointer<Pointer<VTablePointer>> manifestReader)>()(
-          ptr.value, inputStream, manifestReader);
+              int Function(VTablePointer, VTablePointer inputStream,
+                  Pointer<VTablePointer> manifestReader)>()(
+          ptr, inputStream, manifestReader);
 
-  int createBlockMapReader(Pointer<VTablePointer> inputStream,
-          Pointer<Pointer<VTablePointer>> blockMapReader) =>
+  int createBlockMapReader(
+          VTablePointer inputStream, Pointer<VTablePointer> blockMapReader) =>
       _vtable.CreateBlockMapReader.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> inputStream,
-                  Pointer<Pointer<VTablePointer>> blockMapReader)>()(
-          ptr.value, inputStream, blockMapReader);
+              int Function(VTablePointer, VTablePointer inputStream,
+                  Pointer<VTablePointer> blockMapReader)>()(
+          ptr, inputStream, blockMapReader);
 
   int createValidatedBlockMapReader(
-          Pointer<VTablePointer> blockMapStream,
+          VTablePointer blockMapStream,
           Pointer<Utf16> signatureFileName,
-          Pointer<Pointer<VTablePointer>> blockMapReader) =>
+          Pointer<VTablePointer> blockMapReader) =>
       _vtable.CreateValidatedBlockMapReader.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> blockMapStream,
+                  VTablePointer blockMapStream,
                   Pointer<Utf16> signatureFileName,
-                  Pointer<Pointer<VTablePointer>> blockMapReader)>()(
-          ptr.value, blockMapStream, signatureFileName, blockMapReader);
+                  Pointer<VTablePointer> blockMapReader)>()(
+          ptr, blockMapStream, signatureFileName, blockMapReader);
 }
 
 /// @nodoc
 base class IAppxFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> outputStream,
-                  Pointer<APPX_PACKAGE_SETTINGS> settings,
-                  Pointer<Pointer<VTablePointer>> packageWriter)>>
-      CreatePackageWriter;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer outputStream,
+              Pointer<APPX_PACKAGE_SETTINGS> settings,
+              Pointer<VTablePointer> packageWriter)>> CreatePackageWriter;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> inputStream,
-                  Pointer<Pointer<VTablePointer>> packageReader)>>
-      CreatePackageReader;
+      NativeFunction<
+          Int32 Function(VTablePointer, VTablePointer inputStream,
+              Pointer<VTablePointer> packageReader)>> CreatePackageReader;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> inputStream,
-                  Pointer<Pointer<VTablePointer>> manifestReader)>>
-      CreateManifestReader;
+      NativeFunction<
+          Int32 Function(VTablePointer, VTablePointer inputStream,
+              Pointer<VTablePointer> manifestReader)>> CreateManifestReader;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> inputStream,
-                  Pointer<Pointer<VTablePointer>> blockMapReader)>>
-      CreateBlockMapReader;
+      NativeFunction<
+          Int32 Function(VTablePointer, VTablePointer inputStream,
+              Pointer<VTablePointer> blockMapReader)>> CreateBlockMapReader;
   external Pointer<
           NativeFunction<
               Int32 Function(
                   VTablePointer,
-                  Pointer<VTablePointer> blockMapStream,
+                  VTablePointer blockMapStream,
                   Pointer<Utf16> signatureFileName,
-                  Pointer<Pointer<VTablePointer>> blockMapReader)>>
+                  Pointer<VTablePointer> blockMapReader)>>
       CreateValidatedBlockMapReader;
 }
 

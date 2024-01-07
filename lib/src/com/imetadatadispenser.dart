@@ -21,7 +21,7 @@ const IID_IMetaDataDispenser = '{809c652e-7396-11d2-9771-00a0c9b4d50c}';
 /// {@category com}
 class IMetaDataDispenser extends IUnknown {
   IMetaDataDispenser(super.ptr)
-      : _vtable = ptr.value.value.cast<IMetaDataDispenserVtbl>().ref;
+      : _vtable = ptr.value.cast<IMetaDataDispenserVtbl>().ref;
 
   final IMetaDataDispenserVtbl _vtable;
 
@@ -29,29 +29,29 @@ class IMetaDataDispenser extends IUnknown {
       IMetaDataDispenser(interface.toInterface(IID_IMetaDataDispenser));
 
   int defineScope(Pointer<GUID> rclsid, int dwCreateFlags, Pointer<GUID> riid,
-          Pointer<Pointer<VTablePointer>> ppIUnk) =>
+          Pointer<VTablePointer> ppIUnk) =>
       _vtable.DefineScope.asFunction<
               int Function(
                   VTablePointer,
                   Pointer<GUID> rclsid,
                   int dwCreateFlags,
                   Pointer<GUID> riid,
-                  Pointer<Pointer<VTablePointer>> ppIUnk)>()(
-          ptr.value, rclsid, dwCreateFlags, riid, ppIUnk);
+                  Pointer<VTablePointer> ppIUnk)>()(
+          ptr, rclsid, dwCreateFlags, riid, ppIUnk);
 
   int openScope(Pointer<Utf16> szScope, int dwOpenFlags, Pointer<GUID> riid,
-          Pointer<Pointer<VTablePointer>> ppIUnk) =>
+          Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScope.asFunction<
               int Function(
                   VTablePointer,
                   Pointer<Utf16> szScope,
                   int dwOpenFlags,
                   Pointer<GUID> riid,
-                  Pointer<Pointer<VTablePointer>> ppIUnk)>()(
-          ptr.value, szScope, dwOpenFlags, riid, ppIUnk);
+                  Pointer<VTablePointer> ppIUnk)>()(
+          ptr, szScope, dwOpenFlags, riid, ppIUnk);
 
   int openScopeOnMemory(Pointer pData, int cbData, int dwOpenFlags,
-          Pointer<GUID> riid, Pointer<Pointer<VTablePointer>> ppIUnk) =>
+          Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScopeOnMemory.asFunction<
               int Function(
                   VTablePointer,
@@ -59,8 +59,8 @@ class IMetaDataDispenser extends IUnknown {
                   int cbData,
                   int dwOpenFlags,
                   Pointer<GUID> riid,
-                  Pointer<Pointer<VTablePointer>> ppIUnk)>()(
-          ptr.value, pData, cbData, dwOpenFlags, riid, ppIUnk);
+                  Pointer<VTablePointer> ppIUnk)>()(
+          ptr, pData, cbData, dwOpenFlags, riid, ppIUnk);
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ base class IMetaDataDispenserVtbl extends Struct {
               Pointer<GUID> rclsid,
               Uint32 dwCreateFlags,
               Pointer<GUID> riid,
-              Pointer<Pointer<VTablePointer>> ppIUnk)>> DefineScope;
+              Pointer<VTablePointer> ppIUnk)>> DefineScope;
   external Pointer<
       NativeFunction<
           Int32 Function(
@@ -81,7 +81,7 @@ base class IMetaDataDispenserVtbl extends Struct {
               Pointer<Utf16> szScope,
               Uint32 dwOpenFlags,
               Pointer<GUID> riid,
-              Pointer<Pointer<VTablePointer>> ppIUnk)>> OpenScope;
+              Pointer<VTablePointer> ppIUnk)>> OpenScope;
   external Pointer<
       NativeFunction<
           Int32 Function(
@@ -90,5 +90,5 @@ base class IMetaDataDispenserVtbl extends Struct {
               Uint32 cbData,
               Uint32 dwOpenFlags,
               Pointer<GUID> riid,
-              Pointer<Pointer<VTablePointer>> ppIUnk)>> OpenScopeOnMemory;
+              Pointer<VTablePointer> ppIUnk)>> OpenScopeOnMemory;
 }

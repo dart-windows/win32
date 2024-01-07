@@ -20,7 +20,7 @@ const IID_IRestrictedErrorInfo = '{82ba7092-4c88-427d-a7bc-16dd93feb67e}';
 /// {@category com}
 class IRestrictedErrorInfo extends IUnknown {
   IRestrictedErrorInfo(super.ptr)
-      : _vtable = ptr.value.value.cast<IRestrictedErrorInfoVtbl>().ref;
+      : _vtable = ptr.value.cast<IRestrictedErrorInfoVtbl>().ref;
 
   final IRestrictedErrorInfoVtbl _vtable;
 
@@ -39,12 +39,12 @@ class IRestrictedErrorInfo extends IUnknown {
                   Pointer<Int32> error,
                   Pointer<Pointer<Utf16>> restrictedDescription,
                   Pointer<Pointer<Utf16>> capabilitySid)>()(
-          ptr.value, description, error, restrictedDescription, capabilitySid);
+          ptr, description, error, restrictedDescription, capabilitySid);
 
   int getReference(Pointer<Pointer<Utf16>> reference) =>
       _vtable.GetReference.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> reference)>()(
-          ptr.value, reference);
+          ptr, reference);
 }
 
 /// @nodoc

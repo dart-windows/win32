@@ -18,7 +18,7 @@ const IID_IAppxFile = '{91df827b-94fd-468f-827b-57f41b2f6f2e}';
 ///
 /// {@category com}
 class IAppxFile extends IUnknown {
-  IAppxFile(super.ptr) : _vtable = ptr.value.value.cast<IAppxFileVtbl>().ref;
+  IAppxFile(super.ptr) : _vtable = ptr.value.cast<IAppxFileVtbl>().ref;
 
   final IAppxFileVtbl _vtable;
 
@@ -28,24 +28,23 @@ class IAppxFile extends IUnknown {
   int getCompressionOption(Pointer<Int32> compressionOption) =>
       _vtable.GetCompressionOption.asFunction<
               int Function(VTablePointer, Pointer<Int32> compressionOption)>()(
-          ptr.value, compressionOption);
+          ptr, compressionOption);
 
   int getContentType(Pointer<Pointer<Utf16>> contentType) =>
       _vtable.GetContentType.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<Utf16>> contentType)>()(ptr.value, contentType);
+              Pointer<Pointer<Utf16>> contentType)>()(ptr, contentType);
 
   int getName(Pointer<Pointer<Utf16>> fileName) => _vtable.GetName.asFunction<
-          int Function(VTablePointer, Pointer<Pointer<Utf16>> fileName)>()(
-      ptr.value, fileName);
+      int Function(
+          VTablePointer, Pointer<Pointer<Utf16>> fileName)>()(ptr, fileName);
 
   int getSize(Pointer<Uint64> size) => _vtable.GetSize.asFunction<
-      int Function(VTablePointer, Pointer<Uint64> size)>()(ptr.value, size);
+      int Function(VTablePointer, Pointer<Uint64> size)>()(ptr, size);
 
-  int getStream(Pointer<Pointer<VTablePointer>> stream) =>
-      _vtable.GetStream.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> stream)>()(ptr.value, stream);
+  int getStream(Pointer<VTablePointer> stream) => _vtable.GetStream.asFunction<
+      int Function(
+          VTablePointer, Pointer<VTablePointer> stream)>()(ptr, stream);
 }
 
 /// @nodoc
@@ -69,7 +68,6 @@ base class IAppxFileVtbl extends Struct {
       GetSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> stream)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> stream)>>
       GetStream;
 }

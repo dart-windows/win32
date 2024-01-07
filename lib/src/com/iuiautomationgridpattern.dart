@@ -24,7 +24,7 @@ const IID_IUIAutomationGridPattern = '{414c3cdc-856b-4f5b-8538-3131c6302550}';
 /// {@category com}
 class IUIAutomationGridPattern extends IUnknown {
   IUIAutomationGridPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationGridPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationGridPatternVtbl>().ref;
 
   final IUIAutomationGridPatternVtbl _vtable;
 
@@ -32,11 +32,10 @@ class IUIAutomationGridPattern extends IUnknown {
       IUIAutomationGridPattern(
           interface.toInterface(IID_IUIAutomationGridPattern));
 
-  int getItem(int row, int column, Pointer<Pointer<VTablePointer>> element) =>
+  int getItem(int row, int column, Pointer<VTablePointer> element) =>
       _vtable.GetItem.asFunction<
-              int Function(VTablePointer, int row, int column,
-                  Pointer<Pointer<VTablePointer>> element)>()(
-          ptr.value, row, column, element);
+          int Function(VTablePointer, int row, int column,
+              Pointer<VTablePointer> element)>()(ptr, row, column, element);
 
   int get currentRowCount {
     final retValuePtr = calloc<Int32>();
@@ -44,7 +43,7 @@ class IUIAutomationGridPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentRowCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -60,7 +59,7 @@ class IUIAutomationGridPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentColumnCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -76,7 +75,7 @@ class IUIAutomationGridPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedRowCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -92,7 +91,7 @@ class IUIAutomationGridPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedColumnCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -109,7 +108,7 @@ base class IUIAutomationGridPatternVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 row, Int32 column,
-              Pointer<Pointer<VTablePointer>> element)>> GetItem;
+              Pointer<VTablePointer> element)>> GetItem;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentRowCount;

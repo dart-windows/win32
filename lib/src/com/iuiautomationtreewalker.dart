@@ -23,7 +23,7 @@ const IID_IUIAutomationTreeWalker = '{4042c624-389c-4afc-a630-9df854a541fc}';
 /// {@category com}
 class IUIAutomationTreeWalker extends IUnknown {
   IUIAutomationTreeWalker(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTreeWalkerVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTreeWalkerVtbl>().ref;
 
   final IUIAutomationTreeWalkerVtbl _vtable;
 
@@ -31,132 +31,106 @@ class IUIAutomationTreeWalker extends IUnknown {
       IUIAutomationTreeWalker(
           interface.toInterface(IID_IUIAutomationTreeWalker));
 
-  int getParentElement(Pointer<VTablePointer> element,
-          Pointer<Pointer<VTablePointer>> parent) =>
+  int getParentElement(VTablePointer element, Pointer<VTablePointer> parent) =>
       _vtable.GetParentElement.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> parent)>()(
-          ptr.value, element, parent);
+          int Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> parent)>()(ptr, element, parent);
 
-  int getFirstChildElement(Pointer<VTablePointer> element,
-          Pointer<Pointer<VTablePointer>> first) =>
+  int getFirstChildElement(
+          VTablePointer element, Pointer<VTablePointer> first) =>
       _vtable.GetFirstChildElement.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> first)>()(
-          ptr.value, element, first);
+          int Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> first)>()(ptr, element, first);
 
-  int getLastChildElement(Pointer<VTablePointer> element,
-          Pointer<Pointer<VTablePointer>> last) =>
+  int getLastChildElement(VTablePointer element, Pointer<VTablePointer> last) =>
       _vtable.GetLastChildElement.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> last)>()(
-          ptr.value, element, last);
+          int Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> last)>()(ptr, element, last);
 
-  int getNextSiblingElement(Pointer<VTablePointer> element,
-          Pointer<Pointer<VTablePointer>> next) =>
+  int getNextSiblingElement(
+          VTablePointer element, Pointer<VTablePointer> next) =>
       _vtable.GetNextSiblingElement.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> next)>()(
-          ptr.value, element, next);
+          int Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> next)>()(ptr, element, next);
 
-  int getPreviousSiblingElement(Pointer<VTablePointer> element,
-          Pointer<Pointer<VTablePointer>> previous) =>
+  int getPreviousSiblingElement(
+          VTablePointer element, Pointer<VTablePointer> previous) =>
       _vtable.GetPreviousSiblingElement.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> previous)>()(
-          ptr.value, element, previous);
+          int Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> previous)>()(ptr, element, previous);
 
-  int normalizeElement(Pointer<VTablePointer> element,
-          Pointer<Pointer<VTablePointer>> normalized) =>
+  int normalizeElement(
+          VTablePointer element, Pointer<VTablePointer> normalized) =>
       _vtable.NormalizeElement.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> normalized)>()(
-          ptr.value, element, normalized);
+          int Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> normalized)>()(ptr, element, normalized);
 
-  int getParentElementBuildCache(
-          Pointer<VTablePointer> element,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> parent) =>
+  int getParentElementBuildCache(VTablePointer element,
+          VTablePointer cacheRequest, Pointer<VTablePointer> parent) =>
       _vtable.GetParentElementBuildCache.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> parent)>()(
-          ptr.value, element, cacheRequest, parent);
+              int Function(VTablePointer, VTablePointer element,
+                  VTablePointer cacheRequest, Pointer<VTablePointer> parent)>()(
+          ptr, element, cacheRequest, parent);
 
-  int getFirstChildElementBuildCache(
-          Pointer<VTablePointer> element,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> first) =>
+  int getFirstChildElementBuildCache(VTablePointer element,
+          VTablePointer cacheRequest, Pointer<VTablePointer> first) =>
       _vtable.GetFirstChildElementBuildCache.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> first)>()(
-          ptr.value, element, cacheRequest, first);
+              int Function(VTablePointer, VTablePointer element,
+                  VTablePointer cacheRequest, Pointer<VTablePointer> first)>()(
+          ptr, element, cacheRequest, first);
 
-  int getLastChildElementBuildCache(
-          Pointer<VTablePointer> element,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> last) =>
+  int getLastChildElementBuildCache(VTablePointer element,
+          VTablePointer cacheRequest, Pointer<VTablePointer> last) =>
       _vtable.GetLastChildElementBuildCache.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> last)>()(
-          ptr.value, element, cacheRequest, last);
+          int Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> last)>()(ptr, element, cacheRequest, last);
 
-  int getNextSiblingElementBuildCache(
-          Pointer<VTablePointer> element,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> next) =>
+  int getNextSiblingElementBuildCache(VTablePointer element,
+          VTablePointer cacheRequest, Pointer<VTablePointer> next) =>
       _vtable.GetNextSiblingElementBuildCache.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> next)>()(
-          ptr.value, element, cacheRequest, next);
+          int Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> next)>()(ptr, element, cacheRequest, next);
 
-  int getPreviousSiblingElementBuildCache(
-          Pointer<VTablePointer> element,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> previous) =>
+  int getPreviousSiblingElementBuildCache(VTablePointer element,
+          VTablePointer cacheRequest, Pointer<VTablePointer> previous) =>
       _vtable.GetPreviousSiblingElementBuildCache.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> previous)>()(
-          ptr.value, element, cacheRequest, previous);
+                  VTablePointer element,
+                  VTablePointer cacheRequest,
+                  Pointer<VTablePointer> previous)>()(
+          ptr, element, cacheRequest, previous);
 
-  int normalizeElementBuildCache(
-          Pointer<VTablePointer> element,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<Pointer<VTablePointer>> normalized) =>
+  int normalizeElementBuildCache(VTablePointer element,
+          VTablePointer cacheRequest, Pointer<VTablePointer> normalized) =>
       _vtable.NormalizeElementBuildCache.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> normalized)>()(
-          ptr.value, element, cacheRequest, normalized);
+                  VTablePointer element,
+                  VTablePointer cacheRequest,
+                  Pointer<VTablePointer> normalized)>()(
+          ptr, element, cacheRequest, normalized);
 
-  Pointer<VTablePointer> get condition {
+  VTablePointer get condition {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_Condition.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> condition)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_Condition.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> condition)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 
@@ -165,77 +139,68 @@ base class IUIAutomationTreeWalkerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<Pointer<VTablePointer>> parent)>> GetParentElement;
+          Int32 Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> parent)>> GetParentElement;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<Pointer<VTablePointer>> first)>> GetFirstChildElement;
+          Int32 Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> first)>> GetFirstChildElement;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<Pointer<VTablePointer>> last)>> GetLastChildElement;
+          Int32 Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> last)>> GetLastChildElement;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<Pointer<VTablePointer>> next)>> GetNextSiblingElement;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<Pointer<VTablePointer>> previous)>>
-      GetPreviousSiblingElement;
+          Int32 Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> next)>> GetNextSiblingElement;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<Pointer<VTablePointer>> normalized)>> NormalizeElement;
+          Int32 Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> previous)>> GetPreviousSiblingElement;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer, VTablePointer element,
+              Pointer<VTablePointer> normalized)>> NormalizeElement;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> parent)>> GetParentElementBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> first)>> GetFirstChildElementBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> last)>> GetLastChildElementBuildCache;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> next)>> GetNextSiblingElementBuildCache;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> parent)>>
-      GetParentElementBuildCache;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> first)>>
-      GetFirstChildElementBuildCache;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> last)>>
-      GetLastChildElementBuildCache;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> next)>>
-      GetNextSiblingElementBuildCache;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> previous)>>
+              Int32 Function(VTablePointer, VTablePointer element,
+                  VTablePointer cacheRequest, Pointer<VTablePointer> previous)>>
       GetPreviousSiblingElementBuildCache;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<Pointer<VTablePointer>> normalized)>>
-      NormalizeElementBuildCache;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              VTablePointer cacheRequest,
+              Pointer<VTablePointer> normalized)>> NormalizeElementBuildCache;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<VTablePointer> condition)>>

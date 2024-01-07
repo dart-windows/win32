@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final spellcheckerfactory = ISpellCheckerFactory(ptr);
   test('Can instantiate ISpellCheckerFactory.isSupported', () {
@@ -29,6 +28,5 @@ void main() {
     expect(spellcheckerfactory.createSpellChecker, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

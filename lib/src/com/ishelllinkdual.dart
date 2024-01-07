@@ -22,7 +22,7 @@ const IID_IShellLinkDual = '{88a05c00-f000-11ce-8350-444553540000}';
 /// {@category com}
 class IShellLinkDual extends IDispatch {
   IShellLinkDual(super.ptr)
-      : _vtable = ptr.value.value.cast<IShellLinkDualVtbl>().ref;
+      : _vtable = ptr.value.cast<IShellLinkDualVtbl>().ref;
 
   final IShellLinkDualVtbl _vtable;
 
@@ -34,8 +34,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_Path.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -48,7 +48,7 @@ class IShellLinkDual extends IDispatch {
   set path(Pointer<Utf16> value) {
     final hr = _vtable.put_Path
             .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -57,8 +57,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_Description.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -71,7 +71,7 @@ class IShellLinkDual extends IDispatch {
   set description(Pointer<Utf16> value) {
     final hr = _vtable.put_Description
             .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -80,8 +80,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_WorkingDirectory.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -94,7 +94,7 @@ class IShellLinkDual extends IDispatch {
   set workingDirectory(Pointer<Utf16> value) {
     final hr = _vtable.put_WorkingDirectory
             .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -103,8 +103,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_Arguments.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -117,7 +117,7 @@ class IShellLinkDual extends IDispatch {
   set arguments(Pointer<Utf16> value) {
     final hr = _vtable.put_Arguments
             .asFunction<int Function(VTablePointer, Pointer<Utf16> bs)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -127,7 +127,7 @@ class IShellLinkDual extends IDispatch {
     try {
       final hr = _vtable.get_Hotkey
               .asFunction<int Function(VTablePointer, Pointer<Int32> piHK)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -139,7 +139,7 @@ class IShellLinkDual extends IDispatch {
 
   set hotkey(int value) {
     final hr = _vtable.put_Hotkey
-        .asFunction<int Function(VTablePointer, int iHK)>()(ptr.value, value);
+        .asFunction<int Function(VTablePointer, int iHK)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -148,8 +148,8 @@ class IShellLinkDual extends IDispatch {
 
     try {
       final hr = _vtable.get_ShowCommand.asFunction<
-              int Function(VTablePointer, Pointer<Int32> piShowCommand)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> piShowCommand)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -162,27 +162,27 @@ class IShellLinkDual extends IDispatch {
   set showCommand(int value) {
     final hr = _vtable.put_ShowCommand
             .asFunction<int Function(VTablePointer, int iShowCommand)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int resolve(int fFlags) =>
       _vtable.Resolve.asFunction<int Function(VTablePointer, int fFlags)>()(
-          ptr.value, fFlags);
+          ptr, fFlags);
 
   int getIconLocation(Pointer<Pointer<Utf16>> pbs, Pointer<Int32> piIcon) =>
       _vtable.GetIconLocation.asFunction<
           int Function(VTablePointer, Pointer<Pointer<Utf16>> pbs,
-              Pointer<Int32> piIcon)>()(ptr.value, pbs, piIcon);
+              Pointer<Int32> piIcon)>()(ptr, pbs, piIcon);
 
   int setIconLocation(Pointer<Utf16> bs, int iIcon) =>
       _vtable.SetIconLocation.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> bs, int iIcon)>()(
-          ptr.value, bs, iIcon);
+          int Function(
+              VTablePointer, Pointer<Utf16> bs, int iIcon)>()(ptr, bs, iIcon);
 
   int save(VARIANT vWhere) =>
       _vtable.Save.asFunction<int Function(VTablePointer, VARIANT vWhere)>()(
-          ptr.value, vWhere);
+          ptr, vWhere);
 }
 
 /// @nodoc

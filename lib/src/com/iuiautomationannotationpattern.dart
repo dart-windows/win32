@@ -23,8 +23,7 @@ const IID_IUIAutomationAnnotationPattern =
 /// {@category com}
 class IUIAutomationAnnotationPattern extends IUnknown {
   IUIAutomationAnnotationPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationAnnotationPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationAnnotationPatternVtbl>().ref;
 
   final IUIAutomationAnnotationPatternVtbl _vtable;
 
@@ -38,7 +37,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentAnnotationTypeId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -54,7 +53,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentAnnotationTypeName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,7 +69,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentAuthor.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -86,7 +85,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentDateTime.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -96,18 +95,20 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  Pointer<VTablePointer> get currentTarget {
+  VTablePointer get currentTarget {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CurrentTarget.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CurrentTarget.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   int get cachedAnnotationTypeId {
@@ -116,7 +117,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedAnnotationTypeId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -132,7 +133,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedAnnotationTypeName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -148,7 +149,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedAuthor.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -164,7 +165,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedDateTime.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -174,18 +175,20 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  Pointer<VTablePointer> get cachedTarget {
+  VTablePointer get cachedTarget {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CachedTarget.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CachedTarget.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 

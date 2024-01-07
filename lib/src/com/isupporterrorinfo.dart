@@ -20,7 +20,7 @@ const IID_ISupportErrorInfo = '{df0b3d60-548f-101b-8e65-08002b2bd119}';
 /// {@category com}
 class ISupportErrorInfo extends IUnknown {
   ISupportErrorInfo(super.ptr)
-      : _vtable = ptr.value.value.cast<ISupportErrorInfoVtbl>().ref;
+      : _vtable = ptr.value.cast<ISupportErrorInfoVtbl>().ref;
 
   final ISupportErrorInfoVtbl _vtable;
 
@@ -29,7 +29,7 @@ class ISupportErrorInfo extends IUnknown {
 
   int interfaceSupportsErrorInfo(Pointer<GUID> riid) =>
       _vtable.InterfaceSupportsErrorInfo.asFunction<
-          int Function(VTablePointer, Pointer<GUID> riid)>()(ptr.value, riid);
+          int Function(VTablePointer, Pointer<GUID> riid)>()(ptr, riid);
 }
 
 /// @nodoc

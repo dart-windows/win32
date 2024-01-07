@@ -22,7 +22,7 @@ const IID_IAudioSessionManager = '{bfa971f1-4d5e-40bb-935e-967039bfbee4}';
 /// {@category com}
 class IAudioSessionManager extends IUnknown {
   IAudioSessionManager(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioSessionManagerVtbl>().ref;
+      : _vtable = ptr.value.cast<IAudioSessionManagerVtbl>().ref;
 
   final IAudioSessionManagerVtbl _vtable;
 
@@ -30,43 +30,35 @@ class IAudioSessionManager extends IUnknown {
       IAudioSessionManager(interface.toInterface(IID_IAudioSessionManager));
 
   int getAudioSessionControl(Pointer<GUID> AudioSessionGuid, int StreamFlags,
-          Pointer<Pointer<VTablePointer>> SessionControl) =>
+          Pointer<VTablePointer> SessionControl) =>
       _vtable.GetAudioSessionControl.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<GUID> AudioSessionGuid,
-                  int StreamFlags,
-                  Pointer<Pointer<VTablePointer>> SessionControl)>()(
-          ptr.value, AudioSessionGuid, StreamFlags, SessionControl);
+              int Function(VTablePointer, Pointer<GUID> AudioSessionGuid,
+                  int StreamFlags, Pointer<VTablePointer> SessionControl)>()(
+          ptr, AudioSessionGuid, StreamFlags, SessionControl);
 
   int getSimpleAudioVolume(Pointer<GUID> AudioSessionGuid, int StreamFlags,
-          Pointer<Pointer<VTablePointer>> AudioVolume) =>
+          Pointer<VTablePointer> AudioVolume) =>
       _vtable.GetSimpleAudioVolume.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<GUID> AudioSessionGuid,
-                  int StreamFlags,
-                  Pointer<Pointer<VTablePointer>> AudioVolume)>()(
-          ptr.value, AudioSessionGuid, StreamFlags, AudioVolume);
+              int Function(VTablePointer, Pointer<GUID> AudioSessionGuid,
+                  int StreamFlags, Pointer<VTablePointer> AudioVolume)>()(
+          ptr, AudioSessionGuid, StreamFlags, AudioVolume);
 }
 
 /// @nodoc
 base class IAudioSessionManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<GUID> AudioSessionGuid,
-                  Uint32 StreamFlags,
-                  Pointer<Pointer<VTablePointer>> SessionControl)>>
-      GetAudioSessionControl;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              Pointer<GUID> AudioSessionGuid,
+              Uint32 StreamFlags,
+              Pointer<VTablePointer> SessionControl)>> GetAudioSessionControl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<GUID> AudioSessionGuid,
-                  Uint32 StreamFlags,
-                  Pointer<Pointer<VTablePointer>> AudioVolume)>>
-      GetSimpleAudioVolume;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              Pointer<GUID> AudioSessionGuid,
+              Uint32 StreamFlags,
+              Pointer<VTablePointer> AudioVolume)>> GetSimpleAudioVolume;
 }

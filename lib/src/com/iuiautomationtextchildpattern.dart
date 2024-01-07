@@ -24,7 +24,7 @@ const IID_IUIAutomationTextChildPattern =
 /// {@category com}
 class IUIAutomationTextChildPattern extends IUnknown {
   IUIAutomationTextChildPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTextChildPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTextChildPatternVtbl>().ref;
 
   final IUIAutomationTextChildPatternVtbl _vtable;
 
@@ -32,32 +32,36 @@ class IUIAutomationTextChildPattern extends IUnknown {
       IUIAutomationTextChildPattern(
           interface.toInterface(IID_IUIAutomationTextChildPattern));
 
-  Pointer<VTablePointer> get textContainer {
+  VTablePointer get textContainer {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_TextContainer.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> container)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_TextContainer.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> container)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
-  Pointer<VTablePointer> get textRange {
+  VTablePointer get textRange {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_TextRange.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> range)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_TextRange.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 

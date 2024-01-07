@@ -69,8 +69,8 @@ Iterable<String> devicePathsByInterface(
     ..ref.cbSize = sizeOf<SP_DEVICE_INTERFACE_DATA>();
   try {
     for (var index = 0;
-        SetupDiEnumDeviceInterfaces(hDevInfo, nullptr, interfaceGuid.cast(),
-                index, deviceInterfaceDataPtr) ==
+        SetupDiEnumDeviceInterfaces(hDevInfo, nullptr, interfaceGuid, index,
+                deviceInterfaceDataPtr) ==
             TRUE;
         index++) {
       SetupDiGetDeviceInterfaceDetail(hDevInfo, deviceInterfaceDataPtr, nullptr,

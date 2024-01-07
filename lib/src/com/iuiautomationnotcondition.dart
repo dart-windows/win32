@@ -18,7 +18,7 @@ const IID_IUIAutomationNotCondition = '{f528b657-847b-498c-8896-d52b565407a1}';
 /// {@category com}
 class IUIAutomationNotCondition extends IUIAutomationCondition {
   IUIAutomationNotCondition(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationNotConditionVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationNotConditionVtbl>().ref;
 
   final IUIAutomationNotConditionVtbl _vtable;
 
@@ -26,11 +26,9 @@ class IUIAutomationNotCondition extends IUIAutomationCondition {
       IUIAutomationNotCondition(
           interface.toInterface(IID_IUIAutomationNotCondition));
 
-  int getChild(Pointer<Pointer<VTablePointer>> condition) =>
-      _vtable.GetChild.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> condition)>()(
-          ptr.value, condition);
+  int getChild(Pointer<VTablePointer> condition) => _vtable.GetChild.asFunction<
+      int Function(
+          VTablePointer, Pointer<VTablePointer> condition)>()(ptr, condition);
 }
 
 /// @nodoc
@@ -38,7 +36,6 @@ base class IUIAutomationNotConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> condition)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> condition)>>
       GetChild;
 }

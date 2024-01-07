@@ -23,7 +23,7 @@ const IID_IUIAutomationTogglePattern = '{94cf8058-9b8d-4ab9-8bfd-4cd0a33c8c70}';
 /// {@category com}
 class IUIAutomationTogglePattern extends IUnknown {
   IUIAutomationTogglePattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTogglePatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTogglePatternVtbl>().ref;
 
   final IUIAutomationTogglePatternVtbl _vtable;
 
@@ -31,8 +31,7 @@ class IUIAutomationTogglePattern extends IUnknown {
       IUIAutomationTogglePattern(
           interface.toInterface(IID_IUIAutomationTogglePattern));
 
-  int toggle() =>
-      _vtable.Toggle.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int toggle() => _vtable.Toggle.asFunction<int Function(VTablePointer)>()(ptr);
 
   int get currentToggleState {
     final retValuePtr = calloc<Int32>();
@@ -40,7 +39,7 @@ class IUIAutomationTogglePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentToggleState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,7 +55,7 @@ class IUIAutomationTogglePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedToggleState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

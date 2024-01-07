@@ -24,32 +24,28 @@ const IID_IUIAutomation6 = '{aae072da-29e3-413d-87a7-192dbf81ed10}';
 /// {@category com}
 class IUIAutomation6 extends IUIAutomation5 {
   IUIAutomation6(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomation6Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomation6Vtbl>().ref;
 
   final IUIAutomation6Vtbl _vtable;
 
   factory IUIAutomation6.from(IUnknown interface) =>
       IUIAutomation6(interface.toInterface(IID_IUIAutomation6));
 
-  int createEventHandlerGroup(Pointer<Pointer<VTablePointer>> handlerGroup) =>
+  int createEventHandlerGroup(Pointer<VTablePointer> handlerGroup) =>
       _vtable.CreateEventHandlerGroup.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<VTablePointer>> handlerGroup)>()(
-          ptr.value, handlerGroup);
+          int Function(VTablePointer,
+              Pointer<VTablePointer> handlerGroup)>()(ptr, handlerGroup);
 
-  int addEventHandlerGroup(Pointer<VTablePointer> element,
-          Pointer<VTablePointer> handlerGroup) =>
+  int addEventHandlerGroup(VTablePointer element, VTablePointer handlerGroup) =>
       _vtable.AddEventHandlerGroup.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> handlerGroup)>()(
-          ptr.value, element, handlerGroup);
+          int Function(VTablePointer, VTablePointer element,
+              VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
-  int removeEventHandlerGroup(Pointer<VTablePointer> element,
-          Pointer<VTablePointer> handlerGroup) =>
+  int removeEventHandlerGroup(
+          VTablePointer element, VTablePointer handlerGroup) =>
       _vtable.RemoveEventHandlerGroup.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> handlerGroup)>()(
-          ptr.value, element, handlerGroup);
+          int Function(VTablePointer, VTablePointer element,
+              VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
   int get connectionRecoveryBehavior {
     final retValuePtr = calloc<Int32>();
@@ -58,7 +54,7 @@ class IUIAutomation6 extends IUIAutomation5 {
       final hr = _vtable.get_ConnectionRecoveryBehavior.asFunction<
               int Function(VTablePointer,
                   Pointer<Int32> connectionRecoveryBehaviorOptions)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -71,7 +67,7 @@ class IUIAutomation6 extends IUIAutomation5 {
   set connectionRecoveryBehavior(int value) {
     final hr = _vtable.put_ConnectionRecoveryBehavior.asFunction<
         int Function(VTablePointer,
-            int connectionRecoveryBehaviorOptions)>()(ptr.value, value);
+            int connectionRecoveryBehaviorOptions)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -81,7 +77,7 @@ class IUIAutomation6 extends IUIAutomation5 {
     try {
       final hr = _vtable.get_CoalesceEvents.asFunction<
           int Function(VTablePointer,
-              Pointer<Int32> coalesceEventsOptions)>()(ptr.value, retValuePtr);
+              Pointer<Int32> coalesceEventsOptions)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -93,30 +89,22 @@ class IUIAutomation6 extends IUIAutomation5 {
 
   set coalesceEvents(int value) {
     final hr = _vtable.put_CoalesceEvents.asFunction<
-        int Function(
-            VTablePointer, int coalesceEventsOptions)>()(ptr.value, value);
+        int Function(VTablePointer, int coalesceEventsOptions)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int addActiveTextPositionChangedEventHandler(
-          Pointer<VTablePointer> element,
-          int scope,
-          Pointer<VTablePointer> cacheRequest,
-          Pointer<VTablePointer> handler) =>
+  int addActiveTextPositionChangedEventHandler(VTablePointer element, int scope,
+          VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddActiveTextPositionChangedEventHandler.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  int scope,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<VTablePointer> handler)>()(
-          ptr.value, element, scope, cacheRequest, handler);
+              int Function(VTablePointer, VTablePointer element, int scope,
+                  VTablePointer cacheRequest, VTablePointer handler)>()(
+          ptr, element, scope, cacheRequest, handler);
 
   int removeActiveTextPositionChangedEventHandler(
-          Pointer<VTablePointer> element, Pointer<VTablePointer> handler) =>
+          VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveActiveTextPositionChangedEventHandler.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<VTablePointer> handler)>()(ptr.value, element, handler);
+          int Function(VTablePointer, VTablePointer element,
+              VTablePointer handler)>()(ptr, element, handler);
 }
 
 /// @nodoc
@@ -125,16 +113,16 @@ base class IUIAutomation6Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> handlerGroup)>>
+                  VTablePointer, Pointer<VTablePointer> handlerGroup)>>
       CreateEventHandlerGroup;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<VTablePointer> handlerGroup)>> AddEventHandlerGroup;
+          Int32 Function(VTablePointer, VTablePointer element,
+              VTablePointer handlerGroup)>> AddEventHandlerGroup;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-              Pointer<VTablePointer> handlerGroup)>> RemoveEventHandlerGroup;
+          Int32 Function(VTablePointer, VTablePointer element,
+              VTablePointer handlerGroup)>> RemoveEventHandlerGroup;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer,
@@ -155,17 +143,16 @@ base class IUIAutomation6Vtbl extends Struct {
               Int32 Function(VTablePointer, Int32 coalesceEventsOptions)>>
       put_CoalesceEvents;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> element,
-                  Int32 scope,
-                  Pointer<VTablePointer> cacheRequest,
-                  Pointer<VTablePointer> handler)>>
-      AddActiveTextPositionChangedEventHandler;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer,
+              VTablePointer element,
+              Int32 scope,
+              VTablePointer cacheRequest,
+              VTablePointer handler)>> AddActiveTextPositionChangedEventHandler;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> element,
-                  Pointer<VTablePointer> handler)>>
+              Int32 Function(
+                  VTablePointer, VTablePointer element, VTablePointer handler)>>
       RemoveActiveTextPositionChangedEventHandler;
 }

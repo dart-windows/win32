@@ -15,17 +15,15 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final audioclock2 = IAudioClock2(ptr);
   test('Can instantiate IAudioClock2.getDevicePosition', () {
     expect(audioclock2.getDevicePosition, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

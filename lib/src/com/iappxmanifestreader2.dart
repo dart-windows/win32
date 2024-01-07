@@ -19,18 +19,17 @@ const IID_IAppxManifestReader2 = '{d06f67bc-b31d-4eba-a8af-638e73e77b4d}';
 /// {@category com}
 class IAppxManifestReader2 extends IAppxManifestReader {
   IAppxManifestReader2(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestReader2Vtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestReader2Vtbl>().ref;
 
   final IAppxManifestReader2Vtbl _vtable;
 
   factory IAppxManifestReader2.from(IUnknown interface) =>
       IAppxManifestReader2(interface.toInterface(IID_IAppxManifestReader2));
 
-  int getQualifiedResources(Pointer<Pointer<VTablePointer>> resources) =>
+  int getQualifiedResources(Pointer<VTablePointer> resources) =>
       _vtable.GetQualifiedResources.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> resources)>()(
-          ptr.value, resources);
+              int Function(VTablePointer, Pointer<VTablePointer> resources)>()(
+          ptr, resources);
 }
 
 /// @nodoc
@@ -38,7 +37,6 @@ base class IAppxManifestReader2Vtbl extends Struct {
   external IAppxManifestReaderVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> resources)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> resources)>>
       GetQualifiedResources;
 }

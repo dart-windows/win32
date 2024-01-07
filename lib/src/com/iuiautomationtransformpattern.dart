@@ -23,7 +23,7 @@ const IID_IUIAutomationTransformPattern =
 /// {@category com}
 class IUIAutomationTransformPattern extends IUnknown {
   IUIAutomationTransformPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationTransformPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationTransformPatternVtbl>().ref;
 
   final IUIAutomationTransformPatternVtbl _vtable;
 
@@ -32,15 +32,15 @@ class IUIAutomationTransformPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationTransformPattern));
 
   int move(double x, double y) => _vtable.Move.asFunction<
-      int Function(VTablePointer, double x, double y)>()(ptr.value, x, y);
+      int Function(VTablePointer, double x, double y)>()(ptr, x, y);
 
   int resize(double width, double height) => _vtable.Resize.asFunction<
-          int Function(VTablePointer, double width, double height)>()(
-      ptr.value, width, height);
+      int Function(
+          VTablePointer, double width, double height)>()(ptr, width, height);
 
   int rotate(double degrees) =>
       _vtable.Rotate.asFunction<int Function(VTablePointer, double degrees)>()(
-          ptr.value, degrees);
+          ptr, degrees);
 
   int get currentCanMove {
     final retValuePtr = calloc<Int32>();
@@ -48,7 +48,7 @@ class IUIAutomationTransformPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCanMove
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -64,7 +64,7 @@ class IUIAutomationTransformPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCanResize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -80,7 +80,7 @@ class IUIAutomationTransformPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCanRotate
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -96,7 +96,7 @@ class IUIAutomationTransformPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCanMove
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -112,7 +112,7 @@ class IUIAutomationTransformPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCanResize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -128,7 +128,7 @@ class IUIAutomationTransformPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCanRotate
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

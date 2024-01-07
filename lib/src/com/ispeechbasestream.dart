@@ -25,49 +25,50 @@ const IID_ISpeechBaseStream = '{6450336f-7d49-4ced-8097-49d6dee37294}';
 /// {@category com}
 class ISpeechBaseStream extends IDispatch {
   ISpeechBaseStream(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpeechBaseStreamVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpeechBaseStreamVtbl>().ref;
 
   final ISpeechBaseStreamVtbl _vtable;
 
   factory ISpeechBaseStream.from(IUnknown interface) =>
       ISpeechBaseStream(interface.toInterface(IID_ISpeechBaseStream));
 
-  Pointer<VTablePointer> get format {
+  VTablePointer get format {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_Format.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> AudioFormat)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_Format.asFunction<
+          int Function(VTablePointer,
+              Pointer<VTablePointer> AudioFormat)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
-  int putref_Format(Pointer<VTablePointer> AudioFormat) =>
-      _vtable.putref_Format.asFunction<
-          int Function(VTablePointer,
-              Pointer<VTablePointer> AudioFormat)>()(ptr.value, AudioFormat);
+  int putref_Format(VTablePointer AudioFormat) => _vtable.putref_Format
+          .asFunction<int Function(VTablePointer, VTablePointer AudioFormat)>()(
+      ptr, AudioFormat);
 
   int read(Pointer<VARIANT> Buffer, int NumberOfBytes,
           Pointer<Int32> BytesRead) =>
       _vtable.Read.asFunction<
               int Function(VTablePointer, Pointer<VARIANT> Buffer,
                   int NumberOfBytes, Pointer<Int32> BytesRead)>()(
-          ptr.value, Buffer, NumberOfBytes, BytesRead);
+          ptr, Buffer, NumberOfBytes, BytesRead);
 
   int write(VARIANT Buffer, Pointer<Int32> BytesWritten) =>
       _vtable.Write.asFunction<
           int Function(VTablePointer, VARIANT Buffer,
-              Pointer<Int32> BytesWritten)>()(ptr.value, Buffer, BytesWritten);
+              Pointer<Int32> BytesWritten)>()(ptr, Buffer, BytesWritten);
 
   int seek(VARIANT Position, int Origin, Pointer<VARIANT> NewPosition) =>
       _vtable.Seek.asFunction<
               int Function(VTablePointer, VARIANT Position, int Origin,
                   Pointer<VARIANT> NewPosition)>()(
-          ptr.value, Position, Origin, NewPosition);
+          ptr, Position, Origin, NewPosition);
 }
 
 /// @nodoc
@@ -79,8 +80,7 @@ base class ISpeechBaseStreamVtbl extends Struct {
               VTablePointer, Pointer<VTablePointer> AudioFormat)>> get_Format;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> AudioFormat)>>
+              Int32 Function(VTablePointer, VTablePointer AudioFormat)>>
       putref_Format;
   external Pointer<
       NativeFunction<

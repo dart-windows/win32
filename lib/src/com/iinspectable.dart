@@ -17,8 +17,7 @@ const IID_IInspectable = '{af86e2e0-b12d-4c6a-9c5a-d7aa65101e90}';
 ///
 /// {@category com}
 class IInspectable extends IUnknown {
-  IInspectable(super.ptr)
-      : _vtable = ptr.value.value.cast<IInspectableVtbl>().ref;
+  IInspectable(super.ptr) : _vtable = ptr.value.cast<IInspectableVtbl>().ref;
 
   final IInspectableVtbl _vtable;
 
@@ -28,16 +27,17 @@ class IInspectable extends IUnknown {
   int getIids(Pointer<Uint32> iidCount, Pointer<Pointer<GUID>> iids) =>
       _vtable.GetIids.asFunction<
           int Function(VTablePointer, Pointer<Uint32> iidCount,
-              Pointer<Pointer<GUID>> iids)>()(ptr.value, iidCount, iids);
+              Pointer<Pointer<GUID>> iids)>()(ptr, iidCount, iids);
 
   int getRuntimeClassName(Pointer<IntPtr> className) =>
       _vtable.GetRuntimeClassName.asFunction<
-              int Function(VTablePointer, Pointer<IntPtr> className)>()(
-          ptr.value, className);
+          int Function(
+              VTablePointer, Pointer<IntPtr> className)>()(ptr, className);
 
-  int getTrustLevel(Pointer<Int32> trustLevel) => _vtable.GetTrustLevel
-          .asFunction<int Function(VTablePointer, Pointer<Int32> trustLevel)>()(
-      ptr.value, trustLevel);
+  int getTrustLevel(Pointer<Int32> trustLevel) =>
+      _vtable.GetTrustLevel.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> trustLevel)>()(ptr, trustLevel);
 }
 
 /// @nodoc

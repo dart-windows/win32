@@ -25,8 +25,7 @@ const IID_IUIAutomationMultipleViewPattern =
 /// {@category com}
 class IUIAutomationMultipleViewPattern extends IUnknown {
   IUIAutomationMultipleViewPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationMultipleViewPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationMultipleViewPatternVtbl>().ref;
 
   final IUIAutomationMultipleViewPatternVtbl _vtable;
 
@@ -37,10 +36,10 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
   int getViewName(int view, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetViewName.asFunction<
           int Function(VTablePointer, int view,
-              Pointer<Pointer<Utf16>> name)>()(ptr.value, view, name);
+              Pointer<Pointer<Utf16>> name)>()(ptr, view, name);
 
   int setCurrentView(int view) => _vtable.SetCurrentView.asFunction<
-      int Function(VTablePointer, int view)>()(ptr.value, view);
+      int Function(VTablePointer, int view)>()(ptr, view);
 
   int get currentCurrentView {
     final retValuePtr = calloc<Int32>();
@@ -48,7 +47,7 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCurrentView
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -61,7 +60,7 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
   int getCurrentSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCurrentSupportedViews.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retVal);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
   int get cachedCurrentView {
     final retValuePtr = calloc<Int32>();
@@ -69,7 +68,7 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCurrentView
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -82,7 +81,7 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
   int getCachedSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCachedSupportedViews.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retVal);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 }
 
 /// @nodoc

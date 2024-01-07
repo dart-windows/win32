@@ -26,7 +26,7 @@ const IID_IUIAutomationAndCondition = '{a7d0af36-b912-45fe-9855-091ddc174aec}';
 /// {@category com}
 class IUIAutomationAndCondition extends IUIAutomationCondition {
   IUIAutomationAndCondition(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationAndConditionVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationAndConditionVtbl>().ref;
 
   final IUIAutomationAndConditionVtbl _vtable;
 
@@ -39,8 +39,8 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_ChildCount.asFunction<
-              int Function(VTablePointer, Pointer<Int32> childCount)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> childCount)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -50,20 +50,19 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
     }
   }
 
-  int getChildrenAsNativeArray(
-          Pointer<Pointer<Pointer<VTablePointer>>> childArray,
+  int getChildrenAsNativeArray(Pointer<Pointer<VTablePointer>> childArray,
           Pointer<Int32> childArrayCount) =>
       _vtable.GetChildrenAsNativeArray.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<Pointer<Pointer<VTablePointer>>> childArray,
+                  Pointer<Pointer<VTablePointer>> childArray,
                   Pointer<Int32> childArrayCount)>()(
-          ptr.value, childArray, childArrayCount);
+          ptr, childArray, childArrayCount);
 
   int getChildren(Pointer<Pointer<SAFEARRAY>> childArray) =>
       _vtable.GetChildren.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> childArray)>()(ptr.value, childArray);
+              Pointer<Pointer<SAFEARRAY>> childArray)>()(ptr, childArray);
 }
 
 /// @nodoc
@@ -77,7 +76,7 @@ base class IUIAutomationAndConditionVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<Pointer<Pointer<VTablePointer>>> childArray,
+              Pointer<Pointer<VTablePointer>> childArray,
               Pointer<Int32> childArrayCount)>> GetChildrenAsNativeArray;
   external Pointer<
           NativeFunction<

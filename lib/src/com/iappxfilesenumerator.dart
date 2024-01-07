@@ -17,34 +17,32 @@ const IID_IAppxFilesEnumerator = '{f007eeaf-9831-411c-9847-917cdc62d1fe}';
 /// {@category com}
 class IAppxFilesEnumerator extends IUnknown {
   IAppxFilesEnumerator(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxFilesEnumeratorVtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxFilesEnumeratorVtbl>().ref;
 
   final IAppxFilesEnumeratorVtbl _vtable;
 
   factory IAppxFilesEnumerator.from(IUnknown interface) =>
       IAppxFilesEnumerator(interface.toInterface(IID_IAppxFilesEnumerator));
 
-  int getCurrent(Pointer<Pointer<VTablePointer>> file) =>
-      _vtable.GetCurrent.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> file)>()(ptr.value, file);
+  int getCurrent(Pointer<VTablePointer> file) => _vtable.GetCurrent.asFunction<
+      int Function(VTablePointer, Pointer<VTablePointer> file)>()(ptr, file);
 
-  int getHasCurrent(Pointer<Int32> hasCurrent) => _vtable.GetHasCurrent
-          .asFunction<int Function(VTablePointer, Pointer<Int32> hasCurrent)>()(
-      ptr.value, hasCurrent);
+  int getHasCurrent(Pointer<Int32> hasCurrent) =>
+      _vtable.GetHasCurrent.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> hasCurrent)>()(ptr, hasCurrent);
 
   int moveNext(Pointer<Int32> hasNext) => _vtable.MoveNext.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> hasNext)>()(ptr.value, hasNext);
+      int Function(VTablePointer, Pointer<Int32> hasNext)>()(ptr, hasNext);
 }
 
 /// @nodoc
 base class IAppxFilesEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> file)>> GetCurrent;
+          NativeFunction<
+              Int32 Function(VTablePointer, Pointer<VTablePointer> file)>>
+      GetCurrent;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Int32> hasCurrent)>>

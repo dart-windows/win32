@@ -19,8 +19,7 @@ const IID_IUIAutomationScrollItemPattern =
 /// {@category com}
 class IUIAutomationScrollItemPattern extends IUnknown {
   IUIAutomationScrollItemPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationScrollItemPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationScrollItemPatternVtbl>().ref;
 
   final IUIAutomationScrollItemPatternVtbl _vtable;
 
@@ -29,8 +28,7 @@ class IUIAutomationScrollItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationScrollItemPattern));
 
   int scrollIntoView() =>
-      _vtable.ScrollIntoView.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+      _vtable.ScrollIntoView.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

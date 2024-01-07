@@ -23,7 +23,7 @@ const IID_IUIAutomationDockPattern = '{fde5ef97-1464-48f6-90bf-43d0948e86ec}';
 /// {@category com}
 class IUIAutomationDockPattern extends IUnknown {
   IUIAutomationDockPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationDockPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationDockPatternVtbl>().ref;
 
   final IUIAutomationDockPatternVtbl _vtable;
 
@@ -32,7 +32,7 @@ class IUIAutomationDockPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationDockPattern));
 
   int setDockPosition(int dockPos) => _vtable.SetDockPosition.asFunction<
-      int Function(VTablePointer, int dockPos)>()(ptr.value, dockPos);
+      int Function(VTablePointer, int dockPos)>()(ptr, dockPos);
 
   int get currentDockPosition {
     final retValuePtr = calloc<Int32>();
@@ -40,7 +40,7 @@ class IUIAutomationDockPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentDockPosition
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,7 +56,7 @@ class IUIAutomationDockPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedDockPosition
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

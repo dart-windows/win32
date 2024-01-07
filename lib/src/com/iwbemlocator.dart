@@ -22,8 +22,7 @@ const IID_IWbemLocator = '{dc12a687-737f-11cf-884d-00aa004b2e24}';
 ///
 /// {@category com}
 class IWbemLocator extends IUnknown {
-  IWbemLocator(super.ptr)
-      : _vtable = ptr.value.value.cast<IWbemLocatorVtbl>().ref;
+  IWbemLocator(super.ptr) : _vtable = ptr.value.cast<IWbemLocatorVtbl>().ref;
 
   final IWbemLocatorVtbl _vtable;
 
@@ -37,8 +36,8 @@ class IWbemLocator extends IUnknown {
           Pointer<Utf16> strLocale,
           int lSecurityFlags,
           Pointer<Utf16> strAuthority,
-          Pointer<VTablePointer> pCtx,
-          Pointer<Pointer<VTablePointer>> ppNamespace) =>
+          VTablePointer pCtx,
+          Pointer<VTablePointer> ppNamespace) =>
       _vtable.ConnectServer.asFunction<
               int Function(
                   VTablePointer,
@@ -48,9 +47,9 @@ class IWbemLocator extends IUnknown {
                   Pointer<Utf16> strLocale,
                   int lSecurityFlags,
                   Pointer<Utf16> strAuthority,
-                  Pointer<VTablePointer> pCtx,
-                  Pointer<Pointer<VTablePointer>> ppNamespace)>()(
-          ptr.value,
+                  VTablePointer pCtx,
+                  Pointer<VTablePointer> ppNamespace)>()(
+          ptr,
           strNetworkResource,
           strUser,
           strPassword,
@@ -74,8 +73,8 @@ base class IWbemLocatorVtbl extends Struct {
               Pointer<Utf16> strLocale,
               Int32 lSecurityFlags,
               Pointer<Utf16> strAuthority,
-              Pointer<VTablePointer> pCtx,
-              Pointer<Pointer<VTablePointer>> ppNamespace)>> ConnectServer;
+              VTablePointer pCtx,
+              Pointer<VTablePointer> ppNamespace)>> ConnectServer;
 }
 
 /// @nodoc

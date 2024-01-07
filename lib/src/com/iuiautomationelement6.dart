@@ -24,7 +24,7 @@ const IID_IUIAutomationElement6 = '{4780d450-8bca-4977-afa5-a4a517f555e3}';
 /// {@category com}
 class IUIAutomationElement6 extends IUIAutomationElement5 {
   IUIAutomationElement6(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElement6Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElement6Vtbl>().ref;
 
   final IUIAutomationElement6Vtbl _vtable;
 
@@ -37,7 +37,7 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
     try {
       final hr = _vtable.get_CurrentFullDescription.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -53,7 +53,7 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
     try {
       final hr = _vtable.get_CachedFullDescription.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

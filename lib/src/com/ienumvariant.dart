@@ -20,8 +20,7 @@ const IID_IEnumVARIANT = '{00020404-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IEnumVARIANT extends IUnknown {
-  IEnumVARIANT(super.ptr)
-      : _vtable = ptr.value.value.cast<IEnumVARIANTVtbl>().ref;
+  IEnumVARIANT(super.ptr) : _vtable = ptr.value.cast<IEnumVARIANTVtbl>().ref;
 
   final IEnumVARIANTVtbl _vtable;
 
@@ -30,20 +29,18 @@ class IEnumVARIANT extends IUnknown {
 
   int next(int celt, Pointer<VARIANT> rgVar, Pointer<Uint32> pCeltFetched) =>
       _vtable.Next.asFunction<
-              int Function(VTablePointer, int celt, Pointer<VARIANT> rgVar,
-                  Pointer<Uint32> pCeltFetched)>()(
-          ptr.value, celt, rgVar, pCeltFetched);
+          int Function(VTablePointer, int celt, Pointer<VARIANT> rgVar,
+              Pointer<Uint32> pCeltFetched)>()(ptr, celt, rgVar, pCeltFetched);
 
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
-          ptr.value, celt);
+          ptr, celt);
 
-  int reset() =>
-      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int clone(Pointer<Pointer<VTablePointer>> ppEnum) => _vtable.Clone.asFunction<
-      int Function(VTablePointer,
-          Pointer<Pointer<VTablePointer>> ppEnum)>()(ptr.value, ppEnum);
+  int clone(Pointer<VTablePointer> ppEnum) => _vtable.Clone.asFunction<
+      int Function(
+          VTablePointer, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 }
 
 /// @nodoc
@@ -58,6 +55,5 @@ base class IEnumVARIANTVtbl extends Struct {
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> ppEnum)>> Clone;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnum)>> Clone;
 }

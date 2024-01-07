@@ -23,7 +23,7 @@ const IID_IUIAutomationElement3 = '{8471df34-aee0-4a01-a7de-7db9af12c296}';
 /// {@category com}
 class IUIAutomationElement3 extends IUIAutomationElement2 {
   IUIAutomationElement3(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElement3Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElement3Vtbl>().ref;
 
   final IUIAutomationElement3Vtbl _vtable;
 
@@ -31,8 +31,7 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
       IUIAutomationElement3(interface.toInterface(IID_IUIAutomationElement3));
 
   int showContextMenu() =>
-      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(
-          ptr.value);
+      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(ptr);
 
   int get currentIsPeripheral {
     final retValuePtr = calloc<Int32>();
@@ -40,7 +39,7 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
     try {
       final hr = _vtable.get_CurrentIsPeripheral
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,7 +55,7 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
     try {
       final hr = _vtable.get_CachedIsPeripheral
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

@@ -24,7 +24,7 @@ const IID_IUIAutomationBoolCondition = '{1b4e1f2e-75eb-4d0b-8952-5a69988e2307}';
 /// {@category com}
 class IUIAutomationBoolCondition extends IUIAutomationCondition {
   IUIAutomationBoolCondition(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationBoolConditionVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationBoolConditionVtbl>().ref;
 
   final IUIAutomationBoolConditionVtbl _vtable;
 
@@ -38,7 +38,7 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
     try {
       final hr = _vtable.get_BooleanValue.asFunction<
           int Function(
-              VTablePointer, Pointer<Int32> boolVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Int32> boolVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

@@ -23,7 +23,7 @@ const IID_ISimpleAudioVolume = '{87ce5498-68d6-44e5-9215-6da47ef883d8}';
 /// {@category com}
 class ISimpleAudioVolume extends IUnknown {
   ISimpleAudioVolume(super.ptr)
-      : _vtable = ptr.value.value.cast<ISimpleAudioVolumeVtbl>().ref;
+      : _vtable = ptr.value.cast<ISimpleAudioVolumeVtbl>().ref;
 
   final ISimpleAudioVolumeVtbl _vtable;
 
@@ -33,19 +33,19 @@ class ISimpleAudioVolume extends IUnknown {
   int setMasterVolume(double fLevel, Pointer<GUID> EventContext) =>
       _vtable.SetMasterVolume.asFunction<
           int Function(VTablePointer, double fLevel,
-              Pointer<GUID> EventContext)>()(ptr.value, fLevel, EventContext);
+              Pointer<GUID> EventContext)>()(ptr, fLevel, EventContext);
 
-  int getMasterVolume(Pointer<Float> pfLevel) => _vtable.GetMasterVolume
-          .asFunction<int Function(VTablePointer, Pointer<Float> pfLevel)>()(
-      ptr.value, pfLevel);
+  int getMasterVolume(Pointer<Float> pfLevel) =>
+      _vtable.GetMasterVolume.asFunction<
+          int Function(VTablePointer, Pointer<Float> pfLevel)>()(ptr, pfLevel);
 
   int setMute(int bMute, Pointer<GUID> EventContext) =>
       _vtable.SetMute.asFunction<
           int Function(VTablePointer, int bMute,
-              Pointer<GUID> EventContext)>()(ptr.value, bMute, EventContext);
+              Pointer<GUID> EventContext)>()(ptr, bMute, EventContext);
 
   int getMute(Pointer<Int32> pbMute) => _vtable.GetMute.asFunction<
-      int Function(VTablePointer, Pointer<Int32> pbMute)>()(ptr.value, pbMute);
+      int Function(VTablePointer, Pointer<Int32> pbMute)>()(ptr, pbMute);
 }
 
 /// @nodoc

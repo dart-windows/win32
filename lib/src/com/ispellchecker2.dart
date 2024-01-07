@@ -24,7 +24,7 @@ const IID_ISpellChecker2 = '{e7ed1c71-87f7-4378-a840-c9200dacee47}';
 /// {@category com}
 class ISpellChecker2 extends ISpellChecker {
   ISpellChecker2(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpellChecker2Vtbl>().ref;
+      : _vtable = ptr.value.cast<ISpellChecker2Vtbl>().ref;
 
   final ISpellChecker2Vtbl _vtable;
 
@@ -32,7 +32,7 @@ class ISpellChecker2 extends ISpellChecker {
       ISpellChecker2(interface.toInterface(IID_ISpellChecker2));
 
   int remove(Pointer<Utf16> word) => _vtable.Remove.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr.value, word);
+      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr, word);
 }
 
 /// @nodoc

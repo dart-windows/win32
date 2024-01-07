@@ -21,7 +21,7 @@ const IID_IWbemHiPerfEnum = '{2705c288-79ae-11d2-b348-00105a1f8177}';
 /// {@category com}
 class IWbemHiPerfEnum extends IUnknown {
   IWbemHiPerfEnum(super.ptr)
-      : _vtable = ptr.value.value.cast<IWbemHiPerfEnumVtbl>().ref;
+      : _vtable = ptr.value.cast<IWbemHiPerfEnumVtbl>().ref;
 
   final IWbemHiPerfEnumVtbl _vtable;
 
@@ -29,35 +29,27 @@ class IWbemHiPerfEnum extends IUnknown {
       IWbemHiPerfEnum(interface.toInterface(IID_IWbemHiPerfEnum));
 
   int addObjects(int lFlags, int uNumObjects, Pointer<Int32> apIds,
-          Pointer<Pointer<VTablePointer>> apObj) =>
+          Pointer<VTablePointer> apObj) =>
       _vtable.AddObjects.asFunction<
-              int Function(
-                  VTablePointer,
-                  int lFlags,
-                  int uNumObjects,
-                  Pointer<Int32> apIds,
-                  Pointer<Pointer<VTablePointer>> apObj)>()(
-          ptr.value, lFlags, uNumObjects, apIds, apObj);
+              int Function(VTablePointer, int lFlags, int uNumObjects,
+                  Pointer<Int32> apIds, Pointer<VTablePointer> apObj)>()(
+          ptr, lFlags, uNumObjects, apIds, apObj);
 
   int removeObjects(int lFlags, int uNumObjects, Pointer<Int32> apIds) =>
       _vtable.RemoveObjects.asFunction<
           int Function(VTablePointer, int lFlags, int uNumObjects,
-              Pointer<Int32> apIds)>()(ptr.value, lFlags, uNumObjects, apIds);
+              Pointer<Int32> apIds)>()(ptr, lFlags, uNumObjects, apIds);
 
-  int getObjects(int lFlags, int uNumObjects,
-          Pointer<Pointer<VTablePointer>> apObj, Pointer<Uint32> puReturned) =>
+  int getObjects(int lFlags, int uNumObjects, Pointer<VTablePointer> apObj,
+          Pointer<Uint32> puReturned) =>
       _vtable.GetObjects.asFunction<
-              int Function(
-                  VTablePointer,
-                  int lFlags,
-                  int uNumObjects,
-                  Pointer<Pointer<VTablePointer>> apObj,
-                  Pointer<Uint32> puReturned)>()(
-          ptr.value, lFlags, uNumObjects, apObj, puReturned);
+              int Function(VTablePointer, int lFlags, int uNumObjects,
+                  Pointer<VTablePointer> apObj, Pointer<Uint32> puReturned)>()(
+          ptr, lFlags, uNumObjects, apObj, puReturned);
 
   int removeAll(int lFlags) =>
       _vtable.RemoveAll.asFunction<int Function(VTablePointer, int lFlags)>()(
-          ptr.value, lFlags);
+          ptr, lFlags);
 }
 
 /// @nodoc
@@ -65,12 +57,8 @@ base class IWbemHiPerfEnumVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer,
-              Int32 lFlags,
-              Uint32 uNumObjects,
-              Pointer<Int32> apIds,
-              Pointer<Pointer<VTablePointer>> apObj)>> AddObjects;
+          Int32 Function(VTablePointer, Int32 lFlags, Uint32 uNumObjects,
+              Pointer<Int32> apIds, Pointer<VTablePointer> apObj)>> AddObjects;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 lFlags, Uint32 uNumObjects,
@@ -81,7 +69,7 @@ base class IWbemHiPerfEnumVtbl extends Struct {
               VTablePointer,
               Int32 lFlags,
               Uint32 uNumObjects,
-              Pointer<Pointer<VTablePointer>> apObj,
+              Pointer<VTablePointer> apObj,
               Pointer<Uint32> puReturned)>> GetObjects;
   external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 lFlags)>>
       RemoveAll;

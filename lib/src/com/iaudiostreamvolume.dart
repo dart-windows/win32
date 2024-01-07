@@ -21,7 +21,7 @@ const IID_IAudioStreamVolume = '{93014887-242d-4068-8a15-cf5e93b90fe3}';
 /// {@category com}
 class IAudioStreamVolume extends IUnknown {
   IAudioStreamVolume(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioStreamVolumeVtbl>().ref;
+      : _vtable = ptr.value.cast<IAudioStreamVolumeVtbl>().ref;
 
   final IAudioStreamVolumeVtbl _vtable;
 
@@ -31,27 +31,27 @@ class IAudioStreamVolume extends IUnknown {
   int getChannelCount(Pointer<Uint32> pdwCount) =>
       _vtable.GetChannelCount.asFunction<
           int Function(
-              VTablePointer, Pointer<Uint32> pdwCount)>()(ptr.value, pdwCount);
+              VTablePointer, Pointer<Uint32> pdwCount)>()(ptr, pdwCount);
 
   int setChannelVolume(int dwIndex, double fLevel) =>
       _vtable.SetChannelVolume.asFunction<
               int Function(VTablePointer, int dwIndex, double fLevel)>()(
-          ptr.value, dwIndex, fLevel);
+          ptr, dwIndex, fLevel);
 
   int getChannelVolume(int dwIndex, Pointer<Float> pfLevel) =>
       _vtable.GetChannelVolume.asFunction<
           int Function(VTablePointer, int dwIndex,
-              Pointer<Float> pfLevel)>()(ptr.value, dwIndex, pfLevel);
+              Pointer<Float> pfLevel)>()(ptr, dwIndex, pfLevel);
 
   int setAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.SetAllVolumes.asFunction<
           int Function(VTablePointer, int dwCount,
-              Pointer<Float> pfVolumes)>()(ptr.value, dwCount, pfVolumes);
+              Pointer<Float> pfVolumes)>()(ptr, dwCount, pfVolumes);
 
   int getAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.GetAllVolumes.asFunction<
           int Function(VTablePointer, int dwCount,
-              Pointer<Float> pfVolumes)>()(ptr.value, dwCount, pfVolumes);
+              Pointer<Float> pfVolumes)>()(ptr, dwCount, pfVolumes);
 }
 
 /// @nodoc

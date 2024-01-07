@@ -24,26 +24,26 @@ const IID_INetworkConnection = '{dcb00005-570f-4a9b-8d69-199fdba5723b}';
 /// {@category com}
 class INetworkConnection extends IDispatch {
   INetworkConnection(super.ptr)
-      : _vtable = ptr.value.value.cast<INetworkConnectionVtbl>().ref;
+      : _vtable = ptr.value.cast<INetworkConnectionVtbl>().ref;
 
   final INetworkConnectionVtbl _vtable;
 
   factory INetworkConnection.from(IUnknown interface) =>
       INetworkConnection(interface.toInterface(IID_INetworkConnection));
 
-  int getNetwork(Pointer<Pointer<VTablePointer>> ppNetwork) =>
+  int getNetwork(
+          Pointer<VTablePointer> ppNetwork) =>
       _vtable.GetNetwork.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppNetwork)>()(
-          ptr.value, ppNetwork);
+              int Function(VTablePointer, Pointer<VTablePointer> ppNetwork)>()(
+          ptr, ppNetwork);
 
   int get isConnectedToInternet {
     final retValuePtr = calloc<Int16>();
 
     try {
       final hr = _vtable.get_IsConnectedToInternet.asFunction<
-              int Function(VTablePointer, Pointer<Int16> pbIsConnected)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> pbIsConnected)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -58,8 +58,8 @@ class INetworkConnection extends IDispatch {
 
     try {
       final hr = _vtable.get_IsConnected.asFunction<
-              int Function(VTablePointer, Pointer<Int16> pbIsConnected)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int16> pbIsConnected)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,23 +72,23 @@ class INetworkConnection extends IDispatch {
   int getConnectivity(Pointer<Int32> pConnectivity) =>
       _vtable.GetConnectivity.asFunction<
               int Function(VTablePointer, Pointer<Int32> pConnectivity)>()(
-          ptr.value, pConnectivity);
+          ptr, pConnectivity);
 
   int getConnectionId(Pointer<GUID> pgdConnectionId) =>
       _vtable.GetConnectionId.asFunction<
               int Function(VTablePointer, Pointer<GUID> pgdConnectionId)>()(
-          ptr.value, pgdConnectionId);
+          ptr, pgdConnectionId);
 
   int getAdapterId(Pointer<GUID> pgdAdapterId) =>
       _vtable.GetAdapterId.asFunction<
-              int Function(VTablePointer, Pointer<GUID> pgdAdapterId)>()(
-          ptr.value, pgdAdapterId);
+          int Function(
+              VTablePointer, Pointer<GUID> pgdAdapterId)>()(ptr, pgdAdapterId);
 
   int getDomainType(
           Pointer<Int32> pDomainType) =>
       _vtable.GetDomainType.asFunction<
-              int Function(VTablePointer, Pointer<Int32> pDomainType)>()(
-          ptr.value, pDomainType);
+          int Function(
+              VTablePointer, Pointer<Int32> pDomainType)>()(ptr, pDomainType);
 }
 
 /// @nodoc
@@ -96,8 +96,7 @@ base class INetworkConnectionVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppNetwork)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppNetwork)>>
       GetNetwork;
   external Pointer<
           NativeFunction<

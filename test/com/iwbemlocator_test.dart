@@ -15,17 +15,15 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final wbemlocator = IWbemLocator(ptr);
   test('Can instantiate IWbemLocator.connectServer', () {
     expect(wbemlocator.connectServer, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

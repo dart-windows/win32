@@ -19,8 +19,7 @@ const IID_IAudioClock2 = '{6f49ff73-6727-49ac-a008-d98cf5e70048}';
 ///
 /// {@category com}
 class IAudioClock2 extends IUnknown {
-  IAudioClock2(super.ptr)
-      : _vtable = ptr.value.value.cast<IAudioClock2Vtbl>().ref;
+  IAudioClock2(super.ptr) : _vtable = ptr.value.cast<IAudioClock2Vtbl>().ref;
 
   final IAudioClock2Vtbl _vtable;
 
@@ -30,9 +29,8 @@ class IAudioClock2 extends IUnknown {
   int getDevicePosition(
           Pointer<Uint64> DevicePosition, Pointer<Uint64> QPCPosition) =>
       _vtable.GetDevicePosition.asFunction<
-              int Function(VTablePointer, Pointer<Uint64> DevicePosition,
-                  Pointer<Uint64> QPCPosition)>()(
-          ptr.value, DevicePosition, QPCPosition);
+          int Function(VTablePointer, Pointer<Uint64> DevicePosition,
+              Pointer<Uint64> QPCPosition)>()(ptr, DevicePosition, QPCPosition);
 }
 
 /// @nodoc

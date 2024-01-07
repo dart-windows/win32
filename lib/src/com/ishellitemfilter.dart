@@ -18,33 +18,31 @@ const IID_IShellItemFilter = '{2659b475-eeb8-48b7-8f07-b378810f48cf}';
 /// {@category com}
 class IShellItemFilter extends IUnknown {
   IShellItemFilter(super.ptr)
-      : _vtable = ptr.value.value.cast<IShellItemFilterVtbl>().ref;
+      : _vtable = ptr.value.cast<IShellItemFilterVtbl>().ref;
 
   final IShellItemFilterVtbl _vtable;
 
   factory IShellItemFilter.from(IUnknown interface) =>
       IShellItemFilter(interface.toInterface(IID_IShellItemFilter));
 
-  int includeItem(Pointer<VTablePointer> psi) => _vtable.IncludeItem.asFunction<
-      int Function(
-          VTablePointer, Pointer<VTablePointer> psi)>()(ptr.value, psi);
+  int includeItem(VTablePointer psi) => _vtable.IncludeItem.asFunction<
+      int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
 
-  int getEnumFlagsForItem(
-          Pointer<VTablePointer> psi, Pointer<Uint32> pgrfFlags) =>
+  int getEnumFlagsForItem(VTablePointer psi, Pointer<Uint32> pgrfFlags) =>
       _vtable.GetEnumFlagsForItem.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> psi,
-              Pointer<Uint32> pgrfFlags)>()(ptr.value, psi, pgrfFlags);
+          int Function(VTablePointer, VTablePointer psi,
+              Pointer<Uint32> pgrfFlags)>()(ptr, psi, pgrfFlags);
 }
 
 /// @nodoc
 base class IShellItemFilterVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> psi)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
       IncludeItem;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> psi,
-              Pointer<Uint32> pgrfFlags)>> GetEnumFlagsForItem;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, VTablePointer psi, Pointer<Uint32> pgrfFlags)>>
+      GetEnumFlagsForItem;
 }

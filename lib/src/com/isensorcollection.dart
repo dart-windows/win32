@@ -20,36 +20,31 @@ const IID_ISensorCollection = '{23571e11-e545-4dd8-a337-b89bf44b10df}';
 /// {@category com}
 class ISensorCollection extends IUnknown {
   ISensorCollection(super.ptr)
-      : _vtable = ptr.value.value.cast<ISensorCollectionVtbl>().ref;
+      : _vtable = ptr.value.cast<ISensorCollectionVtbl>().ref;
 
   final ISensorCollectionVtbl _vtable;
 
   factory ISensorCollection.from(IUnknown interface) =>
       ISensorCollection(interface.toInterface(IID_ISensorCollection));
 
-  int getAt(int ulIndex, Pointer<Pointer<VTablePointer>> ppSensor) =>
+  int getAt(int ulIndex, Pointer<VTablePointer> ppSensor) =>
       _vtable.GetAt.asFunction<
-              int Function(VTablePointer, int ulIndex,
-                  Pointer<Pointer<VTablePointer>> ppSensor)>()(
-          ptr.value, ulIndex, ppSensor);
+          int Function(VTablePointer, int ulIndex,
+              Pointer<VTablePointer> ppSensor)>()(ptr, ulIndex, ppSensor);
 
   int getCount(Pointer<Uint32> pCount) => _vtable.GetCount.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> pCount)>()(ptr.value, pCount);
+      int Function(VTablePointer, Pointer<Uint32> pCount)>()(ptr, pCount);
 
-  int add(Pointer<VTablePointer> pSensor) => _vtable.Add.asFunction<
-      int Function(
-          VTablePointer, Pointer<VTablePointer> pSensor)>()(ptr.value, pSensor);
+  int add(VTablePointer pSensor) => _vtable.Add.asFunction<
+      int Function(VTablePointer, VTablePointer pSensor)>()(ptr, pSensor);
 
-  int remove(Pointer<VTablePointer> pSensor) => _vtable.Remove.asFunction<
-      int Function(
-          VTablePointer, Pointer<VTablePointer> pSensor)>()(ptr.value, pSensor);
+  int remove(VTablePointer pSensor) => _vtable.Remove.asFunction<
+      int Function(VTablePointer, VTablePointer pSensor)>()(ptr, pSensor);
 
   int removeByID(Pointer<GUID> sensorID) => _vtable.RemoveByID.asFunction<
-      int Function(
-          VTablePointer, Pointer<GUID> sensorID)>()(ptr.value, sensorID);
+      int Function(VTablePointer, Pointer<GUID> sensorID)>()(ptr, sensorID);
 
-  int clear() =>
-      _vtable.Clear.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int clear() => _vtable.Clear.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc
@@ -58,16 +53,14 @@ base class ISensorCollectionVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint32 ulIndex,
-              Pointer<Pointer<VTablePointer>> ppSensor)>> GetAt;
+              Pointer<VTablePointer> ppSensor)>> GetAt;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> pCount)>>
       GetCount;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pSensor)>> Add;
+      NativeFunction<Int32 Function(VTablePointer, VTablePointer pSensor)>> Add;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> pSensor)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer pSensor)>>
       Remove;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> sensorID)>>

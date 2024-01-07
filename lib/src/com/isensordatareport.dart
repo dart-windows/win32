@@ -23,7 +23,7 @@ const IID_ISensorDataReport = '{0ab9df9b-c4b5-4796-8898-0470706a2e1d}';
 /// {@category com}
 class ISensorDataReport extends IUnknown {
   ISensorDataReport(super.ptr)
-      : _vtable = ptr.value.value.cast<ISensorDataReportVtbl>().ref;
+      : _vtable = ptr.value.cast<ISensorDataReportVtbl>().ref;
 
   final ISensorDataReportVtbl _vtable;
 
@@ -33,19 +33,17 @@ class ISensorDataReport extends IUnknown {
   int getTimestamp(Pointer<SYSTEMTIME> pTimeStamp) =>
       _vtable.GetTimestamp.asFunction<
               int Function(VTablePointer, Pointer<SYSTEMTIME> pTimeStamp)>()(
-          ptr.value, pTimeStamp);
+          ptr, pTimeStamp);
 
   int getSensorValue(Pointer<PROPERTYKEY> pKey, Pointer<PROPVARIANT> pValue) =>
       _vtable.GetSensorValue.asFunction<
           int Function(VTablePointer, Pointer<PROPERTYKEY> pKey,
-              Pointer<PROPVARIANT> pValue)>()(ptr.value, pKey, pValue);
+              Pointer<PROPVARIANT> pValue)>()(ptr, pKey, pValue);
 
-  int getSensorValues(Pointer<VTablePointer> pKeys,
-          Pointer<Pointer<VTablePointer>> ppValues) =>
+  int getSensorValues(VTablePointer pKeys, Pointer<VTablePointer> ppValues) =>
       _vtable.GetSensorValues.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pKeys,
-                  Pointer<Pointer<VTablePointer>> ppValues)>()(
-          ptr.value, pKeys, ppValues);
+          int Function(VTablePointer, VTablePointer pKeys,
+              Pointer<VTablePointer> ppValues)>()(ptr, pKeys, ppValues);
 }
 
 /// @nodoc
@@ -61,8 +59,8 @@ base class ISensorDataReportVtbl extends Struct {
               Pointer<PROPVARIANT> pValue)>> GetSensorValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pKeys,
-              Pointer<Pointer<VTablePointer>> ppValues)>> GetSensorValues;
+          Int32 Function(VTablePointer, VTablePointer pKeys,
+              Pointer<VTablePointer> ppValues)>> GetSensorValues;
 }
 
 /// @nodoc

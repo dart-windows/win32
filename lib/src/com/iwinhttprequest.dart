@@ -19,12 +19,15 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IWinHttpRequest = '{016fe2ec-b2c8-45f8-b23b-39e53a75396b}';
 
+/// Provides all of the nonevent methods for Microsoft Windows HTTP Services
+/// (WinHTTP).
+///
 /// {@category com}
 class IWinHttpRequest extends IDispatch {
   IWinHttpRequest(super.ptr)
-      : _vtable = ptr.value.value.cast<_IWinHttpRequestVtbl>().ref;
+      : _vtable = ptr.value.cast<IWinHttpRequestVtbl>().ref;
 
-  final _IWinHttpRequestVtbl _vtable;
+  final IWinHttpRequestVtbl _vtable;
 
   factory IWinHttpRequest.from(IUnknown interface) =>
       IWinHttpRequest(interface.toInterface(IID_IWinHttpRequest));
@@ -33,7 +36,7 @@ class IWinHttpRequest extends IDispatch {
       _vtable.SetProxy.asFunction<
               int Function(VTablePointer, int ProxySetting, VARIANT ProxyServer,
                   VARIANT BypassList)>()(
-          ptr.value, ProxySetting, ProxyServer, BypassList);
+          ptr, ProxySetting, ProxyServer, BypassList);
 
   int setCredentials(
           Pointer<Utf16> UserName, Pointer<Utf16> Password, int Flags) =>
@@ -42,31 +45,31 @@ class IWinHttpRequest extends IDispatch {
               VTablePointer,
               Pointer<Utf16> UserName,
               Pointer<Utf16> Password,
-              int Flags)>()(ptr.value, UserName, Password, Flags);
+              int Flags)>()(ptr, UserName, Password, Flags);
 
   int open(Pointer<Utf16> Method, Pointer<Utf16> Url, VARIANT Async) =>
       _vtable.Open.asFunction<
           int Function(VTablePointer, Pointer<Utf16> Method, Pointer<Utf16> Url,
-              VARIANT Async)>()(ptr.value, Method, Url, Async);
+              VARIANT Async)>()(ptr, Method, Url, Async);
 
   int setRequestHeader(Pointer<Utf16> Header, Pointer<Utf16> Value) =>
       _vtable.SetRequestHeader.asFunction<
           int Function(VTablePointer, Pointer<Utf16> Header,
-              Pointer<Utf16> Value)>()(ptr.value, Header, Value);
+              Pointer<Utf16> Value)>()(ptr, Header, Value);
 
   int getResponseHeader(Pointer<Utf16> Header, Pointer<Pointer<Utf16>> Value) =>
       _vtable.GetResponseHeader.asFunction<
           int Function(VTablePointer, Pointer<Utf16> Header,
-              Pointer<Pointer<Utf16>> Value)>()(ptr.value, Header, Value);
+              Pointer<Pointer<Utf16>> Value)>()(ptr, Header, Value);
 
   int getAllResponseHeaders(Pointer<Pointer<Utf16>> Headers) =>
       _vtable.GetAllResponseHeaders.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> Headers)>()(
-          ptr.value, Headers);
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> Headers)>()(ptr, Headers);
 
   int send(VARIANT Body) =>
       _vtable.Send.asFunction<int Function(VTablePointer, VARIANT Body)>()(
-          ptr.value, Body);
+          ptr, Body);
 
   int get status {
     final retValuePtr = calloc<Int32>();
@@ -74,7 +77,7 @@ class IWinHttpRequest extends IDispatch {
     try {
       final hr = _vtable.get_Status
               .asFunction<int Function(VTablePointer, Pointer<Int32> Status)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -90,7 +93,7 @@ class IWinHttpRequest extends IDispatch {
     try {
       final hr = _vtable.get_StatusText.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> Status)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -105,8 +108,8 @@ class IWinHttpRequest extends IDispatch {
 
     try {
       final hr = _vtable.get_ResponseText.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> Body)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> Body)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -122,7 +125,7 @@ class IWinHttpRequest extends IDispatch {
     try {
       final hr = _vtable.get_ResponseBody
               .asFunction<int Function(VTablePointer, Pointer<VARIANT> Body)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.ref;
@@ -138,7 +141,7 @@ class IWinHttpRequest extends IDispatch {
     try {
       final hr = _vtable.get_ResponseStream
               .asFunction<int Function(VTablePointer, Pointer<VARIANT> Body)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.ref;
@@ -151,41 +154,39 @@ class IWinHttpRequest extends IDispatch {
   int get_Option(int Option, Pointer<VARIANT> Value) =>
       _vtable.get_Option.asFunction<
           int Function(VTablePointer, int Option,
-              Pointer<VARIANT> Value)>()(ptr.value, Option, Value);
+              Pointer<VARIANT> Value)>()(ptr, Option, Value);
 
   int put_Option(int Option, VARIANT Value) => _vtable.put_Option
           .asFunction<int Function(VTablePointer, int Option, VARIANT Value)>()(
-      ptr.value, Option, Value);
+      ptr, Option, Value);
 
   int waitForResponse(VARIANT Timeout, Pointer<Int16> Succeeded) =>
       _vtable.WaitForResponse.asFunction<
           int Function(VTablePointer, VARIANT Timeout,
-              Pointer<Int16> Succeeded)>()(ptr.value, Timeout, Succeeded);
+              Pointer<Int16> Succeeded)>()(ptr, Timeout, Succeeded);
 
-  int abort() => _vtable.Abort.asFunction<int Function(Pointer)>()(ptr.value);
+  int abort() => _vtable.Abort.asFunction<int Function(VTablePointer)>()(ptr);
 
   int setTimeouts(int ResolveTimeout, int ConnectTimeout, int SendTimeout,
           int ReceiveTimeout) =>
       _vtable.SetTimeouts.asFunction<
               int Function(VTablePointer, int ResolveTimeout,
                   int ConnectTimeout, int SendTimeout, int ReceiveTimeout)>()(
-          ptr.value,
-          ResolveTimeout,
-          ConnectTimeout,
-          SendTimeout,
-          ReceiveTimeout);
+          ptr, ResolveTimeout, ConnectTimeout, SendTimeout, ReceiveTimeout);
 
   int setClientCertificate(Pointer<Utf16> ClientCertificate) =>
       _vtable.SetClientCertificate.asFunction<
               int Function(VTablePointer, Pointer<Utf16> ClientCertificate)>()(
-          ptr.value, ClientCertificate);
+          ptr, ClientCertificate);
 
-  int setAutoLogonPolicy(int AutoLogonPolicy) => _vtable.SetAutoLogonPolicy
-          .asFunction<int Function(VTablePointer, int AutoLogonPolicy)>()(
-      ptr.value, AutoLogonPolicy);
+  int setAutoLogonPolicy(int AutoLogonPolicy) =>
+      _vtable.SetAutoLogonPolicy.asFunction<
+          int Function(
+              VTablePointer, int AutoLogonPolicy)>()(ptr, AutoLogonPolicy);
 }
 
-base class _IWinHttpRequestVtbl extends Struct {
+/// @nodoc
+base class IWinHttpRequestVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
@@ -244,7 +245,7 @@ base class _IWinHttpRequestVtbl extends Struct {
               Int32 Function(
                   VTablePointer, VARIANT Timeout, Pointer<Int16> Succeeded)>>
       WaitForResponse;
-  external Pointer<NativeFunction<Int32 Function(Pointer)>> Abort;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Abort;
   external Pointer<
       NativeFunction<
           Int32 Function(

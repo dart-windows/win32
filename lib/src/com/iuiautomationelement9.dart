@@ -23,7 +23,7 @@ const IID_IUIAutomationElement9 = '{39325fac-039d-440e-a3a3-5eb81a5cecc3}';
 /// {@category com}
 class IUIAutomationElement9 extends IUIAutomationElement8 {
   IUIAutomationElement9(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElement9Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElement9Vtbl>().ref;
 
   final IUIAutomationElement9Vtbl _vtable;
 
@@ -36,7 +36,7 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     try {
       final hr = _vtable.get_CurrentIsDialog
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,7 +52,7 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     try {
       final hr = _vtable.get_CachedIsDialog
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

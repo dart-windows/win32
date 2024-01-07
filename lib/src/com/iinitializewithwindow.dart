@@ -18,7 +18,7 @@ const IID_IInitializeWithWindow = '{3e68d4bd-7135-4d10-8018-9fb6d9f33fa1}';
 /// {@category com}
 class IInitializeWithWindow extends IUnknown {
   IInitializeWithWindow(super.ptr)
-      : _vtable = ptr.value.value.cast<IInitializeWithWindowVtbl>().ref;
+      : _vtable = ptr.value.cast<IInitializeWithWindowVtbl>().ref;
 
   final IInitializeWithWindowVtbl _vtable;
 
@@ -27,7 +27,7 @@ class IInitializeWithWindow extends IUnknown {
 
   int initialize(int hwnd) =>
       _vtable.Initialize.asFunction<int Function(VTablePointer, int hwnd)>()(
-          ptr.value, hwnd);
+          ptr, hwnd);
 }
 
 /// @nodoc

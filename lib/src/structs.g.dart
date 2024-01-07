@@ -162,7 +162,7 @@ base class APPX_PACKAGE_SETTINGS extends Struct {
   @Int32()
   external int forceZip32;
 
-  external Pointer<VTablePointer> hashMethod;
+  external VTablePointer hashMethod;
 }
 
 /// Describes an array, its element type, and its dimension.

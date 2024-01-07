@@ -22,8 +22,7 @@ const IID_IFileDialog2 = '{61744fc7-85b5-4791-a9b0-272276309b13}';
 ///
 /// {@category com}
 class IFileDialog2 extends IFileDialog {
-  IFileDialog2(super.ptr)
-      : _vtable = ptr.value.value.cast<IFileDialog2Vtbl>().ref;
+  IFileDialog2(super.ptr) : _vtable = ptr.value.cast<IFileDialog2Vtbl>().ref;
 
   final IFileDialog2Vtbl _vtable;
 
@@ -33,12 +32,10 @@ class IFileDialog2 extends IFileDialog {
   int setCancelButtonLabel(Pointer<Utf16> pszLabel) =>
       _vtable.SetCancelButtonLabel.asFunction<
           int Function(
-              VTablePointer, Pointer<Utf16> pszLabel)>()(ptr.value, pszLabel);
+              VTablePointer, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
 
-  int setNavigationRoot(Pointer<VTablePointer> psi) =>
-      _vtable.SetNavigationRoot.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> psi)>()(ptr.value, psi);
+  int setNavigationRoot(VTablePointer psi) => _vtable.SetNavigationRoot
+      .asFunction<int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
 }
 
 /// @nodoc
@@ -49,7 +46,6 @@ base class IFileDialog2Vtbl extends Struct {
               Int32 Function(VTablePointer, Pointer<Utf16> pszLabel)>>
       SetCancelButtonLabel;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> psi)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
       SetNavigationRoot;
 }

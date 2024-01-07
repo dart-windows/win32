@@ -18,7 +18,7 @@ const IID_IEnumResources = '{2dd81fe3-a83c-4da9-a330-47249d345ba1}';
 /// {@category com}
 class IEnumResources extends IUnknown {
   IEnumResources(super.ptr)
-      : _vtable = ptr.value.value.cast<IEnumResourcesVtbl>().ref;
+      : _vtable = ptr.value.cast<IEnumResourcesVtbl>().ref;
 
   final IEnumResourcesVtbl _vtable;
 
@@ -28,24 +28,21 @@ class IEnumResources extends IUnknown {
   int next(int celt, Pointer<SHELL_ITEM_RESOURCE> psir,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(
-                  VTablePointer,
-                  int celt,
-                  Pointer<SHELL_ITEM_RESOURCE> psir,
-                  Pointer<Uint32> pceltFetched)>()(
-          ptr.value, celt, psir, pceltFetched);
+          int Function(
+              VTablePointer,
+              int celt,
+              Pointer<SHELL_ITEM_RESOURCE> psir,
+              Pointer<Uint32> pceltFetched)>()(ptr, celt, psir, pceltFetched);
 
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
-          ptr.value, celt);
+          ptr, celt);
 
-  int reset() =>
-      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int clone(Pointer<Pointer<VTablePointer>> ppenumr) =>
-      _vtable.Clone.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppenumr)>()(ptr.value, ppenumr);
+  int clone(Pointer<VTablePointer> ppenumr) => _vtable.Clone.asFunction<
+      int Function(
+          VTablePointer, Pointer<VTablePointer> ppenumr)>()(ptr, ppenumr);
 }
 
 /// @nodoc
@@ -63,6 +60,5 @@ base class IEnumResourcesVtbl extends Struct {
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> ppenumr)>> Clone;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> ppenumr)>> Clone;
 }

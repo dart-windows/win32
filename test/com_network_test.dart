@@ -28,14 +28,15 @@ void main() {
       final netPtr = calloc<VTablePointer>();
 
       expect(
-          nlm.getNetworks(
-              NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_CONNECTED, enumPtr.cast()),
+          nlm.getNetworks(NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_CONNECTED, enumPtr),
           equals(S_OK));
 
-      final enumerator = IEnumNetworks(enumPtr);
-      expect(enumerator.next(1, netPtr.cast(), nullptr), equals(S_OK));
+      final enumerator = IEnumNetworks(enumPtr.value);
+      free(enumPtr);
+      expect(enumerator.next(1, netPtr, nullptr), equals(S_OK));
 
-      final network = INetwork(netPtr);
+      final network = INetwork(netPtr.value);
+      free(netPtr);
 
       // network should be connected, given the filter
       expect(network.isConnected,
@@ -49,14 +50,15 @@ void main() {
       final descPtr = calloc<Pointer<Utf16>>();
 
       expect(
-          nlm.getNetworks(
-              NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_CONNECTED, enumPtr.cast()),
+          nlm.getNetworks(NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_CONNECTED, enumPtr),
           equals(S_OK));
 
-      final enumerator = IEnumNetworks(enumPtr);
-      expect(enumerator.next(1, netPtr.cast(), nullptr), equals(S_OK));
+      final enumerator = IEnumNetworks(enumPtr.value);
+      free(enumPtr);
+      expect(enumerator.next(1, netPtr, nullptr), equals(S_OK));
 
-      final network = INetwork(netPtr);
+      final network = INetwork(netPtr.value);
+      free(netPtr);
       expect(network.getDescription(descPtr), equals(S_OK));
 
       // This is a wireless network or Ethernet network name. Assume that it's

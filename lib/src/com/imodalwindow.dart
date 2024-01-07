@@ -16,8 +16,7 @@ const IID_IModalWindow = '{b4db1657-70d7-485e-8e3e-6fcb5a5c1802}';
 ///
 /// {@category com}
 class IModalWindow extends IUnknown {
-  IModalWindow(super.ptr)
-      : _vtable = ptr.value.value.cast<IModalWindowVtbl>().ref;
+  IModalWindow(super.ptr) : _vtable = ptr.value.cast<IModalWindowVtbl>().ref;
 
   final IModalWindowVtbl _vtable;
 
@@ -26,7 +25,7 @@ class IModalWindow extends IUnknown {
 
   int show(int hwndOwner) =>
       _vtable.Show.asFunction<int Function(VTablePointer, int hwndOwner)>()(
-          ptr.value, hwndOwner);
+          ptr, hwndOwner);
 }
 
 /// @nodoc

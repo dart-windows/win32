@@ -19,8 +19,7 @@ const IID_IUIAutomationObjectModelPattern =
 /// {@category com}
 class IUIAutomationObjectModelPattern extends IUnknown {
   IUIAutomationObjectModelPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationObjectModelPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationObjectModelPatternVtbl>().ref;
 
   final IUIAutomationObjectModelPatternVtbl _vtable;
 
@@ -28,10 +27,10 @@ class IUIAutomationObjectModelPattern extends IUnknown {
       IUIAutomationObjectModelPattern(
           interface.toInterface(IID_IUIAutomationObjectModelPattern));
 
-  int getUnderlyingObjectModel(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getUnderlyingObjectModel(Pointer<VTablePointer> retVal) =>
       _vtable.GetUnderlyingObjectModel.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 }
 
 /// @nodoc
@@ -39,7 +38,6 @@ base class IUIAutomationObjectModelPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetUnderlyingObjectModel;
 }

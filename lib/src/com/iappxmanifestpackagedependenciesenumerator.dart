@@ -18,7 +18,7 @@ const IID_IAppxManifestPackageDependenciesEnumerator =
 /// {@category com}
 class IAppxManifestPackageDependenciesEnumerator extends IUnknown {
   IAppxManifestPackageDependenciesEnumerator(super.ptr)
-      : _vtable = ptr.value.value
+      : _vtable = ptr.value
             .cast<IAppxManifestPackageDependenciesEnumeratorVtbl>()
             .ref;
 
@@ -28,19 +28,18 @@ class IAppxManifestPackageDependenciesEnumerator extends IUnknown {
       IAppxManifestPackageDependenciesEnumerator(interface
           .toInterface(IID_IAppxManifestPackageDependenciesEnumerator));
 
-  int getCurrent(Pointer<Pointer<VTablePointer>> dependency) =>
+  int getCurrent(Pointer<VTablePointer> dependency) =>
       _vtable.GetCurrent.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> dependency)>()(
-          ptr.value, dependency);
+              int Function(VTablePointer, Pointer<VTablePointer> dependency)>()(
+          ptr, dependency);
 
-  int getHasCurrent(Pointer<Int32> hasCurrent) => _vtable.GetHasCurrent
-          .asFunction<int Function(VTablePointer, Pointer<Int32> hasCurrent)>()(
-      ptr.value, hasCurrent);
+  int getHasCurrent(Pointer<Int32> hasCurrent) =>
+      _vtable.GetHasCurrent.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> hasCurrent)>()(ptr, hasCurrent);
 
   int moveNext(Pointer<Int32> hasNext) => _vtable.MoveNext.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> hasNext)>()(ptr.value, hasNext);
+      int Function(VTablePointer, Pointer<Int32> hasNext)>()(ptr, hasNext);
 }
 
 /// @nodoc
@@ -48,8 +47,7 @@ base class IAppxManifestPackageDependenciesEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> dependency)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> dependency)>>
       GetCurrent;
   external Pointer<
           NativeFunction<

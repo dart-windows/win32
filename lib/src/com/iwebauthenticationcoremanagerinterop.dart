@@ -22,9 +22,8 @@ const IID_IWebAuthenticationCoreManagerInterop =
 /// {@category com}
 class IWebAuthenticationCoreManagerInterop extends IInspectable {
   IWebAuthenticationCoreManagerInterop(super.ptr)
-      : _vtable = ptr.value.value
-            .cast<IWebAuthenticationCoreManagerInteropVtbl>()
-            .ref;
+      : _vtable =
+            ptr.value.cast<IWebAuthenticationCoreManagerInteropVtbl>().ref;
 
   final IWebAuthenticationCoreManagerInteropVtbl _vtable;
 
@@ -32,32 +31,28 @@ class IWebAuthenticationCoreManagerInterop extends IInspectable {
       IWebAuthenticationCoreManagerInterop(
           interface.toInterface(IID_IWebAuthenticationCoreManagerInterop));
 
-  int requestTokenForWindowAsync(int appWindow, Pointer<VTablePointer> request,
+  int requestTokenForWindowAsync(int appWindow, VTablePointer request,
           Pointer<GUID> riid, Pointer<Pointer> asyncInfo) =>
       _vtable.RequestTokenForWindowAsync.asFunction<
-              int Function(
-                  VTablePointer,
-                  int appWindow,
-                  Pointer<VTablePointer> request,
-                  Pointer<GUID> riid,
-                  Pointer<Pointer> asyncInfo)>()(
-          ptr.value, appWindow, request, riid, asyncInfo);
+              int Function(VTablePointer, int appWindow, VTablePointer request,
+                  Pointer<GUID> riid, Pointer<Pointer> asyncInfo)>()(
+          ptr, appWindow, request, riid, asyncInfo);
 
   int requestTokenWithWebAccountForWindowAsync(
           int appWindow,
-          Pointer<VTablePointer> request,
-          Pointer<VTablePointer> webAccount,
+          VTablePointer request,
+          VTablePointer webAccount,
           Pointer<GUID> riid,
           Pointer<Pointer> asyncInfo) =>
       _vtable.RequestTokenWithWebAccountForWindowAsync.asFunction<
               int Function(
                   VTablePointer,
                   int appWindow,
-                  Pointer<VTablePointer> request,
-                  Pointer<VTablePointer> webAccount,
+                  VTablePointer request,
+                  VTablePointer webAccount,
                   Pointer<GUID> riid,
                   Pointer<Pointer> asyncInfo)>()(
-          ptr.value, appWindow, request, webAccount, riid, asyncInfo);
+          ptr, appWindow, request, webAccount, riid, asyncInfo);
 }
 
 /// @nodoc
@@ -68,7 +63,7 @@ base class IWebAuthenticationCoreManagerInteropVtbl extends Struct {
           Int32 Function(
               VTablePointer,
               IntPtr appWindow,
-              Pointer<VTablePointer> request,
+              VTablePointer request,
               Pointer<GUID> riid,
               Pointer<Pointer> asyncInfo)>> RequestTokenForWindowAsync;
   external Pointer<
@@ -76,8 +71,8 @@ base class IWebAuthenticationCoreManagerInteropVtbl extends Struct {
               Int32 Function(
                   VTablePointer,
                   IntPtr appWindow,
-                  Pointer<VTablePointer> request,
-                  Pointer<VTablePointer> webAccount,
+                  VTablePointer request,
+                  VTablePointer webAccount,
                   Pointer<GUID> riid,
                   Pointer<Pointer> asyncInfo)>>
       RequestTokenWithWebAccountForWindowAsync;

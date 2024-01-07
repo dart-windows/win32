@@ -203,9 +203,9 @@ factory $shortName.from(IUnknown interface) =>
   bool get hasMethods => typeDef.methods.isNotEmpty;
 
   String get constructor => inheritsFrom.isEmpty
-      ? '$shortName(this.ptr);\n\nfinal Pointer<VTablePointer> ptr;'
+      ? '$shortName(this.ptr);\n\nfinal VTablePointer ptr;'
       : hasMethods
-          ? '$shortName(super.ptr) : _vtable = ptr.value.value.cast<${shortName}Vtbl>().ref;'
+          ? '$shortName(super.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;'
           : '$shortName(super.ptr);';
 
   String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';

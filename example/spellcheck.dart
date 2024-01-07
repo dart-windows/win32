@@ -35,10 +35,10 @@ void main(List<String> args) {
 
   if (supportedPtr.value == 1) {
     final spellCheckerPtr = calloc<VTablePointer>();
-    spellCheckerFactory.createSpellChecker(
-        languageTagPtr, spellCheckerPtr.cast());
+    spellCheckerFactory.createSpellChecker(languageTagPtr, spellCheckerPtr);
 
-    final spellChecker = ISpellChecker(spellCheckerPtr);
+    final spellChecker = ISpellChecker(spellCheckerPtr.value);
+    free(spellCheckerPtr);
 
     // While ISpellChecker works fine for the needs of this example,
     // ISpellChecker2 extends it with the ability to remove words from the
@@ -47,9 +47,10 @@ void main(List<String> args) {
 
     final errorsPtr = calloc<VTablePointer>();
     final textPtr = text.toNativeUtf16();
-    spellChecker2.check(textPtr, errorsPtr.cast());
+    spellChecker2.check(textPtr, errorsPtr);
 
-    final errors = IEnumSpellingError(errorsPtr);
+    final errors = IEnumSpellingError(errorsPtr.value);
+    free(errorsPtr);
     final errorPtr = calloc<VTablePointer>();
 
     print('Input: "$text"');
@@ -57,10 +58,11 @@ void main(List<String> args) {
 
     var errorCount = 0;
 
-    while (errors.next(errorPtr.cast()) == S_OK) {
+    while (errors.next(errorPtr) == S_OK) {
       errorCount++;
 
-      final error = ISpellingError(errorPtr);
+      final error = ISpellingError(errorPtr.value);
+      free(errorPtr);
       final word = text.substring(
         error.startIndex,
         error.startIndex + error.length,
@@ -85,8 +87,9 @@ void main(List<String> args) {
 
           final wordPtr = word.toNativeUtf16();
           final suggestionsPtr = calloc<VTablePointer>();
-          spellChecker2.suggest(wordPtr, suggestionsPtr.cast());
-          final suggestions = IEnumString(suggestionsPtr);
+          spellChecker2.suggest(wordPtr, suggestionsPtr);
+          final suggestions = IEnumString(suggestionsPtr.value);
+          free(suggestionsPtr);
 
           final suggestionPtr = calloc<Pointer<Utf16>>();
           final suggestionResultPtr = calloc<Uint32>();

@@ -26,8 +26,7 @@ const IID_IUIAutomationDropTargetPattern =
 /// {@category com}
 class IUIAutomationDropTargetPattern extends IUnknown {
   IUIAutomationDropTargetPattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationDropTargetPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationDropTargetPatternVtbl>().ref;
 
   final IUIAutomationDropTargetPatternVtbl _vtable;
 
@@ -41,7 +40,7 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentDropTargetEffect.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,7 +56,7 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedDropTargetEffect.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,7 +72,7 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentDropTargetEffects.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retValuePtr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -89,7 +88,7 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedDropTargetEffects.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retValuePtr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

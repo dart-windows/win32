@@ -23,38 +23,39 @@ const IID_ISpellCheckerFactory = '{8e018a9d-2415-4677-bf08-794ea61f94bb}';
 /// {@category com}
 class ISpellCheckerFactory extends IUnknown {
   ISpellCheckerFactory(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpellCheckerFactoryVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpellCheckerFactoryVtbl>().ref;
 
   final ISpellCheckerFactoryVtbl _vtable;
 
   factory ISpellCheckerFactory.from(IUnknown interface) =>
       ISpellCheckerFactory(interface.toInterface(IID_ISpellCheckerFactory));
 
-  Pointer<VTablePointer> get supportedLanguages {
+  VTablePointer get supportedLanguages {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_SupportedLanguages.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> value)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_SupportedLanguages.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> value)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   int isSupported(Pointer<Utf16> languageTag, Pointer<Int32> value) =>
       _vtable.IsSupported.asFunction<
           int Function(VTablePointer, Pointer<Utf16> languageTag,
-              Pointer<Int32> value)>()(ptr.value, languageTag, value);
+              Pointer<Int32> value)>()(ptr, languageTag, value);
 
   int createSpellChecker(
-          Pointer<Utf16> languageTag, Pointer<Pointer<VTablePointer>> value) =>
+          Pointer<Utf16> languageTag, Pointer<VTablePointer> value) =>
       _vtable.CreateSpellChecker.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> languageTag,
-                  Pointer<Pointer<VTablePointer>> value)>()(
-          ptr.value, languageTag, value);
+          int Function(VTablePointer, Pointer<Utf16> languageTag,
+              Pointer<VTablePointer> value)>()(ptr, languageTag, value);
 }
 
 /// @nodoc
@@ -71,7 +72,7 @@ base class ISpellCheckerFactoryVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> languageTag,
-              Pointer<Pointer<VTablePointer>> value)>> CreateSpellChecker;
+              Pointer<VTablePointer> value)>> CreateSpellChecker;
 }
 
 /// @nodoc

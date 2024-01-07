@@ -22,8 +22,7 @@ const IID_IFileIsInUse = '{64a1cbf0-3a1a-4461-9158-376969693950}';
 ///
 /// {@category com}
 class IFileIsInUse extends IUnknown {
-  IFileIsInUse(super.ptr)
-      : _vtable = ptr.value.value.cast<IFileIsInUseVtbl>().ref;
+  IFileIsInUse(super.ptr) : _vtable = ptr.value.cast<IFileIsInUseVtbl>().ref;
 
   final IFileIsInUseVtbl _vtable;
 
@@ -34,23 +33,22 @@ class IFileIsInUse extends IUnknown {
           Pointer<Pointer<Utf16>> ppszName) =>
       _vtable.GetAppName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> ppszName)>()(
-          ptr.value, ppszName);
+          ptr, ppszName);
 
   int getUsage(Pointer<Int32> pfut) => _vtable.GetUsage.asFunction<
-      int Function(VTablePointer, Pointer<Int32> pfut)>()(ptr.value, pfut);
+      int Function(VTablePointer, Pointer<Int32> pfut)>()(ptr, pfut);
 
   int getCapabilities(Pointer<Uint32> pdwCapFlags) =>
       _vtable.GetCapabilities.asFunction<
-              int Function(VTablePointer, Pointer<Uint32> pdwCapFlags)>()(
-          ptr.value, pdwCapFlags);
+          int Function(
+              VTablePointer, Pointer<Uint32> pdwCapFlags)>()(ptr, pdwCapFlags);
 
   int getSwitchToHWND(Pointer<IntPtr> phwnd) =>
       _vtable.GetSwitchToHWND.asFunction<
-          int Function(
-              VTablePointer, Pointer<IntPtr> phwnd)>()(ptr.value, phwnd);
+          int Function(VTablePointer, Pointer<IntPtr> phwnd)>()(ptr, phwnd);
 
   int closeFile() =>
-      _vtable.CloseFile.asFunction<int Function(VTablePointer)>()(ptr.value);
+      _vtable.CloseFile.asFunction<int Function(VTablePointer)>()(ptr);
 }
 
 /// @nodoc

@@ -93,17 +93,14 @@ final _FindExecutable = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHCreateItemFromParsingName(Pointer<Utf16> pszPath,
-        Pointer<VTablePointer> pbc, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
+int SHCreateItemFromParsingName(Pointer<Utf16> pszPath, VTablePointer pbc,
+        Pointer<GUID> riid, Pointer<Pointer> ppv) =>
     _SHCreateItemFromParsingName(pszPath, pbc, riid, ppv);
 
 final _SHCreateItemFromParsingName = _shell32.lookupFunction<
-    Int32 Function(Pointer<Utf16> pszPath, Pointer<VTablePointer> pbc,
+    Int32 Function(Pointer<Utf16> pszPath, VTablePointer pbc,
         Pointer<GUID> riid, Pointer<Pointer> ppv),
-    int Function(
-        Pointer<Utf16> pszPath,
-        Pointer<VTablePointer> pbc,
-        Pointer<GUID> riid,
+    int Function(Pointer<Utf16> pszPath, VTablePointer pbc, Pointer<GUID> riid,
         Pointer<Pointer> ppv)>('SHCreateItemFromParsingName');
 
 /// Sends a message to the taskbar's status area.
@@ -256,12 +253,12 @@ final _SHFreeNameMappings = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHGetDesktopFolder(Pointer<Pointer<VTablePointer>> ppshf) =>
+int SHGetDesktopFolder(Pointer<VTablePointer> ppshf) =>
     _SHGetDesktopFolder(ppshf);
 
 final _SHGetDesktopFolder = _shell32.lookupFunction<
-    Int32 Function(Pointer<Pointer<VTablePointer>> ppshf),
-    int Function(Pointer<Pointer<VTablePointer>> ppshf)>('SHGetDesktopFolder');
+    Int32 Function(Pointer<VTablePointer> ppshf),
+    int Function(Pointer<VTablePointer> ppshf)>('SHGetDesktopFolder');
 
 /// Retrieves disk space information for a disk volume.
 ///

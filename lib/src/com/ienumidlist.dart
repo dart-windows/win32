@@ -21,8 +21,7 @@ const IID_IEnumIDList = '{000214f2-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IEnumIDList extends IUnknown {
-  IEnumIDList(super.ptr)
-      : _vtable = ptr.value.value.cast<IEnumIDListVtbl>().ref;
+  IEnumIDList(super.ptr) : _vtable = ptr.value.cast<IEnumIDListVtbl>().ref;
 
   final IEnumIDListVtbl _vtable;
 
@@ -32,23 +31,21 @@ class IEnumIDList extends IUnknown {
   int next(int celt, Pointer<Pointer<ITEMIDLIST>> rgelt,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(
-                  VTablePointer,
-                  int celt,
-                  Pointer<Pointer<ITEMIDLIST>> rgelt,
-                  Pointer<Uint32> pceltFetched)>()(
-          ptr.value, celt, rgelt, pceltFetched);
+          int Function(
+              VTablePointer,
+              int celt,
+              Pointer<Pointer<ITEMIDLIST>> rgelt,
+              Pointer<Uint32> pceltFetched)>()(ptr, celt, rgelt, pceltFetched);
 
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
-          ptr.value, celt);
+          ptr, celt);
 
-  int reset() =>
-      _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int clone(Pointer<Pointer<VTablePointer>> ppenum) => _vtable.Clone.asFunction<
-      int Function(VTablePointer,
-          Pointer<Pointer<VTablePointer>> ppenum)>()(ptr.value, ppenum);
+  int clone(Pointer<VTablePointer> ppenum) => _vtable.Clone.asFunction<
+      int Function(
+          VTablePointer, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
 }
 
 /// @nodoc
@@ -66,6 +63,5 @@ base class IEnumIDListVtbl extends Struct {
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> ppenum)>> Clone;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> ppenum)>> Clone;
 }

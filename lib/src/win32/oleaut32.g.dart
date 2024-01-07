@@ -53,14 +53,14 @@ final _DosDateTimeToVariantTime = _oleaut32.lookupFunction<
 /// ```
 /// {@category oleaut32}
 int GetActiveObject(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<Pointer<VTablePointer>> ppunk) =>
+        Pointer<VTablePointer> ppunk) =>
     _GetActiveObject(rclsid, pvReserved, ppunk);
 
 final _GetActiveObject = _oleaut32.lookupFunction<
-    Int32 Function(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<Pointer<VTablePointer>> ppunk),
+    Int32 Function(
+        Pointer<GUID> rclsid, Pointer pvReserved, Pointer<VTablePointer> ppunk),
     int Function(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<Pointer<VTablePointer>> ppunk)>('GetActiveObject');
+        Pointer<VTablePointer> ppunk)>('GetActiveObject');
 
 /// Allocates a new string and copies the passed string into it.
 ///

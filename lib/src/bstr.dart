@@ -67,7 +67,7 @@ class BSTR {
   /// the results.
   BSTR operator +(BSTR other) {
     final pbstrResult = calloc<Pointer<Utf16>>();
-    VarBstrCat(ptr, other.ptr, pbstrResult.cast());
+    VarBstrCat(ptr, other.ptr, pbstrResult);
     final result = BSTR._(pbstrResult.value);
     calloc.free(pbstrResult);
     return result;

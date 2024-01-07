@@ -24,7 +24,7 @@ const IID_IUIAutomationStylesPattern = '{85b5f0a2-bd79-484a-ad2b-388c9838d5fb}';
 /// {@category com}
 class IUIAutomationStylesPattern extends IUnknown {
   IUIAutomationStylesPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationStylesPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationStylesPatternVtbl>().ref;
 
   final IUIAutomationStylesPatternVtbl _vtable;
 
@@ -38,7 +38,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentStyleId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -54,7 +54,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentStyleName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,7 +70,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentFillColor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -86,7 +86,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentFillPatternStyle.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -102,7 +102,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentShape.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -118,7 +118,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentFillPatternColor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -134,7 +134,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentExtendedProperties.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -152,7 +152,7 @@ class IUIAutomationStylesPattern extends IUnknown {
                   VTablePointer,
                   Pointer<Pointer<ExtendedProperty>> propertyArray,
                   Pointer<Int32> propertyCount)>()(
-          ptr.value, propertyArray, propertyCount);
+          ptr, propertyArray, propertyCount);
 
   int get cachedStyleId {
     final retValuePtr = calloc<Int32>();
@@ -160,7 +160,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedStyleId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -176,7 +176,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedStyleName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -192,7 +192,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedFillColor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -208,7 +208,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedFillPatternStyle.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -224,7 +224,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedShape.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -240,7 +240,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedFillPatternColor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -256,7 +256,7 @@ class IUIAutomationStylesPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedExtendedProperties.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -274,7 +274,7 @@ class IUIAutomationStylesPattern extends IUnknown {
                   VTablePointer,
                   Pointer<Pointer<ExtendedProperty>> propertyArray,
                   Pointer<Int32> propertyCount)>()(
-          ptr.value, propertyArray, propertyCount);
+          ptr, propertyArray, propertyCount);
 }
 
 /// @nodoc

@@ -66,10 +66,11 @@ void main() {
       }
     } else {
       final ppsi = calloc<VTablePointer>();
-      hr = fileDialog.getResult(ppsi.cast());
+      hr = fileDialog.getResult(ppsi);
       if (!SUCCEEDED(hr)) throw WindowsException(hr);
 
-      final item = IShellItem(ppsi);
+      final item = IShellItem(ppsi.value);
+      free(ppsi);
       final pathPtr = calloc<Pointer<Utf16>>();
       hr = item.getDisplayName(SIGDN.SIGDN_FILESYSPATH, pathPtr);
       if (!SUCCEEDED(hr)) throw WindowsException(hr);

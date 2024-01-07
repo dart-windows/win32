@@ -24,7 +24,7 @@ const IID_IWbemObjectAccess = '{49353c9a-516b-11d1-aea6-00c04fb68820}';
 /// {@category com}
 class IWbemObjectAccess extends IWbemClassObject {
   IWbemObjectAccess(super.ptr)
-      : _vtable = ptr.value.value.cast<IWbemObjectAccessVtbl>().ref;
+      : _vtable = ptr.value.cast<IWbemObjectAccessVtbl>().ref;
 
   final IWbemObjectAccessVtbl _vtable;
 
@@ -36,37 +36,35 @@ class IWbemObjectAccess extends IWbemClassObject {
       _vtable.GetPropertyHandle.asFunction<
               int Function(VTablePointer, Pointer<Utf16> wszPropertyName,
                   Pointer<Int32> pType, Pointer<Int32> plHandle)>()(
-          ptr.value, wszPropertyName, pType, plHandle);
+          ptr, wszPropertyName, pType, plHandle);
 
   int writePropertyValue(int lHandle, int lNumBytes, Pointer<Uint8> aData) =>
       _vtable.WritePropertyValue.asFunction<
           int Function(VTablePointer, int lHandle, int lNumBytes,
-              Pointer<Uint8> aData)>()(ptr.value, lHandle, lNumBytes, aData);
+              Pointer<Uint8> aData)>()(ptr, lHandle, lNumBytes, aData);
 
   int readPropertyValue(int lHandle, int lBufferSize, Pointer<Int32> plNumBytes,
           Pointer<Uint8> aData) =>
       _vtable.ReadPropertyValue.asFunction<
               int Function(VTablePointer, int lHandle, int lBufferSize,
                   Pointer<Int32> plNumBytes, Pointer<Uint8> aData)>()(
-          ptr.value, lHandle, lBufferSize, plNumBytes, aData);
+          ptr, lHandle, lBufferSize, plNumBytes, aData);
 
   int readDWORD(int lHandle, Pointer<Uint32> pdw) =>
       _vtable.ReadDWORD.asFunction<
               int Function(VTablePointer, int lHandle, Pointer<Uint32> pdw)>()(
-          ptr.value, lHandle, pdw);
+          ptr, lHandle, pdw);
 
   int writeDWORD(int lHandle, int dw) => _vtable.WriteDWORD.asFunction<
-      int Function(
-          VTablePointer, int lHandle, int dw)>()(ptr.value, lHandle, dw);
+      int Function(VTablePointer, int lHandle, int dw)>()(ptr, lHandle, dw);
 
   int readQWORD(int lHandle, Pointer<Uint64> pqw) =>
       _vtable.ReadQWORD.asFunction<
               int Function(VTablePointer, int lHandle, Pointer<Uint64> pqw)>()(
-          ptr.value, lHandle, pqw);
+          ptr, lHandle, pqw);
 
   int writeQWORD(int lHandle, int pw) => _vtable.WriteQWORD.asFunction<
-      int Function(
-          VTablePointer, int lHandle, int pw)>()(ptr.value, lHandle, pw);
+      int Function(VTablePointer, int lHandle, int pw)>()(ptr, lHandle, pw);
 
   int getPropertyInfoByHandle(int lHandle, Pointer<Pointer<Utf16>> pstrName,
           Pointer<Int32> pType) =>
@@ -75,15 +73,15 @@ class IWbemObjectAccess extends IWbemClassObject {
               VTablePointer,
               int lHandle,
               Pointer<Pointer<Utf16>> pstrName,
-              Pointer<Int32> pType)>()(ptr.value, lHandle, pstrName, pType);
+              Pointer<Int32> pType)>()(ptr, lHandle, pstrName, pType);
 
   int lock(int lFlags) =>
       _vtable.Lock.asFunction<int Function(VTablePointer, int lFlags)>()(
-          ptr.value, lFlags);
+          ptr, lFlags);
 
   int unlock(int lFlags) =>
       _vtable.Unlock.asFunction<int Function(VTablePointer, int lFlags)>()(
-          ptr.value, lFlags);
+          ptr, lFlags);
 }
 
 /// @nodoc

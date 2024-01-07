@@ -18,7 +18,7 @@ const IID_IConnectionPointContainer = '{b196b284-bab4-101a-b69c-00aa00341d07}';
 /// {@category com}
 class IConnectionPointContainer extends IUnknown {
   IConnectionPointContainer(super.ptr)
-      : _vtable = ptr.value.value.cast<IConnectionPointContainerVtbl>().ref;
+      : _vtable = ptr.value.cast<IConnectionPointContainerVtbl>().ref;
 
   final IConnectionPointContainerVtbl _vtable;
 
@@ -26,16 +26,15 @@ class IConnectionPointContainer extends IUnknown {
       IConnectionPointContainer(
           interface.toInterface(IID_IConnectionPointContainer));
 
-  int enumConnectionPoints(Pointer<Pointer<VTablePointer>> ppEnum) =>
+  int enumConnectionPoints(Pointer<VTablePointer> ppEnum) =>
       _vtable.EnumConnectionPoints.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppEnum)>()(ptr.value, ppEnum);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 
-  int findConnectionPoint(
-          Pointer<GUID> riid, Pointer<Pointer<VTablePointer>> ppCP) =>
+  int findConnectionPoint(Pointer<GUID> riid, Pointer<VTablePointer> ppCP) =>
       _vtable.FindConnectionPoint.asFunction<
           int Function(VTablePointer, Pointer<GUID> riid,
-              Pointer<Pointer<VTablePointer>> ppCP)>()(ptr.value, riid, ppCP);
+              Pointer<VTablePointer> ppCP)>()(ptr, riid, ppCP);
 }
 
 /// @nodoc
@@ -43,11 +42,10 @@ base class IConnectionPointContainerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppEnum)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnum)>>
       EnumConnectionPoints;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<GUID> riid,
-              Pointer<Pointer<VTablePointer>> ppCP)>> FindConnectionPoint;
+              Pointer<VTablePointer> ppCP)>> FindConnectionPoint;
 }

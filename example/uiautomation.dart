@@ -11,13 +11,14 @@ import 'package:win32/win32.dart';
 /// Get the root element of the given [uiAutomation].
 IUIAutomationElement getRootElement(IUIAutomation uiAutomation) {
   final pElement = calloc<VTablePointer>();
-  final hr = uiAutomation.getRootElement(pElement.cast());
-  if (FAILED(hr)) {
-    free(pElement);
-    throw WindowsException(hr);
-  }
 
-  return IUIAutomationElement(pElement);
+  try {
+    final hr = uiAutomation.getRootElement(pElement);
+    if (FAILED(hr)) throw WindowsException(hr);
+    return IUIAutomationElement(pElement.value);
+  } finally {
+    free(pElement);
+  }
 }
 
 /// Get the top-level window element from the given [processId].
@@ -34,18 +35,18 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
   try {
     final pCondition = calloc<VTablePointer>();
     var hr = uiAutomation.createPropertyCondition(
-        UIA_ProcessIdPropertyId, valueParam.ref, pCondition.cast());
+        UIA_ProcessIdPropertyId, valueParam.ref, pCondition);
     if (FAILED(hr)) {
       free(pCondition);
       throw WindowsException(hr);
     }
-    final propertyCondition = IUIAutomationPropertyCondition(pCondition);
+    
+    final propertyCondition = IUIAutomationPropertyCondition(pCondition.value);
+    free(pCondition);
 
     final pElement = calloc<VTablePointer>();
     hr = root.findFirst(
-        TreeScope.TreeScope_Children,
-        propertyCondition.ptr.cast<Pointer<VTablePointer>>().value,
-        pElement.cast());
+        TreeScope.TreeScope_Children, propertyCondition.ptr, pElement);
     if (FAILED(hr)) {
       free(pElement);
       throw WindowsException(hr);
@@ -56,7 +57,9 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
       throw Exception('Could not find the window');
     }
 
-    return IUIAutomationElement(pElement);
+    final elm = IUIAutomationElement(pElement.value);
+    free(pElement);
+    return elm;
   } finally {
     VariantClear(valueParam);
     free(valueParam);
@@ -90,7 +93,7 @@ IUIAutomationWindowPattern getWindowPattern(IUIAutomationElement element) {
   }
 
   final pPattern = calloc<VTablePointer>();
-  final hr = element.getCurrentPattern(UIA_WindowPatternId, pPattern.cast());
+  final hr = element.getCurrentPattern(UIA_WindowPatternId, pPattern);
   if (FAILED(hr)) {
     free(pPattern);
     throw WindowsException(hr);
@@ -101,7 +104,9 @@ IUIAutomationWindowPattern getWindowPattern(IUIAutomationElement element) {
     throw Exception('Could not get the window pattern');
   }
 
-  return IUIAutomationWindowPattern(pPattern);
+  final pattern = IUIAutomationWindowPattern(pPattern.value);
+  free(pPattern);
+  return pattern;
 }
 
 void maximizeWindow(IUIAutomationWindowPattern window) {

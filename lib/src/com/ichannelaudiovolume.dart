@@ -24,7 +24,7 @@ const IID_IChannelAudioVolume = '{1c158861-b533-4b30-b1cf-e853e51c59b8}';
 /// {@category com}
 class IChannelAudioVolume extends IUnknown {
   IChannelAudioVolume(super.ptr)
-      : _vtable = ptr.value.value.cast<IChannelAudioVolumeVtbl>().ref;
+      : _vtable = ptr.value.cast<IChannelAudioVolumeVtbl>().ref;
 
   final IChannelAudioVolumeVtbl _vtable;
 
@@ -34,31 +34,31 @@ class IChannelAudioVolume extends IUnknown {
   int getChannelCount(Pointer<Uint32> pdwCount) =>
       _vtable.GetChannelCount.asFunction<
           int Function(
-              VTablePointer, Pointer<Uint32> pdwCount)>()(ptr.value, pdwCount);
+              VTablePointer, Pointer<Uint32> pdwCount)>()(ptr, pdwCount);
 
   int setChannelVolume(
           int dwIndex, double fLevel, Pointer<GUID> EventContext) =>
       _vtable.SetChannelVolume.asFunction<
               int Function(VTablePointer, int dwIndex, double fLevel,
                   Pointer<GUID> EventContext)>()(
-          ptr.value, dwIndex, fLevel, EventContext);
+          ptr, dwIndex, fLevel, EventContext);
 
   int getChannelVolume(int dwIndex, Pointer<Float> pfLevel) =>
       _vtable.GetChannelVolume.asFunction<
           int Function(VTablePointer, int dwIndex,
-              Pointer<Float> pfLevel)>()(ptr.value, dwIndex, pfLevel);
+              Pointer<Float> pfLevel)>()(ptr, dwIndex, pfLevel);
 
   int setAllVolumes(
           int dwCount, Pointer<Float> pfVolumes, Pointer<GUID> EventContext) =>
       _vtable.SetAllVolumes.asFunction<
               int Function(VTablePointer, int dwCount, Pointer<Float> pfVolumes,
                   Pointer<GUID> EventContext)>()(
-          ptr.value, dwCount, pfVolumes, EventContext);
+          ptr, dwCount, pfVolumes, EventContext);
 
   int getAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.GetAllVolumes.asFunction<
           int Function(VTablePointer, int dwCount,
-              Pointer<Float> pfVolumes)>()(ptr.value, dwCount, pfVolumes);
+              Pointer<Float> pfVolumes)>()(ptr, dwCount, pfVolumes);
 }
 
 /// @nodoc

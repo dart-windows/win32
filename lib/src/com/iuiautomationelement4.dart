@@ -24,7 +24,7 @@ const IID_IUIAutomationElement4 = '{3b6e233c-52fb-4063-a4c9-77c075c2a06b}';
 /// {@category com}
 class IUIAutomationElement4 extends IUIAutomationElement3 {
   IUIAutomationElement4(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElement4Vtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElement4Vtbl>().ref;
 
   final IUIAutomationElement4Vtbl _vtable;
 
@@ -37,7 +37,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CurrentPositionInSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -53,7 +53,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CurrentSizeOfSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -69,7 +69,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CurrentLevel
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -85,7 +85,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CurrentAnnotationTypes.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retValuePtr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -95,18 +95,20 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
-  Pointer<VTablePointer> get currentAnnotationObjects {
+  VTablePointer get currentAnnotationObjects {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CurrentAnnotationObjects.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CurrentAnnotationObjects.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   int get cachedPositionInSet {
@@ -115,7 +117,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CachedPositionInSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -131,7 +133,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CachedSizeOfSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -147,7 +149,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CachedLevel
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -163,7 +165,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     try {
       final hr = _vtable.get_CachedAnnotationTypes.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr.value, retValuePtr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -173,18 +175,20 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
-  Pointer<VTablePointer> get cachedAnnotationObjects {
+  VTablePointer get cachedAnnotationObjects {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_CachedAnnotationObjects.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_CachedAnnotationObjects.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 

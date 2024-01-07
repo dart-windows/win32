@@ -16,8 +16,7 @@ const IID_IMMEndpoint = '{1be09788-6894-4089-8586-9a2a6c265ac5}';
 ///
 /// {@category com}
 class IMMEndpoint extends IUnknown {
-  IMMEndpoint(super.ptr)
-      : _vtable = ptr.value.value.cast<IMMEndpointVtbl>().ref;
+  IMMEndpoint(super.ptr) : _vtable = ptr.value.cast<IMMEndpointVtbl>().ref;
 
   final IMMEndpointVtbl _vtable;
 
@@ -25,8 +24,7 @@ class IMMEndpoint extends IUnknown {
       IMMEndpoint(interface.toInterface(IID_IMMEndpoint));
 
   int getDataFlow(Pointer<Int32> pDataFlow) => _vtable.GetDataFlow.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> pDataFlow)>()(ptr.value, pDataFlow);
+      int Function(VTablePointer, Pointer<Int32> pDataFlow)>()(ptr, pDataFlow);
 }
 
 /// @nodoc

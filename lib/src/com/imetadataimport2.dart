@@ -21,7 +21,7 @@ const IID_IMetaDataImport2 = '{fce5efa0-8bba-4f8e-a036-8f2022b08466}';
 /// {@category com}
 class IMetaDataImport2 extends IMetaDataImport {
   IMetaDataImport2(super.ptr)
-      : _vtable = ptr.value.value.cast<IMetaDataImport2Vtbl>().ref;
+      : _vtable = ptr.value.cast<IMetaDataImport2Vtbl>().ref;
 
   final IMetaDataImport2Vtbl _vtable;
 
@@ -42,7 +42,7 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> rGenericParams,
                   int cMax,
                   Pointer<Uint32> pcGenericParams)>()(
-          ptr.value, phEnum, tk, rGenericParams, cMax, pcGenericParams);
+          ptr, phEnum, tk, rGenericParams, cMax, pcGenericParams);
 
   int getGenericParamProps(
           int gp,
@@ -63,7 +63,7 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> reserved,
                   Pointer<Utf16> wzname,
                   int cchName,
-                  Pointer<Uint32> pchName)>()(ptr.value, gp, pulParamSeq,
+                  Pointer<Uint32> pchName)>()(ptr, gp, pulParamSeq,
           pdwParamFlags, ptOwner, reserved, wzname, cchName, pchName);
 
   int getMethodSpecProps(int mi, Pointer<Uint32> tkParent,
@@ -75,7 +75,7 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> tkParent,
                   Pointer<Pointer<Uint8>> ppvSigBlob,
                   Pointer<Uint32> pcbSigBlob)>()(
-          ptr.value, mi, tkParent, ppvSigBlob, pcbSigBlob);
+          ptr, mi, tkParent, ppvSigBlob, pcbSigBlob);
 
   int enumGenericParamConstraints(
           Pointer<Pointer> phEnum,
@@ -90,13 +90,8 @@ class IMetaDataImport2 extends IMetaDataImport {
                   int tk,
                   Pointer<Uint32> rGenericParamConstraints,
                   int cMax,
-                  Pointer<Uint32> pcGenericParamConstraints)>()(
-          ptr.value,
-          phEnum,
-          tk,
-          rGenericParamConstraints,
-          cMax,
-          pcGenericParamConstraints);
+                  Pointer<Uint32> pcGenericParamConstraints)>()(ptr, phEnum, tk,
+          rGenericParamConstraints, cMax, pcGenericParamConstraints);
 
   int getGenericParamConstraintProps(int gpc, Pointer<Uint32> ptGenericParam,
           Pointer<Uint32> ptkConstraintType) =>
@@ -106,19 +101,19 @@ class IMetaDataImport2 extends IMetaDataImport {
                   int gpc,
                   Pointer<Uint32> ptGenericParam,
                   Pointer<Uint32> ptkConstraintType)>()(
-          ptr.value, gpc, ptGenericParam, ptkConstraintType);
+          ptr, gpc, ptGenericParam, ptkConstraintType);
 
   int getPEKind(Pointer<Uint32> pdwPEKind, Pointer<Uint32> pdwMAchine) =>
       _vtable.GetPEKind.asFunction<
           int Function(VTablePointer, Pointer<Uint32> pdwPEKind,
-              Pointer<Uint32> pdwMAchine)>()(ptr.value, pdwPEKind, pdwMAchine);
+              Pointer<Uint32> pdwMAchine)>()(ptr, pdwPEKind, pdwMAchine);
 
   int getVersionString(
           Pointer<Utf16> pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
       _vtable.GetVersionString.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pwzBuf, int ccBufSize,
                   Pointer<Uint32> pccBufSize)>()(
-          ptr.value, pwzBuf, ccBufSize, pccBufSize);
+          ptr, pwzBuf, ccBufSize, pccBufSize);
 
   int enumMethodSpecs(
           Pointer<Pointer> phEnum,
@@ -134,7 +129,7 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> rMethodSpecs,
                   int cMax,
                   Pointer<Uint32> pcMethodSpecs)>()(
-          ptr.value, phEnum, tk, rMethodSpecs, cMax, pcMethodSpecs);
+          ptr, phEnum, tk, rMethodSpecs, cMax, pcMethodSpecs);
 }
 
 /// @nodoc

@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final fileisinuse = IFileIsInUse(ptr);
   test('Can instantiate IFileIsInUse.getAppName', () {
@@ -38,6 +37,5 @@ void main() {
     expect(fileisinuse.closeFile, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

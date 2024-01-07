@@ -28,7 +28,6 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
   ''';
 
@@ -60,12 +59,11 @@ import 'package:win32/win32.dart';
 $header
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final $instanceName = $interfaceName(ptr);
   ${projection.methodProjections.map((p) => testMethod(interfaceName, instanceName, p)).join()}
 
-  free(ptr.value);
   free(ptr);
 }
   """;

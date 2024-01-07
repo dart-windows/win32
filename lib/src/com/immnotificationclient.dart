@@ -23,7 +23,7 @@ const IID_IMMNotificationClient = '{7991eec9-7e89-4d85-8390-6c703cec60c0}';
 /// {@category com}
 class IMMNotificationClient extends IUnknown {
   IMMNotificationClient(super.ptr)
-      : _vtable = ptr.value.value.cast<IMMNotificationClientVtbl>().ref;
+      : _vtable = ptr.value.cast<IMMNotificationClientVtbl>().ref;
 
   final IMMNotificationClientVtbl _vtable;
 
@@ -33,29 +33,29 @@ class IMMNotificationClient extends IUnknown {
   int onDeviceStateChanged(Pointer<Utf16> pwstrDeviceId, int dwNewState) =>
       _vtable.OnDeviceStateChanged.asFunction<
           int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId,
-              int dwNewState)>()(ptr.value, pwstrDeviceId, dwNewState);
+              int dwNewState)>()(ptr, pwstrDeviceId, dwNewState);
 
   int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) =>
       _vtable.OnDeviceAdded.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId)>()(
-          ptr.value, pwstrDeviceId);
+          ptr, pwstrDeviceId);
 
   int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) =>
       _vtable.OnDeviceRemoved.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId)>()(
-          ptr.value, pwstrDeviceId);
+          ptr, pwstrDeviceId);
 
   int onDefaultDeviceChanged(
           int flow, int role, Pointer<Utf16> pwstrDefaultDeviceId) =>
       _vtable.OnDefaultDeviceChanged.asFunction<
               int Function(VTablePointer, int flow, int role,
                   Pointer<Utf16> pwstrDefaultDeviceId)>()(
-          ptr.value, flow, role, pwstrDefaultDeviceId);
+          ptr, flow, role, pwstrDefaultDeviceId);
 
   int onPropertyValueChanged(Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key) =>
       _vtable.OnPropertyValueChanged.asFunction<
           int Function(VTablePointer, Pointer<Utf16> pwstrDeviceId,
-              PROPERTYKEY key)>()(ptr.value, pwstrDeviceId, key);
+              PROPERTYKEY key)>()(ptr, pwstrDeviceId, key);
 }
 
 /// @nodoc

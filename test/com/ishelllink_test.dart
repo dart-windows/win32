@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final shelllink = IShellLink(ptr);
   test('Can instantiate IShellLink.getPath', () {
@@ -77,6 +76,5 @@ void main() {
     expect(shelllink.setPath, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

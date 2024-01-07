@@ -18,7 +18,7 @@ const IID_IShellLinkDataList = '{45e2b4ae-b1c3-11d0-b92f-00a0c90312e1}';
 /// {@category com}
 class IShellLinkDataList extends IUnknown {
   IShellLinkDataList(super.ptr)
-      : _vtable = ptr.value.value.cast<IShellLinkDataListVtbl>().ref;
+      : _vtable = ptr.value.cast<IShellLinkDataListVtbl>().ref;
 
   final IShellLinkDataListVtbl _vtable;
 
@@ -26,23 +26,22 @@ class IShellLinkDataList extends IUnknown {
       IShellLinkDataList(interface.toInterface(IID_IShellLinkDataList));
 
   int addDataBlock(Pointer pDataBlock) => _vtable.AddDataBlock.asFunction<
-      int Function(VTablePointer, Pointer pDataBlock)>()(ptr.value, pDataBlock);
+      int Function(VTablePointer, Pointer pDataBlock)>()(ptr, pDataBlock);
 
   int copyDataBlock(int dwSig, Pointer<Pointer> ppDataBlock) =>
       _vtable.CopyDataBlock.asFunction<
           int Function(VTablePointer, int dwSig,
-              Pointer<Pointer> ppDataBlock)>()(ptr.value, dwSig, ppDataBlock);
+              Pointer<Pointer> ppDataBlock)>()(ptr, dwSig, ppDataBlock);
 
   int removeDataBlock(int dwSig) => _vtable.RemoveDataBlock.asFunction<
-      int Function(VTablePointer, int dwSig)>()(ptr.value, dwSig);
+      int Function(VTablePointer, int dwSig)>()(ptr, dwSig);
 
   int getFlags(Pointer<Uint32> pdwFlags) => _vtable.GetFlags.asFunction<
-      int Function(
-          VTablePointer, Pointer<Uint32> pdwFlags)>()(ptr.value, pdwFlags);
+      int Function(VTablePointer, Pointer<Uint32> pdwFlags)>()(ptr, pdwFlags);
 
   int setFlags(int dwFlags) =>
       _vtable.SetFlags.asFunction<int Function(VTablePointer, int dwFlags)>()(
-          ptr.value, dwFlags);
+          ptr, dwFlags);
 }
 
 /// @nodoc

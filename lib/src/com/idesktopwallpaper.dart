@@ -21,7 +21,7 @@ const IID_IDesktopWallpaper = '{b92b56a9-8b55-4e14-9a89-0199bbb6f93b}';
 /// {@category com}
 class IDesktopWallpaper extends IUnknown {
   IDesktopWallpaper(super.ptr)
-      : _vtable = ptr.value.value.cast<IDesktopWallpaperVtbl>().ref;
+      : _vtable = ptr.value.cast<IDesktopWallpaperVtbl>().ref;
 
   final IDesktopWallpaperVtbl _vtable;
 
@@ -31,81 +31,73 @@ class IDesktopWallpaper extends IUnknown {
   int setWallpaper(Pointer<Utf16> monitorID, Pointer<Utf16> wallpaper) =>
       _vtable.SetWallpaper.asFunction<
           int Function(VTablePointer, Pointer<Utf16> monitorID,
-              Pointer<Utf16> wallpaper)>()(ptr.value, monitorID, wallpaper);
+              Pointer<Utf16> wallpaper)>()(ptr, monitorID, wallpaper);
 
   int getWallpaper(
           Pointer<Utf16> monitorID, Pointer<Pointer<Utf16>> wallpaper) =>
       _vtable.GetWallpaper.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> monitorID,
-                  Pointer<Pointer<Utf16>> wallpaper)>()(
-          ptr.value, monitorID, wallpaper);
+          int Function(VTablePointer, Pointer<Utf16> monitorID,
+              Pointer<Pointer<Utf16>> wallpaper)>()(ptr, monitorID, wallpaper);
 
   int getMonitorDevicePathAt(
           int monitorIndex, Pointer<Pointer<Utf16>> monitorID) =>
       _vtable.GetMonitorDevicePathAt.asFunction<
               int Function(VTablePointer, int monitorIndex,
                   Pointer<Pointer<Utf16>> monitorID)>()(
-          ptr.value, monitorIndex, monitorID);
+          ptr, monitorIndex, monitorID);
 
   int getMonitorDevicePathCount(Pointer<Uint32> count) =>
       _vtable.GetMonitorDevicePathCount.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> count)>()(ptr.value, count);
+          int Function(VTablePointer, Pointer<Uint32> count)>()(ptr, count);
 
   int getMonitorRECT(Pointer<Utf16> monitorID, Pointer<RECT> displayRect) =>
       _vtable.GetMonitorRECT.asFunction<
           int Function(VTablePointer, Pointer<Utf16> monitorID,
-              Pointer<RECT> displayRect)>()(ptr.value, monitorID, displayRect);
+              Pointer<RECT> displayRect)>()(ptr, monitorID, displayRect);
 
   int setBackgroundColor(int color) => _vtable.SetBackgroundColor.asFunction<
-      int Function(VTablePointer, int color)>()(ptr.value, color);
+      int Function(VTablePointer, int color)>()(ptr, color);
 
   int getBackgroundColor(Pointer<Uint32> color) =>
       _vtable.GetBackgroundColor.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> color)>()(ptr.value, color);
+          int Function(VTablePointer, Pointer<Uint32> color)>()(ptr, color);
 
   int setPosition(int position) => _vtable.SetPosition.asFunction<
-      int Function(VTablePointer, int position)>()(ptr.value, position);
+      int Function(VTablePointer, int position)>()(ptr, position);
 
   int getPosition(Pointer<Int32> position) => _vtable.GetPosition.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> position)>()(ptr.value, position);
+      int Function(VTablePointer, Pointer<Int32> position)>()(ptr, position);
 
-  int setSlideshow(
-          Pointer<VTablePointer> items) =>
-      _vtable.SetSlideshow.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> items)>()(ptr.value, items);
+  int setSlideshow(VTablePointer items) => _vtable.SetSlideshow.asFunction<
+      int Function(VTablePointer, VTablePointer items)>()(ptr, items);
 
-  int getSlideshow(Pointer<Pointer<VTablePointer>> items) =>
+  int getSlideshow(Pointer<VTablePointer> items) =>
       _vtable.GetSlideshow.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> items)>()(ptr.value, items);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> items)>()(ptr, items);
 
   int setSlideshowOptions(int options, int slideshowTick) =>
       _vtable.SetSlideshowOptions.asFunction<
               int Function(VTablePointer, int options, int slideshowTick)>()(
-          ptr.value, options, slideshowTick);
+          ptr, options, slideshowTick);
 
   int getSlideshowOptions(
           Pointer<Int32> options, Pointer<Uint32> slideshowTick) =>
       _vtable.GetSlideshowOptions.asFunction<
-              int Function(VTablePointer, Pointer<Int32> options,
-                  Pointer<Uint32> slideshowTick)>()(
-          ptr.value, options, slideshowTick);
+          int Function(VTablePointer, Pointer<Int32> options,
+              Pointer<Uint32> slideshowTick)>()(ptr, options, slideshowTick);
 
   int advanceSlideshow(Pointer<Utf16> monitorID, int direction) =>
       _vtable.AdvanceSlideshow.asFunction<
           int Function(VTablePointer, Pointer<Utf16> monitorID,
-              int direction)>()(ptr.value, monitorID, direction);
+              int direction)>()(ptr, monitorID, direction);
 
   int getStatus(Pointer<Int32> state) => _vtable.GetStatus.asFunction<
-      int Function(VTablePointer, Pointer<Int32> state)>()(ptr.value, state);
+      int Function(VTablePointer, Pointer<Int32> state)>()(ptr, state);
 
   int enable(int enable) =>
       _vtable.Enable.asFunction<int Function(VTablePointer, int enable)>()(
-          ptr.value, enable);
+          ptr, enable);
 }
 
 /// @nodoc
@@ -142,13 +134,11 @@ base class IDesktopWallpaperVtbl extends Struct {
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Int32> position)>> GetPosition;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> items)>>
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer items)>>
       SetSlideshow;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> items)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> items)>>
       GetSlideshow;
   external Pointer<
           NativeFunction<

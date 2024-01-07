@@ -29,150 +29,133 @@ const IID_IMoniker = '{0000000f-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IMoniker extends IPersistStream {
-  IMoniker(super.ptr) : _vtable = ptr.value.value.cast<IMonikerVtbl>().ref;
+  IMoniker(super.ptr) : _vtable = ptr.value.cast<IMonikerVtbl>().ref;
 
   final IMonikerVtbl _vtable;
 
   factory IMoniker.from(IUnknown interface) =>
       IMoniker(interface.toInterface(IID_IMoniker));
 
-  int bindToObject(Pointer<VTablePointer> pbc, Pointer<VTablePointer> pmkToLeft,
+  int bindToObject(VTablePointer pbc, VTablePointer pmkToLeft,
           Pointer<GUID> riidResult, Pointer<Pointer> ppvResult) =>
       _vtable.BindToObject.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> pbc,
-                  Pointer<VTablePointer> pmkToLeft,
+                  VTablePointer pbc,
+                  VTablePointer pmkToLeft,
                   Pointer<GUID> riidResult,
                   Pointer<Pointer> ppvResult)>()(
-          ptr.value, pbc, pmkToLeft, riidResult, ppvResult);
+          ptr, pbc, pmkToLeft, riidResult, ppvResult);
 
-  int bindToStorage(
-          Pointer<VTablePointer> pbc,
-          Pointer<VTablePointer> pmkToLeft,
-          Pointer<GUID> riid,
-          Pointer<Pointer> ppvObj) =>
+  int bindToStorage(VTablePointer pbc, VTablePointer pmkToLeft,
+          Pointer<GUID> riid, Pointer<Pointer> ppvObj) =>
       _vtable.BindToStorage.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> pbc,
-                  Pointer<VTablePointer> pmkToLeft,
-                  Pointer<GUID> riid,
-                  Pointer<Pointer> ppvObj)>()(
-          ptr.value, pbc, pmkToLeft, riid, ppvObj);
+          int Function(
+              VTablePointer,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
+              Pointer<GUID> riid,
+              Pointer<Pointer> ppvObj)>()(ptr, pbc, pmkToLeft, riid, ppvObj);
 
   int reduce(
-          Pointer<VTablePointer> pbc,
+          VTablePointer pbc,
           int dwReduceHowFar,
-          Pointer<Pointer<VTablePointer>> ppmkToLeft,
-          Pointer<Pointer<VTablePointer>> ppmkReduced) =>
+          Pointer<VTablePointer> ppmkToLeft,
+          Pointer<VTablePointer> ppmkReduced) =>
       _vtable.Reduce.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> pbc,
+                  VTablePointer pbc,
                   int dwReduceHowFar,
-                  Pointer<Pointer<VTablePointer>> ppmkToLeft,
-                  Pointer<Pointer<VTablePointer>> ppmkReduced)>()(
-          ptr.value, pbc, dwReduceHowFar, ppmkToLeft, ppmkReduced);
+                  Pointer<VTablePointer> ppmkToLeft,
+                  Pointer<VTablePointer> ppmkReduced)>()(
+          ptr, pbc, dwReduceHowFar, ppmkToLeft, ppmkReduced);
 
-  int composeWith(Pointer<VTablePointer> pmkRight, int fOnlyIfNotGeneric,
-          Pointer<Pointer<VTablePointer>> ppmkComposite) =>
+  int composeWith(VTablePointer pmkRight, int fOnlyIfNotGeneric,
+          Pointer<VTablePointer> ppmkComposite) =>
       _vtable.ComposeWith.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> pmkRight,
+                  VTablePointer pmkRight,
                   int fOnlyIfNotGeneric,
-                  Pointer<Pointer<VTablePointer>> ppmkComposite)>()(
-          ptr.value, pmkRight, fOnlyIfNotGeneric, ppmkComposite);
+                  Pointer<VTablePointer> ppmkComposite)>()(
+          ptr, pmkRight, fOnlyIfNotGeneric, ppmkComposite);
 
-  int enum_(int fForward, Pointer<Pointer<VTablePointer>> ppenumMoniker) =>
+  int enum_(int fForward, Pointer<VTablePointer> ppenumMoniker) =>
       _vtable.Enum.asFunction<
               int Function(VTablePointer, int fForward,
-                  Pointer<Pointer<VTablePointer>> ppenumMoniker)>()(
-          ptr.value, fForward, ppenumMoniker);
+                  Pointer<VTablePointer> ppenumMoniker)>()(
+          ptr, fForward, ppenumMoniker);
 
-  int isEqual(
-          Pointer<VTablePointer> pmkOtherMoniker) =>
-      _vtable.IsEqual.asFunction<
-              int Function(
-                  VTablePointer, Pointer<VTablePointer> pmkOtherMoniker)>()(
-          ptr.value, pmkOtherMoniker);
+  int isEqual(VTablePointer pmkOtherMoniker) => _vtable.IsEqual.asFunction<
+          int Function(VTablePointer, VTablePointer pmkOtherMoniker)>()(
+      ptr, pmkOtherMoniker);
 
   int hash(Pointer<Uint32> pdwHash) => _vtable.Hash.asFunction<
-      int Function(
-          VTablePointer, Pointer<Uint32> pdwHash)>()(ptr.value, pdwHash);
+      int Function(VTablePointer, Pointer<Uint32> pdwHash)>()(ptr, pdwHash);
 
-  int isRunning(Pointer<VTablePointer> pbc, Pointer<VTablePointer> pmkToLeft,
-          Pointer<VTablePointer> pmkNewlyRunning) =>
+  int isRunning(VTablePointer pbc, VTablePointer pmkToLeft,
+          VTablePointer pmkNewlyRunning) =>
       _vtable.IsRunning.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> pbc,
-                  Pointer<VTablePointer> pmkToLeft,
-                  Pointer<VTablePointer> pmkNewlyRunning)>()(
-          ptr.value, pbc, pmkToLeft, pmkNewlyRunning);
+              int Function(VTablePointer, VTablePointer pbc,
+                  VTablePointer pmkToLeft, VTablePointer pmkNewlyRunning)>()(
+          ptr, pbc, pmkToLeft, pmkNewlyRunning);
 
-  int getTimeOfLastChange(Pointer<VTablePointer> pbc,
-          Pointer<VTablePointer> pmkToLeft, Pointer<FILETIME> pFileTime) =>
+  int getTimeOfLastChange(VTablePointer pbc, VTablePointer pmkToLeft,
+          Pointer<FILETIME> pFileTime) =>
       _vtable.GetTimeOfLastChange.asFunction<
-              int Function(
-                  VTablePointer,
-                  Pointer<VTablePointer> pbc,
-                  Pointer<VTablePointer> pmkToLeft,
-                  Pointer<FILETIME> pFileTime)>()(
-          ptr.value, pbc, pmkToLeft, pFileTime);
+          int Function(
+              VTablePointer,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
+              Pointer<FILETIME> pFileTime)>()(ptr, pbc, pmkToLeft, pFileTime);
 
-  int inverse(Pointer<Pointer<VTablePointer>> ppmk) =>
-      _vtable.Inverse.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppmk)>()(ptr.value, ppmk);
+  int inverse(Pointer<VTablePointer> ppmk) => _vtable.Inverse.asFunction<
+      int Function(VTablePointer, Pointer<VTablePointer> ppmk)>()(ptr, ppmk);
 
-  int commonPrefixWith(Pointer<VTablePointer> pmkOther,
-          Pointer<Pointer<VTablePointer>> ppmkPrefix) =>
+  int commonPrefixWith(
+          VTablePointer pmkOther, Pointer<VTablePointer> ppmkPrefix) =>
       _vtable.CommonPrefixWith.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pmkOther,
-                  Pointer<Pointer<VTablePointer>> ppmkPrefix)>()(
-          ptr.value, pmkOther, ppmkPrefix);
+          int Function(VTablePointer, VTablePointer pmkOther,
+              Pointer<VTablePointer> ppmkPrefix)>()(ptr, pmkOther, ppmkPrefix);
 
-  int relativePathTo(Pointer<VTablePointer> pmkOther,
-          Pointer<Pointer<VTablePointer>> ppmkRelPath) =>
+  int relativePathTo(
+          VTablePointer pmkOther, Pointer<VTablePointer> ppmkRelPath) =>
       _vtable.RelativePathTo.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pmkOther,
-                  Pointer<Pointer<VTablePointer>> ppmkRelPath)>()(
-          ptr.value, pmkOther, ppmkRelPath);
+              int Function(VTablePointer, VTablePointer pmkOther,
+                  Pointer<VTablePointer> ppmkRelPath)>()(
+          ptr, pmkOther, ppmkRelPath);
 
-  int getDisplayName(
-          Pointer<VTablePointer> pbc,
-          Pointer<VTablePointer> pmkToLeft,
+  int getDisplayName(VTablePointer pbc, VTablePointer pmkToLeft,
           Pointer<Pointer<Utf16>> ppszDisplayName) =>
       _vtable.GetDisplayName.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> pbc,
-                  Pointer<VTablePointer> pmkToLeft,
+                  VTablePointer pbc,
+                  VTablePointer pmkToLeft,
                   Pointer<Pointer<Utf16>> ppszDisplayName)>()(
-          ptr.value, pbc, pmkToLeft, ppszDisplayName);
+          ptr, pbc, pmkToLeft, ppszDisplayName);
 
   int parseDisplayName(
-          Pointer<VTablePointer> pbc,
-          Pointer<VTablePointer> pmkToLeft,
+          VTablePointer pbc,
+          VTablePointer pmkToLeft,
           Pointer<Utf16> pszDisplayName,
           Pointer<Uint32> pchEaten,
-          Pointer<Pointer<VTablePointer>> ppmkOut) =>
+          Pointer<VTablePointer> ppmkOut) =>
       _vtable.ParseDisplayName.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<VTablePointer> pbc,
-                  Pointer<VTablePointer> pmkToLeft,
+                  VTablePointer pbc,
+                  VTablePointer pmkToLeft,
                   Pointer<Utf16> pszDisplayName,
                   Pointer<Uint32> pchEaten,
-                  Pointer<Pointer<VTablePointer>> ppmkOut)>()(
-          ptr.value, pbc, pmkToLeft, pszDisplayName, pchEaten, ppmkOut);
+                  Pointer<VTablePointer> ppmkOut)>()(
+          ptr, pbc, pmkToLeft, pszDisplayName, pchEaten, ppmkOut);
 
   int isSystemMoniker(Pointer<Uint32> pdwMksys) =>
       _vtable.IsSystemMoniker.asFunction<
           int Function(
-              VTablePointer, Pointer<Uint32> pdwMksys)>()(ptr.value, pdwMksys);
+              VTablePointer, Pointer<Uint32> pdwMksys)>()(ptr, pdwMksys);
 }
 
 /// @nodoc
@@ -182,41 +165,41 @@ base class IMonikerVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<VTablePointer> pmkToLeft,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
               Pointer<GUID> riidResult,
               Pointer<Pointer> ppvResult)>> BindToObject;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<VTablePointer> pmkToLeft,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
               Pointer<GUID> riid,
               Pointer<Pointer> ppvObj)>> BindToStorage;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
+              VTablePointer pbc,
               Uint32 dwReduceHowFar,
-              Pointer<Pointer<VTablePointer>> ppmkToLeft,
-              Pointer<Pointer<VTablePointer>> ppmkReduced)>> Reduce;
+              Pointer<VTablePointer> ppmkToLeft,
+              Pointer<VTablePointer> ppmkReduced)>> Reduce;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pmkRight,
+              VTablePointer pmkRight,
               Int32 fOnlyIfNotGeneric,
-              Pointer<Pointer<VTablePointer>> ppmkComposite)>> ComposeWith;
+              Pointer<VTablePointer> ppmkComposite)>> ComposeWith;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Int32 fForward,
-              Pointer<Pointer<VTablePointer>> ppenumMoniker)>> Enum;
+              Pointer<VTablePointer> ppenumMoniker)>> Enum;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<VTablePointer> pmkOtherMoniker)>> IsEqual;
+          NativeFunction<
+              Int32 Function(VTablePointer, VTablePointer pmkOtherMoniker)>>
+      IsEqual;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Uint32> pdwHash)>> Hash;
@@ -224,44 +207,43 @@ base class IMonikerVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<VTablePointer> pmkToLeft,
-              Pointer<VTablePointer> pmkNewlyRunning)>> IsRunning;
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
+              VTablePointer pmkNewlyRunning)>> IsRunning;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<VTablePointer> pmkToLeft,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
               Pointer<FILETIME> pFileTime)>> GetTimeOfLastChange;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> ppmk)>> Inverse;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> ppmk)>> Inverse;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pmkOther,
-              Pointer<Pointer<VTablePointer>> ppmkPrefix)>> CommonPrefixWith;
+          Int32 Function(VTablePointer, VTablePointer pmkOther,
+              Pointer<VTablePointer> ppmkPrefix)>> CommonPrefixWith;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pmkOther,
-              Pointer<Pointer<VTablePointer>> ppmkRelPath)>> RelativePathTo;
+          Int32 Function(VTablePointer, VTablePointer pmkOther,
+              Pointer<VTablePointer> ppmkRelPath)>> RelativePathTo;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<VTablePointer> pmkToLeft,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
               Pointer<Pointer<Utf16>> ppszDisplayName)>> GetDisplayName;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<VTablePointer> pbc,
-              Pointer<VTablePointer> pmkToLeft,
+              VTablePointer pbc,
+              VTablePointer pmkToLeft,
               Pointer<Utf16> pszDisplayName,
               Pointer<Uint32> pchEaten,
-              Pointer<Pointer<VTablePointer>> ppmkOut)>> ParseDisplayName;
+              Pointer<VTablePointer> ppmkOut)>> ParseDisplayName;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Uint32> pdwMksys)>>

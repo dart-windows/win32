@@ -10994,11 +10994,11 @@ void main() {
     test('Can instantiate CoCreateInstance', () {
       final ole32 = DynamicLibrary.open('ole32.dll');
       final CoCreateInstance = ole32.lookupFunction<
-          Int32 Function(Pointer<GUID> rclsid, Pointer<VTablePointer> pUnkOuter,
+          Int32 Function(Pointer<GUID> rclsid, VTablePointer pUnkOuter,
               Uint32 dwClsContext, Pointer<GUID> riid, Pointer<Pointer> ppv),
           int Function(
               Pointer<GUID> rclsid,
-              Pointer<VTablePointer> pUnkOuter,
+              VTablePointer pUnkOuter,
               int dwClsContext,
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>('CoCreateInstance');
@@ -11082,7 +11082,7 @@ void main() {
       final ole32 = DynamicLibrary.open('ole32.dll');
       final CoSetProxyBlanket = ole32.lookupFunction<
           Int32 Function(
-              Pointer<VTablePointer> pProxy,
+              VTablePointer pProxy,
               Uint32 dwAuthnSvc,
               Uint32 dwAuthzSvc,
               Pointer<Utf16> pServerPrincName,
@@ -11091,7 +11091,7 @@ void main() {
               Pointer pAuthInfo,
               Uint32 dwCapabilities),
           int Function(
-              Pointer<VTablePointer> pProxy,
+              VTablePointer pProxy,
               int dwAuthnSvc,
               int dwAuthzSvc,
               Pointer<Utf16> pServerPrincName,
@@ -11158,9 +11158,9 @@ void main() {
       final ole32 = DynamicLibrary.open('ole32.dll');
       final CreateStreamOnHGlobal = ole32.lookupFunction<
           Int32 Function(Pointer hGlobal, Int32 fDeleteOnRelease,
-              Pointer<Pointer<VTablePointer>> ppstm),
+              Pointer<VTablePointer> ppstm),
           int Function(Pointer hGlobal, int fDeleteOnRelease,
-              Pointer<Pointer<VTablePointer>> ppstm)>('CreateStreamOnHGlobal');
+              Pointer<VTablePointer> ppstm)>('CreateStreamOnHGlobal');
       expect(CreateStreamOnHGlobal, isA<Function>());
     });
     test('Can instantiate GetClassFile', () {
@@ -11174,9 +11174,8 @@ void main() {
     test('Can instantiate GetHGlobalFromStream', () {
       final ole32 = DynamicLibrary.open('ole32.dll');
       final GetHGlobalFromStream = ole32.lookupFunction<
-          Int32 Function(
-              Pointer<VTablePointer> pstm, Pointer<Pointer> phglobal),
-          int Function(Pointer<VTablePointer> pstm,
+          Int32 Function(VTablePointer pstm, Pointer<Pointer> phglobal),
+          int Function(VTablePointer pstm,
               Pointer<Pointer> phglobal)>('GetHGlobalFromStream');
       expect(GetHGlobalFromStream, isA<Function>());
     });
@@ -11268,11 +11267,11 @@ void main() {
     test('Can instantiate SHCreateItemFromParsingName', () {
       final shell32 = DynamicLibrary.open('shell32.dll');
       final SHCreateItemFromParsingName = shell32.lookupFunction<
-          Int32 Function(Pointer<Utf16> pszPath, Pointer<VTablePointer> pbc,
+          Int32 Function(Pointer<Utf16> pszPath, VTablePointer pbc,
               Pointer<GUID> riid, Pointer<Pointer> ppv),
           int Function(
               Pointer<Utf16> pszPath,
-              Pointer<VTablePointer> pbc,
+              VTablePointer pbc,
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>('SHCreateItemFromParsingName');
       expect(SHCreateItemFromParsingName, isA<Function>());
@@ -11346,9 +11345,8 @@ void main() {
     test('Can instantiate SHGetDesktopFolder', () {
       final shell32 = DynamicLibrary.open('shell32.dll');
       final SHGetDesktopFolder = shell32.lookupFunction<
-          Int32 Function(Pointer<Pointer<VTablePointer>> ppshf),
-          int Function(
-              Pointer<Pointer<VTablePointer>> ppshf)>('SHGetDesktopFolder');
+          Int32 Function(Pointer<VTablePointer> ppshf),
+          int Function(Pointer<VTablePointer> ppshf)>('SHGetDesktopFolder');
       expect(SHGetDesktopFolder, isA<Function>());
     });
     test('Can instantiate SHGetDiskFreeSpaceEx', () {
@@ -11820,9 +11818,9 @@ void main() {
       final oleaut32 = DynamicLibrary.open('oleaut32.dll');
       final GetActiveObject = oleaut32.lookupFunction<
           Int32 Function(Pointer<GUID> rclsid, Pointer pvReserved,
-              Pointer<Pointer<VTablePointer>> ppunk),
+              Pointer<VTablePointer> ppunk),
           int Function(Pointer<GUID> rclsid, Pointer pvReserved,
-              Pointer<Pointer<VTablePointer>> ppunk)>('GetActiveObject');
+              Pointer<VTablePointer> ppunk)>('GetActiveObject');
       expect(GetActiveObject, isA<Function>());
     });
     test('Can instantiate SysAllocString', () {
@@ -12243,11 +12241,10 @@ void main() {
             DynamicLibrary.open('api-ms-win-core-winrt-error-l1-1-0.dll');
         final GetRestrictedErrorInfo =
             api_ms_win_core_winrt_error_l1_1_0.lookupFunction<
-                    Int32 Function(
-                        Pointer<Pointer<VTablePointer>> ppRestrictedErrorInfo),
-                    int Function(
-                        Pointer<Pointer<VTablePointer>> ppRestrictedErrorInfo)>(
-                'GetRestrictedErrorInfo');
+                Int32 Function(Pointer<VTablePointer> ppRestrictedErrorInfo),
+                int Function(
+                    Pointer<VTablePointer>
+                        ppRestrictedErrorInfo)>('GetRestrictedErrorInfo');
         expect(GetRestrictedErrorInfo, isA<Function>());
       });
     }
@@ -13158,11 +13155,10 @@ void main() {
         final api_ms_win_core_winrt_l1_1_0 =
             DynamicLibrary.open('api-ms-win-core-winrt-l1-1-0.dll');
         final RoActivateInstance = api_ms_win_core_winrt_l1_1_0.lookupFunction<
-                Int32 Function(IntPtr activatableClassId,
-                    Pointer<Pointer<VTablePointer>> instance),
-                int Function(int activatableClassId,
-                    Pointer<Pointer<VTablePointer>> instance)>(
-            'RoActivateInstance');
+            Int32 Function(
+                IntPtr activatableClassId, Pointer<VTablePointer> instance),
+            int Function(int activatableClassId,
+                Pointer<VTablePointer> instance)>('RoActivateInstance');
         expect(RoActivateInstance, isA<Function>());
       });
     }
@@ -13221,15 +13217,15 @@ void main() {
             api_ms_win_ro_typeresolution_l1_1_0.lookupFunction<
                 Int32 Function(
                     IntPtr name,
-                    Pointer<VTablePointer> metaDataDispenser,
+                    VTablePointer metaDataDispenser,
                     Pointer<IntPtr> metaDataFilePath,
-                    Pointer<Pointer<VTablePointer>> metaDataImport,
+                    Pointer<VTablePointer> metaDataImport,
                     Pointer<Uint32> typeDefToken),
                 int Function(
                     int name,
-                    Pointer<VTablePointer> metaDataDispenser,
+                    VTablePointer metaDataDispenser,
                     Pointer<IntPtr> metaDataFilePath,
-                    Pointer<Pointer<VTablePointer>> metaDataImport,
+                    Pointer<VTablePointer> metaDataImport,
                     Pointer<Uint32> typeDefToken)>('RoGetMetaDataFile');
         expect(RoGetMetaDataFile, isA<Function>());
       });
@@ -13929,8 +13925,8 @@ void main() {
     test('Can instantiate SHCreateMemStream', () {
       final shlwapi = DynamicLibrary.open('shlwapi.dll');
       final SHCreateMemStream = shlwapi.lookupFunction<
-          Pointer<VTablePointer> Function(Pointer<Uint8> pInit, Uint32 cbInit),
-          Pointer<VTablePointer> Function(
+          VTablePointer Function(Pointer<Uint8> pInit, Uint32 cbInit),
+          VTablePointer Function(
               Pointer<Uint8> pInit, int cbInit)>('SHCreateMemStream');
       expect(SHCreateMemStream, isA<Function>());
     });

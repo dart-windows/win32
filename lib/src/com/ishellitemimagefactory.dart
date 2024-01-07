@@ -20,7 +20,7 @@ const IID_IShellItemImageFactory = '{bcc18b79-ba16-442f-80c4-8a59c30c463b}';
 /// {@category com}
 class IShellItemImageFactory extends IUnknown {
   IShellItemImageFactory(super.ptr)
-      : _vtable = ptr.value.value.cast<IShellItemImageFactoryVtbl>().ref;
+      : _vtable = ptr.value.cast<IShellItemImageFactoryVtbl>().ref;
 
   final IShellItemImageFactoryVtbl _vtable;
 
@@ -30,7 +30,7 @@ class IShellItemImageFactory extends IUnknown {
   int getImage(SIZE size, int flags, Pointer<IntPtr> phbm) =>
       _vtable.GetImage.asFunction<
           int Function(VTablePointer, SIZE size, int flags,
-              Pointer<IntPtr> phbm)>()(ptr.value, size, flags, phbm);
+              Pointer<IntPtr> phbm)>()(ptr, size, flags, phbm);
 }
 
 /// @nodoc

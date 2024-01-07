@@ -24,7 +24,7 @@ const IID_IUIAutomationSelectionPattern =
 /// {@category com}
 class IUIAutomationSelectionPattern extends IUnknown {
   IUIAutomationSelectionPattern(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationSelectionPatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationSelectionPatternVtbl>().ref;
 
   final IUIAutomationSelectionPatternVtbl _vtable;
 
@@ -32,10 +32,10 @@ class IUIAutomationSelectionPattern extends IUnknown {
       IUIAutomationSelectionPattern(
           interface.toInterface(IID_IUIAutomationSelectionPattern));
 
-  int getCurrentSelection(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getCurrentSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentSelection.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get currentCanSelectMultiple {
     final retValuePtr = calloc<Int32>();
@@ -43,7 +43,7 @@ class IUIAutomationSelectionPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentCanSelectMultiple
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -59,7 +59,7 @@ class IUIAutomationSelectionPattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentIsSelectionRequired
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -69,10 +69,10 @@ class IUIAutomationSelectionPattern extends IUnknown {
     }
   }
 
-  int getCachedSelection(Pointer<Pointer<VTablePointer>> retVal) =>
+  int getCachedSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedSelection.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> retVal)>()(ptr.value, retVal);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get cachedCanSelectMultiple {
     final retValuePtr = calloc<Int32>();
@@ -80,7 +80,7 @@ class IUIAutomationSelectionPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedCanSelectMultiple
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -96,7 +96,7 @@ class IUIAutomationSelectionPattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedIsSelectionRequired
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -112,8 +112,7 @@ base class IUIAutomationSelectionPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetCurrentSelection;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
@@ -123,8 +122,7 @@ base class IUIAutomationSelectionPatternVtbl extends Struct {
       get_CurrentIsSelectionRequired;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> retVal)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       GetCachedSelection;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>

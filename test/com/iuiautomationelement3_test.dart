@@ -15,17 +15,15 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final uiautomationelement3 = IUIAutomationElement3(ptr);
   test('Can instantiate IUIAutomationElement3.showContextMenu', () {
     expect(uiautomationelement3.showContextMenu, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

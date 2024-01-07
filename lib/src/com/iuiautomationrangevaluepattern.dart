@@ -23,8 +23,7 @@ const IID_IUIAutomationRangeValuePattern =
 /// {@category com}
 class IUIAutomationRangeValuePattern extends IUnknown {
   IUIAutomationRangeValuePattern(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationRangeValuePatternVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationRangeValuePatternVtbl>().ref;
 
   final IUIAutomationRangeValuePatternVtbl _vtable;
 
@@ -34,7 +33,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
 
   int setValue(double val) =>
       _vtable.SetValue.asFunction<int Function(VTablePointer, double val)>()(
-          ptr.value, val);
+          ptr, val);
 
   double get currentValue {
     final retValuePtr = calloc<Double>();
@@ -42,7 +41,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentValue.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -58,7 +57,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -74,7 +73,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentMaximum.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -90,7 +89,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentMinimum.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -106,7 +105,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentLargeChange.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -122,7 +121,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CurrentSmallChange.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -138,7 +137,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedValue.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -154,7 +153,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -170,7 +169,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedMaximum.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -186,7 +185,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedMinimum.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -202,7 +201,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedLargeChange.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -218,7 +217,7 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     try {
       final hr = _vtable.get_CachedSmallChange.asFunction<
           int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr.value, retValuePtr);
+              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

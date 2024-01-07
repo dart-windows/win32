@@ -36,12 +36,11 @@ class Dispatcher {
       }
 
       hr = CoCreateInstance(
-          clsid, nullptr, CLSCTX_INPROC_SERVER, pIID_IDispatch, ppv.cast());
-      if (FAILED(hr)) {
-        throw WindowsException(hr);
-      }
+          clsid, nullptr, CLSCTX_INPROC_SERVER, pIID_IDispatch, ppv);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-      final iDispatch = IDispatch(ppv);
+      final iDispatch = IDispatch(ppv.value);
+      free(ppv);
 
       return Dispatcher(progID, iDispatch);
     } finally {
@@ -57,8 +56,8 @@ class Dispatcher {
     final dispid = calloc<Int32>();
 
     try {
-      final hr = disp.getIDsOfNames(
-          IID_NULL, ptName.cast(), 1, LOCALE_USER_DEFAULT, dispid);
+      final hr =
+          disp.getIDsOfNames(IID_NULL, ptName, 1, LOCALE_USER_DEFAULT, dispid);
       if (FAILED(hr)) {
         throw WindowsException(hr);
       } else {

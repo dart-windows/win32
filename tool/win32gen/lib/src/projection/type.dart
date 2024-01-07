@@ -236,10 +236,7 @@ class TypeProjection {
     if (isArrayType) return unwrapArrayType();
     if (isWin32Delegate) return unwrapCallbackType();
 
-    if (isInterface) {
-      return const TypeTuple(
-          'Pointer<VTablePointer>', 'Pointer<VTablePointer>');
-    }
+    if (isInterface) return const TypeTuple('VTablePointer', 'VTablePointer');
 
     // default: return the name as returned by metadata
     throw Exception('Type information missing for $typeIdentifier.');

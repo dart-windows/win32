@@ -22,7 +22,7 @@ const IID_IStream = '{0000000c-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IStream extends ISequentialStream {
-  IStream(super.ptr) : _vtable = ptr.value.value.cast<IStreamVtbl>().ref;
+  IStream(super.ptr) : _vtable = ptr.value.cast<IStreamVtbl>().ref;
 
   final IStreamVtbl _vtable;
 
@@ -33,44 +33,41 @@ class IStream extends ISequentialStream {
       _vtable.Seek.asFunction<
               int Function(VTablePointer, int dlibMove, int dwOrigin,
                   Pointer<Uint64> plibNewPosition)>()(
-          ptr.value, dlibMove, dwOrigin, plibNewPosition);
+          ptr, dlibMove, dwOrigin, plibNewPosition);
 
   int setSize(int libNewSize) =>
       _vtable.SetSize.asFunction<int Function(VTablePointer, int libNewSize)>()(
-          ptr.value, libNewSize);
+          ptr, libNewSize);
 
-  int copyTo(Pointer<VTablePointer> pstm, int cb, Pointer<Uint64> pcbRead,
+  int copyTo(VTablePointer pstm, int cb, Pointer<Uint64> pcbRead,
           Pointer<Uint64> pcbWritten) =>
       _vtable.CopyTo.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> pstm, int cb,
+              int Function(VTablePointer, VTablePointer pstm, int cb,
                   Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>()(
-          ptr.value, pstm, cb, pcbRead, pcbWritten);
+          ptr, pstm, cb, pcbRead, pcbWritten);
 
   int commit(int grfCommitFlags) => _vtable.Commit.asFunction<
-      int Function(
-          VTablePointer, int grfCommitFlags)>()(ptr.value, grfCommitFlags);
+      int Function(VTablePointer, int grfCommitFlags)>()(ptr, grfCommitFlags);
 
-  int revert() =>
-      _vtable.Revert.asFunction<int Function(VTablePointer)>()(ptr.value);
+  int revert() => _vtable.Revert.asFunction<int Function(VTablePointer)>()(ptr);
 
   int lockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.LockRegion.asFunction<
           int Function(VTablePointer, int libOffset, int cb,
-              int dwLockType)>()(ptr.value, libOffset, cb, dwLockType);
+              int dwLockType)>()(ptr, libOffset, cb, dwLockType);
 
   int unlockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.UnlockRegion.asFunction<
           int Function(VTablePointer, int libOffset, int cb,
-              int dwLockType)>()(ptr.value, libOffset, cb, dwLockType);
+              int dwLockType)>()(ptr, libOffset, cb, dwLockType);
 
   int stat(Pointer<STATSTG> pstatstg, int grfStatFlag) =>
       _vtable.Stat.asFunction<
           int Function(VTablePointer, Pointer<STATSTG> pstatstg,
-              int grfStatFlag)>()(ptr.value, pstatstg, grfStatFlag);
+              int grfStatFlag)>()(ptr, pstatstg, grfStatFlag);
 
-  int clone(Pointer<Pointer<VTablePointer>> ppstm) => _vtable.Clone.asFunction<
-          int Function(VTablePointer, Pointer<Pointer<VTablePointer>> ppstm)>()(
-      ptr.value, ppstm);
+  int clone(Pointer<VTablePointer> ppstm) => _vtable.Clone.asFunction<
+      int Function(VTablePointer, Pointer<VTablePointer> ppstm)>()(ptr, ppstm);
 }
 
 /// @nodoc
@@ -84,7 +81,7 @@ base class IStreamVtbl extends Struct {
       NativeFunction<Int32 Function(VTablePointer, Uint64 libNewSize)>> SetSize;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> pstm, Uint64 cb,
+          Int32 Function(VTablePointer, VTablePointer pstm, Uint64 cb,
               Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>> CopyTo;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Uint32 grfCommitFlags)>>
@@ -104,6 +101,5 @@ base class IStreamVtbl extends Struct {
               Uint32 grfStatFlag)>> Stat;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<VTablePointer>> ppstm)>> Clone;
+          Int32 Function(VTablePointer, Pointer<VTablePointer> ppstm)>> Clone;
 }

@@ -38,13 +38,12 @@ void main() {
 
   // Obtain the initial locator to Windows Management
   // on a particular host computer.
-  final pLoc = IWbemLocator(calloc<VTablePointer>());
+  final pLoc = calloc<VTablePointer>();
 
   final clsid = calloc<GUID>()..ref.setGUID(CLSID_WbemLocator);
   final iid = calloc<GUID>()..ref.setGUID(IID_IWbemLocator);
 
-  hr = CoCreateInstance(
-      clsid, nullptr, CLSCTX_INPROC_SERVER, iid, pLoc.ptr.cast());
+  hr = CoCreateInstance(clsid, nullptr, CLSCTX_INPROC_SERVER, iid, pLoc);
 
   if (FAILED(hr)) {
     final exception = WindowsException(hr);
@@ -54,13 +53,16 @@ void main() {
     throw exception;
   }
 
-  final proxy = calloc<Pointer<VTablePointer>>();
+  final locator = IWbemLocator(pLoc.value);
+  free(pLoc);
+
+  final proxy = calloc<VTablePointer>();
 
   // Connect to the root\cimv2 namespace with the
   // current user and obtain pointer pSvc
   // to make IWbemServices calls.
 
-  hr = pLoc.connectServer(
+  hr = locator.connectServer(
       TEXT('ROOT\\CIMV2'), // WMI namespace
       nullptr, // User name
       nullptr, // User password
@@ -81,7 +83,8 @@ void main() {
 
   print('Connected to ROOT\\CIMV2 WMI namespace');
 
-  final pSvc = IWbemServices(proxy.cast());
+  final pSvc = IWbemServices(proxy.value);
+  free(proxy);
 
   // Set the IWbemServices proxy so that impersonation
   // of the user (client) occurs.
@@ -105,7 +108,7 @@ void main() {
 
   // Use the IWbemServices pointer to make requests of WMI.
 
-  final pEnumerator = calloc<Pointer<VTablePointer>>();
+  final pEnumerator = calloc<VTablePointer>();
   IEnumWbemClassObject enumerator;
 
   // For example, query for all the running processes
@@ -125,23 +128,24 @@ void main() {
 
     throw exception;
   } else {
-    enumerator = IEnumWbemClassObject(pEnumerator.cast());
+    enumerator = IEnumWbemClassObject(pEnumerator.value);
 
     final uReturn = calloc<Uint32>();
 
     var idx = 0;
     while (enumerator.ptr.address > 0) {
-      final pClsObj = calloc<IntPtr>();
+      final pClsObj = calloc<VTablePointer>();
 
-      hr = enumerator.next(
-          WBEM_TIMEOUT_TYPE.WBEM_INFINITE, 1, pClsObj.cast(), uReturn);
+      hr =
+          enumerator.next(WBEM_TIMEOUT_TYPE.WBEM_INFINITE, 1, pClsObj, uReturn);
 
       // Break out of the while loop if we've run out of processes to inspect
       if (uReturn.value == 0) break;
 
       idx++;
 
-      final clsObj = IWbemClassObject(pClsObj.cast());
+      final clsObj = IWbemClassObject(pClsObj.value);
+      free(pClsObj);
 
       final vtProp = calloc<VARIANT>();
       hr = clsObj.get(TEXT('Name'), 0, vtProp, nullptr, nullptr);
@@ -155,5 +159,6 @@ void main() {
     print('$idx processes found.');
   }
 
+  free(pEnumerator);
   CoUninitialize();
 }

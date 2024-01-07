@@ -24,8 +24,7 @@ const IID_IKnownFolder = '{3aa7af7e-9b36-420c-a8e3-f77d4674a488}';
 ///
 /// {@category com}
 class IKnownFolder extends IUnknown {
-  IKnownFolder(super.ptr)
-      : _vtable = ptr.value.value.cast<IKnownFolderVtbl>().ref;
+  IKnownFolder(super.ptr) : _vtable = ptr.value.cast<IKnownFolderVtbl>().ref;
 
   final IKnownFolderVtbl _vtable;
 
@@ -33,45 +32,43 @@ class IKnownFolder extends IUnknown {
       IKnownFolder(interface.toInterface(IID_IKnownFolder));
 
   int getId(Pointer<GUID> pkfid) => _vtable.GetId.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pkfid)>()(ptr.value, pkfid);
+      int Function(VTablePointer, Pointer<GUID> pkfid)>()(ptr, pkfid);
 
   int getCategory(Pointer<Int32> pCategory) => _vtable.GetCategory.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> pCategory)>()(ptr.value, pCategory);
+      int Function(VTablePointer, Pointer<Int32> pCategory)>()(ptr, pCategory);
 
   int getShellItem(int dwFlags, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetShellItem.asFunction<
           int Function(VTablePointer, int dwFlags, Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>()(ptr.value, dwFlags, riid, ppv);
+              Pointer<Pointer> ppv)>()(ptr, dwFlags, riid, ppv);
 
   int getPath(int dwFlags, Pointer<Pointer<Utf16>> ppszPath) =>
       _vtable.GetPath.asFunction<
-              int Function(VTablePointer, int dwFlags,
-                  Pointer<Pointer<Utf16>> ppszPath)>()(
-          ptr.value, dwFlags, ppszPath);
+          int Function(VTablePointer, int dwFlags,
+              Pointer<Pointer<Utf16>> ppszPath)>()(ptr, dwFlags, ppszPath);
 
   int setPath(int dwFlags, Pointer<Utf16> pszPath) =>
       _vtable.SetPath.asFunction<
           int Function(VTablePointer, int dwFlags,
-              Pointer<Utf16> pszPath)>()(ptr.value, dwFlags, pszPath);
+              Pointer<Utf16> pszPath)>()(ptr, dwFlags, pszPath);
 
   int getIDList(int dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl) =>
       _vtable.GetIDList.asFunction<
           int Function(VTablePointer, int dwFlags,
-              Pointer<Pointer<ITEMIDLIST>> ppidl)>()(ptr.value, dwFlags, ppidl);
+              Pointer<Pointer<ITEMIDLIST>> ppidl)>()(ptr, dwFlags, ppidl);
 
   int getFolderType(Pointer<GUID> pftid) => _vtable.GetFolderType.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pftid)>()(ptr.value, pftid);
+      int Function(VTablePointer, Pointer<GUID> pftid)>()(ptr, pftid);
 
   int getRedirectionCapabilities(Pointer<Uint32> pCapabilities) =>
       _vtable.GetRedirectionCapabilities.asFunction<
               int Function(VTablePointer, Pointer<Uint32> pCapabilities)>()(
-          ptr.value, pCapabilities);
+          ptr, pCapabilities);
 
   int getFolderDefinition(Pointer<KNOWNFOLDER_DEFINITION> pKFD) =>
       _vtable.GetFolderDefinition.asFunction<
           int Function(VTablePointer,
-              Pointer<KNOWNFOLDER_DEFINITION> pKFD)>()(ptr.value, pKFD);
+              Pointer<KNOWNFOLDER_DEFINITION> pKFD)>()(ptr, pKFD);
 }
 
 /// @nodoc

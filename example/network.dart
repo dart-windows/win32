@@ -44,16 +44,17 @@ void main() {
     }
 
     final enumPtr = calloc<VTablePointer>();
-    hr = netManager.getNetworks(
-        NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_ALL, enumPtr.cast());
+    hr = netManager.getNetworks(NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_ALL, enumPtr);
     if (FAILED(hr)) throw WindowsException(hr);
 
     print('\nNetworks (connected and disconnected) on this machine:');
-    final enumerator = IEnumNetworkConnections(enumPtr);
+    final enumerator = IEnumNetworkConnections(enumPtr.value);
+    free(enumPtr);
     var netPtr = calloc<VTablePointer>();
-    hr = enumerator.next(1, netPtr.cast(), elements);
+    hr = enumerator.next(1, netPtr, elements);
     while (elements.value == 1) {
-      final network = INetwork(netPtr);
+      final network = INetwork(netPtr.value);
+      free(netPtr);
       hr = network.getDescription(descPtr);
       if (SUCCEEDED(hr)) {
         final networkName = descPtr.value.toDartString();
@@ -63,7 +64,7 @@ void main() {
       }
 
       netPtr = calloc<VTablePointer>();
-      hr = enumerator.next(1, netPtr.cast(), elements);
+      hr = enumerator.next(1, netPtr, elements);
     }
   } finally {
     free(elements);

@@ -22,7 +22,7 @@ const IID_ISpellingError = '{b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3}';
 /// {@category com}
 class ISpellingError extends IUnknown {
   ISpellingError(super.ptr)
-      : _vtable = ptr.value.value.cast<ISpellingErrorVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpellingErrorVtbl>().ref;
 
   final ISpellingErrorVtbl _vtable;
 
@@ -35,7 +35,7 @@ class ISpellingError extends IUnknown {
     try {
       final hr = _vtable.get_StartIndex
               .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,7 +51,7 @@ class ISpellingError extends IUnknown {
     try {
       final hr = _vtable.get_Length
               .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -67,7 +67,7 @@ class ISpellingError extends IUnknown {
     try {
       final hr = _vtable.get_CorrectiveAction
               .asFunction<int Function(VTablePointer, Pointer<Int32> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -83,7 +83,7 @@ class ISpellingError extends IUnknown {
     try {
       final hr = _vtable.get_Replacement.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;

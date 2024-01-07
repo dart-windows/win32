@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final uiautomationelement7 = IUIAutomationElement7(ptr);
   test('Can instantiate IUIAutomationElement7.findFirstWithOptions', () {
@@ -41,6 +40,5 @@ void main() {
     expect(uiautomationelement7.getCurrentMetadataValue, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

@@ -19,8 +19,7 @@ const IID_ISpellCheckerChangedEventHandler =
 /// {@category com}
 class ISpellCheckerChangedEventHandler extends IUnknown {
   ISpellCheckerChangedEventHandler(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<ISpellCheckerChangedEventHandlerVtbl>().ref;
+      : _vtable = ptr.value.cast<ISpellCheckerChangedEventHandlerVtbl>().ref;
 
   final ISpellCheckerChangedEventHandlerVtbl _vtable;
 
@@ -28,15 +27,14 @@ class ISpellCheckerChangedEventHandler extends IUnknown {
       ISpellCheckerChangedEventHandler(
           interface.toInterface(IID_ISpellCheckerChangedEventHandler));
 
-  int invoke(Pointer<VTablePointer> sender) => _vtable.Invoke.asFunction<
-      int Function(
-          VTablePointer, Pointer<VTablePointer> sender)>()(ptr.value, sender);
+  int invoke(VTablePointer sender) => _vtable.Invoke.asFunction<
+      int Function(VTablePointer, VTablePointer sender)>()(ptr, sender);
 }
 
 /// @nodoc
 base class ISpellCheckerChangedEventHandlerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> sender)>> Invoke;
+          NativeFunction<Int32 Function(VTablePointer, VTablePointer sender)>>
+      Invoke;
 }

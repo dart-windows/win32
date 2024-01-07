@@ -19,7 +19,7 @@ const IID_IAppxManifestApplication = '{5da89bf4-3773-46be-b650-7e744863b7e8}';
 /// {@category com}
 class IAppxManifestApplication extends IUnknown {
   IAppxManifestApplication(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestApplicationVtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestApplicationVtbl>().ref;
 
   final IAppxManifestApplicationVtbl _vtable;
 
@@ -30,13 +30,12 @@ class IAppxManifestApplication extends IUnknown {
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
           int Function(VTablePointer, Pointer<Utf16> name,
-              Pointer<Pointer<Utf16>> value)>()(ptr.value, name, value);
+              Pointer<Pointer<Utf16>> value)>()(ptr, name, value);
 
   int getAppUserModelId(Pointer<Pointer<Utf16>> appUserModelId) =>
       _vtable.GetAppUserModelId.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> appUserModelId)>()(
-          ptr.value, appUserModelId);
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> appUserModelId)>()(ptr, appUserModelId);
 }
 
 /// @nodoc

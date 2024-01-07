@@ -22,7 +22,7 @@ const IID_IUIAutomationElementArray = '{14314595-b4bc-4055-95f2-58f2e42c9855}';
 /// {@category com}
 class IUIAutomationElementArray extends IUnknown {
   IUIAutomationElementArray(super.ptr)
-      : _vtable = ptr.value.value.cast<IUIAutomationElementArrayVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationElementArrayVtbl>().ref;
 
   final IUIAutomationElementArrayVtbl _vtable;
 
@@ -36,7 +36,7 @@ class IUIAutomationElementArray extends IUnknown {
     try {
       final hr = _vtable.get_Length
               .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -46,11 +46,10 @@ class IUIAutomationElementArray extends IUnknown {
     }
   }
 
-  int getElement(int index, Pointer<Pointer<VTablePointer>> element) =>
+  int getElement(int index, Pointer<VTablePointer> element) =>
       _vtable.GetElement.asFunction<
-              int Function(VTablePointer, int index,
-                  Pointer<Pointer<VTablePointer>> element)>()(
-          ptr.value, index, element);
+          int Function(VTablePointer, int index,
+              Pointer<VTablePointer> element)>()(ptr, index, element);
 }
 
 /// @nodoc
@@ -60,7 +59,8 @@ base class IUIAutomationElementArrayVtbl extends Struct {
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> length)>>
       get_Length;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Int32 index,
-              Pointer<Pointer<VTablePointer>> element)>> GetElement;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Int32 index, Pointer<VTablePointer> element)>>
+      GetElement;
 }

@@ -44,6 +44,7 @@
     "Windows.Win32.Networking.NetworkListManager.INetworkConnection": "The INetworkConnection interface represents a single network connection.",
     "Windows.Win32.Networking.NetworkListManager.INetworkListManager": "The INetworkListManager interface provides a set of methods to perform network list management functions.",
     "Windows.Win32.Networking.NetworkListManager.INetworkListManagerEvents": "INetworkListManagerEvents is a message sink interface that a client implements to get overall machine state related events. Applications that are interested on higher-level events, for example internet connectivity, implement this interface.",
+    "Windows.Win32.Networking.WinHttp.IWinHttpRequest": "Provides all of the nonevent methods for Microsoft Windows HTTP Services (WinHTTP).",
     "Windows.Win32.Storage.Packaging.Appx.IAppxFactory": "Creates objects for reading and writing app packages.",
     "Windows.Win32.Storage.Packaging.Appx.IAppxFile": "Retrieves information about a payload or footprint file in a package.",
     "Windows.Win32.Storage.Packaging.Appx.IAppxFilesEnumerator": "Enumerates the payload files in a package.",

@@ -19,7 +19,7 @@ const IID_IAppxManifestPackageId = '{283ce2d7-7153-4a91-9649-7a0f7240945f}';
 /// {@category com}
 class IAppxManifestPackageId extends IUnknown {
   IAppxManifestPackageId(super.ptr)
-      : _vtable = ptr.value.value.cast<IAppxManifestPackageIdVtbl>().ref;
+      : _vtable = ptr.value.cast<IAppxManifestPackageIdVtbl>().ref;
 
   final IAppxManifestPackageIdVtbl _vtable;
 
@@ -27,45 +27,43 @@ class IAppxManifestPackageId extends IUnknown {
       IAppxManifestPackageId(interface.toInterface(IID_IAppxManifestPackageId));
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
-      int Function(
-          VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr.value, name);
+      int Function(VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr, name);
 
   int getArchitecture(Pointer<Int32> architecture) =>
       _vtable.GetArchitecture.asFunction<
-              int Function(VTablePointer, Pointer<Int32> architecture)>()(
-          ptr.value, architecture);
+          int Function(
+              VTablePointer, Pointer<Int32> architecture)>()(ptr, architecture);
 
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>()(
-          ptr.value, publisher);
+          ptr, publisher);
 
   int getVersion(Pointer<Uint64> packageVersion) =>
       _vtable.GetVersion.asFunction<
               int Function(VTablePointer, Pointer<Uint64> packageVersion)>()(
-          ptr.value, packageVersion);
+          ptr, packageVersion);
 
   int getResourceId(Pointer<Pointer<Utf16>> resourceId) =>
       _vtable.GetResourceId.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<Utf16>> resourceId)>()(ptr.value, resourceId);
+              Pointer<Pointer<Utf16>> resourceId)>()(ptr, resourceId);
 
   int comparePublisher(Pointer<Utf16> other, Pointer<Int32> isSame) =>
       _vtable.ComparePublisher.asFunction<
           int Function(VTablePointer, Pointer<Utf16> other,
-              Pointer<Int32> isSame)>()(ptr.value, other, isSame);
+              Pointer<Int32> isSame)>()(ptr, other, isSame);
 
   int getPackageFullName(Pointer<Pointer<Utf16>> packageFullName) =>
       _vtable.GetPackageFullName.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> packageFullName)>()(
-          ptr.value, packageFullName);
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> packageFullName)>()(ptr, packageFullName);
 
   int getPackageFamilyName(Pointer<Pointer<Utf16>> packageFamilyName) =>
       _vtable.GetPackageFamilyName.asFunction<
               int Function(
                   VTablePointer, Pointer<Pointer<Utf16>> packageFamilyName)>()(
-          ptr.value, packageFamilyName);
+          ptr, packageFamilyName);
 }
 
 /// @nodoc

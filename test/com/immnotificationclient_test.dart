@@ -15,11 +15,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
-  final ptr = calloc<VTablePointer>()..value = calloc<Pointer<IntPtr>>();
+  final ptr = calloc<Pointer<IntPtr>>();
 
   final mmnotificationclient = IMMNotificationClient(ptr);
   test('Can instantiate IMMNotificationClient.onDeviceStateChanged', () {
@@ -38,6 +37,5 @@ void main() {
     expect(mmnotificationclient.onPropertyValueChanged, isA<Function>());
   });
 
-  free(ptr.value);
   free(ptr);
 }

@@ -26,8 +26,7 @@ const IID_IUIAutomationProxyFactoryEntry =
 /// {@category com}
 class IUIAutomationProxyFactoryEntry extends IUnknown {
   IUIAutomationProxyFactoryEntry(super.ptr)
-      : _vtable =
-            ptr.value.value.cast<IUIAutomationProxyFactoryEntryVtbl>().ref;
+      : _vtable = ptr.value.cast<IUIAutomationProxyFactoryEntryVtbl>().ref;
 
   final IUIAutomationProxyFactoryEntryVtbl _vtable;
 
@@ -35,18 +34,20 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
       IUIAutomationProxyFactoryEntry(
           interface.toInterface(IID_IUIAutomationProxyFactoryEntry));
 
-  Pointer<VTablePointer> get proxyFactory {
+  VTablePointer get proxyFactory {
     final retValuePtr = calloc<VTablePointer>();
 
-    final hr = _vtable.get_ProxyFactory.asFunction<
-            int Function(VTablePointer, Pointer<VTablePointer> factory)>()(
-        ptr.value, retValuePtr);
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+    try {
+      final hr = _vtable.get_ProxyFactory.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> factory)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-    return retValuePtr;
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
   }
 
   Pointer<Utf16> get className {
@@ -55,7 +56,7 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     try {
       final hr = _vtable.get_ClassName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> className)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -71,7 +72,7 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     try {
       final hr = _vtable.get_ImageName.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> imageName)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -87,7 +88,7 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     try {
       final hr = _vtable.get_AllowSubstringMatch.asFunction<
           int Function(VTablePointer,
-              Pointer<Int32> allowSubstringMatch)>()(ptr.value, retValuePtr);
+              Pointer<Int32> allowSubstringMatch)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -103,7 +104,7 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     try {
       final hr = _vtable.get_CanCheckBaseClass.asFunction<
               int Function(VTablePointer, Pointer<Int32> canCheckBaseClass)>()(
-          ptr.value, retValuePtr);
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -118,8 +119,8 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_NeedsAdviseEvents.asFunction<
-              int Function(VTablePointer, Pointer<Int32> adviseEvents)>()(
-          ptr.value, retValuePtr);
+          int Function(
+              VTablePointer, Pointer<Int32> adviseEvents)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -131,36 +132,34 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
   set className(Pointer<Utf16> value) {
     final hr = _vtable.put_ClassName.asFunction<
-        int Function(
-            VTablePointer, Pointer<Utf16> className)>()(ptr.value, value);
+        int Function(VTablePointer, Pointer<Utf16> className)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set imageName(Pointer<Utf16> value) {
     final hr = _vtable.put_ImageName.asFunction<
-        int Function(
-            VTablePointer, Pointer<Utf16> imageName)>()(ptr.value, value);
+        int Function(VTablePointer, Pointer<Utf16> imageName)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set allowSubstringMatch(int value) {
     final hr = _vtable.put_AllowSubstringMatch
             .asFunction<int Function(VTablePointer, int allowSubstringMatch)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set canCheckBaseClass(int value) {
     final hr = _vtable.put_CanCheckBaseClass
             .asFunction<int Function(VTablePointer, int canCheckBaseClass)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set needsAdviseEvents(int value) {
     final hr = _vtable.put_NeedsAdviseEvents
             .asFunction<int Function(VTablePointer, int adviseEvents)>()(
-        ptr.value, value);
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -169,14 +168,14 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
       _vtable.SetWinEventsForAutomationEvent.asFunction<
               int Function(VTablePointer, int eventId, int propertyId,
                   Pointer<SAFEARRAY> winEvents)>()(
-          ptr.value, eventId, propertyId, winEvents);
+          ptr, eventId, propertyId, winEvents);
 
   int getWinEventsForAutomationEvent(
           int eventId, int propertyId, Pointer<Pointer<SAFEARRAY>> winEvents) =>
       _vtable.GetWinEventsForAutomationEvent.asFunction<
               int Function(VTablePointer, int eventId, int propertyId,
                   Pointer<Pointer<SAFEARRAY>> winEvents)>()(
-          ptr.value, eventId, propertyId, winEvents);
+          ptr, eventId, propertyId, winEvents);
 }
 
 /// @nodoc

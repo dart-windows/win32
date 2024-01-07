@@ -18,17 +18,17 @@ const IID_IProvideClassInfo = '{b196b283-bab4-101a-b69c-00aa00341d07}';
 /// {@category com}
 class IProvideClassInfo extends IUnknown {
   IProvideClassInfo(super.ptr)
-      : _vtable = ptr.value.value.cast<IProvideClassInfoVtbl>().ref;
+      : _vtable = ptr.value.cast<IProvideClassInfoVtbl>().ref;
 
   final IProvideClassInfoVtbl _vtable;
 
   factory IProvideClassInfo.from(IUnknown interface) =>
       IProvideClassInfo(interface.toInterface(IID_IProvideClassInfo));
 
-  int getClassInfo(Pointer<Pointer<VTablePointer>> ppTI) =>
+  int getClassInfo(Pointer<VTablePointer> ppTI) =>
       _vtable.GetClassInfo.asFunction<
-          int Function(VTablePointer,
-              Pointer<Pointer<VTablePointer>> ppTI)>()(ptr.value, ppTI);
+          int Function(
+              VTablePointer, Pointer<VTablePointer> ppTI)>()(ptr, ppTI);
 }
 
 /// @nodoc
@@ -36,7 +36,6 @@ base class IProvideClassInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<VTablePointer>> ppTI)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> ppTI)>>
       GetClassInfo;
 }
