@@ -33,6 +33,9 @@ class IUnknown {
   final Pointer<VTablePointer> ptr;
   final IUnknownVtbl _vtable;
 
+  factory IUnknown.from(IUnknown interface) =>
+      IUnknown(interface.toInterface(IID_IUnknown));
+
   static final _finalizer = Finalizer<Pointer<VTablePointer>>((ptr) {
     // Decrement the reference count of the object only when COM is initialized,
     // otherwise this will cause the program to crash.
@@ -46,9 +49,6 @@ class IUnknown {
       .ref
       .Release
       .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.value);
-
-  factory IUnknown.from(IUnknown interface) =>
-      IUnknown(interface.toInterface(IID_IUnknown));
 
   /// Queries a COM object for a pointer to one of its interface; identifying
   /// the interface by a reference to its interface identifier (IID).
@@ -84,7 +84,21 @@ class IUnknown {
   /// Call this method only if you want to manually manage the lifetime of the
   /// object.
   void detach() => _finalizer.detach(this);
+}
 
+/// @nodoc
+base class IUnknownVtbl extends Struct {
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> riid,
+              Pointer<Pointer> ppvObject)>> QueryInterface;
+  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
+      AddRef;
+  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
+      Release;
+}
+
+extension IUnknownToInterfaceHelper on IUnknown {
   /// Cast an existing COM object to a specified interface.
   ///
   /// Takes a string (typically a constant such as `IID_IModalWindow`) and does
@@ -101,16 +115,4 @@ class IUnknown {
       free(riid);
     }
   }
-}
-
-/// @nodoc
-base class IUnknownVtbl extends Struct {
-  external Pointer<
-      NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> riid,
-              Pointer<Pointer> ppvObject)>> QueryInterface;
-  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
-      AddRef;
-  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
-      Release;
 }
