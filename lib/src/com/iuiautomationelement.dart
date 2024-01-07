@@ -175,12 +175,12 @@ class IUIAutomationElement extends IUnknown {
   }
 
   int get currentControlType {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentControlType.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CurrentControlType
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -679,12 +679,12 @@ class IUIAutomationElement extends IUnknown {
   }
 
   int get cachedControlType {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedControlType.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CachedControlType
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -1221,43 +1221,43 @@ base class IUIAutomationElementVtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Uint32 propertyId, Pointer<VARIANT> retVal)>>
+                  VTablePointer, Int32 propertyId, Pointer<VARIANT> retVal)>>
       GetCurrentPropertyValue;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Uint32 propertyId,
+              Int32 propertyId,
               Int32 ignoreDefaultValue,
               Pointer<VARIANT> retVal)>> GetCurrentPropertyValueEx;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Uint32 propertyId, Pointer<VARIANT> retVal)>>
+                  VTablePointer, Int32 propertyId, Pointer<VARIANT> retVal)>>
       GetCachedPropertyValue;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Uint32 propertyId,
+              Int32 propertyId,
               Int32 ignoreDefaultValue,
               Pointer<VARIANT> retVal)>> GetCachedPropertyValueEx;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 patternId, Pointer<GUID> riid,
+          Int32 Function(VTablePointer, Int32 patternId, Pointer<GUID> riid,
               Pointer<Pointer> patternObject)>> GetCurrentPatternAs;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 patternId, Pointer<GUID> riid,
+          Int32 Function(VTablePointer, Int32 patternId, Pointer<GUID> riid,
               Pointer<Pointer> patternObject)>> GetCachedPatternAs;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Uint32 patternId,
+              Int32 Function(VTablePointer, Int32 patternId,
                   Pointer<Pointer<VTablePointer>> patternObject)>>
       GetCurrentPattern;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 patternId,
+          Int32 Function(VTablePointer, Int32 patternId,
               Pointer<Pointer<VTablePointer>> patternObject)>> GetCachedPattern;
   external Pointer<
           NativeFunction<
@@ -1273,7 +1273,7 @@ base class IUIAutomationElementVtbl extends Struct {
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentProcessId;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentControlType;
   external Pointer<
           NativeFunction<
@@ -1386,7 +1386,7 @@ base class IUIAutomationElementVtbl extends Struct {
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedProcessId;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedControlType;
   external Pointer<
           NativeFunction<

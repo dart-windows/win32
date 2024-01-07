@@ -1847,7 +1847,7 @@ int RegRestoreKey(int hKey, Pointer<Utf16> lpFile, int dwFlags) =>
     _RegRestoreKey(hKey, lpFile, dwFlags);
 
 final _RegRestoreKey = _advapi32.lookupFunction<
-    Uint32 Function(IntPtr hKey, Pointer<Utf16> lpFile, Int32 dwFlags),
+    Uint32 Function(IntPtr hKey, Pointer<Utf16> lpFile, Uint32 dwFlags),
     int Function(
         int hKey, Pointer<Utf16> lpFile, int dwFlags)>('RegRestoreKeyW');
 

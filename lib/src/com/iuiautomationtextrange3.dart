@@ -42,12 +42,12 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
                   Pointer<Pointer<VTablePointer>> children)>()(
           ptr.value, cacheRequest, children);
 
-  int getAttributeValues(Pointer<Uint32> attributeIds, int attributeIdCount,
+  int getAttributeValues(Pointer<Int32> attributeIds, int attributeIdCount,
           Pointer<Pointer<SAFEARRAY>> attributeValues) =>
       _vtable.GetAttributeValues.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<Uint32> attributeIds,
+                  Pointer<Int32> attributeIds,
                   int attributeIdCount,
                   Pointer<Pointer<SAFEARRAY>> attributeValues)>()(
           ptr.value, attributeIds, attributeIdCount, attributeValues);
@@ -69,7 +69,7 @@ base class IUIAutomationTextRange3Vtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<Uint32> attributeIds,
+              Pointer<Int32> attributeIds,
               Int32 attributeIdCount,
               Pointer<Pointer<SAFEARRAY>> attributeValues)>> GetAttributeValues;
 }

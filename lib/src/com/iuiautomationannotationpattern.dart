@@ -33,12 +33,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationAnnotationPattern));
 
   int get currentAnnotationTypeId {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentAnnotationTypeId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CurrentAnnotationTypeId
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -111,12 +111,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
   }
 
   int get cachedAnnotationTypeId {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedAnnotationTypeId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CachedAnnotationTypeId
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -193,7 +193,7 @@ class IUIAutomationAnnotationPattern extends IUnknown {
 base class IUIAutomationAnnotationPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentAnnotationTypeId;
   external Pointer<
           NativeFunction<
@@ -212,7 +212,7 @@ base class IUIAutomationAnnotationPatternVtbl extends Struct {
               Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
       get_CurrentTarget;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedAnnotationTypeId;
   external Pointer<
           NativeFunction<

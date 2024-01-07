@@ -225,7 +225,7 @@ int CoInitializeEx(Pointer pvReserved, int dwCoInit) =>
     _CoInitializeEx(pvReserved, dwCoInit);
 
 final _CoInitializeEx = _ole32.lookupFunction<
-    Int32 Function(Pointer pvReserved, Int32 dwCoInit),
+    Int32 Function(Pointer pvReserved, Uint32 dwCoInit),
     int Function(Pointer pvReserved, int dwCoInit)>('CoInitializeEx');
 
 /// Registers security and sets the default security values for the process.
@@ -266,7 +266,7 @@ final _CoInitializeSecurity = _ole32.lookupFunction<
         Uint32 dwAuthnLevel,
         Uint32 dwImpLevel,
         Pointer pAuthList,
-        Int32 dwCapabilities,
+        Uint32 dwCapabilities,
         Pointer pReserved3),
     int Function(
         Pointer pSecDesc,
@@ -317,7 +317,7 @@ final _CoSetProxyBlanket = _ole32.lookupFunction<
         Uint32 dwAuthnLevel,
         Uint32 dwImpLevel,
         Pointer pAuthInfo,
-        Int32 dwCapabilities),
+        Uint32 dwCapabilities),
     int Function(
         Pointer<VTablePointer> pProxy,
         int dwAuthnSvc,

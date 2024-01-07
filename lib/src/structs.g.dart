@@ -2194,19 +2194,19 @@ base class DEVMODE extends Struct {
 
   external _DEVMODEW__Anonymous1_e__Union Anonymous1;
 
-  @Uint16()
+  @Int16()
   external int dmColor;
 
-  @Uint16()
+  @Int16()
   external int dmDuplex;
 
   @Int16()
   external int dmYResolution;
 
-  @Uint16()
+  @Int16()
   external int dmTTOption;
 
-  @Uint16()
+  @Int16()
   external int dmCollate;
 
   @Array(32)
@@ -4757,7 +4757,7 @@ base class JOBOBJECT_IO_RATE_CONTROL_INFORMATION extends Struct {
   @Uint32()
   external int BaseIoSize;
 
-  @Int32()
+  @Uint32()
   external int ControlFlags;
 }
 
@@ -5917,7 +5917,7 @@ base class MOUSEINPUT extends Struct {
   @Int32()
   external int dy;
 
-  @Int32()
+  @Uint32()
   external int mouseData;
 
   @Uint32()
@@ -7295,7 +7295,7 @@ base class PRINTER_OPTIONS extends Struct {
   @Uint32()
   external int cbSize;
 
-  @Int32()
+  @Uint32()
   external int dwFlags;
 }
 
@@ -8972,7 +8972,7 @@ base class STATSTG extends Struct {
   @Uint32()
   external int grfMode;
 
-  @Int32()
+  @Uint32()
   external int grfLocksSupported;
 
   external GUID clsid;
@@ -10126,13 +10126,13 @@ base class VS_FIXEDFILEINFO extends Struct {
   @Uint32()
   external int dwFileFlags;
 
-  @Int32()
+  @Uint32()
   external int dwFileOS;
 
-  @Int32()
+  @Uint32()
   external int dwFileType;
 
-  @Int32()
+  @Uint32()
   external int dwFileSubtype;
 
   @Uint32()

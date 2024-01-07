@@ -144,7 +144,7 @@ int DwmGetWindowAttribute(
     _DwmGetWindowAttribute(hwnd, dwAttribute, pvAttribute, cbAttribute);
 
 final _DwmGetWindowAttribute = _dwmapi.lookupFunction<
-    Int32 Function(IntPtr hwnd, Int32 dwAttribute, Pointer pvAttribute,
+    Int32 Function(IntPtr hwnd, Uint32 dwAttribute, Pointer pvAttribute,
         Uint32 cbAttribute),
     int Function(int hwnd, int dwAttribute, Pointer pvAttribute,
         int cbAttribute)>('DwmGetWindowAttribute');
@@ -205,7 +205,7 @@ int DwmSetWindowAttribute(
     _DwmSetWindowAttribute(hwnd, dwAttribute, pvAttribute, cbAttribute);
 
 final _DwmSetWindowAttribute = _dwmapi.lookupFunction<
-    Int32 Function(IntPtr hwnd, Int32 dwAttribute, Pointer pvAttribute,
+    Int32 Function(IntPtr hwnd, Uint32 dwAttribute, Pointer pvAttribute,
         Uint32 cbAttribute),
     int Function(int hwnd, int dwAttribute, Pointer pvAttribute,
         int cbAttribute)>('DwmSetWindowAttribute');

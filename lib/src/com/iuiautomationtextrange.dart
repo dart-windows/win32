@@ -156,11 +156,7 @@ base class IUIAutomationTextRangeVtbl extends Struct {
       ExpandToEnclosingUnit;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer,
-              Uint32 attr,
-              VARIANT val,
-              Int32 backward,
+          Int32 Function(VTablePointer, Int32 attr, VARIANT val, Int32 backward,
               Pointer<Pointer<VTablePointer>> found)>> FindAttribute;
   external Pointer<
       NativeFunction<
@@ -173,7 +169,7 @@ base class IUIAutomationTextRangeVtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Uint32 attr, Pointer<VARIANT> value)>>
+                  VTablePointer, Int32 attr, Pointer<VARIANT> value)>>
       GetAttributeValue;
   external Pointer<
           NativeFunction<

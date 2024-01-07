@@ -174,7 +174,7 @@ final _ShellExecute = _shell32.lookupFunction<
         Pointer<Utf16> lpFile,
         Pointer<Utf16> lpParameters,
         Pointer<Utf16> lpDirectory,
-        Uint32 nShowCmd),
+        Int32 nShowCmd),
     int Function(
         int hwnd,
         Pointer<Utf16> lpOperation,
@@ -330,7 +330,7 @@ int SHGetFileInfo(Pointer<Utf16> pszPath, int dwFileAttributes,
 
 final _SHGetFileInfo = _shell32.lookupFunction<
     IntPtr Function(Pointer<Utf16> pszPath, Uint32 dwFileAttributes,
-        Pointer<SHFILEINFO> psfi, Uint32 cbFileInfo, Int32 uFlags),
+        Pointer<SHFILEINFO> psfi, Uint32 cbFileInfo, Uint32 uFlags),
     int Function(
         Pointer<Utf16> pszPath,
         int dwFileAttributes,
@@ -377,7 +377,7 @@ int SHGetKnownFolderPath(Pointer<GUID> rfid, int dwFlags, int hToken,
     _SHGetKnownFolderPath(rfid, dwFlags, hToken, ppszPath);
 
 final _SHGetKnownFolderPath = _shell32.lookupFunction<
-    Int32 Function(Pointer<GUID> rfid, Int32 dwFlags, IntPtr hToken,
+    Int32 Function(Pointer<GUID> rfid, Uint32 dwFlags, IntPtr hToken,
         Pointer<Pointer<Utf16>> ppszPath),
     int Function(Pointer<GUID> rfid, int dwFlags, int hToken,
         Pointer<Pointer<Utf16>> ppszPath)>('SHGetKnownFolderPath');

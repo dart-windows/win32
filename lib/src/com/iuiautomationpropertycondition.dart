@@ -36,11 +36,11 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
           interface.toInterface(IID_IUIAutomationPropertyCondition));
 
   int get propertyId {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_PropertyId.asFunction<
-              int Function(VTablePointer, Pointer<Uint32> propertyId)>()(
+              int Function(VTablePointer, Pointer<Int32> propertyId)>()(
           ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -89,7 +89,7 @@ base class IUIAutomationPropertyConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> propertyId)>>
+              Int32 Function(VTablePointer, Pointer<Int32> propertyId)>>
       get_PropertyId;
   external Pointer<
           NativeFunction<

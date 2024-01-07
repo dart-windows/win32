@@ -147,6 +147,6 @@ base class IUIAutomationElement7Vtbl extends Struct {
       FindAllWithOptionsBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 targetId, Uint32 metadataId,
+          Int32 Function(VTablePointer, Int32 targetId, Int32 metadataId,
               Pointer<VARIANT> returnVal)>> GetCurrentMetadataValue;
 }

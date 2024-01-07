@@ -327,7 +327,7 @@ class IUIAutomation extends IUnknown {
           int scope,
           Pointer<VTablePointer> cacheRequest,
           Pointer<VTablePointer> handler,
-          Pointer<Uint32> propertyArray,
+          Pointer<Int32> propertyArray,
           int propertyCount) =>
       _vtable.AddPropertyChangedEventHandlerNativeArray.asFunction<
               int Function(
@@ -336,7 +336,7 @@ class IUIAutomation extends IUnknown {
                   int scope,
                   Pointer<VTablePointer> cacheRequest,
                   Pointer<VTablePointer> handler,
-                  Pointer<Uint32> propertyArray,
+                  Pointer<Int32> propertyArray,
                   int propertyCount)>()(ptr.value, element, scope, cacheRequest,
           handler, propertyArray, propertyCount);
 
@@ -650,12 +650,12 @@ base class IUIAutomationVtbl extends Struct {
       CreateFalseCondition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Uint32 propertyId, VARIANT value,
+              Int32 Function(VTablePointer, Int32 propertyId, VARIANT value,
                   Pointer<Pointer<VTablePointer>> newCondition)>>
       CreatePropertyCondition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Uint32 propertyId, VARIANT value,
+              Int32 Function(VTablePointer, Int32 propertyId, VARIANT value,
                   Int32 flags, Pointer<Pointer<VTablePointer>> newCondition)>>
       CreatePropertyConditionEx;
   external Pointer<
@@ -708,7 +708,7 @@ base class IUIAutomationVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Uint32 eventId,
+              Int32 eventId,
               Pointer<VTablePointer> element,
               Int32 scope,
               Pointer<VTablePointer> cacheRequest,
@@ -717,7 +717,7 @@ base class IUIAutomationVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Uint32 eventId,
+              Int32 eventId,
               Pointer<VTablePointer> element,
               Pointer<VTablePointer> handler)>> RemoveAutomationEventHandler;
   external Pointer<
@@ -728,7 +728,7 @@ base class IUIAutomationVtbl extends Struct {
               Int32 scope,
               Pointer<VTablePointer> cacheRequest,
               Pointer<VTablePointer> handler,
-              Pointer<Uint32> propertyArray,
+              Pointer<Int32> propertyArray,
               Int32 propertyCount)>> AddPropertyChangedEventHandlerNativeArray;
   external Pointer<
           NativeFunction<
@@ -806,13 +806,14 @@ base class IUIAutomationVtbl extends Struct {
                   VTablePointer, Pointer<VTablePointer> factoryMapping)>>
       get_ProxyFactoryMapping;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Uint32 property,
-              Pointer<Pointer<Utf16>> name)>> GetPropertyProgrammaticName;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer, Int32 property, Pointer<Pointer<Utf16>> name)>>
+      GetPropertyProgrammaticName;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Uint32 pattern, Pointer<Pointer<Utf16>> name)>>
+                  VTablePointer, Int32 pattern, Pointer<Pointer<Utf16>> name)>>
       GetPatternProgrammaticName;
   external Pointer<
           NativeFunction<

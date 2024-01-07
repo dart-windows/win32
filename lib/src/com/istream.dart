@@ -87,22 +87,21 @@ base class IStreamVtbl extends Struct {
           Int32 Function(VTablePointer, Pointer<VTablePointer> pstm, Uint64 cb,
               Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>> CopyTo;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 grfCommitFlags)>>
+          NativeFunction<Int32 Function(VTablePointer, Uint32 grfCommitFlags)>>
       Commit;
   external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Revert;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint64 libOffset, Uint64 cb,
-              Int32 dwLockType)>> LockRegion;
+              Uint32 dwLockType)>> LockRegion;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint64 libOffset, Uint64 cb,
               Uint32 dwLockType)>> UnlockRegion;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<STATSTG> pstatstg, Int32 grfStatFlag)>>
-      Stat;
+      NativeFunction<
+          Int32 Function(VTablePointer, Pointer<STATSTG> pstatstg,
+              Uint32 grfStatFlag)>> Stat;
   external Pointer<
       NativeFunction<
           Int32 Function(

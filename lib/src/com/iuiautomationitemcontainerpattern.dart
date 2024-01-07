@@ -49,7 +49,7 @@ base class IUIAutomationItemContainerPatternVtbl extends Struct {
           Int32 Function(
               VTablePointer,
               Pointer<VTablePointer> pStartAfter,
-              Uint32 propertyId,
+              Int32 propertyId,
               VARIANT value,
               Pointer<Pointer<VTablePointer>> pFound)>> FindItemByProperty;
 }

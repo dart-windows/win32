@@ -4026,7 +4026,7 @@ int GetScrollInfo(int hwnd, int nBar, Pointer<SCROLLINFO> lpsi) =>
     _GetScrollInfo(hwnd, nBar, lpsi);
 
 final _GetScrollInfo = _user32.lookupFunction<
-    Int32 Function(IntPtr hwnd, Uint32 nBar, Pointer<SCROLLINFO> lpsi),
+    Int32 Function(IntPtr hwnd, Int32 nBar, Pointer<SCROLLINFO> lpsi),
     int Function(
         int hwnd, int nBar, Pointer<SCROLLINFO> lpsi)>('GetScrollInfo');
 
@@ -4130,7 +4130,7 @@ final _GetSystemMenu = _user32.lookupFunction<
 /// {@category user32}
 int GetSystemMetrics(int nIndex) => _GetSystemMetrics(nIndex);
 
-final _GetSystemMetrics = _user32.lookupFunction<Int32 Function(Uint32 nIndex),
+final _GetSystemMetrics = _user32.lookupFunction<Int32 Function(Int32 nIndex),
     int Function(int nIndex)>('GetSystemMetrics');
 
 /// Retrieves the specified system metric or system configuration setting
@@ -4147,7 +4147,7 @@ int GetSystemMetricsForDpi(int nIndex, int dpi) =>
     _GetSystemMetricsForDpi(nIndex, dpi);
 
 final _GetSystemMetricsForDpi = _user32.lookupFunction<
-    Int32 Function(Uint32 nIndex, Uint32 dpi),
+    Int32 Function(Int32 nIndex, Uint32 dpi),
     int Function(int nIndex, int dpi)>('GetSystemMetricsForDpi');
 
 /// The GetTabbedTextExtent function computes the width and height of a
@@ -4364,7 +4364,7 @@ int GetUserObjectInformation(int hObj, int nIndex, Pointer pvInfo, int nLength,
     _GetUserObjectInformation(hObj, nIndex, pvInfo, nLength, lpnLengthNeeded);
 
 final _GetUserObjectInformation = _user32.lookupFunction<
-    Int32 Function(IntPtr hObj, Uint32 nIndex, Pointer pvInfo, Uint32 nLength,
+    Int32 Function(IntPtr hObj, Int32 nIndex, Pointer pvInfo, Uint32 nLength,
         Pointer<Uint32> lpnLengthNeeded),
     int Function(int hObj, int nIndex, Pointer pvInfo, int nLength,
         Pointer<Uint32> lpnLengthNeeded)>('GetUserObjectInformationW');
@@ -7318,7 +7318,7 @@ int SetScrollInfo(int hwnd, int nBar, Pointer<SCROLLINFO> lpsi, int redraw) =>
 
 final _SetScrollInfo = _user32.lookupFunction<
     Int32 Function(
-        IntPtr hwnd, Uint32 nBar, Pointer<SCROLLINFO> lpsi, Int32 redraw),
+        IntPtr hwnd, Int32 nBar, Pointer<SCROLLINFO> lpsi, Int32 redraw),
     int Function(int hwnd, int nBar, Pointer<SCROLLINFO> lpsi,
         int redraw)>('SetScrollInfo');
 
@@ -7632,7 +7632,7 @@ final _ShowOwnedPopups = _user32.lookupFunction<
 int ShowWindow(int hWnd, int nCmdShow) => _ShowWindow(hWnd, nCmdShow);
 
 final _ShowWindow = _user32.lookupFunction<
-    Int32 Function(IntPtr hWnd, Uint32 nCmdShow),
+    Int32 Function(IntPtr hWnd, Int32 nCmdShow),
     int Function(int hWnd, int nCmdShow)>('ShowWindow');
 
 /// Sets the show state of a window without waiting for the operation to
@@ -7648,7 +7648,7 @@ final _ShowWindow = _user32.lookupFunction<
 int ShowWindowAsync(int hWnd, int nCmdShow) => _ShowWindowAsync(hWnd, nCmdShow);
 
 final _ShowWindowAsync = _user32.lookupFunction<
-    Int32 Function(IntPtr hWnd, Uint32 nCmdShow),
+    Int32 Function(IntPtr hWnd, Int32 nCmdShow),
     int Function(int hWnd, int nCmdShow)>('ShowWindowAsync');
 
 /// Determines which pointer input frame generated the most recently

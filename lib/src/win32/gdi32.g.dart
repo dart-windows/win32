@@ -504,7 +504,7 @@ final _CreateHalftonePalette =
 int CreateHatchBrush(int iHatch, int color) => _CreateHatchBrush(iHatch, color);
 
 final _CreateHatchBrush = _gdi32.lookupFunction<
-    IntPtr Function(Uint32 iHatch, Uint32 color),
+    IntPtr Function(Int32 iHatch, Uint32 color),
     int Function(int iHatch, int color)>('CreateHatchBrush');
 
 /// The CreatePen function creates a logical pen that has the specified
@@ -523,7 +523,7 @@ int CreatePen(int iStyle, int cWidth, int color) =>
     _CreatePen(iStyle, cWidth, color);
 
 final _CreatePen = _gdi32.lookupFunction<
-    IntPtr Function(Uint32 iStyle, Int32 cWidth, Uint32 color),
+    IntPtr Function(Int32 iStyle, Int32 cWidth, Uint32 color),
     int Function(int iStyle, int cWidth, int color)>('CreatePen');
 
 /// The CreateSolidBrush function creates a logical brush that has the
@@ -768,7 +768,7 @@ final _FlattenPath =
 int GetDeviceCaps(int hdc, int index) => _GetDeviceCaps(hdc, index);
 
 final _GetDeviceCaps = _gdi32.lookupFunction<
-    Int32 Function(IntPtr hdc, Uint32 index),
+    Int32 Function(IntPtr hdc, Int32 index),
     int Function(int hdc, int index)>('GetDeviceCaps');
 
 /// The GetDIBits function retrieves the bits of the specified compatible
@@ -881,7 +881,7 @@ final _GetPixel = _gdi32.lookupFunction<
 int GetStockObject(int i) => _GetStockObject(i);
 
 final _GetStockObject =
-    _gdi32.lookupFunction<IntPtr Function(Uint32 i), int Function(int i)>(
+    _gdi32.lookupFunction<IntPtr Function(Int32 i), int Function(int i)>(
         'GetStockObject');
 
 /// The GetTextMetrics function fills the specified buffer with the metrics
@@ -1311,8 +1311,7 @@ final _SetBkColor = _gdi32.lookupFunction<
 /// {@category gdi32}
 int SetBkMode(int hdc, int mode) => _SetBkMode(hdc, mode);
 
-final _SetBkMode = _gdi32.lookupFunction<
-    Int32 Function(IntPtr hdc, Uint32 mode),
+final _SetBkMode = _gdi32.lookupFunction<Int32 Function(IntPtr hdc, Int32 mode),
     int Function(int hdc, int mode)>('SetBkMode');
 
 /// The SetMapMode function sets the mapping mode of the specified device
@@ -1330,7 +1329,7 @@ final _SetBkMode = _gdi32.lookupFunction<
 int SetMapMode(int hdc, int iMode) => _SetMapMode(hdc, iMode);
 
 final _SetMapMode = _gdi32.lookupFunction<
-    Int32 Function(IntPtr hdc, Uint32 iMode),
+    Int32 Function(IntPtr hdc, Int32 iMode),
     int Function(int hdc, int iMode)>('SetMapMode');
 
 /// The SetPixel function sets the pixel at the specified coordinates to the
@@ -1364,7 +1363,7 @@ final _SetPixel = _gdi32.lookupFunction<
 int SetStretchBltMode(int hdc, int mode) => _SetStretchBltMode(hdc, mode);
 
 final _SetStretchBltMode = _gdi32.lookupFunction<
-    Int32 Function(IntPtr hdc, Uint32 mode),
+    Int32 Function(IntPtr hdc, Int32 mode),
     int Function(int hdc, int mode)>('SetStretchBltMode');
 
 /// The SetTextColor function sets the text color for the specified device

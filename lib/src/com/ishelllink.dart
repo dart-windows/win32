@@ -83,9 +83,9 @@ class IShellLink extends IUnknown {
       _vtable.SetHotkey.asFunction<int Function(VTablePointer, int wHotkey)>()(
           ptr.value, wHotkey);
 
-  int getShowCmd(Pointer<Uint32> piShowCmd) => _vtable.GetShowCmd.asFunction<
+  int getShowCmd(Pointer<Int32> piShowCmd) => _vtable.GetShowCmd.asFunction<
       int Function(
-          VTablePointer, Pointer<Uint32> piShowCmd)>()(ptr.value, piShowCmd);
+          VTablePointer, Pointer<Int32> piShowCmd)>()(ptr.value, piShowCmd);
 
   int setShowCmd(int iShowCmd) => _vtable.SetShowCmd.asFunction<
       int Function(VTablePointer, int iShowCmd)>()(ptr.value, iShowCmd);
@@ -157,10 +157,9 @@ base class IShellLinkVtbl extends Struct {
       NativeFunction<Int32 Function(VTablePointer, Uint16 wHotkey)>> SetHotkey;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> piShowCmd)>> GetShowCmd;
+          Int32 Function(VTablePointer, Pointer<Int32> piShowCmd)>> GetShowCmd;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Uint32 iShowCmd)>>
-      SetShowCmd;
+      NativeFunction<Int32 Function(VTablePointer, Int32 iShowCmd)>> SetShowCmd;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> pszIconPath, Int32 cch,

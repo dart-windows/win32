@@ -114,10 +114,10 @@ class IUIAutomationCacheRequest extends IUnknown {
 base class IUIAutomationCacheRequestVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Uint32 propertyId)>>
+          NativeFunction<Int32 Function(VTablePointer, Int32 propertyId)>>
       AddProperty;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Uint32 patternId)>>
+          NativeFunction<Int32 Function(VTablePointer, Int32 patternId)>>
       AddPattern;
   external Pointer<
       NativeFunction<

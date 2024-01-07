@@ -31,12 +31,12 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
       IUIAutomationElement8(interface.toInterface(IID_IUIAutomationElement8));
 
   int get currentHeadingLevel {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentHeadingLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CurrentHeadingLevel
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -47,12 +47,12 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
   }
 
   int get cachedHeadingLevel {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedHeadingLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CachedHeadingLevel
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -67,9 +67,9 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
 base class IUIAutomationElement8Vtbl extends Struct {
   external IUIAutomationElement7Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentHeadingLevel;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedHeadingLevel;
 }

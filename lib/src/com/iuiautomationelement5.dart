@@ -32,12 +32,12 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
       IUIAutomationElement5(interface.toInterface(IID_IUIAutomationElement5));
 
   int get currentLandmarkType {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentLandmarkType.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CurrentLandmarkType
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -64,12 +64,12 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
   }
 
   int get cachedLandmarkType {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedLandmarkType.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CachedLandmarkType
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -100,14 +100,14 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 base class IUIAutomationElement5Vtbl extends Struct {
   external IUIAutomationElement4Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentLandmarkType;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentLocalizedLandmarkType;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedLandmarkType;
   external Pointer<
           NativeFunction<

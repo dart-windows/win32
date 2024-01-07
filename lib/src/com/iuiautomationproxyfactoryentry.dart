@@ -228,11 +228,11 @@ base class IUIAutomationProxyFactoryEntryVtbl extends Struct {
       put_NeedsAdviseEvents;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 eventId, Uint32 propertyId,
+          Int32 Function(VTablePointer, Int32 eventId, Int32 propertyId,
               Pointer<SAFEARRAY> winEvents)>> SetWinEventsForAutomationEvent;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Uint32 eventId, Uint32 propertyId,
+              Int32 Function(VTablePointer, Int32 eventId, Int32 propertyId,
                   Pointer<Pointer<SAFEARRAY>> winEvents)>>
       GetWinEventsForAutomationEvent;
 }

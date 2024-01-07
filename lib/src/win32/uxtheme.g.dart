@@ -298,7 +298,7 @@ int GetThemeMetric(int hTheme, int hdc, int iPartId, int iStateId, int iPropId,
 
 final _GetThemeMetric = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
-        Uint32 iPropId, Pointer<Int32> piVal),
+        Int32 iPropId, Pointer<Int32> piVal),
     int Function(int hTheme, int hdc, int iPartId, int iStateId, int iPropId,
         Pointer<Int32> piVal)>('GetThemeMetric');
 
@@ -377,7 +377,7 @@ int GetThemeSysColorBrush(int hTheme, int iColorId) =>
     _GetThemeSysColorBrush(hTheme, iColorId);
 
 final _GetThemeSysColorBrush = _uxtheme.lookupFunction<
-    IntPtr Function(IntPtr hTheme, Uint32 iColorId),
+    IntPtr Function(IntPtr hTheme, Int32 iColorId),
     int Function(int hTheme, int iColorId)>('GetThemeSysColorBrush');
 
 /// Retrieves the LOGFONT of a system font.
@@ -394,7 +394,7 @@ int GetThemeSysFont(int hTheme, int iFontId, Pointer<LOGFONT> plf) =>
     _GetThemeSysFont(hTheme, iFontId, plf);
 
 final _GetThemeSysFont = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, Uint32 iFontId, Pointer<LOGFONT> plf),
+    Int32 Function(IntPtr hTheme, Int32 iFontId, Pointer<LOGFONT> plf),
     int Function(
         int hTheme, int iFontId, Pointer<LOGFONT> plf)>('GetThemeSysFont');
 

@@ -33,12 +33,12 @@ class IUIAutomationStylesPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationStylesPattern));
 
   int get currentStyleId {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentStyleId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CurrentStyleId
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -155,12 +155,12 @@ class IUIAutomationStylesPattern extends IUnknown {
           ptr.value, propertyArray, propertyCount);
 
   int get cachedStyleId {
-    final retValuePtr = calloc<Uint32>();
+    final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedStyleId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> retVal)>()(ptr.value, retValuePtr);
+      final hr = _vtable.get_CachedStyleId
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr.value, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -281,7 +281,7 @@ class IUIAutomationStylesPattern extends IUnknown {
 base class IUIAutomationStylesPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CurrentStyleId;
   external Pointer<
           NativeFunction<
@@ -313,7 +313,7 @@ base class IUIAutomationStylesPatternVtbl extends Struct {
                   Pointer<Int32> propertyCount)>>
       GetCurrentExtendedPropertiesAsArray;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> retVal)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
       get_CachedStyleId;
   external Pointer<
           NativeFunction<
