@@ -20,7 +20,6 @@ const IID_IBindCtx = '{0000000e-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IBindCtx extends IUnknown {
-  // vtable begins at 3, is 10 entries long.
   IBindCtx(super.ptr) : _vtable = ptr.value.value.cast<IBindCtxVtbl>().ref;
 
   final IBindCtxVtbl _vtable;

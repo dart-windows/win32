@@ -18,7 +18,6 @@ const IID_IUIAutomationScrollItemPattern =
 ///
 /// {@category com}
 class IUIAutomationScrollItemPattern extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IUIAutomationScrollItemPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationScrollItemPatternVtbl>().ref;

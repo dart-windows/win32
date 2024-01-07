@@ -18,7 +18,6 @@ const IID_IAppxPackageReader = '{b5c49650-99bc-481c-9a34-3d53a4106708}';
 ///
 /// {@category com}
 class IAppxPackageReader extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IAppxPackageReader(super.ptr)
       : _vtable = ptr.value.value.cast<IAppxPackageReaderVtbl>().ref;
 

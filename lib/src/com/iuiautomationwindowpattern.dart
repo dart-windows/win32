@@ -21,7 +21,6 @@ const IID_IUIAutomationWindowPattern = '{0faef453-9208-43ef-bbb2-3b485177864f}';
 ///
 /// {@category com}
 class IUIAutomationWindowPattern extends IUnknown {
-  // vtable begins at 3, is 15 entries long.
   IUIAutomationWindowPattern(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationWindowPatternVtbl>().ref;
 

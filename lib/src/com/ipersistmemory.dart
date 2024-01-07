@@ -17,7 +17,6 @@ const IID_IPersistMemory = '{bd1ae5e0-a6ae-11ce-bd37-504200c10000}';
 ///
 /// {@category com}
 class IPersistMemory extends IPersist {
-  // vtable begins at 4, is 5 entries long.
   IPersistMemory(super.ptr)
       : _vtable = ptr.value.value.cast<IPersistMemoryVtbl>().ref;
 

@@ -22,7 +22,6 @@ const IID_IWbemClassObject = '{dc12a681-737f-11cf-884d-00aa004b2e24}';
 ///
 /// {@category com}
 class IWbemClassObject extends IUnknown {
-  // vtable begins at 3, is 24 entries long.
   IWbemClassObject(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemClassObjectVtbl>().ref;
 

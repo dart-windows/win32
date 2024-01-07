@@ -22,7 +22,6 @@ const IID_IApplicationActivationManager =
 ///
 /// {@category com}
 class IApplicationActivationManager extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IApplicationActivationManager(super.ptr)
       : _vtable = ptr.value.value.cast<IApplicationActivationManagerVtbl>().ref;
 

@@ -17,7 +17,6 @@ const IID_IShellItemFilter = '{2659b475-eeb8-48b7-8f07-b378810f48cf}';
 ///
 /// {@category com}
 class IShellItemFilter extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IShellItemFilter(super.ptr)
       : _vtable = ptr.value.value.cast<IShellItemFilterVtbl>().ref;
 

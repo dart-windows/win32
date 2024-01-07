@@ -22,7 +22,6 @@ const IID_IPersistFile = '{0000010b-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IPersistFile extends IPersist {
-  // vtable begins at 4, is 5 entries long.
   IPersistFile(super.ptr)
       : _vtable = ptr.value.value.cast<IPersistFileVtbl>().ref;
 

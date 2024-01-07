@@ -22,7 +22,6 @@ const IID_IFileDialog = '{42f85136-db7e-439c-85f1-e4075d135fc8}';
 ///
 /// {@category com}
 class IFileDialog extends IModalWindow {
-  // vtable begins at 4, is 23 entries long.
   IFileDialog(super.ptr)
       : _vtable = ptr.value.value.cast<IFileDialogVtbl>().ref;
 

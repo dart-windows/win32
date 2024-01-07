@@ -20,7 +20,6 @@ const IID_IPersist = '{0000010c-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IPersist extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IPersist(super.ptr) : _vtable = ptr.value.value.cast<IPersistVtbl>().ref;
 
   final IPersistVtbl _vtable;

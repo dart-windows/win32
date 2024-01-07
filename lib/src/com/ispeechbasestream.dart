@@ -24,7 +24,6 @@ const IID_ISpeechBaseStream = '{6450336f-7d49-4ced-8097-49d6dee37294}';
 ///
 /// {@category com}
 class ISpeechBaseStream extends IDispatch {
-  // vtable begins at 7, is 5 entries long.
   ISpeechBaseStream(super.ptr)
       : _vtable = ptr.value.value.cast<ISpeechBaseStreamVtbl>().ref;
 

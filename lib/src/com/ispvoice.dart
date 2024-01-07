@@ -24,7 +24,6 @@ const IID_ISpVoice = '{6c44df74-72b9-4992-a1ec-ef996e0422d4}';
 ///
 /// {@category com}
 class ISpVoice extends ISpEventSource {
-  // vtable begins at 13, is 25 entries long.
   ISpVoice(super.ptr) : _vtable = ptr.value.value.cast<ISpVoiceVtbl>().ref;
 
   final ISpVoiceVtbl _vtable;

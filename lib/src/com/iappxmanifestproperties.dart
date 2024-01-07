@@ -19,7 +19,6 @@ const IID_IAppxManifestProperties = '{03faf64d-f26f-4b2c-aaf7-8fe7789b8bca}';
 ///
 /// {@category com}
 class IAppxManifestProperties extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IAppxManifestProperties(super.ptr)
       : _vtable = ptr.value.value.cast<IAppxManifestPropertiesVtbl>().ref;
 

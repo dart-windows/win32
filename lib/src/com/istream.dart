@@ -22,7 +22,6 @@ const IID_IStream = '{0000000c-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IStream extends ISequentialStream {
-  // vtable begins at 5, is 9 entries long.
   IStream(super.ptr) : _vtable = ptr.value.value.cast<IStreamVtbl>().ref;
 
   final IStreamVtbl _vtable;

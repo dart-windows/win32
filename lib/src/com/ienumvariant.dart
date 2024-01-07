@@ -20,7 +20,6 @@ const IID_IEnumVARIANT = '{00020404-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IEnumVARIANT extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IEnumVARIANT(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumVARIANTVtbl>().ref;
 

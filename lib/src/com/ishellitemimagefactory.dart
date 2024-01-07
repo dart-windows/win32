@@ -19,7 +19,6 @@ const IID_IShellItemImageFactory = '{bcc18b79-ba16-442f-80c4-8a59c30c463b}';
 ///
 /// {@category com}
 class IShellItemImageFactory extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IShellItemImageFactory(super.ptr)
       : _vtable = ptr.value.value.cast<IShellItemImageFactoryVtbl>().ref;
 

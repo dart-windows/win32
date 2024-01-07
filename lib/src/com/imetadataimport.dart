@@ -22,7 +22,6 @@ const IID_IMetaDataImport = '{7dac8207-d3ae-4c75-9b67-92801a497d44}';
 ///
 /// {@category com}
 class IMetaDataImport extends IUnknown {
-  // vtable begins at 3, is 62 entries long.
   IMetaDataImport(super.ptr)
       : _vtable = ptr.value.value.cast<IMetaDataImportVtbl>().ref;
 

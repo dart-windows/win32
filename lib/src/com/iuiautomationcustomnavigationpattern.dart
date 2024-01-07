@@ -18,7 +18,6 @@ const IID_IUIAutomationCustomNavigationPattern =
 ///
 /// {@category com}
 class IUIAutomationCustomNavigationPattern extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IUIAutomationCustomNavigationPattern(super.ptr)
       : _vtable = ptr.value.value
             .cast<IUIAutomationCustomNavigationPatternVtbl>()

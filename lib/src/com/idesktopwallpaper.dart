@@ -20,7 +20,6 @@ const IID_IDesktopWallpaper = '{b92b56a9-8b55-4e14-9a89-0199bbb6f93b}';
 ///
 /// {@category com}
 class IDesktopWallpaper extends IUnknown {
-  // vtable begins at 3, is 16 entries long.
   IDesktopWallpaper(super.ptr)
       : _vtable = ptr.value.value.cast<IDesktopWallpaperVtbl>().ref;
 

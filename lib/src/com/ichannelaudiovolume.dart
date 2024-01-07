@@ -23,7 +23,6 @@ const IID_IChannelAudioVolume = '{1c158861-b533-4b30-b1cf-e853e51c59b8}';
 ///
 /// {@category com}
 class IChannelAudioVolume extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IChannelAudioVolume(super.ptr)
       : _vtable = ptr.value.value.cast<IChannelAudioVolumeVtbl>().ref;
 

@@ -17,7 +17,6 @@ const IID_IEnumResources = '{2dd81fe3-a83c-4da9-a330-47249d345ba1}';
 ///
 /// {@category com}
 class IEnumResources extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IEnumResources(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumResourcesVtbl>().ref;
 

@@ -20,7 +20,6 @@ const IID_IAudioStreamVolume = '{93014887-242d-4068-8a15-cf5e93b90fe3}';
 ///
 /// {@category com}
 class IAudioStreamVolume extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IAudioStreamVolume(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioStreamVolumeVtbl>().ref;
 

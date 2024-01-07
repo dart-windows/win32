@@ -25,7 +25,6 @@ const IID_IUIAutomationElement = '{d22108aa-8ac5-49a5-837b-37bbb3d7591e}';
 ///
 /// {@category com}
 class IUIAutomationElement extends IUnknown {
-  // vtable begins at 3, is 82 entries long.
   IUIAutomationElement(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationElementVtbl>().ref;
 

@@ -17,7 +17,6 @@ const IID_IUIAutomationTextPattern2 = '{506a921a-fcc9-409f-b23b-37eb74106872}';
 ///
 /// {@category com}
 class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
-  // vtable begins at 9, is 2 entries long.
   IUIAutomationTextPattern2(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationTextPattern2Vtbl>().ref;
 

@@ -17,7 +17,6 @@ const IID_IMMDeviceCollection = '{0bd7a1be-7a1a-44db-8397-cc5392387b5e}';
 ///
 /// {@category com}
 class IMMDeviceCollection extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IMMDeviceCollection(super.ptr)
       : _vtable = ptr.value.value.cast<IMMDeviceCollectionVtbl>().ref;
 

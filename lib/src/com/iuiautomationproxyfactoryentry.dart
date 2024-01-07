@@ -25,7 +25,6 @@ const IID_IUIAutomationProxyFactoryEntry =
 ///
 /// {@category com}
 class IUIAutomationProxyFactoryEntry extends IUnknown {
-  // vtable begins at 3, is 13 entries long.
   IUIAutomationProxyFactoryEntry(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationProxyFactoryEntryVtbl>().ref;

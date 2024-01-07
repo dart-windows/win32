@@ -22,7 +22,6 @@ const IID_IUIAutomationRangeValuePattern =
 ///
 /// {@category com}
 class IUIAutomationRangeValuePattern extends IUnknown {
-  // vtable begins at 3, is 13 entries long.
   IUIAutomationRangeValuePattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationRangeValuePatternVtbl>().ref;

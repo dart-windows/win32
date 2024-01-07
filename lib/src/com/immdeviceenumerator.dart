@@ -20,7 +20,6 @@ const IID_IMMDeviceEnumerator = '{a95664d2-9614-4f35-a746-de8db63617e6}';
 ///
 /// {@category com}
 class IMMDeviceEnumerator extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IMMDeviceEnumerator(super.ptr)
       : _vtable = ptr.value.value.cast<IMMDeviceEnumeratorVtbl>().ref;
 

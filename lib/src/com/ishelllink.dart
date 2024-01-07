@@ -20,7 +20,6 @@ const IID_IShellLink = '{000214f9-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IShellLink extends IUnknown {
-  // vtable begins at 3, is 18 entries long.
   IShellLink(super.ptr) : _vtable = ptr.value.value.cast<IShellLinkVtbl>().ref;
 
   final IShellLinkVtbl _vtable;

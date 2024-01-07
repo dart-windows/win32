@@ -19,7 +19,6 @@ const IID_IFileDialogCustomize = '{e6fdd21a-163f-4975-9c8c-a69f1ba37034}';
 ///
 /// {@category com}
 class IFileDialogCustomize extends IUnknown {
-  // vtable begins at 3, is 27 entries long.
   IFileDialogCustomize(super.ptr)
       : _vtable = ptr.value.value.cast<IFileDialogCustomizeVtbl>().ref;
 

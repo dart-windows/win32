@@ -23,7 +23,6 @@ const IID_ISpeechObjectTokens = '{9285b776-2e7b-4bc0-b53e-580eb6fa967f}';
 ///
 /// {@category com}
 class ISpeechObjectTokens extends IDispatch {
-  // vtable begins at 7, is 3 entries long.
   ISpeechObjectTokens(super.ptr)
       : _vtable = ptr.value.value.cast<ISpeechObjectTokensVtbl>().ref;
 

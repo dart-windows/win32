@@ -18,7 +18,6 @@ const IID_IAppxManifestApplication = '{5da89bf4-3773-46be-b650-7e744863b7e8}';
 ///
 /// {@category com}
 class IAppxManifestApplication extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IAppxManifestApplication(super.ptr)
       : _vtable = ptr.value.value.cast<IAppxManifestApplicationVtbl>().ref;
 

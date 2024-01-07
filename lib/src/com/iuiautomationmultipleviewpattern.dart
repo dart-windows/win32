@@ -24,7 +24,6 @@ const IID_IUIAutomationMultipleViewPattern =
 ///
 /// {@category com}
 class IUIAutomationMultipleViewPattern extends IUnknown {
-  // vtable begins at 3, is 6 entries long.
   IUIAutomationMultipleViewPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationMultipleViewPatternVtbl>().ref;

@@ -24,7 +24,6 @@ const IID_IWbemContext = '{44aca674-e8fc-11d0-a07c-00c04fb68820}';
 ///
 /// {@category com}
 class IWbemContext extends IUnknown {
-  // vtable begins at 3, is 9 entries long.
   IWbemContext(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemContextVtbl>().ref;
 

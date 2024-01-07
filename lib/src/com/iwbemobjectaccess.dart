@@ -23,7 +23,6 @@ const IID_IWbemObjectAccess = '{49353c9a-516b-11d1-aea6-00c04fb68820}';
 ///
 /// {@category com}
 class IWbemObjectAccess extends IWbemClassObject {
-  // vtable begins at 27, is 10 entries long.
   IWbemObjectAccess(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemObjectAccessVtbl>().ref;
 

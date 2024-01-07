@@ -24,7 +24,6 @@ const IID_IUIAutomationSelectionPattern2 =
 ///
 /// {@category com}
 class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
-  // vtable begins at 9, is 8 entries long.
   IUIAutomationSelectionPattern2(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationSelectionPattern2Vtbl>().ref;

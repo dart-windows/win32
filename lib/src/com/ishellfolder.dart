@@ -21,7 +21,6 @@ const IID_IShellFolder = '{000214e6-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IShellFolder extends IUnknown {
-  // vtable begins at 3, is 10 entries long.
   IShellFolder(super.ptr)
       : _vtable = ptr.value.value.cast<IShellFolderVtbl>().ref;
 

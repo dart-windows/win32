@@ -20,7 +20,6 @@ const IID_IAudioCaptureClient = '{c8adbd64-e71e-48a0-a4de-185c395cd317}';
 ///
 /// {@category com}
 class IAudioCaptureClient extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IAudioCaptureClient(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioCaptureClientVtbl>().ref;
 

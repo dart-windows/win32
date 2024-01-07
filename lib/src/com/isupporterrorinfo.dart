@@ -19,7 +19,6 @@ const IID_ISupportErrorInfo = '{df0b3d60-548f-101b-8e65-08002b2bd119}';
 ///
 /// {@category com}
 class ISupportErrorInfo extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   ISupportErrorInfo(super.ptr)
       : _vtable = ptr.value.value.cast<ISupportErrorInfoVtbl>().ref;
 

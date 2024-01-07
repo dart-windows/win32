@@ -25,7 +25,6 @@ const IID_IUIAutomationPropertyCondition =
 ///
 /// {@category com}
 class IUIAutomationPropertyCondition extends IUIAutomationCondition {
-  // vtable begins at 3, is 3 entries long.
   IUIAutomationPropertyCondition(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationPropertyConditionVtbl>().ref;

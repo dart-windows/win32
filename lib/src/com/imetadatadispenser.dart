@@ -20,7 +20,6 @@ const IID_IMetaDataDispenser = '{809c652e-7396-11d2-9771-00a0c9b4d50c}';
 ///
 /// {@category com}
 class IMetaDataDispenser extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IMetaDataDispenser(super.ptr)
       : _vtable = ptr.value.value.cast<IMetaDataDispenserVtbl>().ref;
 

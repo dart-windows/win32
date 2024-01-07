@@ -22,7 +22,6 @@ const IID_IMMNotificationClient = '{7991eec9-7e89-4d85-8390-6c703cec60c0}';
 ///
 /// {@category com}
 class IMMNotificationClient extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IMMNotificationClient(super.ptr)
       : _vtable = ptr.value.value.cast<IMMNotificationClientVtbl>().ref;
 

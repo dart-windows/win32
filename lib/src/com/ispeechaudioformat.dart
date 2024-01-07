@@ -20,7 +20,6 @@ const IID_ISpeechAudioFormat = '{e6e9c590-3e18-40e3-8299-061f98bde7c7}';
 
 /// {@category com}
 class ISpeechAudioFormat extends IDispatch {
-  // vtable begins at 7, is 6 entries long.
   ISpeechAudioFormat(super.ptr)
       : _vtable = ptr.value.value.cast<ISpeechAudioFormatVtbl>().ref;
 

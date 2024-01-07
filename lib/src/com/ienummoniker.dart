@@ -17,7 +17,6 @@ const IID_IEnumMoniker = '{00000102-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IEnumMoniker extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IEnumMoniker(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumMonikerVtbl>().ref;
 

@@ -20,7 +20,6 @@ const IID_IUIAutomationTextEditPattern =
 ///
 /// {@category com}
 class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
-  // vtable begins at 9, is 2 entries long.
   IUIAutomationTextEditPattern(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationTextEditPatternVtbl>().ref;
 

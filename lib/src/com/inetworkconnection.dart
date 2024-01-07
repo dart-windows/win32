@@ -23,7 +23,6 @@ const IID_INetworkConnection = '{dcb00005-570f-4a9b-8d69-199fdba5723b}';
 ///
 /// {@category com}
 class INetworkConnection extends IDispatch {
-  // vtable begins at 7, is 7 entries long.
   INetworkConnection(super.ptr)
       : _vtable = ptr.value.value.cast<INetworkConnectionVtbl>().ref;
 

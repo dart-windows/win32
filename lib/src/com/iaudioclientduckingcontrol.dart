@@ -18,7 +18,6 @@ const IID_IAudioClientDuckingControl = '{c789d381-a28c-4168-b28f-d3a837924dc3}';
 ///
 /// {@category com}
 class IAudioClientDuckingControl extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IAudioClientDuckingControl(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioClientDuckingControlVtbl>().ref;
 

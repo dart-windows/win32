@@ -23,7 +23,6 @@ const IID_IMetaDataDispenserEx = '{31bcfce2-dafb-11d2-9f81-00c04f79a0a3}';
 ///
 /// {@category com}
 class IMetaDataDispenserEx extends IMetaDataDispenser {
-  // vtable begins at 6, is 6 entries long.
   IMetaDataDispenserEx(super.ptr)
       : _vtable = ptr.value.value.cast<IMetaDataDispenserExVtbl>().ref;
 

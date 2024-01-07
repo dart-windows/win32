@@ -23,7 +23,6 @@ const IID_IErrorInfo = '{1cf2b120-547d-101b-8e65-08002b2bd119}';
 ///
 /// {@category com}
 class IErrorInfo extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IErrorInfo(super.ptr) : _vtable = ptr.value.value.cast<IErrorInfoVtbl>().ref;
 
   final IErrorInfoVtbl _vtable;

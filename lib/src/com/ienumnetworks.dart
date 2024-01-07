@@ -24,7 +24,6 @@ const IID_IEnumNetworks = '{dcb00003-570f-4a9b-8d69-199fdba5723b}';
 ///
 /// {@category com}
 class IEnumNetworks extends IDispatch {
-  // vtable begins at 7, is 5 entries long.
   IEnumNetworks(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumNetworksVtbl>().ref;
 

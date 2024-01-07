@@ -20,7 +20,6 @@ const IID_IAudioRenderClient = '{f294acfc-3146-4483-a7bf-addca7c260e2}';
 ///
 /// {@category com}
 class IAudioRenderClient extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IAudioRenderClient(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioRenderClientVtbl>().ref;
 

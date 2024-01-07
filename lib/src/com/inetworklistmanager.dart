@@ -25,7 +25,6 @@ const IID_INetworkListManager = '{dcb00000-570f-4a9b-8d69-199fdba5723b}';
 ///
 /// {@category com}
 class INetworkListManager extends IDispatch {
-  // vtable begins at 7, is 9 entries long.
   INetworkListManager(super.ptr)
       : _vtable = ptr.value.value.cast<INetworkListManagerVtbl>().ref;
 

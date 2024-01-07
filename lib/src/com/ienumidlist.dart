@@ -21,7 +21,6 @@ const IID_IEnumIDList = '{000214f2-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IEnumIDList extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IEnumIDList(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumIDListVtbl>().ref;
 

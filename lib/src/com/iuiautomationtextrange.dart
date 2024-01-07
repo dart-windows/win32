@@ -23,7 +23,6 @@ const IID_IUIAutomationTextRange = '{a543cc6a-f4ae-494b-8239-c814481187a8}';
 ///
 /// {@category com}
 class IUIAutomationTextRange extends IUnknown {
-  // vtable begins at 3, is 18 entries long.
   IUIAutomationTextRange(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationTextRangeVtbl>().ref;
 

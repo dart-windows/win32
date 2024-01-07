@@ -22,7 +22,6 @@ const IID_ISpEventSource = '{be7a9cce-5f9e-11d2-960f-00c04f8ee628}';
 ///
 /// {@category com}
 class ISpEventSource extends ISpNotifySource {
-  // vtable begins at 10, is 3 entries long.
   ISpEventSource(super.ptr)
       : _vtable = ptr.value.value.cast<ISpEventSourceVtbl>().ref;
 

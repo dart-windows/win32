@@ -22,7 +22,6 @@ const IID_IDispatch = '{00020400-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IDispatch extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IDispatch(super.ptr) : _vtable = ptr.value.value.cast<IDispatchVtbl>().ref;
 
   final IDispatchVtbl _vtable;

@@ -20,7 +20,6 @@ const IID_IAppxFactory = '{beb94909-e451-438b-b5a7-d79e767b75d8}';
 ///
 /// {@category com}
 class IAppxFactory extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IAppxFactory(super.ptr)
       : _vtable = ptr.value.value.cast<IAppxFactoryVtbl>().ref;
 

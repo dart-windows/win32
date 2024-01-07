@@ -19,7 +19,6 @@ const IID_IFileOpenDialog = '{d57c7288-d4ad-4768-be02-9d969532d960}';
 ///
 /// {@category com}
 class IFileOpenDialog extends IFileDialog {
-  // vtable begins at 27, is 2 entries long.
   IFileOpenDialog(super.ptr)
       : _vtable = ptr.value.value.cast<IFileOpenDialogVtbl>().ref;
 

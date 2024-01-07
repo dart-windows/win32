@@ -24,7 +24,6 @@ const IID_IKnownFolder = '{3aa7af7e-9b36-420c-a8e3-f77d4674a488}';
 ///
 /// {@category com}
 class IKnownFolder extends IUnknown {
-  // vtable begins at 3, is 9 entries long.
   IKnownFolder(super.ptr)
       : _vtable = ptr.value.value.cast<IKnownFolderVtbl>().ref;
 

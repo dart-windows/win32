@@ -20,7 +20,6 @@ const IID_IAudioClockAdjustment = '{f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c}';
 ///
 /// {@category com}
 class IAudioClockAdjustment extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IAudioClockAdjustment(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioClockAdjustmentVtbl>().ref;
 

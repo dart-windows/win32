@@ -18,7 +18,6 @@ const IID_IShellService = '{5836fb00-8187-11cf-a12b-00aa004ae837}';
 ///
 /// {@category com}
 class IShellService extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IShellService(super.ptr)
       : _vtable = ptr.value.value.cast<IShellServiceVtbl>().ref;
 

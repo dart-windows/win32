@@ -18,7 +18,6 @@ const IID_IMetaDataTables = '{d8f579ab-402d-4b8e-82d9-5d63b1065c68}';
 ///
 /// {@category com}
 class IMetaDataTables extends IUnknown {
-  // vtable begins at 3, is 19 entries long.
   IMetaDataTables(super.ptr)
       : _vtable = ptr.value.value.cast<IMetaDataTablesVtbl>().ref;
 

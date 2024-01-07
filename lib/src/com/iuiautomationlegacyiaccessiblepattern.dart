@@ -24,7 +24,6 @@ const IID_IUIAutomationLegacyIAccessiblePattern =
 ///
 /// {@category com}
 class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
-  // vtable begins at 3, is 24 entries long.
   IUIAutomationLegacyIAccessiblePattern(super.ptr)
       : _vtable = ptr.value.value
             .cast<IUIAutomationLegacyIAccessiblePatternVtbl>()

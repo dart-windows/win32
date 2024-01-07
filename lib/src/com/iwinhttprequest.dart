@@ -21,7 +21,6 @@ const IID_IWinHttpRequest = '{016fe2ec-b2c8-45f8-b23b-39e53a75396b}';
 
 /// {@category com}
 class IWinHttpRequest extends IDispatch {
-  // vtable begins at 7, is 19 entries long.
   IWinHttpRequest(super.ptr)
       : _vtable = ptr.value.value.cast<_IWinHttpRequestVtbl>().ref;
 

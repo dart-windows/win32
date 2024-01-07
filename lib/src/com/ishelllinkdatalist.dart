@@ -17,7 +17,6 @@ const IID_IShellLinkDataList = '{45e2b4ae-b1c3-11d0-b92f-00a0c90312e1}';
 ///
 /// {@category com}
 class IShellLinkDataList extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IShellLinkDataList(super.ptr)
       : _vtable = ptr.value.value.cast<IShellLinkDataListVtbl>().ref;
 

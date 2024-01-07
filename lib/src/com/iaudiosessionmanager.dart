@@ -21,7 +21,6 @@ const IID_IAudioSessionManager = '{bfa971f1-4d5e-40bb-935e-967039bfbee4}';
 ///
 /// {@category com}
 class IAudioSessionManager extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IAudioSessionManager(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioSessionManagerVtbl>().ref;
 

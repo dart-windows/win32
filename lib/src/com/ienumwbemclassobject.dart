@@ -18,7 +18,6 @@ const IID_IEnumWbemClassObject = '{027947e1-d731-11ce-a357-000000000001}';
 ///
 /// {@category com}
 class IEnumWbemClassObject extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IEnumWbemClassObject(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumWbemClassObjectVtbl>().ref;
 

@@ -22,7 +22,6 @@ const IID_IUIAutomationAnnotationPattern =
 ///
 /// {@category com}
 class IUIAutomationAnnotationPattern extends IUnknown {
-  // vtable begins at 3, is 10 entries long.
   IUIAutomationAnnotationPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationAnnotationPatternVtbl>().ref;

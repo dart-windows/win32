@@ -16,7 +16,6 @@ const IID_IUIAutomationCondition = '{352ffba8-0973-437c-a61f-f64cafd81df9}';
 ///
 /// {@category com}
 class IUIAutomationCondition extends IUnknown {
-  // vtable begins at 3, is 0 entries long.
   IUIAutomationCondition(super.ptr);
 
   factory IUIAutomationCondition.from(IUnknown interface) =>

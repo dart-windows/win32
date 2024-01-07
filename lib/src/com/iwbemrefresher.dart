@@ -20,7 +20,6 @@ const IID_IWbemRefresher = '{49353c99-516b-11d1-aea6-00c04fb68820}';
 ///
 /// {@category com}
 class IWbemRefresher extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IWbemRefresher(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemRefresherVtbl>().ref;
 

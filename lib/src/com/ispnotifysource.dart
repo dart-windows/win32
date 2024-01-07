@@ -20,7 +20,6 @@ const IID_ISpNotifySource = '{5eff4aef-8487-11d2-961c-00c04f8ee628}';
 ///
 /// {@category com}
 class ISpNotifySource extends IUnknown {
-  // vtable begins at 3, is 7 entries long.
   ISpNotifySource(super.ptr)
       : _vtable = ptr.value.value.cast<ISpNotifySourceVtbl>().ref;
 

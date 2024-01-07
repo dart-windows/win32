@@ -22,7 +22,6 @@ const IID_ISimpleAudioVolume = '{87ce5498-68d6-44e5-9215-6da47ef883d8}';
 ///
 /// {@category com}
 class ISimpleAudioVolume extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   ISimpleAudioVolume(super.ptr)
       : _vtable = ptr.value.value.cast<ISimpleAudioVolumeVtbl>().ref;
 

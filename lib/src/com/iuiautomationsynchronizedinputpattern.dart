@@ -17,7 +17,6 @@ const IID_IUIAutomationSynchronizedInputPattern =
 ///
 /// {@category com}
 class IUIAutomationSynchronizedInputPattern extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IUIAutomationSynchronizedInputPattern(super.ptr)
       : _vtable = ptr.value.value
             .cast<IUIAutomationSynchronizedInputPatternVtbl>()

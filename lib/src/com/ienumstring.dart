@@ -19,7 +19,6 @@ const IID_IEnumString = '{00000101-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IEnumString extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IEnumString(super.ptr)
       : _vtable = ptr.value.value.cast<IEnumStringVtbl>().ref;
 

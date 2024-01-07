@@ -17,7 +17,6 @@ const IID_IAppxManifestReader7 = '{8efe6f27-0ce0-4988-b32d-738eb63db3b7}';
 ///
 /// {@category com}
 class IAppxManifestReader7 extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IAppxManifestReader7(super.ptr)
       : _vtable = ptr.value.value.cast<IAppxManifestReader7Vtbl>().ref;
 

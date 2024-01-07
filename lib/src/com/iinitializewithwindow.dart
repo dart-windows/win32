@@ -17,7 +17,6 @@ const IID_IInitializeWithWindow = '{3e68d4bd-7135-4d10-8018-9fb6d9f33fa1}';
 ///
 /// {@category com}
 class IInitializeWithWindow extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IInitializeWithWindow(super.ptr)
       : _vtable = ptr.value.value.cast<IInitializeWithWindowVtbl>().ref;
 

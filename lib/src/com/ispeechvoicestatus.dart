@@ -23,7 +23,6 @@ const IID_ISpeechVoiceStatus = '{8be47b07-57f6-11d2-9eee-00c04f797396}';
 ///
 /// {@category com}
 class ISpeechVoiceStatus extends IDispatch {
-  // vtable begins at 7, is 12 entries long.
   ISpeechVoiceStatus(super.ptr)
       : _vtable = ptr.value.value.cast<ISpeechVoiceStatusVtbl>().ref;
 

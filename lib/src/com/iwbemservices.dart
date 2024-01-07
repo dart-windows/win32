@@ -20,7 +20,6 @@ const IID_IWbemServices = '{9556dc99-828c-11cf-a37e-00aa003240c7}';
 ///
 /// {@category com}
 class IWbemServices extends IUnknown {
-  // vtable begins at 3, is 23 entries long.
   IWbemServices(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemServicesVtbl>().ref;
 

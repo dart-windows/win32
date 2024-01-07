@@ -20,7 +20,6 @@ const IID_IWbemHiPerfEnum = '{2705c288-79ae-11d2-b348-00105a1f8177}';
 ///
 /// {@category com}
 class IWbemHiPerfEnum extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IWbemHiPerfEnum(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemHiPerfEnumVtbl>().ref;
 

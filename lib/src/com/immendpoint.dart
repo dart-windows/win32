@@ -16,7 +16,6 @@ const IID_IMMEndpoint = '{1be09788-6894-4089-8586-9a2a6c265ac5}';
 ///
 /// {@category com}
 class IMMEndpoint extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IMMEndpoint(super.ptr)
       : _vtable = ptr.value.value.cast<IMMEndpointVtbl>().ref;
 

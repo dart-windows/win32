@@ -21,7 +21,6 @@ const IID_IWebAuthenticationCoreManagerInterop =
 ///
 /// {@category com}
 class IWebAuthenticationCoreManagerInterop extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
   IWebAuthenticationCoreManagerInterop(super.ptr)
       : _vtable = ptr.value.value
             .cast<IWebAuthenticationCoreManagerInteropVtbl>()

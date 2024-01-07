@@ -25,7 +25,6 @@ const IID_IUIAutomationDropTargetPattern =
 ///
 /// {@category com}
 class IUIAutomationDropTargetPattern extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IUIAutomationDropTargetPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationDropTargetPatternVtbl>().ref;

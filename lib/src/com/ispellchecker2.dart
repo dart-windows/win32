@@ -23,7 +23,6 @@ const IID_ISpellChecker2 = '{e7ed1c71-87f7-4378-a840-c9200dacee47}';
 ///
 /// {@category com}
 class ISpellChecker2 extends ISpellChecker {
-  // vtable begins at 17, is 1 entries long.
   ISpellChecker2(super.ptr)
       : _vtable = ptr.value.value.cast<ISpellChecker2Vtbl>().ref;
 

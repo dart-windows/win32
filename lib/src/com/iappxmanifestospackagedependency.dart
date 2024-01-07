@@ -17,7 +17,6 @@ const IID_IAppxManifestOSPackageDependency =
 
 /// {@category com}
 class IAppxManifestOSPackageDependency extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IAppxManifestOSPackageDependency(super.ptr)
       : _vtable =
             ptr.value.value.cast<IAppxManifestOSPackageDependencyVtbl>().ref;

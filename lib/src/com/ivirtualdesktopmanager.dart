@@ -19,7 +19,6 @@ const IID_IVirtualDesktopManager = '{a5cd92ff-29be-454c-8d04-d82879fb3f1b}';
 ///
 /// {@category com}
 class IVirtualDesktopManager extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IVirtualDesktopManager(super.ptr)
       : _vtable = ptr.value.value.cast<IVirtualDesktopManagerVtbl>().ref;
 

@@ -19,7 +19,6 @@ const IID_IRestrictedErrorInfo = '{82ba7092-4c88-427d-a7bc-16dd93feb67e}';
 ///
 /// {@category com}
 class IRestrictedErrorInfo extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IRestrictedErrorInfo(super.ptr)
       : _vtable = ptr.value.value.cast<IRestrictedErrorInfoVtbl>().ref;
 

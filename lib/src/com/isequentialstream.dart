@@ -18,7 +18,6 @@ const IID_ISequentialStream = '{0c733a30-2a1c-11ce-ade5-00aa0044773d}';
 ///
 /// {@category com}
 class ISequentialStream extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   ISequentialStream(super.ptr)
       : _vtable = ptr.value.value.cast<ISequentialStreamVtbl>().ref;
 

@@ -19,7 +19,6 @@ const IID_IPropertyStore = '{886d8eeb-8cf2-4446-8d02-cdba1dbdcf99}';
 ///
 /// {@category com}
 class IPropertyStore extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IPropertyStore(super.ptr)
       : _vtable = ptr.value.value.cast<IPropertyStoreVtbl>().ref;
 

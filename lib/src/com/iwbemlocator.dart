@@ -22,7 +22,6 @@ const IID_IWbemLocator = '{dc12a687-737f-11cf-884d-00aa004b2e24}';
 ///
 /// {@category com}
 class IWbemLocator extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IWbemLocator(super.ptr)
       : _vtable = ptr.value.value.cast<IWbemLocatorVtbl>().ref;
 

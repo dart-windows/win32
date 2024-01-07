@@ -23,7 +23,6 @@ const IID_IUIAutomationProxyFactory = '{85b94ecd-849d-42b6-b94d-d6db23fdf5a4}';
 ///
 /// {@category com}
 class IUIAutomationProxyFactory extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IUIAutomationProxyFactory(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationProxyFactoryVtbl>().ref;
 

@@ -23,7 +23,6 @@ const IID_IUIAutomationBoolCondition = '{1b4e1f2e-75eb-4d0b-8952-5a69988e2307}';
 ///
 /// {@category com}
 class IUIAutomationBoolCondition extends IUIAutomationCondition {
-  // vtable begins at 3, is 1 entries long.
   IUIAutomationBoolCondition(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationBoolConditionVtbl>().ref;
 

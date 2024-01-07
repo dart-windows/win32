@@ -25,7 +25,6 @@ const IID_IShellItem2 = '{7e9fb0d3-919f-4307-ab2e-9b1860310c93}';
 ///
 /// {@category com}
 class IShellItem2 extends IShellItem {
-  // vtable begins at 8, is 13 entries long.
   IShellItem2(super.ptr)
       : _vtable = ptr.value.value.cast<IShellItem2Vtbl>().ref;
 

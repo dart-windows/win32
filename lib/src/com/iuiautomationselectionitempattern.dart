@@ -23,7 +23,6 @@ const IID_IUIAutomationSelectionItemPattern =
 ///
 /// {@category com}
 class IUIAutomationSelectionItemPattern extends IUnknown {
-  // vtable begins at 3, is 7 entries long.
   IUIAutomationSelectionItemPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationSelectionItemPatternVtbl>().ref;

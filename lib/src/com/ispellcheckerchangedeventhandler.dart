@@ -18,7 +18,6 @@ const IID_ISpellCheckerChangedEventHandler =
 ///
 /// {@category com}
 class ISpellCheckerChangedEventHandler extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   ISpellCheckerChangedEventHandler(super.ptr)
       : _vtable =
             ptr.value.value.cast<ISpellCheckerChangedEventHandlerVtbl>().ref;

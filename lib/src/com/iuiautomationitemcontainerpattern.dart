@@ -19,7 +19,6 @@ const IID_IUIAutomationItemContainerPattern =
 ///
 /// {@category com}
 class IUIAutomationItemContainerPattern extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IUIAutomationItemContainerPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationItemContainerPatternVtbl>().ref;

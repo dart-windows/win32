@@ -29,7 +29,6 @@ const IID_IMoniker = '{0000000f-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IMoniker extends IPersistStream {
-  // vtable begins at 8, is 15 entries long.
   IMoniker(super.ptr) : _vtable = ptr.value.value.cast<IMonikerVtbl>().ref;
 
   final IMonikerVtbl _vtable;

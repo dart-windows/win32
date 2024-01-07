@@ -17,7 +17,6 @@ const IID_IConnectionPoint = '{b196b286-bab4-101a-b69c-00aa00341d07}';
 ///
 /// {@category com}
 class IConnectionPoint extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IConnectionPoint(super.ptr)
       : _vtable = ptr.value.value.cast<IConnectionPointVtbl>().ref;
 

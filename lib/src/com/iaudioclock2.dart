@@ -19,7 +19,6 @@ const IID_IAudioClock2 = '{6f49ff73-6727-49ac-a008-d98cf5e70048}';
 ///
 /// {@category com}
 class IAudioClock2 extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IAudioClock2(super.ptr)
       : _vtable = ptr.value.value.cast<IAudioClock2Vtbl>().ref;
 

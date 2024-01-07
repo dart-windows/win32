@@ -22,7 +22,6 @@ const IID_IUIAutomationScrollPattern = '{88f4d42a-e881-459d-a77c-73bbbb7e02dc}';
 ///
 /// {@category com}
 class IUIAutomationScrollPattern extends IUnknown {
-  // vtable begins at 3, is 14 entries long.
   IUIAutomationScrollPattern(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationScrollPatternVtbl>().ref;
 

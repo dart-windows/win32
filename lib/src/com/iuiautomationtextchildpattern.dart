@@ -23,7 +23,6 @@ const IID_IUIAutomationTextChildPattern =
 ///
 /// {@category com}
 class IUIAutomationTextChildPattern extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IUIAutomationTextChildPattern(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationTextChildPatternVtbl>().ref;
 

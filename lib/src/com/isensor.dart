@@ -22,7 +22,6 @@ const IID_ISensor = '{5fa08f80-2657-458e-af75-46f73fa6ac5c}';
 ///
 /// {@category com}
 class ISensor extends IUnknown {
-  // vtable begins at 3, is 15 entries long.
   ISensor(super.ptr) : _vtable = ptr.value.value.cast<ISensorVtbl>().ref;
 
   final ISensorVtbl _vtable;

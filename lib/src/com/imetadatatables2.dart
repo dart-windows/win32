@@ -18,7 +18,6 @@ const IID_IMetaDataTables2 = '{badb5f70-58da-43a9-a1c6-d74819f19b15}';
 ///
 /// {@category com}
 class IMetaDataTables2 extends IMetaDataTables {
-  // vtable begins at 22, is 2 entries long.
   IMetaDataTables2(super.ptr)
       : _vtable = ptr.value.value.cast<IMetaDataTables2Vtbl>().ref;
 

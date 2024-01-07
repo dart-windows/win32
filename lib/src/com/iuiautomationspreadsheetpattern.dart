@@ -20,7 +20,6 @@ const IID_IUIAutomationSpreadsheetPattern =
 ///
 /// {@category com}
 class IUIAutomationSpreadsheetPattern extends IUnknown {
-  // vtable begins at 3, is 1 entries long.
   IUIAutomationSpreadsheetPattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationSpreadsheetPatternVtbl>().ref;

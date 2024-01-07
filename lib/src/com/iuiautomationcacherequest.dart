@@ -23,7 +23,6 @@ const IID_IUIAutomationCacheRequest = '{b32a92b5-bc25-4078-9c08-d7ee95c48e03}';
 ///
 /// {@category com}
 class IUIAutomationCacheRequest extends IUnknown {
-  // vtable begins at 3, is 9 entries long.
   IUIAutomationCacheRequest(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationCacheRequestVtbl>().ref;
 

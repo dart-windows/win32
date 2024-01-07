@@ -17,7 +17,6 @@ const IID_IInspectable = '{af86e2e0-b12d-4c6a-9c5a-d7aa65101e90}';
 ///
 /// {@category com}
 class IInspectable extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IInspectable(super.ptr)
       : _vtable = ptr.value.value.cast<IInspectableVtbl>().ref;
 

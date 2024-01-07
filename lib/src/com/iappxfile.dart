@@ -18,7 +18,6 @@ const IID_IAppxFile = '{91df827b-94fd-468f-827b-57f41b2f6f2e}';
 ///
 /// {@category com}
 class IAppxFile extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IAppxFile(super.ptr) : _vtable = ptr.value.value.cast<IAppxFileVtbl>().ref;
 
   final IAppxFileVtbl _vtable;

@@ -23,7 +23,6 @@ const IID_IUIAutomationExpandCollapsePattern =
 ///
 /// {@category com}
 class IUIAutomationExpandCollapsePattern extends IUnknown {
-  // vtable begins at 3, is 4 entries long.
   IUIAutomationExpandCollapsePattern(super.ptr)
       : _vtable =
             ptr.value.value.cast<IUIAutomationExpandCollapsePatternVtbl>().ref;

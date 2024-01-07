@@ -23,7 +23,6 @@ const IID_IUIAutomationDragPattern = '{1dc7b570-1f54-4bad-bcda-d36a722fb7bd}';
 ///
 /// {@category com}
 class IUIAutomationDragPattern extends IUnknown {
-  // vtable begins at 3, is 8 entries long.
   IUIAutomationDragPattern(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationDragPatternVtbl>().ref;
 

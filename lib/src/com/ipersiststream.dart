@@ -18,7 +18,6 @@ const IID_IPersistStream = '{00000109-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IPersistStream extends IPersist {
-  // vtable begins at 4, is 4 entries long.
   IPersistStream(super.ptr)
       : _vtable = ptr.value.value.cast<IPersistStreamVtbl>().ref;
 

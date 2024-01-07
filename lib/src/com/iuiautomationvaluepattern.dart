@@ -22,7 +22,6 @@ const IID_IUIAutomationValuePattern = '{a94cd8b1-0844-4cd6-9d2d-640537ab39e9}';
 ///
 /// {@category com}
 class IUIAutomationValuePattern extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   IUIAutomationValuePattern(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationValuePatternVtbl>().ref;
 

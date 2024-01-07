@@ -19,7 +19,6 @@ const IID_IUri = '{a39ee748-6a27-4817-a6f2-13914bef5890}';
 ///
 /// {@category com}
 class IUri extends IUnknown {
-  // vtable begins at 3, is 25 entries long.
   IUri(super.ptr) : _vtable = ptr.value.value.cast<IUriVtbl>().ref;
 
   final IUriVtbl _vtable;

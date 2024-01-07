@@ -21,7 +21,6 @@ const IID_ISpeechWaveFormatEx = '{7a1ef0d5-1581-4741-88e4-209a49f11a10}';
 
 /// {@category com}
 class ISpeechWaveFormatEx extends IDispatch {
-  // vtable begins at 7, is 14 entries long.
   ISpeechWaveFormatEx(super.ptr)
       : _vtable = ptr.value.value.cast<ISpeechWaveFormatExVtbl>().ref;
 

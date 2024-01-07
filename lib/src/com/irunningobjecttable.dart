@@ -23,7 +23,6 @@ const IID_IRunningObjectTable = '{00000010-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IRunningObjectTable extends IUnknown {
-  // vtable begins at 3, is 7 entries long.
   IRunningObjectTable(super.ptr)
       : _vtable = ptr.value.value.cast<IRunningObjectTableVtbl>().ref;
 

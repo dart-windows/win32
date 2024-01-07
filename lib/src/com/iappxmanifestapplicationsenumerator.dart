@@ -17,7 +17,6 @@ const IID_IAppxManifestApplicationsEnumerator =
 ///
 /// {@category com}
 class IAppxManifestApplicationsEnumerator extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IAppxManifestApplicationsEnumerator(super.ptr)
       : _vtable =
             ptr.value.value.cast<IAppxManifestApplicationsEnumeratorVtbl>().ref;

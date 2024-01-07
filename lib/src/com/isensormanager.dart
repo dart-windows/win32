@@ -19,7 +19,6 @@ const IID_ISensorManager = '{bd77db67-45a8-42dc-8d00-6dcf15f8377a}';
 ///
 /// {@category com}
 class ISensorManager extends IUnknown {
-  // vtable begins at 3, is 5 entries long.
   ISensorManager(super.ptr)
       : _vtable = ptr.value.value.cast<ISensorManagerVtbl>().ref;
 

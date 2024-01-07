@@ -22,7 +22,6 @@ const IID_IUIAutomationTextRangeArray =
 ///
 /// {@category com}
 class IUIAutomationTextRangeArray extends IUnknown {
-  // vtable begins at 3, is 2 entries long.
   IUIAutomationTextRangeArray(super.ptr)
       : _vtable = ptr.value.value.cast<IUIAutomationTextRangeArrayVtbl>().ref;
 

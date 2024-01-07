@@ -18,7 +18,6 @@ const IID_IAppxManifestReader2 = '{d06f67bc-b31d-4eba-a8af-638e73e77b4d}';
 ///
 /// {@category com}
 class IAppxManifestReader2 extends IAppxManifestReader {
-  // vtable begins at 12, is 1 entries long.
   IAppxManifestReader2(super.ptr)
       : _vtable = ptr.value.value.cast<IAppxManifestReader2Vtbl>().ref;
 

@@ -226,7 +226,6 @@ $guidConstants
 
 $classPreamble
 class $shortName $extendsClause {
-  // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
   $constructor
 
   $vtableField
