@@ -1,6 +1,6 @@
-// Copyright (c) 2020, Dart | Windows.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
+// Copyright (c) 2020, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
 // ignore_for_file: directives_ordering
 
@@ -28,89 +28,6 @@ library;
 // Core Win32 APIs, constants and macros
 export 'src/bstr.dart';
 export 'src/callbacks.dart';
-export 'src/constants.dart';
-export 'src/constants_metadata.dart';
-export 'src/constants_nodoc.dart';
-export 'src/exceptions.dart';
-export 'src/guid.dart';
-export 'src/inline.dart';
-export 'src/macros.dart';
-export 'src/propertykey.dart';
-export 'src/structs.g.dart'
-    hide
-        ADDRINFO,
-        FD_SET,
-        IN_ADDR,
-        SOCKADDR,
-        TIMEVAL,
-        HOSTENT,
-        PROTOENT,
-        SERVENT;
-export 'src/types.dart';
-export 'src/utils.dart';
-export 'src/variant.dart';
-export 'src/winmd_constants.dart';
-
-// Windows Runtime helpers
-export 'src/winrt_helpers.dart';
-
-// Useful extension methods
-export 'src/extensions/dialogs.dart';
-export 'src/extensions/int_to_hexstring.dart';
-export 'src/extensions/iunknown.dart';
-export 'src/extensions/list_to_blob.dart';
-export 'src/extensions/set_ansi.dart';
-export 'src/extensions/set_string.dart';
-export 'src/extensions/set_string_array.dart';
-export 'src/extensions/unpack_utf16.dart';
-
-// Traditional C-style Windows APIs
-export 'src/win32/advapi32.g.dart';
-export 'src/win32/bluetoothapis.g.dart';
-export 'src/win32/bthprops.g.dart';
-export 'src/win32/comctl32.g.dart';
-export 'src/win32/comdlg32.g.dart';
-export 'src/win32/crypt32.g.dart';
-export 'src/win32/dbghelp.g.dart';
-export 'src/win32/dwmapi.g.dart';
-export 'src/win32/dxva2.g.dart';
-export 'src/win32/gdi32.g.dart';
-export 'src/win32/iphlpapi.g.dart';
-export 'src/win32/kernel32.g.dart';
-export 'src/win32/magnification.g.dart';
-export 'src/win32/netapi32.g.dart';
-export 'src/win32/ntdll.g.dart';
-export 'src/win32/ole32.g.dart';
-export 'src/win32/oleaut32.g.dart';
-export 'src/win32/powrprof.g.dart';
-export 'src/win32/rometadata.g.dart';
-export 'src/win32/scarddlg.g.dart';
-export 'src/win32/setupapi.g.dart';
-export 'src/win32/shell32.g.dart';
-export 'src/win32/shlwapi.g.dart';
-export 'src/win32/user32.g.dart';
-export 'src/win32/uxtheme.g.dart';
-export 'src/win32/version.g.dart';
-export 'src/win32/winmm.g.dart';
-export 'src/win32/winscard.g.dart';
-export 'src/win32/winspool.g.dart';
-export 'src/win32/wlanapi.g.dart';
-export 'src/win32/xinput1_4.g.dart';
-
-// API sets are used to export recent C-style APIs
-export 'src/win32/api_ms_win_core_apiquery_l2_1_0.g.dart';
-export 'src/win32/api_ms_win_core_comm_l1_1_1.g.dart';
-export 'src/win32/api_ms_win_core_comm_l1_1_2.g.dart';
-export 'src/win32/api_ms_win_core_handle_l1_1_0.g.dart';
-export 'src/win32/api_ms_win_core_sysinfo_l1_2_3.g.dart';
-export 'src/win32/api_ms_win_core_winrt_l1_1_0.g.dart';
-export 'src/win32/api_ms_win_core_winrt_error_l1_1_0.g.dart';
-export 'src/win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';
-export 'src/win32/api_ms_win_ro_typeresolution_l1_1_0.g.dart';
-export 'src/win32/api_ms_win_ro_typeresolution_l1_1_1.g.dart';
-export 'src/win32/api_ms_win_shcore_scaling_l1_1_1.g.dart';
-export 'src/win32/api_ms_win_wsl_api_l1_1_0.g.dart';
-
 // COM interfaces
 export 'src/com/iagileobject.dart';
 export 'src/com/iapplicationactivationmanager.dart';
@@ -311,3 +228,81 @@ export 'src/com/iwbemrefresher.dart';
 export 'src/com/iwbemservices.dart';
 export 'src/com/iwebauthenticationcoremanagerinterop.dart';
 export 'src/com/iwinhttprequest.dart';
+export 'src/constants.dart';
+export 'src/constants_metadata.dart';
+export 'src/constants_nodoc.dart';
+export 'src/exceptions.dart';
+// Useful extension methods
+export 'src/extensions/dialogs.dart';
+export 'src/extensions/int_to_hexstring.dart';
+export 'src/extensions/iunknown.dart';
+export 'src/extensions/list_to_blob.dart';
+export 'src/extensions/set_ansi.dart';
+export 'src/extensions/set_string.dart';
+export 'src/extensions/set_string_array.dart';
+export 'src/extensions/unpack_utf16.dart';
+export 'src/guid.dart';
+export 'src/inline.dart';
+export 'src/macros.dart';
+export 'src/propertykey.dart';
+export 'src/structs.g.dart'
+    hide
+        ADDRINFO,
+        FD_SET,
+        IN_ADDR,
+        SOCKADDR,
+        TIMEVAL,
+        HOSTENT,
+        PROTOENT,
+        SERVENT;
+export 'src/types.dart';
+export 'src/utils.dart';
+export 'src/variant.dart';
+// Traditional C-style Windows APIs
+export 'src/win32/advapi32.g.dart';
+// API sets are used to export recent C-style APIs
+export 'src/win32/api_ms_win_core_apiquery_l2_1_0.g.dart';
+export 'src/win32/api_ms_win_core_comm_l1_1_1.g.dart';
+export 'src/win32/api_ms_win_core_comm_l1_1_2.g.dart';
+export 'src/win32/api_ms_win_core_handle_l1_1_0.g.dart';
+export 'src/win32/api_ms_win_core_sysinfo_l1_2_3.g.dart';
+export 'src/win32/api_ms_win_core_winrt_error_l1_1_0.g.dart';
+export 'src/win32/api_ms_win_core_winrt_l1_1_0.g.dart';
+export 'src/win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';
+export 'src/win32/api_ms_win_ro_typeresolution_l1_1_0.g.dart';
+export 'src/win32/api_ms_win_ro_typeresolution_l1_1_1.g.dart';
+export 'src/win32/api_ms_win_shcore_scaling_l1_1_1.g.dart';
+export 'src/win32/api_ms_win_wsl_api_l1_1_0.g.dart';
+export 'src/win32/bluetoothapis.g.dart';
+export 'src/win32/bthprops.g.dart';
+export 'src/win32/comctl32.g.dart';
+export 'src/win32/comdlg32.g.dart';
+export 'src/win32/crypt32.g.dart';
+export 'src/win32/dbghelp.g.dart';
+export 'src/win32/dwmapi.g.dart';
+export 'src/win32/dxva2.g.dart';
+export 'src/win32/gdi32.g.dart';
+export 'src/win32/iphlpapi.g.dart';
+export 'src/win32/kernel32.g.dart';
+export 'src/win32/magnification.g.dart';
+export 'src/win32/netapi32.g.dart';
+export 'src/win32/ntdll.g.dart';
+export 'src/win32/ole32.g.dart';
+export 'src/win32/oleaut32.g.dart';
+export 'src/win32/powrprof.g.dart';
+export 'src/win32/rometadata.g.dart';
+export 'src/win32/scarddlg.g.dart';
+export 'src/win32/setupapi.g.dart';
+export 'src/win32/shell32.g.dart';
+export 'src/win32/shlwapi.g.dart';
+export 'src/win32/user32.g.dart';
+export 'src/win32/uxtheme.g.dart';
+export 'src/win32/version.g.dart';
+export 'src/win32/winmm.g.dart';
+export 'src/win32/winscard.g.dart';
+export 'src/win32/winspool.g.dart';
+export 'src/win32/wlanapi.g.dart';
+export 'src/win32/xinput1_4.g.dart';
+export 'src/winmd_constants.dart';
+// Windows Runtime helpers
+export 'src/winrt_helpers.dart';

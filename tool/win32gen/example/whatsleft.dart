@@ -1,3 +1,7 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 // Retrieves the exported symbols from a given library, and compares them with
 // what has been projected in the win32 library.
 

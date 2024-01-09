@@ -1,6 +1,6 @@
-// Copyright (c) 2020, Dart | Windows.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
+// Copyright (c) 2020, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
 // ignore_for_file: directives_ordering
 
@@ -26,6 +26,7 @@
 /// used here.
 library winsock2;
 
+export 'src/constants_winsock.dart';
 // Core Win32 APIs, constants and macros
 export 'src/structs.g.dart'
     show
@@ -37,7 +38,5 @@ export 'src/structs.g.dart'
         HOSTENT,
         PROTOENT,
         SERVENT;
-export 'src/constants_winsock.dart';
-
 // Traditional C-style Windows APIs
 export 'src/win32/ws2_32.g.dart';

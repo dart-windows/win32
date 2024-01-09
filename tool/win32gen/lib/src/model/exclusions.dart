@@ -1,3 +1,7 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 const excludedWin32Structs = <String>{
   // These are ANSI structs without a suffix. The Unicode variant is
   // EMRCREATECOLORSPACEW, etc.

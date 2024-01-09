@@ -1,3 +1,7 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 /// The version of the [WDK metadata](
 /// https://www.nuget.org/packages/Microsoft.Windows.WDK.Win32Metadata/) used
 /// for generating projections and running tests.

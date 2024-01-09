@@ -1,3 +1,7 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 // COM interfaces have a chain of inheritance, and the function vtable depends
 // on this being calculated accurately. Test a variety of existing interfaces to
 // make sure the algorithm matches a manual count.

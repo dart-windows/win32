@@ -1,3 +1,7 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 // Windows Sockets library constants
 
 // ignore_for_file: camel_case_types, constant_identifier_names
