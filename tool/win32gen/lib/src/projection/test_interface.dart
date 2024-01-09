@@ -1,6 +1,11 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 import 'package:winmd/winmd.dart';
 
 import 'com_interface.dart';
+import 'com_method.dart';
 import 'com_property.dart';
 import 'headers.dart';
 import 'method.dart';
@@ -14,12 +19,9 @@ class TestInterfaceProjection {
   String get header => '''
 $copyrightHeader
 
-// Tests that Win32 API prototypes can be successfully loaded (i.e. that
-// lookupFunction works for all the APIs generated)
+// Tests that COM interface methods are correctly projected
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
-
-// ignore_for_file: unused_local_variable
 
 @TestOn('windows')
 
@@ -31,30 +33,21 @@ import 'package:win32/win32.dart';
 ''';
 
   String testMethod(String interfaceName, String instanceName,
-      MethodProjection methodProjection) {
-    if (methodProjection.runtimeType == ComGetPropertyProjection ||
-        methodProjection.runtimeType == ComSetPropertyProjection) {
-      return '';
-      // TODO: Add this.
-      // final propertyType =
-      //     (methodProjection as PropertyProjection).returnType.dartType;
-      //     return '''
-      // test('Can access property $interfaceName.${methodProjection.name}', () {
-      //   expect($instanceName.${methodProjection.exposedMethodName}, isNot(isA<$propertyType>()));
-      // });''';
-    } else {
-      return '''
+          MethodProjection methodProjection) =>
+      switch (methodProjection) {
+        ComGetPropertyProjection() || ComSetPropertyProjection() => '',
+        ComMethodProjection() => '''
   test('Can instantiate $interfaceName.${methodProjection.camelCasedName}', () {
     expect($instanceName.${methodProjection.camelCasedName}, isA<Function>());
-  });''';
-    }
-  }
+  });''',
+        _ => ''
+      };
 
   @override
   String toString() {
     final interfaceName = projection.shortName;
     final instanceName = interfaceName.substring(1).toLowerCase();
-    return """
+    return '''
 $header
 
 void main() {
@@ -65,6 +58,6 @@ void main() {
 
   free(ptr);
 }
-  """;
+''';
   }
 }
