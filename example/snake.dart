@@ -546,10 +546,11 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     exceptionalReturn: 0,
   );
 
-  final wc = calloc<WNDCLASS>()
-    ..ref.lpfnWndProc = lpfnWndProc.nativeFunction
-    ..ref.hInstance = hInstance
-    ..ref.lpszClassName = className;
+  final wc = calloc<WNDCLASS>();
+  wc.ref
+    ..lpfnWndProc = lpfnWndProc.nativeFunction
+    ..hInstance = hInstance
+    ..lpszClassName = className;
   if (RegisterClass(wc) != 0) {
     // Create the window.
     hWnd = CreateWindowEx(

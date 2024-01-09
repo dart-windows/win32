@@ -32,14 +32,15 @@ void main() {
     exceptionalReturn: 0,
   );
 
-  final wc = calloc<WNDCLASS>()
-    ..ref.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC
-    ..ref.lpfnWndProc = lpfnWndProc.nativeFunction
-    ..ref.hInstance = hInstance
-    ..ref.hIcon = LoadIcon(NULL, IDI_APPLICATION)
-    ..ref.hCursor = LoadCursor(NULL, IDC_ARROW)
-    ..ref.hbrBackground = GetStockObject(BLACK_BRUSH)
-    ..ref.lpszClassName = szAppName;
+  final wc = calloc<WNDCLASS>();
+  wc.ref
+    ..style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC
+    ..lpfnWndProc = lpfnWndProc.nativeFunction
+    ..hInstance = hInstance
+    ..hIcon = LoadIcon(NULL, IDI_APPLICATION)
+    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hbrBackground = GetStockObject(BLACK_BRUSH)
+    ..lpszClassName = szAppName;
   RegisterClass(wc);
 
   final hWnd = CreateWindowEx(

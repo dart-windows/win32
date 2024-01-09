@@ -111,10 +111,11 @@ int IsWindowsVersionOrGreater(
       VER_SERVICEPACKMAJOR,
       VER_GREATER_EQUAL);
 
-  final osvi = calloc<OSVERSIONINFOEX>()
-    ..ref.dwMajorVersion = wMajorVersion
-    ..ref.dwMinorVersion = wMinorVersion
-    ..ref.wServicePackMajor = wServicePackMajor;
+  final osvi = calloc<OSVERSIONINFOEX>();
+  osvi.ref
+    ..dwMajorVersion = wMajorVersion
+    ..dwMinorVersion = wMinorVersion
+    ..wServicePackMajor = wServicePackMajor;
 
   try {
     return VerifyVersionInfo(
@@ -156,9 +157,10 @@ int IsWindowsServer() {
 ///
 /// {@category uxtheme}
 int SetWindowThemeNonClientAttributes(int hwnd, int dwMask, int dwAttributes) {
-  final wta = calloc<WTA_OPTIONS>()
-    ..ref.dwFlags = dwAttributes
-    ..ref.dwMask = dwMask;
+  final wta = calloc<WTA_OPTIONS>();
+  wta.ref
+    ..dwFlags = dwAttributes
+    ..dwMask = dwMask;
   try {
     return SetWindowThemeAttribute(hwnd, WINDOWTHEMEATTRIBUTETYPE.WTA_NONCLIENT,
         wta, sizeOf<WTA_OPTIONS>());

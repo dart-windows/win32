@@ -13,9 +13,8 @@ void main() {
 
   final result = GetVersionEx(osVersionInfo);
   if (result != 0) {
-    print('Windows '
-        '${osVersionInfo.ref.dwMajorVersion}.'
-        '${osVersionInfo.ref.dwMinorVersion}');
+    final OSVERSIONINFO(:dwMajorVersion, :dwMinorVersion) = osVersionInfo.ref;
+    print('Windows $dwMajorVersion.$dwMinorVersion');
   }
 
   final isWindows10OrGreater = IsWindows10OrGreater();

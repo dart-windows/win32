@@ -101,13 +101,14 @@ class BmpFile {
     final bmpScreen = arena<BITMAP>();
     GetObject(hbmScreen, sizeOf<BITMAP>(), bmpScreen);
 
-    final bitmapInfoHeader = arena<BITMAPINFOHEADER>()
-      ..ref.biSize = sizeOf<BITMAPINFOHEADER>()
-      ..ref.biWidth = bmpScreen.ref.bmWidth
-      ..ref.biHeight = bmpScreen.ref.bmHeight
-      ..ref.biPlanes = 1
-      ..ref.biBitCount = 32
-      ..ref.biCompression = BI_RGB;
+    final bitmapInfoHeader = arena<BITMAPINFOHEADER>();
+    bitmapInfoHeader.ref
+      ..biSize = sizeOf<BITMAPINFOHEADER>()
+      ..biWidth = bmpScreen.ref.bmWidth
+      ..biHeight = bmpScreen.ref.bmHeight
+      ..biPlanes = 1
+      ..biBitCount = 32
+      ..biCompression = BI_RGB;
 
     final dwBmpSize =
         ((bmpScreen.ref.bmWidth * bitmapInfoHeader.ref.biBitCount + 31) /

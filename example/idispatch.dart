@@ -129,12 +129,13 @@ void main() {
   final exploreMethod = dispatcher.getDispId('Explore');
   final exploreParam = calloc<VARIANT>();
   VariantInit(exploreParam);
-  exploreParam
-    ..ref.vt = VARENUM.VT_BSTR
-    ..ref.bstrVal = folderLocation.ptr;
-  final exploreParams = calloc<DISPPARAMS>()
-    ..ref.cArgs = 1
-    ..ref.rgvarg = exploreParam;
+  exploreParam.ref
+    ..vt = VARENUM.VT_BSTR
+    ..bstrVal = folderLocation.ptr;
+  final exploreParams = calloc<DISPPARAMS>();
+  exploreParams.ref
+    ..cArgs = 1
+    ..rgvarg = exploreParam;
   dispatcher.invokeMethod(exploreMethod, exploreParams);
   free(exploreParams);
   free(exploreParam);

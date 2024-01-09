@@ -24,11 +24,12 @@ class NotepadFont {
   }
 
   bool notepadChooseFont(int hwnd) {
-    final cf = calloc<CHOOSEFONT>()
-      ..ref.lStructSize = sizeOf<CHOOSEFONT>()
-      ..ref.hwndOwner = hwnd
-      ..ref.lpLogFont = logfont
-      ..ref.Flags = CF_INITTOLOGFONTSTRUCT | CF_SCREENFONTS | CF_EFFECTS;
+    final cf = calloc<CHOOSEFONT>();
+    cf.ref
+      ..lStructSize = sizeOf<CHOOSEFONT>()
+      ..hwndOwner = hwnd
+      ..lpLogFont = logfont
+      ..Flags = CF_INITTOLOGFONTSTRUCT | CF_SCREENFONTS | CF_EFFECTS;
 
     final result = ChooseFont(cf);
     free(cf);

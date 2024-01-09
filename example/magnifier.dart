@@ -110,14 +110,15 @@ int hostWndProc(int hWnd, int message, int wParam, int lParam) {
 /// control.
 int registerHostWindowClass(
     int hInstance, Pointer<NativeFunction<WindowProc>> lpfnWndProc) {
-  final wcex = calloc<WNDCLASSEX>()
-    ..ref.cbSize = sizeOf<WNDCLASSEX>()
-    ..ref.style = CS_HREDRAW | CS_VREDRAW
-    ..ref.lpfnWndProc = lpfnWndProc
-    ..ref.hInstance = hInstance
-    ..ref.hCursor = LoadCursor(NULL, IDC_ARROW)
-    ..ref.hbrBackground = COLOR_BTNFACE + 1
-    ..ref.lpszClassName = windowClassName;
+  final wcex = calloc<WNDCLASSEX>();
+  wcex.ref
+    ..cbSize = sizeOf<WNDCLASSEX>()
+    ..style = CS_HREDRAW | CS_VREDRAW
+    ..lpfnWndProc = lpfnWndProc
+    ..hInstance = hInstance
+    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hbrBackground = COLOR_BTNFACE + 1
+    ..lpszClassName = windowClassName;
 
   return RegisterClassEx(wcex);
 }
@@ -125,11 +126,11 @@ int registerHostWindowClass(
 bool setupMagnifier(
     int hInst, Pointer<NativeFunction<WindowProc>> lpfnWndProc) {
   // Set bounds of host window according to screen size
-  hostWindowRect
-    ..ref.top = 0
-    ..ref.bottom = GetSystemMetrics(SM_CYSCREEN) ~/ 4
-    ..ref.left = 0
-    ..ref.right = GetSystemMetrics(SM_CXSCREEN);
+  hostWindowRect.ref
+    ..top = 0
+    ..bottom = GetSystemMetrics(SM_CYSCREEN) ~/ 4
+    ..left = 0
+    ..right = GetSystemMetrics(SM_CXSCREEN);
 
   // Create the host window
   registerHostWindowClass(hInst, lpfnWndProc);
@@ -174,10 +175,10 @@ bool setupMagnifier(
 
   try {
     // Set the magnification factor
-    matrix
-      ..ref.v[0] = MAGFACTOR
-      ..ref.v[4] = MAGFACTOR
-      ..ref.v[7] = 1.0;
+    matrix.ref
+      ..v[0] = MAGFACTOR
+      ..v[4] = MAGFACTOR
+      ..v[7] = 1.0;
 
     var ret = MagSetWindowTransform(hwndMag, matrix);
     if (ret == TRUE) {

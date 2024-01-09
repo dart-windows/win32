@@ -10,8 +10,8 @@
 // More at https://kubyshkin.name/posts/win32-window-custom-title-bar-caption/
 
 import 'dart:ffi';
-import 'package:ffi/ffi.dart';
 
+import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 class HoveredButton {
@@ -26,11 +26,12 @@ int dpiScale(int value, int dpi) => value * dpi ~/ 96;
 
 /// Given a Win32 RECT, duplicates it and returns the duplicate.
 Pointer<RECT> cloneRect(Pointer<RECT> rect) {
-  final clone = calloc<RECT>()
-    ..ref.bottom = rect.ref.bottom
-    ..ref.left = rect.ref.left
-    ..ref.top = rect.ref.top
-    ..ref.right = rect.ref.right;
+  final clone = calloc<RECT>();
+  clone.ref
+    ..bottom = rect.ref.bottom
+    ..left = rect.ref.left
+    ..top = rect.ref.top
+    ..right = rect.ref.right;
   return clone;
 }
 
@@ -142,11 +143,11 @@ void centerRectInParent(Pointer<RECT> child, Pointer<RECT> parent) {
   final paddingX = (parentWidth - childWidth) ~/ 2;
   final paddingY = (parentHeight - childHeight) ~/ 2;
 
-  child
-    ..ref.left = parent.ref.left + paddingX
-    ..ref.top = parent.ref.top + paddingY
-    ..ref.right = child.ref.left + childWidth
-    ..ref.bottom = child.ref.top + childHeight;
+  child.ref
+    ..left = parent.ref.left + paddingX
+    ..top = parent.ref.top + paddingY
+    ..right = child.ref.left + childWidth
+    ..bottom = child.ref.top + childHeight;
 }
 
 /// Paints title bar buttons. Returns the left most extent of the buttons within
@@ -165,9 +166,10 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
 
   // Paint minimize button
   final minimizeButtonRect = getMinimizeRect(hwnd, titleBarRect);
-  final minimizeIconRect = calloc<RECT>()
-    ..ref.right = iconDimension
-    ..ref.bottom = 1;
+  final minimizeIconRect = calloc<RECT>();
+  minimizeIconRect.ref
+    ..right = iconDimension
+    ..bottom = 1;
 
   try {
     if (hoveredButton == HoveredButton.minimize) {
@@ -183,9 +185,10 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
 
   // Paint maximize button
   final maximizeButtonRect = getMaximizeRect(hwnd, titleBarRect);
-  final maximizeIconRect = calloc<RECT>()
-    ..ref.right = iconDimension
-    ..ref.bottom = iconDimension;
+  final maximizeIconRect = calloc<RECT>();
+  maximizeIconRect.ref
+    ..right = iconDimension
+    ..bottom = iconDimension;
 
   try {
     if (hoveredButton == HoveredButton.maximize) {
@@ -204,9 +207,10 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
 
   // Paint close button
   final closeButtonRect = getCloseRect(hwnd, titleBarRect);
-  final closeIconRect = calloc<RECT>()
-    ..ref.right = iconDimension
-    ..ref.bottom = iconDimension;
+  final closeIconRect = calloc<RECT>();
+  closeIconRect.ref
+    ..right = iconDimension
+    ..bottom = iconDimension;
   try {
     int? customPen;
     if (hoveredButton == HoveredButton.close) {
@@ -240,10 +244,11 @@ void drawWindowCaption(
     int hwnd, int hdc, Pointer<RECT> titleBarTextRect, int titleBarItemColor) {
   final logicalFont = calloc<LOGFONT>();
   final titleText = wsalloc(256);
-  final drawThemeOptions = calloc<DTTOPTS>()
-    ..ref.dwSize = sizeOf<DTTOPTS>()
-    ..ref.dwFlags = DTT_TEXTCOLOR
-    ..ref.crText = titleBarItemColor;
+  final drawThemeOptions = calloc<DTTOPTS>();
+  drawThemeOptions.ref
+    ..dwSize = sizeOf<DTTOPTS>()
+    ..dwFlags = DTT_TEXTCOLOR
+    ..crText = titleBarItemColor;
 
   try {
     int? savedFont;
@@ -309,9 +314,10 @@ void paintWindow(int hwnd) {
 
   // Draw window caption
   const textPadding = 10;
-  final titleBarTextRect = cloneRect(titleBarRect)
-    ..ref.left += textPadding
-    ..ref.right = leftButtonExtent - textPadding;
+  final titleBarTextRect = cloneRect(titleBarRect);
+  titleBarTextRect.ref
+    ..left += textPadding
+    ..right = leftButtonExtent - textPadding;
   drawWindowCaption(hwnd, hdc, titleBarTextRect, titleBarItemColor);
   free(titleBarTextRect);
 
@@ -407,9 +413,10 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       final dpi = GetDpiForWindow(hwnd);
       final frameY = GetSystemMetricsForDpi(SM_CYFRAME, dpi);
       final padding = GetSystemMetricsForDpi(SM_CXPADDEDBORDER, dpi);
-      final cursorPoint = calloc<POINT>()
-        ..ref.x = LOWORD(lParam)
-        ..ref.y = HIWORD(lParam);
+      final cursorPoint = calloc<POINT>();
+      cursorPoint.ref
+        ..x = LOWORD(lParam)
+        ..y = HIWORD(lParam);
 
       try {
         ScreenToClient(hwnd, cursorPoint);
@@ -522,12 +529,13 @@ void main() {
     exceptionalReturn: 0,
   );
 
-  final windowClass = calloc<WNDCLASSEX>()
-    ..ref.cbSize = sizeOf<WNDCLASSEX>()
-    ..ref.lpszClassName = windowClassName
-    ..ref.style = CS_HREDRAW | CS_VREDRAW
-    ..ref.hCursor = LoadCursor(NULL, IDC_ARROW)
-    ..ref.lpfnWndProc = lpfnWndProc.nativeFunction;
+  final windowClass = calloc<WNDCLASSEX>();
+  windowClass.ref
+    ..cbSize = sizeOf<WNDCLASSEX>()
+    ..lpszClassName = windowClassName
+    ..style = CS_HREDRAW | CS_VREDRAW
+    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..lpfnWndProc = lpfnWndProc.nativeFunction;
 
   RegisterClassEx(windowClass);
 

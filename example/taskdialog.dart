@@ -93,18 +93,19 @@ void showCustomTaskDialog() {
       'confined comfort without want or fear within '
       'the simulated reality of the Matrix.';
 
-  final config = calloc<TASKDIALOGCONFIG>()
-    ..ref.cbSize = sizeOf<TASKDIALOGCONFIG>()
-    ..ref.pszWindowTitle = 'TaskDialogIndirect Sample'.toNativeUtf16()
-    ..ref.pszMainInstruction = 'Which pill will you take?'.toNativeUtf16()
-    ..ref.pszContent =
+  final config = calloc<TASKDIALOGCONFIG>();
+  config.ref
+    ..cbSize = sizeOf<TASKDIALOGCONFIG>()
+    ..pszWindowTitle = 'TaskDialogIndirect Sample'.toNativeUtf16()
+    ..pszMainInstruction = 'Which pill will you take?'.toNativeUtf16()
+    ..pszContent =
         'This is your last chance. There is no turning back.'.toNativeUtf16()
-    ..ref.hMainIcon = TD_WARNING_ICON.address
-    ..ref.pszCollapsedControlText = 'See more details.'.toNativeUtf16()
-    ..ref.pszExpandedControlText = matrixDescription.toNativeUtf16()
-    ..ref.dwFlags = TASKDIALOG_FLAGS.TDF_USE_COMMAND_LINKS
-    ..ref.cButtons = 2
-    ..ref.pButtons = buttons;
+    ..hMainIcon = TD_WARNING_ICON.address
+    ..pszCollapsedControlText = 'See more details.'.toNativeUtf16()
+    ..pszExpandedControlText = matrixDescription.toNativeUtf16()
+    ..dwFlags = TASKDIALOG_FLAGS.TDF_USE_COMMAND_LINKS
+    ..cButtons = 2
+    ..pButtons = buttons;
 
   final hr = TaskDialogIndirect(config, buttonSelected, nullptr, nullptr);
 

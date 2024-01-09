@@ -12,9 +12,10 @@ import 'package:win32/win32.dart';
 // unless at least one test is run successfully.)
 void main() {
   test('Neutral test to give non-Windows platforms something to chew on', () {
-    final point = calloc<POINT>()
-      ..ref.x = 0x10
-      ..ref.y = 0x7F;
+    final point = calloc<POINT>();
+    point.ref
+      ..x = 0x10
+      ..y = 0x7F;
     expect(point.ref.x + point.ref.y, equals(0x8F));
     free(point);
   });

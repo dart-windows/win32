@@ -83,14 +83,15 @@ void printBluetoothDeviceInfo(BLUETOOTH_DEVICE_INFO info) {
 }
 
 void findBluetoothDevices() {
-  final params = calloc<BLUETOOTH_DEVICE_SEARCH_PARAMS>()
-    ..ref.dwSize = sizeOf<BLUETOOTH_DEVICE_SEARCH_PARAMS>()
-    ..ref.fReturnConnected = TRUE
-    ..ref.fReturnAuthenticated = TRUE
-    ..ref.fReturnRemembered = TRUE
-    ..ref.fReturnUnknown = TRUE
-    ..ref.fIssueInquiry = TRUE
-    ..ref.cTimeoutMultiplier = 1;
+  final params = calloc<BLUETOOTH_DEVICE_SEARCH_PARAMS>();
+  params.ref
+    ..dwSize = sizeOf<BLUETOOTH_DEVICE_SEARCH_PARAMS>()
+    ..fReturnConnected = TRUE
+    ..fReturnAuthenticated = TRUE
+    ..fReturnRemembered = TRUE
+    ..fReturnUnknown = TRUE
+    ..fIssueInquiry = TRUE
+    ..cTimeoutMultiplier = 1;
   final info = calloc<BLUETOOTH_DEVICE_INFO>()
     ..ref.dwSize = sizeOf<BLUETOOTH_DEVICE_INFO>();
 

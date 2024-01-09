@@ -57,12 +57,13 @@ String getTempFileName() {
 bool recycleFile(String file) {
   final hwnd = GetActiveWindow();
   final pFrom = [file].toWideCharArray();
-  final lpFileOp = calloc<SHFILEOPSTRUCT>()
-    ..ref.hwnd = hwnd
-    ..ref.wFunc = FO_DELETE
-    ..ref.pFrom = pFrom
-    ..ref.pTo = nullptr
-    ..ref.fFlags = FOF_ALLOWUNDO;
+  final lpFileOp = calloc<SHFILEOPSTRUCT>();
+  lpFileOp.ref
+    ..hwnd = hwnd
+    ..wFunc = FO_DELETE
+    ..pFrom = pFrom
+    ..pTo = nullptr
+    ..fFlags = FOF_ALLOWUNDO;
 
   try {
     final result = SHFileOperation(lpFileOp);

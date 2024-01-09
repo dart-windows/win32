@@ -23,14 +23,15 @@ class NotepadFile {
   late Pointer<OPENFILENAME> ofn;
 
   NotepadFile(int hwnd, this.path, this.title) {
-    ofn = calloc<OPENFILENAME>()
-      ..ref.lStructSize = sizeOf<OPENFILENAME>()
-      ..ref.hwndOwner = hwnd
-      ..ref.lpstrFilter = TEXT(
+    ofn = calloc<OPENFILENAME>();
+    ofn.ref
+      ..lStructSize = sizeOf<OPENFILENAME>()
+      ..hwndOwner = hwnd
+      ..lpstrFilter = TEXT(
           'Text Files (*.txt)\u{0}*.txt\u{0}All Files (*.*)\u{0}*.*\u{0}\u{0}')
-      ..ref.nMaxFile = MAX_PATH
-      ..ref.nMaxFileTitle = MAX_PATH
-      ..ref.lpstrDefExt = TEXT('txt');
+      ..nMaxFile = MAX_PATH
+      ..nMaxFileTitle = MAX_PATH
+      ..lpstrDefExt = TEXT('txt');
   }
 
   /// Shows open dialog.

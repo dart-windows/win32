@@ -42,11 +42,11 @@ void main() {
     }
     printCommState(dcb.ref);
 
-    dcb
-      ..ref.BaudRate = CBR_57600
-      ..ref.ByteSize = 8
-      ..ref.Parity = NOPARITY
-      ..ref.StopBits = ONESTOPBIT;
+    dcb.ref
+      ..BaudRate = CBR_57600
+      ..ByteSize = 8
+      ..Parity = NOPARITY
+      ..StopBits = ONESTOPBIT;
 
     fSuccess = SetCommState(hCom, dcb);
     if (fSuccess == 0) {

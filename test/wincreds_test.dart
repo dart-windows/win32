@@ -20,13 +20,14 @@ void writeCredential(
   final examplePassword = utf8.encode(password);
   final blob = examplePassword.allocatePointer();
 
-  final credential = calloc<CREDENTIAL>()
-    ..ref.Type = CRED_TYPE_GENERIC
-    ..ref.TargetName = pCredName
-    ..ref.Persist = CRED_PERSIST_LOCAL_MACHINE
-    ..ref.UserName = pUserName
-    ..ref.CredentialBlob = blob
-    ..ref.CredentialBlobSize = examplePassword.length;
+  final credential = calloc<CREDENTIAL>();
+  credential.ref
+    ..Type = CRED_TYPE_GENERIC
+    ..TargetName = pCredName
+    ..Persist = CRED_PERSIST_LOCAL_MACHINE
+    ..UserName = pUserName
+    ..CredentialBlob = blob
+    ..CredentialBlobSize = examplePassword.length;
 
   try {
     if (CredWrite(credential, 0) != TRUE) {
