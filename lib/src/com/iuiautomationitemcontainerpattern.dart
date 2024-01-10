@@ -17,8 +17,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationItemContainerPattern =
     '{c690fdb2-27a8-423c-812d-429773c9084e}';
 
-/// Exposes a method that retrieves an item from a container, such as a
-/// virtual list.
+/// Exposes a method that retrieves an item from a container, such as a virtual
+/// list.
 ///
 /// {@category com}
 class IUIAutomationItemContainerPattern extends IUnknown {

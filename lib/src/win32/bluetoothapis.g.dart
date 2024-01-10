@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _bluetoothapis = DynamicLibrary.open('bluetoothapis.dll');
 
-/// The BluetoothEnableDiscovery function changes the discovery state of a
-/// local Bluetooth radio or radios.
+/// The BluetoothEnableDiscovery function changes the discovery state of a local
+/// Bluetooth radio or radios.
 ///
 /// ```c
 /// BOOL BluetoothEnableDiscovery(
@@ -208,8 +208,8 @@ final _BluetoothGATTAbortReliableWrite = _bluetoothapis.lookupFunction<
     int Function(int hDevice, int ReliableWriteContext,
         int Flags)>('BluetoothGATTAbortReliableWrite');
 
-/// The BluetoothGATTBeginReliableWrite function specifies that reliable
-/// writes are about to begin.
+/// The BluetoothGATTBeginReliableWrite function specifies that reliable writes
+/// are about to begin.
 ///
 /// ```c
 /// HRESULT BluetoothGATTBeginReliableWrite(
@@ -229,8 +229,7 @@ final _BluetoothGATTBeginReliableWrite = _bluetoothapis.lookupFunction<
     int Function(int hDevice, Pointer<Uint64> ReliableWriteContext,
         int Flags)>('BluetoothGATTBeginReliableWrite');
 
-/// Specifies the end of reliable writes, and the writes should be
-/// committed.
+/// Specifies the end of reliable writes, and the writes should be committed.
 ///
 /// ```c
 /// HRESULT BluetoothGATTEndReliableWrite(
@@ -505,9 +504,8 @@ final _BluetoothGATTGetServices = _bluetoothapis.lookupFunction<
         Pointer<Uint16> ServicesBufferActual,
         int Flags)>('BluetoothGATTGetServices');
 
-/// Registers a routine to be called back during a characteristic value
-/// change event on the given characteristic identified by its
-/// characteristic handle.
+/// Registers a routine to be called back during a characteristic value change
+/// event on the given characteristic identified by its characteristic handle.
 ///
 /// ```c
 /// HRESULT BluetoothGATTRegisterEvent(
@@ -629,9 +627,9 @@ final _BluetoothGATTUnregisterEvent = _bluetoothapis.lookupFunction<
     Int32 Function(IntPtr EventHandle, Uint32 Flags),
     int Function(int EventHandle, int Flags)>('BluetoothGATTUnregisterEvent');
 
-/// TThe BluetoothGetDeviceInfo function retrieves information about a
-/// remote Bluetooth device. The Bluetooth device must have been previously
-/// identified through a successful device inquiry function call.
+/// TThe BluetoothGetDeviceInfo function retrieves information about a remote
+/// Bluetooth device. The Bluetooth device must have been previously identified
+/// through a successful device inquiry function call.
 ///
 /// ```c
 /// DWORD BluetoothGetDeviceInfo(
@@ -667,8 +665,8 @@ final _BluetoothGetRadioInfo = _bluetoothapis.lookupFunction<
     int Function(int hRadio,
         Pointer<BLUETOOTH_RADIO_INFO> pRadioInfo)>('BluetoothGetRadioInfo');
 
-/// The BluetoothIsConnectable function determines whether a Bluetooth radio
-/// or radios is connectable.
+/// The BluetoothIsConnectable function determines whether a Bluetooth radio or
+/// radios is connectable.
 ///
 /// ```c
 /// BOOL BluetoothIsConnectable(
@@ -682,8 +680,8 @@ final _BluetoothIsConnectable = _bluetoothapis.lookupFunction<
     Int32 Function(IntPtr hRadio),
     int Function(int hRadio)>('BluetoothIsConnectable');
 
-/// The BluetoothIsDiscoverable function determines whether a Bluetooth
-/// radio or radios is discoverable.
+/// The BluetoothIsDiscoverable function determines whether a Bluetooth radio or
+/// radios is discoverable.
 ///
 /// ```c
 /// BOOL BluetoothIsDiscoverable(
@@ -715,8 +713,8 @@ final _BluetoothIsVersionAvailable = _bluetoothapis.lookupFunction<
     int Function(
         int MajorVersion, int MinorVersion)>('BluetoothIsVersionAvailable');
 
-/// The BluetoothRegisterForAuthenticationEx function registers an
-/// application for a pin request, numeric comparison and callback function.
+/// The BluetoothRegisterForAuthenticationEx function registers an application
+/// for a pin request, numeric comparison and callback function.
 ///
 /// ```c
 /// DWORD BluetoothRegisterForAuthenticationEx(
@@ -748,8 +746,8 @@ final _BluetoothRegisterForAuthenticationEx = _bluetoothapis.lookupFunction<
         Pointer pvParam)>('BluetoothRegisterForAuthenticationEx');
 
 /// The BluetoothRemoveDevice function removes authentication between a
-/// Bluetooth device and the computer and clears cached service information
-/// for the device.
+/// Bluetooth device and the computer and clears cached service information for
+/// the device.
 ///
 /// ```c
 /// DWORD BluetoothRemoveDevice(
@@ -764,9 +762,8 @@ final _BluetoothRemoveDevice = _bluetoothapis.lookupFunction<
     Uint32 Function(Pointer<BLUETOOTH_ADDRESS> pAddress),
     int Function(Pointer<BLUETOOTH_ADDRESS> pAddress)>('BluetoothRemoveDevice');
 
-/// The BluetoothSdpEnumAttributes function enumerates through the SDP
-/// record stream, and calls the callback function for each attribute in the
-/// record.
+/// The BluetoothSdpEnumAttributes function enumerates through the SDP record
+/// stream, and calls the callback function for each attribute in the record.
 ///
 /// ```c
 /// BOOL BluetoothSdpEnumAttributes(
@@ -796,8 +793,8 @@ final _BluetoothSdpEnumAttributes = _bluetoothapis.lookupFunction<
         Pointer<NativeFunction<PfnBluetoothEnumAttributesCallback>> pfnCallback,
         Pointer pvParam)>('BluetoothSdpEnumAttributes');
 
-/// The BluetoothSdpGetAttributeValue function retrieves the attribute value
-/// for an attribute identifier.
+/// The BluetoothSdpGetAttributeValue function retrieves the attribute value for
+/// an attribute identifier.
 ///
 /// ```c
 /// DWORD BluetoothSdpGetAttributeValue(
@@ -823,8 +820,8 @@ final _BluetoothSdpGetAttributeValue = _bluetoothapis.lookupFunction<
             int usAttributeId, Pointer<SDP_ELEMENT_DATA> pAttributeData)>(
     'BluetoothSdpGetAttributeValue');
 
-/// The BluetoothSdpGetContainerElementData function iterates a container
-/// stream and returns each element contained within the container element.
+/// The BluetoothSdpGetContainerElementData function iterates a container stream
+/// and returns each element contained within the container element.
 ///
 /// ```c
 /// DWORD BluetoothSdpGetContainerElementData(
@@ -874,8 +871,8 @@ final _BluetoothSdpGetElementData = _bluetoothapis.lookupFunction<
     int Function(Pointer<Uint8> pSdpStream, int cbSdpStreamLength,
         Pointer<SDP_ELEMENT_DATA> pData)>('BluetoothSdpGetElementData');
 
-/// The BluetoothSdpGetString function converts a raw string embedded in the
-/// SDP record into a Unicode string.
+/// The BluetoothSdpGetString function converts a raw string embedded in the SDP
+/// record into a Unicode string.
 ///
 /// ```c
 /// DWORD BluetoothSdpGetString(
@@ -915,8 +912,8 @@ final _BluetoothSdpGetString = _bluetoothapis.lookupFunction<
         Pointer<Uint32> pcchStringLength)>('BluetoothSdpGetString');
 
 /// The BluetoothSendAuthenticationResponseEx function is called when an
-/// authentication request to send the passkey or a Numeric Comparison
-/// response is made.
+/// authentication request to send the passkey or a Numeric Comparison response
+/// is made.
 ///
 /// ```c
 /// DWORD BluetoothSendAuthenticationResponseEx(
@@ -961,8 +958,8 @@ final _BluetoothSetServiceState = _bluetoothapis.lookupFunction<
         Pointer<GUID> pGuidService,
         int dwServiceFlags)>('BluetoothSetServiceState');
 
-/// The BluetoothUnregisterAuthentication function removes registration for
-/// a callback routine that was previously registered with a call to the
+/// The BluetoothUnregisterAuthentication function removes registration for a
+/// callback routine that was previously registered with a call to the
 /// BluetoothRegisterForAuthentication function.
 ///
 /// ```c
@@ -978,8 +975,8 @@ final _BluetoothUnregisterAuthentication = _bluetoothapis.lookupFunction<
     Int32 Function(IntPtr hRegHandle),
     int Function(int hRegHandle)>('BluetoothUnregisterAuthentication');
 
-/// The BluetoothUpdateDeviceRecord function updates the local computer
-/// cache about a Bluetooth device.
+/// The BluetoothUpdateDeviceRecord function updates the local computer cache
+/// about a Bluetooth device.
 ///
 /// ```c
 /// DWORD BluetoothUpdateDeviceRecord(

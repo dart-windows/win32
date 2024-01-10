@@ -15,8 +15,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IAudioClockAdjustment = '{f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c}';
 
-/// The IAudioClockAdjustment interface is used to adjust the sample rate of
-/// a stream. The client obtains a reference to the `IAudioClockAdjustment`
+/// The IAudioClockAdjustment interface is used to adjust the sample rate of a
+/// stream. The client obtains a reference to the `IAudioClockAdjustment`
 /// interface of a stream object by calling the `IAudioClient::GetService`
 /// method with parameter `riid` set to REFIID [IID_IAudioClockAdjustment].
 /// Adjusting the sample rate is not supported for exclusive mode streams.

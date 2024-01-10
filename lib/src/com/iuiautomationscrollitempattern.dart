@@ -16,8 +16,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationScrollItemPattern =
     '{b488300f-d015-4f19-9c29-bb595e3645ef}';
 
-/// Exposes a method that enables an item in a scrollable view to be placed
-/// in a visible portion of the view.
+/// Exposes a method that enables an item in a scrollable view to be placed in a
+/// visible portion of the view.
 ///
 /// {@category com}
 class IUIAutomationScrollItemPattern extends IUnknown {

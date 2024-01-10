@@ -20,9 +20,9 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IUIAutomationGridPattern = '{414c3cdc-856b-4f5b-8538-3131c6302550}';
 
-/// Provides access to a control that acts as a container for a collection
-/// of child controls that are organized in a two-dimensional logical
-/// coordinate system that can be traversed by row and column.
+/// Provides access to a control that acts as a container for a collection of
+/// child controls that are organized in a two-dimensional logical coordinate
+/// system that can be traversed by row and column.
 ///
 /// {@category com}
 class IUIAutomationGridPattern extends IUnknown {

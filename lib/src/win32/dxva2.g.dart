@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _dxva2 = DynamicLibrary.open('dxva2.dll');
 
-/// Closes a handle to a physical monitor. Call this function to close a
-/// monitor handle obtained from the GetPhysicalMonitorsFromHMONITOR or
+/// Closes a handle to a physical monitor. Call this function to close a monitor
+/// handle obtained from the GetPhysicalMonitorsFromHMONITOR or
 /// GetPhysicalMonitorsFromIDirect3DDevice9 function.
 ///
 /// ```c
@@ -37,10 +37,9 @@ final _DestroyPhysicalMonitor = _dxva2.lookupFunction<
     Int32 Function(IntPtr hMonitor),
     int Function(int hMonitor)>('DestroyPhysicalMonitor');
 
-/// Closes an array of physical monitor handles. Call this function to close
-/// an array of monitor handles obtained from the
-/// GetPhysicalMonitorsFromHMONITOR or
-/// GetPhysicalMonitorsFromIDirect3DDevice9 function.
+/// Closes an array of physical monitor handles. Call this function to close an
+/// array of monitor handles obtained from the GetPhysicalMonitorsFromHMONITOR
+/// or GetPhysicalMonitorsFromIDirect3DDevice9 function.
 ///
 /// ```c
 /// _BOOL DestroyPhysicalMonitors(
@@ -91,9 +90,9 @@ final _GetMonitorBrightness = _dxva2.lookupFunction<
         Pointer<Uint32> pdwCurrentBrightness,
         Pointer<Uint32> pdwMaximumBrightness)>('GetMonitorBrightness');
 
-/// Retrieves the configuration capabilities of a monitor. Call this
-/// function to find out which high-level monitor configuration functions
-/// are supported by the monitor.
+/// Retrieves the configuration capabilities of a monitor. Call this function to
+/// find out which high-level monitor configuration functions are supported by
+/// the monitor.
 ///
 /// ```c
 /// _BOOL GetMonitorCapabilities(
@@ -163,8 +162,8 @@ final _GetMonitorContrast = _dxva2.lookupFunction<
         Pointer<Uint32> pdwCurrentContrast,
         Pointer<Uint32> pdwMaximumContrast)>('GetMonitorContrast');
 
-/// Retrieves a monitor's minimum, maximum, and current horizontal or
-/// vertical position.
+/// Retrieves a monitor's minimum, maximum, and current horizontal or vertical
+/// position.
 ///
 /// ```c
 /// _BOOL GetMonitorDisplayAreaPosition(
@@ -345,8 +344,7 @@ final _GetNumberOfPhysicalMonitorsFromHMONITOR = _dxva2.lookupFunction<
             int hMonitor, Pointer<Uint32> pdwNumberOfPhysicalMonitors)>(
     'GetNumberOfPhysicalMonitorsFromHMONITOR');
 
-/// Retrieves the physical monitors associated with an HMONITOR monitor
-/// handle.
+/// Retrieves the physical monitors associated with an HMONITOR monitor handle.
 ///
 /// ```c
 /// _BOOL GetPhysicalMonitorsFromHMONITOR(
@@ -385,9 +383,8 @@ final _SaveCurrentMonitorSettings = _dxva2.lookupFunction<
     Int32 Function(IntPtr hMonitor),
     int Function(int hMonitor)>('SaveCurrentMonitorSettings');
 
-/// Sets a monitor's brightness value. Increasing the brightness value makes
-/// the display on the monitor brighter, and decreasing it makes the display
-/// dimmer.
+/// Sets a monitor's brightness value. Increasing the brightness value makes the
+/// display on the monitor brighter, and decreasing it makes the display dimmer.
 ///
 /// ```c
 /// _BOOL SetMonitorBrightness(
@@ -437,11 +434,10 @@ final _SetMonitorContrast = _dxva2.lookupFunction<
     int Function(int hMonitor, int dwNewContrast)>('SetMonitorContrast');
 
 /// Sets the horizontal or vertical position of a monitor's display area.
-/// Increasing the horizontal position moves the display area toward the
-/// right side of the screen; decreasing it moves the display area toward
-/// the left. Increasing the vertical position moves the display area toward
-/// the top of the screen; decreasing it moves the display area toward the
-/// bottom.
+/// Increasing the horizontal position moves the display area toward the right
+/// side of the screen; decreasing it moves the display area toward the left.
+/// Increasing the vertical position moves the display area toward the top of
+/// the screen; decreasing it moves the display area toward the bottom.
 ///
 /// ```c
 /// _BOOL SetMonitorDisplayAreaPosition(

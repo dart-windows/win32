@@ -19,8 +19,7 @@ const IID_IWebAuthenticationCoreManagerInterop =
     '{f4b8e804-811e-4436-b69c-44cb67b72084}';
 
 /// Provides Win32 apps with access to certain functions of
-/// WebAuthenticationCoreManager that are otherwise available only to UWP
-/// apps.
+/// WebAuthenticationCoreManager that are otherwise available only to UWP apps.
 ///
 /// {@category com}
 class IWebAuthenticationCoreManagerInterop extends IInspectable {

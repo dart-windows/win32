@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _winspool = DynamicLibrary.open('winspool.drv');
 
-/// The AbortPrinter function deletes a printer's spool file if the printer
-/// is configured for spooling.
+/// The AbortPrinter function deletes a printer's spool file if the printer is
+/// configured for spooling.
 ///
 /// ```c
 /// BOOL AbortPrinter(
@@ -35,8 +35,8 @@ int AbortPrinter(int hPrinter) => _AbortPrinter(hPrinter);
 final _AbortPrinter = _winspool.lookupFunction<Int32 Function(IntPtr hPrinter),
     int Function(int hPrinter)>('AbortPrinter');
 
-/// The AddForm function adds a form to the list of available forms that can
-/// be selected for the specified printer.
+/// The AddForm function adds a form to the list of available forms that can be
+/// selected for the specified printer.
 ///
 /// ```c
 /// BOOL AddFormW(
@@ -53,9 +53,9 @@ final _AddForm = _winspool.lookupFunction<
     Int32 Function(IntPtr hPrinter, Uint32 Level, Pointer<Uint8> pForm),
     int Function(int hPrinter, int Level, Pointer<Uint8> pForm)>('AddFormW');
 
-/// The AddJob function adds a print job to the list of print jobs that can
-/// be scheduled by the print spooler. The function retrieves the name of
-/// the file you can use to store the job.
+/// The AddJob function adds a print job to the list of print jobs that can be
+/// scheduled by the print spooler. The function retrieves the name of the file
+/// you can use to store the job.
 ///
 /// ```c
 /// BOOL AddJobW(
@@ -77,8 +77,8 @@ final _AddJob = _winspool.lookupFunction<
     int Function(int hPrinter, int Level, Pointer<Uint8> pData, int cbBuf,
         Pointer<Uint32> pcbNeeded)>('AddJobW');
 
-/// The AddPrinter function adds a printer to the list of supported printers
-/// for a specified server.
+/// The AddPrinter function adds a printer to the list of supported printers for
+/// a specified server.
 ///
 /// ```c
 /// HANDLE AddPrinterW(
@@ -97,8 +97,8 @@ final _AddPrinter = _winspool.lookupFunction<
     int Function(Pointer<Utf16> pName, int Level,
         Pointer<Uint8> pPrinter)>('AddPrinterW');
 
-/// The AddPrinterConnection function adds a connection to the specified
-/// printer for the current user.
+/// The AddPrinterConnection function adds a connection to the specified printer
+/// for the current user.
 ///
 /// ```c
 /// BOOL AddPrinterConnectionW(
@@ -135,8 +135,8 @@ final _AddPrinterConnection2 = _winspool.lookupFunction<
         Pointer pConnectionInfo)>('AddPrinterConnection2W');
 
 /// The AdvancedDocumentProperties function displays a printer-configuration
-/// dialog box for the specified printer, allowing the user to configure
-/// that printer.
+/// dialog box for the specified printer, allowing the user to configure that
+/// printer.
 ///
 /// ```c
 /// LONG AdvancedDocumentPropertiesW(
@@ -180,8 +180,8 @@ int ClosePrinter(int hPrinter) => _ClosePrinter(hPrinter);
 final _ClosePrinter = _winspool.lookupFunction<Int32 Function(IntPtr hPrinter),
     int Function(int hPrinter)>('ClosePrinter');
 
-/// The CloseSpoolFileHandle function closes a handle to a spool file
-/// associated with the print job currently submitted by the application.
+/// The CloseSpoolFileHandle function closes a handle to a spool file associated
+/// with the print job currently submitted by the application.
 ///
 /// ```c
 /// BOOL CloseSpoolFileHandle(
@@ -198,8 +198,8 @@ final _CloseSpoolFileHandle = _winspool.lookupFunction<
     int Function(int hPrinter, int hSpoolFile)>('CloseSpoolFileHandle');
 
 /// The CommitSpoolData function notifies the print spooler that a specified
-/// amount of data has been written to a specified spool file and is ready
-/// to be rendered.
+/// amount of data has been written to a specified spool file and is ready to be
+/// rendered.
 ///
 /// ```c
 /// HANDLE CommitSpoolData(
@@ -217,8 +217,8 @@ final _CommitSpoolData = _winspool.lookupFunction<
     int Function(
         int hPrinter, int hSpoolFile, int cbCommit)>('CommitSpoolData');
 
-/// The ConfigurePort function displays the port-configuration dialog box
-/// for a port on the specified server.
+/// The ConfigurePort function displays the port-configuration dialog box for a
+/// port on the specified server.
 ///
 /// ```c
 /// BOOL ConfigurePortW(
@@ -237,10 +237,10 @@ final _ConfigurePort = _winspool.lookupFunction<
         Pointer<Utf16> pPortName)>('ConfigurePortW');
 
 /// The ConnectToPrinterDlg function displays a dialog box that lets users
-/// browse and connect to printers on a network. If the user selects a
-/// printer, the function attempts to create a connection to it; if a
-/// suitable driver is not installed on the server, the user is given the
-/// option of creating a printer locally.
+/// browse and connect to printers on a network. If the user selects a printer,
+/// the function attempts to create a connection to it; if a suitable driver is
+/// not installed on the server, the user is given the option of creating a
+/// printer locally.
 ///
 /// ```c
 /// HANDLE ConnectToPrinterDlg(
@@ -286,9 +286,8 @@ int DeletePrinter(int hPrinter) => _DeletePrinter(hPrinter);
 final _DeletePrinter = _winspool.lookupFunction<Int32 Function(IntPtr hPrinter),
     int Function(int hPrinter)>('DeletePrinter');
 
-/// The DeletePrinterConnection function deletes a connection to a printer
-/// that was established by a call to AddPrinterConnection or
-/// ConnectToPrinterDlg.
+/// The DeletePrinterConnection function deletes a connection to a printer that
+/// was established by a call to AddPrinterConnection or ConnectToPrinterDlg.
 ///
 /// ```c
 /// BOOL DeletePrinterConnectionW(
@@ -303,10 +302,10 @@ final _DeletePrinterConnection = _winspool.lookupFunction<
     Int32 Function(Pointer<Utf16> pName),
     int Function(Pointer<Utf16> pName)>('DeletePrinterConnectionW');
 
-/// The DeletePrinterData function deletes specified configuration data for
-/// a printer. A printer's configuration data consists of a set of named and
-/// typed values. The DeletePrinterData function deletes one of these
-/// values, specified by its value name.
+/// The DeletePrinterData function deletes specified configuration data for a
+/// printer. A printer's configuration data consists of a set of named and typed
+/// values. The DeletePrinterData function deletes one of these values,
+/// specified by its value name.
 ///
 /// ```c
 /// DWORD DeletePrinterDataW(
@@ -324,10 +323,9 @@ final _DeletePrinterData = _winspool.lookupFunction<
         int hPrinter, Pointer<Utf16> pValueName)>('DeletePrinterDataW');
 
 /// The DeletePrinterDataEx function deletes a specified value from the
-/// configuration data for a printer. A printer's configuration data
-/// consists of a set of named and typed values stored in a hierarchy of
-/// registry keys. The function deletes a specified value under a specified
-/// key.
+/// configuration data for a printer. A printer's configuration data consists of
+/// a set of named and typed values stored in a hierarchy of registry keys. The
+/// function deletes a specified value under a specified key.
 ///
 /// ```c
 /// DWORD DeletePrinterDataExW(
@@ -347,8 +345,8 @@ final _DeletePrinterDataEx = _winspool.lookupFunction<
     int Function(int hPrinter, Pointer<Utf16> pKeyName,
         Pointer<Utf16> pValueName)>('DeletePrinterDataExW');
 
-/// The DeletePrinterKey function deletes a specified key and all its
-/// subkeys for a specified printer.
+/// The DeletePrinterKey function deletes a specified key and all its subkeys
+/// for a specified printer.
 ///
 /// ```c
 /// DWORD DeletePrinterKeyW(
@@ -364,9 +362,9 @@ final _DeletePrinterKey = _winspool.lookupFunction<
     Uint32 Function(IntPtr hPrinter, Pointer<Utf16> pKeyName),
     int Function(int hPrinter, Pointer<Utf16> pKeyName)>('DeletePrinterKeyW');
 
-/// The DocumentProperties function retrieves or modifies printer
-/// initialization information or displays a printer-configuration property
-/// sheet for the specified printer.
+/// The DocumentProperties function retrieves or modifies printer initialization
+/// information or displays a printer-configuration property sheet for the
+/// specified printer.
 ///
 /// ```c
 /// LONG DocumentPropertiesW(
@@ -418,8 +416,8 @@ int EndDocPrinter(int hPrinter) => _EndDocPrinter(hPrinter);
 final _EndDocPrinter = _winspool.lookupFunction<Int32 Function(IntPtr hPrinter),
     int Function(int hPrinter)>('EndDocPrinter');
 
-/// The EndPagePrinter function notifies the print spooler that the
-/// application is at the end of a page in a print job.
+/// The EndPagePrinter function notifies the print spooler that the application
+/// is at the end of a page in a print job.
 ///
 /// ```c
 /// BOOL EndPagePrinter(
@@ -457,8 +455,8 @@ final _EnumForms = _winspool.lookupFunction<
     int Function(int hPrinter, int Level, Pointer<Uint8> pForm, int cbBuf,
         Pointer<Uint32> pcbNeeded, Pointer<Uint32> pcReturned)>('EnumFormsW');
 
-/// The EnumJobs function retrieves information about a specified set of
-/// print jobs for a specified printer.
+/// The EnumJobs function retrieves information about a specified set of print
+/// jobs for a specified printer.
 ///
 /// ```c
 /// BOOL EnumJobsW(
@@ -505,8 +503,8 @@ final _EnumJobs = _winspool.lookupFunction<
         Pointer<Uint32> pcbNeeded,
         Pointer<Uint32> pcReturned)>('EnumJobsW');
 
-/// The EnumPrinterData function enumerates configuration data for a
-/// specified printer.
+/// The EnumPrinterData function enumerates configuration data for a specified
+/// printer.
 ///
 /// ```c
 /// DWORD EnumPrinterDataW(
@@ -597,8 +595,8 @@ final _EnumPrinterDataEx = _winspool.lookupFunction<
         Pointer<Uint32> pcbEnumValues,
         Pointer<Uint32> pnEnumValues)>('EnumPrinterDataExW');
 
-/// The EnumPrinterKey function enumerates the subkeys of a specified key
-/// for a specified printer.
+/// The EnumPrinterKey function enumerates the subkeys of a specified key for a
+/// specified printer.
 ///
 /// ```c
 /// DWORD EnumPrinterKeyW(
@@ -664,11 +662,10 @@ final _EnumPrinters = _winspool.lookupFunction<
         Pointer<Uint32> pcbNeeded,
         Pointer<Uint32> pcReturned)>('EnumPrintersW');
 
-/// The FindClosePrinterChangeNotification function closes a change
-/// notification object created by calling the
-/// FindFirstPrinterChangeNotification function. The printer or print server
-/// associated with the change notification object will no longer be
-/// monitored by that object.
+/// The FindClosePrinterChangeNotification function closes a change notification
+/// object created by calling the FindFirstPrinterChangeNotification function.
+/// The printer or print server associated with the change notification object
+/// will no longer be monitored by that object.
 ///
 /// ```c
 /// BOOL FindClosePrinterChangeNotification(
@@ -685,8 +682,8 @@ final _FindClosePrinterChangeNotification = _winspool.lookupFunction<
 
 /// The FindFirstPrinterChangeNotification function creates a change
 /// notification object and returns a handle to the object. You can then use
-/// this handle in a call to one of the wait functions to monitor changes to
-/// the printer or print server.
+/// this handle in a call to one of the wait functions to monitor changes to the
+/// printer or print server.
 ///
 /// ```c
 /// HANDLE FindFirstPrinterChangeNotification(
@@ -708,10 +705,10 @@ final _FindFirstPrinterChangeNotification = _winspool.lookupFunction<
     int Function(int hPrinter, int fdwFilter, int fdwOptions,
         Pointer pPrinterNotifyOptions)>('FindFirstPrinterChangeNotification');
 
-/// The FindNextPrinterChangeNotification function retrieves information
-/// about the most recent change notification for a change notification
-/// object associated with a printer or print server. Call this function
-/// when a wait operation on the change notification object is satisfied.
+/// The FindNextPrinterChangeNotification function retrieves information about
+/// the most recent change notification for a change notification object
+/// associated with a printer or print server. Call this function when a wait
+/// operation on the change notification object is satisfied.
 ///
 /// ```c
 /// BOOL FindNextPrinterChangeNotification(
@@ -734,8 +731,8 @@ final _FindNextPrinterChangeNotification = _winspool.lookupFunction<
             Pointer<Pointer> ppPrinterNotifyInfo)>(
     'FindNextPrinterChangeNotification');
 
-/// The FlushPrinter function sends a buffer to the printer in order to
-/// clear it from a transient state.
+/// The FlushPrinter function sends a buffer to the printer in order to clear it
+/// from a transient state.
 ///
 /// ```c
 /// BOOL FlushPrinter(
@@ -757,8 +754,8 @@ final _FlushPrinter = _winspool.lookupFunction<
     int Function(int hPrinter, Pointer pBuf, int cbBuf,
         Pointer<Uint32> pcWritten, int cSleep)>('FlushPrinter');
 
-/// The FreePrinterNotifyInfo function frees a system-allocated buffer
-/// created by the FindNextPrinterChangeNotification function.
+/// The FreePrinterNotifyInfo function frees a system-allocated buffer created
+/// by the FindNextPrinterChangeNotification function.
 ///
 /// ```c
 /// BOOL FreePrinterNotifyInfo(
@@ -865,8 +862,8 @@ final _GetPrinter = _winspool.lookupFunction<
     int Function(int hPrinter, int Level, Pointer<Uint8> pPrinter, int cbBuf,
         Pointer<Uint32> pcbNeeded)>('GetPrinterW');
 
-/// The GetPrinterData function retrieves configuration data for the
-/// specified printer or print server.
+/// The GetPrinterData function retrieves configuration data for the specified
+/// printer or print server.
 ///
 /// ```c
 /// DWORD GetPrinterDataW(
@@ -904,11 +901,10 @@ final _GetPrinterData = _winspool.lookupFunction<
         int nSize,
         Pointer<Uint32> pcbNeeded)>('GetPrinterDataW');
 
-/// The GetPrinterDataEx function retrieves configuration data for the
-/// specified printer or print server. GetPrinterDataEx can retrieve values
-/// that the SetPrinterData function stored. In addition, GetPrinterDataEx
-/// can retrieve values that the SetPrinterDataEx function stored under a
-/// specified key.
+/// The GetPrinterDataEx function retrieves configuration data for the specified
+/// printer or print server. GetPrinterDataEx can retrieve values that the
+/// SetPrinterData function stored. In addition, GetPrinterDataEx can retrieve
+/// values that the SetPrinterDataEx function stored under a specified key.
 ///
 /// ```c
 /// DWORD GetPrinterDataExW(
@@ -1020,9 +1016,8 @@ final _OpenPrinter = _winspool.lookupFunction<
     int Function(Pointer<Utf16> pPrinterName, Pointer<IntPtr> phPrinter,
         Pointer<PRINTER_DEFAULTS> pDefault)>('OpenPrinterW');
 
-/// Retrieves a handle to the specified printer, print server, or other
-/// types of handles in the print subsystem, while setting some of the
-/// printer options.
+/// Retrieves a handle to the specified printer, print server, or other types of
+/// handles in the print subsystem, while setting some of the printer options.
 ///
 /// ```c
 /// BOOL OpenPrinter2W(
@@ -1049,8 +1044,8 @@ final _OpenPrinter2 = _winspool.lookupFunction<
         Pointer<PRINTER_DEFAULTS> pDefault,
         Pointer<PRINTER_OPTIONS> pOptions)>('OpenPrinter2W');
 
-/// The PrinterProperties function displays a printer-properties property
-/// sheet for the specified printer.
+/// The PrinterProperties function displays a printer-properties property sheet
+/// for the specified printer.
 ///
 /// ```c
 /// BOOL PrinterProperties(
@@ -1088,8 +1083,8 @@ final _ReadPrinter = _winspool.lookupFunction<
         Pointer<Uint32> pNoBytesRead)>('ReadPrinter');
 
 /// Reports to the Print Spooler service whether an XPS print job is in the
-/// spooling or the rendering phase and what part of the processing is
-/// currently underway.
+/// spooling or the rendering phase and what part of the processing is currently
+/// underway.
 ///
 /// ```c
 /// HRESULT ReportJobProcessingProgress(
@@ -1111,10 +1106,10 @@ final _ReportJobProcessingProgress = _winspool.lookupFunction<
     int Function(int printerHandle, int jobId, int jobOperation,
         int jobProgress)>('ReportJobProcessingProgress');
 
-/// The ResetPrinter function specifies the data type and device mode values
-/// to be used for printing documents submitted by the StartDocPrinter
-/// function. These values can be overridden by using the SetJob function
-/// after document printing has started.
+/// The ResetPrinter function specifies the data type and device mode values to
+/// be used for printing documents submitted by the StartDocPrinter function.
+/// These values can be overridden by using the SetJob function after document
+/// printing has started.
 ///
 /// ```c
 /// BOOL ResetPrinterW(
@@ -1147,8 +1142,8 @@ final _ScheduleJob = _winspool.lookupFunction<
     Int32 Function(IntPtr hPrinter, Uint32 JobId),
     int Function(int hPrinter, int JobId)>('ScheduleJob');
 
-/// The SetDefaultPrinter function sets the printer name of the default
-/// printer for the current user on the local computer.
+/// The SetDefaultPrinter function sets the printer name of the default printer
+/// for the current user on the local computer.
 ///
 /// ```c
 /// BOOL SetDefaultPrinterW(
@@ -1163,8 +1158,7 @@ final _SetDefaultPrinter = _winspool.lookupFunction<
     Int32 Function(Pointer<Utf16> pszPrinter),
     int Function(Pointer<Utf16> pszPrinter)>('SetDefaultPrinterW');
 
-/// The SetForm function sets the form information for the specified
-/// printer.
+/// The SetForm function sets the form information for the specified printer.
 ///
 /// ```c
 /// BOOL SetFormW(
@@ -1185,9 +1179,9 @@ final _SetForm = _winspool.lookupFunction<
     int Function(int hPrinter, Pointer<Utf16> pFormName, int Level,
         Pointer<Uint8> pForm)>('SetFormW');
 
-/// The SetJob function pauses, resumes, cancels, or restarts a print job on
-/// a specified printer. You can also use the SetJob function to set print
-/// job parameters, such as the print job priority and the document name.
+/// The SetJob function pauses, resumes, cancels, or restarts a print job on a
+/// specified printer. You can also use the SetJob function to set print job
+/// parameters, such as the print job priority and the document name.
 ///
 /// ```c
 /// BOOL SetJobW(
@@ -1230,9 +1224,9 @@ final _SetPort = _winspool.lookupFunction<
     int Function(Pointer<Utf16> pName, Pointer<Utf16> pPortName, int dwLevel,
         Pointer<Uint8> pPortInfo)>('SetPortW');
 
-/// The SetPrinter function sets the data for a specified printer or sets
-/// the state of the specified printer by pausing printing, resuming
-/// printing, or clearing all print jobs.
+/// The SetPrinter function sets the data for a specified printer or sets the
+/// state of the specified printer by pausing printing, resuming printing, or
+/// clearing all print jobs.
 ///
 /// ```c
 /// BOOL SetPrinterW(
@@ -1275,9 +1269,9 @@ final _SetPrinterData = _winspool.lookupFunction<
     int Function(int hPrinter, Pointer<Utf16> pValueName, int Type,
         Pointer<Uint8> pData, int cbData)>('SetPrinterDataW');
 
-/// The SetPrinterDataEx function sets the configuration data for a printer
-/// or print server. The function stores the configuration data under the
-/// printer's registry key.
+/// The SetPrinterDataEx function sets the configuration data for a printer or
+/// print server. The function stores the configuration data under the printer's
+/// registry key.
 ///
 /// ```c
 /// DWORD SetPrinterDataExW(
@@ -1315,8 +1309,8 @@ final _SetPrinterDataEx = _winspool.lookupFunction<
         Pointer<Uint8> pData,
         int cbData)>('SetPrinterDataExW');
 
-/// The StartDocPrinter function notifies the print spooler that a document
-/// is to be spooled for printing.
+/// The StartDocPrinter function notifies the print spooler that a document is
+/// to be spooled for printing.
 ///
 /// ```c
 /// DWORD StartDocPrinterW(
@@ -1335,8 +1329,8 @@ final _StartDocPrinter = _winspool.lookupFunction<
     int Function(int hPrinter, int Level,
         Pointer<DOC_INFO_1> pDocInfo)>('StartDocPrinterW');
 
-/// The StartPagePrinter function notifies the spooler that a page is about
-/// to be printed on the specified printer.
+/// The StartPagePrinter function notifies the spooler that a page is about to
+/// be printed on the specified printer.
 ///
 /// ```c
 /// BOOL StartPagePrinter(

@@ -44,8 +44,8 @@ final _WslConfigureDistribution = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
     int Function(Pointer<Utf16> distributionName, int defaultUID,
         int wslDistributionFlags)>('WslConfigureDistribution');
 
-/// Retrieves the current configuration of a distribution registered with
-/// the Windows Subsystem for Linux (WSL).
+/// Retrieves the current configuration of a distribution registered with the
+/// Windows Subsystem for Linux (WSL).
 ///
 /// ```c
 /// HRESULT WslGetDistributionConfiguration(
@@ -91,8 +91,8 @@ final _WslGetDistributionConfiguration =
                 Pointer<Uint32> defaultEnvironmentVariableCount)>(
         'WslGetDistributionConfiguration');
 
-/// Determines if a distribution is registered with the Windows Subsystem
-/// for Linux (WSL).
+/// Determines if a distribution is registered with the Windows Subsystem for
+/// Linux (WSL).
 ///
 /// ```c
 /// BOOL WslIsDistributionRegistered(
@@ -153,8 +153,8 @@ final _WslLaunch = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
         Pointer<IntPtr> process)>('WslLaunch');
 
 /// Launches an interactive Windows Subsystem for Linux (WSL) process in the
-/// context of a particular distribution.This differs from WslLaunch in that
-/// the end user will be able to interact with the newly-created process.
+/// context of a particular distribution.This differs from WslLaunch in that the
+/// end user will be able to interact with the newly-created process.
 ///
 /// ```c
 /// HRESULT WslLaunchInteractive(

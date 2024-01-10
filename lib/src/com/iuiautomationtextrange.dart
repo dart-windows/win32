@@ -19,10 +19,10 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IUIAutomationTextRange = '{a543cc6a-f4ae-494b-8239-c814481187a8}';
 
-/// Provides access to a span of continuous text in a container that
-/// supports the IUIAutomationTextPattern interface. Client applications can
-/// use the IUIAutomationTextRange interface to select, compare, and
-/// retrieve embedded objects from the text span.
+/// Provides access to a span of continuous text in a container that supports
+/// the IUIAutomationTextPattern interface. Client applications can use the
+/// IUIAutomationTextRange interface to select, compare, and retrieve embedded
+/// objects from the text span.
 ///
 /// {@category com}
 class IUIAutomationTextRange extends IUnknown {

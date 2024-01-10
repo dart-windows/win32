@@ -21,8 +21,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IUIAutomationElement5 = '{98141c1d-0d0e-4175-bbe2-6bff455842a7}';
 
-/// Extends the IUIAutomationElement4 interface to provide access to current
-/// and cached landmark data.
+/// Extends the IUIAutomationElement4 interface to provide access to current and
+/// cached landmark data.
 ///
 /// {@category com}
 class IUIAutomationElement5 extends IUIAutomationElement4 {

@@ -22,8 +22,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_ISpeechBaseStream = '{6450336f-7d49-4ced-8097-49d6dee37294}';
 
-/// The ISpeechBaseStream automation interface defines properties and
-/// methods for manipulating data streams.
+/// The ISpeechBaseStream automation interface defines properties and methods
+/// for manipulating data streams.
 ///
 /// {@category com}
 class ISpeechBaseStream extends IDispatch {

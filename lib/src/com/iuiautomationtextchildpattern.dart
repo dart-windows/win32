@@ -21,8 +21,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationTextChildPattern =
     '{6552b038-ae05-40c8-abfd-aa08352aab86}';
 
-/// Provides access a text-based control (or an object embedded in text)
-/// that is a child or descendant of another text-based control.
+/// Provides access a text-based control (or an object embedded in text) that is
+/// a child or descendant of another text-based control.
 ///
 /// {@category com}
 class IUIAutomationTextChildPattern extends IUnknown {

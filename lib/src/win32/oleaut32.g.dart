@@ -41,8 +41,7 @@ final _DosDateTimeToVariantTime = _oleaut32.lookupFunction<
     int Function(int wDosDate, int wDosTime,
         Pointer<Double> pvtime)>('DosDateTimeToVariantTime');
 
-/// Retrieves a pointer to a running object that has been registered with
-/// OLE.
+/// Retrieves a pointer to a running object that has been registered with OLE.
 ///
 /// ```c
 /// HRESULT GetActiveObject(
@@ -94,8 +93,8 @@ final _SysAllocStringByteLen = _oleaut32.lookupFunction<
     Pointer<Utf16> Function(
         Pointer<Utf8> psz, int len)>('SysAllocStringByteLen');
 
-/// Allocates a new string, copies the specified number of characters from
-/// the passed string, and appends a null-terminating character.
+/// Allocates a new string, copies the specified number of characters from the
+/// passed string, and appends a null-terminating character.
 ///
 /// ```c
 /// BSTR SysAllocStringLen(
@@ -127,8 +126,8 @@ final _SysFreeString = _oleaut32.lookupFunction<
     Void Function(Pointer<Utf16> bstrString),
     void Function(Pointer<Utf16> bstrString)>('SysFreeString');
 
-/// Reallocates a previously allocated string to be the size of a second
-/// string and copies the second string into the reallocated memory.
+/// Reallocates a previously allocated string to be the size of a second string
+/// and copies the second string into the reallocated memory.
 ///
 /// ```c
 /// INT SysReAllocString(
@@ -145,8 +144,8 @@ final _SysReAllocString = _oleaut32.lookupFunction<
     int Function(
         Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz)>('SysReAllocString');
 
-/// Creates a new BSTR containing a specified number of characters from an
-/// old BSTR, and frees the old BSTR.
+/// Creates a new BSTR containing a specified number of characters from an old
+/// BSTR, and frees the old BSTR.
 ///
 /// ```c
 /// INT SysReAllocStringLen(
@@ -166,9 +165,9 @@ final _SysReAllocStringLen = _oleaut32.lookupFunction<
     int Function(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz,
         int len)>('SysReAllocStringLen');
 
-/// Decreases the pinning reference count for the specified string by one.
-/// When that count reaches 0, the memory for that string is no longer
-/// prevented from being freed.
+/// Decreases the pinning reference count for the specified string by one. When
+/// that count reaches 0, the memory for that string is no longer prevented from
+/// being freed.
 ///
 /// ```c
 /// void SysReleaseString(
@@ -318,8 +317,8 @@ final _VariantInit = _oleaut32.lookupFunction<
     Void Function(Pointer<VARIANT> pvarg),
     void Function(Pointer<VARIANT> pvarg)>('VariantInit');
 
-/// Converts the variant representation of a date and time to MS-DOS date
-/// and time values.
+/// Converts the variant representation of a date and time to MS-DOS date and
+/// time values.
 ///
 /// ```c
 /// INT VariantTimeToDosDateTime(

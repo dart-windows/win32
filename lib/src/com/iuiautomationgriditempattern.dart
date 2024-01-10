@@ -21,8 +21,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationGridItemPattern =
     '{78f8ef57-66c3-4e09-bd7c-e79b2004894d}';
 
-/// Provides access to a child control in a grid-style container that
-/// supports the IUIAutomationGridPattern interface.
+/// Provides access to a child control in a grid-style container that supports
+/// the IUIAutomationGridPattern interface.
 ///
 /// {@category com}
 class IUIAutomationGridItemPattern extends IUnknown {

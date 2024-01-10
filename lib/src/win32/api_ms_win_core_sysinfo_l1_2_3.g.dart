@@ -22,8 +22,8 @@ import '../variant.dart';
 final _api_ms_win_core_sysinfo_l1_2_3 =
     DynamicLibrary.open('api-ms-win-core-sysinfo-l1-2-3.dll');
 
-/// Retrieves the best estimate of the diagonal size of the built-in screen,
-/// in inches.
+/// Retrieves the best estimate of the diagonal size of the built-in screen, in
+/// inches.
 ///
 /// ```c
 /// HRESULT GetIntegratedDisplaySize(

@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _scarddlg = DynamicLibrary.open('scarddlg.dll');
 
-/// The SCardUIDlgSelectCard function displays the smart card Select Card
-/// dialog box.
+/// The SCardUIDlgSelectCard function displays the smart card Select Card dialog
+/// box.
 ///
 /// ```c
 /// LONG SCardUIDlgSelectCardW(

@@ -18,8 +18,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IMetaDataImport2 = '{fce5efa0-8bba-4f8e-a036-8f2022b08466}';
 
-/// Extends the IMetaDataImport interface to provide the capability of
-/// working with generic types.
+/// Extends the IMetaDataImport interface to provide the capability of working
+/// with generic types.
 ///
 /// {@category com}
 class IMetaDataImport2 extends IMetaDataImport {

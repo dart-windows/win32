@@ -21,8 +21,7 @@ import '../variant.dart';
 
 final _shlwapi = DynamicLibrary.open('shlwapi.dll');
 
-/// Creates a memory stream using a similar process to
-/// CreateStreamOnHGlobal.
+/// Creates a memory stream using a similar process to CreateStreamOnHGlobal.
 ///
 /// ```c
 /// IStream* SHCreateMemStream(

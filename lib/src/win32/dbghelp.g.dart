@@ -267,8 +267,8 @@ final _SymSetScopeFromIndex = _dbghelp.lookupFunction<
     int Function(
         int hProcess, int BaseOfDll, int Index)>('SymSetScopeFromIndex');
 
-/// Sets the local scope to the symbol that matches the specified address
-/// and inline context.
+/// Sets the local scope to the symbol that matches the specified address and
+/// inline context.
 ///
 /// ```c
 /// BOOL SymSetScopeFromInlineContext(

@@ -21,8 +21,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IUIAutomationDragPattern = '{1dc7b570-1f54-4bad-bcda-d36a722fb7bd}';
 
-/// Provides access to information exposed by a UI Automation provider for
-/// an element that can be dragged as part of a drag-and-drop operation.
+/// Provides access to information exposed by a UI Automation provider for an
+/// element that can be dragged as part of a drag-and-drop operation.
 ///
 /// {@category com}
 class IUIAutomationDragPattern extends IUnknown {

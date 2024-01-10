@@ -16,8 +16,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationCustomNavigationPattern =
     '{01ea217a-1766-47ed-a6cc-acf492854b1f}';
 
-/// Exposes a method to support access by a Microsoft UI Automation client
-/// to controls that support a custom navigation order.
+/// Exposes a method to support access by a Microsoft UI Automation client to
+/// controls that support a custom navigation order.
 ///
 /// {@category com}
 class IUIAutomationCustomNavigationPattern extends IUnknown {

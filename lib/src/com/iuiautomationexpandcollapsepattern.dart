@@ -21,8 +21,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationExpandCollapsePattern =
     '{619be086-1f4e-4ee4-bafa-210128738730}';
 
-/// Provides access to a control that can visually expand to display
-/// content, and collapse to hide content.
+/// Provides access to a control that can visually expand to display content,
+/// and collapse to hide content.
 ///
 /// {@category com}
 class IUIAutomationExpandCollapsePattern extends IUnknown {

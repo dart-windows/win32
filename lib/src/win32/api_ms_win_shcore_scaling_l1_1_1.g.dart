@@ -79,9 +79,9 @@ final _GetScaleFactorForMonitor =
         int Function(
             int hMon, Pointer<Int32> pScale)>('GetScaleFactorForMonitor');
 
-/// Sets the process-default DPI awareness level. This is equivalent to
-/// calling SetProcessDpiAwarenessContext with the corresponding
-/// DPI_AWARENESS_CONTEXT value.
+/// Sets the process-default DPI awareness level. This is equivalent to calling
+/// SetProcessDpiAwarenessContext with the corresponding DPI_AWARENESS_CONTEXT
+/// value.
 ///
 /// ```c
 /// HRESULT SetProcessDpiAwareness(

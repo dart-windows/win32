@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _iphlpapi = DynamicLibrary.open('iphlpapi.dll');
 
-/// The AddIPAddress function adds the specified IPv4 address to the
-/// specified adapter.
+/// The AddIPAddress function adds the specified IPv4 address to the specified
+/// adapter.
 ///
 /// ```c
 /// DWORD AddIPAddress(
@@ -49,8 +49,8 @@ final _AddIPAddress = _iphlpapi.lookupFunction<
         Pointer<Uint32> NTEInstance)>('AddIPAddress');
 
 /// The ConvertInterfaceGuidToLuid function converts a globally unique
-/// identifier (GUID) for a network interface to the locally unique
-/// identifier (LUID) for the interface.
+/// identifier (GUID) for a network interface to the locally unique identifier
+/// (LUID) for the interface.
 ///
 /// ```c
 /// ConvertInterfaceGuidToLuid(
@@ -69,8 +69,8 @@ final _ConvertInterfaceGuidToLuid = _iphlpapi.lookupFunction<
     int Function(Pointer<GUID> InterfaceGuid,
         Pointer<NET_LUID_LH> InterfaceLuid)>('ConvertInterfaceGuidToLuid');
 
-/// The DeleteIPAddress function deletes an IP address previously added
-/// using AddIPAddress.
+/// The DeleteIPAddress function deletes an IP address previously added using
+/// AddIPAddress.
 ///
 /// ```c
 /// DWORD DeleteIPAddress(
@@ -102,8 +102,8 @@ final _GetAdapterIndex = _iphlpapi.lookupFunction<
     int Function(Pointer<Utf16> AdapterName,
         Pointer<Uint32> IfIndex)>('GetAdapterIndex');
 
-/// The GetAdaptersAddresses function retrieves the addresses associated
-/// with the adapters on the local computer.
+/// The GetAdaptersAddresses function retrieves the addresses associated with
+/// the adapters on the local computer.
 ///
 /// ```c
 /// ULONG GetAdaptersAddresses(
@@ -185,8 +185,8 @@ final _GetPerAdapterInfo = _iphlpapi.lookupFunction<
         Pointer<IP_PER_ADAPTER_INFO_W2KSP1> pPerAdapterInfo,
         Pointer<Uint32> pOutBufLen)>('GetPerAdapterInfo');
 
-/// The IpReleaseAddress function releases an IPv4 address previously
-/// obtained through the Dynamic Host Configuration Protocol (DHCP).
+/// The IpReleaseAddress function releases an IPv4 address previously obtained
+/// through the Dynamic Host Configuration Protocol (DHCP).
 ///
 /// ```c
 /// DWORD IpReleaseAddress(

@@ -22,8 +22,8 @@ import '../variant.dart';
 final _api_ms_win_service_core_l1_1_4 =
     DynamicLibrary.open('api-ms-win-service-core-l1-1-4.dll');
 
-/// Returns a path for a per-service filesystem location for a service to
-/// read and/or write state to.
+/// Returns a path for a per-service filesystem location for a service to read
+/// and/or write state to.
 ///
 /// ```c
 /// DWORD GetServiceDirectory(

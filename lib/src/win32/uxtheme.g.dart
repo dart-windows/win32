@@ -105,8 +105,8 @@ final _DrawThemeEdge = _uxtheme.lookupFunction<
         int uFlags,
         Pointer<RECT> pContentRect)>('DrawThemeEdge');
 
-/// Draws an image from an image list with the icon effect defined by the
-/// visual style.
+/// Draws an image from an image list with the icon effect defined by the visual
+/// style.
 ///
 /// ```c
 /// HRESULT DrawThemeIcon(
@@ -149,9 +149,9 @@ final _DrawThemeParentBackground = _uxtheme.lookupFunction<
     int Function(
         int hwnd, int hdc, Pointer<RECT> prc)>('DrawThemeParentBackground');
 
-/// Used by partially-transparent or alpha-blended child controls to draw
-/// the part of their parent in front of which they appear. Sends a
-/// WM_ERASEBKGND message followed by a WM_PRINTCLIENT.
+/// Used by partially-transparent or alpha-blended child controls to draw the
+/// part of their parent in front of which they appear. Sends a WM_ERASEBKGND
+/// message followed by a WM_PRINTCLIENT.
 ///
 /// ```c
 /// HRESULT DrawThemeParentBackgroundEx(
@@ -222,8 +222,7 @@ final _DrawThemeTextEx = _uxtheme.lookupFunction<
         Pointer<RECT> pRect,
         Pointer<DTTOPTS> pOptions)>('DrawThemeTextEx');
 
-/// Enables or disables the visual style of the background of a dialog
-/// window.
+/// Enables or disables the visual style of the background of a dialog window.
 ///
 /// ```c
 /// HRESULT EnableThemeDialogTexture(
@@ -239,8 +238,8 @@ final _EnableThemeDialogTexture = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hwnd, Uint32 dwFlags),
     int Function(int hwnd, int dwFlags)>('EnableThemeDialogTexture');
 
-/// Retrieves the name of the current visual style, and optionally retrieves
-/// the color scheme name and size name.
+/// Retrieves the name of the current visual style, and optionally retrieves the
+/// color scheme name and size name.
 ///
 /// ```c
 /// HRESULT GetCurrentThemeName(
@@ -496,8 +495,8 @@ final _IsThemeDialogTextureEnabled = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hwnd),
     int Function(int hwnd)>('IsThemeDialogTextureEnabled');
 
-/// Retrieves whether a visual style has defined parameters for the
-/// specified part and state.
+/// Retrieves whether a visual style has defined parameters for the specified
+/// part and state.
 ///
 /// ```c
 /// BOOL IsThemePartDefined(
@@ -530,8 +529,7 @@ final _OpenThemeData = _uxtheme.lookupFunction<
     IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList),
     int Function(int hwnd, Pointer<Utf16> pszClassList)>('OpenThemeData');
 
-/// Opens the theme data associated with a window for specified theme
-/// classes.
+/// Opens the theme data associated with a window for specified theme classes.
 ///
 /// ```c
 /// HTHEME OpenThemeDataEx(
@@ -583,8 +581,8 @@ final _SetThemeAppProperties = _uxtheme.lookupFunction<
     Void Function(Uint32 dwFlags),
     void Function(int dwFlags)>('SetThemeAppProperties');
 
-/// Causes a window to use a different set of visual style information than
-/// its class normally uses.
+/// Causes a window to use a different set of visual style information than its
+/// class normally uses.
 ///
 /// ```c
 /// HRESULT SetWindowTheme(

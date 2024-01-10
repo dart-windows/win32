@@ -20,8 +20,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IUIAutomationTablePattern = '{620e691c-ea96-4710-a850-754b24ce2417}';
 
-/// Provides access to a control that acts as a container for a collection
-/// of child elements.
+/// Provides access to a control that acts as a container for a collection of
+/// child elements.
 ///
 /// {@category com}
 class IUIAutomationTablePattern extends IUnknown {

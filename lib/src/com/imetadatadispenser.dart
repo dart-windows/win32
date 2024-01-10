@@ -18,8 +18,7 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IMetaDataDispenser = '{809c652e-7396-11d2-9771-00a0c9b4d50c}';
 
-/// Provides methods to create a new metadata scope, or open an existing
-/// one.
+/// Provides methods to create a new metadata scope, or open an existing one.
 ///
 /// {@category com}
 class IMetaDataDispenser extends IUnknown {

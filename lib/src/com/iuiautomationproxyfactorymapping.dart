@@ -22,10 +22,10 @@ import 'iunknown.dart';
 const IID_IUIAutomationProxyFactoryMapping =
     '{09e31e18-872d-4873-93d1-1e541ec133fd}';
 
-/// Exposes properties and methods for a table of proxy factories. Each
-/// table entry is represented by an IUIAutomationProxyFactoryEntry
-/// interface. The entries are in the order in which the system will attempt
-/// to use the proxies.
+/// Exposes properties and methods for a table of proxy factories. Each table
+/// entry is represented by an IUIAutomationProxyFactoryEntry interface. The
+/// entries are in the order in which the system will attempt to use the
+/// proxies.
 ///
 /// {@category com}
 class IUIAutomationProxyFactoryMapping extends IUnknown {

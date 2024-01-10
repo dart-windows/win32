@@ -102,17 +102,18 @@ String stripPointer(String typeName) =>
     typeName.substring(8, typeName.length - 1);
 
 /// Take an input string and turn it into a multi-line doc comment.
-String wrapCommentText(String inputText, [int wrapLength = 76]) {
+String wrapCommentText(String inputText, [int wrapLength = 80]) {
   if (inputText.isEmpty) return '';
 
   final words = inputText.split(' ');
   final textLine = StringBuffer('///');
-  final outputText = StringBuffer();
+  final wrappedText = StringBuffer();
 
   for (final word in words) {
+    // If the word would exceed the wrapLength, wrap it to the next line.
     if ((textLine.length + word.length) >= wrapLength) {
       textLine.write('\n');
-      outputText.write(textLine);
+      wrappedText.write(textLine);
       textLine
         ..clear()
         ..write('/// $word');
@@ -121,8 +122,8 @@ String wrapCommentText(String inputText, [int wrapLength = 76]) {
     }
   }
 
-  outputText.write(textLine);
-  return outputText.toString().trimRight();
+  wrappedText.write(textLine);
+  return wrappedText.toString().trimRight();
 }
 
 /// Take a fully-qualified interface name (e.g.

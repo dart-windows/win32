@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _wlanapi = DynamicLibrary.open('wlanapi.dll');
 
-/// The WlanAllocateMemory function allocates memory. Any memory passed to
-/// other Native Wifi functions must be allocated with this function.
+/// The WlanAllocateMemory function allocates memory. Any memory passed to other
+/// Native Wifi functions must be allocated with this function.
 ///
 /// ```c
 /// PVOID WlanAllocateMemory(
@@ -108,8 +108,8 @@ final _WlanDeleteProfile = _wlanapi.lookupFunction<
         Pointer<Utf16> strProfileName, Pointer pReserved)>('WlanDeleteProfile');
 
 /// Allows an original equipment manufacturer (OEM) or independent hardware
-/// vendor (IHV) component to communicate with a device service on a
-/// particular wireless LAN interface.
+/// vendor (IHV) component to communicate with a device service on a particular
+/// wireless LAN interface.
 ///
 /// ```c
 /// DWORD WlanDeviceServiceCommand(
@@ -212,8 +212,8 @@ final _WlanEnumInterfaces = _wlanapi.lookupFunction<
     'WlanEnumInterfaces');
 
 /// The WlanExtractPsdIEDataList function extracts the proximity service
-/// discovery (PSD) information element (IE) data list from raw IE data
-/// included in a beacon.
+/// discovery (PSD) information element (IE) data list from raw IE data included
+/// in a beacon.
 ///
 /// ```c
 /// DWORD WlanExtractPsdIEDataList(
@@ -253,8 +253,8 @@ final _WlanExtractPsdIEDataList = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_RAW_DATA_LIST>> ppPsdIEDataList)>(
     'WlanExtractPsdIEDataList');
 
-/// The WlanFreeMemory function frees memory. Any memory returned from
-/// Native Wifi functions must be freed.
+/// The WlanFreeMemory function frees memory. Any memory returned from Native
+/// Wifi functions must be freed.
 ///
 /// ```c
 /// void WlanFreeMemory(
@@ -304,8 +304,8 @@ final _WlanGetAvailableNetworkList = _wlanapi.lookupFunction<
         Pointer<Pointer<WLAN_AVAILABLE_NETWORK_LIST>>
             ppAvailableNetworkList)>('WlanGetAvailableNetworkList');
 
-/// The WlanGetFilterList function retrieves a group policy or user
-/// permission list.
+/// The WlanGetFilterList function retrieves a group policy or user permission
+/// list.
 ///
 /// ```c
 /// DWORD WlanGetFilterList(
@@ -367,9 +367,9 @@ final _WlanGetInterfaceCapability = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_INTERFACE_CAPABILITY>> ppCapability)>(
     'WlanGetInterfaceCapability');
 
-/// The WlanGetNetworkBssList function retrieves a list of the basic service
-/// set (BSS) entries of the wireless network or networks on a given
-/// wireless LAN interface.
+/// The WlanGetNetworkBssList function retrieves a list of the basic service set
+/// (BSS) entries of the wireless network or networks on a given wireless LAN
+/// interface.
 ///
 /// ```c
 /// DWORD WlanGetNetworkBssList(
@@ -497,8 +497,8 @@ final _WlanGetProfileCustomUserData = _wlanapi.lookupFunction<
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer<Uint8>> ppData)>('WlanGetProfileCustomUserData');
 
-/// The WlanGetProfileList function retrieves the list of profiles in
-/// preference order.
+/// The WlanGetProfileList function retrieves the list of profiles in preference
+/// order.
 ///
 /// ```c
 /// DWORD WlanGetProfileList(
@@ -530,8 +530,8 @@ final _WlanGetProfileList = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_PROFILE_INFO_LIST>> ppProfileList)>(
     'WlanGetProfileList');
 
-/// The WlanGetSecuritySettings function gets the security settings
-/// associated with a configurable object.
+/// The WlanGetSecuritySettings function gets the security settings associated
+/// with a configurable object.
 ///
 /// ```c
 /// DWORD WlanGetSecuritySettings(
@@ -566,8 +566,8 @@ final _WlanGetSecuritySettings = _wlanapi.lookupFunction<
         Pointer<Pointer<Utf16>> pstrCurrentSDDL,
         Pointer<Uint32> pdwGrantedAccess)>('WlanGetSecuritySettings');
 
-/// Retrieves a list of the supported device services on a given wireless
-/// LAN interface.
+/// Retrieves a list of the supported device services on a given wireless LAN
+/// interface.
 ///
 /// ```c
 /// DWORD WlanGetSupportedDeviceServices(
@@ -614,8 +614,8 @@ final _WlanHostedNetworkForceStart = _wlanapi.lookupFunction<
         Pointer pvReserved)>('WlanHostedNetworkForceStart');
 
 /// The WlanHostedNetworkForceStop function transitions the wireless Hosted
-/// Network to the wlan_hosted_network_idle without associating the request
-/// with the application's calling handle.
+/// Network to the wlan_hosted_network_idle without associating the request with
+/// the application's calling handle.
 ///
 /// ```c
 /// DWORD WlanHostedNetworkForceStop(
@@ -636,9 +636,9 @@ final _WlanHostedNetworkForceStop = _wlanapi.lookupFunction<
         Pointer pvReserved)>('WlanHostedNetworkForceStop');
 
 /// The WlanHostedNetworkInitSettings function configures and persists to
-/// storage the network connection settings (SSID and maximum number of
-/// peers, for example) on the wireless Hosted Network if these settings are
-/// not already configured.
+/// storage the network connection settings (SSID and maximum number of peers,
+/// for example) on the wireless Hosted Network if these settings are not
+/// already configured.
 ///
 /// ```c
 /// DWORD WlanHostedNetworkInitSettings(
@@ -699,8 +699,7 @@ final _WlanHostedNetworkQueryProperty = _wlanapi.lookupFunction<
         Pointer pvReserved)>('WlanHostedNetworkQueryProperty');
 
 /// The WlanHostedNetworkQuerySecondaryKey function queries the secondary
-/// security key that is configured to be used by the wireless Hosted
-/// Network.
+/// security key that is configured to be used by the wireless Hosted Network.
 ///
 /// ```c
 /// DWORD WlanHostedNetworkQuerySecondaryKey(
@@ -743,8 +742,8 @@ final _WlanHostedNetworkQuerySecondaryKey = _wlanapi.lookupFunction<
         Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkQuerySecondaryKey');
 
-/// The WlanHostedNetworkQueryStatus function queries the current status of
-/// the wireless Hosted Network.
+/// The WlanHostedNetworkQueryStatus function queries the current status of the
+/// wireless Hosted Network.
 ///
 /// ```c
 /// DWORD WlanHostedNetworkQueryStatus(
@@ -868,8 +867,7 @@ final _WlanHostedNetworkSetSecondaryKey = _wlanapi.lookupFunction<
         Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkSetSecondaryKey');
 
-/// The WlanHostedNetworkStartUsing function starts the wireless Hosted
-/// Network.
+/// The WlanHostedNetworkStartUsing function starts the wireless Hosted Network.
 ///
 /// ```c
 /// DWORD WlanHostedNetworkStartUsing(
@@ -889,8 +887,7 @@ final _WlanHostedNetworkStartUsing = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkStartUsing');
 
-/// The WlanHostedNetworkStopUsing function stops the wireless Hosted
-/// Network.
+/// The WlanHostedNetworkStopUsing function stops the wireless Hosted Network.
 ///
 /// ```c
 /// DWORD WlanHostedNetworkStopUsing(
@@ -910,8 +907,8 @@ final _WlanHostedNetworkStopUsing = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkStopUsing');
 
-/// The WlanIhvControl function provides a mechanism for independent
-/// hardware vendor (IHV) control of WLAN drivers or services.
+/// The WlanIhvControl function provides a mechanism for independent hardware
+/// vendor (IHV) control of WLAN drivers or services.
 ///
 /// ```c
 /// DWORD WlanIhvControl(
@@ -983,8 +980,8 @@ final _WlanOpenHandle = _wlanapi.lookupFunction<
         Pointer<Uint32> pdwNegotiatedVersion,
         Pointer<IntPtr> phClientHandle)>('WlanOpenHandle');
 
-/// The WlanQueryAutoConfigParameter function queries for the parameters of
-/// the auto configuration service.
+/// The WlanQueryAutoConfigParameter function queries for the parameters of the
+/// auto configuration service.
 ///
 /// ```c
 /// DWORD WlanQueryAutoConfigParameter(
@@ -1023,8 +1020,8 @@ final _WlanQueryAutoConfigParameter = _wlanapi.lookupFunction<
         Pointer<Pointer> ppData,
         Pointer<Int32> pWlanOpcodeValueType)>('WlanQueryAutoConfigParameter');
 
-/// The WlanQueryInterface function queries various parameters of a
-/// specified interface.
+/// The WlanQueryInterface function queries various parameters of a specified
+/// interface.
 ///
 /// ```c
 /// DWORD WlanQueryInterface(
@@ -1159,8 +1156,8 @@ final _WlanRegisterNotification = _wlanapi.lookupFunction<
         Pointer pReserved,
         Pointer<Uint32> pdwPrevNotifSource)>('WlanRegisterNotification');
 
-/// The WlanRegisterVirtualStationNotification function is used to register
-/// and unregister notifications on a virtual station.
+/// The WlanRegisterVirtualStationNotification function is used to register and
+/// unregister notifications on a virtual station.
 ///
 /// ```c
 /// DWORD WlanRegisterVirtualStationNotification(
@@ -1294,8 +1291,8 @@ final _WlanScan = _wlanapi.lookupFunction<
         Pointer<WLAN_RAW_DATA> pIeData,
         Pointer pReserved)>('WlanScan');
 
-/// The WlanSetAutoConfigParameter function sets parameters for the
-/// automatic configuration service.
+/// The WlanSetAutoConfigParameter function sets parameters for the automatic
+/// configuration service.
 ///
 /// ```c
 /// DWORD WlanSetAutoConfigParameter(
@@ -1455,9 +1452,9 @@ final _WlanSetProfileCustomUserData = _wlanapi.lookupFunction<
         Pointer<Uint8> pData,
         Pointer pReserved)>('WlanSetProfileCustomUserData');
 
-/// The WlanSetProfileEapUserData function sets the Extensible
-/// Authentication Protocol (EAP) user credentials as specified by raw EAP
-/// data. The user credentials apply to a profile on an interface.
+/// The WlanSetProfileEapUserData function sets the Extensible Authentication
+/// Protocol (EAP) user credentials as specified by raw EAP data. The user
+/// credentials apply to a profile on an interface.
 ///
 /// ```c
 /// DWORD WlanSetProfileEapUserData(
@@ -1504,10 +1501,10 @@ final _WlanSetProfileEapUserData = _wlanapi.lookupFunction<
         Pointer<Uint8> pbEapUserData,
         Pointer pReserved)>('WlanSetProfileEapUserData');
 
-/// The WlanSetProfileEapXmlUserData function sets the Extensible
-/// Authentication Protocol (EAP) user credentials as specified by an XML
-/// string. The user credentials apply to a profile on an adapter. These
-/// credentials can be used only by the caller.
+/// The WlanSetProfileEapXmlUserData function sets the Extensible Authentication
+/// Protocol (EAP) user credentials as specified by an XML string. The user
+/// credentials apply to a profile on an adapter. These credentials can be used
+/// only by the caller.
 ///
 /// ```c
 /// DWORD WlanSetProfileEapXmlUserData(
@@ -1546,8 +1543,8 @@ final _WlanSetProfileEapXmlUserData = _wlanapi.lookupFunction<
         Pointer<Utf16> strEapXmlUserData,
         Pointer pReserved)>('WlanSetProfileEapXmlUserData');
 
-/// The WlanSetProfileList function sets the preference order of profiles
-/// for a given interface.
+/// The WlanSetProfileList function sets the preference order of profiles for a
+/// given interface.
 ///
 /// ```c
 /// DWORD WlanSetProfileList(
@@ -1582,8 +1579,8 @@ final _WlanSetProfileList = _wlanapi.lookupFunction<
         Pointer<Pointer<Utf16>> strProfileNames,
         Pointer pReserved)>('WlanSetProfileList');
 
-/// The WlanSetProfilePosition function sets the position of a single,
-/// specified profile in the preference list.
+/// The WlanSetProfilePosition function sets the position of a single, specified
+/// profile in the preference list.
 ///
 /// ```c
 /// DWORD WlanSetProfilePosition(
@@ -1610,8 +1607,8 @@ final _WlanSetProfilePosition = _wlanapi.lookupFunction<
         int dwPosition,
         Pointer pReserved)>('WlanSetProfilePosition');
 
-/// The WlanSetPsdIeDataList function sets the proximity service discovery
-/// (PSD) information element (IE) data list.
+/// The WlanSetPsdIeDataList function sets the proximity service discovery (PSD)
+/// information element (IE) data list.
 ///
 /// ```c
 /// DWORD WlanSetPsdIEDataList(

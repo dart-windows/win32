@@ -38,8 +38,8 @@ final _MagGetColorEffect = _magnification.lookupFunction<
     int Function(
         int hwnd, Pointer<MAGCOLOREFFECT> pEffect)>('MagGetColorEffect');
 
-/// Retrieves the color transformation matrix associated with the
-/// full-screen magnifier.
+/// Retrieves the color transformation matrix associated with the full-screen
+/// magnifier.
 ///
 /// ```c
 /// BOOL MagGetFullscreenColorEffect(

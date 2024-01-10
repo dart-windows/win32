@@ -38,9 +38,9 @@ final _DwmEnableBlurBehindWindow = _dwmapi.lookupFunction<
     int Function(int hWnd,
         Pointer<DWM_BLURBEHIND> pBlurBehind)>('DwmEnableBlurBehindWindow');
 
-/// Notifies the Desktop Window Manager (DWM) to opt in to or out of
-/// Multimedia Class Schedule Service (MMCSS) scheduling while the calling
-/// process is alive.
+/// Notifies the Desktop Window Manager (DWM) to opt in to or out of Multimedia
+/// Class Schedule Service (MMCSS) scheduling while the calling process is
+/// alive.
 ///
 /// ```c
 /// DWMAPI DwmEnableMMCSS(
@@ -71,10 +71,10 @@ final _DwmExtendFrameIntoClientArea = _dwmapi.lookupFunction<
     int Function(
         int hWnd, Pointer<MARGINS> pMarInset)>('DwmExtendFrameIntoClientArea');
 
-/// Issues a flush call that blocks the caller until the next present, when
-/// all of the Microsoft DirectX surface updates that are currently
-/// outstanding have been made. This compensates for very complex scenes or
-/// calling processes with very low priority.
+/// Issues a flush call that blocks the caller until the next present, when all
+/// of the Microsoft DirectX surface updates that are currently outstanding have
+/// been made. This compensates for very complex scenes or calling processes
+/// with very low priority.
 ///
 /// ```c
 /// DWMAPI DwmFlush();
@@ -87,8 +87,8 @@ final _DwmFlush =
 
 /// Retrieves the current color used for Desktop Window Manager (DWM) glass
 /// composition. This value is based on the current color scheme and can be
-/// modified by the user. Applications can listen for color changes by
-/// handling the WM_DWMCOLORIZATIONCOLORCHANGED notification.
+/// modified by the user. Applications can listen for color changes by handling
+/// the WM_DWMCOLORIZATIONCOLORCHANGED notification.
 ///
 /// ```c
 /// DWMAPI DwmGetColorizationColor(
@@ -150,8 +150,8 @@ final _DwmGetWindowAttribute = _dwmapi.lookupFunction<
         int cbAttribute)>('DwmGetWindowAttribute');
 
 /// Called by an application to indicate that all previously provided iconic
-/// bitmaps from a window, both thumbnails and peek representations, should
-/// be refreshed.
+/// bitmaps from a window, both thumbnails and peek representations, should be
+/// refreshed.
 ///
 /// ```c
 /// DWMAPI DwmInvalidateIconicBitmaps(
@@ -166,8 +166,7 @@ final _DwmInvalidateIconicBitmaps =
         'DwmInvalidateIconicBitmaps');
 
 /// Notifies Desktop Window Manager (DWM) that a touch contact has been
-/// recognized as a gesture, and that DWM should draw feedback for that
-/// gesture.
+/// recognized as a gesture, and that DWM should draw feedback for that gesture.
 ///
 /// ```c
 /// DWMAPI DwmRenderGesture(
@@ -210,8 +209,8 @@ final _DwmSetWindowAttribute = _dwmapi.lookupFunction<
     int Function(int hwnd, int dwAttribute, Pointer pvAttribute,
         int cbAttribute)>('DwmSetWindowAttribute');
 
-/// Called by an app or framework to specify the visual feedback type to
-/// draw in response to a particular touch or pen contact.
+/// Called by an app or framework to specify the visual feedback type to draw in
+/// response to a particular touch or pen contact.
 ///
 /// ```c
 /// DWMAPI DwmShowContact(

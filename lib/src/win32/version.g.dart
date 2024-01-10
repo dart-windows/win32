@@ -64,8 +64,8 @@ final _GetFileVersionInfoEx = _version.lookupFunction<
     int Function(int dwFlags, Pointer<Utf16> lpwstrFilename, int dwHandle,
         int dwLen, Pointer lpData)>('GetFileVersionInfoExW');
 
-/// Determines whether the operating system can retrieve version information
-/// for a specified file. If version information is available,
+/// Determines whether the operating system can retrieve version information for
+/// a specified file. If version information is available,
 /// GetFileVersionInfoSize returns the size, in bytes, of that information.
 ///
 /// ```c
@@ -84,10 +84,9 @@ final _GetFileVersionInfoSize = _version.lookupFunction<
     int Function(Pointer<Utf16> lptstrFilename,
         Pointer<Uint32> lpdwHandle)>('GetFileVersionInfoSizeW');
 
-/// Determines whether the operating system can retrieve version information
-/// for a specified file. If version information is available,
-/// GetFileVersionInfoSizeEx returns the size, in bytes, of that
-/// information.
+/// Determines whether the operating system can retrieve version information for
+/// a specified file. If version information is available,
+/// GetFileVersionInfoSizeEx returns the size, in bytes, of that information.
 ///
 /// ```c
 /// DWORD GetFileVersionInfoSizeExW(
@@ -158,9 +157,8 @@ final _VerFindFile = _version.lookupFunction<
         Pointer<Uint32> puDestDirLen)>('VerFindFileW');
 
 /// Installs the specified file based on information returned from the
-/// VerFindFile function. VerInstallFile decompresses the file, if
-/// necessary, assigns a unique filename, and checks for errors, such as
-/// outdated files.
+/// VerFindFile function. VerInstallFile decompresses the file, if necessary,
+/// assigns a unique filename, and checks for errors, such as outdated files.
 ///
 /// ```c
 /// DWORD VerInstallFileW(
@@ -208,10 +206,9 @@ final _VerInstallFile = _version.lookupFunction<
         Pointer<Uint32> puTmpFileLen)>('VerInstallFileW');
 
 /// Retrieves specified version information from the specified
-/// version-information resource. To retrieve the appropriate resource,
-/// before you call VerQueryValue, you must first call the
-/// GetFileVersionInfoSize function, and then the GetFileVersionInfo
-/// function.
+/// version-information resource. To retrieve the appropriate resource, before
+/// you call VerQueryValue, you must first call the GetFileVersionInfoSize
+/// function, and then the GetFileVersionInfo function.
 ///
 /// ```c
 /// BOOL VerQueryValueW(

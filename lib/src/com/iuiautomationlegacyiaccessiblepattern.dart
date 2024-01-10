@@ -21,9 +21,9 @@ import 'iunknown.dart';
 const IID_IUIAutomationLegacyIAccessiblePattern =
     '{828055ad-355b-4435-86d5-3b51c14a9b1b}';
 
-/// Exposes methods and properties that enable Microsoft UI Automation
-/// clients to retrieve UI information from Microsoft Active Accessibility
-/// (MSAA) servers.
+/// Exposes methods and properties that enable Microsoft UI Automation clients
+/// to retrieve UI information from Microsoft Active Accessibility (MSAA)
+/// servers.
 ///
 /// {@category com}
 class IUIAutomationLegacyIAccessiblePattern extends IUnknown {

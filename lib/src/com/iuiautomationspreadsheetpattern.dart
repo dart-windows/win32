@@ -18,8 +18,7 @@ import 'iunknown.dart';
 const IID_IUIAutomationSpreadsheetPattern =
     '{7517a7c8-faae-4de9-9f08-29b91e8595c1}';
 
-/// Enables a client application to access the items (cells) in a
-/// spreadsheet.
+/// Enables a client application to access the items (cells) in a spreadsheet.
 ///
 /// {@category com}
 class IUIAutomationSpreadsheetPattern extends IUnknown {

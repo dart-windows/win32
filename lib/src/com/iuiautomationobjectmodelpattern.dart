@@ -16,8 +16,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationObjectModelPattern =
     '{71c284b3-c14d-4d14-981e-19751b0d756d}';
 
-/// Provides access to the underlying object model implemented by a control
-/// or application.
+/// Provides access to the underlying object model implemented by a control or
+/// application.
 ///
 /// {@category com}
 class IUIAutomationObjectModelPattern extends IUnknown {

@@ -23,8 +23,8 @@ const IID_IUIAutomationProxyFactoryEntry =
     '{d50e472e-b64b-490c-bca1-d30696f9f289}';
 
 /// Represents a proxy factory in the table maintained by Microsoft UI
-/// Automation, and exposes properties and methods that can be used by
-/// client applications to interact with IUIAutomationProxyFactory objects.
+/// Automation, and exposes properties and methods that can be used by client
+/// applications to interact with IUIAutomationProxyFactory objects.
 ///
 /// {@category com}
 class IUIAutomationProxyFactoryEntry extends IUnknown {

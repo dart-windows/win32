@@ -17,8 +17,7 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IRestrictedErrorInfo = '{82ba7092-4c88-427d-a7bc-16dd93feb67e}';
 
-/// Represents the details of an error, including restricted error
-/// information.
+/// Represents the details of an error, including restricted error information.
 ///
 /// {@category com}
 class IRestrictedErrorInfo extends IUnknown {

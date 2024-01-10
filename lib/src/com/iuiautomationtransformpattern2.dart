@@ -22,8 +22,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationTransformPattern2 =
     '{6d74d017-6ecb-4381-b38b-3c17a48ff1c2}';
 
-/// Extends the IUIAutomationTransformPattern interface to enable Microsoft
-/// UI Automation clients to programmatically access the viewport zooming
+/// Extends the IUIAutomationTransformPattern interface to enable Microsoft UI
+/// Automation clients to programmatically access the viewport zooming
 /// functionality of a control.
 ///
 /// {@category com}

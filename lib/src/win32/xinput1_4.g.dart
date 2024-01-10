@@ -34,8 +34,8 @@ void XInputEnable(int enable) => _XInputEnable(enable);
 final _XInputEnable = _xinput1_4.lookupFunction<Void Function(Int32 enable),
     void Function(int enable)>('XInputEnable');
 
-/// Retrieves the sound rendering and sound capture audio device IDs that
-/// are associated with the headset connected to the specified controller.
+/// Retrieves the sound rendering and sound capture audio device IDs that are
+/// associated with the headset connected to the specified controller.
 ///
 /// ```c
 /// DWORD XInputGetAudioDeviceIds(
@@ -148,8 +148,8 @@ final _XInputGetState = _xinput1_4.lookupFunction<
     int Function(
         int dwUserIndex, Pointer<XINPUT_STATE> pState)>('XInputGetState');
 
-/// Sends data to a connected controller. This function is used to activate
-/// the vibration function of a controller.
+/// Sends data to a connected controller. This function is used to activate the
+/// vibration function of a controller.
 ///
 /// ```c
 /// DWORD XInputSetState(

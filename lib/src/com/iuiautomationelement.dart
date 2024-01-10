@@ -23,8 +23,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IUIAutomationElement = '{d22108aa-8ac5-49a5-837b-37bbb3d7591e}';
 
-/// Exposes methods and properties for a UI Automation element, which
-/// represents a UI item.
+/// Exposes methods and properties for a UI Automation element, which represents
+/// a UI item.
 ///
 /// {@category com}
 class IUIAutomationElement extends IUnknown {

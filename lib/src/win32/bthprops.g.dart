@@ -21,10 +21,10 @@ import '../variant.dart';
 
 final _bthprops = DynamicLibrary.open('bthprops.cpl');
 
-/// The BluetoothAuthenticateDeviceEx function sends an authentication
-/// request to a remote Bluetooth device. Additionally, this function allows
-/// for out-of-band data to be passed into the function call for the device
-/// being authenticated.
+/// The BluetoothAuthenticateDeviceEx function sends an authentication request
+/// to a remote Bluetooth device. Additionally, this function allows for
+/// out-of-band data to be passed into the function call for the device being
+/// authenticated.
 ///
 /// ```c
 /// DWORD BluetoothAuthenticateDeviceEx(
@@ -59,8 +59,8 @@ final _BluetoothAuthenticateDeviceEx = _bthprops.lookupFunction<
         Pointer<BLUETOOTH_OOB_DATA_INFO> pbtOobData,
         int authenticationRequirement)>('BluetoothAuthenticateDeviceEx');
 
-/// The BluetoothDisplayDeviceProperties function opens the Control Panel
-/// device information property sheet.
+/// The BluetoothDisplayDeviceProperties function opens the Control Panel device
+/// information property sheet.
 ///
 /// ```c
 /// BOOL BluetoothDisplayDeviceProperties(
@@ -94,8 +94,8 @@ final _BluetoothSelectDevices = _bthprops.lookupFunction<
         int Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp)>(
     'BluetoothSelectDevices');
 
-/// The BluetoothSelectDevicesFree function frees resources associated with
-/// a previous call to BluetoothSelectDevices.
+/// The BluetoothSelectDevicesFree function frees resources associated with a
+/// previous call to BluetoothSelectDevices.
 ///
 /// ```c
 /// BOOL BluetoothSelectDevicesFree(

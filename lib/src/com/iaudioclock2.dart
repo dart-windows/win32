@@ -15,10 +15,10 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IAudioClock2 = '{6f49ff73-6727-49ac-a008-d98cf5e70048}';
 
-/// The IAudioClock2 interface is used to get the current device position.
-/// The client obtains a reference to the `IAudioClock` interface of a
-/// stream object by calling the `IAudioClient::GetService` method with
-/// parameter `riid` set to REFIID `IID_IAudioClock`.
+/// The IAudioClock2 interface is used to get the current device position. The
+/// client obtains a reference to the `IAudioClock` interface of a stream object
+/// by calling the `IAudioClient::GetService` method with parameter `riid` set
+/// to REFIID `IID_IAudioClock`.
 ///
 /// {@category com}
 class IAudioClock2 extends IUnknown {

@@ -22,8 +22,8 @@ import '../variant.dart';
 final _api_ms_win_service_core_l1_1_3 =
     DynamicLibrary.open('api-ms-win-service-core-l1-1-3.dll');
 
-/// Returns a handle for a registry key for a service to read and/or write
-/// state to.
+/// Returns a handle for a registry key for a service to read and/or write state
+/// to.
 ///
 /// ```c
 /// DWORD GetServiceRegistryStateKey(

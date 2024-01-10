@@ -22,8 +22,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationSelectionPattern2 =
     '{0532bfae-c011-4e32-a343-6d642d798555}';
 
-/// Extends the IUIAutomationSelectionPattern interface to provide
-/// information about selected items.
+/// Extends the IUIAutomationSelectionPattern interface to provide information
+/// about selected items.
 ///
 /// {@category com}
 class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {

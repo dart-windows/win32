@@ -20,9 +20,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IMetaDataDispenserEx = '{31bcfce2-dafb-11d2-9f81-00c04f79a0a3}';
 
-/// Extends the IMetaDataDispenser Interface interface to provide the
-/// capability to control how the metadata APIs operate on the current
-/// metadata scope.
+/// Extends the IMetaDataDispenser Interface interface to provide the capability
+/// to control how the metadata APIs operate on the current metadata scope.
 ///
 /// {@category com}
 class IMetaDataDispenserEx extends IMetaDataDispenser {

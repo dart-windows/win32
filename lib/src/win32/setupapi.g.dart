@@ -21,8 +21,8 @@ import '../variant.dart';
 
 final _setupapi = DynamicLibrary.open('setupapi.dll');
 
-/// The SetupDiDestroyDeviceInfoList function deletes a device information
-/// set and frees all associated memory.
+/// The SetupDiDestroyDeviceInfoList function deletes a device information set
+/// and frees all associated memory.
 ///
 /// ```c
 /// BOOL SetupDiDestroyDeviceInfoList(
@@ -37,8 +37,8 @@ final _SetupDiDestroyDeviceInfoList = _setupapi.lookupFunction<
     Int32 Function(IntPtr DeviceInfoSet),
     int Function(int DeviceInfoSet)>('SetupDiDestroyDeviceInfoList');
 
-/// The SetupDiEnumDeviceInfo function returns a SP_DEVINFO_DATA structure
-/// that specifies a device information element in a device information set.
+/// The SetupDiEnumDeviceInfo function returns a SP_DEVINFO_DATA structure that
+/// specifies a device information element in a device information set.
 ///
 /// ```c
 /// BOOL SetupDiEnumDeviceInfo(
@@ -58,8 +58,8 @@ final _SetupDiEnumDeviceInfo = _setupapi.lookupFunction<
     int Function(int DeviceInfoSet, int MemberIndex,
         Pointer<SP_DEVINFO_DATA> DeviceInfoData)>('SetupDiEnumDeviceInfo');
 
-/// The SetupDiEnumDeviceInterfaces function enumerates the device
-/// interfaces that are contained in a device information set.
+/// The SetupDiEnumDeviceInterfaces function enumerates the device interfaces
+/// that are contained in a device information set.
 ///
 /// ```c
 /// BOOL SetupDiEnumDeviceInterfaces(
@@ -95,9 +95,9 @@ final _SetupDiEnumDeviceInterfaces = _setupapi.lookupFunction<
             Pointer<SP_DEVICE_INTERFACE_DATA> DeviceInterfaceData)>(
     'SetupDiEnumDeviceInterfaces');
 
-/// The SetupDiGetClassDevs function returns a handle to a device
-/// information set that contains requested device information elements for
-/// a local computer.
+/// The SetupDiGetClassDevs function returns a handle to a device information
+/// set that contains requested device information elements for a local
+/// computer.
 ///
 /// ```c
 /// HDEVINFO SetupDiGetClassDevsW(
@@ -154,8 +154,8 @@ final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
         int DeviceInstanceIdSize,
         Pointer<Uint32> RequiredSize)>('SetupDiGetDeviceInstanceIdW');
 
-/// The SetupDiGetDeviceInterfaceDetail function returns details about a
-/// device interface.
+/// The SetupDiGetDeviceInterfaceDetail function returns details about a device
+/// interface.
 ///
 /// ```c
 /// BOOL SetupDiGetDeviceInterfaceDetailW(
@@ -200,8 +200,8 @@ final _SetupDiGetDeviceInterfaceDetail = _setupapi.lookupFunction<
             Pointer<SP_DEVINFO_DATA> DeviceInfoData)>(
     'SetupDiGetDeviceInterfaceDetailW');
 
-/// The SetupDiGetDeviceRegistryProperty function retrieves a specified Plug
-/// and Play device property.
+/// The SetupDiGetDeviceRegistryProperty function retrieves a specified Plug and
+/// Play device property.
 ///
 /// ```c
 /// BOOL SetupDiGetDeviceRegistryPropertyW(
@@ -244,8 +244,8 @@ final _SetupDiGetDeviceRegistryProperty = _setupapi.lookupFunction<
         int PropertyBufferSize,
         Pointer<Uint32> RequiredSize)>('SetupDiGetDeviceRegistryPropertyW');
 
-/// The SetupDiOpenDevRegKey function opens a registry key for
-/// device-specific configuration information.
+/// The SetupDiOpenDevRegKey function opens a registry key for device-specific
+/// configuration information.
 ///
 /// ```c
 /// HKEY SetupDiOpenDevRegKey(

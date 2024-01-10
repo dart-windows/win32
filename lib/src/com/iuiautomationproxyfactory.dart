@@ -21,8 +21,8 @@ import 'iunknown.dart';
 const IID_IUIAutomationProxyFactory = '{85b94ecd-849d-42b6-b94d-d6db23fdf5a4}';
 
 /// Exposes properties and methods of an object that creates a Microsoft UI
-/// Automation provider for UI elements that do not have native support for
-/// UI Automation. This interface is implemented by proxies.
+/// Automation provider for UI elements that do not have native support for UI
+/// Automation. This interface is implemented by proxies.
 ///
 /// {@category com}
 class IUIAutomationProxyFactory extends IUnknown {

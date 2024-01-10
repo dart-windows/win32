@@ -59,8 +59,8 @@ final _GetSharedServiceDirectory =
             int PathBufferLength,
             Pointer<Uint32> RequiredBufferLength)>('GetSharedServiceDirectory');
 
-/// Returns a handle for a registry key for a service and associated
-/// programs to read and/or write state to.
+/// Returns a handle for a registry key for a service and associated programs to
+/// read and/or write state to.
 ///
 /// ```c
 /// DWORD GetSharedServiceRegistryStateKey(

@@ -16,11 +16,10 @@ import '../types.dart';
 const IID_IUnknown = '{00000000-0000-0000-c000-000000000046}';
 
 /// Enables clients to get pointers to other interfaces on a given object
-/// through the QueryInterface method, and manage the existence of the
-/// object through the AddRef and Release methods. All other COM interfaces
-/// are inherited, directly or indirectly, from IUnknown. Therefore, the
-/// three methods in IUnknown are the first entries in the vtable for every
-/// interface.
+/// through the QueryInterface method, and manage the existence of the object
+/// through the AddRef and Release methods. All other COM interfaces are
+/// inherited, directly or indirectly, from IUnknown. Therefore, the three
+/// methods in IUnknown are the first entries in the vtable for every interface.
 ///
 /// {@category com}
 class IUnknown {

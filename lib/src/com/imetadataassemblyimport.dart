@@ -18,8 +18,7 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IMetaDataAssemblyImport = '{ee62470b-e94b-424e-9b7c-2f00c9249f93}';
 
-/// Provides methods to access and examine the contents of an assembly
-/// manifest.
+/// Provides methods to access and examine the contents of an assembly manifest.
 ///
 /// {@category com}
 class IMetaDataAssemblyImport extends IUnknown {

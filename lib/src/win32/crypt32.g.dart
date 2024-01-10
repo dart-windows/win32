@@ -21,11 +21,10 @@ import '../variant.dart';
 
 final _crypt32 = DynamicLibrary.open('crypt32.dll');
 
-/// The CryptProtectData function performs encryption on the data in a
-/// DATA_BLOB structure. Typically, only a user with the same logon
-/// credential as the user who encrypted the data can decrypt the data. In
-/// addition, the encryption and decryption usually must be done on the same
-/// computer.
+/// The CryptProtectData function performs encryption on the data in a DATA_BLOB
+/// structure. Typically, only a user with the same logon credential as the user
+/// who encrypted the data can decrypt the data. In addition, the encryption and
+/// decryption usually must be done on the same computer.
 ///
 /// ```c
 /// BOOL CryptProtectData(
@@ -71,9 +70,9 @@ final _CryptProtectData = _crypt32.lookupFunction<
 /// The CryptProtectMemory function encrypts memory to prevent others from
 /// viewing sensitive information in your process. For example, use the
 /// CryptProtectMemory function to encrypt memory that contains a password.
-/// Encrypting the password prevents others from viewing it when the process
-/// is paged out to the swap file. Otherwise, the password is in plaintext
-/// and viewable by others.
+/// Encrypting the password prevents others from viewing it when the process is
+/// paged out to the swap file. Otherwise, the password is in plaintext and
+/// viewable by others.
 ///
 /// ```c
 /// BOOL CryptProtectMemory(
@@ -91,11 +90,11 @@ final _CryptProtectMemory = _crypt32.lookupFunction<
     int Function(
         Pointer pDataIn, int cbDataIn, int dwFlags)>('CryptProtectMemory');
 
-/// The CryptUnprotectData function decrypts and does an integrity check of
-/// the data in a DATA_BLOB structure. Usually, the only user who can
-/// decrypt the data is a user with the same logon credentials as the user
-/// who encrypted the data. In addition, the encryption and decryption must
-/// be done on the same computer.
+/// The CryptUnprotectData function decrypts and does an integrity check of the
+/// data in a DATA_BLOB structure. Usually, the only user who can decrypt the
+/// data is a user with the same logon credentials as the user who encrypted the
+/// data. In addition, the encryption and decryption must be done on the same
+/// computer.
 ///
 /// ```c
 /// BOOL CryptUnprotectData(
@@ -138,8 +137,8 @@ final _CryptUnprotectData = _crypt32.lookupFunction<
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut)>('CryptUnprotectData');
 
-/// The CryptUnprotectMemory function decrypts memory that was encrypted
-/// using the CryptProtectMemory function.
+/// The CryptUnprotectMemory function decrypts memory that was encrypted using
+/// the CryptProtectMemory function.
 ///
 /// ```c
 /// BOOL CryptUnprotectMemory(
@@ -157,10 +156,10 @@ final _CryptUnprotectMemory = _crypt32.lookupFunction<
     int Function(
         Pointer pDataIn, int cbDataIn, int dwFlags)>('CryptUnprotectMemory');
 
-/// The CryptUpdateProtectedState function migrates the current user's
-/// master keys after the user's security identifier (SID) has changed. This
-/// function can be used to preserve encrypted data after a user has been
-/// moved from one domain to another.
+/// The CryptUpdateProtectedState function migrates the current user's master
+/// keys after the user's security identifier (SID) has changed. This function
+/// can be used to preserve encrypted data after a user has been moved from one
+/// domain to another.
 ///
 /// ```c
 /// BOOL CryptUpdateProtectedState(

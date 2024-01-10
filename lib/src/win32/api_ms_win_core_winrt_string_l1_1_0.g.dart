@@ -22,8 +22,8 @@ import '../variant.dart';
 final _api_ms_win_core_winrt_string_l1_1_0 =
     DynamicLibrary.open('api-ms-win-core-winrt-string-l1-1-0.dll');
 
-/// Compares two specified HSTRING objects and returns an integer that
-/// indicates their relative position in a sort order.
+/// Compares two specified HSTRING objects and returns an integer that indicates
+/// their relative position in a sort order.
 ///
 /// ```c
 /// HRESULT WindowsCompareStringOrdinal(
@@ -98,8 +98,7 @@ final _WindowsDeleteString = _api_ms_win_core_winrt_string_l1_1_0
     .lookupFunction<Int32 Function(IntPtr string), int Function(int string)>(
         'WindowsDeleteString');
 
-/// Discards a preallocated string buffer if it was not promoted to an
-/// HSTRING.
+/// Discards a preallocated string buffer if it was not promoted to an HSTRING.
 ///
 /// ```c
 /// HRESULT WindowsDeleteStringBuffer(
@@ -218,8 +217,8 @@ final _WindowsPromoteStringBuffer =
         int Function(int bufferHandle,
             Pointer<IntPtr> string)>('WindowsPromoteStringBuffer');
 
-/// Replaces all occurrences of a set of characters in the specified string
-/// with another set of characters to create a new string.
+/// Replaces all occurrences of a set of characters in the specified string with
+/// another set of characters to create a new string.
 ///
 /// ```c
 /// HRESULT WindowsReplaceString(
@@ -258,8 +257,8 @@ final _WindowsStringHasEmbeddedNull =
         int Function(int string,
             Pointer<Int32> hasEmbedNull)>('WindowsStringHasEmbeddedNull');
 
-/// Retrieves a substring from the specified string. The substring starts at
-/// the specified character position.
+/// Retrieves a substring from the specified string. The substring starts at the
+/// specified character position.
 ///
 /// ```c
 /// HRESULT WindowsSubstring(
@@ -277,8 +276,8 @@ final _WindowsSubstring = _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
     int Function(int string, int startIndex,
         Pointer<IntPtr> newString)>('WindowsSubstring');
 
-/// Retrieves a substring from the specified string. The substring starts at
-/// a specified character position and has a specified length.
+/// Retrieves a substring from the specified string. The substring starts at a
+/// specified character position and has a specified length.
 ///
 /// ```c
 /// HRESULT WindowsSubstringWithSpecifiedLength(
@@ -300,8 +299,8 @@ final _WindowsSubstringWithSpecifiedLength =
         int Function(int string, int startIndex, int length,
             Pointer<IntPtr> newString)>('WindowsSubstringWithSpecifiedLength');
 
-/// Removes all trailing occurrences of a specified set of characters from
-/// the source string.
+/// Removes all trailing occurrences of a specified set of characters from the
+/// source string.
 ///
 /// ```c
 /// HRESULT WindowsTrimStringEnd(
@@ -322,8 +321,8 @@ final _WindowsTrimStringEnd =
         int Function(int string, int trimString,
             Pointer<IntPtr> newString)>('WindowsTrimStringEnd');
 
-/// Removes all leading occurrences of a specified set of characters from
-/// the source string.
+/// Removes all leading occurrences of a specified set of characters from the
+/// source string.
 ///
 /// ```c
 /// HRESULT WindowsTrimStringStart(

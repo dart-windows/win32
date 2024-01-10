@@ -40,8 +40,8 @@ final _CommandLineToArgv = _shell32.lookupFunction<
     Pointer<Pointer<Utf16>> Function(Pointer<Utf16> lpCmdLine,
         Pointer<Int32> pNumArgs)>('CommandLineToArgvW');
 
-/// Gets a handle to an icon stored as a resource in a file or an icon
-/// stored in a file's associated executable file.
+/// Gets a handle to an icon stored as a resource in a file or an icon stored in
+/// a file's associated executable file.
 ///
 /// ```c
 /// HICON ExtractAssociatedIconW(
@@ -61,8 +61,8 @@ final _ExtractAssociatedIcon = _shell32.lookupFunction<
     int Function(int hInst, Pointer<Utf16> pszIconPath,
         Pointer<Uint16> piIcon)>('ExtractAssociatedIconW');
 
-/// Retrieves the name of and handle to the executable (.exe) file
-/// associated with a specific document file.
+/// Retrieves the name of and handle to the executable (.exe) file associated
+/// with a specific document file.
 ///
 /// ```c
 /// HINSTANCE FindExecutableW(
@@ -228,8 +228,8 @@ final _SHFileOperation = _shell32.lookupFunction<
     Int32 Function(Pointer<SHFILEOPSTRUCT> lpFileOp),
     int Function(Pointer<SHFILEOPSTRUCT> lpFileOp)>('SHFileOperationW');
 
-/// Frees a file name mapping object that was retrieved by the
-/// SHFileOperation function.
+/// Frees a file name mapping object that was retrieved by the SHFileOperation
+/// function.
 ///
 /// ```c
 /// void SHFreeNameMappings(
@@ -244,8 +244,8 @@ final _SHFreeNameMappings = _shell32.lookupFunction<
     Void Function(IntPtr hNameMappings),
     void Function(int hNameMappings)>('SHFreeNameMappings');
 
-/// Retrieves the IShellFolder interface for the desktop folder, which is
-/// the root of the Shell's namespace.
+/// Retrieves the IShellFolder interface for the desktop folder, which is the
+/// root of the Shell's namespace.
 ///
 /// ```c
 /// SHSTDAPI SHGetDesktopFolder(
@@ -308,8 +308,8 @@ final _SHGetDriveMedia = _shell32.lookupFunction<
     int Function(Pointer<Utf16> pszDrive,
         Pointer<Uint32> pdwMediaContent)>('SHGetDriveMedia');
 
-/// Retrieves information about an object in the file system, such as a
-/// file, folder, directory, or drive root.
+/// Retrieves information about an object in the file system, such as a file,
+/// folder, directory, or drive root.
 ///
 /// ```c
 /// DWORD_PTR SHGetFileInfoW(
@@ -379,8 +379,8 @@ final _SHGetKnownFolderPath = _shell32.lookupFunction<
     int Function(Pointer<GUID> rfid, int dwFlags, int hToken,
         Pointer<Pointer<Utf16>> ppszPath)>('SHGetKnownFolderPath');
 
-/// Retrieves the size of the Recycle Bin and the number of items in it, for
-/// a specified drive.
+/// Retrieves the size of the Recycle Bin and the number of items in it, for a
+/// specified drive.
 ///
 /// ```c
 /// SHSTDAPI SHQueryRecycleBinW(

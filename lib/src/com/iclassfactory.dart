@@ -16,8 +16,8 @@ import 'iunknown.dart';
 /// @nodoc
 const IID_IClassFactory = '{00000001-0000-0000-c000-000000000046}';
 
-/// Creates a call object for processing calls to the methods of an
-/// asynchronous interface.
+/// Creates a call object for processing calls to the methods of an asynchronous
+/// interface.
 ///
 /// {@category com}
 class IClassFactory extends IUnknown {

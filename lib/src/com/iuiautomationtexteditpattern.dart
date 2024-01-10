@@ -17,9 +17,9 @@ import 'iunknown.dart';
 const IID_IUIAutomationTextEditPattern =
     '{17e21576-996c-4870-99d9-bff323380c06}';
 
-/// Provides access to a control that modifies text, for example a control
-/// that performs auto-correction or enables input composition through an
-/// Input Method Editor (IME).
+/// Provides access to a control that modifies text, for example a control that
+/// performs auto-correction or enables input composition through an Input
+/// Method Editor (IME).
 ///
 /// {@category com}
 class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {

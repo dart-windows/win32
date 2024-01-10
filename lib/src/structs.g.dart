@@ -34,9 +34,9 @@ base class ACCEL extends Struct {
   external int cmd;
 }
 
-/// The ACL structure is the header of an access control list (ACL). A
-/// complete ACL consists of an ACL structure followed by an ordered list of
-/// zero or more access control entries (ACEs).
+/// The ACL structure is the header of an access control list (ACL). A complete
+/// ACL consists of an ACL structure followed by an ordered list of zero or more
+/// access control entries (ACEs).
 ///
 /// {@category struct}
 base class ACL extends Struct {
@@ -85,8 +85,8 @@ base class ACTCTX extends Struct {
   external int hModule;
 }
 
-/// The ADDJOB_INFO_1 structure identifies a print job as well as the
-/// directory and file in which an application can store that job.
+/// The ADDJOB_INFO_1 structure identifies a print job as well as the directory
+/// and file in which an application can store that job.
 ///
 /// {@category struct}
 base class ADDJOB_INFO_1 extends Struct {
@@ -96,8 +96,8 @@ base class ADDJOB_INFO_1 extends Struct {
   external int JobId;
 }
 
-/// The addrinfoW structure is used by the GetAddrInfoW function to hold
-/// host address information.
+/// The addrinfoW structure is used by the GetAddrInfoW function to hold host
+/// address information.
 ///
 /// {@category struct}
 base class ADDRINFO extends Struct {
@@ -123,8 +123,7 @@ base class ADDRINFO extends Struct {
   external Pointer<ADDRINFO> ai_next;
 }
 
-/// Contains status information for the application-switching (ALT+TAB)
-/// window.
+/// Contains status information for the application-switching (ALT+TAB) window.
 ///
 /// {@category struct}
 base class ALTTABINFO extends Struct {
@@ -178,9 +177,8 @@ base class ARRAYDESC extends Struct {
   external Array<SAFEARRAYBOUND> rgbounds;
 }
 
-/// Contains information about the referenced assembly, including its
-/// version and its level of support for locales, processors, and operating
-/// systems.
+/// Contains information about the referenced assembly, including its version
+/// and its level of support for locales, processors, and operating systems.
 ///
 /// {@category struct}
 base class ASSEMBLYMETADATA extends Struct {
@@ -247,8 +245,8 @@ base class BIND_OPTS extends Struct {
   external int dwTickCountDeadline;
 }
 
-/// The BITMAP structure defines the type, width, height, color format, and
-/// bit values of a bitmap.
+/// The BITMAP structure defines the type, width, height, color format, and bit
+/// values of a bitmap.
 ///
 /// {@category struct}
 base class BITMAP extends Struct {
@@ -273,8 +271,8 @@ base class BITMAP extends Struct {
   external Pointer bmBits;
 }
 
-/// The BITMAPFILEHEADER structure contains information about the type,
-/// size, and layout of a file that contains a DIB.
+/// The BITMAPFILEHEADER structure contains information about the type, size,
+/// and layout of a file that contains a DIB.
 ///
 /// {@category struct}
 @Packed(2)
@@ -295,8 +293,8 @@ base class BITMAPFILEHEADER extends Struct {
   external int bfOffBits;
 }
 
-/// The BITMAPINFO structure defines the dimensions and color information
-/// for a device-independent bitmap (DIB).
+/// The BITMAPINFO structure defines the dimensions and color information for a
+/// device-independent bitmap (DIB).
 ///
 /// {@category struct}
 base class BITMAPINFO extends Struct {
@@ -306,8 +304,8 @@ base class BITMAPINFO extends Struct {
   external Array<RGBQUAD> bmiColors;
 }
 
-/// The BITMAPINFOHEADER structure contains information about the dimensions
-/// and color format of a device-independent bitmap (DIB).
+/// The BITMAPINFOHEADER structure contains information about the dimensions and
+/// color format of a device-independent bitmap (DIB).
 ///
 /// {@category struct}
 base class BITMAPINFOHEADER extends Struct {
@@ -363,8 +361,7 @@ base class BLENDFUNCTION extends Struct {
   external int AlphaFormat;
 }
 
-/// The BLUETOOTH_ADDRESS structure provides the address of a Bluetooth
-/// device.
+/// The BLUETOOTH_ADDRESS structure provides the address of a Bluetooth device.
 ///
 /// {@category struct}
 base class BLUETOOTH_ADDRESS extends Struct {
@@ -388,8 +385,8 @@ extension BLUETOOTH_ADDRESS_Extension on BLUETOOTH_ADDRESS {
   set rgBytes(Array<Uint8> value) => this.Anonymous.rgBytes = value;
 }
 
-/// The BLUETOOTH_AUTHENTICATE_RESPONSE structure contains information
-/// passed in response to a BTH_REMOTE_AUTHENTICATE_REQUEST event.
+/// The BLUETOOTH_AUTHENTICATE_RESPONSE structure contains information passed in
+/// response to a BTH_REMOTE_AUTHENTICATE_REQUEST event.
 ///
 /// {@category struct}
 base class BLUETOOTH_AUTHENTICATE_RESPONSE extends Struct {
@@ -474,8 +471,8 @@ extension BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS_Extension
   set Passkey(int value) => this.Anonymous.Passkey = value;
 }
 
-/// The BLUETOOTH_COD_PAIRS structure provides for specification and
-/// retrieval of Bluetooth Class Of Device (COD) information.
+/// The BLUETOOTH_COD_PAIRS structure provides for specification and retrieval
+/// of Bluetooth Class Of Device (COD) information.
 ///
 /// {@category struct}
 base class BLUETOOTH_COD_PAIRS extends Struct {
@@ -485,8 +482,8 @@ base class BLUETOOTH_COD_PAIRS extends Struct {
   external Pointer<Utf16> pcszDescription;
 }
 
-/// The BLUETOOTH_DEVICE_INFO structure provides information about a
-/// Bluetooth device.
+/// The BLUETOOTH_DEVICE_INFO structure provides information about a Bluetooth
+/// device.
 ///
 /// {@category struct}
 base class BLUETOOTH_DEVICE_INFO extends Struct {
@@ -531,8 +528,8 @@ base class BLUETOOTH_DEVICE_INFO extends Struct {
   }
 }
 
-/// The BLUETOOTH_DEVICE_SEARCH_PARAMS structure specifies search criteria
-/// for Bluetooth device searches.
+/// The BLUETOOTH_DEVICE_SEARCH_PARAMS structure specifies search criteria for
+/// Bluetooth device searches.
 ///
 /// {@category struct}
 base class BLUETOOTH_DEVICE_SEARCH_PARAMS extends Struct {
@@ -561,8 +558,8 @@ base class BLUETOOTH_DEVICE_SEARCH_PARAMS extends Struct {
   external int hRadio;
 }
 
-/// The BLUETOOTH_FIND_RADIO_PARAMS structure facilitates enumerating
-/// installed Bluetooth radios.
+/// The BLUETOOTH_FIND_RADIO_PARAMS structure facilitates enumerating installed
+/// Bluetooth radios.
 ///
 /// {@category struct}
 base class BLUETOOTH_FIND_RADIO_PARAMS extends Struct {
@@ -584,8 +581,8 @@ base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT extends Struct {
   external Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue;
 }
 
-/// The BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION structure describes
-/// one or more characteristics that have changed.
+/// The BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION structure describes one
+/// or more characteristics that have changed.
 ///
 /// {@category struct}
 base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION extends Struct {
@@ -596,8 +593,8 @@ base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION extends Struct {
   external Array<BTH_LE_GATT_CHARACTERISTIC> Characteristics;
 }
 
-/// The BLUETOOTH_NUMERIC_COMPARISON_INFO structure contains the numeric
-/// value used for authentication via numeric comparison.
+/// The BLUETOOTH_NUMERIC_COMPARISON_INFO structure contains the numeric value
+/// used for authentication via numeric comparison.
 ///
 /// {@category struct}
 base class BLUETOOTH_NUMERIC_COMPARISON_INFO extends Struct {
@@ -618,8 +615,8 @@ base class BLUETOOTH_OOB_DATA_INFO extends Struct {
 }
 
 /// The BLUETOOTH_PASSKEY_INFO structure contains a passkey value used for
-/// authentication. A passkey is similar to a password, except that a
-/// passkey value is used for authentication only once.
+/// authentication. A passkey is similar to a password, except that a passkey
+/// value is used for authentication only once.
 ///
 /// {@category struct}
 base class BLUETOOTH_PASSKEY_INFO extends Struct {
@@ -639,8 +636,8 @@ base class BLUETOOTH_PIN_INFO extends Struct {
   external int pinLength;
 }
 
-/// The BLUETOOTH_RADIO_INFO structure provides information about a
-/// Bluetooth radio.
+/// The BLUETOOTH_RADIO_INFO structure provides information about a Bluetooth
+/// radio.
 ///
 /// {@category struct}
 base class BLUETOOTH_RADIO_INFO extends Struct {
@@ -679,8 +676,7 @@ base class BLUETOOTH_RADIO_INFO extends Struct {
 }
 
 /// The BLUETOOTH_SELECT_DEVICE_PARAMS structure facilitates and manages the
-/// visibility, authentication, and selection of Bluetooth devices and
-/// services.
+/// visibility, authentication, and selection of Bluetooth devices and services.
 ///
 /// {@category struct}
 base class BLUETOOTH_SELECT_DEVICE_PARAMS extends Struct {
@@ -742,8 +738,7 @@ base class BSMINFO extends Struct {
   external LUID luid;
 }
 
-/// The BTH_DEVICE_INFO structure stores information about a Bluetooth
-/// device.
+/// The BTH_DEVICE_INFO structure stores information about a Bluetooth device.
 ///
 /// {@category struct}
 base class BTH_DEVICE_INFO extends Struct {
@@ -793,8 +788,8 @@ base class BTH_L2CAP_EVENT_INFO extends Struct {
   external int initiated;
 }
 
-/// The BTH_LE_GATT_CHARACTERISTIC structure describes a Bluetooth Low
-/// Energy (LE) generic attribute (GATT) profile characteristic.
+/// The BTH_LE_GATT_CHARACTERISTIC structure describes a Bluetooth Low Energy
+/// (LE) generic attribute (GATT) profile characteristic.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_CHARACTERISTIC extends Struct {
@@ -846,8 +841,8 @@ base class BTH_LE_GATT_CHARACTERISTIC_VALUE extends Struct {
   external Array<Uint8> Data;
 }
 
-/// The BTH_LE_GATT_DESCRIPTOR structure describes a Bluetooth Low Energy
-/// (LE) generic attribute (GATT) profile descriptor.
+/// The BTH_LE_GATT_DESCRIPTOR structure describes a Bluetooth Low Energy (LE)
+/// generic attribute (GATT) profile descriptor.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_DESCRIPTOR extends Struct {
@@ -1053,8 +1048,8 @@ base class BTH_LE_GATT_SERVICE extends Struct {
   external int AttributeHandle;
 }
 
-/// The BTH_LE_UUID structure contains information about a Bluetooth Low
-/// Energy (LE) Universally Unique Identifier (UUID).
+/// The BTH_LE_UUID structure contains information about a Bluetooth Low Energy
+/// (LE) Universally Unique Identifier (UUID).
 ///
 /// {@category struct}
 base class BTH_LE_UUID extends Struct {
@@ -1080,8 +1075,8 @@ extension BTH_LE_UUID_Extension on BTH_LE_UUID {
   set LongUuid(GUID value) => this.Value.LongUuid = value;
 }
 
-/// The BTH_QUERY_DEVICE structure is used when querying for the presence of
-/// a Bluetooth device.
+/// The BTH_QUERY_DEVICE structure is used when querying for the presence of a
+/// Bluetooth device.
 ///
 /// {@category struct}
 @Packed(1)
@@ -1113,8 +1108,8 @@ base class BTH_QUERY_SERVICE extends Struct {
   external Array<SdpAttributeRange> pRange;
 }
 
-/// The BTH_RADIO_IN_RANGE structure stores data about Bluetooth devices
-/// within communication range.
+/// The BTH_RADIO_IN_RANGE structure stores data about Bluetooth devices within
+/// communication range.
 ///
 /// {@category struct}
 base class BTH_RADIO_IN_RANGE extends Struct {
@@ -1124,8 +1119,8 @@ base class BTH_RADIO_IN_RANGE extends Struct {
   external int previousDeviceFlags;
 }
 
-/// The BTH_SET_SERVICE structure provides service information for the
-/// specified Bluetooth service.
+/// The BTH_SET_SERVICE structure provides service information for the specified
+/// Bluetooth service.
 ///
 /// {@category struct}
 @Packed(1)
@@ -1147,8 +1142,7 @@ base class BTH_SET_SERVICE extends Struct {
   external Array<Uint8> pRecord;
 }
 
-/// Contains information that the GetFileInformationByHandle function
-/// retrieves.
+/// Contains information that the GetFileInformationByHandle function retrieves.
 ///
 /// {@category struct}
 base class BY_HANDLE_FILE_INFORMATION extends Struct {
@@ -1200,8 +1194,8 @@ base class CACHE_DESCRIPTOR extends Struct {
   external int Type;
 }
 
-/// Contains information passed to a WH_CBT hook procedure, CBTProc, before
-/// a window is activated.
+/// Contains information passed to a WH_CBT hook procedure, CBTProc, before a
+/// window is activated.
 ///
 /// {@category struct}
 base class CBTACTIVATESTRUCT extends Struct {
@@ -1212,8 +1206,8 @@ base class CBTACTIVATESTRUCT extends Struct {
   external int hWndActive;
 }
 
-/// Contains information passed to a WH_CBT hook procedure, CBTProc, before
-/// a window is created.
+/// Contains information passed to a WH_CBT hook procedure, CBTProc, before a
+/// window is created.
 ///
 /// {@category struct}
 base class CBT_CREATEWND extends Struct {
@@ -1224,11 +1218,11 @@ base class CBT_CREATEWND extends Struct {
 }
 
 /// The CERT_CONTEXT structure contains both the encoded and decoded
-/// representations of a certificate. A certificate context returned by one
-/// of the functions defined in Wincrypt.h must be freed by calling the
+/// representations of a certificate. A certificate context returned by one of
+/// the functions defined in Wincrypt.h must be freed by calling the
 /// CertFreeCertificateContext function. The CertDuplicateCertificateContext
-/// function can be called to make a duplicate copy (which also must be
-/// freed by calling CertFreeCertificateContext).
+/// function can be called to make a duplicate copy (which also must be freed by
+/// calling CertFreeCertificateContext).
 ///
 /// {@category struct}
 base class CERT_CONTEXT extends Struct {
@@ -1290,8 +1284,7 @@ base class CERT_INFO extends Struct {
   external Pointer<CERT_EXTENSION> rgExtension;
 }
 
-/// The CERT_PUBLIC_KEY_INFO structure contains a public key and its
-/// algorithm.
+/// The CERT_PUBLIC_KEY_INFO structure contains a public key and its algorithm.
 ///
 /// {@category struct}
 base class CERT_PUBLIC_KEY_INFO extends Struct {
@@ -1312,9 +1305,8 @@ base class CHANGEFILTERSTRUCT extends Struct {
   external int ExtStatus;
 }
 
-/// Specifies a Unicode or ANSI character and its attributes. This structure
-/// is used by console functions to read from and write to a console screen
-/// buffer.
+/// Specifies a Unicode or ANSI character and its attributes. This structure is
+/// used by console functions to read from and write to a console screen buffer.
 ///
 /// {@category struct}
 base class CHAR_INFO extends Struct {
@@ -1341,9 +1333,9 @@ extension CHAR_INFO_Extension on CHAR_INFO {
   set AsciiChar(int value) => this.Char.AsciiChar = value;
 }
 
-/// Contains information the ChooseColor function uses to initialize the
-/// Color dialog box. After the user closes the dialog box, the system
-/// returns information about the user's selection in this structure.
+/// Contains information the ChooseColor function uses to initialize the Color
+/// dialog box. After the user closes the dialog box, the system returns
+/// information about the user's selection in this structure.
 ///
 /// {@category struct}
 base class CHOOSECOLOR extends Struct {
@@ -1373,8 +1365,8 @@ base class CHOOSECOLOR extends Struct {
 }
 
 /// Contains information that the ChooseFont function uses to initialize the
-/// Font dialog box. After the user closes the dialog box, the system
-/// returns information about the user's selection in this structure.
+/// Font dialog box. After the user closes the dialog box, the system returns
+/// information about the user's selection in this structure.
 ///
 /// {@category struct}
 base class CHOOSEFONT extends Struct {
@@ -1434,8 +1426,8 @@ base class CLIENT_ID extends Struct {
   external int UniqueThread;
 }
 
-/// The COLORADJUSTMENT structure defines the color adjustment values used
-/// by the StretchBlt and StretchDIBits functions when the stretch mode is
+/// The COLORADJUSTMENT structure defines the color adjustment values used by
+/// the StretchBlt and StretchDIBits functions when the stretch mode is
 /// HALFTONE. You can set the color adjustment values by calling the
 /// SetColorAdjustment function.
 ///
@@ -1607,9 +1599,9 @@ base class COMMPROP extends Struct {
   }
 }
 
-/// Contains the time-out parameters for a communications device. The
-/// parameters determine the behavior of ReadFile, WriteFile, ReadFileEx,
-/// and WriteFileEx operations on the device.
+/// Contains the time-out parameters for a communications device. The parameters
+/// determine the behavior of ReadFile, WriteFile, ReadFileEx, and WriteFileEx
+/// operations on the device.
 ///
 /// {@category struct}
 base class COMMTIMEOUTS extends Struct {
@@ -1629,8 +1621,8 @@ base class COMMTIMEOUTS extends Struct {
   external int WriteTotalTimeoutConstant;
 }
 
-/// Contains information about a communications device. This structure is
-/// filled by the ClearCommError function.
+/// Contains information about a communications device. This structure is filled
+/// by the ClearCommError function.
 ///
 /// {@category struct}
 base class COMSTAT extends Struct {
@@ -1700,9 +1692,9 @@ base class CONSOLE_SELECTION_INFO extends Struct {
   external SMALL_RECT srSelection;
 }
 
-/// Defines the coordinates of a character cell in a console screen buffer.
-/// The origin of the coordinate system (0,0) is at the top, left cell of
-/// the buffer.
+/// Defines the coordinates of a character cell in a console screen buffer. The
+/// origin of the coordinate system (0,0) is at the top, left cell of the
+/// buffer.
 ///
 /// {@category struct}
 base class COORD extends Struct {
@@ -1746,8 +1738,8 @@ base class CREATEFILE2_EXTENDED_PARAMETERS extends Struct {
   external int hTemplateFile;
 }
 
-/// Defines the initialization parameters passed to the window procedure of
-/// an application. These members are identical to the parameters of the
+/// Defines the initialization parameters passed to the window procedure of an
+/// application. These members are identical to the parameters of the
 /// CreateWindowEx function.
 ///
 /// {@category struct}
@@ -1820,9 +1812,9 @@ base class CREDENTIAL extends Struct {
   external Pointer<Utf16> UserName;
 }
 
-/// The CREDENTIAL_ATTRIBUTE structure contains an application-defined
-/// attribute of the credential. An attribute is a keyword-value pair. It is
-/// up to the application to define the meaning of the attribute.
+/// The CREDENTIAL_ATTRIBUTE structure contains an application-defined attribute
+/// of the credential. An attribute is a keyword-value pair. It is up to the
+/// application to define the meaning of the attribute.
 ///
 /// {@category struct}
 base class CREDENTIAL_ATTRIBUTE extends Struct {
@@ -1837,9 +1829,9 @@ base class CREDENTIAL_ATTRIBUTE extends Struct {
   external Pointer<Uint8> Value;
 }
 
-/// The CRYPTPROTECT_PROMPTSTRUCT structure provides the text of a prompt
-/// and information about when and where that prompt is to be displayed when
-/// using the CryptProtectData and CryptUnprotectData functions.
+/// The CRYPTPROTECT_PROMPTSTRUCT structure provides the text of a prompt and
+/// information about when and where that prompt is to be displayed when using
+/// the CryptProtectData and CryptUnprotectData functions.
 ///
 /// {@category struct}
 base class CRYPTPROTECT_PROMPTSTRUCT extends Struct {
@@ -1856,9 +1848,9 @@ base class CRYPTPROTECT_PROMPTSTRUCT extends Struct {
 }
 
 /// The CRYPT_ALGORITHM_IDENTIFIER structure specifies an algorithm used to
-/// encrypt a private key. The structure includes the object identifier
-/// (OID) of the algorithm and any needed parameters for that algorithm. The
-/// parameters contained in its CRYPT_OBJID_BLOB are encoded.
+/// encrypt a private key. The structure includes the object identifier (OID) of
+/// the algorithm and any needed parameters for that algorithm. The parameters
+/// contained in its CRYPT_OBJID_BLOB are encoded.
 ///
 /// {@category struct}
 base class CRYPT_ALGORITHM_IDENTIFIER extends Struct {
@@ -1867,8 +1859,8 @@ base class CRYPT_ALGORITHM_IDENTIFIER extends Struct {
   external CRYPT_INTEGER_BLOB Parameters;
 }
 
-/// The CRYPT_BIT_BLOB structure contains a set of bits represented by an
-/// array of bytes.
+/// The CRYPT_BIT_BLOB structure contains a set of bits represented by an array
+/// of bytes.
 ///
 /// {@category struct}
 base class CRYPT_BIT_BLOB extends Struct {
@@ -1908,8 +1900,8 @@ base class CURSORINFO extends Struct {
   external POINT ptScreenPos;
 }
 
-/// Defines the message parameters passed to a WH_CALLWNDPROCRET hook
-/// procedure, CallWndRetProc.
+/// Defines the message parameters passed to a WH_CALLWNDPROCRET hook procedure,
+/// CallWndRetProc.
 ///
 /// {@category struct}
 base class CWPRETSTRUCT extends Struct {
@@ -1929,8 +1921,8 @@ base class CWPRETSTRUCT extends Struct {
   external int hwnd;
 }
 
-/// Defines the message parameters passed to a WH_CALLWNDPROC hook
-/// procedure, CallWndProc.
+/// Defines the message parameters passed to a WH_CALLWNDPROC hook procedure,
+/// CallWndProc.
 ///
 /// {@category struct}
 base class CWPSTRUCT extends Struct {
@@ -1947,8 +1939,8 @@ base class CWPSTRUCT extends Struct {
   external int hwnd;
 }
 
-/// A currency number stored as an 8-byte, two's complement integer, scaled
-/// by 10,000 to give a fixed-point number with 15 digits to the left of the
+/// A currency number stored as an 8-byte, two's complement integer, scaled by
+/// 10,000 to give a fixed-point number with 15 digits to the left of the
 /// decimal point and 4 digits to the right. This IDispatch::GetTypeInfo
 /// representation provides a range of 922337203685477.5807 to
 /// -922337203685477.5808.
@@ -2049,11 +2041,11 @@ base class DEBUGHOOKINFO extends Struct {
   external int code;
 }
 
-/// Represents a decimal data type that provides a sign and scale for a
-/// number (as in coordinates.) Decimal variables are stored as 96-bit
-/// (12-byte) unsigned integers scaled by a variable power of 10. The power
-/// of 10 scaling factor specifies the number of digits to the right of the
-/// decimal point, and ranges from 0 to 28.
+/// Represents a decimal data type that provides a sign and scale for a number
+/// (as in coordinates.) Decimal variables are stored as 96-bit (12-byte)
+/// unsigned integers scaled by a variable power of 10. The power of 10 scaling
+/// factor specifies the number of digits to the right of the decimal point, and
+/// ranges from 0 to 28.
 ///
 /// {@category struct}
 base class DECIMAL extends Struct {
@@ -2138,8 +2130,8 @@ extension DECIMAL_Extension_1 on DECIMAL {
   set Lo64(int value) => this.Anonymous2.Lo64 = value;
 }
 
-/// The DESIGNVECTOR structure is used by an application to specify values
-/// for the axes of a multiple master font.
+/// The DESIGNVECTOR structure is used by an application to specify values for
+/// the axes of a multiple master font.
 ///
 /// {@category struct}
 base class DESIGNVECTOR extends Struct {
@@ -2153,8 +2145,8 @@ base class DESIGNVECTOR extends Struct {
   external Array<Int32> dvValues;
 }
 
-/// The DEVMODE data structure contains information about the initialization
-/// and environment of a printer or a display device.
+/// The DEVMODE data structure contains information about the initialization and
+/// environment of a printer or a display device.
 ///
 /// {@category struct}
 base class DEVMODE extends Struct {
@@ -2392,12 +2384,12 @@ extension DEVMODEW_Extension_1 on DEVMODE {
   set dmNup(int value) => this.Anonymous2.dmNup = value;
 }
 
-/// The DIBSECTION structure contains information about a DIB created by
-/// calling the CreateDIBSection function. A DIBSECTION structure includes
-/// information about the bitmap's dimensions, color format, color masks,
-/// optional file mapping object, and optional bit values storage offset. An
-/// application can obtain a filled-in DIBSECTION structure for a given DIB
-/// by calling the GetObject function.
+/// The DIBSECTION structure contains information about a DIB created by calling
+/// the CreateDIBSection function. A DIBSECTION structure includes information
+/// about the bitmap's dimensions, color format, color masks, optional file
+/// mapping object, and optional bit values storage offset. An application can
+/// obtain a filled-in DIBSECTION structure for a given DIB by calling the
+/// GetObject function.
 ///
 /// {@category struct}
 base class DIBSECTION extends Struct {
@@ -2462,8 +2454,8 @@ base class DISK_GEOMETRY_EX extends Struct {
   external Array<Uint8> Data;
 }
 
-/// The DISPLAYCONFIG_2DREGION structure represents a point or an offset in
-/// a two-dimensional space.
+/// The DISPLAYCONFIG_2DREGION structure represents a point or an offset in a
+/// two-dimensional space.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_2DREGION extends Struct {
@@ -2474,8 +2466,8 @@ base class DISPLAYCONFIG_2DREGION extends Struct {
   external int cy;
 }
 
-/// The DISPLAYCONFIG_DESKTOP_IMAGE_INFO structure contains information
-/// about the image displayed on the desktop.
+/// The DISPLAYCONFIG_DESKTOP_IMAGE_INFO structure contains information about
+/// the image displayed on the desktop.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_DESKTOP_IMAGE_INFO extends Struct {
@@ -2486,8 +2478,8 @@ base class DISPLAYCONFIG_DESKTOP_IMAGE_INFO extends Struct {
   external RECTL DesktopImageClip;
 }
 
-/// The DISPLAYCONFIG_DEVICE_INFO_HEADER structure contains display
-/// information about the device.
+/// The DISPLAYCONFIG_DEVICE_INFO_HEADER structure contains display information
+/// about the device.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_DEVICE_INFO_HEADER extends Struct {
@@ -2503,8 +2495,8 @@ base class DISPLAYCONFIG_DEVICE_INFO_HEADER extends Struct {
   external int id;
 }
 
-/// The DISPLAYCONFIG_MODE_INFO structure contains either source mode or
-/// target mode information.
+/// The DISPLAYCONFIG_MODE_INFO structure contains either source mode or target
+/// mode information.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_MODE_INFO extends Struct {
@@ -2543,8 +2535,8 @@ extension DISPLAYCONFIG_MODE_INFO_Extension on DISPLAYCONFIG_MODE_INFO {
       this.Anonymous.desktopImageInfo = value;
 }
 
-/// The DISPLAYCONFIG_PATH_INFO structure is used to describe a single path
-/// from a target to a source.
+/// The DISPLAYCONFIG_PATH_INFO structure is used to describe a single path from
+/// a target to a source.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_PATH_INFO extends Struct {
@@ -2556,8 +2548,8 @@ base class DISPLAYCONFIG_PATH_INFO extends Struct {
   external int flags;
 }
 
-/// The DISPLAYCONFIG_PATH_SOURCE_INFO structure contains source information
-/// for a single path.
+/// The DISPLAYCONFIG_PATH_SOURCE_INFO structure contains source information for
+/// a single path.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_PATH_SOURCE_INFO extends Struct {
@@ -2607,8 +2599,8 @@ extension DISPLAYCONFIG_PATH_SOURCE_INFO_Extension
       this.Anonymous.Anonymous = value;
 }
 
-/// The DISPLAYCONFIG_PATH_TARGET_INFO structure contains target information
-/// for a single path.
+/// The DISPLAYCONFIG_PATH_TARGET_INFO structure contains target information for
+/// a single path.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_PATH_TARGET_INFO extends Struct {
@@ -2688,8 +2680,8 @@ base class DISPLAYCONFIG_RATIONAL extends Struct {
   external int Denominator;
 }
 
-/// The DISPLAYCONFIG_SOURCE_MODE structure represents a point or an offset
-/// in a two-dimensional space.
+/// The DISPLAYCONFIG_SOURCE_MODE structure represents a point or an offset in a
+/// two-dimensional space.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_SOURCE_MODE extends Struct {
@@ -2713,8 +2705,8 @@ base class DISPLAYCONFIG_TARGET_MODE extends Struct {
   external DISPLAYCONFIG_VIDEO_SIGNAL_INFO targetVideoSignalInfo;
 }
 
-/// The DISPLAYCONFIG_VIDEO_SIGNAL_INFO structure contains information about
-/// the video signal for a display.
+/// The DISPLAYCONFIG_VIDEO_SIGNAL_INFO structure contains information about the
+/// video signal for a display.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_VIDEO_SIGNAL_INFO extends Struct {
@@ -2772,9 +2764,8 @@ extension DISPLAYCONFIG_VIDEO_SIGNAL_INFO_Extension
   set videoStandard(int value) => this.Anonymous.videoStandard = value;
 }
 
-/// The DISPLAY_DEVICE structure receives information about the display
-/// device specified by the iDevNum parameter of the EnumDisplayDevices
-/// function.
+/// The DISPLAY_DEVICE structure receives information about the display device
+/// specified by the iDevNum parameter of the EnumDisplayDevices function.
 ///
 /// {@category struct}
 base class DISPLAY_DEVICE extends Struct {
@@ -2876,9 +2867,9 @@ base class DISPPARAMS extends Struct {
   external int cNamedArgs;
 }
 
-/// Defines the dimensions and style of a control in a dialog box. One or
-/// more of these structures are combined with a DLGTEMPLATE structure to
-/// form a standard template for a dialog box.
+/// Defines the dimensions and style of a control in a dialog box. One or more
+/// of these structures are combined with a DLGTEMPLATE structure to form a
+/// standard template for a dialog box.
 ///
 /// {@category struct}
 @Packed(2)
@@ -2905,10 +2896,10 @@ base class DLGITEMTEMPLATE extends Struct {
   external int id;
 }
 
-/// Defines the dimensions and style of a dialog box. This structure, always
-/// the first in a standard template for a dialog box, also specifies the
-/// number of controls in the dialog box and therefore specifies the number
-/// of subsequent DLGITEMTEMPLATE structures in the template.
+/// Defines the dimensions and style of a dialog box. This structure, always the
+/// first in a standard template for a dialog box, also specifies the number of
+/// controls in the dialog box and therefore specifies the number of subsequent
+/// DLGITEMTEMPLATE structures in the template.
 ///
 /// {@category struct}
 @Packed(2)
@@ -2935,8 +2926,8 @@ base class DLGTEMPLATE extends Struct {
   external int cy;
 }
 
-/// Receives DLL-specific version information. It is used with the
-/// DllGetVersion function.
+/// Receives DLL-specific version information. It is used with the DllGetVersion
+/// function.
 ///
 /// {@category struct}
 base class DLLVERSIONINFO extends Struct {
@@ -2967,9 +2958,9 @@ base class DOC_INFO_1 extends Struct {
   external Pointer<Utf16> pDatatype;
 }
 
-/// The DOT11_AUTH_CIPHER_PAIR structure defines a pair of 802.11
-/// authentication and cipher algorithms that can be enabled at the same
-/// time on the 802.11 station.
+/// The DOT11_AUTH_CIPHER_PAIR structure defines a pair of 802.11 authentication
+/// and cipher algorithms that can be enabled at the same time on the 802.11
+/// station.
 ///
 /// {@category struct}
 base class DOT11_AUTH_CIPHER_PAIR extends Struct {
@@ -2980,8 +2971,8 @@ base class DOT11_AUTH_CIPHER_PAIR extends Struct {
   external int CipherAlgoId;
 }
 
-/// The DOT11_BSSID_LIST structure contains a list of basic service set
-/// (BSS) identifiers.
+/// The DOT11_BSSID_LIST structure contains a list of basic service set (BSS)
+/// identifiers.
 ///
 /// {@category struct}
 base class DOT11_BSSID_LIST extends Struct {
@@ -2997,8 +2988,8 @@ base class DOT11_BSSID_LIST extends Struct {
   external Array<Uint8> BSSIDs;
 }
 
-/// The DOT11_NETWORK structure contains information about an available
-/// wireless network.
+/// The DOT11_NETWORK structure contains information about an available wireless
+/// network.
 ///
 /// {@category struct}
 base class DOT11_NETWORK extends Struct {
@@ -3034,8 +3025,8 @@ base class DOT11_SSID extends Struct {
   external Array<Uint8> ucSSID;
 }
 
-/// The DRAWTEXTPARAMS structure contains extended formatting options for
-/// the DrawTextEx function.
+/// The DRAWTEXTPARAMS structure contains extended formatting options for the
+/// DrawTextEx function.
 ///
 /// {@category struct}
 base class DRAWTEXTPARAMS extends Struct {
@@ -3055,8 +3046,8 @@ base class DRAWTEXTPARAMS extends Struct {
   external int uiLengthDrawn;
 }
 
-/// Contains information about how a device is joined to Microsoft Azure
-/// Active Directory.
+/// Contains information about how a device is joined to Microsoft Azure Active
+/// Directory.
 ///
 /// {@category struct}
 base class DSREG_JOIN_INFO extends Struct {
@@ -3086,8 +3077,8 @@ base class DSREG_JOIN_INFO extends Struct {
   external Pointer<DSREG_USER_INFO> pUserInfo;
 }
 
-/// Contains information about a user account that is used to join a device
-/// to Microsoft Azure Active Directory.
+/// Contains information about a user account that is used to join a device to
+/// Microsoft Azure Active Directory.
 ///
 /// {@category struct}
 base class DSREG_USER_INFO extends Struct {
@@ -3159,8 +3150,8 @@ base class DTTOPTS extends Struct {
   external int lParam;
 }
 
-/// Specifies Desktop Window Manager (DWM) blur-behind properties. Used by
-/// the DwmEnableBlurBehindWindow function.
+/// Specifies Desktop Window Manager (DWM) blur-behind properties. Used by the
+/// DwmEnableBlurBehindWindow function.
 ///
 /// {@category struct}
 @Packed(1)
@@ -3189,8 +3180,8 @@ base class EAP_METHOD_TYPE extends Struct {
   external int dwAuthorId;
 }
 
-/// The EAP_TYPE structure contains type and vendor identification
-/// information for an EAP method.
+/// The EAP_TYPE structure contains type and vendor identification information
+/// for an EAP method.
 ///
 /// {@category struct}
 base class EAP_TYPE extends Struct {
@@ -3229,8 +3220,7 @@ extension ELEMDESC_Extension on ELEMDESC {
   set paramdesc(PARAMDESC value) => this.Anonymous.paramdesc = value;
 }
 
-/// The ENUMLOGFONTEX structure contains information about an enumerated
-/// font.
+/// The ENUMLOGFONTEX structure contains information about an enumerated font.
 ///
 /// {@category struct}
 base class ENUMLOGFONTEX extends Struct {
@@ -3315,8 +3305,8 @@ base class ENUM_PAGE_FILE_INFORMATION extends Struct {
 }
 
 /// Contains the name of a service in a service control manager database and
-/// information about that service. It is used by the EnumDependentServices
-/// and EnumServicesStatus functions.
+/// information about that service. It is used by the EnumDependentServices and
+/// EnumServicesStatus functions.
 ///
 /// {@category struct}
 base class ENUM_SERVICE_STATUS extends Struct {
@@ -3399,9 +3389,9 @@ base class ExtendedProperty extends Struct {
 }
 
 /// The fd_set structure is used by various Windows Sockets functions and
-/// service providers, such as the select function, to place sockets into a
-/// set for various purposes, such as testing a given socket for readability
-/// using the readfds parameter of the select function.
+/// service providers, such as the select function, to place sockets into a set
+/// for various purposes, such as testing a given socket for readability using
+/// the readfds parameter of the select function.
 ///
 /// {@category struct}
 base class FD_SET extends Struct {
@@ -3412,8 +3402,8 @@ base class FD_SET extends Struct {
   external Array<IntPtr> fd_array;
 }
 
-/// Contains a 64-bit value representing the number of 100-nanosecond
-/// intervals since January 1, 1601 (UTC).
+/// Contains a 64-bit value representing the number of 100-nanosecond intervals
+/// since January 1, 1601 (UTC).
 ///
 /// {@category struct}
 base class FILETIME extends Struct {
@@ -3435,9 +3425,9 @@ base class FILE_SEGMENT_ELEMENT extends Union {
 }
 
 /// Contains information that the FindText and ReplaceText functions use to
-/// initialize the Find and Replace dialog boxes. The FINDMSGSTRING
-/// registered message uses this structure to pass the user's search or
-/// replacement input to the owner window of a Find or Replace dialog box.
+/// initialize the Find and Replace dialog boxes. The FINDMSGSTRING registered
+/// message uses this structure to pass the user's search or replacement input
+/// to the owner window of a Find or Replace dialog box.
 ///
 /// {@category struct}
 base class FINDREPLACE extends Struct {
@@ -3471,8 +3461,8 @@ base class FINDREPLACE extends Struct {
   external Pointer<Utf16> lpTemplateName;
 }
 
-/// Describes a focus event in a console INPUT_RECORD structure. These
-/// events are used internally and should be ignored.
+/// Describes a focus event in a console INPUT_RECORD structure. These events
+/// are used internally and should be ignored.
 ///
 /// {@category struct}
 base class FOCUS_EVENT_RECORD extends Struct {
@@ -3518,8 +3508,8 @@ base class FUNCDESC extends Struct {
   external int wFuncFlags;
 }
 
-/// Gets and sets the configuration for enabling gesture messages and the
-/// type of this configuration.
+/// Gets and sets the configuration for enabling gesture messages and the type
+/// of this configuration.
 ///
 /// {@category struct}
 base class GESTURECONFIG extends Struct {
@@ -3564,8 +3554,8 @@ base class GESTUREINFO extends Struct {
   external int cbExtraArgs;
 }
 
-/// When transmitted with WM_GESTURENOTIFY messages, passes information
-/// about a gesture.
+/// When transmitted with WM_GESTURENOTIFY messages, passes information about a
+/// gesture.
 ///
 /// {@category struct}
 base class GESTURENOTIFYSTRUCT extends Struct {
@@ -3615,8 +3605,8 @@ base class GUITHREADINFO extends Struct {
   external RECT rcCaret;
 }
 
-/// Contains information about a simulated message generated by an input
-/// device other than a keyboard or mouse.
+/// Contains information about a simulated message generated by an input device
+/// other than a keyboard or mouse.
 ///
 /// {@category struct}
 base class HARDWAREINPUT extends Struct {
@@ -3631,12 +3621,11 @@ base class HARDWAREINPUT extends Struct {
 }
 
 /// The hostent structure is used by functions to store information about a
-/// given host, such as host name, IPv4 address, and so forth. An
-/// application should never attempt to modify this structure or to free any
-/// of its components. Furthermore, only one copy of the hostent structure
-/// is allocated per thread, and an application should therefore copy any
-/// information that it needs before issuing any other Windows Sockets API
-/// calls.
+/// given host, such as host name, IPv4 address, and so forth. An application
+/// should never attempt to modify this structure or to free any of its
+/// components. Furthermore, only one copy of the hostent structure is allocated
+/// per thread, and an application should therefore copy any information that it
+/// needs before issuing any other Windows Sockets API calls.
 ///
 /// {@category struct}
 base class HOSTENT extends Struct {
@@ -3681,8 +3670,8 @@ base class ICONINFO extends Struct {
   external int hbmColor;
 }
 
-/// Contains information about an icon or a cursor. Extends ICONINFO. Used
-/// by GetIconInfoEx.
+/// Contains information about an icon or a cursor. Extends ICONINFO. Used by
+/// GetIconInfoEx.
 ///
 /// {@category struct}
 base class ICONINFOEX extends Struct {
@@ -3770,8 +3759,8 @@ base class INITCOMMONCONTROLSEX extends Struct {
   external int dwICC;
 }
 
-/// Used by SendInput to store information for synthesizing input events
-/// such as keystrokes, mouse movement, and mouse clicks.
+/// Used by SendInput to store information for synthesizing input events such as
+/// keystrokes, mouse movement, and mouse clicks.
 ///
 /// {@category struct}
 base class INPUT extends Struct {
@@ -3801,10 +3790,10 @@ extension INPUT_Extension on INPUT {
   set hi(HARDWAREINPUT value) => this.Anonymous.hi = value;
 }
 
-/// Describes an input event in the console input buffer. These records can
-/// be read from the input buffer by using the ReadConsoleInput or
-/// PeekConsoleInput function, or written to the input buffer by using the
-/// WriteConsoleInput function.
+/// Describes an input event in the console input buffer. These records can be
+/// read from the input buffer by using the ReadConsoleInput or PeekConsoleInput
+/// function, or written to the input buffer by using the WriteConsoleInput
+/// function.
 ///
 /// {@category struct}
 base class INPUT_RECORD extends Struct {
@@ -3846,11 +3835,10 @@ extension INPUT_RECORD_Extension on INPUT_RECORD {
   set FocusEvent(FOCUS_EVENT_RECORD value) => this.Event.FocusEvent = value;
 }
 
-/// Defines the matrix that represents a transform on a message consumer.
-/// This matrix can be used to transform pointer input data from client
-/// coordinates to screen coordinates, while the inverse can be used to
-/// transform pointer input data from screen coordinates to client
-/// coordinates.
+/// Defines the matrix that represents a transform on a message consumer. This
+/// matrix can be used to transform pointer input data from client coordinates
+/// to screen coordinates, while the inverse can be used to transform pointer
+/// input data from screen coordinates to client coordinates.
 ///
 /// {@category struct}
 base class INPUT_TRANSFORM extends Struct {
@@ -4054,9 +4042,9 @@ extension IN_ADDR_Extension on IN_ADDR {
   set S_addr(int value) => this.S_un.S_addr = value;
 }
 
-/// The IP_ADAPTER_ADDRESSES structure is the header node for a linked list
-/// of addresses for a particular adapter. This structure can simultaneously
-/// be used as part of a linked list of IP_ADAPTER_ADDRESSES structures.
+/// The IP_ADAPTER_ADDRESSES structure is the header node for a linked list of
+/// addresses for a particular adapter. This structure can simultaneously be
+/// used as part of a linked list of IP_ADAPTER_ADDRESSES structures.
 ///
 /// {@category struct}
 base class IP_ADAPTER_ADDRESSES_LH extends Struct {
@@ -4224,8 +4212,8 @@ extension IP_ADAPTER_ADDRESSES_LH_Extension_1 on IP_ADAPTER_ADDRESSES_LH {
       this.Anonymous2.Anonymous = value;
 }
 
-/// The IP_ADAPTER_ANYCAST_ADDRESS structure stores a single anycast IP
-/// address in a linked list of addresses for a particular adapter.
+/// The IP_ADAPTER_ANYCAST_ADDRESS structure stores a single anycast IP address
+/// in a linked list of addresses for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_ANYCAST_ADDRESS_XP extends Struct {
@@ -4278,8 +4266,7 @@ extension IP_ADAPTER_ANYCAST_ADDRESS_XP_Extension
 }
 
 /// The IP_ADAPTER_DNS_SERVER_ADDRESS structure stores a single DNS server
-/// address in a linked list of DNS server addresses for a particular
-/// adapter.
+/// address in a linked list of DNS server addresses for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_DNS_SERVER_ADDRESS_XP extends Struct {
@@ -4332,8 +4319,8 @@ extension IP_ADAPTER_DNS_SERVER_ADDRESS_XP_Extension
       this.Anonymous.Anonymous = value;
 }
 
-/// The IP_ADAPTER_DNS_SUFFIX structure stores a DNS suffix in a linked list
-/// of DNS suffixes for a particular adapter.
+/// The IP_ADAPTER_DNS_SUFFIX structure stores a DNS suffix in a linked list of
+/// DNS suffixes for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_DNS_SUFFIX extends Struct {
@@ -4359,8 +4346,8 @@ base class IP_ADAPTER_DNS_SUFFIX extends Struct {
   }
 }
 
-/// The IP_ADAPTER_GATEWAY_ADDRESS structure stores a single gateway address
-/// in a linked list of gateway addresses for a particular adapter.
+/// The IP_ADAPTER_GATEWAY_ADDRESS structure stores a single gateway address in
+/// a linked list of gateway addresses for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_GATEWAY_ADDRESS_LH extends Struct {
@@ -4441,8 +4428,8 @@ base class IP_ADAPTER_INDEX_MAP extends Struct {
   }
 }
 
-/// The IP_ADAPTER_MULTICAST_ADDRESS structure stores a single multicast
-/// address in a linked-list of addresses for a particular adapter.
+/// The IP_ADAPTER_MULTICAST_ADDRESS structure stores a single multicast address
+/// in a linked-list of addresses for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_MULTICAST_ADDRESS_XP extends Struct {
@@ -4549,8 +4536,8 @@ extension IP_ADAPTER_PREFIX_XP_Extension on IP_ADAPTER_PREFIX_XP {
       this.Anonymous.Anonymous = value;
 }
 
-/// The IP_ADAPTER_UNICAST_ADDRESS structure stores a single unicast IP
-/// address in a linked list of IP addresses for a particular adapter.
+/// The IP_ADAPTER_UNICAST_ADDRESS structure stores a single unicast IP address
+/// in a linked list of IP addresses for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_UNICAST_ADDRESS_LH extends Struct {
@@ -4624,8 +4611,8 @@ extension IP_ADAPTER_UNICAST_ADDRESS_LH_Extension
 }
 
 /// The IP_ADAPTER_WINS_SERVER_ADDRESS structure stores a single Windows
-/// Internet Name Service (WINS) server address in a linked list of WINS
-/// server addresses for a particular adapter.
+/// Internet Name Service (WINS) server address in a linked list of WINS server
+/// addresses for a particular adapter.
 ///
 /// {@category struct}
 base class IP_ADAPTER_WINS_SERVER_ADDRESS_LH extends Struct {
@@ -4762,9 +4749,9 @@ base class JOBOBJECT_IO_RATE_CONTROL_INFORMATION extends Struct {
 }
 
 /// The JOB_INFO_1 structure specifies print-job information such as the
-/// job-identifier value, the name of the printer for which the job is
-/// spooled, the name of the machine that created the print job, the name of
-/// the user that owns the print job, and so on.
+/// job-identifier value, the name of the printer for which the job is spooled,
+/// the name of the machine that created the print job, the name of the user
+/// that owns the print job, and so on.
 ///
 /// {@category struct}
 base class JOB_INFO_1 extends Struct {
@@ -4914,9 +4901,9 @@ base class KNOWNFOLDER_DEFINITION extends Struct {
   external GUID ftidType;
 }
 
-/// The L2_NOTIFICATION_DATA structure is used by the IHV Extensions DLL to
-/// send notifications to any service or applications that has registered
-/// for the notification.
+/// The L2_NOTIFICATION_DATA structure is used by the IHV Extensions DLL to send
+/// notifications to any service or applications that has registered for the
+/// notification.
 ///
 /// {@category struct}
 base class L2_NOTIFICATION_DATA extends Struct {
@@ -4945,9 +4932,8 @@ base class LASTINPUTINFO extends Struct {
   external int dwTime;
 }
 
-/// The LOGBRUSH structure defines the style, color, and pattern of a
-/// physical brush. It is used by the CreateBrushIndirect and ExtCreatePen
-/// functions.
+/// The LOGBRUSH structure defines the style, color, and pattern of a physical
+/// brush. It is used by the CreateBrushIndirect and ExtCreatePen functions.
 ///
 /// {@category struct}
 base class LOGBRUSH extends Struct {
@@ -5038,10 +5024,9 @@ base class LOGPALETTE extends Struct {
   external Array<PALETTEENTRY> palPalEntry;
 }
 
-/// A Locally Unique Identifier (LUID). This is a value guaranteed to be
-/// unique only on the system on which it was generated. The uniqueness of a
-/// locally unique identifier is guaranteed only until the system is
-/// restarted.
+/// A Locally Unique Identifier (LUID). This is a value guaranteed to be unique
+/// only on the system on which it was generated. The uniqueness of a locally
+/// unique identifier is guaranteed only until the system is restarted.
 ///
 /// {@category struct}
 base class LUID extends Struct {
@@ -5083,8 +5068,8 @@ base class MAGIMAGEHEADER extends Struct {
   external int cbSize;
 }
 
-/// Describes a transformation matrix that a magnifier control uses to
-/// magnify screen content.
+/// Describes a transformation matrix that a magnifier control uses to magnify
+/// screen content.
 ///
 /// {@category struct}
 base class MAGTRANSFORM extends Struct {
@@ -5092,8 +5077,8 @@ base class MAGTRANSFORM extends Struct {
   external Array<Float> v;
 }
 
-/// Returned by the GetThemeMargins function to define the margins of
-/// windows that have visual styles applied.
+/// Returned by the GetThemeMargins function to define the margins of windows
+/// that have visual styles applied.
 ///
 /// {@category struct}
 base class MARGINS extends Struct {
@@ -5110,8 +5095,7 @@ base class MARGINS extends Struct {
   external int cyBottomHeight;
 }
 
-/// The MCI_OPEN_PARMS structure contains information for the MCI_OPEN
-/// command.
+/// The MCI_OPEN_PARMS structure contains information for the MCI_OPEN command.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5177,9 +5161,9 @@ base class MCI_STATUS_PARMS extends Struct {
   external int dwTrack;
 }
 
-/// Contains information about the current state of both physical and
-/// virtual memory, including extended memory. The GlobalMemoryStatusEx
-/// function stores information in this structure.
+/// Contains information about the current state of both physical and virtual
+/// memory, including extended memory. The GlobalMemoryStatusEx function stores
+/// information in this structure.
 ///
 /// {@category struct}
 base class MEMORYSTATUSEX extends Struct {
@@ -5211,9 +5195,8 @@ base class MEMORYSTATUSEX extends Struct {
   external int ullAvailExtendedVirtual;
 }
 
-/// Contains information about a range of pages in the virtual address space
-/// of a process. The VirtualQuery and VirtualQueryEx functions use this
-/// structure.
+/// Contains information about a range of pages in the virtual address space of
+/// a process. The VirtualQuery and VirtualQueryEx functions use this structure.
 ///
 /// {@category struct}
 base class MEMORY_BASIC_INFORMATION extends Struct {
@@ -5355,8 +5338,8 @@ base class MENUITEMTEMPLATE extends Struct {
   }
 }
 
-/// Defines the header for a menu template. A complete menu template
-/// consists of a header and one or more menu item lists.
+/// Defines the header for a menu template. A complete menu template consists of
+/// a header and one or more menu item lists.
 ///
 /// {@category struct}
 base class MENUITEMTEMPLATEHEADER extends Struct {
@@ -5367,8 +5350,8 @@ base class MENUITEMTEMPLATEHEADER extends Struct {
   external int offset;
 }
 
-/// Describes a menu event in a console INPUT_RECORD structure. These events
-/// are used internally and should be ignored.
+/// Describes a menu event in a console INPUT_RECORD structure. These events are
+/// used internally and should be ignored.
 ///
 /// {@category struct}
 base class MENU_EVENT_RECORD extends Struct {
@@ -5444,8 +5427,7 @@ base class MIDIHDR extends Struct {
   external Array<IntPtr> dwReserved;
 }
 
-/// The MIDIINCAPS structure describes the capabilities of a MIDI input
-/// device.
+/// The MIDIINCAPS structure describes the capabilities of a MIDI input device.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5557,8 +5539,8 @@ base class MIDIPROPTIMEDIV extends Struct {
   external int dwTimeDiv;
 }
 
-/// The MIDISTRMBUFFVER structure contains version information for a long
-/// MIDI event of the MEVT_VERSION type.
+/// The MIDISTRMBUFFVER structure contains version information for a long MIDI
+/// event of the MEVT_VERSION type.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5573,8 +5555,8 @@ base class MIDISTRMBUFFVER extends Struct {
   external int dwOEMVersion;
 }
 
-/// Contains information about a window's maximized size and position and
-/// its minimum and maximum tracking size.
+/// Contains information about a window's maximized size and position and its
+/// minimum and maximum tracking size.
 ///
 /// {@category struct}
 base class MINMAXINFO extends Struct {
@@ -5850,8 +5832,7 @@ base class MONITORINFO extends Struct {
   external int dwFlags;
 }
 
-/// The MONITORINFOEX structure contains information about a display
-/// monitor.
+/// The MONITORINFOEX structure contains information about a display monitor.
 ///
 /// {@category struct}
 base class MONITORINFOEX extends Struct {
@@ -5895,9 +5876,8 @@ base class MOUSEHOOKSTRUCT extends Struct {
 }
 
 /// Contains information about a mouse event passed to a WH_MOUSE hook
-/// procedure, MouseProc. This is an extension of the MOUSEHOOKSTRUCT
-/// structure that includes information about wheel movement or the use of
-/// the X button.
+/// procedure, MouseProc. This is an extension of the MOUSEHOOKSTRUCT structure
+/// that includes information about wheel movement or the use of the X button.
 ///
 /// {@category struct}
 base class MOUSEHOOKSTRUCTEX extends Struct {
@@ -6005,8 +5985,8 @@ base class MSLLHOOKSTRUCT extends Struct {
 }
 
 /// Contains information that an application can use while processing the
-/// WM_NCCALCSIZE message to calculate the size, position, and valid
-/// contents of the client area of a window.
+/// WM_NCCALCSIZE message to calculate the size, position, and valid contents of
+/// the client area of a window.
 ///
 /// {@category struct}
 base class NCCALCSIZE_PARAMS extends Struct {
@@ -6016,8 +5996,8 @@ base class NCCALCSIZE_PARAMS extends Struct {
   external Pointer<WINDOWPOS> lppos;
 }
 
-/// The NDIS_OBJECT_HEADER structure packages the object type, version, and
-/// size information that is required in many NDIS 6.0 structures.
+/// The NDIS_OBJECT_HEADER structure packages the object type, version, and size
+/// information that is required in many NDIS 6.0 structures.
 ///
 /// {@category struct}
 base class NDIS_OBJECT_HEADER extends Struct {
@@ -6053,8 +6033,7 @@ extension NET_LUID_LH_Extension on NET_LUID_LH {
   set bitfield(int value) => this.Info.bitfield = value;
 }
 
-/// The NEWTEXTMETRIC structure contains data that describes a physical
-/// font.
+/// The NEWTEXTMETRIC structure contains data that describes a physical font.
 ///
 /// {@category struct}
 base class NEWTEXTMETRIC extends Struct {
@@ -6131,10 +6110,9 @@ base class NEWTEXTMETRIC extends Struct {
   external int ntmAvgWidth;
 }
 
-/// Used to specify values that are used by SetSimulatedProfileInfo to
-/// override current internet connection profile values in an RDP Child
-/// Session to support the simulation of specific metered internet
-/// connection conditions.
+/// Used to specify values that are used by SetSimulatedProfileInfo to override
+/// current internet connection profile values in an RDP Child Session to
+/// support the simulation of specific metered internet connection conditions.
 ///
 /// {@category struct}
 base class NLM_SIMULATED_PROFILE_INFO extends Struct {
@@ -6168,9 +6146,8 @@ base class NLM_SIMULATED_PROFILE_INFO extends Struct {
 }
 
 /// Contains the scalable metrics associated with the nonclient area of a
-/// nonminimized window. This structure is used by the
-/// SPI_GETNONCLIENTMETRICS and SPI_SETNONCLIENTMETRICS actions of the
-/// SystemParametersInfo function.
+/// nonminimized window. This structure is used by the SPI_GETNONCLIENTMETRICS
+/// and SPI_SETNONCLIENTMETRICS actions of the SystemParametersInfo function.
 ///
 /// {@category struct}
 base class NONCLIENTMETRICS extends Struct {
@@ -6218,8 +6195,8 @@ base class NONCLIENTMETRICS extends Struct {
   external int iPaddedBorderWidth;
 }
 
-/// Contains information that the system needs to display notifications in
-/// the notification area. Used by Shell_NotifyIcon.
+/// Contains information that the system needs to display notifications in the
+/// notification area. Used by Shell_NotifyIcon.
 ///
 /// {@category struct}
 base class NOTIFYICONDATA extends Struct {
@@ -6332,11 +6309,11 @@ extension NOTIFYICONDATAW_Extension on NOTIFYICONDATA {
   set uVersion(int value) => this.Anonymous.uVersion = value;
 }
 
-/// The OPENCARDNAME structure contains the information that the
-/// GetOpenCardName function uses to initialize a smart card Select Card
-/// dialog box. Calling SCardUIDlgSelectCard with OPENCARDNAME_EX is
-/// recommended over calling GetOpenCardName with OPENCARDNAME. OPENCARDNAME
-/// is provided for backward compatibility.
+/// The OPENCARDNAME structure contains the information that the GetOpenCardName
+/// function uses to initialize a smart card Select Card dialog box. Calling
+/// SCardUIDlgSelectCard with OPENCARDNAME_EX is recommended over calling
+/// GetOpenCardName with OPENCARDNAME. OPENCARDNAME is provided for backward
+/// compatibility.
 ///
 /// {@category struct}
 base class OPENCARDNAME extends Struct {
@@ -6401,8 +6378,8 @@ base class OPENCARDNAME extends Struct {
 }
 
 /// The OPENCARDNAME_EX structure contains the information that the
-/// SCardUIDlgSelectCard function uses to initialize a smart card Select
-/// Card dialog box.
+/// SCardUIDlgSelectCard function uses to initialize a smart card Select Card
+/// dialog box.
 ///
 /// {@category struct}
 base class OPENCARDNAME_EX extends Struct {
@@ -6454,10 +6431,10 @@ base class OPENCARDNAME_EX extends Struct {
   external int hCardHandle;
 }
 
-/// The OPENCARD_SEARCH_CRITERIA structure is used by the
-/// SCardUIDlgSelectCard function in order to recognize cards that meet the
-/// requirements set forth by the caller. You can, however, call
-/// SCardUIDlgSelectCard without using this structure.
+/// The OPENCARD_SEARCH_CRITERIA structure is used by the SCardUIDlgSelectCard
+/// function in order to recognize cards that meet the requirements set forth by
+/// the caller. You can, however, call SCardUIDlgSelectCard without using this
+/// structure.
 ///
 /// {@category struct}
 base class OPENCARD_SEARCH_CRITERIA extends Struct {
@@ -6494,10 +6471,10 @@ base class OPENCARD_SEARCH_CRITERIA extends Struct {
   external int dwPreferredProtocols;
 }
 
-/// Contains information that the GetOpenFileName and GetSaveFileName
-/// functions use to initialize an Open or Save As dialog box. After the
-/// user closes the dialog box, the system returns information about the
-/// user's selection in this structure.
+/// Contains information that the GetOpenFileName and GetSaveFileName functions
+/// use to initialize an Open or Save As dialog box. After the user closes the
+/// dialog box, the system returns information about the user's selection in
+/// this structure.
 ///
 /// {@category struct}
 base class OPENFILENAME extends Struct {
@@ -6576,10 +6553,10 @@ base class OSINFO extends Struct {
 }
 
 /// Contains operating system version information. The information includes
-/// major and minor version numbers, a build number, a platform identifier,
-/// and information about product suites and the latest Service Pack
-/// installed on the system. This structure is used with the GetVersionEx
-/// and VerifyVersionInfo functions.
+/// major and minor version numbers, a build number, a platform identifier, and
+/// information about product suites and the latest Service Pack installed on
+/// the system. This structure is used with the GetVersionEx and
+/// VerifyVersionInfo functions.
 ///
 /// {@category struct}
 base class OSVERSIONINFOEX extends Struct {
@@ -6634,9 +6611,9 @@ base class OSVERSIONINFOEX extends Struct {
 }
 
 /// Contains operating system version information. The information includes
-/// major and minor version numbers, a build number, a platform identifier,
-/// and descriptive text about the operating system. This structure is used
-/// with the GetVersionEx function.
+/// major and minor version numbers, a build number, a platform identifier, and
+/// descriptive text about the operating system. This structure is used with the
+/// GetVersionEx function.
 ///
 /// {@category struct}
 base class OSVERSIONINFO extends Struct {
@@ -6675,8 +6652,8 @@ base class OSVERSIONINFO extends Struct {
   }
 }
 
-/// Contains information used in asynchronous (or overlapped) input and
-/// output (I/O).
+/// Contains information used in asynchronous (or overlapped) input and output
+/// (I/O).
 ///
 /// {@category struct}
 base class OVERLAPPED extends Struct {
@@ -6745,8 +6722,8 @@ base class OVERLAPPED_ENTRY extends Struct {
 }
 
 /// The PAINTSTRUCT structure contains information for an application. This
-/// information can be used to paint the client area of a window owned by
-/// that application.
+/// information can be used to paint the client area of a window owned by that
+/// application.
 ///
 /// {@category struct}
 base class PAINTSTRUCT extends Struct {
@@ -6768,9 +6745,8 @@ base class PAINTSTRUCT extends Struct {
   external Array<Uint8> rgbReserved;
 }
 
-/// The PALETTEENTRY structure specifies the color and usage of an entry in
-/// a logical palette. A logical palette is defined by a LOGPALETTE
-/// structure.
+/// The PALETTEENTRY structure specifies the color and usage of an entry in a
+/// logical palette. A logical palette is defined by a LOGPALETTE structure.
 ///
 /// {@category struct}
 base class PALETTEENTRY extends Struct {
@@ -6787,8 +6763,8 @@ base class PALETTEENTRY extends Struct {
   external int peFlags;
 }
 
-/// Contains information needed for transferring a structure element,
-/// parameter, or function return value between processes.
+/// Contains information needed for transferring a structure element, parameter,
+/// or function return value between processes.
 ///
 /// {@category struct}
 base class PARAMDESC extends Struct {
@@ -6855,8 +6831,7 @@ base class PERFORMANCE_INFORMATION extends Struct {
   external int ThreadCount;
 }
 
-/// Contains a handle and text description corresponding to a physical
-/// monitor.
+/// Contains a handle and text description corresponding to a physical monitor.
 ///
 /// {@category struct}
 @Packed(1)
@@ -6895,10 +6870,9 @@ base class POINT extends Struct {
   external int y;
 }
 
-/// Contains basic pointer information common to all pointer types.
-/// Applications can retrieve this information using the GetPointerInfo,
-/// GetPointerFrameInfo, GetPointerInfoHistory and
-/// GetPointerFrameInfoHistory functions.
+/// Contains basic pointer information common to all pointer types. Applications
+/// can retrieve this information using the GetPointerInfo, GetPointerFrameInfo,
+/// GetPointerInfoHistory and GetPointerFrameInfoHistory functions.
 ///
 /// {@category struct}
 base class POINTER_INFO extends Struct {
@@ -7017,8 +6991,8 @@ base class POINTS extends Struct {
   external int y;
 }
 
-/// The POLYTEXT structure describes how the PolyTextOut function should
-/// draw a string of text.
+/// The POLYTEXT structure describes how the PolyTextOut function should draw a
+/// string of text.
 ///
 /// {@category struct}
 base class POLYTEXT extends Struct {
@@ -7065,8 +7039,7 @@ base class PORT_INFO_2 extends Struct {
   external int Reserved;
 }
 
-/// Sent with a power setting event and contains data about the specific
-/// change.
+/// Sent with a power setting event and contains data about the specific change.
 ///
 /// {@category struct}
 base class POWERBROADCAST_SETTING extends Struct {
@@ -7079,8 +7052,8 @@ base class POWERBROADCAST_SETTING extends Struct {
   external Array<Uint8> Data;
 }
 
-/// The PRINTER_DEFAULTS structure specifies the default data type,
-/// environment, initialization data, and access rights for a printer.
+/// The PRINTER_DEFAULTS structure specifies the default data type, environment,
+/// initialization data, and access rights for a printer.
 ///
 /// {@category struct}
 base class PRINTER_DEFAULTS extends Struct {
@@ -7169,10 +7142,10 @@ base class PRINTER_INFO_3 extends Struct {
 }
 
 /// The PRINTER_INFO_4 structure specifies general printer information. The
-/// structure can be used to retrieve minimal printer information on a call
-/// to EnumPrinters. Such a call is a fast and easy way to retrieve the
-/// names and attributes of all locally installed printers on a system and
-/// all remote printer connections that a user has established.
+/// structure can be used to retrieve minimal printer information on a call to
+/// EnumPrinters. Such a call is a fast and easy way to retrieve the names and
+/// attributes of all locally installed printers on a system and all remote
+/// printer connections that a user has established.
 ///
 /// {@category struct}
 base class PRINTER_INFO_4 extends Struct {
@@ -7210,10 +7183,10 @@ base class PRINTER_INFO_6 extends Struct {
   external int dwStatus;
 }
 
-/// The PRINTER_NOTIFY_INFO structure contains printer information returned
-/// by the FindNextPrinterChangeNotification function. The function returns
-/// this information after a wait operation on a printer change notification
-/// object has been satisfied.
+/// The PRINTER_NOTIFY_INFO structure contains printer information returned by
+/// the FindNextPrinterChangeNotification function. The function returns this
+/// information after a wait operation on a printer change notification object
+/// has been satisfied.
 ///
 /// {@category struct}
 base class PRINTER_NOTIFY_INFO extends Struct {
@@ -7403,8 +7376,8 @@ extension PROCESS_HEAP_ENTRY_Extension on PROCESS_HEAP_ENTRY {
       this.Anonymous.Region = value;
 }
 
-/// Contains information about a newly created process and its primary
-/// thread. It is used with the CreateProcess, CreateProcessAsUser,
+/// Contains information about a newly created process and its primary thread.
+/// It is used with the CreateProcess, CreateProcessAsUser,
 /// CreateProcessWithLogonW, or CreateProcessWithTokenW function.
 ///
 /// {@category struct}
@@ -7422,9 +7395,9 @@ base class PROCESS_INFORMATION extends Struct {
   external int dwThreadId;
 }
 
-/// The PROPSPEC structure is used by many of the methods of
-/// IPropertyStorage to specify a property either by its property identifier
-/// (ID) or the associated string name.
+/// The PROPSPEC structure is used by many of the methods of IPropertyStorage to
+/// specify a property either by its property identifier (ID) or the associated
+/// string name.
 ///
 /// {@category struct}
 base class PROPSPEC extends Struct {
@@ -7452,10 +7425,10 @@ extension PROPSPEC_Extension on PROPSPEC {
 
 /// The protoent structure contains the name and protocol numbers that
 /// correspond to a given protocol name. Applications must never attempt to
-/// modify this structure or to free any of its components. Furthermore,
-/// only one copy of this structure is allocated per thread, and therefore,
-/// the application should copy any information it needs before issuing any
-/// other Windows Sockets function calls.
+/// modify this structure or to free any of its components. Furthermore, only
+/// one copy of this structure is allocated per thread, and therefore, the
+/// application should copy any information it needs before issuing any other
+/// Windows Sockets function calls.
 ///
 /// {@category struct}
 base class PROTOENT extends Struct {
@@ -7467,8 +7440,8 @@ base class PROTOENT extends Struct {
   external int p_proto;
 }
 
-/// Contains configuration information for an installed service. It is used
-/// by the QueryServiceConfig function.
+/// Contains configuration information for an installed service. It is used by
+/// the QueryServiceConfig function.
 ///
 /// {@category struct}
 base class QUERY_SERVICE_CONFIG extends Struct {
@@ -7509,8 +7482,7 @@ base class QUERY_SERVICE_LOCK_STATUS extends Struct {
   external int dwLockDuration;
 }
 
-/// Describes the format of the raw input from a Human Interface Device
-/// (HID).
+/// Describes the format of the raw input from a Human Interface Device (HID).
 ///
 /// {@category struct}
 base class RAWHID extends Struct {
@@ -7679,8 +7651,8 @@ extension RAWMOUSE_Extension on RAWMOUSE {
       this.Anonymous.Anonymous = value;
 }
 
-/// The RECT structure defines a rectangle by the coordinates of its
-/// upper-left and lower-right corners.
+/// The RECT structure defines a rectangle by the coordinates of its upper-left
+/// and lower-right corners.
 ///
 /// {@category struct}
 base class RECT extends Struct {
@@ -7697,8 +7669,8 @@ base class RECT extends Struct {
   external int bottom;
 }
 
-/// The RECTL structure defines a rectangle by the coordinates of its
-/// upper-left and lower-right corners.
+/// The RECTL structure defines a rectangle by the coordinates of its upper-left
+/// and lower-right corners.
 ///
 /// {@category struct}
 base class RECTL extends Struct {
@@ -7715,8 +7687,8 @@ base class RECTL extends Struct {
   external int bottom;
 }
 
-/// The RGBQUAD structure describes a color consisting of relative
-/// intensities of red, green, and blue.
+/// The RGBQUAD structure describes a color consisting of relative intensities
+/// of red, green, and blue.
 ///
 /// {@category struct}
 base class RGBQUAD extends Struct {
@@ -7766,8 +7738,8 @@ base class SAFEARRAYBOUND extends Struct {
   external int lLbound;
 }
 
-/// The SCARD_ATRMASK structure is used by the SCardLocateCardsByATR
-/// function to locate cards.
+/// The SCARD_ATRMASK structure is used by the SCardLocateCardsByATR function to
+/// locate cards.
 ///
 /// {@category struct}
 base class SCARD_ATRMASK extends Struct {
@@ -7782,11 +7754,11 @@ base class SCARD_ATRMASK extends Struct {
 }
 
 /// The SCARD_IO_REQUEST structure begins a protocol control information
-/// structure. Any protocol-specific information then immediately follows
-/// this structure. The entire length of the structure must be aligned with
-/// the underlying hardware architecture word size. For example, in Win32
-/// the length of any PCI information must be a multiple of four bytes so
-/// that it aligns on a 32-bit boundary.
+/// structure. Any protocol-specific information then immediately follows this
+/// structure. The entire length of the structure must be aligned with the
+/// underlying hardware architecture word size. For example, in Win32 the length
+/// of any PCI information must be a multiple of four bytes so that it aligns on
+/// a 32-bit boundary.
 ///
 /// {@category struct}
 base class SCARD_IO_REQUEST extends Struct {
@@ -7845,8 +7817,8 @@ base class SCROLLBARINFO extends Struct {
 }
 
 /// The SCROLLINFO structure contains scroll bar parameters to be set by the
-/// SetScrollInfo function (or SBM_SETSCROLLINFO message), or retrieved by
-/// the GetScrollInfo function (or SBM_GETSCROLLINFO message)
+/// SetScrollInfo function (or SBM_SETSCROLLINFO message), or retrieved by the
+/// GetScrollInfo function (or SBM_GETSCROLLINFO message)
 ///
 /// {@category struct}
 base class SCROLLINFO extends Struct {
@@ -8113,8 +8085,8 @@ base class SDP_ULARGE_INTEGER_16 extends Struct {
   external int HighPart;
 }
 
-/// The SECURITY_ATTRIBUTES structure contains the security descriptor for
-/// an object and specifies whether the handle retrieved by specifying this
+/// The SECURITY_ATTRIBUTES structure contains the security descriptor for an
+/// object and specifies whether the handle retrieved by specifying this
 /// structure is inheritable. This structure provides security settings for
 /// objects created by various functions, such as CreateFile, CreatePipe,
 /// CreateProcess, RegCreateKeyEx, or RegSaveKeyEx.
@@ -8131,8 +8103,8 @@ base class SECURITY_ATTRIBUTES extends Struct {
 }
 
 /// The SECURITY_DESCRIPTOR structure contains the security information
-/// associated with an object. Applications use this structure to set and
-/// query an object's security status.
+/// associated with an object. Applications use this structure to set and query
+/// an object's security status.
 ///
 /// {@category struct}
 base class SECURITY_DESCRIPTOR extends Struct {
@@ -8154,8 +8126,8 @@ base class SECURITY_DESCRIPTOR extends Struct {
   external Pointer<ACL> Dacl;
 }
 
-/// The servent structure is used to store or return the name and service
-/// number for a given service name.
+/// The servent structure is used to store or return the name and service number
+/// for a given service name.
 ///
 /// {@category struct}
 base class SERVENT extends Struct {
@@ -8196,8 +8168,8 @@ base class SERVICE_DESCRIPTION extends Struct {
   external Pointer<Utf16> lpDescription;
 }
 
-/// Represents the action the service controller should take on each failure
-/// of a service. A service is considered failed when it terminates without
+/// Represents the action the service controller should take on each failure of
+/// a service. A service is considered failed when it terminates without
 /// reporting a status of SERVICE_STOPPED to the service controller.
 ///
 /// {@category struct}
@@ -8291,10 +8263,9 @@ base class SERVICE_SID_INFO extends Struct {
 }
 
 /// Contains status information for a service. The ControlService,
-/// EnumDependentServices, EnumServicesStatus, and QueryServiceStatus
-/// functions use this structure. A service uses this structure in the
-/// SetServiceStatus function to report its current status to the service
-/// control manager.
+/// EnumDependentServices, EnumServicesStatus, and QueryServiceStatus functions
+/// use this structure. A service uses this structure in the SetServiceStatus
+/// function to report its current status to the service control manager.
 ///
 /// {@category struct}
 base class SERVICE_STATUS extends Struct {
@@ -8321,8 +8292,8 @@ base class SERVICE_STATUS extends Struct {
 }
 
 /// Contains process status information for a service. The ControlServiceEx,
-/// EnumServicesStatusEx, NotifyServiceStatusChange, and
-/// QueryServiceStatusEx functions use this structure.
+/// EnumServicesStatusEx, NotifyServiceStatusChange, and QueryServiceStatusEx
+/// functions use this structure.
 ///
 /// {@category struct}
 base class SERVICE_STATUS_PROCESS extends Struct {
@@ -8354,8 +8325,8 @@ base class SERVICE_STATUS_PROCESS extends Struct {
   external int dwServiceFlags;
 }
 
-/// Specifies the ServiceMain function for a service that can run in the
-/// calling process. It is used by the StartServiceCtrlDispatcher function.
+/// Specifies the ServiceMain function for a service that can run in the calling
+/// process. It is used by the StartServiceCtrlDispatcher function.
 ///
 /// {@category struct}
 base class SERVICE_TABLE_ENTRY extends Struct {
@@ -8394,8 +8365,8 @@ base class SERVICE_TRIGGER extends Struct {
   external Pointer<SERVICE_TRIGGER_SPECIFIC_DATA_ITEM> pDataItems;
 }
 
-/// Contains trigger event information for a service. This structure is used
-/// by the ChangeServiceConfig2 and QueryServiceConfig2 functions.
+/// Contains trigger event information for a service. This structure is used by
+/// the ChangeServiceConfig2 and QueryServiceConfig2 functions.
 ///
 /// {@category struct}
 base class SERVICE_TRIGGER_INFO extends Struct {
@@ -8407,9 +8378,9 @@ base class SERVICE_TRIGGER_INFO extends Struct {
   external Pointer<Uint8> pReserved;
 }
 
-/// Contains trigger-specific data for a service trigger event. This
-/// structure is used by the SERVICE_TRIGGER structure for
-/// SERVICE_TRIGGER_TYPE_CUSTOM, SERVICE_TRIGGER_TYPE_DEVICE_ARRIVAL,
+/// Contains trigger-specific data for a service trigger event. This structure
+/// is used by the SERVICE_TRIGGER structure for SERVICE_TRIGGER_TYPE_CUSTOM,
+/// SERVICE_TRIGGER_TYPE_DEVICE_ARRIVAL,
 /// SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT, or
 /// SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT trigger events.
 ///
@@ -8562,8 +8533,8 @@ base class SHFILEINFO extends Struct {
   }
 }
 
-/// Contains information that the SHFileOperation function uses to perform
-/// file operations.
+/// Contains information that the SHFileOperation function uses to perform file
+/// operations.
 ///
 /// {@category struct}
 base class SHFILEOPSTRUCT extends Struct {
@@ -8673,8 +8644,7 @@ base class SOCKADDR_BTH extends Struct {
   external int port;
 }
 
-/// The SOCKET_ADDRESS structure stores protocol-specific address
-/// information.
+/// The SOCKET_ADDRESS structure stores protocol-specific address information.
 ///
 /// {@category struct}
 base class SOCKET_ADDRESS extends Struct {
@@ -8739,8 +8709,8 @@ base class SPEVENTSOURCEINFO extends Struct {
   external int ulCount;
 }
 
-/// SPVOICESTATUS contains voice status information. This structure is
-/// returned by ISpVoice::GetStatus.
+/// SPVOICESTATUS contains voice status information. This structure is returned
+/// by ISpVoice::GetStatus.
 ///
 /// {@category struct}
 base class SPVOICESTATUS extends Struct {
@@ -8784,8 +8754,8 @@ base class SPVOICESTATUS extends Struct {
   external int dwReserved2;
 }
 
-/// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a
-/// device information set.
+/// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device
+/// information set.
 ///
 /// {@category struct}
 base class SP_DEVICE_INTERFACE_DATA extends Struct {
@@ -8801,8 +8771,8 @@ base class SP_DEVICE_INTERFACE_DATA extends Struct {
   external int Reserved;
 }
 
-/// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a
-/// device information set.
+/// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device
+/// information set.
 ///
 /// {@category struct}
 base class SP_DEVICE_INTERFACE_DETAIL_DATA_ extends Struct {
@@ -8829,8 +8799,8 @@ base class SP_DEVICE_INTERFACE_DETAIL_DATA_ extends Struct {
   }
 }
 
-/// An SP_DEVINFO_DATA structure defines a device instance that is a member
-/// of a device information set.
+/// An SP_DEVINFO_DATA structure defines a device instance that is a member of a
+/// device information set.
 ///
 /// {@category struct}
 base class SP_DEVINFO_DATA extends Struct {
@@ -8846,9 +8816,9 @@ base class SP_DEVINFO_DATA extends Struct {
   external int Reserved;
 }
 
-/// Specifies the window station, desktop, standard handles, and attributes
-/// for a new process. It is used with the CreateProcess and
-/// CreateProcessAsUser functions.
+/// Specifies the window station, desktop, standard handles, and attributes for
+/// a new process. It is used with the CreateProcess and CreateProcessAsUser
+/// functions.
 ///
 /// {@category struct}
 base class STARTUPINFOEX extends Struct {
@@ -8857,8 +8827,8 @@ base class STARTUPINFOEX extends Struct {
   external Pointer lpAttributeList;
 }
 
-/// Specifies the window station, desktop, standard handles, and appearance
-/// of the main window for a process at creation time.
+/// Specifies the window station, desktop, standard handles, and appearance of
+/// the main window for a process at creation time.
 ///
 /// {@category struct}
 base class STARTUPINFO extends Struct {
@@ -8935,8 +8905,8 @@ base class STATPROPSETSTG extends Struct {
 }
 
 /// The STATPROPSTG structure contains data about a single property in a
-/// property set. This data is the property ID and type tag, and the
-/// optional string name that may be associated with the property.
+/// property set. This data is the property ID and type tag, and the optional
+/// string name that may be associated with the property.
 ///
 /// {@category struct}
 base class STATPROPSTG extends Struct {
@@ -8950,8 +8920,8 @@ base class STATPROPSTG extends Struct {
 }
 
 /// The STATSTG structure contains statistical data about an open storage,
-/// stream, or byte-array object. This structure is used in the
-/// IEnumSTATSTG, ILockBytes, IStorage, and IStream interfaces.
+/// stream, or byte-array object. This structure is used in the IEnumSTATSTG,
+/// ILockBytes, IStorage, and IStream interfaces.
 ///
 /// {@category struct}
 base class STATSTG extends Struct {
@@ -9109,9 +9079,9 @@ base class SYMBOL_INFO extends Struct {
 }
 
 /// Specifies a date and time, using individual members for the month, day,
-/// year, weekday, hour, minute, second, and millisecond. The time is either
-/// in coordinated universal time (UTC) or local time, depending on the
-/// function that is being called.
+/// year, weekday, hour, minute, second, and millisecond. The time is either in
+/// coordinated universal time (UTC) or local time, depending on the function
+/// that is being called.
 ///
 /// {@category struct}
 base class SYSTEMTIME extends Struct {
@@ -9140,8 +9110,8 @@ base class SYSTEMTIME extends Struct {
   external int wMilliseconds;
 }
 
-/// The SYSTEM_BASIC_INFORMATION structure contains information about the
-/// number of processors present in the system.
+/// The SYSTEM_BASIC_INFORMATION structure contains information about the number
+/// of processors present in the system.
 ///
 /// {@category struct}
 base class SYSTEM_BASIC_INFORMATION extends Struct {
@@ -9196,8 +9166,8 @@ base class SYSTEM_BATTERY_STATE extends Struct {
   external int DefaultAlert2;
 }
 
-/// The SYSTEM_CODEINTEGRITY_INFORMATION structure contains information
-/// about the code integrity policy.
+/// The SYSTEM_CODEINTEGRITY_INFORMATION structure contains information about
+/// the code integrity policy.
 ///
 /// {@category struct}
 base class SYSTEM_CODEINTEGRITY_INFORMATION extends Struct {
@@ -9214,9 +9184,9 @@ base class SYSTEM_EXCEPTION_INFORMATION extends Struct {
   external Array<Uint8> Reserved1;
 }
 
-/// Contains information about the current computer system. This includes
-/// the architecture and type of the processor, the number of processors in
-/// the system, the page size, and other such information.
+/// Contains information about the current computer system. This includes the
+/// architecture and type of the processor, the number of processors in the
+/// system, the page size, and other such information.
 ///
 /// {@category struct}
 base class SYSTEM_INFO extends Struct {
@@ -9414,8 +9384,8 @@ base class SYSTEM_POWER_STATUS extends Struct {
   external int BatteryFullLifeTime;
 }
 
-/// The SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION structure contains
-/// performance information for a processor.
+/// The SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION structure contains performance
+/// information for a processor.
 ///
 /// {@category struct}
 base class SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION extends Struct {
@@ -9435,8 +9405,8 @@ base class SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION extends Struct {
   external int Reserved2;
 }
 
-/// The SYSTEM_PROCESS_INFORMATION structure contains information about a
-/// system process.
+/// The SYSTEM_PROCESS_INFORMATION structure contains information about a system
+/// process.
 ///
 /// {@category struct}
 base class SYSTEM_PROCESS_INFORMATION extends Struct {
@@ -9516,8 +9486,8 @@ base class SYSTEM_REGISTRY_QUOTA_INFORMATION extends Struct {
   external Pointer Reserved1;
 }
 
-/// The SYSTEM_THREAD_INFORMATION structure contains information about a
-/// thread running on a system.
+/// The SYSTEM_THREAD_INFORMATION structure contains information about a thread
+/// running on a system.
 ///
 /// {@category struct}
 base class SYSTEM_THREAD_INFORMATION extends Struct {
@@ -9553,8 +9523,8 @@ base class SYSTEM_TIMEOFDAY_INFORMATION extends Struct {
   external Array<Uint8> Reserved1;
 }
 
-/// The SdpAttributeRange structure is used in a Bluetooth query to
-/// constrain the set of attributes to return in the query.
+/// The SdpAttributeRange structure is used in a Bluetooth query to constrain
+/// the set of attributes to return in the query.
 ///
 /// {@category struct}
 base class SdpAttributeRange extends Struct {
@@ -9589,8 +9559,8 @@ base class SdpQueryUuidUnion extends Union {
   external int uuid16;
 }
 
-/// The TASKDIALOGCONFIG structure contains information used to display a
-/// task dialog. The TaskDialogIndirect function uses this structure.
+/// The TASKDIALOGCONFIG structure contains information used to display a task
+/// dialog. The TaskDialogIndirect function uses this structure.
 ///
 /// {@category struct}
 @Packed(1)
@@ -9691,8 +9661,7 @@ extension TASKDIALOGCONFIG_Extension_1 on TASKDIALOGCONFIG {
 }
 
 /// The TASKDIALOG_BUTTON structure contains information used to display a
-/// button in a task dialog. The TASKDIALOGCONFIG structure uses this
-/// structure.
+/// button in a task dialog. The TASKDIALOGCONFIG structure uses this structure.
 ///
 /// {@category struct}
 @Packed(1)
@@ -9703,9 +9672,9 @@ base class TASKDIALOG_BUTTON extends Struct {
   external Pointer<Utf16> pszButtonText;
 }
 
-/// The TEXTMETRIC structure contains basic information about a physical
-/// font. All sizes are specified in logical units; that is, they depend on
-/// the current mapping mode of the display context.
+/// The TEXTMETRIC structure contains basic information about a physical font.
+/// All sizes are specified in logical units; that is, they depend on the
+/// current mapping mode of the display context.
 ///
 /// {@category struct}
 base class TEXTMETRIC extends Struct {
@@ -9770,9 +9739,8 @@ base class TEXTMETRIC extends Struct {
   external int tmCharSet;
 }
 
-/// The timeval structure is used to specify a time interval. It is
-/// associated with the Berkeley Software Distribution (BSD) Time.h header
-/// file.
+/// The timeval structure is used to specify a time interval. It is associated
+/// with the Berkeley Software Distribution (BSD) Time.h header file.
 ///
 /// {@category struct}
 base class TIMEVAL extends Struct {
@@ -9797,8 +9765,8 @@ base class TITLEBARINFO extends Struct {
 }
 
 /// Expands on the information described in the TITLEBARINFO structure by
-/// including the coordinates of each element of the title bar. This
-/// structure is sent with the WM_GETTITLEBARINFOEX message.
+/// including the coordinates of each element of the title bar. This structure
+/// is sent with the WM_GETTITLEBARINFOEX message.
 ///
 /// {@category struct}
 base class TITLEBARINFOEX extends Struct {
@@ -9814,8 +9782,8 @@ base class TITLEBARINFOEX extends Struct {
   external Array<RECT> rgrect;
 }
 
-/// The TOKEN_APPCONTAINER_INFORMATION structure specifies all the
-/// information in a token that is necessary for an app container.
+/// The TOKEN_APPCONTAINER_INFORMATION structure specifies all the information
+/// in a token that is necessary for an app container.
 ///
 /// {@category struct}
 base class TOKEN_APPCONTAINER_INFORMATION extends Struct {
@@ -9857,9 +9825,9 @@ base class TOUCHINPUT extends Struct {
   external int cyContact;
 }
 
-/// Contains hardware input details that can be used to predict touch
-/// targets and help compensate for hardware latency when processing touch
-/// and gesture input that contains distance and velocity data.
+/// Contains hardware input details that can be used to predict touch targets
+/// and help compensate for hardware latency when processing touch and gesture
+/// input that contains distance and velocity data.
 ///
 /// {@category struct}
 base class TOUCHPREDICTIONPARAMETERS extends Struct {
@@ -9941,8 +9909,8 @@ base class TYPEATTR extends Struct {
   external IDLDESC idldescType;
 }
 
-/// Describes the type of a variable, the return type of a function, or the
-/// type of a function parameter.
+/// Describes the type of a variable, the return type of a function, or the type
+/// of a function parameter.
 ///
 /// {@category struct}
 base class TYPEDESC extends Struct {
@@ -9988,8 +9956,8 @@ base class UNICODE_STRING extends Struct {
 }
 
 /// Defines a data type used by the Desktop Window Manager (DWM) APIs. It
-/// represents a generic ratio and is used for different purposes and units
-/// even within a single API.
+/// represents a generic ratio and is used for different purposes and units even
+/// within a single API.
 ///
 /// {@category struct}
 @Packed(1)
@@ -10085,8 +10053,8 @@ extension VARDESC_Extension on VARDESC {
   set lpvarValue(Pointer<VARIANT> value) => this.Anonymous.lpvarValue = value;
 }
 
-/// Represents a physical location on a disk. It is the output buffer for
-/// the IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS control code.
+/// Represents a physical location on a disk. It is the output buffer for the
+/// IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS control code.
 ///
 /// {@category struct}
 base class VOLUME_DISK_EXTENTS extends Struct {
@@ -10097,8 +10065,8 @@ base class VOLUME_DISK_EXTENTS extends Struct {
   external Array<DISK_EXTENT> Extents;
 }
 
-/// Contains version information for a file. This information is language
-/// and code page independent.
+/// Contains version information for a file. This information is language and
+/// code page independent.
 ///
 /// {@category struct}
 base class VS_FIXEDFILEINFO extends Struct {
@@ -10142,11 +10110,11 @@ base class VS_FIXEDFILEINFO extends Struct {
   external int dwFileDateLS;
 }
 
-/// The WAVEFORMATEX structure defines the format of waveform-audio data.
-/// Only format information common to all waveform-audio data formats is
-/// included in this structure. For formats that require additional
-/// information, this structure is included as the first member in another
-/// structure, along with the additional information.
+/// The WAVEFORMATEX structure defines the format of waveform-audio data. Only
+/// format information common to all waveform-audio data formats is included in
+/// this structure. For formats that require additional information, this
+/// structure is included as the first member in another structure, along with
+/// the additional information.
 ///
 /// {@category struct}
 @Packed(1)
@@ -10173,10 +10141,10 @@ base class WAVEFORMATEX extends Struct {
   external int cbSize;
 }
 
-/// The WAVEFORMATEXTENSIBLE structure defines the format of waveform-audio
-/// data for formats having more than two channels or higher sample
-/// resolutions than allowed by WAVEFORMATEX. It can also be used to define
-/// any format that can be defined by WAVEFORMATEX.
+/// The WAVEFORMATEXTENSIBLE structure defines the format of waveform-audio data
+/// for formats having more than two channels or higher sample resolutions than
+/// allowed by WAVEFORMATEX. It can also be used to define any format that can
+/// be defined by WAVEFORMATEX.
 ///
 /// {@category struct}
 @Packed(1)
@@ -10216,8 +10184,8 @@ extension WAVEFORMATEXTENSIBLE_Extension on WAVEFORMATEXTENSIBLE {
   set wReserved(int value) => this.Samples.wReserved = value;
 }
 
-/// The WAVEHDR structure defines the header used to identify a
-/// waveform-audio buffer.
+/// The WAVEHDR structure defines the header used to identify a waveform-audio
+/// buffer.
 ///
 /// {@category struct}
 @Packed(1)
@@ -10487,8 +10455,8 @@ base class WINDOW_BUFFER_SIZE_RECORD extends Struct {
   external COORD dwSize;
 }
 
-/// The WLAN_ASSOCIATION_ATTRIBUTES structure contains association
-/// attributes for a connection.
+/// The WLAN_ASSOCIATION_ATTRIBUTES structure contains association attributes
+/// for a connection.
 ///
 /// {@category struct}
 base class WLAN_ASSOCIATION_ATTRIBUTES extends Struct {
@@ -10516,8 +10484,8 @@ base class WLAN_ASSOCIATION_ATTRIBUTES extends Struct {
   external int ulTxRate;
 }
 
-/// The WLAN_AUTH_CIPHER_PAIR_LIST structure contains a list of
-/// authentication and cipher algorithm pairs.
+/// The WLAN_AUTH_CIPHER_PAIR_LIST structure contains a list of authentication
+/// and cipher algorithm pairs.
 ///
 /// {@category struct}
 base class WLAN_AUTH_CIPHER_PAIR_LIST extends Struct {
@@ -10528,8 +10496,8 @@ base class WLAN_AUTH_CIPHER_PAIR_LIST extends Struct {
   external Array<DOT11_AUTH_CIPHER_PAIR> pAuthCipherPairList;
 }
 
-/// The WLAN_AVAILABLE_NETWORK structure contains information about an
-/// available wireless network.
+/// The WLAN_AVAILABLE_NETWORK structure contains information about an available
+/// wireless network.
 ///
 /// {@category struct}
 base class WLAN_AVAILABLE_NETWORK extends Struct {
@@ -10594,8 +10562,8 @@ base class WLAN_AVAILABLE_NETWORK extends Struct {
   external int dwReserved;
 }
 
-/// The WLAN_AVAILABLE_NETWORK_LIST structure contains an array of
-/// information about available networks.
+/// The WLAN_AVAILABLE_NETWORK_LIST structure contains an array of information
+/// about available networks.
 ///
 /// {@category struct}
 base class WLAN_AVAILABLE_NETWORK_LIST extends Struct {
@@ -10609,8 +10577,8 @@ base class WLAN_AVAILABLE_NETWORK_LIST extends Struct {
   external Array<WLAN_AVAILABLE_NETWORK> Network;
 }
 
-/// The WLAN_BSS_ENTRY structure contains information about a basic service
-/// set (BSS).
+/// The WLAN_BSS_ENTRY structure contains information about a basic service set
+/// (BSS).
 ///
 /// {@category struct}
 base class WLAN_BSS_ENTRY extends Struct {
@@ -10711,8 +10679,8 @@ base class WLAN_CONNECTION_ATTRIBUTES extends Struct {
   external WLAN_SECURITY_ATTRIBUTES wlanSecurityAttributes;
 }
 
-/// The WLAN_CONNECTION_NOTIFICATION_DATA structure contains information
-/// about connection related notifications.
+/// The WLAN_CONNECTION_NOTIFICATION_DATA structure contains information about
+/// connection related notifications.
 ///
 /// {@category struct}
 base class WLAN_CONNECTION_NOTIFICATION_DATA extends Struct {
@@ -10772,8 +10740,8 @@ base class WLAN_CONNECTION_NOTIFICATION_DATA extends Struct {
   }
 }
 
-/// The WLAN_CONNECTION_PARAMETERS structure specifies the parameters used
-/// when using the WlanConnect function.
+/// The WLAN_CONNECTION_PARAMETERS structure specifies the parameters used when
+/// using the WlanConnect function.
 ///
 /// {@category struct}
 base class WLAN_CONNECTION_PARAMETERS extends Struct {
@@ -10793,8 +10761,8 @@ base class WLAN_CONNECTION_PARAMETERS extends Struct {
   external int dwFlags;
 }
 
-/// A WLAN_COUNTRY_OR_REGION_STRING_LIST structure contains a list of
-/// supported country or region strings.
+/// A WLAN_COUNTRY_OR_REGION_STRING_LIST structure contains a list of supported
+/// country or region strings.
 ///
 /// {@category struct}
 base class WLAN_COUNTRY_OR_REGION_STRING_LIST extends Struct {
@@ -10835,9 +10803,8 @@ base class WLAN_DEVICE_SERVICE_NOTIFICATION_DATA extends Struct {
   external Array<Uint8> DataBlob;
 }
 
-/// The WLAN_HOSTED_NETWORK_CONNECTION_SETTINGS structure contains
-/// information about the connection settings on the wireless Hosted
-/// Network.
+/// The WLAN_HOSTED_NETWORK_CONNECTION_SETTINGS structure contains information
+/// about the connection settings on the wireless Hosted Network.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_CONNECTION_SETTINGS extends Struct {
@@ -10861,8 +10828,8 @@ base class WLAN_HOSTED_NETWORK_DATA_PEER_STATE_CHANGE extends Struct {
   external int PeerStateChangeReason;
 }
 
-/// The WLAN_HOSTED_NETWORK_PEER_STATE structure contains information about
-/// the peer state for a peer on the wireless Hosted Network.
+/// The WLAN_HOSTED_NETWORK_PEER_STATE structure contains information about the
+/// peer state for a peer on the wireless Hosted Network.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_PEER_STATE extends Struct {
@@ -10873,8 +10840,8 @@ base class WLAN_HOSTED_NETWORK_PEER_STATE extends Struct {
   external int PeerAuthState;
 }
 
-/// The WLAN_HOSTED_NETWORK_RADIO_STATE structure contains information about
-/// the radio state on the wireless Hosted Network.
+/// The WLAN_HOSTED_NETWORK_RADIO_STATE structure contains information about the
+/// radio state on the wireless Hosted Network.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_RADIO_STATE extends Struct {
@@ -10897,8 +10864,8 @@ base class WLAN_HOSTED_NETWORK_SECURITY_SETTINGS extends Struct {
   external int dot11CipherAlgo;
 }
 
-/// The WLAN_HOSTED_NETWORK_STATE_CHANGE structure contains information
-/// about a network state change on the wireless Hosted Network.
+/// The WLAN_HOSTED_NETWORK_STATE_CHANGE structure contains information about a
+/// network state change on the wireless Hosted Network.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_STATE_CHANGE extends Struct {
@@ -10962,8 +10929,8 @@ base class WLAN_INTERFACE_CAPABILITY extends Struct {
   external Array<Int32> dot11PhyTypes;
 }
 
-/// The WLAN_INTERFACE_INFO structure contains information about a wireless
-/// LAN interface.
+/// The WLAN_INTERFACE_INFO structure contains information about a wireless LAN
+/// interface.
 ///
 /// {@category struct}
 base class WLAN_INTERFACE_INFO extends Struct {
@@ -10992,8 +10959,8 @@ base class WLAN_INTERFACE_INFO extends Struct {
   external int isState;
 }
 
-/// The WLAN_INTERFACE_INFO_LIST structure contains an array of NIC
-/// interface information.
+/// The WLAN_INTERFACE_INFO_LIST structure contains an array of NIC interface
+/// information.
 ///
 /// {@category struct}
 base class WLAN_INTERFACE_INFO_LIST extends Struct {
@@ -11007,8 +10974,8 @@ base class WLAN_INTERFACE_INFO_LIST extends Struct {
   external Array<WLAN_INTERFACE_INFO> InterfaceInfo;
 }
 
-/// The WLAN_MAC_FRAME_STATISTICS structure contains information about sent
-/// and received MAC frames.
+/// The WLAN_MAC_FRAME_STATISTICS structure contains information about sent and
+/// received MAC frames.
 ///
 /// {@category struct}
 base class WLAN_MAC_FRAME_STATISTICS extends Struct {
@@ -11049,8 +11016,8 @@ base class WLAN_MAC_FRAME_STATISTICS extends Struct {
   external int ullDecryptFailureCount;
 }
 
-/// The WLAN_MSM_NOTIFICATION_DATA structure contains information about
-/// media specific module (MSM) connection related notifications.
+/// The WLAN_MSM_NOTIFICATION_DATA structure contains information about media
+/// specific module (MSM) connection related notifications.
 ///
 /// {@category struct}
 base class WLAN_MSM_NOTIFICATION_DATA extends Struct {
@@ -11097,8 +11064,8 @@ base class WLAN_MSM_NOTIFICATION_DATA extends Struct {
   external int wlanReasonCode;
 }
 
-/// The WLAN_PHY_FRAME_STATISTICS structure contains information about sent
-/// and received PHY frames.
+/// The WLAN_PHY_FRAME_STATISTICS structure contains information about sent and
+/// received PHY frames.
 ///
 /// {@category struct}
 base class WLAN_PHY_FRAME_STATISTICS extends Struct {
@@ -11157,8 +11124,8 @@ base class WLAN_PHY_FRAME_STATISTICS extends Struct {
   external int ullFCSErrorCount;
 }
 
-/// The WLAN_PHY_RADIO_STATE structure specifies the radio state on a
-/// specific physical layer (PHY) type.
+/// The WLAN_PHY_RADIO_STATE structure specifies the radio state on a specific
+/// physical layer (PHY) type.
 ///
 /// {@category struct}
 base class WLAN_PHY_RADIO_STATE extends Struct {
@@ -11172,8 +11139,7 @@ base class WLAN_PHY_RADIO_STATE extends Struct {
   external int dot11HardwareRadioState;
 }
 
-/// The WLAN_PROFILE_INFO structure contains basic information about a
-/// profile.
+/// The WLAN_PROFILE_INFO structure contains basic information about a profile.
 ///
 /// {@category struct}
 base class WLAN_PROFILE_INFO extends Struct {
@@ -11238,8 +11204,8 @@ base class WLAN_RATE_SET extends Struct {
   external Array<Uint16> usRateSet;
 }
 
-/// The WLAN_RAW_DATA structure contains raw data in the form of a blob that
-/// is used by some Native Wifi functions.
+/// The WLAN_RAW_DATA structure contains raw data in the form of a blob that is
+/// used by some Native Wifi functions.
 ///
 /// {@category struct}
 base class WLAN_RAW_DATA extends Struct {
@@ -11250,8 +11216,8 @@ base class WLAN_RAW_DATA extends Struct {
   external Array<Uint8> DataBlob;
 }
 
-/// The WLAN_RAW_DATA_LIST structure contains raw data in the form of an
-/// array of data blobs that are used by some Native Wifi functions.
+/// The WLAN_RAW_DATA_LIST structure contains raw data in the form of an array
+/// of data blobs that are used by some Native Wifi functions.
 ///
 /// {@category struct}
 base class WLAN_RAW_DATA_LIST extends Struct {
@@ -11274,8 +11240,8 @@ base class _WLAN_RAW_DATA_LIST__Anonymous_e__Struct extends Struct {
   external int dwDataSize;
 }
 
-/// The WLAN_SECURITY_ATTRIBUTES structure defines the security attributes
-/// for a wireless connection.
+/// The WLAN_SECURITY_ATTRIBUTES structure defines the security attributes for a
+/// wireless connection.
 ///
 /// {@category struct}
 base class WLAN_SECURITY_ATTRIBUTES extends Struct {
@@ -11317,12 +11283,12 @@ base class WLAN_STATISTICS extends Struct {
   external Array<WLAN_PHY_FRAME_STATISTICS> PhyCounters;
 }
 
-/// Contains window class information. It is used with the RegisterClassEx
-/// and GetClassInfoEx functions. The WNDCLASSEX structure is similar to the
+/// Contains window class information. It is used with the RegisterClassEx and
+/// GetClassInfoEx functions. The WNDCLASSEX structure is similar to the
 /// WNDCLASS structure. There are two differences. WNDCLASSEX includes the
-/// cbSize member, which specifies the size of the structure, and the
-/// hIconSm member, which contains a handle to a small icon associated with
-/// the window class.
+/// cbSize member, which specifies the size of the structure, and the hIconSm
+/// member, which contains a handle to a small icon associated with the window
+/// class.
 ///
 /// {@category struct}
 base class WNDCLASSEX extends Struct {
@@ -11404,8 +11370,7 @@ base class WTA_OPTIONS extends Struct {
   external int dwMask;
 }
 
-/// The XFORM structure specifies a world-space to page-space
-/// transformation.
+/// The XFORM structure specifies a world-space to page-space transformation.
 ///
 /// {@category struct}
 base class XFORM extends Struct {

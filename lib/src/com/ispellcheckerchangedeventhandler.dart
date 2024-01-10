@@ -16,8 +16,8 @@ import 'iunknown.dart';
 const IID_ISpellCheckerChangedEventHandler =
     '{0b83a5b0-792f-4eab-9799-acf52c5ed08a}';
 
-/// Allows the caller to create a handler for notifications that the state
-/// of the speller has changed.
+/// Allows the caller to create a handler for notifications that the state of
+/// the speller has changed.
 ///
 /// {@category com}
 class ISpellCheckerChangedEventHandler extends IUnknown {
