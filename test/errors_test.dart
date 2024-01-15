@@ -9,7 +9,7 @@ import 'package:win32/win32.dart';
 
 void main() {
   test('Win32 error', () {
-    expect(WindowsException(ERROR_INVALID_HANDLE).toString(),
+    expect(const WindowsException(ERROR_INVALID_HANDLE).toString(),
         endsWith('The handle is invalid.'));
   });
 

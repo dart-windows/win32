@@ -15,16 +15,15 @@ import 'win32/kernel32.g.dart';
 
 /// Generic COM Exception
 class COMException implements Exception {
-  int hr;
+  const COMException(this.hr, {this.message});
 
-  String? message;
-
-  COMException(this.hr, {this.message});
+  final int hr;
+  final String? message;
 }
 
 /// Generalized Windows exception
 class WindowsException extends COMException {
-  WindowsException(super.hr, {super.message});
+  const WindowsException(super.hr, {super.message});
 
   /// Converts a Windows error into a friendly string.
   ///
