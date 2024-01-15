@@ -27,10 +27,10 @@ import 'win32/ole32.g.dart';
 /// To pass a GUID to a Windows API, use the [toNativeGUID] method to create a
 /// copy in unmanaged memory.
 class Guid {
+  const Guid(this.bytes) : assert(bytes.length == 16);
+
   // A GUID is a 128-bit unique value.
   final UnmodifiableUint8ListView bytes;
-
-  const Guid(this.bytes) : assert(bytes.length == 16);
 
   /// Creates a Guid from four integer components.
   ///
