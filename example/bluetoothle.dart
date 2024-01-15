@@ -59,8 +59,9 @@ Iterable<String> devicesByInterface(
       SetupDiGetDeviceInterfaceDetail(hDevInfo, deviceInterfaceDataPtr, nullptr,
           0, requiredSizePtr, nullptr);
 
-      // TODO: Uncomment when https://github.com/dart-windows/win32/issues/384
-      // is successfully resolved.
+      // TODO(halildurmus): Uncomment when
+      // https://github.com/dart-windows/win32/issues/384 is successfully
+      // resolved.
 
       // if (hr != TRUE) {
       //   final error = GetLastError();
@@ -75,10 +76,10 @@ Iterable<String> devicesByInterface(
 
       try {
         final deviceInterfaceDetailDataPtr =
-            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_>.fromAddress(
+            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA>.fromAddress(
                 detailDataMemoryPtr.address);
         deviceInterfaceDetailDataPtr.ref.cbSize =
-            sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA_>();
+            sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA>();
 
         final hr = SetupDiGetDeviceInterfaceDetail(
             hDevInfo,
@@ -113,8 +114,8 @@ Iterable<String> devicesByInterface(
 }
 
 // ignore: camel_case_extensions
-extension Pointer_SP_DEVICE_INTERFACE_DETAIL_DATA_
-    on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> {
+extension Pointer_SP_DEVICE_INTERFACE_DETAIL_DATA
+    on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> {
   Pointer<WCHAR> getDevicePathData(int requiredSize) =>
       Pointer<WCHAR>.fromAddress(address + 4);
 }

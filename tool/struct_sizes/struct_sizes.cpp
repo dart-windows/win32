@@ -385,7 +385,7 @@ void main()
     printf("  'SPEVENTSOURCEINFO': %zu,\n", sizeof(SPEVENTSOURCEINFO));
     printf("  'SPVOICESTATUS': %zu,\n", sizeof(SPVOICESTATUS));
     printf("  'SP_DEVICE_INTERFACE_DATA': %zu,\n", sizeof(SP_DEVICE_INTERFACE_DATA));
-    printf("  'SP_DEVICE_INTERFACE_DETAIL_DATA_': %zu,\n", sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA_W));
+    printf("  'SP_DEVICE_INTERFACE_DETAIL_DATA': %zu,\n", sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA_W));
     printf("  'SP_DEVINFO_DATA': %zu,\n", sizeof(SP_DEVINFO_DATA));
     printf("  'STARTUPINFOEX': %zu,\n", sizeof(STARTUPINFOEXW));
     printf("  'STARTUPINFO': %zu,\n", sizeof(STARTUPINFOW));
