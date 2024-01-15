@@ -4,8 +4,7 @@
 
 // Metadata constants exposed by the Win32 API
 
-// ignore_for_file: camel_case_types
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: constant_identifier_names
 
 /// Specifies a common language runtime Type, a type modifier, or information
 /// about a type in a metadata type signature.

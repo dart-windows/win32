@@ -6,8 +6,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-// ignore_for_file: unused_import, non_constant_identifier_names
-// ignore_for_file: constant_identifier_names, camel_case_types
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'dart:ffi';
 
@@ -171,7 +170,7 @@ final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
 int SetupDiGetDeviceInterfaceDetail(
         int DeviceInfoSet,
         Pointer<SP_DEVICE_INTERFACE_DATA> DeviceInterfaceData,
-        Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> DeviceInterfaceDetailData,
+        Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> DeviceInterfaceDetailData,
         int DeviceInterfaceDetailDataSize,
         Pointer<Uint32> RequiredSize,
         Pointer<SP_DEVINFO_DATA> DeviceInfoData) =>
@@ -187,14 +186,14 @@ final _SetupDiGetDeviceInterfaceDetail = _setupapi.lookupFunction<
         Int32 Function(
             IntPtr DeviceInfoSet,
             Pointer<SP_DEVICE_INTERFACE_DATA> DeviceInterfaceData,
-            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> DeviceInterfaceDetailData,
+            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> DeviceInterfaceDetailData,
             Uint32 DeviceInterfaceDetailDataSize,
             Pointer<Uint32> RequiredSize,
             Pointer<SP_DEVINFO_DATA> DeviceInfoData),
         int Function(
             int DeviceInfoSet,
             Pointer<SP_DEVICE_INTERFACE_DATA> DeviceInterfaceData,
-            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> DeviceInterfaceDetailData,
+            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> DeviceInterfaceDetailData,
             int DeviceInterfaceDetailDataSize,
             Pointer<Uint32> RequiredSize,
             Pointer<SP_DEVINFO_DATA> DeviceInfoData)>(

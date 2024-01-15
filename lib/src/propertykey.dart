@@ -2,16 +2,13 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// propertykey.dart
-
 // This struct is manually projected to enable the addition of properties as
 // static methods.
 // TODO(halildurmus): Once Dart supports static extension methods
 // (https://github.com/dart-lang/language/issues/723), consider auto-generating
 // this struct.
 
-// ignore_for_file: camel_case_types
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: camel_case_types, non_constant_identifier_names
 
 import 'dart:ffi';
 

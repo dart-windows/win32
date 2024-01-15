@@ -2,13 +2,9 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// guid.dart
-
-// GUID (Globally Unique Identifier).
-
-// Struct representing the GUID type. GUID is not represented in the Win32
-// metadata, which instead points at the .NET System.Guid. So we have to project
-// this manually.
+// Struct representing the GUID (Globally Unique Identifier) type. GUID is not
+// represented in the Win32 metadata, which instead points at the .NET
+// System.Guid. So we have to project this manually.
 
 // For reference, the MIT-licensed implementation used in .NET can be found here:
 // https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Guid.cs
@@ -16,8 +12,7 @@
 // The GUID structure as used in Win32 is documented here:
 // https://learn.microsoft.com/windows/win32/api/guiddef/ns-guiddef-guid
 
-// ignore_for_file: camel_case_types
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 import 'dart:typed_data';
