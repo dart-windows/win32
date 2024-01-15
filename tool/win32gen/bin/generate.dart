@@ -227,11 +227,8 @@ void generateComApis(Scope scope, Map<String, String> comTypesToGenerate) {
     if (typeDef == null) throw Exception("Can't find $interface");
     final comment = comTypesToGenerate[interface] ?? '';
     final interfaceProjection = ComInterfaceProjection(typeDef, comment);
-
-    // Put classes and interfaces in the same file.
     final className = ComClassProjection.generateClassName(typeDef);
     final classNameExists = scope.findTypeDef(className) != null;
-
     final comObject = classNameExists
         ? ComClassProjection.fromInterface(typeDef, interfaceComment: comment)
         : interfaceProjection;
@@ -243,19 +240,6 @@ void generateComApis(Scope scope, Map<String, String> comTypesToGenerate) {
     final classOutputPath = '../../lib/src/com/$classOutputFilename.dart';
 
     File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
-
-    // Generate test only if the object has methods
-    final generateTestInterface =
-        interfaceProjection.methodProjections.isNotEmpty &&
-            !interfaceProjection.methodProjections.every((p) =>
-                p is ComGetPropertyProjection || p is ComSetPropertyProjection);
-    if (generateTestInterface) {
-      final dartTest = TestInterfaceProjection(typeDef, interfaceProjection);
-      final testOutputPath = '../../test/com/${classOutputFilename}_test.dart';
-
-      File(testOutputPath)
-          .writeAsStringSync(DartFormatter().format(dartTest.toString()));
-    }
   }
 }
 
@@ -292,7 +276,7 @@ void main() async {
   print('Generating FFI function bindings...');
   generateFunctions([wdkScope, win32Scope], functionsToGenerate);
 
-  print('Generating COM interfaces and tests...');
+  print('Generating COM interfaces...');
   final comTypesToGenerate = loadMap('com_types.json');
   saveMap(comTypesToGenerate, 'com_types.json');
   generateComApis(win32Scope, comTypesToGenerate);
