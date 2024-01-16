@@ -366,7 +366,6 @@ base class BLUETOOTH_ADDRESS extends Struct {
   external _BLUETOOTH_ADDRESS__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _BLUETOOTH_ADDRESS__Anonymous_e__Union extends Union {
   @Uint64()
   external int ullLong;
@@ -399,7 +398,6 @@ base class BLUETOOTH_AUTHENTICATE_RESPONSE extends Struct {
   external int negativeResponse;
 }
 
-/// {@category struct}
 sealed class _BLUETOOTH_AUTHENTICATE_RESPONSE__Anonymous_e__Union
     extends Union {
   external BLUETOOTH_PIN_INFO pinInfo;
@@ -450,7 +448,6 @@ base class BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS extends Struct {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS__Anonymous_e__Union
     extends Union {
   @Uint32()
@@ -878,7 +875,6 @@ base class BTH_LE_GATT_DESCRIPTOR_VALUE extends Struct {
   external Array<Uint8> Data;
 }
 
-/// {@category struct}
 sealed class _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union extends Union {
   external _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union__CharacteristicExtendedProperties_e__Struct
       CharacteristicExtendedProperties;
@@ -893,7 +889,6 @@ sealed class _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union extends Union {
       CharacteristicFormat;
 }
 
-/// {@category struct}
 sealed class _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union__CharacteristicExtendedProperties_e__Struct
     extends Struct {
   @Uint8()
@@ -918,7 +913,6 @@ extension BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union_Extension
           value;
 }
 
-/// {@category struct}
 sealed class _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union__ClientCharacteristicConfiguration_e__Struct
     extends Struct {
   @Uint8()
@@ -946,7 +940,6 @@ extension BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union_Extension_1
           value;
 }
 
-/// {@category struct}
 sealed class _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union__ServerCharacteristicConfiguration_e__Struct
     extends Struct {
   @Uint8()
@@ -961,7 +954,6 @@ extension BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union_Extension_2
       this.Anonymous.ServerCharacteristicConfiguration.IsBroadcast = value;
 }
 
-/// {@category struct}
 sealed class _BTH_LE_GATT_DESCRIPTOR_VALUE__Anonymous_e__Union__CharacteristicFormat_e__Struct
     extends Struct {
   @Uint8()
@@ -1057,7 +1049,6 @@ base class BTH_LE_UUID extends Struct {
   external _BTH_LE_UUID__Value_e__Union Value;
 }
 
-/// {@category struct}
 sealed class _BTH_LE_UUID__Value_e__Union extends Union {
   @Uint16()
   external int ShortUuid;
@@ -1089,6 +1080,7 @@ base class BTH_QUERY_DEVICE extends Struct {
 /// The BTH_QUERY_SERVICE structure is used to query a Bluetooth service.
 ///
 /// {@category struct}
+@Packed(1)
 base class BTH_QUERY_SERVICE extends Struct {
   @Uint32()
   external int type;
@@ -1314,7 +1306,6 @@ base class CHAR_INFO extends Struct {
   external int Attributes;
 }
 
-/// {@category struct}
 sealed class _CHAR_INFO__Char_e__Union extends Union {
   @Uint16()
   external int UnicodeChar;
@@ -1951,7 +1942,6 @@ base class CY extends Union {
   external int int64;
 }
 
-/// {@category struct}
 sealed class _CY__Anonymous_e__Struct extends Struct {
   @Uint32()
   external int Lo;
@@ -2058,7 +2048,6 @@ base class DECIMAL extends Struct {
   external _DECIMAL__Anonymous2_e__Union Anonymous2;
 }
 
-/// {@category struct}
 sealed class _DECIMAL__Anonymous1_e__Union extends Union {
   external _DECIMAL__Anonymous1_e__Union__Anonymous_e__Struct Anonymous;
 
@@ -2066,7 +2055,6 @@ sealed class _DECIMAL__Anonymous1_e__Union extends Union {
   external int signscale;
 }
 
-/// {@category struct}
 sealed class _DECIMAL__Anonymous1_e__Union__Anonymous_e__Struct extends Struct {
   @Uint8()
   external int scale;
@@ -2093,7 +2081,6 @@ extension DECIMAL_Extension on DECIMAL {
   set signscale(int value) => this.Anonymous1.signscale = value;
 }
 
-/// {@category struct}
 sealed class _DECIMAL__Anonymous2_e__Union extends Union {
   external _DECIMAL__Anonymous2_e__Union__Anonymous_e__Struct Anonymous;
 
@@ -2101,7 +2088,6 @@ sealed class _DECIMAL__Anonymous2_e__Union extends Union {
   external int Lo64;
 }
 
-/// {@category struct}
 sealed class _DECIMAL__Anonymous2_e__Union__Anonymous_e__Struct extends Struct {
   @Uint32()
   external int Lo32;
@@ -2182,7 +2168,7 @@ base class DEVMODE extends Struct {
   @Uint32()
   external int dmFields;
 
-  external _DEVMODEW__Anonymous1_e__Union Anonymous1;
+  external _DEVMODE__Anonymous1_e__Union Anonymous1;
 
   @Int16()
   external int dmColor;
@@ -2230,7 +2216,7 @@ base class DEVMODE extends Struct {
   @Uint32()
   external int dmPelsHeight;
 
-  external _DEVMODEW__Anonymous2_e__Union Anonymous2;
+  external _DEVMODE__Anonymous2_e__Union Anonymous2;
 
   @Uint32()
   external int dmDisplayFrequency;
@@ -2260,15 +2246,13 @@ base class DEVMODE extends Struct {
   external int dmPanningHeight;
 }
 
-/// {@category struct}
-sealed class _DEVMODEW__Anonymous1_e__Union extends Union {
-  external _DEVMODEW__Anonymous1_e__Union__Anonymous1_e__Struct Anonymous1;
+sealed class _DEVMODE__Anonymous1_e__Union extends Union {
+  external _DEVMODE__Anonymous1_e__Union__Anonymous1_e__Struct Anonymous1;
 
-  external _DEVMODEW__Anonymous1_e__Union__Anonymous2_e__Struct Anonymous2;
+  external _DEVMODE__Anonymous1_e__Union__Anonymous2_e__Struct Anonymous2;
 }
 
-/// {@category struct}
-sealed class _DEVMODEW__Anonymous1_e__Union__Anonymous1_e__Struct
+sealed class _DEVMODE__Anonymous1_e__Union__Anonymous1_e__Struct
     extends Struct {
   @Int16()
   external int dmOrientation;
@@ -2295,7 +2279,7 @@ sealed class _DEVMODEW__Anonymous1_e__Union__Anonymous1_e__Struct
   external int dmPrintQuality;
 }
 
-extension DEVMODEW__Anonymous1_e__Union_Extension on DEVMODE {
+extension DEVMODE__Anonymous1_e__Union_Extension on DEVMODE {
   int get dmOrientation => this.Anonymous1.Anonymous1.dmOrientation;
   set dmOrientation(int value) =>
       this.Anonymous1.Anonymous1.dmOrientation = value;
@@ -2326,8 +2310,7 @@ extension DEVMODEW__Anonymous1_e__Union_Extension on DEVMODE {
       this.Anonymous1.Anonymous1.dmPrintQuality = value;
 }
 
-/// {@category struct}
-sealed class _DEVMODEW__Anonymous1_e__Union__Anonymous2_e__Struct
+sealed class _DEVMODE__Anonymous1_e__Union__Anonymous2_e__Struct
     extends Struct {
   external POINTL dmPosition;
 
@@ -2338,7 +2321,7 @@ sealed class _DEVMODEW__Anonymous1_e__Union__Anonymous2_e__Struct
   external int dmDisplayFixedOutput;
 }
 
-extension DEVMODEW__Anonymous1_e__Union_Extension_1 on DEVMODE {
+extension DEVMODE__Anonymous1_e__Union_Extension_1 on DEVMODE {
   POINTL get dmPosition => this.Anonymous1.Anonymous2.dmPosition;
   set dmPosition(POINTL value) => this.Anonymous1.Anonymous2.dmPosition = value;
 
@@ -2353,20 +2336,19 @@ extension DEVMODEW__Anonymous1_e__Union_Extension_1 on DEVMODE {
       this.Anonymous1.Anonymous2.dmDisplayFixedOutput = value;
 }
 
-extension DEVMODEW_Extension on DEVMODE {
-  _DEVMODEW__Anonymous1_e__Union__Anonymous1_e__Struct get Anonymous1 =>
+extension DEVMODE_Extension on DEVMODE {
+  _DEVMODE__Anonymous1_e__Union__Anonymous1_e__Struct get Anonymous1 =>
       this.Anonymous1.Anonymous1;
-  set Anonymous1(_DEVMODEW__Anonymous1_e__Union__Anonymous1_e__Struct value) =>
+  set Anonymous1(_DEVMODE__Anonymous1_e__Union__Anonymous1_e__Struct value) =>
       this.Anonymous1.Anonymous1 = value;
 
-  _DEVMODEW__Anonymous1_e__Union__Anonymous2_e__Struct get Anonymous2 =>
+  _DEVMODE__Anonymous1_e__Union__Anonymous2_e__Struct get Anonymous2 =>
       this.Anonymous1.Anonymous2;
-  set Anonymous2(_DEVMODEW__Anonymous1_e__Union__Anonymous2_e__Struct value) =>
+  set Anonymous2(_DEVMODE__Anonymous1_e__Union__Anonymous2_e__Struct value) =>
       this.Anonymous1.Anonymous2 = value;
 }
 
-/// {@category struct}
-sealed class _DEVMODEW__Anonymous2_e__Union extends Union {
+sealed class _DEVMODE__Anonymous2_e__Union extends Union {
   @Uint32()
   external int dmDisplayFlags;
 
@@ -2374,7 +2356,7 @@ sealed class _DEVMODEW__Anonymous2_e__Union extends Union {
   external int dmNup;
 }
 
-extension DEVMODEW_Extension_1 on DEVMODE {
+extension DEVMODE_Extension_1 on DEVMODE {
   int get dmDisplayFlags => this.Anonymous2.dmDisplayFlags;
   set dmDisplayFlags(int value) => this.Anonymous2.dmDisplayFlags = value;
 
@@ -2509,7 +2491,6 @@ base class DISPLAYCONFIG_MODE_INFO extends Struct {
   external _DISPLAYCONFIG_MODE_INFO__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_MODE_INFO__Anonymous_e__Union extends Union {
   external DISPLAYCONFIG_TARGET_MODE targetMode;
 
@@ -2562,7 +2543,6 @@ base class DISPLAYCONFIG_PATH_SOURCE_INFO extends Struct {
   external int statusFlags;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_PATH_SOURCE_INFO__Anonymous_e__Union extends Union {
   @Uint32()
   external int modeInfoIdx;
@@ -2571,7 +2551,6 @@ sealed class _DISPLAYCONFIG_PATH_SOURCE_INFO__Anonymous_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_PATH_SOURCE_INFO__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -2630,7 +2609,6 @@ base class DISPLAYCONFIG_PATH_TARGET_INFO extends Struct {
   external int statusFlags;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_PATH_TARGET_INFO__Anonymous_e__Union extends Union {
   @Uint32()
   external int modeInfoIdx;
@@ -2639,7 +2617,6 @@ sealed class _DISPLAYCONFIG_PATH_TARGET_INFO__Anonymous_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_PATH_TARGET_INFO__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -2725,7 +2702,6 @@ base class DISPLAYCONFIG_VIDEO_SIGNAL_INFO extends Struct {
   external int scanLineOrdering;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_VIDEO_SIGNAL_INFO__Anonymous_e__Union
     extends Union {
   external _DISPLAYCONFIG_VIDEO_SIGNAL_INFO__Anonymous_e__Union__AdditionalSignalInfo_e__Struct
@@ -2735,7 +2711,6 @@ sealed class _DISPLAYCONFIG_VIDEO_SIGNAL_INFO__Anonymous_e__Union
   external int videoStandard;
 }
 
-/// {@category struct}
 sealed class _DISPLAYCONFIG_VIDEO_SIGNAL_INFO__Anonymous_e__Union__AdditionalSignalInfo_e__Struct
     extends Struct {
   @Uint32()
@@ -3203,7 +3178,6 @@ base class ELEMDESC extends Struct {
   external _ELEMDESC__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _ELEMDESC__Anonymous_e__Union extends Union {
   external IDLDESC idldesc;
 
@@ -3768,7 +3742,6 @@ base class INPUT extends Struct {
   external _INPUT__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _INPUT__Anonymous_e__Union extends Union {
   external MOUSEINPUT mi;
 
@@ -3801,7 +3774,6 @@ base class INPUT_RECORD extends Struct {
   external _INPUT_RECORD__Event_e__Union Event;
 }
 
-/// {@category struct}
 sealed class _INPUT_RECORD__Event_e__Union extends Union {
   external KEY_EVENT_RECORD KeyEvent;
 
@@ -3843,7 +3815,6 @@ base class INPUT_TRANSFORM extends Struct {
   external _INPUT_TRANSFORM__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _INPUT_TRANSFORM__Anonymous_e__Union extends Union {
   external _INPUT_TRANSFORM__Anonymous_e__Union__Anonymous_e__Struct Anonymous;
 
@@ -3851,7 +3822,6 @@ sealed class _INPUT_TRANSFORM__Anonymous_e__Union extends Union {
   external Array<Float> m;
 }
 
-/// {@category struct}
 sealed class _INPUT_TRANSFORM__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Float()
@@ -3971,7 +3941,6 @@ base class IN_ADDR extends Struct {
   external _IN_ADDR__S_un_e__Union S_un;
 }
 
-/// {@category struct}
 sealed class _IN_ADDR__S_un_e__Union extends Union {
   external _IN_ADDR__S_un_e__Union__S_un_b_e__Struct S_un_b;
 
@@ -3981,7 +3950,6 @@ sealed class _IN_ADDR__S_un_e__Union extends Union {
   external int S_addr;
 }
 
-/// {@category struct}
 sealed class _IN_ADDR__S_un_e__Union__S_un_b_e__Struct extends Struct {
   @Uint8()
   external int s_b1;
@@ -4010,7 +3978,6 @@ extension IN_ADDR__S_un_e__Union_Extension on IN_ADDR {
   set s_b4(int value) => this.S_un.S_un_b.s_b4 = value;
 }
 
-/// {@category struct}
 sealed class _IN_ADDR__S_un_e__Union__S_un_w_e__Struct extends Struct {
   @Uint16()
   external int s_w1;
@@ -4136,7 +4103,6 @@ base class IP_ADAPTER_ADDRESSES_LH extends Struct {
   external Pointer<IP_ADAPTER_DNS_SUFFIX> FirstDnsSuffix;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_ADDRESSES_LH__Anonymous1_e__Union extends Union {
   @Uint64()
   external int Alignment;
@@ -4145,7 +4111,6 @@ sealed class _IP_ADAPTER_ADDRESSES_LH__Anonymous1_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_ADDRESSES_LH__Anonymous1_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4176,7 +4141,6 @@ extension IP_ADAPTER_ADDRESSES_LH_Extension on IP_ADAPTER_ADDRESSES_LH {
       this.Anonymous1.Anonymous = value;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_ADDRESSES_LH__Anonymous2_e__Union extends Union {
   @Uint32()
   external int Flags;
@@ -4185,7 +4149,6 @@ sealed class _IP_ADAPTER_ADDRESSES_LH__Anonymous2_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_ADDRESSES_LH__Anonymous2_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4222,7 +4185,6 @@ base class IP_ADAPTER_ANYCAST_ADDRESS_XP extends Struct {
   external SOCKET_ADDRESS Address;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_ANYCAST_ADDRESS_XP__Anonymous_e__Union extends Union {
   @Uint64()
   external int Alignment;
@@ -4231,7 +4193,6 @@ sealed class _IP_ADAPTER_ANYCAST_ADDRESS_XP__Anonymous_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_ANYCAST_ADDRESS_XP__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4275,7 +4236,6 @@ base class IP_ADAPTER_DNS_SERVER_ADDRESS_XP extends Struct {
   external SOCKET_ADDRESS Address;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_DNS_SERVER_ADDRESS_XP__Anonymous_e__Union
     extends Union {
   @Uint64()
@@ -4285,7 +4245,6 @@ sealed class _IP_ADAPTER_DNS_SERVER_ADDRESS_XP__Anonymous_e__Union
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_DNS_SERVER_ADDRESS_XP__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4356,7 +4315,6 @@ base class IP_ADAPTER_GATEWAY_ADDRESS_LH extends Struct {
   external SOCKET_ADDRESS Address;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_GATEWAY_ADDRESS_LH__Anonymous_e__Union extends Union {
   @Uint64()
   external int Alignment;
@@ -4365,7 +4323,6 @@ sealed class _IP_ADAPTER_GATEWAY_ADDRESS_LH__Anonymous_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_GATEWAY_ADDRESS_LH__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4438,7 +4395,6 @@ base class IP_ADAPTER_MULTICAST_ADDRESS_XP extends Struct {
   external SOCKET_ADDRESS Address;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_MULTICAST_ADDRESS_XP__Anonymous_e__Union
     extends Union {
   @Uint64()
@@ -4448,7 +4404,6 @@ sealed class _IP_ADAPTER_MULTICAST_ADDRESS_XP__Anonymous_e__Union
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_MULTICAST_ADDRESS_XP__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4494,7 +4449,6 @@ base class IP_ADAPTER_PREFIX_XP extends Struct {
   external int PrefixLength;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_PREFIX_XP__Anonymous_e__Union extends Union {
   @Uint64()
   external int Alignment;
@@ -4503,7 +4457,6 @@ sealed class _IP_ADAPTER_PREFIX_XP__Anonymous_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_PREFIX_XP__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4567,7 +4520,6 @@ base class IP_ADAPTER_UNICAST_ADDRESS_LH extends Struct {
   external int OnLinkPrefixLength;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_UNICAST_ADDRESS_LH__Anonymous_e__Union extends Union {
   @Uint64()
   external int Alignment;
@@ -4576,7 +4528,6 @@ sealed class _IP_ADAPTER_UNICAST_ADDRESS_LH__Anonymous_e__Union extends Union {
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_UNICAST_ADDRESS_LH__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4621,7 +4572,6 @@ base class IP_ADAPTER_WINS_SERVER_ADDRESS_LH extends Struct {
   external SOCKET_ADDRESS Address;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_WINS_SERVER_ADDRESS_LH__Anonymous_e__Union
     extends Union {
   @Uint64()
@@ -4631,7 +4581,6 @@ sealed class _IP_ADAPTER_WINS_SERVER_ADDRESS_LH__Anonymous_e__Union
       Anonymous;
 }
 
-/// {@category struct}
 sealed class _IP_ADAPTER_WINS_SERVER_ADDRESS_LH__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -4848,7 +4797,6 @@ base class KEY_EVENT_RECORD extends Struct {
   external int dwControlKeyState;
 }
 
-/// {@category struct}
 sealed class _KEY_EVENT_RECORD__uChar_e__Union extends Union {
   @Uint16()
   external int UnicodeChar;
@@ -5573,6 +5521,7 @@ base class MINMAXINFO extends Struct {
 /// multimedia data.
 ///
 /// {@category struct}
+@Packed(1)
 base class MMTIME extends Struct {
   @Uint32()
   external int wType;
@@ -5580,7 +5529,7 @@ base class MMTIME extends Struct {
   external _MMTIME__u_e__Union u;
 }
 
-/// {@category struct}
+@Packed(1)
 sealed class _MMTIME__u_e__Union extends Union {
   @Uint32()
   external int ms;
@@ -5599,7 +5548,6 @@ sealed class _MMTIME__u_e__Union extends Union {
   external _MMTIME__u_e__Union__midi_e__Struct midi;
 }
 
-/// {@category struct}
 sealed class _MMTIME__u_e__Union__smpte_e__Struct extends Struct {
   @Uint8()
   external int hour;
@@ -5646,7 +5594,6 @@ extension MMTIME__u_e__Union_Extension on MMTIME {
   set pad(Array<Uint8> value) => this.u.smpte.pad = value;
 }
 
-/// {@category struct}
 @Packed(1)
 sealed class _MMTIME__u_e__Union__midi_e__Struct extends Struct {
   @Uint32()
@@ -6020,7 +5967,6 @@ base class NET_LUID_LH extends Union {
   external _NET_LUID_LH__Info_e__Struct Info;
 }
 
-/// {@category struct}
 sealed class _NET_LUID_LH__Info_e__Struct extends Struct {
   @Uint64()
   external int bitfield;
@@ -6260,7 +6206,7 @@ base class NOTIFYICONDATA extends Struct {
     }
   }
 
-  external _NOTIFYICONDATAW__Anonymous_e__Union Anonymous;
+  external _NOTIFYICONDATA__Anonymous_e__Union Anonymous;
 
   @Array(64)
   external Array<Uint16> _szInfoTitle;
@@ -6290,8 +6236,7 @@ base class NOTIFYICONDATA extends Struct {
   external int hBalloonIcon;
 }
 
-/// {@category struct}
-sealed class _NOTIFYICONDATAW__Anonymous_e__Union extends Union {
+sealed class _NOTIFYICONDATA__Anonymous_e__Union extends Union {
   @Uint32()
   external int uTimeout;
 
@@ -6299,7 +6244,7 @@ sealed class _NOTIFYICONDATAW__Anonymous_e__Union extends Union {
   external int uVersion;
 }
 
-extension NOTIFYICONDATAW_Extension on NOTIFYICONDATA {
+extension NOTIFYICONDATA_Extension on NOTIFYICONDATA {
   int get uTimeout => this.Anonymous.uTimeout;
   set uTimeout(int value) => this.Anonymous.uTimeout = value;
 
@@ -6667,14 +6612,12 @@ base class OVERLAPPED extends Struct {
   external int hEvent;
 }
 
-/// {@category struct}
 sealed class _OVERLAPPED__Anonymous_e__Union extends Union {
   external _OVERLAPPED__Anonymous_e__Union__Anonymous_e__Struct Anonymous;
 
   external Pointer Pointer_;
 }
 
-/// {@category struct}
 sealed class _OVERLAPPED__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint32()
@@ -7221,7 +7164,6 @@ base class PRINTER_NOTIFY_INFO_DATA extends Struct {
   external _PRINTER_NOTIFY_INFO_DATA__NotifyData_e__Union NotifyData;
 }
 
-/// {@category struct}
 sealed class _PRINTER_NOTIFY_INFO_DATA__NotifyData_e__Union extends Union {
   @Array(2)
   external Array<Uint32> adwData;
@@ -7229,7 +7171,6 @@ sealed class _PRINTER_NOTIFY_INFO_DATA__NotifyData_e__Union extends Union {
   external _PRINTER_NOTIFY_INFO_DATA__NotifyData_e__Union__Data_e__Struct Data;
 }
 
-/// {@category struct}
 sealed class _PRINTER_NOTIFY_INFO_DATA__NotifyData_e__Union__Data_e__Struct
     extends Struct {
   @Uint32()
@@ -7304,14 +7245,12 @@ base class PROCESS_HEAP_ENTRY extends Struct {
   external _PROCESS_HEAP_ENTRY__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _PROCESS_HEAP_ENTRY__Anonymous_e__Union extends Union {
   external _PROCESS_HEAP_ENTRY__Anonymous_e__Union__Block_e__Struct Block;
 
   external _PROCESS_HEAP_ENTRY__Anonymous_e__Union__Region_e__Struct Region;
 }
 
-/// {@category struct}
 sealed class _PROCESS_HEAP_ENTRY__Anonymous_e__Union__Block_e__Struct
     extends Struct {
   @IntPtr()
@@ -7331,7 +7270,6 @@ extension PROCESS_HEAP_ENTRY__Anonymous_e__Union_Extension
       this.Anonymous.Block.dwReserved = value;
 }
 
-/// {@category struct}
 sealed class _PROCESS_HEAP_ENTRY__Anonymous_e__Union__Region_e__Struct
     extends Struct {
   @Uint32()
@@ -7405,7 +7343,6 @@ base class PROPSPEC extends Struct {
   external _PROPSPEC__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _PROPSPEC__Anonymous_e__Union extends Union {
   @Uint32()
   external int propid;
@@ -7503,7 +7440,6 @@ base class RAWINPUT extends Struct {
   external _RAWINPUT__data_e__Union data;
 }
 
-/// {@category struct}
 sealed class _RAWINPUT__data_e__Union extends Union {
   external RAWMOUSE mouse;
 
@@ -7613,7 +7549,6 @@ base class RAWMOUSE extends Struct {
   external int ulExtraInformation;
 }
 
-/// {@category struct}
 sealed class _RAWMOUSE__Anonymous_e__Union extends Union {
   @Uint32()
   external int ulButtons;
@@ -7621,7 +7556,6 @@ sealed class _RAWMOUSE__Anonymous_e__Union extends Union {
   external _RAWMOUSE__Anonymous_e__Union__Anonymous_e__Struct Anonymous;
 }
 
-/// {@category struct}
 sealed class _RAWMOUSE__Anonymous_e__Union__Anonymous_e__Struct extends Struct {
   @Uint16()
   external int usButtonFlags;
@@ -7866,7 +7800,6 @@ base class SDP_ELEMENT_DATA extends Struct {
   external _SDP_ELEMENT_DATA__data_e__Union data;
 }
 
-/// {@category struct}
 sealed class _SDP_ELEMENT_DATA__data_e__Union extends Union {
   external SDP_LARGE_INTEGER_16 int128;
 
@@ -7916,7 +7849,6 @@ sealed class _SDP_ELEMENT_DATA__data_e__Union extends Union {
   external _SDP_ELEMENT_DATA__data_e__Union__alternative_e__Struct alternative;
 }
 
-/// {@category struct}
 sealed class _SDP_ELEMENT_DATA__data_e__Union__string_e__Struct extends Struct {
   external Pointer<Uint8> value;
 
@@ -7932,7 +7864,6 @@ extension SDP_ELEMENT_DATA__data_e__Union_Extension on SDP_ELEMENT_DATA {
   set length(int value) => this.data.string.length = value;
 }
 
-/// {@category struct}
 sealed class _SDP_ELEMENT_DATA__data_e__Union__url_e__Struct extends Struct {
   external Pointer<Uint8> value;
 
@@ -7948,7 +7879,6 @@ extension SDP_ELEMENT_DATA__data_e__Union_Extension_1 on SDP_ELEMENT_DATA {
   set length(int value) => this.data.url.length = value;
 }
 
-/// {@category struct}
 sealed class _SDP_ELEMENT_DATA__data_e__Union__sequence_e__Struct
     extends Struct {
   external Pointer<Uint8> value;
@@ -7965,7 +7895,6 @@ extension SDP_ELEMENT_DATA__data_e__Union_Extension_2 on SDP_ELEMENT_DATA {
   set length(int value) => this.data.sequence.length = value;
 }
 
-/// {@category struct}
 sealed class _SDP_ELEMENT_DATA__data_e__Union__alternative_e__Struct
     extends Struct {
   external Pointer<Uint8> value;
@@ -8430,14 +8359,13 @@ base class SHELLEXECUTEINFO extends Struct {
   @Uint32()
   external int dwHotKey;
 
-  external _SHELLEXECUTEINFOW__Anonymous_e__Union Anonymous;
+  external _SHELLEXECUTEINFO__Anonymous_e__Union Anonymous;
 
   @IntPtr()
   external int hProcess;
 }
 
-/// {@category struct}
-sealed class _SHELLEXECUTEINFOW__Anonymous_e__Union extends Union {
+sealed class _SHELLEXECUTEINFO__Anonymous_e__Union extends Union {
   @IntPtr()
   external int hIcon;
 
@@ -8445,7 +8373,7 @@ sealed class _SHELLEXECUTEINFOW__Anonymous_e__Union extends Union {
   external int hMonitor;
 }
 
-extension SHELLEXECUTEINFOW_Extension on SHELLEXECUTEINFO {
+extension SHELLEXECUTEINFO_Extension on SHELLEXECUTEINFO {
   int get hIcon => this.Anonymous.hIcon;
   set hIcon(int value) => this.Anonymous.hIcon = value;
 
@@ -8977,7 +8905,6 @@ base class STRRET extends Struct {
   external _STRRET__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _STRRET__Anonymous_e__Union extends Union {
   external Pointer<Utf16> pOleStr;
 
@@ -9216,7 +9143,6 @@ base class SYSTEM_INFO extends Struct {
   external int wProcessorRevision;
 }
 
-/// {@category struct}
 sealed class _SYSTEM_INFO__Anonymous_e__Union extends Union {
   @Uint32()
   external int dwOemId;
@@ -9224,7 +9150,6 @@ sealed class _SYSTEM_INFO__Anonymous_e__Union extends Union {
   external _SYSTEM_INFO__Anonymous_e__Union__Anonymous_e__Struct Anonymous;
 }
 
-/// {@category struct}
 sealed class _SYSTEM_INFO__Anonymous_e__Union__Anonymous_e__Struct
     extends Struct {
   @Uint16()
@@ -9274,7 +9199,6 @@ base class SYSTEM_LOGICAL_PROCESSOR_INFORMATION extends Struct {
   external _SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union Anonymous;
 }
 
-/// {@category struct}
 sealed class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union
     extends Union {
   external _SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union__ProcessorCore_e__Struct
@@ -9289,7 +9213,6 @@ sealed class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union
   external Array<Uint64> Reserved;
 }
 
-/// {@category struct}
 sealed class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union__ProcessorCore_e__Struct
     extends Struct {
   @Uint8()
@@ -9302,7 +9225,6 @@ extension SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union_Extension
   set Flags(int value) => this.Anonymous.ProcessorCore.Flags = value;
 }
 
-/// {@category struct}
 sealed class _SYSTEM_LOGICAL_PROCESSOR_INFORMATION__Anonymous_e__Union__NumaNode_e__Struct
     extends Struct {
   @Uint32()
@@ -9623,7 +9545,6 @@ base class TASKDIALOGCONFIG extends Struct {
   external int cxWidth;
 }
 
-/// {@category struct}
 @Packed(1)
 sealed class _TASKDIALOGCONFIG__Anonymous1_e__Union extends Union {
   @IntPtr()
@@ -9640,7 +9561,6 @@ extension TASKDIALOGCONFIG_Extension on TASKDIALOGCONFIG {
   set pszMainIcon(Pointer<Utf16> value) => this.Anonymous1.pszMainIcon = value;
 }
 
-/// {@category struct}
 @Packed(1)
 sealed class _TASKDIALOGCONFIG__Anonymous2_e__Union extends Union {
   @IntPtr()
@@ -9918,7 +9838,6 @@ base class TYPEDESC extends Struct {
   external int vt;
 }
 
-/// {@category struct}
 sealed class _TYPEDESC__Anonymous_e__Union extends Union {
   external Pointer<TYPEDESC> lptdesc;
 
@@ -10035,7 +9954,6 @@ base class VARDESC extends Struct {
   external int varkind;
 }
 
-/// {@category struct}
 sealed class _VARDESC__Anonymous_e__Union extends Union {
   @Uint32()
   external int oInst;
@@ -10157,7 +10075,6 @@ base class WAVEFORMATEXTENSIBLE extends Struct {
   external GUID SubFormat;
 }
 
-/// {@category struct}
 @Packed(1)
 sealed class _WAVEFORMATEXTENSIBLE__Samples_e__Union extends Union {
   @Uint16()
@@ -11229,7 +11146,6 @@ base class WLAN_RAW_DATA_LIST extends Struct {
   external Array<_WLAN_RAW_DATA_LIST__Anonymous_e__Struct> DataList;
 }
 
-/// {@category struct}
 base class _WLAN_RAW_DATA_LIST__Anonymous_e__Struct extends Struct {
   @Uint32()
   external int dwDataOffset;
