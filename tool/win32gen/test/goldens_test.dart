@@ -23,7 +23,7 @@ void main() {
       final comTypesToGenerate = loadMap('com_types.json');
       final projection = ComClassProjection.fromInterface(typeDef,
           interfaceComment: comTypesToGenerate[type] ?? '');
-      compareGolden('ifileopendialog', projection.toString().format());
+      compareGolden('ifileopendialog.g', projection.toString().format());
     });
 
     test('INetwork', () async {
@@ -32,7 +32,7 @@ void main() {
       final comTypesToGenerate = loadMap('com_types.json');
       final projection =
           ComInterfaceProjection(typeDef, comTypesToGenerate[type] ?? '');
-      compareGolden('inetwork', projection.toString().format());
+      compareGolden('inetwork.g', projection.toString().format());
     });
 
     tearDownAll(MetadataStore.close);
@@ -50,6 +50,5 @@ void compareGolden(String fileName, String content) {
 extension on String {
   String convertLineEndingsToLF() => replaceAll('\r\n', '\n');
 
-  /// Formats this string.
   String format() => DartFormatter().format(this);
 }

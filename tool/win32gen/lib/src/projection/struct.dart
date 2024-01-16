@@ -2,23 +2,20 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'dart:math' show min;
-
 import 'package:winmd/winmd.dart';
 
+import '../extensions/string.dart';
+import '../extensions/typedef.dart';
 import 'field.dart';
 import 'nested_struct.dart';
-import 'safenames.dart';
-import 'type.dart';
-import 'utils.dart';
 
 /// Represents a Dart projection of a Struct typedef.
 class StructProjection {
+  StructProjection(this.typeDef, this.structName, {this.comment = ''});
+
   final TypeDef typeDef;
   final String structName;
   final String comment;
-
-  StructProjection(this.typeDef, this.structName, {this.comment = ''});
 
   bool _isNestedType(Field field) =>
       field.typeIdentifier.type?.isNested ?? false;
@@ -36,22 +33,21 @@ class StructProjection {
   }
 
   String get classPreamble {
-    const structCategoryComment = '/// {@category struct}';
-    final classComment = wrapCommentText(comment);
+    final structCategoryComment =
+        _projectedName.startsWith('_') ? '' : '/// {@category struct}';
+    final classComment = comment.toDocComment();
     final docComment = classComment.isEmpty
         ? structCategoryComment
         : '$classComment\n///\n$structCategoryComment';
 
-    if (packingAlignment > 0) {
-      return '$docComment\n@Packed($packingAlignment)';
-    } else {
-      return docComment;
-    }
+    return packingAlignment > 0
+        ? '$docComment\n@Packed($packingAlignment)'
+        : docComment;
   }
 
   String get _projectedName => typeDef.isNested
-      ? '_${safeTypenameForString(mangleName(typeDef))}'
-      : safeTypenameForString(structName);
+      ? '_${typeDef.mangleName().safeTypename}'
+      : structName.safeTypename;
 
   String get _fieldsProjection =>
       typeDef.fields.map(FieldProjection.new).join('\n');
@@ -75,8 +71,11 @@ class StructProjection {
       // Nested types should have just one leading underscore, so we strip the
       // others off and add one back.
       final nestedTypeProjection = NestedStructProjection(
-          nestedType, '_${stripLeadingUnderscores(nestedType.name)}',
-          suffix: fieldIdx, rootTypePackingAlignment: packingAlignment);
+        nestedType,
+        '_${nestedType.name.stripLeadingUnderscores()}',
+        suffix: fieldIdx,
+        rootTypePackingAlignment: packingAlignment,
+      );
 
       buffer.write('\n$nestedTypeProjection\n');
       fieldIdx++;
@@ -93,25 +92,7 @@ class StructProjection {
     // Tokens like System.Guid have no packing alignment.
     if (typeDef.token == 0) return 0xFF;
 
-    var alignment =
-        typeDef.classLayout.packingAlignment ?? 0xFF; // marker value
-
-    // Walk through children to see if they have a packing alignment
-    for (final field in typeDef.fields) {
-      final fieldTypeDef = field.typeIdentifier.type;
-      if (fieldTypeDef != null &&
-          !field.isLiteral && // TODO: Can remove this without breaking v3?
-          !TypeProjection(field.typeIdentifier).isDartPrimitive) {
-        final fieldPacking = calculatePackingAlignment(fieldTypeDef);
-        alignment = min(fieldPacking, alignment);
-      }
-      if (field.typeIdentifier.baseType == BaseType.arrayTypeModifier &&
-          field.typeIdentifier.typeArg?.type != null) {
-        final arrayPacking =
-            calculatePackingAlignment(field.typeIdentifier.typeArg!.type!);
-        alignment = min(arrayPacking, alignment);
-      }
-    }
+    final alignment = typeDef.classLayout.packingAlignment ?? 0xFF;
     return alignment == 0xFF ? 0 : alignment;
   }
 
@@ -130,7 +111,6 @@ class StructProjection {
       final nestedType = nestedArrays[field]!;
       final nestedTypeProjection =
           StructProjection(nestedType, '_${nestedType.name}');
-
       buffer.write('\n$nestedTypeProjection\n');
     }
 
@@ -139,12 +119,12 @@ class StructProjection {
 
   @override
   String toString() => '''
-        $classPreamble
-        base class $_projectedName extends $_baseType {
-          $_fieldsProjection
-        }
+$classPreamble
+base class $_projectedName extends $_baseType {
+  $_fieldsProjection
+}
 
-        $nestedTypes
-        $_nestedArrays
-      ''';
+$nestedTypes
+$_nestedArrays
+''';
 }

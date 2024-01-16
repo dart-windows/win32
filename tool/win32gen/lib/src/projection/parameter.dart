@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'safenames.dart';
+import '../extensions/string.dart';
 import 'type.dart';
 
 /// A parameter.
@@ -15,12 +15,12 @@ class ParameterProjection {
   final TypeProjection type;
 
   String get ffiProjection =>
-      '${safeTypenameForString(type.nativeType)} ${safeIdentifierForString(name)}';
+      '${type.nativeType.safeTypename} ${name.safeIdentifier}';
 
   String get dartProjection =>
-      '${safeTypenameForString(type.dartType)} ${safeIdentifierForString(name)}';
+      '${type.dartType.safeTypename} ${name.safeIdentifier}';
 
-  String get identifier => safeIdentifierForString(name);
+  String get identifier => name.safeIdentifier;
 
   @override
   String toString() => '$name (${type.nativeType})';

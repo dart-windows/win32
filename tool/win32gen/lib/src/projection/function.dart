@@ -4,28 +4,32 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/method.dart';
+import '../extensions/string.dart';
 import 'parameter.dart';
-import 'safenames.dart';
 import 'type.dart';
-import 'utils.dart';
 
 class FunctionProjection {
-  final Method method;
-  final String lib;
-  final String nameWithoutEncoding;
-  final TypeProjection returnType;
-  final List<ParameterProjection> parameters;
-
-  FunctionProjection(this.method, this.lib)
-      : nameWithoutEncoding = stripAnsiUnicodeSuffix(method.name),
+  FunctionProjection(this.method)
+      : nameWithoutEncoding = method.nameWithoutAnsiUnicodeSuffix,
         returnType = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters
             .map((param) => ParameterProjection(
                 param.name, TypeProjection(param.typeIdentifier)))
             .toList();
 
-  // TODO: remove when https://github.com/microsoft/win32metadata/issues/229
-  //  is fixed.
+  final Method method;
+  final String nameWithoutEncoding;
+  final TypeProjection returnType;
+  final List<ParameterProjection> parameters;
+
+  // API set names aren't legal Dart identifiers, so we rename them.
+  // Also strip off the trailing .dll (or .cpl, .drv, etc.).
+  String get lib =>
+      method.module.name.toLowerCase().replaceAll('-', '_').split('.').first;
+
+  // TODO(halildurmus): Remove when
+  // https://github.com/microsoft/win32metadata/issues/229 is fixed.
   String get k32StrippedName => nameWithoutEncoding.startsWith('K32')
       ? nameWithoutEncoding.substring(3)
       : nameWithoutEncoding;
@@ -43,7 +47,7 @@ class FunctionProjection {
 
   @override
   String toString() => '''
-    ${safeTypenameForString(returnType.dartType)} $k32StrippedName($dartParams) =>
+    ${returnType.dartType.safeTypename} $k32StrippedName($dartParams) =>
       _$nameWithoutEncoding(${parameters.map((param) => param.identifier).join(', ')});
 
     final _$nameWithoutEncoding =

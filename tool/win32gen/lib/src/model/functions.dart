@@ -34,6 +34,19 @@ const windowsBuilds = <String, int>{
 
 /// Converts to/from functions.json
 class Win32Function {
+  Win32Function.fromJson(Map<String, dynamic> json)
+      : assert(json['prototype'] != null),
+        assert(json['comment'] != null),
+        prototype = json['prototype'] as String,
+        functionSymbol = functionNameFromPrototype(json['prototype'] as String),
+        comment = json['comment'] as String,
+        category = json['category'] != null ? json['category'] as String : '',
+        _isCustomCategorySet = json['category'] != null,
+        minimumWindowsVersion = json['minimumWindowsVersion'] != null
+            ? windowsBuilds[(json['minimumWindowsVersion'] as String)]!
+            : 0,
+        test = json['test'] as bool? ?? true;
+
   final String prototype;
   final String comment;
   final String functionSymbol;
@@ -59,19 +72,6 @@ class Win32Function {
               (build) => windowsBuilds[build] == minimumWindowsVersion),
         if (!test) 'test': false
       };
-
-  Win32Function.fromJson(Map<String, dynamic> json)
-      : assert(json['prototype'] != null),
-        assert(json['comment'] != null),
-        prototype = json['prototype'] as String,
-        functionSymbol = functionNameFromPrototype(json['prototype'] as String),
-        comment = json['comment'] as String,
-        category = json['category'] != null ? json['category'] as String : '',
-        _isCustomCategorySet = json['category'] != null,
-        minimumWindowsVersion = json['minimumWindowsVersion'] != null
-            ? windowsBuilds[(json['minimumWindowsVersion'] as String)]!
-            : 0,
-        test = json['test'] as bool? ?? true;
 }
 
 SplayTreeMap<String, Win32Function> loadFunctionsFromJson() {
@@ -86,6 +86,7 @@ SplayTreeMap<String, Win32Function> loadFunctionsFromJson() {
     functions[api] =
         Win32Function.fromJson(decodedJson[api] as Map<String, dynamic>);
   }
+
   return functions;
 }
 

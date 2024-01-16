@@ -16,7 +16,8 @@ void main() {
     point.ref
       ..x = 0x10
       ..y = 0x7F;
-    expect(point.ref.x + point.ref.y, equals(0x8F));
+    final POINT(:x, :y) = point.ref;
+    expect(x + y, equals(0x8F));
     free(point);
   });
 }

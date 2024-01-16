@@ -4,82 +4,42 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../model/exclusions.dart';
+import '../exclusions.dart';
+import '../extensions/method.dart';
+import '../extensions/string.dart';
+import '../extensions/typedef.dart';
+import '../headers.dart';
 import 'com_class.dart';
 import 'com_method.dart';
 import 'com_property.dart';
-import 'headers.dart';
 import 'method.dart';
-import 'safenames.dart';
 import 'type.dart';
-import 'utils.dart';
 
 class ComInterfaceProjection {
+  ComInterfaceProjection(this.typeDef, [this.comment = '']);
+
   final TypeDef typeDef;
   final String comment;
-
-  // Lazily cached values, with matching property
-  int? _vtableStart;
-  int get vtableStart => _vtableStart ??= cacheVtableStart(typeDef);
 
   List<MethodProjection>? _methodProjections;
   List<MethodProjection> get methodProjections =>
       _methodProjections ??= _cacheMethodProjections();
 
-  ComInterfaceProjection(this.typeDef, [this.comment = '']);
+  List<MethodProjection> _cacheMethodProjections() => typeDef.methods
+      .map((m) => switch (m) {
+            _ when m.isRealGetProperty => ComGetPropertyProjection(m),
+            _ when m.isRealSetProperty => ComSetPropertyProjection(m),
+            _ => ComMethodProjection(m),
+          })
+      .toList();
 
-  int cacheVtableStart(TypeDef? type) {
-    if (type == null) return 0;
-
-    if (type.isInterface && type.interfaces.isNotEmpty) {
-      var sum = 0;
-
-      for (final interface in type.interfaces) {
-        sum += interface.methods.length + cacheVtableStart(interface);
-      }
-
-      return sum;
-    }
-
-    return 0;
-  }
-
-  List<MethodProjection> _cacheMethodProjections() {
-    final projection = <MethodProjection>[];
-    var vtableOffset = vtableStart;
-    for (final method in typeDef.methods) {
-      if (method.isGetProperty && !isExcludedGetProperty(method)) {
-        final getPropertyProjection =
-            ComGetPropertyProjection(method, vtableOffset++);
-        projection.add(getPropertyProjection);
-      } else if (method.isSetProperty &&
-          method.parameters.isNotEmpty &&
-          !isExcludedSetProperty(method)) {
-        final setPropertyProjection =
-            ComSetPropertyProjection(method, vtableOffset++);
-        projection.add(setPropertyProjection);
-      } else {
-        final methodProjection = ComMethodProjection(method, vtableOffset++);
-        projection.add(methodProjection);
-      }
-    }
-    return projection;
-  }
-
-  String get shortName =>
-      stripAnsiUnicodeSuffix(safeIdentifierForTypeDef(typeDef));
+  String get shortName => typeDef.safeIdentifier;
 
   String get inheritsFrom => typeDef.interfaces.isNotEmpty
-      ? safeIdentifierForTypeDef(typeDef.interfaces.first)
+      ? typeDef.interfaces.first.safeIdentifier
       : '';
 
-  String get header => '''
-$copyrightHeader
-
-// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
-
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
-''';
+  String get header => comInterfaceHeader;
 
   Set<String> get coreImports => {'dart:ffi', '../extensions/iunknown.dart'};
 
@@ -137,7 +97,7 @@ $copyrightHeader
   Set<String> get interfaceImports {
     if (typeDef.interfaces.isNotEmpty) {
       final interfaceName =
-          lastComponent(typeDef.interfaces.first.name).toLowerCase();
+          typeDef.interfaces.first.name.lastComponent.toLowerCase();
       if (interfaceName.isNotEmpty) {
         return {'$interfaceName.dart', 'iunknown.dart'};
       }
@@ -174,9 +134,11 @@ $copyrightHeader
       ...interfaceImports,
       ...extraImports
     };
-    return sortImports(
-      imports.map((import) => "import '$import';").toList(),
-    ).join('\n');
+    return imports
+        .map((import) => "import '$import';")
+        .toList()
+        .sortImports()
+        .join('\n');
   }
 
   String get guidConstants => '''
@@ -192,7 +154,7 @@ factory $shortName.from(IUnknown interface) =>
   String get category => 'com';
 
   String get classPreamble {
-    final wrappedComment = wrapCommentText(comment);
+    final wrappedComment = comment.toDocComment();
     final categoryComment = '/// {@category $category}';
 
     return wrappedComment.isNotEmpty
@@ -207,11 +169,19 @@ factory $shortName.from(IUnknown interface) =>
 
   bool get hasMethods => typeDef.methods.isNotEmpty;
 
-  String get constructor => inheritsFrom.isEmpty
-      ? '$shortName(this.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;\n\nfinal VTablePointer ptr;'
-      : hasMethods
-          ? '$shortName(super.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;'
-          : '$shortName(super.ptr);';
+  String get constructor {
+    if (inheritsFrom.isEmpty) {
+      return '''
+$shortName(this.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;
+
+final VTablePointer ptr;
+''';
+    }
+
+    return hasMethods
+        ? '$shortName(super.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;'
+        : '$shortName(super.ptr);';
+  }
 
   String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';
 

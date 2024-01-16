@@ -4,23 +4,18 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/typedef.dart';
 import 'function.dart';
-import 'safenames.dart';
 
 class CallbackProjection {
-  late final String callbackName;
-  late final FunctionProjection functionProjection;
+  CallbackProjection(TypeDef typeDef)
+      : assert(typeDef.findMethod('Invoke') != null,
+            '${typeDef.name} is not a callback.'),
+        callbackName = typeDef.safeIdentifier,
+        functionProjection = FunctionProjection(typeDef.findMethod('Invoke')!);
 
-  CallbackProjection(TypeDef typeDef) {
-    final invokeMethod = typeDef.findMethod('Invoke');
-
-    if (invokeMethod == null) {
-      throw Exception('${typeDef.name} is not a callback.');
-    }
-
-    callbackName = safeIdentifierForTypeDef(typeDef);
-    functionProjection = FunctionProjection(invokeMethod, '');
-  }
+  final String callbackName;
+  final FunctionProjection functionProjection;
 
   @override
   String toString() =>

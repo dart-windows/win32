@@ -8,46 +8,41 @@ import 'package:dart_style/dart_style.dart';
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-bool methodMatches(String methodName, String rawPrototype) =>
-    rawPrototype.contains(' $methodName(');
-
-String generateDocComment(Win32Function func, String libraryDartName) {
-  final category = func.category.isNotEmpty ? func.category : libraryDartName;
-
-  final comment = StringBuffer();
-
-  if (func.comment.isNotEmpty) {
-    comment
-      ..writeln(wrapCommentText(func.comment))
-      ..writeln('///');
-  }
-
-  comment
-    ..writeln('/// ```c')
-    ..write('/// ')
-    ..writeln(func.prototype.split('\\n').join('\n/// '))
-    ..writeln('/// ```')
-    ..write('/// {@category $category}');
-  return comment.toString();
-}
-
-int generateStructs(List<Scope> scopes, Map<String, String> structs) {
+void generateStructs(List<Scope> scopes, Map<String, String> structs) {
   final file = File('../../lib/src/structs.g.dart');
 
   final typeDefs = scopes.expand((scope) => scope.typeDefs
       .where((typeDef) => structs.keys.contains(typeDef.name))
       .where((typeDef) => typeDef.supportedArchitectures.x64)
       .toList()
-    ..sort((a, b) => lastComponent(a.name).compareTo(lastComponent(b.name))));
+    ..sort((a, b) => a.name.lastComponent.compareTo(b.name.lastComponent)));
 
   final structProjections = typeDefs.map((struct) => StructProjection(
-      struct, stripAnsiUnicodeSuffix(lastComponent(struct.name)),
+      struct, struct.nameWithoutAnsiUnicodeSuffix.lastComponent,
       comment: structs[struct.name]!));
 
   final structsFile = [structFileHeader, ...structProjections].join();
-
   file.writeAsStringSync(DartFormatter().format(structsFile));
-  return structProjections.length;
+}
+
+String generateDocComment(Win32Function func, String libraryDartName) {
+  final category = func.category.isNotEmpty ? func.category : libraryDartName;
+  final buffer = StringBuffer();
+
+  if (func.comment.isNotEmpty) {
+    buffer
+      ..writeln(func.comment.toDocComment())
+      ..writeln('///');
+  }
+
+  buffer
+    ..writeln('/// ```c')
+    ..write('/// ')
+    ..writeln(func.prototype.split(r'\n').join('\n/// '))
+    ..writeln('/// ```')
+    ..write('/// {@category $category}');
+
+  return buffer.toString();
 }
 
 void generateDllFile(String library, List<Method> filteredMethods,
@@ -63,7 +58,7 @@ void generateDllFile(String library, List<Method> filteredMethods,
   final libraryDartName = library.replaceAll('-', '_').split('.').first;
 
   buffer.write('''
-  $functionsFileHeader
+  $functionFileHeader
 
   final _$libraryDartName = DynamicLibrary.open('$library');\n
   ''');
@@ -73,7 +68,7 @@ void generateDllFile(String library, List<Method> filteredMethods,
         functions.firstWhere((f) => f.functionSymbol == method.name);
     buffer.write('''
   ${generateDocComment(function, libraryDartName)}
-  ${FunctionProjection(method, libraryDartName).toString()}
+  ${FunctionProjection(method).toString()}
   ''');
   }
 
@@ -99,8 +94,9 @@ void generateFunctions(
   for (final function in functions.values) {
     final method = methods.where((m) => m.name == function.functionSymbol);
     if (method.length != 1) {
-      throw Exception('${function.functionSymbol} metadata match error.');
+      throw StateError('${function.functionSymbol} metadata match error.');
     }
+
     filteredMethods.add(method.first);
   }
 
@@ -116,19 +112,15 @@ void generateFunctions(
         .add(generateFunctionTests(library, filteredMethods, functions.values));
   }
 
-  writeFunctionTests(tests);
-}
-
-void writeFunctionTests(Iterable<String> tests) {
   final testFile = '''
-$testFunctionsHeader
+  $testFunctionsHeader
 
-import 'helpers.dart';
+  import 'helpers.dart';
 
-void main() {
+  void main() {
   final windowsBuildNumber = getWindowsBuildNumber();
   ${tests.join('\n')}
-}
+  }
 ''';
 
   File('../../test/api_test.dart')
@@ -161,30 +153,27 @@ String generateFunctionTests(String library, Iterable<Method> methods,
     // manifest, so we ignore those for the purpose of test generation.
     if (!function.test) continue;
 
-    final projection = FunctionProjection(method, libraryDartName);
-
+    final projection = FunctionProjection(method);
     final returnFFIType =
         TypeProjection(method.returnType.typeIdentifier).nativeType;
     final returnDartType =
         TypeProjection(method.returnType.typeIdentifier).dartType;
-
-    final methodDartName = stripAnsiUnicodeSuffix(method.name);
+    final methodDartName = method.nameWithoutAnsiUnicodeSuffix;
 
     final test = '''
-      test('Can instantiate $methodDartName', () {
-        final $libraryDartName = DynamicLibrary.open('$library');
-        final $methodDartName = $libraryDartName.lookupFunction<\n
-          $returnFFIType Function(${projection.nativeParams}),
-          $returnDartType Function(${projection.dartParams})>
-          ('${method.name}');
-        expect($methodDartName, isA<Function>());
-      });''';
+  test('Can instantiate $methodDartName', () {
+    final $libraryDartName = DynamicLibrary.open('$library');
+    final $methodDartName = $libraryDartName.lookupFunction<\n
+      $returnFFIType Function(${projection.nativeParams}),
+      $returnDartType Function(${projection.dartParams})>('${method.name}');
+    expect($methodDartName, isA<Function>());
+  });''';
 
     if (function.minimumWindowsVersion > 0) {
       buffer.writeln('''
-          if (windowsBuildNumber >= ${function.minimumWindowsVersion}) {
-            $test
-          }''');
+  if (windowsBuildNumber >= ${function.minimumWindowsVersion}) {
+    $test
+  }''');
     } else {
       buffer.writeln(test);
     }
@@ -194,11 +183,12 @@ String generateFunctionTests(String library, Iterable<Method> methods,
   return buffer.toString();
 }
 
-void generateComApis(Scope scope, Map<String, String> comTypesToGenerate) {
-  for (final interface in comTypesToGenerate.keys) {
+void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
+  for (final interface in comInterfaces.keys) {
     final typeDef = scope.findTypeDef(interface);
-    if (typeDef == null) throw Exception("Can't find $interface");
-    final comment = comTypesToGenerate[interface] ?? '';
+    if (typeDef == null) throw StateError("Can't find $interface");
+
+    final comment = comInterfaces[interface] ?? '';
     final interfaceProjection = ComInterfaceProjection(typeDef, comment);
     final className = ComClassProjection.generateClassName(typeDef);
     final classNameExists = scope.findTypeDef(className) != null;
@@ -209,15 +199,16 @@ void generateComApis(Scope scope, Map<String, String> comTypesToGenerate) {
     // Generate class
     final dartClass = comObject.toString();
     final classOutputFilename =
-        stripAnsiUnicodeSuffix(lastComponent(interface)).toLowerCase();
+        typeDef.nameWithoutAnsiUnicodeSuffix.lastComponent.toLowerCase();
     final classOutputPath = '../../lib/src/com/$classOutputFilename.dart';
-
     File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
   }
 }
 
 void main() async {
-  print('Loading Windows metadata...');
+  final stopwatch = Stopwatch()..start();
+
+  print('[${stopwatch.elapsed}] Loading Windows metadata...');
   final wdkScope =
       await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
   final win32Scope =
@@ -226,27 +217,29 @@ void main() async {
   // references from Win32 metadata.
   await MetadataStore.loadWinRTMetadata();
 
-  print('Loading and sorting functions...');
+  print('[${stopwatch.elapsed}] Loading and sorting functions...');
   final functionsToGenerate = loadFunctionsFromJson();
   saveFunctionsToJson(functionsToGenerate);
 
-  print('Generating structs...');
+  print('[${stopwatch.elapsed}] Generating structs...');
   final structsToGenerate = loadMap('win32_structs.json');
   saveMap(structsToGenerate, 'win32_structs.json');
   generateStructs([wdkScope, win32Scope], structsToGenerate);
 
-  print('Validating callbacks...');
+  print('[${stopwatch.elapsed}] Validating callbacks...');
   final callbacks = loadMap('win32_callbacks.json');
   saveMap(callbacks, 'win32_callbacks.json');
   // Win32 callbacks are manually created
 
-  print('Generating FFI function bindings...');
+  print('[${stopwatch.elapsed}] Generating FFI function bindings...');
   generateFunctions([wdkScope, win32Scope], functionsToGenerate);
 
-  print('Generating COM interfaces...');
+  print('[${stopwatch.elapsed}] Generating COM interfaces...');
   final comTypesToGenerate = loadMap('com_types.json');
   saveMap(comTypesToGenerate, 'com_types.json');
-  generateComApis(win32Scope, comTypesToGenerate);
+  generateComInterfaces(win32Scope, comTypesToGenerate);
 
   MetadataStore.close();
+  stopwatch.stop();
+  print('[${stopwatch.elapsed}] Completed');
 }

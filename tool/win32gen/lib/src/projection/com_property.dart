@@ -2,20 +2,18 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import '../extensions/string.dart';
 import 'com_method.dart';
-import 'safenames.dart';
-import 'utils.dart';
-
-// TODO: Deal with fake properties like IUPnPServices.get_Item([In], [Out]).
+import 'type.dart';
 
 abstract class ComPropertyProjection extends ComMethodProjection {
-  ComPropertyProjection(super.method, super.vtableOffset);
+  ComPropertyProjection(super.method);
 
   /// Strip off all underscores, even if double underscores
   String get exposedMethodName =>
       method.name.startsWith('get__') | method.name.startsWith('put__')
-          ? safeIdentifierForString(method.name.substring(5)).toCamelCase()
-          : safeIdentifierForString(method.name.substring(4)).toCamelCase();
+          ? method.name.substring(5).safeIdentifier.toCamelCase()
+          : method.name.substring(4).safeIdentifier.toCamelCase();
 
   String ffiCall({
     required String identifier,
@@ -31,13 +29,13 @@ abstract class ComPropertyProjection extends ComMethodProjection {
 }
 
 class ComGetPropertyProjection extends ComPropertyProjection {
-  ComGetPropertyProjection(super.method, super.vtableOffset);
+  ComGetPropertyProjection(super.method);
 
   bool get convertBool => parameters.first.type.dartType == 'bool';
 
   @override
   String toString() {
-    final returnValue = dereference(parameters.first.type);
+    final returnValue = parameters.first.type.dereference();
     final valRef = returnValue.dartType == 'double' ||
             returnValue.dartType == 'int' ||
             returnValue.dartType == 'VTablePointer' ||
@@ -45,29 +43,29 @@ class ComGetPropertyProjection extends ComPropertyProjection {
         ? 'value'
         : 'ref';
     return '''
-      ${returnValue.dartType} get $exposedMethodName {
-        final retValuePtr = calloc<${returnValue.nativeType}>();
+  ${returnValue.dartType} get $exposedMethodName {
+    final retValuePtr = calloc<${returnValue.nativeType}>();
 
-        try {
-          ${ffiCall(identifier: 'retValuePtr')}
+    try {
+      ${ffiCall(identifier: 'retValuePtr')}
 
-          final retValue = retValuePtr.$valRef;
-          return ${convertBool ? 'retValue == 0' : 'retValue'};
-        } finally {
-          free(retValuePtr);
-        }
-      }
+      final retValue = retValuePtr.$valRef;
+      return ${convertBool ? 'retValue == 0' : 'retValue'};
+    } finally {
+      free(retValuePtr);
+    }
+  }
 ''';
   }
 }
 
 class ComSetPropertyProjection extends ComPropertyProjection {
-  ComSetPropertyProjection(super.method, super.vtableOffset);
+  ComSetPropertyProjection(super.method);
 
   @override
   String toString() => '''
-    set $exposedMethodName(${parameters.first.type.dartType} value) {
-      ${ffiCall(identifier: 'value')}
-    }
+  set $exposedMethodName(${parameters.first.type.dartType} value) {
+    ${ffiCall(identifier: 'value')}
+  }
 ''';
 }

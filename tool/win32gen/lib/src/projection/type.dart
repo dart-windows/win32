@@ -4,11 +4,16 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../attributes.dart';
+import '../extensions/string.dart';
+import '../extensions/typedef.dart';
 import '../model/load_json.dart';
-import 'utils.dart';
 
 class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
+
+  const TypeTuple.fromNativeType(String nativeType, {String? attribute})
+      : this(nativeType, nativeType, attribute: attribute);
 
   /// The type, as represented in the native function (e.g. `Uint64`)
   final String nativeType;
@@ -39,12 +44,10 @@ const Map<BaseType, TypeTuple> baseNativeMapping = {
 };
 
 const Map<String, TypeTuple> specialTypes = {
-  'System.Guid': TypeTuple('GUID', 'GUID'),
-  'Windows.Win32.Foundation.BSTR':
-      TypeTuple('Pointer<Utf16>', 'Pointer<Utf16>'),
-  'Windows.Win32.Foundation.PSTR': TypeTuple('Pointer<Utf8>', 'Pointer<Utf8>'),
-  'Windows.Win32.Foundation.PWSTR':
-      TypeTuple('Pointer<Utf16>', 'Pointer<Utf16>'),
+  'System.Guid': TypeTuple.fromNativeType('GUID'),
+  'Windows.Win32.Foundation.BSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
+  'Windows.Win32.Foundation.PSTR': TypeTuple.fromNativeType('Pointer<Utf8>'),
+  'Windows.Win32.Foundation.PWSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
 };
 
 final callbackTypeMapping = loadMap('win32_callbacks.json');
@@ -62,126 +65,47 @@ class TypeProjection {
   String get dartType => projection.dartType;
   int? get arrayUpperBound => typeIdentifier.arrayDimensions?.first;
 
+  bool get isArrayType => typeIdentifier.baseType == BaseType.arrayTypeModifier;
+
+  bool get isBaseType =>
+      baseNativeMapping.keys.contains(typeIdentifier.baseType);
+
+  bool get isCharArray =>
+      isArrayType && typeIdentifier.typeArg?.baseType == BaseType.charType;
+
   /// Is the resultant Dart type atomic?
   bool get isDartPrimitive =>
       ['void', 'bool', 'int', 'double'].contains(dartType) ||
       dartType.startsWith('Pointer') ||
       dartType.startsWith('Array');
 
-  bool get isBaseType =>
-      baseNativeMapping.keys.contains(typeIdentifier.baseType);
-
-  bool get isWin32SpecialType =>
-      specialTypes.keys.contains(typeIdentifier.name);
-
-  bool get isString => typeIdentifier.baseType == BaseType.stringType;
+  bool get isDelegate =>
+      typeIdentifier.baseType == BaseType.classTypeModifier &&
+      typeIdentifier.name.startsWith('Windows.Win32') &&
+      typeIdentifier.type?.parent?.name == 'System.MulticastDelegate';
 
   bool get isEnumType => typeIdentifier.type?.parent?.name == 'System.Enum';
 
-  bool get isGenericType =>
-      typeIdentifier.baseType == BaseType.genericTypeModifier;
-
-  bool get isReferenceType =>
-      typeIdentifier.baseType == BaseType.referenceTypeModifier;
-
-  bool get isWrappedValueType =>
-      typeIdentifier.baseType == BaseType.valueTypeModifier;
+  bool get isInterface => typeIdentifier.type?.isInterface ?? false;
 
   bool get isPointerType =>
       typeIdentifier.baseType == BaseType.pointerTypeModifier;
 
-  bool get isArrayType => typeIdentifier.baseType == BaseType.arrayTypeModifier;
+  bool get isReferenceType =>
+      typeIdentifier.baseType == BaseType.referenceTypeModifier;
 
   bool get isSimpleArrayType =>
       typeIdentifier.baseType == BaseType.simpleArrayType;
 
-  bool get _isDelegate =>
-      typeIdentifier.type?.parent?.name == 'System.MulticastDelegate';
+  bool get isSpecialType => specialTypes.keys.contains(typeIdentifier.name);
 
-  bool get isWin32Delegate =>
-      typeIdentifier.baseType == BaseType.classTypeModifier &&
-      typeIdentifier.name.startsWith('Windows.Win32') &&
-      _isDelegate;
-
-  bool get isClass => typeIdentifier.type?.isClass ?? false;
-
-  bool get isInterface => typeIdentifier.type?.isInterface ?? false;
-
-  bool get isObject => typeIdentifier.baseType == BaseType.objectType;
-
-  bool get isWinRT => typeIdentifier.type?.isWindowsRuntime ?? false;
-
-  bool get isWinRTDelegate => isWinRT && _isDelegate;
-
-  bool get isWinRTEnum => isWinRT && isEnumType;
-
-  bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
-
-  TypeTuple unwrapEnumType() {
-    final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
-    if (fieldType == null) {
-      throw Exception('Enum $typeIdentifier is missing value__');
-    }
-    return TypeProjection(fieldType).projection;
-  }
-
-  TypeTuple unwrapValueType() {
-    final wrappedType = typeIdentifier.type;
-    if (wrappedType == null) {
-      throw Exception(
-          'Wrapped type TypeIdentifier missing for $typeIdentifier.');
-    }
-
-    // A type like HWND
-    if (wrappedType.existsAttribute(
-            'Windows.Win32.Foundation.Metadata.NativeTypedefAttribute') ||
-        wrappedType.existsAttribute(
-            'Windows.Win32.Foundation.Metadata.MetadataTypedefAttribute')) {
-      final typeIdentifier = wrappedType.fields.first.typeIdentifier;
-      return TypeProjection(typeIdentifier).projection;
-    }
-
-    if (wrappedType.isNested) {
-      final typeClass = mangleName(wrappedType);
-      return TypeTuple(typeClass, typeClass);
-    }
-
-    final typeClass = stripAnsiUnicodeSuffix(lastComponent(wrappedType.name));
-    return TypeTuple(typeClass, typeClass);
-  }
-
-  /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
-  /// converts it to `Pointer<Uint32>.
-  TypeTuple unwrapPointerType() {
-    if (typeIdentifier.typeArg == null) {
-      throw Exception('Pointer type missing for $typeIdentifier.');
-    }
-    final typeArg = TypeProjection(typeIdentifier.typeArg!);
-
-    // Strip leading underscores (unless the type is nested, in which
-    // case leave one behind).
-    final typeArgNativeType = typeIdentifier.typeArg?.type?.isNested ?? false
-        ? '_${stripLeadingUnderscores(typeArg.projection.nativeType)}'
-        : stripLeadingUnderscores(typeArg.projection.nativeType);
-
-    // Pointer<Void> in Dart is unnecessarily restrictive, versus the
-    // Win32 meaning, which is more like "undefined type". We can
-    // model that with a generic Pointer in Dart.
-    final projection = typeArg.projection;
-    if (projection.nativeType == 'Void') {
-      return const TypeTuple('Pointer', 'Pointer');
-    }
-
-    final nativeType = 'Pointer<$typeArgNativeType>';
-    final dartType = 'Pointer<$typeArgNativeType>';
-
-    return TypeTuple(nativeType, dartType);
-  }
+  bool get isWrappedValueType =>
+      typeIdentifier.baseType == BaseType.valueTypeModifier;
 
   TypeTuple unwrapArrayType() {
     if (typeIdentifier.typeArg == null ||
         typeIdentifier.arrayDimensions == null) {
-      throw Exception('Array information missing for $typeIdentifier.');
+      throw StateError('Array information missing for $typeIdentifier.');
     }
 
     final typeArg = TypeProjection(typeIdentifier.typeArg!);
@@ -190,37 +114,85 @@ class TypeProjection {
     // expensive operation.
     final typeArgNativeType = typeIdentifier.typeArg?.type?.isNested ?? false
         ? typeArg.nativeType
-        : stripLeadingUnderscores(typeArg.nativeType);
+        : typeArg.nativeType.stripLeadingUnderscores();
 
-    final nativeType = 'Array<$typeArgNativeType>';
-    final dartType = 'Array<$typeArgNativeType>';
     final upperBound = typeIdentifier.arrayDimensions?.first;
-
-    return TypeTuple(nativeType, dartType, attribute: '@Array($upperBound)');
+    return TypeTuple.fromNativeType('Array<$typeArgNativeType>',
+        attribute: '@Array($upperBound)');
   }
 
   TypeTuple unwrapCallbackType() {
     const voidCallbackTypes = <String, String>{
       'FARPROC': 'Pointer',
-      'PROC': 'Pointer',
       'NEARPROC': 'Pointer',
+      'PROC': 'Pointer',
     };
 
     final callbackType =
-        stripLeadingUnderscores(lastComponent(typeIdentifier.name));
-
+        typeIdentifier.name.lastComponent.stripLeadingUnderscores();
     if (voidCallbackTypes.keys.contains(callbackType)) {
-      final mappedType = voidCallbackTypes[callbackType]!;
-      return TypeTuple(mappedType, mappedType);
+      return TypeTuple.fromNativeType(voidCallbackTypes[callbackType]!);
     } else if (callbackTypeMapping.keys.contains(callbackType)) {
-      final mappedType = callbackTypeMapping[callbackType]!;
-      return TypeTuple(mappedType, mappedType);
+      return TypeTuple.fromNativeType(callbackTypeMapping[callbackType]!);
     }
 
-    final nativeType = 'Pointer<NativeFunction<$callbackType>>';
-    final dartType = 'Pointer<NativeFunction<$callbackType>>';
+    return TypeTuple.fromNativeType('Pointer<NativeFunction<$callbackType>>');
+  }
 
-    return TypeTuple(nativeType, dartType);
+  TypeTuple unwrapEnumType() {
+    final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
+    if (fieldType == null) {
+      throw StateError('Enum $typeIdentifier is missing value__');
+    }
+
+    return TypeProjection(fieldType).projection;
+  }
+
+  /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
+  /// converts it to `Pointer<Uint32>.
+  TypeTuple unwrapPointerType() {
+    if (typeIdentifier.typeArg == null) {
+      throw StateError('Pointer type missing for $typeIdentifier.');
+    }
+
+    final typeArg = TypeProjection(typeIdentifier.typeArg!);
+
+    // Strip leading underscores (unless the type is nested, in which
+    // case leave one behind).
+    final typeArgNativeType = typeIdentifier.typeArg?.type?.isNested ?? false
+        ? '_${typeArg.projection.nativeType.stripLeadingUnderscores()}'
+        : typeArg.projection.nativeType.stripLeadingUnderscores();
+
+    // Pointer<Void> in Dart is unnecessarily restrictive, versus the
+    // Win32 meaning, which is more like "undefined type". We can
+    // model that with a generic Pointer in Dart.
+    if (typeArg.projection.nativeType == 'Void') {
+      return const TypeTuple.fromNativeType('Pointer');
+    }
+
+    return TypeTuple.fromNativeType('Pointer<$typeArgNativeType>');
+  }
+
+  TypeTuple unwrapValueType() {
+    final wrappedType = typeIdentifier.type;
+    if (wrappedType == null) {
+      throw StateError(
+          'Wrapped type TypeIdentifier missing for $typeIdentifier.');
+    }
+
+    // A type like HWND
+    if (wrappedType.existsAttribute(nativeTypedefAttribute) ||
+        wrappedType.existsAttribute(metadataTypedefAttribute)) {
+      final typeIdentifier = wrappedType.fields.first.typeIdentifier;
+      return TypeProjection(typeIdentifier).projection;
+    }
+
+    if (wrappedType.isNested) {
+      return TypeTuple.fromNativeType(wrappedType.mangleName());
+    }
+
+    final typeClass = wrappedType.nameWithoutAnsiUnicodeSuffix.lastComponent;
+    return TypeTuple.fromNativeType(typeClass);
   }
 
   TypeTuple projectType() {
@@ -228,7 +200,7 @@ class TypeProjection {
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
 
     // Could be a string or other special type that we want to custom-map
-    if (isWin32SpecialType) return specialTypes[typeIdentifier.name]!;
+    if (isSpecialType) return specialTypes[typeIdentifier.name]!;
 
     // Could be an enum like FOLDERFLAGS
     if (isEnumType) return unwrapEnumType();
@@ -236,13 +208,24 @@ class TypeProjection {
     // Could be a wrapped type (e.g. a HWND)
     if (isWrappedValueType) return unwrapValueType();
 
-    if (isPointerType) return unwrapPointerType();
     if (isArrayType) return unwrapArrayType();
-    if (isWin32Delegate) return unwrapCallbackType();
+    if (isDelegate) return unwrapCallbackType();
+    if (isPointerType) return unwrapPointerType();
 
-    if (isInterface) return const TypeTuple('VTablePointer', 'VTablePointer');
+    if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
 
     // default: return the name as returned by metadata
-    throw Exception('Type information missing for $typeIdentifier.');
+    throw StateError('Type information missing for $typeIdentifier.');
+  }
+}
+
+extension TypeProjectionHelpers on TypeProjection {
+  /// Convert a *typeProjection into a typeProjection
+  TypeProjection dereference() {
+    if (typeIdentifier.typeArg case final typeArg?) {
+      return TypeProjection(typeArg);
+    }
+
+    throw StateError('Type $this cannot be de-referenced.');
   }
 }

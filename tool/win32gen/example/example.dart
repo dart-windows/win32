@@ -2,94 +2,91 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:dart_style/dart_style.dart';
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-void printStruct(Scope scope) {
-  final struct = scope
-      .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
-  if (struct != null) {
-    final structProjection = StructProjection(struct, 'DHCP_ALL_OPTIONS');
-    print(structProjection);
-  }
-}
-
-void printFunction(Scope scope) {
-  final typeDef =
-      scope.findTypeDef('Windows.Win32.System.StationsAndDesktops.Apis');
-  final method = typeDef?.findMethod('BroadcastSystemMessageW');
-
-  if (method != null) {
-    final functionProjection = FunctionProjection(method, 'user32');
-    print(functionProjection);
-  }
-}
-
-void printCallback(Scope scope) {
-  final callback = scope
-      .findTypeDef('Windows.Win32.System.StationsAndDesktops.DESKTOPENUMPROCW');
-
-  if (callback != null) {
-    final callbackProjection = CallbackProjection(callback);
+void printCallback(
+    [String type =
+        'Windows.Win32.System.StationsAndDesktops.DESKTOPENUMPROCW']) {
+  final typeDef = MetadataStore.getMetadataForType(type);
+  if (typeDef != null) {
+    final callbackProjection = CallbackProjection(typeDef);
     print(callbackProjection);
   }
 }
 
-void printComMethod(Scope scope) {
-  final interface =
-      scope.findTypeDef('Windows.Win32.UI.Shell.IDesktopWallpaper');
-  final method = interface?.findMethod('SetWallpaper');
+void printFunction([String name = 'BroadcastSystemMessageW']) {
+  final scope = MetadataStore.scopeCache['Windows.Win32.winmd']!;
+  for (final typeDef in scope.typeDefs.where((e) => e.name.endsWith('Apis'))) {
+    final method = typeDef.findMethod(name);
+    if (method != null) {
+      final functionProjection = FunctionProjection(method);
+      print(functionProjection.toString().format());
+    }
+  }
+}
 
+void printStruct(
+    [String type =
+        'Windows.Win32.Devices.Usb.USB_NODE_CONNECTION_INFORMATION_EX']) {
+  final typeDef = MetadataStore.getMetadataForType(type);
+  if (typeDef != null) {
+    final structProjection = StructProjection(typeDef, type.lastComponent);
+    print(structProjection.toString().format());
+  }
+}
+
+void printComInterface(
+    [String type = 'Windows.Win32.UI.Shell.IFileOpenDialog']) {
+  final typeDef = MetadataStore.getMetadataForType(type);
+  if (typeDef != null) {
+    final interfaceProjection = ComInterfaceProjection(typeDef);
+    print(interfaceProjection.toString().format());
+  }
+}
+
+void printComClass([String type = 'Windows.Win32.UI.Shell.IFileOpenDialog']) {
+  final typeDef = MetadataStore.getMetadataForType(type);
+  if (typeDef != null) {
+    final classProjection = ComClassProjection.fromInterface(typeDef);
+    print(classProjection.toString().format());
+  }
+}
+
+void printComMethod(String interface, String methodName) {
+  final typeDef = MetadataStore.getMetadataForType(interface);
+  final method = typeDef?.findMethod(methodName);
   if (method != null) {
-    final methodProjection = ComMethodProjection(method, 3);
-    print(methodProjection);
+    final methodProjection = ComMethodProjection(method);
+    print(methodProjection.toString().format());
   }
 }
 
-void printComGetProperty(Scope scope) {
-  final interface = scope.findTypeDef(
-      'Windows.Win32.Security.Cryptography.Certificates.ICEnroll4');
-  final method = interface?.findMethod('get_IncludeSubjectKeyID');
-
+void printComGetProperty(String interface, String propertyName) {
+  final typeDef = MetadataStore.getMetadataForType(interface);
+  final method = typeDef?.findMethod(propertyName);
   if (method != null) {
-    final methodProjection = ComGetPropertyProjection(method, 122);
-    print(methodProjection);
+    final methodProjection = ComGetPropertyProjection(method);
+    print(methodProjection.toString().format());
   }
 }
 
-void printComSetProperty(Scope scope) {
-  final interface = scope.findTypeDef(
-      'Windows.Win32.Networking.ActiveDirectory.IADsPropertyEntry');
-  final method = interface?.findMethod('put_Name');
-
+void printComSetProperty(String interface, String propertyName) {
+  final typeDef = MetadataStore.getMetadataForType(interface);
+  final method = typeDef?.findMethod(propertyName);
   if (method != null) {
-    final methodProjection = ComSetPropertyProjection(method, 11);
-    print(methodProjection);
+    final methodProjection = ComSetPropertyProjection(method);
+    print(methodProjection.toString().format());
   }
 }
 
-void printComInterface(Scope scope) {
-  final interface =
-      scope.findTypeDef('Windows.Win32.Media.DirectShow.ITuningSpace');
-
-  if (interface != null) {
-    final interfaceProjection = ComInterfaceProjection(interface);
-    print(interfaceProjection);
-  }
-}
-
-void printComClass(Scope scope) {
-  final comClass = scope.findTypeDef('Windows.Win32.UI.Shell.IFileOpenDialog');
-
-  if (comClass != null) {
-    final classProjection = ComClassProjection.fromInterface(comClass);
-    print(classProjection);
-  }
+extension on String {
+  String format() => DartFormatter().format(this);
 }
 
 void main() async {
-  final scope =
-      await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  printStruct(scope);
+  await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+  printStruct();
   MetadataStore.close();
 }

@@ -4,13 +4,13 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/typedef.dart';
 import 'com_interface.dart';
-import 'utils.dart';
 
 class ComClassProjection extends ComInterfaceProjection {
-  final ComInterfaceProjection interface;
-
   ComClassProjection(super.typeDef, this.interface, [super.comment]);
+
+  final ComInterfaceProjection interface;
 
   factory ComClassProjection.fromInterface(
     TypeDef interface, {
@@ -19,9 +19,8 @@ class ComClassProjection extends ComInterfaceProjection {
   }) {
     final className = generateClassName(interface);
     final classTypeDef = interface.scope.findTypeDef(className);
-
     if (classTypeDef == null) {
-      throw Exception('Missing a matching class for ${interface.name}.');
+      throw StateError('Missing a matching class for ${interface.name}.');
     }
 
     return ComClassProjection(
@@ -48,7 +47,8 @@ class ComClassProjection extends ComInterfaceProjection {
       return _interfaceToClassMapping[interface.name]!;
     }
 
-    final interfaceNameAsList = interface.name.split('.');
+    final interfaceNameAsList =
+        interface.nameWithoutAnsiUnicodeSuffix.split('.');
 
     // Strip off the 'I' from the last component
     final fullyQualifiedClassName =
@@ -56,8 +56,7 @@ class ComClassProjection extends ComInterfaceProjection {
               ..add(interfaceNameAsList.last.substring(1)))
             .join('.');
 
-    // If class has a 'W' or 'A' suffix, erase it.
-    return stripAnsiUnicodeSuffix(fullyQualifiedClassName);
+    return fullyQualifiedClassName;
   }
 
   @override
