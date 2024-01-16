@@ -70,9 +70,6 @@ dartdoc:
     'enum':
       name: 'Enumerations'
       markdown: doc/enum.md
-    'examples':
-      name: 'Sample apps'
-      markdown: doc/examples.md
   categoryOrder:
     [
       'kernel32',
@@ -107,7 +104,6 @@ dartdoc:
       'winrt',
       'struct',
       'enum',
-      'examples',
     ]
   showUndocumentedCategories: true
   nodoc: ['lib/src/constants_nodoc.dart']
