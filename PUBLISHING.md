@@ -4,10 +4,7 @@ Rough notes on steps I take to publish a new version of win32:
    the latest.
 
 2. Run `dart test` to make sure all the automated tests are still working.
-
-   - Optionally, also run it from Windows 7 to make sure nothing downlevel has
-     failed.
-   - These tests are also run through CI/CD on GitHub.
+   These tests are also run through CI/CD on GitHub.
 
 3. Bump the version in `pubspec.yaml` and update `CHANGELOG.md`.
 
