@@ -115,7 +115,7 @@ void generateFunctions(
   final testFile = '''
   $testFunctionsHeader
 
-  import 'helpers.dart';
+  import '../helpers.dart';
 
   void main() {
   final windowsBuildNumber = getWindowsBuildNumber();
@@ -123,7 +123,7 @@ void generateFunctions(
   }
 ''';
 
-  File('../../test/api_test.dart')
+  File('../../test/win32/api_test.dart')
       .writeAsStringSync(DartFormatter().format(testFile));
 }
 

@@ -10,7 +10,7 @@ import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
-import 'helpers.dart';
+import '../helpers.dart';
 
 void main() {
   test('CLSIDFromString', () {
