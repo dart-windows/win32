@@ -74,7 +74,7 @@ class NestedStructProjection extends StructProjection {
       buffer.writeln('''
   $fieldType get $safeFieldName => this.$instanceName;
   set $safeFieldName($fieldType value) => this.$instanceName = value;
-      ''');
+''');
     }
     buffer.writeln('}');
     return buffer.toString();

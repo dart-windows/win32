@@ -144,7 +144,7 @@ class Guid {
     if (other is! Guid) return false;
 
     for (var i = 0; i < 16; i++) {
-      if (this.bytes[i] != other.bytes[i]) return false;
+      if (bytes[i] != other.bytes[i]) return false;
     }
 
     return true;
