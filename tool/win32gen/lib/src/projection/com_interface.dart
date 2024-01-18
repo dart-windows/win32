@@ -99,7 +99,7 @@ class ComInterfaceProjection {
       final interfaceName =
           typeDef.interfaces.first.name.lastComponent.toLowerCase();
       if (interfaceName.isNotEmpty) {
-        return {'$interfaceName.dart', 'iunknown.dart'};
+        return {'$interfaceName.g.dart', 'iunknown.g.dart'};
       }
     }
 

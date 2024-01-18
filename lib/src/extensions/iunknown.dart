@@ -6,7 +6,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../com/iunknown.dart';
+import '../com/iunknown.g.dart';
 import '../exceptions.dart';
 import '../macros.dart';
 import '../types.dart';

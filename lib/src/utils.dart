@@ -10,7 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'com/iunknown.dart';
+import 'com/iunknown.g.dart';
 import 'constants.dart';
 import 'exceptions.dart';
 import 'extensions/int_to_hexstring.dart';

@@ -200,7 +200,7 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
     final dartClass = comObject.toString();
     final classOutputFilename =
         typeDef.nameWithoutAnsiUnicodeSuffix.lastComponent.toLowerCase();
-    final classOutputPath = '../../lib/src/com/$classOutputFilename.dart';
+    final classOutputPath = '../../lib/src/com/$classOutputFilename.g.dart';
     File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
   }
 }

@@ -10,8 +10,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'com/idispatch.dart';
-import 'com/iunknown.dart';
+import 'com/idispatch.g.dart';
+import 'com/iunknown.g.dart';
 import 'constants.dart';
 import 'structs.g.dart';
 import 'types.dart';
