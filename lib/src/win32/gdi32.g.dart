@@ -63,8 +63,8 @@ final _AddFontResource = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int AddFontResourceEx(Pointer<Utf16> name, int fl, Pointer res) =>
-    _AddFontResourceEx(name, fl, res);
+int AddFontResourceEx(Pointer<Utf16> name, int fl) =>
+    _AddFontResourceEx(name, fl, nullptr);
 
 final _AddFontResourceEx = _gdi32.lookupFunction<
     Int32 Function(Pointer<Utf16> name, Uint32 fl, Pointer res),

@@ -7,6 +7,7 @@
 // ignore_for_file: camel_case_extensions
 
 import 'dart:ffi';
+
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
@@ -41,8 +42,8 @@ Size getMonitorSizeInMM() {
     final lpcbData = calloc<DWORD>()..value = edidDataSize;
 
     // Get the first value of the registry key for the first member of the first monitor
-    final retValue = RegEnumValue(hDevRegKey, 0, lpValueName, lpcchValueName,
-        nullptr, nullptr, lpData, lpcbData);
+    final retValue = RegEnumValue(
+        hDevRegKey, 0, lpValueName, lpcchValueName, nullptr, lpData, lpcbData);
 
     // https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
     // Extended Display Identification Data (EDID) of the first monitor

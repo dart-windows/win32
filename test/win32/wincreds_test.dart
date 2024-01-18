@@ -46,7 +46,7 @@ String readCredential(String credentialName) {
   final pCredName = credentialName.toNativeUtf16();
 
   try {
-    if (CredRead(pCredName, CRED_TYPE_GENERIC, 0, credPointer) != TRUE) {
+    if (CredRead(pCredName, CRED_TYPE_GENERIC, credPointer) != TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
 
@@ -66,7 +66,7 @@ void deleteCredential(String credentialName) {
   final pCredName = credentialName.toNativeUtf16();
 
   try {
-    if (CredDelete(pCredName, CRED_TYPE_GENERIC, 0) != TRUE) {
+    if (CredDelete(pCredName, CRED_TYPE_GENERIC) != TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
   } finally {

@@ -528,8 +528,8 @@ final _ChangeDisplaySettings = _user32.lookupFunction<
 /// ```
 /// {@category user32}
 int ChangeDisplaySettingsEx(Pointer<Utf16> lpszDeviceName,
-        Pointer<DEVMODE> lpDevMode, int hwnd, int dwflags, Pointer lParam) =>
-    _ChangeDisplaySettingsEx(lpszDeviceName, lpDevMode, hwnd, dwflags, lParam);
+        Pointer<DEVMODE> lpDevMode, int dwflags, Pointer lParam) =>
+    _ChangeDisplaySettingsEx(lpszDeviceName, lpDevMode, 0, dwflags, lParam);
 
 final _ChangeDisplaySettingsEx = _user32.lookupFunction<
     Int32 Function(Pointer<Utf16> lpszDeviceName, Pointer<DEVMODE> lpDevMode,
@@ -905,15 +905,10 @@ final _CreateCursor = _user32.lookupFunction<
 /// );
 /// ```
 /// {@category user32}
-int CreateDesktop(
-        Pointer<Utf16> lpszDesktop,
-        Pointer<Utf16> lpszDevice,
-        Pointer<DEVMODE> pDevmode,
-        int dwFlags,
-        int dwDesiredAccess,
+int CreateDesktop(Pointer<Utf16> lpszDesktop, int dwFlags, int dwDesiredAccess,
         Pointer<SECURITY_ATTRIBUTES> lpsa) =>
     _CreateDesktop(
-        lpszDesktop, lpszDevice, pDevmode, dwFlags, dwDesiredAccess, lpsa);
+        lpszDesktop, nullptr, nullptr, dwFlags, dwDesiredAccess, lpsa);
 
 final _CreateDesktop = _user32.lookupFunction<
     IntPtr Function(
@@ -952,15 +947,12 @@ final _CreateDesktop = _user32.lookupFunction<
 /// {@category user32}
 int CreateDesktopEx(
         Pointer<Utf16> lpszDesktop,
-        Pointer<Utf16> lpszDevice,
-        Pointer<DEVMODE> pDevmode,
         int dwFlags,
         int dwDesiredAccess,
         Pointer<SECURITY_ATTRIBUTES> lpsa,
-        int ulHeapSize,
-        Pointer pvoid) =>
-    _CreateDesktopEx(lpszDesktop, lpszDevice, pDevmode, dwFlags,
-        dwDesiredAccess, lpsa, ulHeapSize, pvoid);
+        int ulHeapSize) =>
+    _CreateDesktopEx(lpszDesktop, nullptr, nullptr, dwFlags, dwDesiredAccess,
+        lpsa, ulHeapSize, nullptr);
 
 final _CreateDesktopEx = _user32.lookupFunction<
     IntPtr Function(
@@ -4737,7 +4729,7 @@ final _InSendMessage =
 /// );
 /// ```
 /// {@category user32}
-int InSendMessageEx(Pointer lpReserved) => _InSendMessageEx(lpReserved);
+int InSendMessageEx() => _InSendMessageEx(nullptr);
 
 final _InSendMessageEx = _user32.lookupFunction<
     Uint32 Function(Pointer lpReserved),
@@ -7951,9 +7943,9 @@ final _ToUnicodeEx = _user32.lookupFunction<
 /// );
 /// ```
 /// {@category user32}
-int TrackPopupMenu(int hMenu, int uFlags, int x, int y, int nReserved, int hWnd,
-        Pointer<RECT> prcRect) =>
-    _TrackPopupMenu(hMenu, uFlags, x, y, nReserved, hWnd, prcRect);
+int TrackPopupMenu(
+        int hMenu, int uFlags, int x, int y, int hWnd, Pointer<RECT> prcRect) =>
+    _TrackPopupMenu(hMenu, uFlags, x, y, 0, hWnd, prcRect);
 
 final _TrackPopupMenu = _user32.lookupFunction<
     Int32 Function(IntPtr hMenu, Uint32 uFlags, Int32 x, Int32 y,

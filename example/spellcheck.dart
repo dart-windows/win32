@@ -24,7 +24,7 @@ void main(List<String> args) {
 
   final text = args.first;
 
-  CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
   final spellCheckerFactory = SpellCheckerFactory.createInstance();
 

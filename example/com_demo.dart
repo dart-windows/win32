@@ -4,8 +4,6 @@
 
 // Demonstrates COM object creation and casting from Dart
 
-import 'dart:ffi';
-
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
@@ -13,8 +11,7 @@ void main() {
   final pTitle = 'Dart Open File Dialog'.toNativeUtf16();
 
   // Initialize COM
-  var hr = CoInitializeEx(
-      nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   // Create an instance of the FileOpenDialog class w/ IFileDialog interface

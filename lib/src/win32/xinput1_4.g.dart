@@ -120,9 +120,8 @@ final _XInputGetCapabilities = _xinput1_4.lookupFunction<
 /// );
 /// ```
 /// {@category xinput}
-int XInputGetKeystroke(int dwUserIndex, int dwReserved,
-        Pointer<XINPUT_KEYSTROKE> pKeystroke) =>
-    _XInputGetKeystroke(dwUserIndex, dwReserved, pKeystroke);
+int XInputGetKeystroke(int dwUserIndex, Pointer<XINPUT_KEYSTROKE> pKeystroke) =>
+    _XInputGetKeystroke(dwUserIndex, 0, pKeystroke);
 
 final _XInputGetKeystroke = _xinput1_4.lookupFunction<
     Uint32 Function(Uint32 dwUserIndex, Uint32 dwReserved,

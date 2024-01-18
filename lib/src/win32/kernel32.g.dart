@@ -457,14 +457,10 @@ final _CreateActCtx = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int CreateConsoleScreenBuffer(
-        int dwDesiredAccess,
-        int dwShareMode,
-        Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes,
-        int dwFlags,
-        Pointer lpScreenBufferData) =>
-    _CreateConsoleScreenBuffer(dwDesiredAccess, dwShareMode,
-        lpSecurityAttributes, dwFlags, lpScreenBufferData);
+int CreateConsoleScreenBuffer(int dwDesiredAccess, int dwShareMode,
+        Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes, int dwFlags) =>
+    _CreateConsoleScreenBuffer(
+        dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwFlags, nullptr);
 
 final _CreateConsoleScreenBuffer = _kernel32.lookupFunction<
     IntPtr Function(
@@ -1698,15 +1694,10 @@ final _FindFirstFile = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int FindFirstFileEx(
-        Pointer<Utf16> lpFileName,
-        int fInfoLevelId,
-        Pointer lpFindFileData,
-        int fSearchOp,
-        Pointer lpSearchFilter,
-        int dwAdditionalFlags) =>
+int FindFirstFileEx(Pointer<Utf16> lpFileName, int fInfoLevelId,
+        Pointer lpFindFileData, int fSearchOp, int dwAdditionalFlags) =>
     _FindFirstFileEx(lpFileName, fInfoLevelId, lpFindFileData, fSearchOp,
-        lpSearchFilter, dwAdditionalFlags);
+        nullptr, dwAdditionalFlags);
 
 final _FindFirstFileEx = _kernel32.lookupFunction<
     IntPtr Function(
@@ -1762,9 +1753,9 @@ final _FindFirstFileName = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int FindFirstStream(Pointer<Utf16> lpFileName, int InfoLevel,
-        Pointer lpFindStreamData, int dwFlags) =>
-    _FindFirstStream(lpFileName, InfoLevel, lpFindStreamData, dwFlags);
+int FindFirstStream(
+        Pointer<Utf16> lpFileName, int InfoLevel, Pointer lpFindStreamData) =>
+    _FindFirstStream(lpFileName, InfoLevel, lpFindStreamData, 0);
 
 final _FindFirstStream = _kernel32.lookupFunction<
     IntPtr Function(Pointer<Utf16> lpFileName, Int32 InfoLevel,
@@ -4754,9 +4745,9 @@ final _HeapWalk = _kernel32.lookupFunction<
 /// ```
 /// {@category kernel32}
 int InitializeProcThreadAttributeList(Pointer lpAttributeList,
-        int dwAttributeCount, int dwFlags, Pointer<IntPtr> lpSize) =>
+        int dwAttributeCount, Pointer<IntPtr> lpSize) =>
     _InitializeProcThreadAttributeList(
-        lpAttributeList, dwAttributeCount, dwFlags, lpSize);
+        lpAttributeList, dwAttributeCount, 0, lpSize);
 
 final _InitializeProcThreadAttributeList = _kernel32.lookupFunction<
     Int32 Function(Pointer lpAttributeList, Uint32 dwAttributeCount,
@@ -4885,8 +4876,8 @@ final _LoadLibrary = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int LoadLibraryEx(Pointer<Utf16> lpLibFileName, int hFile, int dwFlags) =>
-    _LoadLibraryEx(lpLibFileName, hFile, dwFlags);
+int LoadLibraryEx(Pointer<Utf16> lpLibFileName, int dwFlags) =>
+    _LoadLibraryEx(lpLibFileName, 0, dwFlags);
 
 final _LoadLibraryEx = _kernel32.lookupFunction<
     IntPtr Function(Pointer<Utf16> lpLibFileName, IntPtr hFile, Uint32 dwFlags),
@@ -4965,14 +4956,9 @@ final _LockFile = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int LockFileEx(
-        int hFile,
-        int dwFlags,
-        int dwReserved,
-        int nNumberOfBytesToLockLow,
-        int nNumberOfBytesToLockHigh,
-        Pointer<OVERLAPPED> lpOverlapped) =>
-    _LockFileEx(hFile, dwFlags, dwReserved, nNumberOfBytesToLockLow,
+int LockFileEx(int hFile, int dwFlags, int nNumberOfBytesToLockLow,
+        int nNumberOfBytesToLockHigh, Pointer<OVERLAPPED> lpOverlapped) =>
+    _LockFileEx(hFile, dwFlags, 0, nNumberOfBytesToLockLow,
         nNumberOfBytesToLockHigh, lpOverlapped);
 
 final _LockFileEx = _kernel32.lookupFunction<
@@ -5522,14 +5508,10 @@ final _ReadFileEx = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int ReadFileScatter(
-        int hFile,
-        Pointer<FILE_SEGMENT_ELEMENT> aSegmentArray,
-        int nNumberOfBytesToRead,
-        Pointer<Uint32> lpReserved,
-        Pointer<OVERLAPPED> lpOverlapped) =>
+int ReadFileScatter(int hFile, Pointer<FILE_SEGMENT_ELEMENT> aSegmentArray,
+        int nNumberOfBytesToRead, Pointer<OVERLAPPED> lpOverlapped) =>
     _ReadFileScatter(
-        hFile, aSegmentArray, nNumberOfBytesToRead, lpReserved, lpOverlapped);
+        hFile, aSegmentArray, nNumberOfBytesToRead, nullptr, lpOverlapped);
 
 final _ReadFileScatter = _kernel32.lookupFunction<
     Int32 Function(
@@ -6730,9 +6712,9 @@ final _UnlockFile = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int UnlockFileEx(int hFile, int dwReserved, int nNumberOfBytesToUnlockLow,
+int UnlockFileEx(int hFile, int nNumberOfBytesToUnlockLow,
         int nNumberOfBytesToUnlockHigh, Pointer<OVERLAPPED> lpOverlapped) =>
-    _UnlockFileEx(hFile, dwReserved, nNumberOfBytesToUnlockLow,
+    _UnlockFileEx(hFile, 0, nNumberOfBytesToUnlockLow,
         nNumberOfBytesToUnlockHigh, lpOverlapped);
 
 final _UnlockFileEx = _kernel32.lookupFunction<
@@ -7160,14 +7142,10 @@ final _Wow64SuspendThread = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int WriteConsole(
-        int hConsoleOutput,
-        Pointer lpBuffer,
-        int nNumberOfCharsToWrite,
-        Pointer<Uint32> lpNumberOfCharsWritten,
-        Pointer lpReserved) =>
+int WriteConsole(int hConsoleOutput, Pointer lpBuffer,
+        int nNumberOfCharsToWrite, Pointer<Uint32> lpNumberOfCharsWritten) =>
     _WriteConsole(hConsoleOutput, lpBuffer, nNumberOfCharsToWrite,
-        lpNumberOfCharsWritten, lpReserved);
+        lpNumberOfCharsWritten, nullptr);
 
 final _WriteConsole = _kernel32.lookupFunction<
     Int32 Function(
@@ -7274,14 +7252,10 @@ final _WriteFileEx = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-int WriteFileGather(
-        int hFile,
-        Pointer<FILE_SEGMENT_ELEMENT> aSegmentArray,
-        int nNumberOfBytesToWrite,
-        Pointer<Uint32> lpReserved,
-        Pointer<OVERLAPPED> lpOverlapped) =>
+int WriteFileGather(int hFile, Pointer<FILE_SEGMENT_ELEMENT> aSegmentArray,
+        int nNumberOfBytesToWrite, Pointer<OVERLAPPED> lpOverlapped) =>
     _WriteFileGather(
-        hFile, aSegmentArray, nNumberOfBytesToWrite, lpReserved, lpOverlapped);
+        hFile, aSegmentArray, nNumberOfBytesToWrite, nullptr, lpOverlapped);
 
 final _WriteFileGather = _kernel32.lookupFunction<
     Int32 Function(

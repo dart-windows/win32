@@ -14,8 +14,7 @@ class FunctionProjection {
       : nameWithoutEncoding = method.nameWithoutAnsiUnicodeSuffix,
         returnType = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters
-            .map((param) => ParameterProjection(
-                param.name, TypeProjection(param.typeIdentifier)))
+            .map((param) => ParameterProjection(param.name, param))
             .toList();
 
   final Method method;
@@ -34,23 +33,33 @@ class FunctionProjection {
       ? nameWithoutEncoding.substring(3)
       : nameWithoutEncoding;
 
+  String get dartParams => parameters.map((p) => p.dartProjection).join(', ');
+  String get dartPrototype => '${returnType.dartType} Function($dartParams)';
+
+  String get nativeParams => parameters.map((p) => p.ffiProjection).join(', ');
   String get nativePrototype =>
       '${returnType.nativeType} Function($nativeParams)';
 
-  String get nativeParams =>
-      parameters.map((param) => param.ffiProjection).join(', ');
+  String get publicDartParams => parameters
+      .where((p) => !p.isReserved) // Hide reserved parameters
+      .map((p) => p.dartProjection)
+      .join(', ');
 
-  String get dartPrototype => '${returnType.dartType} Function($dartParams)';
-
-  String get dartParams =>
-      parameters.map((param) => param.dartProjection).join(', ');
+  String get functionArgs => parameters
+      .map((p) => p.isReserved
+          ? p.type.dartType.startsWith('Pointer')
+              ? 'nullptr'
+              : '0'
+          : p.identifier)
+      .join(', ');
 
   @override
   String toString() => '''
-    ${returnType.dartType.safeTypename} $k32StrippedName($dartParams) =>
-      _$nameWithoutEncoding(${parameters.map((param) => param.identifier).join(', ')});
+${returnType.dartType.safeTypename} $k32StrippedName($publicDartParams) =>
+    _$nameWithoutEncoding($functionArgs);
 
-    final _$nameWithoutEncoding =
-      _$lib.lookupFunction<$nativePrototype, $dartPrototype>('${method.name}');
+final _$nameWithoutEncoding = _$lib.lookupFunction<
+    $nativePrototype,
+    $dartPrototype>('${method.name}');
 ''';
 }

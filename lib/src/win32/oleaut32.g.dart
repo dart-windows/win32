@@ -50,9 +50,8 @@ final _DosDateTimeToVariantTime = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int GetActiveObject(Pointer<GUID> rclsid, Pointer pvReserved,
-        Pointer<VTablePointer> ppunk) =>
-    _GetActiveObject(rclsid, pvReserved, ppunk);
+int GetActiveObject(Pointer<GUID> rclsid, Pointer<VTablePointer> ppunk) =>
+    _GetActiveObject(rclsid, nullptr, ppunk);
 
 final _GetActiveObject = _oleaut32.lookupFunction<
     Int32 Function(

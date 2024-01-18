@@ -131,7 +131,8 @@ void main() async {
   final process = await Process.start('notepad.exe', []); // Start notepad.exe
   Sleep(500); // Wait for the Notepad to start
 
-  CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED); // Initialize COM
+  // Initialize COM
+  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
   final notepad = getTopLevelWindowByProcessId(process.pid);
   final window = getWindowPattern(notepad);

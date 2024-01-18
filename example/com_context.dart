@@ -94,8 +94,8 @@ ThreadContext getThreadContext() {
 Future<void> doSomething(SendPort port) {
   // We are now in a spawned isolate. Get some information about the COM context
   // that the current _thread_ has (which may or may not be the original thread
-  // where we ran CoInitialize(), depending on whether Dart is reusing the same
-  // thread or not).
+  // where we ran CoInitializeEx(), depending on whether Dart is reusing the
+  // same thread or not).
   final context = getThreadContext();
 
   // Sleep for a period of time to increase the chances that Dart creates
@@ -141,7 +141,7 @@ Future<void> createIsolates() async {
 /// ```
 void main() async {
   // The main thread is initialized for the COM apartment threading model.
-  CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
   // Should be mainSingleThreaded
   print(getThreadContext().toString());

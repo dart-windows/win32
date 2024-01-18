@@ -24,8 +24,7 @@ abstract class MethodProjection {
       : name = uniquelyNameMethod(method),
         returnType = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters
-            .map((param) => ParameterProjection(
-                param.name, TypeProjection(param.typeIdentifier)))
+            .map((param) => ParameterProjection(param.name, param))
             .toList();
 
   /// The retrieved Windows metadata for the method or property.
@@ -92,19 +91,22 @@ abstract class MethodProjection {
   String get camelCasedName => name.toCamelCase().safeIdentifier;
 
   /// The parameters exposed by a projected Dart method.
-  String get methodParams => parameters.map((p) => p.dartProjection).join(', ');
+  String get methodParams => parameters
+      .where((p) => !p.isReserved) // Hide reserved parameters
+      .map((p) => p.dartProjection)
+      .join(', ');
 
-  /// The native prototype representing the method.
-  String get nativePrototype;
+  String get dartParams;
 
   /// The Dart prototype representing the method.
   String get dartPrototype;
 
+  String get nativeParams;
+
+  /// The native prototype representing the method.
+  String get nativePrototype;
+
   /// The names of the parameters to be passed through to the underlying COM
   /// function.
   String get identifiers;
-
-  String get nativeParams;
-
-  String get dartParams;
 }

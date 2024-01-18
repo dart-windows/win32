@@ -117,11 +117,10 @@ final _GetAdapterIndex = _iphlpapi.lookupFunction<
 int GetAdaptersAddresses(
         int Family,
         int Flags,
-        Pointer Reserved,
         Pointer<IP_ADAPTER_ADDRESSES_LH> AdapterAddresses,
         Pointer<Uint32> SizePointer) =>
     _GetAdaptersAddresses(
-        Family, Flags, Reserved, AdapterAddresses, SizePointer);
+        Family, Flags, nullptr, AdapterAddresses, SizePointer);
 
 final _GetAdaptersAddresses = _iphlpapi.lookupFunction<
     Uint32 Function(

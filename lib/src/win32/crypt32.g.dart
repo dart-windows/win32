@@ -41,11 +41,10 @@ int CryptProtectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
         Pointer<Utf16> szDataDescr,
         Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
-        Pointer pvReserved,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut) =>
-    _CryptProtectData(pDataIn, szDataDescr, pOptionalEntropy, pvReserved,
+    _CryptProtectData(pDataIn, szDataDescr, pOptionalEntropy, nullptr,
         pPromptStruct, dwFlags, pDataOut);
 
 final _CryptProtectData = _crypt32.lookupFunction<
@@ -111,11 +110,10 @@ int CryptUnprotectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
         Pointer<Pointer<Utf16>> ppszDataDescr,
         Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
-        Pointer pvReserved,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut) =>
-    _CryptUnprotectData(pDataIn, ppszDataDescr, pOptionalEntropy, pvReserved,
+    _CryptUnprotectData(pDataIn, ppszDataDescr, pOptionalEntropy, nullptr,
         pPromptStruct, dwFlags, pDataOut);
 
 final _CryptUnprotectData = _crypt32.lookupFunction<

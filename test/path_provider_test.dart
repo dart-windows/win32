@@ -413,8 +413,7 @@ class PathProviderWindows {
       final infoSize = GetFileVersionInfoSize(moduleNameBuffer, unused);
       if (infoSize != 0) {
         infoBuffer = calloc<Uint8>(infoSize);
-        if (GetFileVersionInfo(moduleNameBuffer, 0, infoSize, infoBuffer) ==
-            0) {
+        if (GetFileVersionInfo(moduleNameBuffer, infoSize, infoBuffer) == 0) {
           free(infoBuffer);
           infoBuffer = null;
         }

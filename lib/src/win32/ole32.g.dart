@@ -220,8 +220,7 @@ final _CoIncrementMTAUsage = _ole32.lookupFunction<
 /// );
 /// ```
 /// {@category ole32}
-int CoInitializeEx(Pointer pvReserved, int dwCoInit) =>
-    _CoInitializeEx(pvReserved, dwCoInit);
+int CoInitializeEx(int dwCoInit) => _CoInitializeEx(nullptr, dwCoInit);
 
 final _CoInitializeEx = _ole32.lookupFunction<
     Int32 Function(Pointer pvReserved, Uint32 dwCoInit),
@@ -247,14 +246,12 @@ int CoInitializeSecurity(
         Pointer pSecDesc,
         int cAuthSvc,
         Pointer<SOLE_AUTHENTICATION_SERVICE> asAuthSvc,
-        Pointer pReserved1,
         int dwAuthnLevel,
         int dwImpLevel,
         Pointer pAuthList,
-        int dwCapabilities,
-        Pointer pReserved3) =>
-    _CoInitializeSecurity(pSecDesc, cAuthSvc, asAuthSvc, pReserved1,
-        dwAuthnLevel, dwImpLevel, pAuthList, dwCapabilities, pReserved3);
+        int dwCapabilities) =>
+    _CoInitializeSecurity(pSecDesc, cAuthSvc, asAuthSvc, nullptr, dwAuthnLevel,
+        dwImpLevel, pAuthList, dwCapabilities, nullptr);
 
 final _CoInitializeSecurity = _ole32.lookupFunction<
     Int32 Function(
@@ -524,7 +521,7 @@ final _IIDFromString = _ole32.lookupFunction<
 /// );
 /// ```
 /// {@category ole32}
-int OleInitialize(Pointer pvReserved) => _OleInitialize(pvReserved);
+int OleInitialize() => _OleInitialize(nullptr);
 
 final _OleInitialize = _ole32.lookupFunction<Int32 Function(Pointer pvReserved),
     int Function(Pointer pvReserved)>('OleInitialize');

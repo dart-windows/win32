@@ -240,9 +240,8 @@ final _SCardEndTransaction = _winscard.lookupFunction<
 /// );
 /// ```
 /// {@category winscard}
-int SCardEstablishContext(int dwScope, Pointer pvReserved1, Pointer pvReserved2,
-        Pointer<IntPtr> phContext) =>
-    _SCardEstablishContext(dwScope, pvReserved1, pvReserved2, phContext);
+int SCardEstablishContext(int dwScope, Pointer<IntPtr> phContext) =>
+    _SCardEstablishContext(dwScope, nullptr, nullptr, phContext);
 
 final _SCardEstablishContext = _winscard.lookupFunction<
     Int32 Function(Uint32 dwScope, Pointer pvReserved1, Pointer pvReserved2,

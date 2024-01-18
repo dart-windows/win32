@@ -39,7 +39,7 @@ String getDesktopPath1() {
   final path = wsalloc(MAX_PATH);
 
   try {
-    final result = SHGetFolderPath(NULL, CSIDL_DESKTOP, NULL, 0, path);
+    final result = SHGetFolderPath(NULL, CSIDL_DESKTOP, NULL, path);
 
     if (SUCCEEDED(result)) {
       return path.toDartString();
@@ -75,7 +75,7 @@ String getDesktopPath3() {
   final ppkf = calloc<VTablePointer>();
   final ppszPath = calloc<LPWSTR>();
 
-  CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   try {
     final knownFolderManager = KnownFolderManager.createInstance();
     var hr = knownFolderManager.getFolder(appsFolder, ppkf);

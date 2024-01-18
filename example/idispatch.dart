@@ -113,7 +113,7 @@ class Dispatcher {
 }
 
 void main() {
-  final hr = OleInitialize(nullptr);
+  final hr = OleInitialize();
   if (FAILED(hr)) throw WindowsException(hr);
 
   final dispatcher = Dispatcher.fromProgID('Shell.Application');

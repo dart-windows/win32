@@ -5,6 +5,7 @@
 // File version information
 
 import 'dart:ffi';
+
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
@@ -19,7 +20,7 @@ void main() {
   final subBlock = TEXT(r'\');
 
   try {
-    var result = GetFileVersionInfo(lpFilename, 0, fviSize, pBlock);
+    var result = GetFileVersionInfo(lpFilename, fviSize, pBlock);
     if (result == 0) {
       throw Exception('GetFileVersionInfo failed.');
     }

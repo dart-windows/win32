@@ -6,6 +6,7 @@
 // System.* Attributes
 // -----------------------------------------------------------------------------
 const flagsAttribute = 'System.FlagsAttribute';
+const optionalAttribute = 'System.Runtime.InteropServices.OptionalAttribute';
 
 // -----------------------------------------------------------------------------
 // Windows.Win32.Foundation.Metadata.* Attributes
@@ -17,6 +18,7 @@ const flexibleArrayAttribute = '$_metadataNamespace.FlexibleArrayAttribute';
 const metadataTypedefAttribute = '$_metadataNamespace.MetadataTypedefAttribute';
 const nativeTypedefAttribute = '$_metadataNamespace.NativeTypedefAttribute';
 const overloadAttribute = '$_metadataNamespace.OverloadAttribute';
+const reservedAttribute = '$_metadataNamespace.ReservedAttribute';
 const retValAttribute = '$_metadataNamespace.RetValAttribute';
 const scopedEnumAttribute = '$_metadataNamespace.ScopedEnumAttribute';
 const unicodeAttribute = '$_metadataNamespace.UnicodeAttribute';

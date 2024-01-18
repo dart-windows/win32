@@ -10,7 +10,7 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+  CoInitializeEx(COINIT_MULTITHREADED);
 
   XInputEnable(TRUE);
   final state = calloc<XINPUT_STATE>();

@@ -17,8 +17,7 @@ the `CoInitializeEx` function. Details of the threading models are outside the
 scope of this document, but typically you should write something like:
 
 ```dart
-final hr = CoInitializeEx(
-    nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+final hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 if (FAILED(hr)) throw WindowsException(hr);
 ```
 

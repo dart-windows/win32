@@ -43,8 +43,8 @@ void write(
 void read(String credentialName) {
   print('Reading $credentialName ...');
   final credPointer = calloc<Pointer<CREDENTIAL>>();
-  final result = CredRead(
-      credentialName.toNativeUtf16(), CRED_TYPE_GENERIC, 0, credPointer);
+  final result =
+      CredRead(credentialName.toNativeUtf16(), CRED_TYPE_GENERIC, credPointer);
   if (result != TRUE) {
     final errorCode = GetLastError();
     var errorText = '$errorCode';
@@ -66,8 +66,7 @@ void read(String credentialName) {
 
 void delete(String credentialName) {
   print('Deleting $credentialName');
-  final result =
-      CredDelete(credentialName.toNativeUtf16(), CRED_TYPE_GENERIC, 0);
+  final result = CredDelete(credentialName.toNativeUtf16(), CRED_TYPE_GENERIC);
   if (result != TRUE) {
     final errorCode = GetLastError();
     print('Error ($result): $errorCode');

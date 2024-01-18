@@ -115,7 +115,7 @@ Object getRegistryValue(int key, String subKey, String valueName) {
     var result = RegOpenKeyEx(key, subKeyPtr, 0, KEY_READ, openKeyPtr);
     if (result == ERROR_SUCCESS) {
       result = RegQueryValueEx(
-          openKeyPtr.value, valueNamePtr, nullptr, dataType, data, dataSize);
+          openKeyPtr.value, valueNamePtr, dataType, data, dataSize);
 
       if (result == ERROR_SUCCESS) {
         if (dataType.value == REG_DWORD) {

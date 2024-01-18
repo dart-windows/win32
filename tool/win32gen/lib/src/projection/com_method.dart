@@ -8,6 +8,15 @@ class ComMethodProjection extends MethodProjection {
   ComMethodProjection(super.method);
 
   @override
+  String get dartParams => [
+        'VTablePointer',
+        ...parameters.map((param) => param.dartProjection)
+      ].join(', ');
+
+  @override
+  String get dartPrototype => '${returnType.dartType} Function($dartParams)';
+
+  @override
   String get nativeParams => [
         'VTablePointer',
         ...parameters.map((param) => param.ffiProjection)
@@ -18,17 +27,14 @@ class ComMethodProjection extends MethodProjection {
       '${returnType.nativeType} Function($nativeParams)';
 
   @override
-  String get dartParams => [
-        'VTablePointer',
-        ...parameters.map((param) => param.dartProjection)
+  String get identifiers => [
+        'ptr',
+        ...parameters.map((p) => p.isReserved
+            ? p.type.dartType.startsWith('Pointer')
+                ? 'nullptr'
+                : '0'
+            : p.identifier)
       ].join(', ');
-
-  @override
-  String get dartPrototype => '${returnType.dartType} Function($dartParams)';
-
-  @override
-  String get identifiers =>
-      ['ptr', ...parameters.map((param) => param.identifier)].join(', ');
 
   @override
   String toString() {

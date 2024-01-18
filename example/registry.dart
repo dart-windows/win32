@@ -47,8 +47,8 @@ RegistryKeyValuePair? enumerateKey(int hKey, int index) {
   final lpcbData = calloc<DWORD>()..value = MAX_ITEMLENGTH;
 
   try {
-    final status = RegEnumValue(hKey, index, lpValueName, lpcchValueName,
-        nullptr, lpType, lpData, lpcbData);
+    final status = RegEnumValue(
+        hKey, index, lpValueName, lpcchValueName, lpType, lpData, lpcbData);
 
     switch (status) {
       case ERROR_SUCCESS:

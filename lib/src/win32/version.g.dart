@@ -31,9 +31,9 @@ final _version = DynamicLibrary.open('version.dll');
 /// );
 /// ```
 /// {@category version}
-int GetFileVersionInfo(Pointer<Utf16> lptstrFilename, int dwHandle, int dwLen,
-        Pointer lpData) =>
-    _GetFileVersionInfo(lptstrFilename, dwHandle, dwLen, lpData);
+int GetFileVersionInfo(
+        Pointer<Utf16> lptstrFilename, int dwLen, Pointer lpData) =>
+    _GetFileVersionInfo(lptstrFilename, 0, dwLen, lpData);
 
 final _GetFileVersionInfo = _version.lookupFunction<
     Int32 Function(Pointer<Utf16> lptstrFilename, Uint32 dwHandle, Uint32 dwLen,
@@ -53,9 +53,9 @@ final _GetFileVersionInfo = _version.lookupFunction<
 /// );
 /// ```
 /// {@category version}
-int GetFileVersionInfoEx(int dwFlags, Pointer<Utf16> lpwstrFilename,
-        int dwHandle, int dwLen, Pointer lpData) =>
-    _GetFileVersionInfoEx(dwFlags, lpwstrFilename, dwHandle, dwLen, lpData);
+int GetFileVersionInfoEx(int dwFlags, Pointer<Utf16> lpwstrFilename, int dwLen,
+        Pointer lpData) =>
+    _GetFileVersionInfoEx(dwFlags, lpwstrFilename, 0, dwLen, lpData);
 
 final _GetFileVersionInfoEx = _version.lookupFunction<
     Int32 Function(Uint32 dwFlags, Pointer<Utf16> lpwstrFilename,

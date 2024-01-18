@@ -12,21 +12,19 @@ import 'package:win32/win32.dart';
 
 void initializeCOM() {
   // Initialize COM
-  var hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+  var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   // Initialize security model
   hr = CoInitializeSecurity(
-      nullptr,
-      -1, // COM negotiates service
-      nullptr, // Authentication services
-      nullptr, // Reserved
-      RPC_C_AUTHN_LEVEL_DEFAULT, // authentication
-      RPC_C_IMP_LEVEL_IMPERSONATE, // Impersonation
-      nullptr, // Authentication info
-      EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // Additional capabilities
-      nullptr // Reserved
-      );
+    nullptr,
+    -1, // COM negotiates service
+    nullptr, // Authentication services
+    RPC_C_AUTHN_LEVEL_DEFAULT, // authentication
+    RPC_C_IMP_LEVEL_IMPERSONATE, // Impersonation
+    nullptr, // Authentication info
+    EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // Additional capabilities
+  );
   if (FAILED(hr)) throw WindowsException(hr);
 }
 

@@ -2,6 +2,9 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:winmd/winmd.dart';
+
+import '../extensions/parameter.dart';
 import '../extensions/string.dart';
 import 'type.dart';
 
@@ -9,9 +12,15 @@ import 'type.dart';
 ///
 /// Parameters are a tuple of a type and a name.
 class ParameterProjection {
-  const ParameterProjection(this.name, this.type);
+  ParameterProjection(this.name, this.parameter)
+      : isOptional = parameter.isOptional,
+        isReserved = parameter.isReserved,
+        type = TypeProjection(parameter.typeIdentifier);
 
+  final bool isOptional;
+  final bool isReserved;
   final String name;
+  final Parameter parameter;
   final TypeProjection type;
 
   String get ffiProjection =>

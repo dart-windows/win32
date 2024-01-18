@@ -1192,9 +1192,8 @@ final _SetForm = _winspool.lookupFunction<
 /// );
 /// ```
 /// {@category winspool}
-int SetJob(
-        int hPrinter, int JobId, int Level, Pointer<Uint8> pJob, int Command) =>
-    _SetJob(hPrinter, JobId, Level, pJob, Command);
+int SetJob(int hPrinter, int JobId, int Level, int Command) =>
+    _SetJob(hPrinter, JobId, Level, nullptr, Command);
 
 final _SetJob = _winspool.lookupFunction<
     Int32 Function(IntPtr hPrinter, Uint32 JobId, Uint32 Level,

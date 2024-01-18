@@ -35,7 +35,6 @@ class IShellFolder extends IUnknown {
           int hwnd,
           VTablePointer pbc,
           Pointer<Utf16> pszDisplayName,
-          Pointer<Uint32> pchEaten,
           Pointer<Pointer<ITEMIDLIST>> ppidl,
           Pointer<Uint32> pdwAttributes) =>
       _vtable.ParseDisplayName.asFunction<
@@ -47,7 +46,7 @@ class IShellFolder extends IUnknown {
                   Pointer<Uint32> pchEaten,
                   Pointer<Pointer<ITEMIDLIST>> ppidl,
                   Pointer<Uint32> pdwAttributes)>()(
-          ptr, hwnd, pbc, pszDisplayName, pchEaten, ppidl, pdwAttributes);
+          ptr, hwnd, pbc, pszDisplayName, nullptr, ppidl, pdwAttributes);
 
   int enumObjects(
           int hwnd, int grfFlags, Pointer<VTablePointer> ppenumIDList) =>
@@ -97,13 +96,8 @@ class IShellFolder extends IUnknown {
               Pointer<Pointer<ITEMIDLIST>> apidl,
               Pointer<Uint32> rgfInOut)>()(ptr, cidl, apidl, rgfInOut);
 
-  int getUIObjectOf(
-          int hwndOwner,
-          int cidl,
-          Pointer<Pointer<ITEMIDLIST>> apidl,
-          Pointer<GUID> riid,
-          Pointer<Uint32> rgfReserved,
-          Pointer<Pointer> ppv) =>
+  int getUIObjectOf(int hwndOwner, int cidl, Pointer<Pointer<ITEMIDLIST>> apidl,
+          Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetUIObjectOf.asFunction<
               int Function(
                   VTablePointer,
@@ -113,7 +107,7 @@ class IShellFolder extends IUnknown {
                   Pointer<GUID> riid,
                   Pointer<Uint32> rgfReserved,
                   Pointer<Pointer> ppv)>()(
-          ptr, hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
+          ptr, hwndOwner, cidl, apidl, riid, nullptr, ppv);
 
   int getDisplayNameOf(
           Pointer<ITEMIDLIST> pidl, int uFlags, Pointer<STRRET> pName) =>

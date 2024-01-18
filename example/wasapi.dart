@@ -81,7 +81,7 @@ void check(int hr) {
 
 void main() {
   // Initialize COM
-  check(CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED));
+  check(CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE));
 
   // Retrieve the list of available audio output devices.
   final pDeviceEnumerator = MMDeviceEnumerator.createInstance();

@@ -50,9 +50,8 @@ final _CommandLineToArgv = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int ExtractAssociatedIcon(
-        int hInst, Pointer<Utf16> pszIconPath, Pointer<Uint16> piIcon) =>
-    _ExtractAssociatedIcon(hInst, pszIconPath, piIcon);
+int ExtractAssociatedIcon(Pointer<Utf16> pszIconPath, Pointer<Uint16> piIcon) =>
+    _ExtractAssociatedIcon(0, pszIconPath, piIcon);
 
 final _ExtractAssociatedIcon = _shell32.lookupFunction<
     IntPtr Function(
@@ -347,8 +346,8 @@ final _SHGetFileInfo = _shell32.lookupFunction<
 /// ```
 /// {@category shell32}
 int SHGetFolderPath(
-        int hwnd, int csidl, int hToken, int dwFlags, Pointer<Utf16> pszPath) =>
-    _SHGetFolderPath(hwnd, csidl, hToken, dwFlags, pszPath);
+        int csidl, int hToken, int dwFlags, Pointer<Utf16> pszPath) =>
+    _SHGetFolderPath(0, csidl, hToken, dwFlags, pszPath);
 
 final _SHGetFolderPath = _shell32.lookupFunction<
     Int32 Function(IntPtr hwnd, Int32 csidl, IntPtr hToken, Uint32 dwFlags,

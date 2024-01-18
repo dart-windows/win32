@@ -103,8 +103,8 @@ final _ControlServiceEx = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int CredDelete(Pointer<Utf16> TargetName, int Type, int Flags) =>
-    _CredDelete(TargetName, Type, Flags);
+int CredDelete(Pointer<Utf16> TargetName, int Type) =>
+    _CredDelete(TargetName, Type, 0);
 
 final _CredDelete = _advapi32.lookupFunction<
     Int32 Function(Pointer<Utf16> TargetName, Uint32 Type, Uint32 Flags),
@@ -138,9 +138,9 @@ final _CredFree = _advapi32.lookupFunction<Void Function(Pointer Buffer),
 /// );
 /// ```
 /// {@category advapi32}
-int CredRead(Pointer<Utf16> TargetName, int Type, int Flags,
+int CredRead(Pointer<Utf16> TargetName, int Type,
         Pointer<Pointer<CREDENTIAL>> Credential) =>
-    _CredRead(TargetName, Type, Flags, Credential);
+    _CredRead(TargetName, Type, 0, Credential);
 
 final _CredRead = _advapi32.lookupFunction<
     Int32 Function(Pointer<Utf16> TargetName, Uint32 Type, Uint32 Flags,
@@ -176,8 +176,7 @@ final _CredWrite = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int DecryptFile(Pointer<Utf16> lpFileName, int dwReserved) =>
-    _DecryptFile(lpFileName, dwReserved);
+int DecryptFile(Pointer<Utf16> lpFileName) => _DecryptFile(lpFileName, 0);
 
 final _DecryptFile = _advapi32.lookupFunction<
     Int32 Function(Pointer<Utf16> lpFileName, Uint32 dwReserved),
@@ -878,14 +877,13 @@ final _RegCreateKey = _advapi32.lookupFunction<
 int RegCreateKeyEx(
         int hKey,
         Pointer<Utf16> lpSubKey,
-        int Reserved,
         Pointer<Utf16> lpClass,
         int dwOptions,
         int samDesired,
         Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes,
         Pointer<IntPtr> phkResult,
         Pointer<Uint32> lpdwDisposition) =>
-    _RegCreateKeyEx(hKey, lpSubKey, Reserved, lpClass, dwOptions, samDesired,
+    _RegCreateKeyEx(hKey, lpSubKey, 0, lpClass, dwOptions, samDesired,
         lpSecurityAttributes, phkResult, lpdwDisposition);
 
 final _RegCreateKeyEx = _advapi32.lookupFunction<
@@ -930,19 +928,17 @@ final _RegCreateKeyEx = _advapi32.lookupFunction<
 int RegCreateKeyTransacted(
         int hKey,
         Pointer<Utf16> lpSubKey,
-        int Reserved,
         Pointer<Utf16> lpClass,
         int dwOptions,
         int samDesired,
         Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes,
         Pointer<IntPtr> phkResult,
         Pointer<Uint32> lpdwDisposition,
-        int hTransaction,
-        Pointer pExtendedParemeter) =>
+        int hTransaction) =>
     _RegCreateKeyTransacted(
         hKey,
         lpSubKey,
-        Reserved,
+        0,
         lpClass,
         dwOptions,
         samDesired,
@@ -950,7 +946,7 @@ int RegCreateKeyTransacted(
         phkResult,
         lpdwDisposition,
         hTransaction,
-        pExtendedParemeter);
+        nullptr);
 
 final _RegCreateKeyTransacted = _advapi32.lookupFunction<
     Uint32 Function(
@@ -1004,9 +1000,8 @@ final _RegDeleteKey = _advapi32.lookupFunction<
 ///   DWORD   Reserved);
 /// ```
 /// {@category advapi32}
-int RegDeleteKeyEx(
-        int hKey, Pointer<Utf16> lpSubKey, int samDesired, int Reserved) =>
-    _RegDeleteKeyEx(hKey, lpSubKey, samDesired, Reserved);
+int RegDeleteKeyEx(int hKey, Pointer<Utf16> lpSubKey, int samDesired) =>
+    _RegDeleteKeyEx(hKey, lpSubKey, samDesired, 0);
 
 final _RegDeleteKeyEx = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hKey, Pointer<Utf16> lpSubKey, Uint32 samDesired,
@@ -1028,10 +1023,10 @@ final _RegDeleteKeyEx = _advapi32.lookupFunction<
 ///   PVOID   pExtendedParameter);
 /// ```
 /// {@category advapi32}
-int RegDeleteKeyTransacted(int hKey, Pointer<Utf16> lpSubKey, int samDesired,
-        int Reserved, int hTransaction, Pointer pExtendedParameter) =>
+int RegDeleteKeyTransacted(
+        int hKey, Pointer<Utf16> lpSubKey, int samDesired, int hTransaction) =>
     _RegDeleteKeyTransacted(
-        hKey, lpSubKey, samDesired, Reserved, hTransaction, pExtendedParameter);
+        hKey, lpSubKey, samDesired, 0, hTransaction, nullptr);
 
 final _RegDeleteKeyTransacted = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hKey, Pointer<Utf16> lpSubKey, Uint32 samDesired,
@@ -1189,11 +1184,10 @@ int RegEnumKeyEx(
         int dwIndex,
         Pointer<Utf16> lpName,
         Pointer<Uint32> lpcchName,
-        Pointer<Uint32> lpReserved,
         Pointer<Utf16> lpClass,
         Pointer<Uint32> lpcchClass,
         Pointer<FILETIME> lpftLastWriteTime) =>
-    _RegEnumKeyEx(hKey, dwIndex, lpName, lpcchName, lpReserved, lpClass,
+    _RegEnumKeyEx(hKey, dwIndex, lpName, lpcchName, nullptr, lpClass,
         lpcchClass, lpftLastWriteTime);
 
 final _RegEnumKeyEx = _advapi32.lookupFunction<
@@ -1237,12 +1231,11 @@ int RegEnumValue(
         int dwIndex,
         Pointer<Utf16> lpValueName,
         Pointer<Uint32> lpcchValueName,
-        Pointer<Uint32> lpReserved,
         Pointer<Uint32> lpType,
         Pointer<Uint8> lpData,
         Pointer<Uint32> lpcbData) =>
-    _RegEnumValue(hKey, dwIndex, lpValueName, lpcchValueName, lpReserved,
-        lpType, lpData, lpcbData);
+    _RegEnumValue(hKey, dwIndex, lpValueName, lpcchValueName, nullptr, lpType,
+        lpData, lpcbData);
 
 final _RegEnumValue = _advapi32.lookupFunction<
     Uint32 Function(
@@ -1376,8 +1369,8 @@ final _RegisterServiceCtrlHandlerEx = _advapi32.lookupFunction<
 /// ```
 /// {@category advapi32}
 int RegLoadAppKey(Pointer<Utf16> lpFile, Pointer<IntPtr> phkResult,
-        int samDesired, int dwOptions, int Reserved) =>
-    _RegLoadAppKey(lpFile, phkResult, samDesired, dwOptions, Reserved);
+        int samDesired, int dwOptions) =>
+    _RegLoadAppKey(lpFile, phkResult, samDesired, dwOptions, 0);
 
 final _RegLoadAppKey = _advapi32.lookupFunction<
     Uint32 Function(Pointer<Utf16> lpFile, Pointer<IntPtr> phkResult,
@@ -1541,16 +1534,10 @@ final _RegOpenKeyEx = _advapi32.lookupFunction<
 ///   PVOID   pExtendedParemeter);
 /// ```
 /// {@category advapi32}
-int RegOpenKeyTransacted(
-        int hKey,
-        Pointer<Utf16> lpSubKey,
-        int ulOptions,
-        int samDesired,
-        Pointer<IntPtr> phkResult,
-        int hTransaction,
-        Pointer pExtendedParemeter) =>
+int RegOpenKeyTransacted(int hKey, Pointer<Utf16> lpSubKey, int ulOptions,
+        int samDesired, Pointer<IntPtr> phkResult, int hTransaction) =>
     _RegOpenKeyTransacted(hKey, lpSubKey, ulOptions, samDesired, phkResult,
-        hTransaction, pExtendedParemeter);
+        hTransaction, nullptr);
 
 final _RegOpenKeyTransacted = _advapi32.lookupFunction<
     Uint32 Function(
@@ -1582,8 +1569,8 @@ final _RegOpenKeyTransacted = _advapi32.lookupFunction<
 /// ```
 /// {@category advapi32}
 int RegOpenUserClassesRoot(
-        int hToken, int dwOptions, int samDesired, Pointer<IntPtr> phkResult) =>
-    _RegOpenUserClassesRoot(hToken, dwOptions, samDesired, phkResult);
+        int hToken, int samDesired, Pointer<IntPtr> phkResult) =>
+    _RegOpenUserClassesRoot(hToken, 0, samDesired, phkResult);
 
 final _RegOpenUserClassesRoot = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hToken, Uint32 dwOptions, Uint32 samDesired,
@@ -1628,7 +1615,6 @@ int RegQueryInfoKey(
         int hKey,
         Pointer<Utf16> lpClass,
         Pointer<Uint32> lpcchClass,
-        Pointer<Uint32> lpReserved,
         Pointer<Uint32> lpcSubKeys,
         Pointer<Uint32> lpcbMaxSubKeyLen,
         Pointer<Uint32> lpcbMaxClassLen,
@@ -1641,7 +1627,7 @@ int RegQueryInfoKey(
         hKey,
         lpClass,
         lpcchClass,
-        lpReserved,
+        nullptr,
         lpcSubKeys,
         lpcbMaxSubKeyLen,
         lpcbMaxClassLen,
@@ -1762,11 +1748,10 @@ final _RegQueryValue = _advapi32.lookupFunction<
 int RegQueryValueEx(
         int hKey,
         Pointer<Utf16> lpValueName,
-        Pointer<Uint32> lpReserved,
         Pointer<Uint32> lpType,
         Pointer<Uint8> lpData,
         Pointer<Uint32> lpcbData) =>
-    _RegQueryValueEx(hKey, lpValueName, lpReserved, lpType, lpData, lpcbData);
+    _RegQueryValueEx(hKey, lpValueName, nullptr, lpType, lpData, lpcbData);
 
 final _RegQueryValueEx = _advapi32.lookupFunction<
     Uint32 Function(
@@ -1952,9 +1937,9 @@ final _RegSetValue = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int RegSetValueEx(int hKey, Pointer<Utf16> lpValueName, int Reserved,
-        int dwType, Pointer<Uint8> lpData, int cbData) =>
-    _RegSetValueEx(hKey, lpValueName, Reserved, dwType, lpData, cbData);
+int RegSetValueEx(int hKey, Pointer<Utf16> lpValueName, int dwType,
+        Pointer<Uint8> lpData, int cbData) =>
+    _RegSetValueEx(hKey, lpValueName, 0, dwType, lpData, cbData);
 
 final _RegSetValueEx = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hKey, Pointer<Utf16> lpValueName, Uint32 Reserved,

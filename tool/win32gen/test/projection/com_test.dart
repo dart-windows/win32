@@ -234,5 +234,25 @@ void main() {
     expect(next, isA<ComMethodProjection>());
   });
 
+  test('Reserved parameters are hidden', () {
+    final shellFolder =
+        scope.findTypeDef('Windows.Win32.UI.Shell.IShellFolder');
+    expect(shellFolder, isNotNull);
+
+    final parseDisplayName = shellFolder!.findMethod('ParseDisplayName');
+    expect(parseDisplayName, isNotNull);
+
+    final projection = ComMethodProjection(parseDisplayName!);
+    expect(
+      projection.methodParams,
+      equals('int hwnd, VTablePointer pbc, Pointer<Utf16> pszDisplayName, '
+          'Pointer<Pointer<ITEMIDLIST>> ppidl, Pointer<Uint32> pdwAttributes'),
+    );
+    expect(
+      projection.identifiers,
+      equals('ptr, hwnd, pbc, pszDisplayName, nullptr, ppidl, pdwAttributes'),
+    );
+  });
+
   tearDownAll(MetadataStore.close);
 }
