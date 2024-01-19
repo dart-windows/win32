@@ -38,29 +38,12 @@ extension StringHelpers on String {
   ///
   /// For example, `MessageBoxW` should become `MessageBox`.
   String stripAnsiUnicodeSuffix() {
-    // Frustratingly, Windows.Win32.System.Wmi.MI_* types are the exception
-    // where 'A' suffix does not seem to denote ASCII.
-    if (_typePretendsToBeAnsi || startsWith('MI_')) return this;
-
     if (endsWith('A') || endsWith('W')) {
       final end = endsWith('_A') || endsWith('_W') ? length - 2 : length - 1;
       return substring(0, end);
     }
 
     return this;
-  }
-
-  /// Returns `true` if a TypeDef name ends with `A` but is _not_ ANSI.
-  bool get _typePretendsToBeAnsi {
-    for (final word in _falseAnsiEndings) {
-      if (endsWith(word)) return true;
-    }
-
-    // There are a number of types in this namespace that end with 'A' but are
-    // not ANSI, so we treat this as a one-off exception.
-    if (startsWith('Windows.Win32.System.Wmi.MI_')) return true;
-
-    return false;
   }
 
   /// Strips the leading underscores from the string.
@@ -177,16 +160,6 @@ extension StringHelpers on String {
     return segments.join('/').toLowerCase();
   }
 }
-
-const _falseAnsiEndings = <String>{
-  // These are structs that appear in the Win32 metadata that end in 'A' but
-  // are not ANSI. In the absence of a better way to determine ANSI attributes
-  // (https://github.com/microsoft/win32metadata/issues/711), we resort to a
-  // manual list.
-  'DATA', 'SCHEMA', 'AREA', 'ANTENNA', 'MEDIA', 'M128A', 'CIECHROMA', 'PARA',
-  'ALPHA', 'BUFFER_WMA', 'CRITERIA', 'UIDNA', 'YCbCrA', 'RGBA',
-  'PSP_FILE_CALLBACK_A',
-};
 
 /// Reserved words in the Dart language that can never be used as identifiers.
 /// Keywords from https://dart.dev/guides/language/language-tour#keywords.

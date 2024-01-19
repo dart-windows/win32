@@ -33,7 +33,6 @@ void main() {
     });
 
     test('stripAnsiUnicodeSuffix', () {
-      expect('RGNDATA'.stripAnsiUnicodeSuffix(), equals('RGNDATA'));
       expect(
           'ENUMLOGFONTEXA'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
       expect(
@@ -42,7 +41,6 @@ void main() {
           'ENUMLOGFONTEX_A'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
       expect(
           'ENUMLOGFONTEX_W'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
-      expect('AREA'.stripAnsiUnicodeSuffix(), equals('AREA'));
       expect(
           'ADDJOB_INFO_1W'.stripAnsiUnicodeSuffix(), equals('ADDJOB_INFO_1'));
     });

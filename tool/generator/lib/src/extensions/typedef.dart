@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../attributes.dart';
 import 'string.dart';
 
 extension TypeDefHelpers on TypeDef {
@@ -17,7 +18,17 @@ extension TypeDefHelpers on TypeDef {
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `Windows.Win32.UI.Shell.IShellLink` instead of
   /// `Windows.Win32.UI.Shell.IShellLinkW`).
-  String get nameWithoutAnsiUnicodeSuffix => name.stripAnsiUnicodeSuffix();
+  String get nameWithoutAnsiUnicodeSuffix {
+    if (existsAttribute(ansiAttribute) || existsAttribute(unicodeAttribute)) {
+      return name.stripAnsiUnicodeSuffix();
+    }
+
+    // Some TypeDefs have a Unicode suffix (`W`) without corresponding ANSI
+    // variants, and they don't have the `UnicodeAttribute`.
+    if (name.endsWith('W')) return name.stripAnsiUnicodeSuffix();
+
+    return name;
+  }
 
   String get safeIdentifier =>
       nameWithoutAnsiUnicodeSuffix.lastComponent.safeIdentifier;
