@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../attributes.dart';
 import '../extensions/string.dart';
 import 'com_method.dart';
 import 'com_property.dart';
@@ -44,14 +43,10 @@ abstract class MethodProjection {
   /// Dart doesn't allow overloaded methods, so we have to rename methods that
   /// are duplicated.
   static String uniquelyNameMethod(Method method) {
-    // Is it a WinRT method overloaded with a name provided by the metadata?
-    final overloadName = method.attributeAsString(overloadAttribute);
-    if (overloadName.isNotEmpty) return overloadName;
-
-    // If not, we check whether multiple methods exist with the same name. We
-    // also need to check up the interface chain, since otherwise overloaded
-    // methods may be missed. For example, IDWriteFactory2 contains methods that
-    // overload those in IDWriteFactory1.
+    // Check whether multiple methods exist with the same name. We also need to
+    // check up the interface chain, since otherwise overloaded methods may be
+    // missed. For example, IDWriteFactory2 contains methods that overload those
+    // in IDWriteFactory1.
     final overloads =
         method.parent.methods.where((m) => m.name == method.name).toList();
     var interfaceTypeDef = method.parent;
