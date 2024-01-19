@@ -5,7 +5,7 @@
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
-import 'package:win32gen/win32gen.dart';
+import 'package:generator/generator.dart';
 import 'package:winmd/winmd.dart';
 
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
