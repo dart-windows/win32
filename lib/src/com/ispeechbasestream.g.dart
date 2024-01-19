@@ -51,9 +51,9 @@ class ISpeechBaseStream extends IDispatch {
     }
   }
 
-  int putref_Format(VTablePointer AudioFormat) => _vtable.putref_Format
+  int putref_Format(VTablePointer? AudioFormat) => _vtable.putref_Format
           .asFunction<int Function(VTablePointer, VTablePointer AudioFormat)>()(
-      ptr, AudioFormat);
+      ptr, AudioFormat ?? nullptr);
 
   int read(Pointer<VARIANT> Buffer, int NumberOfBytes,
           Pointer<Int32> BytesRead) =>

@@ -72,11 +72,11 @@ final _SetupDiEnumDeviceInfo = _setupapi.lookupFunction<
 /// {@category setupapi}
 int SetupDiEnumDeviceInterfaces(
         int DeviceInfoSet,
-        Pointer<SP_DEVINFO_DATA> DeviceInfoData,
+        Pointer<SP_DEVINFO_DATA>? DeviceInfoData,
         Pointer<GUID> InterfaceClassGuid,
         int MemberIndex,
         Pointer<SP_DEVICE_INTERFACE_DATA> DeviceInterfaceData) =>
-    _SetupDiEnumDeviceInterfaces(DeviceInfoSet, DeviceInfoData,
+    _SetupDiEnumDeviceInterfaces(DeviceInfoSet, DeviceInfoData ?? nullptr,
         InterfaceClassGuid, MemberIndex, DeviceInterfaceData);
 
 final _SetupDiEnumDeviceInterfaces = _setupapi.lookupFunction<
@@ -107,9 +107,10 @@ final _SetupDiEnumDeviceInterfaces = _setupapi.lookupFunction<
 /// );
 /// ```
 /// {@category setupapi}
-int SetupDiGetClassDevs(Pointer<GUID> ClassGuid, Pointer<Utf16> Enumerator,
-        int hwndParent, int Flags) =>
-    _SetupDiGetClassDevs(ClassGuid, Enumerator, hwndParent, Flags);
+int SetupDiGetClassDevs(Pointer<GUID>? ClassGuid, Pointer<Utf16>? Enumerator,
+        int? hwndParent, int Flags) =>
+    _SetupDiGetClassDevs(
+        ClassGuid ?? nullptr, Enumerator ?? nullptr, hwndParent ?? 0, Flags);
 
 final _SetupDiGetClassDevs = _setupapi.lookupFunction<
     IntPtr Function(Pointer<GUID> ClassGuid, Pointer<Utf16> Enumerator,
@@ -133,11 +134,15 @@ final _SetupDiGetClassDevs = _setupapi.lookupFunction<
 int SetupDiGetDeviceInstanceId(
         int DeviceInfoSet,
         Pointer<SP_DEVINFO_DATA> DeviceInfoData,
-        Pointer<Utf16> DeviceInstanceId,
+        Pointer<Utf16>? DeviceInstanceId,
         int DeviceInstanceIdSize,
-        Pointer<Uint32> RequiredSize) =>
-    _SetupDiGetDeviceInstanceId(DeviceInfoSet, DeviceInfoData, DeviceInstanceId,
-        DeviceInstanceIdSize, RequiredSize);
+        Pointer<Uint32>? RequiredSize) =>
+    _SetupDiGetDeviceInstanceId(
+        DeviceInfoSet,
+        DeviceInfoData,
+        DeviceInstanceId ?? nullptr,
+        DeviceInstanceIdSize,
+        RequiredSize ?? nullptr);
 
 final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
     Int32 Function(
@@ -170,17 +175,17 @@ final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
 int SetupDiGetDeviceInterfaceDetail(
         int DeviceInfoSet,
         Pointer<SP_DEVICE_INTERFACE_DATA> DeviceInterfaceData,
-        Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> DeviceInterfaceDetailData,
+        Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA>? DeviceInterfaceDetailData,
         int DeviceInterfaceDetailDataSize,
-        Pointer<Uint32> RequiredSize,
-        Pointer<SP_DEVINFO_DATA> DeviceInfoData) =>
+        Pointer<Uint32>? RequiredSize,
+        Pointer<SP_DEVINFO_DATA>? DeviceInfoData) =>
     _SetupDiGetDeviceInterfaceDetail(
         DeviceInfoSet,
         DeviceInterfaceData,
-        DeviceInterfaceDetailData,
+        DeviceInterfaceDetailData ?? nullptr,
         DeviceInterfaceDetailDataSize,
-        RequiredSize,
-        DeviceInfoData);
+        RequiredSize ?? nullptr,
+        DeviceInfoData ?? nullptr);
 
 final _SetupDiGetDeviceInterfaceDetail = _setupapi.lookupFunction<
         Int32 Function(
@@ -218,12 +223,18 @@ int SetupDiGetDeviceRegistryProperty(
         int DeviceInfoSet,
         Pointer<SP_DEVINFO_DATA> DeviceInfoData,
         int Property,
-        Pointer<Uint32> PropertyRegDataType,
-        Pointer<Uint8> PropertyBuffer,
+        Pointer<Uint32>? PropertyRegDataType,
+        Pointer<Uint8>? PropertyBuffer,
         int PropertyBufferSize,
-        Pointer<Uint32> RequiredSize) =>
-    _SetupDiGetDeviceRegistryProperty(DeviceInfoSet, DeviceInfoData, Property,
-        PropertyRegDataType, PropertyBuffer, PropertyBufferSize, RequiredSize);
+        Pointer<Uint32>? RequiredSize) =>
+    _SetupDiGetDeviceRegistryProperty(
+        DeviceInfoSet,
+        DeviceInfoData,
+        Property,
+        PropertyRegDataType ?? nullptr,
+        PropertyBuffer ?? nullptr,
+        PropertyBufferSize,
+        RequiredSize ?? nullptr);
 
 final _SetupDiGetDeviceRegistryProperty = _setupapi.lookupFunction<
     Int32 Function(

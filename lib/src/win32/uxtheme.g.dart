@@ -48,8 +48,9 @@ final _CloseThemeData = _uxtheme.lookupFunction<Int32 Function(IntPtr hTheme),
 /// ```
 /// {@category uxtheme}
 int DrawThemeBackground(int hTheme, int hdc, int iPartId, int iStateId,
-        Pointer<RECT> pRect, Pointer<RECT> pClipRect) =>
-    _DrawThemeBackground(hTheme, hdc, iPartId, iStateId, pRect, pClipRect);
+        Pointer<RECT> pRect, Pointer<RECT>? pClipRect) =>
+    _DrawThemeBackground(
+        hTheme, hdc, iPartId, iStateId, pRect, pClipRect ?? nullptr);
 
 final _DrawThemeBackground = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
@@ -80,9 +81,9 @@ int DrawThemeEdge(
         Pointer<RECT> pDestRect,
         int uEdge,
         int uFlags,
-        Pointer<RECT> pContentRect) =>
-    _DrawThemeEdge(
-        hTheme, hdc, iPartId, iStateId, pDestRect, uEdge, uFlags, pContentRect);
+        Pointer<RECT>? pContentRect) =>
+    _DrawThemeEdge(hTheme, hdc, iPartId, iStateId, pDestRect, uEdge, uFlags,
+        pContentRect ?? nullptr);
 
 final _DrawThemeEdge = _uxtheme.lookupFunction<
     Int32 Function(
@@ -140,8 +141,8 @@ final _DrawThemeIcon = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int DrawThemeParentBackground(int hwnd, int hdc, Pointer<RECT> prc) =>
-    _DrawThemeParentBackground(hwnd, hdc, prc);
+int DrawThemeParentBackground(int hwnd, int hdc, Pointer<RECT>? prc) =>
+    _DrawThemeParentBackground(hwnd, hdc, prc ?? nullptr);
 
 final _DrawThemeParentBackground = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hwnd, IntPtr hdc, Pointer<RECT> prc),
@@ -162,8 +163,8 @@ final _DrawThemeParentBackground = _uxtheme.lookupFunction<
 /// ```
 /// {@category uxtheme}
 int DrawThemeParentBackgroundEx(
-        int hwnd, int hdc, int dwFlags, Pointer<RECT> prc) =>
-    _DrawThemeParentBackgroundEx(hwnd, hdc, dwFlags, prc);
+        int hwnd, int hdc, int dwFlags, Pointer<RECT>? prc) =>
+    _DrawThemeParentBackgroundEx(hwnd, hdc, dwFlags, prc ?? nullptr);
 
 final _DrawThemeParentBackgroundEx = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hwnd, IntPtr hdc, Uint32 dwFlags, Pointer<RECT> prc),
@@ -195,9 +196,9 @@ int DrawThemeTextEx(
         int cchText,
         int dwTextFlags,
         Pointer<RECT> pRect,
-        Pointer<DTTOPTS> pOptions) =>
+        Pointer<DTTOPTS>? pOptions) =>
     _DrawThemeTextEx(hTheme, hdc, iPartId, iStateId, pszText, cchText,
-        dwTextFlags, pRect, pOptions);
+        dwTextFlags, pRect, pOptions ?? nullptr);
 
 final _DrawThemeTextEx = _uxtheme.lookupFunction<
     Int32 Function(
@@ -254,12 +255,17 @@ final _EnableThemeDialogTexture = _uxtheme.lookupFunction<
 int GetCurrentThemeName(
         Pointer<Utf16> pszThemeFileName,
         int cchMaxNameChars,
-        Pointer<Utf16> pszColorBuff,
+        Pointer<Utf16>? pszColorBuff,
         int cchMaxColorChars,
-        Pointer<Utf16> pszSizeBuff,
+        Pointer<Utf16>? pszSizeBuff,
         int cchMaxSizeChars) =>
-    _GetCurrentThemeName(pszThemeFileName, cchMaxNameChars, pszColorBuff,
-        cchMaxColorChars, pszSizeBuff, cchMaxSizeChars);
+    _GetCurrentThemeName(
+        pszThemeFileName,
+        cchMaxNameChars,
+        pszColorBuff ?? nullptr,
+        cchMaxColorChars,
+        pszSizeBuff ?? nullptr,
+        cchMaxSizeChars);
 
 final _GetCurrentThemeName = _uxtheme.lookupFunction<
     Int32 Function(
@@ -290,9 +296,9 @@ final _GetCurrentThemeName = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int GetThemeMetric(int hTheme, int hdc, int iPartId, int iStateId, int iPropId,
+int GetThemeMetric(int hTheme, int? hdc, int iPartId, int iStateId, int iPropId,
         Pointer<Int32> piVal) =>
-    _GetThemeMetric(hTheme, hdc, iPartId, iStateId, iPropId, piVal);
+    _GetThemeMetric(hTheme, hdc ?? 0, iPartId, iStateId, iPropId, piVal);
 
 final _GetThemeMetric = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
@@ -314,9 +320,10 @@ final _GetThemeMetric = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int GetThemePartSize(int hTheme, int hdc, int iPartId, int iStateId,
-        Pointer<RECT> prc, int eSize, Pointer<SIZE> psz) =>
-    _GetThemePartSize(hTheme, hdc, iPartId, iStateId, prc, eSize, psz);
+int GetThemePartSize(int hTheme, int? hdc, int iPartId, int iStateId,
+        Pointer<RECT>? prc, int eSize, Pointer<SIZE> psz) =>
+    _GetThemePartSize(
+        hTheme, hdc ?? 0, iPartId, iStateId, prc ?? nullptr, eSize, psz);
 
 final _GetThemePartSize = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
@@ -355,8 +362,8 @@ final _GetThemeRect = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int GetThemeSysColor(int hTheme, int iColorId) =>
-    _GetThemeSysColor(hTheme, iColorId);
+int GetThemeSysColor(int? hTheme, int iColorId) =>
+    _GetThemeSysColor(hTheme ?? 0, iColorId);
 
 final _GetThemeSysColor = _uxtheme.lookupFunction<
     Uint32 Function(IntPtr hTheme, Int32 iColorId),
@@ -371,8 +378,8 @@ final _GetThemeSysColor = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int GetThemeSysColorBrush(int hTheme, int iColorId) =>
-    _GetThemeSysColorBrush(hTheme, iColorId);
+int GetThemeSysColorBrush(int? hTheme, int iColorId) =>
+    _GetThemeSysColorBrush(hTheme ?? 0, iColorId);
 
 final _GetThemeSysColorBrush = _uxtheme.lookupFunction<
     IntPtr Function(IntPtr hTheme, Int32 iColorId),
@@ -388,8 +395,8 @@ final _GetThemeSysColorBrush = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int GetThemeSysFont(int hTheme, int iFontId, Pointer<LOGFONT> plf) =>
-    _GetThemeSysFont(hTheme, iFontId, plf);
+int GetThemeSysFont(int? hTheme, int iFontId, Pointer<LOGFONT> plf) =>
+    _GetThemeSysFont(hTheme ?? 0, iFontId, plf);
 
 final _GetThemeSysFont = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hTheme, Int32 iFontId, Pointer<LOGFONT> plf),
@@ -405,8 +412,8 @@ final _GetThemeSysFont = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int GetThemeSysSize(int hTheme, int iSizeId) =>
-    _GetThemeSysSize(hTheme, iSizeId);
+int GetThemeSysSize(int? hTheme, int iSizeId) =>
+    _GetThemeSysSize(hTheme ?? 0, iSizeId);
 
 final _GetThemeSysSize = _uxtheme.lookupFunction<
     Int32 Function(IntPtr hTheme, Int32 iSizeId),
@@ -521,8 +528,8 @@ final _IsThemePartDefined = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int OpenThemeData(int hwnd, Pointer<Utf16> pszClassList) =>
-    _OpenThemeData(hwnd, pszClassList);
+int OpenThemeData(int? hwnd, Pointer<Utf16> pszClassList) =>
+    _OpenThemeData(hwnd ?? 0, pszClassList);
 
 final _OpenThemeData = _uxtheme.lookupFunction<
     IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList),
@@ -538,8 +545,8 @@ final _OpenThemeData = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int OpenThemeDataEx(int hwnd, Pointer<Utf16> pszClassList, int dwFlags) =>
-    _OpenThemeDataEx(hwnd, pszClassList, dwFlags);
+int OpenThemeDataEx(int? hwnd, Pointer<Utf16> pszClassList, int dwFlags) =>
+    _OpenThemeDataEx(hwnd ?? 0, pszClassList, dwFlags);
 
 final _OpenThemeDataEx = _uxtheme.lookupFunction<
     IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList, Uint32 dwFlags),
@@ -557,8 +564,8 @@ final _OpenThemeDataEx = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int OpenThemeDataForDpi(int hwnd, Pointer<Utf16> pszClassList, int dpi) =>
-    _OpenThemeDataForDpi(hwnd, pszClassList, dpi);
+int OpenThemeDataForDpi(int? hwnd, Pointer<Utf16> pszClassList, int dpi) =>
+    _OpenThemeDataForDpi(hwnd ?? 0, pszClassList, dpi);
 
 final _OpenThemeDataForDpi = _uxtheme.lookupFunction<
     IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList, Uint32 dpi),
@@ -591,9 +598,9 @@ final _SetThemeAppProperties = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int SetWindowTheme(
-        int hwnd, Pointer<Utf16> pszSubAppName, Pointer<Utf16> pszSubIdList) =>
-    _SetWindowTheme(hwnd, pszSubAppName, pszSubIdList);
+int SetWindowTheme(int hwnd, Pointer<Utf16>? pszSubAppName,
+        Pointer<Utf16>? pszSubIdList) =>
+    _SetWindowTheme(hwnd, pszSubAppName ?? nullptr, pszSubIdList ?? nullptr);
 
 final _SetWindowTheme = _uxtheme.lookupFunction<
     Int32 Function(

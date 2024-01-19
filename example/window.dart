@@ -40,7 +40,7 @@ void enumerateWindows() {
 
 /// Find the first open Notepad window and maximize it
 void findNotepad() {
-  final hwnd = FindWindowEx(0, 0, TEXT('Notepad'), nullptr);
+  final hwnd = FindWindowEx(0, 0, TEXT('Notepad'), null);
 
   if (hwnd == 0) {
     print('No Notepad window found.');

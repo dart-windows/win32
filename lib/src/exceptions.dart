@@ -4,8 +4,6 @@
 
 // Exceptions that may be caught or thrown by the win32 library.
 
-import 'dart:ffi';
-
 import 'package:ffi/ffi.dart';
 
 import 'constants.dart';
@@ -39,20 +37,16 @@ class WindowsException extends COMException {
     try {
       String errorMessage;
       final result = FormatMessage(
-          FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-          nullptr,
-          windowsError,
-          0, // default language
-          buffer,
-          256,
-          nullptr);
+        FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+        null,
+        windowsError,
+        NULL, // default language
+        buffer,
+        256,
+        null,
+      );
 
-      if (result == 0) {
-        // Failed to get error string
-        errorMessage = '';
-      } else {
-        errorMessage = buffer.toDartString();
-      }
+      errorMessage = result == 0 ? '' : buffer.toDartString();
 
       // Strip off CRLF in the returned error message, if it exists
       if (errorMessage.endsWith('\r\n')) {

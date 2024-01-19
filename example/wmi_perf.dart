@@ -19,10 +19,10 @@ void initializeCOM() {
   hr = CoInitializeSecurity(
     nullptr,
     -1, // COM negotiates service
-    nullptr, // Authentication services
+    null, // Authentication services
     RPC_C_AUTHN_LEVEL_DEFAULT, // authentication
     RPC_C_IMP_LEVEL_IMPERSONATE, // Impersonation
-    nullptr, // Authentication info
+    null, // Authentication info
     EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // Additional capabilities
   );
   if (FAILED(hr)) throw WindowsException(hr);
@@ -47,10 +47,10 @@ int connectWMI(WbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
       ppNamespace.value, // the proxy to set
       RPC_C_AUTHN_WINNT, // authentication service
       RPC_C_AUTHZ_NONE, // authorization service
-      nullptr, // Server principal name
+      null, // Server principal name
       RPC_C_AUTHN_LEVEL_CALL, // authentication level
       RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
-      nullptr, // client identity
+      null, // client identity
       EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE // proxy capabilities
       );
   if (FAILED(hr)) throw WindowsException(hr);

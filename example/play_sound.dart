@@ -7,7 +7,6 @@
 import 'dart:io';
 
 import 'package:ffi/ffi.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
@@ -20,7 +19,7 @@ void main() {
     exit(1);
   } else {
     final pszLogonSound = logonSound.toNativeUtf16();
-    final result = PlaySound(pszLogonSound, NULL, SND_FILENAME | SND_SYNC);
+    final result = PlaySound(pszLogonSound, null, SND_FILENAME | SND_SYNC);
 
     if (result != TRUE) {
       print('Sound playback failed.');

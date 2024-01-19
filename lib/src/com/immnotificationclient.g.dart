@@ -49,11 +49,11 @@ class IMMNotificationClient extends IUnknown {
           ptr, pwstrDeviceId);
 
   int onDefaultDeviceChanged(
-          int flow, int role, Pointer<Utf16> pwstrDefaultDeviceId) =>
+          int flow, int role, Pointer<Utf16>? pwstrDefaultDeviceId) =>
       _vtable.OnDefaultDeviceChanged.asFunction<
               int Function(VTablePointer, int flow, int role,
                   Pointer<Utf16> pwstrDefaultDeviceId)>()(
-          ptr, flow, role, pwstrDefaultDeviceId);
+          ptr, flow, role, pwstrDefaultDeviceId ?? nullptr);
 
   int onPropertyValueChanged(Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key) =>
       _vtable.OnPropertyValueChanged.asFunction<

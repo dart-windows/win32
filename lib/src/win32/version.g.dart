@@ -75,8 +75,8 @@ final _GetFileVersionInfoEx = _version.lookupFunction<
 /// ```
 /// {@category version}
 int GetFileVersionInfoSize(
-        Pointer<Utf16> lptstrFilename, Pointer<Uint32> lpdwHandle) =>
-    _GetFileVersionInfoSize(lptstrFilename, lpdwHandle);
+        Pointer<Utf16> lptstrFilename, Pointer<Uint32>? lpdwHandle) =>
+    _GetFileVersionInfoSize(lptstrFilename, lpdwHandle ?? nullptr);
 
 final _GetFileVersionInfoSize = _version.lookupFunction<
     Uint32 Function(Pointer<Utf16> lptstrFilename, Pointer<Uint32> lpdwHandle),
@@ -126,14 +126,14 @@ final _GetFileVersionInfoSizeEx = _version.lookupFunction<
 int VerFindFile(
         int uFlags,
         Pointer<Utf16> szFileName,
-        Pointer<Utf16> szWinDir,
+        Pointer<Utf16>? szWinDir,
         Pointer<Utf16> szAppDir,
         Pointer<Utf16> szCurDir,
         Pointer<Uint32> puCurDirLen,
         Pointer<Utf16> szDestDir,
         Pointer<Uint32> puDestDirLen) =>
-    _VerFindFile(uFlags, szFileName, szWinDir, szAppDir, szCurDir, puCurDirLen,
-        szDestDir, puDestDirLen);
+    _VerFindFile(uFlags, szFileName, szWinDir ?? nullptr, szAppDir, szCurDir,
+        puCurDirLen, szDestDir, puDestDirLen);
 
 final _VerFindFile = _version.lookupFunction<
     Uint32 Function(

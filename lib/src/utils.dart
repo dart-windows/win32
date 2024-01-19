@@ -89,7 +89,7 @@ VTablePointer createCOMObject(String clsid, String iid) {
   final ppv = calloc<VTablePointer>();
 
   try {
-    final hr = CoCreateInstance(rclsid, nullptr, CLSCTX_ALL, riid, ppv.cast());
+    final hr = CoCreateInstance(rclsid, null, CLSCTX_ALL, riid, ppv.cast());
     if (FAILED(hr)) throw WindowsException(hr);
     return ppv.value;
   } finally {
@@ -129,16 +129,17 @@ void initApp(Function winMain) {
     LocalFree(szArgList);
   }
 
-  final hInstance = GetModuleHandle(nullptr);
+  final hInstance = GetModuleHandle(null);
   GetStartupInfo(lpStartupInfo);
 
   try {
     winMain(
-        hInstance,
-        args,
-        lpStartupInfo.ref.dwFlags & STARTF_USESHOWWINDOW == STARTF_USESHOWWINDOW
-            ? lpStartupInfo.ref.wShowWindow
-            : SW_SHOWDEFAULT);
+      hInstance,
+      args,
+      lpStartupInfo.ref.dwFlags & STARTF_USESHOWWINDOW == STARTF_USESHOWWINDOW
+          ? lpStartupInfo.ref.wShowWindow
+          : SW_SHOWDEFAULT,
+    );
   } finally {
     free(nArgs);
     free(lpStartupInfo);

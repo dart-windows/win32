@@ -38,11 +38,13 @@ class ISensorCollection extends IUnknown {
   int getCount(Pointer<Uint32> pCount) => _vtable.GetCount.asFunction<
       int Function(VTablePointer, Pointer<Uint32> pCount)>()(ptr, pCount);
 
-  int add(VTablePointer pSensor) => _vtable.Add.asFunction<
-      int Function(VTablePointer, VTablePointer pSensor)>()(ptr, pSensor);
+  int add(VTablePointer? pSensor) => _vtable.Add.asFunction<
+      int Function(
+          VTablePointer, VTablePointer pSensor)>()(ptr, pSensor ?? nullptr);
 
-  int remove(VTablePointer pSensor) => _vtable.Remove.asFunction<
-      int Function(VTablePointer, VTablePointer pSensor)>()(ptr, pSensor);
+  int remove(VTablePointer? pSensor) => _vtable.Remove.asFunction<
+      int Function(
+          VTablePointer, VTablePointer pSensor)>()(ptr, pSensor ?? nullptr);
 
   int removeByID(Pointer<GUID> sensorID) => _vtable.RemoveByID.asFunction<
       int Function(VTablePointer, Pointer<GUID> sensorID)>()(ptr, sensorID);

@@ -32,22 +32,22 @@ class IStream extends ISequentialStream {
   factory IStream.from(IUnknown interface) =>
       IStream(interface.toInterface(IID_IStream));
 
-  int seek(int dlibMove, int dwOrigin, Pointer<Uint64> plibNewPosition) =>
+  int seek(int dlibMove, int dwOrigin, Pointer<Uint64>? plibNewPosition) =>
       _vtable.Seek.asFunction<
               int Function(VTablePointer, int dlibMove, int dwOrigin,
                   Pointer<Uint64> plibNewPosition)>()(
-          ptr, dlibMove, dwOrigin, plibNewPosition);
+          ptr, dlibMove, dwOrigin, plibNewPosition ?? nullptr);
 
   int setSize(int libNewSize) =>
       _vtable.SetSize.asFunction<int Function(VTablePointer, int libNewSize)>()(
           ptr, libNewSize);
 
-  int copyTo(VTablePointer pstm, int cb, Pointer<Uint64> pcbRead,
-          Pointer<Uint64> pcbWritten) =>
+  int copyTo(VTablePointer pstm, int cb, Pointer<Uint64>? pcbRead,
+          Pointer<Uint64>? pcbWritten) =>
       _vtable.CopyTo.asFunction<
               int Function(VTablePointer, VTablePointer pstm, int cb,
                   Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>()(
-          ptr, pstm, cb, pcbRead, pcbWritten);
+          ptr, pstm, cb, pcbRead ?? nullptr, pcbWritten ?? nullptr);
 
   int commit(int grfCommitFlags) => _vtable.Commit.asFunction<
       int Function(VTablePointer, int grfCommitFlags)>()(ptr, grfCommitFlags);

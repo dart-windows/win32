@@ -38,7 +38,7 @@ class IMoniker extends IPersistStream {
   factory IMoniker.from(IUnknown interface) =>
       IMoniker(interface.toInterface(IID_IMoniker));
 
-  int bindToObject(VTablePointer pbc, VTablePointer pmkToLeft,
+  int bindToObject(VTablePointer pbc, VTablePointer? pmkToLeft,
           Pointer<GUID> riidResult, Pointer<Pointer> ppvResult) =>
       _vtable.BindToObject.asFunction<
               int Function(
@@ -47,17 +47,18 @@ class IMoniker extends IPersistStream {
                   VTablePointer pmkToLeft,
                   Pointer<GUID> riidResult,
                   Pointer<Pointer> ppvResult)>()(
-          ptr, pbc, pmkToLeft, riidResult, ppvResult);
+          ptr, pbc, pmkToLeft ?? nullptr, riidResult, ppvResult);
 
-  int bindToStorage(VTablePointer pbc, VTablePointer pmkToLeft,
+  int bindToStorage(VTablePointer pbc, VTablePointer? pmkToLeft,
           Pointer<GUID> riid, Pointer<Pointer> ppvObj) =>
       _vtable.BindToStorage.asFunction<
-          int Function(
-              VTablePointer,
-              VTablePointer pbc,
-              VTablePointer pmkToLeft,
-              Pointer<GUID> riid,
-              Pointer<Pointer> ppvObj)>()(ptr, pbc, pmkToLeft, riid, ppvObj);
+              int Function(
+                  VTablePointer,
+                  VTablePointer pbc,
+                  VTablePointer pmkToLeft,
+                  Pointer<GUID> riid,
+                  Pointer<Pointer> ppvObj)>()(
+          ptr, pbc, pmkToLeft ?? nullptr, riid, ppvObj);
 
   int reduce(
           VTablePointer pbc,

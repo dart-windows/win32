@@ -26,9 +26,9 @@ class IModalWindow extends IUnknown {
   factory IModalWindow.from(IUnknown interface) =>
       IModalWindow(interface.toInterface(IID_IModalWindow));
 
-  int show(int hwndOwner) =>
+  int show(int? hwndOwner) =>
       _vtable.Show.asFunction<int Function(VTablePointer, int hwndOwner)>()(
-          ptr, hwndOwner);
+          ptr, hwndOwner ?? 0);
 }
 
 /// @nodoc

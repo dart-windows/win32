@@ -34,7 +34,7 @@ class Dispatcher {
       if (FAILED(hr)) throw WindowsException(hr);
 
       hr = CoCreateInstance(
-          clsid, nullptr, CLSCTX_INPROC_SERVER, pIID_IDispatch, ppv);
+          clsid, null, CLSCTX_INPROC_SERVER, pIID_IDispatch, ppv);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final iDispatch = IDispatch(ppv.value);
@@ -93,7 +93,7 @@ class Dispatcher {
 
     try {
       final hr = disp.invoke(dispid, IID_NULL, LOCALE_SYSTEM_DEFAULT,
-          DISPATCH_METHOD, args, nullptr, nullptr, nullptr);
+          DISPATCH_METHOD, args, null, null, null);
       if (FAILED(hr)) {
         throw WindowsException(hr);
       } else {

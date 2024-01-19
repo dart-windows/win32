@@ -35,8 +35,8 @@ class IAudioCaptureClient extends IUnknown {
           Pointer<Pointer<Uint8>> ppData,
           Pointer<Uint32> pNumFramesToRead,
           Pointer<Uint32> pdwFlags,
-          Pointer<Uint64> pu64DevicePosition,
-          Pointer<Uint64> pu64QPCPosition) =>
+          Pointer<Uint64>? pu64DevicePosition,
+          Pointer<Uint64>? pu64QPCPosition) =>
       _vtable.GetBuffer.asFunction<
               int Function(
                   VTablePointer,
@@ -44,8 +44,13 @@ class IAudioCaptureClient extends IUnknown {
                   Pointer<Uint32> pNumFramesToRead,
                   Pointer<Uint32> pdwFlags,
                   Pointer<Uint64> pu64DevicePosition,
-                  Pointer<Uint64> pu64QPCPosition)>()(ptr, ppData,
-          pNumFramesToRead, pdwFlags, pu64DevicePosition, pu64QPCPosition);
+                  Pointer<Uint64> pu64QPCPosition)>()(
+          ptr,
+          ppData,
+          pNumFramesToRead,
+          pdwFlags,
+          pu64DevicePosition ?? nullptr,
+          pu64QPCPosition ?? nullptr);
 
   int releaseBuffer(int NumFramesRead) => _vtable.ReleaseBuffer.asFunction<
       int Function(VTablePointer, int NumFramesRead)>()(ptr, NumFramesRead);

@@ -4,8 +4,6 @@
 
 // Example of using Windows speech client.
 
-import 'dart:ffi';
-
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
@@ -17,7 +15,7 @@ void main() {
 
   final speechEngine = SpVoice.createInstance();
   final pText = textToSpeak.toNativeUtf16();
-  speechEngine.speak(pText, SPEAKFLAGS.SPF_IS_NOT_XML, nullptr);
+  speechEngine.speak(pText, SPEAKFLAGS.SPF_IS_NOT_XML, null);
 
   free(pText);
   speechEngine.release();

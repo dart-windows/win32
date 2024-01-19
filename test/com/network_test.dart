@@ -39,7 +39,7 @@ void main() {
 
       final enumerator = IEnumNetworks(enumPtr.value);
       free(enumPtr);
-      expect(enumerator.next(1, netPtr, nullptr), equals(S_OK));
+      expect(enumerator.next(1, netPtr, null), equals(S_OK));
 
       final network = INetwork(netPtr.value);
       free(netPtr);
@@ -65,7 +65,7 @@ void main() {
 
       final enumerator = IEnumNetworks(enumPtr.value);
       free(enumPtr);
-      expect(enumerator.next(1, netPtr, nullptr), equals(S_OK));
+      expect(enumerator.next(1, netPtr, null), equals(S_OK));
 
       final network = INetwork(netPtr.value);
       free(netPtr);

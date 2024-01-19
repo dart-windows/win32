@@ -308,7 +308,7 @@ void main() {
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..lpszClassName = className
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..hbrBackground = GetStockObject(WHITE_BRUSH);
   RegisterClass(wc);
 
@@ -326,7 +326,7 @@ void main() {
       CW_USEDEFAULT,
       CW_USEDEFAULT,
       CW_USEDEFAULT,
-      NULL, // Parent window
+      null, // Parent window
       hMenu, // Menu
       hInstance, // Instance handle
       nullptr // Additional application data
@@ -345,7 +345,7 @@ void main() {
   // Run the message loop.
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     // Translate dialog messages
     if ((hDlgModeless == NULL) ||
         (IsDialogMessage(hDlgModeless, msg) == FALSE)) {

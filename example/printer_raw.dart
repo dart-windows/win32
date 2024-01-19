@@ -26,7 +26,7 @@ class RawPrinter {
     final phPrinter = alloc<HANDLE>();
 
     // https://learn.microsoft.com/windows/win32/printdocs/openprinter
-    var fSuccess = OpenPrinter(pPrinterName, phPrinter, nullptr);
+    var fSuccess = OpenPrinter(pPrinterName, phPrinter, null);
     if (fSuccess == 0) {
       final error = GetLastError();
       throw Exception('OpenPrint error, status: $fSuccess, error: $error');

@@ -27,7 +27,7 @@ You can create COM objects using the [C
 library](https://learn.microsoft.com/windows/win32/learnwin32/creating-an-object-in-com):
 
 ```dart
-hr = CoCreateInstance(clsid, nullptr, CLSCTX_INPROC_SERVER, riid, ppv);
+hr = CoCreateInstance(clsid, null, CLSCTX_INPROC_SERVER, riid, ppv);
 ```
 
 However, rather than manually allocate GUID structs for the `clsid` and `riid`
@@ -80,7 +80,7 @@ return value to a variable and test it for success or failure. You can use the
 `SUCCEEDED()` or `FAILED()` top-level functions to do this, for example:
 
 ```dart
-final hr = fileOpenDialog.show(NULL);
+final hr = fileOpenDialog.show(null);
 if (SUCCEEDED(hr)) {
   // Do something with the returned dialog box values
 }
@@ -91,7 +91,7 @@ Win32 error code is converted to an `HRESULT`, as in the case where a user
 cancels a common dialog box:
 
 ```dart
-final hr = fileOpenDialog.show(NULL);
+final hr = fileOpenDialog.show(null);
 if (FAILED(hr) && hr == HRESULT_FROM_WIN32(ERROR_CANCELLED)) {
   // User clicked cancel
 }

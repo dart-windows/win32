@@ -37,8 +37,8 @@ void main() {
     ..style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
-    ..hIcon = LoadIcon(NULL, IDI_APPLICATION)
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hIcon = LoadIcon(null, IDI_APPLICATION)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..hbrBackground = GetStockObject(BLACK_BRUSH)
     ..lpszClassName = szAppName;
   RegisterClass(wc);
@@ -54,8 +54,8 @@ void main() {
       CW_USEDEFAULT,
       SCREEN_WIDTH * PX_PER_BLOCK + 156,
       SCREEN_HEIGHT * PX_PER_BLOCK + 25,
-      NULL, // Parent window
-      NULL, // Menu
+      null, // Parent window
+      null, // Menu
       hInstance, // Instance handle
       nullptr // Additional application data
       );
@@ -70,7 +70,7 @@ void main() {
 
   // Run the message loop.
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

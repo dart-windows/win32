@@ -48,12 +48,16 @@ final _XInputEnable = _xinput1_4.lookupFunction<Void Function(Int32 enable),
 /// {@category xinput}
 int XInputGetAudioDeviceIds(
         int dwUserIndex,
-        Pointer<Utf16> pRenderDeviceId,
-        Pointer<Uint32> pRenderCount,
-        Pointer<Utf16> pCaptureDeviceId,
-        Pointer<Uint32> pCaptureCount) =>
-    _XInputGetAudioDeviceIds(dwUserIndex, pRenderDeviceId, pRenderCount,
-        pCaptureDeviceId, pCaptureCount);
+        Pointer<Utf16>? pRenderDeviceId,
+        Pointer<Uint32>? pRenderCount,
+        Pointer<Utf16>? pCaptureDeviceId,
+        Pointer<Uint32>? pCaptureCount) =>
+    _XInputGetAudioDeviceIds(
+        dwUserIndex,
+        pRenderDeviceId ?? nullptr,
+        pRenderCount ?? nullptr,
+        pCaptureDeviceId ?? nullptr,
+        pCaptureCount ?? nullptr);
 
 final _XInputGetAudioDeviceIds = _xinput1_4.lookupFunction<
     Uint32 Function(

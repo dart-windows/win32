@@ -51,11 +51,11 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
           ptr, pITI, dwOpenFlags, riid, ppIUnk);
 
   int getCORSystemDirectory(
-          Pointer<Utf16> szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
+          Pointer<Utf16>? szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
       _vtable.GetCORSystemDirectory.asFunction<
               int Function(VTablePointer, Pointer<Utf16> szBuffer,
                   int cchBuffer, Pointer<Uint32> pchBuffer)>()(
-          ptr, szBuffer, cchBuffer, pchBuffer);
+          ptr, szBuffer ?? nullptr, cchBuffer, pchBuffer);
 
   int findAssembly(
           Pointer<Utf16> szAppBase,
@@ -83,7 +83,7 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
           Pointer<Utf16> szGlobalBin,
           Pointer<Utf16> szAssemblyName,
           Pointer<Utf16> szModuleName,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pcName) =>
       _vtable.FindAssemblyModule.asFunction<
@@ -96,8 +96,16 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
                   Pointer<Utf16> szModuleName,
                   Pointer<Utf16> szName,
                   int cchName,
-                  Pointer<Uint32> pcName)>()(ptr, szAppBase, szPrivateBin,
-          szGlobalBin, szAssemblyName, szModuleName, szName, cchName, pcName);
+                  Pointer<Uint32> pcName)>()(
+          ptr,
+          szAppBase,
+          szPrivateBin,
+          szGlobalBin,
+          szAssemblyName,
+          szModuleName,
+          szName ?? nullptr,
+          cchName,
+          pcName);
 }
 
 /// @nodoc

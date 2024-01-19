@@ -56,7 +56,7 @@ void main() {
   hr = fileDialog.setFileTypes(3, rgSpec);
   if (FAILED(hr)) throw WindowsException(hr);
 
-  hr = fileDialog.show(NULL);
+  hr = fileDialog.show(null);
   if (FAILED(hr)) {
     if (hr == HRESULT_FROM_WIN32(ERROR_CANCELLED)) {
       print('Dialog cancelled.');

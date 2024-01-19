@@ -17,7 +17,7 @@ class NotepadFont {
   int hFont = NULL;
 
   NotepadFont(this.hwndEdit) {
-    GetThemeSysFont(NULL, TMT_MENUFONT, logfont);
+    GetThemeSysFont(null, TMT_MENUFONT, logfont);
 
     hFont = CreateFontIndirect(logfont);
     SendMessage(hwndEdit, WM_SETFONT, hFont, 0);

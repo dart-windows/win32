@@ -39,13 +39,19 @@ final _crypt32 = DynamicLibrary.open('crypt32.dll');
 /// {@category crypt32}
 int CryptProtectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        Pointer<Utf16> szDataDescr,
-        Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
-        Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
+        Pointer<Utf16>? szDataDescr,
+        Pointer<CRYPT_INTEGER_BLOB>? pOptionalEntropy,
+        Pointer<CRYPTPROTECT_PROMPTSTRUCT>? pPromptStruct,
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut) =>
-    _CryptProtectData(pDataIn, szDataDescr, pOptionalEntropy, nullptr,
-        pPromptStruct, dwFlags, pDataOut);
+    _CryptProtectData(
+        pDataIn,
+        szDataDescr ?? nullptr,
+        pOptionalEntropy ?? nullptr,
+        nullptr,
+        pPromptStruct ?? nullptr,
+        dwFlags,
+        pDataOut);
 
 final _CryptProtectData = _crypt32.lookupFunction<
     Int32 Function(
@@ -108,13 +114,19 @@ final _CryptProtectMemory = _crypt32.lookupFunction<
 /// {@category crypt32}
 int CryptUnprotectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        Pointer<Pointer<Utf16>> ppszDataDescr,
-        Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
-        Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
+        Pointer<Pointer<Utf16>>? ppszDataDescr,
+        Pointer<CRYPT_INTEGER_BLOB>? pOptionalEntropy,
+        Pointer<CRYPTPROTECT_PROMPTSTRUCT>? pPromptStruct,
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut) =>
-    _CryptUnprotectData(pDataIn, ppszDataDescr, pOptionalEntropy, nullptr,
-        pPromptStruct, dwFlags, pDataOut);
+    _CryptUnprotectData(
+        pDataIn,
+        ppszDataDescr ?? nullptr,
+        pOptionalEntropy ?? nullptr,
+        nullptr,
+        pPromptStruct ?? nullptr,
+        dwFlags,
+        pDataOut);
 
 final _CryptUnprotectData = _crypt32.lookupFunction<
     Int32 Function(
@@ -169,13 +181,13 @@ final _CryptUnprotectMemory = _crypt32.lookupFunction<
 /// ```
 /// {@category crypt32}
 int CryptUpdateProtectedState(
-        Pointer pOldSid,
-        Pointer<Utf16> pwszOldPassword,
+        Pointer? pOldSid,
+        Pointer<Utf16>? pwszOldPassword,
         int dwFlags,
-        Pointer<Uint32> pdwSuccessCount,
-        Pointer<Uint32> pdwFailureCount) =>
-    _CryptUpdateProtectedState(
-        pOldSid, pwszOldPassword, dwFlags, pdwSuccessCount, pdwFailureCount);
+        Pointer<Uint32>? pdwSuccessCount,
+        Pointer<Uint32>? pdwFailureCount) =>
+    _CryptUpdateProtectedState(pOldSid ?? nullptr, pwszOldPassword ?? nullptr,
+        dwFlags, pdwSuccessCount ?? nullptr, pdwFailureCount ?? nullptr);
 
 final _CryptUpdateProtectedState = _crypt32.lookupFunction<
     Int32 Function(

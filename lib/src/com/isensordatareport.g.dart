@@ -43,10 +43,11 @@ class ISensorDataReport extends IUnknown {
           int Function(VTablePointer, Pointer<PROPERTYKEY> pKey,
               Pointer<PROPVARIANT> pValue)>()(ptr, pKey, pValue);
 
-  int getSensorValues(VTablePointer pKeys, Pointer<VTablePointer> ppValues) =>
+  int getSensorValues(VTablePointer? pKeys, Pointer<VTablePointer> ppValues) =>
       _vtable.GetSensorValues.asFunction<
-          int Function(VTablePointer, VTablePointer pKeys,
-              Pointer<VTablePointer> ppValues)>()(ptr, pKeys, ppValues);
+              int Function(VTablePointer, VTablePointer pKeys,
+                  Pointer<VTablePointer> ppValues)>()(
+          ptr, pKeys ?? nullptr, ppValues);
 }
 
 /// @nodoc

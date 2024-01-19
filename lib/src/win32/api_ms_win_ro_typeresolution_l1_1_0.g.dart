@@ -36,12 +36,16 @@ final _api_ms_win_ro_typeresolution_l1_1_0 =
 /// {@category winrt}
 int RoGetMetaDataFile(
         int name,
-        VTablePointer metaDataDispenser,
-        Pointer<IntPtr> metaDataFilePath,
-        Pointer<VTablePointer> metaDataImport,
-        Pointer<Uint32> typeDefToken) =>
-    _RoGetMetaDataFile(name, metaDataDispenser, metaDataFilePath,
-        metaDataImport, typeDefToken);
+        VTablePointer? metaDataDispenser,
+        Pointer<IntPtr>? metaDataFilePath,
+        Pointer<VTablePointer>? metaDataImport,
+        Pointer<Uint32>? typeDefToken) =>
+    _RoGetMetaDataFile(
+        name,
+        metaDataDispenser ?? nullptr,
+        metaDataFilePath ?? nullptr,
+        metaDataImport ?? nullptr,
+        typeDefToken ?? nullptr);
 
 final _RoGetMetaDataFile = _api_ms_win_ro_typeresolution_l1_1_0.lookupFunction<
     Int32 Function(

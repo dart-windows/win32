@@ -36,7 +36,7 @@ class IMetaDataAssemblyImport extends IUnknown {
           Pointer<Pointer> ppbPublicKey,
           Pointer<Uint32> pcbPublicKey,
           Pointer<Uint32> pulHashAlgId,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -58,7 +58,7 @@ class IMetaDataAssemblyImport extends IUnknown {
           ppbPublicKey,
           pcbPublicKey,
           pulHashAlgId,
-          szName,
+          szName ?? nullptr,
           cchName,
           pchName,
           pMetaData,
@@ -68,7 +68,7 @@ class IMetaDataAssemblyImport extends IUnknown {
           int mdar,
           Pointer<Pointer> ppbPublicKeyOrToken,
           Pointer<Uint32> pcbPublicKeyOrToken,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -92,7 +92,7 @@ class IMetaDataAssemblyImport extends IUnknown {
           mdar,
           ppbPublicKeyOrToken,
           pcbPublicKeyOrToken,
-          szName,
+          szName ?? nullptr,
           cchName,
           pchName,
           pMetaData,
@@ -102,7 +102,7 @@ class IMetaDataAssemblyImport extends IUnknown {
 
   int getFileProps(
           int mdf,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Pointer> ppbHashValue,
@@ -117,12 +117,12 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pchName,
                   Pointer<Pointer> ppbHashValue,
                   Pointer<Uint32> pcbHashValue,
-                  Pointer<Uint32> pdwFileFlags)>()(ptr, mdf, szName, cchName,
-          pchName, ppbHashValue, pcbHashValue, pdwFileFlags);
+                  Pointer<Uint32> pdwFileFlags)>()(ptr, mdf, szName ?? nullptr,
+          cchName, pchName, ppbHashValue, pcbHashValue, pdwFileFlags);
 
   int getExportedTypeProps(
           int mdct,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Uint32> ptkImplementation,
@@ -140,7 +140,7 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pdwExportedTypeFlags)>()(
           ptr,
           mdct,
-          szName,
+          szName ?? nullptr,
           cchName,
           pchName,
           ptkImplementation,
@@ -149,7 +149,7 @@ class IMetaDataAssemblyImport extends IUnknown {
 
   int getManifestResourceProps(
           int mdmr,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Uint32> ptkImplementation,
@@ -164,8 +164,15 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pchName,
                   Pointer<Uint32> ptkImplementation,
                   Pointer<Uint32> pdwOffset,
-                  Pointer<Uint32> pdwResourceFlags)>()(ptr, mdmr, szName,
-          cchName, pchName, ptkImplementation, pdwOffset, pdwResourceFlags);
+                  Pointer<Uint32> pdwResourceFlags)>()(
+          ptr,
+          mdmr,
+          szName ?? nullptr,
+          cchName,
+          pchName,
+          ptkImplementation,
+          pdwOffset,
+          pdwResourceFlags);
 
   int enumAssemblyRefs(Pointer<Pointer> phEnum, Pointer<Uint32> rAssemblyRefs,
           int cMax, Pointer<Uint32> pcTokens) =>

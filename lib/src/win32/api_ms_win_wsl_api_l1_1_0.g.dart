@@ -124,14 +124,14 @@ final _WslIsDistributionRegistered = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
 /// {@category wslapi}
 int WslLaunch(
         Pointer<Utf16> distributionName,
-        Pointer<Utf16> command,
+        Pointer<Utf16>? command,
         int useCurrentWorkingDirectory,
         int stdIn,
         int stdOut,
         int stdErr,
         Pointer<IntPtr> process) =>
-    _WslLaunch(distributionName, command, useCurrentWorkingDirectory, stdIn,
-        stdOut, stdErr, process);
+    _WslLaunch(distributionName, command ?? nullptr, useCurrentWorkingDirectory,
+        stdIn, stdOut, stdErr, process);
 
 final _WslLaunch = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
     Int32 Function(
@@ -166,11 +166,11 @@ final _WslLaunch = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
 /// {@category wslapi}
 int WslLaunchInteractive(
         Pointer<Utf16> distributionName,
-        Pointer<Utf16> command,
+        Pointer<Utf16>? command,
         int useCurrentWorkingDirectory,
         Pointer<Uint32> exitCode) =>
-    _WslLaunchInteractive(
-        distributionName, command, useCurrentWorkingDirectory, exitCode);
+    _WslLaunchInteractive(distributionName, command ?? nullptr,
+        useCurrentWorkingDirectory, exitCode);
 
 final _WslLaunchInteractive = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
     Int32 Function(Pointer<Utf16> distributionName, Pointer<Utf16> command,

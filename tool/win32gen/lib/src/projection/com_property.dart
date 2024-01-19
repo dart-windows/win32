@@ -31,11 +31,11 @@ abstract class ComPropertyProjection extends ComMethodProjection {
 class ComGetPropertyProjection extends ComPropertyProjection {
   ComGetPropertyProjection(super.method);
 
-  bool get convertBool => parameters.first.type.dartType == 'bool';
+  bool get convertBool => parameters.first.type == 'bool';
 
   @override
   String toString() {
-    final returnValue = parameters.first.type.dereference();
+    final returnValue = parameters.first.typeProjection.dereference();
     final valRef = returnValue.dartType == 'double' ||
             returnValue.dartType == 'int' ||
             returnValue.dartType == 'VTablePointer' ||
@@ -64,7 +64,7 @@ class ComSetPropertyProjection extends ComPropertyProjection {
 
   @override
   String toString() => '''
-  set $exposedMethodName(${parameters.first.type.dartType} value) {
+  set $exposedMethodName(${parameters.first.type} value) {
     ${ffiCall(identifier: 'value')}
   }
 ''';

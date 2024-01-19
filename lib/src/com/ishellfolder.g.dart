@@ -115,8 +115,8 @@ class IShellFolder extends IUnknown {
           int Function(VTablePointer, Pointer<ITEMIDLIST> pidl, int uFlags,
               Pointer<STRRET> pName)>()(ptr, pidl, uFlags, pName);
 
-  int setNameOf(int hwnd, Pointer<ITEMIDLIST> pidl, Pointer<Utf16> pszName,
-          int uFlags, Pointer<Pointer<ITEMIDLIST>> ppidlOut) =>
+  int setNameOf(int? hwnd, Pointer<ITEMIDLIST> pidl, Pointer<Utf16> pszName,
+          int uFlags, Pointer<Pointer<ITEMIDLIST>>? ppidlOut) =>
       _vtable.SetNameOf.asFunction<
               int Function(
                   VTablePointer,
@@ -125,7 +125,7 @@ class IShellFolder extends IUnknown {
                   Pointer<Utf16> pszName,
                   int uFlags,
                   Pointer<Pointer<ITEMIDLIST>> ppidlOut)>()(
-          ptr, hwnd, pidl, pszName, uFlags, ppidlOut);
+          ptr, hwnd ?? 0, pidl, pszName, uFlags, ppidlOut ?? nullptr);
 }
 
 /// @nodoc

@@ -335,9 +335,9 @@ final _SCardFreeMemory = _winscard.lookupFunction<
 /// );
 /// ```
 /// {@category winscard}
-int SCardGetAttrib(int hCard, int dwAttrId, Pointer<Uint8> pbAttr,
+int SCardGetAttrib(int hCard, int dwAttrId, Pointer<Uint8>? pbAttr,
         Pointer<Uint32> pcbAttrLen) =>
-    _SCardGetAttrib(hCard, dwAttrId, pbAttr, pcbAttrLen);
+    _SCardGetAttrib(hCard, dwAttrId, pbAttr ?? nullptr, pcbAttrLen);
 
 final _SCardGetAttrib = _winscard.lookupFunction<
     Int32 Function(IntPtr hCard, Uint32 dwAttrId, Pointer<Uint8> pbAttr,
@@ -443,10 +443,10 @@ final _SCardGetProviderId = _winscard.lookupFunction<
 int SCardGetReaderDeviceInstanceId(
         int hContext,
         Pointer<Utf16> szReaderName,
-        Pointer<Utf16> szDeviceInstanceId,
+        Pointer<Utf16>? szDeviceInstanceId,
         Pointer<Uint32> pcchDeviceInstanceId) =>
-    _SCardGetReaderDeviceInstanceId(
-        hContext, szReaderName, szDeviceInstanceId, pcchDeviceInstanceId);
+    _SCardGetReaderDeviceInstanceId(hContext, szReaderName,
+        szDeviceInstanceId ?? nullptr, pcchDeviceInstanceId);
 
 final _SCardGetReaderDeviceInstanceId = _winscard.lookupFunction<
         Int32 Function(
@@ -555,14 +555,21 @@ final _SCardGetTransmitCount = _winscard.lookupFunction<
 int SCardIntroduceCardType(
         int hContext,
         Pointer<Utf16> szCardName,
-        Pointer<GUID> pguidPrimaryProvider,
-        Pointer<GUID> rgguidInterfaces,
+        Pointer<GUID>? pguidPrimaryProvider,
+        Pointer<GUID>? rgguidInterfaces,
         int dwInterfaceCount,
         Pointer<Uint8> pbAtr,
         Pointer<Uint8> pbAtrMask,
         int cbAtrLen) =>
-    _SCardIntroduceCardType(hContext, szCardName, pguidPrimaryProvider,
-        rgguidInterfaces, dwInterfaceCount, pbAtr, pbAtrMask, cbAtrLen);
+    _SCardIntroduceCardType(
+        hContext,
+        szCardName,
+        pguidPrimaryProvider ?? nullptr,
+        rgguidInterfaces ?? nullptr,
+        dwInterfaceCount,
+        pbAtr,
+        pbAtrMask,
+        cbAtrLen);
 
 final _SCardIntroduceCardType = _winscard.lookupFunction<
     Int32 Function(
@@ -659,13 +666,13 @@ final _SCardIsValidContext = _winscard.lookupFunction<
 /// {@category winscard}
 int SCardListCards(
         int hContext,
-        Pointer<Uint8> pbAtr,
-        Pointer<GUID> rgquidInterfaces,
+        Pointer<Uint8>? pbAtr,
+        Pointer<GUID>? rgquidInterfaces,
         int cguidInterfaceCount,
-        Pointer<Utf16> mszCards,
+        Pointer<Utf16>? mszCards,
         Pointer<Uint32> pcchCards) =>
-    _SCardListCards(hContext, pbAtr, rgquidInterfaces, cguidInterfaceCount,
-        mszCards, pcchCards);
+    _SCardListCards(hContext, pbAtr ?? nullptr, rgquidInterfaces ?? nullptr,
+        cguidInterfaceCount, mszCards ?? nullptr, pcchCards);
 
 final _SCardListCards = _winscard.lookupFunction<
     Int32 Function(
@@ -722,8 +729,8 @@ final _SCardListInterfaces = _winscard.lookupFunction<
 /// ```
 /// {@category winscard}
 int SCardListReaderGroups(
-        int hContext, Pointer<Utf16> mszGroups, Pointer<Uint32> pcchGroups) =>
-    _SCardListReaderGroups(hContext, mszGroups, pcchGroups);
+        int hContext, Pointer<Utf16>? mszGroups, Pointer<Uint32> pcchGroups) =>
+    _SCardListReaderGroups(hContext, mszGroups ?? nullptr, pcchGroups);
 
 final _SCardListReaderGroups = _winscard.lookupFunction<
     Int32 Function(
@@ -747,9 +754,10 @@ final _SCardListReaderGroups = _winscard.lookupFunction<
 /// );
 /// ```
 /// {@category winscard}
-int SCardListReaders(int hContext, Pointer<Utf16> mszGroups,
-        Pointer<Utf16> mszReaders, Pointer<Uint32> pcchReaders) =>
-    _SCardListReaders(hContext, mszGroups, mszReaders, pcchReaders);
+int SCardListReaders(int hContext, Pointer<Utf16>? mszGroups,
+        Pointer<Utf16>? mszReaders, Pointer<Uint32> pcchReaders) =>
+    _SCardListReaders(
+        hContext, mszGroups ?? nullptr, mszReaders ?? nullptr, pcchReaders);
 
 final _SCardListReaders = _winscard.lookupFunction<
     Int32 Function(IntPtr hContext, Pointer<Utf16> mszGroups,
@@ -776,10 +784,10 @@ final _SCardListReaders = _winscard.lookupFunction<
 int SCardListReadersWithDeviceInstanceId(
         int hContext,
         Pointer<Utf16> szDeviceInstanceId,
-        Pointer<Utf16> mszReaders,
+        Pointer<Utf16>? mszReaders,
         Pointer<Uint32> pcchReaders) =>
     _SCardListReadersWithDeviceInstanceId(
-        hContext, szDeviceInstanceId, mszReaders, pcchReaders);
+        hContext, szDeviceInstanceId, mszReaders ?? nullptr, pcchReaders);
 
 final _SCardListReadersWithDeviceInstanceId = _winscard.lookupFunction<
     Int32 Function(IntPtr hContext, Pointer<Utf16> szDeviceInstanceId,
@@ -906,9 +914,9 @@ final _SCardReadCache = _winscard.lookupFunction<
 /// ```
 /// {@category winscard}
 int SCardReconnect(int hCard, int dwShareMode, int dwPreferredProtocols,
-        int dwInitialization, Pointer<Uint32> pdwActiveProtocol) =>
+        int dwInitialization, Pointer<Uint32>? pdwActiveProtocol) =>
     _SCardReconnect(hCard, dwShareMode, dwPreferredProtocols, dwInitialization,
-        pdwActiveProtocol);
+        pdwActiveProtocol ?? nullptr);
 
 final _SCardReconnect = _winscard.lookupFunction<
     Int32 Function(
@@ -1042,14 +1050,20 @@ final _SCardSetCardTypeProviderName = _winscard.lookupFunction<
 /// {@category winscard}
 int SCardStatus(
         int hCard,
-        Pointer<Utf16> mszReaderNames,
-        Pointer<Uint32> pcchReaderLen,
-        Pointer<Uint32> pdwState,
-        Pointer<Uint32> pdwProtocol,
-        Pointer<Uint8> pbAtr,
-        Pointer<Uint32> pcbAtrLen) =>
-    _SCardStatus(hCard, mszReaderNames, pcchReaderLen, pdwState, pdwProtocol,
-        pbAtr, pcbAtrLen);
+        Pointer<Utf16>? mszReaderNames,
+        Pointer<Uint32>? pcchReaderLen,
+        Pointer<Uint32>? pdwState,
+        Pointer<Uint32>? pdwProtocol,
+        Pointer<Uint8>? pbAtr,
+        Pointer<Uint32>? pcbAtrLen) =>
+    _SCardStatus(
+        hCard,
+        mszReaderNames ?? nullptr,
+        pcchReaderLen ?? nullptr,
+        pdwState ?? nullptr,
+        pdwProtocol ?? nullptr,
+        pbAtr ?? nullptr,
+        pcbAtrLen ?? nullptr);
 
 final _SCardStatus = _winscard.lookupFunction<
     Int32 Function(
@@ -1089,11 +1103,11 @@ int SCardTransmit(
         Pointer<SCARD_IO_REQUEST> pioSendPci,
         Pointer<Uint8> pbSendBuffer,
         int cbSendLength,
-        Pointer<SCARD_IO_REQUEST> pioRecvPci,
+        Pointer<SCARD_IO_REQUEST>? pioRecvPci,
         Pointer<Uint8> pbRecvBuffer,
         Pointer<Uint32> pcbRecvLength) =>
-    _SCardTransmit(hCard, pioSendPci, pbSendBuffer, cbSendLength, pioRecvPci,
-        pbRecvBuffer, pcbRecvLength);
+    _SCardTransmit(hCard, pioSendPci, pbSendBuffer, cbSendLength,
+        pioRecvPci ?? nullptr, pbRecvBuffer, pcbRecvLength);
 
 final _SCardTransmit = _winscard.lookupFunction<
     Int32 Function(

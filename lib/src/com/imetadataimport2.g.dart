@@ -53,7 +53,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> pdwParamFlags,
           Pointer<Uint32> ptOwner,
           Pointer<Uint32> reserved,
-          Pointer<Utf16> wzname,
+          Pointer<Utf16>? wzname,
           int cchName,
           Pointer<Uint32> pchName) =>
       _vtable.GetGenericParamProps.asFunction<
@@ -66,8 +66,16 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> reserved,
                   Pointer<Utf16> wzname,
                   int cchName,
-                  Pointer<Uint32> pchName)>()(ptr, gp, pulParamSeq,
-          pdwParamFlags, ptOwner, reserved, wzname, cchName, pchName);
+                  Pointer<Uint32> pchName)>()(
+          ptr,
+          gp,
+          pulParamSeq,
+          pdwParamFlags,
+          ptOwner,
+          reserved,
+          wzname ?? nullptr,
+          cchName,
+          pchName);
 
   int getMethodSpecProps(int mi, Pointer<Uint32> tkParent,
           Pointer<Pointer<Uint8>> ppvSigBlob, Pointer<Uint32> pcbSigBlob) =>
@@ -112,11 +120,11 @@ class IMetaDataImport2 extends IMetaDataImport {
               Pointer<Uint32> pdwMAchine)>()(ptr, pdwPEKind, pdwMAchine);
 
   int getVersionString(
-          Pointer<Utf16> pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
+          Pointer<Utf16>? pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
       _vtable.GetVersionString.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pwzBuf, int ccBufSize,
                   Pointer<Uint32> pccBufSize)>()(
-          ptr, pwzBuf, ccBufSize, pccBufSize);
+          ptr, pwzBuf ?? nullptr, ccBufSize, pccBufSize);
 
   int enumMethodSpecs(
           Pointer<Pointer> phEnum,

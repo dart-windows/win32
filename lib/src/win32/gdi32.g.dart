@@ -203,9 +203,9 @@ final _BeginPath =
 /// );
 /// ```
 /// {@category gdi32}
-int BitBlt(int hdc, int x, int y, int cx, int cy, int hdcSrc, int x1, int y1,
+int BitBlt(int hdc, int x, int y, int cx, int cy, int? hdcSrc, int x1, int y1,
         int rop) =>
-    _BitBlt(hdc, x, y, cx, cy, hdcSrc, x1, y1, rop);
+    _BitBlt(hdc, x, y, cx, cy, hdcSrc ?? 0, x1, y1, rop);
 
 final _BitBlt = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 x, Int32 y, Int32 cx, Int32 cy,
@@ -283,8 +283,8 @@ final _CloseFigure =
 /// ```
 /// {@category gdi32}
 int CreateBitmap(
-        int nWidth, int nHeight, int nPlanes, int nBitCount, Pointer lpBits) =>
-    _CreateBitmap(nWidth, nHeight, nPlanes, nBitCount, lpBits);
+        int nWidth, int nHeight, int nPlanes, int nBitCount, Pointer? lpBits) =>
+    _CreateBitmap(nWidth, nHeight, nPlanes, nBitCount, lpBits ?? nullptr);
 
 final _CreateBitmap = _gdi32.lookupFunction<
     IntPtr Function(Int32 nWidth, Int32 nHeight, Uint32 nPlanes,
@@ -334,7 +334,7 @@ final _CreateCompatibleBitmap = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int CreateCompatibleDC(int hdc) => _CreateCompatibleDC(hdc);
+int CreateCompatibleDC(int? hdc) => _CreateCompatibleDC(hdc ?? 0);
 
 final _CreateCompatibleDC =
     _gdi32.lookupFunction<IntPtr Function(IntPtr hdc), int Function(int hdc)>(
@@ -352,9 +352,10 @@ final _CreateCompatibleDC =
 /// );
 /// ```
 /// {@category gdi32}
-int CreateDC(Pointer<Utf16> pwszDriver, Pointer<Utf16> pwszDevice,
-        Pointer<Utf16> pszPort, Pointer<DEVMODE> pdm) =>
-    _CreateDC(pwszDriver, pwszDevice, pszPort, pdm);
+int CreateDC(Pointer<Utf16>? pwszDriver, Pointer<Utf16>? pwszDevice,
+        Pointer<Utf16>? pszPort, Pointer<DEVMODE>? pdm) =>
+    _CreateDC(pwszDriver ?? nullptr, pwszDevice ?? nullptr, pszPort ?? nullptr,
+        pdm ?? nullptr);
 
 final _CreateDC = _gdi32.lookupFunction<
     IntPtr Function(Pointer<Utf16> pwszDriver, Pointer<Utf16> pwszDevice,
@@ -376,9 +377,10 @@ final _CreateDC = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int CreateDIBitmap(int hdc, Pointer<BITMAPINFOHEADER> pbmih, int flInit,
-        Pointer pjBits, Pointer<BITMAPINFO> pbmi, int iUsage) =>
-    _CreateDIBitmap(hdc, pbmih, flInit, pjBits, pbmi, iUsage);
+int CreateDIBitmap(int hdc, Pointer<BITMAPINFOHEADER>? pbmih, int flInit,
+        Pointer? pjBits, Pointer<BITMAPINFO>? pbmi, int iUsage) =>
+    _CreateDIBitmap(hdc, pbmih ?? nullptr, flInit, pjBits ?? nullptr,
+        pbmi ?? nullptr, iUsage);
 
 final _CreateDIBitmap = _gdi32.lookupFunction<
     IntPtr Function(IntPtr hdc, Pointer<BITMAPINFOHEADER> pbmih, Uint32 flInit,
@@ -424,9 +426,9 @@ final _CreateDIBPatternBrushPt = _gdi32.lookupFunction<
 ///   DWORD            offset);
 /// ```
 /// {@category gdi32}
-int CreateDIBSection(int hdc, Pointer<BITMAPINFO> pbmi, int usage,
-        Pointer<Pointer> ppvBits, int hSection, int offset) =>
-    _CreateDIBSection(hdc, pbmi, usage, ppvBits, hSection, offset);
+int CreateDIBSection(int? hdc, Pointer<BITMAPINFO> pbmi, int usage,
+        Pointer<Pointer> ppvBits, int? hSection, int offset) =>
+    _CreateDIBSection(hdc ?? 0, pbmi, usage, ppvBits, hSection ?? 0, offset);
 
 final _CreateDIBSection = _gdi32.lookupFunction<
     IntPtr Function(IntPtr hdc, Pointer<BITMAPINFO> pbmi, Uint32 usage,
@@ -482,7 +484,7 @@ final _CreateFontIndirect = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int CreateHalftonePalette(int hdc) => _CreateHalftonePalette(hdc);
+int CreateHalftonePalette(int? hdc) => _CreateHalftonePalette(hdc ?? 0);
 
 final _CreateHalftonePalette =
     _gdi32.lookupFunction<IntPtr Function(IntPtr hdc), int Function(int hdc)>(
@@ -580,8 +582,8 @@ final _DeleteObject =
 /// );
 /// ```
 /// {@category gdi32}
-int DrawEscape(int hdc, int iEscape, int cjIn, Pointer<Utf8> lpIn) =>
-    _DrawEscape(hdc, iEscape, cjIn, lpIn);
+int DrawEscape(int hdc, int iEscape, int cjIn, Pointer<Utf8>? lpIn) =>
+    _DrawEscape(hdc, iEscape, cjIn, lpIn ?? nullptr);
 
 final _DrawEscape = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 iEscape, Int32 cjIn, Pointer<Utf8> lpIn),
@@ -676,8 +678,8 @@ final _EnumFontFamiliesEx = _gdi32.lookupFunction<
 /// ```
 /// {@category gdi32}
 int ExtCreatePen(int iPenStyle, int cWidth, Pointer<LOGBRUSH> plbrush,
-        int cStyle, Pointer<Uint32> pstyle) =>
-    _ExtCreatePen(iPenStyle, cWidth, plbrush, cStyle, pstyle);
+        int cStyle, Pointer<Uint32>? pstyle) =>
+    _ExtCreatePen(iPenStyle, cWidth, plbrush, cStyle, pstyle ?? nullptr);
 
 final _ExtCreatePen = _gdi32.lookupFunction<
     IntPtr Function(Uint32 iPenStyle, Uint32 cWidth, Pointer<LOGBRUSH> plbrush,
@@ -702,9 +704,10 @@ final _ExtCreatePen = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int ExtTextOut(int hdc, int x, int y, int options, Pointer<RECT> lprect,
-        Pointer<Utf16> lpString, int c, Pointer<Int32> lpDx) =>
-    _ExtTextOut(hdc, x, y, options, lprect, lpString, c, lpDx);
+int ExtTextOut(int hdc, int x, int y, int options, Pointer<RECT>? lprect,
+        Pointer<Utf16>? lpString, int c, Pointer<Int32>? lpDx) =>
+    _ExtTextOut(hdc, x, y, options, lprect ?? nullptr, lpString ?? nullptr, c,
+        lpDx ?? nullptr);
 
 final _ExtTextOut = _gdi32.lookupFunction<
     Int32 Function(
@@ -760,7 +763,7 @@ final _FlattenPath =
 /// );
 /// ```
 /// {@category gdi32}
-int GetDeviceCaps(int hdc, int index) => _GetDeviceCaps(hdc, index);
+int GetDeviceCaps(int? hdc, int index) => _GetDeviceCaps(hdc ?? 0, index);
 
 final _GetDeviceCaps = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 index),
@@ -781,9 +784,9 @@ final _GetDeviceCaps = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int GetDIBits(int hdc, int hbm, int start, int cLines, Pointer lpvBits,
+int GetDIBits(int hdc, int hbm, int start, int cLines, Pointer? lpvBits,
         Pointer<BITMAPINFO> lpbmi, int usage) =>
-    _GetDIBits(hdc, hbm, start, cLines, lpvBits, lpbmi, usage);
+    _GetDIBits(hdc, hbm, start, cLines, lpvBits ?? nullptr, lpbmi, usage);
 
 final _GetDIBits = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, IntPtr hbm, Uint32 start, Uint32 cLines,
@@ -819,7 +822,7 @@ final _GetNearestColor = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int GetObject(int h, int c, Pointer pv) => _GetObject(h, c, pv);
+int GetObject(int h, int c, Pointer? pv) => _GetObject(h, c, pv ?? nullptr);
 
 final _GetObject = _gdi32.lookupFunction<
     Int32 Function(IntPtr h, Int32 c, Pointer pv),
@@ -838,8 +841,8 @@ final _GetObject = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int GetPath(int hdc, Pointer<POINT> apt, Pointer<Uint8> aj, int cpt) =>
-    _GetPath(hdc, apt, aj, cpt);
+int GetPath(int hdc, Pointer<POINT>? apt, Pointer<Uint8>? aj, int cpt) =>
+    _GetPath(hdc, apt ?? nullptr, aj ?? nullptr, cpt);
 
 final _GetPath = _gdi32.lookupFunction<
     Int32 Function(
@@ -958,8 +961,8 @@ final _LineTo = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int MoveToEx(int hdc, int x, int y, Pointer<POINT> lppt) =>
-    _MoveToEx(hdc, x, y, lppt);
+int MoveToEx(int hdc, int x, int y, Pointer<POINT>? lppt) =>
+    _MoveToEx(hdc, x, y, lppt ?? nullptr);
 
 final _MoveToEx = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 x, Int32 y, Pointer<POINT> lppt),
@@ -1384,8 +1387,8 @@ final _SetTextColor = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int SetViewportExtEx(int hdc, int x, int y, Pointer<SIZE> lpsz) =>
-    _SetViewportExtEx(hdc, x, y, lpsz);
+int SetViewportExtEx(int hdc, int x, int y, Pointer<SIZE>? lpsz) =>
+    _SetViewportExtEx(hdc, x, y, lpsz ?? nullptr);
 
 final _SetViewportExtEx = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 x, Int32 y, Pointer<SIZE> lpsz),
@@ -1404,8 +1407,8 @@ final _SetViewportExtEx = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int SetViewportOrgEx(int hdc, int x, int y, Pointer<POINT> lppt) =>
-    _SetViewportOrgEx(hdc, x, y, lppt);
+int SetViewportOrgEx(int hdc, int x, int y, Pointer<POINT>? lppt) =>
+    _SetViewportOrgEx(hdc, x, y, lppt ?? nullptr);
 
 final _SetViewportOrgEx = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 x, Int32 y, Pointer<POINT> lppt),
@@ -1424,8 +1427,8 @@ final _SetViewportOrgEx = _gdi32.lookupFunction<
 /// );
 /// ```
 /// {@category gdi32}
-int SetWindowExtEx(int hdc, int x, int y, Pointer<SIZE> lpsz) =>
-    _SetWindowExtEx(hdc, x, y, lpsz);
+int SetWindowExtEx(int hdc, int x, int y, Pointer<SIZE>? lpsz) =>
+    _SetWindowExtEx(hdc, x, y, lpsz ?? nullptr);
 
 final _SetWindowExtEx = _gdi32.lookupFunction<
     Int32 Function(IntPtr hdc, Int32 x, Int32 y, Pointer<SIZE> lpsz),
@@ -1454,9 +1457,9 @@ final _SetWindowExtEx = _gdi32.lookupFunction<
 /// ```
 /// {@category gdi32}
 int StretchBlt(int hdcDest, int xDest, int yDest, int wDest, int hDest,
-        int hdcSrc, int xSrc, int ySrc, int wSrc, int hSrc, int rop) =>
-    _StretchBlt(hdcDest, xDest, yDest, wDest, hDest, hdcSrc, xSrc, ySrc, wSrc,
-        hSrc, rop);
+        int? hdcSrc, int xSrc, int ySrc, int wSrc, int hSrc, int rop) =>
+    _StretchBlt(hdcDest, xDest, yDest, wDest, hDest, hdcSrc ?? 0, xSrc, ySrc,
+        wSrc, hSrc, rop);
 
 final _StretchBlt = _gdi32.lookupFunction<
     Int32 Function(
@@ -1520,12 +1523,12 @@ int StretchDIBits(
         int ySrc,
         int SrcWidth,
         int SrcHeight,
-        Pointer lpBits,
+        Pointer? lpBits,
         Pointer<BITMAPINFO> lpbmi,
         int iUsage,
         int rop) =>
     _StretchDIBits(hdc, xDest, yDest, DestWidth, DestHeight, xSrc, ySrc,
-        SrcWidth, SrcHeight, lpBits, lpbmi, iUsage, rop);
+        SrcWidth, SrcHeight, lpBits ?? nullptr, lpbmi, iUsage, rop);
 
 final _StretchDIBits = _gdi32.lookupFunction<
     Int32 Function(

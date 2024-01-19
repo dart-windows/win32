@@ -34,8 +34,8 @@ class IWbemServices extends IUnknown {
           Pointer<Utf16> strNamespace,
           int lFlags,
           VTablePointer pCtx,
-          Pointer<VTablePointer> ppWorkingNamespace,
-          Pointer<VTablePointer> ppResult) =>
+          Pointer<VTablePointer>? ppWorkingNamespace,
+          Pointer<VTablePointer>? ppResult) =>
       _vtable.OpenNamespace.asFunction<
               int Function(
                   VTablePointer,
@@ -43,8 +43,8 @@ class IWbemServices extends IUnknown {
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppWorkingNamespace,
-                  Pointer<VTablePointer> ppResult)>()(
-          ptr, strNamespace, lFlags, pCtx, ppWorkingNamespace, ppResult);
+                  Pointer<VTablePointer> ppResult)>()(ptr, strNamespace, lFlags,
+          pCtx, ppWorkingNamespace ?? nullptr, ppResult ?? nullptr);
 
   int cancelAsyncCall(VTablePointer pSink) =>
       _vtable.CancelAsyncCall.asFunction<
@@ -60,8 +60,8 @@ class IWbemServices extends IUnknown {
           Pointer<Utf16> strObjectPath,
           int lFlags,
           VTablePointer pCtx,
-          Pointer<VTablePointer> ppObject,
-          Pointer<VTablePointer> ppCallResult) =>
+          Pointer<VTablePointer>? ppObject,
+          Pointer<VTablePointer>? ppCallResult) =>
       _vtable.GetObject.asFunction<
               int Function(
                   VTablePointer,
@@ -69,8 +69,8 @@ class IWbemServices extends IUnknown {
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppObject,
-                  Pointer<VTablePointer> ppCallResult)>()(
-          ptr, strObjectPath, lFlags, pCtx, ppObject, ppCallResult);
+                  Pointer<VTablePointer> ppCallResult)>()(ptr, strObjectPath,
+          lFlags, pCtx, ppObject ?? nullptr, ppCallResult ?? nullptr);
 
   int getObjectAsync(Pointer<Utf16> strObjectPath, int lFlags,
           VTablePointer pCtx, VTablePointer pResponseHandler) =>
@@ -84,11 +84,11 @@ class IWbemServices extends IUnknown {
           ptr, strObjectPath, lFlags, pCtx, pResponseHandler);
 
   int putClass(VTablePointer pObject, int lFlags, VTablePointer pCtx,
-          Pointer<VTablePointer> ppCallResult) =>
+          Pointer<VTablePointer>? ppCallResult) =>
       _vtable.PutClass.asFunction<
               int Function(VTablePointer, VTablePointer pObject, int lFlags,
                   VTablePointer pCtx, Pointer<VTablePointer> ppCallResult)>()(
-          ptr, pObject, lFlags, pCtx, ppCallResult);
+          ptr, pObject, lFlags, pCtx, ppCallResult ?? nullptr);
 
   int putClassAsync(VTablePointer pObject, int lFlags, VTablePointer pCtx,
           VTablePointer pResponseHandler) =>
@@ -98,11 +98,11 @@ class IWbemServices extends IUnknown {
           ptr, pObject, lFlags, pCtx, pResponseHandler);
 
   int deleteClass(Pointer<Utf16> strClass, int lFlags, VTablePointer pCtx,
-          Pointer<VTablePointer> ppCallResult) =>
+          Pointer<VTablePointer>? ppCallResult) =>
       _vtable.DeleteClass.asFunction<
               int Function(VTablePointer, Pointer<Utf16> strClass, int lFlags,
                   VTablePointer pCtx, Pointer<VTablePointer> ppCallResult)>()(
-          ptr, strClass, lFlags, pCtx, ppCallResult);
+          ptr, strClass, lFlags, pCtx, ppCallResult ?? nullptr);
 
   int deleteClassAsync(Pointer<Utf16> strClass, int lFlags, VTablePointer pCtx,
           VTablePointer pResponseHandler) =>
@@ -134,11 +134,11 @@ class IWbemServices extends IUnknown {
           ptr, strSuperclass, lFlags, pCtx, pResponseHandler);
 
   int putInstance(VTablePointer pInst, int lFlags, VTablePointer pCtx,
-          Pointer<VTablePointer> ppCallResult) =>
+          Pointer<VTablePointer>? ppCallResult) =>
       _vtable.PutInstance.asFunction<
               int Function(VTablePointer, VTablePointer pInst, int lFlags,
                   VTablePointer pCtx, Pointer<VTablePointer> ppCallResult)>()(
-          ptr, pInst, lFlags, pCtx, ppCallResult);
+          ptr, pInst, lFlags, pCtx, ppCallResult ?? nullptr);
 
   int putInstanceAsync(VTablePointer pInst, int lFlags, VTablePointer pCtx,
           VTablePointer pResponseHandler) =>
@@ -148,7 +148,7 @@ class IWbemServices extends IUnknown {
           ptr, pInst, lFlags, pCtx, pResponseHandler);
 
   int deleteInstance(Pointer<Utf16> strObjectPath, int lFlags,
-          VTablePointer pCtx, Pointer<VTablePointer> ppCallResult) =>
+          VTablePointer pCtx, Pointer<VTablePointer>? ppCallResult) =>
       _vtable.DeleteInstance.asFunction<
               int Function(
                   VTablePointer,
@@ -156,7 +156,7 @@ class IWbemServices extends IUnknown {
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppCallResult)>()(
-          ptr, strObjectPath, lFlags, pCtx, ppCallResult);
+          ptr, strObjectPath, lFlags, pCtx, ppCallResult ?? nullptr);
 
   int deleteInstanceAsync(Pointer<Utf16> strObjectPath, int lFlags,
           VTablePointer pCtx, VTablePointer pResponseHandler) =>
@@ -245,8 +245,8 @@ class IWbemServices extends IUnknown {
           int lFlags,
           VTablePointer pCtx,
           VTablePointer pInParams,
-          Pointer<VTablePointer> ppOutParams,
-          Pointer<VTablePointer> ppCallResult) =>
+          Pointer<VTablePointer>? ppOutParams,
+          Pointer<VTablePointer>? ppCallResult) =>
       _vtable.ExecMethod.asFunction<
               int Function(
                   VTablePointer,
@@ -256,8 +256,15 @@ class IWbemServices extends IUnknown {
                   VTablePointer pCtx,
                   VTablePointer pInParams,
                   Pointer<VTablePointer> ppOutParams,
-                  Pointer<VTablePointer> ppCallResult)>()(ptr, strObjectPath,
-          strMethodName, lFlags, pCtx, pInParams, ppOutParams, ppCallResult);
+                  Pointer<VTablePointer> ppCallResult)>()(
+          ptr,
+          strObjectPath,
+          strMethodName,
+          lFlags,
+          pCtx,
+          pInParams,
+          ppOutParams ?? nullptr,
+          ppCallResult ?? nullptr);
 
   int execMethodAsync(
           Pointer<Utf16> strObjectPath,

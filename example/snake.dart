@@ -132,7 +132,7 @@ void collectApple() {
   if (timerAmount <= 20) {
     timerAmount = 20;
   }
-  SetTimer(hWnd, IDT_TIMER1, timerAmount, nullptr);
+  SetTimer(hWnd, IDT_TIMER1, timerAmount, null);
 
   // set new apple
   setApple();
@@ -337,7 +337,7 @@ void gameOver() {
   Beep(350, 300);
   KillTimer(hWnd, IDT_TIMER1);
   gameOverRow = 0;
-  SetTimer(hWnd, IDT_TIMER2, 20, nullptr);
+  SetTimer(hWnd, IDT_TIMER2, 20, null);
 }
 
 void gameOverUpdateComplete() {
@@ -389,7 +389,7 @@ void init(int width, int height) {
 
   final bitmapMemorySize = (width * height) * bytesPerPixel;
   bitmapMemory =
-      VirtualAlloc(nullptr, bitmapMemorySize, MEM_COMMIT, PAGE_READWRITE);
+      VirtualAlloc(null, bitmapMemorySize, MEM_COMMIT, PAGE_READWRITE);
 
   // init other variables here
   blocksPerWidth = (width / 10).ceil();
@@ -564,14 +564,14 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
         CW_USEDEFAULT,
         800,
         600,
-        NULL, // Parent window
-        NULL, // Menu
+        null, // Parent window
+        null, // Menu
         hInstance, // Instance handle
-        nullptr // Additional application data
+        null // Additional application data
         );
 
     if (hWnd != 0) {
-      SetTimer(hWnd, IDT_TIMER1, timerAmount, nullptr);
+      SetTimer(hWnd, IDT_TIMER1, timerAmount, null);
 
       isRunning = true;
       while (isRunning) {

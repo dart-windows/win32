@@ -37,7 +37,7 @@ class IAudioClient extends IUnknown {
           int hnsBufferDuration,
           int hnsPeriodicity,
           Pointer<WAVEFORMATEX> pFormat,
-          Pointer<GUID> AudioSessionGuid) =>
+          Pointer<GUID>? AudioSessionGuid) =>
       _vtable.Initialize.asFunction<
               int Function(
                   VTablePointer,
@@ -53,7 +53,7 @@ class IAudioClient extends IUnknown {
           hnsBufferDuration,
           hnsPeriodicity,
           pFormat,
-          AudioSessionGuid);
+          AudioSessionGuid ?? nullptr);
 
   int getBufferSize(Pointer<Uint32> pNumBufferFrames) =>
       _vtable.GetBufferSize.asFunction<
@@ -71,14 +71,14 @@ class IAudioClient extends IUnknown {
           ptr, pNumPaddingFrames);
 
   int isFormatSupported(int ShareMode, Pointer<WAVEFORMATEX> pFormat,
-          Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch) =>
+          Pointer<Pointer<WAVEFORMATEX>>? ppClosestMatch) =>
       _vtable.IsFormatSupported.asFunction<
               int Function(
                   VTablePointer,
                   int ShareMode,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>()(
-          ptr, ShareMode, pFormat, ppClosestMatch);
+          ptr, ShareMode, pFormat, ppClosestMatch ?? nullptr);
 
   int getMixFormat(Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat) =>
       _vtable.GetMixFormat.asFunction<
@@ -86,14 +86,16 @@ class IAudioClient extends IUnknown {
                   Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>()(
           ptr, ppDeviceFormat);
 
-  int getDevicePeriod(Pointer<Int64> phnsDefaultDevicePeriod,
-          Pointer<Int64> phnsMinimumDevicePeriod) =>
+  int getDevicePeriod(Pointer<Int64>? phnsDefaultDevicePeriod,
+          Pointer<Int64>? phnsMinimumDevicePeriod) =>
       _vtable.GetDevicePeriod.asFunction<
               int Function(
                   VTablePointer,
                   Pointer<Int64> phnsDefaultDevicePeriod,
                   Pointer<Int64> phnsMinimumDevicePeriod)>()(
-          ptr, phnsDefaultDevicePeriod, phnsMinimumDevicePeriod);
+          ptr,
+          phnsDefaultDevicePeriod ?? nullptr,
+          phnsMinimumDevicePeriod ?? nullptr);
 
   int start() => _vtable.Start.asFunction<int Function(VTablePointer)>()(ptr);
 

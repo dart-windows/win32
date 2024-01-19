@@ -84,8 +84,8 @@ final _mciGetErrorString = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int mciSendCommand(int mciId, int uMsg, int dwParam1, int dwParam2) =>
-    _mciSendCommand(mciId, uMsg, dwParam1, dwParam2);
+int mciSendCommand(int mciId, int uMsg, int? dwParam1, int? dwParam2) =>
+    _mciSendCommand(mciId, uMsg, dwParam1 ?? 0, dwParam2 ?? 0);
 
 final _mciSendCommand = _winmm.lookupFunction<
     Uint32 Function(
@@ -105,10 +105,13 @@ final _mciSendCommand = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int mciSendString(Pointer<Utf16> lpstrCommand, Pointer<Utf16> lpstrReturnString,
-        int uReturnLength, int hwndCallback) =>
-    _mciSendString(
-        lpstrCommand, lpstrReturnString, uReturnLength, hwndCallback);
+int mciSendString(
+        Pointer<Utf16> lpstrCommand,
+        Pointer<Utf16>? lpstrReturnString,
+        int uReturnLength,
+        int? hwndCallback) =>
+    _mciSendString(lpstrCommand, lpstrReturnString ?? nullptr, uReturnLength,
+        hwndCallback ?? 0);
 
 final _mciSendString = _winmm.lookupFunction<
     Uint32 Function(
@@ -130,8 +133,8 @@ final _mciSendString = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiConnect(int hmi, int hmo, Pointer pReserved) =>
-    _midiConnect(hmi, hmo, pReserved);
+int midiConnect(int hmi, int hmo, Pointer? pReserved) =>
+    _midiConnect(hmi, hmo, pReserved ?? nullptr);
 
 final _midiConnect = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved),
@@ -149,8 +152,8 @@ final _midiConnect = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiDisconnect(int hmi, int hmo, Pointer pReserved) =>
-    _midiDisconnect(hmi, hmo, pReserved);
+int midiDisconnect(int hmi, int hmo, Pointer? pReserved) =>
+    _midiDisconnect(hmi, hmo, pReserved ?? nullptr);
 
 final _midiDisconnect = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved),
@@ -266,8 +269,8 @@ final _midiInGetNumDevs = _winmm
 /// );
 /// ```
 /// {@category winmm}
-int midiInMessage(int hmi, int uMsg, int dw1, int dw2) =>
-    _midiInMessage(hmi, uMsg, dw1, dw2);
+int midiInMessage(int? hmi, int uMsg, int? dw1, int? dw2) =>
+    _midiInMessage(hmi ?? 0, uMsg, dw1 ?? 0, dw2 ?? 0);
 
 final _midiInMessage = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmi, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
@@ -285,9 +288,9 @@ final _midiInMessage = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiInOpen(Pointer<IntPtr> phmi, int uDeviceID, int dwCallback,
-        int dwInstance, int fdwOpen) =>
-    _midiInOpen(phmi, uDeviceID, dwCallback, dwInstance, fdwOpen);
+int midiInOpen(Pointer<IntPtr> phmi, int uDeviceID, int? dwCallback,
+        int? dwInstance, int fdwOpen) =>
+    _midiInOpen(phmi, uDeviceID, dwCallback ?? 0, dwInstance ?? 0, fdwOpen);
 
 final _midiInOpen = _winmm.lookupFunction<
     Uint32 Function(Pointer<IntPtr> phmi, Uint32 uDeviceID, IntPtr dwCallback,
@@ -511,8 +514,8 @@ final _midiOutGetNumDevs = _winmm
 /// );
 /// ```
 /// {@category winmm}
-int midiOutGetVolume(int hmo, Pointer<Uint32> pdwVolume) =>
-    _midiOutGetVolume(hmo, pdwVolume);
+int midiOutGetVolume(int? hmo, Pointer<Uint32> pdwVolume) =>
+    _midiOutGetVolume(hmo ?? 0, pdwVolume);
 
 final _midiOutGetVolume = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmo, Pointer<Uint32> pdwVolume),
@@ -549,8 +552,8 @@ final _midiOutLongMsg = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiOutMessage(int hmo, int uMsg, int dw1, int dw2) =>
-    _midiOutMessage(hmo, uMsg, dw1, dw2);
+int midiOutMessage(int? hmo, int uMsg, int? dw1, int? dw2) =>
+    _midiOutMessage(hmo ?? 0, uMsg, dw1 ?? 0, dw2 ?? 0);
 
 final _midiOutMessage = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmo, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
@@ -568,9 +571,9 @@ final _midiOutMessage = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiOutOpen(Pointer<IntPtr> phmo, int uDeviceID, int dwCallback,
-        int dwInstance, int fdwOpen) =>
-    _midiOutOpen(phmo, uDeviceID, dwCallback, dwInstance, fdwOpen);
+int midiOutOpen(Pointer<IntPtr> phmo, int uDeviceID, int? dwCallback,
+        int? dwInstance, int fdwOpen) =>
+    _midiOutOpen(phmo, uDeviceID, dwCallback ?? 0, dwInstance ?? 0, fdwOpen);
 
 final _midiOutOpen = _winmm.lookupFunction<
     Uint32 Function(Pointer<IntPtr> phmo, Uint32 uDeviceID, IntPtr dwCallback,
@@ -621,7 +624,8 @@ final _midiOutReset =
 /// );
 /// ```
 /// {@category winmm}
-int midiOutSetVolume(int hmo, int dwVolume) => _midiOutSetVolume(hmo, dwVolume);
+int midiOutSetVolume(int? hmo, int dwVolume) =>
+    _midiOutSetVolume(hmo ?? 0, dwVolume);
 
 final _midiOutSetVolume = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmo, Uint32 dwVolume),
@@ -672,8 +676,8 @@ final _midiOutUnprepareHeader = _winmm.lookupFunction<
 ///   DWORD fdwSound);
 /// ```
 /// {@category winmm}
-int PlaySound(Pointer<Utf16> pszSound, int hmod, int fdwSound) =>
-    _PlaySound(pszSound, hmod, fdwSound);
+int PlaySound(Pointer<Utf16>? pszSound, int? hmod, int fdwSound) =>
+    _PlaySound(pszSound ?? nullptr, hmod ?? 0, fdwSound);
 
 final _PlaySound = _winmm.lookupFunction<
     Int32 Function(Pointer<Utf16> pszSound, IntPtr hmod, Uint32 fdwSound),
@@ -811,8 +815,8 @@ final _waveInGetPosition = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveInMessage(int hwi, int uMsg, int dw1, int dw2) =>
-    _waveInMessage(hwi, uMsg, dw1, dw2);
+int waveInMessage(int? hwi, int uMsg, int? dw1, int? dw2) =>
+    _waveInMessage(hwi ?? 0, uMsg, dw1 ?? 0, dw2 ?? 0);
 
 final _waveInMessage = _winmm.lookupFunction<
     Uint32 Function(IntPtr hwi, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
@@ -832,9 +836,10 @@ final _waveInMessage = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveInOpen(Pointer<IntPtr> phwi, int uDeviceID, Pointer<WAVEFORMATEX> pwfx,
-        int dwCallback, int dwInstance, int fdwOpen) =>
-    _waveInOpen(phwi, uDeviceID, pwfx, dwCallback, dwInstance, fdwOpen);
+int waveInOpen(Pointer<IntPtr>? phwi, int uDeviceID, Pointer<WAVEFORMATEX> pwfx,
+        int? dwCallback, int? dwInstance, int fdwOpen) =>
+    _waveInOpen(phwi ?? nullptr, uDeviceID, pwfx, dwCallback ?? 0,
+        dwInstance ?? 0, fdwOpen);
 
 final _waveInOpen = _winmm.lookupFunction<
     Uint32 Function(
@@ -1079,8 +1084,8 @@ final _waveOutGetPosition = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveOutGetVolume(int hwo, Pointer<Uint32> pdwVolume) =>
-    _waveOutGetVolume(hwo, pdwVolume);
+int waveOutGetVolume(int? hwo, Pointer<Uint32> pdwVolume) =>
+    _waveOutGetVolume(hwo ?? 0, pdwVolume);
 
 final _waveOutGetVolume = _winmm.lookupFunction<
     Uint32 Function(IntPtr hwo, Pointer<Uint32> pdwVolume),
@@ -1098,8 +1103,8 @@ final _waveOutGetVolume = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveOutMessage(int hwo, int uMsg, int dw1, int dw2) =>
-    _waveOutMessage(hwo, uMsg, dw1, dw2);
+int waveOutMessage(int? hwo, int uMsg, int dw1, int dw2) =>
+    _waveOutMessage(hwo ?? 0, uMsg, dw1, dw2);
 
 final _waveOutMessage = _winmm.lookupFunction<
     Uint32 Function(IntPtr hwo, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
@@ -1119,9 +1124,15 @@ final _waveOutMessage = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveOutOpen(Pointer<IntPtr> phwo, int uDeviceID, Pointer<WAVEFORMATEX> pwfx,
-        int dwCallback, int dwInstance, int fdwOpen) =>
-    _waveOutOpen(phwo, uDeviceID, pwfx, dwCallback, dwInstance, fdwOpen);
+int waveOutOpen(
+        Pointer<IntPtr>? phwo,
+        int uDeviceID,
+        Pointer<WAVEFORMATEX> pwfx,
+        int? dwCallback,
+        int? dwInstance,
+        int fdwOpen) =>
+    _waveOutOpen(phwo ?? nullptr, uDeviceID, pwfx, dwCallback ?? 0,
+        dwInstance ?? 0, fdwOpen);
 
 final _waveOutOpen = _winmm.lookupFunction<
     Uint32 Function(
@@ -1248,7 +1259,8 @@ final _waveOutSetPlaybackRate = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveOutSetVolume(int hwo, int dwVolume) => _waveOutSetVolume(hwo, dwVolume);
+int waveOutSetVolume(int? hwo, int dwVolume) =>
+    _waveOutSetVolume(hwo ?? 0, dwVolume);
 
 final _waveOutSetVolume = _winmm.lookupFunction<
     Uint32 Function(IntPtr hwo, Uint32 dwVolume),

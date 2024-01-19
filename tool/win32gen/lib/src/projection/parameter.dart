@@ -15,22 +15,24 @@ class ParameterProjection {
   ParameterProjection(this.name, this.parameter)
       : isOptional = parameter.isOptional,
         isReserved = parameter.isReserved,
-        type = TypeProjection(parameter.typeIdentifier);
+        typeProjection = TypeProjection(parameter.typeIdentifier);
 
   final bool isOptional;
   final bool isReserved;
   final String name;
   final Parameter parameter;
-  final TypeProjection type;
+  final TypeProjection typeProjection;
 
-  String get ffiProjection =>
-      '${type.nativeType.safeTypename} ${name.safeIdentifier}';
+  String get type => '${typeProjection.dartType}${isOptional ? '?' : ''}';
 
-  String get dartProjection =>
-      '${type.dartType.safeTypename} ${name.safeIdentifier}';
+  String get ffiProjection => '${typeProjection.nativeType} $identifier';
+
+  String get dartProjection => '${typeProjection.dartType} $identifier';
+
+  String get paramProjection => '$type $identifier';
 
   String get identifier => name.safeIdentifier;
 
   @override
-  String toString() => '$name (${type.nativeType})';
+  String toString() => '$typeProjection $identifier';
 }

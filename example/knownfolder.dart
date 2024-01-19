@@ -58,7 +58,7 @@ String getDesktopPath2() {
 
   try {
     final hr =
-        SHGetKnownFolderPath(appsFolder, KF_FLAG_DEFAULT, NULL, ppszPath);
+        SHGetKnownFolderPath(appsFolder, KF_FLAG_DEFAULT, null, ppszPath);
     if (FAILED(hr)) throw WindowsException(hr);
 
     final path = ppszPath.value.toDartString();

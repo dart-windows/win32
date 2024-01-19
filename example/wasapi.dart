@@ -157,7 +157,7 @@ void main() {
   free(ppDevice);
   final iidAudioClient = convertToIID(IID_IAudioClient3);
   final ppAudioClient = calloc<VTablePointer>();
-  check(pDevice.activate(iidAudioClient, CLSCTX_ALL, nullptr, ppAudioClient));
+  check(pDevice.activate(iidAudioClient, CLSCTX_ALL, null, ppAudioClient));
   free(iidAudioClient);
   final pAudioClient = IAudioClient3(ppAudioClient.value);
   free(ppAudioClient);
@@ -173,7 +173,7 @@ void main() {
       30000, // buffer capacity of 3s (30,000 * 100ns)
       0,
       ppFormat.value,
-      nullptr));
+      null));
 
   // Activate an IAudioRenderClient interface.
   final iidAudioRenderClient = convertToIID(IID_IAudioRenderClient);

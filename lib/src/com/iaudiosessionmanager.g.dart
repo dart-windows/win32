@@ -32,19 +32,19 @@ class IAudioSessionManager extends IUnknown {
   factory IAudioSessionManager.from(IUnknown interface) =>
       IAudioSessionManager(interface.toInterface(IID_IAudioSessionManager));
 
-  int getAudioSessionControl(Pointer<GUID> AudioSessionGuid, int StreamFlags,
+  int getAudioSessionControl(Pointer<GUID>? AudioSessionGuid, int StreamFlags,
           Pointer<VTablePointer> SessionControl) =>
       _vtable.GetAudioSessionControl.asFunction<
               int Function(VTablePointer, Pointer<GUID> AudioSessionGuid,
                   int StreamFlags, Pointer<VTablePointer> SessionControl)>()(
-          ptr, AudioSessionGuid, StreamFlags, SessionControl);
+          ptr, AudioSessionGuid ?? nullptr, StreamFlags, SessionControl);
 
-  int getSimpleAudioVolume(Pointer<GUID> AudioSessionGuid, int StreamFlags,
+  int getSimpleAudioVolume(Pointer<GUID>? AudioSessionGuid, int StreamFlags,
           Pointer<VTablePointer> AudioVolume) =>
       _vtable.GetSimpleAudioVolume.asFunction<
               int Function(VTablePointer, Pointer<GUID> AudioSessionGuid,
                   int StreamFlags, Pointer<VTablePointer> AudioVolume)>()(
-          ptr, AudioSessionGuid, StreamFlags, AudioVolume);
+          ptr, AudioSessionGuid ?? nullptr, StreamFlags, AudioVolume);
 }
 
 /// @nodoc

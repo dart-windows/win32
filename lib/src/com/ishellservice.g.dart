@@ -28,8 +28,9 @@ class IShellService extends IUnknown {
   factory IShellService.from(IUnknown interface) =>
       IShellService(interface.toInterface(IID_IShellService));
 
-  int setOwner(VTablePointer punkOwner) => _vtable.SetOwner.asFunction<
-      int Function(VTablePointer, VTablePointer punkOwner)>()(ptr, punkOwner);
+  int setOwner(VTablePointer? punkOwner) => _vtable.SetOwner.asFunction<
+      int Function(
+          VTablePointer, VTablePointer punkOwner)>()(ptr, punkOwner ?? nullptr);
 }
 
 /// @nodoc

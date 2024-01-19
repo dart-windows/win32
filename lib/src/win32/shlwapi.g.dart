@@ -29,8 +29,8 @@ final _shlwapi = DynamicLibrary.open('shlwapi.dll');
 /// );
 /// ```
 /// {@category shell32}
-VTablePointer SHCreateMemStream(Pointer<Uint8> pInit, int cbInit) =>
-    _SHCreateMemStream(pInit, cbInit);
+VTablePointer SHCreateMemStream(Pointer<Uint8>? pInit, int cbInit) =>
+    _SHCreateMemStream(pInit ?? nullptr, cbInit);
 
 final _SHCreateMemStream = _shlwapi.lookupFunction<
     VTablePointer Function(Pointer<Uint8> pInit, Uint32 cbInit),

@@ -39,7 +39,7 @@ class IWbemClassObject extends IUnknown {
           ptr, ppQualSet);
 
   int get(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pVal,
-          Pointer<Int32> pType, Pointer<Int32> plFlavor) =>
+          Pointer<Int32>? pType, Pointer<Int32>? plFlavor) =>
       _vtable.Get.asFunction<
               int Function(
                   VTablePointer,
@@ -48,7 +48,7 @@ class IWbemClassObject extends IUnknown {
                   Pointer<VARIANT> pVal,
                   Pointer<Int32> pType,
                   Pointer<Int32> plFlavor)>()(
-          ptr, wszName, lFlags, pVal, pType, plFlavor);
+          ptr, wszName, lFlags, pVal, pType ?? nullptr, plFlavor ?? nullptr);
 
   int put(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pVal,
           int Type) =>

@@ -117,10 +117,10 @@ final _GetAdapterIndex = _iphlpapi.lookupFunction<
 int GetAdaptersAddresses(
         int Family,
         int Flags,
-        Pointer<IP_ADAPTER_ADDRESSES_LH> AdapterAddresses,
+        Pointer<IP_ADAPTER_ADDRESSES_LH>? AdapterAddresses,
         Pointer<Uint32> SizePointer) =>
     _GetAdaptersAddresses(
-        Family, Flags, nullptr, AdapterAddresses, SizePointer);
+        Family, Flags, nullptr, AdapterAddresses ?? nullptr, SizePointer);
 
 final _GetAdaptersAddresses = _iphlpapi.lookupFunction<
     Uint32 Function(
@@ -147,8 +147,8 @@ final _GetAdaptersAddresses = _iphlpapi.lookupFunction<
 /// ```
 /// {@category iphlpapi}
 int GetInterfaceInfo(
-        Pointer<IP_INTERFACE_INFO> pIfTable, Pointer<Uint32> dwOutBufLen) =>
-    _GetInterfaceInfo(pIfTable, dwOutBufLen);
+        Pointer<IP_INTERFACE_INFO>? pIfTable, Pointer<Uint32> dwOutBufLen) =>
+    _GetInterfaceInfo(pIfTable ?? nullptr, dwOutBufLen);
 
 final _GetInterfaceInfo = _iphlpapi.lookupFunction<
     Uint32 Function(
@@ -169,9 +169,9 @@ final _GetInterfaceInfo = _iphlpapi.lookupFunction<
 /// {@category iphlpapi}
 int GetPerAdapterInfo(
         int IfIndex,
-        Pointer<IP_PER_ADAPTER_INFO_W2KSP1> pPerAdapterInfo,
+        Pointer<IP_PER_ADAPTER_INFO_W2KSP1>? pPerAdapterInfo,
         Pointer<Uint32> pOutBufLen) =>
-    _GetPerAdapterInfo(IfIndex, pPerAdapterInfo, pOutBufLen);
+    _GetPerAdapterInfo(IfIndex, pPerAdapterInfo ?? nullptr, pOutBufLen);
 
 final _GetPerAdapterInfo = _iphlpapi.lookupFunction<
     Uint32 Function(

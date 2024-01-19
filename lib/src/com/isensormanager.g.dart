@@ -49,13 +49,14 @@ class ISensorManager extends IUnknown {
           int Function(VTablePointer, Pointer<GUID> sensorID,
               Pointer<VTablePointer> ppSensor)>()(ptr, sensorID, ppSensor);
 
-  int setEventSink(VTablePointer pEvents) => _vtable.SetEventSink.asFunction<
-      int Function(VTablePointer, VTablePointer pEvents)>()(ptr, pEvents);
+  int setEventSink(VTablePointer? pEvents) => _vtable.SetEventSink.asFunction<
+      int Function(
+          VTablePointer, VTablePointer pEvents)>()(ptr, pEvents ?? nullptr);
 
-  int requestPermissions(int hParent, VTablePointer pSensors, int fModal) =>
+  int requestPermissions(int hParent, VTablePointer? pSensors, int fModal) =>
       _vtable.RequestPermissions.asFunction<
           int Function(VTablePointer, int hParent, VTablePointer pSensors,
-              int fModal)>()(ptr, hParent, pSensors, fModal);
+              int fModal)>()(ptr, hParent, pSensors ?? nullptr, fModal);
 }
 
 /// @nodoc

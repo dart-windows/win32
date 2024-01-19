@@ -81,12 +81,12 @@ class IKnownFolderManager extends IUnknown {
 
   int redirect(
           Pointer<GUID> rfid,
-          int hwnd,
+          int? hwnd,
           int flags,
-          Pointer<Utf16> pszTargetPath,
+          Pointer<Utf16>? pszTargetPath,
           int cFolders,
-          Pointer<GUID> pExclusion,
-          Pointer<Pointer<Utf16>> ppszError) =>
+          Pointer<GUID>? pExclusion,
+          Pointer<Pointer<Utf16>>? ppszError) =>
       _vtable.Redirect.asFunction<
               int Function(
                   VTablePointer,
@@ -96,8 +96,15 @@ class IKnownFolderManager extends IUnknown {
                   Pointer<Utf16> pszTargetPath,
                   int cFolders,
                   Pointer<GUID> pExclusion,
-                  Pointer<Pointer<Utf16>> ppszError)>()(ptr, rfid, hwnd, flags,
-          pszTargetPath, cFolders, pExclusion, ppszError);
+                  Pointer<Pointer<Utf16>> ppszError)>()(
+          ptr,
+          rfid,
+          hwnd ?? 0,
+          flags,
+          pszTargetPath ?? nullptr,
+          cFolders,
+          pExclusion ?? nullptr,
+          ppszError ?? nullptr);
 }
 
 /// @nodoc

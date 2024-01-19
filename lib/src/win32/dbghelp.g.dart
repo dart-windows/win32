@@ -47,11 +47,11 @@ final _SymCleanup = _dbghelp.lookupFunction<Int32 Function(IntPtr hProcess),
 int SymEnumSymbols(
         int hProcess,
         int BaseOfDll,
-        Pointer<Utf16> Mask,
+        Pointer<Utf16>? Mask,
         Pointer<NativeFunction<SymEnumSymbolsProc>> EnumSymbolsCallback,
-        Pointer UserContext) =>
-    _SymEnumSymbols(
-        hProcess, BaseOfDll, Mask, EnumSymbolsCallback, UserContext);
+        Pointer? UserContext) =>
+    _SymEnumSymbols(hProcess, BaseOfDll, Mask ?? nullptr, EnumSymbolsCallback,
+        UserContext ?? nullptr);
 
 final _SymEnumSymbols = _dbghelp.lookupFunction<
     Int32 Function(
@@ -78,9 +78,9 @@ final _SymEnumSymbols = _dbghelp.lookupFunction<
 /// );
 /// ```
 /// {@category dbghelp}
-int SymFromAddr(int hProcess, int Address, Pointer<Uint64> Displacement,
+int SymFromAddr(int hProcess, int Address, Pointer<Uint64>? Displacement,
         Pointer<SYMBOL_INFO> Symbol) =>
-    _SymFromAddr(hProcess, Address, Displacement, Symbol);
+    _SymFromAddr(hProcess, Address, Displacement ?? nullptr, Symbol);
 
 final _SymFromAddr = _dbghelp.lookupFunction<
     Int32 Function(IntPtr hProcess, Uint64 Address,
@@ -134,8 +134,8 @@ final _SymGetExtendedOption = _dbghelp.lookupFunction<
 /// ```
 /// {@category dbghelp}
 int SymInitialize(
-        int hProcess, Pointer<Utf16> UserSearchPath, int fInvadeProcess) =>
-    _SymInitialize(hProcess, UserSearchPath, fInvadeProcess);
+        int hProcess, Pointer<Utf16>? UserSearchPath, int fInvadeProcess) =>
+    _SymInitialize(hProcess, UserSearchPath ?? nullptr, fInvadeProcess);
 
 final _SymInitialize = _dbghelp.lookupFunction<
     Int32 Function(
@@ -159,15 +159,15 @@ final _SymInitialize = _dbghelp.lookupFunction<
 /// {@category dbghelp}
 int SymLoadModuleEx(
         int hProcess,
-        int hFile,
-        Pointer<Utf16> ImageName,
-        Pointer<Utf16> ModuleName,
+        int? hFile,
+        Pointer<Utf16>? ImageName,
+        Pointer<Utf16>? ModuleName,
         int BaseOfDll,
         int DllSize,
-        Pointer<MODLOAD_DATA> Data,
-        int Flags) =>
-    _SymLoadModuleEx(hProcess, hFile, ImageName, ModuleName, BaseOfDll, DllSize,
-        Data, Flags);
+        Pointer<MODLOAD_DATA>? Data,
+        int? Flags) =>
+    _SymLoadModuleEx(hProcess, hFile ?? 0, ImageName ?? nullptr,
+        ModuleName ?? nullptr, BaseOfDll, DllSize, Data ?? nullptr, Flags ?? 0);
 
 final _SymLoadModuleEx = _dbghelp.lookupFunction<
     Uint64 Function(
@@ -295,8 +295,8 @@ final _SymSetScopeFromInlineContext = _dbghelp.lookupFunction<
 /// );
 /// ```
 /// {@category dbghelp}
-int SymSetSearchPath(int hProcess, Pointer<Utf16> SearchPathA) =>
-    _SymSetSearchPath(hProcess, SearchPathA);
+int SymSetSearchPath(int hProcess, Pointer<Utf16>? SearchPathA) =>
+    _SymSetSearchPath(hProcess, SearchPathA ?? nullptr);
 
 final _SymSetSearchPath = _dbghelp.lookupFunction<
     Int32 Function(IntPtr hProcess, Pointer<Utf16> SearchPathA),

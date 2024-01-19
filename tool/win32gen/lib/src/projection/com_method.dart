@@ -29,20 +29,24 @@ class ComMethodProjection extends MethodProjection {
   @override
   String get identifiers => [
         'ptr',
-        ...parameters.map((p) => p.isReserved
-            ? p.type.dartType.startsWith('Pointer')
-                ? 'nullptr'
-                : '0'
-            : p.identifier)
+        ...parameters.map((p) => switch (p) {
+              _ when p.isOptional && !p.isReserved =>
+                p.type.startsWith(RegExp('(VTable)?Pointer'))
+                    ? '${p.identifier} ?? nullptr'
+                    : '${p.identifier} ?? 0',
+              _ when p.isReserved =>
+                p.type.startsWith(RegExp('(VTable)?Pointer')) ? 'nullptr' : '0',
+              _ => p.identifier,
+            })
       ].join(', ');
 
   @override
   String toString() {
     try {
       return '''
-      ${returnType.dartType} $camelCasedName($methodParams) =>
-          _vtable.$name.asFunction<$dartPrototype>()($identifiers);
-    ''';
+  ${returnType.dartType} $camelCasedName($methodParams) =>
+      _vtable.$name.asFunction<$dartPrototype>()($identifiers);
+''';
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.

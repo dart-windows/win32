@@ -20,7 +20,7 @@ class Size {
 Size getMonitorSizeInMM() {
   final guidptr = GUIDFromString(GUID_CLASS_MONITOR);
   // Get the handle for the first monitor.
-  final ptr = SetupDiGetClassDevs(guidptr, nullptr, 0, DIGCF_PRESENT);
+  final ptr = SetupDiGetClassDevs(guidptr, null, 0, DIGCF_PRESENT);
   var width = 0;
   var height = 0;
 
@@ -43,7 +43,7 @@ Size getMonitorSizeInMM() {
 
     // Get the first value of the registry key for the first member of the first monitor
     final retValue = RegEnumValue(
-        hDevRegKey, 0, lpValueName, lpcchValueName, nullptr, lpData, lpcbData);
+        hDevRegKey, 0, lpValueName, lpcchValueName, null, lpData, lpcbData);
 
     // https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
     // Extended Display Identification Data (EDID) of the first monitor

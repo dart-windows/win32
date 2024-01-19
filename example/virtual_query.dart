@@ -15,7 +15,7 @@ void main() {
 
   // Allocate some memory and return a pointer to the base address.
   final baseAddress = VirtualAlloc(
-      nullptr, // Windows determines starting address
+      null, // Windows determines starting address
       8, // bytes allocated
       MEM_COMMIT,
       PAGE_EXECUTE_READWRITE);

@@ -15,7 +15,7 @@ const ID_TEXT = 200;
 const ID_EDITTEXT = 201;
 const ID_PROGRESS = 202;
 
-final hInstance = GetModuleHandle(nullptr);
+final hInstance = GetModuleHandle(null);
 String textEntered = '';
 
 void main() {
@@ -93,7 +93,7 @@ void main() {
   );
 
   final nResult = DialogBoxIndirectParam(
-      hInstance, ptr.cast<DLGTEMPLATE>(), NULL, lpDialogFunc.nativeFunction, 0);
+      hInstance, ptr.cast<DLGTEMPLATE>(), null, lpDialogFunc.nativeFunction, 0);
 
   if (nResult <= 0) {
     print('Error: $nResult');

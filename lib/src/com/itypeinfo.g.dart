@@ -107,10 +107,10 @@ class ITypeInfo extends IUnknown {
 
   int getDocumentation(
           int memid,
-          Pointer<Pointer<Utf16>> pBstrName,
-          Pointer<Pointer<Utf16>> pBstrDocString,
+          Pointer<Pointer<Utf16>>? pBstrName,
+          Pointer<Pointer<Utf16>>? pBstrDocString,
           Pointer<Uint32> pdwHelpContext,
-          Pointer<Pointer<Utf16>> pBstrHelpFile) =>
+          Pointer<Pointer<Utf16>>? pBstrHelpFile) =>
       _vtable.GetDocumentation.asFunction<
               int Function(
                   VTablePointer,
@@ -119,10 +119,15 @@ class ITypeInfo extends IUnknown {
                   Pointer<Pointer<Utf16>> pBstrDocString,
                   Pointer<Uint32> pdwHelpContext,
                   Pointer<Pointer<Utf16>> pBstrHelpFile)>()(
-          ptr, memid, pBstrName, pBstrDocString, pdwHelpContext, pBstrHelpFile);
+          ptr,
+          memid,
+          pBstrName ?? nullptr,
+          pBstrDocString ?? nullptr,
+          pdwHelpContext,
+          pBstrHelpFile ?? nullptr);
 
-  int getDllEntry(int memid, int invKind, Pointer<Pointer<Utf16>> pBstrDllName,
-          Pointer<Pointer<Utf16>> pBstrName, Pointer<Uint16> pwOrdinal) =>
+  int getDllEntry(int memid, int invKind, Pointer<Pointer<Utf16>>? pBstrDllName,
+          Pointer<Pointer<Utf16>>? pBstrName, Pointer<Uint16> pwOrdinal) =>
       _vtable.GetDllEntry.asFunction<
               int Function(
                   VTablePointer,
@@ -130,8 +135,8 @@ class ITypeInfo extends IUnknown {
                   int invKind,
                   Pointer<Pointer<Utf16>> pBstrDllName,
                   Pointer<Pointer<Utf16>> pBstrName,
-                  Pointer<Uint16> pwOrdinal)>()(
-          ptr, memid, invKind, pBstrDllName, pBstrName, pwOrdinal);
+                  Pointer<Uint16> pwOrdinal)>()(ptr, memid, invKind,
+          pBstrDllName ?? nullptr, pBstrName ?? nullptr, pwOrdinal);
 
   int getRefTypeInfo(int hRefType, Pointer<VTablePointer> ppTInfo) =>
       _vtable.GetRefTypeInfo.asFunction<

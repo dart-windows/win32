@@ -30,8 +30,8 @@ final _netapi32 = DynamicLibrary.open('netapi32.dll');
 /// );
 /// ```
 /// {@category netapi32}
-void NetFreeAadJoinInformation(Pointer<DSREG_JOIN_INFO> pJoinInfo) =>
-    _NetFreeAadJoinInformation(pJoinInfo);
+void NetFreeAadJoinInformation(Pointer<DSREG_JOIN_INFO>? pJoinInfo) =>
+    _NetFreeAadJoinInformation(pJoinInfo ?? nullptr);
 
 final _NetFreeAadJoinInformation = _netapi32.lookupFunction<
     Void Function(Pointer<DSREG_JOIN_INFO> pJoinInfo),
@@ -49,9 +49,9 @@ final _NetFreeAadJoinInformation = _netapi32.lookupFunction<
 /// );
 /// ```
 /// {@category netapi32}
-int NetGetAadJoinInformation(Pointer<Utf16> pcszTenantId,
+int NetGetAadJoinInformation(Pointer<Utf16>? pcszTenantId,
         Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo) =>
-    _NetGetAadJoinInformation(pcszTenantId, ppJoinInfo);
+    _NetGetAadJoinInformation(pcszTenantId ?? nullptr, ppJoinInfo);
 
 final _NetGetAadJoinInformation = _netapi32.lookupFunction<
         Int32 Function(Pointer<Utf16> pcszTenantId,

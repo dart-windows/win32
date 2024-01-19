@@ -67,7 +67,8 @@ final _GetActiveObject = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-Pointer<Utf16> SysAllocString(Pointer<Utf16> psz) => _SysAllocString(psz);
+Pointer<Utf16> SysAllocString(Pointer<Utf16>? psz) =>
+    _SysAllocString(psz ?? nullptr);
 
 final _SysAllocString = _oleaut32.lookupFunction<
     Pointer<Utf16> Function(Pointer<Utf16> psz),
@@ -83,8 +84,8 @@ final _SysAllocString = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-Pointer<Utf16> SysAllocStringByteLen(Pointer<Utf8> psz, int len) =>
-    _SysAllocStringByteLen(psz, len);
+Pointer<Utf16> SysAllocStringByteLen(Pointer<Utf8>? psz, int len) =>
+    _SysAllocStringByteLen(psz ?? nullptr, len);
 
 final _SysAllocStringByteLen = _oleaut32.lookupFunction<
     Pointer<Utf16> Function(Pointer<Utf8> psz, Uint32 len),
@@ -101,8 +102,8 @@ final _SysAllocStringByteLen = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-Pointer<Utf16> SysAllocStringLen(Pointer<Utf16> strIn, int ui) =>
-    _SysAllocStringLen(strIn, ui);
+Pointer<Utf16> SysAllocStringLen(Pointer<Utf16>? strIn, int ui) =>
+    _SysAllocStringLen(strIn ?? nullptr, ui);
 
 final _SysAllocStringLen = _oleaut32.lookupFunction<
     Pointer<Utf16> Function(Pointer<Utf16> strIn, Uint32 ui),
@@ -118,7 +119,8 @@ final _SysAllocStringLen = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-void SysFreeString(Pointer<Utf16> bstrString) => _SysFreeString(bstrString);
+void SysFreeString(Pointer<Utf16>? bstrString) =>
+    _SysFreeString(bstrString ?? nullptr);
 
 final _SysFreeString = _oleaut32.lookupFunction<
     Void Function(Pointer<Utf16> bstrString),
@@ -134,8 +136,8 @@ final _SysFreeString = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int SysReAllocString(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz) =>
-    _SysReAllocString(pbstr, psz);
+int SysReAllocString(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16>? psz) =>
+    _SysReAllocString(pbstr, psz ?? nullptr);
 
 final _SysReAllocString = _oleaut32.lookupFunction<
     Int32 Function(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz),
@@ -154,8 +156,8 @@ final _SysReAllocString = _oleaut32.lookupFunction<
 /// ```
 /// {@category oleaut32}
 int SysReAllocStringLen(
-        Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz, int len) =>
-    _SysReAllocStringLen(pbstr, psz, len);
+        Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16>? psz, int len) =>
+    _SysReAllocStringLen(pbstr, psz ?? nullptr, len);
 
 final _SysReAllocStringLen = _oleaut32.lookupFunction<
     Int32 Function(
@@ -188,7 +190,8 @@ final _SysReleaseString = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int SysStringByteLen(Pointer<Utf16> bstr) => _SysStringByteLen(bstr);
+int SysStringByteLen(Pointer<Utf16>? bstr) =>
+    _SysStringByteLen(bstr ?? nullptr);
 
 final _SysStringByteLen = _oleaut32.lookupFunction<
     Uint32 Function(Pointer<Utf16> bstr),
@@ -202,7 +205,7 @@ final _SysStringByteLen = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int SysStringLen(Pointer<Utf16> pbstr) => _SysStringLen(pbstr);
+int SysStringLen(Pointer<Utf16>? pbstr) => _SysStringLen(pbstr ?? nullptr);
 
 final _SysStringLen = _oleaut32.lookupFunction<
     Uint32 Function(Pointer<Utf16> pbstr),

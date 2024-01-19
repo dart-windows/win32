@@ -30,10 +30,11 @@ class IAudioClock2 extends IUnknown {
       IAudioClock2(interface.toInterface(IID_IAudioClock2));
 
   int getDevicePosition(
-          Pointer<Uint64> DevicePosition, Pointer<Uint64> QPCPosition) =>
+          Pointer<Uint64> DevicePosition, Pointer<Uint64>? QPCPosition) =>
       _vtable.GetDevicePosition.asFunction<
-          int Function(VTablePointer, Pointer<Uint64> DevicePosition,
-              Pointer<Uint64> QPCPosition)>()(ptr, DevicePosition, QPCPosition);
+              int Function(VTablePointer, Pointer<Uint64> DevicePosition,
+                  Pointer<Uint64> QPCPosition)>()(
+          ptr, DevicePosition, QPCPosition ?? nullptr);
 }
 
 /// @nodoc

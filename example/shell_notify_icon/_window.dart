@@ -31,8 +31,8 @@ int createHidden() {
       rect.top,
       rect.width,
       rect.height,
-      NULL,
-      NULL,
+      null,
+      null,
       app.hInst,
       nullptr);
   app.registerWndProc(_windowWndProc);
@@ -47,7 +47,7 @@ String _regWinClass() {
     ..lpfnWndProc = app.lpfnWndProc.nativeFunction
     ..hInstance = app.hInst
     ..hIcon = app.loadDartIcon()
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..lpszClassName = TEXT(windowClass);
   RegisterClass(pWndClass);
   return windowClass;

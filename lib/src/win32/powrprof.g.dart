@@ -32,10 +32,10 @@ final _powrprof = DynamicLibrary.open('powrprof.dll');
 /// );
 /// ```
 /// {@category powrprof}
-int CallNtPowerInformation(int InformationLevel, Pointer InputBuffer,
-        int InputBufferLength, Pointer OutputBuffer, int OutputBufferLength) =>
-    _CallNtPowerInformation(InformationLevel, InputBuffer, InputBufferLength,
-        OutputBuffer, OutputBufferLength);
+int CallNtPowerInformation(int InformationLevel, Pointer? InputBuffer,
+        int InputBufferLength, Pointer? OutputBuffer, int OutputBufferLength) =>
+    _CallNtPowerInformation(InformationLevel, InputBuffer ?? nullptr,
+        InputBufferLength, OutputBuffer ?? nullptr, OutputBufferLength);
 
 final _CallNtPowerInformation = _powrprof.lookupFunction<
     Int32 Function(

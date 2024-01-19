@@ -59,9 +59,9 @@ class IDispatch extends IUnknown {
           int lcid,
           int wFlags,
           Pointer<DISPPARAMS> pDispParams,
-          Pointer<VARIANT> pVarResult,
-          Pointer<EXCEPINFO> pExcepInfo,
-          Pointer<Uint32> puArgErr) =>
+          Pointer<VARIANT>? pVarResult,
+          Pointer<EXCEPINFO>? pExcepInfo,
+          Pointer<Uint32>? puArgErr) =>
       _vtable.Invoke.asFunction<
               int Function(
                   VTablePointer,
@@ -72,8 +72,16 @@ class IDispatch extends IUnknown {
                   Pointer<DISPPARAMS> pDispParams,
                   Pointer<VARIANT> pVarResult,
                   Pointer<EXCEPINFO> pExcepInfo,
-                  Pointer<Uint32> puArgErr)>()(ptr, dispIdMember, riid, lcid,
-          wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
+                  Pointer<Uint32> puArgErr)>()(
+          ptr,
+          dispIdMember,
+          riid,
+          lcid,
+          wFlags,
+          pDispParams,
+          pVarResult ?? nullptr,
+          pExcepInfo ?? nullptr,
+          puArgErr ?? nullptr);
 }
 
 /// @nodoc

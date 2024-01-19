@@ -54,10 +54,12 @@ class ISensor extends IUnknown {
           int Function(VTablePointer, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> pProperty)>()(ptr, key, pProperty);
 
-  int getProperties(VTablePointer pKeys, Pointer<VTablePointer> ppProperties) =>
+  int getProperties(
+          VTablePointer? pKeys, Pointer<VTablePointer> ppProperties) =>
       _vtable.GetProperties.asFunction<
-          int Function(VTablePointer, VTablePointer pKeys,
-              Pointer<VTablePointer> ppProperties)>()(ptr, pKeys, ppProperties);
+              int Function(VTablePointer, VTablePointer pKeys,
+                  Pointer<VTablePointer> ppProperties)>()(
+          ptr, pKeys ?? nullptr, ppProperties);
 
   int getSupportedDataFields(Pointer<VTablePointer> ppDataFields) =>
       _vtable.GetSupportedDataFields.asFunction<
@@ -65,10 +67,11 @@ class ISensor extends IUnknown {
               Pointer<VTablePointer> ppDataFields)>()(ptr, ppDataFields);
 
   int setProperties(
-          VTablePointer pProperties, Pointer<VTablePointer> ppResults) =>
+          VTablePointer? pProperties, Pointer<VTablePointer> ppResults) =>
       _vtable.SetProperties.asFunction<
-          int Function(VTablePointer, VTablePointer pProperties,
-              Pointer<VTablePointer> ppResults)>()(ptr, pProperties, ppResults);
+              int Function(VTablePointer, VTablePointer pProperties,
+                  Pointer<VTablePointer> ppResults)>()(
+          ptr, pProperties ?? nullptr, ppResults);
 
   int supportsDataField(
           Pointer<PROPERTYKEY> key, Pointer<Int16> pIsSupported) =>
@@ -95,13 +98,14 @@ class ISensor extends IUnknown {
           int Function(VTablePointer, Pointer<Pointer<GUID>> ppValues,
               Pointer<Uint32> pCount)>()(ptr, ppValues, pCount);
 
-  int setEventInterest(Pointer<GUID> pValues, int count) =>
+  int setEventInterest(Pointer<GUID>? pValues, int count) =>
       _vtable.SetEventInterest.asFunction<
               int Function(VTablePointer, Pointer<GUID> pValues, int count)>()(
-          ptr, pValues, count);
+          ptr, pValues ?? nullptr, count);
 
-  int setEventSink(VTablePointer pEvents) => _vtable.SetEventSink.asFunction<
-      int Function(VTablePointer, VTablePointer pEvents)>()(ptr, pEvents);
+  int setEventSink(VTablePointer? pEvents) => _vtable.SetEventSink.asFunction<
+      int Function(
+          VTablePointer, VTablePointer pEvents)>()(ptr, pEvents ?? nullptr);
 }
 
 /// @nodoc

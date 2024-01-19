@@ -99,8 +99,8 @@ void main() {
   );
 
   result = EnumDisplayMonitors(
-      NULL, // all displays
-      nullptr, // no clipping region
+      null, // all displays
+      null, // no clipping region
       lpfnEnum.nativeFunction,
       NULL);
   if (result == FALSE) {

@@ -101,12 +101,12 @@ class ISpeechObjectToken extends IDispatch {
                   Pointer<Pointer<Utf16>> AttributeValue)>()(
           ptr, AttributeName, AttributeValue);
 
-  int createInstance(VTablePointer pUnkOuter, int ClsContext,
+  int createInstance(VTablePointer? pUnkOuter, int ClsContext,
           Pointer<VTablePointer> Object) =>
       _vtable.CreateInstance.asFunction<
               int Function(VTablePointer, VTablePointer pUnkOuter,
                   int ClsContext, Pointer<VTablePointer> Object)>()(
-          ptr, pUnkOuter, ClsContext, Object);
+          ptr, pUnkOuter ?? nullptr, ClsContext, Object);
 
   int remove(Pointer<Utf16> ObjectStorageCLSID) => _vtable.Remove.asFunction<
           int Function(VTablePointer, Pointer<Utf16> ObjectStorageCLSID)>()(
@@ -138,7 +138,7 @@ class ISpeechObjectToken extends IDispatch {
               int DeleteFile)>()(ptr, ObjectStorageCLSID, KeyName, DeleteFile);
 
   int isUISupported(Pointer<Utf16> TypeOfUI, Pointer<VARIANT> ExtraData,
-          VTablePointer Object, Pointer<Int16> Supported) =>
+          VTablePointer? Object, Pointer<Int16> Supported) =>
       _vtable.IsUISupported.asFunction<
               int Function(
                   VTablePointer,
@@ -146,10 +146,10 @@ class ISpeechObjectToken extends IDispatch {
                   Pointer<VARIANT> ExtraData,
                   VTablePointer Object,
                   Pointer<Int16> Supported)>()(
-          ptr, TypeOfUI, ExtraData, Object, Supported);
+          ptr, TypeOfUI, ExtraData, Object ?? nullptr, Supported);
 
   int displayUI(int hWnd, Pointer<Utf16> Title, Pointer<Utf16> TypeOfUI,
-          Pointer<VARIANT> ExtraData, VTablePointer Object) =>
+          Pointer<VARIANT> ExtraData, VTablePointer? Object) =>
       _vtable.DisplayUI.asFunction<
               int Function(
                   VTablePointer,
@@ -158,7 +158,7 @@ class ISpeechObjectToken extends IDispatch {
                   Pointer<Utf16> TypeOfUI,
                   Pointer<VARIANT> ExtraData,
                   VTablePointer Object)>()(
-          ptr, hWnd, Title, TypeOfUI, ExtraData, Object);
+          ptr, hWnd, Title, TypeOfUI, ExtraData, Object ?? nullptr);
 
   int matchesAttributes(Pointer<Utf16> Attributes, Pointer<Int16> Matches) =>
       _vtable.MatchesAttributes.asFunction<

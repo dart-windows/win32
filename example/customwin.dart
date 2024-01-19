@@ -71,7 +71,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..lpszClassName = className
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..hbrBackground = GetStockObject(WHITE_BRUSH);
   RegisterClass(wc);
 
@@ -79,7 +79,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   final hWnd = CreateWindowEx(
       0, // Optional window styles.
       className, // Window class
-      nullptr, // Window caption
+      null, // Window caption
       WS_BORDER, // Window style
 
       // Size and position
@@ -87,10 +87,10 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
       CW_USEDEFAULT,
       500,
       500,
-      NULL, // Parent window
-      NULL, // Menu
+      null, // Parent window
+      null, // Menu
       hInstance, // Instance handle
-      nullptr // Additional application data
+      null // Additional application data
       );
 
   // Remove the title bar
@@ -106,7 +106,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
 
   // Run the message loop.
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

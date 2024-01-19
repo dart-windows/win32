@@ -122,7 +122,7 @@ int mainWindowProc(int hWnd, int uMsg, int wParam, int lParam) {
       rectScroll.ref.top = cyChar;
       rectScroll.ref.bottom = cyChar * (cyClient ~/ cyChar);
 
-      InvalidateRect(hWnd, nullptr, TRUE);
+      InvalidateRect(hWnd, null, TRUE);
       return 0;
 
     case WM_KEYDOWN:
@@ -138,7 +138,7 @@ int mainWindowProc(int hWnd, int uMsg, int wParam, int lParam) {
 
       // Scroll up
       ScrollWindow(hWnd, 0, -cyChar, rectScroll, rectScroll);
-      InvalidateRect(hWnd, nullptr, TRUE);
+      InvalidateRect(hWnd, null, TRUE);
 
     case WM_PAINT:
       final ps = calloc<PAINTSTRUCT>();
@@ -198,7 +198,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     exceptionalReturn: 0,
   );
 
-  keyHook = SetWindowsHookEx(WH_KEYBOARD_LL, lpfn.nativeFunction, NULL, 0);
+  keyHook = SetWindowsHookEx(WH_KEYBOARD_LL, lpfn.nativeFunction, null, 0);
 
   final lpfnWndProc = NativeCallable<WindowProc>.isolateLocal(
     mainWindowProc,
@@ -211,8 +211,8 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..lpszClassName = className
-    ..hIcon = LoadIcon(NULL, IDI_APPLICATION)
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hIcon = LoadIcon(null, IDI_APPLICATION)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..hbrBackground = GetStockObject(WHITE_BRUSH);
   RegisterClass(wc);
 
@@ -236,7 +236,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   UpdateWindow(hWnd);
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

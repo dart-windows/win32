@@ -145,16 +145,23 @@ final _SetWindowSubclass = _comctl32.lookupFunction<
 /// ```
 /// {@category comctl32}
 int TaskDialog(
-        int hwndOwner,
-        int hInstance,
-        Pointer<Utf16> pszWindowTitle,
-        Pointer<Utf16> pszMainInstruction,
-        Pointer<Utf16> pszContent,
+        int? hwndOwner,
+        int? hInstance,
+        Pointer<Utf16>? pszWindowTitle,
+        Pointer<Utf16>? pszMainInstruction,
+        Pointer<Utf16>? pszContent,
         int dwCommonButtons,
-        Pointer<Utf16> pszIcon,
-        Pointer<Int32> pnButton) =>
-    _TaskDialog(hwndOwner, hInstance, pszWindowTitle, pszMainInstruction,
-        pszContent, dwCommonButtons, pszIcon, pnButton);
+        Pointer<Utf16>? pszIcon,
+        Pointer<Int32>? pnButton) =>
+    _TaskDialog(
+        hwndOwner ?? 0,
+        hInstance ?? 0,
+        pszWindowTitle ?? nullptr,
+        pszMainInstruction ?? nullptr,
+        pszContent ?? nullptr,
+        dwCommonButtons,
+        pszIcon ?? nullptr,
+        pnButton ?? nullptr);
 
 final _TaskDialog = _comctl32.lookupFunction<
     Int32 Function(
@@ -192,11 +199,11 @@ final _TaskDialog = _comctl32.lookupFunction<
 /// {@category comctl32}
 int TaskDialogIndirect(
         Pointer<TASKDIALOGCONFIG> pTaskConfig,
-        Pointer<Int32> pnButton,
-        Pointer<Int32> pnRadioButton,
-        Pointer<Int32> pfVerificationFlagChecked) =>
-    _TaskDialogIndirect(
-        pTaskConfig, pnButton, pnRadioButton, pfVerificationFlagChecked);
+        Pointer<Int32>? pnButton,
+        Pointer<Int32>? pnRadioButton,
+        Pointer<Int32>? pfVerificationFlagChecked) =>
+    _TaskDialogIndirect(pTaskConfig, pnButton ?? nullptr,
+        pnRadioButton ?? nullptr, pfVerificationFlagChecked ?? nullptr);
 
 final _TaskDialogIndirect = _comctl32.lookupFunction<
     Int32 Function(

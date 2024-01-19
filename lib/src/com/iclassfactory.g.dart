@@ -28,14 +28,12 @@ class IClassFactory extends IUnknown {
   factory IClassFactory.from(IUnknown interface) =>
       IClassFactory(interface.toInterface(IID_IClassFactory));
 
-  int createInstance(VTablePointer pUnkOuter, Pointer<GUID> riid,
+  int createInstance(VTablePointer? pUnkOuter, Pointer<GUID> riid,
           Pointer<Pointer> ppvObject) =>
       _vtable.CreateInstance.asFunction<
-          int Function(
-              VTablePointer,
-              VTablePointer pUnkOuter,
-              Pointer<GUID> riid,
-              Pointer<Pointer> ppvObject)>()(ptr, pUnkOuter, riid, ppvObject);
+              int Function(VTablePointer, VTablePointer pUnkOuter,
+                  Pointer<GUID> riid, Pointer<Pointer> ppvObject)>()(
+          ptr, pUnkOuter ?? nullptr, riid, ppvObject);
 
   int lockServer(int fLock) =>
       _vtable.LockServer.asFunction<int Function(VTablePointer, int fLock)>()(

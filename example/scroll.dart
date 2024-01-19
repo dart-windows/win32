@@ -148,7 +148,7 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // If the position has changed, scroll the window.
       if (si.ref.nPos != xPos) {
-        ScrollWindow(hwnd, xChar * (xPos - si.ref.nPos), 0, nullptr, nullptr);
+        ScrollWindow(hwnd, xChar * (xPos - si.ref.nPos), 0, null, null);
       }
 
       free(si);
@@ -205,7 +205,7 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // If the position has changed, scroll window and update it.
       if (si.ref.nPos != yPos) {
-        ScrollWindow(hwnd, 0, yChar * (yPos - si.ref.nPos), nullptr, nullptr);
+        ScrollWindow(hwnd, 0, yChar * (yPos - si.ref.nPos), null, nullptr);
         UpdateWindow(hwnd);
       }
 
@@ -273,7 +273,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..lpszClassName = className
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..hbrBackground = GetStockObject(WHITE_BRUSH);
   RegisterClass(wc);
 
@@ -290,10 +290,10 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
       CW_USEDEFAULT,
       250,
       250,
-      NULL, // Parent window
-      NULL, // Menu
+      null, // Parent window
+      null, // Menu
       hInstance, // Instance handle
-      nullptr // Additional application data
+      null // Additional application data
       );
 
   if (hWnd == 0) {
@@ -307,7 +307,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Run the message loop.
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

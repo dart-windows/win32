@@ -25,8 +25,8 @@ void main() {
   final dcb = calloc<DCB>();
 
   try {
-    final hCom = CreateFile(pcCommPort, GENERIC_READ | GENERIC_WRITE, 0,
-        nullptr, OPEN_EXISTING, 0, NULL);
+    final hCom = CreateFile(pcCommPort, GENERIC_READ | GENERIC_WRITE, 0, null,
+        OPEN_EXISTING, 0, NULL);
 
     if (hCom == INVALID_HANDLE_VALUE) {
       print('Invalid handle.');

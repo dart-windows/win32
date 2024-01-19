@@ -19,10 +19,10 @@ void main() {
   hr = CoInitializeSecurity(
     nullptr,
     -1, // COM negotiates service
-    nullptr, // Authentication services
+    null, // Authentication services
     RPC_C_AUTHN_LEVEL_DEFAULT, // authentication
     RPC_C_IMP_LEVEL_IMPERSONATE, // Impersonation
-    nullptr, // Authentication info
+    null, // Authentication info
     EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // Additional capabilities
   );
 
@@ -41,7 +41,7 @@ void main() {
   final clsid = calloc<GUID>()..ref.setGUID(CLSID_WbemLocator);
   final iid = calloc<GUID>()..ref.setGUID(IID_IWbemLocator);
 
-  hr = CoCreateInstance(clsid, nullptr, CLSCTX_INPROC_SERVER, iid, pLoc);
+  hr = CoCreateInstance(clsid, null, CLSCTX_INPROC_SERVER, iid, pLoc);
 
   if (FAILED(hr)) {
     final exception = WindowsException(hr);
@@ -90,10 +90,10 @@ void main() {
       proxy.value, // the proxy to set
       RPC_C_AUTHN_WINNT, // authentication service
       RPC_C_AUTHZ_NONE, // authorization service
-      nullptr, // Server principal name
+      null, // Server principal name
       RPC_C_AUTHN_LEVEL_CALL, // authentication level
       RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
-      nullptr, // client identity
+      null, // client identity
       EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE // proxy capabilities
       );
 
@@ -146,7 +146,7 @@ void main() {
       free(pClsObj);
 
       final vtProp = calloc<VARIANT>();
-      hr = clsObj.get(TEXT('Name'), 0, vtProp, nullptr, nullptr);
+      hr = clsObj.get(TEXT('Name'), 0, vtProp, null, nullptr);
       if (SUCCEEDED(hr)) {
         print('Process: ${vtProp.ref.bstrVal.toDartString()}');
       }

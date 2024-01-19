@@ -112,9 +112,9 @@ final _CoCreateGuid = _ole32.lookupFunction<Int32 Function(Pointer<GUID> pguid),
 /// );
 /// ```
 /// {@category ole32}
-int CoCreateInstance(Pointer<GUID> rclsid, VTablePointer pUnkOuter,
+int CoCreateInstance(Pointer<GUID> rclsid, VTablePointer? pUnkOuter,
         int dwClsContext, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
-    _CoCreateInstance(rclsid, pUnkOuter, dwClsContext, riid, ppv);
+    _CoCreateInstance(rclsid, pUnkOuter ?? nullptr, dwClsContext, riid, ppv);
 
 final _CoCreateInstance = _ole32.lookupFunction<
     Int32 Function(Pointer<GUID> rclsid, VTablePointer pUnkOuter,
@@ -172,9 +172,9 @@ final _CoGetApartmentType = _ole32.lookupFunction<
 /// );
 /// ```
 /// {@category ole32}
-int CoGetClassObject(Pointer<GUID> rclsid, int dwClsContext, Pointer pvReserved,
-        Pointer<GUID> riid, Pointer<Pointer> ppv) =>
-    _CoGetClassObject(rclsid, dwClsContext, pvReserved, riid, ppv);
+int CoGetClassObject(Pointer<GUID> rclsid, int dwClsContext,
+        Pointer? pvReserved, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
+    _CoGetClassObject(rclsid, dwClsContext, pvReserved ?? nullptr, riid, ppv);
 
 final _CoGetClassObject = _ole32.lookupFunction<
     Int32 Function(Pointer<GUID> rclsid, Uint32 dwClsContext,
@@ -243,15 +243,23 @@ final _CoInitializeEx = _ole32.lookupFunction<
 /// ```
 /// {@category ole32}
 int CoInitializeSecurity(
-        Pointer pSecDesc,
+        Pointer? pSecDesc,
         int cAuthSvc,
-        Pointer<SOLE_AUTHENTICATION_SERVICE> asAuthSvc,
+        Pointer<SOLE_AUTHENTICATION_SERVICE>? asAuthSvc,
         int dwAuthnLevel,
         int dwImpLevel,
-        Pointer pAuthList,
+        Pointer? pAuthList,
         int dwCapabilities) =>
-    _CoInitializeSecurity(pSecDesc, cAuthSvc, asAuthSvc, nullptr, dwAuthnLevel,
-        dwImpLevel, pAuthList, dwCapabilities, nullptr);
+    _CoInitializeSecurity(
+        pSecDesc ?? nullptr,
+        cAuthSvc,
+        asAuthSvc ?? nullptr,
+        nullptr,
+        dwAuthnLevel,
+        dwImpLevel,
+        pAuthList ?? nullptr,
+        dwCapabilities,
+        nullptr);
 
 final _CoInitializeSecurity = _ole32.lookupFunction<
     Int32 Function(
@@ -295,13 +303,20 @@ int CoSetProxyBlanket(
         VTablePointer pProxy,
         int dwAuthnSvc,
         int dwAuthzSvc,
-        Pointer<Utf16> pServerPrincName,
+        Pointer<Utf16>? pServerPrincName,
         int dwAuthnLevel,
         int dwImpLevel,
-        Pointer pAuthInfo,
+        Pointer? pAuthInfo,
         int dwCapabilities) =>
-    _CoSetProxyBlanket(pProxy, dwAuthnSvc, dwAuthzSvc, pServerPrincName,
-        dwAuthnLevel, dwImpLevel, pAuthInfo, dwCapabilities);
+    _CoSetProxyBlanket(
+        pProxy,
+        dwAuthnSvc,
+        dwAuthzSvc,
+        pServerPrincName ?? nullptr,
+        dwAuthnLevel,
+        dwImpLevel,
+        pAuthInfo ?? nullptr,
+        dwCapabilities);
 
 final _CoSetProxyBlanket = _ole32.lookupFunction<
     Int32 Function(
@@ -345,7 +360,7 @@ final _CoTaskMemAlloc = _ole32.lookupFunction<Pointer Function(IntPtr cb),
 /// );
 /// ```
 /// {@category ole32}
-void CoTaskMemFree(Pointer pv) => _CoTaskMemFree(pv);
+void CoTaskMemFree(Pointer? pv) => _CoTaskMemFree(pv ?? nullptr);
 
 final _CoTaskMemFree =
     _ole32.lookupFunction<Void Function(Pointer pv), void Function(Pointer pv)>(
@@ -360,7 +375,8 @@ final _CoTaskMemFree =
 /// );
 /// ```
 /// {@category ole32}
-Pointer CoTaskMemRealloc(Pointer pv, int cb) => _CoTaskMemRealloc(pv, cb);
+Pointer CoTaskMemRealloc(Pointer? pv, int cb) =>
+    _CoTaskMemRealloc(pv ?? nullptr, cb);
 
 final _CoTaskMemRealloc = _ole32.lookupFunction<
     Pointer Function(Pointer pv, IntPtr cb),

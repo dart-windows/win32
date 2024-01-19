@@ -75,7 +75,7 @@ String getComputerName() {
   String name;
 
   GetComputerNameEx(
-      COMPUTER_NAME_FORMAT.ComputerNameDnsFullyQualified, nullptr, nameLength);
+      COMPUTER_NAME_FORMAT.ComputerNameDnsFullyQualified, null, nameLength);
 
   final namePtr = wsalloc(nameLength.value);
 
@@ -203,7 +203,7 @@ void printBatteryStatusInfo() {
   try {
     final result = CallNtPowerInformation(
         POWER_INFORMATION_LEVEL.SystemBatteryState,
-        nullptr,
+        null,
         0,
         batteryStatus,
         sizeOf<SYSTEM_BATTERY_STATE>());

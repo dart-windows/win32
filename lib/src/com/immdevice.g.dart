@@ -34,7 +34,7 @@ class IMMDevice extends IUnknown {
   int activate(
           Pointer<GUID> iid,
           int dwClsCtx,
-          Pointer<PROPVARIANT> pActivationParams,
+          Pointer<PROPVARIANT>? pActivationParams,
           Pointer<Pointer> ppInterface) =>
       _vtable.Activate.asFunction<
               int Function(
@@ -43,7 +43,7 @@ class IMMDevice extends IUnknown {
                   int dwClsCtx,
                   Pointer<PROPVARIANT> pActivationParams,
                   Pointer<Pointer> ppInterface)>()(
-          ptr, iid, dwClsCtx, pActivationParams, ppInterface);
+          ptr, iid, dwClsCtx, pActivationParams ?? nullptr, ppInterface);
 
   int openPropertyStore(int stgmAccess, Pointer<VTablePointer> ppProperties) =>
       _vtable.OpenPropertyStore.asFunction<

@@ -25,7 +25,7 @@ final lpfnWndProc = NativeCallable<WindowProc>.isolateLocal(
 
 void exec() {
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

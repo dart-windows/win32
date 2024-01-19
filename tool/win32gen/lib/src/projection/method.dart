@@ -49,7 +49,7 @@ abstract class MethodProjection {
   /// The parameters exposed by a projected Dart method.
   String get methodParams => parameters
       .where((p) => !p.isReserved) // Hide reserved parameters
-      .map((p) => p.dartProjection)
+      .map((p) => p.paramProjection)
       .join(', ');
 
   String get dartParams;

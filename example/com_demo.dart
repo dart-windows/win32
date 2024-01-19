@@ -44,7 +44,7 @@ void main() {
   print('refCount is now ${refCount(fileOpenDialog)}\n');
 
   // Use IFileOpenDialog.Show, which is inherited from IModalWindow
-  hr = fileOpenDialog.show(NULL);
+  hr = fileOpenDialog.show(null);
   if (FAILED(hr)) {
     if (hr == HRESULT_FROM_WIN32(ERROR_CANCELLED)) {
       print('Dialog cancelled.');

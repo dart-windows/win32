@@ -32,8 +32,8 @@ void showSimpleTaskDialog() {
 
   try {
     final hr = TaskDialog(
-        NULL,
-        NULL,
+        null,
+        null,
         windowTitle,
         mainInstruction,
         content,
@@ -107,7 +107,7 @@ void showCustomTaskDialog() {
     ..cButtons = 2
     ..pButtons = buttons;
 
-  final hr = TaskDialogIndirect(config, buttonSelected, nullptr, nullptr);
+  final hr = TaskDialogIndirect(config, buttonSelected, null, null);
 
   if (SUCCEEDED(hr)) {
     if (buttonSelected.value == 100) {

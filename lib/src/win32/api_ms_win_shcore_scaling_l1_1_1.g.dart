@@ -51,8 +51,8 @@ final _GetDpiForMonitor = _api_ms_win_shcore_scaling_l1_1_1.lookupFunction<
 /// );
 /// ```
 /// {@category user32}
-int GetProcessDpiAwareness(int hprocess, Pointer<Int32> value) =>
-    _GetProcessDpiAwareness(hprocess, value);
+int GetProcessDpiAwareness(int? hprocess, Pointer<Int32> value) =>
+    _GetProcessDpiAwareness(hprocess ?? 0, value);
 
 final _GetProcessDpiAwareness =
     _api_ms_win_shcore_scaling_l1_1_1.lookupFunction<

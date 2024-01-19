@@ -29,15 +29,17 @@ class ISequentialStream extends IUnknown {
   factory ISequentialStream.from(IUnknown interface) =>
       ISequentialStream(interface.toInterface(IID_ISequentialStream));
 
-  int read(Pointer pv, int cb, Pointer<Uint32> pcbRead) =>
+  int read(
+          Pointer pv, int cb, Pointer<Uint32>? pcbRead) =>
       _vtable.Read.asFunction<
           int Function(VTablePointer, Pointer pv, int cb,
-              Pointer<Uint32> pcbRead)>()(ptr, pv, cb, pcbRead);
+              Pointer<Uint32> pcbRead)>()(ptr, pv, cb, pcbRead ?? nullptr);
 
-  int write(Pointer pv, int cb, Pointer<Uint32> pcbWritten) =>
+  int write(Pointer pv, int cb, Pointer<Uint32>? pcbWritten) =>
       _vtable.Write.asFunction<
-          int Function(VTablePointer, Pointer pv, int cb,
-              Pointer<Uint32> pcbWritten)>()(ptr, pv, cb, pcbWritten);
+              int Function(VTablePointer, Pointer pv, int cb,
+                  Pointer<Uint32> pcbWritten)>()(
+          ptr, pv, cb, pcbWritten ?? nullptr);
 }
 
 /// @nodoc

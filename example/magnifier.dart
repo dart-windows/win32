@@ -51,13 +51,13 @@ void winMain(int hInstance, List<String> args, int nCmdShow) {
 
   // Main message loop
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) == TRUE) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }
 
   // Shut down
-  KillTimer(NULL, timerId);
+  KillTimer(null, timerId);
   MagUninitialize();
 
   lpTimerFunc.close();
@@ -92,7 +92,7 @@ int hostWndProc(int hWnd, int message, int wParam, int lParam) {
         // Resize the control to fill the window.
         SetWindowPos(
             hwndMag,
-            NULL,
+            null,
             magWindowRect.ref.left,
             magWindowRect.ref.top,
             magWindowRect.ref.right,
@@ -116,7 +116,7 @@ int registerHostWindowClass(
     ..style = CS_HREDRAW | CS_VREDRAW
     ..lpfnWndProc = lpfnWndProc
     ..hInstance = hInstance
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..hbrBackground = COLOR_BTNFACE + 1
     ..lpszClassName = windowClassName;
 
@@ -143,10 +143,10 @@ bool setupMagnifier(
       0,
       hostWindowRect.ref.right,
       hostWindowRect.ref.bottom,
-      NULL,
-      NULL,
+      null,
+      null,
       hInst,
-      nullptr);
+      null);
 
   if (hwndHost == FALSE) return false;
 
@@ -261,7 +261,7 @@ void updateMagWindow(int hwnd, int uMsg, Pointer<Uint32> idEvent, int dwTime) {
         SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
 
     // Force redraw.
-    InvalidateRect(hwndMag, nullptr, TRUE);
+    InvalidateRect(hwndMag, null, TRUE);
   } finally {
     free(mousePoint);
     free(pSourceRect);
@@ -285,7 +285,7 @@ void goFullScreen() {
   final hDC = GetDC(NULL);
   var xSpan = GetSystemMetrics(SM_CXSCREEN);
   var ySpan = GetSystemMetrics(SM_CYSCREEN);
-  ReleaseDC(NULL, hDC);
+  ReleaseDC(null, hDC);
 
   // Calculate the size of system elements.
   final xBorder = GetSystemMetrics(SM_CXFRAME);

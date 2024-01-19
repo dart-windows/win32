@@ -166,10 +166,9 @@ void main() {
       final isConnected = projection.methodProjections
           .firstWhere((method) => method.name == 'get_IsConnectedToInternet');
       expect(isConnected.parameters.length, equals(1));
-      expect(isConnected.parameters.first.type.nativeType,
+      expect(isConnected.parameters.first.typeProjection.nativeType,
           equals('Pointer<Int16>'));
-      expect(
-          isConnected.parameters.first.type.dartType, equals('Pointer<Int16>'));
+      expect(isConnected.parameters.first.type, equals('Pointer<Int16>'));
     });
   });
 
@@ -182,10 +181,9 @@ void main() {
     final newEnum = projection.methodProjections
         .firstWhere((method) => method.name == 'get__NewEnum');
     expect(newEnum.parameters.length, equals(1));
-    expect(newEnum.parameters.first.type.nativeType,
+    expect(newEnum.parameters.first.typeProjection.nativeType,
         equals('Pointer<VTablePointer>'));
-    expect(newEnum.parameters.first.type.dartType,
-        equals('Pointer<VTablePointer>'));
+    expect(newEnum.parameters.first.type, equals('Pointer<VTablePointer>'));
   });
 
   test(
@@ -232,6 +230,26 @@ void main() {
     expect(next.name, equals('Next'));
     expect(next, isNot(isA<ComGetPropertyProjection>()));
     expect(next, isA<ComMethodProjection>());
+  });
+
+  test('Optional parameters are nullable', () {
+    final shellFolder =
+        scope.findTypeDef('Windows.Win32.Media.Speech.ISpVoice');
+    expect(shellFolder, isNotNull);
+
+    final parseDisplayName = shellFolder!.findMethod('Speak');
+    expect(parseDisplayName, isNotNull);
+
+    final projection = ComMethodProjection(parseDisplayName!);
+    expect(
+      projection.methodParams,
+      equals(
+          'Pointer<Utf16>? pwcs, int dwFlags, Pointer<Uint32>? pulStreamNumber'),
+    );
+    expect(
+      projection.identifiers,
+      equals('ptr, pwcs ?? nullptr, dwFlags, pulStreamNumber ?? nullptr'),
+    );
   });
 
   test('Reserved parameters are hidden', () {

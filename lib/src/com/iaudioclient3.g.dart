@@ -64,15 +64,15 @@ class IAudioClient3 extends IAudioClient2 {
           ptr, ppFormat, pCurrentPeriodInFrames);
 
   int initializeSharedAudioStream(int StreamFlags, int PeriodInFrames,
-          Pointer<WAVEFORMATEX> pFormat, Pointer<GUID> AudioSessionGuid) =>
+          Pointer<WAVEFORMATEX> pFormat, Pointer<GUID>? AudioSessionGuid) =>
       _vtable.InitializeSharedAudioStream.asFunction<
               int Function(
                   VTablePointer,
                   int StreamFlags,
                   int PeriodInFrames,
                   Pointer<WAVEFORMATEX> pFormat,
-                  Pointer<GUID> AudioSessionGuid)>()(
-          ptr, StreamFlags, PeriodInFrames, pFormat, AudioSessionGuid);
+                  Pointer<GUID> AudioSessionGuid)>()(ptr, StreamFlags,
+          PeriodInFrames, pFormat, AudioSessionGuid ?? nullptr);
 }
 
 /// @nodoc

@@ -36,11 +36,11 @@ class IAudioClock extends IUnknown {
           ptr, pu64Frequency);
 
   int getPosition(
-          Pointer<Uint64> pu64Position, Pointer<Uint64> pu64QPCPosition) =>
+          Pointer<Uint64> pu64Position, Pointer<Uint64>? pu64QPCPosition) =>
       _vtable.GetPosition.asFunction<
               int Function(VTablePointer, Pointer<Uint64> pu64Position,
                   Pointer<Uint64> pu64QPCPosition)>()(
-          ptr, pu64Position, pu64QPCPosition);
+          ptr, pu64Position, pu64QPCPosition ?? nullptr);
 
   int getCharacteristics(Pointer<Uint32> pdwCharacteristics) =>
       _vtable.GetCharacteristics.asFunction<

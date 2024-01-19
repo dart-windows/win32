@@ -23,7 +23,7 @@ class Displays {
     var deviceIndex = 0;
 
     try {
-      while (EnumDisplayDevices(nullptr, deviceIndex, device, 0) != 0) {
+      while (EnumDisplayDevices(null, deviceIndex, device, 0) != 0) {
         yield Display(device.ref.DeviceName, device.ref.StateFlags);
         deviceIndex++;
       }
@@ -44,17 +44,17 @@ class Display {
 
     BmpFile(hdcScreen, hbmScreen).save(fileName);
 
-    ReleaseDC(NULL, hdcScreen);
+    ReleaseDC(null, hdcScreen);
     DeleteObject(hbmScreen);
   }
 
   int _createDC() {
     return using(
       (arena) => CreateDC(
-        nullptr,
+        null,
         rawName.toNativeUtf16(allocator: arena),
-        nullptr,
-        nullptr,
+        null,
+        null,
       ),
     );
   }
@@ -150,10 +150,10 @@ class BmpFile {
       fileName.toNativeUtf16(allocator: arena),
       GENERIC_WRITE,
       0,
-      nullptr,
+      null,
       CREATE_ALWAYS,
       FILE_ATTRIBUTE_NORMAL,
-      NULL,
+      null,
     );
 
     final dwBytesWritten = arena<DWORD>();
@@ -169,21 +169,21 @@ class BmpFile {
       bitmapFileHeader.cast(),
       sizeOf<BITMAPFILEHEADER>(),
       dwBytesWritten,
-      nullptr,
+      null,
     );
     WriteFile(
       hFile,
       bitmapInfoHeader.cast(),
       sizeOf<BITMAPINFOHEADER>(),
       dwBytesWritten,
-      nullptr,
+      null,
     );
     WriteFile(
       hFile,
       lpBitmap,
       dwBmpSize,
       dwBytesWritten,
-      nullptr,
+      null,
     );
 
     CloseHandle(hFile);

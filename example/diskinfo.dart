@@ -19,7 +19,7 @@ bool GetDriveGeometry(Pointer<Utf16> wszPath, Pointer<DISK_GEOMETRY> pdg) {
         wszPath, // drive to open
         0, // no access to the drive
         FILE_SHARE_READ | FILE_SHARE_WRITE,
-        nullptr, // default security attributes
+        null, // default security attributes
         OPEN_EXISTING,
         0, // file attributes
         NULL); // do not copy file attributes
@@ -32,12 +32,12 @@ bool GetDriveGeometry(Pointer<Utf16> wszPath, Pointer<DISK_GEOMETRY> pdg) {
     final bResult = DeviceIoControl(
         hDevice, // device to be queried
         IOCTL_DISK_GET_DRIVE_GEOMETRY, // operation to perform
-        nullptr,
+        null,
         0, // no input buffer
         pdg,
         sizeOf<DISK_GEOMETRY>(), // output buffer
         bytesReturned, // # bytes returned
-        nullptr); // synchronous I/O
+        null); // synchronous I/O
 
     CloseHandle(hDevice);
 

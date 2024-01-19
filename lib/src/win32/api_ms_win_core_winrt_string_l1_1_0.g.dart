@@ -33,8 +33,8 @@ final _api_ms_win_core_winrt_string_l1_1_0 =
 /// ```
 /// {@category winrt}
 int WindowsCompareStringOrdinal(
-        int string1, int string2, Pointer<Int32> result) =>
-    _WindowsCompareStringOrdinal(string1, string2, result);
+        int? string1, int? string2, Pointer<Int32> result) =>
+    _WindowsCompareStringOrdinal(string1 ?? 0, string2 ?? 0, result);
 
 final _WindowsCompareStringOrdinal =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -52,8 +52,9 @@ final _WindowsCompareStringOrdinal =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsConcatString(int string1, int string2, Pointer<IntPtr> newString) =>
-    _WindowsConcatString(string1, string2, newString);
+int WindowsConcatString(
+        int? string1, int? string2, Pointer<IntPtr> newString) =>
+    _WindowsConcatString(string1 ?? 0, string2 ?? 0, newString);
 
 final _WindowsConcatString =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -73,8 +74,8 @@ final _WindowsConcatString =
 /// ```
 /// {@category winrt}
 int WindowsCreateString(
-        Pointer<Utf16> sourceString, int length, Pointer<IntPtr> string) =>
-    _WindowsCreateString(sourceString, length, string);
+        Pointer<Utf16>? sourceString, int length, Pointer<IntPtr> string) =>
+    _WindowsCreateString(sourceString ?? nullptr, length, string);
 
 final _WindowsCreateString =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -91,7 +92,7 @@ final _WindowsCreateString =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsDeleteString(int string) => _WindowsDeleteString(string);
+int WindowsDeleteString(int? string) => _WindowsDeleteString(string ?? 0);
 
 final _WindowsDeleteString = _api_ms_win_core_winrt_string_l1_1_0
     .lookupFunction<Int32 Function(IntPtr string), int Function(int string)>(
@@ -105,8 +106,8 @@ final _WindowsDeleteString = _api_ms_win_core_winrt_string_l1_1_0
 /// );
 /// ```
 /// {@category winrt}
-int WindowsDeleteStringBuffer(int bufferHandle) =>
-    _WindowsDeleteStringBuffer(bufferHandle);
+int WindowsDeleteStringBuffer(int? bufferHandle) =>
+    _WindowsDeleteStringBuffer(bufferHandle ?? 0);
 
 final _WindowsDeleteStringBuffer =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -122,8 +123,8 @@ final _WindowsDeleteStringBuffer =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsDuplicateString(int string, Pointer<IntPtr> newString) =>
-    _WindowsDuplicateString(string, newString);
+int WindowsDuplicateString(int? string, Pointer<IntPtr> newString) =>
+    _WindowsDuplicateString(string ?? 0, newString);
 
 final _WindowsDuplicateString =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -139,7 +140,7 @@ final _WindowsDuplicateString =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsGetStringLen(int string) => _WindowsGetStringLen(string);
+int WindowsGetStringLen(int? string) => _WindowsGetStringLen(string ?? 0);
 
 final _WindowsGetStringLen = _api_ms_win_core_winrt_string_l1_1_0
     .lookupFunction<Uint32 Function(IntPtr string), int Function(int string)>(
@@ -154,8 +155,9 @@ final _WindowsGetStringLen = _api_ms_win_core_winrt_string_l1_1_0
 /// );
 /// ```
 /// {@category winrt}
-Pointer<Utf16> WindowsGetStringRawBuffer(int string, Pointer<Uint32> length) =>
-    _WindowsGetStringRawBuffer(string, length);
+Pointer<Utf16> WindowsGetStringRawBuffer(
+        int? string, Pointer<Uint32>? length) =>
+    _WindowsGetStringRawBuffer(string ?? 0, length ?? nullptr);
 
 final _WindowsGetStringRawBuffer =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -171,7 +173,7 @@ final _WindowsGetStringRawBuffer =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsIsStringEmpty(int string) => _WindowsIsStringEmpty(string);
+int WindowsIsStringEmpty(int? string) => _WindowsIsStringEmpty(string ?? 0);
 
 final _WindowsIsStringEmpty = _api_ms_win_core_winrt_string_l1_1_0
     .lookupFunction<Int32 Function(IntPtr string), int Function(int string)>(
@@ -228,9 +230,10 @@ final _WindowsPromoteStringBuffer =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsReplaceString(int string, int stringReplaced, int stringReplaceWith,
-        Pointer<IntPtr> newString) =>
-    _WindowsReplaceString(string, stringReplaced, stringReplaceWith, newString);
+int WindowsReplaceString(int? string, int? stringReplaced,
+        int? stringReplaceWith, Pointer<IntPtr> newString) =>
+    _WindowsReplaceString(
+        string ?? 0, stringReplaced ?? 0, stringReplaceWith ?? 0, newString);
 
 final _WindowsReplaceString =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -247,8 +250,8 @@ final _WindowsReplaceString =
 ///   BOOL    *hasEmbedNull);
 /// ```
 /// {@category winrt}
-int WindowsStringHasEmbeddedNull(int string, Pointer<Int32> hasEmbedNull) =>
-    _WindowsStringHasEmbeddedNull(string, hasEmbedNull);
+int WindowsStringHasEmbeddedNull(int? string, Pointer<Int32> hasEmbedNull) =>
+    _WindowsStringHasEmbeddedNull(string ?? 0, hasEmbedNull);
 
 final _WindowsStringHasEmbeddedNull =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -267,8 +270,8 @@ final _WindowsStringHasEmbeddedNull =
 /// );
 /// ```
 /// {@category winrt}
-int WindowsSubstring(int string, int startIndex, Pointer<IntPtr> newString) =>
-    _WindowsSubstring(string, startIndex, newString);
+int WindowsSubstring(int? string, int startIndex, Pointer<IntPtr> newString) =>
+    _WindowsSubstring(string ?? 0, startIndex, newString);
 
 final _WindowsSubstring = _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
     Int32 Function(IntPtr string, Uint32 startIndex, Pointer<IntPtr> newString),
@@ -288,8 +291,9 @@ final _WindowsSubstring = _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
 /// ```
 /// {@category winrt}
 int WindowsSubstringWithSpecifiedLength(
-        int string, int startIndex, int length, Pointer<IntPtr> newString) =>
-    _WindowsSubstringWithSpecifiedLength(string, startIndex, length, newString);
+        int? string, int startIndex, int length, Pointer<IntPtr> newString) =>
+    _WindowsSubstringWithSpecifiedLength(
+        string ?? 0, startIndex, length, newString);
 
 final _WindowsSubstringWithSpecifiedLength =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -310,8 +314,8 @@ final _WindowsSubstringWithSpecifiedLength =
 /// ```
 /// {@category winrt}
 int WindowsTrimStringEnd(
-        int string, int trimString, Pointer<IntPtr> newString) =>
-    _WindowsTrimStringEnd(string, trimString, newString);
+        int? string, int? trimString, Pointer<IntPtr> newString) =>
+    _WindowsTrimStringEnd(string ?? 0, trimString ?? 0, newString);
 
 final _WindowsTrimStringEnd =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
@@ -332,8 +336,8 @@ final _WindowsTrimStringEnd =
 /// ```
 /// {@category winrt}
 int WindowsTrimStringStart(
-        int string, int trimString, Pointer<IntPtr> newString) =>
-    _WindowsTrimStringStart(string, trimString, newString);
+        int? string, int? trimString, Pointer<IntPtr> newString) =>
+    _WindowsTrimStringStart(string ?? 0, trimString ?? 0, newString);
 
 final _WindowsTrimStringStart =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<

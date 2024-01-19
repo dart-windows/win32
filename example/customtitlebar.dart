@@ -93,8 +93,8 @@ Pointer<RECT> getTitlebarRect(int hwnd) {
   try {
     final hTheme = getWindowThemeHandle(hwnd);
     final dpi = GetDpiForWindow(hwnd);
-    GetThemePartSize(hTheme, NULL, WINDOWPARTS.WP_CAPTION,
-        CAPTIONSTATES.CS_ACTIVE, nullptr, THEMESIZE.TS_TRUE, titleBarSize);
+    GetThemePartSize(hTheme, null, WINDOWPARTS.WP_CAPTION,
+        CAPTIONSTATES.CS_ACTIVE, null, THEMESIZE.TS_TRUE, titleBarSize);
     CloseThemeData(hTheme);
 
     final height = dpiScale(titleBarSize.ref.cy, dpi) + topAndBottomBorders;
@@ -222,9 +222,9 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
     }
 
     centerRectInParent(closeIconRect, closeButtonRect);
-    MoveToEx(hdc, closeIconRect.ref.left, closeIconRect.ref.top, nullptr);
+    MoveToEx(hdc, closeIconRect.ref.left, closeIconRect.ref.top, null);
     LineTo(hdc, closeIconRect.ref.right + 1, closeIconRect.ref.bottom + 1);
-    MoveToEx(hdc, closeIconRect.ref.left, closeIconRect.ref.bottom, nullptr);
+    MoveToEx(hdc, closeIconRect.ref.left, closeIconRect.ref.bottom, null);
     LineTo(hdc, closeIconRect.ref.right + 1, closeIconRect.ref.top - 1);
     if (customPen != null) DeleteObject(customPen);
   } finally {
@@ -379,7 +379,7 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       // new client area that is extended into the title bar.
       SetWindowPos(
           hwnd,
-          NULL,
+          null,
           sizeRect.ref.left,
           sizeRect.ref.top,
           sizeRect.ref.right - sizeRect.ref.left,
@@ -534,7 +534,7 @@ void main() {
     ..cbSize = sizeOf<WNDCLASSEX>()
     ..lpszClassName = windowClassName
     ..style = CS_HREDRAW | CS_VREDRAW
-    ..hCursor = LoadCursor(NULL, IDC_ARROW)
+    ..hCursor = LoadCursor(null, IDC_ARROW)
     ..lpfnWndProc = lpfnWndProc.nativeFunction;
 
   RegisterClassEx(windowClass);
@@ -549,10 +549,10 @@ void main() {
   final windowCaption = 'Win32 Custom Title Bar Example'.toNativeUtf16();
 
   CreateWindowEx(WS_EX_APPWINDOW, windowClassName, windowCaption, windowStyle,
-      CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, NULL, NULL, NULL, nullptr);
+      CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, null, null, null, null);
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, NULL, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) != 0) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

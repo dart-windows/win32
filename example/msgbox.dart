@@ -13,7 +13,7 @@ void main() {
   final title = TEXT('Dart MessageBox Test');
 
   final result = MessageBox(
-      NULL,
+      null,
       message,
       title,
       MB_ICONWARNING | // Warning

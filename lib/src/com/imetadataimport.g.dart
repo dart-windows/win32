@@ -83,22 +83,19 @@ class IMetaDataImport extends IUnknown {
               int tkEnclosingClass,
               Pointer<Uint32> ptd)>()(ptr, szTypeDef, tkEnclosingClass, ptd);
 
-  int getScopeProps(Pointer<Utf16> szName, int cchName, Pointer<Uint32> pchName,
-          Pointer<GUID> pmvid) =>
+  int getScopeProps(Pointer<Utf16>? szName, int cchName,
+          Pointer<Uint32> pchName, Pointer<GUID> pmvid) =>
       _vtable.GetScopeProps.asFunction<
-          int Function(
-              VTablePointer,
-              Pointer<Utf16> szName,
-              int cchName,
-              Pointer<Uint32> pchName,
-              Pointer<GUID> pmvid)>()(ptr, szName, cchName, pchName, pmvid);
+              int Function(VTablePointer, Pointer<Utf16> szName, int cchName,
+                  Pointer<Uint32> pchName, Pointer<GUID> pmvid)>()(
+          ptr, szName ?? nullptr, cchName, pchName, pmvid);
 
   int getModuleFromScope(Pointer<Uint32> pmd) => _vtable.GetModuleFromScope
       .asFunction<int Function(VTablePointer, Pointer<Uint32> pmd)>()(ptr, pmd);
 
   int getTypeDefProps(
           int td,
-          Pointer<Utf16> szTypeDef,
+          Pointer<Utf16>? szTypeDef,
           int cchTypeDef,
           Pointer<Uint32> pchTypeDef,
           Pointer<Uint32> pdwTypeDefFlags,
@@ -111,8 +108,8 @@ class IMetaDataImport extends IUnknown {
                   int cchTypeDef,
                   Pointer<Uint32> pchTypeDef,
                   Pointer<Uint32> pdwTypeDefFlags,
-                  Pointer<Uint32> ptkExtends)>()(ptr, td, szTypeDef, cchTypeDef,
-          pchTypeDef, pdwTypeDefFlags, ptkExtends);
+                  Pointer<Uint32> ptkExtends)>()(ptr, td, szTypeDef ?? nullptr,
+          cchTypeDef, pchTypeDef, pdwTypeDefFlags, ptkExtends);
 
   int getInterfaceImplProps(
           int iiImpl, Pointer<Uint32> pClass, Pointer<Uint32> ptkIface) =>
@@ -121,7 +118,7 @@ class IMetaDataImport extends IUnknown {
               Pointer<Uint32> ptkIface)>()(ptr, iiImpl, pClass, ptkIface);
 
   int getTypeRefProps(int tr, Pointer<Uint32> ptkResolutionScope,
-          Pointer<Utf16> szName, int cchName, Pointer<Uint32> pchName) =>
+          Pointer<Utf16>? szName, int cchName, Pointer<Uint32> pchName) =>
       _vtable.GetTypeRefProps.asFunction<
               int Function(
                   VTablePointer,
@@ -130,7 +127,7 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Utf16> szName,
                   int cchName,
                   Pointer<Uint32> pchName)>()(
-          ptr, tr, ptkResolutionScope, szName, cchName, pchName);
+          ptr, tr, ptkResolutionScope, szName ?? nullptr, cchName, pchName);
 
   int resolveTypeRef(int tr, Pointer<GUID> riid,
           Pointer<VTablePointer> ppIScope, Pointer<Uint32> ptd) =>
@@ -333,7 +330,7 @@ class IMetaDataImport extends IUnknown {
   int getMethodProps(
           int mb,
           Pointer<Uint32> pClass,
-          Pointer<Utf16> szMethod,
+          Pointer<Utf16>? szMethod,
           int cchMethod,
           Pointer<Uint32> pchMethod,
           Pointer<Uint32> pdwAttr,
@@ -357,7 +354,7 @@ class IMetaDataImport extends IUnknown {
           ptr,
           mb,
           pClass,
-          szMethod,
+          szMethod ?? nullptr,
           cchMethod,
           pchMethod,
           pdwAttr,
@@ -369,7 +366,7 @@ class IMetaDataImport extends IUnknown {
   int getMemberRefProps(
           int mr,
           Pointer<Uint32> ptk,
-          Pointer<Utf16> szMember,
+          Pointer<Utf16>? szMember,
           int cchMember,
           Pointer<Uint32> pchMember,
           Pointer<Pointer<Uint8>> ppvSigBlob,
@@ -383,8 +380,8 @@ class IMetaDataImport extends IUnknown {
                   int cchMember,
                   Pointer<Uint32> pchMember,
                   Pointer<Pointer<Uint8>> ppvSigBlob,
-                  Pointer<Uint32> pbSig)>()(
-          ptr, mr, ptk, szMember, cchMember, pchMember, ppvSigBlob, pbSig);
+                  Pointer<Uint32> pbSig)>()(ptr, mr, ptk, szMember ?? nullptr,
+          cchMember, pchMember, ppvSigBlob, pbSig);
 
   int enumProperties(
           Pointer<Pointer> phEnum,
@@ -530,15 +527,12 @@ class IMetaDataImport extends IUnknown {
           int Function(VTablePointer, int mdSig, Pointer<Pointer<Uint8>> ppvSig,
               Pointer<Uint32> pcbSig)>()(ptr, mdSig, ppvSig, pcbSig);
 
-  int getModuleRefProps(int mur, Pointer<Utf16> szName, int cchName,
+  int getModuleRefProps(int mur, Pointer<Utf16>? szName, int cchName,
           Pointer<Uint32> pchName) =>
       _vtable.GetModuleRefProps.asFunction<
-          int Function(
-              VTablePointer,
-              int mur,
-              Pointer<Utf16> szName,
-              int cchName,
-              Pointer<Uint32> pchName)>()(ptr, mur, szName, cchName, pchName);
+              int Function(VTablePointer, int mur, Pointer<Utf16> szName,
+                  int cchName, Pointer<Uint32> pchName)>()(
+          ptr, mur, szName ?? nullptr, cchName, pchName);
 
   int enumModuleRefs(Pointer<Pointer> phEnum, Pointer<Uint32> rModuleRefs,
           int cmax, Pointer<Uint32> pcModuleRefs) =>
@@ -577,17 +571,17 @@ class IMetaDataImport extends IUnknown {
                   Pointer<Uint32> pcTokens)>()(
           ptr, phEnum, rMethods, cMax, pcTokens);
 
-  int getUserString(int stk, Pointer<Utf16> szString, int cchString,
+  int getUserString(int stk, Pointer<Utf16>? szString, int cchString,
           Pointer<Uint32> pchString) =>
       _vtable.GetUserString.asFunction<
               int Function(VTablePointer, int stk, Pointer<Utf16> szString,
                   int cchString, Pointer<Uint32> pchString)>()(
-          ptr, stk, szString, cchString, pchString);
+          ptr, stk, szString ?? nullptr, cchString, pchString);
 
   int getPinvokeMap(
           int tk,
           Pointer<Uint32> pdwMappingFlags,
-          Pointer<Utf16> szImportName,
+          Pointer<Utf16>? szImportName,
           int cchImportName,
           Pointer<Uint32> pchImportName,
           Pointer<Uint32> pmrImportDLL) =>
@@ -600,7 +594,7 @@ class IMetaDataImport extends IUnknown {
                   int cchImportName,
                   Pointer<Uint32> pchImportName,
                   Pointer<Uint32> pmrImportDLL)>()(ptr, tk, pdwMappingFlags,
-          szImportName, cchImportName, pchImportName, pmrImportDLL);
+          szImportName ?? nullptr, cchImportName, pchImportName, pmrImportDLL);
 
   int enumSignatures(Pointer<Pointer> phEnum, Pointer<Uint32> rSignatures,
           int cmax, Pointer<Uint32> pcSignatures) =>
@@ -686,7 +680,7 @@ class IMetaDataImport extends IUnknown {
   int getMemberProps(
           int mb,
           Pointer<Uint32> pClass,
-          Pointer<Utf16> szMember,
+          Pointer<Utf16>? szMember,
           int cchMember,
           Pointer<Uint32> pchMember,
           Pointer<Uint32> pdwAttr,
@@ -716,7 +710,7 @@ class IMetaDataImport extends IUnknown {
           ptr,
           mb,
           pClass,
-          szMember,
+          szMember ?? nullptr,
           cchMember,
           pchMember,
           pdwAttr,
@@ -731,7 +725,7 @@ class IMetaDataImport extends IUnknown {
   int getFieldProps(
           int mb,
           Pointer<Uint32> pClass,
-          Pointer<Utf16> szField,
+          Pointer<Utf16>? szField,
           int cchField,
           Pointer<Uint32> pchField,
           Pointer<Uint32> pdwAttr,
@@ -757,7 +751,7 @@ class IMetaDataImport extends IUnknown {
           ptr,
           mb,
           pClass,
-          szField,
+          szField ?? nullptr,
           cchField,
           pchField,
           pdwAttr,
@@ -825,7 +819,7 @@ class IMetaDataImport extends IUnknown {
           int tk,
           Pointer<Uint32> pmd,
           Pointer<Uint32> pulSequence,
-          Pointer<Utf16> szName,
+          Pointer<Utf16>? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Uint32> pdwAttr,
@@ -849,7 +843,7 @@ class IMetaDataImport extends IUnknown {
           tk,
           pmd,
           pulSequence,
-          szName,
+          szName ?? nullptr,
           cchName,
           pchName,
           pdwAttr,

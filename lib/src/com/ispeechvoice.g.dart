@@ -63,9 +63,9 @@ class ISpeechVoice extends IDispatch {
     }
   }
 
-  int putref_Voice(VTablePointer Voice) => _vtable.putref_Voice
+  int putref_Voice(VTablePointer? Voice) => _vtable.putref_Voice
           .asFunction<int Function(VTablePointer, VTablePointer Voice)>()(
-      ptr, Voice);
+      ptr, Voice ?? nullptr);
 
   VTablePointer get audioOutput {
     final retValuePtr = calloc<VTablePointer>();
@@ -83,10 +83,10 @@ class ISpeechVoice extends IDispatch {
     }
   }
 
-  int putref_AudioOutput(VTablePointer AudioOutput) => _vtable
+  int putref_AudioOutput(VTablePointer? AudioOutput) => _vtable
           .putref_AudioOutput
           .asFunction<int Function(VTablePointer, VTablePointer AudioOutput)>()(
-      ptr, AudioOutput);
+      ptr, AudioOutput ?? nullptr);
 
   VTablePointer get audioOutputStream {
     final retValuePtr = calloc<VTablePointer>();
@@ -104,10 +104,10 @@ class ISpeechVoice extends IDispatch {
     }
   }
 
-  int putref_AudioOutputStream(VTablePointer AudioOutputStream) =>
+  int putref_AudioOutputStream(VTablePointer? AudioOutputStream) =>
       _vtable.putref_AudioOutputStream.asFunction<
               int Function(VTablePointer, VTablePointer AudioOutputStream)>()(
-          ptr, AudioOutputStream);
+          ptr, AudioOutputStream ?? nullptr);
 
   int get rate {
     final retValuePtr = calloc<Int32>();
@@ -270,10 +270,11 @@ class ISpeechVoice extends IDispatch {
               Pointer<Int32> StreamNumber)>()(ptr, Text, Flags, StreamNumber);
 
   int speakStream(
-          VTablePointer Stream, int Flags, Pointer<Int32> StreamNumber) =>
+          VTablePointer? Stream, int Flags, Pointer<Int32> StreamNumber) =>
       _vtable.SpeakStream.asFunction<
-          int Function(VTablePointer, VTablePointer Stream, int Flags,
-              Pointer<Int32> StreamNumber)>()(ptr, Stream, Flags, StreamNumber);
+              int Function(VTablePointer, VTablePointer Stream, int Flags,
+                  Pointer<Int32> StreamNumber)>()(
+          ptr, Stream ?? nullptr, Flags, StreamNumber);
 
   int pause() => _vtable.Pause.asFunction<int Function(VTablePointer)>()(ptr);
 

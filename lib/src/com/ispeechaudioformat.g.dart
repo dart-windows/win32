@@ -82,10 +82,10 @@ class ISpeechAudioFormat extends IDispatch {
                   VTablePointer, Pointer<VTablePointer> SpeechWaveFormatEx)>()(
           ptr, SpeechWaveFormatEx);
 
-  int setWaveFormatEx(VTablePointer SpeechWaveFormatEx) =>
+  int setWaveFormatEx(VTablePointer? SpeechWaveFormatEx) =>
       _vtable.SetWaveFormatEx.asFunction<
               int Function(VTablePointer, VTablePointer SpeechWaveFormatEx)>()(
-          ptr, SpeechWaveFormatEx);
+          ptr, SpeechWaveFormatEx ?? nullptr);
 }
 
 /// @nodoc

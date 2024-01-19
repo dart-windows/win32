@@ -15,7 +15,7 @@ const VK_A = 0x41;
 
 void main() {
   print('Switching to Notepad and going to sleep for a second.');
-  ShellExecute(0, TEXT('open'), TEXT('notepad.exe'), nullptr, nullptr, SW_SHOW);
+  ShellExecute(0, TEXT('open'), TEXT('notepad.exe'), null, null, SW_SHOW);
   Sleep(1000);
 
   print('Sending the "A" key and the Unicode character "€".');

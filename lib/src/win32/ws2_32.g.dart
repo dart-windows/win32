@@ -30,8 +30,8 @@ final _ws2_32 = DynamicLibrary.open('ws2_32.dll');
 /// );
 /// ```
 /// {@category winsock}
-int accept(int s, Pointer<SOCKADDR> addr, Pointer<Int32> addrlen) =>
-    _accept(s, addr, addrlen);
+int accept(int s, Pointer<SOCKADDR>? addr, Pointer<Int32>? addrlen) =>
+    _accept(s, addr ?? nullptr, addrlen ?? nullptr);
 
 final _accept = _ws2_32.lookupFunction<
     IntPtr Function(IntPtr s, Pointer<SOCKADDR> addr, Pointer<Int32> addrlen),
@@ -97,9 +97,10 @@ final _connect = _ws2_32.lookupFunction<
 /// );
 /// ```
 /// {@category winsock}
-int GetAddrInfo(Pointer<Utf16> pNodeName, Pointer<Utf16> pServiceName,
-        Pointer<ADDRINFO> pHints, Pointer<Pointer<ADDRINFO>> ppResult) =>
-    _GetAddrInfo(pNodeName, pServiceName, pHints, ppResult);
+int GetAddrInfo(Pointer<Utf16>? pNodeName, Pointer<Utf16>? pServiceName,
+        Pointer<ADDRINFO>? pHints, Pointer<Pointer<ADDRINFO>> ppResult) =>
+    _GetAddrInfo(pNodeName ?? nullptr, pServiceName ?? nullptr,
+        pHints ?? nullptr, ppResult);
 
 final _GetAddrInfo = _ws2_32.lookupFunction<
     Int32 Function(Pointer<Utf16> pNodeName, Pointer<Utf16> pServiceName,
@@ -179,13 +180,13 @@ final _gethostname = _ws2_32.lookupFunction<
 int getnameinfo(
         Pointer<SOCKADDR> pSockaddr,
         int SockaddrLength,
-        Pointer<Utf8> pNodeBuffer,
+        Pointer<Utf8>? pNodeBuffer,
         int NodeBufferSize,
-        Pointer<Utf8> pServiceBuffer,
+        Pointer<Utf8>? pServiceBuffer,
         int ServiceBufferSize,
         int Flags) =>
-    _getnameinfo(pSockaddr, SockaddrLength, pNodeBuffer, NodeBufferSize,
-        pServiceBuffer, ServiceBufferSize, Flags);
+    _getnameinfo(pSockaddr, SockaddrLength, pNodeBuffer ?? nullptr,
+        NodeBufferSize, pServiceBuffer ?? nullptr, ServiceBufferSize, Flags);
 
 final _getnameinfo = _ws2_32.lookupFunction<
     Int32 Function(
@@ -264,8 +265,8 @@ final _getprotobynumber = _ws2_32.lookupFunction<
 /// );
 /// ```
 /// {@category winsock}
-Pointer<SERVENT> getservbyname(Pointer<Utf8> name, Pointer<Utf8> proto) =>
-    _getservbyname(name, proto);
+Pointer<SERVENT> getservbyname(Pointer<Utf8> name, Pointer<Utf8>? proto) =>
+    _getservbyname(name, proto ?? nullptr);
 
 final _getservbyname = _ws2_32.lookupFunction<
     Pointer<SERVENT> Function(Pointer<Utf8> name, Pointer<Utf8> proto),
@@ -282,8 +283,8 @@ final _getservbyname = _ws2_32.lookupFunction<
 /// );
 /// ```
 /// {@category winsock}
-Pointer<SERVENT> getservbyport(int port, Pointer<Utf8> proto) =>
-    _getservbyport(port, proto);
+Pointer<SERVENT> getservbyport(int port, Pointer<Utf8>? proto) =>
+    _getservbyport(port, proto ?? nullptr);
 
 final _getservbyport = _ws2_32.lookupFunction<
     Pointer<SERVENT> Function(Int32 port, Pointer<Utf8> proto),
@@ -500,8 +501,8 @@ final _recv = _ws2_32.lookupFunction<
 /// ```
 /// {@category winsock}
 int recvfrom(int s, Pointer<Utf8> buf, int len, int flags,
-        Pointer<SOCKADDR> from, Pointer<Int32> fromlen) =>
-    _recvfrom(s, buf, len, flags, from, fromlen);
+        Pointer<SOCKADDR>? from, Pointer<Int32>? fromlen) =>
+    _recvfrom(s, buf, len, flags, from ?? nullptr, fromlen ?? nullptr);
 
 final _recvfrom = _ws2_32.lookupFunction<
     Int32 Function(IntPtr s, Pointer<Utf8> buf, Int32 len, Int32 flags,
@@ -522,9 +523,10 @@ final _recvfrom = _ws2_32.lookupFunction<
 /// );
 /// ```
 /// {@category winsock}
-int select(int nfds, Pointer<FD_SET> readfds, Pointer<FD_SET> writefds,
-        Pointer<FD_SET> exceptfds, Pointer<TIMEVAL> timeout) =>
-    _select(nfds, readfds, writefds, exceptfds, timeout);
+int select(int nfds, Pointer<FD_SET>? readfds, Pointer<FD_SET>? writefds,
+        Pointer<FD_SET>? exceptfds, Pointer<TIMEVAL>? timeout) =>
+    _select(nfds, readfds ?? nullptr, writefds ?? nullptr, exceptfds ?? nullptr,
+        timeout ?? nullptr);
 
 final _select = _ws2_32.lookupFunction<
     Int32 Function(

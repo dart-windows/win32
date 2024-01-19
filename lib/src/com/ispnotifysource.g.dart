@@ -31,10 +31,9 @@ class ISpNotifySource extends IUnknown {
   factory ISpNotifySource.from(IUnknown interface) =>
       ISpNotifySource(interface.toInterface(IID_ISpNotifySource));
 
-  int setNotifySink(VTablePointer pNotifySink) =>
-      _vtable.SetNotifySink.asFunction<
-          int Function(
-              VTablePointer, VTablePointer pNotifySink)>()(ptr, pNotifySink);
+  int setNotifySink(VTablePointer? pNotifySink) => _vtable.SetNotifySink
+          .asFunction<int Function(VTablePointer, VTablePointer pNotifySink)>()(
+      ptr, pNotifySink ?? nullptr);
 
   int setNotifyWindowMessage(int hWnd, int Msg, int wParam, int lParam) =>
       _vtable.SetNotifyWindowMessage.asFunction<

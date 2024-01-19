@@ -17,12 +17,12 @@ int MainWindowProc(int hwnd, int uMsg, int wParam, int lParam) =>
 
 void main() {
   test('GetModuleHandle()', () {
-    final outputHandle = GetModuleHandle(nullptr);
+    final outputHandle = GetModuleHandle(null);
     expect(outputHandle, isNot(0));
   });
 
   test('RegisterClass()', () {
-    final hInstance = GetModuleHandle(nullptr);
+    final hInstance = GetModuleHandle(null);
     final pClassName = 'CLASS_NAME'.toNativeUtf16();
     final lpfnWndProc = NativeCallable<WindowProc>.isolateLocal(
       MainWindowProc,
@@ -35,7 +35,7 @@ void main() {
       ..lpfnWndProc = lpfnWndProc.nativeFunction
       ..hInstance = hInstance
       ..lpszClassName = pClassName
-      ..hCursor = LoadCursor(NULL, IDC_ARROW)
+      ..hCursor = LoadCursor(null, IDC_ARROW)
       ..hbrBackground = GetStockObject(WHITE_BRUSH);
 
     try {

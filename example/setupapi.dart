@@ -14,8 +14,7 @@ void main() {
   using((Arena arena) {
     final deviceGuid = arena<GUID>()..ref.setGUID(GUID_DEVCLASS_NET);
 
-    final hDevInfo =
-        SetupDiGetClassDevs(deviceGuid, nullptr, NULL, DIGCF_PRESENT);
+    final hDevInfo = SetupDiGetClassDevs(deviceGuid, null, null, DIGCF_PRESENT);
     try {
       final deviceHandles = deviceInstancesByClass(hDevInfo, deviceGuid);
       for (final instance in deviceHandles) {
@@ -31,7 +30,7 @@ void main() {
     final interfaceGuid = arena<GUID>()..ref.setGUID(GUID_DEVINTERFACE_HID);
 
     final hDevInfo = SetupDiGetClassDevs(
-        interfaceGuid, nullptr, NULL, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
+        interfaceGuid, null, null, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
     try {
       final devicePaths = devicePathsByInterface(hDevInfo, interfaceGuid);
       for (final path in devicePaths) {
@@ -69,12 +68,12 @@ Iterable<String> devicePathsByInterface(
     ..ref.cbSize = sizeOf<SP_DEVICE_INTERFACE_DATA>();
   try {
     for (var index = 0;
-        SetupDiEnumDeviceInterfaces(hDevInfo, nullptr, interfaceGuid, index,
-                deviceInterfaceDataPtr) ==
+        SetupDiEnumDeviceInterfaces(
+                hDevInfo, null, interfaceGuid, index, deviceInterfaceDataPtr) ==
             TRUE;
         index++) {
-      SetupDiGetDeviceInterfaceDetail(hDevInfo, deviceInterfaceDataPtr, nullptr,
-          0, requiredSizePtr, nullptr);
+      SetupDiGetDeviceInterfaceDetail(
+          hDevInfo, deviceInterfaceDataPtr, null, 0, requiredSizePtr, null);
 
       // TODO(halildurmus): Uncomment when
       // https://github.com/dart-windows/win32/issues/384 is successfully
@@ -98,8 +97,8 @@ Iterable<String> devicePathsByInterface(
             deviceInterfaceDataPtr,
             deviceInterfaceDetailDataPtr,
             requiredSizePtr.value,
-            nullptr,
-            nullptr);
+            null,
+            null);
         if (hr != TRUE) {
           print(
               'SetupDiGetDeviceInterfaceDetail - Get Data error ${GetLastError()}');

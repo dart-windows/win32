@@ -40,22 +40,26 @@ class FunctionProjection {
   String get nativePrototype =>
       '${returnType.nativeType} Function($nativeParams)';
 
-  String get publicDartParams => parameters
+  String get functionParams => parameters
       .where((p) => !p.isReserved) // Hide reserved parameters
-      .map((p) => p.dartProjection)
+      .map((p) => p.paramProjection)
       .join(', ');
 
   String get functionArgs => parameters
-      .map((p) => p.isReserved
-          ? p.type.dartType.startsWith('Pointer')
-              ? 'nullptr'
-              : '0'
-          : p.identifier)
+      .map((p) => switch (p) {
+            _ when p.isOptional && !p.isReserved =>
+              p.type.startsWith(RegExp('(VTable)?Pointer'))
+                  ? '${p.identifier} ?? nullptr'
+                  : '${p.identifier} ?? 0',
+            _ when p.isReserved =>
+              p.type.startsWith(RegExp('(VTable)?Pointer')) ? 'nullptr' : '0',
+            _ => p.identifier,
+          })
       .join(', ');
 
   @override
   String toString() => '''
-${returnType.dartType.safeTypename} $k32StrippedName($publicDartParams) =>
+${returnType.dartType.safeTypename} $k32StrippedName($functionParams) =>
     _$nameWithoutEncoding($functionArgs);
 
 final _$nameWithoutEncoding = _$lib.lookupFunction<

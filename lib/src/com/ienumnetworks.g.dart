@@ -51,10 +51,14 @@ class IEnumNetworks extends IDispatch {
   }
 
   int next(int celt, Pointer<VTablePointer> rgelt,
-          Pointer<Uint32> pceltFetched) =>
+          Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
-          int Function(VTablePointer, int celt, Pointer<VTablePointer> rgelt,
-              Pointer<Uint32> pceltFetched)>()(ptr, celt, rgelt, pceltFetched);
+              int Function(
+                  VTablePointer,
+                  int celt,
+                  Pointer<VTablePointer> rgelt,
+                  Pointer<Uint32> pceltFetched)>()(
+          ptr, celt, rgelt, pceltFetched ?? nullptr);
 
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(

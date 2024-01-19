@@ -45,7 +45,7 @@ void main() {
 
     final result = CallNtPowerInformation(
         POWER_INFORMATION_LEVEL.SystemBatteryState,
-        nullptr,
+        null,
         0,
         batteryStatus,
         sizeOf<SYSTEM_BATTERY_STATE>());

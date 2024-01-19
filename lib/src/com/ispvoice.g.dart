@@ -60,19 +60,19 @@ class ISpVoice extends ISpEventSource {
       int Function(
           VTablePointer, Pointer<VTablePointer> ppToken)>()(ptr, ppToken);
 
-  int speak(
-          Pointer<Utf16> pwcs, int dwFlags, Pointer<Uint32> pulStreamNumber) =>
+  int speak(Pointer<Utf16>? pwcs, int dwFlags,
+          Pointer<Uint32>? pulStreamNumber) =>
       _vtable.Speak.asFunction<
               int Function(VTablePointer, Pointer<Utf16> pwcs, int dwFlags,
                   Pointer<Uint32> pulStreamNumber)>()(
-          ptr, pwcs, dwFlags, pulStreamNumber);
+          ptr, pwcs ?? nullptr, dwFlags, pulStreamNumber ?? nullptr);
 
   int speakStream(VTablePointer pStream, int dwFlags,
-          Pointer<Uint32> pulStreamNumber) =>
+          Pointer<Uint32>? pulStreamNumber) =>
       _vtable.SpeakStream.asFunction<
               int Function(VTablePointer, VTablePointer pStream, int dwFlags,
                   Pointer<Uint32> pulStreamNumber)>()(
-          ptr, pStream, dwFlags, pulStreamNumber);
+          ptr, pStream, dwFlags, pulStreamNumber ?? nullptr);
 
   int getStatus(Pointer<SPVOICESTATUS> pStatus,
           Pointer<Pointer<Utf16>> ppszLastBookmark) =>

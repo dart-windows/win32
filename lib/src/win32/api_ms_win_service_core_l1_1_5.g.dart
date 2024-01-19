@@ -37,11 +37,11 @@ final _api_ms_win_service_core_l1_1_5 =
 int GetSharedServiceDirectory(
         int ServiceHandle,
         int DirectoryType,
-        Pointer<Utf16> PathBuffer,
+        Pointer<Utf16>? PathBuffer,
         int PathBufferLength,
         Pointer<Uint32> RequiredBufferLength) =>
-    _GetSharedServiceDirectory(ServiceHandle, DirectoryType, PathBuffer,
-        PathBufferLength, RequiredBufferLength);
+    _GetSharedServiceDirectory(ServiceHandle, DirectoryType,
+        PathBuffer ?? nullptr, PathBufferLength, RequiredBufferLength);
 
 final _GetSharedServiceDirectory =
     _api_ms_win_service_core_l1_1_5.lookupFunction<

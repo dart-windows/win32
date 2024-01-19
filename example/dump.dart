@@ -28,7 +28,7 @@ int _enumSymbolProc(Pointer<SYMBOL_INFO> pSymInfo, int size, Pointer ctx) {
 }
 
 Map<String, int> getExports(int hProcess, String module) {
-  final status = SymInitialize(hProcess, nullptr, FALSE);
+  final status = SymInitialize(hProcess, null, FALSE);
   if (status == FALSE) {
     print('SymInitialize failed.');
     exit(1);
@@ -37,7 +37,7 @@ Map<String, int> getExports(int hProcess, String module) {
   final modulePtr = module.toNativeUtf16();
 
   final baseOfDll =
-      SymLoadModuleEx(hProcess, NULL, modulePtr, nullptr, 0, 0, nullptr, 0);
+      SymLoadModuleEx(hProcess, null, modulePtr, null, 0, 0, null, 0);
 
   if (baseOfDll == 0) {
     print('SymLoadModuleEx failed.');
@@ -54,7 +54,7 @@ Map<String, int> getExports(int hProcess, String module) {
   );
 
   if (SymEnumSymbols(
-          hProcess, baseOfDll, mask, callback.nativeFunction, nullptr) ==
+          hProcess, baseOfDll, mask, callback.nativeFunction, null) ==
       FALSE) {
     print('SymEnumSymbols failed.');
   }

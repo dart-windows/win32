@@ -37,11 +37,15 @@ final _api_ms_win_service_core_l1_1_4 =
 int GetServiceDirectory(
         int hServiceStatus,
         int eDirectoryType,
-        Pointer<Utf16> lpPathBuffer,
+        Pointer<Utf16>? lpPathBuffer,
         int cchPathBufferLength,
         Pointer<Uint32> lpcchRequiredBufferLength) =>
-    _GetServiceDirectory(hServiceStatus, eDirectoryType, lpPathBuffer,
-        cchPathBufferLength, lpcchRequiredBufferLength);
+    _GetServiceDirectory(
+        hServiceStatus,
+        eDirectoryType,
+        lpPathBuffer ?? nullptr,
+        cchPathBufferLength,
+        lpcchRequiredBufferLength);
 
 final _GetServiceDirectory = _api_ms_win_service_core_l1_1_4.lookupFunction<
     Uint32 Function(
