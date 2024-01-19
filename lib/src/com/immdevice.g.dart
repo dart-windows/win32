@@ -80,5 +80,5 @@ base class IMMDeviceVtbl extends Struct {
       GetId;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> pdwState)>> GetState;
+          Uint32 Function(VTablePointer, Pointer<Uint32> pdwState)>> GetState;
 }

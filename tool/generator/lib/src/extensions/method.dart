@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../attributes.dart';
 import 'string.dart';
 
 extension MethodHelpers on Method {
@@ -14,10 +13,7 @@ extension MethodHelpers on Method {
 
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `GetClassName` instead of `GetClassNameW`).
-  String get nameWithoutAnsiUnicodeSuffix => existsAttribute(ansiAttribute) ||
-          existsAttribute(unicodeAttribute)
-      ? name.stripAnsiUnicodeSuffix()
-      : /* name */ name.stripAnsiUnicodeSuffix(); // TODO(halildurmus): -> name
+  String get nameWithoutAnsiUnicodeSuffix => name.stripAnsiUnicodeSuffix();
 
   /// Returns an unique name for the method.
   ///

@@ -747,7 +747,7 @@ base class BTH_DEVICE_INFO extends Struct {
   external int classOfDevice;
 
   @Array(248)
-  external Array<Uint8> name;
+  external Array<Int8> name;
 }
 
 /// The BTH_HCI_EVENT_INFO structure is used in connection with obtaining
@@ -1310,7 +1310,7 @@ sealed class _CHAR_INFO__Char_e__Union extends Union {
   @Uint16()
   external int UnicodeChar;
 
-  @Uint8()
+  @Int8()
   external int AsciiChar;
 }
 
@@ -1989,19 +1989,19 @@ base class DCB extends Struct {
   @Uint8()
   external int StopBits;
 
-  @Uint8()
+  @Int8()
   external int XonChar;
 
-  @Uint8()
+  @Int8()
   external int XoffChar;
 
-  @Uint8()
+  @Int8()
   external int ErrorChar;
 
-  @Uint8()
+  @Int8()
   external int EofChar;
 
-  @Uint8()
+  @Int8()
   external int EvtChar;
 
   @Uint16()
@@ -4619,7 +4619,7 @@ extension IP_ADAPTER_WINS_SERVER_ADDRESS_LH_Extension
 /// {@category struct}
 base class IP_ADDRESS_STRING extends Struct {
   @Array(16)
-  external Array<Uint8> String_;
+  external Array<Int8> String_;
 }
 
 /// The IP_ADDR_STRING structure represents a node in a linked-list of IPv4
@@ -4801,7 +4801,7 @@ sealed class _KEY_EVENT_RECORD__uChar_e__Union extends Union {
   @Uint16()
   external int UnicodeChar;
 
-  @Uint8()
+  @Int8()
   external int AsciiChar;
 }
 
@@ -7812,7 +7812,7 @@ sealed class _SDP_ELEMENT_DATA__data_e__Union extends Union {
   @Int16()
   external int int16;
 
-  @Uint8()
+  @Int8()
   external int int8;
 
   external SDP_ULARGE_INTEGER_16 uint128;
@@ -8549,7 +8549,7 @@ base class SOCKADDR extends Struct {
   external int sa_family;
 
   @Array(14)
-  external Array<Uint8> sa_data;
+  external Array<Int8> sa_data;
 }
 
 /// The SOCKADDR_BTH structure is used in conjunction with Bluetooth socket

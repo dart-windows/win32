@@ -6733,7 +6733,7 @@ final _TransactNamedPipe = _kernel32.lookupFunction<
 int TransmitCommChar(int hFile, int cChar) => _TransmitCommChar(hFile, cChar);
 
 final _TransmitCommChar = _kernel32.lookupFunction<
-    Int32 Function(IntPtr hFile, Uint8 cChar),
+    Int32 Function(IntPtr hFile, Int8 cChar),
     int Function(int hFile, int cChar)>('TransmitCommChar');
 
 /// Unlocks a region in an open file. Unlocking a region enables other processes

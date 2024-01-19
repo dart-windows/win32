@@ -9,7 +9,7 @@
 /// This version should only be updated when preparing for a major release of
 /// the `win32` package, as it may introduce breaking changes in the generated
 /// code.
-const wdkMetadataVersion = '0.9.9-experimental';
+const wdkMetadataVersion = '0.10.7-experimental';
 
 /// The version of the [Win32 metadata](
 /// https://www.nuget.org/packages/Microsoft.Windows.SDK.Win32Metadata/) used
@@ -18,4 +18,4 @@ const wdkMetadataVersion = '0.9.9-experimental';
 /// This version should only be updated when preparing for a major release of
 /// the `win32` package, as it may introduce breaking changes in the generated
 /// code.
-const win32MetadataVersion = '56.0.13-preview';
+const win32MetadataVersion = '57.0.42-preview';

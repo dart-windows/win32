@@ -38,14 +38,9 @@ extension StringHelpers on String {
   ///
   /// For example, `MessageBoxW` should become `MessageBox`.
   String stripAnsiUnicodeSuffix() {
-    // TODO(halildurmus): Remove this
     // Frustratingly, Windows.Win32.System.Wmi.MI_* types are the exception
     // where 'A' suffix does not seem to denote ASCII.
-    if (_ansiTypes.contains(this) ||
-        _typePretendsToBeAnsi ||
-        startsWith('MI_')) {
-      return this;
-    }
+    if (_typePretendsToBeAnsi || startsWith('MI_')) return this;
 
     if (endsWith('A') || endsWith('W')) {
       final end = endsWith('_A') || endsWith('_W') ? length - 2 : length - 1;
@@ -183,107 +178,6 @@ extension StringHelpers on String {
   }
 }
 
-// TODO(halildurmus): Remove this
-const _ansiTypes = <String>{
-  // ANSI Functions
-  'CMCreateProfile',
-  'CMCreateTransform',
-  'CMCreateTransformExt',
-  'DbgHelpCreateUserDump',
-  'EnumDirTree',
-  'EnumerateLoadedModulesEx',
-  'FindDebugInfoFileEx',
-  'FindExecutableImageEx',
-  'FreeAddrInfoEx',
-  'GetEnvironmentStrings',
-  'Module32First',
-  'Module32Next',
-  'Process32First',
-  'Process32Next',
-  'RatingAccessDeniedDialog',
-  'RatingAccessDeniedDialog2',
-  'RatingCheckUserAccess',
-  'RatingEnable',
-  'RatingObtainQuery',
-  'RatingSetupUI',
-  'RoOriginateError',
-  'RoTransformError',
-  'SQLSetDescField',
-  'SQLSetStmtAttr',
-  'SearchTreeForFile',
-  'SymAddSymbol',
-  'SymDeleteSymbol',
-  'SymEnumLines',
-  'SymEnumSourceFiles',
-  'SymEnumSourceLines',
-  'SymEnumSymbols',
-  'SymEnumSymbolsEx',
-  'SymEnumSymbolsForAddr',
-  'SymEnumTypes',
-  'SymEnumTypesByName',
-  'SymEnumerateSymbols',
-  'SymFindDebugInfoFile',
-  'SymFindExecutableImage',
-  'SymFindFileInPath',
-  'SymFromAddr',
-  'SymFromIndex',
-  'SymFromInlineContext',
-  'SymFromName',
-  'SymFromToken',
-  'SymGetHomeDirectory',
-  'SymGetLineFromInlineContext',
-  'SymGetModuleInfo',
-  'SymGetScope',
-  'SymGetSearchPath',
-  'SymGetSourceFile',
-  'SymGetSourceFileChecksum',
-  'SymGetSourceFileFromToken',
-  'SymGetSourceFileFromTokenByTokenName',
-  'SymGetSourceFileToken',
-  'SymGetSourceFileTokenByTokenName',
-  'SymGetSourceVarFromToken',
-  'SymGetSymbolFile',
-  'SymGetTypeFromName',
-  'SymInitialize',
-  'SymLoadModuleEx',
-  'SymMatchFileName',
-  'SymNext',
-  'SymPrev',
-  'SymSearch',
-  'SymSetHomeDirectory',
-  'SymSetSearchPath',
-  'SymSrvDeltaName',
-  'SymSrvGetFileIndexInfo',
-  'SymSrvGetFileIndexString',
-  'SymSrvGetFileIndexes',
-  'SymSrvGetSupplement',
-  'SymSrvIsStore',
-  'SymSrvStoreFile',
-  'SymSrvStoreSupplement',
-  'UnDecorateSymbolName',
-  'ldap_get_option',
-  'ldap_set_option',
-  // ANSI Structs
-  'LINEREQMAKECALL',
-  'LINEREQMEDIACALL',
-  'IMAGEHLP_SYMBOL',
-  'IMAGEHLP_MODULE',
-  'IMAGEHLP_LINE',
-  'SOURCEFILE',
-  'IMAGEHLP_CBA_EVENT',
-  'SRCCODEINFO',
-  'SYMBOL_INFO',
-  'SYMBOL_INFO_PACKAGE',
-  'SYMSRV_INDEX_INFO',
-  'PROCESSENTRY32',
-  'MODULEENTRY32',
-  'MapiFileDesc',
-  'MapiMessage',
-  'MapiRecipDesc',
-  'EMRCREATECOLORSPACE',
-};
-
-// TODO(halildurmus): Remove this
 const _falseAnsiEndings = <String>{
   // These are structs that appear in the Win32 metadata that end in 'A' but
   // are not ANSI. In the absence of a better way to determine ANSI attributes

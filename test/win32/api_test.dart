@@ -4819,7 +4819,7 @@ void main() {
     test('Can instantiate TransmitCommChar', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final TransmitCommChar = kernel32.lookupFunction<
-          Int32 Function(IntPtr hFile, Uint8 cChar),
+          Int32 Function(IntPtr hFile, Int8 cChar),
           int Function(int hFile, int cChar)>('TransmitCommChar');
       expect(TransmitCommChar, isA<Function>());
     });
