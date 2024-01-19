@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/method.dart';
 import '../extensions/string.dart';
 import 'com_method.dart';
 import 'com_property.dart';
@@ -20,7 +21,7 @@ import 'type.dart';
 /// Methods have names, a list of parameters, and may return a type.
 abstract class MethodProjection {
   MethodProjection(this.method)
-      : name = uniquelyNameMethod(method),
+      : name = method.uniqueName,
         returnType = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters
             .map((param) => ParameterProjection(param.name, param))
@@ -37,46 +38,6 @@ abstract class MethodProjection {
 
   /// Projection for the return type.
   final TypeProjection returnType;
-
-  /// Uniquely name the method.
-  ///
-  /// Dart doesn't allow overloaded methods, so we have to rename methods that
-  /// are duplicated.
-  static String uniquelyNameMethod(Method method) {
-    // Check whether multiple methods exist with the same name. We also need to
-    // check up the interface chain, since otherwise overloaded methods may be
-    // missed. For example, IDWriteFactory2 contains methods that overload those
-    // in IDWriteFactory1.
-    final overloads =
-        method.parent.methods.where((m) => m.name == method.name).toList();
-    var interfaceTypeDef = method.parent;
-    // perf optimization to save work on the most common case of IUnknown
-    while (interfaceTypeDef.interfaces.isNotEmpty &&
-        !(interfaceTypeDef.interfaces.first.name ==
-            'Windows.Win32.System.Com.IUnknown')) {
-      interfaceTypeDef = interfaceTypeDef.interfaces.first;
-      overloads
-          .addAll(interfaceTypeDef.methods.where((m) => m.name == method.name));
-    }
-
-    // If so, and there is more than one entry with the same name, add a suffix
-    // to all but the first.
-    if (overloads.length > 1) {
-      final reversedOverloads = overloads.reversed.toList();
-      final overloadIndex =
-          reversedOverloads.indexWhere((m) => m.token == method.token);
-      if (overloadIndex > 0) {
-        return '${method.name.safeIdentifier}_$overloadIndex';
-      }
-    }
-
-    // Windows.Win32.Web.MsHtml includes a .toString() method. We replace this
-    // to avoid undue complexity.
-    if (method.name == 'toString') return 'toUtf16String';
-
-    // Otherwise the original name is fine.
-    return method.name;
-  }
 
   /// The method name without uppercased first letter.
   ///
