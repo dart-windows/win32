@@ -19,10 +19,8 @@ void main() {
   test('Optional parameters are nullable', () {
     final apis = scope.findTypeDef('Windows.Win32.System.Com.Apis');
     expect(apis, isNotNull);
-
     final coCreateInstanceEx = apis!.findMethod('CoCreateInstanceEx');
     expect(coCreateInstanceEx, isNotNull);
-
     final projection = FunctionProjection(coCreateInstanceEx!);
     expect(
         projection.functionParams,
@@ -38,10 +36,8 @@ void main() {
   test('Reserved parameters are hidden', () {
     final apis = scope.findTypeDef('Windows.Win32.System.Com.Apis');
     expect(apis, isNotNull);
-
     final coInitEx = apis!.findMethod('CoInitializeEx');
     expect(coInitEx, isNotNull);
-
     final projection = FunctionProjection(coInitEx!);
     expect(projection.functionParams, equals('int dwCoInit'));
     expect(projection.functionArgs, equals('nullptr, dwCoInit'));

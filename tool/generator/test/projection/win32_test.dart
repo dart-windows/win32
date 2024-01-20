@@ -19,8 +19,11 @@ void main() {
   test('Special types exist in metadata', () {
     for (final specialType in specialTypes.keys
         .where((type) => type.startsWith('Windows.Win32'))) {
-      expect(scope.findTypeDef(specialType), isNotNull,
-          reason: '$specialType missing');
+      expect(
+        scope.findTypeDef(specialType),
+        isNotNull,
+        reason: '$specialType missing',
+      );
     }
   });
 
@@ -28,28 +31,28 @@ void main() {
     final struct =
         scope.findTypeDef('Windows.Win32.Graphics.Printing.JOB_INFO_1W');
     expect(struct, isNotNull);
-
     final projection = StructProjection(struct!, 'JOB_INFO_1');
-    expect(projection.toString(), isNot(contains('@Packed')));
+    expect(projection.packingAlignment, isZero);
+    expect(projection.classPreamble, isNot(contains('@Packed')));
   });
 
   test('Packing aligment correct for packed but non-nested struct', () {
     final struct =
         scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.DLGTEMPLATE');
     expect(struct, isNotNull);
-
     final projection = StructProjection(struct!, 'DLGTEMPLATE');
-    expect(projection.toString(), contains('@Packed(2)'));
+    expect(projection.packingAlignment, equals(2));
+    expect(projection.classPreamble, contains('@Packed(2)'));
   });
 
   test('Packing aligment does not overflow for structs with enums', () {
     final struct = scope.findTypeDef(
         'Windows.Win32.Devices.Bluetooth.BLUETOOTH_AUTHENTICATION_METHOD');
     expect(struct, isNotNull);
-
     final projection =
         StructProjection(struct!, 'BLUETOOTH_AUTHENTICATION_METHOD');
-    expect(projection.toString(), isNot(contains('@Packed')));
+    expect(projection.packingAlignment, isZero);
+    expect(projection.classPreamble, isNot(contains('@Packed')));
   });
 
   tearDownAll(MetadataStore.close);

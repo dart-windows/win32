@@ -19,24 +19,24 @@ void main() {
   test('BOOL types are projected to int', () {
     final typeDef =
         scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND')!;
-
-    // BOOL fEnable;
-    final fEnable = typeDef.fields[1];
-
+    final fEnable = typeDef.fields[1]; // BOOL fEnable;
     final fieldProjection = FieldProjection(fEnable);
-    expect(fieldProjection.toString(), contains('@Int32()'));
-    expect(fieldProjection.toString(), contains('external int'));
+    final typeProjection = fieldProjection.typeProjection;
+    expect(typeProjection.nativeType, equals('Int32'));
+    expect(typeProjection.dartType, equals('int'));
+    expect(
+        fieldProjection.toString(), equals('@Int32()\nexternal int fEnable;'));
   });
 
   test('Structs are projected appropriately', () {
     final typeDef = scope
         .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT')!;
-
-    // BOOL fEnable;
-    final fEnable = typeDef.fields.first;
-
-    final fieldProjection = FieldProjection(fEnable);
-    expect(fieldProjection.toString(), contains('external WAVEFORMATEX'));
+    final wfx = typeDef.fields.first;
+    final fieldProjection = FieldProjection(wfx);
+    final typeProjection = fieldProjection.typeProjection;
+    expect(typeProjection.nativeType, equals('WAVEFORMATEX'));
+    expect(typeProjection.dartType, equals('WAVEFORMATEX'));
+    expect(fieldProjection.toString(), equals('\nexternal WAVEFORMATEX wfx;'));
   });
 
   tearDownAll(MetadataStore.close);

@@ -21,7 +21,6 @@ void main() {
     // struct, but that shouldn't stop it being packed.
     final typeDef =
         scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND');
-
     final structProjection = StructProjection(typeDef!, 'DWM_BLURBEHIND');
     expect(structProjection.packingAlignment, equals(1));
     expect(structProjection.classPreamble, contains('@Packed(1)'));
@@ -30,7 +29,6 @@ void main() {
   test('Packed structs projected correctly 2', () {
     final typeDef =
         scope.findTypeDef('Windows.Win32.Media.Multimedia.MCI_OPEN_PARMSW');
-
     final structProjection = StructProjection(typeDef!, 'MCI_OPEN_PARMS');
     expect(structProjection.packingAlignment, equals(1));
     expect(structProjection.classPreamble, contains('@Packed(1)'));
@@ -39,7 +37,6 @@ void main() {
   test('Packed structs projected correctly 3', () {
     final typeDef = scope
         .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT');
-
     final structProjection =
         StructProjection(typeDef!, 'YAMAHA_ADPCMWAVEFORMAT');
     expect(structProjection.packingAlignment, equals(1));
@@ -49,10 +46,17 @@ void main() {
   test('Packed structs projected correctly 4', () {
     final typeDef =
         scope.findTypeDef('Windows.Win32.Devices.Bluetooth.SOCKADDR_BTH');
-
     final structProjection = StructProjection(typeDef!, 'SOCKADDR_BTH');
     expect(structProjection.packingAlignment, equals(1));
     expect(structProjection.classPreamble, contains('@Packed(1)'));
+  });
+
+  test('Packed structs projected correctly 5', () {
+    final typeDef =
+        scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER');
+    final structProjection = StructProjection(typeDef!, 'BITMAPFILEHEADER');
+    expect(structProjection.packingAlignment, equals(2));
+    expect(structProjection.classPreamble, contains('@Packed(2)'));
   });
 
   tearDownAll(MetadataStore.close);

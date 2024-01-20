@@ -22,7 +22,6 @@ void main() {
     final setName = iNetwork.methods[1];
     final param = setName.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('Pointer<Utf16>'));
   });
 
@@ -32,7 +31,6 @@ void main() {
     final getName = iNetwork.methods.first;
     final param = getName.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('Pointer<Pointer<Utf16>>'));
   });
 
@@ -42,7 +40,6 @@ void main() {
     final getNetworkId = iNetwork.findMethod('GetNetworkId')!;
     final param = getNetworkId.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('Pointer<GUID>'));
     expect(projection.nativeType, equals('Pointer<GUID>'));
   });
@@ -53,7 +50,6 @@ void main() {
     final setCategory = iNetwork.findMethod('SetCategory')!;
     final param = setCategory.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('int'));
     expect(projection.nativeType, equals('Int32'));
   });
@@ -64,7 +60,6 @@ void main() {
     final getCategory = iNetwork.findMethod('GetCategory')!;
     final param = getCategory.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('Pointer<Int32>'));
     expect(projection.nativeType, equals('Pointer<Int32>'));
   });
@@ -75,7 +70,6 @@ void main() {
     final getNetworkConnections = iNetwork.findMethod('GetNetworkConnections')!;
     final param = getNetworkConnections.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('Pointer<VTablePointer>'));
     expect(projection.nativeType, equals('Pointer<VTablePointer>'));
   });
@@ -86,7 +80,6 @@ void main() {
     final isConnected = iNetwork.findMethod('get_IsConnectedToInternet')!;
     final param = isConnected.parameters.first;
     final projection = TypeProjection(param.typeIdentifier);
-
     expect(projection.dartType, equals('Pointer<Int16>'));
     expect(projection.nativeType, equals('Pointer<Int16>'));
   });
@@ -108,27 +101,21 @@ void main() {
     test('Correct number of projected methods', () {
       final iNetwork = scope
           .findTypeDef('Windows.Win32.Networking.NetworkListManager.INetwork')!;
-
       final projection = ComInterfaceProjection(iNetwork);
-
       expect(projection.methodProjections.length, equals(13));
     });
 
     test('Correct number of parameters in a test method', () {
       final iNetwork = scope
           .findTypeDef('Windows.Win32.Networking.NetworkListManager.INetwork')!;
-
       final projection = ComInterfaceProjection(iNetwork);
-
       expect(projection.methodProjections.first.parameters.length, equals(1));
     });
 
     test('Property can be found in projection', () {
       final iNetwork = scope
           .findTypeDef('Windows.Win32.Networking.NetworkListManager.INetwork')!;
-
       final projection = ComInterfaceProjection(iNetwork);
-
       final isConnected = projection.methodProjections
           .indexWhere((method) => method.name == 'get_IsConnectedToInternet');
       expect(isConnected, isNot(-1));
@@ -137,9 +124,7 @@ void main() {
     test('isConnectedToInternet property is a property', () {
       final iNetwork = scope
           .findTypeDef('Windows.Win32.Networking.NetworkListManager.INetwork')!;
-
       final projection = ComInterfaceProjection(iNetwork);
-
       final isConnected = projection.methodProjections
           .firstWhere((method) => method.name == 'get_IsConnectedToInternet');
       expect(isConnected.method.isGetProperty, isTrue);
@@ -150,7 +135,6 @@ void main() {
           .findTypeDef('Windows.Win32.Networking.NetworkListManager.INetwork')!;
 
       final projection = ComInterfaceProjection(iNetwork);
-
       final isConnected = projection.methodProjections
           .firstWhere((method) => method.name == 'get_IsConnectedToInternet');
       expect(isConnected.returnType.nativeType, equals('Int32'));
@@ -160,9 +144,7 @@ void main() {
     test('isConnectedToInternet property parameter is VARIANT_BOOL', () {
       final iNetwork = scope
           .findTypeDef('Windows.Win32.Networking.NetworkListManager.INetwork')!;
-
       final projection = ComInterfaceProjection(iNetwork);
-
       final isConnected = projection.methodProjections
           .firstWhere((method) => method.name == 'get_IsConnectedToInternet');
       expect(isConnected.parameters.length, equals(1));
@@ -195,7 +177,6 @@ void main() {
         iApplicationActivationManager.findMethod('ActivateApplication')!;
     final param = activateApplication.parameters[2];
     final projector = TypeProjection(param.typeIdentifier);
-
     expect(projector.isEnumType, equals(true));
     expect(projector.nativeType, equals('Int32'));
     expect(projector.dartType, equals('int'));
@@ -207,7 +188,6 @@ void main() {
     final type = createSpellChecker
         .parameters.last.typeIdentifier; // ISpellChecker **value
     final typeProjection = TypeProjection(type);
-
     expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
     expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
   });
@@ -236,10 +216,8 @@ void main() {
     final shellFolder =
         scope.findTypeDef('Windows.Win32.Media.Speech.ISpVoice');
     expect(shellFolder, isNotNull);
-
     final parseDisplayName = shellFolder!.findMethod('Speak');
     expect(parseDisplayName, isNotNull);
-
     final projection = ComMethodProjection(parseDisplayName!);
     expect(
       projection.methodParams,
@@ -256,10 +234,8 @@ void main() {
     final shellFolder =
         scope.findTypeDef('Windows.Win32.UI.Shell.IShellFolder');
     expect(shellFolder, isNotNull);
-
     final parseDisplayName = shellFolder!.findMethod('ParseDisplayName');
     expect(parseDisplayName, isNotNull);
-
     final projection = ComMethodProjection(parseDisplayName!);
     expect(
       projection.methodParams,
