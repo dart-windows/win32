@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 import 'struct.dart';
@@ -58,8 +59,9 @@ class NestedStructProjection extends StructProjection {
   String get propertyAccessors {
     final parentName = typeDef.enclosingClass!.mangleName().substring(1);
     final extensionName = (suffix == 0
-        ? '${parentName}_Extension'
-        : '${parentName}_Extension_$suffix'.stripLeadingUnderscores());
+            ? '${parentName}_Extension'
+            : '${parentName}_Extension_$suffix')
+        .stripLeadingUnderscores();
     final rootTypeName = rootType.nameWithoutAnsiUnicodeSuffix.lastComponent
         .stripLeadingUnderscores();
 
@@ -68,8 +70,9 @@ class NestedStructProjection extends StructProjection {
     for (final field in typeDef.fields) {
       final instanceName = _instanceName(field);
       final typeProjection = TypeProjection(field.typeIdentifier);
-      final fieldType =
-          typeProjection.isCharArray ? 'String' : typeProjection.dartType;
+      final fieldType = typeProjection.isCharArray && !field.isFlexibleArray
+          ? 'String'
+          : typeProjection.dartType;
       final safeFieldName = field.name.safeIdentifier;
       buffer.writeln('''
   $fieldType get $safeFieldName => this.$instanceName;
