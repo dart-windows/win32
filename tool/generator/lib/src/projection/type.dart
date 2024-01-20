@@ -127,13 +127,16 @@ class TypeProjection {
       'PROC': 'Pointer',
     };
 
-    final callbackType =
+    var callbackType =
         typeIdentifier.name.lastComponent.stripLeadingUnderscores();
+
     if (voidCallbackTypes.keys.contains(callbackType)) {
       return TypeTuple.fromNativeType(voidCallbackTypes[callbackType]!);
     } else if (callbackTypeMapping.keys.contains(callbackType)) {
       return TypeTuple.fromNativeType(callbackTypeMapping[callbackType]!);
     }
+
+    callbackType = typeIdentifier.type!.safeTypename;
 
     return TypeTuple.fromNativeType('Pointer<NativeFunction<$callbackType>>');
   }
