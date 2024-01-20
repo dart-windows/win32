@@ -104,10 +104,8 @@ Iterable<String> devicePathsByInterface(
               'SetupDiGetDeviceInterfaceDetail - Get Data error ${GetLastError()}');
           continue;
         }
-        yield deviceInterfaceDetailDataPtr
-            .getDevicePathData(requiredSizePtr.value)
-            .cast<Utf16>()
-            .toDartString();
+
+        yield deviceInterfaceDetailDataPtr.devicePath;
       } finally {
         free(deviceInterfaceDetailDataPtr);
       }
@@ -123,9 +121,9 @@ Iterable<String> devicePathsByInterface(
   }
 }
 
-// ignore: camel_case_extensions
-extension Pointer_SP_DEVICE_INTERFACE_DETAIL_DATA
-    on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> {
-  Pointer<WCHAR> getDevicePathData(int requiredSize) =>
-      Pointer<WCHAR>.fromAddress(address + 4);
+extension on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> {
+  String get devicePath =>
+      Pointer<WCHAR>.fromAddress(address + sizeOf<Uint32>())
+          .cast<Utf16>()
+          .toDartString();
 }

@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 import 'field.dart';
@@ -17,14 +18,10 @@ class StructProjection {
   final String structName;
   final String comment;
 
-  bool _isNestedType(Field field) =>
-      field.typeIdentifier.type?.isNested ?? false;
-
   bool _hasNestedArray(Field field) =>
-      field.typeIdentifier.typeArg?.type?.isNested != null &&
-      field.typeIdentifier.typeArg!.type!.isNested;
+      field.typeIdentifier.typeArg?.type?.isNested ?? false;
 
-  String get _baseType {
+  String get baseType {
     // Some structs may be opaque types. For example, WS_ERROR. Others may be
     // unions, e.g. INPUT.
     if (typeDef.fields.isEmpty) return 'Opaque';
@@ -49,8 +46,8 @@ class StructProjection {
       ? '_${typeDef.mangleName().safeTypename}'
       : structName.safeTypename;
 
-  String get _fieldsProjection =>
-      typeDef.fields.map(FieldProjection.new).join('\n');
+  String get fieldsProjection =>
+      typeDef.fields.map(FieldProjection.new).join('\n\n');
 
   String? _nestedTypes;
   String get nestedTypes => _nestedTypes ??= _cacheNestedTypes();
@@ -60,9 +57,7 @@ class StructProjection {
     final nestedTypes = <TypeDef>{};
 
     for (final field in typeDef.fields) {
-      if (_isNestedType(field)) {
-        nestedTypes.add(field.typeIdentifier.type!);
-      }
+      if (field.isNested) nestedTypes.add(field.typeIdentifier.type!);
     }
 
     // Add any nested types on which there is a dependency
@@ -86,9 +81,9 @@ class StructProjection {
 
   int? _packingAlignment;
   int get packingAlignment =>
-      _packingAlignment ??= calculatePackingAlignment(typeDef);
+      _packingAlignment ??= _calculatePackingAlignment(typeDef);
 
-  int calculatePackingAlignment(TypeDef typeDef) {
+  int _calculatePackingAlignment(TypeDef typeDef) {
     // Tokens like System.Guid have no packing alignment.
     if (typeDef.token == 0) return 0xFF;
 
@@ -120,8 +115,8 @@ class StructProjection {
   @override
   String toString() => '''
 $classPreamble
-base class $_projectedName extends $_baseType {
-  $_fieldsProjection
+base class $_projectedName extends $baseType {
+  $fieldsProjection
 }
 
 $nestedTypes

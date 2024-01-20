@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/field.dart';
 import '../extensions/string.dart';
 import 'type.dart';
 
@@ -11,43 +12,15 @@ import 'type.dart';
 ///
 /// Fields are a tuple of a type and a name.
 class FieldProjection {
-  FieldProjection(this.field) : fieldName = field.name.safeIdentifier;
+  FieldProjection(this.field)
+      : name = field.name.safeIdentifier,
+        typeProjection = TypeProjection(field.typeIdentifier);
 
   final Field field;
-  final String fieldName;
+  final String name;
+  final TypeProjection typeProjection;
 
-  String _printCharArray(TypeProjection typeProjection) {
-    final dimensionsUpperBound = typeProjection.arrayUpperBound;
-    if (dimensionsUpperBound == null) {
-      throw StateError('Array $fieldName should have dimensions.');
-    }
-
-    return '''
-  ${typeProjection.attribute}
-  external ${typeProjection.nativeType} _$fieldName;
-
-  String get $fieldName {
-    final charCodes = <int>[];
-    for (var i = 0; i < $dimensionsUpperBound; i++) {
-      if (_$fieldName[i] == 0x00) break;
-      charCodes.add(_$fieldName[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set $fieldName(String value) {
-    final stringToStore = value.padRight($dimensionsUpperBound, '\\x00');
-    for (var i = 0; i < $dimensionsUpperBound; i++) {
-      _$fieldName[i] = stringToStore.codeUnitAt(i);
-    }
-  }''';
-  }
-
-  @override
-  String toString() {
-    final typeProjection = TypeProjection(field.typeIdentifier);
-    if (typeProjection.isCharArray) return _printCharArray(typeProjection);
-
+  String get type {
     // If the field is a nested type (e.g. a nested union), then it's OK for it
     // to be internal only, since it will be accessed via a property instead.
     // But it should only have one underscore, for consistency later. Nested
@@ -66,6 +39,32 @@ class FieldProjection {
       dartType = typeProjection.dartType;
     }
 
-    return '  ${typeProjection.attribute}\n  external $dartType $fieldName;\n';
+    return dartType;
   }
+
+  @override
+  String toString() => [
+        typeProjection.attribute,
+        if (field.isCharArray && !field.isFlexibleArray)
+          '''
+  external $type _$name;
+
+  String get $name {
+    final charCodes = <int>[];
+    for (var i = 0; i < ${field.arrayUpperBound}; i++) {
+      if (_$name[i] == 0x00) break;
+      charCodes.add(_$name[i]);
+    }
+    return String.fromCharCodes(charCodes);
+  }
+
+  set $name(String value) {
+    final stringToStore = value.padRight(${field.arrayUpperBound}, '\\x00');
+    for (var i = 0; i < ${field.arrayUpperBound}; i++) {
+      _$name[i] = stringToStore.codeUnitAt(i);
+    }
+  }'''
+        else
+          'external $type $name;'
+      ].join('\n');
 }

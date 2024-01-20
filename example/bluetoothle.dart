@@ -72,15 +72,11 @@ Iterable<String> devicesByInterface(
       //   }
       // }
 
-      final detailDataMemoryPtr = calloc<BYTE>(requiredSizePtr.value);
+      final deviceInterfaceDetailDataPtr = calloc<BYTE>(requiredSizePtr.value)
+          .cast<SP_DEVICE_INTERFACE_DETAIL_DATA>()
+        ..ref.cbSize = sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA>();
 
       try {
-        final deviceInterfaceDetailDataPtr =
-            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA>.fromAddress(
-                detailDataMemoryPtr.address);
-        deviceInterfaceDetailDataPtr.ref.cbSize =
-            sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA>();
-
         final hr = SetupDiGetDeviceInterfaceDetail(
             hDevInfo,
             deviceInterfaceDataPtr,
@@ -94,12 +90,9 @@ Iterable<String> devicesByInterface(
           continue;
         }
 
-        yield deviceInterfaceDetailDataPtr
-            .getDevicePathData(requiredSizePtr.value)
-            .cast<Utf16>()
-            .toDartString();
+        yield deviceInterfaceDetailDataPtr.devicePath;
       } finally {
-        free(detailDataMemoryPtr);
+        free(deviceInterfaceDetailDataPtr);
       }
     }
 
@@ -113,11 +106,11 @@ Iterable<String> devicesByInterface(
   }
 }
 
-// ignore: camel_case_extensions
-extension Pointer_SP_DEVICE_INTERFACE_DETAIL_DATA
-    on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> {
-  Pointer<WCHAR> getDevicePathData(int requiredSize) =>
-      Pointer<WCHAR>.fromAddress(address + 4);
+extension on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> {
+  String get devicePath =>
+      Pointer<WCHAR>.fromAddress(address + sizeOf<Uint32>())
+          .cast<Utf16>()
+          .toDartString();
 }
 
 // -----------------------------------------------------------------------------

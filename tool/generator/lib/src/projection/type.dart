@@ -63,7 +63,6 @@ class TypeProjection {
   String get attribute => projection.attribute ?? '';
   String get nativeType => projection.nativeType;
   String get dartType => projection.dartType;
-  int? get arrayUpperBound => typeIdentifier.arrayDimensions?.first;
 
   bool get isArrayType => typeIdentifier.baseType == BaseType.arrayTypeModifier;
 

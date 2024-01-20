@@ -15,7 +15,6 @@ int enumerateFonts(
     Pointer<LOGFONT> logFont, Pointer<TEXTMETRIC> _, int __, int ___) {
   // Get extended information from the font
   final logFontEx = logFont.cast<ENUMLOGFONTEX>();
-
   fontNames.add(logFontEx.ref.elfFullName);
   return TRUE; // continue enumeration
 }

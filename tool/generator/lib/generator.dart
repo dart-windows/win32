@@ -8,6 +8,7 @@ library;
 
 export 'src/attributes.dart';
 export 'src/exclusions.dart';
+export 'src/extensions/field.dart';
 export 'src/extensions/method.dart';
 export 'src/extensions/parameter.dart';
 export 'src/extensions/string.dart';

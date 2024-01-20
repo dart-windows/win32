@@ -1494,23 +1494,7 @@ base class COMMCONFIG extends Struct {
   external int dwProviderSize;
 
   @Array(1)
-  external Array<Uint16> _wcProviderData;
-
-  String get wcProviderData {
-    final charCodes = <int>[];
-    for (var i = 0; i < 1; i++) {
-      if (_wcProviderData[i] == 0x00) break;
-      charCodes.add(_wcProviderData[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set wcProviderData(String value) {
-    final stringToStore = value.padRight(1, '\x00');
-    for (var i = 0; i < 1; i++) {
-      _wcProviderData[i] = stringToStore.codeUnitAt(i);
-    }
-  }
+  external Array<Uint16> wcProviderData;
 }
 
 /// Contains information about a communications driver.
@@ -1569,23 +1553,7 @@ base class COMMPROP extends Struct {
   external int dwProvSpec2;
 
   @Array(1)
-  external Array<Uint16> _wcProvChar;
-
-  String get wcProvChar {
-    final charCodes = <int>[];
-    for (var i = 0; i < 1; i++) {
-      if (_wcProvChar[i] == 0x00) break;
-      charCodes.add(_wcProvChar[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set wcProvChar(String value) {
-    final stringToStore = value.padRight(1, '\x00');
-    for (var i = 0; i < 1; i++) {
-      _wcProvChar[i] = stringToStore.codeUnitAt(i);
-    }
-  }
+  external Array<Uint16> wcProvChar;
 }
 
 /// Contains the time-out parameters for a communications device. The parameters
@@ -5265,23 +5233,7 @@ base class MENUITEMTEMPLATE extends Struct {
   external int mtID;
 
   @Array(1)
-  external Array<Uint16> _mtString;
-
-  String get mtString {
-    final charCodes = <int>[];
-    for (var i = 0; i < 1; i++) {
-      if (_mtString[i] == 0x00) break;
-      charCodes.add(_mtString[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set mtString(String value) {
-    final stringToStore = value.padRight(1, '\x00');
-    for (var i = 0; i < 1; i++) {
-      _mtString[i] = stringToStore.codeUnitAt(i);
-    }
-  }
+  external Array<Uint16> mtString;
 }
 
 /// Defines the header for a menu template. A complete menu template consists of
@@ -8706,23 +8658,7 @@ base class SP_DEVICE_INTERFACE_DETAIL_DATA extends Struct {
   external int cbSize;
 
   @Array(1)
-  external Array<Uint16> _DevicePath;
-
-  String get DevicePath {
-    final charCodes = <int>[];
-    for (var i = 0; i < 1; i++) {
-      if (_DevicePath[i] == 0x00) break;
-      charCodes.add(_DevicePath[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set DevicePath(String value) {
-    final stringToStore = value.padRight(1, '\x00');
-    for (var i = 0; i < 1; i++) {
-      _DevicePath[i] = stringToStore.codeUnitAt(i);
-    }
-  }
+  external Array<Uint16> DevicePath;
 }
 
 /// An SP_DEVINFO_DATA structure defines a device instance that is a member of a
@@ -8984,23 +8920,7 @@ base class SYMBOL_INFO extends Struct {
   external int MaxNameLen;
 
   @Array(1)
-  external Array<Uint16> _Name;
-
-  String get Name {
-    final charCodes = <int>[];
-    for (var i = 0; i < 1; i++) {
-      if (_Name[i] == 0x00) break;
-      charCodes.add(_Name[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set Name(String value) {
-    final stringToStore = value.padRight(1, '\x00');
-    for (var i = 0; i < 1; i++) {
-      _Name[i] = stringToStore.codeUnitAt(i);
-    }
-  }
+  external Array<Uint16> Name;
 }
 
 /// Specifies a date and time, using individual members for the month, day,
@@ -10636,23 +10556,7 @@ base class WLAN_CONNECTION_NOTIFICATION_DATA extends Struct {
   external int dwFlags;
 
   @Array(1)
-  external Array<Uint16> _strProfileXml;
-
-  String get strProfileXml {
-    final charCodes = <int>[];
-    for (var i = 0; i < 1; i++) {
-      if (_strProfileXml[i] == 0x00) break;
-      charCodes.add(_strProfileXml[i]);
-    }
-    return String.fromCharCodes(charCodes);
-  }
-
-  set strProfileXml(String value) {
-    final stringToStore = value.padRight(1, '\x00');
-    for (var i = 0; i < 1; i++) {
-      _strProfileXml[i] = stringToStore.codeUnitAt(i);
-    }
-  }
+  external Array<Uint16> strProfileXml;
 }
 
 /// The WLAN_CONNECTION_PARAMETERS structure specifies the parameters used when
