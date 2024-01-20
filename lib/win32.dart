@@ -307,7 +307,6 @@ export 'src/win32/winscard.g.dart';
 export 'src/win32/winspool.g.dart';
 export 'src/win32/wlanapi.g.dart';
 export 'src/win32/xinput1_4.g.dart';
-export 'src/winmd_constants.dart';
 
 // Windows Runtime helpers
 export 'src/winrt_helpers.dart';
