@@ -17,9 +17,10 @@ extension StringHelpers on String {
   ///
   /// For example, `VARIANT var` should be converted to `VARIANT var_`, and
   /// `_XmlWriterProperty` should be converted to `XmlWriterProperty`.
-  String get safeIdentifier => _badIdentifierNames.contains(this)
-      ? '${this}_'
-      : stripLeadingUnderscores();
+  String get safeIdentifier {
+    final str = stripLeadingUnderscores();
+    return _badIdentifierNames.contains(str) ? '${str}_' : str;
+  }
 
   /// Strips off any private modifiers from this string.
   ///
