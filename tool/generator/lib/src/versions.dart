@@ -19,3 +19,12 @@ const wdkMetadataVersion = '0.10.7-experimental';
 /// the `win32` package, as it may introduce breaking changes in the generated
 /// code.
 const win32MetadataVersion = '57.0.42-preview';
+
+/// The version of the [WinRT metadata](
+/// https://www.nuget.org/packages/Microsoft.Windows.SDK.Contracts/) used for
+/// generating projections and running tests.
+///
+/// This version should only be updated when preparing for a major release of
+/// the `win32` package, as it may introduce breaking changes in the generated
+/// code.
+const winrtMetadataVersion = '10.0.22621.2428';
