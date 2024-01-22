@@ -11,7 +11,7 @@ import 'type.dart';
 
 class FunctionProjection {
   FunctionProjection(this.method)
-      : nameWithoutEncoding = method.nameWithoutAnsiUnicodeSuffix,
+      : nameWithoutEncoding = method.nameWithoutEncoding,
         returnType = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters
             .map((param) => ParameterProjection(param.name, param))

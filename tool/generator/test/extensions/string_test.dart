@@ -26,6 +26,7 @@ void main() {
     });
 
     test('safeTypename', () {
+      expect('Array<__Handle>'.safeTypename, equals('Array<Handle>'));
       expect('Pointer<_alljoyn_abouticon_handle>'.safeTypename,
           equals('Pointer<alljoyn_abouticon_handle>'));
       expect('_AppEvents'.safeTypename, equals('AppEvents'));
@@ -43,6 +44,11 @@ void main() {
           'ENUMLOGFONTEX_W'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
       expect(
           'ADDJOB_INFO_1W'.stripAnsiUnicodeSuffix(), equals('ADDJOB_INFO_1'));
+    });
+
+    test('stripArray', () {
+      expect('Array<Int32>'.stripArray(), equals('Int32'));
+      expect('noArray'.stripArray(), equals('noArray'));
     });
 
     test('stripLeadingUnderscores', () {

@@ -47,8 +47,7 @@ class ComClassProjection extends ComInterfaceProjection {
       return _interfaceToClassMapping[interface.name]!;
     }
 
-    final interfaceNameAsList =
-        interface.nameWithoutAnsiUnicodeSuffix.split('.');
+    final interfaceNameAsList = interface.nameWithoutEncoding.split('.');
 
     // Strip off the 'I' from the last component
     final fullyQualifiedClassName =

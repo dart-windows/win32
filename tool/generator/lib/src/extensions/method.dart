@@ -4,20 +4,24 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../attributes.dart';
+import 'custom_attributes_mixin.dart';
 import 'string.dart';
 
 extension MethodHelpers on Method {
+  /// Indicates whether the method is a _real_ `get` property.
+  ///
+  /// A `get` property must have exactly one parameter.
   bool get isRealGetProperty => isGetProperty && parameters.length == 1;
 
+  /// Indicates whether the method is a _real_ `set` property.
+  ///
+  /// A `set` property must have exactly one parameter.
   bool get isRealSetProperty => isSetProperty && parameters.length == 1;
 
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `GetClassName` instead of `GetClassNameW`).
-  String get nameWithoutAnsiUnicodeSuffix {
-    if (existsAttribute(ansiAttribute) || existsAttribute(unicodeAttribute)) {
-      return name.stripAnsiUnicodeSuffix();
-    }
+  String get nameWithoutEncoding {
+    if (isAnsi || isUnicode) return name.stripAnsiUnicodeSuffix();
 
     // Some Methods have a Unicode suffix (`W`) without corresponding ANSI
     // variants, and they don't have the `UnicodeAttribute` (e.g.,
@@ -27,7 +31,7 @@ extension MethodHelpers on Method {
     return name;
   }
 
-  /// Returns an unique name for the method.
+  /// Returns a unique name for the method.
   ///
   /// Dart doesn't allow overloaded methods, so we have to rename methods that
   /// are duplicated.
@@ -38,6 +42,7 @@ extension MethodHelpers on Method {
     // in IDWriteFactory1.
     final overloads = parent.methods.where((m) => m.name == name).toList();
     var interfaceTypeDef = parent;
+
     // perf optimization to save work on the most common case of IUnknown
     while (interfaceTypeDef.interfaces.isNotEmpty &&
         !(interfaceTypeDef.interfaces.first.name ==
@@ -52,9 +57,7 @@ extension MethodHelpers on Method {
       final reversedOverloads = overloads.reversed.toList();
       final overloadIndex =
           reversedOverloads.indexWhere((m) => m.token == token);
-      if (overloadIndex > 0) {
-        return '${name.safeIdentifier}_$overloadIndex';
-      }
+      if (overloadIndex > 0) return '${name.safeIdentifier}_$overloadIndex';
     }
 
     // Windows.Win32.Web.MsHtml includes a .toString() method. We replace this

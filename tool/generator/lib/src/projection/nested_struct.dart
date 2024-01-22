@@ -20,11 +20,9 @@ class NestedStructProjection extends StructProjection {
   NestedStructProjection(
     super.typeDef,
     super.structName, {
-    required this.suffix,
     required this.rootTypePackingAlignment,
   }) : rootType = _getRootTypeDef(typeDef);
 
-  final int suffix;
   final int rootTypePackingAlignment;
   final TypeDef rootType;
 
@@ -51,32 +49,26 @@ class NestedStructProjection extends StructProjection {
       name = '$parentName.$name';
       typeDef = typeDef.enclosingClass!;
     }
+
     return name;
   }
 
   /// A nested type needs a way to access its members from the parent type. We
   /// do this through an extension that contains the field accessors.
   String get propertyAccessors {
-    final parentName = typeDef.enclosingClass!.mangleName().substring(1);
-    final extensionName = (suffix == 0
-            ? '${parentName}_Extension'
-            : '${parentName}_Extension_$suffix')
-        .stripLeadingUnderscores();
-    final rootTypeName = rootType.nameWithoutAnsiUnicodeSuffix.lastComponent
-        .stripLeadingUnderscores();
-
     final buffer = StringBuffer()
-      ..writeln('extension $extensionName on $rootTypeName {');
+      ..writeln(
+          'extension ${structName}_Extension on ${rootType.safeTypename} {');
     for (final field in typeDef.fields) {
       final instanceName = _instanceName(field);
       final typeProjection = TypeProjection(field.typeIdentifier);
       final fieldType = typeProjection.isCharArray && !field.isFlexibleArray
           ? 'String'
-          : typeProjection.dartType;
-      final safeFieldName = field.name.safeIdentifier;
+          : typeProjection.dartType.safeTypename;
+      final fieldName = field.name.safeIdentifier;
       buffer.writeln('''
-  $fieldType get $safeFieldName => this.$instanceName;
-  set $safeFieldName($fieldType value) => this.$instanceName = value;
+  $fieldType get $fieldName => this.$instanceName;
+  set $fieldName($fieldType value) => this.$instanceName = value;
 ''');
     }
     buffer.writeln('}');
@@ -87,7 +79,7 @@ class NestedStructProjection extends StructProjection {
   String toString() {
     final unnestedStructProjection = super.toString();
     return '''
-${unnestedStructProjection.replaceFirst('base class', 'sealed class')}
+$unnestedStructProjection
 $propertyAccessors
 ''';
   }

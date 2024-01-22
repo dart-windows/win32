@@ -94,6 +94,16 @@ void main() {
       expect(anonymous, isNotNull);
       expect(anonymous!.isNested, isTrue);
     });
+
+    test('isNestedArray', () {
+      final wlanRawDataList = scope.findTypeDef(
+          'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST');
+      expect(wlanRawDataList, isNotNull);
+
+      final dataList = wlanRawDataList!.findField('DataList');
+      expect(dataList, isNotNull);
+      expect(dataList!.isNestedArray, isTrue);
+    });
   });
 
   tearDownAll(MetadataStore.close);

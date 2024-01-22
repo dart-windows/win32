@@ -17,45 +17,36 @@ void main() {
   });
 
   group('TypeDef', () {
-    test('mangleName', () {
-      final propVariant = scope.findTypeDef(
-          'Windows.Win32.System.Com.StructuredStorage.PROPVARIANT')!;
-
-      final union1 = propVariant.fields.first.typeIdentifier.type;
-      expect(union1, isNotNull);
-      expect(union1!.mangleName(), equals('_PROPVARIANT__Anonymous_e__Union'));
-
-      final struct1 = union1.fields.first.typeIdentifier.type;
-      expect(struct1, isNotNull);
-      expect(
-        struct1!.mangleName(),
-        equals('_PROPVARIANT__Anonymous_e__Union__Anonymous_e__Struct'),
-      );
-
-      final union2 = struct1.fields.last.typeIdentifier.type;
-      expect(union2, isNotNull);
-      expect(
-        union2!.mangleName(),
-        equals(
-            '_PROPVARIANT__Anonymous_e__Union__Anonymous_e__Struct__Anonymous_e__Union'),
-      );
-    });
-
-    test('nameWithoutAnsiUnicodeSuffix', () {
+    test('nameWithoutEncoding', () {
       final typeDef1 = scope.findTypeDef('Windows.Win32.UI.Shell.IFileDialog');
       expect(typeDef1, isNotNull);
-      expect(typeDef1!.nameWithoutAnsiUnicodeSuffix,
+      expect(typeDef1!.nameWithoutEncoding,
           equals('Windows.Win32.UI.Shell.IFileDialog'));
 
       final typeDef2 = scope.findTypeDef('Windows.Win32.UI.Shell.IShellLinkA');
       expect(typeDef2, isNotNull);
-      expect(typeDef2!.nameWithoutAnsiUnicodeSuffix,
+      expect(typeDef2!.nameWithoutEncoding,
           equals('Windows.Win32.UI.Shell.IShellLink'));
 
       final typeDef3 = scope.findTypeDef('Windows.Win32.UI.Shell.IShellLinkW');
       expect(typeDef3, isNotNull);
-      expect(typeDef3!.nameWithoutAnsiUnicodeSuffix,
+      expect(typeDef3!.nameWithoutEncoding,
           equals('Windows.Win32.UI.Shell.IShellLink'));
+    });
+
+    test('safeFilename', () {
+      final typeDef1 =
+          scope.findTypeDef('Windows.Win32.UI.Accessibility.IUIAutomation');
+      expect(typeDef1, isNotNull);
+      expect(typeDef1!.safeFilename, equals('iuiautomation.g.dart'));
+
+      final typeDef2 = scope.findTypeDef('Windows.Win32.System.Mmc._AppEvents');
+      expect(typeDef2, isNotNull);
+      expect(typeDef2!.safeFilename, equals('appevents.g.dart'));
+
+      final typeDef3 = scope.findTypeDef('Windows.Win32.UI.Shell.IShellLinkW');
+      expect(typeDef3, isNotNull);
+      expect(typeDef3!.safeFilename, equals('ishelllink.g.dart'));
     });
 
     test('safeIdentifier', () {

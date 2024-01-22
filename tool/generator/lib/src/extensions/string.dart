@@ -27,6 +27,11 @@ extension StringHelpers on String {
   /// For example, `Pointer<_alljoyn_abouticon_handle>` should become
   /// `Pointer<alljoyn_abouticon_handle>`.
   String get safeTypename {
+    if (startsWith('Array<')) {
+      final wrappedType = stripArray();
+      return 'Array<${wrappedType.safeTypename}>';
+    }
+
     if (startsWith('Pointer<')) {
       final wrappedType = stripPointer();
       return 'Pointer<${wrappedType.safeTypename}>';
@@ -46,6 +51,13 @@ extension StringHelpers on String {
 
     return this;
   }
+
+  /// Extracts the inner wrapped type from the string that represents a nested
+  /// `Array` structure.
+  ///
+  /// For example, given a name like `Array<Int32>`, this method returns the
+  /// inner wrapped type, which in this case would be `Int32`.
+  String stripArray() => startsWith('Array<') ? substring(6, length - 1) : this;
 
   /// Strips the leading underscores from the string.
   ///
@@ -67,11 +79,10 @@ extension StringHelpers on String {
   }
 
   /// Extracts the inner wrapped type from the string that represents a nested
-  /// pointer structure.
+  /// `Pointer` structure.
   ///
-  /// For example, given a name like `Pointer<Pointer<Int32>>`, this method
-  /// returns the inner wrapped type, which in this case would be
-  /// `Pointer<Int32>`.
+  /// For example, given a name like `Pointer<Int32>`, this method returns the
+  /// inner wrapped type, which in this case would be `Int32`.
   String stripPointer() =>
       startsWith('Pointer<') ? substring(8, length - 1) : this;
 

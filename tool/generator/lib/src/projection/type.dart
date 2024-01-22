@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../attributes.dart';
+import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 import '../model/load_json.dart';
@@ -25,7 +26,7 @@ class TypeTuple {
   final String? attribute;
 }
 
-const Map<BaseType, TypeTuple> baseNativeMapping = {
+const baseNativeMapping = <BaseType, TypeTuple>{
   BaseType.booleanType: TypeTuple('Bool', 'bool', attribute: '@Bool()'),
   BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
   BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
@@ -43,7 +44,7 @@ const Map<BaseType, TypeTuple> baseNativeMapping = {
   BaseType.voidType: TypeTuple('Void', 'void'),
 };
 
-const Map<String, TypeTuple> specialTypes = {
+const specialTypes = <String, TypeTuple>{
   'System.Guid': TypeTuple.fromNativeType('GUID'),
   'Windows.Win32.Foundation.BSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
   'Windows.Win32.Foundation.PSTR': TypeTuple.fromNativeType('Pointer<Utf8>'),
@@ -61,7 +62,9 @@ class TypeProjection {
   TypeTuple get projection => _projection ??= projectType();
 
   String get attribute => projection.attribute ?? '';
+
   String get nativeType => projection.nativeType;
+
   String get dartType => projection.dartType;
 
   bool get isArrayType => typeIdentifier.baseType == BaseType.arrayTypeModifier;
@@ -72,6 +75,8 @@ class TypeProjection {
   bool get isCharArray =>
       isArrayType && typeIdentifier.typeArg?.baseType == BaseType.charType;
 
+  bool get isClassType => typeIdentifier.baseType == BaseType.classTypeModifier;
+
   /// Is the resultant Dart type atomic?
   bool get isDartPrimitive =>
       ['void', 'bool', 'int', 'double'].contains(dartType) ||
@@ -79,8 +84,9 @@ class TypeProjection {
       dartType.startsWith('Array');
 
   bool get isDelegate =>
-      typeIdentifier.baseType == BaseType.classTypeModifier &&
-      typeIdentifier.name.startsWith('Windows.Win32') &&
+      isClassType &&
+      (typeIdentifier.name.startsWith('Windows.Wdk') ||
+          typeIdentifier.name.startsWith('Windows.Win32')) &&
       typeIdentifier.type?.parent?.name == 'System.MulticastDelegate';
 
   bool get isEnumType => typeIdentifier.type?.parent?.name == 'System.Enum';
@@ -102,22 +108,17 @@ class TypeProjection {
       typeIdentifier.baseType == BaseType.valueTypeModifier;
 
   TypeTuple unwrapArrayType() {
-    if (typeIdentifier.typeArg == null ||
-        typeIdentifier.arrayDimensions == null) {
+    final TypeIdentifier(:arrayDimensions, :typeArg) = typeIdentifier;
+    if (arrayDimensions == null || typeArg == null) {
       throw StateError('Array information missing for $typeIdentifier.');
     }
 
-    final typeArg = TypeProjection(typeIdentifier.typeArg!);
-
-    // Arrays of nested types have a private _ prefix. This is not a very
-    // expensive operation.
-    final typeArgNativeType = typeIdentifier.typeArg?.type?.isNested ?? false
-        ? typeArg.nativeType
-        : typeArg.nativeType.stripLeadingUnderscores();
-
-    final upperBound = typeIdentifier.arrayDimensions?.first;
-    return TypeTuple.fromNativeType('Array<$typeArgNativeType>',
-        attribute: '@Array($upperBound)');
+    final typeArgProjection = TypeProjection(typeArg);
+    final upperBound = arrayDimensions.first;
+    return TypeTuple.fromNativeType(
+      'Array<${typeArgProjection.nativeType.safeTypename}>',
+      attribute: '@Array($upperBound)',
+    );
   }
 
   TypeTuple unwrapCallbackType() {
@@ -127,8 +128,7 @@ class TypeProjection {
       'PROC': 'Pointer',
     };
 
-    var callbackType =
-        typeIdentifier.name.lastComponent.stripLeadingUnderscores();
+    var callbackType = typeIdentifier.name.lastComponent.safeTypename;
 
     if (voidCallbackTypes.keys.contains(callbackType)) {
       return TypeTuple.fromNativeType(voidCallbackTypes[callbackType]!);
@@ -151,24 +151,20 @@ class TypeProjection {
   }
 
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
-  /// converts it to `Pointer<Uint32>.
+  /// converts it to `Pointer<Uint32>`.
   TypeTuple unwrapPointerType() {
-    if (typeIdentifier.typeArg == null) {
+    final typeArg = typeIdentifier.typeArg;
+    if (typeArg == null) {
       throw StateError('Pointer type missing for $typeIdentifier.');
     }
 
-    final typeArg = TypeProjection(typeIdentifier.typeArg!);
+    final typeArgProjection = TypeProjection(typeArg);
+    final typeArgNativeType = typeArgProjection.nativeType.safeTypename;
 
-    // Strip leading underscores (unless the type is nested, in which
-    // case leave one behind).
-    final typeArgNativeType = typeIdentifier.typeArg?.type?.isNested ?? false
-        ? '_${typeArg.projection.nativeType.stripLeadingUnderscores()}'
-        : typeArg.projection.nativeType.stripLeadingUnderscores();
-
-    // Pointer<Void> in Dart is unnecessarily restrictive, versus the
-    // Win32 meaning, which is more like "undefined type". We can
-    // model that with a generic Pointer in Dart.
-    if (typeArg.projection.nativeType == 'Void') {
+    // Pointer<Void> in Dart is unnecessarily restrictive, versus the Win32
+    // meaning, which is more like "undefined type". We can model that with a
+    // generic Pointer in Dart.
+    if (typeArgNativeType == 'Void') {
       return const TypeTuple.fromNativeType('Pointer');
     }
 
@@ -183,31 +179,39 @@ class TypeProjection {
     }
 
     // A type like HWND
-    if (wrappedType.existsAttribute(nativeTypedefAttribute) ||
-        wrappedType.existsAttribute(metadataTypedefAttribute)) {
-      final typeIdentifier = wrappedType.fields.first.typeIdentifier;
-      return TypeProjection(typeIdentifier).projection;
+    if (wrappedType.existsAttribute(metadataTypedefAttribute) ||
+        wrappedType.existsAttribute(nativeTypedefAttribute)) {
+      final field = wrappedType.fields.first;
+      return TypeProjection(field.typeIdentifier).projection;
     }
 
     if (wrappedType.isNested) {
-      return TypeTuple.fromNativeType(wrappedType.mangleName());
+      final enclosingType = wrappedType.enclosingClass!;
+      final index = enclosingType.fields
+          .where((f) => f.isNested || f.isNestedArray)
+          .toList()
+          .indexWhere((f) {
+        return f.isArray
+            ? f.typeIdentifier.typeArg!.type!.name == wrappedType.name
+            : f.typeIdentifier.type!.name == wrappedType.name;
+      });
+      return TypeTuple.fromNativeType('${enclosingType.safeTypename}_$index');
     }
 
-    final typeClass = wrappedType.nameWithoutAnsiUnicodeSuffix.lastComponent;
-    return TypeTuple.fromNativeType(typeClass);
+    return TypeTuple.fromNativeType(wrappedType.safeTypename);
   }
 
   TypeTuple projectType() {
-    // Could be an intrinsic base type (e.g. Int32)
+    // Could be an intrinsic base type (e.g., Int32)
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
 
     // Could be a string or other special type that we want to custom-map
     if (isSpecialType) return specialTypes[typeIdentifier.name]!;
 
-    // Could be an enum like FOLDERFLAGS
+    // Could be an enum (e.g., FOLDERFLAGS)
     if (isEnumType) return unwrapEnumType();
 
-    // Could be a wrapped type (e.g. a HWND)
+    // Could be a wrapped type (e.g., a HWND)
     if (isWrappedValueType) return unwrapValueType();
 
     if (isArrayType) return unwrapArrayType();
@@ -216,7 +220,7 @@ class TypeProjection {
 
     if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
 
-    // default: return the name as returned by metadata
+    // TODO(halildurmus): Consider returning the name as returned by metadata
     throw StateError('Type information missing for $typeIdentifier.');
   }
 }

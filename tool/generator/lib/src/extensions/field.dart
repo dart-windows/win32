@@ -23,4 +23,8 @@ extension FieldHelpers on Field {
 
   /// Returns `true` if the field is a nested type.
   bool get isNested => typeIdentifier.type?.isNested ?? false;
+
+  /// Returns `true` if the field is a nested array.
+  bool get isNestedArray =>
+      isArray && (typeIdentifier.typeArg?.type?.isNested ?? false);
 }

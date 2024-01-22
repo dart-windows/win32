@@ -4,24 +4,29 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../attributes.dart';
+import 'custom_attributes_mixin.dart';
+import 'field.dart';
 import 'string.dart';
 
 extension TypeDefHelpers on TypeDef {
-  /// Convert a nested type to a guaranteed-unique name.
-  String mangleName() {
-    final name = nameWithoutAnsiUnicodeSuffix.lastComponent;
-    if (!isNested) return '_$name';
-    return '${enclosingClass!.mangleName()}_$name';
-  }
-
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `Windows.Win32.UI.Shell.IShellLink` instead of
   /// `Windows.Win32.UI.Shell.IShellLinkW`).
-  String get nameWithoutAnsiUnicodeSuffix {
-    if (existsAttribute(ansiAttribute) || existsAttribute(unicodeAttribute)) {
-      return name.stripAnsiUnicodeSuffix();
+  String get nameWithoutEncoding {
+    var name = this.name;
+
+    if (isNested) {
+      final nestedTypes = enclosingClass!.fields
+          .where((f) => f.isNested || f.isNestedArray)
+          .map((f) => f.isNestedArray
+              ? f.typeIdentifier.typeArg!.type!
+              : f.typeIdentifier.type!)
+          .toList();
+      final index = nestedTypes.indexWhere((type) => type.name == name);
+      name = '${enclosingClass!.safeTypename}_$index';
     }
+
+    if (isAnsi || isUnicode) return name.stripAnsiUnicodeSuffix();
 
     // Some TypeDefs have a Unicode suffix (`W`) without corresponding ANSI
     // variants, and they don't have the `UnicodeAttribute`.
@@ -30,9 +35,18 @@ extension TypeDefHelpers on TypeDef {
     return name;
   }
 
-  String get safeIdentifier =>
-      nameWithoutAnsiUnicodeSuffix.lastComponent.safeIdentifier;
+  /// Returns a safe Dart filename for code generation, derived from the
+  /// [safeTypename].
+  ///
+  /// The format is `{safeTypename in lowercase}.g.dart` (e.g.,
+  /// `iunknown.g.dart`).
+  String get safeFilename => '${safeTypename.toLowerCase()}.g.dart';
 
-  String get safeTypename =>
-      nameWithoutAnsiUnicodeSuffix.lastComponent.safeTypename;
+  /// Returns a safe Dart identifier based on the last component of the
+  /// [nameWithoutEncoding] (e.g., `_SomeIdentifier` -> `SomeIdentifier`).
+  String get safeIdentifier => nameWithoutEncoding.lastComponent.safeIdentifier;
+
+  /// Returns a safe Dart typename based on the last component of the
+  /// [nameWithoutEncoding] (e.g., `_SomeType` -> `SomeType`).
+  String get safeTypename => nameWithoutEncoding.lastComponent.safeTypename;
 }

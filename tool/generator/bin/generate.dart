@@ -15,10 +15,10 @@ void generateStructs(List<Scope> scopes, Map<String, String> structs) {
       .where((typeDef) => structs.keys.contains(typeDef.name))
       .where((typeDef) => typeDef.supportedArchitectures.x64)
       .toList()
-    ..sort((a, b) => a.name.lastComponent.compareTo(b.name.lastComponent)));
+    ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
 
   final structProjections = typeDefs.map((struct) => StructProjection(
-      struct, struct.nameWithoutAnsiUnicodeSuffix.lastComponent,
+      struct, struct.safeTypename,
       comment: structs[struct.name]!));
 
   final structsFile = [structFileHeader, ...structProjections].join();
@@ -158,7 +158,7 @@ String generateFunctionTests(String library, Iterable<Method> methods,
         TypeProjection(method.returnType.typeIdentifier).nativeType;
     final returnDartType =
         TypeProjection(method.returnType.typeIdentifier).dartType;
-    final methodDartName = method.nameWithoutAnsiUnicodeSuffix;
+    final methodDartName = method.nameWithoutEncoding;
 
     final test = '''
   test('Can instantiate $methodDartName', () {
@@ -198,9 +198,8 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
 
     // Generate class
     final dartClass = comObject.toString();
-    final classOutputFilename =
-        typeDef.nameWithoutAnsiUnicodeSuffix.lastComponent.toLowerCase();
-    final classOutputPath = '../../lib/src/com/$classOutputFilename.g.dart';
+    final classOutputFilename = typeDef.safeFilename;
+    final classOutputPath = '../../lib/src/com/$classOutputFilename';
     File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
   }
 }

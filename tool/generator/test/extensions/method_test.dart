@@ -45,22 +45,26 @@ void main() {
       expect(method2!.isRealSetProperty, isFalse);
     });
 
-    test('nameWithoutAnsiUnicodeSuffix', () {
+    test('nameWithoutEncoding', () {
       final apis =
           scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
       expect(apis, isNotNull);
 
       final method1 = apis!.findMethod('EndMenu');
       expect(method1, isNotNull);
-      expect(method1!.nameWithoutAnsiUnicodeSuffix, equals('EndMenu'));
+      expect(method1!.nameWithoutEncoding, equals('EndMenu'));
 
       final method2 = apis.findMethod('GetClassNameA');
       expect(method2, isNotNull);
-      expect(method2!.nameWithoutAnsiUnicodeSuffix, equals('GetClassName'));
+      expect(method2!.nameWithoutEncoding, equals('GetClassName'));
 
       final method3 = apis.findMethod('GetClassNameW');
       expect(method3, isNotNull);
-      expect(method3!.nameWithoutAnsiUnicodeSuffix, equals('GetClassName'));
+      expect(method3!.nameWithoutEncoding, equals('GetClassName'));
+    });
+
+    test('uniqueName', () {
+      // TODO(halildurmus): Add tests
     });
   });
 
