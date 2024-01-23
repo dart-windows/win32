@@ -1279,21 +1279,6 @@ final _DuplicateHandle = _kernel32.lookupFunction<
         int bInheritHandle,
         int dwOptions)>('DuplicateHandle');
 
-/// Removes as many pages as possible from the working set of the specified
-/// process.
-///
-/// ```c
-/// BOOL K32EmptyWorkingSet(
-///   [in] HANDLE hProcess
-/// );
-/// ```
-/// {@category kernel32}
-int EmptyWorkingSet(int hProcess) => _K32EmptyWorkingSet(hProcess);
-
-final _K32EmptyWorkingSet = _kernel32.lookupFunction<
-    Int32 Function(IntPtr hProcess),
-    int Function(int hProcess)>('K32EmptyWorkingSet');
-
 /// Commits or discards changes made prior to a call to UpdateResource.
 ///
 /// ```c
@@ -1309,113 +1294,6 @@ int EndUpdateResource(int hUpdate, int fDiscard) =>
 final _EndUpdateResource = _kernel32.lookupFunction<
     Int32 Function(IntPtr hUpdate, Int32 fDiscard),
     int Function(int hUpdate, int fDiscard)>('EndUpdateResourceW');
-
-/// Retrieves the load address for each device driver in the system.
-///
-/// ```c
-/// BOOL K32EnumDeviceDrivers(
-///   [out] LPVOID  *lpImageBase,
-///   [in]  DWORD   cb,
-///   [out] LPDWORD lpcbNeeded
-/// );
-/// ```
-/// {@category kernel32}
-int EnumDeviceDrivers(
-        Pointer<Pointer> lpImageBase, int cb, Pointer<Uint32> lpcbNeeded) =>
-    _K32EnumDeviceDrivers(lpImageBase, cb, lpcbNeeded);
-
-final _K32EnumDeviceDrivers = _kernel32.lookupFunction<
-    Int32 Function(
-        Pointer<Pointer> lpImageBase, Uint32 cb, Pointer<Uint32> lpcbNeeded),
-    int Function(Pointer<Pointer> lpImageBase, int cb,
-        Pointer<Uint32> lpcbNeeded)>('K32EnumDeviceDrivers');
-
-/// Calls the callback routine for each installed pagefile in the system.
-///
-/// ```c
-/// BOOL K32EnumPageFilesW(
-///   [out] PENUM_PAGE_FILE_CALLBACKW pCallBackRoutine,
-///   [in]  LPVOID                    pContext
-/// );
-/// ```
-/// {@category kernel32}
-int EnumPageFiles(Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
-        Pointer pContext) =>
-    _K32EnumPageFiles(pCallBackRoutine, pContext);
-
-final _K32EnumPageFiles = _kernel32.lookupFunction<
-    Int32 Function(Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
-        Pointer pContext),
-    int Function(Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
-        Pointer pContext)>('K32EnumPageFilesW');
-
-/// Retrieves the process identifier for each process object in the system.
-///
-/// ```c
-/// BOOL K32EnumProcesses(
-///   DWORD   *lpidProcess,
-///   DWORD   cb,
-///   LPDWORD lpcbNeeded
-/// );
-/// ```
-/// {@category kernel32}
-int EnumProcesses(
-        Pointer<Uint32> lpidProcess, int cb, Pointer<Uint32> lpcbNeeded) =>
-    _K32EnumProcesses(lpidProcess, cb, lpcbNeeded);
-
-final _K32EnumProcesses = _kernel32.lookupFunction<
-    Int32 Function(
-        Pointer<Uint32> lpidProcess, Uint32 cb, Pointer<Uint32> lpcbNeeded),
-    int Function(Pointer<Uint32> lpidProcess, int cb,
-        Pointer<Uint32> lpcbNeeded)>('K32EnumProcesses');
-
-/// Retrieves a handle for each module in the specified process.
-///
-/// ```c
-/// BOOL K32EnumProcessModules(
-///   HANDLE  hProcess,
-///   HMODULE *lphModule,
-///   DWORD   cb,
-///   LPDWORD lpcbNeeded
-/// );
-/// ```
-/// {@category kernel32}
-int EnumProcessModules(int hProcess, Pointer<IntPtr> lphModule, int cb,
-        Pointer<Uint32> lpcbNeeded) =>
-    _K32EnumProcessModules(hProcess, lphModule, cb, lpcbNeeded);
-
-final _K32EnumProcessModules = _kernel32.lookupFunction<
-    Int32 Function(IntPtr hProcess, Pointer<IntPtr> lphModule, Uint32 cb,
-        Pointer<Uint32> lpcbNeeded),
-    int Function(int hProcess, Pointer<IntPtr> lphModule, int cb,
-        Pointer<Uint32> lpcbNeeded)>('K32EnumProcessModules');
-
-/// Retrieves a handle for each module in the specified process that meets the
-/// specified filter criteria.
-///
-/// ```c
-/// BOOL K32EnumProcessModulesEx(
-///   HANDLE  hProcess,
-///   HMODULE *lphModule,
-///   DWORD   cb,
-///   LPDWORD lpcbNeeded,
-///   DWORD   dwFilterFlag
-/// );
-/// ```
-/// {@category kernel32}
-int EnumProcessModulesEx(int hProcess, Pointer<IntPtr> lphModule, int cb,
-        Pointer<Uint32> lpcbNeeded, int dwFilterFlag) =>
-    _K32EnumProcessModulesEx(hProcess, lphModule, cb, lpcbNeeded, dwFilterFlag);
-
-final _K32EnumProcessModulesEx = _kernel32.lookupFunction<
-    Int32 Function(IntPtr hProcess, Pointer<IntPtr> lphModule, Uint32 cb,
-        Pointer<Uint32> lpcbNeeded, Uint32 dwFilterFlag),
-    int Function(
-        int hProcess,
-        Pointer<IntPtr> lphModule,
-        int cb,
-        Pointer<Uint32> lpcbNeeded,
-        int dwFilterFlag)>('K32EnumProcessModulesEx');
 
 /// Enumerates resources of a specified type within a binary module. For Windows
 /// Vista and later, this is typically a language-neutral Portable Executable
@@ -2621,44 +2499,6 @@ final _GetDefaultCommConfig = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpszName, Pointer<COMMCONFIG> lpCC,
         Pointer<Uint32> lpdwSize)>('GetDefaultCommConfigW');
 
-/// Retrieves the base name of the specified device driver.
-///
-/// ```c
-/// DWORD K32GetDeviceDriverBaseNameW(
-///   [in]  LPVOID ImageBase,
-///   [out] LPWSTR lpBaseName,
-///   [in]  DWORD  nSize
-/// );
-/// ```
-/// {@category kernel32}
-int GetDeviceDriverBaseName(
-        Pointer ImageBase, Pointer<Utf16> lpBaseName, int nSize) =>
-    _K32GetDeviceDriverBaseName(ImageBase, lpBaseName, nSize);
-
-final _K32GetDeviceDriverBaseName = _kernel32.lookupFunction<
-    Uint32 Function(Pointer ImageBase, Pointer<Utf16> lpBaseName, Uint32 nSize),
-    int Function(Pointer ImageBase, Pointer<Utf16> lpBaseName,
-        int nSize)>('K32GetDeviceDriverBaseNameW');
-
-/// Retrieves the path available for the specified device driver.
-///
-/// ```c
-/// DWORD K32GetDeviceDriverFileNameW(
-///   [in]  LPVOID ImageBase,
-///   [out] LPWSTR lpFilename,
-///   [in]  DWORD  nSize
-/// );
-/// ```
-/// {@category kernel32}
-int GetDeviceDriverFileName(
-        Pointer ImageBase, Pointer<Utf16> lpFilename, int nSize) =>
-    _K32GetDeviceDriverFileName(ImageBase, lpFilename, nSize);
-
-final _K32GetDeviceDriverFileName = _kernel32.lookupFunction<
-    Uint32 Function(Pointer ImageBase, Pointer<Utf16> lpFilename, Uint32 nSize),
-    int Function(Pointer ImageBase, Pointer<Utf16> lpFilename,
-        int nSize)>('K32GetDeviceDriverFileNameW');
-
 /// Retrieves information about the specified disk, including the amount of free
 /// space on the disk.
 ///
@@ -3124,29 +2964,6 @@ final _GetMachineTypeAttributes = _kernel32.lookupFunction<
     int Function(int Machine,
         Pointer<Int32> MachineTypeAttributes)>('GetMachineTypeAttributes');
 
-/// Checks whether the specified address is within a memory-mapped file in the
-/// address space of the specified process. If so, the function returns the name
-/// of the memory-mapped file.
-///
-/// ```c
-/// DWORD K32GetMappedFileNameW(
-///   [in]  HANDLE hProcess,
-///   [in]  LPVOID lpv,
-///   [out] LPWSTR lpFilename,
-///   [in]  DWORD  nSize
-/// );
-/// ```
-/// {@category kernel32}
-int GetMappedFileName(
-        int hProcess, Pointer lpv, Pointer<Utf16> lpFilename, int nSize) =>
-    _K32GetMappedFileName(hProcess, lpv, lpFilename, nSize);
-
-final _K32GetMappedFileName = _kernel32.lookupFunction<
-    Uint32 Function(
-        IntPtr hProcess, Pointer lpv, Pointer<Utf16> lpFilename, Uint32 nSize),
-    int Function(int hProcess, Pointer lpv, Pointer<Utf16> lpFilename,
-        int nSize)>('K32GetMappedFileNameW');
-
 /// Returns the maximum number of logical processors that a processor group or
 /// the system can have.
 ///
@@ -3175,27 +2992,6 @@ final _GetMaximumProcessorGroupCount =
     _kernel32.lookupFunction<Uint16 Function(), int Function()>(
         'GetMaximumProcessorGroupCount');
 
-/// Retrieves the base name of the specified module.
-///
-/// ```c
-/// DWORD K32GetModuleBaseNameW(
-///   HANDLE  hProcess,
-///   HMODULE hModule,
-///   LPWSTR  lpBaseName,
-///   DWORD   nSize
-/// );
-/// ```
-/// {@category kernel32}
-int GetModuleBaseName(
-        int hProcess, int? hModule, Pointer<Utf16> lpBaseName, int nSize) =>
-    _K32GetModuleBaseName(hProcess, hModule ?? 0, lpBaseName, nSize);
-
-final _K32GetModuleBaseName = _kernel32.lookupFunction<
-    Uint32 Function(IntPtr hProcess, IntPtr hModule, Pointer<Utf16> lpBaseName,
-        Uint32 nSize),
-    int Function(int hProcess, int hModule, Pointer<Utf16> lpBaseName,
-        int nSize)>('K32GetModuleBaseNameW');
-
 /// Retrieves the fully qualified path for the file that contains the specified
 /// module. The module must have been loaded by the current process.
 ///
@@ -3214,28 +3010,6 @@ final _GetModuleFileName = _kernel32.lookupFunction<
     Uint32 Function(IntPtr hModule, Pointer<Utf16> lpFilename, Uint32 nSize),
     int Function(int hModule, Pointer<Utf16> lpFilename,
         int nSize)>('GetModuleFileNameW');
-
-/// Retrieves the fully qualified path for the file containing the specified
-/// module.
-///
-/// ```c
-/// DWORD K32GetModuleFileNameExW(
-///   HANDLE  hProcess,
-///   HMODULE hModule,
-///   LPWSTR  lpFilename,
-///   DWORD   nSize
-/// );
-/// ```
-/// {@category kernel32}
-int GetModuleFileNameEx(
-        int? hProcess, int? hModule, Pointer<Utf16> lpFilename, int nSize) =>
-    _K32GetModuleFileNameEx(hProcess ?? 0, hModule ?? 0, lpFilename, nSize);
-
-final _K32GetModuleFileNameEx = _kernel32.lookupFunction<
-    Uint32 Function(IntPtr hProcess, IntPtr hModule, Pointer<Utf16> lpFilename,
-        Uint32 nSize),
-    int Function(int hProcess, int hModule, Pointer<Utf16> lpFilename,
-        int nSize)>('K32GetModuleFileNameExW');
 
 /// Retrieves a module handle for the specified module. The module must have
 /// been loaded by the calling process.
@@ -3274,28 +3048,6 @@ final _GetModuleHandleEx = _kernel32.lookupFunction<
         Uint32 dwFlags, Pointer<Utf16> lpModuleName, Pointer<IntPtr> phModule),
     int Function(int dwFlags, Pointer<Utf16> lpModuleName,
         Pointer<IntPtr> phModule)>('GetModuleHandleExW');
-
-/// Retrieves information about the specified module in the MODULEINFO
-/// structure.
-///
-/// ```c
-/// BOOL K32GetModuleInformation(
-///   [in]  HANDLE       hProcess,
-///   [in]  HMODULE      hModule,
-///   [out] LPMODULEINFO lpmodinfo,
-///   [in]  DWORD        cb
-/// );
-/// ```
-/// {@category kernel32}
-int GetModuleInformation(
-        int hProcess, int hModule, Pointer<MODULEINFO> lpmodinfo, int cb) =>
-    _K32GetModuleInformation(hProcess, hModule, lpmodinfo, cb);
-
-final _K32GetModuleInformation = _kernel32.lookupFunction<
-    Int32 Function(IntPtr hProcess, IntPtr hModule,
-        Pointer<MODULEINFO> lpmodinfo, Uint32 cb),
-    int Function(int hProcess, int hModule, Pointer<MODULEINFO> lpmodinfo,
-        int cb)>('K32GetModuleInformation');
 
 /// Retrieves the client computer name for the specified named pipe.
 ///
@@ -3540,26 +3292,6 @@ final _GetOverlappedResultEx = _kernel32.lookupFunction<
         int dwMilliseconds,
         int bAlertable)>('GetOverlappedResultEx');
 
-/// Retrieves the performance values contained in the PERFORMANCE_INFORMATION
-/// structure.
-///
-/// ```c
-/// BOOL K32GetPerformanceInfo(
-///   [out] PPERFORMANCE_INFORMATION pPerformanceInformation,
-///   [in]  DWORD                    cb
-/// );
-/// ```
-/// {@category kernel32}
-int GetPerformanceInfo(
-        Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation, int cb) =>
-    _K32GetPerformanceInfo(pPerformanceInformation, cb);
-
-final _K32GetPerformanceInfo = _kernel32.lookupFunction<
-    Int32 Function(
-        Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation, Uint32 cb),
-    int Function(Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation,
-        int cb)>('K32GetPerformanceInfo');
-
 /// Retrieves the amount of RAM that is physically installed on the computer.
 ///
 /// ```c
@@ -3636,26 +3368,6 @@ int GetProcessId(int Process) => _GetProcessId(Process);
 
 final _GetProcessId = _kernel32.lookupFunction<Uint32 Function(IntPtr Process),
     int Function(int Process)>('GetProcessId');
-
-/// Retrieves the name of the executable file for the specified process.
-///
-/// ```c
-/// DWORD K32GetProcessImageFileNameW(
-///   [in]  HANDLE hProcess,
-///   [out] LPWSTR lpImageFileName,
-///   [in]  DWORD  nSize
-/// );
-/// ```
-/// {@category kernel32}
-int GetProcessImageFileName(
-        int hProcess, Pointer<Utf16> lpImageFileName, int nSize) =>
-    _K32GetProcessImageFileName(hProcess, lpImageFileName, nSize);
-
-final _K32GetProcessImageFileName = _kernel32.lookupFunction<
-    Uint32 Function(
-        IntPtr hProcess, Pointer<Utf16> lpImageFileName, Uint32 nSize),
-    int Function(int hProcess, Pointer<Utf16> lpImageFileName,
-        int nSize)>('K32GetProcessImageFileNameW');
 
 /// Retrieves the shutdown parameters for the currently calling process.
 ///

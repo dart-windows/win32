@@ -2242,70 +2242,12 @@ void main() {
               int dwOptions)>('DuplicateHandle');
       expect(DuplicateHandle, isA<Function>());
     });
-    test('Can instantiate K32EmptyWorkingSet', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32EmptyWorkingSet = kernel32.lookupFunction<
-          Int32 Function(IntPtr hProcess),
-          int Function(int hProcess)>('K32EmptyWorkingSet');
-      expect(K32EmptyWorkingSet, isA<Function>());
-    });
     test('Can instantiate EndUpdateResource', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final EndUpdateResource = kernel32.lookupFunction<
           Int32 Function(IntPtr hUpdate, Int32 fDiscard),
           int Function(int hUpdate, int fDiscard)>('EndUpdateResourceW');
       expect(EndUpdateResource, isA<Function>());
-    });
-    test('Can instantiate K32EnumDeviceDrivers', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32EnumDeviceDrivers = kernel32.lookupFunction<
-          Int32 Function(Pointer<Pointer> lpImageBase, Uint32 cb,
-              Pointer<Uint32> lpcbNeeded),
-          int Function(Pointer<Pointer> lpImageBase, int cb,
-              Pointer<Uint32> lpcbNeeded)>('K32EnumDeviceDrivers');
-      expect(K32EnumDeviceDrivers, isA<Function>());
-    });
-    test('Can instantiate K32EnumPageFiles', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32EnumPageFiles = kernel32.lookupFunction<
-          Int32 Function(
-              Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
-              Pointer pContext),
-          int Function(
-              Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
-              Pointer pContext)>('K32EnumPageFilesW');
-      expect(K32EnumPageFiles, isA<Function>());
-    });
-    test('Can instantiate K32EnumProcesses', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32EnumProcesses = kernel32.lookupFunction<
-          Int32 Function(Pointer<Uint32> lpidProcess, Uint32 cb,
-              Pointer<Uint32> lpcbNeeded),
-          int Function(Pointer<Uint32> lpidProcess, int cb,
-              Pointer<Uint32> lpcbNeeded)>('K32EnumProcesses');
-      expect(K32EnumProcesses, isA<Function>());
-    });
-    test('Can instantiate K32EnumProcessModules', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32EnumProcessModules = kernel32.lookupFunction<
-          Int32 Function(IntPtr hProcess, Pointer<IntPtr> lphModule, Uint32 cb,
-              Pointer<Uint32> lpcbNeeded),
-          int Function(int hProcess, Pointer<IntPtr> lphModule, int cb,
-              Pointer<Uint32> lpcbNeeded)>('K32EnumProcessModules');
-      expect(K32EnumProcessModules, isA<Function>());
-    });
-    test('Can instantiate K32EnumProcessModulesEx', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32EnumProcessModulesEx = kernel32.lookupFunction<
-          Int32 Function(IntPtr hProcess, Pointer<IntPtr> lphModule, Uint32 cb,
-              Pointer<Uint32> lpcbNeeded, Uint32 dwFilterFlag),
-          int Function(
-              int hProcess,
-              Pointer<IntPtr> lphModule,
-              int cb,
-              Pointer<Uint32> lpcbNeeded,
-              int dwFilterFlag)>('K32EnumProcessModulesEx');
-      expect(K32EnumProcessModulesEx, isA<Function>());
     });
     test('Can instantiate EnumResourceNames', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
@@ -2880,24 +2822,6 @@ void main() {
               Pointer<Uint32> lpdwSize)>('GetDefaultCommConfigW');
       expect(GetDefaultCommConfig, isA<Function>());
     });
-    test('Can instantiate K32GetDeviceDriverBaseName', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetDeviceDriverBaseName = kernel32.lookupFunction<
-          Uint32 Function(
-              Pointer ImageBase, Pointer<Utf16> lpBaseName, Uint32 nSize),
-          int Function(Pointer ImageBase, Pointer<Utf16> lpBaseName,
-              int nSize)>('K32GetDeviceDriverBaseNameW');
-      expect(K32GetDeviceDriverBaseName, isA<Function>());
-    });
-    test('Can instantiate K32GetDeviceDriverFileName', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetDeviceDriverFileName = kernel32.lookupFunction<
-          Uint32 Function(
-              Pointer ImageBase, Pointer<Utf16> lpFilename, Uint32 nSize),
-          int Function(Pointer ImageBase, Pointer<Utf16> lpFilename,
-              int nSize)>('K32GetDeviceDriverFileNameW');
-      expect(K32GetDeviceDriverFileName, isA<Function>());
-    });
     test('Can instantiate GetDiskFreeSpace', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final GetDiskFreeSpace = kernel32.lookupFunction<
@@ -3114,15 +3038,6 @@ void main() {
         expect(GetMachineTypeAttributes, isA<Function>());
       });
     }
-    test('Can instantiate K32GetMappedFileName', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetMappedFileName = kernel32.lookupFunction<
-          Uint32 Function(IntPtr hProcess, Pointer lpv,
-              Pointer<Utf16> lpFilename, Uint32 nSize),
-          int Function(int hProcess, Pointer lpv, Pointer<Utf16> lpFilename,
-              int nSize)>('K32GetMappedFileNameW');
-      expect(K32GetMappedFileName, isA<Function>());
-    });
     test('Can instantiate GetMaximumProcessorCount', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final GetMaximumProcessorCount = kernel32.lookupFunction<
@@ -3137,15 +3052,6 @@ void main() {
               'GetMaximumProcessorGroupCount');
       expect(GetMaximumProcessorGroupCount, isA<Function>());
     });
-    test('Can instantiate K32GetModuleBaseName', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetModuleBaseName = kernel32.lookupFunction<
-          Uint32 Function(IntPtr hProcess, IntPtr hModule,
-              Pointer<Utf16> lpBaseName, Uint32 nSize),
-          int Function(int hProcess, int hModule, Pointer<Utf16> lpBaseName,
-              int nSize)>('K32GetModuleBaseNameW');
-      expect(K32GetModuleBaseName, isA<Function>());
-    });
     test('Can instantiate GetModuleFileName', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final GetModuleFileName = kernel32.lookupFunction<
@@ -3154,15 +3060,6 @@ void main() {
           int Function(int hModule, Pointer<Utf16> lpFilename,
               int nSize)>('GetModuleFileNameW');
       expect(GetModuleFileName, isA<Function>());
-    });
-    test('Can instantiate K32GetModuleFileNameEx', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetModuleFileNameEx = kernel32.lookupFunction<
-          Uint32 Function(IntPtr hProcess, IntPtr hModule,
-              Pointer<Utf16> lpFilename, Uint32 nSize),
-          int Function(int hProcess, int hModule, Pointer<Utf16> lpFilename,
-              int nSize)>('K32GetModuleFileNameExW');
-      expect(K32GetModuleFileNameEx, isA<Function>());
     });
     test('Can instantiate GetModuleHandle', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
@@ -3179,15 +3076,6 @@ void main() {
           int Function(int dwFlags, Pointer<Utf16> lpModuleName,
               Pointer<IntPtr> phModule)>('GetModuleHandleExW');
       expect(GetModuleHandleEx, isA<Function>());
-    });
-    test('Can instantiate K32GetModuleInformation', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetModuleInformation = kernel32.lookupFunction<
-          Int32 Function(IntPtr hProcess, IntPtr hModule,
-              Pointer<MODULEINFO> lpmodinfo, Uint32 cb),
-          int Function(int hProcess, int hModule, Pointer<MODULEINFO> lpmodinfo,
-              int cb)>('K32GetModuleInformation');
-      expect(K32GetModuleInformation, isA<Function>());
     });
     test('Can instantiate GetNamedPipeClientComputerName', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
@@ -3301,16 +3189,6 @@ void main() {
         expect(GetOverlappedResultEx, isA<Function>());
       });
     }
-    test('Can instantiate K32GetPerformanceInfo', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetPerformanceInfo = kernel32.lookupFunction<
-          Int32 Function(
-              Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation,
-              Uint32 cb),
-          int Function(Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation,
-              int cb)>('K32GetPerformanceInfo');
-      expect(K32GetPerformanceInfo, isA<Function>());
-    });
     test('Can instantiate GetPhysicallyInstalledSystemMemory', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final GetPhysicallyInstalledSystemMemory = kernel32.lookupFunction<
@@ -3347,15 +3225,6 @@ void main() {
           Uint32 Function(IntPtr Process),
           int Function(int Process)>('GetProcessId');
       expect(GetProcessId, isA<Function>());
-    });
-    test('Can instantiate K32GetProcessImageFileName', () {
-      final kernel32 = DynamicLibrary.open('kernel32.dll');
-      final K32GetProcessImageFileName = kernel32.lookupFunction<
-          Uint32 Function(
-              IntPtr hProcess, Pointer<Utf16> lpImageFileName, Uint32 nSize),
-          int Function(int hProcess, Pointer<Utf16> lpImageFileName,
-              int nSize)>('K32GetProcessImageFileNameW');
-      expect(K32GetProcessImageFileName, isA<Function>());
     });
     test('Can instantiate GetProcessShutdownParameters', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
@@ -12054,6 +11923,140 @@ void main() {
         expect(DwmShowContact, isA<Function>());
       });
     }
+  });
+
+  group('Test psapi functions', () {
+    test('Can instantiate EmptyWorkingSet', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final EmptyWorkingSet = psapi.lookupFunction<
+          Int32 Function(IntPtr hProcess),
+          int Function(int hProcess)>('EmptyWorkingSet');
+      expect(EmptyWorkingSet, isA<Function>());
+    });
+    test('Can instantiate EnumDeviceDrivers', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final EnumDeviceDrivers = psapi.lookupFunction<
+          Int32 Function(Pointer<Pointer> lpImageBase, Uint32 cb,
+              Pointer<Uint32> lpcbNeeded),
+          int Function(Pointer<Pointer> lpImageBase, int cb,
+              Pointer<Uint32> lpcbNeeded)>('EnumDeviceDrivers');
+      expect(EnumDeviceDrivers, isA<Function>());
+    });
+    test('Can instantiate EnumPageFiles', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final EnumPageFiles = psapi.lookupFunction<
+          Int32 Function(
+              Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+              Pointer pContext),
+          int Function(
+              Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+              Pointer pContext)>('EnumPageFilesW');
+      expect(EnumPageFiles, isA<Function>());
+    });
+    test('Can instantiate EnumProcesses', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final EnumProcesses = psapi.lookupFunction<
+          Int32 Function(Pointer<Uint32> lpidProcess, Uint32 cb,
+              Pointer<Uint32> lpcbNeeded),
+          int Function(Pointer<Uint32> lpidProcess, int cb,
+              Pointer<Uint32> lpcbNeeded)>('EnumProcesses');
+      expect(EnumProcesses, isA<Function>());
+    });
+    test('Can instantiate EnumProcessModules', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final EnumProcessModules = psapi.lookupFunction<
+          Int32 Function(IntPtr hProcess, Pointer<IntPtr> lphModule, Uint32 cb,
+              Pointer<Uint32> lpcbNeeded),
+          int Function(int hProcess, Pointer<IntPtr> lphModule, int cb,
+              Pointer<Uint32> lpcbNeeded)>('EnumProcessModules');
+      expect(EnumProcessModules, isA<Function>());
+    });
+    test('Can instantiate EnumProcessModulesEx', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final EnumProcessModulesEx = psapi.lookupFunction<
+          Int32 Function(IntPtr hProcess, Pointer<IntPtr> lphModule, Uint32 cb,
+              Pointer<Uint32> lpcbNeeded, Uint32 dwFilterFlag),
+          int Function(
+              int hProcess,
+              Pointer<IntPtr> lphModule,
+              int cb,
+              Pointer<Uint32> lpcbNeeded,
+              int dwFilterFlag)>('EnumProcessModulesEx');
+      expect(EnumProcessModulesEx, isA<Function>());
+    });
+    test('Can instantiate GetDeviceDriverBaseName', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetDeviceDriverBaseName = psapi.lookupFunction<
+          Uint32 Function(
+              Pointer ImageBase, Pointer<Utf16> lpBaseName, Uint32 nSize),
+          int Function(Pointer ImageBase, Pointer<Utf16> lpBaseName,
+              int nSize)>('GetDeviceDriverBaseNameW');
+      expect(GetDeviceDriverBaseName, isA<Function>());
+    });
+    test('Can instantiate GetDeviceDriverFileName', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetDeviceDriverFileName = psapi.lookupFunction<
+          Uint32 Function(
+              Pointer ImageBase, Pointer<Utf16> lpFilename, Uint32 nSize),
+          int Function(Pointer ImageBase, Pointer<Utf16> lpFilename,
+              int nSize)>('GetDeviceDriverFileNameW');
+      expect(GetDeviceDriverFileName, isA<Function>());
+    });
+    test('Can instantiate GetMappedFileName', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetMappedFileName = psapi.lookupFunction<
+          Uint32 Function(IntPtr hProcess, Pointer lpv,
+              Pointer<Utf16> lpFilename, Uint32 nSize),
+          int Function(int hProcess, Pointer lpv, Pointer<Utf16> lpFilename,
+              int nSize)>('GetMappedFileNameW');
+      expect(GetMappedFileName, isA<Function>());
+    });
+    test('Can instantiate GetModuleBaseName', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetModuleBaseName = psapi.lookupFunction<
+          Uint32 Function(IntPtr hProcess, IntPtr hModule,
+              Pointer<Utf16> lpBaseName, Uint32 nSize),
+          int Function(int hProcess, int hModule, Pointer<Utf16> lpBaseName,
+              int nSize)>('GetModuleBaseNameW');
+      expect(GetModuleBaseName, isA<Function>());
+    });
+    test('Can instantiate GetModuleFileNameEx', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetModuleFileNameEx = psapi.lookupFunction<
+          Uint32 Function(IntPtr hProcess, IntPtr hModule,
+              Pointer<Utf16> lpFilename, Uint32 nSize),
+          int Function(int hProcess, int hModule, Pointer<Utf16> lpFilename,
+              int nSize)>('GetModuleFileNameExW');
+      expect(GetModuleFileNameEx, isA<Function>());
+    });
+    test('Can instantiate GetModuleInformation', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetModuleInformation = psapi.lookupFunction<
+          Int32 Function(IntPtr hProcess, IntPtr hModule,
+              Pointer<MODULEINFO> lpmodinfo, Uint32 cb),
+          int Function(int hProcess, int hModule, Pointer<MODULEINFO> lpmodinfo,
+              int cb)>('GetModuleInformation');
+      expect(GetModuleInformation, isA<Function>());
+    });
+    test('Can instantiate GetPerformanceInfo', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetPerformanceInfo = psapi.lookupFunction<
+          Int32 Function(
+              Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation,
+              Uint32 cb),
+          int Function(Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation,
+              int cb)>('GetPerformanceInfo');
+      expect(GetPerformanceInfo, isA<Function>());
+    });
+    test('Can instantiate GetProcessImageFileName', () {
+      final psapi = DynamicLibrary.open('psapi.dll');
+      final GetProcessImageFileName = psapi.lookupFunction<
+          Uint32 Function(
+              IntPtr hProcess, Pointer<Utf16> lpImageFileName, Uint32 nSize),
+          int Function(int hProcess, Pointer<Utf16> lpImageFileName,
+              int nSize)>('GetProcessImageFileNameW');
+      expect(GetProcessImageFileName, isA<Function>());
+    });
   });
 
   group('Test api-ms-win-core-comm-l1-1-2 functions', () {

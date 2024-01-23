@@ -11,14 +11,14 @@ import 'type.dart';
 
 class FunctionProjection {
   FunctionProjection(this.method)
-      : nameWithoutEncoding = method.nameWithoutEncoding,
+      : name = method.nameWithoutEncoding.safeTypename,
         returnType = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters
             .map((param) => ParameterProjection(param.name, param))
             .toList();
 
   final Method method;
-  final String nameWithoutEncoding;
+  final String name;
   final TypeProjection returnType;
   final List<ParameterProjection> parameters;
 
@@ -26,12 +26,6 @@ class FunctionProjection {
   // Also strip off the trailing .dll (or .cpl, .drv, etc.).
   String get lib =>
       method.module.name.toLowerCase().replaceAll('-', '_').split('.').first;
-
-  // TODO(halildurmus): Remove when
-  // https://github.com/microsoft/win32metadata/issues/229 is fixed.
-  String get k32StrippedName => nameWithoutEncoding.startsWith('K32')
-      ? nameWithoutEncoding.substring(3)
-      : nameWithoutEncoding;
 
   String get dartParams => parameters.map((p) => p.dartProjection).join(', ');
   String get dartPrototype => '${returnType.dartType} Function($dartParams)';
@@ -59,10 +53,10 @@ class FunctionProjection {
 
   @override
   String toString() => '''
-${returnType.dartType.safeTypename} $k32StrippedName($functionParams) =>
-    _$nameWithoutEncoding($functionArgs);
+${returnType.dartType.safeTypename} $name($functionParams) =>
+    _$name($functionArgs);
 
-final _$nameWithoutEncoding = _$lib.lookupFunction<
+final _$name = _$lib.lookupFunction<
     $nativePrototype,
     $dartPrototype>('${method.name}');
 ''';
