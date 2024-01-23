@@ -95,15 +95,9 @@ class ComInterfaceProjection {
 
   // COM interfaces can only inherit from one parent
   Set<String> get interfaceImports {
-    if (typeDef.interfaces.isNotEmpty) {
-      final interfaceName =
-          typeDef.interfaces.first.name.lastComponent.toLowerCase();
-      if (interfaceName.isNotEmpty) {
-        return {'$interfaceName.g.dart', 'iunknown.g.dart'};
-      }
-    }
-
-    return {};
+    if (typeDef.interfaces.isEmpty) return const {};
+    final parentInterface = typeDef.interfaces.first;
+    return {parentInterface.safeFilename, 'iunknown.g.dart'};
   }
 
   Set<String> get extraImports => {
