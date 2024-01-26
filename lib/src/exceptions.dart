@@ -9,7 +9,7 @@ import 'package:ffi/ffi.dart';
 import 'constants.dart';
 import 'extensions/int_to_hexstring.dart';
 import 'utils.dart';
-import 'win32/kernel32.g.dart';
+import 'win32_v5/kernel32.g.dart';
 
 /// Generic COM Exception
 class COMException implements Exception {

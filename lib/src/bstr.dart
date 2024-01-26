@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'win32/oleaut32.g.dart';
+import 'win32_v5/oleaut32.g.dart';
 
 /// A string data type that is commonly used by OLE Automation, as well as some
 /// COM methods.

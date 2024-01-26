@@ -20,7 +20,7 @@ import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
 
 import 'utils.dart';
-import 'win32/ole32.g.dart';
+import 'win32_v5/ole32.g.dart';
 
 /// Represents an immutable GUID (globally unique identifier).
 ///

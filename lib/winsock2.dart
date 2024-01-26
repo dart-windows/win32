@@ -26,8 +26,8 @@
 /// used here.
 library;
 
-export 'src/constants_winsock.dart';
 // Core Win32 APIs, constants and macros
+export 'src/constants_winsock.dart';
 export 'src/structs.g.dart'
     show
         ADDRINFO,
@@ -38,5 +38,6 @@ export 'src/structs.g.dart'
         HOSTENT,
         PROTOENT,
         SERVENT;
+
 // Traditional C-style Windows APIs
-export 'src/win32/ws2_32.g.dart';
+export 'src/win32_v5/ws2_32.g.dart';

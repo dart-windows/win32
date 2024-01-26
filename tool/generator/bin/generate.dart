@@ -72,7 +72,7 @@ void generateDllFile(String library, List<Method> filteredMethods,
   ''');
   }
 
-  File('../../lib/src/win32/$libraryDartName.g.dart')
+  File('../../lib/src/win32_v5/$libraryDartName.g.dart')
       .writeAsStringSync(DartFormatter().format(buffer.toString()));
 }
 

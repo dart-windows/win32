@@ -15,7 +15,7 @@ import 'com/iunknown.g.dart';
 import 'constants.dart';
 import 'structs.g.dart';
 import 'types.dart';
-import 'win32/oleaut32.g.dart';
+import 'win32_v5/oleaut32.g.dart';
 
 /// The VARIANT type is used in Win32 to represent a dynamic type. It is
 /// represented as a struct containing a union of the types that could be

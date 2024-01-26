@@ -18,10 +18,10 @@ import 'guid.dart';
 import 'macros.dart';
 import 'structs.g.dart';
 import 'types.dart';
-import 'win32/kernel32.g.dart';
-import 'win32/ole32.g.dart';
-import 'win32/shell32.g.dart';
-import 'win32/user32.g.dart';
+import 'win32_v5/kernel32.g.dart';
+import 'win32_v5/ole32.g.dart';
+import 'win32_v5/shell32.g.dart';
+import 'win32_v5/user32.g.dart';
 
 /// Converts a Dart string into an CLSID using the [CLSIDFromString] call.
 ///
