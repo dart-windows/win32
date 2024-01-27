@@ -16,47 +16,80 @@ void main() {
         await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
   });
 
-  test('Packed structs projected correctly 1', () {
-    // DWM_BLURBEHIND contains a BOOL, which appears in Win32 metadata as a
-    // struct, but that shouldn't stop it being packed.
-    final typeDef =
-        scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND');
-    final structProjection = StructProjection(typeDef!, 'DWM_BLURBEHIND');
-    expect(structProjection.packingAlignment, equals(1));
-    expect(structProjection.classPreamble, contains('@Packed(1)'));
-  });
+  group('StructProjection', () {
+    test('baseType', () {
+      final bluetoothAddress = scope
+          .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
+      expect(bluetoothAddress, isNotNull);
 
-  test('Packed structs projected correctly 2', () {
-    final typeDef =
-        scope.findTypeDef('Windows.Win32.Media.Multimedia.MCI_OPEN_PARMSW');
-    final structProjection = StructProjection(typeDef!, 'MCI_OPEN_PARMS');
-    expect(structProjection.packingAlignment, equals(1));
-    expect(structProjection.classPreamble, contains('@Packed(1)'));
-  });
+      final structProjection1 =
+          StructProjection(bluetoothAddress!, 'BLUETOOTH_ADDRESS');
+      expect(structProjection1.baseType, equals('Struct'));
 
-  test('Packed structs projected correctly 3', () {
-    final typeDef = scope
-        .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT');
-    final structProjection =
-        StructProjection(typeDef!, 'YAMAHA_ADPCMWAVEFORMAT');
-    expect(structProjection.packingAlignment, equals(1));
-    expect(structProjection.classPreamble, contains('@Packed(1)'));
-  });
+      final bluetoothAddress0 =
+          bluetoothAddress.fields.first.typeIdentifier.type;
+      expect(bluetoothAddress0, isNotNull);
+      final structProjection2 =
+          StructProjection(bluetoothAddress0!, 'BLUETOOTH_ADDRESS_0');
+      expect(structProjection2.baseType, equals('Union'));
+    });
 
-  test('Packed structs projected correctly 4', () {
-    final typeDef =
-        scope.findTypeDef('Windows.Win32.Devices.Bluetooth.SOCKADDR_BTH');
-    final structProjection = StructProjection(typeDef!, 'SOCKADDR_BTH');
-    expect(structProjection.packingAlignment, equals(1));
-    expect(structProjection.classPreamble, contains('@Packed(1)'));
-  });
+    test('classModifier', () {
+      final bluetoothAddress = scope
+          .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
+      expect(bluetoothAddress, isNotNull);
 
-  test('Packed structs projected correctly 5', () {
-    final typeDef =
-        scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER');
-    final structProjection = StructProjection(typeDef!, 'BITMAPFILEHEADER');
-    expect(structProjection.packingAlignment, equals(2));
-    expect(structProjection.classPreamble, contains('@Packed(2)'));
+      final structProjection1 =
+          StructProjection(bluetoothAddress!, 'BLUETOOTH_ADDRESS');
+      expect(structProjection1.classModifier, equals('base'));
+
+      final bluetoothAddress0 =
+          bluetoothAddress.fields.first.typeIdentifier.type;
+      expect(bluetoothAddress0, isNotNull);
+      final structProjection2 =
+          StructProjection(bluetoothAddress0!, 'BLUETOOTH_ADDRESS_0');
+      expect(structProjection2.classModifier, equals('sealed'));
+    });
+
+    test('packingAlignment', () {
+      // DWM_BLURBEHIND contains a BOOL, which appears in Win32 metadata as a
+      // struct, but that shouldn't stop it being packed.
+      final typeDef1 =
+          scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND');
+      expect(typeDef1, isNotNull);
+      final structProjection1 = StructProjection(typeDef1!, 'DWM_BLURBEHIND');
+      expect(structProjection1.packingAlignment, equals(1));
+      expect(structProjection1.classPreamble, contains('@Packed(1)'));
+
+      final typeDef2 =
+          scope.findTypeDef('Windows.Win32.Media.Multimedia.MCI_OPEN_PARMSW');
+      expect(typeDef2, isNotNull);
+      final structProjection2 = StructProjection(typeDef2!, 'MCI_OPEN_PARMS');
+      expect(structProjection2.packingAlignment, equals(1));
+      expect(structProjection2.classPreamble, contains('@Packed(1)'));
+
+      final typeDef3 = scope
+          .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT');
+      expect(typeDef3, isNotNull);
+      final structProjection3 =
+          StructProjection(typeDef3!, 'YAMAHA_ADPCMWAVEFORMAT');
+      expect(structProjection3.packingAlignment, equals(1));
+      expect(structProjection3.classPreamble, contains('@Packed(1)'));
+
+      final typeDef4 =
+          scope.findTypeDef('Windows.Win32.Devices.Bluetooth.SOCKADDR_BTH');
+      expect(typeDef4, isNotNull);
+      final structProjection4 = StructProjection(typeDef4!, 'SOCKADDR_BTH');
+      expect(structProjection4.packingAlignment, equals(1));
+      expect(structProjection4.classPreamble, contains('@Packed(1)'));
+
+      final typeDef5 =
+          scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER');
+      expect(typeDef5, isNotNull);
+      final structProjection5 = StructProjection(typeDef5!, 'BITMAPFILEHEADER');
+      expect(structProjection5.packingAlignment, equals(2));
+      expect(structProjection5.classPreamble, contains('@Packed(2)'));
+    });
   });
 
   tearDownAll(MetadataStore.close);

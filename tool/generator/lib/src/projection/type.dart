@@ -188,13 +188,16 @@ class TypeProjection {
     if (wrappedType.isNested) {
       final enclosingType = wrappedType.enclosingClass!;
       final index = enclosingType.fields
-          .where((f) => f.isNested || f.isNestedArray)
+          .where((f) => f.isNested || f.isNestedArray || f.isNestedPointer)
           .toList()
-          .indexWhere((f) {
-        return f.isArray
-            ? f.typeIdentifier.typeArg!.type!.name == wrappedType.name
-            : f.typeIdentifier.type!.name == wrappedType.name;
-      });
+          .indexWhere((f) => f.isArray || f.isNestedPointer
+              ? f.typeIdentifier.typeArg!.type!.name == wrappedType.name
+              : f.typeIdentifier.type!.name == wrappedType.name);
+      if (index == -1) {
+        throw StateError('Could not find the index of $wrappedType in '
+            '${enclosingType.fields}.');
+      }
+
       return TypeTuple.fromNativeType('${enclosingType.safeTypename}_$index');
     }
 

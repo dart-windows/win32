@@ -25,7 +25,6 @@ export 'src/projection/com_property.dart';
 export 'src/projection/field.dart';
 export 'src/projection/function.dart';
 export 'src/projection/method.dart';
-export 'src/projection/nested_struct.dart';
 export 'src/projection/parameter.dart';
 export 'src/projection/struct.dart';
 export 'src/projection/type.dart';

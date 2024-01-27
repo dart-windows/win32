@@ -6,10 +6,11 @@ import 'package:winmd/winmd.dart';
 
 import '../extensions/field.dart';
 import '../extensions/string.dart';
+import '../extensions/typedef.dart';
 import 'field.dart';
-import 'nested_struct.dart';
+import 'type.dart';
 
-/// Represents a Dart projection of a Struct typedef.
+/// Represents a Dart projection of a Struct [TypeDef].
 class StructProjection {
   StructProjection(this.typeDef, String structName, {this.comment = ''})
       : structName = structName.safeTypename;
@@ -18,25 +19,17 @@ class StructProjection {
   final String structName;
   final String comment;
 
-  String get baseType {
-    // Some structs may be opaque types. For example, WS_ERROR. Others may be
-    // unions, e.g. INPUT.
-    if (typeDef.fields.isEmpty) return 'Opaque';
-    if (typeDef.isUnion) return 'Union';
-    return 'Struct';
-  }
+  String get baseType => switch (typeDef) {
+        // Some structs may be unions, e.g., INPUT.
+        _ when typeDef.isUnion => 'Union',
+        _ => 'Struct'
+      };
 
-  int? _packingAlignment;
-  int get packingAlignment =>
-      _packingAlignment ??= _calculatePackingAlignment(typeDef);
-
-  int _calculatePackingAlignment(TypeDef typeDef) {
-    // Tokens like System.Guid have no packing alignment.
-    if (typeDef.token == 0) return 0xFF;
-
-    final alignment = typeDef.classLayout.packingAlignment ?? 0xFF;
-    return alignment == 0xFF ? 0 : alignment;
-  }
+  int get packingAlignment => switch (typeDef) {
+        // Tokens like System.Guid have no packing alignment.
+        _ when typeDef.token == 0 => 0,
+        _ => typeDef.classLayout.packingAlignment ?? 0
+      };
 
   String get classPreamble {
     final categoryComment = structName.startsWith('_')
@@ -63,55 +56,57 @@ class StructProjection {
 
   String _cacheNestedTypes() {
     final buffer = StringBuffer();
-    final nestedTypes = <({int index, TypeDef type})>[];
 
-    var fieldIdx = 0;
+    var fieldIndex = 0;
     for (final field in typeDef.fields) {
-      if (field.isNested) {
-        nestedTypes.add((index: fieldIdx, type: field.typeIdentifier.type!));
-        fieldIdx++;
-      } else if (field.isNestedArray) {
-        fieldIdx++;
+      if (field.isNested || field.isNestedArray || field.isNestedPointer) {
+        final type = field.isNested
+            ? field.typeIdentifier.type!
+            : field.typeIdentifier.typeArg!.type!;
+        final name = '${structName}_$fieldIndex';
+        final projection = StructProjection(type, name);
+        buffer
+          ..writeln()
+          ..writeln(projection);
+
+        if (field.isNested) {
+          // Add property accessors for the nested struct.
+          buffer
+            ..writeln()
+            ..writeln(_propertyAccessors(type, name));
+        }
+
+        fieldIndex++;
       }
-    }
-
-    // Add any nested types on which there is a dependency
-    for (final (:index, :type) in nestedTypes) {
-      // Nested types should have just one leading underscore, so we strip the
-      // others off and add one back.
-      final nestedTypeProjection = NestedStructProjection(
-        type,
-        '${structName}_$index',
-        rootTypePackingAlignment: packingAlignment,
-      );
-
-      buffer.write('\n$nestedTypeProjection\n');
     }
 
     return buffer.toString();
   }
 
-  String get _nestedArrays {
-    final buffer = StringBuffer();
-    final nestedArrays = <String, ({int index, TypeDef type})>{};
+  /// A nested type needs a way to access its members from the parent type.
+  /// This is necessary for anonymous nested types, of which there are many in
+  /// more complex Win32 structs.
+  String _propertyAccessors(TypeDef typeDef, String structName) {
+    final rootType = typeDef.rootType;
+    final extensionName = '${structName}_Extension';
+    final buffer = StringBuffer()
+      ..writeln('extension $extensionName on ${rootType.safeTypename} {');
 
-    var fieldIdx = 0;
     for (final field in typeDef.fields) {
-      if (field.isNestedArray) {
-        nestedArrays[field.typeIdentifier.typeArg!.name] =
-            (index: fieldIdx, type: field.typeIdentifier.typeArg!.type!);
-        fieldIdx++;
-      } else if (field.isNested) {
-        fieldIdx++;
-      }
+      final instanceName = field.instanceName;
+      final typeProjection = TypeProjection(field.typeIdentifier);
+      final fieldType = typeProjection.isCharArray && !field.isFlexibleArray
+          ? 'String'
+          : typeProjection.dartType.safeTypename;
+      final fieldName = field.name.safeIdentifier;
+      buffer
+        ..writeln('$fieldType get $fieldName => this.$instanceName;')
+        ..writeln(
+            'set $fieldName($fieldType value) => this.$instanceName = value;')
+        ..writeln();
     }
 
-    for (final field in nestedArrays.keys) {
-      final (:index, :type) = nestedArrays[field]!;
-      final nestedTypeProjection =
-          StructProjection(type, '${structName}_$index');
-      buffer.write('\n$nestedTypeProjection\n');
-    }
+    buffer.write('}');
 
     return buffer.toString();
   }
@@ -124,6 +119,5 @@ $classModifier class $structName extends $baseType {
 }
 
 $nestedTypes
-$_nestedArrays
 ''';
 }

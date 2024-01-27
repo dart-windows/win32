@@ -35,6 +35,24 @@ void main() {
       expect(pRange!.arrayUpperBound, equals(1));
     });
 
+    test('instanceName', () {
+      final charInfo =
+          scope.findTypeDef('Windows.Win32.System.Console.CHAR_INFO');
+      expect(charInfo, isNotNull);
+
+      final char = charInfo!.findField('Char');
+      expect(char, isNotNull);
+      expect(char!.instanceName, equals('Char'));
+
+      final [unicodeChar, asciiChar] = char.typeIdentifier.type!.fields;
+      expect(unicodeChar.instanceName, equals('Char.UnicodeChar'));
+      expect(asciiChar.instanceName, equals('Char.AsciiChar'));
+
+      final attributes = charInfo.findField('Attributes');
+      expect(attributes, isNotNull);
+      expect(attributes!.instanceName, equals('Attributes'));
+    });
+
     test('isArray', () {
       final queryService = scope
           .findTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
@@ -103,6 +121,26 @@ void main() {
       final dataList = wlanRawDataList!.findField('DataList');
       expect(dataList, isNotNull);
       expect(dataList!.isNestedArray, isTrue);
+    });
+
+    test('isNestedPointer', () {
+      final dhcpAllOptions = scope
+          .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
+      expect(dhcpAllOptions, isNotNull);
+
+      final vendorOptions = dhcpAllOptions!.findField('VendorOptions');
+      expect(vendorOptions, isNotNull);
+      expect(vendorOptions!.isNestedPointer, isTrue);
+    });
+
+    test('isPointer', () {
+      final dhcpAllOptions = scope
+          .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
+      expect(dhcpAllOptions, isNotNull);
+
+      final vendorOptions = dhcpAllOptions!.findField('VendorOptions');
+      expect(vendorOptions, isNotNull);
+      expect(vendorOptions!.isPointer, isTrue);
     });
   });
 

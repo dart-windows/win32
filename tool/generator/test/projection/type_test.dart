@@ -346,6 +346,17 @@ void main() {
   });
 
   test('Array is projected correctly 2', () {
+    final struct =
+        scope.findTypeDef('Windows.Win32.UI.Magnification.MAGCOLOREFFECT');
+    expect(struct, isNotNull);
+    final field = struct!.fields.first;
+    final projection = TypeProjection(field.typeIdentifier);
+    expect(projection.nativeType, equals('Array<Float>'));
+    expect(projection.dartType, equals('Array<Float>'));
+    expect(projection.attribute, equals('@Array(25)'));
+  });
+
+  test('FlexibleArray is projected correctly', () {
     final struct = scope
         .findTypeDef('Windows.Win32.NetworkManagement.WiFi.DOT11_NETWORK_LIST');
     expect(struct, isNotNull);
@@ -355,17 +366,6 @@ void main() {
     expect(projection.nativeType, equals('Array<DOT11_NETWORK>'));
     expect(projection.dartType, equals('Array<DOT11_NETWORK>'));
     expect(projection.attribute, equals('@Array(1)'));
-  });
-
-  test('Array is projected correctly 3', () {
-    final struct =
-        scope.findTypeDef('Windows.Win32.UI.Magnification.MAGCOLOREFFECT');
-    expect(struct, isNotNull);
-    final field = struct!.fields.first;
-    final projection = TypeProjection(field.typeIdentifier);
-    expect(projection.nativeType, equals('Array<Float>'));
-    expect(projection.dartType, equals('Array<Float>'));
-    expect(projection.attribute, equals('@Array(25)'));
   });
 
   test('GUIDs are projected correctly', () {
@@ -405,9 +405,57 @@ void main() {
     final typeDef = scope
         .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT')!;
     final wfx = typeDef.fields.first.typeIdentifier; // WAVEFORMATEX wfx;
-    final typeProjection = TypeProjection(wfx);
-    expect(typeProjection.dartType, equals('WAVEFORMATEX'));
-    expect(typeProjection.isDartPrimitive, isFalse);
+    final TypeProjection(:dartType, :isDartPrimitive) = TypeProjection(wfx);
+    expect(dartType, equals('WAVEFORMATEX'));
+    expect(isDartPrimitive, isFalse);
+  });
+
+  test('Nested structs are projected correctly 1', () {
+    final typeDef = scope.findTypeDef('Windows.Win32.Graphics.Gdi.DEVMODEW')!;
+
+    final anonymous1 =
+        typeDef.fields[6].typeIdentifier; // _Anonymous1_e__Union Anonymous1;
+    final typeProjection1 = TypeProjection(anonymous1);
+    expect(typeProjection1.dartType, equals('DEVMODE_0'));
+    expect(typeProjection1.isDartPrimitive, isFalse);
+
+    final [anonymous1Field, anonymous2Field] = anonymous1.type!.fields;
+
+    // _Anonymous1_e__Struct Anonymous1;
+    final typeProjection2 = TypeProjection(anonymous1Field.typeIdentifier);
+    expect(typeProjection2.dartType, equals('DEVMODE_0_0'));
+    expect(typeProjection2.isDartPrimitive, isFalse);
+
+    // _Anonymous2_e__Struct Anonymous2;
+    final typeProjection3 = TypeProjection(anonymous2Field.typeIdentifier);
+    expect(typeProjection3.dartType, equals('DEVMODE_0_1'));
+    expect(typeProjection3.isDartPrimitive, isFalse);
+
+    final anonymous2 =
+        typeDef.fields[17].typeIdentifier; // _Anonymous2_e__Union Anonymous2;
+    final typeProjection4 = TypeProjection(anonymous2);
+    expect(typeProjection4.dartType, equals('DEVMODE_1'));
+    expect(typeProjection4.isDartPrimitive, isFalse);
+  });
+
+  test('Nested structs are projected correctly 2', () {
+    final typeDef = scope
+        .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS')!;
+    final vendorOptions =
+        typeDef.fields.last.typeIdentifier; // _Anonymous_e__Struct*
+    final typeProjection = TypeProjection(vendorOptions);
+    expect(typeProjection.dartType, equals('Pointer<DHCP_ALL_OPTIONS_0>'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('Nested structs are projected correctly 3', () {
+    final typeDef = scope.findTypeDef(
+        'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST')!;
+    final dataList =
+        typeDef.fields.last.typeIdentifier; // _Anonymous_e__Struct[] DataList;
+    final typeProjection = TypeProjection(dataList);
+    expect(typeProjection.dartType, equals('Array<WLAN_RAW_DATA_LIST_0>'));
+    expect(typeProjection.isDartPrimitive, isTrue);
   });
 
   tearDownAll(MetadataStore.close);

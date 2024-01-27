@@ -34,6 +34,16 @@ void main() {
           equals('Windows.Win32.UI.Shell.IShellLink'));
     });
 
+    test('rootType', () {
+      final charInfo =
+          scope.findTypeDef('Windows.Win32.System.Console.CHAR_INFO');
+      expect(charInfo, isNotNull);
+
+      final char = charInfo!.findField('Char');
+      expect(char, isNotNull);
+      expect(char!.typeIdentifier.type!.rootType, equals(charInfo));
+    });
+
     test('safeFilename', () {
       final typeDef1 =
           scope.findTypeDef('Windows.Win32.UI.Accessibility.IUIAutomation');

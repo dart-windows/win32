@@ -23,6 +23,11 @@ extension TypeDefHelpers on TypeDef {
               : f.typeIdentifier.type!)
           .toList();
       final index = nestedTypes.indexWhere((type) => type.name == name);
+      if (index == -1) {
+        throw StateError(
+            'Could not find the index of $this in ${enclosingClass!.fields}');
+      }
+
       name = '${enclosingClass!.safeTypename}_$index';
     }
 
@@ -33,6 +38,17 @@ extension TypeDefHelpers on TypeDef {
     if (name.endsWith('W')) return name.stripAnsiUnicodeSuffix();
 
     return name;
+  }
+
+  /// Returns the topmost [TypeDef] in the nested tree.
+  TypeDef get rootType {
+    var rootType = this;
+
+    while (rootType.enclosingClass != null) {
+      rootType = rootType.enclosingClass!;
+    }
+
+    return rootType;
   }
 
   /// Returns a safe Dart filename for code generation, derived from the
