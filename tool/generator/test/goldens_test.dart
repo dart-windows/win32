@@ -12,31 +12,46 @@ import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
 void main() {
+  late Scope scope;
+
+  setUpAll(() async {
+    scope =
+        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+  });
+
   group('Golden testing', () {
-    setUpAll(() async {
-      await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+    test('DEVMODE struct', () {
+      const type = 'Windows.Win32.Graphics.Gdi.DEVMODEW';
+      final typeDef = scope.findTypeDef(type);
+      expect(typeDef, isNotNull);
+      final structsToGenerate = loadMap('win32_structs.json');
+      final projection = StructProjection(typeDef!, 'DEVMODE',
+          comment: structsToGenerate[type] ?? '');
+      compareGolden('devmode.g', projection.toString().format());
     });
 
-    test('IFileOpenDialog', () {
+    test('IFileOpenDialog interface', () {
       const type = 'Windows.Win32.UI.Shell.IFileOpenDialog';
-      final typeDef = MetadataStore.getMetadataForType(type)!;
+      final typeDef = scope.findTypeDef(type);
+      expect(typeDef, isNotNull);
       final comTypesToGenerate = loadMap('com_types.json');
-      final projection = ComClassProjection.fromInterface(typeDef,
+      final projection = ComClassProjection.fromInterface(typeDef!,
           interfaceComment: comTypesToGenerate[type] ?? '');
       compareGolden('ifileopendialog.g', projection.toString().format());
     });
 
-    test('INetwork', () async {
+    test('INetwork interface', () async {
       const type = 'Windows.Win32.Networking.NetworkListManager.INetwork';
-      final typeDef = MetadataStore.getMetadataForType(type)!;
+      final typeDef = scope.findTypeDef(type);
+      expect(typeDef, isNotNull);
       final comTypesToGenerate = loadMap('com_types.json');
       final projection =
-          ComInterfaceProjection(typeDef, comTypesToGenerate[type] ?? '');
+          ComInterfaceProjection(typeDef!, comTypesToGenerate[type] ?? '');
       compareGolden('inetwork.g', projection.toString().format());
     });
-
-    tearDownAll(MetadataStore.close);
   });
+
+  tearDownAll(MetadataStore.close);
 }
 
 /// Compares the contents of a [content] with a golden file specified by the
