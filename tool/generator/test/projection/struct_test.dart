@@ -51,6 +51,56 @@ void main() {
       expect(structProjection2.classModifier, equals('sealed'));
     });
 
+    test('nestedTypes 1', () {
+      final wlanRawDataList = scope.findTypeDef(
+          'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST');
+      expect(wlanRawDataList, isNotNull);
+      final structProjection =
+          StructProjection(wlanRawDataList!, 'WLAN_RAW_DATA_LIST');
+      expect(structProjection.fieldsProjection, equalsIgnoringWhitespace('''
+@Uint32()
+external int dwTotalSize;
+@Uint32()
+external int dwNumberOfItems;
+@Array(1)
+external Array<WLAN_RAW_DATA_LIST_0> DataList;
+'''));
+      expect(structProjection.nestedTypes, equalsIgnoringWhitespace('''
+/// {@category struct}
+sealed class WLAN_RAW_DATA_LIST_0 extends Struct {
+@Uint32()
+external int dwDataOffset;
+
+@Uint32()
+external int dwDataSize;
+}
+'''));
+    });
+
+    test('nestedTypes 2', () {
+      final dhcpAllOptions = scope
+          .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
+      expect(dhcpAllOptions, isNotNull);
+      final structProjection =
+          StructProjection(dhcpAllOptions!, 'DHCP_ALL_OPTIONS');
+      expect(structProjection.fieldsProjection, equalsIgnoringWhitespace('''
+@Uint32()
+ external int Flags;
+external Pointer<DHCP_OPTION_ARRAY> NonVendorOptions;
+@Uint32()
+external int NumVendorOptions;
+external Pointer<DHCP_ALL_OPTIONS_0> VendorOptions;
+'''));
+      expect(structProjection.nestedTypes, equalsIgnoringWhitespace('''
+/// {@category struct}
+sealed class DHCP_ALL_OPTIONS_0 extends Struct {
+external DHCP_OPTION Option;
+external Pointer<Utf16> VendorName;
+external Pointer<Utf16> ClassName;
+}
+'''));
+    });
+
     test('packingAlignment', () {
       // DWM_BLURBEHIND contains a BOOL, which appears in Win32 metadata as a
       // struct, but that shouldn't stop it being packed.

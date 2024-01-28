@@ -49,7 +49,7 @@ class StructProjection {
       typeDef.isNested || typeDef.isUnion ? 'sealed' : 'base';
 
   String get fieldsProjection =>
-      typeDef.fields.map(FieldProjection.new).join('\n\n');
+      typeDef.fields.map(FieldProjection.new).join('\n');
 
   String? _nestedTypes;
   String get nestedTypes => _nestedTypes ??= _cacheNestedTypes();
@@ -65,15 +65,13 @@ class StructProjection {
             : field.typeIdentifier.typeArg!.type!;
         final name = '${structName}_$fieldIndex';
         final projection = StructProjection(type, name);
-        buffer
-          ..writeln()
-          ..writeln(projection);
+        buffer.writeln(projection);
 
         if (field.isNested) {
           // Add property accessors for the nested struct.
           buffer
             ..writeln()
-            ..writeln(_propertyAccessors(type, name));
+            ..write(_propertyAccessors(type, name));
         }
 
         fieldIndex++;
