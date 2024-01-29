@@ -32,11 +32,11 @@ class INetworkListManager extends IDispatch {
   factory INetworkListManager.from(IUnknown interface) =>
       INetworkListManager(interface.toInterface(IID_INetworkListManager));
 
-  int getNetworks(int Flags, Pointer<VTablePointer> ppEnumNetwork) =>
+  int getNetworks(int flags, Pointer<VTablePointer> ppEnumNetwork) =>
       _vtable.GetNetworks.asFunction<
-              int Function(VTablePointer, int Flags,
+              int Function(VTablePointer, int flags,
                   Pointer<VTablePointer> ppEnumNetwork)>()(
-          ptr, Flags, ppEnumNetwork);
+          ptr, flags, ppEnumNetwork);
 
   int getNetwork(GUID gdNetworkId, Pointer<VTablePointer> ppNetwork) =>
       _vtable.GetNetwork.asFunction<
@@ -86,7 +86,7 @@ base class INetworkListManagerVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 Flags,
+          Int32 Function(VTablePointer, Int32 flags,
               Pointer<VTablePointer> ppEnumNetwork)>> GetNetworks;
   external Pointer<
       NativeFunction<

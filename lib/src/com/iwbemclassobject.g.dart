@@ -51,14 +51,14 @@ class IWbemClassObject extends IUnknown {
           ptr, wszName, lFlags, pVal, pType ?? nullptr, plFlavor ?? nullptr);
 
   int put(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pVal,
-          int Type) =>
+          int type) =>
       _vtable.Put.asFunction<
           int Function(
               VTablePointer,
               Pointer<Utf16> wszName,
               int lFlags,
               Pointer<VARIANT> pVal,
-              int Type)>()(ptr, wszName, lFlags, pVal, Type);
+              int type)>()(ptr, wszName, lFlags, pVal, type);
 
   int delete(Pointer<Utf16> wszName) => _vtable.Delete.asFunction<
       int Function(VTablePointer, Pointer<Utf16> wszName)>()(ptr, wszName);
@@ -215,7 +215,7 @@ base class IWbemClassObjectVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Utf16> wszName, Int32 lFlags,
-              Pointer<VARIANT> pVal, Int32 Type)>> Put;
+              Pointer<VARIANT> pVal, Int32 type)>> Put;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> wszName)>>
       Delete;

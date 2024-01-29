@@ -63,16 +63,16 @@ class IAudioClient3 extends IAudioClient2 {
                   Pointer<Uint32> pCurrentPeriodInFrames)>()(
           ptr, ppFormat, pCurrentPeriodInFrames);
 
-  int initializeSharedAudioStream(int StreamFlags, int PeriodInFrames,
-          Pointer<WAVEFORMATEX> pFormat, Pointer<GUID>? AudioSessionGuid) =>
+  int initializeSharedAudioStream(int streamFlags, int periodInFrames,
+          Pointer<WAVEFORMATEX> pFormat, Pointer<GUID>? audioSessionGuid) =>
       _vtable.InitializeSharedAudioStream.asFunction<
               int Function(
                   VTablePointer,
-                  int StreamFlags,
-                  int PeriodInFrames,
+                  int streamFlags,
+                  int periodInFrames,
                   Pointer<WAVEFORMATEX> pFormat,
-                  Pointer<GUID> AudioSessionGuid)>()(ptr, StreamFlags,
-          PeriodInFrames, pFormat, AudioSessionGuid ?? nullptr);
+                  Pointer<GUID> audioSessionGuid)>()(ptr, streamFlags,
+          periodInFrames, pFormat, audioSessionGuid ?? nullptr);
 }
 
 /// @nodoc
@@ -98,8 +98,8 @@ base class IAudioClient3Vtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Uint32 StreamFlags,
-              Uint32 PeriodInFrames,
+              Uint32 streamFlags,
+              Uint32 periodInFrames,
               Pointer<WAVEFORMATEX> pFormat,
-              Pointer<GUID> AudioSessionGuid)>> InitializeSharedAudioStream;
+              Pointer<GUID> audioSessionGuid)>> InitializeSharedAudioStream;
 }

@@ -54,11 +54,11 @@ class IShellItemArray extends IUnknown {
               Pointer<Pointer> ppv)>()(ptr, keyType, riid, ppv);
 
   int getAttributes(
-          int AttribFlags, int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
+          int attribFlags, int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
-              int Function(VTablePointer, int AttribFlags, int sfgaoMask,
+              int Function(VTablePointer, int attribFlags, int sfgaoMask,
                   Pointer<Uint32> psfgaoAttribs)>()(
-          ptr, AttribFlags, sfgaoMask, psfgaoAttribs);
+          ptr, attribFlags, sfgaoMask, psfgaoAttribs);
 
   int getCount(Pointer<Uint32> pdwNumItems) => _vtable.GetCount.asFunction<
       int Function(
@@ -96,7 +96,7 @@ base class IShellItemArrayVtbl extends Struct {
               Pointer<Pointer> ppv)>> GetPropertyDescriptionList;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 AttribFlags, Uint32 sfgaoMask,
+          Int32 Function(VTablePointer, Int32 attribFlags, Uint32 sfgaoMask,
               Pointer<Uint32> psfgaoAttribs)>> GetAttributes;
   external Pointer<
       NativeFunction<

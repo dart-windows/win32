@@ -29,104 +29,104 @@ class ISpeechObjectToken extends IDispatch {
   factory ISpeechObjectToken.from(IUnknown interface) =>
       ISpeechObjectToken(interface.toInterface(IID_ISpeechObjectToken));
 
-  int get_Id(Pointer<Pointer<Utf16>> ObjectId) => _vtable.get_Id.asFunction<
+  int get_Id(Pointer<Pointer<Utf16>> objectId) => _vtable.get_Id.asFunction<
       int Function(
-          VTablePointer, Pointer<Pointer<Utf16>> ObjectId)>()(ptr, ObjectId);
+          VTablePointer, Pointer<Pointer<Utf16>> objectId)>()(ptr, objectId);
 
-  int get_DataKey(Pointer<VTablePointer> DataKey) => _vtable.get_DataKey
+  int get_DataKey(Pointer<VTablePointer> dataKey) => _vtable.get_DataKey
       .asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> DataKey)>()(ptr, DataKey);
+              VTablePointer, Pointer<VTablePointer> dataKey)>()(ptr, dataKey);
 
-  int get_Category(Pointer<VTablePointer> Category) =>
+  int get_Category(Pointer<VTablePointer> category) =>
       _vtable.get_Category.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> Category)>()(ptr, Category);
+              VTablePointer, Pointer<VTablePointer> category)>()(ptr, category);
 
-  int getDescription(int Locale, Pointer<Pointer<Utf16>> Description) =>
+  int getDescription(int locale, Pointer<Pointer<Utf16>> description) =>
       _vtable.GetDescription.asFunction<
-          int Function(VTablePointer, int Locale,
-              Pointer<Pointer<Utf16>> Description)>()(ptr, Locale, Description);
+          int Function(VTablePointer, int locale,
+              Pointer<Pointer<Utf16>> description)>()(ptr, locale, description);
 
   int setId(
-          Pointer<Utf16> Id, Pointer<Utf16> CategoryID, int CreateIfNotExist) =>
+          Pointer<Utf16> id, Pointer<Utf16> categoryID, int createIfNotExist) =>
       _vtable.SetId.asFunction<
           int Function(
               VTablePointer,
-              Pointer<Utf16> Id,
-              Pointer<Utf16> CategoryID,
-              int CreateIfNotExist)>()(ptr, Id, CategoryID, CreateIfNotExist);
+              Pointer<Utf16> id,
+              Pointer<Utf16> categoryID,
+              int createIfNotExist)>()(ptr, id, categoryID, createIfNotExist);
 
-  int getAttribute(Pointer<Utf16> AttributeName,
-          Pointer<Pointer<Utf16>> AttributeValue) =>
+  int getAttribute(Pointer<Utf16> attributeName,
+          Pointer<Pointer<Utf16>> attributeValue) =>
       _vtable.GetAttribute.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> AttributeName,
-                  Pointer<Pointer<Utf16>> AttributeValue)>()(
-          ptr, AttributeName, AttributeValue);
+              int Function(VTablePointer, Pointer<Utf16> attributeName,
+                  Pointer<Pointer<Utf16>> attributeValue)>()(
+          ptr, attributeName, attributeValue);
 
-  int createInstance(VTablePointer? pUnkOuter, int ClsContext,
-          Pointer<VTablePointer> Object) =>
+  int createInstance(VTablePointer? pUnkOuter, int clsContext,
+          Pointer<VTablePointer> object) =>
       _vtable.CreateInstance.asFunction<
               int Function(VTablePointer, VTablePointer pUnkOuter,
-                  int ClsContext, Pointer<VTablePointer> Object)>()(
-          ptr, pUnkOuter ?? nullptr, ClsContext, Object);
+                  int clsContext, Pointer<VTablePointer> object)>()(
+          ptr, pUnkOuter ?? nullptr, clsContext, object);
 
-  int remove(Pointer<Utf16> ObjectStorageCLSID) => _vtable.Remove.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> ObjectStorageCLSID)>()(
-      ptr, ObjectStorageCLSID);
+  int remove(Pointer<Utf16> objectStorageCLSID) => _vtable.Remove.asFunction<
+          int Function(VTablePointer, Pointer<Utf16> objectStorageCLSID)>()(
+      ptr, objectStorageCLSID);
 
   int getStorageFileName(
-          Pointer<Utf16> ObjectStorageCLSID,
-          Pointer<Utf16> KeyName,
-          Pointer<Utf16> FileName,
-          int Folder,
-          Pointer<Pointer<Utf16>> FilePath) =>
+          Pointer<Utf16> objectStorageCLSID,
+          Pointer<Utf16> keyName,
+          Pointer<Utf16> fileName,
+          int folder,
+          Pointer<Pointer<Utf16>> filePath) =>
       _vtable.GetStorageFileName.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<Utf16> ObjectStorageCLSID,
-                  Pointer<Utf16> KeyName,
-                  Pointer<Utf16> FileName,
-                  int Folder,
-                  Pointer<Pointer<Utf16>> FilePath)>()(
-          ptr, ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
+                  Pointer<Utf16> objectStorageCLSID,
+                  Pointer<Utf16> keyName,
+                  Pointer<Utf16> fileName,
+                  int folder,
+                  Pointer<Pointer<Utf16>> filePath)>()(
+          ptr, objectStorageCLSID, keyName, fileName, folder, filePath);
 
-  int removeStorageFileName(Pointer<Utf16> ObjectStorageCLSID,
-          Pointer<Utf16> KeyName, int DeleteFile) =>
+  int removeStorageFileName(Pointer<Utf16> objectStorageCLSID,
+          Pointer<Utf16> keyName, int deleteFile) =>
       _vtable.RemoveStorageFileName.asFunction<
           int Function(
               VTablePointer,
-              Pointer<Utf16> ObjectStorageCLSID,
-              Pointer<Utf16> KeyName,
-              int DeleteFile)>()(ptr, ObjectStorageCLSID, KeyName, DeleteFile);
+              Pointer<Utf16> objectStorageCLSID,
+              Pointer<Utf16> keyName,
+              int deleteFile)>()(ptr, objectStorageCLSID, keyName, deleteFile);
 
-  int isUISupported(Pointer<Utf16> TypeOfUI, Pointer<VARIANT> ExtraData,
-          VTablePointer? Object, Pointer<Int16> Supported) =>
+  int isUISupported(Pointer<Utf16> typeOfUI, Pointer<VARIANT> extraData,
+          VTablePointer? object, Pointer<Int16> supported) =>
       _vtable.IsUISupported.asFunction<
               int Function(
                   VTablePointer,
-                  Pointer<Utf16> TypeOfUI,
-                  Pointer<VARIANT> ExtraData,
-                  VTablePointer Object,
-                  Pointer<Int16> Supported)>()(
-          ptr, TypeOfUI, ExtraData, Object ?? nullptr, Supported);
+                  Pointer<Utf16> typeOfUI,
+                  Pointer<VARIANT> extraData,
+                  VTablePointer object,
+                  Pointer<Int16> supported)>()(
+          ptr, typeOfUI, extraData, object ?? nullptr, supported);
 
-  int displayUI(int hWnd, Pointer<Utf16> Title, Pointer<Utf16> TypeOfUI,
-          Pointer<VARIANT> ExtraData, VTablePointer? Object) =>
+  int displayUI(int hWnd, Pointer<Utf16> title, Pointer<Utf16> typeOfUI,
+          Pointer<VARIANT> extraData, VTablePointer? object) =>
       _vtable.DisplayUI.asFunction<
               int Function(
                   VTablePointer,
                   int hWnd,
-                  Pointer<Utf16> Title,
-                  Pointer<Utf16> TypeOfUI,
-                  Pointer<VARIANT> ExtraData,
-                  VTablePointer Object)>()(
-          ptr, hWnd, Title, TypeOfUI, ExtraData, Object ?? nullptr);
+                  Pointer<Utf16> title,
+                  Pointer<Utf16> typeOfUI,
+                  Pointer<VARIANT> extraData,
+                  VTablePointer object)>()(
+          ptr, hWnd, title, typeOfUI, extraData, object ?? nullptr);
 
-  int matchesAttributes(Pointer<Utf16> Attributes, Pointer<Int16> Matches) =>
+  int matchesAttributes(Pointer<Utf16> attributes, Pointer<Int16> matches) =>
       _vtable.MatchesAttributes.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> Attributes,
-              Pointer<Int16> Matches)>()(ptr, Attributes, Matches);
+          int Function(VTablePointer, Pointer<Utf16> attributes,
+              Pointer<Int16> matches)>()(ptr, attributes, matches);
 }
 
 /// @nodoc
@@ -134,71 +134,71 @@ base class ISpeechObjectTokenVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> ObjectId)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> objectId)>>
       get_Id;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> DataKey)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> dataKey)>>
       get_DataKey;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> Category)>>
+              Int32 Function(VTablePointer, Pointer<VTablePointer> category)>>
       get_Category;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 Locale,
-              Pointer<Pointer<Utf16>> Description)>> GetDescription;
+          Int32 Function(VTablePointer, Int32 locale,
+              Pointer<Pointer<Utf16>> description)>> GetDescription;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> Id,
-              Pointer<Utf16> CategoryID, Int16 CreateIfNotExist)>> SetId;
+          Int32 Function(VTablePointer, Pointer<Utf16> id,
+              Pointer<Utf16> categoryID, Int16 createIfNotExist)>> SetId;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> AttributeName,
-              Pointer<Pointer<Utf16>> AttributeValue)>> GetAttribute;
+          Int32 Function(VTablePointer, Pointer<Utf16> attributeName,
+              Pointer<Pointer<Utf16>> attributeValue)>> GetAttribute;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
               VTablePointer pUnkOuter,
-              Uint32 ClsContext,
-              Pointer<VTablePointer> Object)>> CreateInstance;
+              Uint32 clsContext,
+              Pointer<VTablePointer> object)>> CreateInstance;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> ObjectStorageCLSID)>>
+              Int32 Function(VTablePointer, Pointer<Utf16> objectStorageCLSID)>>
       Remove;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<Utf16> ObjectStorageCLSID,
-              Pointer<Utf16> KeyName,
-              Pointer<Utf16> FileName,
-              Int32 Folder,
-              Pointer<Pointer<Utf16>> FilePath)>> GetStorageFileName;
+              Pointer<Utf16> objectStorageCLSID,
+              Pointer<Utf16> keyName,
+              Pointer<Utf16> fileName,
+              Int32 folder,
+              Pointer<Pointer<Utf16>> filePath)>> GetStorageFileName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> ObjectStorageCLSID,
-              Pointer<Utf16> KeyName, Int16 DeleteFile)>> RemoveStorageFileName;
+          Int32 Function(VTablePointer, Pointer<Utf16> objectStorageCLSID,
+              Pointer<Utf16> keyName, Int16 deleteFile)>> RemoveStorageFileName;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<Utf16> TypeOfUI,
-              Pointer<VARIANT> ExtraData,
-              VTablePointer Object,
-              Pointer<Int16> Supported)>> IsUISupported;
+              Pointer<Utf16> typeOfUI,
+              Pointer<VARIANT> extraData,
+              VTablePointer object,
+              Pointer<Int16> supported)>> IsUISupported;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
               Int32 hWnd,
-              Pointer<Utf16> Title,
-              Pointer<Utf16> TypeOfUI,
-              Pointer<VARIANT> ExtraData,
-              VTablePointer Object)>> DisplayUI;
+              Pointer<Utf16> title,
+              Pointer<Utf16> typeOfUI,
+              Pointer<VARIANT> extraData,
+              VTablePointer object)>> DisplayUI;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> Attributes,
-              Pointer<Int16> Matches)>> MatchesAttributes;
+          Int32 Function(VTablePointer, Pointer<Utf16> attributes,
+              Pointer<Int16> matches)>> MatchesAttributes;
 }

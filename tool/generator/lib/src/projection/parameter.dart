@@ -31,7 +31,7 @@ class ParameterProjection {
 
   String get paramProjection => '$type $identifier';
 
-  String get identifier => name.safeIdentifier;
+  String get identifier => name.toCamelCase().safeIdentifier;
 
   @override
   String toString() => '$typeProjection $identifier';

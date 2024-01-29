@@ -35,10 +35,10 @@ class ISpNotifySource extends IUnknown {
           .asFunction<int Function(VTablePointer, VTablePointer pNotifySink)>()(
       ptr, pNotifySink ?? nullptr);
 
-  int setNotifyWindowMessage(int hWnd, int Msg, int wParam, int lParam) =>
+  int setNotifyWindowMessage(int hWnd, int msg, int wParam, int lParam) =>
       _vtable.SetNotifyWindowMessage.asFunction<
-          int Function(VTablePointer, int hWnd, int Msg, int wParam,
-              int lParam)>()(ptr, hWnd, Msg, wParam, lParam);
+          int Function(VTablePointer, int hWnd, int msg, int wParam,
+              int lParam)>()(ptr, hWnd, msg, wParam, lParam);
 
   int setNotifyCallbackFunction(
           Pointer<Pointer<NativeFunction<SpNotifyCallback>>> pfnCallback,
@@ -80,7 +80,7 @@ base class ISpNotifySourceVtbl extends Struct {
       SetNotifySink;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr hWnd, Uint32 Msg, IntPtr wParam,
+          Int32 Function(VTablePointer, IntPtr hWnd, Uint32 msg, IntPtr wParam,
               IntPtr lParam)>> SetNotifyWindowMessage;
   external Pointer<
       NativeFunction<

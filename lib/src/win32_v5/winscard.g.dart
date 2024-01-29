@@ -874,29 +874,29 @@ final _SCardLocateCardsByATR = _winscard.lookupFunction<
 /// {@category winscard}
 int SCardReadCache(
         int hContext,
-        Pointer<GUID> CardIdentifier,
-        int FreshnessCounter,
-        Pointer<Utf16> LookupName,
-        Pointer<Uint8> Data,
-        Pointer<Uint32> DataLen) =>
+        Pointer<GUID> cardIdentifier,
+        int freshnessCounter,
+        Pointer<Utf16> lookupName,
+        Pointer<Uint8> data,
+        Pointer<Uint32> dataLen) =>
     _SCardReadCache(
-        hContext, CardIdentifier, FreshnessCounter, LookupName, Data, DataLen);
+        hContext, cardIdentifier, freshnessCounter, lookupName, data, dataLen);
 
 final _SCardReadCache = _winscard.lookupFunction<
     Int32 Function(
         IntPtr hContext,
-        Pointer<GUID> CardIdentifier,
-        Uint32 FreshnessCounter,
-        Pointer<Utf16> LookupName,
-        Pointer<Uint8> Data,
-        Pointer<Uint32> DataLen),
+        Pointer<GUID> cardIdentifier,
+        Uint32 freshnessCounter,
+        Pointer<Utf16> lookupName,
+        Pointer<Uint8> data,
+        Pointer<Uint32> dataLen),
     int Function(
         int hContext,
-        Pointer<GUID> CardIdentifier,
-        int FreshnessCounter,
-        Pointer<Utf16> LookupName,
-        Pointer<Uint8> Data,
-        Pointer<Uint32> DataLen)>('SCardReadCacheW');
+        Pointer<GUID> cardIdentifier,
+        int freshnessCounter,
+        Pointer<Utf16> lookupName,
+        Pointer<Uint8> data,
+        Pointer<Uint32> dataLen)>('SCardReadCacheW');
 
 /// The SCardReconnect function reestablishes an existing connection between the
 /// calling application and a smart card. This function moves a card handle from
@@ -1143,26 +1143,26 @@ final _SCardTransmit = _winscard.lookupFunction<
 /// {@category winscard}
 int SCardWriteCache(
         int hContext,
-        Pointer<GUID> CardIdentifier,
-        int FreshnessCounter,
-        Pointer<Utf16> LookupName,
-        Pointer<Uint8> Data,
-        int DataLen) =>
+        Pointer<GUID> cardIdentifier,
+        int freshnessCounter,
+        Pointer<Utf16> lookupName,
+        Pointer<Uint8> data,
+        int dataLen) =>
     _SCardWriteCache(
-        hContext, CardIdentifier, FreshnessCounter, LookupName, Data, DataLen);
+        hContext, cardIdentifier, freshnessCounter, lookupName, data, dataLen);
 
 final _SCardWriteCache = _winscard.lookupFunction<
     Int32 Function(
         IntPtr hContext,
-        Pointer<GUID> CardIdentifier,
-        Uint32 FreshnessCounter,
-        Pointer<Utf16> LookupName,
-        Pointer<Uint8> Data,
-        Uint32 DataLen),
+        Pointer<GUID> cardIdentifier,
+        Uint32 freshnessCounter,
+        Pointer<Utf16> lookupName,
+        Pointer<Uint8> data,
+        Uint32 dataLen),
     int Function(
         int hContext,
-        Pointer<GUID> CardIdentifier,
-        int FreshnessCounter,
-        Pointer<Utf16> LookupName,
-        Pointer<Uint8> Data,
-        int DataLen)>('SCardWriteCacheW');
+        Pointer<GUID> cardIdentifier,
+        int freshnessCounter,
+        Pointer<Utf16> lookupName,
+        Pointer<Uint8> data,
+        int dataLen)>('SCardWriteCacheW');

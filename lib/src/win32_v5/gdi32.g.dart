@@ -88,14 +88,14 @@ final _AddFontResourceEx = _gdi32.lookupFunction<
 /// ```
 /// {@category gdi32}
 int AngleArc(
-        int hdc, int x, int y, int r, double StartAngle, double SweepAngle) =>
-    _AngleArc(hdc, x, y, r, StartAngle, SweepAngle);
+        int hdc, int x, int y, int r, double startAngle, double sweepAngle) =>
+    _AngleArc(hdc, x, y, r, startAngle, sweepAngle);
 
 final _AngleArc = _gdi32.lookupFunction<
-    Int32 Function(IntPtr hdc, Int32 x, Int32 y, Uint32 r, Float StartAngle,
-        Float SweepAngle),
-    int Function(int hdc, int x, int y, int r, double StartAngle,
-        double SweepAngle)>('AngleArc');
+    Int32 Function(IntPtr hdc, Int32 x, Int32 y, Uint32 r, Float startAngle,
+        Float sweepAngle),
+    int Function(int hdc, int x, int y, int r, double startAngle,
+        double sweepAngle)>('AngleArc');
 
 /// The AnimatePalette function replaces entries in the specified logical
 /// palette.
@@ -1517,30 +1517,30 @@ int StretchDIBits(
         int hdc,
         int xDest,
         int yDest,
-        int DestWidth,
-        int DestHeight,
+        int destWidth,
+        int destHeight,
         int xSrc,
         int ySrc,
-        int SrcWidth,
-        int SrcHeight,
+        int srcWidth,
+        int srcHeight,
         Pointer? lpBits,
         Pointer<BITMAPINFO> lpbmi,
         int iUsage,
         int rop) =>
-    _StretchDIBits(hdc, xDest, yDest, DestWidth, DestHeight, xSrc, ySrc,
-        SrcWidth, SrcHeight, lpBits ?? nullptr, lpbmi, iUsage, rop);
+    _StretchDIBits(hdc, xDest, yDest, destWidth, destHeight, xSrc, ySrc,
+        srcWidth, srcHeight, lpBits ?? nullptr, lpbmi, iUsage, rop);
 
 final _StretchDIBits = _gdi32.lookupFunction<
     Int32 Function(
         IntPtr hdc,
         Int32 xDest,
         Int32 yDest,
-        Int32 DestWidth,
-        Int32 DestHeight,
+        Int32 destWidth,
+        Int32 destHeight,
         Int32 xSrc,
         Int32 ySrc,
-        Int32 SrcWidth,
-        Int32 SrcHeight,
+        Int32 srcWidth,
+        Int32 srcHeight,
         Pointer lpBits,
         Pointer<BITMAPINFO> lpbmi,
         Uint32 iUsage,
@@ -1549,12 +1549,12 @@ final _StretchDIBits = _gdi32.lookupFunction<
         int hdc,
         int xDest,
         int yDest,
-        int DestWidth,
-        int DestHeight,
+        int destWidth,
+        int destHeight,
         int xSrc,
         int ySrc,
-        int SrcWidth,
-        int SrcHeight,
+        int srcWidth,
+        int srcHeight,
         Pointer lpBits,
         Pointer<BITMAPINFO> lpbmi,
         int iUsage,

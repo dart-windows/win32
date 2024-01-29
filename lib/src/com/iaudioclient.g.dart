@@ -32,28 +32,28 @@ class IAudioClient extends IUnknown {
       IAudioClient(interface.toInterface(IID_IAudioClient));
 
   int initialize(
-          int ShareMode,
-          int StreamFlags,
+          int shareMode,
+          int streamFlags,
           int hnsBufferDuration,
           int hnsPeriodicity,
           Pointer<WAVEFORMATEX> pFormat,
-          Pointer<GUID>? AudioSessionGuid) =>
+          Pointer<GUID>? audioSessionGuid) =>
       _vtable.Initialize.asFunction<
               int Function(
                   VTablePointer,
-                  int ShareMode,
-                  int StreamFlags,
+                  int shareMode,
+                  int streamFlags,
                   int hnsBufferDuration,
                   int hnsPeriodicity,
                   Pointer<WAVEFORMATEX> pFormat,
-                  Pointer<GUID> AudioSessionGuid)>()(
+                  Pointer<GUID> audioSessionGuid)>()(
           ptr,
-          ShareMode,
-          StreamFlags,
+          shareMode,
+          streamFlags,
           hnsBufferDuration,
           hnsPeriodicity,
           pFormat,
-          AudioSessionGuid ?? nullptr);
+          audioSessionGuid ?? nullptr);
 
   int getBufferSize(Pointer<Uint32> pNumBufferFrames) =>
       _vtable.GetBufferSize.asFunction<
@@ -70,15 +70,15 @@ class IAudioClient extends IUnknown {
               int Function(VTablePointer, Pointer<Uint32> pNumPaddingFrames)>()(
           ptr, pNumPaddingFrames);
 
-  int isFormatSupported(int ShareMode, Pointer<WAVEFORMATEX> pFormat,
+  int isFormatSupported(int shareMode, Pointer<WAVEFORMATEX> pFormat,
           Pointer<Pointer<WAVEFORMATEX>>? ppClosestMatch) =>
       _vtable.IsFormatSupported.asFunction<
               int Function(
                   VTablePointer,
-                  int ShareMode,
+                  int shareMode,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>()(
-          ptr, ShareMode, pFormat, ppClosestMatch ?? nullptr);
+          ptr, shareMode, pFormat, ppClosestMatch ?? nullptr);
 
   int getMixFormat(Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat) =>
       _vtable.GetMixFormat.asFunction<
@@ -119,12 +119,12 @@ base class IAudioClientVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Int32 ShareMode,
-              Uint32 StreamFlags,
+              Int32 shareMode,
+              Uint32 streamFlags,
               Int64 hnsBufferDuration,
               Int64 hnsPeriodicity,
               Pointer<WAVEFORMATEX> pFormat,
-              Pointer<GUID> AudioSessionGuid)>> Initialize;
+              Pointer<GUID> audioSessionGuid)>> Initialize;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Uint32> pNumBufferFrames)>>
@@ -141,7 +141,7 @@ base class IAudioClientVtbl extends Struct {
           NativeFunction<
               Int32 Function(
                   VTablePointer,
-                  Int32 ShareMode,
+                  Int32 shareMode,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>>
       IsFormatSupported;

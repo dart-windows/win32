@@ -104,8 +104,8 @@ class INetwork extends IDispatch {
   int getCategory(Pointer<Int32> pCategory) => _vtable.GetCategory.asFunction<
       int Function(VTablePointer, Pointer<Int32> pCategory)>()(ptr, pCategory);
 
-  int setCategory(int NewCategory) => _vtable.SetCategory.asFunction<
-      int Function(VTablePointer, int NewCategory)>()(ptr, NewCategory);
+  int setCategory(int newCategory) => _vtable.SetCategory.asFunction<
+      int Function(VTablePointer, int newCategory)>()(ptr, newCategory);
 }
 
 /// @nodoc
@@ -166,6 +166,6 @@ base class INetworkVtbl extends Struct {
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Int32> pCategory)>> GetCategory;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 NewCategory)>>
+          NativeFunction<Int32 Function(VTablePointer, Int32 newCategory)>>
       SetCategory;
 }

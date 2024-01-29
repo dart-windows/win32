@@ -31,11 +31,11 @@ class IAudioClient2 extends IAudioClient {
   factory IAudioClient2.from(IUnknown interface) =>
       IAudioClient2(interface.toInterface(IID_IAudioClient2));
 
-  int isOffloadCapable(int Category, Pointer<Int32> pbOffloadCapable) =>
+  int isOffloadCapable(int category, Pointer<Int32> pbOffloadCapable) =>
       _vtable.IsOffloadCapable.asFunction<
-              int Function(VTablePointer, int Category,
+              int Function(VTablePointer, int category,
                   Pointer<Int32> pbOffloadCapable)>()(
-          ptr, Category, pbOffloadCapable);
+          ptr, category, pbOffloadCapable);
 
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
       _vtable.SetClientProperties.asFunction<
@@ -62,7 +62,7 @@ base class IAudioClient2Vtbl extends Struct {
   external IAudioClientVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 Category,
+          Int32 Function(VTablePointer, Int32 category,
               Pointer<Int32> pbOffloadCapable)>> IsOffloadCapable;
   external Pointer<
           NativeFunction<

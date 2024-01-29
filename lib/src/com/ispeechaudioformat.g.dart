@@ -28,31 +28,31 @@ class ISpeechAudioFormat extends IDispatch {
   factory ISpeechAudioFormat.from(IUnknown interface) =>
       ISpeechAudioFormat(interface.toInterface(IID_ISpeechAudioFormat));
 
-  int get_Type(Pointer<Int32> AudioFormat) => _vtable.get_Type.asFunction<
+  int get_Type(Pointer<Int32> audioFormat) => _vtable.get_Type.asFunction<
       int Function(
-          VTablePointer, Pointer<Int32> AudioFormat)>()(ptr, AudioFormat);
+          VTablePointer, Pointer<Int32> audioFormat)>()(ptr, audioFormat);
 
-  int put_Type(int AudioFormat) => _vtable.put_Type
-          .asFunction<int Function(VTablePointer, int AudioFormat)>()(
-      ptr, AudioFormat);
+  int put_Type(int audioFormat) => _vtable.put_Type
+          .asFunction<int Function(VTablePointer, int audioFormat)>()(
+      ptr, audioFormat);
 
-  int get_Guid(Pointer<Pointer<Utf16>> Guid) => _vtable.get_Guid.asFunction<
-      int Function(VTablePointer, Pointer<Pointer<Utf16>> Guid)>()(ptr, Guid);
+  int get_Guid(Pointer<Pointer<Utf16>> guid) => _vtable.get_Guid.asFunction<
+      int Function(VTablePointer, Pointer<Pointer<Utf16>> guid)>()(ptr, guid);
 
-  int put_Guid(Pointer<Utf16> Guid) => _vtable.put_Guid
-          .asFunction<int Function(VTablePointer, Pointer<Utf16> Guid)>()(
-      ptr, Guid);
+  int put_Guid(Pointer<Utf16> guid) => _vtable.put_Guid
+          .asFunction<int Function(VTablePointer, Pointer<Utf16> guid)>()(
+      ptr, guid);
 
-  int getWaveFormatEx(Pointer<VTablePointer> SpeechWaveFormatEx) =>
+  int getWaveFormatEx(Pointer<VTablePointer> speechWaveFormatEx) =>
       _vtable.GetWaveFormatEx.asFunction<
               int Function(
-                  VTablePointer, Pointer<VTablePointer> SpeechWaveFormatEx)>()(
-          ptr, SpeechWaveFormatEx);
+                  VTablePointer, Pointer<VTablePointer> speechWaveFormatEx)>()(
+          ptr, speechWaveFormatEx);
 
-  int setWaveFormatEx(VTablePointer? SpeechWaveFormatEx) =>
+  int setWaveFormatEx(VTablePointer? speechWaveFormatEx) =>
       _vtable.SetWaveFormatEx.asFunction<
-              int Function(VTablePointer, VTablePointer SpeechWaveFormatEx)>()(
-          ptr, SpeechWaveFormatEx ?? nullptr);
+              int Function(VTablePointer, VTablePointer speechWaveFormatEx)>()(
+          ptr, speechWaveFormatEx ?? nullptr);
 }
 
 /// @nodoc
@@ -60,24 +60,24 @@ base class ISpeechAudioFormatVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int32> AudioFormat)>> get_Type;
+          Int32 Function(VTablePointer, Pointer<Int32> audioFormat)>> get_Type;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 AudioFormat)>>
+          NativeFunction<Int32 Function(VTablePointer, Int32 audioFormat)>>
       put_Type;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> Guid)>>
+              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> guid)>>
       get_Guid;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> Guid)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> guid)>>
       put_Guid;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> SpeechWaveFormatEx)>>
+                  VTablePointer, Pointer<VTablePointer> speechWaveFormatEx)>>
       GetWaveFormatEx;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, VTablePointer SpeechWaveFormatEx)>>
+              Int32 Function(VTablePointer, VTablePointer speechWaveFormatEx)>>
       SetWaveFormatEx;
 }

@@ -103,13 +103,13 @@ final _ControlServiceEx = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int CredDelete(Pointer<Utf16> TargetName, int Type) =>
-    _CredDelete(TargetName, Type, 0);
+int CredDelete(Pointer<Utf16> targetName, int type) =>
+    _CredDelete(targetName, type, 0);
 
 final _CredDelete = _advapi32.lookupFunction<
-    Int32 Function(Pointer<Utf16> TargetName, Uint32 Type, Uint32 Flags),
+    Int32 Function(Pointer<Utf16> targetName, Uint32 type, Uint32 flags),
     int Function(
-        Pointer<Utf16> TargetName, int Type, int Flags)>('CredDeleteW');
+        Pointer<Utf16> targetName, int type, int flags)>('CredDeleteW');
 
 /// The CredFree function frees a buffer returned by any of the credentials
 /// management functions.
@@ -120,10 +120,10 @@ final _CredDelete = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-void CredFree(Pointer Buffer) => _CredFree(Buffer);
+void CredFree(Pointer buffer) => _CredFree(buffer);
 
-final _CredFree = _advapi32.lookupFunction<Void Function(Pointer Buffer),
-    void Function(Pointer Buffer)>('CredFree');
+final _CredFree = _advapi32.lookupFunction<Void Function(Pointer buffer),
+    void Function(Pointer buffer)>('CredFree');
 
 /// The CredRead function reads a credential from the user's credential set. The
 /// credential set used is the one associated with the logon session of the
@@ -138,15 +138,15 @@ final _CredFree = _advapi32.lookupFunction<Void Function(Pointer Buffer),
 /// );
 /// ```
 /// {@category advapi32}
-int CredRead(Pointer<Utf16> TargetName, int Type,
-        Pointer<Pointer<CREDENTIAL>> Credential) =>
-    _CredRead(TargetName, Type, 0, Credential);
+int CredRead(Pointer<Utf16> targetName, int type,
+        Pointer<Pointer<CREDENTIAL>> credential) =>
+    _CredRead(targetName, type, 0, credential);
 
 final _CredRead = _advapi32.lookupFunction<
-    Int32 Function(Pointer<Utf16> TargetName, Uint32 Type, Uint32 Flags,
-        Pointer<Pointer<CREDENTIAL>> Credential),
-    int Function(Pointer<Utf16> TargetName, int Type, int Flags,
-        Pointer<Pointer<CREDENTIAL>> Credential)>('CredReadW');
+    Int32 Function(Pointer<Utf16> targetName, Uint32 type, Uint32 flags,
+        Pointer<Pointer<CREDENTIAL>> credential),
+    int Function(Pointer<Utf16> targetName, int type, int flags,
+        Pointer<Pointer<CREDENTIAL>> credential)>('CredReadW');
 
 /// The CredWrite function creates a new credential or modifies an existing
 /// credential in the user's credential set. The new credential is associated
@@ -160,12 +160,12 @@ final _CredRead = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int CredWrite(Pointer<CREDENTIAL> Credential, int Flags) =>
-    _CredWrite(Credential, Flags);
+int CredWrite(Pointer<CREDENTIAL> credential, int flags) =>
+    _CredWrite(credential, flags);
 
 final _CredWrite = _advapi32.lookupFunction<
-    Int32 Function(Pointer<CREDENTIAL> Credential, Uint32 Flags),
-    int Function(Pointer<CREDENTIAL> Credential, int Flags)>('CredWriteW');
+    Int32 Function(Pointer<CREDENTIAL> credential, Uint32 flags),
+    int Function(Pointer<CREDENTIAL> credential, int flags)>('CredWriteW');
 
 /// Decrypts an encrypted file or directory.
 ///
@@ -328,7 +328,7 @@ final _EnumServicesStatus = _advapi32.lookupFunction<
 /// {@category advapi32}
 int EnumServicesStatusEx(
         int hSCManager,
-        int InfoLevel,
+        int infoLevel,
         int dwServiceType,
         int dwServiceState,
         Pointer<Uint8>? lpServices,
@@ -339,7 +339,7 @@ int EnumServicesStatusEx(
         Pointer<Utf16>? pszGroupName) =>
     _EnumServicesStatusEx(
         hSCManager,
-        InfoLevel,
+        infoLevel,
         dwServiceType,
         dwServiceState,
         lpServices ?? nullptr,
@@ -352,7 +352,7 @@ int EnumServicesStatusEx(
 final _EnumServicesStatusEx = _advapi32.lookupFunction<
     Int32 Function(
         IntPtr hSCManager,
-        Int32 InfoLevel,
+        Int32 infoLevel,
         Uint32 dwServiceType,
         Uint32 dwServiceState,
         Pointer<Uint8> lpServices,
@@ -363,7 +363,7 @@ final _EnumServicesStatusEx = _advapi32.lookupFunction<
         Pointer<Utf16> pszGroupName),
     int Function(
         int hSCManager,
-        int InfoLevel,
+        int infoLevel,
         int dwServiceType,
         int dwServiceState,
         Pointer<Uint8> lpServices,
@@ -455,27 +455,27 @@ final _GetServiceKeyName = _advapi32.lookupFunction<
 /// ```
 /// {@category advapi32}
 int GetTokenInformation(
-        int TokenHandle,
-        int TokenInformationClass,
-        Pointer? TokenInformation,
-        int TokenInformationLength,
-        Pointer<Uint32> ReturnLength) =>
-    _GetTokenInformation(TokenHandle, TokenInformationClass,
-        TokenInformation ?? nullptr, TokenInformationLength, ReturnLength);
+        int tokenHandle,
+        int tokenInformationClass,
+        Pointer? tokenInformation,
+        int tokenInformationLength,
+        Pointer<Uint32> returnLength) =>
+    _GetTokenInformation(tokenHandle, tokenInformationClass,
+        tokenInformation ?? nullptr, tokenInformationLength, returnLength);
 
 final _GetTokenInformation = _advapi32.lookupFunction<
     Int32 Function(
-        IntPtr TokenHandle,
-        Int32 TokenInformationClass,
-        Pointer TokenInformation,
-        Uint32 TokenInformationLength,
-        Pointer<Uint32> ReturnLength),
+        IntPtr tokenHandle,
+        Int32 tokenInformationClass,
+        Pointer tokenInformation,
+        Uint32 tokenInformationLength,
+        Pointer<Uint32> returnLength),
     int Function(
-        int TokenHandle,
-        int TokenInformationClass,
-        Pointer TokenInformation,
-        int TokenInformationLength,
-        Pointer<Uint32> ReturnLength)>('GetTokenInformation');
+        int tokenHandle,
+        int tokenInformationClass,
+        Pointer tokenInformation,
+        int tokenInformationLength,
+        Pointer<Uint32> returnLength)>('GetTokenInformation');
 
 /// Retrieves the name of the user associated with the current thread.
 ///
@@ -531,12 +531,12 @@ final _InitiateShutdown = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int NotifyBootConfigStatus(int BootAcceptable) =>
-    _NotifyBootConfigStatus(BootAcceptable);
+int NotifyBootConfigStatus(int bootAcceptable) =>
+    _NotifyBootConfigStatus(bootAcceptable);
 
 final _NotifyBootConfigStatus = _advapi32.lookupFunction<
-    Int32 Function(Int32 BootAcceptable),
-    int Function(int BootAcceptable)>('NotifyBootConfigStatus');
+    Int32 Function(Int32 bootAcceptable),
+    int Function(int bootAcceptable)>('NotifyBootConfigStatus');
 
 /// Enables an application to receive notification when the specified service is
 /// created or deleted or when its status changes.
@@ -571,14 +571,14 @@ final _NotifyServiceStatusChange = _advapi32.lookupFunction<
 /// ```
 /// {@category advapi32}
 int OpenProcessToken(
-        int ProcessHandle, int DesiredAccess, Pointer<IntPtr> TokenHandle) =>
-    _OpenProcessToken(ProcessHandle, DesiredAccess, TokenHandle);
+        int processHandle, int desiredAccess, Pointer<IntPtr> tokenHandle) =>
+    _OpenProcessToken(processHandle, desiredAccess, tokenHandle);
 
 final _OpenProcessToken = _advapi32.lookupFunction<
-    Int32 Function(IntPtr ProcessHandle, Uint32 DesiredAccess,
-        Pointer<IntPtr> TokenHandle),
-    int Function(int ProcessHandle, int DesiredAccess,
-        Pointer<IntPtr> TokenHandle)>('OpenProcessToken');
+    Int32 Function(IntPtr processHandle, Uint32 desiredAccess,
+        Pointer<IntPtr> tokenHandle),
+    int Function(int processHandle, int desiredAccess,
+        Pointer<IntPtr> tokenHandle)>('OpenProcessToken');
 
 /// Establishes a connection to the service control manager on the specified
 /// computer and opens the specified service control manager database.
@@ -634,15 +634,15 @@ final _OpenService = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int OpenThreadToken(int ThreadHandle, int DesiredAccess, int OpenAsSelf,
-        Pointer<IntPtr> TokenHandle) =>
-    _OpenThreadToken(ThreadHandle, DesiredAccess, OpenAsSelf, TokenHandle);
+int OpenThreadToken(int threadHandle, int desiredAccess, int openAsSelf,
+        Pointer<IntPtr> tokenHandle) =>
+    _OpenThreadToken(threadHandle, desiredAccess, openAsSelf, tokenHandle);
 
 final _OpenThreadToken = _advapi32.lookupFunction<
-    Int32 Function(IntPtr ThreadHandle, Uint32 DesiredAccess, Int32 OpenAsSelf,
-        Pointer<IntPtr> TokenHandle),
-    int Function(int ThreadHandle, int DesiredAccess, int OpenAsSelf,
-        Pointer<IntPtr> TokenHandle)>('OpenThreadToken');
+    Int32 Function(IntPtr threadHandle, Uint32 desiredAccess, Int32 openAsSelf,
+        Pointer<IntPtr> tokenHandle),
+    int Function(int threadHandle, int desiredAccess, int openAsSelf,
+        Pointer<IntPtr> tokenHandle)>('OpenThreadToken');
 
 /// Retrieves the configuration parameters of the specified service. Optional
 /// configuration parameters are available using the QueryServiceConfig2
@@ -784,15 +784,15 @@ final _QueryServiceStatus = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int QueryServiceStatusEx(int hService, int InfoLevel, Pointer<Uint8>? lpBuffer,
+int QueryServiceStatusEx(int hService, int infoLevel, Pointer<Uint8>? lpBuffer,
         int cbBufSize, Pointer<Uint32> pcbBytesNeeded) =>
     _QueryServiceStatusEx(
-        hService, InfoLevel, lpBuffer ?? nullptr, cbBufSize, pcbBytesNeeded);
+        hService, infoLevel, lpBuffer ?? nullptr, cbBufSize, pcbBytesNeeded);
 
 final _QueryServiceStatusEx = _advapi32.lookupFunction<
-    Int32 Function(IntPtr hService, Int32 InfoLevel, Pointer<Uint8> lpBuffer,
+    Int32 Function(IntPtr hService, Int32 infoLevel, Pointer<Uint8> lpBuffer,
         Uint32 cbBufSize, Pointer<Uint32> pcbBytesNeeded),
-    int Function(int hService, int InfoLevel, Pointer<Uint8> lpBuffer,
+    int Function(int hService, int infoLevel, Pointer<Uint8> lpBuffer,
         int cbBufSize, Pointer<Uint32> pcbBytesNeeded)>('QueryServiceStatusEx');
 
 /// Closes a handle to the specified registry key.
@@ -908,7 +908,7 @@ final _RegCreateKeyEx = _advapi32.lookupFunction<
     Uint32 Function(
         IntPtr hKey,
         Pointer<Utf16> lpSubKey,
-        Uint32 Reserved,
+        Uint32 reserved,
         Pointer<Utf16> lpClass,
         Uint32 dwOptions,
         Uint32 samDesired,
@@ -918,7 +918,7 @@ final _RegCreateKeyEx = _advapi32.lookupFunction<
     int Function(
         int hKey,
         Pointer<Utf16> lpSubKey,
-        int Reserved,
+        int reserved,
         Pointer<Utf16> lpClass,
         int dwOptions,
         int samDesired,
@@ -970,7 +970,7 @@ final _RegCreateKeyTransacted = _advapi32.lookupFunction<
     Uint32 Function(
         IntPtr hKey,
         Pointer<Utf16> lpSubKey,
-        Uint32 Reserved,
+        Uint32 reserved,
         Pointer<Utf16> lpClass,
         Uint32 dwOptions,
         Uint32 samDesired,
@@ -982,7 +982,7 @@ final _RegCreateKeyTransacted = _advapi32.lookupFunction<
     int Function(
         int hKey,
         Pointer<Utf16> lpSubKey,
-        int Reserved,
+        int reserved,
         Pointer<Utf16> lpClass,
         int dwOptions,
         int samDesired,
@@ -1023,9 +1023,9 @@ int RegDeleteKeyEx(int hKey, Pointer<Utf16> lpSubKey, int samDesired) =>
 
 final _RegDeleteKeyEx = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hKey, Pointer<Utf16> lpSubKey, Uint32 samDesired,
-        Uint32 Reserved),
+        Uint32 reserved),
     int Function(int hKey, Pointer<Utf16> lpSubKey, int samDesired,
-        int Reserved)>('RegDeleteKeyExW');
+        int reserved)>('RegDeleteKeyExW');
 
 /// Deletes a subkey and its values from the specified platform-specific view of
 /// the registry as a transacted operation. Note that key names are not case
@@ -1048,12 +1048,12 @@ int RegDeleteKeyTransacted(
 
 final _RegDeleteKeyTransacted = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hKey, Pointer<Utf16> lpSubKey, Uint32 samDesired,
-        Uint32 Reserved, IntPtr hTransaction, Pointer pExtendedParameter),
+        Uint32 reserved, IntPtr hTransaction, Pointer pExtendedParameter),
     int Function(
         int hKey,
         Pointer<Utf16> lpSubKey,
         int samDesired,
-        int Reserved,
+        int reserved,
         int hTransaction,
         Pointer pExtendedParameter)>('RegDeleteKeyTransactedW');
 
@@ -1401,9 +1401,9 @@ int RegLoadAppKey(Pointer<Utf16> lpFile, Pointer<IntPtr> phkResult,
 
 final _RegLoadAppKey = _advapi32.lookupFunction<
     Uint32 Function(Pointer<Utf16> lpFile, Pointer<IntPtr> phkResult,
-        Uint32 samDesired, Uint32 dwOptions, Uint32 Reserved),
+        Uint32 samDesired, Uint32 dwOptions, Uint32 reserved),
     int Function(Pointer<Utf16> lpFile, Pointer<IntPtr> phkResult,
-        int samDesired, int dwOptions, int Reserved)>('RegLoadAppKeyW');
+        int samDesired, int dwOptions, int reserved)>('RegLoadAppKeyW');
 
 /// Creates a subkey under HKEY_USERS or HKEY_LOCAL_MACHINE and loads the data
 /// from the specified registry hive into that subkey.
@@ -1443,10 +1443,10 @@ int RegLoadMUIString(
         Pointer<Utf16>? pszOutBuf,
         int cbOutBuf,
         Pointer<Uint32>? pcbData,
-        int Flags,
+        int flags,
         Pointer<Utf16>? pszDirectory) =>
     _RegLoadMUIString(hKey, pszValue ?? nullptr, pszOutBuf ?? nullptr, cbOutBuf,
-        pcbData ?? nullptr, Flags, pszDirectory ?? nullptr);
+        pcbData ?? nullptr, flags, pszDirectory ?? nullptr);
 
 final _RegLoadMUIString = _advapi32.lookupFunction<
     Uint32 Function(
@@ -1455,7 +1455,7 @@ final _RegLoadMUIString = _advapi32.lookupFunction<
         Pointer<Utf16> pszOutBuf,
         Uint32 cbOutBuf,
         Pointer<Uint32> pcbData,
-        Uint32 Flags,
+        Uint32 flags,
         Pointer<Utf16> pszDirectory),
     int Function(
         int hKey,
@@ -1463,7 +1463,7 @@ final _RegLoadMUIString = _advapi32.lookupFunction<
         Pointer<Utf16> pszOutBuf,
         int cbOutBuf,
         Pointer<Uint32> pcbData,
-        int Flags,
+        int flags,
         Pointer<Utf16> pszDirectory)>('RegLoadMUIStringW');
 
 /// Notifies the caller about changes to the attributes or contents of a
@@ -1893,17 +1893,17 @@ final _RegSaveKey = _advapi32.lookupFunction<
 /// ```
 /// {@category advapi32}
 int RegSaveKeyEx(int hKey, Pointer<Utf16> lpFile,
-        Pointer<SECURITY_ATTRIBUTES>? lpSecurityAttributes, int Flags) =>
-    _RegSaveKeyEx(hKey, lpFile, lpSecurityAttributes ?? nullptr, Flags);
+        Pointer<SECURITY_ATTRIBUTES>? lpSecurityAttributes, int flags) =>
+    _RegSaveKeyEx(hKey, lpFile, lpSecurityAttributes ?? nullptr, flags);
 
 final _RegSaveKeyEx = _advapi32.lookupFunction<
     Uint32 Function(IntPtr hKey, Pointer<Utf16> lpFile,
-        Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes, Uint32 Flags),
+        Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes, Uint32 flags),
     int Function(
         int hKey,
         Pointer<Utf16> lpFile,
         Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes,
-        int Flags)>('RegSaveKeyExW');
+        int flags)>('RegSaveKeyExW');
 
 /// Sets the data for the specified value in the specified registry key and
 /// subkey.
@@ -1975,9 +1975,9 @@ int RegSetValueEx(int hKey, Pointer<Utf16>? lpValueName, int dwType,
         hKey, lpValueName ?? nullptr, 0, dwType, lpData ?? nullptr, cbData);
 
 final _RegSetValueEx = _advapi32.lookupFunction<
-    Uint32 Function(IntPtr hKey, Pointer<Utf16> lpValueName, Uint32 Reserved,
+    Uint32 Function(IntPtr hKey, Pointer<Utf16> lpValueName, Uint32 reserved,
         Uint32 dwType, Pointer<Uint8> lpData, Uint32 cbData),
-    int Function(int hKey, Pointer<Utf16> lpValueName, int Reserved, int dwType,
+    int Function(int hKey, Pointer<Utf16> lpValueName, int reserved, int dwType,
         Pointer<Uint8> lpData, int cbData)>('RegSetValueExW');
 
 /// Unloads the specified registry key and its subkeys from the registry.
@@ -2047,12 +2047,12 @@ final _SetServiceStatus = _advapi32.lookupFunction<
 /// );
 /// ```
 /// {@category advapi32}
-int SetThreadToken(Pointer<IntPtr>? Thread, int? Token) =>
-    _SetThreadToken(Thread ?? nullptr, Token ?? 0);
+int SetThreadToken(Pointer<IntPtr>? thread, int? token) =>
+    _SetThreadToken(thread ?? nullptr, token ?? 0);
 
 final _SetThreadToken = _advapi32.lookupFunction<
-    Int32 Function(Pointer<IntPtr> Thread, IntPtr Token),
-    int Function(Pointer<IntPtr> Thread, int Token)>('SetThreadToken');
+    Int32 Function(Pointer<IntPtr> thread, IntPtr token),
+    int Function(Pointer<IntPtr> thread, int token)>('SetThreadToken');
 
 /// Starts a service.
 ///

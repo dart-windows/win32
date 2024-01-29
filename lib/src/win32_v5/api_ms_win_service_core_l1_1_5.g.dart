@@ -35,28 +35,28 @@ final _api_ms_win_service_core_l1_1_5 =
 /// ```
 /// {@category api_ms_win_service_core_l1_1_5}
 int GetSharedServiceDirectory(
-        int ServiceHandle,
-        int DirectoryType,
-        Pointer<Utf16>? PathBuffer,
-        int PathBufferLength,
-        Pointer<Uint32> RequiredBufferLength) =>
-    _GetSharedServiceDirectory(ServiceHandle, DirectoryType,
-        PathBuffer ?? nullptr, PathBufferLength, RequiredBufferLength);
+        int serviceHandle,
+        int directoryType,
+        Pointer<Utf16>? pathBuffer,
+        int pathBufferLength,
+        Pointer<Uint32> requiredBufferLength) =>
+    _GetSharedServiceDirectory(serviceHandle, directoryType,
+        pathBuffer ?? nullptr, pathBufferLength, requiredBufferLength);
 
 final _GetSharedServiceDirectory =
     _api_ms_win_service_core_l1_1_5.lookupFunction<
         Uint32 Function(
-            IntPtr ServiceHandle,
-            Int32 DirectoryType,
-            Pointer<Utf16> PathBuffer,
-            Uint32 PathBufferLength,
-            Pointer<Uint32> RequiredBufferLength),
+            IntPtr serviceHandle,
+            Int32 directoryType,
+            Pointer<Utf16> pathBuffer,
+            Uint32 pathBufferLength,
+            Pointer<Uint32> requiredBufferLength),
         int Function(
-            int ServiceHandle,
-            int DirectoryType,
-            Pointer<Utf16> PathBuffer,
-            int PathBufferLength,
-            Pointer<Uint32> RequiredBufferLength)>('GetSharedServiceDirectory');
+            int serviceHandle,
+            int directoryType,
+            Pointer<Utf16> pathBuffer,
+            int pathBufferLength,
+            Pointer<Uint32> requiredBufferLength)>('GetSharedServiceDirectory');
 
 /// Returns a handle for a registry key for a service and associated programs to
 /// read and/or write state to.
@@ -70,15 +70,15 @@ final _GetSharedServiceDirectory =
 /// );
 /// ```
 /// {@category api_ms_win_service_core_l1_1_5}
-int GetSharedServiceRegistryStateKey(int ServiceHandle, int StateType,
-        int AccessMask, Pointer<IntPtr> ServiceStateKey) =>
+int GetSharedServiceRegistryStateKey(int serviceHandle, int stateType,
+        int accessMask, Pointer<IntPtr> serviceStateKey) =>
     _GetSharedServiceRegistryStateKey(
-        ServiceHandle, StateType, AccessMask, ServiceStateKey);
+        serviceHandle, stateType, accessMask, serviceStateKey);
 
 final _GetSharedServiceRegistryStateKey =
     _api_ms_win_service_core_l1_1_5.lookupFunction<
-            Uint32 Function(IntPtr ServiceHandle, Int32 StateType,
-                Uint32 AccessMask, Pointer<IntPtr> ServiceStateKey),
-            int Function(int ServiceHandle, int StateType, int AccessMask,
-                Pointer<IntPtr> ServiceStateKey)>(
+            Uint32 Function(IntPtr serviceHandle, Int32 stateType,
+                Uint32 accessMask, Pointer<IntPtr> serviceStateKey),
+            int Function(int serviceHandle, int stateType, int accessMask,
+                Pointer<IntPtr> serviceStateKey)>(
         'GetSharedServiceRegistryStateKey');

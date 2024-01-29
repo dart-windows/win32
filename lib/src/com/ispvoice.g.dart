@@ -103,9 +103,9 @@ class ISpVoice extends ISpEventSource {
           int Function(
               VTablePointer, Pointer<Int32> peBoundary)>()(ptr, peBoundary);
 
-  int setRate(int RateAdjust) =>
-      _vtable.SetRate.asFunction<int Function(VTablePointer, int RateAdjust)>()(
-          ptr, RateAdjust);
+  int setRate(int rateAdjust) =>
+      _vtable.SetRate.asFunction<int Function(VTablePointer, int rateAdjust)>()(
+          ptr, rateAdjust);
 
   int getRate(Pointer<Int32> pRateAdjust) => _vtable.GetRate.asFunction<
       int Function(
@@ -212,7 +212,7 @@ base class ISpVoiceVtbl extends Struct {
               Int32 Function(VTablePointer, Pointer<Int32> peBoundary)>>
       GetAlertBoundary;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Int32 RateAdjust)>> SetRate;
+      NativeFunction<Int32 Function(VTablePointer, Int32 rateAdjust)>> SetRate;
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Pointer<Int32> pRateAdjust)>> GetRate;

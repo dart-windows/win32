@@ -30,9 +30,9 @@ final _api_ms_win_core_apiquery_l2_1_0 =
 /// );
 /// ```
 /// {@category onecore}
-int IsApiSetImplemented(Pointer<Utf8> Contract) =>
-    _IsApiSetImplemented(Contract);
+int IsApiSetImplemented(Pointer<Utf8> contract) =>
+    _IsApiSetImplemented(contract);
 
 final _IsApiSetImplemented = _api_ms_win_core_apiquery_l2_1_0.lookupFunction<
-    Int32 Function(Pointer<Utf8> Contract),
-    int Function(Pointer<Utf8> Contract)>('IsApiSetImplemented');
+    Int32 Function(Pointer<Utf8> contract),
+    int Function(Pointer<Utf8> contract)>('IsApiSetImplemented');

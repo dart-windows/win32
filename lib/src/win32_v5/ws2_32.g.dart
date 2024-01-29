@@ -179,32 +179,32 @@ final _gethostname = _ws2_32.lookupFunction<
 /// {@category winsock}
 int getnameinfo(
         Pointer<SOCKADDR> pSockaddr,
-        int SockaddrLength,
+        int sockaddrLength,
         Pointer<Utf8>? pNodeBuffer,
-        int NodeBufferSize,
+        int nodeBufferSize,
         Pointer<Utf8>? pServiceBuffer,
-        int ServiceBufferSize,
-        int Flags) =>
-    _getnameinfo(pSockaddr, SockaddrLength, pNodeBuffer ?? nullptr,
-        NodeBufferSize, pServiceBuffer ?? nullptr, ServiceBufferSize, Flags);
+        int serviceBufferSize,
+        int flags) =>
+    _getnameinfo(pSockaddr, sockaddrLength, pNodeBuffer ?? nullptr,
+        nodeBufferSize, pServiceBuffer ?? nullptr, serviceBufferSize, flags);
 
 final _getnameinfo = _ws2_32.lookupFunction<
     Int32 Function(
         Pointer<SOCKADDR> pSockaddr,
-        Int32 SockaddrLength,
+        Int32 sockaddrLength,
         Pointer<Utf8> pNodeBuffer,
-        Uint32 NodeBufferSize,
+        Uint32 nodeBufferSize,
         Pointer<Utf8> pServiceBuffer,
-        Uint32 ServiceBufferSize,
-        Int32 Flags),
+        Uint32 serviceBufferSize,
+        Int32 flags),
     int Function(
         Pointer<SOCKADDR> pSockaddr,
-        int SockaddrLength,
+        int sockaddrLength,
         Pointer<Utf8> pNodeBuffer,
-        int NodeBufferSize,
+        int nodeBufferSize,
         Pointer<Utf8> pServiceBuffer,
-        int ServiceBufferSize,
-        int Flags)>('getnameinfo');
+        int serviceBufferSize,
+        int flags)>('getnameinfo');
 
 /// The getpeername function retrieves the address of the peer to which a socket
 /// is connected.
@@ -398,15 +398,15 @@ final _inet_ntoa = _ws2_32.lookupFunction<Pointer<Utf8> Function(IN_ADDR in_),
 /// );
 /// ```
 /// {@category winsock}
-Pointer<Utf8> inet_ntop(int Family, Pointer pAddr, Pointer<Utf8> pStringBuf,
-        int StringBufSize) =>
-    _inet_ntop(Family, pAddr, pStringBuf, StringBufSize);
+Pointer<Utf8> inet_ntop(int family, Pointer pAddr, Pointer<Utf8> pStringBuf,
+        int stringBufSize) =>
+    _inet_ntop(family, pAddr, pStringBuf, stringBufSize);
 
 final _inet_ntop = _ws2_32.lookupFunction<
-    Pointer<Utf8> Function(Int32 Family, Pointer pAddr,
-        Pointer<Utf8> pStringBuf, IntPtr StringBufSize),
-    Pointer<Utf8> Function(int Family, Pointer pAddr, Pointer<Utf8> pStringBuf,
-        int StringBufSize)>('inet_ntop');
+    Pointer<Utf8> Function(Int32 family, Pointer pAddr,
+        Pointer<Utf8> pStringBuf, IntPtr stringBufSize),
+    Pointer<Utf8> Function(int family, Pointer pAddr, Pointer<Utf8> pStringBuf,
+        int stringBufSize)>('inet_ntop');
 
 /// The ioctlsocket function controls the I/O mode of a socket.
 ///

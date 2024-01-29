@@ -135,11 +135,11 @@ final _CoCreateInstance = _ole32.lookupFunction<
 /// );
 /// ```
 /// {@category ole32}
-int CoDecrementMTAUsage(int Cookie) => _CoDecrementMTAUsage(Cookie);
+int CoDecrementMTAUsage(int cookie) => _CoDecrementMTAUsage(cookie);
 
 final _CoDecrementMTAUsage = _ole32.lookupFunction<
-    Int32 Function(IntPtr Cookie),
-    int Function(int Cookie)>('CoDecrementMTAUsage');
+    Int32 Function(IntPtr cookie),
+    int Function(int cookie)>('CoDecrementMTAUsage');
 
 /// Returns the current apartment type and type qualifier.
 ///

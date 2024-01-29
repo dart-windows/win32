@@ -523,23 +523,23 @@ final _WlanGetProfileList = _wlanapi.lookupFunction<
 /// {@category wlanapi}
 int WlanGetSecuritySettings(
         int hClientHandle,
-        int SecurableObject,
+        int securableObject,
         Pointer<Int32>? pValueType,
         Pointer<Pointer<Utf16>> pstrCurrentSDDL,
         Pointer<Uint32> pdwGrantedAccess) =>
-    _WlanGetSecuritySettings(hClientHandle, SecurableObject,
+    _WlanGetSecuritySettings(hClientHandle, securableObject,
         pValueType ?? nullptr, pstrCurrentSDDL, pdwGrantedAccess);
 
 final _WlanGetSecuritySettings = _wlanapi.lookupFunction<
     Uint32 Function(
         IntPtr hClientHandle,
-        Int32 SecurableObject,
+        Int32 securableObject,
         Pointer<Int32> pValueType,
         Pointer<Pointer<Utf16>> pstrCurrentSDDL,
         Pointer<Uint32> pdwGrantedAccess),
     int Function(
         int hClientHandle,
-        int SecurableObject,
+        int securableObject,
         Pointer<Int32> pValueType,
         Pointer<Pointer<Utf16>> pstrCurrentSDDL,
         Pointer<Uint32> pdwGrantedAccess)>('WlanGetSecuritySettings');
@@ -654,24 +654,24 @@ final _WlanHostedNetworkInitSettings = _wlanapi.lookupFunction<
 /// {@category wlanapi}
 int WlanHostedNetworkQueryProperty(
         int hClientHandle,
-        int OpCode,
+        int opCode,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppvData,
         Pointer<Int32> pWlanOpcodeValueType) =>
-    _WlanHostedNetworkQueryProperty(hClientHandle, OpCode, pdwDataSize, ppvData,
+    _WlanHostedNetworkQueryProperty(hClientHandle, opCode, pdwDataSize, ppvData,
         pWlanOpcodeValueType, nullptr);
 
 final _WlanHostedNetworkQueryProperty = _wlanapi.lookupFunction<
     Uint32 Function(
         IntPtr hClientHandle,
-        Int32 OpCode,
+        Int32 opCode,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppvData,
         Pointer<Int32> pWlanOpcodeValueType,
         Pointer pvReserved),
     int Function(
         int hClientHandle,
-        int OpCode,
+        int opCode,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppvData,
         Pointer<Int32> pWlanOpcodeValueType,
@@ -791,17 +791,17 @@ final _WlanHostedNetworkRefreshSecuritySettings = _wlanapi.lookupFunction<
 /// );
 /// ```
 /// {@category wlanapi}
-int WlanHostedNetworkSetProperty(int hClientHandle, int OpCode, int dwDataSize,
+int WlanHostedNetworkSetProperty(int hClientHandle, int opCode, int dwDataSize,
         Pointer pvData, Pointer<Int32>? pFailReason) =>
-    _WlanHostedNetworkSetProperty(hClientHandle, OpCode, dwDataSize, pvData,
+    _WlanHostedNetworkSetProperty(hClientHandle, opCode, dwDataSize, pvData,
         pFailReason ?? nullptr, nullptr);
 
 final _WlanHostedNetworkSetProperty = _wlanapi.lookupFunction<
-    Uint32 Function(IntPtr hClientHandle, Int32 OpCode, Uint32 dwDataSize,
+    Uint32 Function(IntPtr hClientHandle, Int32 opCode, Uint32 dwDataSize,
         Pointer pvData, Pointer<Int32> pFailReason, Pointer pvReserved),
     int Function(
         int hClientHandle,
-        int OpCode,
+        int opCode,
         int dwDataSize,
         Pointer pvData,
         Pointer<Int32> pFailReason,
@@ -910,20 +910,20 @@ final _WlanHostedNetworkStopUsing = _wlanapi.lookupFunction<
 int WlanIhvControl(
         int hClientHandle,
         Pointer<GUID> pInterfaceGuid,
-        int Type,
+        int type,
         int dwInBufferSize,
         Pointer pInBuffer,
         int dwOutBufferSize,
         Pointer? pOutBuffer,
         Pointer<Uint32> pdwBytesReturned) =>
-    _WlanIhvControl(hClientHandle, pInterfaceGuid, Type, dwInBufferSize,
+    _WlanIhvControl(hClientHandle, pInterfaceGuid, type, dwInBufferSize,
         pInBuffer, dwOutBufferSize, pOutBuffer ?? nullptr, pdwBytesReturned);
 
 final _WlanIhvControl = _wlanapi.lookupFunction<
     Uint32 Function(
         IntPtr hClientHandle,
         Pointer<GUID> pInterfaceGuid,
-        Int32 Type,
+        Int32 type,
         Uint32 dwInBufferSize,
         Pointer pInBuffer,
         Uint32 dwOutBufferSize,
@@ -932,7 +932,7 @@ final _WlanIhvControl = _wlanapi.lookupFunction<
     int Function(
         int hClientHandle,
         Pointer<GUID> pInterfaceGuid,
-        int Type,
+        int type,
         int dwInBufferSize,
         Pointer pInBuffer,
         int dwOutBufferSize,
@@ -980,24 +980,24 @@ final _WlanOpenHandle = _wlanapi.lookupFunction<
 /// {@category wlanapi}
 int WlanQueryAutoConfigParameter(
         int hClientHandle,
-        int OpCode,
+        int opCode,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppData,
         Pointer<Int32>? pWlanOpcodeValueType) =>
-    _WlanQueryAutoConfigParameter(hClientHandle, OpCode, nullptr, pdwDataSize,
+    _WlanQueryAutoConfigParameter(hClientHandle, opCode, nullptr, pdwDataSize,
         ppData, pWlanOpcodeValueType ?? nullptr);
 
 final _WlanQueryAutoConfigParameter = _wlanapi.lookupFunction<
     Uint32 Function(
         IntPtr hClientHandle,
-        Int32 OpCode,
+        Int32 opCode,
         Pointer pReserved,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppData,
         Pointer<Int32> pWlanOpcodeValueType),
     int Function(
         int hClientHandle,
-        int OpCode,
+        int opCode,
         Pointer pReserved,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppData,
@@ -1021,18 +1021,18 @@ final _WlanQueryAutoConfigParameter = _wlanapi.lookupFunction<
 int WlanQueryInterface(
         int hClientHandle,
         Pointer<GUID> pInterfaceGuid,
-        int OpCode,
+        int opCode,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppData,
         Pointer<Int32>? pWlanOpcodeValueType) =>
-    _WlanQueryInterface(hClientHandle, pInterfaceGuid, OpCode, nullptr,
+    _WlanQueryInterface(hClientHandle, pInterfaceGuid, opCode, nullptr,
         pdwDataSize, ppData, pWlanOpcodeValueType ?? nullptr);
 
 final _WlanQueryInterface = _wlanapi.lookupFunction<
     Uint32 Function(
         IntPtr hClientHandle,
         Pointer<GUID> pInterfaceGuid,
-        Int32 OpCode,
+        Int32 opCode,
         Pointer pReserved,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppData,
@@ -1040,7 +1040,7 @@ final _WlanQueryInterface = _wlanapi.lookupFunction<
     int Function(
         int hClientHandle,
         Pointer<GUID> pInterfaceGuid,
-        int OpCode,
+        int opCode,
         Pointer pReserved,
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer> ppData,
@@ -1282,14 +1282,14 @@ final _WlanScan = _wlanapi.lookupFunction<
 /// ```
 /// {@category wlanapi}
 int WlanSetAutoConfigParameter(
-        int hClientHandle, int OpCode, int dwDataSize, Pointer pData) =>
+        int hClientHandle, int opCode, int dwDataSize, Pointer pData) =>
     _WlanSetAutoConfigParameter(
-        hClientHandle, OpCode, dwDataSize, pData, nullptr);
+        hClientHandle, opCode, dwDataSize, pData, nullptr);
 
 final _WlanSetAutoConfigParameter = _wlanapi.lookupFunction<
-    Uint32 Function(IntPtr hClientHandle, Int32 OpCode, Uint32 dwDataSize,
+    Uint32 Function(IntPtr hClientHandle, Int32 opCode, Uint32 dwDataSize,
         Pointer pData, Pointer pReserved),
-    int Function(int hClientHandle, int OpCode, int dwDataSize, Pointer pData,
+    int Function(int hClientHandle, int opCode, int dwDataSize, Pointer pData,
         Pointer pReserved)>('WlanSetAutoConfigParameter');
 
 /// The WlanSetFilterList function sets the permit/deny list.
@@ -1332,14 +1332,14 @@ final _WlanSetFilterList = _wlanapi.lookupFunction<
 /// ```
 /// {@category wlanapi}
 int WlanSetInterface(int hClientHandle, Pointer<GUID> pInterfaceGuid,
-        int OpCode, int dwDataSize, Pointer pData) =>
+        int opCode, int dwDataSize, Pointer pData) =>
     _WlanSetInterface(
-        hClientHandle, pInterfaceGuid, OpCode, dwDataSize, pData, nullptr);
+        hClientHandle, pInterfaceGuid, opCode, dwDataSize, pData, nullptr);
 
 final _WlanSetInterface = _wlanapi.lookupFunction<
     Uint32 Function(IntPtr hClientHandle, Pointer<GUID> pInterfaceGuid,
-        Int32 OpCode, Uint32 dwDataSize, Pointer pData, Pointer pReserved),
-    int Function(int hClientHandle, Pointer<GUID> pInterfaceGuid, int OpCode,
+        Int32 opCode, Uint32 dwDataSize, Pointer pData, Pointer pReserved),
+    int Function(int hClientHandle, Pointer<GUID> pInterfaceGuid, int opCode,
         int dwDataSize, Pointer pData, Pointer pReserved)>('WlanSetInterface');
 
 /// The WlanSetProfile function sets the content of a specific profile.
@@ -1620,12 +1620,12 @@ final _WlanSetPsdIEDataList = _wlanapi.lookupFunction<
 /// );
 /// ```
 /// {@category wlanapi}
-int WlanSetSecuritySettings(int hClientHandle, int SecurableObject,
+int WlanSetSecuritySettings(int hClientHandle, int securableObject,
         Pointer<Utf16> strModifiedSDDL) =>
-    _WlanSetSecuritySettings(hClientHandle, SecurableObject, strModifiedSDDL);
+    _WlanSetSecuritySettings(hClientHandle, securableObject, strModifiedSDDL);
 
 final _WlanSetSecuritySettings = _wlanapi.lookupFunction<
-    Uint32 Function(IntPtr hClientHandle, Int32 SecurableObject,
+    Uint32 Function(IntPtr hClientHandle, Int32 securableObject,
         Pointer<Utf16> strModifiedSDDL),
-    int Function(int hClientHandle, int SecurableObject,
+    int Function(int hClientHandle, int securableObject,
         Pointer<Utf16> strModifiedSDDL)>('WlanSetSecuritySettings');

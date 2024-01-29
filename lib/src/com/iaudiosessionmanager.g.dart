@@ -32,19 +32,19 @@ class IAudioSessionManager extends IUnknown {
   factory IAudioSessionManager.from(IUnknown interface) =>
       IAudioSessionManager(interface.toInterface(IID_IAudioSessionManager));
 
-  int getAudioSessionControl(Pointer<GUID>? AudioSessionGuid, int StreamFlags,
-          Pointer<VTablePointer> SessionControl) =>
+  int getAudioSessionControl(Pointer<GUID>? audioSessionGuid, int streamFlags,
+          Pointer<VTablePointer> sessionControl) =>
       _vtable.GetAudioSessionControl.asFunction<
-              int Function(VTablePointer, Pointer<GUID> AudioSessionGuid,
-                  int StreamFlags, Pointer<VTablePointer> SessionControl)>()(
-          ptr, AudioSessionGuid ?? nullptr, StreamFlags, SessionControl);
+              int Function(VTablePointer, Pointer<GUID> audioSessionGuid,
+                  int streamFlags, Pointer<VTablePointer> sessionControl)>()(
+          ptr, audioSessionGuid ?? nullptr, streamFlags, sessionControl);
 
-  int getSimpleAudioVolume(Pointer<GUID>? AudioSessionGuid, int StreamFlags,
-          Pointer<VTablePointer> AudioVolume) =>
+  int getSimpleAudioVolume(Pointer<GUID>? audioSessionGuid, int streamFlags,
+          Pointer<VTablePointer> audioVolume) =>
       _vtable.GetSimpleAudioVolume.asFunction<
-              int Function(VTablePointer, Pointer<GUID> AudioSessionGuid,
-                  int StreamFlags, Pointer<VTablePointer> AudioVolume)>()(
-          ptr, AudioSessionGuid ?? nullptr, StreamFlags, AudioVolume);
+              int Function(VTablePointer, Pointer<GUID> audioSessionGuid,
+                  int streamFlags, Pointer<VTablePointer> audioVolume)>()(
+          ptr, audioSessionGuid ?? nullptr, streamFlags, audioVolume);
 }
 
 /// @nodoc
@@ -54,14 +54,14 @@ base class IAudioSessionManagerVtbl extends Struct {
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<GUID> AudioSessionGuid,
-              Uint32 StreamFlags,
-              Pointer<VTablePointer> SessionControl)>> GetAudioSessionControl;
+              Pointer<GUID> audioSessionGuid,
+              Uint32 streamFlags,
+              Pointer<VTablePointer> sessionControl)>> GetAudioSessionControl;
   external Pointer<
       NativeFunction<
           Int32 Function(
               VTablePointer,
-              Pointer<GUID> AudioSessionGuid,
-              Uint32 StreamFlags,
-              Pointer<VTablePointer> AudioVolume)>> GetSimpleAudioVolume;
+              Pointer<GUID> audioSessionGuid,
+              Uint32 streamFlags,
+              Pointer<VTablePointer> audioVolume)>> GetSimpleAudioVolume;
 }

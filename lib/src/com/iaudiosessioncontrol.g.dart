@@ -44,39 +44,39 @@ class IAudioSessionControl extends IUnknown {
           int Function(
               VTablePointer, Pointer<Pointer<Utf16>> pRetVal)>()(ptr, pRetVal);
 
-  int setDisplayName(Pointer<Utf16> Value, Pointer<GUID> EventContext) =>
+  int setDisplayName(Pointer<Utf16> value, Pointer<GUID> eventContext) =>
       _vtable.SetDisplayName.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> Value,
-              Pointer<GUID> EventContext)>()(ptr, Value, EventContext);
+          int Function(VTablePointer, Pointer<Utf16> value,
+              Pointer<GUID> eventContext)>()(ptr, value, eventContext);
 
   int getIconPath(Pointer<Pointer<Utf16>> pRetVal) =>
       _vtable.GetIconPath.asFunction<
           int Function(
               VTablePointer, Pointer<Pointer<Utf16>> pRetVal)>()(ptr, pRetVal);
 
-  int setIconPath(Pointer<Utf16> Value, Pointer<GUID> EventContext) =>
+  int setIconPath(Pointer<Utf16> value, Pointer<GUID> eventContext) =>
       _vtable.SetIconPath.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> Value,
-              Pointer<GUID> EventContext)>()(ptr, Value, EventContext);
+          int Function(VTablePointer, Pointer<Utf16> value,
+              Pointer<GUID> eventContext)>()(ptr, value, eventContext);
 
   int getGroupingParam(Pointer<GUID> pRetVal) =>
       _vtable.GetGroupingParam.asFunction<
           int Function(VTablePointer, Pointer<GUID> pRetVal)>()(ptr, pRetVal);
 
-  int setGroupingParam(Pointer<GUID> Override, Pointer<GUID> EventContext) =>
+  int setGroupingParam(Pointer<GUID> override, Pointer<GUID> eventContext) =>
       _vtable.SetGroupingParam.asFunction<
-          int Function(VTablePointer, Pointer<GUID> Override,
-              Pointer<GUID> EventContext)>()(ptr, Override, EventContext);
+          int Function(VTablePointer, Pointer<GUID> override,
+              Pointer<GUID> eventContext)>()(ptr, override, eventContext);
 
-  int registerAudioSessionNotification(VTablePointer NewNotifications) =>
+  int registerAudioSessionNotification(VTablePointer newNotifications) =>
       _vtable.RegisterAudioSessionNotification.asFunction<
-              int Function(VTablePointer, VTablePointer NewNotifications)>()(
-          ptr, NewNotifications);
+              int Function(VTablePointer, VTablePointer newNotifications)>()(
+          ptr, newNotifications);
 
-  int unregisterAudioSessionNotification(VTablePointer NewNotifications) =>
+  int unregisterAudioSessionNotification(VTablePointer newNotifications) =>
       _vtable.UnregisterAudioSessionNotification.asFunction<
-              int Function(VTablePointer, VTablePointer NewNotifications)>()(
-          ptr, NewNotifications);
+              int Function(VTablePointer, VTablePointer newNotifications)>()(
+          ptr, newNotifications);
 }
 
 /// @nodoc
@@ -91,29 +91,29 @@ base class IAudioSessionControlVtbl extends Struct {
       GetDisplayName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> Value,
-              Pointer<GUID> EventContext)>> SetDisplayName;
+          Int32 Function(VTablePointer, Pointer<Utf16> value,
+              Pointer<GUID> eventContext)>> SetDisplayName;
   external Pointer<
           NativeFunction<
               Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pRetVal)>>
       GetIconPath;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> Value,
-              Pointer<GUID> EventContext)>> SetIconPath;
+          Int32 Function(VTablePointer, Pointer<Utf16> value,
+              Pointer<GUID> eventContext)>> SetIconPath;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pRetVal)>>
       GetGroupingParam;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> Override,
-              Pointer<GUID> EventContext)>> SetGroupingParam;
+          Int32 Function(VTablePointer, Pointer<GUID> override,
+              Pointer<GUID> eventContext)>> SetGroupingParam;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, VTablePointer NewNotifications)>>
+              Int32 Function(VTablePointer, VTablePointer newNotifications)>>
       RegisterAudioSessionNotification;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, VTablePointer NewNotifications)>>
+              Int32 Function(VTablePointer, VTablePointer newNotifications)>>
       UnregisterAudioSessionNotification;
 }

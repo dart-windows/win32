@@ -148,12 +148,12 @@ final _EnumProcessModulesEx = _psapi.lookupFunction<
 /// ```
 /// {@category psapi}
 int GetDeviceDriverBaseName(
-        Pointer ImageBase, Pointer<Utf16> lpBaseName, int nSize) =>
-    _GetDeviceDriverBaseName(ImageBase, lpBaseName, nSize);
+        Pointer imageBase, Pointer<Utf16> lpBaseName, int nSize) =>
+    _GetDeviceDriverBaseName(imageBase, lpBaseName, nSize);
 
 final _GetDeviceDriverBaseName = _psapi.lookupFunction<
-    Uint32 Function(Pointer ImageBase, Pointer<Utf16> lpBaseName, Uint32 nSize),
-    int Function(Pointer ImageBase, Pointer<Utf16> lpBaseName,
+    Uint32 Function(Pointer imageBase, Pointer<Utf16> lpBaseName, Uint32 nSize),
+    int Function(Pointer imageBase, Pointer<Utf16> lpBaseName,
         int nSize)>('GetDeviceDriverBaseNameW');
 
 /// Retrieves the path available for the specified device driver.
@@ -167,12 +167,12 @@ final _GetDeviceDriverBaseName = _psapi.lookupFunction<
 /// ```
 /// {@category psapi}
 int GetDeviceDriverFileName(
-        Pointer ImageBase, Pointer<Utf16> lpFilename, int nSize) =>
-    _GetDeviceDriverFileName(ImageBase, lpFilename, nSize);
+        Pointer imageBase, Pointer<Utf16> lpFilename, int nSize) =>
+    _GetDeviceDriverFileName(imageBase, lpFilename, nSize);
 
 final _GetDeviceDriverFileName = _psapi.lookupFunction<
-    Uint32 Function(Pointer ImageBase, Pointer<Utf16> lpFilename, Uint32 nSize),
-    int Function(Pointer ImageBase, Pointer<Utf16> lpFilename,
+    Uint32 Function(Pointer imageBase, Pointer<Utf16> lpFilename, Uint32 nSize),
+    int Function(Pointer imageBase, Pointer<Utf16> lpFilename,
         int nSize)>('GetDeviceDriverFileNameW');
 
 /// Checks whether the specified address is within a memory-mapped file in the

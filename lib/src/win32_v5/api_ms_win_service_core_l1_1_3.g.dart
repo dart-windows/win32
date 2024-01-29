@@ -33,14 +33,14 @@ final _api_ms_win_service_core_l1_1_3 =
 /// );
 /// ```
 /// {@category api_ms_win_service_core_l1_1_3}
-int GetServiceRegistryStateKey(int ServiceStatusHandle, int StateType,
-        int AccessMask, Pointer<IntPtr> ServiceStateKey) =>
+int GetServiceRegistryStateKey(int serviceStatusHandle, int stateType,
+        int accessMask, Pointer<IntPtr> serviceStateKey) =>
     _GetServiceRegistryStateKey(
-        ServiceStatusHandle, StateType, AccessMask, ServiceStateKey);
+        serviceStatusHandle, stateType, accessMask, serviceStateKey);
 
 final _GetServiceRegistryStateKey =
     _api_ms_win_service_core_l1_1_3.lookupFunction<
-        Uint32 Function(IntPtr ServiceStatusHandle, Int32 StateType,
-            Uint32 AccessMask, Pointer<IntPtr> ServiceStateKey),
-        int Function(int ServiceStatusHandle, int StateType, int AccessMask,
-            Pointer<IntPtr> ServiceStateKey)>('GetServiceRegistryStateKey');
+        Uint32 Function(IntPtr serviceStatusHandle, Int32 stateType,
+            Uint32 accessMask, Pointer<IntPtr> serviceStateKey),
+        int Function(int serviceStatusHandle, int stateType, int accessMask,
+            Pointer<IntPtr> serviceStateKey)>('GetServiceRegistryStateKey');

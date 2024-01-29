@@ -29,13 +29,13 @@ class ISpeechObjectTokens extends IDispatch {
   factory ISpeechObjectTokens.from(IUnknown interface) =>
       ISpeechObjectTokens(interface.toInterface(IID_ISpeechObjectTokens));
 
-  int get_Count(Pointer<Int32> Count) => _vtable.get_Count
-          .asFunction<int Function(VTablePointer, Pointer<Int32> Count)>()(
-      ptr, Count);
+  int get_Count(Pointer<Int32> count) => _vtable.get_Count
+          .asFunction<int Function(VTablePointer, Pointer<Int32> count)>()(
+      ptr, count);
 
-  int item(int Index, Pointer<VTablePointer> Token) => _vtable.Item.asFunction<
-      int Function(VTablePointer, int Index,
-          Pointer<VTablePointer> Token)>()(ptr, Index, Token);
+  int item(int index, Pointer<VTablePointer> token) => _vtable.Item.asFunction<
+      int Function(VTablePointer, int index,
+          Pointer<VTablePointer> token)>()(ptr, index, token);
 
   int get__NewEnum(Pointer<VTablePointer> ppEnumVARIANT) =>
       _vtable.get__NewEnum.asFunction<
@@ -47,12 +47,12 @@ class ISpeechObjectTokens extends IDispatch {
 base class ISpeechObjectTokensVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> Count)>>
+          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> count)>>
       get_Count;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer, Int32 Index, Pointer<VTablePointer> Token)>> Item;
+              VTablePointer, Int32 index, Pointer<VTablePointer> token)>> Item;
   external Pointer<
           NativeFunction<
               Int32 Function(

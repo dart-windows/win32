@@ -199,13 +199,13 @@ final _BluetoothFindRadioClose = _bluetoothapis.lookupFunction<
 /// ```
 /// {@category bluetooth}
 int BluetoothGATTAbortReliableWrite(
-        int hDevice, int ReliableWriteContext, int Flags) =>
-    _BluetoothGATTAbortReliableWrite(hDevice, ReliableWriteContext, Flags);
+        int hDevice, int reliableWriteContext, int flags) =>
+    _BluetoothGATTAbortReliableWrite(hDevice, reliableWriteContext, flags);
 
 final _BluetoothGATTAbortReliableWrite = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hDevice, Uint64 ReliableWriteContext, Uint32 Flags),
-    int Function(int hDevice, int ReliableWriteContext,
-        int Flags)>('BluetoothGATTAbortReliableWrite');
+    Int32 Function(IntPtr hDevice, Uint64 reliableWriteContext, Uint32 flags),
+    int Function(int hDevice, int reliableWriteContext,
+        int flags)>('BluetoothGATTAbortReliableWrite');
 
 /// The BluetoothGATTBeginReliableWrite function specifies that reliable writes
 /// are about to begin.
@@ -219,14 +219,14 @@ final _BluetoothGATTAbortReliableWrite = _bluetoothapis.lookupFunction<
 /// ```
 /// {@category bluetooth}
 int BluetoothGATTBeginReliableWrite(
-        int hDevice, Pointer<Uint64> ReliableWriteContext, int Flags) =>
-    _BluetoothGATTBeginReliableWrite(hDevice, ReliableWriteContext, Flags);
+        int hDevice, Pointer<Uint64> reliableWriteContext, int flags) =>
+    _BluetoothGATTBeginReliableWrite(hDevice, reliableWriteContext, flags);
 
 final _BluetoothGATTBeginReliableWrite = _bluetoothapis.lookupFunction<
     Int32 Function(
-        IntPtr hDevice, Pointer<Uint64> ReliableWriteContext, Uint32 Flags),
-    int Function(int hDevice, Pointer<Uint64> ReliableWriteContext,
-        int Flags)>('BluetoothGATTBeginReliableWrite');
+        IntPtr hDevice, Pointer<Uint64> reliableWriteContext, Uint32 flags),
+    int Function(int hDevice, Pointer<Uint64> reliableWriteContext,
+        int flags)>('BluetoothGATTBeginReliableWrite');
 
 /// Specifies the end of reliable writes, and the writes should be committed.
 ///
@@ -239,13 +239,13 @@ final _BluetoothGATTBeginReliableWrite = _bluetoothapis.lookupFunction<
 /// ```
 /// {@category bluetooth}
 int BluetoothGATTEndReliableWrite(
-        int hDevice, int ReliableWriteContext, int Flags) =>
-    _BluetoothGATTEndReliableWrite(hDevice, ReliableWriteContext, Flags);
+        int hDevice, int reliableWriteContext, int flags) =>
+    _BluetoothGATTEndReliableWrite(hDevice, reliableWriteContext, flags);
 
 final _BluetoothGATTEndReliableWrite = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hDevice, Uint64 ReliableWriteContext, Uint32 Flags),
-    int Function(int hDevice, int ReliableWriteContext,
-        int Flags)>('BluetoothGATTEndReliableWrite');
+    Int32 Function(IntPtr hDevice, Uint64 reliableWriteContext, Uint32 flags),
+    int Function(int hDevice, int reliableWriteContext,
+        int flags)>('BluetoothGATTEndReliableWrite');
 
 /// Gets all the characteristics available for the specified service.
 ///
@@ -262,34 +262,34 @@ final _BluetoothGATTEndReliableWrite = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTGetCharacteristics(
         int hDevice,
-        Pointer<BTH_LE_GATT_SERVICE>? Service,
-        int CharacteristicsBufferCount,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC>? CharacteristicsBuffer,
-        Pointer<Uint16> CharacteristicsBufferActual,
-        int Flags) =>
+        Pointer<BTH_LE_GATT_SERVICE>? service,
+        int characteristicsBufferCount,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC>? characteristicsBuffer,
+        Pointer<Uint16> characteristicsBufferActual,
+        int flags) =>
     _BluetoothGATTGetCharacteristics(
         hDevice,
-        Service ?? nullptr,
-        CharacteristicsBufferCount,
-        CharacteristicsBuffer ?? nullptr,
-        CharacteristicsBufferActual,
-        Flags);
+        service ?? nullptr,
+        characteristicsBufferCount,
+        characteristicsBuffer ?? nullptr,
+        characteristicsBufferActual,
+        flags);
 
 final _BluetoothGATTGetCharacteristics = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Pointer<BTH_LE_GATT_SERVICE> Service,
-        Uint16 CharacteristicsBufferCount,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> CharacteristicsBuffer,
-        Pointer<Uint16> CharacteristicsBufferActual,
-        Uint32 Flags),
+        Pointer<BTH_LE_GATT_SERVICE> service,
+        Uint16 characteristicsBufferCount,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristicsBuffer,
+        Pointer<Uint16> characteristicsBufferActual,
+        Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_SERVICE> Service,
-        int CharacteristicsBufferCount,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> CharacteristicsBuffer,
-        Pointer<Uint16> CharacteristicsBufferActual,
-        int Flags)>('BluetoothGATTGetCharacteristics');
+        Pointer<BTH_LE_GATT_SERVICE> service,
+        int characteristicsBufferCount,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristicsBuffer,
+        Pointer<Uint16> characteristicsBufferActual,
+        int flags)>('BluetoothGATTGetCharacteristics');
 
 /// Gets the value of the specified characteristic.
 ///
@@ -306,34 +306,34 @@ final _BluetoothGATTGetCharacteristics = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTGetCharacteristicValue(
         int hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        int CharacteristicValueDataSize,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE>? CharacteristicValue,
-        Pointer<Uint16>? CharacteristicValueSizeRequired,
-        int Flags) =>
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        int characteristicValueDataSize,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE>? characteristicValue,
+        Pointer<Uint16>? characteristicValueSizeRequired,
+        int flags) =>
     _BluetoothGATTGetCharacteristicValue(
         hDevice,
-        Characteristic,
-        CharacteristicValueDataSize,
-        CharacteristicValue ?? nullptr,
-        CharacteristicValueSizeRequired ?? nullptr,
-        Flags);
+        characteristic,
+        characteristicValueDataSize,
+        characteristicValue ?? nullptr,
+        characteristicValueSizeRequired ?? nullptr,
+        flags);
 
 final _BluetoothGATTGetCharacteristicValue = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        Uint32 CharacteristicValueDataSize,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue,
-        Pointer<Uint16> CharacteristicValueSizeRequired,
-        Uint32 Flags),
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        Uint32 characteristicValueDataSize,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
+        Pointer<Uint16> characteristicValueSizeRequired,
+        Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        int CharacteristicValueDataSize,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue,
-        Pointer<Uint16> CharacteristicValueSizeRequired,
-        int Flags)>('BluetoothGATTGetCharacteristicValue');
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        int characteristicValueDataSize,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
+        Pointer<Uint16> characteristicValueSizeRequired,
+        int flags)>('BluetoothGATTGetCharacteristicValue');
 
 /// Gets all the descriptors available for the specified characteristic.
 ///
@@ -350,34 +350,34 @@ final _BluetoothGATTGetCharacteristicValue = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTGetDescriptors(
         int hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        int DescriptorsBufferCount,
-        Pointer<BTH_LE_GATT_DESCRIPTOR>? DescriptorsBuffer,
-        Pointer<Uint16> DescriptorsBufferActual,
-        int Flags) =>
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        int descriptorsBufferCount,
+        Pointer<BTH_LE_GATT_DESCRIPTOR>? descriptorsBuffer,
+        Pointer<Uint16> descriptorsBufferActual,
+        int flags) =>
     _BluetoothGATTGetDescriptors(
         hDevice,
-        Characteristic,
-        DescriptorsBufferCount,
-        DescriptorsBuffer ?? nullptr,
-        DescriptorsBufferActual,
-        Flags);
+        characteristic,
+        descriptorsBufferCount,
+        descriptorsBuffer ?? nullptr,
+        descriptorsBufferActual,
+        flags);
 
 final _BluetoothGATTGetDescriptors = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        Uint16 DescriptorsBufferCount,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> DescriptorsBuffer,
-        Pointer<Uint16> DescriptorsBufferActual,
-        Uint32 Flags),
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        Uint16 descriptorsBufferCount,
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptorsBuffer,
+        Pointer<Uint16> descriptorsBufferActual,
+        Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        int DescriptorsBufferCount,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> DescriptorsBuffer,
-        Pointer<Uint16> DescriptorsBufferActual,
-        int Flags)>('BluetoothGATTGetDescriptors');
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        int descriptorsBufferCount,
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptorsBuffer,
+        Pointer<Uint16> descriptorsBufferActual,
+        int flags)>('BluetoothGATTGetDescriptors');
 
 /// Gets the value of the specified descriptor.
 ///
@@ -394,34 +394,34 @@ final _BluetoothGATTGetDescriptors = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTGetDescriptorValue(
         int hDevice,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> Descriptor,
-        int DescriptorValueDataSize,
-        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE>? DescriptorValue,
-        Pointer<Uint16>? DescriptorValueSizeRequired,
-        int Flags) =>
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+        int descriptorValueDataSize,
+        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE>? descriptorValue,
+        Pointer<Uint16>? descriptorValueSizeRequired,
+        int flags) =>
     _BluetoothGATTGetDescriptorValue(
         hDevice,
-        Descriptor,
-        DescriptorValueDataSize,
-        DescriptorValue ?? nullptr,
-        DescriptorValueSizeRequired ?? nullptr,
-        Flags);
+        descriptor,
+        descriptorValueDataSize,
+        descriptorValue ?? nullptr,
+        descriptorValueSizeRequired ?? nullptr,
+        flags);
 
 final _BluetoothGATTGetDescriptorValue = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> Descriptor,
-        Uint32 DescriptorValueDataSize,
-        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> DescriptorValue,
-        Pointer<Uint16> DescriptorValueSizeRequired,
-        Uint32 Flags),
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+        Uint32 descriptorValueDataSize,
+        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue,
+        Pointer<Uint16> descriptorValueSizeRequired,
+        Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> Descriptor,
-        int DescriptorValueDataSize,
-        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> DescriptorValue,
-        Pointer<Uint16> DescriptorValueSizeRequired,
-        int Flags)>('BluetoothGATTGetDescriptorValue');
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+        int descriptorValueDataSize,
+        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue,
+        Pointer<Uint16> descriptorValueSizeRequired,
+        int flags)>('BluetoothGATTGetDescriptorValue');
 
 /// Gets all the included services available for a given service.
 ///
@@ -438,34 +438,34 @@ final _BluetoothGATTGetDescriptorValue = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTGetIncludedServices(
         int hDevice,
-        Pointer<BTH_LE_GATT_SERVICE>? ParentService,
-        int IncludedServicesBufferCount,
-        Pointer<BTH_LE_GATT_SERVICE>? IncludedServicesBuffer,
-        Pointer<Uint16> IncludedServicesBufferActual,
-        int Flags) =>
+        Pointer<BTH_LE_GATT_SERVICE>? parentService,
+        int includedServicesBufferCount,
+        Pointer<BTH_LE_GATT_SERVICE>? includedServicesBuffer,
+        Pointer<Uint16> includedServicesBufferActual,
+        int flags) =>
     _BluetoothGATTGetIncludedServices(
         hDevice,
-        ParentService ?? nullptr,
-        IncludedServicesBufferCount,
-        IncludedServicesBuffer ?? nullptr,
-        IncludedServicesBufferActual,
-        Flags);
+        parentService ?? nullptr,
+        includedServicesBufferCount,
+        includedServicesBuffer ?? nullptr,
+        includedServicesBufferActual,
+        flags);
 
 final _BluetoothGATTGetIncludedServices = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Pointer<BTH_LE_GATT_SERVICE> ParentService,
-        Uint16 IncludedServicesBufferCount,
-        Pointer<BTH_LE_GATT_SERVICE> IncludedServicesBuffer,
-        Pointer<Uint16> IncludedServicesBufferActual,
-        Uint32 Flags),
+        Pointer<BTH_LE_GATT_SERVICE> parentService,
+        Uint16 includedServicesBufferCount,
+        Pointer<BTH_LE_GATT_SERVICE> includedServicesBuffer,
+        Pointer<Uint16> includedServicesBufferActual,
+        Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_SERVICE> ParentService,
-        int IncludedServicesBufferCount,
-        Pointer<BTH_LE_GATT_SERVICE> IncludedServicesBuffer,
-        Pointer<Uint16> IncludedServicesBufferActual,
-        int Flags)>('BluetoothGATTGetIncludedServices');
+        Pointer<BTH_LE_GATT_SERVICE> parentService,
+        int includedServicesBufferCount,
+        Pointer<BTH_LE_GATT_SERVICE> includedServicesBuffer,
+        Pointer<Uint16> includedServicesBufferActual,
+        int flags)>('BluetoothGATTGetIncludedServices');
 
 /// The BluetoothGATTGetServices function gets all the primary services
 /// available for a server.
@@ -482,26 +482,26 @@ final _BluetoothGATTGetIncludedServices = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTGetServices(
         int hDevice,
-        int ServicesBufferCount,
-        Pointer<BTH_LE_GATT_SERVICE>? ServicesBuffer,
-        Pointer<Uint16> ServicesBufferActual,
-        int Flags) =>
-    _BluetoothGATTGetServices(hDevice, ServicesBufferCount,
-        ServicesBuffer ?? nullptr, ServicesBufferActual, Flags);
+        int servicesBufferCount,
+        Pointer<BTH_LE_GATT_SERVICE>? servicesBuffer,
+        Pointer<Uint16> servicesBufferActual,
+        int flags) =>
+    _BluetoothGATTGetServices(hDevice, servicesBufferCount,
+        servicesBuffer ?? nullptr, servicesBufferActual, flags);
 
 final _BluetoothGATTGetServices = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Uint16 ServicesBufferCount,
-        Pointer<BTH_LE_GATT_SERVICE> ServicesBuffer,
-        Pointer<Uint16> ServicesBufferActual,
-        Uint32 Flags),
+        Uint16 servicesBufferCount,
+        Pointer<BTH_LE_GATT_SERVICE> servicesBuffer,
+        Pointer<Uint16> servicesBufferActual,
+        Uint32 flags),
     int Function(
         int hDevice,
-        int ServicesBufferCount,
-        Pointer<BTH_LE_GATT_SERVICE> ServicesBuffer,
-        Pointer<Uint16> ServicesBufferActual,
-        int Flags)>('BluetoothGATTGetServices');
+        int servicesBufferCount,
+        Pointer<BTH_LE_GATT_SERVICE> servicesBuffer,
+        Pointer<Uint16> servicesBufferActual,
+        int flags)>('BluetoothGATTGetServices');
 
 /// Registers a routine to be called back during a characteristic value change
 /// event on the given characteristic identified by its characteristic handle.
@@ -520,32 +520,32 @@ final _BluetoothGATTGetServices = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTRegisterEvent(
         int hService,
-        int EventType,
-        Pointer EventParameterIn,
-        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> Callback,
-        Pointer? CallbackContext,
+        int eventType,
+        Pointer eventParameterIn,
+        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+        Pointer? callbackContext,
         Pointer<IntPtr> pEventHandle,
-        int Flags) =>
-    _BluetoothGATTRegisterEvent(hService, EventType, EventParameterIn, Callback,
-        CallbackContext ?? nullptr, pEventHandle, Flags);
+        int flags) =>
+    _BluetoothGATTRegisterEvent(hService, eventType, eventParameterIn, callback,
+        callbackContext ?? nullptr, pEventHandle, flags);
 
 final _BluetoothGATTRegisterEvent = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hService,
-        Int32 EventType,
-        Pointer EventParameterIn,
-        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> Callback,
-        Pointer CallbackContext,
+        Int32 eventType,
+        Pointer eventParameterIn,
+        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+        Pointer callbackContext,
         Pointer<IntPtr> pEventHandle,
-        Uint32 Flags),
+        Uint32 flags),
     int Function(
         int hService,
-        int EventType,
-        Pointer EventParameterIn,
-        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> Callback,
-        Pointer CallbackContext,
+        int eventType,
+        Pointer eventParameterIn,
+        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+        Pointer callbackContext,
         Pointer<IntPtr> pEventHandle,
-        int Flags)>('BluetoothGATTRegisterEvent');
+        int flags)>('BluetoothGATTRegisterEvent');
 
 /// Writes the specified characteristic value to the Bluetooth device.
 ///
@@ -561,26 +561,26 @@ final _BluetoothGATTRegisterEvent = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTSetCharacteristicValue(
         int hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue,
-        int? ReliableWriteContext,
-        int Flags) =>
-    _BluetoothGATTSetCharacteristicValue(hDevice, Characteristic,
-        CharacteristicValue, ReliableWriteContext ?? 0, Flags);
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
+        int? reliableWriteContext,
+        int flags) =>
+    _BluetoothGATTSetCharacteristicValue(hDevice, characteristic,
+        characteristicValue, reliableWriteContext ?? 0, flags);
 
 final _BluetoothGATTSetCharacteristicValue = _bluetoothapis.lookupFunction<
     Int32 Function(
         IntPtr hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue,
-        Uint64 ReliableWriteContext,
-        Uint32 Flags),
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
+        Uint64 reliableWriteContext,
+        Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC> Characteristic,
-        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue,
-        int ReliableWriteContext,
-        int Flags)>('BluetoothGATTSetCharacteristicValue');
+        Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
+        Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
+        int reliableWriteContext,
+        int flags)>('BluetoothGATTSetCharacteristicValue');
 
 /// Writes the specified descriptor value to the Bluetooth device.
 ///
@@ -595,20 +595,20 @@ final _BluetoothGATTSetCharacteristicValue = _bluetoothapis.lookupFunction<
 /// {@category bluetooth}
 int BluetoothGATTSetDescriptorValue(
         int hDevice,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> Descriptor,
-        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> DescriptorValue,
-        int Flags) =>
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue,
+        int flags) =>
     _BluetoothGATTSetDescriptorValue(
-        hDevice, Descriptor, DescriptorValue, Flags);
+        hDevice, descriptor, descriptorValue, flags);
 
 final _BluetoothGATTSetDescriptorValue = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hDevice, Pointer<BTH_LE_GATT_DESCRIPTOR> Descriptor,
-        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> DescriptorValue, Uint32 Flags),
+    Int32 Function(IntPtr hDevice, Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue, Uint32 flags),
     int Function(
         int hDevice,
-        Pointer<BTH_LE_GATT_DESCRIPTOR> Descriptor,
-        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> DescriptorValue,
-        int Flags)>('BluetoothGATTSetDescriptorValue');
+        Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+        Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue,
+        int flags)>('BluetoothGATTSetDescriptorValue');
 
 /// Unregisters the given characteristic value change event.
 ///
@@ -619,12 +619,12 @@ final _BluetoothGATTSetDescriptorValue = _bluetoothapis.lookupFunction<
 /// );
 /// ```
 /// {@category bluetooth}
-int BluetoothGATTUnregisterEvent(int EventHandle, int Flags) =>
-    _BluetoothGATTUnregisterEvent(EventHandle, Flags);
+int BluetoothGATTUnregisterEvent(int eventHandle, int flags) =>
+    _BluetoothGATTUnregisterEvent(eventHandle, flags);
 
 final _BluetoothGATTUnregisterEvent = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr EventHandle, Uint32 Flags),
-    int Function(int EventHandle, int Flags)>('BluetoothGATTUnregisterEvent');
+    Int32 Function(IntPtr eventHandle, Uint32 flags),
+    int Function(int eventHandle, int flags)>('BluetoothGATTUnregisterEvent');
 
 /// TThe BluetoothGetDeviceInfo function retrieves information about a remote
 /// Bluetooth device. The Bluetooth device must have been previously identified
@@ -705,13 +705,13 @@ final _BluetoothIsDiscoverable = _bluetoothapis.lookupFunction<
 /// );
 /// ```
 /// {@category bluetooth}
-int BluetoothIsVersionAvailable(int MajorVersion, int MinorVersion) =>
-    _BluetoothIsVersionAvailable(MajorVersion, MinorVersion);
+int BluetoothIsVersionAvailable(int majorVersion, int minorVersion) =>
+    _BluetoothIsVersionAvailable(majorVersion, minorVersion);
 
 final _BluetoothIsVersionAvailable = _bluetoothapis.lookupFunction<
-    Int32 Function(Uint8 MajorVersion, Uint8 MinorVersion),
+    Int32 Function(Uint8 majorVersion, Uint8 minorVersion),
     int Function(
-        int MajorVersion, int MinorVersion)>('BluetoothIsVersionAvailable');
+        int majorVersion, int minorVersion)>('BluetoothIsVersionAvailable');
 
 /// The BluetoothRegisterForAuthenticationEx function registers an application
 /// for a pin request, numeric comparison and callback function.

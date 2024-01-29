@@ -40,11 +40,11 @@ class IChannelAudioVolume extends IUnknown {
               VTablePointer, Pointer<Uint32> pdwCount)>()(ptr, pdwCount);
 
   int setChannelVolume(
-          int dwIndex, double fLevel, Pointer<GUID> EventContext) =>
+          int dwIndex, double fLevel, Pointer<GUID> eventContext) =>
       _vtable.SetChannelVolume.asFunction<
               int Function(VTablePointer, int dwIndex, double fLevel,
-                  Pointer<GUID> EventContext)>()(
-          ptr, dwIndex, fLevel, EventContext);
+                  Pointer<GUID> eventContext)>()(
+          ptr, dwIndex, fLevel, eventContext);
 
   int getChannelVolume(int dwIndex, Pointer<Float> pfLevel) =>
       _vtable.GetChannelVolume.asFunction<
@@ -52,11 +52,11 @@ class IChannelAudioVolume extends IUnknown {
               Pointer<Float> pfLevel)>()(ptr, dwIndex, pfLevel);
 
   int setAllVolumes(
-          int dwCount, Pointer<Float> pfVolumes, Pointer<GUID> EventContext) =>
+          int dwCount, Pointer<Float> pfVolumes, Pointer<GUID> eventContext) =>
       _vtable.SetAllVolumes.asFunction<
               int Function(VTablePointer, int dwCount, Pointer<Float> pfVolumes,
-                  Pointer<GUID> EventContext)>()(
-          ptr, dwCount, pfVolumes, EventContext);
+                  Pointer<GUID> eventContext)>()(
+          ptr, dwCount, pfVolumes, eventContext);
 
   int getAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.GetAllVolumes.asFunction<
@@ -74,7 +74,7 @@ base class IChannelAudioVolumeVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(VTablePointer, Uint32 dwIndex, Float fLevel,
-              Pointer<GUID> EventContext)>> SetChannelVolume;
+              Pointer<GUID> eventContext)>> SetChannelVolume;
   external Pointer<
           NativeFunction<
               Int32 Function(
@@ -86,7 +86,7 @@ base class IChannelAudioVolumeVtbl extends Struct {
               VTablePointer,
               Uint32 dwCount,
               Pointer<Float> pfVolumes,
-              Pointer<GUID> EventContext)>> SetAllVolumes;
+              Pointer<GUID> eventContext)>> SetAllVolumes;
   external Pointer<
           NativeFunction<
               Int32 Function(

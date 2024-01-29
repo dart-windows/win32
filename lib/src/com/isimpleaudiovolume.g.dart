@@ -33,19 +33,19 @@ class ISimpleAudioVolume extends IUnknown {
   factory ISimpleAudioVolume.from(IUnknown interface) =>
       ISimpleAudioVolume(interface.toInterface(IID_ISimpleAudioVolume));
 
-  int setMasterVolume(double fLevel, Pointer<GUID> EventContext) =>
+  int setMasterVolume(double fLevel, Pointer<GUID> eventContext) =>
       _vtable.SetMasterVolume.asFunction<
           int Function(VTablePointer, double fLevel,
-              Pointer<GUID> EventContext)>()(ptr, fLevel, EventContext);
+              Pointer<GUID> eventContext)>()(ptr, fLevel, eventContext);
 
   int getMasterVolume(Pointer<Float> pfLevel) =>
       _vtable.GetMasterVolume.asFunction<
           int Function(VTablePointer, Pointer<Float> pfLevel)>()(ptr, pfLevel);
 
-  int setMute(int bMute, Pointer<GUID> EventContext) =>
+  int setMute(int bMute, Pointer<GUID> eventContext) =>
       _vtable.SetMute.asFunction<
           int Function(VTablePointer, int bMute,
-              Pointer<GUID> EventContext)>()(ptr, bMute, EventContext);
+              Pointer<GUID> eventContext)>()(ptr, bMute, eventContext);
 
   int getMute(Pointer<Int32> pbMute) => _vtable.GetMute.asFunction<
       int Function(VTablePointer, Pointer<Int32> pbMute)>()(ptr, pbMute);
@@ -57,7 +57,7 @@ base class ISimpleAudioVolumeVtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Float fLevel, Pointer<GUID> EventContext)>>
+                  VTablePointer, Float fLevel, Pointer<GUID> eventContext)>>
       SetMasterVolume;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Float> pfLevel)>>
@@ -65,7 +65,7 @@ base class ISimpleAudioVolumeVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer, Int32 bMute, Pointer<GUID> EventContext)>> SetMute;
+              VTablePointer, Int32 bMute, Pointer<GUID> eventContext)>> SetMute;
   external Pointer<
           NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> pbMute)>>
       GetMute;

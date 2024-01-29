@@ -24,12 +24,12 @@ void main() {
     final projection = FunctionProjection(coCreateInstanceEx!);
     expect(
         projection.functionParams,
-        equals('Pointer<GUID> Clsid, VTablePointer? punkOuter, int dwClsCtx, '
+        equals('Pointer<GUID> clsid, VTablePointer? punkOuter, int dwClsCtx, '
             'Pointer<COSERVERINFO>? pServerInfo, int dwCount, '
             'Pointer<MULTI_QI> pResults'));
     expect(
         projection.functionArgs,
-        equals('Clsid, punkOuter ?? nullptr, dwClsCtx, pServerInfo ?? nullptr, '
+        equals('clsid, punkOuter ?? nullptr, dwClsCtx, pServerInfo ?? nullptr, '
             'dwCount, pResults'));
   });
 
