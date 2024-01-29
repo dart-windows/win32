@@ -36,7 +36,26 @@ void main() {
     });
 
     test('uniqueName', () {
-      // TODO(halildurmus): Add tests
+      final ipmTaskInfo = scope.findTypeDef(
+          'Windows.Win32.System.ApplicationInstallationAndServicing.IPMTaskInfo');
+      expect(ipmTaskInfo, isNotNull);
+      final runtimeType = ipmTaskInfo!.findMethod('get_RuntimeType');
+      expect(runtimeType, isNotNull);
+      expect(runtimeType!.uniqueName, equals('get_RuntimeType_'));
+
+      final inkStrokes =
+          scope.findTypeDef('Windows.Win32.UI.TabletPC.IInkStrokes');
+      expect(inkStrokes, isNotNull);
+      final toString1 = inkStrokes!.findMethod('ToString');
+      expect(toString1, isNotNull);
+      expect(toString1!.uniqueName, equals('ToUtf16String'));
+
+      final ihtmlDialog =
+          scope.findTypeDef('Windows.Win32.Web.MsHtml.IHTMLDialog');
+      expect(ihtmlDialog, isNotNull);
+      final toString2 = ihtmlDialog!.findMethod('toString');
+      expect(toString2, isNotNull);
+      expect(toString2!.uniqueName, equals('toUtf16String'));
     });
   });
 

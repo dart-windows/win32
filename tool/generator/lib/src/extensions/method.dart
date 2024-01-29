@@ -50,8 +50,17 @@ extension MethodHelpers on Method {
       if (overloadIndex > 0) return '${name.safeIdentifier}_$overloadIndex';
     }
 
-    // Windows.Win32.Web.MsHtml includes a .toString() method. We replace this
-    // to avoid undue complexity.
+    // Windows.Win32.System.ApplicationInstallationAndServicing.IPMTaskInfo
+    // interface includes a .get_RuntimeType() method. We add `_` suffix to it
+    // avoid name conflicts with `Object.runtimeType`.
+    if (name == 'get_RuntimeType') return 'get_RuntimeType_';
+
+    // Windows.Win32.UI.TabletPC.IInkStrokes interface includes a .ToString()
+    // method. We replace this to avoid name conflicts with `Object.toString`.
+    if (name == 'ToString') return 'ToUtf16String';
+
+    // Interfaces in the Windows.Win32.Web.MsHtml namespace includes .toString()
+    // methods. We replace these to avoid name conflicts with `Object.toString`.
     if (name == 'toString') return 'toUtf16String';
 
     // Otherwise the original name is fine.

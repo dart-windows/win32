@@ -34,9 +34,9 @@ abstract class MethodProjection {
 
   /// The method name without uppercased first letter.
   ///
-  /// COM and Windows Runtime methods and properties are typically named in
-  /// TitleCase, but the Dart idiom is camelCase. This also has the significant
-  /// advantage of making it easier to avoid name conflicts.
+  /// COM methods and properties are typically named in TitleCase, but the Dart
+  /// idiom is camelCase. This also has the significant advantage of making it
+  /// easier to avoid name conflicts.
   String get camelCasedName => name.toCamelCase().safeIdentifier;
 
   /// The parameters exposed by a projected Dart method.
