@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -38,197 +33,59 @@ class IUIAutomationRangeValuePattern extends IUnknown {
       _vtable.SetValue.asFunction<int Function(VTablePointer, double val)>()(
           ptr, val);
 
-  double get currentValue {
-    final retValuePtr = calloc<Double>();
+  int get_CurrentValue(Pointer<Double> retVal) => _vtable.get_CurrentValue
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentValue.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsReadOnly {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsReadOnly
+  int get_CurrentIsReadOnly(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentMaximum(Pointer<Double> retVal) => _vtable.get_CurrentMaximum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get currentMaximum {
-    final retValuePtr = calloc<Double>();
+  int get_CurrentMinimum(Pointer<Double> retVal) => _vtable.get_CurrentMinimum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentMaximum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentLargeChange(Pointer<Double> retVal) => _vtable
+          .get_CurrentLargeChange
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentSmallChange(Pointer<Double> retVal) => _vtable
+          .get_CurrentSmallChange
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get currentMinimum {
-    final retValuePtr = calloc<Double>();
+  int get_CachedValue(Pointer<Double> retVal) => _vtable.get_CachedValue
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentMinimum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get currentLargeChange {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CurrentLargeChange.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get currentSmallChange {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CurrentSmallChange.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedValue {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedValue.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsReadOnly {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsReadOnly
+  int get_CachedIsReadOnly(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedMaximum(Pointer<Double> retVal) => _vtable.get_CachedMaximum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get cachedMaximum {
-    final retValuePtr = calloc<Double>();
+  int get_CachedMinimum(Pointer<Double> retVal) => _vtable.get_CachedMinimum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedMaximum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedLargeChange(Pointer<Double> retVal) => _vtable
+          .get_CachedLargeChange
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedMinimum {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedMinimum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedLargeChange {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedLargeChange.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedSmallChange {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedSmallChange.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedSmallChange(Pointer<Double> retVal) => _vtable
+          .get_CachedSmallChange
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 }
 
 /// @nodoc

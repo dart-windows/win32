@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -35,165 +30,49 @@ class IUIAutomationGridItemPattern extends IUnknown {
       IUIAutomationGridItemPattern(
           interface.toInterface(IID_IUIAutomationGridItemPattern));
 
-  VTablePointer get currentContainingGrid {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CurrentContainingGrid(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentContainingGrid.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentContainingGrid.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentRow(Pointer<Int32> retVal) => _vtable.get_CurrentRow
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentColumn(Pointer<Int32> retVal) => _vtable.get_CurrentColumn
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-  int get currentRow {
-    final retValuePtr = calloc<Int32>();
+  int get_CurrentRowSpan(Pointer<Int32> retVal) => _vtable.get_CurrentRowSpan
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentRow
+  int get_CurrentColumnSpan(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentColumnSpan
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedContainingGrid(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedContainingGrid.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int get currentColumn {
-    final retValuePtr = calloc<Int32>();
+  int get_CachedRow(Pointer<Int32> retVal) => _vtable.get_CachedRow
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentColumn
+  int get_CachedColumn(Pointer<Int32> retVal) => _vtable.get_CachedColumn
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
+
+  int get_CachedRowSpan(Pointer<Int32> retVal) => _vtable.get_CachedRowSpan
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
+
+  int get_CachedColumnSpan(Pointer<Int32> retVal) =>
+      _vtable.get_CachedColumnSpan
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentRowSpan {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentRowSpan
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentColumnSpan {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentColumnSpan
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get cachedContainingGrid {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CachedContainingGrid.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedRow {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedRow
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedColumn {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedColumn
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedRowSpan {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedRowSpan
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedColumnSpan {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedColumnSpan
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

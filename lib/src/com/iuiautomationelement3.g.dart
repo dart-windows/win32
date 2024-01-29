@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iuiautomationelement2.g.dart';
 import 'iunknown.g.dart';
 
@@ -36,37 +31,15 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
   int showContextMenu() =>
       _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int get currentIsPeripheral {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsPeripheral
+  int get_CurrentIsPeripheral(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsPeripheral
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsPeripheral {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsPeripheral
+  int get_CachedIsPeripheral(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsPeripheral
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

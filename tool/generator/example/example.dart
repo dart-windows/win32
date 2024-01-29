@@ -63,24 +63,6 @@ void printComMethod(String interface, String methodName) {
   }
 }
 
-void printComGetProperty(String interface, String propertyName) {
-  final typeDef = MetadataStore.getMetadataForType(interface);
-  final method = typeDef?.findMethod(propertyName);
-  if (method != null) {
-    final methodProjection = ComGetPropertyProjection(method);
-    print(methodProjection.toString().format());
-  }
-}
-
-void printComSetProperty(String interface, String propertyName) {
-  final typeDef = MetadataStore.getMetadataForType(interface);
-  final method = typeDef?.findMethod(propertyName);
-  if (method != null) {
-    final methodProjection = ComSetPropertyProjection(method);
-    print(methodProjection.toString().format());
-  }
-}
-
 extension on String {
   String format() => DartFormatter().format(this);
 }

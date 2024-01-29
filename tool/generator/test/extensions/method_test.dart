@@ -17,34 +17,6 @@ void main() {
   });
 
   group('Method', () {
-    test('isRealGetProperty', () {
-      final services = scope
-          .findTypeDef('Windows.Win32.Devices.Enumeration.Pnp.IUPnPServices');
-      expect(services, isNotNull);
-
-      final method1 = services!.findMethod('get_Count');
-      expect(method1, isNotNull);
-      expect(method1!.isRealGetProperty, isTrue);
-
-      final method2 = services.findMethod('get_Item');
-      expect(method2, isNotNull);
-      expect(method2!.isRealGetProperty, isFalse);
-    });
-
-    test('isRealSetProperty', () {
-      final container = scope.findTypeDef(
-          'Windows.Win32.Media.DirectShow.Tv.ITuningSpaceContainer');
-      expect(container, isNotNull);
-
-      final method1 = container!.findMethod('put_MaxCount');
-      expect(method1, isNotNull);
-      expect(method1!.isRealSetProperty, isTrue);
-
-      final method2 = container.findMethod('put_Item');
-      expect(method2, isNotNull);
-      expect(method2!.isRealSetProperty, isFalse);
-    });
-
     test('nameWithoutEncoding', () {
       final apis =
           scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');

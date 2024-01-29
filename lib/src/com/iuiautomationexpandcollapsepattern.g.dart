@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -40,37 +35,15 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
   int collapse() =>
       _vtable.Collapse.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int get currentExpandCollapseState {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentExpandCollapseState
+  int get_CurrentExpandCollapseState(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentExpandCollapseState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedExpandCollapseState {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedExpandCollapseState
+  int get_CachedExpandCollapseState(Pointer<Int32> retVal) =>
+      _vtable.get_CachedExpandCollapseState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

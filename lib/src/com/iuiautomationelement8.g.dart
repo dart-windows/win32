@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iuiautomationelement7.g.dart';
 import 'iunknown.g.dart';
 
@@ -33,37 +28,15 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
   factory IUIAutomationElement8.from(IUnknown interface) =>
       IUIAutomationElement8(interface.toInterface(IID_IUIAutomationElement8));
 
-  int get currentHeadingLevel {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentHeadingLevel
+  int get_CurrentHeadingLevel(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentHeadingLevel
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedHeadingLevel {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedHeadingLevel
+  int get_CachedHeadingLevel(Pointer<Int32> retVal) =>
+      _vtable.get_CachedHeadingLevel
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

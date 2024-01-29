@@ -10,11 +10,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -32,69 +29,22 @@ class ISpellingError extends IUnknown {
   factory ISpellingError.from(IUnknown interface) =>
       ISpellingError(interface.toInterface(IID_ISpellingError));
 
-  int get startIndex {
-    final retValuePtr = calloc<Uint32>();
+  int get_StartIndex(Pointer<Uint32> value) => _vtable.get_StartIndex
+          .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
+      ptr, value);
 
-    try {
-      final hr = _vtable.get_StartIndex
-              .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_Length(Pointer<Uint32> value) => _vtable.get_Length
+          .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
+      ptr, value);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CorrectiveAction(Pointer<Int32> value) => _vtable.get_CorrectiveAction
+          .asFunction<int Function(VTablePointer, Pointer<Int32> value)>()(
+      ptr, value);
 
-  int get length {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr = _vtable.get_Length
-              .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get correctiveAction {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CorrectiveAction
-              .asFunction<int Function(VTablePointer, Pointer<Int32> value)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get replacement {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_Replacement.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_Replacement(Pointer<Pointer<Utf16>> value) =>
+      _vtable.get_Replacement.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> value)>()(ptr, value);
 }
 
 /// @nodoc

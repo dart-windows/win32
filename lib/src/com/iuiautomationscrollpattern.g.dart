@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -46,197 +41,65 @@ class IUIAutomationScrollPattern extends IUnknown {
                   double verticalPercent)>()(
           ptr, horizontalPercent, verticalPercent);
 
-  double get currentHorizontalScrollPercent {
-    final retValuePtr = calloc<Double>();
+  int get_CurrentHorizontalScrollPercent(Pointer<Double> retVal) => _vtable
+          .get_CurrentHorizontalScrollPercent
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentHorizontalScrollPercent.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentVerticalScrollPercent(Pointer<Double> retVal) => _vtable
+          .get_CurrentVerticalScrollPercent
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentHorizontalViewSize(Pointer<Double> retVal) => _vtable
+          .get_CurrentHorizontalViewSize
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get currentVerticalScrollPercent {
-    final retValuePtr = calloc<Double>();
+  int get_CurrentVerticalViewSize(Pointer<Double> retVal) => _vtable
+          .get_CurrentVerticalViewSize
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentVerticalScrollPercent.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get currentHorizontalViewSize {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CurrentHorizontalViewSize.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get currentVerticalViewSize {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CurrentVerticalViewSize.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentHorizontallyScrollable {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentHorizontallyScrollable
+  int get_CurrentHorizontallyScrollable(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentHorizontallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentVerticallyScrollable {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentVerticallyScrollable
+  int get_CurrentVerticallyScrollable(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentVerticallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedHorizontalScrollPercent(Pointer<Double> retVal) => _vtable
+          .get_CachedHorizontalScrollPercent
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get cachedHorizontalScrollPercent {
-    final retValuePtr = calloc<Double>();
+  int get_CachedVerticalScrollPercent(Pointer<Double> retVal) => _vtable
+          .get_CachedVerticalScrollPercent
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedHorizontalScrollPercent.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedHorizontalViewSize(Pointer<Double> retVal) => _vtable
+          .get_CachedHorizontalViewSize
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedVerticalViewSize(Pointer<Double> retVal) => _vtable
+          .get_CachedVerticalViewSize
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get cachedVerticalScrollPercent {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedVerticalScrollPercent.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedHorizontalViewSize {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedHorizontalViewSize.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedVerticalViewSize {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedVerticalViewSize.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedHorizontallyScrollable {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedHorizontallyScrollable
+  int get_CachedHorizontallyScrollable(Pointer<Int32> retVal) =>
+      _vtable.get_CachedHorizontallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedVerticallyScrollable {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedVerticallyScrollable
+  int get_CachedVerticallyScrollable(Pointer<Int32> retVal) =>
+      _vtable.get_CachedVerticallyScrollable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

@@ -10,12 +10,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -36,21 +33,10 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
       IUIAutomationSpreadsheetItemPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetItemPattern));
 
-  Pointer<Utf16> get currentFormula {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentFormula.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentFormula(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentFormula.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
   int getCurrentAnnotationObjects(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentAnnotationObjects.asFunction<
@@ -62,21 +48,10 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
           int Function(VTablePointer,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedFormula {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedFormula.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedFormula(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedFormula.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
   int getCachedAnnotationObjects(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedAnnotationObjects.asFunction<

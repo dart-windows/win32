@@ -43,11 +43,8 @@ class FieldProjection {
     for (var i = 0; i < ${field.arrayUpperBound}; i++) {
       _$name[i] = stringToStore.codeUnitAt(i);
     }
-  }
-'''
+  }'''
         else
-          '''
-external $type $name;
-'''
+          'external $type $name;'
       ].join('\n');
 }

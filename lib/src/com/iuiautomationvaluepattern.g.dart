@@ -10,11 +10,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -37,69 +34,25 @@ class IUIAutomationValuePattern extends IUnknown {
   int setValue(Pointer<Utf16> val) => _vtable.SetValue.asFunction<
       int Function(VTablePointer, Pointer<Utf16> val)>()(ptr, val);
 
-  Pointer<Utf16> get currentValue {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_CurrentValue(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentValue.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentValue.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsReadOnly {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsReadOnly
+  int get_CurrentIsReadOnly(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedValue(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedValue.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedValue {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedValue.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsReadOnly {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsReadOnly
+  int get_CachedIsReadOnly(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsReadOnly
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

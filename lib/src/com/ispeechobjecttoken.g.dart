@@ -10,11 +10,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import '../variant.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
@@ -32,53 +29,19 @@ class ISpeechObjectToken extends IDispatch {
   factory ISpeechObjectToken.from(IUnknown interface) =>
       ISpeechObjectToken(interface.toInterface(IID_ISpeechObjectToken));
 
-  Pointer<Utf16> get id {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_Id(Pointer<Pointer<Utf16>> ObjectId) => _vtable.get_Id.asFunction<
+      int Function(
+          VTablePointer, Pointer<Pointer<Utf16>> ObjectId)>()(ptr, ObjectId);
 
-    try {
-      final hr = _vtable.get_Id.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> ObjectId)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_DataKey(Pointer<VTablePointer> DataKey) => _vtable.get_DataKey
+      .asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> DataKey)>()(ptr, DataKey);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get dataKey {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_DataKey.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> DataKey)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get category {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_Category.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> Category)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_Category(Pointer<VTablePointer> Category) =>
+      _vtable.get_Category.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> Category)>()(ptr, Category);
 
   int getDescription(int Locale, Pointer<Pointer<Utf16>> Description) =>
       _vtable.GetDescription.asFunction<

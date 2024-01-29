@@ -8,11 +8,7 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomation.g.dart';
@@ -34,72 +30,30 @@ class IUIAutomation2 extends IUIAutomation {
   factory IUIAutomation2.from(IUnknown interface) =>
       IUIAutomation2(interface.toInterface(IID_IUIAutomation2));
 
-  int get autoSetFocus {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_AutoSetFocus.asFunction<
+  int get_AutoSetFocus(Pointer<Int32> autoSetFocus) =>
+      _vtable.get_AutoSetFocus.asFunction<
           int Function(
-              VTablePointer, Pointer<Int32> autoSetFocus)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+              VTablePointer, Pointer<Int32> autoSetFocus)>()(ptr, autoSetFocus);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int put_AutoSetFocus(int autoSetFocus) => _vtable.put_AutoSetFocus
+          .asFunction<int Function(VTablePointer, int autoSetFocus)>()(
+      ptr, autoSetFocus);
 
-  set autoSetFocus(int value) {
-    final hr = _vtable.put_AutoSetFocus
-            .asFunction<int Function(VTablePointer, int autoSetFocus)>()(
-        ptr, value);
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
+  int get_ConnectionTimeout(Pointer<Uint32> timeout) => _vtable
+          .get_ConnectionTimeout
+          .asFunction<int Function(VTablePointer, Pointer<Uint32> timeout)>()(
+      ptr, timeout);
 
-  int get connectionTimeout {
-    final retValuePtr = calloc<Uint32>();
+  int put_ConnectionTimeout(int timeout) => _vtable.put_ConnectionTimeout
+      .asFunction<int Function(VTablePointer, int timeout)>()(ptr, timeout);
 
-    try {
-      final hr = _vtable.get_ConnectionTimeout.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> timeout)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_TransactionTimeout(Pointer<Uint32> timeout) => _vtable
+          .get_TransactionTimeout
+          .asFunction<int Function(VTablePointer, Pointer<Uint32> timeout)>()(
+      ptr, timeout);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  set connectionTimeout(int value) {
-    final hr = _vtable.put_ConnectionTimeout
-        .asFunction<int Function(VTablePointer, int timeout)>()(ptr, value);
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
-
-  int get transactionTimeout {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr = _vtable.get_TransactionTimeout.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> timeout)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  set transactionTimeout(int value) {
-    final hr = _vtable.put_TransactionTimeout
-        .asFunction<int Function(VTablePointer, int timeout)>()(ptr, value);
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
+  int put_TransactionTimeout(int timeout) => _vtable.put_TransactionTimeout
+      .asFunction<int Function(VTablePointer, int timeout)>()(ptr, timeout);
 }
 
 /// @nodoc

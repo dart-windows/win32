@@ -10,9 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
 import '../utils.dart';
 import '../variant.dart';
@@ -74,85 +72,27 @@ class IWinHttpRequest extends IDispatch {
       _vtable.Send.asFunction<int Function(VTablePointer, VARIANT Body)>()(
           ptr, Body);
 
-  int get status {
-    final retValuePtr = calloc<Int32>();
+  int get_Status(Pointer<Int32> Status) => _vtable.get_Status
+          .asFunction<int Function(VTablePointer, Pointer<Int32> Status)>()(
+      ptr, Status);
 
-    try {
-      final hr = _vtable.get_Status
-              .asFunction<int Function(VTablePointer, Pointer<Int32> Status)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get statusText {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_StatusText.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> Status)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get responseText {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_ResponseText.asFunction<
+  int get_StatusText(Pointer<Pointer<Utf16>> Status) =>
+      _vtable.get_StatusText.asFunction<
           int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> Body)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+              VTablePointer, Pointer<Pointer<Utf16>> Status)>()(ptr, Status);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_ResponseText(Pointer<Pointer<Utf16>> Body) =>
+      _vtable.get_ResponseText.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> Body)>()(ptr, Body);
 
-  VARIANT get responseBody {
-    final retValuePtr = calloc<VARIANT>();
+  int get_ResponseBody(Pointer<VARIANT> Body) => _vtable.get_ResponseBody
+          .asFunction<int Function(VTablePointer, Pointer<VARIANT> Body)>()(
+      ptr, Body);
 
-    try {
-      final hr = _vtable.get_ResponseBody
-              .asFunction<int Function(VTablePointer, Pointer<VARIANT> Body)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VARIANT get responseStream {
-    final retValuePtr = calloc<VARIANT>();
-
-    try {
-      final hr = _vtable.get_ResponseStream
-              .asFunction<int Function(VTablePointer, Pointer<VARIANT> Body)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_ResponseStream(Pointer<VARIANT> Body) => _vtable.get_ResponseStream
+          .asFunction<int Function(VTablePointer, Pointer<VARIANT> Body)>()(
+      ptr, Body);
 
   int get_Option(int Option, Pointer<VARIANT> Value) =>
       _vtable.get_Option.asFunction<

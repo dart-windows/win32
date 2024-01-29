@@ -192,26 +192,6 @@ void main() {
     expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
   });
 
-  test('Interfaces differentiate between methods and properties 1', () {
-    final iEnumNetworkConnections = scope.findTypeDef(
-        'Windows.Win32.Networking.NetworkListManager.IEnumNetworkConnections')!;
-    final interfaceProjection = ComInterfaceProjection(iEnumNetworkConnections);
-    final newEnum = interfaceProjection.methodProjections[0];
-    expect(newEnum.name, equals('get__NewEnum'));
-    expect(newEnum, isA<ComGetPropertyProjection>());
-    expect(newEnum, isA<ComMethodProjection>());
-  });
-
-  test('Interfaces differentiate between methods and properties 2', () {
-    final iEnumNetworkConnections = scope.findTypeDef(
-        'Windows.Win32.Networking.NetworkListManager.IEnumNetworkConnections')!;
-    final interfaceProjection = ComInterfaceProjection(iEnumNetworkConnections);
-    final next = interfaceProjection.methodProjections[1];
-    expect(next.name, equals('Next'));
-    expect(next, isNot(isA<ComGetPropertyProjection>()));
-    expect(next, isA<ComMethodProjection>());
-  });
-
   test('Optional parameters are nullable', () {
     final shellFolder =
         scope.findTypeDef('Windows.Win32.Media.Speech.ISpVoice');

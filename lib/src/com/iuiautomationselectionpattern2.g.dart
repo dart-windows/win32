@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iuiautomationselectionpattern.g.dart';
 import 'iunknown.g.dart';
 
@@ -36,133 +31,44 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
       IUIAutomationSelectionPattern2(
           interface.toInterface(IID_IUIAutomationSelectionPattern2));
 
-  VTablePointer get currentFirstSelectedItem {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CurrentFirstSelectedItem(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentFirstSelectedItem.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentFirstSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentLastSelectedItem(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentLastSelectedItem.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentCurrentSelectedItem(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentCurrentSelectedItem.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  VTablePointer get currentLastSelectedItem {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentLastSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get currentCurrentSelectedItem {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentCurrentSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentItemCount {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentItemCount
+  int get_CurrentItemCount(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentItemCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedFirstSelectedItem(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedFirstSelectedItem.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  VTablePointer get cachedFirstSelectedItem {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CachedLastSelectedItem(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedLastSelectedItem.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedFirstSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedCurrentSelectedItem(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedCurrentSelectedItem.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get cachedLastSelectedItem {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CachedLastSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get cachedCurrentSelectedItem {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CachedCurrentSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedItemCount {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedItemCount
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedItemCount(Pointer<Int32> retVal) => _vtable.get_CachedItemCount
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 }
 
 /// @nodoc

@@ -8,16 +8,6 @@ import 'custom_attributes_mixin.dart';
 import 'string.dart';
 
 extension MethodHelpers on Method {
-  /// Indicates whether the method is a _real_ `get` property.
-  ///
-  /// A `get` property must have exactly one parameter.
-  bool get isRealGetProperty => isGetProperty && parameters.length == 1;
-
-  /// Indicates whether the method is a _real_ `set` property.
-  ///
-  /// A `set` property must have exactly one parameter.
-  bool get isRealSetProperty => isSetProperty && parameters.length == 1;
-
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `GetClassName` instead of `GetClassNameW`).
   String get nameWithoutEncoding {

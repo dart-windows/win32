@@ -8,14 +8,9 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -54,37 +49,16 @@ class IUIAutomationTextPattern extends IUnknown {
           int Function(
               VTablePointer, Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
-  VTablePointer get documentRange {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_DocumentRange.asFunction<
+  int get_DocumentRange(Pointer<VTablePointer> range) =>
+      _vtable.get_DocumentRange.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> range)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+              VTablePointer, Pointer<VTablePointer> range)>()(ptr, range);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get supportedTextSelection {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_SupportedTextSelection.asFunction<
-          int Function(VTablePointer,
-              Pointer<Int32> supportedTextSelection)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_SupportedTextSelection(Pointer<Int32> supportedTextSelection) =>
+      _vtable.get_SupportedTextSelection.asFunction<
+              int Function(
+                  VTablePointer, Pointer<Int32> supportedTextSelection)>()(
+          ptr, supportedTextSelection);
 }
 
 /// @nodoc

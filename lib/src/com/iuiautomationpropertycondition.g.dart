@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import '../variant.dart';
 import 'iuiautomationcondition.g.dart';
 import 'iunknown.g.dart';
@@ -37,53 +32,19 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
       IUIAutomationPropertyCondition(
           interface.toInterface(IID_IUIAutomationPropertyCondition));
 
-  int get propertyId {
-    final retValuePtr = calloc<Int32>();
+  int get_PropertyId(Pointer<Int32> propertyId) => _vtable.get_PropertyId
+          .asFunction<int Function(VTablePointer, Pointer<Int32> propertyId)>()(
+      ptr, propertyId);
 
-    try {
-      final hr = _vtable.get_PropertyId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> propertyId)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VARIANT get propertyValue {
-    final retValuePtr = calloc<VARIANT>();
-
-    try {
-      final hr = _vtable.get_PropertyValue.asFunction<
+  int get_PropertyValue(Pointer<VARIANT> propertyValue) =>
+      _vtable.get_PropertyValue.asFunction<
               int Function(VTablePointer, Pointer<VARIANT> propertyValue)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, propertyValue);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get propertyConditionFlags {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_PropertyConditionFlags
+  int get_PropertyConditionFlags(Pointer<Int32> flags) =>
+      _vtable.get_PropertyConditionFlags
               .asFunction<int Function(VTablePointer, Pointer<Int32> flags)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, flags);
 }
 
 /// @nodoc

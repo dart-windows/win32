@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
 
@@ -34,21 +29,10 @@ class IEnumNetworks extends IDispatch {
   factory IEnumNetworks.from(IUnknown interface) =>
       IEnumNetworks(interface.toInterface(IID_IEnumNetworks));
 
-  VTablePointer get newEnum {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get__NewEnum.asFunction<
+  int get__NewEnum(Pointer<VTablePointer> ppEnumVar) =>
+      _vtable.get__NewEnum.asFunction<
               int Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, ppEnumVar);
 
   int next(int celt, Pointer<VTablePointer> rgelt,
           Pointer<Uint32>? pceltFetched) =>

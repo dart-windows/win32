@@ -49,7 +49,7 @@ class StructProjection {
       typeDef.isNested || typeDef.isUnion ? 'sealed' : 'base';
 
   String get fieldsProjection =>
-      typeDef.fields.map(FieldProjection.new).join('\n');
+      typeDef.fields.map(FieldProjection.new).join('\n\n');
 
   String? _nestedTypes;
   String get nestedTypes => _nestedTypes ??= _cacheNestedTypes();

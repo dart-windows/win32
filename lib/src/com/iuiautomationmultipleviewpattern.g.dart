@@ -10,12 +10,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -44,42 +41,20 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
   int setCurrentView(int view) => _vtable.SetCurrentView.asFunction<
       int Function(VTablePointer, int view)>()(ptr, view);
 
-  int get currentCurrentView {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentCurrentView
+  int get_CurrentCurrentView(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentCurrentView
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 
   int getCurrentSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCurrentSupportedViews.asFunction<
           int Function(VTablePointer,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
-  int get cachedCurrentView {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedCurrentView
+  int get_CachedCurrentView(Pointer<Int32> retVal) =>
+      _vtable.get_CachedCurrentView
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 
   int getCachedSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCachedSupportedViews.asFunction<

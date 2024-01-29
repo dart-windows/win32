@@ -10,11 +10,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -34,165 +31,55 @@ class IUIAutomationAnnotationPattern extends IUnknown {
       IUIAutomationAnnotationPattern(
           interface.toInterface(IID_IUIAutomationAnnotationPattern));
 
-  int get currentAnnotationTypeId {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentAnnotationTypeId
+  int get_CurrentAnnotationTypeId(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentAnnotationTypeId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentAnnotationTypeName(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAnnotationTypeName.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get currentAnnotationTypeName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_CurrentAuthor(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAuthor.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentAnnotationTypeName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentDateTime(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentDateTime.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentTarget(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentTarget.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get currentAuthor {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentAuthor.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentDateTime {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentDateTime.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get currentTarget {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentTarget.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedAnnotationTypeId {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedAnnotationTypeId
+  int get_CachedAnnotationTypeId(Pointer<Int32> retVal) =>
+      _vtable.get_CachedAnnotationTypeId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedAnnotationTypeName(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAnnotationTypeName.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedAnnotationTypeName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_CachedAuthor(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAuthor.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedAnnotationTypeName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedDateTime(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedDateTime.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedAuthor {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedAuthor.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedDateTime {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedDateTime.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get cachedTarget {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CachedTarget.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedTarget(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedTarget.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 }
 
 /// @nodoc

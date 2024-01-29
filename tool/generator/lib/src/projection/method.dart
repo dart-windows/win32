@@ -6,17 +6,10 @@ import 'package:winmd/winmd.dart';
 
 import '../extensions/method.dart';
 import '../extensions/string.dart';
-import 'com_method.dart';
-import 'com_property.dart';
 import 'parameter.dart';
 import 'type.dart';
 
-/// A generic class representing an entry in a COM function vtable.
-///
-/// This is the base class for a range of COM-based objects, including
-/// [ComMethodProjection], [ComGetPropertyProjection],
-/// [ComSetPropertyProjection]. All of these map down to an entry in a COM
-/// vtable representing a method.
+/// A generic class representing an entry in a COM function v-table.
 ///
 /// Methods have names, a list of parameters, and may return a type.
 abstract class MethodProjection {

@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -120,21 +115,10 @@ class IUIAutomationTreeWalker extends IUnknown {
                   Pointer<VTablePointer> normalized)>()(
           ptr, element, cacheRequest, normalized);
 
-  VTablePointer get condition {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_Condition.asFunction<
+  int get_Condition(Pointer<VTablePointer> condition) =>
+      _vtable.get_Condition.asFunction<
               int Function(VTablePointer, Pointer<VTablePointer> condition)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, condition);
 }
 
 /// @nodoc

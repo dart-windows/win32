@@ -64,14 +64,33 @@ void main(List<String> args) {
 
       final error = ISpellingError(errorPtr.value);
       free(errorPtr);
+
+      final pStartIndex = calloc<Uint32>();
+      var hr = error.get_StartIndex(pStartIndex);
+      if (FAILED(hr)) throw WindowsException(hr);
+      final startIndex = pStartIndex.value;
+      free(pStartIndex);
+
+      final pLength = calloc<Uint32>();
+      hr = error.get_Length(pLength);
+      if (FAILED(hr)) throw WindowsException(hr);
+      final length = pLength.value;
+      free(pLength);
+
       final word = text.substring(
-        error.startIndex,
-        error.startIndex + error.length,
+        startIndex,
+        startIndex + length,
       );
 
       stdout.write('$errorCount. $word');
 
-      switch (error.correctiveAction) {
+      final pCorrectiveAction = calloc<Int32>();
+      hr = error.get_CorrectiveAction(pCorrectiveAction);
+      if (FAILED(hr)) throw WindowsException(hr);
+      final correctiveAction = pCorrectiveAction.value;
+      free(pCorrectiveAction);
+
+      switch (correctiveAction) {
         case CORRECTIVE_ACTION.DELETE:
           print(' - delete');
 
@@ -79,10 +98,14 @@ void main(List<String> args) {
           print('\n');
 
         case CORRECTIVE_ACTION.REPLACE:
-          final replacment = error.replacement;
-          print(' - replace with "${replacment.toDartString()}"');
-          WindowsDeleteString(replacment.address);
+          final pReplacement = calloc<Pointer<Utf16>>();
+          hr = error.get_Replacement(pReplacement);
+          if (FAILED(hr)) throw WindowsException(hr);
+          final replacement = pReplacement.value.toDartString();
+          free(pReplacement.value);
+          free(pReplacement);
 
+          print(' - replace with "$replacement"');
         case CORRECTIVE_ACTION.GET_SUGGESTIONS:
           print(' - suggestions:');
 

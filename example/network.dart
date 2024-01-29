@@ -59,9 +59,14 @@ void main() {
       hr = network.getDescription(descPtr);
       if (SUCCEEDED(hr)) {
         final networkName = descPtr.value.toDartString();
-        final isNetworkConnected = network.isConnected == VARIANT_TRUE;
-        print(
-            '$networkName: ${isNetworkConnected ? 'connected' : 'disconnected'}');
+        final pbIsConnected = calloc<Int16>();
+        hr = network.get_IsConnected(pbIsConnected);
+        if (SUCCEEDED(hr)) {
+          final isNetworkConnected = pbIsConnected.value == VARIANT_TRUE;
+          print(
+              '$networkName: ${isNetworkConnected ? 'connected' : 'disconnected'}');
+        }
+        free(pbIsConnected);
       }
 
       network.release();

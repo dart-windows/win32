@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import '../variant.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
@@ -35,21 +30,10 @@ class ISpeechBaseStream extends IDispatch {
   factory ISpeechBaseStream.from(IUnknown interface) =>
       ISpeechBaseStream(interface.toInterface(IID_ISpeechBaseStream));
 
-  VTablePointer get format {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_Format.asFunction<
+  int get_Format(Pointer<VTablePointer> AudioFormat) =>
+      _vtable.get_Format.asFunction<
           int Function(VTablePointer,
-              Pointer<VTablePointer> AudioFormat)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+              Pointer<VTablePointer> AudioFormat)>()(ptr, AudioFormat);
 
   int putref_Format(VTablePointer? AudioFormat) => _vtable.putref_Format
           .asFunction<int Function(VTablePointer, VTablePointer AudioFormat)>()(

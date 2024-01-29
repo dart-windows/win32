@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -45,72 +40,29 @@ class IUIAutomationCacheRequest extends IUnknown {
           int Function(VTablePointer, Pointer<VTablePointer> clonedRequest)>()(
       ptr, clonedRequest);
 
-  int get treeScope {
-    final retValuePtr = calloc<Int32>();
+  int get_TreeScope(Pointer<Int32> scope) => _vtable.get_TreeScope
+          .asFunction<int Function(VTablePointer, Pointer<Int32> scope)>()(
+      ptr, scope);
 
-    try {
-      final hr = _vtable.get_TreeScope
-              .asFunction<int Function(VTablePointer, Pointer<Int32> scope)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int put_TreeScope(int scope) => _vtable.put_TreeScope
+      .asFunction<int Function(VTablePointer, int scope)>()(ptr, scope);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_TreeFilter(Pointer<VTablePointer> filter) =>
+      _vtable.get_TreeFilter.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> filter)>()(ptr, filter);
 
-  set treeScope(int value) {
-    final hr = _vtable.put_TreeScope
-        .asFunction<int Function(VTablePointer, int scope)>()(ptr, value);
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
+  int put_TreeFilter(VTablePointer filter) => _vtable.put_TreeFilter
+          .asFunction<int Function(VTablePointer, VTablePointer filter)>()(
+      ptr, filter);
 
-  VTablePointer get treeFilter {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_TreeFilter.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> filter)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  set treeFilter(VTablePointer value) {
-    final hr = _vtable.put_TreeFilter
-            .asFunction<int Function(VTablePointer, VTablePointer filter)>()(
-        ptr, value);
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
-
-  int get automationElementMode {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_AutomationElementMode
+  int get_AutomationElementMode(Pointer<Int32> mode) =>
+      _vtable.get_AutomationElementMode
               .asFunction<int Function(VTablePointer, Pointer<Int32> mode)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, mode);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  set automationElementMode(int value) {
-    final hr = _vtable.put_AutomationElementMode
-        .asFunction<int Function(VTablePointer, int mode)>()(ptr, value);
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
+  int put_AutomationElementMode(int mode) => _vtable.put_AutomationElementMode
+      .asFunction<int Function(VTablePointer, int mode)>()(ptr, mode);
 }
 
 /// @nodoc

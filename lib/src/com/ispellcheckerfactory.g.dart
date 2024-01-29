@@ -10,9 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -33,21 +31,10 @@ class ISpellCheckerFactory extends IUnknown {
   factory ISpellCheckerFactory.from(IUnknown interface) =>
       ISpellCheckerFactory(interface.toInterface(IID_ISpellCheckerFactory));
 
-  VTablePointer get supportedLanguages {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_SupportedLanguages.asFunction<
+  int get_SupportedLanguages(Pointer<VTablePointer> value) =>
+      _vtable.get_SupportedLanguages.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> value)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+              VTablePointer, Pointer<VTablePointer> value)>()(ptr, value);
 
   int isSupported(Pointer<Utf16> languageTag, Pointer<Int32> value) =>
       _vtable.IsSupported.asFunction<

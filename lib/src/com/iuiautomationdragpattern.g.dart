@@ -10,12 +10,9 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -35,101 +32,34 @@ class IUIAutomationDragPattern extends IUnknown {
       IUIAutomationDragPattern(
           interface.toInterface(IID_IUIAutomationDragPattern));
 
-  int get currentIsGrabbed {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsGrabbed
+  int get_CurrentIsGrabbed(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsGrabbed
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedIsGrabbed(Pointer<Int32> retVal) => _vtable.get_CachedIsGrabbed
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-  int get cachedIsGrabbed {
-    final retValuePtr = calloc<Int32>();
+  int get_CurrentDropEffect(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentDropEffect.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedIsGrabbed
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedDropEffect(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedDropEffect.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentDropEffect {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentDropEffect.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedDropEffect {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedDropEffect.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<SAFEARRAY> get currentDropEffects {
-    final retValuePtr = calloc<Pointer<SAFEARRAY>>();
-
-    try {
-      final hr = _vtable.get_CurrentDropEffects.asFunction<
+  int get_CurrentDropEffects(Pointer<Pointer<SAFEARRAY>> retVal) =>
+      _vtable.get_CurrentDropEffects.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<SAFEARRAY> get cachedDropEffects {
-    final retValuePtr = calloc<Pointer<SAFEARRAY>>();
-
-    try {
-      final hr = _vtable.get_CachedDropEffects.asFunction<
+  int get_CachedDropEffects(Pointer<Pointer<SAFEARRAY>> retVal) =>
+      _vtable.get_CachedDropEffects.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
   int getCurrentGrabbedItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentGrabbedItems.asFunction<

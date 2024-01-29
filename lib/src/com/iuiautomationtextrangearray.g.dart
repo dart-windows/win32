@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -34,21 +29,9 @@ class IUIAutomationTextRangeArray extends IUnknown {
       IUIAutomationTextRangeArray(
           interface.toInterface(IID_IUIAutomationTextRangeArray));
 
-  int get length {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_Length
-              .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_Length(Pointer<Int32> length) => _vtable.get_Length
+          .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
+      ptr, length);
 
   int getElement(int index, Pointer<VTablePointer> element) =>
       _vtable.GetElement.asFunction<

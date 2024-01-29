@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iuiautomationtransformpattern.g.dart';
 import 'iunknown.g.dart';
 
@@ -44,133 +39,42 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
   int zoomByUnit(int zoomUnit) => _vtable.ZoomByUnit.asFunction<
       int Function(VTablePointer, int zoomUnit)>()(ptr, zoomUnit);
 
-  int get currentCanZoom {
-    final retValuePtr = calloc<Int32>();
+  int get_CurrentCanZoom(Pointer<Int32> retVal) => _vtable.get_CurrentCanZoom
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentCanZoom
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedCanZoom(Pointer<Int32> retVal) => _vtable.get_CachedCanZoom
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentZoomLevel(Pointer<Double> retVal) => _vtable
+          .get_CurrentZoomLevel
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  int get cachedCanZoom {
-    final retValuePtr = calloc<Int32>();
+  int get_CachedZoomLevel(Pointer<Double> retVal) => _vtable.get_CachedZoomLevel
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedCanZoom
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentZoomMinimum(Pointer<Double> retVal) => _vtable
+          .get_CurrentZoomMinimum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedZoomMinimum(Pointer<Double> retVal) => _vtable
+          .get_CachedZoomMinimum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-  double get currentZoomLevel {
-    final retValuePtr = calloc<Double>();
+  int get_CurrentZoomMaximum(Pointer<Double> retVal) => _vtable
+          .get_CurrentZoomMaximum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentZoomLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedZoomLevel {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedZoomLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get currentZoomMinimum {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CurrentZoomMinimum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedZoomMinimum {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedZoomMinimum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get currentZoomMaximum {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CurrentZoomMaximum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  double get cachedZoomMaximum {
-    final retValuePtr = calloc<Double>();
-
-    try {
-      final hr = _vtable.get_CachedZoomMaximum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedZoomMaximum(Pointer<Double> retVal) => _vtable
+          .get_CachedZoomMaximum
+          .asFunction<int Function(VTablePointer, Pointer<Double> retVal)>()(
+      ptr, retVal);
 }
 
 /// @nodoc

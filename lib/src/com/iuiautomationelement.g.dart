@@ -10,13 +10,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
-import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import '../variant.dart';
 import 'iunknown.g.dart';
 
@@ -137,1029 +134,321 @@ class IUIAutomationElement extends IUnknown {
           int Function(
               VTablePointer, Pointer<VTablePointer> children)>()(ptr, children);
 
-  int get currentProcessId {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentProcessId
+  int get_CurrentProcessId(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentProcessId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentControlType {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentControlType
+  int get_CurrentControlType(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentControlType
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentLocalizedControlType {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentLocalizedControlType.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentAcceleratorKey {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentAcceleratorKey.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentAccessKey {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentAccessKey.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentHasKeyboardFocus {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentHasKeyboardFocus
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsKeyboardFocusable {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsKeyboardFocusable
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsEnabled {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsEnabled
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentAutomationId {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentAutomationId.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentClassName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentClassName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentHelpText {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentHelpText.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentCulture {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentCulture
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsControlElement {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsControlElement
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsContentElement {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsContentElement
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsPassword {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsPassword
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentNativeWindowHandle {
-    final retValuePtr = calloc<IntPtr>();
-
-    try {
-      final hr = _vtable.get_CurrentNativeWindowHandle.asFunction<
+  int get_CurrentLocalizedControlType(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentLocalizedControlType.asFunction<
           int Function(
-              VTablePointer, Pointer<IntPtr> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentItemType {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentItemType.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsOffscreen {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsOffscreen
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentOrientation {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentOrientation
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentFrameworkId {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentFrameworkId.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsRequiredForForm {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsRequiredForForm
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentItemStatus {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentItemStatus.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  RECT get currentBoundingRectangle {
-    final retValuePtr = calloc<RECT>();
-
-    try {
-      final hr = _vtable.get_CurrentBoundingRectangle
-              .asFunction<int Function(VTablePointer, Pointer<RECT> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get currentLabeledBy {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentLabeledBy.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentAriaRole {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentAriaRole.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentAriaProperties {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentAriaProperties.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get currentIsDataValidForForm {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentIsDataValidForForm
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get currentControllerFor {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentControllerFor.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get currentDescribedBy {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentDescribedBy.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  VTablePointer get currentFlowsTo {
-    final retValuePtr = calloc<VTablePointer>();
-
-    try {
-      final hr = _vtable.get_CurrentFlowsTo.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get currentProviderDescription {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CurrentProviderDescription.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedProcessId {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedProcessId
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedControlType {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedControlType
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedLocalizedControlType {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedLocalizedControlType.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedAcceleratorKey {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedAcceleratorKey.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedAccessKey {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedAccessKey.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedHasKeyboardFocus {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedHasKeyboardFocus
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsKeyboardFocusable {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsKeyboardFocusable
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsEnabled {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsEnabled
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedAutomationId {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedAutomationId.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedClassName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedClassName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedHelpText {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedHelpText.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedCulture {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedCulture
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsControlElement {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsControlElement
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsContentElement {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsContentElement
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsPassword {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsPassword
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedNativeWindowHandle {
-    final retValuePtr = calloc<IntPtr>();
-
-    try {
-      final hr = _vtable.get_CachedNativeWindowHandle.asFunction<
+  int get_CurrentName(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentName.asFunction<
           int Function(
-              VTablePointer, Pointer<IntPtr> retVal)>()(ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentAcceleratorKey(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAcceleratorKey.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedItemType {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_CurrentAccessKey(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAccessKey.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedItemType.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsOffscreen {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsOffscreen
+  int get_CurrentHasKeyboardFocus(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentHasKeyboardFocus
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedOrientation {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedOrientation
+  int get_CurrentIsKeyboardFocusable(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsKeyboardFocusable
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedFrameworkId {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedFrameworkId.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsRequiredForForm {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsRequiredForForm
+  int get_CurrentIsEnabled(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsEnabled
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentAutomationId(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAutomationId.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedItemStatus {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_CurrentClassName(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentClassName.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedItemStatus.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentHelpText(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentHelpText.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentCulture(Pointer<Int32> retVal) => _vtable.get_CurrentCulture
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-  RECT get cachedBoundingRectangle {
-    final retValuePtr = calloc<RECT>();
+  int get_CurrentIsControlElement(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsControlElement
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedBoundingRectangle
+  int get_CurrentIsContentElement(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsContentElement
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CurrentIsPassword(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsPassword
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CurrentNativeWindowHandle(Pointer<IntPtr> retVal) => _vtable
+          .get_CurrentNativeWindowHandle
+          .asFunction<int Function(VTablePointer, Pointer<IntPtr> retVal)>()(
+      ptr, retVal);
+
+  int get_CurrentItemType(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentItemType.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CurrentIsOffscreen(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsOffscreen
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CurrentOrientation(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentOrientation
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CurrentFrameworkId(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentFrameworkId.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CurrentIsRequiredForForm(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsRequiredForForm
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CurrentItemStatus(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentItemStatus.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CurrentBoundingRectangle(Pointer<RECT> retVal) =>
+      _vtable.get_CurrentBoundingRectangle
               .asFunction<int Function(VTablePointer, Pointer<RECT> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentLabeledBy(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentLabeledBy.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  VTablePointer get cachedLabeledBy {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CurrentAriaRole(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAriaRole.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedLabeledBy.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentAriaProperties(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentAriaProperties.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedAriaRole {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedAriaRole.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Pointer<Utf16> get cachedAriaProperties {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
-    try {
-      final hr = _vtable.get_CachedAriaProperties.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsDataValidForForm {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsDataValidForForm
+  int get_CurrentIsDataValidForForm(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentIsDataValidForForm
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentControllerFor(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentControllerFor.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  VTablePointer get cachedControllerFor {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CurrentDescribedBy(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentDescribedBy.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedControllerFor.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CurrentFlowsTo(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CurrentFlowsTo.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CurrentProviderDescription(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CurrentProviderDescription.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  VTablePointer get cachedDescribedBy {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CachedProcessId(Pointer<Int32> retVal) => _vtable.get_CachedProcessId
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedDescribedBy.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedControlType(Pointer<Int32> retVal) =>
+      _vtable.get_CachedControlType
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedLocalizedControlType(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedLocalizedControlType.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  VTablePointer get cachedFlowsTo {
-    final retValuePtr = calloc<VTablePointer>();
+  int get_CachedName(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedName.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedFlowsTo.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedAcceleratorKey(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAcceleratorKey.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedAccessKey(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAccessKey.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedProviderDescription {
-    final retValuePtr = calloc<Pointer<Utf16>>();
+  int get_CachedHasKeyboardFocus(Pointer<Int32> retVal) =>
+      _vtable.get_CachedHasKeyboardFocus
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CachedProviderDescription.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
+  int get_CachedIsKeyboardFocusable(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsKeyboardFocusable
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
 
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedIsEnabled(Pointer<Int32> retVal) => _vtable.get_CachedIsEnabled
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
+
+  int get_CachedAutomationId(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAutomationId.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedClassName(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedClassName.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedHelpText(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedHelpText.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedCulture(Pointer<Int32> retVal) => _vtable.get_CachedCulture
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
+
+  int get_CachedIsControlElement(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsControlElement
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedIsContentElement(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsContentElement
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedIsPassword(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsPassword
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedNativeWindowHandle(Pointer<IntPtr> retVal) => _vtable
+          .get_CachedNativeWindowHandle
+          .asFunction<int Function(VTablePointer, Pointer<IntPtr> retVal)>()(
+      ptr, retVal);
+
+  int get_CachedItemType(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedItemType.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedIsOffscreen(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsOffscreen
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedOrientation(Pointer<Int32> retVal) =>
+      _vtable.get_CachedOrientation
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedFrameworkId(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedFrameworkId.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedIsRequiredForForm(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsRequiredForForm
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedItemStatus(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedItemStatus.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedBoundingRectangle(Pointer<RECT> retVal) =>
+      _vtable.get_CachedBoundingRectangle
+              .asFunction<int Function(VTablePointer, Pointer<RECT> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedLabeledBy(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedLabeledBy.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+
+  int get_CachedAriaRole(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAriaRole.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedAriaProperties(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedAriaProperties.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+
+  int get_CachedIsDataValidForForm(Pointer<Int32> retVal) =>
+      _vtable.get_CachedIsDataValidForForm
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retVal);
+
+  int get_CachedControllerFor(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedControllerFor.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+
+  int get_CachedDescribedBy(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedDescribedBy.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+
+  int get_CachedFlowsTo(Pointer<VTablePointer> retVal) =>
+      _vtable.get_CachedFlowsTo.asFunction<
+          int Function(
+              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+
+  int get_CachedProviderDescription(Pointer<Pointer<Utf16>> retVal) =>
+      _vtable.get_CachedProviderDescription.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
 
   int getClickablePoint(
           Pointer<POINT> clickable, Pointer<Int32> gotClickable) =>

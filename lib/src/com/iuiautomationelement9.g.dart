@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iuiautomationelement8.g.dart';
 import 'iunknown.g.dart';
 
@@ -33,37 +28,13 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
   factory IUIAutomationElement9.from(IUnknown interface) =>
       IUIAutomationElement9(interface.toInterface(IID_IUIAutomationElement9));
 
-  int get currentIsDialog {
-    final retValuePtr = calloc<Int32>();
+  int get_CurrentIsDialog(Pointer<Int32> retVal) => _vtable.get_CurrentIsDialog
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 
-    try {
-      final hr = _vtable.get_CurrentIsDialog
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get cachedIsDialog {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedIsDialog
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+  int get_CachedIsDialog(Pointer<Int32> retVal) => _vtable.get_CachedIsDialog
+          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+      ptr, retVal);
 }
 
 /// @nodoc

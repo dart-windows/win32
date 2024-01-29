@@ -8,13 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
-import '../exceptions.dart';
 import '../extensions/iunknown.dart';
-import '../macros.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -44,21 +39,10 @@ class IUIAutomationTablePattern extends IUnknown {
           int Function(
               VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int get currentRowOrColumnMajor {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CurrentRowOrColumnMajor
+  int get_CurrentRowOrColumnMajor(Pointer<Int32> retVal) =>
+      _vtable.get_CurrentRowOrColumnMajor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 
   int getCachedRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedRowHeaders.asFunction<
@@ -70,21 +54,10 @@ class IUIAutomationTablePattern extends IUnknown {
           int Function(
               VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int get cachedRowOrColumnMajor {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = _vtable.get_CachedRowOrColumnMajor
+  int get_CachedRowOrColumnMajor(Pointer<Int32> retVal) =>
+      _vtable.get_CachedRowOrColumnMajor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
-      return retValue;
-    } finally {
-      free(retValuePtr);
-    }
-  }
+          ptr, retVal);
 }
 
 /// @nodoc

@@ -18,13 +18,21 @@ void main() {
 
     test('network is connected', () {
       final nlm = NetworkListManager.createInstance();
-      expect(nlm.isConnected, equals(VARIANT_TRUE));
+      final pbIsConnected = calloc<Int16>();
+      final hr = nlm.get_IsConnected(pbIsConnected);
+      expect(hr, equals(S_OK));
+      expect(pbIsConnected.value, equals(VARIANT_TRUE));
+      free(pbIsConnected);
       nlm.release();
     });
 
     test('network is connected to the internet', () {
       final nlm = NetworkListManager.createInstance();
-      expect(nlm.isConnectedToInternet, equals(VARIANT_TRUE));
+      final pbIsConnected = calloc<Int16>();
+      final hr = nlm.get_IsConnectedToInternet(pbIsConnected);
+      expect(hr, equals(S_OK));
+      expect(pbIsConnected.value, equals(VARIANT_TRUE));
+      free(pbIsConnected);
       nlm.release();
     });
 
@@ -45,9 +53,14 @@ void main() {
       free(netPtr);
 
       // network should be connected, given the filter
-      expect(network.isConnected,
+      final pbIsConnected = calloc<Int16>();
+      final hr = nlm.get_IsConnected(pbIsConnected);
+      expect(hr, equals(S_OK));
+      expect(pbIsConnected.value, equals(VARIANT_TRUE));
+      expect(pbIsConnected.value,
           anyOf(equals(VARIANT_TRUE), equals(VARIANT_FALSE)));
 
+      free(pbIsConnected);
       network.release();
       enumerator.release();
       nlm.release();
