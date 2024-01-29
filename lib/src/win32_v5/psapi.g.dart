@@ -63,14 +63,17 @@ final _EnumDeviceDrivers = _psapi.lookupFunction<
 /// );
 /// ```
 /// {@category psapi}
-int EnumPageFiles(Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+int EnumPageFiles(
+        Pointer<NativeFunction<PENUM_PAGE_FILE_CALLBACK>> pCallBackRoutine,
         Pointer pContext) =>
     _EnumPageFiles(pCallBackRoutine, pContext);
 
 final _EnumPageFiles = _psapi.lookupFunction<
-    Int32 Function(Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+    Int32 Function(
+        Pointer<NativeFunction<PENUM_PAGE_FILE_CALLBACK>> pCallBackRoutine,
         Pointer pContext),
-    int Function(Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+    int Function(
+        Pointer<NativeFunction<PENUM_PAGE_FILE_CALLBACK>> pCallBackRoutine,
         Pointer pContext)>('EnumPageFilesW');
 
 /// Retrieves the process identifier for each process object in the system.

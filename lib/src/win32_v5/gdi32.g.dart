@@ -645,7 +645,7 @@ final _EndPath =
 int EnumFontFamiliesEx(
         int hdc,
         Pointer<LOGFONT> lpLogfont,
-        Pointer<NativeFunction<EnumFontFamExProc>> lpProc,
+        Pointer<NativeFunction<FONTENUMPROC>> lpProc,
         int lParam,
         int dwFlags) =>
     _EnumFontFamiliesEx(hdc, lpLogfont, lpProc, lParam, dwFlags);
@@ -654,13 +654,13 @@ final _EnumFontFamiliesEx = _gdi32.lookupFunction<
     Int32 Function(
         IntPtr hdc,
         Pointer<LOGFONT> lpLogfont,
-        Pointer<NativeFunction<EnumFontFamExProc>> lpProc,
+        Pointer<NativeFunction<FONTENUMPROC>> lpProc,
         IntPtr lParam,
         Uint32 dwFlags),
     int Function(
         int hdc,
         Pointer<LOGFONT> lpLogfont,
-        Pointer<NativeFunction<EnumFontFamExProc>> lpProc,
+        Pointer<NativeFunction<FONTENUMPROC>> lpProc,
         int lParam,
         int dwFlags)>('EnumFontFamiliesExW');
 

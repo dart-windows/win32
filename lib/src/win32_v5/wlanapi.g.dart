@@ -1113,7 +1113,7 @@ int WlanRegisterNotification(
         int hClientHandle,
         int dwNotifSource,
         int bIgnoreDuplicate,
-        Pointer<NativeFunction<WlanNotificationCallback>>? funcCallback,
+        Pointer<NativeFunction<WLAN_NOTIFICATION_CALLBACK>>? funcCallback,
         Pointer? pCallbackContext,
         Pointer<Uint32>? pdwPrevNotifSource) =>
     _WlanRegisterNotification(
@@ -1130,7 +1130,7 @@ final _WlanRegisterNotification = _wlanapi.lookupFunction<
         IntPtr hClientHandle,
         Uint32 dwNotifSource,
         Int32 bIgnoreDuplicate,
-        Pointer<NativeFunction<WlanNotificationCallback>> funcCallback,
+        Pointer<NativeFunction<WLAN_NOTIFICATION_CALLBACK>> funcCallback,
         Pointer pCallbackContext,
         Pointer pReserved,
         Pointer<Uint32> pdwPrevNotifSource),
@@ -1138,7 +1138,7 @@ final _WlanRegisterNotification = _wlanapi.lookupFunction<
         int hClientHandle,
         int dwNotifSource,
         int bIgnoreDuplicate,
-        Pointer<NativeFunction<WlanNotificationCallback>> funcCallback,
+        Pointer<NativeFunction<WLAN_NOTIFICATION_CALLBACK>> funcCallback,
         Pointer pCallbackContext,
         Pointer pReserved,
         Pointer<Uint32> pdwPrevNotifSource)>('WlanRegisterNotification');

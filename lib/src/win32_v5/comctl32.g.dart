@@ -90,13 +90,13 @@ final _InitCommonControlsEx = _comctl32.lookupFunction<
 /// ```
 /// {@category comctl32}
 int RemoveWindowSubclass(int hWnd,
-        Pointer<NativeFunction<SubclassProc>> pfnSubclass, int uIdSubclass) =>
+        Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass, int uIdSubclass) =>
     _RemoveWindowSubclass(hWnd, pfnSubclass, uIdSubclass);
 
 final _RemoveWindowSubclass = _comctl32.lookupFunction<
     Int32 Function(IntPtr hWnd,
-        Pointer<NativeFunction<SubclassProc>> pfnSubclass, IntPtr uIdSubclass),
-    int Function(int hWnd, Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+        Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass, IntPtr uIdSubclass),
+    int Function(int hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass)>('RemoveWindowSubclass');
 
 /// Installs or updates a window subclass callback.
@@ -112,7 +112,7 @@ final _RemoveWindowSubclass = _comctl32.lookupFunction<
 /// {@category comctl32}
 int SetWindowSubclass(
         int hWnd,
-        Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+        Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass,
         int dwRefData) =>
     _SetWindowSubclass(hWnd, pfnSubclass, uIdSubclass, dwRefData);
@@ -120,10 +120,10 @@ int SetWindowSubclass(
 final _SetWindowSubclass = _comctl32.lookupFunction<
     Int32 Function(
         IntPtr hWnd,
-        Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+        Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         IntPtr uIdSubclass,
         IntPtr dwRefData),
-    int Function(int hWnd, Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+    int Function(int hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass, int dwRefData)>('SetWindowSubclass');
 
 /// The TaskDialog function creates, displays, and operates a task dialog. The

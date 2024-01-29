@@ -122,29 +122,28 @@ class TypeProjection {
   }
 
   TypeTuple unwrapCallbackType() {
-    const voidCallbackTypes = <String, String>{
-      'FARPROC': 'Pointer',
-      'NEARPROC': 'Pointer',
-      'PROC': 'Pointer',
-    };
+    final type = typeIdentifier.type;
+    if (type == null) throw StateError('TypeDef missing for $typeIdentifier.');
 
-    var callbackType = typeIdentifier.name.lastComponent.safeTypename;
-
-    if (voidCallbackTypes.keys.contains(callbackType)) {
-      return TypeTuple.fromNativeType(voidCallbackTypes[callbackType]!);
-    } else if (callbackTypeMapping.keys.contains(callbackType)) {
-      return TypeTuple.fromNativeType(callbackTypeMapping[callbackType]!);
+    final method = typeIdentifier.type!.methods
+        .where((m) => m.name == 'Invoke')
+        .firstOrNull;
+    if (method == null) {
+      throw StateError('Callback $typeIdentifier is missing `Invoke` method.');
     }
 
-    callbackType = typeIdentifier.type!.safeTypename;
+    if (method.parameters.isEmpty) {
+      return const TypeTuple.fromNativeType('Pointer');
+    }
 
+    final callbackType = typeIdentifier.type!.safeTypename;
     return TypeTuple.fromNativeType('Pointer<NativeFunction<$callbackType>>');
   }
 
   TypeTuple unwrapEnumType() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
-      throw StateError('Enum $typeIdentifier is missing value__');
+      throw StateError('Enum $typeIdentifier is missing `value__` field');
     }
 
     return TypeProjection(fieldType).projection;
@@ -174,8 +173,7 @@ class TypeProjection {
   TypeTuple unwrapValueType() {
     final wrappedType = typeIdentifier.type;
     if (wrappedType == null) {
-      throw StateError(
-          'Wrapped type TypeIdentifier missing for $typeIdentifier.');
+      throw StateError('Wrapped type TypeDef missing for $typeIdentifier.');
     }
 
     // A type like HWND

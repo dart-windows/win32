@@ -93,19 +93,18 @@ void printMonitorCapabilities(int capabilitiesBitmask) {
 void main() {
   var result = FALSE;
 
-  final lpfnEnum = NativeCallable<MonitorEnumProc>.isolateLocal(
+  final lpfnEnum = NativeCallable<MONITORENUMPROC>.isolateLocal(
     enumMonitorCallback,
     exceptionalReturn: 0,
   );
 
   result = EnumDisplayMonitors(
-      null, // all displays
-      null, // no clipping region
-      lpfnEnum.nativeFunction,
-      NULL);
-  if (result == FALSE) {
-    throw WindowsException(result);
-  }
+    null, // all displays
+    null, // no clipping region
+    lpfnEnum.nativeFunction,
+    NULL,
+  );
+  if (result == FALSE) throw WindowsException(result);
 
   lpfnEnum.close();
 
@@ -135,9 +134,8 @@ void main() {
 
   result = GetPhysicalMonitorsFromHMONITOR(primaryMonitorHandle,
       physicalMonitorCountPtr.value, physicalMonitorArray);
-  if (result == FALSE) {
-    throw WindowsException(result);
-  }
+  if (result == FALSE) throw WindowsException(result);
+
   // Retrieve the monitor handle for the first physical monitor in the returned
   // array.
   final physicalMonitorHandle = physicalMonitorArray.cast<IntPtr>().value;

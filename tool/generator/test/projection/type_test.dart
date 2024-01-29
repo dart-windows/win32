@@ -179,9 +179,9 @@ void main() {
     final type = api!.parameters[2].typeIdentifier; // FONTENUMPROCW
     final typeProjection = TypeProjection(type);
     expect(typeProjection.nativeType,
-        equals('Pointer<NativeFunction<EnumFontFamExProc>>'));
+        equals('Pointer<NativeFunction<FONTENUMPROC>>'));
     expect(typeProjection.dartType,
-        equals('Pointer<NativeFunction<EnumFontFamExProc>>'));
+        equals('Pointer<NativeFunction<FONTENUMPROC>>'));
   });
 
   test('Callbacks are represented correctly 2', () {
@@ -193,9 +193,9 @@ void main() {
         api!.parameters[3].typeIdentifier; // PSYM_ENUMERATESYMBOLS_CALLBACKW
     final typeProjection = TypeProjection(type);
     expect(typeProjection.nativeType,
-        equals('Pointer<NativeFunction<SymEnumSymbolsProc>>'));
+        equals('Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>'));
     expect(typeProjection.dartType,
-        equals('Pointer<NativeFunction<SymEnumSymbolsProc>>'));
+        equals('Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>'));
   });
 
   test('Pointers to structs are represented correctly', () {

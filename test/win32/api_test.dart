@@ -281,13 +281,13 @@ void main() {
           Int32 Function(
               IntPtr hdc,
               Pointer<LOGFONT> lpLogfont,
-              Pointer<NativeFunction<EnumFontFamExProc>> lpProc,
+              Pointer<NativeFunction<FONTENUMPROC>> lpProc,
               IntPtr lParam,
               Uint32 dwFlags),
           int Function(
               int hdc,
               Pointer<LOGFONT> lpLogfont,
-              Pointer<NativeFunction<EnumFontFamExProc>> lpProc,
+              Pointer<NativeFunction<FONTENUMPROC>> lpProc,
               int lParam,
               int dwFlags)>('EnumFontFamiliesExW');
       expect(EnumFontFamiliesEx, isA<Function>());
@@ -2059,7 +2059,7 @@ void main() {
               IntPtr hProcess,
               Pointer<SECURITY_ATTRIBUTES> lpThreadAttributes,
               IntPtr dwStackSize,
-              Pointer<NativeFunction<ThreadProc>> lpStartAddress,
+              Pointer<NativeFunction<LPTHREAD_START_ROUTINE>> lpStartAddress,
               Pointer lpParameter,
               Uint32 dwCreationFlags,
               Pointer<Uint32> lpThreadId),
@@ -2067,7 +2067,7 @@ void main() {
               int hProcess,
               Pointer<SECURITY_ATTRIBUTES> lpThreadAttributes,
               int dwStackSize,
-              Pointer<NativeFunction<ThreadProc>> lpStartAddress,
+              Pointer<NativeFunction<LPTHREAD_START_ROUTINE>> lpStartAddress,
               Pointer lpParameter,
               int dwCreationFlags,
               Pointer<Uint32> lpThreadId)>('CreateRemoteThread');
@@ -2080,7 +2080,7 @@ void main() {
               IntPtr hProcess,
               Pointer<SECURITY_ATTRIBUTES> lpThreadAttributes,
               IntPtr dwStackSize,
-              Pointer<NativeFunction<ThreadProc>> lpStartAddress,
+              Pointer<NativeFunction<LPTHREAD_START_ROUTINE>> lpStartAddress,
               Pointer lpParameter,
               Uint32 dwCreationFlags,
               Pointer lpAttributeList,
@@ -2089,7 +2089,7 @@ void main() {
               int hProcess,
               Pointer<SECURITY_ATTRIBUTES> lpThreadAttributes,
               int dwStackSize,
-              Pointer<NativeFunction<ThreadProc>> lpStartAddress,
+              Pointer<NativeFunction<LPTHREAD_START_ROUTINE>> lpStartAddress,
               Pointer lpParameter,
               int dwCreationFlags,
               Pointer lpAttributeList,
@@ -2102,14 +2102,14 @@ void main() {
           IntPtr Function(
               Pointer<SECURITY_ATTRIBUTES> lpThreadAttributes,
               IntPtr dwStackSize,
-              Pointer<NativeFunction<ThreadProc>> lpStartAddress,
+              Pointer<NativeFunction<LPTHREAD_START_ROUTINE>> lpStartAddress,
               Pointer lpParameter,
               Uint32 dwCreationFlags,
               Pointer<Uint32> lpThreadId),
           int Function(
               Pointer<SECURITY_ATTRIBUTES> lpThreadAttributes,
               int dwStackSize,
-              Pointer<NativeFunction<ThreadProc>> lpStartAddress,
+              Pointer<NativeFunction<LPTHREAD_START_ROUTINE>> lpStartAddress,
               Pointer lpParameter,
               int dwCreationFlags,
               Pointer<Uint32> lpThreadId)>('CreateThread');
@@ -2255,12 +2255,12 @@ void main() {
           Int32 Function(
               IntPtr hModule,
               Pointer<Utf16> lpType,
-              Pointer<NativeFunction<EnumResNameProc>> lpEnumFunc,
+              Pointer<NativeFunction<ENUMRESNAMEPROC>> lpEnumFunc,
               IntPtr lParam),
           int Function(
               int hModule,
               Pointer<Utf16> lpType,
-              Pointer<NativeFunction<EnumResNameProc>> lpEnumFunc,
+              Pointer<NativeFunction<ENUMRESNAMEPROC>> lpEnumFunc,
               int lParam)>('EnumResourceNamesW');
       expect(EnumResourceNames, isA<Function>());
     });
@@ -2269,11 +2269,11 @@ void main() {
       final EnumResourceTypes = kernel32.lookupFunction<
           Int32 Function(
               IntPtr hModule,
-              Pointer<NativeFunction<EnumResTypeProc>> lpEnumFunc,
+              Pointer<NativeFunction<ENUMRESTYPEPROC>> lpEnumFunc,
               IntPtr lParam),
           int Function(
               int hModule,
-              Pointer<NativeFunction<EnumResTypeProc>> lpEnumFunc,
+              Pointer<NativeFunction<ENUMRESTYPEPROC>> lpEnumFunc,
               int lParam)>('EnumResourceTypesW');
       expect(EnumResourceTypes, isA<Function>());
     });
@@ -4124,14 +4124,14 @@ void main() {
               Pointer<Uint8> lpBuffer,
               Uint32 nNumberOfBytesToRead,
               Pointer<OVERLAPPED> lpOverlapped,
-              Pointer<NativeFunction<LpoverlappedCompletionRoutine>>
+              Pointer<NativeFunction<LPOVERLAPPED_COMPLETION_ROUTINE>>
                   lpCompletionRoutine),
           int Function(
               int hFile,
               Pointer<Uint8> lpBuffer,
               int nNumberOfBytesToRead,
               Pointer<OVERLAPPED> lpOverlapped,
-              Pointer<NativeFunction<LpoverlappedCompletionRoutine>>
+              Pointer<NativeFunction<LPOVERLAPPED_COMPLETION_ROUTINE>>
                   lpCompletionRoutine)>('ReadFileEx');
       expect(ReadFileEx, isA<Function>());
     });
@@ -4271,9 +4271,10 @@ void main() {
     test('Can instantiate SetConsoleCtrlHandler', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final SetConsoleCtrlHandler = kernel32.lookupFunction<
-          Int32 Function(Pointer<NativeFunction<HandlerRoutine>> handlerRoutine,
+          Int32 Function(
+              Pointer<NativeFunction<PHANDLER_ROUTINE>> handlerRoutine,
               Int32 add),
-          int Function(Pointer<NativeFunction<HandlerRoutine>> handlerRoutine,
+          int Function(Pointer<NativeFunction<PHANDLER_ROUTINE>> handlerRoutine,
               int add)>('SetConsoleCtrlHandler');
       expect(SetConsoleCtrlHandler, isA<Function>());
     });
@@ -4952,14 +4953,14 @@ void main() {
               Pointer<Uint8> lpBuffer,
               Uint32 nNumberOfBytesToWrite,
               Pointer<OVERLAPPED> lpOverlapped,
-              Pointer<NativeFunction<LpoverlappedCompletionRoutine>>
+              Pointer<NativeFunction<LPOVERLAPPED_COMPLETION_ROUTINE>>
                   lpCompletionRoutine),
           int Function(
               int hFile,
               Pointer<Uint8> lpBuffer,
               int nNumberOfBytesToWrite,
               Pointer<OVERLAPPED> lpOverlapped,
-              Pointer<NativeFunction<LpoverlappedCompletionRoutine>>
+              Pointer<NativeFunction<LPOVERLAPPED_COMPLETION_ROUTINE>>
                   lpCompletionRoutine)>('WriteFileEx');
       expect(WriteFileEx, isA<Function>());
     });
@@ -5183,10 +5184,10 @@ void main() {
     test('Can instantiate CallWindowProc', () {
       final user32 = DynamicLibrary.open('user32.dll');
       final CallWindowProc = user32.lookupFunction<
-          IntPtr Function(Pointer<NativeFunction<WindowProc>> lpPrevWndFunc,
+          IntPtr Function(Pointer<NativeFunction<WNDPROC>> lpPrevWndFunc,
               IntPtr hWnd, Uint32 msg, IntPtr wParam, IntPtr lParam),
-          int Function(Pointer<NativeFunction<WindowProc>> lpPrevWndFunc,
-              int hWnd, int msg, int wParam, int lParam)>('CallWindowProcW');
+          int Function(Pointer<NativeFunction<WNDPROC>> lpPrevWndFunc, int hWnd,
+              int msg, int wParam, int lParam)>('CallWindowProcW');
       expect(CallWindowProc, isA<Function>());
     });
     test('Can instantiate CascadeWindows', () {
@@ -5445,13 +5446,13 @@ void main() {
               IntPtr hInstance,
               Pointer<DLGTEMPLATE> lpTemplate,
               IntPtr hWndParent,
-              Pointer<NativeFunction<DlgProc>> lpDialogFunc,
+              Pointer<NativeFunction<DLGPROC>> lpDialogFunc,
               IntPtr dwInitParam),
           int Function(
               int hInstance,
               Pointer<DLGTEMPLATE> lpTemplate,
               int hWndParent,
-              Pointer<NativeFunction<DlgProc>> lpDialogFunc,
+              Pointer<NativeFunction<DLGPROC>> lpDialogFunc,
               int dwInitParam)>('CreateDialogIndirectParamW');
       expect(CreateDialogIndirectParam, isA<Function>());
     });
@@ -5690,13 +5691,13 @@ void main() {
               IntPtr hInstance,
               Pointer<DLGTEMPLATE> hDialogTemplate,
               IntPtr hWndParent,
-              Pointer<NativeFunction<DlgProc>> lpDialogFunc,
+              Pointer<NativeFunction<DLGPROC>> lpDialogFunc,
               IntPtr dwInitParam),
           int Function(
               int hInstance,
               Pointer<DLGTEMPLATE> hDialogTemplate,
               int hWndParent,
-              Pointer<NativeFunction<DlgProc>> lpDialogFunc,
+              Pointer<NativeFunction<DLGPROC>> lpDialogFunc,
               int dwInitParam)>('DialogBoxIndirectParamW');
       expect(DialogBoxIndirectParam, isA<Function>());
     });
@@ -5777,7 +5778,7 @@ void main() {
           Int32 Function(
               IntPtr hdc,
               IntPtr hbrFore,
-              Pointer<NativeFunction<DrawStateProc>> qfnCallBack,
+              Pointer<NativeFunction<DRAWSTATEPROC>> qfnCallBack,
               IntPtr lData,
               IntPtr wData,
               Int32 x,
@@ -5788,7 +5789,7 @@ void main() {
           int Function(
               int hdc,
               int hbrFore,
-              Pointer<NativeFunction<DrawStateProc>> qfnCallBack,
+              Pointer<NativeFunction<DRAWSTATEPROC>> qfnCallBack,
               int lData,
               int wData,
               int x,
@@ -5897,13 +5898,11 @@ void main() {
     test('Can instantiate EnumChildWindows', () {
       final user32 = DynamicLibrary.open('user32.dll');
       final EnumChildWindows = user32.lookupFunction<
-          Int32 Function(
-              IntPtr hWndParent,
-              Pointer<NativeFunction<EnumWindowsProc>> lpEnumFunc,
-              IntPtr lParam),
+          Int32 Function(IntPtr hWndParent,
+              Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc, IntPtr lParam),
           int Function(
               int hWndParent,
-              Pointer<NativeFunction<EnumWindowsProc>> lpEnumFunc,
+              Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc,
               int lParam)>('EnumChildWindows');
       expect(EnumChildWindows, isA<Function>());
     });
@@ -5918,10 +5917,8 @@ void main() {
       final user32 = DynamicLibrary.open('user32.dll');
       final EnumDesktopWindows = user32.lookupFunction<
           Int32 Function(IntPtr hDesktop,
-              Pointer<NativeFunction<EnumWindowsProc>> lpfn, IntPtr lParam),
-          int Function(
-              int hDesktop,
-              Pointer<NativeFunction<EnumWindowsProc>> lpfn,
+              Pointer<NativeFunction<WNDENUMPROC>> lpfn, IntPtr lParam),
+          int Function(int hDesktop, Pointer<NativeFunction<WNDENUMPROC>> lpfn,
               int lParam)>('EnumDesktopWindows');
       expect(EnumDesktopWindows, isA<Function>());
     });
@@ -5941,11 +5938,11 @@ void main() {
       final user32 = DynamicLibrary.open('user32.dll');
       final EnumDisplayMonitors = user32.lookupFunction<
           Int32 Function(IntPtr hdc, Pointer<RECT> lprcClip,
-              Pointer<NativeFunction<MonitorEnumProc>> lpfnEnum, IntPtr dwData),
+              Pointer<NativeFunction<MONITORENUMPROC>> lpfnEnum, IntPtr dwData),
           int Function(
               int hdc,
               Pointer<RECT> lprcClip,
-              Pointer<NativeFunction<MonitorEnumProc>> lpfnEnum,
+              Pointer<NativeFunction<MONITORENUMPROC>> lpfnEnum,
               int dwData)>('EnumDisplayMonitors');
       expect(EnumDisplayMonitors, isA<Function>());
     });
@@ -5974,19 +5971,19 @@ void main() {
       final user32 = DynamicLibrary.open('user32.dll');
       final EnumThreadWindows = user32.lookupFunction<
           Int32 Function(Uint32 dwThreadId,
-              Pointer<NativeFunction<EnumWindowsProc>> lpfn, IntPtr lParam),
+              Pointer<NativeFunction<WNDENUMPROC>> lpfn, IntPtr lParam),
           int Function(
               int dwThreadId,
-              Pointer<NativeFunction<EnumWindowsProc>> lpfn,
+              Pointer<NativeFunction<WNDENUMPROC>> lpfn,
               int lParam)>('EnumThreadWindows');
       expect(EnumThreadWindows, isA<Function>());
     });
     test('Can instantiate EnumWindows', () {
       final user32 = DynamicLibrary.open('user32.dll');
       final EnumWindows = user32.lookupFunction<
-          Int32 Function(Pointer<NativeFunction<EnumWindowsProc>> lpEnumFunc,
-              IntPtr lParam),
-          int Function(Pointer<NativeFunction<EnumWindowsProc>> lpEnumFunc,
+          Int32 Function(
+              Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc, IntPtr lParam),
+          int Function(Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc,
               int lParam)>('EnumWindows');
       expect(EnumWindows, isA<Function>());
     });
@@ -7179,7 +7176,7 @@ void main() {
           Int32 Function(
               IntPtr hDC,
               IntPtr hBrush,
-              Pointer<NativeFunction<OutputProc>> lpOutputFunc,
+              Pointer<NativeFunction<GRAYSTRINGPROC>> lpOutputFunc,
               IntPtr lpData,
               Int32 nCount,
               Int32 x,
@@ -7189,7 +7186,7 @@ void main() {
           int Function(
               int hDC,
               int hBrush,
-              Pointer<NativeFunction<OutputProc>> lpOutputFunc,
+              Pointer<NativeFunction<GRAYSTRINGPROC>> lpOutputFunc,
               int lpData,
               int nCount,
               int x,
@@ -8036,14 +8033,14 @@ void main() {
               Uint32 msg,
               IntPtr wParam,
               IntPtr lParam,
-              Pointer<NativeFunction<SendAsyncProc>> lpResultCallBack,
+              Pointer<NativeFunction<SENDASYNCPROC>> lpResultCallBack,
               IntPtr dwData),
           int Function(
               int hWnd,
               int msg,
               int wParam,
               int lParam,
-              Pointer<NativeFunction<SendAsyncProc>> lpResultCallBack,
+              Pointer<NativeFunction<SENDASYNCPROC>> lpResultCallBack,
               int dwData)>('SendMessageCallbackW');
       expect(SendMessageCallback, isA<Function>());
     });
@@ -8113,13 +8110,13 @@ void main() {
                 IntPtr hWnd,
                 IntPtr nIDEvent,
                 Uint32 uElapse,
-                Pointer<NativeFunction<TimerProc>> lpTimerFunc,
+                Pointer<NativeFunction<TIMERPROC>> lpTimerFunc,
                 Uint32 uToleranceDelay),
             int Function(
                 int hWnd,
                 int nIDEvent,
                 int uElapse,
-                Pointer<NativeFunction<TimerProc>> lpTimerFunc,
+                Pointer<NativeFunction<TIMERPROC>> lpTimerFunc,
                 int uToleranceDelay)>('SetCoalescableTimer');
         expect(SetCoalescableTimer, isA<Function>());
       });
@@ -8399,9 +8396,9 @@ void main() {
       final user32 = DynamicLibrary.open('user32.dll');
       final SetTimer = user32.lookupFunction<
           IntPtr Function(IntPtr hWnd, IntPtr nIDEvent, Uint32 uElapse,
-              Pointer<NativeFunction<TimerProc>> lpTimerFunc),
+              Pointer<NativeFunction<TIMERPROC>> lpTimerFunc),
           int Function(int hWnd, int nIDEvent, int uElapse,
-              Pointer<NativeFunction<TimerProc>> lpTimerFunc)>('SetTimer');
+              Pointer<NativeFunction<TIMERPROC>> lpTimerFunc)>('SetTimer');
       expect(SetTimer, isA<Function>());
     });
     test('Can instantiate SetUserObjectInformation', () {
@@ -8455,12 +8452,9 @@ void main() {
     test('Can instantiate SetWindowsHookEx', () {
       final user32 = DynamicLibrary.open('user32.dll');
       final SetWindowsHookEx = user32.lookupFunction<
-          IntPtr Function(
-              Int32 idHook,
-              Pointer<NativeFunction<CallWndProc>> lpfn,
-              IntPtr hmod,
-              Uint32 dwThreadId),
-          int Function(int idHook, Pointer<NativeFunction<CallWndProc>> lpfn,
+          IntPtr Function(Int32 idHook, Pointer<NativeFunction<HOOKPROC>> lpfn,
+              IntPtr hmod, Uint32 dwThreadId),
+          int Function(int idHook, Pointer<NativeFunction<HOOKPROC>> lpfn,
               int hmod, int dwThreadId)>('SetWindowsHookExW');
       expect(SetWindowsHookEx, isA<Function>());
     });
@@ -9226,7 +9220,8 @@ void main() {
                 IntPtr hService,
                 Int32 eventType,
                 Pointer eventParameterIn,
-                Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+                Pointer<NativeFunction<PFNBLUETOOTH_GATT_EVENT_CALLBACK>>
+                    callback,
                 Pointer callbackContext,
                 Pointer<IntPtr> pEventHandle,
                 Uint32 flags),
@@ -9234,7 +9229,8 @@ void main() {
                 int hService,
                 int eventType,
                 Pointer eventParameterIn,
-                Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+                Pointer<NativeFunction<PFNBLUETOOTH_GATT_EVENT_CALLBACK>>
+                    callback,
                 Pointer callbackContext,
                 Pointer<IntPtr> pEventHandle,
                 int flags)>('BluetoothGATTRegisterEvent');
@@ -9336,13 +9332,13 @@ void main() {
           Uint32 Function(
               Pointer<BLUETOOTH_DEVICE_INFO> pbtdiIn,
               Pointer<IntPtr> phRegHandleOut,
-              Pointer<NativeFunction<PfnAuthenticationCallbackEx>>
+              Pointer<NativeFunction<PFN_AUTHENTICATION_CALLBACK_EX>>
                   pfnCallbackIn,
               Pointer pvParam),
           int Function(
               Pointer<BLUETOOTH_DEVICE_INFO> pbtdiIn,
               Pointer<IntPtr> phRegHandleOut,
-              Pointer<NativeFunction<PfnAuthenticationCallbackEx>>
+              Pointer<NativeFunction<PFN_AUTHENTICATION_CALLBACK_EX>>
                   pfnCallbackIn,
               Pointer pvParam)>('BluetoothRegisterForAuthenticationEx');
       expect(BluetoothRegisterForAuthenticationEx, isA<Function>());
@@ -9361,13 +9357,13 @@ void main() {
           Int32 Function(
               Pointer<Uint8> pSDPStream,
               Uint32 cbStreamSize,
-              Pointer<NativeFunction<PfnBluetoothEnumAttributesCallback>>
+              Pointer<NativeFunction<PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK>>
                   pfnCallback,
               Pointer pvParam),
           int Function(
               Pointer<Uint8> pSDPStream,
               int cbStreamSize,
-              Pointer<NativeFunction<PfnBluetoothEnumAttributesCallback>>
+              Pointer<NativeFunction<PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK>>
                   pfnCallback,
               Pointer pvParam)>('BluetoothSdpEnumAttributes');
       expect(BluetoothSdpEnumAttributes, isA<Function>());
@@ -10119,9 +10115,9 @@ void main() {
       final advapi32 = DynamicLibrary.open('advapi32.dll');
       final RegisterServiceCtrlHandler = advapi32.lookupFunction<
               IntPtr Function(Pointer<Utf16> lpServiceName,
-                  Pointer<NativeFunction<LphandlerFunction>> lpHandlerProc),
+                  Pointer<NativeFunction<LPHANDLER_FUNCTION>> lpHandlerProc),
               int Function(Pointer<Utf16> lpServiceName,
-                  Pointer<NativeFunction<LphandlerFunction>> lpHandlerProc)>(
+                  Pointer<NativeFunction<LPHANDLER_FUNCTION>> lpHandlerProc)>(
           'RegisterServiceCtrlHandlerW');
       expect(RegisterServiceCtrlHandler, isA<Function>());
     });
@@ -10130,11 +10126,11 @@ void main() {
       final RegisterServiceCtrlHandlerEx = advapi32.lookupFunction<
           IntPtr Function(
               Pointer<Utf16> lpServiceName,
-              Pointer<NativeFunction<LphandlerFunctionEx>> lpHandlerProc,
+              Pointer<NativeFunction<LPHANDLER_FUNCTION_EX>> lpHandlerProc,
               Pointer lpContext),
           int Function(
               Pointer<Utf16> lpServiceName,
-              Pointer<NativeFunction<LphandlerFunctionEx>> lpHandlerProc,
+              Pointer<NativeFunction<LPHANDLER_FUNCTION_EX>> lpHandlerProc,
               Pointer lpContext)>('RegisterServiceCtrlHandlerExW');
       expect(RegisterServiceCtrlHandlerEx, isA<Function>());
     });
@@ -11411,11 +11407,11 @@ void main() {
       final RemoveWindowSubclass = comctl32.lookupFunction<
           Int32 Function(
               IntPtr hWnd,
-              Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+              Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
               IntPtr uIdSubclass),
           int Function(
               int hWnd,
-              Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+              Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
               int uIdSubclass)>('RemoveWindowSubclass');
       expect(RemoveWindowSubclass, isA<Function>());
     });
@@ -11424,12 +11420,12 @@ void main() {
       final SetWindowSubclass = comctl32.lookupFunction<
           Int32 Function(
               IntPtr hWnd,
-              Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+              Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
               IntPtr uIdSubclass,
               IntPtr dwRefData),
           int Function(
               int hWnd,
-              Pointer<NativeFunction<SubclassProc>> pfnSubclass,
+              Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
               int uIdSubclass,
               int dwRefData)>('SetWindowSubclass');
       expect(SetWindowSubclass, isA<Function>());
@@ -11946,10 +11942,12 @@ void main() {
       final psapi = DynamicLibrary.open('psapi.dll');
       final EnumPageFiles = psapi.lookupFunction<
           Int32 Function(
-              Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+              Pointer<NativeFunction<PENUM_PAGE_FILE_CALLBACK>>
+                  pCallBackRoutine,
               Pointer pContext),
           int Function(
-              Pointer<NativeFunction<EnumPageFilesProc>> pCallBackRoutine,
+              Pointer<NativeFunction<PENUM_PAGE_FILE_CALLBACK>>
+                  pCallBackRoutine,
               Pointer pContext)>('EnumPageFilesW');
       expect(EnumPageFiles, isA<Function>());
     });
@@ -13949,13 +13947,15 @@ void main() {
               IntPtr hProcess,
               Uint64 baseOfDll,
               Pointer<Utf16> mask,
-              Pointer<NativeFunction<SymEnumSymbolsProc>> enumSymbolsCallback,
+              Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>
+                  enumSymbolsCallback,
               Pointer userContext),
           int Function(
               int hProcess,
               int baseOfDll,
               Pointer<Utf16> mask,
-              Pointer<NativeFunction<SymEnumSymbolsProc>> enumSymbolsCallback,
+              Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>
+                  enumSymbolsCallback,
               Pointer userContext)>('SymEnumSymbolsW');
       expect(SymEnumSymbols, isA<Function>());
     });

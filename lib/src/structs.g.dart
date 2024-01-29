@@ -706,7 +706,7 @@ base class BLUETOOTH_SELECT_DEVICE_PARAMS extends Struct {
   @Int32()
   external int fSkipServicesPage;
 
-  external Pointer<NativeFunction<PfnDeviceCallback>> pfnDeviceCallback;
+  external Pointer<NativeFunction<PFN_DEVICE_CALLBACK>> pfnDeviceCallback;
 
   external Pointer pvParam;
 
@@ -1339,7 +1339,7 @@ base class CHOOSECOLOR extends Struct {
   @IntPtr()
   external int lCustData;
 
-  external Pointer<NativeFunction<CCHookProc>> lpfnHook;
+  external Pointer<NativeFunction<LPCCHOOKPROC>> lpfnHook;
 
   external Pointer<Utf16> lpTemplateName;
 }
@@ -1373,7 +1373,7 @@ base class CHOOSEFONT extends Struct {
   @IntPtr()
   external int lCustData;
 
-  external Pointer<NativeFunction<CFHookProc>> lpfnHook;
+  external Pointer<NativeFunction<LPCFHOOKPROC>> lpfnHook;
 
   external Pointer<Utf16> lpTemplateName;
 
@@ -3067,7 +3067,7 @@ base class DTTOPTS extends Struct {
   @Int32()
   external int iGlowSize;
 
-  external Pointer<NativeFunction<DrawTextCallback>> pfnDrawTextCallback;
+  external Pointer<NativeFunction<DTT_CALLBACK_PROC>> pfnDrawTextCallback;
 
   @IntPtr()
   external int lParam;
@@ -3296,7 +3296,8 @@ base class EXCEPINFO extends Struct {
 
   external Pointer pvReserved;
 
-  external Pointer<NativeFunction<ExcepInfoProc>> pfnDeferredFillIn;
+  external Pointer<NativeFunction<LPEXCEPFINO_DEFERRED_FILLIN>>
+      pfnDeferredFillIn;
 
   @Int32()
   external int scode;
@@ -3379,7 +3380,7 @@ base class FINDREPLACE extends Struct {
   @IntPtr()
   external int lCustData;
 
-  external Pointer<NativeFunction<FRHookProc>> lpfnHook;
+  external Pointer<NativeFunction<LPFRHOOKPROC>> lpfnHook;
 
   external Pointer<Utf16> lpTemplateName;
 }
@@ -6221,11 +6222,11 @@ base class OPENCARDNAME extends Struct {
   @Uint32()
   external int dwActiveProtocol;
 
-  external Pointer<NativeFunction<OpenCardConnProc>> lpfnConnect;
+  external Pointer<NativeFunction<LPOCNCONNPROC>> lpfnConnect;
 
-  external Pointer<NativeFunction<OpenCardCheckProc>> lpfnCheck;
+  external Pointer<NativeFunction<LPOCNCHKPROC>> lpfnCheck;
 
-  external Pointer<NativeFunction<OpenCardDisconnProc>> lpfnDisconnect;
+  external Pointer<NativeFunction<LPOCNDSCPROC>> lpfnDisconnect;
 
   @IntPtr()
   external int hCardHandle;
@@ -6258,7 +6259,7 @@ base class OPENCARDNAME_EX extends Struct {
 
   external Pointer<OPENCARD_SEARCH_CRITERIA> pOpenCardSearchCriteria;
 
-  external Pointer<NativeFunction<OpenCardConnProc>> lpfnConnect;
+  external Pointer<NativeFunction<LPOCNCONNPROC>> lpfnConnect;
 
   external Pointer pvUserData;
 
@@ -6310,11 +6311,11 @@ base class OPENCARD_SEARCH_CRITERIA extends Struct {
   @Uint32()
   external int nMaxCardNames;
 
-  external Pointer<NativeFunction<OpenCardCheckProc>> lpfnCheck;
+  external Pointer<NativeFunction<LPOCNCHKPROC>> lpfnCheck;
 
-  external Pointer<NativeFunction<OpenCardConnProc>> lpfnConnect;
+  external Pointer<NativeFunction<LPOCNCONNPROC>> lpfnConnect;
 
-  external Pointer<NativeFunction<OpenCardDisconnProc>> lpfnDisconnect;
+  external Pointer<NativeFunction<LPOCNDSCPROC>> lpfnDisconnect;
 
   external Pointer pvUserData;
 
@@ -6379,7 +6380,7 @@ base class OPENFILENAME extends Struct {
   @IntPtr()
   external int lCustData;
 
-  external Pointer<NativeFunction<OFNHookProc>> lpfnHook;
+  external Pointer<NativeFunction<LPOFNHOOKPROC>> lpfnHook;
 
   external Pointer<Utf16> lpTemplateName;
 
@@ -8037,8 +8038,7 @@ base class SERVICE_NOTIFY_2 extends Struct {
   @Uint32()
   external int dwVersion;
 
-  external Pointer<NativeFunction<PfnScNotifyCallbackFunction>>
-      pfnNotifyCallback;
+  external Pointer<NativeFunction<PFN_SC_NOTIFY_CALLBACK>> pfnNotifyCallback;
 
   external Pointer pContext;
 
@@ -8157,7 +8157,7 @@ base class SERVICE_STATUS_PROCESS extends Struct {
 base class SERVICE_TABLE_ENTRY extends Struct {
   external Pointer<Utf16> lpServiceName;
 
-  external Pointer<NativeFunction<LpserviceMainFunctionw>> lpServiceProc;
+  external Pointer<NativeFunction<LPSERVICE_MAIN_FUNCTION>> lpServiceProc;
 }
 
 /// Contains system time change settings.
@@ -9397,7 +9397,7 @@ base class TASKDIALOGCONFIG extends Struct {
 
   external Pointer<Utf16> pszFooter;
 
-  external Pointer<NativeFunction<TaskDialogCallbackProc>> pfCallback;
+  external Pointer<NativeFunction<PFTASKDIALOGCALLBACK>> pfCallback;
 
   @IntPtr()
   external int lpCallbackData;
@@ -11056,7 +11056,7 @@ base class WNDCLASS extends Struct {
   @Uint32()
   external int style;
 
-  external Pointer<NativeFunction<WindowProc>> lpfnWndProc;
+  external Pointer<NativeFunction<WNDPROC>> lpfnWndProc;
 
   @Int32()
   external int cbClsExtra;
@@ -11096,7 +11096,7 @@ base class WNDCLASSEX extends Struct {
   @Uint32()
   external int style;
 
-  external Pointer<NativeFunction<WindowProc>> lpfnWndProc;
+  external Pointer<NativeFunction<WNDPROC>> lpfnWndProc;
 
   @Int32()
   external int cbClsExtra;

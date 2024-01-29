@@ -522,7 +522,7 @@ int BluetoothGATTRegisterEvent(
         int hService,
         int eventType,
         Pointer eventParameterIn,
-        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+        Pointer<NativeFunction<PFNBLUETOOTH_GATT_EVENT_CALLBACK>> callback,
         Pointer? callbackContext,
         Pointer<IntPtr> pEventHandle,
         int flags) =>
@@ -534,7 +534,7 @@ final _BluetoothGATTRegisterEvent = _bluetoothapis.lookupFunction<
         IntPtr hService,
         Int32 eventType,
         Pointer eventParameterIn,
-        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+        Pointer<NativeFunction<PFNBLUETOOTH_GATT_EVENT_CALLBACK>> callback,
         Pointer callbackContext,
         Pointer<IntPtr> pEventHandle,
         Uint32 flags),
@@ -542,7 +542,7 @@ final _BluetoothGATTRegisterEvent = _bluetoothapis.lookupFunction<
         int hService,
         int eventType,
         Pointer eventParameterIn,
-        Pointer<NativeFunction<PfnbluetoothGattEventCallback>> callback,
+        Pointer<NativeFunction<PFNBLUETOOTH_GATT_EVENT_CALLBACK>> callback,
         Pointer callbackContext,
         Pointer<IntPtr> pEventHandle,
         int flags)>('BluetoothGATTRegisterEvent');
@@ -728,7 +728,7 @@ final _BluetoothIsVersionAvailable = _bluetoothapis.lookupFunction<
 int BluetoothRegisterForAuthenticationEx(
         Pointer<BLUETOOTH_DEVICE_INFO>? pbtdiIn,
         Pointer<IntPtr> phRegHandleOut,
-        Pointer<NativeFunction<PfnAuthenticationCallbackEx>>? pfnCallbackIn,
+        Pointer<NativeFunction<PFN_AUTHENTICATION_CALLBACK_EX>>? pfnCallbackIn,
         Pointer? pvParam) =>
     _BluetoothRegisterForAuthenticationEx(pbtdiIn ?? nullptr, phRegHandleOut,
         pfnCallbackIn ?? nullptr, pvParam ?? nullptr);
@@ -737,12 +737,12 @@ final _BluetoothRegisterForAuthenticationEx = _bluetoothapis.lookupFunction<
     Uint32 Function(
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdiIn,
         Pointer<IntPtr> phRegHandleOut,
-        Pointer<NativeFunction<PfnAuthenticationCallbackEx>> pfnCallbackIn,
+        Pointer<NativeFunction<PFN_AUTHENTICATION_CALLBACK_EX>> pfnCallbackIn,
         Pointer pvParam),
     int Function(
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdiIn,
         Pointer<IntPtr> phRegHandleOut,
-        Pointer<NativeFunction<PfnAuthenticationCallbackEx>> pfnCallbackIn,
+        Pointer<NativeFunction<PFN_AUTHENTICATION_CALLBACK_EX>> pfnCallbackIn,
         Pointer pvParam)>('BluetoothRegisterForAuthenticationEx');
 
 /// The BluetoothRemoveDevice function removes authentication between a
@@ -777,7 +777,8 @@ final _BluetoothRemoveDevice = _bluetoothapis.lookupFunction<
 int BluetoothSdpEnumAttributes(
         Pointer<Uint8> pSDPStream,
         int cbStreamSize,
-        Pointer<NativeFunction<PfnBluetoothEnumAttributesCallback>> pfnCallback,
+        Pointer<NativeFunction<PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK>>
+            pfnCallback,
         Pointer pvParam) =>
     _BluetoothSdpEnumAttributes(pSDPStream, cbStreamSize, pfnCallback, pvParam);
 
@@ -785,12 +786,14 @@ final _BluetoothSdpEnumAttributes = _bluetoothapis.lookupFunction<
     Int32 Function(
         Pointer<Uint8> pSDPStream,
         Uint32 cbStreamSize,
-        Pointer<NativeFunction<PfnBluetoothEnumAttributesCallback>> pfnCallback,
+        Pointer<NativeFunction<PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK>>
+            pfnCallback,
         Pointer pvParam),
     int Function(
         Pointer<Uint8> pSDPStream,
         int cbStreamSize,
-        Pointer<NativeFunction<PfnBluetoothEnumAttributesCallback>> pfnCallback,
+        Pointer<NativeFunction<PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK>>
+            pfnCallback,
         Pointer pvParam)>('BluetoothSdpEnumAttributes');
 
 /// The BluetoothSdpGetAttributeValue function retrieves the attribute value for
