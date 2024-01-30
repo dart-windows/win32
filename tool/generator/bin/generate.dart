@@ -191,8 +191,8 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
     final comment = comInterfaces[interface] ?? '';
     final interfaceProjection = ComInterfaceProjection(typeDef, comment);
     final className = ComClassProjection.generateClassName(typeDef);
-    final classNameExists = scope.findTypeDef(className)?.isClass ?? false;
-    final comObject = classNameExists
+    final classExists = scope.findTypeDef(className)?.guid != null;
+    final comObject = classExists
         ? ComClassProjection.fromInterface(typeDef, interfaceComment: comment)
         : interfaceProjection;
 
