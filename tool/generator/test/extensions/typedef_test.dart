@@ -32,6 +32,12 @@ void main() {
       expect(typeDef3, isNotNull);
       expect(typeDef3!.nameWithoutEncoding,
           equals('Windows.Win32.UI.Shell.IShellLink'));
+
+      final typeDef4 =
+          scope.findTypeDef('Windows.Win32.Devices.Fax.IStillImageW');
+      expect(typeDef4, isNotNull);
+      expect(typeDef4!.nameWithoutEncoding,
+          equals('Windows.Win32.Devices.Fax.IStillImage'));
     });
 
     test('rootType', () {

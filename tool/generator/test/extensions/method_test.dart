@@ -18,21 +18,28 @@ void main() {
 
   group('Method', () {
     test('nameWithoutEncoding', () {
-      final apis =
+      final apis1 =
           scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
-      expect(apis, isNotNull);
+      expect(apis1, isNotNull);
 
-      final method1 = apis!.findMethod('EndMenu');
+      final method1 = apis1!.findMethod('EndMenu');
       expect(method1, isNotNull);
       expect(method1!.nameWithoutEncoding, equals('EndMenu'));
 
-      final method2 = apis.findMethod('GetClassNameA');
+      final method2 = apis1.findMethod('GetClassNameA');
       expect(method2, isNotNull);
       expect(method2!.nameWithoutEncoding, equals('GetClassName'));
 
-      final method3 = apis.findMethod('GetClassNameW');
+      final method3 = apis1.findMethod('GetClassNameW');
       expect(method3, isNotNull);
       expect(method3!.nameWithoutEncoding, equals('GetClassName'));
+
+      final apis2 = scope.findTypeDef('Windows.Win32.UI.Shell.Apis');
+      expect(apis2, isNotNull);
+
+      final method4 = apis2!.findMethod('CommandLineToArgvW');
+      expect(method4, isNotNull);
+      expect(method4!.nameWithoutEncoding, equals('CommandLineToArgv'));
     });
 
     test('uniqueName', () {
