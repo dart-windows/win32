@@ -119,10 +119,10 @@ class ComInterfaceProjection {
         .join('\n');
   }
 
-  String get guidConstants => '''
-/// @nodoc
-const IID_$shortName = '${typeDef.guid}';
-''';
+  String get guidConstant => switch (typeDef.guid) {
+        final guid? => "/// @nodoc\nconst IID_$shortName = '$guid';",
+        _ => throw StateError('$typeDef has no guid.')
+      };
 
   String get fromInterfaceConstructor => '''
 factory $shortName.from(IUnknown interface) =>
@@ -176,7 +176,7 @@ ${methodProjections.map((p) => 'external Pointer<NativeFunction<${p.nativeProtot
   String toString() => '''
 $header
 $importHeader
-$guidConstants
+$guidConstant
 
 $classPreamble
 class $shortName $extendsClause {

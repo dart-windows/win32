@@ -59,15 +59,15 @@ class ComClassProjection extends ComInterfaceProjection {
   }
 
   @override
-  String get guidConstants => '''
-/// @nodoc
-const CLSID_$shortName = '${typeDef.guid}';
-''';
+  String get guidConstant => switch (typeDef.guid) {
+        final guid? => "/// @nodoc\nconst CLSID_$shortName = '$guid';",
+        _ => throw StateError('$typeDef has no guid.')
+      };
 
   @override
   String toString() => '''
 ${interface.toString()}
-$guidConstants
+$guidConstant
 
 $classPreamble
 class $shortName extends ${interface.shortName} {
