@@ -8,8 +8,12 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
@@ -55,15 +59,37 @@ class INetworkListManager extends IDispatch {
                   Pointer<VTablePointer> ppNetworkConnection)>()(
           ptr, gdNetworkConnectionId, ppNetworkConnection);
 
-  int get_IsConnectedToInternet(Pointer<Int16> pbIsConnected) =>
-      _vtable.get_IsConnectedToInternet.asFunction<
-              int Function(VTablePointer, Pointer<Int16> pbIsConnected)>()(
-          ptr, pbIsConnected);
+  int get isConnectedToInternet {
+    final retValuePtr = calloc<Int16>();
 
-  int get_IsConnected(Pointer<Int16> pbIsConnected) =>
-      _vtable.get_IsConnected.asFunction<
-              int Function(VTablePointer, Pointer<Int16> pbIsConnected)>()(
-          ptr, pbIsConnected);
+    try {
+      final hr = _vtable.get_IsConnectedToInternet.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int16> pbIsConnected)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get isConnected {
+    final retValuePtr = calloc<Int16>();
+
+    try {
+      final hr = _vtable.get_IsConnected.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int16> pbIsConnected)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getConnectivity(Pointer<Int32> pConnectivity) =>
       _vtable.GetConnectivity.asFunction<

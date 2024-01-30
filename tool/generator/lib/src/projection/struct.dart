@@ -93,7 +93,7 @@ class StructProjection {
     for (final field in typeDef.fields) {
       final instanceName = field.instanceName;
       final typeProjection = TypeProjection(field.typeIdentifier);
-      final fieldType = typeProjection.isCharArray && !field.isFlexibleArray
+      final fieldType = field.isCharArray && !field.isFlexibleArray
           ? 'String'
           : typeProjection.dartType.safeTypename;
       final fieldName = field.name.safeIdentifier;

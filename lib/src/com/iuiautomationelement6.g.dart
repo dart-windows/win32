@@ -10,8 +10,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iuiautomationelement5.g.dart';
 import 'iunknown.g.dart';
 
@@ -31,15 +34,37 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
   factory IUIAutomationElement6.from(IUnknown interface) =>
       IUIAutomationElement6(interface.toInterface(IID_IUIAutomationElement6));
 
-  int get_CurrentFullDescription(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CurrentFullDescription.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+  Pointer<Utf16> get currentFullDescription {
+    final retValuePtr = calloc<Pointer<Utf16>>();
 
-  int get_CachedFullDescription(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CachedFullDescription.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+    try {
+      final hr = _vtable.get_CurrentFullDescription.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedFullDescription {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedFullDescription.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

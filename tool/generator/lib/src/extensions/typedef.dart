@@ -4,11 +4,19 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../attributes.dart';
 import 'custom_attributes_mixin.dart';
 import 'field.dart';
 import 'string.dart';
 
 extension TypeDefHelpers on TypeDef {
+  /// Returns `true` if the type is a wrapper struct (e.g., `HWND`,
+  /// `MEMORY_MAPPED_VIEW_ADDRESS`).
+  bool get isWrapperStruct =>
+      isStruct &&
+      (existsAttribute(nativeTypedefAttribute) ||
+          existsAttribute(metadataTypedefAttribute));
+
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `Windows.Win32.UI.Shell.IShellLink` instead of
   /// `Windows.Win32.UI.Shell.IShellLinkW`).

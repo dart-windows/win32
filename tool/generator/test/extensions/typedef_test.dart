@@ -17,6 +17,21 @@ void main() {
   });
 
   group('TypeDef', () {
+    test('isWrapperStruct', () {
+      final typeDef1 = scope.findTypeDef('Windows.Win32.Foundation.HWND');
+      expect(typeDef1, isNotNull);
+      expect(typeDef1!.isWrapperStruct, isTrue);
+
+      final typeDef2 = scope.findTypeDef(
+          'Windows.Win32.System.Memory.MEMORY_MAPPED_VIEW_ADDRESS');
+      expect(typeDef2, isNotNull);
+      expect(typeDef2!.isWrapperStruct, isTrue);
+
+      final typeDef3 = scope.findTypeDef('Windows.Win32.Media.MMTIME');
+      expect(typeDef3, isNotNull);
+      expect(typeDef3!.isWrapperStruct, isFalse);
+    });
+
     test('nameWithoutEncoding', () {
       final typeDef1 = scope.findTypeDef('Windows.Win32.UI.Shell.IFileDialog');
       expect(typeDef1, isNotNull);

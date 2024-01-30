@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -31,15 +36,37 @@ class IUIAutomationTogglePattern extends IUnknown {
 
   int toggle() => _vtable.Toggle.asFunction<int Function(VTablePointer)>()(ptr);
 
-  int get_CurrentToggleState(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentToggleState
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+  int get currentToggleState {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedToggleState(Pointer<Int32> retVal) =>
-      _vtable.get_CachedToggleState
+    try {
+      final hr = _vtable.get_CurrentToggleState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedToggleState {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedToggleState
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

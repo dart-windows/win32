@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -35,30 +40,74 @@ class IUIAutomationSelectionPattern extends IUnknown {
           int Function(
               VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int get_CurrentCanSelectMultiple(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentCanSelectMultiple
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+  int get currentCanSelectMultiple {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CurrentIsSelectionRequired(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentIsSelectionRequired
+    try {
+      final hr = _vtable.get_CurrentCanSelectMultiple
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentIsSelectionRequired {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentIsSelectionRequired
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getCachedSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedSelection.asFunction<
           int Function(
               VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
-  int get_CachedCanSelectMultiple(Pointer<Int32> retVal) =>
-      _vtable.get_CachedCanSelectMultiple
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+  int get cachedCanSelectMultiple {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedIsSelectionRequired(Pointer<Int32> retVal) =>
-      _vtable.get_CachedIsSelectionRequired
+    try {
+      final hr = _vtable.get_CachedCanSelectMultiple
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedIsSelectionRequired {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedIsSelectionRequired
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

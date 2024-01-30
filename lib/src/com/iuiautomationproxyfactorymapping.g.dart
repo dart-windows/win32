@@ -8,9 +8,14 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -33,9 +38,21 @@ class IUIAutomationProxyFactoryMapping extends IUnknown {
       IUIAutomationProxyFactoryMapping(
           interface.toInterface(IID_IUIAutomationProxyFactoryMapping));
 
-  int get_Count(Pointer<Uint32> count) => _vtable.get_Count
-          .asFunction<int Function(VTablePointer, Pointer<Uint32> count)>()(
-      ptr, count);
+  int get count {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = _vtable.get_Count
+              .asFunction<int Function(VTablePointer, Pointer<Uint32> count)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getTable(Pointer<Pointer<SAFEARRAY>> table) =>
       _vtable.GetTable.asFunction<

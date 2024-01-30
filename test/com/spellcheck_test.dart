@@ -23,17 +23,14 @@ void main() {
 
     test('supportedLanguages', () {
       final spellCheckerFactory = SpellCheckerFactory.createInstance();
-      final pEnumString = calloc<VTablePointer>();
-      var hr = spellCheckerFactory.get_SupportedLanguages(pEnumString);
-      expect(hr, equals(S_OK));
+      final pEnumString = spellCheckerFactory.supportedLanguages;
       expect(pEnumString.value.address, isNonZero);
-      final enumString = IEnumString(pEnumString.value);
-      free(pEnumString);
+      final enumString = IEnumString(pEnumString);
 
       final pElementsFetched = calloc<Uint32>();
       final pElements = calloc<Pointer<Utf16>>();
 
-      hr = enumString.next(1, pElements, pElementsFetched);
+      final hr = enumString.next(1, pElements, pElementsFetched);
       expect(hr, equals(S_OK));
       expect(pElementsFetched.value, equals(1));
       final language = pElements.value.toDartString();
@@ -98,22 +95,10 @@ void main() {
         while (errors.next(errorPtr) == S_OK) {
           expect(errorPtr.value.address, isNonZero);
           final error = ISpellingError(errorPtr.value);
-
-          final pCorrectiveAction = calloc<Int32>();
-          hr = error.get_CorrectiveAction(pCorrectiveAction);
-          expect(hr, equals(S_OK));
-          final correctiveAction = pCorrectiveAction.value;
-          free(pCorrectiveAction);
-          expect(correctiveAction, equals(CORRECTIVE_ACTION.REPLACE));
-
-          final pReplacement = calloc<Pointer<Utf16>>();
-          hr = error.get_Replacement(pReplacement);
-          expect(hr, equals(S_OK));
-          final replacement = pReplacement.value.toDartString();
-          expect(replacement, equals('have'));
-
-          free(pReplacement.value);
-          free(pReplacement);
+          expect(error.correctiveAction, equals(CORRECTIVE_ACTION.REPLACE));
+          final replacement = error.replacement;
+          expect(replacement.toDartString(), equals('have'));
+          WindowsDeleteString(replacement.address);
           error.release();
         }
 

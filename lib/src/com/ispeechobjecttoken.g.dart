@@ -10,8 +10,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import '../variant.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
@@ -29,19 +32,53 @@ class ISpeechObjectToken extends IDispatch {
   factory ISpeechObjectToken.from(IUnknown interface) =>
       ISpeechObjectToken(interface.toInterface(IID_ISpeechObjectToken));
 
-  int get_Id(Pointer<Pointer<Utf16>> objectId) => _vtable.get_Id.asFunction<
-      int Function(
-          VTablePointer, Pointer<Pointer<Utf16>> objectId)>()(ptr, objectId);
+  Pointer<Utf16> get id {
+    final retValuePtr = calloc<Pointer<Utf16>>();
 
-  int get_DataKey(Pointer<VTablePointer> dataKey) => _vtable.get_DataKey
-      .asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> dataKey)>()(ptr, dataKey);
+    try {
+      final hr = _vtable.get_Id.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> objectId)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_Category(Pointer<VTablePointer> category) =>
-      _vtable.get_Category.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> category)>()(ptr, category);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  VTablePointer get dataKey {
+    final retValuePtr = calloc<VTablePointer>();
+
+    try {
+      final hr = _vtable.get_DataKey.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> dataKey)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  VTablePointer get category {
+    final retValuePtr = calloc<VTablePointer>();
+
+    try {
+      final hr = _vtable.get_Category.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> category)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getDescription(int locale, Pointer<Pointer<Utf16>> description) =>
       _vtable.GetDescription.asFunction<

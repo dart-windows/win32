@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iuiautomationcondition.g.dart';
 import 'iunknown.g.dart';
 
@@ -30,9 +35,21 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
       IUIAutomationBoolCondition(
           interface.toInterface(IID_IUIAutomationBoolCondition));
 
-  int get_BooleanValue(Pointer<Int32> boolVal) => _vtable.get_BooleanValue
-          .asFunction<int Function(VTablePointer, Pointer<Int32> boolVal)>()(
-      ptr, boolVal);
+  int get booleanValue {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_BooleanValue.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> boolVal)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

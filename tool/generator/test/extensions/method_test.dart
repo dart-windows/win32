@@ -17,6 +17,34 @@ void main() {
   });
 
   group('Method', () {
+    test('canBeProjectedAsGetter', () {
+      final services = scope
+          .findTypeDef('Windows.Win32.Devices.Enumeration.Pnp.IUPnPServices');
+      expect(services, isNotNull);
+
+      final method1 = services!.findMethod('get_Count');
+      expect(method1, isNotNull);
+      expect(method1!.canBeProjectedAsGetter, isTrue);
+
+      final method2 = services.findMethod('get_Item');
+      expect(method2, isNotNull);
+      expect(method2!.canBeProjectedAsGetter, isFalse);
+    });
+
+    test('canBeProjectedAsSetter', () {
+      final container = scope.findTypeDef(
+          'Windows.Win32.Media.DirectShow.Tv.ITuningSpaceContainer');
+      expect(container, isNotNull);
+
+      final method1 = container!.findMethod('put_MaxCount');
+      expect(method1, isNotNull);
+      expect(method1!.canBeProjectedAsSetter, isTrue);
+
+      final method2 = container.findMethod('put_Item');
+      expect(method2, isNotNull);
+      expect(method2!.canBeProjectedAsSetter, isFalse);
+    });
+
     test('nameWithoutEncoding', () {
       final apis1 =
           scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');

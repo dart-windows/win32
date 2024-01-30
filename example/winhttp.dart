@@ -37,14 +37,9 @@ void main() {
     if (FAILED(hr)) throw WindowsException(hr);
 
     // Get response text
-    final pBody = calloc<Pointer<Utf16>>();
-    hr = winHttpRequest.get_ResponseText(pBody);
-    if (FAILED(hr)) throw WindowsException(hr);
-    final responseText = pBody.value.toDartString();
+    final responseText = winHttpRequest.responseText.toDartString();
     print(responseText);
 
-    SysFreeString(pBody.value);
-    free(pBody);
     winHttpRequest.release();
   } finally {
     VariantClear(varFalse);

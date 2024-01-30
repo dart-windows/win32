@@ -5,11 +5,13 @@
 import 'package:winmd/winmd.dart';
 
 import '../exclusions.dart';
+import '../extensions/method.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 import '../headers.dart';
 import 'com_class.dart';
 import 'com_method.dart';
+import 'com_property.dart';
 import 'method.dart';
 import 'type.dart';
 
@@ -23,8 +25,13 @@ class ComInterfaceProjection {
   List<MethodProjection> get methodProjections =>
       _methodProjections ??= _cacheMethodProjections();
 
-  List<MethodProjection> _cacheMethodProjections() =>
-      typeDef.methods.map(ComMethodProjection.new).toList();
+  List<MethodProjection> _cacheMethodProjections() => typeDef.methods
+      .map((m) => switch (m) {
+            _ when m.canBeProjectedAsGetter => ComGetPropertyProjection(m),
+            _ when m.canBeProjectedAsSetter => ComSetPropertyProjection(m),
+            _ => ComMethodProjection(m),
+          })
+      .toList();
 
   String get shortName => typeDef.safeIdentifier;
 
@@ -103,6 +110,15 @@ class ComInterfaceProjection {
           '../utils.dart',
 
         if (hasMethods) '../types.dart',
+
+        // COM properties need these imports to allocate memory, do `FAILED`
+        // check, and free memory.
+        if (hasProperties) ...{
+          'package:ffi/ffi.dart',
+          '../exceptions.dart',
+          '../macros.dart',
+          '../utils.dart',
+        }
       };
 
   String get importHeader {
@@ -144,6 +160,9 @@ factory $shortName.from(IUnknown interface) =>
       inheritsFrom.isEmpty ? '' : 'extends $inheritsFrom';
 
   bool get hasMethods => typeDef.methods.isNotEmpty;
+
+  bool get hasProperties => typeDef.methods
+      .any((m) => m.canBeProjectedAsGetter || m.canBeProjectedAsSetter);
 
   String get constructor {
     if (inheritsFrom.isEmpty) {

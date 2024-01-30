@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
 
@@ -29,18 +34,41 @@ class ISpeechObjectTokens extends IDispatch {
   factory ISpeechObjectTokens.from(IUnknown interface) =>
       ISpeechObjectTokens(interface.toInterface(IID_ISpeechObjectTokens));
 
-  int get_Count(Pointer<Int32> count) => _vtable.get_Count
-          .asFunction<int Function(VTablePointer, Pointer<Int32> count)>()(
-      ptr, count);
+  int get count {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_Count
+              .asFunction<int Function(VTablePointer, Pointer<Int32> count)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int item(int index, Pointer<VTablePointer> token) => _vtable.Item.asFunction<
       int Function(VTablePointer, int index,
           Pointer<VTablePointer> token)>()(ptr, index, token);
 
-  int get__NewEnum(Pointer<VTablePointer> ppEnumVARIANT) =>
-      _vtable.get__NewEnum.asFunction<
+  VTablePointer get newEnum {
+    final retValuePtr = calloc<VTablePointer>();
+
+    try {
+      final hr = _vtable.get__NewEnum.asFunction<
           int Function(VTablePointer,
-              Pointer<VTablePointer> ppEnumVARIANT)>()(ptr, ppEnumVARIANT);
+              Pointer<VTablePointer> ppEnumVARIANT)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

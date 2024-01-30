@@ -8,9 +8,14 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iuiautomationelement3.g.dart';
 import 'iunknown.g.dart';
 
@@ -29,52 +34,165 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
   factory IUIAutomationElement4.from(IUnknown interface) =>
       IUIAutomationElement4(interface.toInterface(IID_IUIAutomationElement4));
 
-  int get_CurrentPositionInSet(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentPositionInSet
+  int get currentPositionInSet {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentPositionInSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentSizeOfSet(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentSizeOfSet
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentSizeOfSet {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentSizeOfSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentLevel(Pointer<Int32> retVal) => _vtable.get_CurrentLevel
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CurrentAnnotationTypes(Pointer<Pointer<SAFEARRAY>> retVal) =>
-      _vtable.get_CurrentAnnotationTypes.asFunction<
+  int get currentLevel {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentLevel
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<SAFEARRAY> get currentAnnotationTypes {
+    final retValuePtr = calloc<Pointer<SAFEARRAY>>();
+
+    try {
+      final hr = _vtable.get_CurrentAnnotationTypes.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentAnnotationObjects(Pointer<VTablePointer> retVal) =>
-      _vtable.get_CurrentAnnotationObjects.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CachedPositionInSet(Pointer<Int32> retVal) =>
-      _vtable.get_CachedPositionInSet
+  VTablePointer get currentAnnotationObjects {
+    final retValuePtr = calloc<VTablePointer>();
+
+    try {
+      final hr = _vtable.get_CurrentAnnotationObjects.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedPositionInSet {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedPositionInSet
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedSizeOfSet(Pointer<Int32> retVal) => _vtable.get_CachedSizeOfSet
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CachedLevel(Pointer<Int32> retVal) => _vtable.get_CachedLevel
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get cachedSizeOfSet {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedAnnotationTypes(Pointer<Pointer<SAFEARRAY>> retVal) =>
-      _vtable.get_CachedAnnotationTypes.asFunction<
+    try {
+      final hr = _vtable.get_CachedSizeOfSet
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedLevel {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedLevel
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<SAFEARRAY> get cachedAnnotationTypes {
+    final retValuePtr = calloc<Pointer<SAFEARRAY>>();
+
+    try {
+      final hr = _vtable.get_CachedAnnotationTypes.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedAnnotationObjects(Pointer<VTablePointer> retVal) =>
-      _vtable.get_CachedAnnotationObjects.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  VTablePointer get cachedAnnotationObjects {
+    final retValuePtr = calloc<VTablePointer>();
+
+    try {
+      final hr = _vtable.get_CachedAnnotationObjects.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

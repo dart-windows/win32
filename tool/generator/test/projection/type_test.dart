@@ -130,6 +130,7 @@ void main() {
     final typeProjection = TypeProjection(type);
     expect(typeProjection.dartType, equals('VTablePointer'));
     expect(typeProjection.nativeType, equals('VTablePointer'));
+    expect(typeProjection.isDartPrimitive, isTrue);
   });
 
   test('Inherited COM interface parameter', () {
@@ -150,6 +151,7 @@ void main() {
     final typeProjection = TypeProjection(param);
     expect(typeProjection.dartType, equals('VTablePointer'));
     expect(typeProjection.nativeType, equals('VTablePointer'));
+    expect(typeProjection.isDartPrimitive, isTrue);
   });
 
   test('Pass double pointers to COM interfaces', () {
@@ -300,7 +302,7 @@ void main() {
     expect(projection.dartType, equals('int'));
   });
 
-  test('native int parameters have the correct projection', () {
+  test('Native int parameters have the correct projection', () {
     final typedef = scope.findTypeDef('Windows.Win32.Devices.Bluetooth.Apis');
     final api = typedef?.findMethod('BluetoothFindNextDevice');
     expect(api, isNotNull);

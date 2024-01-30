@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -32,15 +37,37 @@ class IUIAutomationDockPattern extends IUnknown {
   int setDockPosition(int dockPos) => _vtable.SetDockPosition.asFunction<
       int Function(VTablePointer, int dockPos)>()(ptr, dockPos);
 
-  int get_CurrentDockPosition(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentDockPosition
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+  int get currentDockPosition {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedDockPosition(Pointer<Int32> retVal) =>
-      _vtable.get_CachedDockPosition
+    try {
+      final hr = _vtable.get_CurrentDockPosition
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedDockPosition {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedDockPosition
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

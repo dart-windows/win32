@@ -4,10 +4,65 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../projection/type.dart';
 import 'custom_attributes_mixin.dart';
 import 'string.dart';
 
 extension MethodHelpers on Method {
+  /// Checks whether the method can be projected as a getter based on certain
+  /// conditions.
+  bool get canBeProjectedAsGetter {
+    // Check if the method is a get property and has exactly one parameter
+    if (isGetProperty && parameters.length == 1) {
+      // Find the corresponding setter, if available
+      final setter = parent.methods
+          .where((m) => m.name == name.replaceFirst('get_', 'put_'))
+          .firstOrNull;
+
+      // If no corresponding setter is found, the method can be projected as a
+      // getter.
+      if (setter == null) return true;
+
+      final getterProjection = TypeProjection(parameters[0].typeIdentifier);
+      final setterProjection =
+          TypeProjection(setter.parameters.first.typeIdentifier);
+      final getterTypeArgProjection = getterProjection.dereference();
+
+      if (!getterTypeArgProjection.isDartPrimitive) {
+        return getterProjection.dartType == setterProjection.dartType;
+      }
+
+      return getterTypeArgProjection.dartType == setterProjection.dartType;
+    }
+
+    // If the method does not meet the conditions above, it cannot be projected
+    // as a getter.
+    return false;
+  }
+
+  /// Checks whether the method can be projected as a setter based on certain
+  /// conditions.
+  bool get canBeProjectedAsSetter {
+    // Check if the method is a set property and has exactly one parameter
+    if (isSetProperty && parameters.length == 1) {
+      // Find the corresponding getter, if available
+      final getter = parent.methods
+          .where((m) => m.name == name.replaceFirst('put_', 'get_'))
+          .firstOrNull;
+
+      // If no corresponding getter is found, the method can be projected as a
+      // setter.
+      if (getter == null) return true;
+
+      // If a getter is found, check if it can be projected as a getter
+      return getter.canBeProjectedAsGetter;
+    }
+
+    // If the method does not meet the conditions above, it cannot be projected
+    // as a setter.
+    return false;
+  }
+
   /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `GetClassName` instead of `GetClassNameW`).
   String get nameWithoutEncoding {

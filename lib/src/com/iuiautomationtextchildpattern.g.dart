@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -30,15 +35,37 @@ class IUIAutomationTextChildPattern extends IUnknown {
       IUIAutomationTextChildPattern(
           interface.toInterface(IID_IUIAutomationTextChildPattern));
 
-  int get_TextContainer(Pointer<VTablePointer> container) =>
-      _vtable.get_TextContainer.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> container)>()(
-          ptr, container);
+  VTablePointer get textContainer {
+    final retValuePtr = calloc<VTablePointer>();
 
-  int get_TextRange(Pointer<VTablePointer> range) =>
-      _vtable.get_TextRange.asFunction<
+    try {
+      final hr = _vtable.get_TextContainer.asFunction<
+              int Function(VTablePointer, Pointer<VTablePointer> container)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  VTablePointer get textRange {
+    final retValuePtr = calloc<VTablePointer>();
+
+    try {
+      final hr = _vtable.get_TextRange.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> range)>()(ptr, range);
+              VTablePointer, Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -40,31 +45,101 @@ class IUIAutomationTransformPattern extends IUnknown {
       _vtable.Rotate.asFunction<int Function(VTablePointer, double degrees)>()(
           ptr, degrees);
 
-  int get_CurrentCanMove(Pointer<Int32> retVal) => _vtable.get_CurrentCanMove
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get currentCanMove {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CurrentCanResize(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentCanResize
+    try {
+      final hr = _vtable.get_CurrentCanMove
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentCanRotate(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentCanRotate
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentCanResize {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentCanResize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedCanMove(Pointer<Int32> retVal) => _vtable.get_CachedCanMove
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CachedCanResize(Pointer<Int32> retVal) => _vtable.get_CachedCanResize
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get currentCanRotate {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedCanRotate(Pointer<Int32> retVal) => _vtable.get_CachedCanRotate
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+    try {
+      final hr = _vtable.get_CurrentCanRotate
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedCanMove {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedCanMove
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedCanResize {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedCanResize
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedCanRotate {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedCanRotate
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

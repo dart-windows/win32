@@ -137,13 +137,7 @@ void main() async {
   final notepad = getTopLevelWindowByProcessId(process.pid);
   final window = getWindowPattern(notepad);
 
-  final pRetVal = calloc<Int32>();
-  final hr = window.get_CurrentCanMaximize(pRetVal);
-  if (FAILED(hr)) throw WindowsException(hr);
-  final currentCanMaximize = pRetVal.value == TRUE;
-  free(pRetVal);
-
-  if (currentCanMaximize) {
+  if (window.currentCanMaximize == TRUE) {
     maximizeWindow(window);
     Sleep(500);
     restoreWindow(window);

@@ -26,16 +26,11 @@ void main() {
   if (pTokens.value != nullptr) {
     final tokens = ISpeechObjectTokens(pTokens.value);
     free(pTokens);
-    final pCount = calloc<Int32>();
-    var hr = tokens.get_Count(pCount);
-    if (FAILED(hr)) throw WindowsException(hr);
-    final count = pCount.value;
-    free(pCount);
-    print('There are $count voices available for text-to-speech:');
+    print('There are ${tokens.count} voices available for text-to-speech:');
 
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < tokens.count; i++) {
       final pToken = calloc<VTablePointer>();
-      hr = tokens.item(i, pToken);
+      var hr = tokens.item(i, pToken);
       if (FAILED(hr)) throw WindowsException(hr);
 
       if (pTokens.value != nullptr) {

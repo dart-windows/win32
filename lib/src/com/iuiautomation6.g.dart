@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iuiautomation5.g.dart';
 import 'iunknown.g.dart';
 
@@ -45,29 +50,51 @@ class IUIAutomation6 extends IUIAutomation5 {
           int Function(VTablePointer, VTablePointer element,
               VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
-  int get_ConnectionRecoveryBehavior(
-          Pointer<Int32> connectionRecoveryBehaviorOptions) =>
-      _vtable.get_ConnectionRecoveryBehavior.asFunction<
+  int get connectionRecoveryBehavior {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_ConnectionRecoveryBehavior.asFunction<
               int Function(VTablePointer,
                   Pointer<Int32> connectionRecoveryBehaviorOptions)>()(
-          ptr, connectionRecoveryBehaviorOptions);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int put_ConnectionRecoveryBehavior(int connectionRecoveryBehaviorOptions) =>
-      _vtable.put_ConnectionRecoveryBehavior.asFunction<
-              int Function(
-                  VTablePointer, int connectionRecoveryBehaviorOptions)>()(
-          ptr, connectionRecoveryBehaviorOptions);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CoalesceEvents(Pointer<Int32> coalesceEventsOptions) =>
-      _vtable.get_CoalesceEvents.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Int32> coalesceEventsOptions)>()(
-          ptr, coalesceEventsOptions);
+  set connectionRecoveryBehavior(int value) {
+    final hr = _vtable.put_ConnectionRecoveryBehavior.asFunction<
+        int Function(VTablePointer,
+            int connectionRecoveryBehaviorOptions)>()(ptr, value);
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
 
-  int put_CoalesceEvents(int coalesceEventsOptions) => _vtable
-          .put_CoalesceEvents
-          .asFunction<int Function(VTablePointer, int coalesceEventsOptions)>()(
-      ptr, coalesceEventsOptions);
+  int get coalesceEvents {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CoalesceEvents.asFunction<
+          int Function(VTablePointer,
+              Pointer<Int32> coalesceEventsOptions)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  set coalesceEvents(int value) {
+    final hr = _vtable.put_CoalesceEvents.asFunction<
+        int Function(VTablePointer, int coalesceEventsOptions)>()(ptr, value);
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
 
   int addActiveTextPositionChangedEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>

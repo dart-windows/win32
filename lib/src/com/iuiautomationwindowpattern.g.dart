@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -38,62 +43,197 @@ class IUIAutomationWindowPattern extends IUnknown {
   int setWindowVisualState(int state) => _vtable.SetWindowVisualState
       .asFunction<int Function(VTablePointer, int state)>()(ptr, state);
 
-  int get_CurrentCanMaximize(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentCanMaximize
+  int get currentCanMaximize {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentCanMaximize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentCanMinimize(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentCanMinimize
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentCanMinimize {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentCanMinimize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentIsModal(Pointer<Int32> retVal) => _vtable.get_CurrentIsModal
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CurrentIsTopmost(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentIsTopmost
+  int get currentIsModal {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentIsModal
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentWindowVisualState(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentWindowVisualState
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentIsTopmost {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentIsTopmost
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentWindowInteractionState(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentWindowInteractionState
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentWindowVisualState {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentWindowVisualState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedCanMaximize(Pointer<Int32> retVal) =>
-      _vtable.get_CachedCanMaximize
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentWindowInteractionState {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentWindowInteractionState
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedCanMinimize(Pointer<Int32> retVal) =>
-      _vtable.get_CachedCanMinimize
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedCanMaximize {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedCanMaximize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedIsModal(Pointer<Int32> retVal) => _vtable.get_CachedIsModal
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CachedIsTopmost(Pointer<Int32> retVal) => _vtable.get_CachedIsTopmost
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get cachedCanMinimize {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedWindowVisualState(Pointer<Int32> retVal) =>
-      _vtable.get_CachedWindowVisualState
+    try {
+      final hr = _vtable.get_CachedCanMinimize
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedWindowInteractionState(Pointer<Int32> retVal) =>
-      _vtable.get_CachedWindowInteractionState
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedIsModal {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedIsModal
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedIsTopmost {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedIsTopmost
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedWindowVisualState {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedWindowVisualState
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedWindowInteractionState {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedWindowInteractionState
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

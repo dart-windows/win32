@@ -10,8 +10,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -44,44 +47,133 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
   int setValue(Pointer<Utf16> szValue) => _vtable.SetValue.asFunction<
       int Function(VTablePointer, Pointer<Utf16> szValue)>()(ptr, szValue);
 
-  int get_CurrentChildId(Pointer<Int32> pRetVal) => _vtable.get_CurrentChildId
-          .asFunction<int Function(VTablePointer, Pointer<Int32> pRetVal)>()(
-      ptr, pRetVal);
+  int get currentChildId {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CurrentName(Pointer<Pointer<Utf16>> pszName) =>
-      _vtable.get_CurrentName.asFunction<
+    try {
+      final hr = _vtable.get_CurrentChildId.asFunction<
           int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(ptr, pszName);
+              VTablePointer, Pointer<Int32> pRetVal)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentValue(Pointer<Pointer<Utf16>> pszValue) =>
-      _vtable.get_CurrentValue.asFunction<
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentName {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentName.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentValue {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentValue.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>()(
-          ptr, pszValue);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentDescription(Pointer<Pointer<Utf16>> pszDescription) =>
-      _vtable.get_CurrentDescription.asFunction<
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentDescription {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentDescription.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<Utf16>> pszDescription)>()(ptr, pszDescription);
+              Pointer<Pointer<Utf16>> pszDescription)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentRole(Pointer<Uint32> pdwRole) => _vtable.get_CurrentRole
-          .asFunction<int Function(VTablePointer, Pointer<Uint32> pdwRole)>()(
-      ptr, pdwRole);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CurrentState(Pointer<Uint32> pdwState) => _vtable.get_CurrentState
-          .asFunction<int Function(VTablePointer, Pointer<Uint32> pdwState)>()(
-      ptr, pdwState);
+  int get currentRole {
+    final retValuePtr = calloc<Uint32>();
 
-  int get_CurrentHelp(Pointer<Pointer<Utf16>> pszHelp) =>
-      _vtable.get_CurrentHelp.asFunction<
+    try {
+      final hr = _vtable.get_CurrentRole.asFunction<
           int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>()(ptr, pszHelp);
+              VTablePointer, Pointer<Uint32> pdwRole)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentKeyboardShortcut(
-          Pointer<Pointer<Utf16>> pszKeyboardShortcut) =>
-      _vtable.get_CurrentKeyboardShortcut.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<Utf16>> pszKeyboardShortcut)>()(
-          ptr, pszKeyboardShortcut);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentState {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = _vtable.get_CurrentState.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> pdwState)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentHelp {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentHelp.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentKeyboardShortcut {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentKeyboardShortcut.asFunction<
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> pszKeyboardShortcut)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getCurrentSelection(Pointer<VTablePointer> pvarSelectedChildren) =>
       _vtable.GetCurrentSelection.asFunction<
@@ -89,49 +181,149 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
                   Pointer<VTablePointer> pvarSelectedChildren)>()(
           ptr, pvarSelectedChildren);
 
-  int get_CurrentDefaultAction(Pointer<Pointer<Utf16>> pszDefaultAction) =>
-      _vtable.get_CurrentDefaultAction.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszDefaultAction)>()(
-          ptr, pszDefaultAction);
+  Pointer<Utf16> get currentDefaultAction {
+    final retValuePtr = calloc<Pointer<Utf16>>();
 
-  int get_CachedChildId(Pointer<Int32> pRetVal) => _vtable.get_CachedChildId
-          .asFunction<int Function(VTablePointer, Pointer<Int32> pRetVal)>()(
-      ptr, pRetVal);
-
-  int get_CachedName(Pointer<Pointer<Utf16>> pszName) =>
-      _vtable.get_CachedName.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(ptr, pszName);
-
-  int get_CachedValue(Pointer<Pointer<Utf16>> pszValue) =>
-      _vtable.get_CachedValue.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>()(
-          ptr, pszValue);
-
-  int get_CachedDescription(Pointer<Pointer<Utf16>> pszDescription) =>
-      _vtable.get_CachedDescription.asFunction<
+    try {
+      final hr = _vtable.get_CurrentDefaultAction.asFunction<
           int Function(VTablePointer,
-              Pointer<Pointer<Utf16>> pszDescription)>()(ptr, pszDescription);
+              Pointer<Pointer<Utf16>> pszDefaultAction)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedRole(Pointer<Uint32> pdwRole) => _vtable.get_CachedRole
-          .asFunction<int Function(VTablePointer, Pointer<Uint32> pdwRole)>()(
-      ptr, pdwRole);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CachedState(Pointer<Uint32> pdwState) => _vtable.get_CachedState
-          .asFunction<int Function(VTablePointer, Pointer<Uint32> pdwState)>()(
-      ptr, pdwState);
+  int get cachedChildId {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedHelp(Pointer<Pointer<Utf16>> pszHelp) =>
-      _vtable.get_CachedHelp.asFunction<
+    try {
+      final hr = _vtable.get_CachedChildId.asFunction<
           int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>()(ptr, pszHelp);
+              VTablePointer, Pointer<Int32> pRetVal)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedKeyboardShortcut(Pointer<Pointer<Utf16>> pszKeyboardShortcut) =>
-      _vtable.get_CachedKeyboardShortcut.asFunction<
-              int Function(VTablePointer,
-                  Pointer<Pointer<Utf16>> pszKeyboardShortcut)>()(
-          ptr, pszKeyboardShortcut);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedName {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedName.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedValue {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedValue.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedDescription {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedDescription.asFunction<
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> pszDescription)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedRole {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = _vtable.get_CachedRole.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> pdwRole)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedState {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = _vtable.get_CachedState.asFunction<
+          int Function(
+              VTablePointer, Pointer<Uint32> pdwState)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedHelp {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedHelp.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedKeyboardShortcut {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedKeyboardShortcut.asFunction<
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> pszKeyboardShortcut)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getCachedSelection(Pointer<VTablePointer> pvarSelectedChildren) =>
       _vtable.GetCachedSelection.asFunction<
@@ -139,11 +331,21 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
                   Pointer<VTablePointer> pvarSelectedChildren)>()(
           ptr, pvarSelectedChildren);
 
-  int get_CachedDefaultAction(Pointer<Pointer<Utf16>> pszDefaultAction) =>
-      _vtable.get_CachedDefaultAction.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszDefaultAction)>()(
-          ptr, pszDefaultAction);
+  Pointer<Utf16> get cachedDefaultAction {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedDefaultAction.asFunction<
+          int Function(VTablePointer,
+              Pointer<Pointer<Utf16>> pszDefaultAction)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getIAccessible(Pointer<VTablePointer> ppAccessible) =>
       _vtable.GetIAccessible.asFunction<

@@ -10,8 +10,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -30,10 +33,21 @@ class ISpellChecker extends IUnknown {
   factory ISpellChecker.from(IUnknown interface) =>
       ISpellChecker(interface.toInterface(IID_ISpellChecker));
 
-  int get_LanguageTag(Pointer<Pointer<Utf16>> value) =>
-      _vtable.get_LanguageTag.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> value)>()(ptr, value);
+  Pointer<Utf16> get languageTag {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_LanguageTag.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int check(Pointer<Utf16> text, Pointer<VTablePointer> value) =>
       _vtable.Check.asFunction<
@@ -61,18 +75,53 @@ class ISpellChecker extends IUnknown {
           int Function(VTablePointer, Pointer<Utf16> optionId,
               Pointer<Uint8> value)>()(ptr, optionId, value);
 
-  int get_OptionIds(Pointer<VTablePointer> value) =>
-      _vtable.get_OptionIds.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> value)>()(ptr, value);
+  VTablePointer get optionIds {
+    final retValuePtr = calloc<VTablePointer>();
 
-  int get_Id(Pointer<Pointer<Utf16>> value) => _vtable.get_Id.asFunction<
-      int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(ptr, value);
-
-  int get_LocalizedName(Pointer<Pointer<Utf16>> value) =>
-      _vtable.get_LocalizedName.asFunction<
+    try {
+      final hr = _vtable.get_OptionIds.asFunction<
           int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> value)>()(ptr, value);
+              VTablePointer, Pointer<VTablePointer> value)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get id {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_Id.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get localizedName {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_LocalizedName.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int add_SpellCheckerChanged(
           VTablePointer handler, Pointer<Uint32> eventCookie) =>

@@ -8,9 +8,14 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iuiautomationcondition.g.dart';
 import 'iunknown.g.dart';
 
@@ -32,9 +37,21 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
       IUIAutomationAndCondition(
           interface.toInterface(IID_IUIAutomationAndCondition));
 
-  int get_ChildCount(Pointer<Int32> childCount) => _vtable.get_ChildCount
-          .asFunction<int Function(VTablePointer, Pointer<Int32> childCount)>()(
-      ptr, childCount);
+  int get childCount {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_ChildCount.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> childCount)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getChildrenAsNativeArray(Pointer<Pointer<VTablePointer>> childArray,
           Pointer<Int32> childArrayCount) =>

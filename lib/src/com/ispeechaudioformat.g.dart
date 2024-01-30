@@ -10,8 +10,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
 
@@ -28,20 +31,50 @@ class ISpeechAudioFormat extends IDispatch {
   factory ISpeechAudioFormat.from(IUnknown interface) =>
       ISpeechAudioFormat(interface.toInterface(IID_ISpeechAudioFormat));
 
-  int get_Type(Pointer<Int32> audioFormat) => _vtable.get_Type.asFunction<
-      int Function(
-          VTablePointer, Pointer<Int32> audioFormat)>()(ptr, audioFormat);
+  int get type {
+    final retValuePtr = calloc<Int32>();
 
-  int put_Type(int audioFormat) => _vtable.put_Type
-          .asFunction<int Function(VTablePointer, int audioFormat)>()(
-      ptr, audioFormat);
+    try {
+      final hr = _vtable.get_Type.asFunction<
+          int Function(
+              VTablePointer, Pointer<Int32> audioFormat)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_Guid(Pointer<Pointer<Utf16>> guid) => _vtable.get_Guid.asFunction<
-      int Function(VTablePointer, Pointer<Pointer<Utf16>> guid)>()(ptr, guid);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int put_Guid(Pointer<Utf16> guid) => _vtable.put_Guid
-          .asFunction<int Function(VTablePointer, Pointer<Utf16> guid)>()(
-      ptr, guid);
+  set type(int value) {
+    final hr = _vtable.put_Type
+        .asFunction<int Function(VTablePointer, int audioFormat)>()(ptr, value);
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
+
+  Pointer<Utf16> get guid {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_Guid.asFunction<
+          int Function(
+              VTablePointer, Pointer<Pointer<Utf16>> guid)>()(ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  set guid(Pointer<Utf16> value) {
+    final hr = _vtable.put_Guid
+            .asFunction<int Function(VTablePointer, Pointer<Utf16> guid)>()(
+        ptr, value);
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
 
   int getWaveFormatEx(Pointer<VTablePointer> speechWaveFormatEx) =>
       _vtable.GetWaveFormatEx.asFunction<

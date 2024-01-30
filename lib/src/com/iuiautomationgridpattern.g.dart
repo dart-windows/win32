@@ -8,8 +8,13 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -35,23 +40,69 @@ class IUIAutomationGridPattern extends IUnknown {
           int Function(VTablePointer, int row, int column,
               Pointer<VTablePointer> element)>()(ptr, row, column, element);
 
-  int get_CurrentRowCount(Pointer<Int32> retVal) => _vtable.get_CurrentRowCount
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get currentRowCount {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CurrentColumnCount(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentColumnCount
+    try {
+      final hr = _vtable.get_CurrentRowCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedRowCount(Pointer<Int32> retVal) => _vtable.get_CachedRowCount
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CachedColumnCount(Pointer<Int32> retVal) =>
-      _vtable.get_CachedColumnCount
+  int get currentColumnCount {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentColumnCount
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedRowCount {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedRowCount
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedColumnCount {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedColumnCount
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

@@ -4,11 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../attributes.dart';
 import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
-import '../model/load_json.dart';
 
 class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
@@ -16,13 +14,13 @@ class TypeTuple {
   const TypeTuple.fromNativeType(String nativeType, {String? attribute})
       : this(nativeType, nativeType, attribute: attribute);
 
-  /// The type, as represented in the native function (e.g. `Uint64`)
+  /// The type, as represented in the native function (e.g. `Uint32`)
   final String nativeType;
 
   /// The type, as represented in the Dart function (e.g. `int`)
   final String dartType;
 
-  /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
+  /// The type, as represented as a struct attribute (e.g. `@Uint32()`)
   final String? attribute;
 }
 
@@ -51,8 +49,6 @@ const specialTypes = <String, TypeTuple>{
   'Windows.Win32.Foundation.PWSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
 };
 
-final callbackTypeMapping = loadMap('win32_callbacks.json');
-
 class TypeProjection {
   TypeProjection(this.typeIdentifier);
 
@@ -72,40 +68,24 @@ class TypeProjection {
   bool get isBaseType =>
       baseNativeMapping.keys.contains(typeIdentifier.baseType);
 
-  bool get isCharArray =>
-      isArrayType && typeIdentifier.typeArg?.baseType == BaseType.charType;
-
-  bool get isClassType => typeIdentifier.baseType == BaseType.classTypeModifier;
-
-  /// Is the resultant Dart type atomic?
+  /// Returns `true` if the resultant Dart type atomic.
   bool get isDartPrimitive =>
-      ['void', 'bool', 'int', 'double'].contains(dartType) ||
-      dartType.startsWith('Pointer') ||
-      dartType.startsWith('Array');
+      ['bool', 'double', 'int', 'void'].contains(dartType) ||
+      dartType.startsWith('Array') ||
+      dartType.startsWith(RegExp('(VTable)?Pointer'));
 
-  bool get isDelegate =>
-      isClassType &&
-      (typeIdentifier.name.startsWith('Windows.Wdk') ||
-          typeIdentifier.name.startsWith('Windows.Win32')) &&
-      typeIdentifier.type?.parent?.name == 'System.MulticastDelegate';
+  bool get isDelegate => typeIdentifier.type?.isDelegate ?? false;
 
-  bool get isEnumType => typeIdentifier.type?.parent?.name == 'System.Enum';
+  bool get isEnumType => typeIdentifier.type?.isEnum ?? false;
 
   bool get isInterface => typeIdentifier.type?.isInterface ?? false;
 
   bool get isPointerType =>
       typeIdentifier.baseType == BaseType.pointerTypeModifier;
 
-  bool get isReferenceType =>
-      typeIdentifier.baseType == BaseType.referenceTypeModifier;
-
-  bool get isSimpleArrayType =>
-      typeIdentifier.baseType == BaseType.simpleArrayType;
-
   bool get isSpecialType => specialTypes.keys.contains(typeIdentifier.name);
 
-  bool get isWrappedValueType =>
-      typeIdentifier.baseType == BaseType.valueTypeModifier;
+  bool get isStruct => typeIdentifier.type?.isStruct ?? false;
 
   TypeTuple unwrapArrayType() {
     final TypeIdentifier(:arrayDimensions, :typeArg) = typeIdentifier;
@@ -121,7 +101,7 @@ class TypeProjection {
     );
   }
 
-  TypeTuple unwrapCallbackType() {
+  TypeTuple unwrapDelegateType() {
     final type = typeIdentifier.type;
     if (type == null) throw StateError('TypeDef missing for $typeIdentifier.');
 
@@ -149,7 +129,7 @@ class TypeProjection {
     return TypeProjection(fieldType).projection;
   }
 
-  /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
+  /// Takes a type such as `pointerTypeModifier` -> `BaseType.uint32Type` and
   /// converts it to `Pointer<Uint32>`.
   TypeTuple unwrapPointerType() {
     final typeArg = typeIdentifier.typeArg;
@@ -170,16 +150,15 @@ class TypeProjection {
     return TypeTuple.fromNativeType('Pointer<$typeArgNativeType>');
   }
 
-  TypeTuple unwrapValueType() {
+  TypeTuple unwrapStructType() {
     final wrappedType = typeIdentifier.type;
     if (wrappedType == null) {
       throw StateError('Wrapped type TypeDef missing for $typeIdentifier.');
     }
 
-    // A type like HWND
-    if (wrappedType.existsAttribute(metadataTypedefAttribute) ||
-        wrappedType.existsAttribute(nativeTypedefAttribute)) {
-      final field = wrappedType.fields.first;
+    // A wrapper struct like HWND
+    if (wrappedType.isWrapperStruct) {
+      final [field] = wrappedType.fields;
       return TypeProjection(field.typeIdentifier).projection;
     }
 
@@ -203,21 +182,24 @@ class TypeProjection {
   }
 
   TypeTuple projectType() {
+    // Could be a System.Guid or other special type that we want to custom-map
+    if (isSpecialType) return specialTypes[typeIdentifier.name]!;
+
+    if (isArrayType) return unwrapArrayType();
+
     // Could be an intrinsic base type (e.g., Int32)
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
 
-    // Could be a string or other special type that we want to custom-map
-    if (isSpecialType) return specialTypes[typeIdentifier.name]!;
+    // Could be a struct (e.g., WNDPROC)
+    if (isDelegate) return unwrapDelegateType();
 
     // Could be an enum (e.g., FOLDERFLAGS)
     if (isEnumType) return unwrapEnumType();
 
-    // Could be a wrapped type (e.g., a HWND)
-    if (isWrappedValueType) return unwrapValueType();
-
-    if (isArrayType) return unwrapArrayType();
-    if (isDelegate) return unwrapCallbackType();
     if (isPointerType) return unwrapPointerType();
+
+    // Could be a struct (e.g., MMTIME, HWND)
+    if (isStruct) return unwrapStructType();
 
     if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
 
@@ -227,7 +209,7 @@ class TypeProjection {
 }
 
 extension TypeProjectionHelpers on TypeProjection {
-  /// Convert a *typeProjection into a typeProjection
+  /// Converts a *typeProjection into a typeProjection.
   TypeProjection dereference() {
     if (typeIdentifier.typeArg case final typeArg?) {
       return TypeProjection(typeArg);

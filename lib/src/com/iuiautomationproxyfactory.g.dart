@@ -10,8 +10,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -39,10 +42,21 @@ class IUIAutomationProxyFactory extends IUnknown {
                   Pointer<VTablePointer> provider)>()(
           ptr, hwnd, idObject, idChild, provider);
 
-  int get_ProxyFactoryId(Pointer<Pointer<Utf16>> factoryId) =>
-      _vtable.get_ProxyFactoryId.asFunction<
+  Pointer<Utf16> get proxyFactoryId {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_ProxyFactoryId.asFunction<
               int Function(VTablePointer, Pointer<Pointer<Utf16>> factoryId)>()(
-          ptr, factoryId);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 /// @nodoc

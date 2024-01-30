@@ -10,9 +10,12 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
+import '../macros.dart';
 import '../structs.g.dart';
 import '../types.dart';
+import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -32,39 +35,117 @@ class IUIAutomationStylesPattern extends IUnknown {
       IUIAutomationStylesPattern(
           interface.toInterface(IID_IUIAutomationStylesPattern));
 
-  int get_CurrentStyleId(Pointer<Int32> retVal) => _vtable.get_CurrentStyleId
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get currentStyleId {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CurrentStyleName(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CurrentStyleName.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
-
-  int get_CurrentFillColor(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentFillColor
+    try {
+      final hr = _vtable.get_CurrentStyleId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentFillPatternStyle(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CurrentFillPatternStyle.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
-  int get_CurrentShape(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CurrentShape.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+  Pointer<Utf16> get currentStyleName {
+    final retValuePtr = calloc<Pointer<Utf16>>();
 
-  int get_CurrentFillPatternColor(Pointer<Int32> retVal) =>
-      _vtable.get_CurrentFillPatternColor
+    try {
+      final hr = _vtable.get_CurrentStyleName.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentFillColor {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentFillColor
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CurrentExtendedProperties(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CurrentExtendedProperties.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentFillPatternStyle {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentFillPatternStyle.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentShape {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentShape.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get currentFillPatternColor {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CurrentFillPatternColor
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get currentExtendedProperties {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CurrentExtendedProperties.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getCurrentExtendedPropertiesAsArray(
           Pointer<Pointer<ExtendedProperty>> propertyArray,
@@ -76,38 +157,117 @@ class IUIAutomationStylesPattern extends IUnknown {
                   Pointer<Int32> propertyCount)>()(
           ptr, propertyArray, propertyCount);
 
-  int get_CachedStyleId(Pointer<Int32> retVal) => _vtable.get_CachedStyleId
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
+  int get cachedStyleId {
+    final retValuePtr = calloc<Int32>();
 
-  int get_CachedStyleName(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CachedStyleName.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
-
-  int get_CachedFillColor(Pointer<Int32> retVal) => _vtable.get_CachedFillColor
-          .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-      ptr, retVal);
-
-  int get_CachedFillPatternStyle(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CachedFillPatternStyle.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
-
-  int get_CachedShape(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CachedShape.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
-
-  int get_CachedFillPatternColor(Pointer<Int32> retVal) =>
-      _vtable.get_CachedFillPatternColor
+    try {
+      final hr = _vtable.get_CachedStyleId
               .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retVal);
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
 
-  int get_CachedExtendedProperties(Pointer<Pointer<Utf16>> retVal) =>
-      _vtable.get_CachedExtendedProperties.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedStyleName {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedStyleName.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedFillColor {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedFillColor
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedFillPatternStyle {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedFillPatternStyle.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedShape {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedShape.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int get cachedFillPatternColor {
+    final retValuePtr = calloc<Int32>();
+
+    try {
+      final hr = _vtable.get_CachedFillPatternColor
+              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  Pointer<Utf16> get cachedExtendedProperties {
+    final retValuePtr = calloc<Pointer<Utf16>>();
+
+    try {
+      final hr = _vtable.get_CachedExtendedProperties.asFunction<
+              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
+          ptr, retValuePtr);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final retValue = retValuePtr.value;
+      return retValue;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 
   int getCachedExtendedPropertiesAsArray(
           Pointer<Pointer<ExtendedProperty>> propertyArray,
