@@ -206,8 +206,10 @@ base class GUID extends Struct {
 
 extension PointerGUIDExtension on Pointer<GUID> {
   /// Converts this native GUID to a Dart [Guid].
-  Guid toDartGuid() =>
-      Guid.fromComponents(ref.Data1, ref.Data2, ref.Data3, ref.Data4);
+  Guid toDartGuid() {
+    final GUID(:Data1, :Data2, :Data3, :Data4) = ref;
+    return Guid.fromComponents(Data1, Data2, Data3, Data4);
+  }
 }
 
 Pointer<GUID> GUIDFromString(String guid, {Allocator allocator = calloc}) =>
