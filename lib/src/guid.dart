@@ -51,7 +51,7 @@ class Guid {
     return Guid(UnmodifiableUint8ListView(guid));
   }
 
-  /// Creates a 'nil' GUID (i.e. {00000000-0000-0000-0000-000000000000})
+  /// Creates a 'nil' GUID (i.e. `{00000000-0000-0000-0000-000000000000}`).
   factory Guid.zero() => Guid(UnmodifiableUint8ListView(Uint8List(16)));
 
   /// Creates a new GUID.
@@ -170,19 +170,22 @@ class Guid {
 base class GUID extends Struct {
   @Uint32()
   external int Data1;
+
   @Uint16()
   external int Data2;
+
   @Uint16()
   external int Data3;
+
   @Uint64()
   external int Data4;
 
-  /// Print GUID in common {fdd39ad0-238f-46af-adb4-6c85480369c7} format
+  /// Print GUID in common `{fdd39ad0-238f-46af-adb4-6c85480369c7}` format.
   @override
   String toString() =>
       Guid.fromComponents(Data1, Data2, Data3, Data4).toString();
 
-  /// Create GUID from common {FDD39AD0-238F-46AF-ADB4-6C85480369C7} format
+  /// Create GUID from common `{fdd39ad0-238f-46af-adb4-6c85480369c7}` format.
   void setGUID(String guidString) {
     final byteBuffer = Guid.parse(guidString).bytes.buffer;
     Data1 = byteBuffer.asUint32List(0).first;
