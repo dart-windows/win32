@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exclusions.dart';
 import '../extensions/method.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
@@ -46,6 +45,8 @@ class ComInterfaceProjection {
   String? getImportForTypeDef(TypeDef typeDef) => switch (typeDef) {
         _ when typeDef.isDelegate => '../callbacks.dart',
         _ when typeDef.isInterface => '../types.dart',
+
+        //
         _ when typeDef.isStruct && specialTypes.containsKey(typeDef.name) =>
           'package:ffi/ffi.dart',
 
@@ -56,7 +57,7 @@ class ComInterfaceProjection {
           '../variant.dart',
 
         //
-        _ when typeDef.isStruct && !excludedImports.contains(typeDef.name) =>
+        _ when typeDef.isStruct && !typeDef.isWrapperStruct =>
           '../structs.g.dart',
         _ => null
       };
