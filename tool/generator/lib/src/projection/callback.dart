@@ -9,7 +9,7 @@ import 'function.dart';
 
 class CallbackProjection {
   CallbackProjection(TypeDef typeDef)
-      : assert(typeDef.findMethod('Invoke') != null,
+      : assert(typeDef.isDelegate && typeDef.findMethod('Invoke') != null,
             '${typeDef.name} is not a callback.'),
         callbackName = typeDef.safeIdentifier,
         functionProjection = FunctionProjection(typeDef.findMethod('Invoke')!);

@@ -9,23 +9,22 @@ import 'custom_attributes_mixin.dart';
 import 'string.dart';
 
 extension MethodHelpers on Method {
-  /// Checks whether the method can be projected as a getter based on certain
-  /// conditions.
+  /// Whether the method can be projected as a Dart getter.
   bool get canBeProjectedAsGetter {
-    // Check if the method is a get property and has exactly one parameter
+    // Check if the method is a get property and has exactly one parameter.
     if (isGetProperty && parameters.length == 1) {
-      // Find the corresponding setter, if available
-      final setter = parent.methods
+      // Find the corresponding set property, if available.
+      final setProperty = parent.methods
           .where((m) => m.name == name.replaceFirst('get_', 'put_'))
           .firstOrNull;
 
-      // If no corresponding setter is found, the method can be projected as a
-      // getter.
-      if (setter == null) return true;
+      // If no corresponding set property is found, the method can be projected
+      // as a Dart getter.
+      if (setProperty == null) return true;
 
       final getterProjection = TypeProjection(parameters[0].typeIdentifier);
       final setterProjection =
-          TypeProjection(setter.parameters.first.typeIdentifier);
+          TypeProjection(setProperty.parameters.first.typeIdentifier);
       final getterTypeArgProjection = getterProjection.dereference();
 
       if (!getterTypeArgProjection.isDartPrimitive) {
@@ -36,61 +35,64 @@ extension MethodHelpers on Method {
     }
 
     // If the method does not meet the conditions above, it cannot be projected
-    // as a getter.
+    // as a Dart getter.
     return false;
   }
 
-  /// Checks whether the method can be projected as a setter based on certain
-  /// conditions.
+  /// Whether the method can be projected as a Dart setter.
   bool get canBeProjectedAsSetter {
-    // Check if the method is a set property and has exactly one parameter
+    // Check if the method is a set property and has exactly one parameter.
     if (isSetProperty && parameters.length == 1) {
-      // Find the corresponding getter, if available
-      final getter = parent.methods
+      // Find the corresponding get property, if available.
+      final getProperty = parent.methods
           .where((m) => m.name == name.replaceFirst('put_', 'get_'))
           .firstOrNull;
 
-      // If no corresponding getter is found, the method can be projected as a
-      // setter.
-      if (getter == null) return true;
+      // If no corresponding get property is found, the method can be projected
+      // as a Dart setter.
+      if (getProperty == null) return true;
 
-      // If a getter is found, check if it can be projected as a getter
-      return getter.canBeProjectedAsGetter;
+      // If a get property is found, check if it can be projected as a Dart
+      // getter.
+      return getProperty.canBeProjectedAsGetter;
     }
 
     // If the method does not meet the conditions above, it cannot be projected
-    // as a setter.
+    // as a Dart setter.
     return false;
   }
 
-  /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
+  /// The method name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `GetClassName` instead of `GetClassNameW`).
   String get nameWithoutEncoding {
+    // If the method is attributed with `AnsiAttribute` or `UnicodeAttribute`,
+    // return the name with suffix stripped.
     if (isAnsi || isUnicode) return name.stripAnsiUnicodeSuffix();
 
-    // Some Methods have a Unicode suffix (`W`) without corresponding ANSI
+    // Some methods have a Unicode suffix (`W`) without corresponding ANSI
     // variants. As a result, these methods do not possess the
     // `UnicodeAttribute` (e.g., `CommandLineToArgvW`).
     if (name.endsWith('W') && _unicodeSuffixedMethods.contains(name)) {
       return name.stripAnsiUnicodeSuffix();
     }
 
+    // If the method name is neither ANSI, Unicode, nor a known Unicode suffixed
+    // method, return the original name unchanged.
     return name;
   }
 
-  /// Returns a unique name for the method.
-  ///
-  /// Dart doesn't allow overloaded methods, so we have to rename methods that
-  /// are duplicated.
+  /// A unique name for the method to handle Dart's lack of support for
+  /// overloaded methods.
   String get uniqueName {
-    // Check whether multiple methods exist with the same name. We also need to
-    // check up the interface chain, since otherwise overloaded methods may be
-    // missed. For example, IDWriteFactory2 contains methods that overload those
-    // in IDWriteFactory1.
+    // Check whether multiple methods exist with the same name.
     final overloads = parent.methods.where((m) => m.name == name).toList();
     var interfaceTypeDef = parent;
 
-    // perf optimization to save work on the most common case of IUnknown
+    // We also need to check up the interface chain, since otherwise overloaded
+    // methods may be missed. For example, `IDWriteFactory2` contains methods
+    // that overload those in `IDWriteFactory1`.
+
+    // Perf optimization to save work on the most common case of IUnknown.
     while (interfaceTypeDef.interfaces.isNotEmpty &&
         !(interfaceTypeDef.interfaces.first.name ==
             'Windows.Win32.System.Com.IUnknown')) {
@@ -98,8 +100,8 @@ extension MethodHelpers on Method {
       overloads.addAll(interfaceTypeDef.methods.where((m) => m.name == name));
     }
 
-    // If so, and there is more than one entry with the same name, add a suffix
-    // to all but the first.
+    // If there is more than one entry with the same name, add a suffix to all
+    //but the first.
     if (overloads.length > 1) {
       final reversedOverloads = overloads.reversed.toList();
       final overloadIndex =
@@ -107,30 +109,34 @@ extension MethodHelpers on Method {
       if (overloadIndex > 0) return '${name.safeIdentifier}_$overloadIndex';
     }
 
-    // Windows.Win32.System.ApplicationInstallationAndServicing.IPMTaskInfo
-    // interface includes a .get_RuntimeType() method. We add `_` suffix to it
-    // avoid name conflicts with `Object.runtimeType`.
+    // Handle special cases:
+
+    // Special case for the `get_RuntimeType` method in the `IPMTaskInfo`
+    // interface. To avoid name conflicts with `Object.runtimeType`, underscore
+    // suffix is added.
     if (name == 'get_RuntimeType') return 'get_RuntimeType_';
 
-    // Windows.Win32.UI.TabletPC.IInkStrokes interface includes a .ToString()
-    // method. We replace this to avoid name conflicts with `Object.toString`.
+    // Special case for the `ToString` method in the `IInkStrokes` interface.
+    // To avoid name conflicts with `Object.toString`, the method name is
+    // replaced with `ToUtf16String`.
     if (name == 'ToString') return 'ToUtf16String';
 
-    // Interfaces in the Windows.Win32.Web.MsHtml namespace includes .toString()
-    // methods. We replace these to avoid name conflicts with `Object.toString`.
+    // Special case for methods named `toString` in interfaces within the
+    // `Windows.Win32.Web.MsHtml` namespace. To avoid name conflicts with
+    // `Object.toString`, the method name is replaced with `toUtf16String`.
     if (name == 'toString') return 'toUtf16String';
 
-    // Otherwise the original name is fine.
+    // Otherwise, the original name is fine.
     return name;
   }
 }
 
-/// The set of Unicode suffixed (`W`) methods without corresponding ANSI
-/// variants.
+/// Set of Unicode suffixed (`W`) methods without corresponding ANSI variants.
 ///
-/// These methods lack the `UnicodeAttribute` and serve as a reference to
-/// determine whether Unicode suffixes should be stripped from a given method
-/// name.
+/// This set serves as a reference to identify methods that have Unicode
+/// suffixes (`W`) but lack corresponding ANSI variants. These methods typically
+/// do not possess the `UnicodeAttribute` and used to determine whether a given
+/// method name should have its Unicode suffix stripped.
 const _unicodeSuffixedMethods = <String>{
   'BackupPerfRegistryToFileW',
   'CM_Get_Class_PropertyW',

@@ -7,9 +7,9 @@ import 'package:winmd/winmd.dart';
 import '../attributes.dart';
 
 extension CustomAttributesMixinHelpers on CustomAttributesMixin {
-  /// Whether this object has an `AnsiAttribute`.
+  /// Whether the object has an `AnsiAttribute`.
   bool get isAnsi => existsAttribute(ansiAttribute);
 
-  /// Whether this object has a `UnicodeAttribute`.
+  /// Whether the object has a `UnicodeAttribute`.
   bool get isUnicode => existsAttribute(unicodeAttribute);
 }

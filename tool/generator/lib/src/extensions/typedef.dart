@@ -10,51 +10,66 @@ import 'field.dart';
 import 'string.dart';
 
 extension TypeDefHelpers on TypeDef {
-  /// Returns `true` if the type is a wrapper struct (e.g., `HWND`,
+  /// Whether the typeDef is a wrapper struct (e.g., `HWND`,
   /// `MEMORY_MAPPED_VIEW_ADDRESS`).
   bool get isWrapperStruct =>
       isStruct &&
       (existsAttribute(nativeTypedefAttribute) ||
           existsAttribute(metadataTypedefAttribute));
 
-  /// Returns the name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
+  /// The typeDef name without ANSI (`A`) or Unicode (`W`) suffix (e.g.,
   /// `Windows.Win32.UI.Shell.IShellLink` instead of
   /// `Windows.Win32.UI.Shell.IShellLinkW`).
   String get nameWithoutEncoding {
     var name = this.name;
 
+    // Handle nested types to ensure uniqueness.
     if (isNested) {
+      assert(enclosingClass != null);
+
+      // Retrieve all nested types (including nested arrays) within the
+      // enclosing class.
       final nestedTypes = enclosingClass!.fields
           .where((f) => f.isNested || f.isNestedArray)
           .map((f) => f.isNestedArray
               ? f.typeIdentifier.typeArg!.type!
               : f.typeIdentifier.type!)
           .toList();
+
+      // Find the index of the current type definition within the list of nested
+      // types.
       final index = nestedTypes.indexWhere((type) => type.name == name);
       if (index == -1) {
         throw StateError(
             'Could not find the index of $this in ${enclosingClass!.fields}');
       }
 
+      // Update the type definition name to include a unique index for
+      // differentiation (e.g., `DEVMODE_0`, `DEVMODE_0_1`).
       name = '${enclosingClass!.safeTypename}_$index';
     }
 
+    // If the typeDef is attributed with `AnsiAttribute` or `UnicodeAttribute`,
+    // return the name with suffix stripped.
     if (isAnsi || isUnicode) return name.stripAnsiUnicodeSuffix();
 
-    // Some TypeDefs have a Unicode suffix (`W`) without corresponding ANSI
-    // variants. As a result, these TypeDefs do not possess the
+    // Some typeDefs have a Unicode suffix (`W`) without corresponding ANSI
+    // variants. As a result, these typeDefs do not possess the
     // `UnicodeAttribute` (e.g., `IStillImageW`).
     if (name.endsWith('W') && _unicodeSuffixedTypeDefs.contains(name)) {
       return name.stripAnsiUnicodeSuffix();
     }
 
+    // If the typeDef name is neither ANSI, Unicode, nor a known Unicode
+    // suffixed typeDef, return the original name unchanged.
     return name;
   }
 
-  /// Returns the topmost [TypeDef] in the nested tree.
+  /// The topmost typeDef in the nested tree.
   TypeDef get rootType {
     var rootType = this;
 
+    // Traverse up the hierarchy until the root type is reached.
     while (rootType.enclosingClass != null) {
       rootType = rootType.enclosingClass!;
     }
@@ -62,28 +77,27 @@ extension TypeDefHelpers on TypeDef {
     return rootType;
   }
 
-  /// Returns a safe Dart filename for code generation, derived from the
-  /// [safeTypename].
+  /// A safe Dart filename for code generation, derived from the [safeTypename].
   ///
   /// The format is `{safeTypename in lowercase}.g.dart` (e.g.,
   /// `iunknown.g.dart`).
   String get safeFilename => '${safeTypename.toLowerCase()}.g.dart';
 
-  /// Returns a safe Dart identifier based on the last component of the
+  /// A safe Dart identifier based on the last component of the
   /// [nameWithoutEncoding] (e.g., `_SomeIdentifier` -> `SomeIdentifier`).
   String get safeIdentifier => nameWithoutEncoding.lastComponent.safeIdentifier;
 
-  /// Returns a safe Dart typename based on the last component of the
+  /// A safe Dart typename based on the last component of the
   /// [nameWithoutEncoding] (e.g., `_SomeType` -> `SomeType`).
   String get safeTypename => nameWithoutEncoding.lastComponent.safeTypename;
 }
 
-/// The set of Unicode suffixed (`W`) typeDefs without corresponding ANSI
-/// variants.
+/// Set of Unicode suffixed (`W`) typeDefs without corresponding ANSI variants.
 ///
-/// These typeDefs lack the `UnicodeAttribute` and serve as a reference to
-/// determine whether Unicode suffixes should be stripped from a given typeDef
-/// name.
+/// This set serves as a reference to identify typeDefs that have Unicode
+/// suffixes (`W`) but lack corresponding ANSI variants. These typeDefs
+/// typically do not possess the `UnicodeAttribute` and used to determine
+/// whether a given typeDef name should have its Unicode suffix stripped.
 const _unicodeSuffixedTypeDefs = <String>{
   'Windows.Win32.Devices.Fax.IStillImageW',
   'Windows.Win32.Devices.Fax.PFAXREGISTERROUTINGEXTENSIONW',

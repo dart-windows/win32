@@ -2,8 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// Generates Win32 and COM APIs for the `win32` package based on Windows
-/// metadata.
+/// Generates Win32 and COM APIs for the `win32` package based on metadata
+/// provided by Microsoft.
 library;
 
 export 'src/attributes.dart';

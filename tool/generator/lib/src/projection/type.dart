@@ -68,7 +68,7 @@ class TypeProjection {
   bool get isBaseType =>
       baseNativeMapping.keys.contains(typeIdentifier.baseType);
 
-  /// Returns `true` if the resultant Dart type atomic.
+  /// Whether the resultant Dart type atomic.
   bool get isDartPrimitive =>
       ['bool', 'double', 'int', 'void'].contains(dartType) ||
       dartType.startsWith('Array') ||

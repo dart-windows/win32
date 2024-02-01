@@ -7,6 +7,6 @@ import 'package:winmd/winmd.dart';
 import '../attributes.dart';
 
 extension ParameterHelpers on Parameter {
-  /// Returns `true` if the parameter is reserved.
+  /// Whether the parameter is reserved.
   bool get isReserved => existsAttribute(reservedAttribute);
 }
