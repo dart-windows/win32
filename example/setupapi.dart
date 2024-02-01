@@ -88,8 +88,8 @@ Iterable<String> devicePathsByInterface(
       // }
 
       final deviceInterfaceDetailDataPtr = calloc<BYTE>(requiredSizePtr.value)
-          .cast<SP_DEVICE_INTERFACE_DETAIL_DATA>()
-        ..ref.cbSize = sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA>();
+          .cast<SP_DEVICE_INTERFACE_DETAIL_DATA_>()
+        ..ref.cbSize = sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA_>();
 
       try {
         final hr = SetupDiGetDeviceInterfaceDetail(
@@ -121,7 +121,7 @@ Iterable<String> devicePathsByInterface(
   }
 }
 
-extension on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> {
+extension on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> {
   String get devicePath =>
       Pointer<WCHAR>.fromAddress(address + sizeOf<Uint32>())
           .cast<Utf16>()

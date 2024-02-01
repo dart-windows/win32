@@ -8600,7 +8600,7 @@ base class SP_DEVICE_INTERFACE_DATA extends Struct {
 /// information set.
 ///
 /// {@category struct}
-base class SP_DEVICE_INTERFACE_DETAIL_DATA extends Struct {
+base class SP_DEVICE_INTERFACE_DETAIL_DATA_ extends Struct {
   @Uint32()
   external int cbSize;
 

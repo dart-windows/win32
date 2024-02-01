@@ -175,7 +175,7 @@ final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
 int SetupDiGetDeviceInterfaceDetail(
         int deviceInfoSet,
         Pointer<SP_DEVICE_INTERFACE_DATA> deviceInterfaceData,
-        Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA>? deviceInterfaceDetailData,
+        Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_>? deviceInterfaceDetailData,
         int deviceInterfaceDetailDataSize,
         Pointer<Uint32>? requiredSize,
         Pointer<SP_DEVINFO_DATA>? deviceInfoData) =>
@@ -191,14 +191,14 @@ final _SetupDiGetDeviceInterfaceDetail = _setupapi.lookupFunction<
         Int32 Function(
             IntPtr deviceInfoSet,
             Pointer<SP_DEVICE_INTERFACE_DATA> deviceInterfaceData,
-            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> deviceInterfaceDetailData,
+            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> deviceInterfaceDetailData,
             Uint32 deviceInterfaceDetailDataSize,
             Pointer<Uint32> requiredSize,
             Pointer<SP_DEVINFO_DATA> deviceInfoData),
         int Function(
             int deviceInfoSet,
             Pointer<SP_DEVICE_INTERFACE_DATA> deviceInterfaceData,
-            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA> deviceInterfaceDetailData,
+            Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> deviceInterfaceDetailData,
             int deviceInterfaceDetailDataSize,
             Pointer<Uint32> requiredSize,
             Pointer<SP_DEVINFO_DATA> deviceInfoData)>(

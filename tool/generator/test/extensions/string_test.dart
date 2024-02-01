@@ -39,10 +39,6 @@ void main() {
       expect(
           'ENUMLOGFONTEXW'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
       expect(
-          'ENUMLOGFONTEX_A'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
-      expect(
-          'ENUMLOGFONTEX_W'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
-      expect(
           'ADDJOB_INFO_1W'.stripAnsiUnicodeSuffix(), equals('ADDJOB_INFO_1'));
     });
 

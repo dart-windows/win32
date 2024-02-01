@@ -1001,7 +1001,7 @@ void main() {
     expect(sizeOf<SP_DEVICE_INTERFACE_DATA>(), equals(32));
   });
   test('Struct SP_DEVICE_INTERFACE_DETAIL_DATA is the right size', () {
-    expect(sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA>(), equals(8));
+    expect(sizeOf<SP_DEVICE_INTERFACE_DETAIL_DATA_>(), equals(8));
   });
   test('Struct SP_DEVINFO_DATA is the right size', () {
     expect(sizeOf<SP_DEVINFO_DATA>(), equals(32));

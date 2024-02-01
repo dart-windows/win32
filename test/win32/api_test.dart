@@ -13863,7 +13863,7 @@ void main() {
               Int32 Function(
                   IntPtr deviceInfoSet,
                   Pointer<SP_DEVICE_INTERFACE_DATA> deviceInterfaceData,
-                  Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA>
+                  Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_>
                       deviceInterfaceDetailData,
                   Uint32 deviceInterfaceDetailDataSize,
                   Pointer<Uint32> requiredSize,
@@ -13871,7 +13871,7 @@ void main() {
               int Function(
                   int deviceInfoSet,
                   Pointer<SP_DEVICE_INTERFACE_DATA> deviceInterfaceData,
-                  Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA>
+                  Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_>
                       deviceInterfaceDetailData,
                   int deviceInterfaceDetailDataSize,
                   Pointer<Uint32> requiredSize,

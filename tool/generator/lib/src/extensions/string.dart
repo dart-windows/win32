@@ -44,11 +44,10 @@ extension StringHelpers on String {
   ///
   /// For example, `MessageBoxW` should become `MessageBox`.
   String stripAnsiUnicodeSuffix() {
-    if (endsWith('A') || endsWith('W')) {
-      final end = endsWith('_A') || endsWith('_W') ? length - 2 : length - 1;
-      return substring(0, end);
-    }
+    // Remove the last character if the string ends with either `A` or `W`.
+    if (endsWith('A') || endsWith('W')) return substring(0, length - 1);
 
+    // Otherwise, return the original string.
     return this;
   }
 
