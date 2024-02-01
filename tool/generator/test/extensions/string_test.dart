@@ -39,6 +39,8 @@ void main() {
       expect(
           'ENUMLOGFONTEXW'.stripAnsiUnicodeSuffix(), equals('ENUMLOGFONTEX'));
       expect(
+          'ADDJOB_INFO_1A'.stripAnsiUnicodeSuffix(), equals('ADDJOB_INFO_1'));
+      expect(
           'ADDJOB_INFO_1W'.stripAnsiUnicodeSuffix(), equals('ADDJOB_INFO_1'));
     });
 
@@ -57,7 +59,7 @@ void main() {
     test('stripPointer', () {
       expect('Pointer<Int32>'.stripPointer(), equals('Int32'));
       expect(
-          'Pointer<Pointer<IntPtr>>'.stripPointer(), equals('Pointer<IntPtr>'));
+          'Pointer<Pointer<Int32>>'.stripPointer(), equals('Pointer<Int32>'));
       expect('noPointer'.stripPointer(), equals('noPointer'));
     });
 
@@ -126,11 +128,11 @@ void main() {
             "import 'package:ffi/ffi.dart';",
             "import 'dart:async';",
             "import 'package:win32/win32.dart';",
-            "import '../../../exceptions.dart';",
-            "import '../../../types.dart';",
-            "import '../../../utils.dart';",
-            "import '../../../win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';",
-            "import '../../../macros.dart';",
+            "import 'exceptions.dart';",
+            "import 'types.dart';",
+            "import 'utils.dart';",
+            "import 'win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';",
+            "import 'macros.dart';",
           ].sortImports(),
           orderedEquals([
             "import 'dart:async';",
@@ -139,11 +141,11 @@ void main() {
             "import 'package:ffi/ffi.dart';",
             "import 'package:win32/win32.dart';",
             "",
-            "import '../../../exceptions.dart';",
-            "import '../../../macros.dart';",
-            "import '../../../types.dart';",
-            "import '../../../utils.dart';",
-            "import '../../../win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';",
+            "import 'exceptions.dart';",
+            "import 'macros.dart';",
+            "import 'types.dart';",
+            "import 'utils.dart';",
+            "import 'win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';",
           ]));
     });
   });
