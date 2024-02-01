@@ -30,10 +30,10 @@ extension TypeDefHelpers on TypeDef {
       // Retrieve all nested types (including nested arrays) within the
       // enclosing class.
       final nestedTypes = enclosingClass!.fields
-          .where((f) => f.isNested || f.isNestedArray)
-          .map((f) => f.isNestedArray
-              ? f.typeIdentifier.typeArg!.type!
-              : f.typeIdentifier.type!)
+          .where((f) => f.isNested || f.isNestedArray || f.isNestedPointer)
+          .map((f) => f.isNested
+              ? f.typeIdentifier.type!
+              : f.typeIdentifier.typeArg!.type!)
           .toList();
 
       // Find the index of the current type definition within the list of nested

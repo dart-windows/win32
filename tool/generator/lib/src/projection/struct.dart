@@ -12,11 +12,11 @@ import 'type.dart';
 
 /// Represents a Dart projection of a Struct [TypeDef].
 class StructProjection {
-  StructProjection(this.typeDef, String structName, {this.comment = ''})
-      : structName = structName.safeTypename;
+  StructProjection(this.typeDef, {this.comment = ''})
+      : name = typeDef.safeTypename;
 
   final TypeDef typeDef;
-  final String structName;
+  final String name;
   final String comment;
 
   String get baseType => switch (typeDef) {
@@ -32,9 +32,8 @@ class StructProjection {
       };
 
   String get classPreamble {
-    final categoryComment = structName.startsWith('_')
-        ? ''
-        : '/// {@category ${baseType.toLowerCase()}}';
+    final categoryComment =
+        name.startsWith('_') ? '' : '/// {@category ${baseType.toLowerCase()}}';
     final classComment = comment.toDocComment();
     final docComment = classComment.isEmpty
         ? categoryComment
@@ -57,24 +56,20 @@ class StructProjection {
   String _cacheNestedTypes() {
     final buffer = StringBuffer();
 
-    var fieldIndex = 0;
     for (final field in typeDef.fields) {
       if (field.isNested || field.isNestedArray || field.isNestedPointer) {
         final type = field.isNested
             ? field.typeIdentifier.type!
             : field.typeIdentifier.typeArg!.type!;
-        final name = '${structName}_$fieldIndex';
-        final projection = StructProjection(type, name);
+        final projection = StructProjection(type);
         buffer.writeln(projection);
 
         if (field.isNested) {
           // Add property accessors for the nested struct.
           buffer
             ..writeln()
-            ..write(_propertyAccessors(type, name));
+            ..write(_propertyAccessors(type));
         }
-
-        fieldIndex++;
       }
     }
 
@@ -84,9 +79,9 @@ class StructProjection {
   /// A nested type needs a way to access its members from the parent type.
   /// This is necessary for anonymous nested types, of which there are many in
   /// more complex Win32 structs.
-  String _propertyAccessors(TypeDef typeDef, String structName) {
+  String _propertyAccessors(TypeDef typeDef) {
     final rootType = typeDef.rootType;
-    final extensionName = '${structName}_Extension';
+    final extensionName = '${typeDef.safeTypename}_Extension';
     final buffer = StringBuffer()
       ..writeln('extension $extensionName on ${rootType.safeTypename} {');
 
@@ -112,7 +107,7 @@ class StructProjection {
   @override
   String toString() => '''
 $classPreamble
-$classModifier class $structName extends $baseType {
+$classModifier class $name extends $baseType {
   $fieldsProjection
 }
 

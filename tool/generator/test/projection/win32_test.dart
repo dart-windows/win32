@@ -31,7 +31,7 @@ void main() {
     final struct =
         scope.findTypeDef('Windows.Win32.Graphics.Printing.JOB_INFO_1W');
     expect(struct, isNotNull);
-    final projection = StructProjection(struct!, 'JOB_INFO_1');
+    final projection = StructProjection(struct!);
     expect(projection.packingAlignment, isZero);
     expect(projection.classPreamble, isNot(contains('@Packed')));
   });
@@ -40,7 +40,7 @@ void main() {
     final struct =
         scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.DLGTEMPLATE');
     expect(struct, isNotNull);
-    final projection = StructProjection(struct!, 'DLGTEMPLATE');
+    final projection = StructProjection(struct!);
     expect(projection.packingAlignment, equals(2));
     expect(projection.classPreamble, contains('@Packed(2)'));
   });
@@ -49,8 +49,7 @@ void main() {
     final struct = scope.findTypeDef(
         'Windows.Win32.Devices.Bluetooth.BLUETOOTH_AUTHENTICATION_METHOD');
     expect(struct, isNotNull);
-    final projection =
-        StructProjection(struct!, 'BLUETOOTH_AUTHENTICATION_METHOD');
+    final projection = StructProjection(struct!);
     expect(projection.packingAlignment, isZero);
     expect(projection.classPreamble, isNot(contains('@Packed')));
   });

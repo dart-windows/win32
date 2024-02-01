@@ -17,9 +17,8 @@ void generateStructs(List<Scope> scopes, Map<String, String> structs) {
       .toList()
     ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
 
-  final structProjections = typeDefs.map((struct) => StructProjection(
-      struct, struct.safeTypename,
-      comment: structs[struct.name]!));
+  final structProjections = typeDefs.map(
+      (typeDef) => StructProjection(typeDef, comment: structs[typeDef.name]!));
 
   final structsFile = [structFileHeader, ...structProjections].join();
   file.writeAsStringSync(DartFormatter().format(structsFile));

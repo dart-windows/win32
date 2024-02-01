@@ -22,15 +22,13 @@ void main() {
           .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
       expect(bluetoothAddress, isNotNull);
 
-      final structProjection1 =
-          StructProjection(bluetoothAddress!, 'BLUETOOTH_ADDRESS');
+      final structProjection1 = StructProjection(bluetoothAddress!);
       expect(structProjection1.baseType, equals('Struct'));
 
       final bluetoothAddress0 =
           bluetoothAddress.fields.first.typeIdentifier.type;
       expect(bluetoothAddress0, isNotNull);
-      final structProjection2 =
-          StructProjection(bluetoothAddress0!, 'BLUETOOTH_ADDRESS_0');
+      final structProjection2 = StructProjection(bluetoothAddress0!);
       expect(structProjection2.baseType, equals('Union'));
     });
 
@@ -39,15 +37,13 @@ void main() {
           .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
       expect(bluetoothAddress, isNotNull);
 
-      final structProjection1 =
-          StructProjection(bluetoothAddress!, 'BLUETOOTH_ADDRESS');
+      final structProjection1 = StructProjection(bluetoothAddress!);
       expect(structProjection1.classModifier, equals('base'));
 
       final bluetoothAddress0 =
           bluetoothAddress.fields.first.typeIdentifier.type;
       expect(bluetoothAddress0, isNotNull);
-      final structProjection2 =
-          StructProjection(bluetoothAddress0!, 'BLUETOOTH_ADDRESS_0');
+      final structProjection2 = StructProjection(bluetoothAddress0!);
       expect(structProjection2.classModifier, equals('sealed'));
     });
 
@@ -55,8 +51,7 @@ void main() {
       final wlanRawDataList = scope.findTypeDef(
           'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST');
       expect(wlanRawDataList, isNotNull);
-      final structProjection =
-          StructProjection(wlanRawDataList!, 'WLAN_RAW_DATA_LIST');
+      final structProjection = StructProjection(wlanRawDataList!);
       expect(structProjection.fieldsProjection, equalsIgnoringWhitespace('''
 @Uint32()
 external int dwTotalSize;
@@ -81,8 +76,7 @@ external int dwDataSize;
       final dhcpAllOptions = scope
           .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
       expect(dhcpAllOptions, isNotNull);
-      final structProjection =
-          StructProjection(dhcpAllOptions!, 'DHCP_ALL_OPTIONS');
+      final structProjection = StructProjection(dhcpAllOptions!);
       expect(structProjection.fieldsProjection, equalsIgnoringWhitespace('''
 @Uint32()
  external int Flags;
@@ -107,36 +101,35 @@ external Pointer<Utf16> ClassName;
       final typeDef1 =
           scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND');
       expect(typeDef1, isNotNull);
-      final structProjection1 = StructProjection(typeDef1!, 'DWM_BLURBEHIND');
+      final structProjection1 = StructProjection(typeDef1!);
       expect(structProjection1.packingAlignment, equals(1));
       expect(structProjection1.classPreamble, contains('@Packed(1)'));
 
       final typeDef2 =
           scope.findTypeDef('Windows.Win32.Media.Multimedia.MCI_OPEN_PARMSW');
       expect(typeDef2, isNotNull);
-      final structProjection2 = StructProjection(typeDef2!, 'MCI_OPEN_PARMS');
+      final structProjection2 = StructProjection(typeDef2!);
       expect(structProjection2.packingAlignment, equals(1));
       expect(structProjection2.classPreamble, contains('@Packed(1)'));
 
       final typeDef3 = scope
           .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT');
       expect(typeDef3, isNotNull);
-      final structProjection3 =
-          StructProjection(typeDef3!, 'YAMAHA_ADPCMWAVEFORMAT');
+      final structProjection3 = StructProjection(typeDef3!);
       expect(structProjection3.packingAlignment, equals(1));
       expect(structProjection3.classPreamble, contains('@Packed(1)'));
 
       final typeDef4 =
           scope.findTypeDef('Windows.Win32.Devices.Bluetooth.SOCKADDR_BTH');
       expect(typeDef4, isNotNull);
-      final structProjection4 = StructProjection(typeDef4!, 'SOCKADDR_BTH');
+      final structProjection4 = StructProjection(typeDef4!);
       expect(structProjection4.packingAlignment, equals(1));
       expect(structProjection4.classPreamble, contains('@Packed(1)'));
 
       final typeDef5 =
           scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER');
       expect(typeDef5, isNotNull);
-      final structProjection5 = StructProjection(typeDef5!, 'BITMAPFILEHEADER');
+      final structProjection5 = StructProjection(typeDef5!);
       expect(structProjection5.packingAlignment, equals(2));
       expect(structProjection5.classPreamble, contains('@Packed(2)'));
     });

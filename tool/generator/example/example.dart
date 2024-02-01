@@ -34,7 +34,7 @@ void printStruct(
         'Windows.Win32.Devices.Usb.USB_NODE_CONNECTION_INFORMATION_EX']) {
   final typeDef = MetadataStore.getMetadataForType(type);
   if (typeDef != null && typeDef.isStruct) {
-    final structProjection = StructProjection(typeDef, type.lastComponent);
+    final structProjection = StructProjection(typeDef);
     print(structProjection.format());
   }
 }

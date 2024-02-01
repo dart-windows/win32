@@ -25,8 +25,8 @@ void main() {
       final typeDef = scope.findTypeDef(type);
       expect(typeDef, isNotNull);
       final structsToGenerate = loadMap('win32_structs.json');
-      final projection = StructProjection(typeDef!, 'DEVMODE',
-          comment: structsToGenerate[type] ?? '');
+      final projection =
+          StructProjection(typeDef!, comment: structsToGenerate[type] ?? '');
       compareGolden('devmode.g', projection.toString().format());
     });
 
