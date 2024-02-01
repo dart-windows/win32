@@ -8,23 +8,30 @@ import '../extensions/field.dart';
 import '../extensions/string.dart';
 import 'type.dart';
 
-/// A field.
-///
-/// Fields are a tuple of a type and a name.
+/// Represents a Dart projection for a struct field defined by a [Field].
 class FieldProjection {
+  /// Creates an instance of this class for a [field].
   FieldProjection(this.field)
       : name = field.name.safeIdentifier,
         typeProjection = TypeProjection(field.typeIdentifier);
 
+  /// The metadata associated with the field.
   final Field field;
+
+  /// The name of the field.
   final String name;
+
+  /// The type projection for the field.
   final TypeProjection typeProjection;
 
+  /// The Dart type of the field.
   String get type => typeProjection.dartType.safeTypename;
 
   @override
   String toString() => [
         typeProjection.attribute,
+
+        // Generate a String getter/setter for char arrays.
         if (field.isCharArray && !field.isFlexibleArray)
           '''
   external $type _$name;

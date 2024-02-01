@@ -28,7 +28,7 @@ void main() {
             'Pointer<COSERVERINFO>? pServerInfo, int dwCount, '
             'Pointer<MULTI_QI> pResults'));
     expect(
-        projection.functionArgs,
+        projection.functionArguments,
         equals('clsid, punkOuter ?? nullptr, dwClsCtx, pServerInfo ?? nullptr, '
             'dwCount, pResults'));
   });
@@ -40,7 +40,7 @@ void main() {
     expect(coInitEx, isNotNull);
     final projection = FunctionProjection(coInitEx!);
     expect(projection.functionParams, equals('int dwCoInit'));
-    expect(projection.functionArgs, equals('nullptr, dwCoInit'));
+    expect(projection.functionArguments, equals('nullptr, dwCoInit'));
   });
 
   tearDownAll(MetadataStore.close);

@@ -8,65 +8,38 @@ import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 
-class TypeTuple {
-  const TypeTuple(this.nativeType, this.dartType, {this.attribute});
-
-  const TypeTuple.fromNativeType(String nativeType, {String? attribute})
-      : this(nativeType, nativeType, attribute: attribute);
-
-  /// The type, as represented in the native function (e.g. `Uint32`)
-  final String nativeType;
-
-  /// The type, as represented in the Dart function (e.g. `int`)
-  final String dartType;
-
-  /// The type, as represented as a struct attribute (e.g. `@Uint32()`)
-  final String? attribute;
-}
-
-const baseNativeMapping = <BaseType, TypeTuple>{
-  BaseType.booleanType: TypeTuple('Bool', 'bool', attribute: '@Bool()'),
-  BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
-  BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
-  BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
-  BaseType.int8Type: TypeTuple('Int8', 'int', attribute: '@Int8()'),
-  BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
-  BaseType.int16Type: TypeTuple('Int16', 'int', attribute: '@Int16()'),
-  BaseType.uint16Type: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
-  BaseType.int32Type: TypeTuple('Int32', 'int', attribute: '@Int32()'),
-  BaseType.uint32Type: TypeTuple('Uint32', 'int', attribute: '@Uint32()'),
-  BaseType.int64Type: TypeTuple('Int64', 'int', attribute: '@Int64()'),
-  BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
-  BaseType.intPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
-  BaseType.uintPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
-  BaseType.voidType: TypeTuple('Void', 'void'),
-};
-
-const specialTypes = <String, TypeTuple>{
-  'System.Guid': TypeTuple.fromNativeType('GUID'),
-  'Windows.Win32.Foundation.BSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
-  'Windows.Win32.Foundation.PSTR': TypeTuple.fromNativeType('Pointer<Utf8>'),
-  'Windows.Win32.Foundation.PWSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
-};
-
+/// Represents a Dart type projection, providing information about a type in the
+/// metadata and how it should be represented in Dart.
 class TypeProjection {
+  /// Creates an instance of this class for a [typeIdentifier].
   TypeProjection(this.typeIdentifier);
 
+  /// Represents a type in the metadata.
   final TypeIdentifier typeIdentifier;
 
   TypeTuple? _projection;
+
+  /// The type projection of the type.
   TypeTuple get projection => _projection ??= projectType();
 
+  /// The attribute of the type projection.
   String get attribute => projection.attribute ?? '';
 
+  /// The native type of the type projection.
   String get nativeType => projection.nativeType;
 
+  /// The dart type of the type projection.
   String get dartType => projection.dartType;
 
+  /// Whether the type is an array type.
   bool get isArrayType => typeIdentifier.baseType == BaseType.arrayTypeModifier;
 
+  /// Whether the type is a base type.
   bool get isBaseType =>
-      baseNativeMapping.keys.contains(typeIdentifier.baseType);
+      _baseNativeTypes.keys.contains(typeIdentifier.baseType);
+
+  /// Whether the type is a COM class.
+  bool get isClass => typeIdentifier.type?.isClass ?? false;
 
   /// Whether the resultant Dart type atomic.
   bool get isDartPrimitive =>
@@ -74,19 +47,26 @@ class TypeProjection {
       dartType.startsWith('Array') ||
       dartType.startsWith(RegExp('(VTable)?Pointer'));
 
+  /// Whether the type is a delegate.
   bool get isDelegate => typeIdentifier.type?.isDelegate ?? false;
 
-  bool get isEnumType => typeIdentifier.type?.isEnum ?? false;
+  /// Whether the type is an enum.
+  bool get isEnum => typeIdentifier.type?.isEnum ?? false;
 
+  /// Whether the type is a COM interface.
   bool get isInterface => typeIdentifier.type?.isInterface ?? false;
 
+  /// Whether the type is a pointer type.
   bool get isPointerType =>
       typeIdentifier.baseType == BaseType.pointerTypeModifier;
 
+  /// Whether the type is a special type.
   bool get isSpecialType => specialTypes.keys.contains(typeIdentifier.name);
 
+  /// Whether the type is a struct.
   bool get isStruct => typeIdentifier.type?.isStruct ?? false;
 
+  /// Unwraps the array type and returns the [TypeTuple] for it.
   TypeTuple unwrapArrayType() {
     final TypeIdentifier(:arrayDimensions, :typeArg) = typeIdentifier;
     if (arrayDimensions == null || typeArg == null) {
@@ -94,13 +74,14 @@ class TypeProjection {
     }
 
     final typeArgProjection = TypeProjection(typeArg);
-    final upperBound = arrayDimensions.first;
+    final [upperBound] = arrayDimensions;
     return TypeTuple.fromNativeType(
       'Array<${typeArgProjection.nativeType.safeTypename}>',
       attribute: '@Array($upperBound)',
     );
   }
 
+  /// Unwraps the delegate type and returns the [TypeTuple] for it.
   TypeTuple unwrapDelegateType() {
     final type = typeIdentifier.type;
     if (type == null) throw StateError('TypeDef missing for $typeIdentifier.');
@@ -120,6 +101,7 @@ class TypeProjection {
     return TypeTuple.fromNativeType('Pointer<NativeFunction<$callbackType>>');
   }
 
+  /// Unwraps the enum type and returns the [TypeTuple] for it.
   TypeTuple unwrapEnumType() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
@@ -150,13 +132,14 @@ class TypeProjection {
     return TypeTuple.fromNativeType('Pointer<$typeArgNativeType>');
   }
 
+  /// Unwraps the struct type and returns the [TypeTuple] for it.
   TypeTuple unwrapStructType() {
     final wrappedType = typeIdentifier.type;
     if (wrappedType == null) {
       throw StateError('Wrapped type TypeDef missing for $typeIdentifier.');
     }
 
-    // A wrapper struct like HWND
+    // A wrapper struct like HWND.
     if (wrappedType.isWrapperStruct) {
       final [field] = wrappedType.fields;
       return TypeProjection(field.typeIdentifier).projection;
@@ -181,29 +164,31 @@ class TypeProjection {
     return TypeTuple.fromNativeType(wrappedType.safeTypename);
   }
 
+  /// Projects the Win32 type to its Dart representation.
   TypeTuple projectType() {
-    // Could be a System.Guid or other special type that we want to custom-map
+    // Could be a System.Guid or other special type that we want to custom-map.
     if (isSpecialType) return specialTypes[typeIdentifier.name]!;
 
     if (isArrayType) return unwrapArrayType();
 
-    // Could be an intrinsic base type (e.g., Int32)
-    if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
+    // Could be an intrinsic base type (e.g., Int32).
+    if (isBaseType) return _baseNativeTypes[typeIdentifier.baseType]!;
 
-    // Could be a struct (e.g., WNDPROC)
+    // Could be a struct (e.g., WNDPROC).
     if (isDelegate) return unwrapDelegateType();
 
-    // Could be an enum (e.g., FOLDERFLAGS)
-    if (isEnumType) return unwrapEnumType();
+    // Could be an enum (e.g., FOLDERFLAGS).
+    if (isEnum) return unwrapEnumType();
 
     if (isPointerType) return unwrapPointerType();
 
-    // Could be a struct (e.g., MMTIME, HWND)
+    // Could be a struct (e.g., MMTIME, HWND).
     if (isStruct) return unwrapStructType();
 
+    // Could be a COM interface (e.g., `IFileDialog`).
     if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
 
-    // TODO(halildurmus): Consider returning the name as returned by metadata
+    // TODO(halildurmus): Consider returning the name as returned by metadata.
     throw StateError('Type information missing for $typeIdentifier.');
   }
 }
@@ -218,3 +203,55 @@ extension TypeProjectionHelpers on TypeProjection {
     throw StateError('Type $this cannot be de-referenced.');
   }
 }
+
+/// Represents a tuple of native and Dart types along with an optional
+/// attribute.
+class TypeTuple {
+  const TypeTuple(this.nativeType, this.dartType, {this.attribute});
+
+  const TypeTuple.fromNativeType(String nativeType, {String? attribute})
+      : this(nativeType, nativeType, attribute: attribute);
+
+  /// The type, as represented in the native function (e.g., `Uint32`).
+  final String nativeType;
+
+  /// The type, as represented in the Dart function (e.g., `int`).
+  final String dartType;
+
+  /// The type, as represented as a struct attribute (e.g., `@Uint32()`).
+  final String? attribute;
+
+  @override
+  String toString() =>
+      'TypeTuple(nativeType: $nativeType, dartType: $dartType, '
+      'attribute: $attribute)';
+}
+
+/// Mapping of Win32 base types to Dart types.
+const _baseNativeTypes = <BaseType, TypeTuple>{
+  BaseType.booleanType: TypeTuple('Bool', 'bool', attribute: '@Bool()'),
+  BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
+  BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
+  BaseType.int8Type: TypeTuple('Int8', 'int', attribute: '@Int8()'),
+  BaseType.int16Type: TypeTuple('Int16', 'int', attribute: '@Int16()'),
+  BaseType.int32Type: TypeTuple('Int32', 'int', attribute: '@Int32()'),
+  BaseType.int64Type: TypeTuple('Int64', 'int', attribute: '@Int64()'),
+  BaseType.intPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  BaseType.uintPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
+  BaseType.uint16Type: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.uint32Type: TypeTuple('Uint32', 'int', attribute: '@Uint32()'),
+  BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
+  BaseType.voidType: TypeTuple('Void', 'void'),
+};
+
+/// Special mapping of certain Win32 types to Dart types.
+const specialTypes = <String, TypeTuple>{
+  'System.Guid': TypeTuple.fromNativeType('GUID'),
+
+  // Wrapper structs.
+  'Windows.Win32.Foundation.BSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
+  'Windows.Win32.Foundation.PSTR': TypeTuple.fromNativeType('Pointer<Utf8>'),
+  'Windows.Win32.Foundation.PWSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
+};

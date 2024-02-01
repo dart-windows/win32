@@ -10,47 +10,54 @@ import '../extensions/typedef.dart';
 import 'field.dart';
 import 'type.dart';
 
-/// Represents a Dart projection of a Struct [TypeDef].
+/// Represents a Dart projection for a struct defined by a [TypeDef].
 class StructProjection {
+  /// Creates an instance of this class for a [typeDef] and optiona [comment].
   StructProjection(this.typeDef, {this.comment = ''})
       : name = typeDef.safeTypename;
 
-  final TypeDef typeDef;
-  final String name;
+  /// The comment associated with the struct.
   final String comment;
 
+  /// The name of the struct.
+  final String name;
+
+  /// The metadata associated with the struct.
+  final TypeDef typeDef;
+
+  /// The base type of the struct.
   String get baseType => switch (typeDef) {
-        // Some structs may be unions, e.g., INPUT.
-        _ when typeDef.isUnion => 'Union',
+        _ when typeDef.isUnion => 'Union', // e.g., CY.
         _ => 'Struct'
       };
 
+  /// The packing alignment of the struct.
   int get packingAlignment => switch (typeDef) {
         // Tokens like System.Guid have no packing alignment.
         _ when typeDef.token == 0 => 0,
         _ => typeDef.classLayout.packingAlignment ?? 0
       };
 
-  String get classPreamble {
-    final categoryComment =
-        name.startsWith('_') ? '' : '/// {@category ${baseType.toLowerCase()}}';
-    final classComment = comment.toDocComment();
-    final docComment = classComment.isEmpty
-        ? categoryComment
-        : '$classComment\n///\n$categoryComment';
+  /// The class preamble that includes a doc comment, a dartdoc `@category` tag
+  /// derived from the [baseType], and an optional `@Packed` annotation if the
+  /// [packingAlignment] is greater than `0`.
+  String get classPreamble => [
+        if (comment.isNotEmpty) ...[comment.toDocComment(), '///'],
+        '/// {@category ${baseType.toLowerCase()}}',
+        if (packingAlignment > 0) '@Packed($packingAlignment)',
+      ].join('\n');
 
-    return packingAlignment > 0
-        ? '$docComment\n@Packed($packingAlignment)'
-        : docComment;
-  }
-
+  /// The class modifier for the generated class.
   String get classModifier =>
       typeDef.isNested || typeDef.isUnion ? 'sealed' : 'base';
 
+  /// The field projections for the fields of the struct.
   String get fieldsProjection =>
       typeDef.fields.map(FieldProjection.new).join('\n\n');
 
   String? _nestedTypes;
+
+  /// The nested types of the struct.
   String get nestedTypes => _nestedTypes ??= _cacheNestedTypes();
 
   String _cacheNestedTypes() {
@@ -68,7 +75,7 @@ class StructProjection {
           // Add property accessors for the nested struct.
           buffer
             ..writeln()
-            ..write(_propertyAccessors(type));
+            ..write(type.propertyAccessors);
         }
       }
     }
@@ -76,16 +83,32 @@ class StructProjection {
     return buffer.toString();
   }
 
-  /// A nested type needs a way to access its members from the parent type.
-  /// This is necessary for anonymous nested types, of which there are many in
-  /// more complex Win32 structs.
-  String _propertyAccessors(TypeDef typeDef) {
-    final rootType = typeDef.rootType;
-    final extensionName = '${typeDef.safeTypename}_Extension';
+  @override
+  String toString() => '''
+$classPreamble
+$classModifier class $name extends $baseType {
+  $fieldsProjection
+}
+
+$nestedTypes
+''';
+}
+
+extension NestedStructExtension on TypeDef {
+  /// The property accessors for a nested struct to allow accessing its members
+  /// from the parent type.
+  ///
+  /// This is particularly useful for anonymous nested structs, commonly found
+  /// in more complex Win32 structs.
+  String get propertyAccessors {
+    final rootType = this.rootType;
+    final extensionName = '${safeTypename}_Extension';
     final buffer = StringBuffer()
       ..writeln('extension $extensionName on ${rootType.safeTypename} {');
 
-    for (final field in typeDef.fields) {
+    // Iterate through the fields of the nested struct and generate property
+    // accessors.
+    for (final field in fields) {
       final instanceName = field.instanceName;
       final typeProjection = TypeProjection(field.typeIdentifier);
       final fieldType = field.isCharArray && !field.isFlexibleArray
@@ -103,14 +126,4 @@ class StructProjection {
 
     return buffer.toString();
   }
-
-  @override
-  String toString() => '''
-$classPreamble
-$classModifier class $name extends $baseType {
-  $fieldsProjection
-}
-
-$nestedTypes
-''';
 }

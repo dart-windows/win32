@@ -177,7 +177,7 @@ void main() {
         iApplicationActivationManager.findMethod('ActivateApplication')!;
     final param = activateApplication.parameters[2];
     final projector = TypeProjection(param.typeIdentifier);
-    expect(projector.isEnumType, equals(true));
+    expect(projector.isEnum, equals(true));
     expect(projector.nativeType, equals('Int32'));
     expect(projector.dartType, equals('int'));
   });
@@ -225,7 +225,7 @@ void main() {
           'Pointer<Utf16>? pwcs, int dwFlags, Pointer<Uint32>? pulStreamNumber'),
     );
     expect(
-      projection.identifiers,
+      projection.methodArguments,
       equals('ptr, pwcs ?? nullptr, dwFlags, pulStreamNumber ?? nullptr'),
     );
   });
@@ -243,7 +243,7 @@ void main() {
           'Pointer<Pointer<ITEMIDLIST>> ppidl, Pointer<Uint32> pdwAttributes'),
     );
     expect(
-      projection.identifiers,
+      projection.methodArguments,
       equals('ptr, hwnd, pbc, pszDisplayName, nullptr, ppidl, pdwAttributes'),
     );
   });

@@ -151,10 +151,10 @@ extension StringHelpers on String {
     // Split the input string into words for processing.
     final words = split(' ');
 
-    // Initialize the textLine to start the dartdoc comment.
+    // Initialize the textLine to start the doc comment.
     final textLine = StringBuffer('///');
 
-    // Initialize the wrappedText to store the formatted dartdoc comment.
+    // Initialize the wrappedText to store the formatted doc comment.
     final wrappedText = StringBuffer();
 
     // Process each word in the input string.
@@ -180,10 +180,10 @@ extension StringHelpers on String {
       }
     }
 
-    // Add the last line of the DartDoc comment to the wrappedText.
+    // Add the last line of the doc comment to the wrappedText.
     wrappedText.write(textLine);
 
-    // Trim any trailing whitespace and return the formatted dartdoc comment.
+    // Trim any trailing whitespace and return the formatted doc comment.
     return wrappedText.toString().trimRight();
   }
 

@@ -17,7 +17,7 @@ dependencies:
   # Help ensure that the code is well-written.
   dartwindows_lints: ^1.1.0
 
-  # Foreign Function Interface extension methods
+  # Foreign Function Interface extension methods.
   ffi: ^2.1.2
 
   # Running the test suite.
@@ -26,5 +26,5 @@ dependencies:
   # Windows metadata for automatically generating API signatures.
   winmd: ^4.1.0
 
-  # Win32 itself
+  # Win32 itself.
   win32: ^5.2.0

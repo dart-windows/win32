@@ -2,19 +2,29 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:winmd/winmd.dart';
+
 import '../extensions/string.dart';
 import 'com_method.dart';
 import 'type.dart';
 
+/// Represents a Dart projection for a COM property defined by a [Method].
 abstract class ComPropertyProjection extends ComMethodProjection {
+  /// Creates an instance of this class for a COM [method].
   ComPropertyProjection(super.method);
 
-  /// Strip off all underscores, even if double underscores.
-  String get exposedMethodName =>
-      name.startsWith('get__') | method.name.startsWith('put__')
-          ? name.substring(5).toCamelCase().safeIdentifier
-          : name.substring(4).toCamelCase().safeIdentifier;
+  /// The exposed method name without the `get_` or `put_` prefix in camel case
+  /// format.
+  String get exposedMethodName {
+    final startIndex =
+        name.startsWith('get__') | method.name.startsWith('put__') ? 5 : 4;
+    return name.substring(startIndex).toCamelCase().safeIdentifier;
+  }
 
+  /// Generates the FFI call code for invoking the COM property.
+  ///
+  /// The generated code includes handling for `HRESULT` return values and
+  /// optional freeing of the pointer on failure.
   String ffiCall({
     required String identifier,
     bool freeRetValOnFailure = false,
@@ -22,15 +32,20 @@ abstract class ComPropertyProjection extends ComMethodProjection {
       [
         'final hr = _vtable.$name.asFunction<$dartPrototype>()(ptr, $identifier);',
         if (freeRetValOnFailure)
-          'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
+          'if (FAILED(hr)) { free($identifier); throw WindowsException(hr); }'
         else
           'if (FAILED(hr)) throw WindowsException(hr);'
       ].join('\n');
 }
 
+/// Represents a Dart projection for a COM get property defined by a [Method].
 class ComGetPropertyProjection extends ComPropertyProjection {
-  ComGetPropertyProjection(super.method);
+  /// Creates an instance of this class for a COM [method].
+  ComGetPropertyProjection(super.method)
+      : assert(method.name.startsWith(RegExp('get_(_)?')),
+            '$method is not a COM get property.');
 
+  /// Whether to convert the return value to a Dart [bool].
   bool get convertBool => parameters.first.type == 'bool';
 
   @override
@@ -42,6 +57,7 @@ class ComGetPropertyProjection extends ComPropertyProjection {
             returnValue.dartType.startsWith('Pointer')
         ? 'value'
         : 'ref';
+
     if (valRef == 'ref') {
       return '''
   ${parameters.first.typeProjection.dartType} get $exposedMethodName {
@@ -69,8 +85,12 @@ class ComGetPropertyProjection extends ComPropertyProjection {
   }
 }
 
+/// Represents a Dart projection for a COM set property defined by a [Method].
 class ComSetPropertyProjection extends ComPropertyProjection {
-  ComSetPropertyProjection(super.method);
+  /// Creates an instance of this class for a COM [method].
+  ComSetPropertyProjection(super.method)
+      : assert(method.name.startsWith(RegExp('put_(_)?')),
+            '$method is not a COM set property.');
 
   String get parameterType {
     final type = parameters.first.type;

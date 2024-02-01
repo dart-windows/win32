@@ -30,8 +30,7 @@ class ComClassProjection extends ComInterfaceProjection {
     );
   }
 
-  /// Represents a mapping from the interface name to the corresponding class
-  /// name.
+  /// Mapping of interface names to the corresponding class names.
   static const _interfaceToClassMapping = <String, String>{
     'Windows.Win32.UI.Accessibility.IUIAutomation':
         'Windows.Win32.UI.Accessibility.CUIAutomation',
@@ -39,9 +38,10 @@ class ComClassProjection extends ComInterfaceProjection {
         'Windows.Win32.UI.Accessibility.CUIAutomation8',
   };
 
-  /// Take a fully-qualified interface name (e.g.
-  /// `Windows.Win32.UI.Shell.IShellLinkW`) and return the corresponding class
-  /// name (e.g. `Windows.Win32.UI.Shell.ShellLink`).
+  /// Generates the corresponding class name for the given [interface].
+  ///
+  /// For example, given the interface `Windows.Win32.UI.Shell.IShellLinkW`,
+  /// this method returns `Windows.Win32.UI.Shell.ShellLink`.
   static String generateClassName(TypeDef interface) {
     if (_interfaceToClassMapping.containsKey(interface.name)) {
       return _interfaceToClassMapping[interface.name]!;
