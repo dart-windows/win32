@@ -109,6 +109,9 @@ extension NestedStructExtension on TypeDef {
     // Iterate through the fields of the nested struct and generate property
     // accessors.
     for (final field in fields) {
+      // Skip reserved fields as they are not exposed.
+      if (field.name.contains('Reserved')) continue;
+
       final instanceName = field.instanceName;
       final typeProjection = TypeProjection(field.typeIdentifier);
       final fieldType = field.isCharArray && !field.isFlexibleArray

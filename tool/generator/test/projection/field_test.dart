@@ -16,7 +16,7 @@ void main() {
         await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
   });
 
-  test('BOOL types are projected to int', () {
+  test('BOOL fields are projected to int', () {
     final typeDef =
         scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND')!;
     final fEnable = typeDef.fields[1]; // BOOL fEnable;
@@ -28,7 +28,24 @@ void main() {
         fieldProjection.toString(), equals('@Int32()\nexternal int fEnable;'));
   });
 
-  test('Structs are projected appropriately', () {
+  test('Reserved fields are hidden', () {
+    final typeDef =
+        scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER')!;
+    final bfReserved1 = typeDef.fields[2];
+    final fieldProjection = FieldProjection(bfReserved1);
+    final typeProjection = fieldProjection.typeProjection;
+    expect(typeProjection.nativeType, equals('Uint16'));
+    expect(typeProjection.dartType, equals('int'));
+    expect(
+      fieldProjection.toString(),
+      equalsIgnoringWhitespace('''
+@Uint16()
+// ignore: unused_field
+external int _bfReserved1;'''),
+    );
+  });
+
+  test('Struct fields are projected appropriately', () {
     final typeDef = scope
         .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT')!;
     final wfx = typeDef.fields.first;

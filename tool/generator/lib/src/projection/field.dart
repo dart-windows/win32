@@ -31,8 +31,12 @@ class FieldProjection {
   String toString() => [
         typeProjection.attribute,
 
+        // Mark the field private if it is reserved.
+        if (field.name.contains('Reserved'))
+          '  // ignore: unused_field\n  external $type _${field.name};'
+
         // Generate a String getter/setter for char arrays.
-        if (field.isCharArray && !field.isFlexibleArray)
+        else if (field.isCharArray && !field.isFlexibleArray)
           '''
   external $type _$name;
 

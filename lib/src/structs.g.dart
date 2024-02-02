@@ -282,10 +282,12 @@ base class BITMAPFILEHEADER extends Struct {
   external int bfSize;
 
   @Uint16()
-  external int bfReserved1;
+  // ignore: unused_field
+  external int _bfReserved1;
 
   @Uint16()
-  external int bfReserved2;
+  // ignore: unused_field
+  external int _bfReserved2;
 
   @Uint32()
   external int bfOffBits;
@@ -1113,7 +1115,8 @@ base class BTH_SET_SERVICE extends Struct {
   external int fCodService;
 
   @Array(5)
-  external Array<Uint32> Reserved;
+  // ignore: unused_field
+  external Array<Uint32> _Reserved;
 
   @Uint32()
   external int ulRecordLength;
@@ -1471,7 +1474,8 @@ base class COMMCONFIG extends Struct {
   external int wVersion;
 
   @Uint16()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 
   external DCB dcb;
 
@@ -1502,7 +1506,8 @@ base class COMMPROP extends Struct {
   external int dwServiceMask;
 
   @Uint32()
-  external int dwReserved1;
+  // ignore: unused_field
+  external int _dwReserved1;
 
   @Uint32()
   external int dwMaxTxQueue;
@@ -1932,7 +1937,8 @@ base class DCB extends Struct {
   external int bitfield;
 
   @Uint16()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 
   @Uint16()
   external int XonLim;
@@ -1965,7 +1971,8 @@ base class DCB extends Struct {
   external int EvtChar;
 
   @Uint16()
-  external int wReserved1;
+  // ignore: unused_field
+  external int _wReserved1;
 }
 
 /// Contains debugging information passed to a WH_DEBUG hook procedure,
@@ -1998,7 +2005,8 @@ base class DEBUGHOOKINFO extends Struct {
 /// {@category struct}
 base class DECIMAL extends Struct {
   @Uint16()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 
   external DECIMAL_0 Anonymous1;
 
@@ -2080,7 +2088,8 @@ extension DECIMAL_1_Extension on DECIMAL {
 /// {@category struct}
 base class DESIGNVECTOR extends Struct {
   @Uint32()
-  external int dvReserved;
+  // ignore: unused_field
+  external int _dvReserved;
 
   @Uint32()
   external int dvNumAxes;
@@ -2194,10 +2203,12 @@ base class DEVMODE extends Struct {
   external int dmDitherType;
 
   @Uint32()
-  external int dmReserved1;
+  // ignore: unused_field
+  external int _dmReserved1;
 
   @Uint32()
-  external int dmReserved2;
+  // ignore: unused_field
+  external int _dmReserved2;
 
   @Uint32()
   external int dmPanningWidth;
@@ -3215,7 +3226,8 @@ base class ENUM_PAGE_FILE_INFORMATION extends Struct {
   external int cb;
 
   @Uint32()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 
   @IntPtr()
   external int TotalSize;
@@ -3283,7 +3295,8 @@ base class EXCEPINFO extends Struct {
   external int wCode;
 
   @Uint16()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 
   external Pointer<Utf16> bstrSource;
 
@@ -3294,7 +3307,8 @@ base class EXCEPINFO extends Struct {
   @Uint32()
   external int dwHelpContext;
 
-  external Pointer pvReserved;
+  // ignore: unused_field
+  external Pointer _pvReserved;
 
   external Pointer<NativeFunction<LPEXCEPFINO_DEFERRED_FILLIN>>
       pfnDeferredFillIn;
@@ -3664,7 +3678,8 @@ base class ICONINFOEX extends Struct {
 /// {@category struct}
 base class IDLDESC extends Struct {
   @IntPtr()
-  external int dwReserved;
+  // ignore: unused_field
+  external int _dwReserved;
 
   @Uint16()
   external int wIDLFlags;
@@ -4192,16 +4207,14 @@ sealed class IP_ADAPTER_DNS_SERVER_ADDRESS_XP_0_0 extends Struct {
   external int Length;
 
   @Uint32()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 }
 
 extension IP_ADAPTER_DNS_SERVER_ADDRESS_XP_0_0_Extension
     on IP_ADAPTER_DNS_SERVER_ADDRESS_XP {
   int get Length => this.Anonymous.Anonymous.Length;
   set Length(int value) => this.Anonymous.Anonymous.Length = value;
-
-  int get Reserved => this.Anonymous.Anonymous.Reserved;
-  set Reserved(int value) => this.Anonymous.Anonymous.Reserved = value;
 }
 
 extension IP_ADAPTER_DNS_SERVER_ADDRESS_XP_0_Extension
@@ -4268,16 +4281,14 @@ sealed class IP_ADAPTER_GATEWAY_ADDRESS_LH_0_0 extends Struct {
   external int Length;
 
   @Uint32()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 }
 
 extension IP_ADAPTER_GATEWAY_ADDRESS_LH_0_0_Extension
     on IP_ADAPTER_GATEWAY_ADDRESS_LH {
   int get Length => this.Anonymous.Anonymous.Length;
   set Length(int value) => this.Anonymous.Anonymous.Length = value;
-
-  int get Reserved => this.Anonymous.Anonymous.Reserved;
-  set Reserved(int value) => this.Anonymous.Anonymous.Reserved = value;
 }
 
 extension IP_ADAPTER_GATEWAY_ADDRESS_LH_0_Extension
@@ -4511,16 +4522,14 @@ sealed class IP_ADAPTER_WINS_SERVER_ADDRESS_LH_0_0 extends Struct {
   external int Length;
 
   @Uint32()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 }
 
 extension IP_ADAPTER_WINS_SERVER_ADDRESS_LH_0_0_Extension
     on IP_ADAPTER_WINS_SERVER_ADDRESS_LH {
   int get Length => this.Anonymous.Anonymous.Length;
   set Length(int value) => this.Anonymous.Anonymous.Length = value;
-
-  int get Reserved => this.Anonymous.Anonymous.Reserved;
-  set Reserved(int value) => this.Anonymous.Anonymous.Reserved = value;
 }
 
 extension IP_ADAPTER_WINS_SERVER_ADDRESS_LH_0_Extension
@@ -5277,7 +5286,8 @@ base class MIDIHDR extends Struct {
   external int dwOffset;
 
   @Array(8)
-  external Array<IntPtr> dwReserved;
+  // ignore: unused_field
+  external Array<IntPtr> _dwReserved;
 }
 
 /// The MIDIINCAPS structure describes the capabilities of a MIDI input device.
@@ -5413,7 +5423,8 @@ base class MIDISTRMBUFFVER extends Struct {
 ///
 /// {@category struct}
 base class MINMAXINFO extends Struct {
-  external POINT ptReserved;
+  // ignore: unused_field
+  external POINT _ptReserved;
 
   external POINT ptMaxSize;
 
@@ -6384,10 +6395,12 @@ base class OPENFILENAME extends Struct {
 
   external Pointer<Utf16> lpTemplateName;
 
-  external Pointer pvReserved;
+  // ignore: unused_field
+  external Pointer _pvReserved;
 
   @Uint32()
-  external int dwReserved;
+  // ignore: unused_field
+  external int _dwReserved;
 
   @Uint32()
   external int FlagsEx;
@@ -6504,7 +6517,8 @@ base class OSVERSIONINFOEX extends Struct {
   external int wProductType;
 
   @Uint8()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 }
 
 /// Contains information used in asynchronous (or overlapped) input and output
@@ -6594,7 +6608,8 @@ base class PAINTSTRUCT extends Struct {
   external int fIncUpdate;
 
   @Array(32)
-  external Array<Uint8> rgbReserved;
+  // ignore: unused_field
+  external Array<Uint8> _rgbReserved;
 }
 
 /// The PALETTEENTRY structure specifies the color and usage of an entry in a
@@ -6888,7 +6903,8 @@ base class PORT_INFO_2 extends Struct {
   external int fPortType;
 
   @Uint32()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 }
 
 /// Sent with a power setting event and contains data about the specific change.
@@ -7067,7 +7083,8 @@ base class PRINTER_NOTIFY_INFO_DATA extends Struct {
   external int Field;
 
   @Uint32()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 
   @Uint32()
   external int Id;
@@ -7165,16 +7182,13 @@ sealed class PROCESS_HEAP_ENTRY_0_0 extends Struct {
   external int hMem;
 
   @Array(3)
-  external Array<Uint32> dwReserved;
+  // ignore: unused_field
+  external Array<Uint32> _dwReserved;
 }
 
 extension PROCESS_HEAP_ENTRY_0_0_Extension on PROCESS_HEAP_ENTRY {
   int get hMem => this.Anonymous.Block.hMem;
   set hMem(int value) => this.Anonymous.Block.hMem = value;
-
-  Array<Uint32> get dwReserved => this.Anonymous.Block.dwReserved;
-  set dwReserved(Array<Uint32> value) =>
-      this.Anonymous.Block.dwReserved = value;
 }
 
 /// {@category struct}
@@ -7419,7 +7433,8 @@ base class RAWKEYBOARD extends Struct {
   external int Flags;
 
   @Uint16()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 
   @Uint16()
   external int VKey;
@@ -7538,7 +7553,8 @@ base class RGBQUAD extends Struct {
   external int rgbRed;
 
   @Uint8()
-  external int rgbReserved;
+  // ignore: unused_field
+  external int _rgbReserved;
 }
 
 /// Represents a safe array.
@@ -8200,7 +8216,8 @@ base class SERVICE_TRIGGER_INFO extends Struct {
 
   external Pointer<SERVICE_TRIGGER> pTriggers;
 
-  external Pointer<Uint8> pReserved;
+  // ignore: unused_field
+  external Pointer<Uint8> _pReserved;
 }
 
 /// Contains trigger-specific data for a service trigger event. This structure
@@ -8573,10 +8590,12 @@ base class SPVOICESTATUS extends Struct {
   external int VisemeId;
 
   @Uint32()
-  external int dwReserved1;
+  // ignore: unused_field
+  external int _dwReserved1;
 
   @Uint32()
-  external int dwReserved2;
+  // ignore: unused_field
+  external int _dwReserved2;
 }
 
 /// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device
@@ -8593,7 +8612,8 @@ base class SP_DEVICE_INTERFACE_DATA extends Struct {
   external int Flags;
 
   @IntPtr()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 }
 
 /// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device
@@ -8622,7 +8642,8 @@ base class SP_DEVINFO_DATA extends Struct {
   external int DevInst;
 
   @IntPtr()
-  external int Reserved;
+  // ignore: unused_field
+  external int _Reserved;
 }
 
 /// Specifies the window station, desktop, standard handles, and appearance of
@@ -8633,7 +8654,8 @@ base class STARTUPINFO extends Struct {
   @Uint32()
   external int cb;
 
-  external Pointer<Utf16> lpReserved;
+  // ignore: unused_field
+  external Pointer<Utf16> _lpReserved;
 
   external Pointer<Utf16> lpDesktop;
 
@@ -8667,9 +8689,11 @@ base class STARTUPINFO extends Struct {
   external int wShowWindow;
 
   @Uint16()
-  external int cbReserved2;
+  // ignore: unused_field
+  external int _cbReserved2;
 
-  external Pointer<Uint8> lpReserved2;
+  // ignore: unused_field
+  external Pointer<Uint8> _lpReserved2;
 
   @IntPtr()
   external int hStdInput;
@@ -8832,7 +8856,8 @@ base class SYMBOL_INFO extends Struct {
   external int TypeIndex;
 
   @Array(2)
-  external Array<Uint64> Reserved;
+  // ignore: unused_field
+  external Array<Uint64> _Reserved;
 
   @Uint32()
   external int Index;
@@ -8909,10 +8934,12 @@ base class SYSTEMTIME extends Struct {
 /// {@category struct}
 base class SYSTEM_BASIC_INFORMATION extends Struct {
   @Array(24)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 
   @Array(4)
-  external Array<Pointer> Reserved2;
+  // ignore: unused_field
+  external Array<Pointer> _Reserved2;
 
   @Int8()
   external int NumberOfProcessors;
@@ -8974,7 +9001,8 @@ base class SYSTEM_CODEINTEGRITY_INFORMATION extends Struct {
 /// {@category struct}
 base class SYSTEM_EXCEPTION_INFORMATION extends Struct {
   @Array(16)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 }
 
 /// Contains information about the current computer system. This includes the
@@ -9025,7 +9053,8 @@ sealed class SYSTEM_INFO_0_0 extends Struct {
   external int wProcessorArchitecture;
 
   @Uint16()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 }
 
 extension SYSTEM_INFO_0_0_Extension on SYSTEM_INFO {
@@ -9033,9 +9062,6 @@ extension SYSTEM_INFO_0_0_Extension on SYSTEM_INFO {
       this.Anonymous.Anonymous.wProcessorArchitecture;
   set wProcessorArchitecture(int value) =>
       this.Anonymous.Anonymous.wProcessorArchitecture = value;
-
-  int get wReserved => this.Anonymous.Anonymous.wReserved;
-  set wReserved(int value) => this.Anonymous.Anonymous.wReserved = value;
 }
 
 extension SYSTEM_INFO_0_Extension on SYSTEM_INFO {
@@ -9049,7 +9075,8 @@ extension SYSTEM_INFO_0_Extension on SYSTEM_INFO {
 /// {@category struct}
 base class SYSTEM_INTERRUPT_INFORMATION extends Struct {
   @Array(24)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 }
 
 /// Describes the relationship between the specified processor set. This
@@ -9075,7 +9102,8 @@ sealed class SYSTEM_LOGICAL_PROCESSOR_INFORMATION_0 extends Union {
   external CACHE_DESCRIPTOR Cache;
 
   @Array(2)
-  external Array<Uint64> Reserved;
+  // ignore: unused_field
+  external Array<Uint64> _Reserved;
 }
 
 /// {@category struct}
@@ -9116,30 +9144,31 @@ extension SYSTEM_LOGICAL_PROCESSOR_INFORMATION_0_Extension
 
   CACHE_DESCRIPTOR get Cache => this.Anonymous.Cache;
   set Cache(CACHE_DESCRIPTOR value) => this.Anonymous.Cache = value;
-
-  Array<Uint64> get Reserved => this.Anonymous.Reserved;
-  set Reserved(Array<Uint64> value) => this.Anonymous.Reserved = value;
 }
 
 /// {@category struct}
 base class SYSTEM_LOOKASIDE_INFORMATION extends Struct {
   @Array(32)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 }
 
 /// {@category struct}
 base class SYSTEM_PERFORMANCE_INFORMATION extends Struct {
   @Array(312)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 }
 
 /// {@category struct}
 base class SYSTEM_POLICY_INFORMATION extends Struct {
   @Array(2)
-  external Array<Pointer> Reserved1;
+  // ignore: unused_field
+  external Array<Pointer> _Reserved1;
 
   @Array(3)
-  external Array<Uint32> Reserved2;
+  // ignore: unused_field
+  external Array<Uint32> _Reserved2;
 }
 
 /// Contains information about the power status of the system.
@@ -9180,10 +9209,12 @@ base class SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION extends Struct {
   external int UserTime;
 
   @Array(2)
-  external Array<Int64> Reserved1;
+  // ignore: unused_field
+  external Array<Int64> _Reserved1;
 
   @Uint32()
-  external int Reserved2;
+  // ignore: unused_field
+  external int _Reserved2;
 }
 
 /// The SYSTEM_PROCESS_INFORMATION structure contains information about a system
@@ -9198,7 +9229,8 @@ base class SYSTEM_PROCESS_INFORMATION extends Struct {
   external int NumberOfThreads;
 
   @Array(48)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 
   external UNICODE_STRING ImageName;
 
@@ -9208,7 +9240,8 @@ base class SYSTEM_PROCESS_INFORMATION extends Struct {
   @IntPtr()
   external int UniqueProcessId;
 
-  external Pointer Reserved2;
+  // ignore: unused_field
+  external Pointer _Reserved2;
 
   @Uint32()
   external int HandleCount;
@@ -9216,7 +9249,8 @@ base class SYSTEM_PROCESS_INFORMATION extends Struct {
   @Uint32()
   external int SessionId;
 
-  external Pointer Reserved3;
+  // ignore: unused_field
+  external Pointer _Reserved3;
 
   @IntPtr()
   external int PeakVirtualSize;
@@ -9225,7 +9259,8 @@ base class SYSTEM_PROCESS_INFORMATION extends Struct {
   external int VirtualSize;
 
   @Uint32()
-  external int Reserved4;
+  // ignore: unused_field
+  external int _Reserved4;
 
   @IntPtr()
   external int PeakWorkingSetSize;
@@ -9233,12 +9268,14 @@ base class SYSTEM_PROCESS_INFORMATION extends Struct {
   @IntPtr()
   external int WorkingSetSize;
 
-  external Pointer Reserved5;
+  // ignore: unused_field
+  external Pointer _Reserved5;
 
   @IntPtr()
   external int QuotaPagedPoolUsage;
 
-  external Pointer Reserved6;
+  // ignore: unused_field
+  external Pointer _Reserved6;
 
   @IntPtr()
   external int QuotaNonPagedPoolUsage;
@@ -9253,7 +9290,8 @@ base class SYSTEM_PROCESS_INFORMATION extends Struct {
   external int PrivatePageCount;
 
   @Array(6)
-  external Array<Int64> Reserved7;
+  // ignore: unused_field
+  external Array<Int64> _Reserved7;
 }
 
 /// {@category struct}
@@ -9264,7 +9302,8 @@ base class SYSTEM_REGISTRY_QUOTA_INFORMATION extends Struct {
   @Uint32()
   external int RegistryQuotaUsed;
 
-  external Pointer Reserved1;
+  // ignore: unused_field
+  external Pointer _Reserved1;
 }
 
 /// The SYSTEM_THREAD_INFORMATION structure contains information about a thread
@@ -9273,10 +9312,12 @@ base class SYSTEM_REGISTRY_QUOTA_INFORMATION extends Struct {
 /// {@category struct}
 base class SYSTEM_THREAD_INFORMATION extends Struct {
   @Array(3)
-  external Array<Int64> Reserved1;
+  // ignore: unused_field
+  external Array<Int64> _Reserved1;
 
   @Uint32()
-  external int Reserved2;
+  // ignore: unused_field
+  external int _Reserved2;
 
   external Pointer StartAddress;
 
@@ -9289,7 +9330,8 @@ base class SYSTEM_THREAD_INFORMATION extends Struct {
   external int BasePriority;
 
   @Uint32()
-  external int Reserved3;
+  // ignore: unused_field
+  external int _Reserved3;
 
   @Uint32()
   external int ThreadState;
@@ -9301,7 +9343,8 @@ base class SYSTEM_THREAD_INFORMATION extends Struct {
 /// {@category struct}
 base class SYSTEM_TIMEOFDAY_INFORMATION extends Struct {
   @Array(48)
-  external Array<Uint8> Reserved1;
+  // ignore: unused_field
+  external Array<Uint8> _Reserved1;
 }
 
 /// The SdpAttributeRange structure is used in a Bluetooth query to constrain
@@ -9645,7 +9688,8 @@ base class TYPEATTR extends Struct {
   external int lcid;
 
   @Uint32()
-  external int dwReserved;
+  // ignore: unused_field
+  external int _dwReserved;
 
   @Int32()
   external int memidConstructor;
@@ -9950,7 +9994,8 @@ sealed class WAVEFORMATEXTENSIBLE_0 extends Union {
   external int wSamplesPerBlock;
 
   @Uint16()
-  external int wReserved;
+  // ignore: unused_field
+  external int _wReserved;
 }
 
 extension WAVEFORMATEXTENSIBLE_0_Extension on WAVEFORMATEXTENSIBLE {
@@ -9960,9 +10005,6 @@ extension WAVEFORMATEXTENSIBLE_0_Extension on WAVEFORMATEXTENSIBLE {
 
   int get wSamplesPerBlock => this.Samples.wSamplesPerBlock;
   set wSamplesPerBlock(int value) => this.Samples.wSamplesPerBlock = value;
-
-  int get wReserved => this.Samples.wReserved;
-  set wReserved(int value) => this.Samples.wReserved = value;
 }
 
 /// The WAVEHDR structure defines the header used to identify a waveform-audio
@@ -10035,7 +10077,8 @@ base class WAVEINCAPS extends Struct {
   external int wChannels;
 
   @Uint16()
-  external int wReserved1;
+  // ignore: unused_field
+  external int _wReserved1;
 }
 
 /// The WAVEOUTCAPS structure describes the capabilities of a waveform-audio
@@ -10079,7 +10122,8 @@ base class WAVEOUTCAPS extends Struct {
   external int wChannels;
 
   @Uint16()
-  external int wReserved1;
+  // ignore: unused_field
+  external int _wReserved1;
 
   @Uint32()
   external int dwSupport;
@@ -10106,10 +10150,12 @@ base class WIN32_FIND_DATA extends Struct {
   external int nFileSizeLow;
 
   @Uint32()
-  external int dwReserved0;
+  // ignore: unused_field
+  external int _dwReserved0;
 
   @Uint32()
-  external int dwReserved1;
+  // ignore: unused_field
+  external int _dwReserved1;
 
   @Array(260)
   external Array<Uint16> _cFileName;
@@ -10340,7 +10386,8 @@ base class WLAN_AVAILABLE_NETWORK extends Struct {
   external int dwFlags;
 
   @Uint32()
-  external int dwReserved;
+  // ignore: unused_field
+  external int _dwReserved;
 }
 
 /// The WLAN_AVAILABLE_NETWORK_LIST structure contains an array of information
@@ -11035,7 +11082,8 @@ base class WLAN_STATISTICS extends Struct {
   external int ullTKIPCounterMeasuresInvoked;
 
   @Uint64()
-  external int ullReserved;
+  // ignore: unused_field
+  external int _ullReserved;
 
   external WLAN_MAC_FRAME_STATISTICS MacUcastCounters;
 

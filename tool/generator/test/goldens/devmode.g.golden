@@ -103,10 +103,12 @@ base class DEVMODE extends Struct {
   external int dmDitherType;
 
   @Uint32()
-  external int dmReserved1;
+  // ignore: unused_field
+  external int _dmReserved1;
 
   @Uint32()
-  external int dmReserved2;
+  // ignore: unused_field
+  external int _dmReserved2;
 
   @Uint32()
   external int dmPanningWidth;
