@@ -18,7 +18,6 @@ export 'src/headers.dart';
 export 'src/model/functions.dart';
 export 'src/model/load_json.dart';
 export 'src/projection/callback.dart';
-export 'src/projection/com_class.dart';
 export 'src/projection/com_interface.dart';
 export 'src/projection/com_method.dart';
 export 'src/projection/com_property.dart';

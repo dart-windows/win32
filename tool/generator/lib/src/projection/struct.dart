@@ -12,7 +12,7 @@ import 'type.dart';
 
 /// Represents a Dart projection for a struct defined by a [TypeDef].
 class StructProjection {
-  /// Creates an instance of this class for a [typeDef] and optiona [comment].
+  /// Creates an instance of this class for a [typeDef] and optional [comment].
   StructProjection(this.typeDef, {this.comment = ''})
       : name = typeDef.safeTypename;
 

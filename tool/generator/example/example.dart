@@ -48,14 +48,6 @@ void printComInterface(
   }
 }
 
-void printComClass([String type = 'Windows.Win32.UI.Shell.IFileOpenDialog']) {
-  final typeDef = MetadataStore.getMetadataForType(type);
-  if (typeDef != null && typeDef.isClass) {
-    final classProjection = ComClassProjection.fromInterface(typeDef);
-    print(classProjection.format());
-  }
-}
-
 void printComMethod(String interface, String methodName) {
   final typeDef = MetadataStore.getMetadataForType(interface);
   final method = typeDef?.findMethod(methodName);

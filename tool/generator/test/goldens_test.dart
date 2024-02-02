@@ -35,8 +35,8 @@ void main() {
       final typeDef = scope.findTypeDef(type);
       expect(typeDef, isNotNull);
       final comTypesToGenerate = loadMap('com_types.json');
-      final projection = ComClassProjection.fromInterface(typeDef!,
-          interfaceComment: comTypesToGenerate[type] ?? '');
+      final projection = ComInterfaceProjection(typeDef!,
+          comment: comTypesToGenerate[type] ?? '');
       compareGolden('ifileopendialog.g', projection.toString().format());
     });
 
@@ -45,8 +45,8 @@ void main() {
       final typeDef = scope.findTypeDef(type);
       expect(typeDef, isNotNull);
       final comTypesToGenerate = loadMap('com_types.json');
-      final projection =
-          ComInterfaceProjection(typeDef!, comTypesToGenerate[type] ?? '');
+      final projection = ComInterfaceProjection(typeDef!,
+          comment: comTypesToGenerate[type] ?? '');
       compareGolden('inetwork.g', projection.toString().format());
     });
   });

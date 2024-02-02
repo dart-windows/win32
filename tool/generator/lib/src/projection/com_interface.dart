@@ -8,19 +8,67 @@ import '../extensions/method.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 import '../headers.dart';
-import 'com_class.dart';
 import 'com_method.dart';
 import 'com_property.dart';
 import 'method.dart';
 import 'type.dart';
 
+/// Represents a Dart projection for a COM interface defined by a [TypeDef].
 class ComInterfaceProjection {
-  ComInterfaceProjection(this.typeDef, [this.comment = '']);
+  /// Creates an instance of this class for a [typeDef] and optional [comment].
+  ComInterfaceProjection(
+    this.typeDef, {
+    this.comment = '',
+  }) : classTypeDef = _findClassTypeDef(typeDef);
 
-  final TypeDef typeDef;
+  /// The metadata associated with the corresponding class for the interface,
+  /// if available.
+  final TypeDef? classTypeDef;
+
+  /// The comment associated with the interface.
   final String comment;
 
+  /// The metadata associated with the interface.
+  final TypeDef typeDef;
+
+  /// Mapping of interface names to the corresponding class names.
+  static const _interfaceToClassMapping = <String, String>{
+    'Windows.Win32.UI.Accessibility.IUIAutomation':
+        'Windows.Win32.UI.Accessibility.CUIAutomation',
+    'Windows.Win32.UI.Accessibility.IUIAutomation2':
+        'Windows.Win32.UI.Accessibility.CUIAutomation8',
+  };
+
+  /// Finds the corresponding class [TypeDef] for the given [interface].
+  static TypeDef? _findClassTypeDef(TypeDef interface) {
+    final className = generateClassName(interface);
+    final classTypeDef = interface.scope.findTypeDef(className);
+    return classTypeDef?.guid == null ? null : classTypeDef;
+  }
+
+  /// Generates the corresponding class name for the given [interface].
+  ///
+  /// For example, given the interface `Windows.Win32.UI.Shell.IShellLinkW`,
+  /// this method returns `Windows.Win32.UI.Shell.ShellLink`.
+  static String generateClassName(TypeDef interface) {
+    if (_interfaceToClassMapping.containsKey(interface.name)) {
+      return _interfaceToClassMapping[interface.name]!;
+    }
+
+    final interfaceNameAsList = interface.nameWithoutEncoding.split('.');
+
+    // Strip off the 'I' from the last component
+    final fullyQualifiedClassName =
+        (interfaceNameAsList.sublist(0, interfaceNameAsList.length - 1)
+              ..add(interfaceNameAsList.last.substring(1)))
+            .join('.');
+
+    return fullyQualifiedClassName;
+  }
+
   List<MethodProjection>? _methodProjections;
+
+  /// The method projections for the methods of the interface.
   List<MethodProjection> get methodProjections =>
       _methodProjections ??= _cacheMethodProjections();
 
@@ -32,36 +80,47 @@ class ComInterfaceProjection {
           })
       .toList();
 
+  /// The short name of the interface (e.g., `IUnknown`).
   String get shortName => typeDef.safeIdentifier;
 
+  /// The interface that this interface inherits from (e.g., `IDispatch`).
   String get inheritsFrom => typeDef.interfaces.isNotEmpty
       ? typeDef.interfaces.first.safeIdentifier
       : '';
 
+  /// The header of the generated file.
   String get header => comInterfaceHeader;
 
-  Set<String> get coreImports => {'dart:ffi', '../extensions/iunknown.dart'};
+  /// Set of core imports for the interface.
+  Set<String> get coreImports => {
+        'dart:ffi',
+        '../extensions/iunknown.dart',
+        if (shortName != 'IUnknown') 'iunknown.g.dart',
+      };
 
+  /// The import for the given [typeDef].
   String? getImportForTypeDef(TypeDef typeDef) => switch (typeDef) {
         _ when typeDef.isDelegate => '../callbacks.dart',
         _ when typeDef.isInterface => '../types.dart',
-
-        //
-        _ when typeDef.isStruct && specialTypes.containsKey(typeDef.name) =>
+        _
+            when typeDef.isWrapperStruct &&
+                specialTypes.containsKey(typeDef.name) =>
           'package:ffi/ffi.dart',
-
-        // These structs are manually generated
-        _ when typeDef.isStruct && typeDef.name.endsWith('PROPERTYKEY') =>
+        // These structs are manually generated.
+        // TODO(halildurmus): Auto generate these.
+        _ when typeDef.isStruct && typeDef.safeTypename == 'PROPERTYKEY' =>
           '../propertykey.dart',
-        _ when typeDef.isStruct && typeDef.name.endsWith('VARIANT') =>
+        _
+            when typeDef.isStruct &&
+                (typeDef.safeTypename == 'VARIANT' ||
+                    typeDef.safeTypename == 'PROPVARIANT') =>
           '../variant.dart',
-
-        //
         _ when typeDef.isStruct && !typeDef.isWrapperStruct =>
           '../structs.g.dart',
         _ => null
       };
 
+  /// The import for the given [typeIdentifier].
   String? getImportForTypeIdentifier(TypeIdentifier typeIdentifier) =>
       switch (typeIdentifier) {
         _ when typeIdentifier.name == 'System.Guid' => '../guid.dart',
@@ -70,18 +129,27 @@ class ComInterfaceProjection {
         _ => null
       };
 
-  Set<String> get importsForClass {
+  /// Set of imports required for the interface based on its methods.
+  ///
+  /// It analyzes the parameters and return types of the methods to determine
+  /// the necessary imports.
+  Set<String> get importsForInterface {
     final imports = <String>{};
 
+    // Iterate through each method in the interface.
     for (final method in typeDef.methods) {
+      // Combine method parameters and return type to analyze all type
+      // identifiers.
       final paramsAndReturnType = [...method.parameters, method.returnType];
+
+      // Iterate through each parameter and return type to add imports.
       for (final param in paramsAndReturnType) {
-        // Add imports for a parameter itself (e.g. VARIANT)
+        // Add imports for a parameter itself (e.g., VARIANT).
         final import = getImportForTypeIdentifier(param.typeIdentifier);
         if (import != null) imports.add(import);
 
-        // Add imports for a type within a pointer (e.g. Pointer<VARIANT>). Keep
-        // unwrapping until there are no types left.
+        // Add imports for types within a pointer (e.g., Pointer<VARIANT>).
+        // Keep unwrapping until there are no types left.
         var refType = param.typeIdentifier;
         while (refType.typeArg != null) {
           refType = refType.typeArg!;
@@ -94,21 +162,19 @@ class ComInterfaceProjection {
     return imports;
   }
 
-  // COM interfaces can only inherit from one parent
-  Set<String> get interfaceImports {
-    if (typeDef.interfaces.isEmpty) return const {};
-    final parentInterface = typeDef.interfaces.first;
-    return {parentInterface.safeFilename, 'iunknown.g.dart'};
-  }
+  /// The import for the inherited interface.
+  String? get interfaceImport => switch (typeDef.interfaces) {
+        // COM interfaces can only inherit from single interface.
+        [final parent] => parent.safeFilename,
+        _ => null
+      };
 
+  /// Set of extra imports required for the interface.
   Set<String> get extraImports => {
-        // If a COM class will be generated for this interface, `utils.dart`
-        // needs to be imported to gain access to the `createCOMObject` function
-        // from the generated COM class.
-        if (MetadataStore.getMetadataForType(
-                ComClassProjection.generateClassName(typeDef)) !=
-            null)
-          '../utils.dart',
+        // If a corresponding COM class is available for this interface,
+        // `utils.dart` needs to be imported to gain access to the
+        // `createCOMObject` function.
+        if (classTypeDef != null) '../utils.dart',
 
         if (hasMethods) '../types.dart',
 
@@ -122,11 +188,12 @@ class ComInterfaceProjection {
         }
       };
 
+  /// The import header of the generated file.
   String get importHeader {
     final imports = {
       ...coreImports,
-      ...importsForClass,
-      ...interfaceImports,
+      ...importsForInterface,
+      if (interfaceImport != null) interfaceImport,
       ...extraImports
     };
     return imports
@@ -136,51 +203,85 @@ class ComInterfaceProjection {
         .join('\n');
   }
 
-  String get guidConstant => switch (typeDef.guid) {
+  /// The constant for the interface's IID (Interface ID).
+  String get iidConstant => switch (typeDef.guid) {
         final guid? => "/// @nodoc\nconst IID_$shortName = '$guid';",
         _ => throw StateError('$typeDef has no guid.')
       };
 
+  /// The `.from` constructor for the generated class that takes an `IUnknown`
+  /// object and casts it to this interface.
   String get fromInterfaceConstructor => '''
 factory $shortName.from(IUnknown interface) =>
     $shortName(interface.toInterface(IID_$shortName));
 ''';
 
+  /// The category to use for the dartdoc `@category` tag.
   String get category => 'com';
 
-  String get classPreamble {
-    final wrappedComment = comment.toDocComment();
-    final categoryComment = '/// {@category $category}';
+  /// The class preamble that includes a doc comment and a dartdoc `@category`
+  /// tag derived from the [category].
+  String get classPreamble => [
+        if (comment.isNotEmpty) ...[comment.toDocComment(), '///'],
+        '/// {@category $category}',
+      ].join('\n');
 
-    return wrappedComment.isNotEmpty
-        ? '$wrappedComment\n///\n$categoryComment'
-        : categoryComment;
-  }
-
+  /// The `extends` clause of the generated class.
   String get extendsClause =>
       inheritsFrom.isEmpty ? '' : 'extends $inheritsFrom';
 
+  /// Whether the interface has methods.
   bool get hasMethods => typeDef.methods.isNotEmpty;
 
+  /// Whether the interface has properties.
   bool get hasProperties => typeDef.methods
       .any((m) => m.canBeProjectedAsGetter || m.canBeProjectedAsSetter);
 
+  /// The default constructor of the generated class.
   String get constructor {
-    if (inheritsFrom.isEmpty) {
-      return '''
-$shortName(this.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;
-
-final VTablePointer ptr;
-''';
+    if (shortName == 'IUnknown') {
+      return '$shortName(this.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;';
     }
 
-    return hasMethods
-        ? '$shortName(super.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;'
-        : '$shortName(super.ptr);';
+    if (hasMethods) {
+      return '$shortName(super.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;';
+    }
+
+    // Interfaces that don't have any methods don't have the `_vtable` field.
+    return '$shortName(super.ptr);';
   }
 
+  /// The pointer field of the generated class.
+  String get ptrField =>
+      shortName == 'IUnknown' ? 'final VTablePointer ptr;' : '';
+
+  /// The `_vtable` field of the generated class.
   String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';
 
+  /// The class projection of the interface, if available.
+  String get classProjection {
+    if (classTypeDef == null) return '';
+
+    final classShortName = classTypeDef!.safeTypename;
+    final clsidConstant = switch (classTypeDef!.guid) {
+      final guid? => "/// @nodoc\nconst CLSID_$classShortName = '$guid';",
+      _ => throw StateError('$typeDef has no guid.'),
+    };
+
+    return '''
+$clsidConstant
+
+/// {@category $category}
+class $classShortName extends $shortName {
+  $classShortName(super.ptr);
+
+  factory $classShortName.createInstance() => $classShortName(
+      createCOMObject(CLSID_$classShortName, IID_$shortName));
+}''';
+  }
+
+  /// The v-table struct that contains the function pointers for the methods of
+  /// the interface.
   String get vtableStruct => [
         '''
 /// @nodoc
@@ -196,19 +297,23 @@ ${methodProjections.map((p) => 'external Pointer<NativeFunction<${p.nativeProtot
   String toString() => '''
 $header
 $importHeader
-$guidConstant
+$iidConstant
 
 $classPreamble
 class $shortName $extendsClause {
   $constructor
 
+  $ptrField
+
   $vtableField
 
   $fromInterfaceConstructor
 
-  ${methodProjections.map((p) => p.toString()).join('\n')}
+  ${methodProjections.join('\n')}
 }
 
 $vtableStruct
+
+$classProjection
 ''';
 }

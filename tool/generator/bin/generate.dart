@@ -187,16 +187,9 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
     final typeDef = scope.findTypeDef(interface);
     if (typeDef == null) throw StateError("Can't find $interface");
 
-    final comment = comInterfaces[interface] ?? '';
-    final interfaceProjection = ComInterfaceProjection(typeDef, comment);
-    final className = ComClassProjection.generateClassName(typeDef);
-    final classExists = scope.findTypeDef(className)?.guid != null;
-    final comObject = classExists
-        ? ComClassProjection.fromInterface(typeDef, interfaceComment: comment)
-        : interfaceProjection;
-
-    // Generate class
-    final dartClass = comObject.toString();
+    final interfaceProjection = ComInterfaceProjection(typeDef,
+        comment: comInterfaces[interface] ?? '');
+    final dartClass = interfaceProjection.toString();
     final classOutputFilename = typeDef.safeFilename;
     final classOutputPath = '../../lib/src/com/$classOutputFilename';
     File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
