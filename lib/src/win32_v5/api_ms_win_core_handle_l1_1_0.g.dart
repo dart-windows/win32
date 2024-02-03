@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_core_handle_l1_1_0 =
     DynamicLibrary.open('api-ms-win-core-handle-l1-1-0.dll');

@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _gdi32 = DynamicLibrary.open('gdi32.dll');
 

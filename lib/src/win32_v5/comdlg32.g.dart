@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _comdlg32 = DynamicLibrary.open('comdlg32.dll');
 

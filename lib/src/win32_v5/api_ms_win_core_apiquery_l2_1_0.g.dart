@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_core_apiquery_l2_1_0 =
     DynamicLibrary.open('api-ms-win-core-apiquery-l2-1-0.dll');

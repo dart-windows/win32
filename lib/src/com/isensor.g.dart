@@ -13,9 +13,9 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../propertykey.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
-import '../variant.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc

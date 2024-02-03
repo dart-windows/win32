@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _iphlpapi = DynamicLibrary.open('iphlpapi.dll');
 

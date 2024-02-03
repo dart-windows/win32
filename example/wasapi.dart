@@ -133,10 +133,10 @@ void main() {
     // Check the retrieved device friendly name.
     final varName = pVal.ref;
     if (varName.vt != VARENUM.VT_EMPTY) {
-      final ptr = Pointer<Utf16>.fromAddress(varName.val1);
-      final name = ptr.toDartString();
+      final bstrVal = varName.bstrVal;
+      final name = bstrVal.toDartString();
       print(" ID: $id Name: $name");
-      free(ptr);
+      SysFreeString(bstrVal);
     } else {
       print(" Unknown device");
     }

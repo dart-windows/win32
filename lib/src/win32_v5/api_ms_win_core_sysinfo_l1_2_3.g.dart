@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_core_sysinfo_l1_2_3 =
     DynamicLibrary.open('api-ms-win-core-sysinfo-l1-2-3.dll');

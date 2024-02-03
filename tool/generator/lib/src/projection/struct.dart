@@ -122,7 +122,8 @@ extension NestedStructExtension on TypeDef {
           ? 'String'
           : typeProjection.dartType.safeTypename;
 
-      if (safeTypename == 'VARIANT_0_0_0') {
+      // Special handling for VARIANT and PROPVARIANT fields.
+      if (safeTypename.endsWith('VARIANT_0_0_0')) {
         if (fieldName == 'boolVal') {
           // Generate getter/setter for handling the `VARIANT_BOOL` value.
           _handleVariantBoolVal(buffer, fieldName, instanceName);

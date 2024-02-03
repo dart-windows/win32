@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_service_core_l1_1_5 =
     DynamicLibrary.open('api-ms-win-service-core-l1-1-5.dll');

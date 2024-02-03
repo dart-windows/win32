@@ -15,7 +15,6 @@ import '../guid.dart';
 import '../propertykey.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 import 'ishellitem.g.dart';
 import 'iunknown.g.dart';
 

@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_ro_typeresolution_l1_1_1 =
     DynamicLibrary.open('api-ms-win-ro-typeresolution-l1-1-1.dll');

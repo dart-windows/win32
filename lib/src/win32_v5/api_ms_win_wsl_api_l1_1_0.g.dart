@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_wsl_api_l1_1_0 =
     DynamicLibrary.open('api-ms-win-wsl-api-l1-1-0.dll');

@@ -260,7 +260,6 @@ export 'src/structs.g.dart'
         SERVENT;
 export 'src/types.dart';
 export 'src/utils.dart';
-export 'src/variant.dart';
 
 // Traditional C-style Windows APIs
 export 'src/win32_v5/advapi32.g.dart';

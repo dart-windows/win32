@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_shcore_scaling_l1_1_1 =
     DynamicLibrary.open('api-ms-win-shcore-scaling-l1-1-1.dll');

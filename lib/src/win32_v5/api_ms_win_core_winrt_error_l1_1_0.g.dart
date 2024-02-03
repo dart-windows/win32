@@ -16,7 +16,6 @@ import '../callbacks.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 
 final _api_ms_win_core_winrt_error_l1_1_0 =
     DynamicLibrary.open('api-ms-win-core-winrt-error-l1-1-0.dll');
