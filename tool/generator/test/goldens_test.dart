@@ -49,6 +49,16 @@ void main() {
           comment: comTypesToGenerate[type] ?? '');
       compareGolden('inetwork.g', projection.toString().format());
     });
+
+    test('VARIANT struct', () async {
+      const type = 'Windows.Win32.System.Variant.VARIANT';
+      final typeDef = scope.findTypeDef(type);
+      expect(typeDef, isNotNull);
+      final structsToGenerate = loadMap('win32_structs.json');
+      final projection =
+          StructProjection(typeDef!, comment: structsToGenerate[type] ?? '');
+      compareGolden('variant.g', projection.toString().format());
+    });
   });
 
   tearDownAll(MetadataStore.close);

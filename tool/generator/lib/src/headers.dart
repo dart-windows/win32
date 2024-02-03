@@ -53,7 +53,6 @@ import 'package:ffi/ffi.dart';
 import 'callbacks.dart';
 import 'guid.dart';
 import 'types.dart';
-import 'variant.dart';
 ''';
 
 const testFunctionsHeader = '''

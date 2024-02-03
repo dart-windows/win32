@@ -9,8 +9,8 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
-import '../variant.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc

@@ -13,9 +13,9 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
-import '../variant.dart';
 import 'idispatch.g.dart';
 import 'iunknown.g.dart';
 

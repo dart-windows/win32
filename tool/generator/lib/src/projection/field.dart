@@ -31,8 +31,13 @@ class FieldProjection {
   String toString() => [
         typeProjection.attribute,
 
+        // Don't strip off leading underscores if the field is obsolete.
+        if (field.name.startsWith('__OBSOLETE'))
+          '  // ignore: unused_field\n  external $type ${field.name};'
+
         // Mark the field private if it is reserved.
-        if (field.name.contains('Reserved'))
+        else if (field.name.contains('Reserved') ||
+            field.name.startsWith('__OBSOLETE'))
           '  // ignore: unused_field\n  external $type _${field.name};'
 
         // Generate a String getter/setter for char arrays.

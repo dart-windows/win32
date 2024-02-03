@@ -32,14 +32,14 @@ void main() {
       VariantInit(variant);
       variant.ref.vt = VARENUM.VT_UNKNOWN;
 
-      variant.ref.punkVal = spVoice;
-      final unk = variant.ref.punkVal;
+      variant.ref.punkVal = spVoice.ptr;
+      final unk = IUnknown(variant.ref.punkVal);
       expect(unk.ptr.address, isNonZero);
       expect(refCount(unk), equals(2));
       unk.release();
 
-      variant.ref.punkVal = spellChecker;
-      final unk2 = variant.ref.punkVal;
+      variant.ref.punkVal = spellChecker.ptr;
+      final unk2 = IUnknown(variant.ref.punkVal);
       expect(unk2.ptr.address, isNonZero);
       expect(refCount(unk2), equals(2));
       unk2.release();

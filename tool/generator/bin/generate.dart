@@ -11,7 +11,7 @@ import 'package:winmd/winmd.dart';
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
   final file = File('../../lib/src/structs.g.dart');
 
-  final typeDefs = scopes.expand((scope) => scope.typeDefs
+  final typeDefs = scopes.expand((scope) => scope.structs
       .where((typeDef) => structs.keys.contains(typeDef.name))
       .where((typeDef) => typeDef.supportedArchitectures.x64)
       .toList()

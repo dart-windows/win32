@@ -110,10 +110,7 @@ class ComInterfaceProjection {
         // TODO(halildurmus): Auto generate these.
         _ when typeDef.isStruct && typeDef.safeTypename == 'PROPERTYKEY' =>
           '../propertykey.dart',
-        _
-            when typeDef.isStruct &&
-                (typeDef.safeTypename == 'VARIANT' ||
-                    typeDef.safeTypename == 'PROPVARIANT') =>
+        _ when typeDef.isStruct && typeDef.safeTypename == 'PROPVARIANT' =>
           '../variant.dart',
         _ when typeDef.isStruct && !typeDef.isWrapperStruct =>
           '../structs.g.dart',

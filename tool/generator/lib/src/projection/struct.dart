@@ -109,15 +109,33 @@ extension NestedStructExtension on TypeDef {
     // Iterate through the fields of the nested struct and generate property
     // accessors.
     for (final field in fields) {
-      // Skip reserved fields as they are not exposed.
-      if (field.name.contains('Reserved')) continue;
+      // Skip reserved and obsolete fields as they are not exposed.
+      if (field.name.contains('Reserved') ||
+          field.name.startsWith('__OBSOLETE')) {
+        continue;
+      }
 
       final instanceName = field.instanceName;
+      final fieldName = field.name.safeIdentifier;
       final typeProjection = TypeProjection(field.typeIdentifier);
       final fieldType = field.isCharArray && !field.isFlexibleArray
           ? 'String'
           : typeProjection.dartType.safeTypename;
-      final fieldName = field.name.safeIdentifier;
+
+      if (safeTypename == 'VARIANT_0_0_0') {
+        if (fieldName == 'boolVal') {
+          // Generate getter/setter for handling the `VARIANT_BOOL` value.
+          _handleVariantBoolVal(buffer, fieldName, instanceName);
+          continue;
+        }
+
+        if (fieldName == 'ullVal') {
+          // Generate getter/setter for handling the `ULONGLONG` value.
+          _handleVariantUllVal(buffer, fieldName, instanceName);
+          continue;
+        }
+      }
+
       buffer
         ..writeln('$fieldType get $fieldName => this.$instanceName;')
         ..writeln(
@@ -128,5 +146,43 @@ extension NestedStructExtension on TypeDef {
     buffer.write('}');
 
     return buffer.toString();
+  }
+
+  /// Handles the conversion of the `VARIANT`'s `boolVal` field, representing a
+  /// `VARIANT_BOOL` value to a Dart [bool].
+  void _handleVariantBoolVal(
+      StringBuffer buffer, String fieldName, String instanceName) {
+    buffer
+      ..writeln('bool get $fieldName => '
+          'this.$instanceName == -1 /* VARIANT_TRUE */;')
+      ..writeln('set $fieldName(bool value) => this.$instanceName = value '
+          '? -1 /* VARIANT_TRUE */ : 0 /* VARIANT_FALSE */;')
+      ..writeln();
+  }
+
+  /// Handles the conversion of the `VARIANT`'s `ullVal` field, representing a
+  /// `ULONGLONG` (64-bit unsigned integer) value to a [BigInt].
+  void _handleVariantUllVal(
+      StringBuffer buffer, String fieldName, String instanceName) {
+    buffer
+      ..write('''
+BigInt get ullVal {
+  final src = this.$instanceName;
+  final hi = ((src & 0xFFFFFFFF00000000) >> 32)
+      .toUnsigned(32)
+      .toRadixString(16)
+      .padLeft(8, '0');
+  final lo = (src & 0x00000000FFFFFFFF).toRadixString(16).padLeft(8, '0');
+  return BigInt.parse('\$hi\$lo', radix: 16);
+}
+''')
+      ..write('''
+set $fieldName(BigInt value) {
+  final hi = ((value & BigInt.from(0xFFFFFFFF00000000)) >> 32).toInt();
+  final lo = (value & BigInt.from(0x00000000FFFFFFFF)).toInt();
+  this.$instanceName = (hi << 32) + lo;
+}
+''')
+      ..writeln();
   }
 }
