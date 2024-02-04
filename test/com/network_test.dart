@@ -17,19 +17,22 @@ void main() {
     setUpAll(initializeCOM);
 
     test('network is connected', () {
-      final nlm = NetworkListManager.createInstance();
+      final nlm = INetworkListManager(
+          createCOMObject(NetworkListManager, IID_INetworkListManager));
       expect(nlm.isConnected, equals(VARIANT_TRUE));
       nlm.release();
     });
 
     test('network is connected to the internet', () {
-      final nlm = NetworkListManager.createInstance();
+      final nlm = INetworkListManager(
+          createCOMObject(NetworkListManager, IID_INetworkListManager));
       expect(nlm.isConnectedToInternet, equals(VARIANT_TRUE));
       nlm.release();
     });
 
     test('can enumerate a network connection', () {
-      final nlm = NetworkListManager.createInstance();
+      final nlm = INetworkListManager(
+          createCOMObject(NetworkListManager, IID_INetworkListManager));
       final enumPtr = calloc<VTablePointer>();
       final netPtr = calloc<VTablePointer>();
 
@@ -54,7 +57,8 @@ void main() {
     });
 
     test('first network connection has a description', () {
-      final nlm = NetworkListManager.createInstance();
+      final nlm = INetworkListManager(
+          createCOMObject(NetworkListManager, IID_INetworkListManager));
       final enumPtr = calloc<VTablePointer>();
       final netPtr = calloc<VTablePointer>();
       final descPtr = calloc<Pointer<Utf16>>();

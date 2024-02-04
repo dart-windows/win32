@@ -26,7 +26,8 @@ void main(List<String> args) {
 
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
-  final spellCheckerFactory = SpellCheckerFactory.createInstance();
+  final spellCheckerFactory = ISpellCheckerFactory(
+      createCOMObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
 
   final supportedPtr = calloc<Int32>();
   final languageTagPtr = Platform.localeName.toNativeUtf16();

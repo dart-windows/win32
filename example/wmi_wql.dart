@@ -38,7 +38,7 @@ void main() {
   // on a particular host computer.
   final pLoc = calloc<VTablePointer>();
 
-  final clsid = calloc<GUID>()..ref.setGUID(CLSID_WbemLocator);
+  final clsid = calloc<GUID>()..ref.setGUID(WbemLocator);
   final iid = calloc<GUID>()..ref.setGUID(IID_IWbemLocator);
 
   hr = CoCreateInstance(clsid, null, CLSCTX_INPROC_SERVER, iid, pLoc);

@@ -253,12 +253,4 @@ base class IWinHttpRequestVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_WinHttpRequest = '{2087c2f4-2cef-4953-a8ab-66779b670495}';
-
-/// {@category com}
-class WinHttpRequest extends IWinHttpRequest {
-  WinHttpRequest(super.ptr);
-
-  factory WinHttpRequest.createInstance() => WinHttpRequest(
-      createCOMObject(CLSID_WinHttpRequest, IID_IWinHttpRequest));
-}
+const WinHttpRequest = '{2087c2f4-2cef-4953-a8ab-66779b670495}';

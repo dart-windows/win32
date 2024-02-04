@@ -77,7 +77,8 @@ String getDesktopPath3() {
 
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   try {
-    final knownFolderManager = KnownFolderManager.createInstance();
+    final knownFolderManager = IKnownFolderManager(
+        createCOMObject(KnownFolderManager, IID_IKnownFolderManager));
     var hr = knownFolderManager.getFolder(appsFolder, ppkf);
     if (FAILED(hr)) throw WindowsException(hr);
 

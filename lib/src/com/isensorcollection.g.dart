@@ -11,7 +11,6 @@ import 'dart:ffi';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -74,12 +73,4 @@ base class ISensorCollectionVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_SensorCollection = '{79c43adb-a429-469f-aa39-2f2b74b75937}';
-
-/// {@category com}
-class SensorCollection extends ISensorCollection {
-  SensorCollection(super.ptr);
-
-  factory SensorCollection.createInstance() => SensorCollection(
-      createCOMObject(CLSID_SensorCollection, IID_ISensorCollection));
-}
+const SensorCollection = '{79c43adb-a429-469f-aa39-2f2b74b75937}';

@@ -13,7 +13,8 @@ void main() {
   var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
-  final fileDialog = FileOpenDialog.createInstance();
+  final fileDialog =
+      IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 
   final pfos = calloc<Uint32>();
   hr = fileDialog.getOptions(pfos);

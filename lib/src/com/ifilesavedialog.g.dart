@@ -10,7 +10,6 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'ifiledialog.g.dart';
 import 'iunknown.g.dart';
 
@@ -79,12 +78,4 @@ base class IFileSaveDialogVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_FileSaveDialog = '{c0b4e2f3-ba21-4773-8dba-335ec946eb8b}';
-
-/// {@category com}
-class FileSaveDialog extends IFileSaveDialog {
-  FileSaveDialog(super.ptr);
-
-  factory FileSaveDialog.createInstance() => FileSaveDialog(
-      createCOMObject(CLSID_FileSaveDialog, IID_IFileSaveDialog));
-}
+const FileSaveDialog = '{c0b4e2f3-ba21-4773-8dba-335ec946eb8b}';

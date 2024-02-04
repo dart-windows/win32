@@ -149,12 +149,4 @@ base class INetworkListManagerVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_NetworkListManager = '{dcb00c01-570f-4a9b-8d69-199fdba5723b}';
-
-/// {@category com}
-class NetworkListManager extends INetworkListManager {
-  NetworkListManager(super.ptr);
-
-  factory NetworkListManager.createInstance() => NetworkListManager(
-      createCOMObject(CLSID_NetworkListManager, IID_INetworkListManager));
-}
+const NetworkListManager = '{dcb00c01-570f-4a9b-8d69-199fdba5723b}';

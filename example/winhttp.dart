@@ -26,7 +26,8 @@ void main() {
 
   try {
     // Create an instance of WinHttpRequest class
-    final winHttpRequest = WinHttpRequest.createInstance();
+    final winHttpRequest =
+        IWinHttpRequest(createCOMObject(WinHttpRequest, IID_IWinHttpRequest));
 
     // Open an HTTP connection
     var hr = winHttpRequest.open(method.ptr, url.ptr, varFalse.ref);

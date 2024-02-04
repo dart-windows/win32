@@ -13,7 +13,6 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -179,12 +178,4 @@ base class IShellLinkVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_ShellLink = '{00021401-0000-0000-c000-000000000046}';
-
-/// {@category com}
-class ShellLink extends IShellLink {
-  ShellLink(super.ptr);
-
-  factory ShellLink.createInstance() =>
-      ShellLink(createCOMObject(CLSID_ShellLink, IID_IShellLink));
-}
+const ShellLink = '{00021401-0000-0000-c000-000000000046}';

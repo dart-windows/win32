@@ -14,7 +14,8 @@ void main() {
   var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
-  final netManager = NetworkListManager.createInstance();
+  final netManager = INetworkListManager(
+      createCOMObject(NetworkListManager, IID_INetworkListManager));
   final nlmConnectivity = calloc<Int32>();
   final descPtr = calloc<Pointer<Utf16>>();
   final elements = calloc<Uint32>();

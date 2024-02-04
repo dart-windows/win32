@@ -12,7 +12,6 @@ import 'package:ffi/ffi.dart';
 
 import '../extensions/iunknown.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -83,12 +82,4 @@ base class IMMDeviceEnumeratorVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_MMDeviceEnumerator = '{bcde0395-e52f-467c-8e3d-c4579291692e}';
-
-/// {@category com}
-class MMDeviceEnumerator extends IMMDeviceEnumerator {
-  MMDeviceEnumerator(super.ptr);
-
-  factory MMDeviceEnumerator.createInstance() => MMDeviceEnumerator(
-      createCOMObject(CLSID_MMDeviceEnumerator, IID_IMMDeviceEnumerator));
-}
+const MMDeviceEnumerator = '{bcde0395-e52f-467c-8e3d-c4579291692e}';

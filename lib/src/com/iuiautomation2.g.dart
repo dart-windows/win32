@@ -129,12 +129,4 @@ base class IUIAutomation2Vtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_CUIAutomation8 = '{e22ad333-b25f-460c-83d0-0581107395c9}';
-
-/// {@category com}
-class CUIAutomation8 extends IUIAutomation2 {
-  CUIAutomation8(super.ptr);
-
-  factory CUIAutomation8.createInstance() =>
-      CUIAutomation8(createCOMObject(CLSID_CUIAutomation8, IID_IUIAutomation2));
-}
+const CUIAutomation8 = '{e22ad333-b25f-460c-83d0-0581107395c9}';

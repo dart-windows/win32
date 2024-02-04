@@ -13,7 +13,6 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -165,12 +164,4 @@ base class IDesktopWallpaperVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_DesktopWallpaper = '{c2cf3110-460e-4fc1-b9d0-8a1c0c9cc4bd}';
-
-/// {@category com}
-class DesktopWallpaper extends IDesktopWallpaper {
-  DesktopWallpaper(super.ptr);
-
-  factory DesktopWallpaper.createInstance() => DesktopWallpaper(
-      createCOMObject(CLSID_DesktopWallpaper, IID_IDesktopWallpaper));
-}
+const DesktopWallpaper = '{c2cf3110-460e-4fc1-b9d0-8a1c0c9cc4bd}';

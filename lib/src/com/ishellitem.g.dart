@@ -13,7 +13,6 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -87,12 +86,4 @@ base class IShellItemVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_ShellItem = '{9ac9fbe1-e0a2-4ad6-b4ee-e212013ea917}';
-
-/// {@category com}
-class ShellItem extends IShellItem {
-  ShellItem(super.ptr);
-
-  factory ShellItem.createInstance() =>
-      ShellItem(createCOMObject(CLSID_ShellItem, IID_IShellItem));
-}
+const ShellItem = '{9ac9fbe1-e0a2-4ad6-b4ee-e212013ea917}';

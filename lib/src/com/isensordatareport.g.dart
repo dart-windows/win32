@@ -12,7 +12,6 @@ import '../extensions/iunknown.dart';
 import '../propertykey.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -67,12 +66,4 @@ base class ISensorDataReportVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_SensorDataReport = '{4ea9d6ef-694b-4218-8816-ccda8da74bba}';
-
-/// {@category com}
-class SensorDataReport extends ISensorDataReport {
-  SensorDataReport(super.ptr);
-
-  factory SensorDataReport.createInstance() => SensorDataReport(
-      createCOMObject(CLSID_SensorDataReport, IID_ISensorDataReport));
-}
+const SensorDataReport = '{4ea9d6ef-694b-4218-8816-ccda8da74bba}';

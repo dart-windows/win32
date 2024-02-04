@@ -12,7 +12,6 @@ import 'package:ffi/ffi.dart';
 
 import '../extensions/iunknown.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -81,12 +80,4 @@ base class IWbemLocatorVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_WbemLocator = '{4590f811-1d3a-11d0-891f-00aa004b2e24}';
-
-/// {@category com}
-class WbemLocator extends IWbemLocator {
-  WbemLocator(super.ptr);
-
-  factory WbemLocator.createInstance() =>
-      WbemLocator(createCOMObject(CLSID_WbemLocator, IID_IWbemLocator));
-}
+const WbemLocator = '{4590f811-1d3a-11d0-891f-00aa004b2e24}';

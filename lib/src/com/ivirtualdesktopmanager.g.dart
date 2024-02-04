@@ -11,7 +11,6 @@ import 'dart:ffi';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -67,12 +66,4 @@ base class IVirtualDesktopManagerVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_VirtualDesktopManager = '{aa509086-5ca9-4c25-8f95-589d3c07b48a}';
-
-/// {@category com}
-class VirtualDesktopManager extends IVirtualDesktopManager {
-  VirtualDesktopManager(super.ptr);
-
-  factory VirtualDesktopManager.createInstance() => VirtualDesktopManager(
-      createCOMObject(CLSID_VirtualDesktopManager, IID_IVirtualDesktopManager));
-}
+const VirtualDesktopManager = '{aa509086-5ca9-4c25-8f95-589d3c07b48a}';

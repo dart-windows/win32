@@ -15,12 +15,12 @@ import '../helpers.dart';
 void main() {
   test('CLSIDFromString', () {
     final guid = calloc<GUID>();
-    final pCLSID = CLSID_FileSaveDialog.toNativeUtf16();
+    final pCLSID = FileSaveDialog.toNativeUtf16();
 
     final hr = CLSIDFromString(pCLSID, guid);
     expect(hr, equals(S_OK));
 
-    expect(guid.ref.toString(), equalsIgnoringCase(CLSID_FileSaveDialog));
+    expect(guid.ref.toString(), equalsIgnoringCase(FileSaveDialog));
 
     free(pCLSID);
     free(guid);
@@ -41,7 +41,8 @@ void main() {
 
   test('Create COM object without calling CoInitialize should fail', () {
     expect(
-        FileOpenDialog.createInstance,
+        () => IFileOpenDialog(
+            createCOMObject(FileOpenDialog, IID_IFileOpenDialog)),
         throwsA(isA<WindowsException>()
             .having((e) => e.hr, 'hr', equals(CO_E_NOTINITIALIZED))
             .having((e) => e.toString(), 'message',
@@ -53,7 +54,7 @@ void main() {
 
     test('create COM object with CoCreateInstance', () {
       final ptr = calloc<VTablePointer>();
-      final clsid = GUIDFromString(CLSID_FileSaveDialog);
+      final clsid = GUIDFromString(FileSaveDialog);
       final iid = GUIDFromString(IID_IFileSaveDialog);
 
       final hr = CoCreateInstance(clsid, null, CLSCTX_ALL, iid, ptr);
@@ -70,7 +71,7 @@ void main() {
     test('create COM object with CoGetClassObject', () {
       final ptrFactory = calloc<VTablePointer>();
       final ptrSaveDialog = calloc<VTablePointer>();
-      final clsid = GUIDFromString(CLSID_FileSaveDialog);
+      final clsid = GUIDFromString(FileSaveDialog);
       final iidClassFactory = GUIDFromString(IID_IClassFactory);
       final iidFileSaveDialog = GUIDFromString(IID_IFileSaveDialog);
 
@@ -95,14 +96,16 @@ void main() {
     });
 
     test('dialog object exists', () {
-      final dialog = FileOpenDialog.createInstance();
+      final dialog =
+          IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
       expect(dialog.ptr.address, isNonZero);
       expect(dialog.ptr.value.address, isNonZero);
       dialog.release();
     });
 
     test('can cast to IUnknown', () {
-      final dialog = FileOpenDialog.createInstance();
+      final dialog =
+          IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
       final unk = IUnknown.from(dialog);
       expect(unk.ptr.address, isNonZero);
       expect(unk.ptr.value.address, isNonZero);
@@ -111,7 +114,8 @@ void main() {
     });
 
     test('cast to random interface fails', () {
-      final dialog = FileOpenDialog.createInstance();
+      final dialog =
+          IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
       expect(
           () => dialog.toInterface(IID_IDesktopWallpaper),
           throwsA(isA<WindowsException>()
@@ -122,7 +126,8 @@ void main() {
     });
 
     test('addRef / release', () {
-      final dialog = FileOpenDialog.createInstance();
+      final dialog =
+          IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 
       var refs = dialog.addRef();
       expect(refs, equals(2));
@@ -140,7 +145,8 @@ void main() {
     });
 
     test('can cast to various supported interfaces', () {
-      final dialog = FileOpenDialog.createInstance();
+      final dialog =
+          IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 
       expect(() => IUnknown.from(dialog), returnsNormally);
       expect(() => IModalWindow.from(dialog), returnsNormally);
@@ -152,7 +158,8 @@ void main() {
     });
 
     test('cannot cast to various unsupported interfaces', () {
-      final dialog = FileOpenDialog.createInstance();
+      final dialog =
+          IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 
       expect(
           () => IShellItem.from(dialog),

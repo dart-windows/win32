@@ -19,12 +19,14 @@ import 'package:win32/win32.dart';
 ///   setUpAll(initializeCOM);
 ///
 ///   test('dialog object exists', () {
-///     final dialog = FileOpenDialog.createInstance();
+///     final dialog =
+///       IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 ///     expect(dialog.ptr.address, isNonZero);
 ///   });
 ///
 ///   test('can cast to IUnknown', () {
-///     final dialog = FileOpenDialog.createInstance();
+///     final dialog =
+///       IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 ///     final unk = IUnknown.from(dialog);
 ///     expect(unk.ptr.address, isNonZero);
 ///   });

@@ -10,7 +10,6 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -44,12 +43,4 @@ base class IWbemRefresherVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_WbemRefresher = '{c71566f2-561e-11d1-ad87-00c04fd8fdff}';
-
-/// {@category com}
-class WbemRefresher extends IWbemRefresher {
-  WbemRefresher(super.ptr);
-
-  factory WbemRefresher.createInstance() =>
-      WbemRefresher(createCOMObject(CLSID_WbemRefresher, IID_IWbemRefresher));
-}
+const WbemRefresher = '{c71566f2-561e-11d1-ad87-00c04fd8fdff}';

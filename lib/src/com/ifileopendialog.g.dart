@@ -10,7 +10,6 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'ifiledialog.g.dart';
 import 'iunknown.g.dart';
 
@@ -55,12 +54,4 @@ base class IFileOpenDialogVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_FileOpenDialog = '{dc1c5a9c-e88a-4dde-a5a1-60f82a20aef7}';
-
-/// {@category com}
-class FileOpenDialog extends IFileOpenDialog {
-  FileOpenDialog(super.ptr);
-
-  factory FileOpenDialog.createInstance() => FileOpenDialog(
-      createCOMObject(CLSID_FileOpenDialog, IID_IFileOpenDialog));
-}
+const FileOpenDialog = '{dc1c5a9c-e88a-4dde-a5a1-60f82a20aef7}';

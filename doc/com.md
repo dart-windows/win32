@@ -36,7 +36,7 @@ object, it is easier to use the `createCOMObject` helper function:
 
 ```dart
 final fileDialog2 = IFileDialog2(
-    createCOMObject(CLSID_FileOpenDialog, IID_IFileDialog2));
+    createCOMObject(FileOpenDialog, IID_IFileDialog2));
 ```
 
 `createCOMObject` returns a `VTablePointer` containing the requested object,

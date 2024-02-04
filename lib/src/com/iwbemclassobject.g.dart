@@ -13,7 +13,6 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -315,12 +314,4 @@ base class IWbemClassObjectVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_WbemClassObject = '{9a653086-174f-11d2-b5f9-00104b703efd}';
-
-/// {@category com}
-class WbemClassObject extends IWbemClassObject {
-  WbemClassObject(super.ptr);
-
-  factory WbemClassObject.createInstance() => WbemClassObject(
-      createCOMObject(CLSID_WbemClassObject, IID_IWbemClassObject));
-}
+const WbemClassObject = '{9a653086-174f-11d2-b5f9-00104b703efd}';

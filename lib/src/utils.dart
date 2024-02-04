@@ -26,7 +26,7 @@ import 'win32_v5/user32.g.dart';
 /// Converts a Dart string into an CLSID using the [CLSIDFromString] call.
 ///
 /// You can pass this method one of two things: a brace-enclosed string, such as
-/// '{00000000-0000-0000-c000-000000000046}', or a ProgID, such as
+/// `{00000000-0000-0000-c000-000000000046}`, or a ProgID, such as
 /// 'Excel.Application'. If you pass a ProgID, it will look up the CLSID
 /// associated with it. In either case, it will return a pointer to a GUID
 /// struct that matches the string.
@@ -52,7 +52,7 @@ Pointer<GUID> convertToCLSID(String strCLSID, {Allocator allocator = calloc}) {
 /// Converts a Dart string into an IID using the [IIDFromString] call.
 ///
 /// You can pass this method a brace-enclosed string, such as
-/// '{00000000-0000-0000-c000-000000000046}', and it will return a pointer to a
+/// `{00000000-0000-0000-c000-000000000046}`, and it will return a pointer to a
 /// GUID struct that matches the string.
 ///
 /// It is the caller's responsibility to deallocate the returned pointer when
@@ -79,7 +79,7 @@ Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
 /// Example:
 /// ```dart
 /// final dialog = FileOpenDialog(
-///     createCOMObject(CLSID_FileOpenDialog, IID_IFileOpenDialog));
+///     createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
 /// ```
 ///
 /// {@category com}

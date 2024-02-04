@@ -13,7 +13,6 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -109,12 +108,4 @@ base class IAppxFactoryVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_AppxFactory = '{5842a140-ff9f-4166-8f5c-62f5b7b0c781}';
-
-/// {@category com}
-class AppxFactory extends IAppxFactory {
-  AppxFactory(super.ptr);
-
-  factory AppxFactory.createInstance() =>
-      AppxFactory(createCOMObject(CLSID_AppxFactory, IID_IAppxFactory));
-}
+const AppxFactory = '{5842a140-ff9f-4166-8f5c-62f5b7b0c781}';

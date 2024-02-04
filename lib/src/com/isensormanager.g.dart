@@ -11,7 +11,6 @@ import 'dart:ffi';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -84,12 +83,4 @@ base class ISensorManagerVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_SensorManager = '{77a1c827-fcd2-4689-8915-9d613cc5fa3e}';
-
-/// {@category com}
-class SensorManager extends ISensorManager {
-  SensorManager(super.ptr);
-
-  factory SensorManager.createInstance() =>
-      SensorManager(createCOMObject(CLSID_SensorManager, IID_ISensorManager));
-}
+const SensorManager = '{77a1c827-fcd2-4689-8915-9d613cc5fa3e}';

@@ -28,7 +28,7 @@ void initializeCOM() {
   if (FAILED(hr)) throw WindowsException(hr);
 }
 
-int connectWMI(WbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
+int connectWMI(IWbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
   // Connect to the root\cimv2 namespace with the current user and obtain
   // pointer pSvc to make IWbemServices calls.
   var hr = pLoc.connectServer(
@@ -63,12 +63,14 @@ void main() {
   initializeCOM();
 
   using((Arena arena) {
-    final locator = WbemLocator.createInstance();
+    final locator =
+        IWbemLocator(createCOMObject(WbemLocator, IID_IWbemLocator));
     final ppNamespace = calloc<VTablePointer>();
 
     connectWMI(locator, ppNamespace);
 
-    final refresher = WbemRefresher.createInstance();
+    final refresher =
+        IWbemRefresher(createCOMObject(WbemRefresher, IID_IWbemRefresher));
     final pConfig = IWbemConfigureRefresher.from(refresher);
     final ppRefreshable = calloc<VTablePointer>();
 

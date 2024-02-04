@@ -79,12 +79,4 @@ base class ISpellCheckerFactoryVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_SpellCheckerFactory = '{7ab36653-1796-484b-bdfa-e74f1db7c1dc}';
-
-/// {@category com}
-class SpellCheckerFactory extends ISpellCheckerFactory {
-  SpellCheckerFactory(super.ptr);
-
-  factory SpellCheckerFactory.createInstance() => SpellCheckerFactory(
-      createCOMObject(CLSID_SpellCheckerFactory, IID_ISpellCheckerFactory));
-}
+const SpellCheckerFactory = '{7ab36653-1796-484b-bdfa-e74f1db7c1dc}';

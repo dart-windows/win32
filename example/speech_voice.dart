@@ -15,8 +15,7 @@ const textToSpeak =
 void main() {
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
-  final speechVoice =
-      ISpeechVoice(createCOMObject(CLSID_SpVoice, IID_ISpeechVoice));
+  final speechVoice = ISpeechVoice(createCOMObject(SpVoice, IID_ISpeechVoice));
   final pText = textToSpeak.toNativeUtf16();
 
   final pTokens = calloc<VTablePointer>();

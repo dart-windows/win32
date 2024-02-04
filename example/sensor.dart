@@ -15,7 +15,8 @@ import 'package:win32/win32.dart';
 void main() {
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
-  final sensorManager = SensorManager.createInstance();
+  final sensorManager =
+      ISensorManager(createCOMObject(SensorManager, IID_ISensorManager));
 
   // Replace this with the sensor category you're looking for.
   final sampleDateTimeSensorCategory =

@@ -13,7 +13,6 @@ import 'package:ffi/ffi.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'ispeventsource.g.dart';
 import 'iunknown.g.dart';
 
@@ -253,12 +252,4 @@ base class ISpVoiceVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_SpVoice = '{96749377-3391-11d2-9ee3-00c04f797396}';
-
-/// {@category com}
-class SpVoice extends ISpVoice {
-  SpVoice(super.ptr);
-
-  factory SpVoice.createInstance() =>
-      SpVoice(createCOMObject(CLSID_SpVoice, IID_ISpVoice));
-}
+const SpVoice = '{96749377-3391-11d2-9ee3-00c04f797396}';

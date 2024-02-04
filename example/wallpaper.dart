@@ -9,7 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-late DesktopWallpaper wallpaper;
+late IDesktopWallpaper wallpaper;
 
 void printWallpaper() {
   final pathPtr = calloc<Pointer<Utf16>>();
@@ -57,7 +57,8 @@ void main() {
   final hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
-  wallpaper = DesktopWallpaper.createInstance();
+  wallpaper = IDesktopWallpaper(
+      createCOMObject(DesktopWallpaper, IID_IDesktopWallpaper));
 
   printWallpaper();
   printBackgroundColor();

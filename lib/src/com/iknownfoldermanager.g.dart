@@ -14,7 +14,6 @@ import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -160,12 +159,4 @@ base class IKnownFolderManagerVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_KnownFolderManager = '{4df0c730-df9d-4ae3-9153-aa6b82e9795a}';
-
-/// {@category com}
-class KnownFolderManager extends IKnownFolderManager {
-  KnownFolderManager(super.ptr);
-
-  factory KnownFolderManager.createInstance() => KnownFolderManager(
-      createCOMObject(CLSID_KnownFolderManager, IID_IKnownFolderManager));
-}
+const KnownFolderManager = '{4df0c730-df9d-4ae3-9153-aa6b82e9795a}';

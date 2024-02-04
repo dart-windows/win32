@@ -166,11 +166,6 @@ class ComInterfaceProjection {
 
   /// Set of extra imports required for the interface.
   Set<String> get extraImports => {
-        // If a corresponding COM class is available for this interface,
-        // `utils.dart` needs to be imported to gain access to the
-        // `createCOMObject` function.
-        if (classTypeDef != null) '../utils.dart',
-
         if (hasMethods) '../types.dart',
 
         // COM properties need these imports to allocate memory, do `FAILED`
@@ -199,7 +194,7 @@ class ComInterfaceProjection {
   }
 
   /// The constant for the interface's IID (Interface ID).
-  String get iidConstant => switch (typeDef.guid) {
+  String get interfaceGuidConstant => switch (typeDef.guid) {
         final guid? => "/// @nodoc\nconst IID_$shortName = '$guid';",
         _ => throw StateError('$typeDef has no guid.')
       };
@@ -253,28 +248,6 @@ factory $shortName.from(IUnknown interface) =>
   /// The `_vtable` field of the generated class.
   String get vtableField => hasMethods ? 'final ${shortName}Vtbl _vtable;' : '';
 
-  /// The class projection of the interface, if available.
-  String get classProjection {
-    if (classTypeDef == null) return '';
-
-    final classShortName = classTypeDef!.safeTypename;
-    final clsidConstant = switch (classTypeDef!.guid) {
-      final guid? => "/// @nodoc\nconst CLSID_$classShortName = '$guid';",
-      _ => throw StateError('$typeDef has no guid.'),
-    };
-
-    return '''
-$clsidConstant
-
-/// {@category $category}
-class $classShortName extends $shortName {
-  $classShortName(super.ptr);
-
-  factory $classShortName.createInstance() => $classShortName(
-      createCOMObject(CLSID_$classShortName, IID_$shortName));
-}''';
-  }
-
   /// The v-table struct that contains the function pointers for the methods of
   /// the interface.
   String get vtableStruct => [
@@ -288,11 +261,18 @@ ${methodProjections.map((p) => 'external Pointer<NativeFunction<${p.nativeProtot
 '''
       ].join('\n');
 
+  /// The constant for the guid of the class, if available.
+  String get classGuidConstant => switch (classTypeDef?.guid) {
+        final guid? =>
+          "/// @nodoc\nconst ${classTypeDef!.safeTypename} = '$guid';",
+        _ => '',
+      };
+
   @override
   String toString() => '''
 $header
 $importHeader
-$iidConstant
+$interfaceGuidConstant
 
 $classPreamble
 class $shortName $extendsClause {
@@ -309,6 +289,6 @@ class $shortName $extendsClause {
 
 $vtableStruct
 
-$classProjection
+$classGuidConstant
 ''';
 }

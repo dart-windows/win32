@@ -24,7 +24,8 @@ IUIAutomationElement getRootElement(IUIAutomation uiAutomation) {
 /// Get the top-level window element from the given [processId].
 IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
   // Create an instance of the CUIAutomation class
-  final uiAutomation = CUIAutomation.createInstance();
+  final uiAutomation =
+      IUIAutomation(createCOMObject(CUIAutomation, IID_IUIAutomation));
   final root = getRootElement(uiAutomation);
 
   final valueParam = calloc<VARIANT>();

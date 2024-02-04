@@ -12,7 +12,6 @@ import 'package:ffi/ffi.dart';
 
 import '../extensions/iunknown.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -93,15 +92,4 @@ base class IApplicationActivationManagerVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_ApplicationActivationManager =
-    '{45ba127d-10a8-46ea-8ab7-56ea9078943c}';
-
-/// {@category com}
-class ApplicationActivationManager extends IApplicationActivationManager {
-  ApplicationActivationManager(super.ptr);
-
-  factory ApplicationActivationManager.createInstance() =>
-      ApplicationActivationManager(createCOMObject(
-          CLSID_ApplicationActivationManager,
-          IID_IApplicationActivationManager));
-}
+const ApplicationActivationManager = '{45ba127d-10a8-46ea-8ab7-56ea9078943c}';

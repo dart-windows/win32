@@ -84,7 +84,8 @@ void main() {
   check(CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE));
 
   // Retrieve the list of available audio output devices.
-  final pDeviceEnumerator = MMDeviceEnumerator.createInstance();
+  final pDeviceEnumerator = IMMDeviceEnumerator(
+      createCOMObject(MMDeviceEnumerator, IID_IMMDeviceEnumerator));
   final ppDevices = calloc<VTablePointer>();
   check(pDeviceEnumerator.enumAudioEndpoints(
       0, // dataflow: rendering device

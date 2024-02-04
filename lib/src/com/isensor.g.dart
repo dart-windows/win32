@@ -15,7 +15,6 @@ import '../guid.dart';
 import '../propertykey.dart';
 import '../structs.g.dart';
 import '../types.dart';
-import '../utils.dart';
 import 'iunknown.g.dart';
 
 /// @nodoc
@@ -172,12 +171,4 @@ base class ISensorVtbl extends Struct {
 }
 
 /// @nodoc
-const CLSID_Sensor = '{e97ced00-523a-4133-bf6f-d3a2dae7f6ba}';
-
-/// {@category com}
-class Sensor extends ISensor {
-  Sensor(super.ptr);
-
-  factory Sensor.createInstance() =>
-      Sensor(createCOMObject(CLSID_Sensor, IID_ISensor));
-}
+const Sensor = '{e97ced00-523a-4133-bf6f-d3a2dae7f6ba}';

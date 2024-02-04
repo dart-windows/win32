@@ -13,7 +13,7 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void createShortcut(String path, String pathLink, String? description) {
-  final shellLink = ShellLink.createInstance();
+  final shellLink = IShellLink(createCOMObject(ShellLink, IID_IShellLink));
   final lpPath = path.toNativeUtf16();
   final lpPathLink = pathLink.toNativeUtf16();
   final lpDescription = description?.toNativeUtf16() ?? nullptr;
