@@ -224,9 +224,6 @@ const _ffiTypes = <String>{
   // `Handle` is excluded as it's used in practice and doesn't seem to cause
   // issues.
   // 'Handle',
-
-  // TODO(halildurmus): Consider adding named prefixes to the use of dart:ffi to
-  // mitigate potential conflicts.
 };
 
 /// Set of Win32 types used both as types and identifiers.

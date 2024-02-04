@@ -188,7 +188,6 @@ class TypeProjection {
     // Could be a COM interface (e.g., `IFileDialog`).
     if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
 
-    // TODO(halildurmus): Consider returning the name as returned by metadata.
     throw StateError('Type information missing for $typeIdentifier.');
   }
 }
