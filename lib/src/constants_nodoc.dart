@@ -26,6 +26,7 @@ import 'package:ffi/ffi.dart';
 
 import 'constants.dart';
 import 'macros.dart';
+import 'structs.g.dart';
 
 // -----------------------------------------------------------------------------
 // Error constants
@@ -3343,3 +3344,1493 @@ const WAVE_FORMAT_PCM = 0x0001;
 const WAVE_FORMAT_ADPCM = 0x0002;
 const WAVE_FORMAT_IEEE_FLOAT = 0x0003;
 const WAVE_FORMAT_EXTENSIBLE = 0xFFFE;
+
+// -----------------------------------------------------------------------------
+// PKEY constants
+// -----------------------------------------------------------------------------
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_Characteristics =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+      ..ref.pid = 29;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_ClassCoInstallers =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1899828995, 41698, 18933, 6690927576503162002)
+      ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_ClassInstaller =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+      ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_ClassName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_DefaultService =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+      ..ref.pid = 11;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_DevType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+  ..ref.pid = 27;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_Exclusive => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+  ..ref.pid = 28;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_Icon => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_IconPath => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+  ..ref.pid = 12;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_LowerFilters => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+  ..ref.pid = 20;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_Name => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_NoDisplayClass =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+      ..ref.pid = 8;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_NoInstallClass =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+      ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_NoUseClass => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+  ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_PropPageProvider =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+      ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_Security => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+  ..ref.pid = 25;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_SecuritySDS => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+  ..ref.pid = 26;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_SilentInstall => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(630898684, 20647, 18382, 7364466931319441583)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceClass_UpperFilters => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1126273419, 63134, 18189, 5463529110985629349)
+  ..ref.pid = 19;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Address => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 51;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_AlwaysShowDeviceAsConnected =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 101;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_AssociationArray =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 80;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_BaselineExperienceId =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 78;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Category => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 90;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_CategoryGroup_Desc =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 94;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_CategoryGroup_Icon =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 95;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Category_Desc_Plural =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 92;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Category_Desc_Singular =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 91;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Category_Icon =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 93;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_DeviceDescription1 =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 81;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_DeviceDescription2 =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 82;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_DeviceFunctionSubRank =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 100;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_DiscoveryMethod =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 52;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_ExperienceId =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 89;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_FriendlyName =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+      ..ref.pid = 12288;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Icon => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 57;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_InstallInProgress =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2212127526, 38822, 16520, 2971064309735576468)
+      ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsAuthenticated =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 54;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsConnected => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 55;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsDefaultDevice =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 86;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsDeviceUniquelyIdentifiable =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 79;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsEncrypted => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 53;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsLocalMachine =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 70;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsMetadataSearchInProgress =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 72;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsNetworkDevice =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 85;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsNotInterestingForDisplay =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 74;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsNotWorkingProperly =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 83;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsPaired => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 56;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsSharedDevice =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 84;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_IsShowInDisconnectedState =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 68;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Last_Connected =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 67;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Last_Seen => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 66;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_LaunchDeviceStageFromExplorer =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 77;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_LaunchDeviceStageOnDeviceConnect =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 76;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Manufacturer =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+      ..ref.pid = 8192;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_MetadataCabinet =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 87;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_MetadataChecksum =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 73;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_MetadataPath =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 71;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_ModelName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 8194;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_ModelNumber => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 8195;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_PrimaryCategory =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 97;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_RequiresPairingElevation =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 88;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_RequiresUninstallElevation =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 99;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_UnpairUninstall =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+      ..ref.pid = 98;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceDisplay_Version => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 65;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceInterfaceClass_DefaultInterface =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(348666521, 2879, 17591, 7207335912217332926)
+      ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceInterface_ClassGuid => calloc<PROPERTYKEY>()
+  ..ref.fmtid.setGUIDFromComponents(40784238, 47124, 16715, 2470487657470610819)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceInterface_Enabled => calloc<PROPERTYKEY>()
+  ..ref.fmtid.setGUIDFromComponents(40784238, 47124, 16715, 2470487657470610819)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_DeviceInterface_FriendlyName =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(40784238, 47124, 16715, 2470487657470610819)
+      ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_AdditionalSoftwareRequested =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+      ..ref.pid = 19;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Address => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 30;
+
+Pointer<PROPERTYKEY> get PKEY_Device_BIOSVersion => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3941498653, 27187, 17617, -7479930469608373868)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_Device_BaseContainerId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 38;
+
+Pointer<PROPERTYKEY> get PKEY_Device_BusNumber => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 23;
+
+Pointer<PROPERTYKEY> get PKEY_Device_BusRelations => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_Device_BusReportedDeviceDesc =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1410045054, 35648, 17852, -6720130917481143640)
+      ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_Device_BusTypeGuid => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 21;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Capabilities => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 17;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Characteristics => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 29;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Children => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Class => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ClassGuid => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_Device_CompatibleIds => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ConfigFlags => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 12;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ContainerId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2357121542, 16266, 18471, 7853343301056768947)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DHP_Rebalance_Policy =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1410045054, 35648, 17852, -6720130917481143640)
+      ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DevNodeStatus => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DevType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 27;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DeviceDesc => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Driver => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 11;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverCoInstallers => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 11;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverDate => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverDesc => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverInfPath => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverInfSection => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverInfSectionExt =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+      ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverLogoLevel => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 15;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverPropPageProvider =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+      ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverProvider => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverRank => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 14;
+
+Pointer<PROPERTYKEY> get PKEY_Device_DriverVersion => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_EjectionRelations => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_Device_EnumeratorName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 24;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Exclusive => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 28;
+
+Pointer<PROPERTYKEY> get PKEY_Device_FriendlyName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 14;
+
+Pointer<PROPERTYKEY> get PKEY_Device_FriendlyNameAttributes =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2161647270, 29811, 19212, -8409297910773115262)
+      ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_GenericDriverInstalled =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+      ..ref.pid = 18;
+
+Pointer<PROPERTYKEY> get PKEY_Device_HardwareIds => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_InstallInProgress => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2212127526, 38822, 16520, 2971064309735576468)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_Device_InstallState => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 36;
+
+Pointer<PROPERTYKEY> get PKEY_Device_InstanceId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2026065864, 4170, 19146, 6300141507501532318)
+  ..ref.pid = 256;
+
+Pointer<PROPERTYKEY> get PKEY_Device_IsAssociateableByUserAction =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2161647270, 29811, 19212, -8409297910773115262)
+      ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Legacy => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2152296704, 35955, 18617, 7981813944493726122)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_LegacyBusType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 22;
+
+Pointer<PROPERTYKEY> get PKEY_Device_LocationInfo => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 15;
+
+Pointer<PROPERTYKEY> get PKEY_Device_LocationPaths => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 37;
+
+Pointer<PROPERTYKEY> get PKEY_Device_LowerFilters => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 20;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Manufacturer => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 13;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ManufacturerAttributes =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2161647270, 29811, 19212, -8409297910773115262)
+      ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_Device_MatchingDeviceId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 8;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ModelId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2161647270, 29811, 19212, -8409297910773115262)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_NoConnectSound => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 17;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Numa_Node => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1410045054, 35648, 17852, -6720130917481143640)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_PDOName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 16;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Parent => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 8;
+
+Pointer<PROPERTYKEY> get PKEY_Device_PowerData => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 32;
+
+Pointer<PROPERTYKEY> get PKEY_Device_PowerRelations => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_Device_PresenceNotForDevice =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2161647270, 29811, 19212, -8409297910773115262)
+      ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ProblemCode => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_RemovalPolicy => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 33;
+
+Pointer<PROPERTYKEY> get PKEY_Device_RemovalPolicyDefault =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+      ..ref.pid = 34;
+
+Pointer<PROPERTYKEY> get PKEY_Device_RemovalPolicyOverride =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+      ..ref.pid = 35;
+
+Pointer<PROPERTYKEY> get PKEY_Device_RemovalRelations => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Reported => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2152296704, 35955, 18617, 7981813944493726122)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ResourcePickerExceptions =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+      ..ref.pid = 13;
+
+Pointer<PROPERTYKEY> get PKEY_Device_ResourcePickerTags => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2830656989, 11837, 16532, -2993472463437457491)
+  ..ref.pid = 12;
+
+Pointer<PROPERTYKEY> get PKEY_Device_SafeRemovalRequired =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2950264384, 34467, 16912, 6178562937568394422)
+      ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Device_SafeRemovalRequiredOverride =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2950264384, 34467, 16912, 6178562937568394422)
+      ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Security => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 25;
+
+Pointer<PROPERTYKEY> get PKEY_Device_SecuritySDS => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 26;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Service => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_Device_Siblings => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_Device_SignalStrength => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2161647270, 29811, 19212, -8409297910773115262)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_Device_TransportRelations => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1128310469, 37882, 18182, -6366673150683698025)
+  ..ref.pid = 11;
+
+Pointer<PROPERTYKEY> get PKEY_Device_UINumber => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 18;
+
+Pointer<PROPERTYKEY> get PKEY_Device_UINumberDescFormat => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 31;
+
+Pointer<PROPERTYKEY> get PKEY_Device_UpperFilters => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2757502286, 57116, 20221, -2283139988962467712)
+  ..ref.pid = 19;
+
+Pointer<PROPERTYKEY> get PKEY_DrvPkg_BrandingIcon => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3480468305, 15039, 17570, 3612346253231972485)
+  ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_DrvPkg_DetailedDescription =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(3480468305, 15039, 17570, 3612346253231972485)
+      ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_DrvPkg_DocumentationLink => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3480468305, 15039, 17570, 3612346253231972485)
+  ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_DrvPkg_Icon => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3480468305, 15039, 17570, 3612346253231972485)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_DrvPkg_Model => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3480468305, 15039, 17570, 3612346253231972485)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_DrvPkg_VendorWebSite => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3480468305, 15039, 17570, 3612346253231972485)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_FunctionInstance => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(146850387, 41300, 18246, -8425083353920567920)
+  ..ref.pid = 1;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Devinst => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 4097;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_DisplayAttribute => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_DriverDate => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 11;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_DriverProvider => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_DriverVersion => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Function => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 4099;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Icon => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Image => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 4098;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Manufacturer => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Model => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Name => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_SerialNumber => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 8;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_ShellAttributes => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 4100;
+
+Pointer<PROPERTYKEY> get PKEY_Hardware_Status => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1588543218, 57546, 17816, 6042033126957450943)
+  ..ref.pid = 4096;
+
+Pointer<PROPERTYKEY> get PKEY_NAME => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3072717104, 18415, 4122, -5986516953915526747)
+  ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_Numa_Proximity_Domain => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1410045054, 35648, 17852, -6720130917481143640)
+  ..ref.pid = 1;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Associated => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1338312574, 46726, 17598, -3635470331247402093)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Category_Desc_NonPlural =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+      ..ref.pid = 12304;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_CompactSignature => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 28674;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_CompatibleTypes => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1338312574, 46726, 17598, -3635470331247402093)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_DeviceCategory => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12292;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_DeviceCategory_Desc => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12293;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_DeviceCertHash => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 28675;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_DomainName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 20480;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_FirmwareVersion => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12289;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_GlobalIdentity => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4096;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ID => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4101;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_IPBusEnumerated => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 28688;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_InstallState => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1338312574, 46726, 17598, -3635470331247402093)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Installable => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1338312574, 46726, 17598, -3635470331247402093)
+  ..ref.pid = 1;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_IpAddress => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12297;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ManufacturerUrl => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 8193;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_MetadataVersion => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4100;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ModelUrl => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 8196;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_NetworkInterfaceGuid => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12296;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_NetworkInterfaceLuid => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12295;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_PhysicalAddress => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12294;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_PresentationUrl => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 8198;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_RemoteAddress => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4102;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Removable => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 28672;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_RootProxy => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4103;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Scopes => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4098;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_SecureChannel => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 28673;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_SerialNumber => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 12290;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ServiceAddress => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 16384;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ServiceControlUrl => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 16388;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ServiceDescUrl => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 16389;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ServiceEventSubUrl => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 16390;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ServiceId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 16385;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ServiceTypes => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 16386;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_ShareName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 20482;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Types => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4097;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_Upc => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 8197;
+
+Pointer<PROPERTYKEY> get PKEY_PNPX_XAddrs => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 4099;
+
+Pointer<PROPERTYKEY> get PKEY_Pairing_IsWifiOnlyDevice => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2282212070, 32182, 20240, -4858799425532468082)
+  ..ref.pid = 16;
+
+Pointer<PROPERTYKEY> get PKEY_Pairing_ListItemDefault => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2282212070, 32182, 20240, -4858799425532468082)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_Pairing_ListItemDescription =>
+    calloc<PROPERTYKEY>()
+      ..ref
+          .fmtid
+          .setGUIDFromComponents(2282212070, 32182, 20240, -4858799425532468082)
+      ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_Pairing_ListItemIcon => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2282212070, 32182, 20240, -4858799425532468082)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_Pairing_ListItemText => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2282212070, 32182, 20240, -4858799425532468082)
+  ..ref.pid = 1;
+
+Pointer<PROPERTYKEY> get PKEY_SSDP_AltLocationInfo => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 24576;
+
+Pointer<PROPERTYKEY> get PKEY_SSDP_DevLifeTime => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 24577;
+
+Pointer<PROPERTYKEY> get PKEY_SSDP_NetworkInterface => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(1701460915, 60608, 17405, -3632634406926387324)
+  ..ref.pid = 24578;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_AssocState => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342728, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 9;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_AuthType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342722, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_ConfigError => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342729, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 10;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_ConfigMethods => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342725, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_ConfigState => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342729, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 11;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_ConnType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342724, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_DevicePasswordId => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342729, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 12;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_EncryptType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342723, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 4;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_OSVersion => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342729, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 13;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_RegistrarType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342731, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 15;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_RequestType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342721, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_RfBand => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342727, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 8;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_VendorExtension => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342730, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 14;
+
+Pointer<PROPERTYKEY> get PKEY_WCN_Version => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(2283342720, 18052, 4570, -9111177101523785054)
+  ..ref.pid = 1;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_Comment => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 7;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_DisplayType => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 3;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_LocalName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 5;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_Provider => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 8;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_RemoteName => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 6;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_Scope => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 1;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_Type => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 2;
+
+Pointer<PROPERTYKEY> get PKEY_WNET_Usage => calloc<PROPERTYKEY>()
+  ..ref
+      .fmtid
+      .setGUIDFromComponents(3736970298, 14259, 17283, -6082909702859724911)
+  ..ref.pid = 4;

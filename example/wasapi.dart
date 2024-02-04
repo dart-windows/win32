@@ -124,7 +124,7 @@ void main() {
     // Build property key to get device friendly name.
     final pProps = IPropertyStore(ppProps.value);
     free(ppProps);
-    final pPropKey = PROPERTYKEY.DeviceInterface_FriendlyName();
+    final pPropKey = PKEY_DeviceInterface_FriendlyName;
 
     // Retrieve the current device friendly name.
     final pVal = calloc<PROPVARIANT>();

@@ -106,10 +106,6 @@ class ComInterfaceProjection {
             when typeDef.isWrapperStruct &&
                 specialTypes.containsKey(typeDef.name) =>
           'package:ffi/ffi.dart',
-        // These structs are manually generated.
-        // TODO(halildurmus): Auto generate these.
-        _ when typeDef.isStruct && typeDef.safeTypename == 'PROPERTYKEY' =>
-          '../propertykey.dart',
         _ when typeDef.isStruct && !typeDef.isWrapperStruct =>
           '../structs.g.dart',
         _ => null

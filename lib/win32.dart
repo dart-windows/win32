@@ -247,7 +247,6 @@ export 'src/extensions/unpack_utf16.dart';
 export 'src/guid.dart';
 export 'src/inline.dart';
 export 'src/macros.dart';
-export 'src/propertykey.dart';
 export 'src/structs.g.dart'
     hide
         ADDRINFO,

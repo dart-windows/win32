@@ -7452,6 +7452,17 @@ base class PROCESS_INFORMATION extends Struct {
   external int dwThreadId;
 }
 
+/// Specifies the FMTID/PID identifier that programmatically identifies a
+/// property. Replaces SHCOLUMNID.
+///
+/// {@category struct}
+base class PROPERTYKEY extends Struct {
+  external GUID fmtid;
+
+  @Uint32()
+  external int pid;
+}
+
 /// The PROPSPEC structure is used by many of the methods of IPropertyStorage to
 /// specify a property either by its property identifier (ID) or the associated
 /// string name.
