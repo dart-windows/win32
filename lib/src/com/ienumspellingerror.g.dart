@@ -28,7 +28,8 @@ class IEnumSpellingError extends IUnknown {
       IEnumSpellingError(interface.toInterface(IID_IEnumSpellingError));
 
   int next(Pointer<VTablePointer> value) => _vtable.Next.asFunction<
-      int Function(VTablePointer, Pointer<VTablePointer> value)>()(ptr, value);
+      int Function(
+          VTablePointer lpVtbl, Pointer<VTablePointer> value)>()(ptr, value);
 }
 
 /// @nodoc
@@ -36,5 +37,6 @@ base class IEnumSpellingErrorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> value)>> Next;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> value)>> Next;
 }

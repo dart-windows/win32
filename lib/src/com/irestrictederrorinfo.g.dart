@@ -36,7 +36,7 @@ class IRestrictedErrorInfo extends IUnknown {
           Pointer<Pointer<Utf16>> capabilitySid) =>
       _vtable.GetErrorDetails.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<Utf16>> description,
                   Pointer<Int32> error,
                   Pointer<Pointer<Utf16>> restrictedDescription,
@@ -45,8 +45,8 @@ class IRestrictedErrorInfo extends IUnknown {
 
   int getReference(Pointer<Pointer<Utf16>> reference) =>
       _vtable.GetReference.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> reference)>()(
-          ptr, reference);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> reference)>()(ptr, reference);
 }
 
 /// @nodoc
@@ -55,13 +55,14 @@ base class IRestrictedErrorInfoVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> description,
               Pointer<Int32> error,
               Pointer<Pointer<Utf16>> restrictedDescription,
               Pointer<Pointer<Utf16>> capabilitySid)>> GetErrorDetails;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> reference)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> reference)>>
       GetReference;
 }

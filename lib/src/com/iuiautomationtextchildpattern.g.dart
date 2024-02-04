@@ -40,8 +40,8 @@ class IUIAutomationTextChildPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_TextContainer.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> container)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> container)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,8 +56,8 @@ class IUIAutomationTextChildPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_TextRange.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> range)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,10 +73,12 @@ base class IUIAutomationTextChildPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> container)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> container)>>
       get_TextContainer;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       get_TextRange;
 }

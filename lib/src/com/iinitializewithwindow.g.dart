@@ -28,14 +28,14 @@ class IInitializeWithWindow extends IUnknown {
   factory IInitializeWithWindow.from(IUnknown interface) =>
       IInitializeWithWindow(interface.toInterface(IID_IInitializeWithWindow));
 
-  int initialize(int hwnd) =>
-      _vtable.Initialize.asFunction<int Function(VTablePointer, int hwnd)>()(
-          ptr, hwnd);
+  int initialize(int hwnd) => _vtable.Initialize.asFunction<
+      int Function(VTablePointer lpVtbl, int hwnd)>()(ptr, hwnd);
 }
 
 /// @nodoc
 base class IInitializeWithWindowVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, IntPtr hwnd)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, IntPtr hwnd)>>
       Initialize;
 }

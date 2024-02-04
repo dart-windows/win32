@@ -35,25 +35,29 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
 
   int setOption(Pointer<GUID> optionid, Pointer<VARIANT> value) =>
       _vtable.SetOption.asFunction<
-          int Function(VTablePointer, Pointer<GUID> optionid,
+          int Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> value)>()(ptr, optionid, value);
 
   int getOption(Pointer<GUID> optionid, Pointer<VARIANT> pvalue) =>
       _vtable.GetOption.asFunction<
-          int Function(VTablePointer, Pointer<GUID> optionid,
+          int Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> pvalue)>()(ptr, optionid, pvalue);
 
   int openScopeOnITypeInfo(VTablePointer pITI, int dwOpenFlags,
           Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScopeOnITypeInfo.asFunction<
-              int Function(VTablePointer, VTablePointer pITI, int dwOpenFlags,
-                  Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer pITI,
+                  int dwOpenFlags,
+                  Pointer<GUID> riid,
+                  Pointer<VTablePointer> ppIUnk)>()(
           ptr, pITI, dwOpenFlags, riid, ppIUnk);
 
   int getCORSystemDirectory(
           Pointer<Utf16>? szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
       _vtable.GetCORSystemDirectory.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> szBuffer,
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> szBuffer,
                   int cchBuffer, Pointer<Uint32> pchBuffer)>()(
           ptr, szBuffer ?? nullptr, cchBuffer, pchBuffer);
 
@@ -67,7 +71,7 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
           Pointer<Uint32> pcName) =>
       _vtable.FindAssembly.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Utf16> szAppBase,
                   Pointer<Utf16> szPrivateBin,
                   Pointer<Utf16> szGlobalBin,
@@ -88,7 +92,7 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
           Pointer<Uint32> pcName) =>
       _vtable.FindAssemblyModule.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Utf16> szAppBase,
                   Pointer<Utf16> szPrivateBin,
                   Pointer<Utf16> szGlobalBin,
@@ -113,16 +117,16 @@ base class IMetaDataDispenserExVtbl extends Struct {
   external IMetaDataDispenserVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> optionid,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> value)>> SetOption;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> optionid,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> pvalue)>> GetOption;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer pITI,
               Uint32 dwOpenFlags,
               Pointer<GUID> riid,
@@ -130,14 +134,14 @@ base class IMetaDataDispenserExVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> szBuffer,
               Uint32 cchBuffer,
               Pointer<Uint32> pchBuffer)>> GetCORSystemDirectory;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> szAppBase,
               Pointer<Utf16> szPrivateBin,
               Pointer<Utf16> szGlobalBin,
@@ -148,7 +152,7 @@ base class IMetaDataDispenserExVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> szAppBase,
               Pointer<Utf16> szPrivateBin,
               Pointer<Utf16> szGlobalBin,

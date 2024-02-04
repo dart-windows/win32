@@ -34,15 +34,16 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
       IUIAutomationElement3(interface.toInterface(IID_IUIAutomationElement3));
 
   int showContextMenu() =>
-      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer lpVtbl)>()(
+          ptr);
 
   int get currentIsPeripheral {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentIsPeripheral
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentIsPeripheral.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,9 +57,9 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedIsPeripheral
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedIsPeripheral.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,12 +73,14 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
 /// @nodoc
 base class IUIAutomationElement3Vtbl extends Struct {
   external IUIAutomationElement2Vtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       ShowContextMenu;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentIsPeripheral;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedIsPeripheral;
 }

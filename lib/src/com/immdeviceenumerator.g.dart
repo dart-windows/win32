@@ -33,29 +33,31 @@ class IMMDeviceEnumerator extends IUnknown {
   int enumAudioEndpoints(
           int dataFlow, int dwStateMask, Pointer<VTablePointer> ppDevices) =>
       _vtable.EnumAudioEndpoints.asFunction<
-              int Function(VTablePointer, int dataFlow, int dwStateMask,
+              int Function(VTablePointer lpVtbl, int dataFlow, int dwStateMask,
                   Pointer<VTablePointer> ppDevices)>()(
           ptr, dataFlow, dwStateMask, ppDevices);
 
   int getDefaultAudioEndpoint(
           int dataFlow, int role, Pointer<VTablePointer> ppEndpoint) =>
       _vtable.GetDefaultAudioEndpoint.asFunction<
-              int Function(VTablePointer, int dataFlow, int role,
+              int Function(VTablePointer lpVtbl, int dataFlow, int role,
                   Pointer<VTablePointer> ppEndpoint)>()(
           ptr, dataFlow, role, ppEndpoint);
 
   int getDevice(Pointer<Utf16> pwstrId, Pointer<VTablePointer> ppDevice) =>
       _vtable.GetDevice.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> pwstrId,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
               Pointer<VTablePointer> ppDevice)>()(ptr, pwstrId, ppDevice);
 
   int registerEndpointNotificationCallback(VTablePointer pClient) =>
       _vtable.RegisterEndpointNotificationCallback.asFunction<
-          int Function(VTablePointer, VTablePointer pClient)>()(ptr, pClient);
+          int Function(
+              VTablePointer lpVtbl, VTablePointer pClient)>()(ptr, pClient);
 
   int unregisterEndpointNotificationCallback(VTablePointer pClient) =>
       _vtable.UnregisterEndpointNotificationCallback.asFunction<
-          int Function(VTablePointer, VTablePointer pClient)>()(ptr, pClient);
+          int Function(
+              VTablePointer lpVtbl, VTablePointer pClient)>()(ptr, pClient);
 }
 
 /// @nodoc
@@ -63,21 +65,26 @@ base class IMMDeviceEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 dataFlow, Uint32 dwStateMask,
+          Int32 Function(
+              VTablePointer lpVtbl,
+              Int32 dataFlow,
+              Uint32 dwStateMask,
               Pointer<VTablePointer> ppDevices)>> EnumAudioEndpoints;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 dataFlow, Int32 role,
+          Int32 Function(VTablePointer lpVtbl, Int32 dataFlow, Int32 role,
               Pointer<VTablePointer> ppEndpoint)>> GetDefaultAudioEndpoint;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> pwstrId,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
               Pointer<VTablePointer> ppDevice)>> GetDevice;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer pClient)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer pClient)>>
       RegisterEndpointNotificationCallback;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer pClient)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer pClient)>>
       UnregisterEndpointNotificationCallback;
 }
 

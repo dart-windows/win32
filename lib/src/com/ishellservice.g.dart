@@ -29,14 +29,15 @@ class IShellService extends IUnknown {
       IShellService(interface.toInterface(IID_IShellService));
 
   int setOwner(VTablePointer? punkOwner) => _vtable.SetOwner.asFunction<
-      int Function(
-          VTablePointer, VTablePointer punkOwner)>()(ptr, punkOwner ?? nullptr);
+          int Function(VTablePointer lpVtbl, VTablePointer punkOwner)>()(
+      ptr, punkOwner ?? nullptr);
 }
 
 /// @nodoc
 base class IShellServiceVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer punkOwner)>> SetOwner;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer punkOwner)>>
+      SetOwner;
 }

@@ -34,20 +34,20 @@ class ISpEventSource extends ISpNotifySource {
 
   int setInterest(int ullEventInterest, int ullQueuedInterest) =>
       _vtable.SetInterest.asFunction<
-              int Function(VTablePointer, int ullEventInterest,
+              int Function(VTablePointer lpVtbl, int ullEventInterest,
                   int ullQueuedInterest)>()(
           ptr, ullEventInterest, ullQueuedInterest);
 
   int getEvents(int ulCount, Pointer<SPEVENT> pEventArray,
           Pointer<Uint32> pulFetched) =>
       _vtable.GetEvents.asFunction<
-              int Function(VTablePointer, int ulCount,
+              int Function(VTablePointer lpVtbl, int ulCount,
                   Pointer<SPEVENT> pEventArray, Pointer<Uint32> pulFetched)>()(
           ptr, ulCount, pEventArray, pulFetched);
 
   int getInfo(Pointer<SPEVENTSOURCEINFO> pInfo) => _vtable.GetInfo.asFunction<
-      int Function(
-          VTablePointer, Pointer<SPEVENTSOURCEINFO> pInfo)>()(ptr, pInfo);
+      int Function(VTablePointer lpVtbl,
+          Pointer<SPEVENTSOURCEINFO> pInfo)>()(ptr, pInfo);
 }
 
 /// @nodoc
@@ -55,17 +55,17 @@ base class ISpEventSourceVtbl extends Struct {
   external ISpNotifySourceVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint64 ullEventInterest,
+          Int32 Function(VTablePointer lpVtbl, Uint64 ullEventInterest,
               Uint64 ullQueuedInterest)>> SetInterest;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 ulCount,
               Pointer<SPEVENT> pEventArray,
               Pointer<Uint32> pulFetched)>> GetEvents;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<SPEVENTSOURCEINFO> pInfo)>>
-      GetInfo;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<SPEVENTSOURCEINFO> pInfo)>> GetInfo;
 }

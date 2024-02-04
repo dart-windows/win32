@@ -32,12 +32,12 @@ class IAppxManifestProperties extends IUnknown {
 
   int getBoolValue(Pointer<Utf16> name, Pointer<Int32> value) =>
       _vtable.GetBoolValue.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> name,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Int32> value)>()(ptr, name, value);
 
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> name,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>()(ptr, name, value);
 }
 
@@ -45,12 +45,11 @@ class IAppxManifestProperties extends IUnknown {
 base class IAppxManifestPropertiesVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Utf16> name, Pointer<Int32> value)>>
-      GetBoolValue;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+              Pointer<Int32> value)>> GetBoolValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> name,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>> GetStringValue;
 }

@@ -34,21 +34,24 @@ class IUnknown {
 
   int queryInterface(Pointer<GUID> riid, Pointer<Pointer> ppvObject) =>
       _vtable.QueryInterface.asFunction<
-          int Function(VTablePointer, Pointer<GUID> riid,
+          int Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<Pointer> ppvObject)>()(ptr, riid, ppvObject);
 
-  int addRef() => _vtable.AddRef.asFunction<int Function(VTablePointer)>()(ptr);
+  int addRef() =>
+      _vtable.AddRef.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int release() =>
-      _vtable.Release.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.Release.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }
 
 /// @nodoc
 base class IUnknownVtbl extends Struct {
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> riid,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<Pointer> ppvObject)>> QueryInterface;
-  external Pointer<NativeFunction<Uint32 Function(VTablePointer)>> AddRef;
-  external Pointer<NativeFunction<Uint32 Function(VTablePointer)>> Release;
+  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
+      AddRef;
+  external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
+      Release;
 }

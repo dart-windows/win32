@@ -35,7 +35,7 @@ class IAppxFactory extends IUnknown {
           Pointer<VTablePointer> packageWriter) =>
       _vtable.CreatePackageWriter.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer outputStream,
                   Pointer<APPX_PACKAGE_SETTINGS> settings,
                   Pointer<VTablePointer> packageWriter)>()(
@@ -44,21 +44,21 @@ class IAppxFactory extends IUnknown {
   int createPackageReader(
           VTablePointer inputStream, Pointer<VTablePointer> packageReader) =>
       _vtable.CreatePackageReader.asFunction<
-              int Function(VTablePointer, VTablePointer inputStream,
+              int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                   Pointer<VTablePointer> packageReader)>()(
           ptr, inputStream, packageReader);
 
   int createManifestReader(
           VTablePointer inputStream, Pointer<VTablePointer> manifestReader) =>
       _vtable.CreateManifestReader.asFunction<
-              int Function(VTablePointer, VTablePointer inputStream,
+              int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                   Pointer<VTablePointer> manifestReader)>()(
           ptr, inputStream, manifestReader);
 
   int createBlockMapReader(
           VTablePointer inputStream, Pointer<VTablePointer> blockMapReader) =>
       _vtable.CreateBlockMapReader.asFunction<
-              int Function(VTablePointer, VTablePointer inputStream,
+              int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                   Pointer<VTablePointer> blockMapReader)>()(
           ptr, inputStream, blockMapReader);
 
@@ -68,7 +68,7 @@ class IAppxFactory extends IUnknown {
           Pointer<VTablePointer> blockMapReader) =>
       _vtable.CreateValidatedBlockMapReader.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer blockMapStream,
                   Pointer<Utf16> signatureFileName,
                   Pointer<VTablePointer> blockMapReader)>()(
@@ -81,26 +81,26 @@ base class IAppxFactoryVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer outputStream,
               Pointer<APPX_PACKAGE_SETTINGS> settings,
               Pointer<VTablePointer> packageWriter)>> CreatePackageWriter;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer inputStream,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer inputStream,
               Pointer<VTablePointer> packageReader)>> CreatePackageReader;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer inputStream,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer inputStream,
               Pointer<VTablePointer> manifestReader)>> CreateManifestReader;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer inputStream,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer inputStream,
               Pointer<VTablePointer> blockMapReader)>> CreateBlockMapReader;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer blockMapStream,
                   Pointer<Utf16> signatureFileName,
                   Pointer<VTablePointer> blockMapReader)>>

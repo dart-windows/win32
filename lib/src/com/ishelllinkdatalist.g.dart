@@ -29,40 +29,44 @@ class IShellLinkDataList extends IUnknown {
       IShellLinkDataList(interface.toInterface(IID_IShellLinkDataList));
 
   int addDataBlock(Pointer pDataBlock) => _vtable.AddDataBlock.asFunction<
-      int Function(VTablePointer, Pointer pDataBlock)>()(ptr, pDataBlock);
+      int Function(
+          VTablePointer lpVtbl, Pointer pDataBlock)>()(ptr, pDataBlock);
 
   int copyDataBlock(int dwSig, Pointer<Pointer> ppDataBlock) =>
       _vtable.CopyDataBlock.asFunction<
-          int Function(VTablePointer, int dwSig,
+          int Function(VTablePointer lpVtbl, int dwSig,
               Pointer<Pointer> ppDataBlock)>()(ptr, dwSig, ppDataBlock);
 
   int removeDataBlock(int dwSig) => _vtable.RemoveDataBlock.asFunction<
-      int Function(VTablePointer, int dwSig)>()(ptr, dwSig);
+      int Function(VTablePointer lpVtbl, int dwSig)>()(ptr, dwSig);
 
   int getFlags(Pointer<Uint32> pdwFlags) => _vtable.GetFlags.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> pdwFlags)>()(ptr, pdwFlags);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Uint32> pdwFlags)>()(ptr, pdwFlags);
 
-  int setFlags(int dwFlags) =>
-      _vtable.SetFlags.asFunction<int Function(VTablePointer, int dwFlags)>()(
-          ptr, dwFlags);
+  int setFlags(int dwFlags) => _vtable.SetFlags.asFunction<
+      int Function(VTablePointer lpVtbl, int dwFlags)>()(ptr, dwFlags);
 }
 
 /// @nodoc
 base class IShellLinkDataListVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer pDataBlock)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer pDataBlock)>>
       AddDataBlock;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Uint32 dwSig, Pointer<Pointer> ppDataBlock)>>
-      CopyDataBlock;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 dwSig)>>
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwSig,
+              Pointer<Pointer> ppDataBlock)>> CopyDataBlock;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwSig)>>
       RemoveDataBlock;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> pdwFlags)>> GetFlags;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwFlags)>>
+      GetFlags;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Uint32 dwFlags)>> SetFlags;
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwFlags)>>
+      SetFlags;
 }

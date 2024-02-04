@@ -32,14 +32,18 @@ class IUIAutomation5 extends IUIAutomation4 {
   int addNotificationEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddNotificationEventHandler.asFunction<
-              int Function(VTablePointer, VTablePointer element, int scope,
-                  VTablePointer cacheRequest, VTablePointer handler)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer element,
+                  int scope,
+                  VTablePointer cacheRequest,
+                  VTablePointer handler)>()(
           ptr, element, scope, cacheRequest, handler);
 
   int removeNotificationEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveNotificationEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 }
 
@@ -49,14 +53,13 @@ base class IUIAutomation5Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
               VTablePointer cacheRequest,
               VTablePointer handler)>> AddNotificationEventHandler;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer element, VTablePointer handler)>>
-      RemoveNotificationEventHandler;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+              VTablePointer handler)>> RemoveNotificationEventHandler;
 }

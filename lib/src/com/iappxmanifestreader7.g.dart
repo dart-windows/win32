@@ -30,20 +30,20 @@ class IAppxManifestReader7 extends IUnknown {
 
   int getDriverDependencies(Pointer<VTablePointer> driverDependencies) =>
       _vtable.GetDriverDependencies.asFunction<
-              int Function(
-                  VTablePointer, Pointer<VTablePointer> driverDependencies)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> driverDependencies)>()(
           ptr, driverDependencies);
 
   int getOSPackageDependencies(Pointer<VTablePointer> osPackageDependencies) =>
       _vtable.GetOSPackageDependencies.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> osPackageDependencies)>()(
           ptr, osPackageDependencies);
 
   int getHostRuntimeDependencies(
           Pointer<VTablePointer> hostRuntimeDependencies) =>
       _vtable.GetHostRuntimeDependencies.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> hostRuntimeDependencies)>()(
           ptr, hostRuntimeDependencies);
 }
@@ -53,17 +53,17 @@ base class IAppxManifestReader7Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> driverDependencies)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> driverDependencies)>>
       GetDriverDependencies;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> osPackageDependencies)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> osPackageDependencies)>>
       GetOSPackageDependencies;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
+              Int32 Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> hostRuntimeDependencies)>>
       GetHostRuntimeDependencies;
 }

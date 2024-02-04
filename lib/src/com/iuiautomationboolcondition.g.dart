@@ -40,8 +40,8 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_BooleanValue.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> boolVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> boolVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,6 +56,7 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
 base class IUIAutomationBoolConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> boolVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> boolVal)>>
       get_BooleanValue;
 }

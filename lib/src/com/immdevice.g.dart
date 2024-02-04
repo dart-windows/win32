@@ -38,7 +38,7 @@ class IMMDevice extends IUnknown {
           Pointer<Pointer> ppInterface) =>
       _vtable.Activate.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<GUID> iid,
                   int dwClsCtx,
                   Pointer<PROPVARIANT> pActivationParams,
@@ -47,16 +47,17 @@ class IMMDevice extends IUnknown {
 
   int openPropertyStore(int stgmAccess, Pointer<VTablePointer> ppProperties) =>
       _vtable.OpenPropertyStore.asFunction<
-              int Function(VTablePointer, int stgmAccess,
+              int Function(VTablePointer lpVtbl, int stgmAccess,
                   Pointer<VTablePointer> ppProperties)>()(
           ptr, stgmAccess, ppProperties);
 
   int getId(Pointer<Pointer<Utf16>> ppstrId) => _vtable.GetId.asFunction<
-      int Function(
-          VTablePointer, Pointer<Pointer<Utf16>> ppstrId)>()(ptr, ppstrId);
+      int Function(VTablePointer lpVtbl,
+          Pointer<Pointer<Utf16>> ppstrId)>()(ptr, ppstrId);
 
   int getState(Pointer<Uint32> pdwState) => _vtable.GetState.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> pdwState)>()(ptr, pdwState);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Uint32> pdwState)>()(ptr, pdwState);
 }
 
 /// @nodoc
@@ -65,20 +66,21 @@ base class IMMDeviceVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<GUID> iid,
               Uint32 dwClsCtx,
               Pointer<PROPVARIANT> pActivationParams,
               Pointer<Pointer> ppInterface)>> Activate;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 stgmAccess,
+          Int32 Function(VTablePointer lpVtbl, Uint32 stgmAccess,
               Pointer<VTablePointer> ppProperties)>> OpenPropertyStore;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> ppstrId)>>
-      GetId;
-  external Pointer<
       NativeFunction<
-          Uint32 Function(VTablePointer, Pointer<Uint32> pdwState)>> GetState;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> ppstrId)>> GetId;
+  external Pointer<
+          NativeFunction<
+              Uint32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwState)>>
+      GetState;
 }

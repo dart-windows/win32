@@ -39,9 +39,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentIsGrabbed
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentIsGrabbed.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -55,9 +55,9 @@ class IUIAutomationDragPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedIsGrabbed
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedIsGrabbed.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,8 +72,8 @@ class IUIAutomationDragPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentDropEffect.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -88,8 +88,8 @@ class IUIAutomationDragPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDropEffect.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -104,7 +104,7 @@ class IUIAutomationDragPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentDropEffects.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -120,7 +120,7 @@ class IUIAutomationDragPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDropEffects.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -133,48 +133,54 @@ class IUIAutomationDragPattern extends IUnknown {
 
   int getCurrentGrabbedItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentGrabbedItems.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int getCachedGrabbedItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedGrabbedItems.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 }
 
 /// @nodoc
 base class IUIAutomationDragPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentIsGrabbed;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedIsGrabbed;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentDropEffect;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedDropEffect;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       get_CurrentDropEffects;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       get_CachedDropEffects;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCurrentGrabbedItems;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCachedGrabbedItems;
 }

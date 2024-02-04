@@ -13,7 +13,7 @@ class ComMethodProjection extends MethodProjection {
 
   @override
   String get dartParams => [
-        'VTablePointer',
+        'VTablePointer lpVtbl',
         ...parameters.map((param) => param.dartProjection)
       ].join(', ');
 
@@ -22,7 +22,7 @@ class ComMethodProjection extends MethodProjection {
 
   @override
   String get nativeParams => [
-        'VTablePointer',
+        'VTablePointer lpVtbl',
         ...parameters.map((param) => param.nativeProjection)
       ].join(', ');
 

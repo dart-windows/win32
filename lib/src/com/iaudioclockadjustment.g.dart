@@ -32,13 +32,15 @@ class IAudioClockAdjustment extends IUnknown {
       IAudioClockAdjustment(interface.toInterface(IID_IAudioClockAdjustment));
 
   int setSampleRate(double flSampleRate) => _vtable.SetSampleRate.asFunction<
-      int Function(VTablePointer, double flSampleRate)>()(ptr, flSampleRate);
+      int Function(
+          VTablePointer lpVtbl, double flSampleRate)>()(ptr, flSampleRate);
 }
 
 /// @nodoc
 base class IAudioClockAdjustmentVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Float flSampleRate)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Float flSampleRate)>>
       SetSampleRate;
 }

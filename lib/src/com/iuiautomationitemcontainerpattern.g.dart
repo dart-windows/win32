@@ -35,7 +35,7 @@ class IUIAutomationItemContainerPattern extends IUnknown {
           VARIANT value, Pointer<VTablePointer> pFound) =>
       _vtable.FindItemByProperty.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer pStartAfter,
                   int propertyId,
                   VARIANT value,
@@ -49,7 +49,7 @@ base class IUIAutomationItemContainerPatternVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer pStartAfter,
               Int32 propertyId,
               VARIANT value,

@@ -37,9 +37,9 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentIsDialog
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentIsDialog.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -53,9 +53,9 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedIsDialog
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedIsDialog.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,9 +70,11 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
 base class IUIAutomationElement9Vtbl extends Struct {
   external IUIAutomationElement8Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentIsDialog;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedIsDialog;
 }

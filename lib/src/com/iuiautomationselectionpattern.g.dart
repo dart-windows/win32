@@ -37,16 +37,16 @@ class IUIAutomationSelectionPattern extends IUnknown {
 
   int getCurrentSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentSelection.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get currentCanSelectMultiple {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentCanSelectMultiple
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentCanSelectMultiple.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -60,9 +60,9 @@ class IUIAutomationSelectionPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentIsSelectionRequired
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentIsSelectionRequired.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -74,16 +74,16 @@ class IUIAutomationSelectionPattern extends IUnknown {
 
   int getCachedSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedSelection.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get cachedCanSelectMultiple {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedCanSelectMultiple
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedCanSelectMultiple.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -97,9 +97,9 @@ class IUIAutomationSelectionPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedIsSelectionRequired
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedIsSelectionRequired.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -115,22 +115,28 @@ base class IUIAutomationSelectionPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCurrentSelection;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentCanSelectMultiple;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentIsSelectionRequired;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCachedSelection;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedCanSelectMultiple;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedIsSelectionRequired;
 }

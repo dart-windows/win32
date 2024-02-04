@@ -41,8 +41,8 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
 
     try {
       final hr = _vtable.get_CurrentFirstSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,8 +57,8 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
 
     try {
       final hr = _vtable.get_CurrentLastSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,8 +73,8 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
 
     try {
       final hr = _vtable.get_CurrentCurrentSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -88,9 +88,9 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentItemCount
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentItemCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -105,8 +105,8 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
 
     try {
       final hr = _vtable.get_CachedFirstSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -121,8 +121,8 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
 
     try {
       final hr = _vtable.get_CachedLastSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -137,8 +137,8 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
 
     try {
       final hr = _vtable.get_CachedCurrentSelectedItem.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -152,9 +152,9 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedItemCount
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedItemCount.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -170,32 +170,40 @@ base class IUIAutomationSelectionPattern2Vtbl extends Struct {
   external IUIAutomationSelectionPatternVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CurrentFirstSelectedItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CurrentLastSelectedItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CurrentCurrentSelectedItem;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentItemCount;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CachedFirstSelectedItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CachedLastSelectedItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CachedCurrentSelectedItem;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedItemCount;
 }

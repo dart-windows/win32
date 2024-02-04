@@ -29,37 +29,42 @@ class IPersistMemory extends IPersist {
       IPersistMemory(interface.toInterface(IID_IPersistMemory));
 
   int isDirty() =>
-      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.IsDirty.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int load(Pointer pMem, int cbSize) => _vtable.Load.asFunction<
       int Function(
-          VTablePointer, Pointer pMem, int cbSize)>()(ptr, pMem, cbSize);
+          VTablePointer lpVtbl, Pointer pMem, int cbSize)>()(ptr, pMem, cbSize);
 
   int save(Pointer pMem, int fClearDirty, int cbSize) =>
       _vtable.Save.asFunction<
-          int Function(VTablePointer, Pointer pMem, int fClearDirty,
+          int Function(VTablePointer lpVtbl, Pointer pMem, int fClearDirty,
               int cbSize)>()(ptr, pMem, fClearDirty, cbSize);
 
   int getSizeMax(Pointer<Uint32> pCbSize) => _vtable.GetSizeMax.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> pCbSize)>()(ptr, pCbSize);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Uint32> pCbSize)>()(ptr, pCbSize);
 
   int initNew() =>
-      _vtable.InitNew.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.InitNew.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }
 
 /// @nodoc
 base class IPersistMemoryVtbl extends Struct {
   external IPersistVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> IsDirty;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      IsDirty;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer pMem, Uint32 cbSize)>> Load;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer pMem, Uint32 cbSize)>> Load;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer pMem, Int32 fClearDirty,
+          Int32 Function(VTablePointer lpVtbl, Pointer pMem, Int32 fClearDirty,
               Uint32 cbSize)>> Save;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> pCbSize)>> GetSizeMax;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> InitNew;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pCbSize)>>
+      GetSizeMax;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      InitNew;
 }

@@ -33,14 +33,14 @@ class IAudioRenderClient extends IUnknown {
 
   int getBuffer(int numFramesRequested, Pointer<Pointer<Uint8>> ppData) =>
       _vtable.GetBuffer.asFunction<
-              int Function(VTablePointer, int numFramesRequested,
+              int Function(VTablePointer lpVtbl, int numFramesRequested,
                   Pointer<Pointer<Uint8>> ppData)>()(
           ptr, numFramesRequested, ppData);
 
   int releaseBuffer(int numFramesWritten, int dwFlags) =>
       _vtable.ReleaseBuffer.asFunction<
-              int Function(VTablePointer, int numFramesWritten, int dwFlags)>()(
-          ptr, numFramesWritten, dwFlags);
+          int Function(VTablePointer lpVtbl, int numFramesWritten,
+              int dwFlags)>()(ptr, numFramesWritten, dwFlags);
 }
 
 /// @nodoc
@@ -48,11 +48,10 @@ base class IAudioRenderClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 numFramesRequested,
+          Int32 Function(VTablePointer lpVtbl, Uint32 numFramesRequested,
               Pointer<Pointer<Uint8>> ppData)>> GetBuffer;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Uint32 numFramesWritten, Uint32 dwFlags)>>
-      ReleaseBuffer;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint32 numFramesWritten,
+              Uint32 dwFlags)>> ReleaseBuffer;
 }

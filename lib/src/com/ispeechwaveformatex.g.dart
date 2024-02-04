@@ -37,8 +37,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_FormatTag.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int16> formatTag)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int16> formatTag)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -50,7 +50,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   set formatTag(int value) {
     final hr = _vtable.put_FormatTag
-        .asFunction<int Function(VTablePointer, int formatTag)>()(ptr, value);
+            .asFunction<int Function(VTablePointer lpVtbl, int formatTag)>()(
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -59,8 +60,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_Channels.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int16> channels)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int16> channels)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,7 +73,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   set channels(int value) {
     final hr = _vtable.put_Channels
-        .asFunction<int Function(VTablePointer, int channels)>()(ptr, value);
+            .asFunction<int Function(VTablePointer lpVtbl, int channels)>()(
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -81,8 +83,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_SamplesPerSec.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> samplesPerSec)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> samplesPerSec)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -93,9 +95,8 @@ class ISpeechWaveFormatEx extends IDispatch {
   }
 
   set samplesPerSec(int value) {
-    final hr = _vtable.put_SamplesPerSec
-            .asFunction<int Function(VTablePointer, int samplesPerSec)>()(
-        ptr, value);
+    final hr = _vtable.put_SamplesPerSec.asFunction<
+        int Function(VTablePointer lpVtbl, int samplesPerSec)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -104,8 +105,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_AvgBytesPerSec.asFunction<
-              int Function(VTablePointer, Pointer<Int32> avgBytesPerSec)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> avgBytesPerSec)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -116,9 +117,8 @@ class ISpeechWaveFormatEx extends IDispatch {
   }
 
   set avgBytesPerSec(int value) {
-    final hr = _vtable.put_AvgBytesPerSec
-            .asFunction<int Function(VTablePointer, int avgBytesPerSec)>()(
-        ptr, value);
+    final hr = _vtable.put_AvgBytesPerSec.asFunction<
+        int Function(VTablePointer lpVtbl, int avgBytesPerSec)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -127,8 +127,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_BlockAlign.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int16> blockAlign)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int16> blockAlign)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -140,7 +140,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   set blockAlign(int value) {
     final hr = _vtable.put_BlockAlign
-        .asFunction<int Function(VTablePointer, int blockAlign)>()(ptr, value);
+            .asFunction<int Function(VTablePointer lpVtbl, int blockAlign)>()(
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -149,8 +150,8 @@ class ISpeechWaveFormatEx extends IDispatch {
 
     try {
       final hr = _vtable.get_BitsPerSample.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int16> bitsPerSample)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int16> bitsPerSample)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -161,19 +162,18 @@ class ISpeechWaveFormatEx extends IDispatch {
   }
 
   set bitsPerSample(int value) {
-    final hr = _vtable.put_BitsPerSample
-            .asFunction<int Function(VTablePointer, int bitsPerSample)>()(
-        ptr, value);
+    final hr = _vtable.put_BitsPerSample.asFunction<
+        int Function(VTablePointer lpVtbl, int bitsPerSample)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get_ExtraData(Pointer<VARIANT> extraData) => _vtable.get_ExtraData
-      .asFunction<
-          int Function(
-              VTablePointer, Pointer<VARIANT> extraData)>()(ptr, extraData);
+          .asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<VARIANT> extraData)>()(
+      ptr, extraData);
 
   int put_ExtraData(VARIANT extraData) => _vtable.put_ExtraData
-          .asFunction<int Function(VTablePointer, VARIANT extraData)>()(
+          .asFunction<int Function(VTablePointer lpVtbl, VARIANT extraData)>()(
       ptr, extraData);
 }
 
@@ -182,50 +182,59 @@ base class ISpeechWaveFormatExVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int16> formatTag)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> formatTag)>>
       get_FormatTag;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int16 formatTag)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int16 formatTag)>>
       put_FormatTag;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int16> channels)>> get_Channels;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> channels)>>
+      get_Channels;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int16 channels)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int16 channels)>>
       put_Channels;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> samplesPerSec)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> samplesPerSec)>>
       get_SamplesPerSec;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 samplesPerSec)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int32 samplesPerSec)>>
       put_SamplesPerSec;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> avgBytesPerSec)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> avgBytesPerSec)>>
       get_AvgBytesPerSec;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 avgBytesPerSec)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int32 avgBytesPerSec)>>
       put_AvgBytesPerSec;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int16> blockAlign)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> blockAlign)>>
       get_BlockAlign;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int16 blockAlign)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int16 blockAlign)>>
       put_BlockAlign;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int16> bitsPerSample)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int16> bitsPerSample)>>
       get_BitsPerSample;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int16 bitsPerSample)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int16 bitsPerSample)>>
       put_BitsPerSample;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VARIANT> extraData)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<VARIANT> extraData)>>
       get_ExtraData;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VARIANT extraData)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VARIANT extraData)>>
       put_ExtraData;
 }

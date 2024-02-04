@@ -37,23 +37,24 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
       IUIAutomationLegacyIAccessiblePattern(
           interface.toInterface(IID_IUIAutomationLegacyIAccessiblePattern));
 
-  int select(int flagsSelect) =>
-      _vtable.Select.asFunction<int Function(VTablePointer, int flagsSelect)>()(
-          ptr, flagsSelect);
+  int select(int flagsSelect) => _vtable.Select.asFunction<
+      int Function(VTablePointer lpVtbl, int flagsSelect)>()(ptr, flagsSelect);
 
   int doDefaultAction() =>
-      _vtable.DoDefaultAction.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.DoDefaultAction.asFunction<int Function(VTablePointer lpVtbl)>()(
+          ptr);
 
   int setValue(Pointer<Utf16> szValue) => _vtable.SetValue.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> szValue)>()(ptr, szValue);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Utf16> szValue)>()(ptr, szValue);
 
   int get currentChildId {
     final retValuePtr = calloc<Int32>();
 
     try {
       final hr = _vtable.get_CurrentChildId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> pRetVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> pRetVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -68,8 +69,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszName)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -84,8 +85,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentValue.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszValue)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -100,7 +101,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentDescription.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszDescription)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -116,8 +117,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentRole.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> pdwRole)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwRole)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -132,8 +133,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentState.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> pdwState)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwState)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -148,8 +149,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentHelp.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszHelp)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -164,7 +165,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentKeyboardShortcut.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszKeyboardShortcut)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -177,7 +178,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
   int getCurrentSelection(Pointer<VTablePointer> pvarSelectedChildren) =>
       _vtable.GetCurrentSelection.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> pvarSelectedChildren)>()(
           ptr, pvarSelectedChildren);
 
@@ -186,7 +187,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentDefaultAction.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszDefaultAction)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -202,8 +203,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedChildId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> pRetVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> pRetVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -218,8 +219,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszName)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -234,8 +235,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedValue.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszValue)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -250,7 +251,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDescription.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszDescription)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -266,8 +267,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedRole.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> pdwRole)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwRole)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -282,8 +283,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedState.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> pdwState)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwState)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -298,8 +299,8 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedHelp.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszHelp)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -314,7 +315,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedKeyboardShortcut.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszKeyboardShortcut)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -327,7 +328,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
   int getCachedSelection(Pointer<VTablePointer> pvarSelectedChildren) =>
       _vtable.GetCachedSelection.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> pvarSelectedChildren)>()(
           ptr, pvarSelectedChildren);
 
@@ -336,7 +337,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDefaultAction.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszDefaultAction)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -349,7 +350,7 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
   int getIAccessible(Pointer<VTablePointer> ppAccessible) =>
       _vtable.GetIAccessible.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppAccessible)>()(ptr, ppAccessible);
 }
 
@@ -357,101 +358,108 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 base class IUIAutomationLegacyIAccessiblePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Int32 flagsSelect)>> Select;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Int32 flagsSelect)>> Select;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       DoDefaultAction;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> szValue)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> szValue)>>
       SetValue;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> pRetVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pRetVal)>>
       get_CurrentChildId;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszName)>>
       get_CurrentName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszValue)>>
       get_CurrentValue;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszDescription)>>
-      get_CurrentDescription;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszDescription)>> get_CurrentDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pdwRole)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwRole)>>
       get_CurrentRole;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pdwState)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwState)>>
       get_CurrentState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszHelp)>>
       get_CurrentHelp;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszKeyboardShortcut)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pszKeyboardShortcut)>>
       get_CurrentKeyboardShortcut;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> pvarSelectedChildren)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> pvarSelectedChildren)>>
       GetCurrentSelection;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszDefaultAction)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pszDefaultAction)>>
       get_CurrentDefaultAction;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> pRetVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pRetVal)>>
       get_CachedChildId;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszName)>>
       get_CachedName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszValue)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszValue)>>
       get_CachedValue;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszDescription)>>
-      get_CachedDescription;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszDescription)>> get_CachedDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pdwRole)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwRole)>>
       get_CachedRole;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pdwState)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwState)>>
       get_CachedState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszHelp)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszHelp)>>
       get_CachedHelp;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszKeyboardShortcut)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pszKeyboardShortcut)>>
       get_CachedKeyboardShortcut;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> pvarSelectedChildren)>>
-      GetCachedSelection;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> pvarSelectedChildren)>> GetCachedSelection;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pszDefaultAction)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pszDefaultAction)>>
       get_CachedDefaultAction;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> ppAccessible)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppAccessible)>>
       GetIAccessible;
 }

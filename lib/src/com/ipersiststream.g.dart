@@ -30,30 +30,35 @@ class IPersistStream extends IPersist {
       IPersistStream(interface.toInterface(IID_IPersistStream));
 
   int isDirty() =>
-      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.IsDirty.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int load(VTablePointer pStm) => _vtable.Load.asFunction<
-      int Function(VTablePointer, VTablePointer pStm)>()(ptr, pStm);
+      int Function(VTablePointer lpVtbl, VTablePointer pStm)>()(ptr, pStm);
 
   int save(VTablePointer pStm, int fClearDirty) => _vtable.Save.asFunction<
-          int Function(VTablePointer, VTablePointer pStm, int fClearDirty)>()(
-      ptr, pStm, fClearDirty);
+      int Function(VTablePointer lpVtbl, VTablePointer pStm,
+          int fClearDirty)>()(ptr, pStm, fClearDirty);
 
   int getSizeMax(Pointer<Uint64> pcbSize) => _vtable.GetSizeMax.asFunction<
-      int Function(VTablePointer, Pointer<Uint64> pcbSize)>()(ptr, pcbSize);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Uint64> pcbSize)>()(ptr, pcbSize);
 }
 
 /// @nodoc
 base class IPersistStreamVtbl extends Struct {
   external IPersistVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> IsDirty;
-  external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, VTablePointer pStm)>> Load;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, VTablePointer pStm, Int32 fClearDirty)>> Save;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      IsDirty;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint64> pcbSize)>> GetSizeMax;
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pStm)>> Load;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, VTablePointer pStm, Int32 fClearDirty)>>
+      Save;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> pcbSize)>>
+      GetSizeMax;
 }

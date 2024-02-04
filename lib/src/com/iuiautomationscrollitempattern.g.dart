@@ -31,12 +31,13 @@ class IUIAutomationScrollItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationScrollItemPattern));
 
   int scrollIntoView() =>
-      _vtable.ScrollIntoView.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.ScrollIntoView.asFunction<int Function(VTablePointer lpVtbl)>()(
+          ptr);
 }
 
 /// @nodoc
 base class IUIAutomationScrollItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       ScrollIntoView;
 }

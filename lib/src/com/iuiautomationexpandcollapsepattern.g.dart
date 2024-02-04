@@ -35,18 +35,19 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
       IUIAutomationExpandCollapsePattern(
           interface.toInterface(IID_IUIAutomationExpandCollapsePattern));
 
-  int expand() => _vtable.Expand.asFunction<int Function(VTablePointer)>()(ptr);
+  int expand() =>
+      _vtable.Expand.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int collapse() =>
-      _vtable.Collapse.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.Collapse.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int get currentExpandCollapseState {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentExpandCollapseState
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentExpandCollapseState.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -60,9 +61,9 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedExpandCollapseState
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedExpandCollapseState.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -76,12 +77,15 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationExpandCollapsePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Expand;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Collapse;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Expand;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      Collapse;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentExpandCollapseState;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedExpandCollapseState;
 }

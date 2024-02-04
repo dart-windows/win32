@@ -33,18 +33,19 @@ class IDispatch extends IUnknown {
 
   int getTypeInfoCount(Pointer<Uint32> pctinfo) =>
       _vtable.GetTypeInfoCount.asFunction<
-          int Function(VTablePointer, Pointer<Uint32> pctinfo)>()(ptr, pctinfo);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> pctinfo)>()(ptr, pctinfo);
 
   int getTypeInfo(int iTInfo, int lcid, Pointer<VTablePointer> ppTInfo) =>
       _vtable.GetTypeInfo.asFunction<
-          int Function(VTablePointer, int iTInfo, int lcid,
+          int Function(VTablePointer lpVtbl, int iTInfo, int lcid,
               Pointer<VTablePointer> ppTInfo)>()(ptr, iTInfo, lcid, ppTInfo);
 
   int getIDsOfNames(Pointer<GUID> riid, Pointer<Pointer<Utf16>> rgszNames,
           int cNames, int lcid, Pointer<Int32> rgDispId) =>
       _vtable.GetIDsOfNames.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<GUID> riid,
                   Pointer<Pointer<Utf16>> rgszNames,
                   int cNames,
@@ -63,7 +64,7 @@ class IDispatch extends IUnknown {
           Pointer<Uint32>? puArgErr) =>
       _vtable.Invoke.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int dispIdMember,
                   Pointer<GUID> riid,
                   int lcid,
@@ -88,16 +89,16 @@ base class IDispatchVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pctinfo)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pctinfo)>>
       GetTypeInfoCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 iTInfo, Uint32 lcid,
+          Int32 Function(VTablePointer lpVtbl, Uint32 iTInfo, Uint32 lcid,
               Pointer<VTablePointer> ppTInfo)>> GetTypeInfo;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<GUID> riid,
               Pointer<Pointer<Utf16>> rgszNames,
               Uint32 cNames,
@@ -106,7 +107,7 @@ base class IDispatchVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 dispIdMember,
               Pointer<GUID> riid,
               Uint32 lcid,

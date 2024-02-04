@@ -38,8 +38,8 @@ class ISpellCheckerFactory extends IUnknown {
 
     try {
       final hr = _vtable.get_SupportedLanguages.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> value)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> value)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,13 +51,13 @@ class ISpellCheckerFactory extends IUnknown {
 
   int isSupported(Pointer<Utf16> languageTag, Pointer<Int32> value) =>
       _vtable.IsSupported.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> languageTag,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<Int32> value)>()(ptr, languageTag, value);
 
   int createSpellChecker(
           Pointer<Utf16> languageTag, Pointer<VTablePointer> value) =>
       _vtable.CreateSpellChecker.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> languageTag,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<VTablePointer> value)>()(ptr, languageTag, value);
 }
 
@@ -66,15 +66,16 @@ base class ISpellCheckerFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> value)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> value)>>
       get_SupportedLanguages;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> languageTag,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<Int32> value)>> IsSupported;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> languageTag,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<VTablePointer> value)>> CreateSpellChecker;
 }
 

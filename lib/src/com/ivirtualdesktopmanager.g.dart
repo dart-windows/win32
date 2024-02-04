@@ -32,18 +32,18 @@ class IVirtualDesktopManager extends IUnknown {
   int isWindowOnCurrentVirtualDesktop(
           int topLevelWindow, Pointer<Int32> onCurrentDesktop) =>
       _vtable.IsWindowOnCurrentVirtualDesktop.asFunction<
-              int Function(VTablePointer, int topLevelWindow,
+              int Function(VTablePointer lpVtbl, int topLevelWindow,
                   Pointer<Int32> onCurrentDesktop)>()(
           ptr, topLevelWindow, onCurrentDesktop);
 
   int getWindowDesktopId(int topLevelWindow, Pointer<GUID> desktopId) =>
       _vtable.GetWindowDesktopId.asFunction<
-          int Function(VTablePointer, int topLevelWindow,
+          int Function(VTablePointer lpVtbl, int topLevelWindow,
               Pointer<GUID> desktopId)>()(ptr, topLevelWindow, desktopId);
 
   int moveWindowToDesktop(int topLevelWindow, Pointer<GUID> desktopId) =>
       _vtable.MoveWindowToDesktop.asFunction<
-          int Function(VTablePointer, int topLevelWindow,
+          int Function(VTablePointer lpVtbl, int topLevelWindow,
               Pointer<GUID> desktopId)>()(ptr, topLevelWindow, desktopId);
 }
 
@@ -52,16 +52,16 @@ base class IVirtualDesktopManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, IntPtr topLevelWindow,
+              Int32 Function(VTablePointer lpVtbl, IntPtr topLevelWindow,
                   Pointer<Int32> onCurrentDesktop)>>
       IsWindowOnCurrentVirtualDesktop;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr topLevelWindow,
+          Int32 Function(VTablePointer lpVtbl, IntPtr topLevelWindow,
               Pointer<GUID> desktopId)>> GetWindowDesktopId;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr topLevelWindow,
+          Int32 Function(VTablePointer lpVtbl, IntPtr topLevelWindow,
               Pointer<GUID> desktopId)>> MoveWindowToDesktop;
 }
 

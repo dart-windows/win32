@@ -39,9 +39,9 @@ class IUIAutomationStylesPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentStyleId
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentStyleId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,8 +56,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentStyleName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -71,9 +71,9 @@ class IUIAutomationStylesPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentFillColor
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentFillColor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -88,8 +88,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentFillPatternStyle.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -104,8 +104,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentShape.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -119,9 +119,9 @@ class IUIAutomationStylesPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentFillPatternColor
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentFillPatternColor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -136,8 +136,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentExtendedProperties.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -152,7 +152,7 @@ class IUIAutomationStylesPattern extends IUnknown {
           Pointer<Int32> propertyCount) =>
       _vtable.GetCurrentExtendedPropertiesAsArray.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<ExtendedProperty>> propertyArray,
                   Pointer<Int32> propertyCount)>()(
           ptr, propertyArray, propertyCount);
@@ -161,9 +161,9 @@ class IUIAutomationStylesPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedStyleId
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedStyleId.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -178,8 +178,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedStyleName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -193,9 +193,9 @@ class IUIAutomationStylesPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedFillColor
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedFillColor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -210,8 +210,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedFillPatternStyle.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -226,8 +226,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedShape.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -241,9 +241,9 @@ class IUIAutomationStylesPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedFillPatternColor
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedFillPatternColor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -258,8 +258,8 @@ class IUIAutomationStylesPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedExtendedProperties.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -274,7 +274,7 @@ class IUIAutomationStylesPattern extends IUnknown {
           Pointer<Int32> propertyCount) =>
       _vtable.GetCachedExtendedPropertiesAsArray.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<ExtendedProperty>> propertyArray,
                   Pointer<Int32> propertyCount)>()(
           ptr, propertyArray, propertyCount);
@@ -284,66 +284,80 @@ class IUIAutomationStylesPattern extends IUnknown {
 base class IUIAutomationStylesPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentStyleId;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentStyleName;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentFillColor;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentFillPatternStyle;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentShape;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentFillPatternColor;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentExtendedProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<ExtendedProperty>> propertyArray,
                   Pointer<Int32> propertyCount)>>
       GetCurrentExtendedPropertiesAsArray;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedStyleId;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedStyleName;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedFillColor;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedFillPatternStyle;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedShape;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedFillPatternColor;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedExtendedProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<ExtendedProperty>> propertyArray,
                   Pointer<Int32> propertyCount)>>
       GetCachedExtendedPropertiesAsArray;

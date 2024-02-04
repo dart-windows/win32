@@ -32,29 +32,32 @@ class ISensorManager extends IUnknown {
   int getSensorsByCategory(Pointer<GUID> sensorCategory,
           Pointer<VTablePointer> ppSensorsFound) =>
       _vtable.GetSensorsByCategory.asFunction<
-              int Function(VTablePointer, Pointer<GUID> sensorCategory,
+              int Function(VTablePointer lpVtbl, Pointer<GUID> sensorCategory,
                   Pointer<VTablePointer> ppSensorsFound)>()(
           ptr, sensorCategory, ppSensorsFound);
 
   int getSensorsByType(
           Pointer<GUID> sensorType, Pointer<VTablePointer> ppSensorsFound) =>
       _vtable.GetSensorsByType.asFunction<
-              int Function(VTablePointer, Pointer<GUID> sensorType,
+              int Function(VTablePointer lpVtbl, Pointer<GUID> sensorType,
                   Pointer<VTablePointer> ppSensorsFound)>()(
           ptr, sensorType, ppSensorsFound);
 
   int getSensorByID(Pointer<GUID> sensorID, Pointer<VTablePointer> ppSensor) =>
       _vtable.GetSensorByID.asFunction<
-          int Function(VTablePointer, Pointer<GUID> sensorID,
+          int Function(VTablePointer lpVtbl, Pointer<GUID> sensorID,
               Pointer<VTablePointer> ppSensor)>()(ptr, sensorID, ppSensor);
 
   int setEventSink(VTablePointer? pEvents) => _vtable.SetEventSink.asFunction<
-      int Function(
-          VTablePointer, VTablePointer pEvents)>()(ptr, pEvents ?? nullptr);
+          int Function(VTablePointer lpVtbl, VTablePointer pEvents)>()(
+      ptr, pEvents ?? nullptr);
 
   int requestPermissions(int hParent, VTablePointer? pSensors, int fModal) =>
       _vtable.RequestPermissions.asFunction<
-          int Function(VTablePointer, int hParent, VTablePointer pSensors,
+          int Function(
+              VTablePointer lpVtbl,
+              int hParent,
+              VTablePointer pSensors,
               int fModal)>()(ptr, hParent, pSensors ?? nullptr, fModal);
 }
 
@@ -63,23 +66,24 @@ base class ISensorManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> sensorCategory,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorCategory,
               Pointer<VTablePointer> ppSensorsFound)>> GetSensorsByCategory;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> sensorType,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorType,
               Pointer<VTablePointer> ppSensorsFound)>> GetSensorsByType;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> sensorID,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorID,
               Pointer<VTablePointer> ppSensor)>> GetSensorByID;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer pEvents)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer pEvents)>>
       SetEventSink;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr hParent, VTablePointer pSensors,
-              Int32 fModal)>> RequestPermissions;
+          Int32 Function(VTablePointer lpVtbl, IntPtr hParent,
+              VTablePointer pSensors, Int32 fModal)>> RequestPermissions;
 }
 
 /// @nodoc

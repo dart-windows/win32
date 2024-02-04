@@ -37,7 +37,7 @@ class IApplicationActivationManager extends IUnknown {
           Pointer<Utf16> arguments, int options, Pointer<Uint32> processId) =>
       _vtable.ActivateApplication.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Utf16> appUserModelId,
                   Pointer<Utf16> arguments,
                   int options,
@@ -48,7 +48,7 @@ class IApplicationActivationManager extends IUnknown {
           Pointer<Utf16> verb, Pointer<Uint32> processId) =>
       _vtable.ActivateForFile.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Utf16> appUserModelId,
                   VTablePointer itemArray,
                   Pointer<Utf16> verb,
@@ -58,7 +58,7 @@ class IApplicationActivationManager extends IUnknown {
   int activateForProtocol(Pointer<Utf16> appUserModelId,
           VTablePointer itemArray, Pointer<Uint32> processId) =>
       _vtable.ActivateForProtocol.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> appUserModelId,
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> appUserModelId,
                   VTablePointer itemArray, Pointer<Uint32> processId)>()(
           ptr, appUserModelId, itemArray, processId);
 }
@@ -69,7 +69,7 @@ base class IApplicationActivationManagerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> appUserModelId,
               Pointer<Utf16> arguments,
               Int32 options,
@@ -77,7 +77,7 @@ base class IApplicationActivationManagerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> appUserModelId,
               VTablePointer itemArray,
               Pointer<Utf16> verb,
@@ -85,7 +85,7 @@ base class IApplicationActivationManagerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> appUserModelId,
               VTablePointer itemArray,
               Pointer<Uint32> processId)>> ActivateForProtocol;

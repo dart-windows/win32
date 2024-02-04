@@ -35,10 +35,11 @@ class IFileDialog2 extends IFileDialog {
   int setCancelButtonLabel(Pointer<Utf16> pszLabel) =>
       _vtable.SetCancelButtonLabel.asFunction<
           int Function(
-              VTablePointer, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
+              VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
 
-  int setNavigationRoot(VTablePointer psi) => _vtable.SetNavigationRoot
-      .asFunction<int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
+  int setNavigationRoot(VTablePointer psi) =>
+      _vtable.SetNavigationRoot.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 }
 
 /// @nodoc
@@ -46,9 +47,10 @@ base class IFileDialog2Vtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> pszLabel)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>>
       SetCancelButtonLabel;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>>
       SetNavigationRoot;
 }

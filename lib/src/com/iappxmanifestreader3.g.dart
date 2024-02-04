@@ -32,13 +32,13 @@ class IAppxManifestReader3 extends IAppxManifestReader2 {
   int getCapabilitiesByCapabilityClass(
           int capabilityClass, Pointer<VTablePointer> capabilities) =>
       _vtable.GetCapabilitiesByCapabilityClass.asFunction<
-              int Function(VTablePointer, int capabilityClass,
+              int Function(VTablePointer lpVtbl, int capabilityClass,
                   Pointer<VTablePointer> capabilities)>()(
           ptr, capabilityClass, capabilities);
 
   int getTargetDeviceFamilies(Pointer<VTablePointer> targetDeviceFamilies) =>
       _vtable.GetTargetDeviceFamilies.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> targetDeviceFamilies)>()(
           ptr, targetDeviceFamilies);
 }
@@ -48,12 +48,12 @@ base class IAppxManifestReader3Vtbl extends Struct {
   external IAppxManifestReader2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Int32 capabilityClass,
+              Int32 Function(VTablePointer lpVtbl, Int32 capabilityClass,
                   Pointer<VTablePointer> capabilities)>>
       GetCapabilitiesByCapabilityClass;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> targetDeviceFamilies)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> targetDeviceFamilies)>>
       GetTargetDeviceFamilies;
 }

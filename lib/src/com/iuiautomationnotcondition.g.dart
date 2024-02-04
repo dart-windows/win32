@@ -30,8 +30,8 @@ class IUIAutomationNotCondition extends IUIAutomationCondition {
           interface.toInterface(IID_IUIAutomationNotCondition));
 
   int getChild(Pointer<VTablePointer> condition) => _vtable.GetChild.asFunction<
-      int Function(
-          VTablePointer, Pointer<VTablePointer> condition)>()(ptr, condition);
+      int Function(VTablePointer lpVtbl,
+          Pointer<VTablePointer> condition)>()(ptr, condition);
 }
 
 /// @nodoc
@@ -39,6 +39,7 @@ base class IUIAutomationNotConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> condition)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> condition)>>
       GetChild;
 }

@@ -39,7 +39,7 @@ class IAudioCaptureClient extends IUnknown {
           Pointer<Uint64>? pu64QPCPosition) =>
       _vtable.GetBuffer.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<Uint8>> ppData,
                   Pointer<Uint32> pNumFramesToRead,
                   Pointer<Uint32> pdwFlags,
@@ -53,12 +53,13 @@ class IAudioCaptureClient extends IUnknown {
           pu64QPCPosition ?? nullptr);
 
   int releaseBuffer(int numFramesRead) => _vtable.ReleaseBuffer.asFunction<
-      int Function(VTablePointer, int numFramesRead)>()(ptr, numFramesRead);
+      int Function(
+          VTablePointer lpVtbl, int numFramesRead)>()(ptr, numFramesRead);
 
   int getNextPacketSize(Pointer<Uint32> pNumFramesInNextPacket) =>
       _vtable.GetNextPacketSize.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Uint32> pNumFramesInNextPacket)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> pNumFramesInNextPacket)>()(
           ptr, pNumFramesInNextPacket);
 }
 
@@ -68,18 +69,18 @@ base class IAudioCaptureClientVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Pointer<Uint8>> ppData,
               Pointer<Uint32> pNumFramesToRead,
               Pointer<Uint32> pdwFlags,
               Pointer<Uint64> pu64DevicePosition,
               Pointer<Uint64> pu64QPCPosition)>> GetBuffer;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Uint32 numFramesRead)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Uint32 numFramesRead)>>
       ReleaseBuffer;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Uint32> pNumFramesInNextPacket)>>
-      GetNextPacketSize;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Uint32> pNumFramesInNextPacket)>> GetNextPacketSize;
 }

@@ -38,9 +38,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentLandmarkType
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentLandmarkType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -55,8 +55,8 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 
     try {
       final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,9 +70,9 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedLandmarkType
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedLandmarkType.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -87,8 +87,8 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 
     try {
       final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -103,17 +103,21 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
 base class IUIAutomationElement5Vtbl extends Struct {
   external IUIAutomationElement4Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentLocalizedLandmarkType;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedLocalizedLandmarkType;
 }

@@ -42,8 +42,8 @@ class IEnumNetworkConnections extends IDispatch {
 
     try {
       final hr = _vtable.get__NewEnum.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppEnumVar)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,21 +57,22 @@ class IEnumNetworkConnections extends IDispatch {
           Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int celt,
                   Pointer<VTablePointer> rgelt,
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
   int skip(int celt) =>
-      _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
+      _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
-  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
+  int reset() =>
+      _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int clone(Pointer<VTablePointer> ppEnumNetwork) => _vtable.Clone.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> ppEnumNetwork)>()(
-      ptr, ppEnumNetwork);
+      int Function(VTablePointer lpVtbl,
+          Pointer<VTablePointer> ppEnumNetwork)>()(ptr, ppEnumNetwork);
 }
 
 /// @nodoc
@@ -79,20 +80,22 @@ base class IEnumNetworkConnectionsVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnumVar)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppEnumVar)>>
       get__NewEnum;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 celt,
               Pointer<VTablePointer> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
-      Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<VTablePointer> ppEnumNetwork)>> Clone;
+      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppEnumNetwork)>>
+      Clone;
 }

@@ -36,21 +36,21 @@ class IUIAutomationTablePattern extends IUnknown {
 
   int getCurrentRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentRowHeaders.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int getCurrentColumnHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentColumnHeaders.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get currentRowOrColumnMajor {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentRowOrColumnMajor
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentRowOrColumnMajor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -62,21 +62,21 @@ class IUIAutomationTablePattern extends IUnknown {
 
   int getCachedRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedRowHeaders.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int getCachedColumnHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedColumnHeaders.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
   int get cachedRowOrColumnMajor {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedRowOrColumnMajor
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedRowOrColumnMajor.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -92,24 +92,30 @@ base class IUIAutomationTablePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCurrentRowHeaders;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCurrentColumnHeaders;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentRowOrColumnMajor;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCachedRowHeaders;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCachedColumnHeaders;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedRowOrColumnMajor;
 }

@@ -32,17 +32,17 @@ class ISensorDataReport extends IUnknown {
 
   int getTimestamp(Pointer<SYSTEMTIME> pTimeStamp) =>
       _vtable.GetTimestamp.asFunction<
-              int Function(VTablePointer, Pointer<SYSTEMTIME> pTimeStamp)>()(
-          ptr, pTimeStamp);
+          int Function(VTablePointer lpVtbl,
+              Pointer<SYSTEMTIME> pTimeStamp)>()(ptr, pTimeStamp);
 
   int getSensorValue(Pointer<PROPERTYKEY> pKey, Pointer<PROPVARIANT> pValue) =>
       _vtable.GetSensorValue.asFunction<
-          int Function(VTablePointer, Pointer<PROPERTYKEY> pKey,
+          int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> pKey,
               Pointer<PROPVARIANT> pValue)>()(ptr, pKey, pValue);
 
   int getSensorValues(VTablePointer? pKeys, Pointer<VTablePointer> ppValues) =>
       _vtable.GetSensorValues.asFunction<
-              int Function(VTablePointer, VTablePointer pKeys,
+              int Function(VTablePointer lpVtbl, VTablePointer pKeys,
                   Pointer<VTablePointer> ppValues)>()(
           ptr, pKeys ?? nullptr, ppValues);
 }
@@ -52,15 +52,16 @@ base class ISensorDataReportVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<SYSTEMTIME> pTimeStamp)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<SYSTEMTIME> pTimeStamp)>>
       GetTimestamp;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<PROPERTYKEY> pKey,
+          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> pKey,
               Pointer<PROPVARIANT> pValue)>> GetSensorValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer pKeys,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pKeys,
               Pointer<VTablePointer> ppValues)>> GetSensorValues;
 }
 

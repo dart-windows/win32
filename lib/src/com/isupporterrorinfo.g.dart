@@ -32,13 +32,14 @@ class ISupportErrorInfo extends IUnknown {
 
   int interfaceSupportsErrorInfo(Pointer<GUID> riid) =>
       _vtable.InterfaceSupportsErrorInfo.asFunction<
-          int Function(VTablePointer, Pointer<GUID> riid)>()(ptr, riid);
+          int Function(VTablePointer lpVtbl, Pointer<GUID> riid)>()(ptr, riid);
 }
 
 /// @nodoc
 base class ISupportErrorInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> riid)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> riid)>>
       InterfaceSupportsErrorInfo;
 }

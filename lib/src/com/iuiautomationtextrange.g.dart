@@ -34,91 +34,108 @@ class IUIAutomationTextRange extends IUnknown {
       IUIAutomationTextRange(interface.toInterface(IID_IUIAutomationTextRange));
 
   int clone(Pointer<VTablePointer> clonedRange) => _vtable.Clone.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> clonedRange)>()(
-      ptr, clonedRange);
+      int Function(VTablePointer lpVtbl,
+          Pointer<VTablePointer> clonedRange)>()(ptr, clonedRange);
 
   int compare(VTablePointer range, Pointer<Int32> areSame) =>
       _vtable.Compare.asFunction<
-          int Function(VTablePointer, VTablePointer range,
+          int Function(VTablePointer lpVtbl, VTablePointer range,
               Pointer<Int32> areSame)>()(ptr, range, areSame);
 
   int compareEndpoints(int srcEndPoint, VTablePointer range, int targetEndPoint,
           Pointer<Int32> compValue) =>
       _vtable.CompareEndpoints.asFunction<
-              int Function(VTablePointer, int srcEndPoint, VTablePointer range,
-                  int targetEndPoint, Pointer<Int32> compValue)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  int srcEndPoint,
+                  VTablePointer range,
+                  int targetEndPoint,
+                  Pointer<Int32> compValue)>()(
           ptr, srcEndPoint, range, targetEndPoint, compValue);
 
-  int expandToEnclosingUnit(int textUnit) => _vtable.ExpandToEnclosingUnit
-      .asFunction<int Function(VTablePointer, int textUnit)>()(ptr, textUnit);
+  int expandToEnclosingUnit(int textUnit) =>
+      _vtable.ExpandToEnclosingUnit.asFunction<
+          int Function(VTablePointer lpVtbl, int textUnit)>()(ptr, textUnit);
 
   int findAttribute(
           int attr, VARIANT val, int backward, Pointer<VTablePointer> found) =>
       _vtable.FindAttribute.asFunction<
-          int Function(VTablePointer, int attr, VARIANT val, int backward,
+          int Function(
+              VTablePointer lpVtbl,
+              int attr,
+              VARIANT val,
+              int backward,
               Pointer<VTablePointer> found)>()(ptr, attr, val, backward, found);
 
   int findText(Pointer<Utf16> text, int backward, int ignoreCase,
           Pointer<VTablePointer> found) =>
       _vtable.FindText.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> text, int backward,
-                  int ignoreCase, Pointer<VTablePointer> found)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<Utf16> text,
+                  int backward,
+                  int ignoreCase,
+                  Pointer<VTablePointer> found)>()(
           ptr, text, backward, ignoreCase, found);
 
   int getAttributeValue(int attr, Pointer<VARIANT> value) =>
       _vtable.GetAttributeValue.asFunction<
-              int Function(VTablePointer, int attr, Pointer<VARIANT> value)>()(
-          ptr, attr, value);
+          int Function(VTablePointer lpVtbl, int attr,
+              Pointer<VARIANT> value)>()(ptr, attr, value);
 
   int getBoundingRectangles(Pointer<Pointer<SAFEARRAY>> boundingRects) =>
       _vtable.GetBoundingRectangles.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> boundingRects)>()(ptr, boundingRects);
 
   int getEnclosingElement(Pointer<VTablePointer> enclosingElement) =>
       _vtable.GetEnclosingElement.asFunction<
-              int Function(
-                  VTablePointer, Pointer<VTablePointer> enclosingElement)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> enclosingElement)>()(
           ptr, enclosingElement);
 
   int getText(int maxLength, Pointer<Pointer<Utf16>> text) =>
       _vtable.GetText.asFunction<
-          int Function(VTablePointer, int maxLength,
+          int Function(VTablePointer lpVtbl, int maxLength,
               Pointer<Pointer<Utf16>> text)>()(ptr, maxLength, text);
 
   int move(int unit, int count, Pointer<Int32> moved) =>
       _vtable.Move.asFunction<
-          int Function(VTablePointer, int unit, int count,
+          int Function(VTablePointer lpVtbl, int unit, int count,
               Pointer<Int32> moved)>()(ptr, unit, count, moved);
 
   int moveEndpointByUnit(
           int endpoint, int unit, int count, Pointer<Int32> moved) =>
       _vtable.MoveEndpointByUnit.asFunction<
-          int Function(VTablePointer, int endpoint, int unit, int count,
+          int Function(VTablePointer lpVtbl, int endpoint, int unit, int count,
               Pointer<Int32> moved)>()(ptr, endpoint, unit, count, moved);
 
   int moveEndpointByRange(
           int srcEndPoint, VTablePointer range, int targetEndPoint) =>
       _vtable.MoveEndpointByRange.asFunction<
-          int Function(VTablePointer, int srcEndPoint, VTablePointer range,
+          int Function(
+              VTablePointer lpVtbl,
+              int srcEndPoint,
+              VTablePointer range,
               int targetEndPoint)>()(ptr, srcEndPoint, range, targetEndPoint);
 
-  int select() => _vtable.Select.asFunction<int Function(VTablePointer)>()(ptr);
+  int select() =>
+      _vtable.Select.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int addToSelection() =>
-      _vtable.AddToSelection.asFunction<int Function(VTablePointer)>()(ptr);
-
-  int removeFromSelection() =>
-      _vtable.RemoveFromSelection.asFunction<int Function(VTablePointer)>()(
+      _vtable.AddToSelection.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);
 
+  int removeFromSelection() => _vtable.RemoveFromSelection.asFunction<
+      int Function(VTablePointer lpVtbl)>()(ptr);
+
   int scrollIntoView(int alignToTop) => _vtable.ScrollIntoView.asFunction<
-      int Function(VTablePointer, int alignToTop)>()(ptr, alignToTop);
+      int Function(VTablePointer lpVtbl, int alignToTop)>()(ptr, alignToTop);
 
   int getChildren(Pointer<VTablePointer> children) =>
       _vtable.GetChildren.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> children)>()(ptr, children);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> children)>()(ptr, children);
 }
 
 /// @nodoc
@@ -127,72 +144,76 @@ base class IUIAutomationTextRangeVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer, Pointer<VTablePointer> clonedRange)>> Clone;
+              VTablePointer lpVtbl, Pointer<VTablePointer> clonedRange)>> Clone;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer range, Pointer<Int32> areSame)>>
-      Compare;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer range,
+              Pointer<Int32> areSame)>> Compare;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 srcEndPoint,
               VTablePointer range,
               Int32 targetEndPoint,
               Pointer<Int32> compValue)>> CompareEndpoints;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 textUnit)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 textUnit)>>
       ExpandToEnclosingUnit;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 attr, VARIANT val, Int32 backward,
-              Pointer<VTablePointer> found)>> FindAttribute;
+          Int32 Function(VTablePointer lpVtbl, Int32 attr, VARIANT val,
+              Int32 backward, Pointer<VTablePointer> found)>> FindAttribute;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> text, Int32 backward,
-              Int32 ignoreCase, Pointer<VTablePointer> found)>> FindText;
+          Int32 Function(
+              VTablePointer lpVtbl,
+              Pointer<Utf16> text,
+              Int32 backward,
+              Int32 ignoreCase,
+              Pointer<VTablePointer> found)>> FindText;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Int32 attr, Pointer<VARIANT> value)>>
+                  VTablePointer lpVtbl, Int32 attr, Pointer<VARIANT> value)>>
       GetAttributeValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> boundingRects)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<SAFEARRAY>> boundingRects)>>
       GetBoundingRectangles;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> enclosingElement)>>
-      GetEnclosingElement;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> enclosingElement)>> GetEnclosingElement;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 maxLength,
+          Int32 Function(VTablePointer lpVtbl, Int32 maxLength,
               Pointer<Pointer<Utf16>> text)>> GetText;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 unit, Int32 count,
+          Int32 Function(VTablePointer lpVtbl, Int32 unit, Int32 count,
               Pointer<Int32> moved)>> Move;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 endpoint, Int32 unit, Int32 count,
-              Pointer<Int32> moved)>> MoveEndpointByUnit;
+          Int32 Function(VTablePointer lpVtbl, Int32 endpoint, Int32 unit,
+              Int32 count, Pointer<Int32> moved)>> MoveEndpointByUnit;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 srcEndPoint, VTablePointer range,
-              Int32 targetEndPoint)>> MoveEndpointByRange;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Select;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+          Int32 Function(VTablePointer lpVtbl, Int32 srcEndPoint,
+              VTablePointer range, Int32 targetEndPoint)>> MoveEndpointByRange;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Select;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       AddToSelection;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       RemoveFromSelection;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 alignToTop)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int32 alignToTop)>>
       ScrollIntoView;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> children)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> children)>>
       GetChildren;
 }

@@ -35,38 +35,40 @@ class ISimpleAudioVolume extends IUnknown {
 
   int setMasterVolume(double fLevel, Pointer<GUID> eventContext) =>
       _vtable.SetMasterVolume.asFunction<
-          int Function(VTablePointer, double fLevel,
+          int Function(VTablePointer lpVtbl, double fLevel,
               Pointer<GUID> eventContext)>()(ptr, fLevel, eventContext);
 
-  int getMasterVolume(Pointer<Float> pfLevel) =>
+  int getMasterVolume(
+          Pointer<Float> pfLevel) =>
       _vtable.GetMasterVolume.asFunction<
-          int Function(VTablePointer, Pointer<Float> pfLevel)>()(ptr, pfLevel);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Float> pfLevel)>()(ptr, pfLevel);
 
   int setMute(int bMute, Pointer<GUID> eventContext) =>
       _vtable.SetMute.asFunction<
-          int Function(VTablePointer, int bMute,
+          int Function(VTablePointer lpVtbl, int bMute,
               Pointer<GUID> eventContext)>()(ptr, bMute, eventContext);
 
   int getMute(Pointer<Int32> pbMute) => _vtable.GetMute.asFunction<
-      int Function(VTablePointer, Pointer<Int32> pbMute)>()(ptr, pbMute);
+      int Function(VTablePointer lpVtbl, Pointer<Int32> pbMute)>()(ptr, pbMute);
 }
 
 /// @nodoc
 base class ISimpleAudioVolumeVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Float fLevel, Pointer<GUID> eventContext)>>
-      SetMasterVolume;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Float fLevel,
+              Pointer<GUID> eventContext)>> SetMasterVolume;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Float> pfLevel)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Float> pfLevel)>>
       GetMasterVolume;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Int32 bMute, Pointer<GUID> eventContext)>> SetMute;
+          Int32 Function(VTablePointer lpVtbl, Int32 bMute,
+              Pointer<GUID> eventContext)>> SetMute;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> pbMute)>>
-      GetMute;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pbMute)>> GetMute;
 }

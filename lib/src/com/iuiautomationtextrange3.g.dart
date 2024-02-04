@@ -34,21 +34,21 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
   int getEnclosingElementBuildCache(VTablePointer cacheRequest,
           Pointer<VTablePointer> enclosingElement) =>
       _vtable.GetEnclosingElementBuildCache.asFunction<
-              int Function(VTablePointer, VTablePointer cacheRequest,
+              int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
                   Pointer<VTablePointer> enclosingElement)>()(
           ptr, cacheRequest, enclosingElement);
 
   int getChildrenBuildCache(
           VTablePointer cacheRequest, Pointer<VTablePointer> children) =>
       _vtable.GetChildrenBuildCache.asFunction<
-          int Function(VTablePointer, VTablePointer cacheRequest,
+          int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> children)>()(ptr, cacheRequest, children);
 
   int getAttributeValues(Pointer<Int32> attributeIds, int attributeIdCount,
           Pointer<Pointer<SAFEARRAY>> attributeValues) =>
       _vtable.GetAttributeValues.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Int32> attributeIds,
                   int attributeIdCount,
                   Pointer<Pointer<SAFEARRAY>> attributeValues)>()(
@@ -60,17 +60,17 @@ base class IUIAutomationTextRange3Vtbl extends Struct {
   external IUIAutomationTextRange2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, VTablePointer cacheRequest,
+              Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
                   Pointer<VTablePointer> enclosingElement)>>
       GetEnclosingElementBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer cacheRequest,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> children)>> GetChildrenBuildCache;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Int32> attributeIds,
               Int32 attributeIdCount,
               Pointer<Pointer<SAFEARRAY>> attributeValues)>> GetAttributeValues;

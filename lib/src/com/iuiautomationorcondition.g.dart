@@ -41,8 +41,8 @@ class IUIAutomationOrCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_ChildCount.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> childCount)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> childCount)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,14 +56,14 @@ class IUIAutomationOrCondition extends IUIAutomationCondition {
           Pointer<Int32> childArrayCount) =>
       _vtable.GetChildrenAsNativeArray.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<VTablePointer>> childArray,
                   Pointer<Int32> childArrayCount)>()(
           ptr, childArray, childArrayCount);
 
   int getChildren(Pointer<Pointer<SAFEARRAY>> childArray) =>
       _vtable.GetChildren.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> childArray)>()(ptr, childArray);
 }
 
@@ -72,17 +72,16 @@ base class IUIAutomationOrConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> childCount)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> childCount)>>
       get_ChildCount;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Pointer<VTablePointer>> childArray,
               Pointer<Int32> childArrayCount)>> GetChildrenAsNativeArray;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> childArray)>>
-      GetChildren;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<SAFEARRAY>> childArray)>> GetChildren;
 }

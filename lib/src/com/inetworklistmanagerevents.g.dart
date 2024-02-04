@@ -33,14 +33,15 @@ class INetworkListManagerEvents extends IUnknown {
 
   int connectivityChanged(int newConnectivity) =>
       _vtable.ConnectivityChanged.asFunction<
-          int Function(
-              VTablePointer, int newConnectivity)>()(ptr, newConnectivity);
+              int Function(VTablePointer lpVtbl, int newConnectivity)>()(
+          ptr, newConnectivity);
 }
 
 /// @nodoc
 base class INetworkListManagerEventsVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 newConnectivity)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int32 newConnectivity)>>
       ConnectivityChanged;
 }

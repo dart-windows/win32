@@ -30,46 +30,49 @@ class IConnectionPoint extends IUnknown {
 
   int getConnectionInterface(Pointer<GUID> pIID) =>
       _vtable.GetConnectionInterface.asFunction<
-          int Function(VTablePointer, Pointer<GUID> pIID)>()(ptr, pIID);
+          int Function(VTablePointer lpVtbl, Pointer<GUID> pIID)>()(ptr, pIID);
 
   int getConnectionPointContainer(Pointer<VTablePointer> ppCPC) =>
       _vtable.GetConnectionPointContainer.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ppCPC)>()(ptr, ppCPC);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppCPC)>()(ptr, ppCPC);
 
   int advise(VTablePointer pUnkSink, Pointer<Uint32> pdwCookie) =>
       _vtable.Advise.asFunction<
-          int Function(VTablePointer, VTablePointer pUnkSink,
+          int Function(VTablePointer lpVtbl, VTablePointer pUnkSink,
               Pointer<Uint32> pdwCookie)>()(ptr, pUnkSink, pdwCookie);
 
-  int unadvise(int dwCookie) =>
-      _vtable.Unadvise.asFunction<int Function(VTablePointer, int dwCookie)>()(
-          ptr, dwCookie);
+  int unadvise(int dwCookie) => _vtable.Unadvise.asFunction<
+      int Function(VTablePointer lpVtbl, int dwCookie)>()(ptr, dwCookie);
 
   int enumConnections(Pointer<VTablePointer> ppEnum) =>
       _vtable.EnumConnections.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 }
 
 /// @nodoc
 base class IConnectionPointVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pIID)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pIID)>>
       GetConnectionInterface;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppCPC)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppCPC)>>
       GetConnectionPointContainer;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer pUnkSink,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pUnkSink,
               Pointer<Uint32> pdwCookie)>> Advise;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Uint32 dwCookie)>> Unadvise;
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwCookie)>>
+      Unadvise;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnum)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>>
       EnumConnections;
 }

@@ -42,8 +42,8 @@ class IUIAutomationDropTargetPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentDropTargetEffect.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -58,8 +58,8 @@ class IUIAutomationDropTargetPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDropTargetEffect.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -74,7 +74,7 @@ class IUIAutomationDropTargetPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CurrentDropTargetEffects.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -90,7 +90,7 @@ class IUIAutomationDropTargetPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_CachedDropTargetEffects.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -107,20 +107,22 @@ base class IUIAutomationDropTargetPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentDropTargetEffect;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedDropTargetEffect;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       get_CurrentDropTargetEffects;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       get_CachedDropTargetEffects;
 }

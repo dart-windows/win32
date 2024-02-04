@@ -37,20 +37,19 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
       IUIAutomationTransformPattern2(
           interface.toInterface(IID_IUIAutomationTransformPattern2));
 
-  int zoom(double zoomValue) =>
-      _vtable.Zoom.asFunction<int Function(VTablePointer, double zoomValue)>()(
-          ptr, zoomValue);
+  int zoom(double zoomValue) => _vtable.Zoom.asFunction<
+      int Function(VTablePointer lpVtbl, double zoomValue)>()(ptr, zoomValue);
 
   int zoomByUnit(int zoomUnit) => _vtable.ZoomByUnit.asFunction<
-      int Function(VTablePointer, int zoomUnit)>()(ptr, zoomUnit);
+      int Function(VTablePointer lpVtbl, int zoomUnit)>()(ptr, zoomUnit);
 
   int get currentCanZoom {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentCanZoom
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentCanZoom.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -64,9 +63,9 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedCanZoom
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedCanZoom.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -81,8 +80,8 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 
     try {
       final hr = _vtable.get_CurrentZoomLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Double> retVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -97,8 +96,8 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 
     try {
       final hr = _vtable.get_CachedZoomLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Double> retVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -113,8 +112,8 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 
     try {
       final hr = _vtable.get_CurrentZoomMinimum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Double> retVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -129,8 +128,8 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 
     try {
       final hr = _vtable.get_CachedZoomMinimum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Double> retVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -145,8 +144,8 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 
     try {
       final hr = _vtable.get_CurrentZoomMaximum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Double> retVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -161,8 +160,8 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 
     try {
       final hr = _vtable.get_CachedZoomMaximum.asFunction<
-          int Function(
-              VTablePointer, Pointer<Double> retVal)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Double> retVal)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -177,31 +176,41 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
 base class IUIAutomationTransformPattern2Vtbl extends Struct {
   external IUIAutomationTransformPatternVtbl baseVtbl;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Double zoomValue)>> Zoom;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Double zoomValue)>> Zoom;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Int32 zoomUnit)>> ZoomByUnit;
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 zoomUnit)>>
+      ZoomByUnit;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentCanZoom;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedCanZoom;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Double> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentZoomLevel;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Double> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedZoomLevel;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Double> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentZoomMinimum;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Double> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedZoomMinimum;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Double> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentZoomMaximum;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Double> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedZoomMaximum;
 }

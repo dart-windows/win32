@@ -32,12 +32,12 @@ class ISequentialStream extends IUnknown {
   int read(
           Pointer pv, int cb, Pointer<Uint32>? pcbRead) =>
       _vtable.Read.asFunction<
-          int Function(VTablePointer, Pointer pv, int cb,
+          int Function(VTablePointer lpVtbl, Pointer pv, int cb,
               Pointer<Uint32> pcbRead)>()(ptr, pv, cb, pcbRead ?? nullptr);
 
   int write(Pointer pv, int cb, Pointer<Uint32>? pcbWritten) =>
       _vtable.Write.asFunction<
-              int Function(VTablePointer, Pointer pv, int cb,
+              int Function(VTablePointer lpVtbl, Pointer pv, int cb,
                   Pointer<Uint32> pcbWritten)>()(
           ptr, pv, cb, pcbWritten ?? nullptr);
 }
@@ -47,10 +47,10 @@ base class ISequentialStreamVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer pv, Uint32 cb,
+          Int32 Function(VTablePointer lpVtbl, Pointer pv, Uint32 cb,
               Pointer<Uint32> pcbRead)>> Read;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer pv, Uint32 cb,
+          Int32 Function(VTablePointer lpVtbl, Pointer pv, Uint32 cb,
               Pointer<Uint32> pcbWritten)>> Write;
 }

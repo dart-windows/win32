@@ -29,12 +29,13 @@ class IMMDeviceCollection extends IUnknown {
       IMMDeviceCollection(interface.toInterface(IID_IMMDeviceCollection));
 
   int getCount(Pointer<Uint32> pcDevices) => _vtable.GetCount.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> pcDevices)>()(ptr, pcDevices);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Uint32> pcDevices)>()(ptr, pcDevices);
 
   int item(
           int nDevice, Pointer<VTablePointer> ppDevice) =>
       _vtable.Item.asFunction<
-          int Function(VTablePointer, int nDevice,
+          int Function(VTablePointer lpVtbl, int nDevice,
               Pointer<VTablePointer> ppDevice)>()(ptr, nDevice, ppDevice);
 }
 
@@ -42,10 +43,11 @@ class IMMDeviceCollection extends IUnknown {
 base class IMMDeviceCollectionVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> pcDevices)>> GetCount;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcDevices)>>
+      GetCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 nDevice,
+          Int32 Function(VTablePointer lpVtbl, Uint32 nDevice,
               Pointer<VTablePointer> ppDevice)>> Item;
 }

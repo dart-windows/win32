@@ -31,8 +31,8 @@ class IAppxManifestReader2 extends IAppxManifestReader {
 
   int getQualifiedResources(Pointer<VTablePointer> resources) =>
       _vtable.GetQualifiedResources.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> resources)>()(
-          ptr, resources);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> resources)>()(ptr, resources);
 }
 
 /// @nodoc
@@ -40,6 +40,7 @@ base class IAppxManifestReader2Vtbl extends Struct {
   external IAppxManifestReaderVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> resources)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> resources)>>
       GetQualifiedResources;
 }

@@ -31,25 +31,26 @@ class IFileOpenDialog extends IFileDialog {
 
   int getResults(Pointer<VTablePointer> ppenum) =>
       _vtable.GetResults.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
 
   int getSelectedItems(Pointer<VTablePointer> ppsai) =>
       _vtable.GetSelectedItems.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ppsai)>()(ptr, ppsai);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppsai)>()(ptr, ppsai);
 }
 
 /// @nodoc
 base class IFileOpenDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppenum)>>
-      GetResults;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>> GetResults;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppsai)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppsai)>>
       GetSelectedItems;
 }
 

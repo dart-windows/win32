@@ -31,13 +31,13 @@ class ISpellCheckerChangedEventHandler extends IUnknown {
           interface.toInterface(IID_ISpellCheckerChangedEventHandler));
 
   int invoke(VTablePointer sender) => _vtable.Invoke.asFunction<
-      int Function(VTablePointer, VTablePointer sender)>()(ptr, sender);
+      int Function(VTablePointer lpVtbl, VTablePointer sender)>()(ptr, sender);
 }
 
 /// @nodoc
 base class ISpellCheckerChangedEventHandlerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer sender)>>
-      Invoke;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer sender)>> Invoke;
 }

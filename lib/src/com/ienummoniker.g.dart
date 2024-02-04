@@ -31,21 +31,22 @@ class IEnumMoniker extends IUnknown {
           Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int celt,
                   Pointer<VTablePointer> rgelt,
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
   int skip(int celt) =>
-      _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
+      _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
-  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
+  int reset() =>
+      _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int clone(Pointer<VTablePointer> ppenum) => _vtable.Clone.asFunction<
       int Function(
-          VTablePointer, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
+          VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
 }
 
 /// @nodoc
@@ -54,14 +55,15 @@ base class IEnumMonikerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 celt,
               Pointer<VTablePointer> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
-      Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
+  external Pointer<
+      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> ppenum)>> Clone;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>> Clone;
 }

@@ -36,18 +36,18 @@ class IUIAutomation6 extends IUIAutomation5 {
 
   int createEventHandlerGroup(Pointer<VTablePointer> handlerGroup) =>
       _vtable.CreateEventHandlerGroup.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> handlerGroup)>()(ptr, handlerGroup);
 
   int addEventHandlerGroup(VTablePointer element, VTablePointer handlerGroup) =>
       _vtable.AddEventHandlerGroup.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
   int removeEventHandlerGroup(
           VTablePointer element, VTablePointer handlerGroup) =>
       _vtable.RemoveEventHandlerGroup.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
   int get connectionRecoveryBehavior {
@@ -55,7 +55,7 @@ class IUIAutomation6 extends IUIAutomation5 {
 
     try {
       final hr = _vtable.get_ConnectionRecoveryBehavior.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<Int32> connectionRecoveryBehaviorOptions)>()(
           ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
@@ -69,7 +69,7 @@ class IUIAutomation6 extends IUIAutomation5 {
 
   set connectionRecoveryBehavior(int value) {
     final hr = _vtable.put_ConnectionRecoveryBehavior.asFunction<
-        int Function(VTablePointer,
+        int Function(VTablePointer lpVtbl,
             int connectionRecoveryBehaviorOptions)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -79,7 +79,7 @@ class IUIAutomation6 extends IUIAutomation5 {
 
     try {
       final hr = _vtable.get_CoalesceEvents.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Int32> coalesceEventsOptions)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -92,21 +92,26 @@ class IUIAutomation6 extends IUIAutomation5 {
 
   set coalesceEvents(int value) {
     final hr = _vtable.put_CoalesceEvents.asFunction<
-        int Function(VTablePointer, int coalesceEventsOptions)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, int coalesceEventsOptions)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int addActiveTextPositionChangedEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddActiveTextPositionChangedEventHandler.asFunction<
-              int Function(VTablePointer, VTablePointer element, int scope,
-                  VTablePointer cacheRequest, VTablePointer handler)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer element,
+                  int scope,
+                  VTablePointer cacheRequest,
+                  VTablePointer handler)>()(
           ptr, element, scope, cacheRequest, handler);
 
   int removeActiveTextPositionChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveActiveTextPositionChangedEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 }
 
@@ -116,46 +121,47 @@ base class IUIAutomation6Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> handlerGroup)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> handlerGroup)>>
       CreateEventHandlerGroup;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer element,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>> AddEventHandlerGroup;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer element,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>> RemoveEventHandlerGroup;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
+              Int32 Function(VTablePointer lpVtbl,
                   Pointer<Int32> connectionRecoveryBehaviorOptions)>>
       get_ConnectionRecoveryBehavior;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Int32 connectionRecoveryBehaviorOptions)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Int32 connectionRecoveryBehaviorOptions)>>
       put_ConnectionRecoveryBehavior;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Int32> coalesceEventsOptions)>>
+                  VTablePointer lpVtbl, Pointer<Int32> coalesceEventsOptions)>>
       get_CoalesceEvents;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Int32 coalesceEventsOptions)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Int32 coalesceEventsOptions)>>
       put_CoalesceEvents;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
               VTablePointer cacheRequest,
               VTablePointer handler)>> AddActiveTextPositionChangedEventHandler;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer element, VTablePointer handler)>>
+              Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+                  VTablePointer handler)>>
       RemoveActiveTextPositionChangedEventHandler;
 }

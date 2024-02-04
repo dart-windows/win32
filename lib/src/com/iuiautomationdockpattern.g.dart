@@ -35,15 +35,15 @@ class IUIAutomationDockPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationDockPattern));
 
   int setDockPosition(int dockPos) => _vtable.SetDockPosition.asFunction<
-      int Function(VTablePointer, int dockPos)>()(ptr, dockPos);
+      int Function(VTablePointer lpVtbl, int dockPos)>()(ptr, dockPos);
 
   int get currentDockPosition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentDockPosition
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentDockPosition.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -57,9 +57,9 @@ class IUIAutomationDockPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedDockPosition
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedDockPosition.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -73,12 +73,15 @@ class IUIAutomationDockPattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationDockPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 dockPos)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 dockPos)>>
       SetDockPosition;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentDockPosition;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedDockPosition;
 }

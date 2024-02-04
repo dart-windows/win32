@@ -42,8 +42,8 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
 
     try {
       final hr = _vtable.get_PropertyId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> propertyId)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> propertyId)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,8 +56,8 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
   Pointer<VARIANT> get propertyValue {
     final retValuePtr = calloc<VARIANT>();
     final hr = _vtable.get_PropertyValue.asFunction<
-        int Function(
-            VTablePointer, Pointer<VARIANT> propertyValue)>()(ptr, retValuePtr);
+        int Function(VTablePointer lpVtbl,
+            Pointer<VARIANT> propertyValue)>()(ptr, retValuePtr);
     if (FAILED(hr)) throw WindowsException(hr);
     return retValuePtr;
   }
@@ -66,9 +66,9 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_PropertyConditionFlags
-              .asFunction<int Function(VTablePointer, Pointer<Int32> flags)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_PropertyConditionFlags.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> flags)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -84,13 +84,15 @@ base class IUIAutomationPropertyConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> propertyId)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> propertyId)>>
       get_PropertyId;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VARIANT> propertyValue)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT> propertyValue)>>
       get_PropertyValue;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> flags)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> flags)>>
       get_PropertyConditionFlags;
 }

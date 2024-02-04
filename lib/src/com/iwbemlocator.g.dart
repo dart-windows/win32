@@ -42,7 +42,7 @@ class IWbemLocator extends IUnknown {
           Pointer<VTablePointer> ppNamespace) =>
       _vtable.ConnectServer.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Utf16> strNetworkResource,
                   Pointer<Utf16> strUser,
                   Pointer<Utf16> strPassword,
@@ -68,7 +68,7 @@ base class IWbemLocatorVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> strNetworkResource,
               Pointer<Utf16> strUser,
               Pointer<Utf16> strPassword,

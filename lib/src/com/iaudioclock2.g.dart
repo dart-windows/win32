@@ -32,7 +32,7 @@ class IAudioClock2 extends IUnknown {
   int getDevicePosition(
           Pointer<Uint64> devicePosition, Pointer<Uint64>? qPCPosition) =>
       _vtable.GetDevicePosition.asFunction<
-              int Function(VTablePointer, Pointer<Uint64> devicePosition,
+              int Function(VTablePointer lpVtbl, Pointer<Uint64> devicePosition,
                   Pointer<Uint64> qPCPosition)>()(
           ptr, devicePosition, qPCPosition ?? nullptr);
 }
@@ -42,6 +42,6 @@ base class IAudioClock2Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint64> devicePosition,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> devicePosition,
               Pointer<Uint64> qPCPosition)>> GetDevicePosition;
 }

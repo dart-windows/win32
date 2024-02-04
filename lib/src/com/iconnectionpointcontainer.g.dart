@@ -31,12 +31,12 @@ class IConnectionPointContainer extends IUnknown {
 
   int enumConnectionPoints(Pointer<VTablePointer> ppEnum) =>
       _vtable.EnumConnectionPoints.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 
   int findConnectionPoint(Pointer<GUID> riid, Pointer<VTablePointer> ppCP) =>
       _vtable.FindConnectionPoint.asFunction<
-          int Function(VTablePointer, Pointer<GUID> riid,
+          int Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<VTablePointer> ppCP)>()(ptr, riid, ppCP);
 }
 
@@ -45,10 +45,11 @@ base class IConnectionPointContainerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnum)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>>
       EnumConnectionPoints;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<GUID> riid,
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<VTablePointer> ppCP)>> FindConnectionPoint;
 }

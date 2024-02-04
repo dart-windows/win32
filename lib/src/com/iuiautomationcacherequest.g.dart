@@ -36,22 +36,22 @@ class IUIAutomationCacheRequest extends IUnknown {
           interface.toInterface(IID_IUIAutomationCacheRequest));
 
   int addProperty(int propertyId) => _vtable.AddProperty.asFunction<
-      int Function(VTablePointer, int propertyId)>()(ptr, propertyId);
+      int Function(VTablePointer lpVtbl, int propertyId)>()(ptr, propertyId);
 
   int addPattern(int patternId) => _vtable.AddPattern.asFunction<
-      int Function(VTablePointer, int patternId)>()(ptr, patternId);
+      int Function(VTablePointer lpVtbl, int patternId)>()(ptr, patternId);
 
   int clone(Pointer<VTablePointer> clonedRequest) => _vtable.Clone.asFunction<
-          int Function(VTablePointer, Pointer<VTablePointer> clonedRequest)>()(
-      ptr, clonedRequest);
+      int Function(VTablePointer lpVtbl,
+          Pointer<VTablePointer> clonedRequest)>()(ptr, clonedRequest);
 
   int get treeScope {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_TreeScope
-              .asFunction<int Function(VTablePointer, Pointer<Int32> scope)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_TreeScope.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> scope)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -63,7 +63,8 @@ class IUIAutomationCacheRequest extends IUnknown {
 
   set treeScope(int value) {
     final hr = _vtable.put_TreeScope
-        .asFunction<int Function(VTablePointer, int scope)>()(ptr, value);
+            .asFunction<int Function(VTablePointer lpVtbl, int scope)>()(
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -72,8 +73,8 @@ class IUIAutomationCacheRequest extends IUnknown {
 
     try {
       final hr = _vtable.get_TreeFilter.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> filter)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> filter)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -84,9 +85,8 @@ class IUIAutomationCacheRequest extends IUnknown {
   }
 
   set treeFilter(VTablePointer value) {
-    final hr = _vtable.put_TreeFilter
-            .asFunction<int Function(VTablePointer, VTablePointer filter)>()(
-        ptr, value);
+    final hr = _vtable.put_TreeFilter.asFunction<
+        int Function(VTablePointer lpVtbl, VTablePointer filter)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -94,9 +94,9 @@ class IUIAutomationCacheRequest extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_AutomationElementMode
-              .asFunction<int Function(VTablePointer, Pointer<Int32> mode)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_AutomationElementMode.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> mode)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -108,7 +108,7 @@ class IUIAutomationCacheRequest extends IUnknown {
 
   set automationElementMode(int value) {
     final hr = _vtable.put_AutomationElementMode
-        .asFunction<int Function(VTablePointer, int mode)>()(ptr, value);
+        .asFunction<int Function(VTablePointer lpVtbl, int mode)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }
@@ -117,30 +117,37 @@ class IUIAutomationCacheRequest extends IUnknown {
 base class IUIAutomationCacheRequestVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 propertyId)>>
-      AddProperty;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Int32 propertyId)>> AddProperty;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 patternId)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 patternId)>>
       AddPattern;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<VTablePointer> clonedRequest)>> Clone;
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> clonedRequest)>>
+      Clone;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> scope)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> scope)>>
       get_TreeScope;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 scope)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 scope)>>
       put_TreeScope;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> filter)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> filter)>>
       get_TreeFilter;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer filter)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer filter)>>
       put_TreeFilter;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> mode)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> mode)>>
       get_AutomationElementMode;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 mode)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 mode)>>
       put_AutomationElementMode;
 }

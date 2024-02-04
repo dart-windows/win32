@@ -39,8 +39,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_CurrentStreamNumber.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> streamNumber)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> streamNumber)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -55,8 +55,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_LastStreamNumberQueued.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> streamNumber)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> streamNumber)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -71,8 +71,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_LastHResult.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> hResult)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> hResult)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -86,9 +86,9 @@ class ISpeechVoiceStatus extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_RunningState
-              .asFunction<int Function(VTablePointer, Pointer<Int32> state)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_RunningState.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> state)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -103,8 +103,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_InputWordPosition.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> position)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> position)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -118,9 +118,9 @@ class ISpeechVoiceStatus extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_InputWordLength
-              .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_InputWordLength.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -135,8 +135,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_InputSentencePosition.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> position)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> position)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -150,9 +150,9 @@ class ISpeechVoiceStatus extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_InputSentenceLength
-              .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_InputSentenceLength.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -167,8 +167,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_LastBookmark.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> bookmark)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> bookmark)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -183,8 +183,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_LastBookmarkId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> bookmarkId)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> bookmarkId)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -199,8 +199,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_PhonemeId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int16> phoneId)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int16> phoneId)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -215,8 +215,8 @@ class ISpeechVoiceStatus extends IDispatch {
 
     try {
       final hr = _vtable.get_VisemeId.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int16> visemeId)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int16> visemeId)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -232,44 +232,53 @@ base class ISpeechVoiceStatusVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> streamNumber)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> streamNumber)>>
       get_CurrentStreamNumber;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> streamNumber)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> streamNumber)>>
       get_LastStreamNumberQueued;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> hResult)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> hResult)>>
       get_LastHResult;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> state)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> state)>>
       get_RunningState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> position)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> position)>>
       get_InputWordPosition;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> length)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> length)>>
       get_InputWordLength;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> position)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> position)>>
       get_InputSentencePosition;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> length)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> length)>>
       get_InputSentenceLength;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> bookmark)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> bookmark)>>
       get_LastBookmark;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> bookmarkId)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> bookmarkId)>>
       get_LastBookmarkId;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int16> phoneId)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> phoneId)>>
       get_PhonemeId;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int16> visemeId)>> get_VisemeId;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> visemeId)>>
+      get_VisemeId;
 }

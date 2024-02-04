@@ -27,13 +27,15 @@ class IMMEndpoint extends IUnknown {
       IMMEndpoint(interface.toInterface(IID_IMMEndpoint));
 
   int getDataFlow(Pointer<Int32> pDataFlow) => _vtable.GetDataFlow.asFunction<
-      int Function(VTablePointer, Pointer<Int32> pDataFlow)>()(ptr, pDataFlow);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Int32> pDataFlow)>()(ptr, pDataFlow);
 }
 
 /// @nodoc
 base class IMMEndpointVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int32> pDataFlow)>> GetDataFlow;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pDataFlow)>>
+      GetDataFlow;
 }

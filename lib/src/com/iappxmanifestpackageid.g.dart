@@ -30,42 +30,43 @@ class IAppxManifestPackageId extends IUnknown {
       IAppxManifestPackageId(interface.toInterface(IID_IAppxManifestPackageId));
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
-      int Function(VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr, name);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
 
   int getArchitecture(Pointer<Int32> architecture) =>
       _vtable.GetArchitecture.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> architecture)>()(ptr, architecture);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> architecture)>()(ptr, architecture);
 
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>()(
-          ptr, publisher);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> publisher)>()(ptr, publisher);
 
   int getVersion(Pointer<Uint64> packageVersion) =>
       _vtable.GetVersion.asFunction<
-              int Function(VTablePointer, Pointer<Uint64> packageVersion)>()(
-          ptr, packageVersion);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint64> packageVersion)>()(ptr, packageVersion);
 
   int getResourceId(Pointer<Pointer<Utf16>> resourceId) =>
       _vtable.GetResourceId.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> resourceId)>()(ptr, resourceId);
 
   int comparePublisher(Pointer<Utf16> other, Pointer<Int32> isSame) =>
       _vtable.ComparePublisher.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> other,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> other,
               Pointer<Int32> isSame)>()(ptr, other, isSame);
 
   int getPackageFullName(Pointer<Pointer<Utf16>> packageFullName) =>
       _vtable.GetPackageFullName.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> packageFullName)>()(ptr, packageFullName);
 
   int getPackageFamilyName(Pointer<Pointer<Utf16>> packageFamilyName) =>
       _vtable.GetPackageFamilyName.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> packageFamilyName)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> packageFamilyName)>()(
           ptr, packageFamilyName);
 }
 
@@ -74,37 +75,38 @@ base class IAppxManifestPackageIdVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> name)>> GetName;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>> GetName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> architecture)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> architecture)>>
       GetArchitecture;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> publisher)>>
       GetPublisher;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint64> packageVersion)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Uint64> packageVersion)>>
       GetVersion;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> resourceId)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> resourceId)>>
       GetResourceId;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Utf16> other, Pointer<Int32> isSame)>>
-      ComparePublisher;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> other,
+              Pointer<Int32> isSame)>> ComparePublisher;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> packageFullName)>>
-      GetPackageFullName;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> packageFullName)>> GetPackageFullName;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> packageFamilyName)>>
-      GetPackageFamilyName;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> packageFamilyName)>> GetPackageFamilyName;
 }

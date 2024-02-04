@@ -33,13 +33,13 @@ class IAudioClient2 extends IAudioClient {
 
   int isOffloadCapable(int category, Pointer<Int32> pbOffloadCapable) =>
       _vtable.IsOffloadCapable.asFunction<
-              int Function(VTablePointer, int category,
+              int Function(VTablePointer lpVtbl, int category,
                   Pointer<Int32> pbOffloadCapable)>()(
           ptr, category, pbOffloadCapable);
 
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
       _vtable.SetClientProperties.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<AudioClientProperties> pProperties)>()(ptr, pProperties);
 
   int getBufferSizeLimits(
@@ -49,7 +49,7 @@ class IAudioClient2 extends IAudioClient {
           Pointer<Int64> phnsMaxBufferDuration) =>
       _vtable.GetBufferSizeLimits.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<WAVEFORMATEX> pFormat,
                   int bEventDriven,
                   Pointer<Int64> phnsMinBufferDuration,
@@ -62,17 +62,16 @@ base class IAudioClient2Vtbl extends Struct {
   external IAudioClientVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 category,
+          Int32 Function(VTablePointer lpVtbl, Int32 category,
               Pointer<Int32> pbOffloadCapable)>> IsOffloadCapable;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<AudioClientProperties> pProperties)>>
-      SetClientProperties;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<AudioClientProperties> pProperties)>> SetClientProperties;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<WAVEFORMATEX> pFormat,
               Int32 bEventDriven,
               Pointer<Int64> phnsMinBufferDuration,

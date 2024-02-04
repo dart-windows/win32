@@ -35,42 +35,43 @@ class IKnownFolder extends IUnknown {
       IKnownFolder(interface.toInterface(IID_IKnownFolder));
 
   int getId(Pointer<GUID> pkfid) => _vtable.GetId.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pkfid)>()(ptr, pkfid);
+      int Function(VTablePointer lpVtbl, Pointer<GUID> pkfid)>()(ptr, pkfid);
 
   int getCategory(Pointer<Int32> pCategory) => _vtable.GetCategory.asFunction<
-      int Function(VTablePointer, Pointer<Int32> pCategory)>()(ptr, pCategory);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Int32> pCategory)>()(ptr, pCategory);
 
   int getShellItem(int dwFlags, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetShellItem.asFunction<
-          int Function(VTablePointer, int dwFlags, Pointer<GUID> riid,
+          int Function(VTablePointer lpVtbl, int dwFlags, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, dwFlags, riid, ppv);
 
   int getPath(int dwFlags, Pointer<Pointer<Utf16>> ppszPath) =>
       _vtable.GetPath.asFunction<
-          int Function(VTablePointer, int dwFlags,
+          int Function(VTablePointer lpVtbl, int dwFlags,
               Pointer<Pointer<Utf16>> ppszPath)>()(ptr, dwFlags, ppszPath);
 
   int setPath(int dwFlags, Pointer<Utf16> pszPath) =>
       _vtable.SetPath.asFunction<
-          int Function(VTablePointer, int dwFlags,
+          int Function(VTablePointer lpVtbl, int dwFlags,
               Pointer<Utf16> pszPath)>()(ptr, dwFlags, pszPath);
 
   int getIDList(int dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl) =>
       _vtable.GetIDList.asFunction<
-          int Function(VTablePointer, int dwFlags,
+          int Function(VTablePointer lpVtbl, int dwFlags,
               Pointer<Pointer<ITEMIDLIST>> ppidl)>()(ptr, dwFlags, ppidl);
 
   int getFolderType(Pointer<GUID> pftid) => _vtable.GetFolderType.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pftid)>()(ptr, pftid);
+      int Function(VTablePointer lpVtbl, Pointer<GUID> pftid)>()(ptr, pftid);
 
   int getRedirectionCapabilities(Pointer<Uint32> pCapabilities) =>
       _vtable.GetRedirectionCapabilities.asFunction<
-              int Function(VTablePointer, Pointer<Uint32> pCapabilities)>()(
-          ptr, pCapabilities);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> pCapabilities)>()(ptr, pCapabilities);
 
   int getFolderDefinition(Pointer<KNOWNFOLDER_DEFINITION> pKFD) =>
       _vtable.GetFolderDefinition.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<KNOWNFOLDER_DEFINITION> pKFD)>()(ptr, pKFD);
 }
 
@@ -78,36 +79,40 @@ class IKnownFolder extends IUnknown {
 base class IKnownFolderVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pkfid)>> GetId;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pkfid)>> GetId;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pCategory)>>
+      GetCategory;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int32> pCategory)>> GetCategory;
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwFlags,
+              Pointer<GUID> riid, Pointer<Pointer> ppv)>> GetShellItem;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 dwFlags, Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>> GetShellItem;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Uint32 dwFlags,
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwFlags,
               Pointer<Pointer<Utf16>> ppszPath)>> GetPath;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Uint32 dwFlags, Pointer<Utf16> pszPath)>> SetPath;
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwFlags,
+              Pointer<Utf16> pszPath)>> SetPath;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 dwFlags,
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwFlags,
               Pointer<Pointer<ITEMIDLIST>> ppidl)>> GetIDList;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pftid)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pftid)>>
       GetFolderType;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pCapabilities)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Uint32> pCapabilities)>>
       GetRedirectionCapabilities;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<KNOWNFOLDER_DEFINITION> pKFD)>>
+                  VTablePointer lpVtbl, Pointer<KNOWNFOLDER_DEFINITION> pKFD)>>
       GetFolderDefinition;
 }

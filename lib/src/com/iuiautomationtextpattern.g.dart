@@ -36,31 +36,31 @@ class IUIAutomationTextPattern extends IUnknown {
 
   int rangeFromPoint(POINT pt, Pointer<VTablePointer> range) =>
       _vtable.RangeFromPoint.asFunction<
-          int Function(VTablePointer, POINT pt,
+          int Function(VTablePointer lpVtbl, POINT pt,
               Pointer<VTablePointer> range)>()(ptr, pt, range);
 
   int rangeFromChild(VTablePointer child, Pointer<VTablePointer> range) =>
       _vtable.RangeFromChild.asFunction<
-          int Function(VTablePointer, VTablePointer child,
+          int Function(VTablePointer lpVtbl, VTablePointer child,
               Pointer<VTablePointer> range)>()(ptr, child, range);
 
   int getSelection(Pointer<VTablePointer> ranges) =>
       _vtable.GetSelection.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ranges)>()(ptr, ranges);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
   int getVisibleRanges(Pointer<VTablePointer> ranges) =>
       _vtable.GetVisibleRanges.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ranges)>()(ptr, ranges);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
   VTablePointer get documentRange {
     final retValuePtr = calloc<VTablePointer>();
 
     try {
       final hr = _vtable.get_DocumentRange.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> range)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -75,7 +75,7 @@ class IUIAutomationTextPattern extends IUnknown {
 
     try {
       final hr = _vtable.get_SupportedTextSelection.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Int32> supportedTextSelection)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -91,29 +91,31 @@ class IUIAutomationTextPattern extends IUnknown {
 base class IUIAutomationTextPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, POINT pt, Pointer<VTablePointer> range)>>
-      RangeFromPoint;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, POINT pt,
+              Pointer<VTablePointer> range)>> RangeFromPoint;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer child,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer child,
               Pointer<VTablePointer> range)>> RangeFromChild;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ranges)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ranges)>>
       GetSelection;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ranges)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ranges)>>
       GetVisibleRanges;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       get_DocumentRange;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Int32> supportedTextSelection)>>
+                  VTablePointer lpVtbl, Pointer<Int32> supportedTextSelection)>>
       get_SupportedTextSelection;
 }

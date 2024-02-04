@@ -34,15 +34,16 @@ class IUIAutomationTogglePattern extends IUnknown {
       IUIAutomationTogglePattern(
           interface.toInterface(IID_IUIAutomationTogglePattern));
 
-  int toggle() => _vtable.Toggle.asFunction<int Function(VTablePointer)>()(ptr);
+  int toggle() =>
+      _vtable.Toggle.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int get currentToggleState {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentToggleState
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentToggleState.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -56,9 +57,9 @@ class IUIAutomationTogglePattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedToggleState
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedToggleState.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -72,11 +73,13 @@ class IUIAutomationTogglePattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationTogglePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Toggle;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Toggle;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentToggleState;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedToggleState;
 }

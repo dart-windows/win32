@@ -32,18 +32,19 @@ class IEnumVARIANT extends IUnknown {
 
   int next(int celt, Pointer<VARIANT> rgVar, Pointer<Uint32> pCeltFetched) =>
       _vtable.Next.asFunction<
-          int Function(VTablePointer, int celt, Pointer<VARIANT> rgVar,
+          int Function(VTablePointer lpVtbl, int celt, Pointer<VARIANT> rgVar,
               Pointer<Uint32> pCeltFetched)>()(ptr, celt, rgVar, pCeltFetched);
 
   int skip(int celt) =>
-      _vtable.Skip.asFunction<int Function(VTablePointer, int celt)>()(
+      _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
-  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
+  int reset() =>
+      _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int clone(Pointer<VTablePointer> ppEnum) => _vtable.Clone.asFunction<
       int Function(
-          VTablePointer, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
+          VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 }
 
 /// @nodoc
@@ -51,12 +52,13 @@ base class IEnumVARIANTVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 celt, Pointer<VARIANT> rgVar,
-              Pointer<Uint32> pCeltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 celt)>>
-      Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
+          Int32 Function(VTablePointer lpVtbl, Uint32 celt,
+              Pointer<VARIANT> rgVar, Pointer<Uint32> pCeltFetched)>> Next;
+  external Pointer<
+      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnum)>> Clone;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>> Clone;
 }

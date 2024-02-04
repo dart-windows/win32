@@ -32,7 +32,7 @@ class IShellItemImageFactory extends IUnknown {
 
   int getImage(SIZE size, int flags, Pointer<IntPtr> phbm) =>
       _vtable.GetImage.asFunction<
-          int Function(VTablePointer, SIZE size, int flags,
+          int Function(VTablePointer lpVtbl, SIZE size, int flags,
               Pointer<IntPtr> phbm)>()(ptr, size, flags, phbm);
 }
 
@@ -40,8 +40,7 @@ class IShellItemImageFactory extends IUnknown {
 base class IShellItemImageFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, SIZE size, Int32 flags, Pointer<IntPtr> phbm)>>
-      GetImage;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, SIZE size, Int32 flags,
+              Pointer<IntPtr> phbm)>> GetImage;
 }

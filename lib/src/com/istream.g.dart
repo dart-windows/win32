@@ -34,43 +34,45 @@ class IStream extends ISequentialStream {
 
   int seek(int dlibMove, int dwOrigin, Pointer<Uint64>? plibNewPosition) =>
       _vtable.Seek.asFunction<
-              int Function(VTablePointer, int dlibMove, int dwOrigin,
+              int Function(VTablePointer lpVtbl, int dlibMove, int dwOrigin,
                   Pointer<Uint64> plibNewPosition)>()(
           ptr, dlibMove, dwOrigin, plibNewPosition ?? nullptr);
 
-  int setSize(int libNewSize) =>
-      _vtable.SetSize.asFunction<int Function(VTablePointer, int libNewSize)>()(
-          ptr, libNewSize);
+  int setSize(int libNewSize) => _vtable.SetSize.asFunction<
+      int Function(VTablePointer lpVtbl, int libNewSize)>()(ptr, libNewSize);
 
   int copyTo(VTablePointer pstm, int cb, Pointer<Uint64>? pcbRead,
           Pointer<Uint64>? pcbWritten) =>
       _vtable.CopyTo.asFunction<
-              int Function(VTablePointer, VTablePointer pstm, int cb,
+              int Function(VTablePointer lpVtbl, VTablePointer pstm, int cb,
                   Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>()(
           ptr, pstm, cb, pcbRead ?? nullptr, pcbWritten ?? nullptr);
 
   int commit(int grfCommitFlags) => _vtable.Commit.asFunction<
-      int Function(VTablePointer, int grfCommitFlags)>()(ptr, grfCommitFlags);
+      int Function(
+          VTablePointer lpVtbl, int grfCommitFlags)>()(ptr, grfCommitFlags);
 
-  int revert() => _vtable.Revert.asFunction<int Function(VTablePointer)>()(ptr);
+  int revert() =>
+      _vtable.Revert.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int lockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.LockRegion.asFunction<
-          int Function(VTablePointer, int libOffset, int cb,
+          int Function(VTablePointer lpVtbl, int libOffset, int cb,
               int dwLockType)>()(ptr, libOffset, cb, dwLockType);
 
   int unlockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.UnlockRegion.asFunction<
-          int Function(VTablePointer, int libOffset, int cb,
+          int Function(VTablePointer lpVtbl, int libOffset, int cb,
               int dwLockType)>()(ptr, libOffset, cb, dwLockType);
 
   int stat(Pointer<STATSTG> pstatstg, int grfStatFlag) =>
       _vtable.Stat.asFunction<
-          int Function(VTablePointer, Pointer<STATSTG> pstatstg,
+          int Function(VTablePointer lpVtbl, Pointer<STATSTG> pstatstg,
               int grfStatFlag)>()(ptr, pstatstg, grfStatFlag);
 
   int clone(Pointer<VTablePointer> ppstm) => _vtable.Clone.asFunction<
-      int Function(VTablePointer, Pointer<VTablePointer> ppstm)>()(ptr, ppstm);
+      int Function(
+          VTablePointer lpVtbl, Pointer<VTablePointer> ppstm)>()(ptr, ppstm);
 }
 
 /// @nodoc
@@ -78,31 +80,33 @@ base class IStreamVtbl extends Struct {
   external ISequentialStreamVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int64 dlibMove, Uint32 dwOrigin,
+          Int32 Function(VTablePointer lpVtbl, Int64 dlibMove, Uint32 dwOrigin,
               Pointer<Uint64> plibNewPosition)>> Seek;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Uint64 libNewSize)>> SetSize;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint64 libNewSize)>> SetSize;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer pstm, Uint64 cb,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pstm, Uint64 cb,
               Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>> CopyTo;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Uint32 grfCommitFlags)>>
-      Commit;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Revert;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint32 grfCommitFlags)>> Commit;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Revert;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint64 libOffset, Uint64 cb,
+          Int32 Function(VTablePointer lpVtbl, Uint64 libOffset, Uint64 cb,
               Uint32 dwLockType)>> LockRegion;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint64 libOffset, Uint64 cb,
+          Int32 Function(VTablePointer lpVtbl, Uint64 libOffset, Uint64 cb,
               Uint32 dwLockType)>> UnlockRegion;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<STATSTG> pstatstg,
+          Int32 Function(VTablePointer lpVtbl, Pointer<STATSTG> pstatstg,
               Uint32 grfStatFlag)>> Stat;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> ppstm)>> Clone;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppstm)>> Clone;
 }

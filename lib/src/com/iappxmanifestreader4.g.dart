@@ -31,8 +31,8 @@ class IAppxManifestReader4 extends IAppxManifestReader3 {
 
   int getOptionalPackageInfo(Pointer<VTablePointer> optionalPackageInfo) =>
       _vtable.GetOptionalPackageInfo.asFunction<
-              int Function(
-                  VTablePointer, Pointer<VTablePointer> optionalPackageInfo)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> optionalPackageInfo)>()(
           ptr, optionalPackageInfo);
 }
 
@@ -41,7 +41,7 @@ base class IAppxManifestReader4Vtbl extends Struct {
   external IAppxManifestReader3Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> optionalPackageInfo)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> optionalPackageInfo)>>
       GetOptionalPackageInfo;
 }

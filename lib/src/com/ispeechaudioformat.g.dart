@@ -36,8 +36,8 @@ class ISpeechAudioFormat extends IDispatch {
 
     try {
       final hr = _vtable.get_Type.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> audioFormat)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> audioFormat)>()(
+          ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -49,7 +49,8 @@ class ISpeechAudioFormat extends IDispatch {
 
   set type(int value) {
     final hr = _vtable.put_Type
-        .asFunction<int Function(VTablePointer, int audioFormat)>()(ptr, value);
+            .asFunction<int Function(VTablePointer lpVtbl, int audioFormat)>()(
+        ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -58,8 +59,8 @@ class ISpeechAudioFormat extends IDispatch {
 
     try {
       final hr = _vtable.get_Guid.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> guid)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> guid)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,21 +71,21 @@ class ISpeechAudioFormat extends IDispatch {
   }
 
   set guid(Pointer<Utf16> value) {
-    final hr = _vtable.put_Guid
-            .asFunction<int Function(VTablePointer, Pointer<Utf16> guid)>()(
-        ptr, value);
+    final hr = _vtable.put_Guid.asFunction<
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int getWaveFormatEx(Pointer<VTablePointer> speechWaveFormatEx) =>
       _vtable.GetWaveFormatEx.asFunction<
-              int Function(
-                  VTablePointer, Pointer<VTablePointer> speechWaveFormatEx)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> speechWaveFormatEx)>()(
           ptr, speechWaveFormatEx);
 
   int setWaveFormatEx(VTablePointer? speechWaveFormatEx) =>
       _vtable.SetWaveFormatEx.asFunction<
-              int Function(VTablePointer, VTablePointer speechWaveFormatEx)>()(
+              int Function(
+                  VTablePointer lpVtbl, VTablePointer speechWaveFormatEx)>()(
           ptr, speechWaveFormatEx ?? nullptr);
 }
 
@@ -92,25 +93,26 @@ class ISpeechAudioFormat extends IDispatch {
 base class ISpeechAudioFormatVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int32> audioFormat)>> get_Type;
-  external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 audioFormat)>>
-      put_Type;
-  external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> guid)>>
-      get_Guid;
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> audioFormat)>>
+      get_Type;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> guid)>>
-      put_Guid;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Int32 audioFormat)>> put_Type;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> guid)>> get_Guid;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>> put_Guid;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> speechWaveFormatEx)>> GetWaveFormatEx;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> speechWaveFormatEx)>>
-      GetWaveFormatEx;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, VTablePointer speechWaveFormatEx)>>
+                  VTablePointer lpVtbl, VTablePointer speechWaveFormatEx)>>
       SetWaveFormatEx;
 }

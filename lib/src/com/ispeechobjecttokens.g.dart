@@ -38,9 +38,9 @@ class ISpeechObjectTokens extends IDispatch {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_Count
-              .asFunction<int Function(VTablePointer, Pointer<Int32> count)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_Count.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> count)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -51,7 +51,7 @@ class ISpeechObjectTokens extends IDispatch {
   }
 
   int item(int index, Pointer<VTablePointer> token) => _vtable.Item.asFunction<
-      int Function(VTablePointer, int index,
+      int Function(VTablePointer lpVtbl, int index,
           Pointer<VTablePointer> token)>()(ptr, index, token);
 
   VTablePointer get newEnum {
@@ -59,7 +59,7 @@ class ISpeechObjectTokens extends IDispatch {
 
     try {
       final hr = _vtable.get__NewEnum.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppEnumVARIANT)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -75,15 +75,16 @@ class ISpeechObjectTokens extends IDispatch {
 base class ISpeechObjectTokensVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> count)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> count)>>
       get_Count;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Int32 index, Pointer<VTablePointer> token)>> Item;
+          Int32 Function(VTablePointer lpVtbl, Int32 index,
+              Pointer<VTablePointer> token)>> Item;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> ppEnumVARIANT)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppEnumVARIANT)>>
       get__NewEnum;
 }

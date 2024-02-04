@@ -29,11 +29,11 @@ class IShellItemFilter extends IUnknown {
       IShellItemFilter(interface.toInterface(IID_IShellItemFilter));
 
   int includeItem(VTablePointer psi) => _vtable.IncludeItem.asFunction<
-      int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
+      int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 
   int getEnumFlagsForItem(VTablePointer psi, Pointer<Uint32> pgrfFlags) =>
       _vtable.GetEnumFlagsForItem.asFunction<
-          int Function(VTablePointer, VTablePointer psi,
+          int Function(VTablePointer lpVtbl, VTablePointer psi,
               Pointer<Uint32> pgrfFlags)>()(ptr, psi, pgrfFlags);
 }
 
@@ -41,11 +41,10 @@ class IShellItemFilter extends IUnknown {
 base class IShellItemFilterVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
-      IncludeItem;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>> IncludeItem;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer psi, Pointer<Uint32> pgrfFlags)>>
-      GetEnumFlagsForItem;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer psi,
+              Pointer<Uint32> pgrfFlags)>> GetEnumFlagsForItem;
 }

@@ -35,14 +35,14 @@ class IAudioSessionManager extends IUnknown {
   int getAudioSessionControl(Pointer<GUID>? audioSessionGuid, int streamFlags,
           Pointer<VTablePointer> sessionControl) =>
       _vtable.GetAudioSessionControl.asFunction<
-              int Function(VTablePointer, Pointer<GUID> audioSessionGuid,
+              int Function(VTablePointer lpVtbl, Pointer<GUID> audioSessionGuid,
                   int streamFlags, Pointer<VTablePointer> sessionControl)>()(
           ptr, audioSessionGuid ?? nullptr, streamFlags, sessionControl);
 
   int getSimpleAudioVolume(Pointer<GUID>? audioSessionGuid, int streamFlags,
           Pointer<VTablePointer> audioVolume) =>
       _vtable.GetSimpleAudioVolume.asFunction<
-              int Function(VTablePointer, Pointer<GUID> audioSessionGuid,
+              int Function(VTablePointer lpVtbl, Pointer<GUID> audioSessionGuid,
                   int streamFlags, Pointer<VTablePointer> audioVolume)>()(
           ptr, audioSessionGuid ?? nullptr, streamFlags, audioVolume);
 }
@@ -53,14 +53,14 @@ base class IAudioSessionManagerVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<GUID> audioSessionGuid,
               Uint32 streamFlags,
               Pointer<VTablePointer> sessionControl)>> GetAudioSessionControl;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<GUID> audioSessionGuid,
               Uint32 streamFlags,
               Pointer<VTablePointer> audioVolume)>> GetSimpleAudioVolume;

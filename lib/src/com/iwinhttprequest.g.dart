@@ -37,50 +37,49 @@ class IWinHttpRequest extends IDispatch {
 
   int setProxy(int proxySetting, VARIANT proxyServer, VARIANT bypassList) =>
       _vtable.SetProxy.asFunction<
-              int Function(VTablePointer, int proxySetting, VARIANT proxyServer,
-                  VARIANT bypassList)>()(
+              int Function(VTablePointer lpVtbl, int proxySetting,
+                  VARIANT proxyServer, VARIANT bypassList)>()(
           ptr, proxySetting, proxyServer, bypassList);
 
   int setCredentials(
           Pointer<Utf16> userName, Pointer<Utf16> password, int flags) =>
       _vtable.SetCredentials.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Utf16> userName,
               Pointer<Utf16> password,
               int flags)>()(ptr, userName, password, flags);
 
   int open(Pointer<Utf16> method, Pointer<Utf16> url, VARIANT async) =>
       _vtable.Open.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> method, Pointer<Utf16> url,
-              VARIANT async)>()(ptr, method, url, async);
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> method,
+              Pointer<Utf16> url, VARIANT async)>()(ptr, method, url, async);
 
   int setRequestHeader(Pointer<Utf16> header, Pointer<Utf16> value) =>
       _vtable.SetRequestHeader.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> header,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> header,
               Pointer<Utf16> value)>()(ptr, header, value);
 
   int getResponseHeader(Pointer<Utf16> header, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetResponseHeader.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> header,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> header,
               Pointer<Pointer<Utf16>> value)>()(ptr, header, value);
 
   int getAllResponseHeaders(Pointer<Pointer<Utf16>> headers) =>
       _vtable.GetAllResponseHeaders.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> headers)>()(ptr, headers);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> headers)>()(ptr, headers);
 
-  int send(VARIANT body) =>
-      _vtable.Send.asFunction<int Function(VTablePointer, VARIANT body)>()(
-          ptr, body);
+  int send(VARIANT body) => _vtable.Send.asFunction<
+      int Function(VTablePointer lpVtbl, VARIANT body)>()(ptr, body);
 
   int get status {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_Status
-              .asFunction<int Function(VTablePointer, Pointer<Int32> status)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_Status.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> status)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -95,8 +94,8 @@ class IWinHttpRequest extends IDispatch {
 
     try {
       final hr = _vtable.get_StatusText.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> status)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> status)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -111,8 +110,8 @@ class IWinHttpRequest extends IDispatch {
 
     try {
       final hr = _vtable.get_ResponseText.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> body)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> body)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -124,54 +123,55 @@ class IWinHttpRequest extends IDispatch {
 
   Pointer<VARIANT> get responseBody {
     final retValuePtr = calloc<VARIANT>();
-    final hr = _vtable.get_ResponseBody
-            .asFunction<int Function(VTablePointer, Pointer<VARIANT> body)>()(
-        ptr, retValuePtr);
+    final hr = _vtable.get_ResponseBody.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<VARIANT> body)>()(ptr, retValuePtr);
     if (FAILED(hr)) throw WindowsException(hr);
     return retValuePtr;
   }
 
   Pointer<VARIANT> get responseStream {
     final retValuePtr = calloc<VARIANT>();
-    final hr = _vtable.get_ResponseStream
-            .asFunction<int Function(VTablePointer, Pointer<VARIANT> body)>()(
-        ptr, retValuePtr);
+    final hr = _vtable.get_ResponseStream.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<VARIANT> body)>()(ptr, retValuePtr);
     if (FAILED(hr)) throw WindowsException(hr);
     return retValuePtr;
   }
 
   int get_Option(int option, Pointer<VARIANT> value) =>
       _vtable.get_Option.asFunction<
-          int Function(VTablePointer, int option,
+          int Function(VTablePointer lpVtbl, int option,
               Pointer<VARIANT> value)>()(ptr, option, value);
 
-  int put_Option(int option, VARIANT value) => _vtable.put_Option
-          .asFunction<int Function(VTablePointer, int option, VARIANT value)>()(
+  int put_Option(int option, VARIANT value) => _vtable.put_Option.asFunction<
+          int Function(VTablePointer lpVtbl, int option, VARIANT value)>()(
       ptr, option, value);
 
   int waitForResponse(VARIANT timeout, Pointer<Int16> succeeded) =>
       _vtable.WaitForResponse.asFunction<
-          int Function(VTablePointer, VARIANT timeout,
+          int Function(VTablePointer lpVtbl, VARIANT timeout,
               Pointer<Int16> succeeded)>()(ptr, timeout, succeeded);
 
-  int abort() => _vtable.Abort.asFunction<int Function(VTablePointer)>()(ptr);
+  int abort() =>
+      _vtable.Abort.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int setTimeouts(int resolveTimeout, int connectTimeout, int sendTimeout,
           int receiveTimeout) =>
       _vtable.SetTimeouts.asFunction<
-              int Function(VTablePointer, int resolveTimeout,
+              int Function(VTablePointer lpVtbl, int resolveTimeout,
                   int connectTimeout, int sendTimeout, int receiveTimeout)>()(
           ptr, resolveTimeout, connectTimeout, sendTimeout, receiveTimeout);
 
   int setClientCertificate(Pointer<Utf16> clientCertificate) =>
       _vtable.SetClientCertificate.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> clientCertificate)>()(
-          ptr, clientCertificate);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Utf16> clientCertificate)>()(ptr, clientCertificate);
 
   int setAutoLogonPolicy(int autoLogonPolicy) =>
       _vtable.SetAutoLogonPolicy.asFunction<
-          int Function(
-              VTablePointer, int autoLogonPolicy)>()(ptr, autoLogonPolicy);
+              int Function(VTablePointer lpVtbl, int autoLogonPolicy)>()(
+          ptr, autoLogonPolicy);
 }
 
 /// @nodoc
@@ -179,76 +179,83 @@ base class IWinHttpRequestVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 proxySetting, VARIANT proxyServer,
-              VARIANT bypassList)>> SetProxy;
+          Int32 Function(VTablePointer lpVtbl, Int32 proxySetting,
+              VARIANT proxyServer, VARIANT bypassList)>> SetProxy;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> userName,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> userName,
               Pointer<Utf16> password, Int32 flags)>> SetCredentials;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> method,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> method,
               Pointer<Utf16> url, VARIANT async)>> Open;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Utf16> header, Pointer<Utf16> value)>>
-      SetRequestHeader;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> header,
+              Pointer<Utf16> value)>> SetRequestHeader;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> header,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> header,
               Pointer<Pointer<Utf16>> value)>> GetResponseHeader;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> headers)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> headers)>>
       GetAllResponseHeaders;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, VARIANT body)>>
-      Send;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> status)>>
+      NativeFunction<Int32 Function(VTablePointer lpVtbl, VARIANT body)>> Send;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> status)>>
       get_Status;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> status)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> status)>>
       get_StatusText;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> body)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> body)>>
       get_ResponseText;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<VARIANT> body)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<VARIANT> body)>>
       get_ResponseBody;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<VARIANT> body)>>
-      get_ResponseStream;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Int32 option, Pointer<VARIANT> value)>> get_Option;
-  external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Int32 option, VARIANT value)>>
-      put_Option;
+              Int32 Function(VTablePointer lpVtbl, Pointer<VARIANT> body)>>
+      get_ResponseStream;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, VARIANT timeout, Pointer<Int16> succeeded)>>
-      WaitForResponse;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Abort;
+                  VTablePointer lpVtbl, Int32 option, Pointer<VARIANT> value)>>
+      get_Option;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl, Int32 option, VARIANT value)>> put_Option;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VARIANT timeout,
+              Pointer<Int16> succeeded)>> WaitForResponse;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Abort;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl,
               Int32 resolveTimeout,
               Int32 connectTimeout,
               Int32 sendTimeout,
               Int32 receiveTimeout)>> SetTimeouts;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> clientCertificate)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Utf16> clientCertificate)>>
       SetClientCertificate;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 autoLogonPolicy)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int32 autoLogonPolicy)>>
       SetAutoLogonPolicy;
 }
 

@@ -30,24 +30,24 @@ class IAppxFile extends IUnknown {
 
   int getCompressionOption(Pointer<Int32> compressionOption) =>
       _vtable.GetCompressionOption.asFunction<
-              int Function(VTablePointer, Pointer<Int32> compressionOption)>()(
-          ptr, compressionOption);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> compressionOption)>()(ptr, compressionOption);
 
   int getContentType(Pointer<Pointer<Utf16>> contentType) =>
       _vtable.GetContentType.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> contentType)>()(ptr, contentType);
 
   int getName(Pointer<Pointer<Utf16>> fileName) => _vtable.GetName.asFunction<
-      int Function(
-          VTablePointer, Pointer<Pointer<Utf16>> fileName)>()(ptr, fileName);
+      int Function(VTablePointer lpVtbl,
+          Pointer<Pointer<Utf16>> fileName)>()(ptr, fileName);
 
   int getSize(Pointer<Uint64> size) => _vtable.GetSize.asFunction<
-      int Function(VTablePointer, Pointer<Uint64> size)>()(ptr, size);
+      int Function(VTablePointer lpVtbl, Pointer<Uint64> size)>()(ptr, size);
 
   int getStream(Pointer<VTablePointer> stream) => _vtable.GetStream.asFunction<
       int Function(
-          VTablePointer, Pointer<VTablePointer> stream)>()(ptr, stream);
+          VTablePointer lpVtbl, Pointer<VTablePointer> stream)>()(ptr, stream);
 }
 
 /// @nodoc
@@ -55,22 +55,23 @@ base class IAppxFileVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> compressionOption)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> compressionOption)>>
       GetCompressionOption;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> contentType)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> contentType)>>
       GetContentType;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> fileName)>>
-      GetName;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> fileName)>> GetName;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint64> size)>>
-      GetSize;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> size)>> GetSize;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> stream)>>
-      GetStream;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> stream)>> GetStream;
 }

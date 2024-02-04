@@ -31,50 +31,60 @@ class IFileSaveDialog extends IFileDialog {
       IFileSaveDialog(interface.toInterface(IID_IFileSaveDialog));
 
   int setSaveAsItem(VTablePointer psi) => _vtable.SetSaveAsItem.asFunction<
-      int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
+      int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 
   int setProperties(VTablePointer pStore) => _vtable.SetProperties.asFunction<
-      int Function(VTablePointer, VTablePointer pStore)>()(ptr, pStore);
+      int Function(VTablePointer lpVtbl, VTablePointer pStore)>()(ptr, pStore);
 
   int setCollectedProperties(VTablePointer pList, int fAppendDefault) =>
       _vtable.SetCollectedProperties.asFunction<
-          int Function(VTablePointer, VTablePointer pList,
+          int Function(VTablePointer lpVtbl, VTablePointer pList,
               int fAppendDefault)>()(ptr, pList, fAppendDefault);
 
   int getProperties(Pointer<VTablePointer> ppStore) =>
       _vtable.GetProperties.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> ppStore)>()(ptr, ppStore);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> ppStore)>()(ptr, ppStore);
 
   int applyProperties(VTablePointer psi, VTablePointer pStore, int hwnd,
           VTablePointer pSink) =>
       _vtable.ApplyProperties.asFunction<
-          int Function(VTablePointer, VTablePointer psi, VTablePointer pStore,
-              int hwnd, VTablePointer pSink)>()(ptr, psi, pStore, hwnd, pSink);
+          int Function(
+              VTablePointer lpVtbl,
+              VTablePointer psi,
+              VTablePointer pStore,
+              int hwnd,
+              VTablePointer pSink)>()(ptr, psi, pStore, hwnd, pSink);
 }
 
 /// @nodoc
 base class IFileSaveDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>>
       SetSaveAsItem;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer pStore)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer pStore)>>
       SetProperties;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pList,
+              Int32 fAppendDefault)>> SetCollectedProperties;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, VTablePointer pList, Int32 fAppendDefault)>>
-      SetCollectedProperties;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppStore)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppStore)>>
       GetProperties;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer psi, VTablePointer pStore,
-              IntPtr hwnd, VTablePointer pSink)>> ApplyProperties;
+          Int32 Function(
+              VTablePointer lpVtbl,
+              VTablePointer psi,
+              VTablePointer pStore,
+              IntPtr hwnd,
+              VTablePointer pSink)>> ApplyProperties;
 }
 
 /// @nodoc

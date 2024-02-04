@@ -33,7 +33,7 @@ class IUIAutomationCustomNavigationPattern extends IUnknown {
 
   int navigate(int direction, Pointer<VTablePointer> pRetVal) =>
       _vtable.Navigate.asFunction<
-          int Function(VTablePointer, int direction,
+          int Function(VTablePointer lpVtbl, int direction,
               Pointer<VTablePointer> pRetVal)>()(ptr, direction, pRetVal);
 }
 
@@ -42,6 +42,6 @@ base class IUIAutomationCustomNavigationPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 direction,
+          Int32 Function(VTablePointer lpVtbl, Int32 direction,
               Pointer<VTablePointer> pRetVal)>> Navigate;
 }

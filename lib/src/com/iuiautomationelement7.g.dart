@@ -37,7 +37,7 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           Pointer<VTablePointer> found) =>
       _vtable.FindFirstWithOptions.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int scope,
                   VTablePointer condition,
                   int traversalOptions,
@@ -53,7 +53,7 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           Pointer<VTablePointer> found) =>
       _vtable.FindAllWithOptions.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int scope,
                   VTablePointer condition,
                   int traversalOptions,
@@ -70,7 +70,7 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           Pointer<VTablePointer> found) =>
       _vtable.FindFirstWithOptionsBuildCache.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int scope,
                   VTablePointer condition,
                   VTablePointer cacheRequest,
@@ -88,7 +88,7 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
           Pointer<VTablePointer> found) =>
       _vtable.FindAllWithOptionsBuildCache.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int scope,
                   VTablePointer condition,
                   VTablePointer cacheRequest,
@@ -100,7 +100,7 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
   int getCurrentMetadataValue(
           int targetId, int metadataId, Pointer<VARIANT> returnVal) =>
       _vtable.GetCurrentMetadataValue.asFunction<
-              int Function(VTablePointer, int targetId, int metadataId,
+              int Function(VTablePointer lpVtbl, int targetId, int metadataId,
                   Pointer<VARIANT> returnVal)>()(
           ptr, targetId, metadataId, returnVal);
 }
@@ -111,7 +111,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
               Int32 traversalOptions,
@@ -120,7 +120,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
               Int32 traversalOptions,
@@ -129,7 +129,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
               VTablePointer cacheRequest,
@@ -139,7 +139,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
               VTablePointer cacheRequest,
@@ -148,6 +148,6 @@ base class IUIAutomationElement7Vtbl extends Struct {
               Pointer<VTablePointer> found)>> FindAllWithOptionsBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 targetId, Int32 metadataId,
+          Int32 Function(VTablePointer lpVtbl, Int32 targetId, Int32 metadataId,
               Pointer<VARIANT> returnVal)>> GetCurrentMetadataValue;
 }

@@ -35,13 +35,13 @@ class ISpellChecker2 extends ISpellChecker {
       ISpellChecker2(interface.toInterface(IID_ISpellChecker2));
 
   int remove(Pointer<Utf16> word) => _vtable.Remove.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> word)>()(ptr, word);
+      int Function(VTablePointer lpVtbl, Pointer<Utf16> word)>()(ptr, word);
 }
 
 /// @nodoc
 base class ISpellChecker2Vtbl extends Struct {
   external ISpellCheckerVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> word)>>
-      Remove;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> word)>> Remove;
 }

@@ -33,48 +33,49 @@ class IPersistFile extends IPersist {
       IPersistFile(interface.toInterface(IID_IPersistFile));
 
   int isDirty() =>
-      _vtable.IsDirty.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.IsDirty.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int load(Pointer<Utf16> pszFileName, int dwMode) => _vtable.Load.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> pszFileName,
+      int Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName,
           int dwMode)>()(ptr, pszFileName, dwMode);
 
   int save(Pointer<Utf16> pszFileName, int fRemember) =>
       _vtable.Save.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> pszFileName,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName,
               int fRemember)>()(ptr, pszFileName, fRemember);
 
   int saveCompleted(
           Pointer<Utf16> pszFileName) =>
       _vtable.SaveCompleted.asFunction<
-          int Function(
-              VTablePointer, Pointer<Utf16> pszFileName)>()(ptr, pszFileName);
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName)>()(
+          ptr, pszFileName);
 
   int getCurFile(Pointer<Pointer<Utf16>> ppszFileName) =>
       _vtable.GetCurFile.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> ppszFileName)>()(ptr, ppszFileName);
 }
 
 /// @nodoc
 base class IPersistFileVtbl extends Struct {
   external IPersistVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> IsDirty;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      IsDirty;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Utf16> pszFileName, Uint32 dwMode)>> Load;
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName,
+              Uint32 dwMode)>> Load;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName,
+              Int32 fRemember)>> Save;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName)>>
+      SaveCompleted;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Utf16> pszFileName, Int32 fRemember)>>
-      Save;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> pszFileName)>>
-      SaveCompleted;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<Utf16>> ppszFileName)>> GetCurFile;
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> ppszFileName)>>
+      GetCurFile;
 }

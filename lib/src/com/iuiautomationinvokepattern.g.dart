@@ -29,11 +29,12 @@ class IUIAutomationInvokePattern extends IUnknown {
       IUIAutomationInvokePattern(
           interface.toInterface(IID_IUIAutomationInvokePattern));
 
-  int invoke() => _vtable.Invoke.asFunction<int Function(VTablePointer)>()(ptr);
+  int invoke() =>
+      _vtable.Invoke.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }
 
 /// @nodoc
 base class IUIAutomationInvokePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Invoke;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Invoke;
 }

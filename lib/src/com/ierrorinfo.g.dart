@@ -34,52 +34,53 @@ class IErrorInfo extends IUnknown {
       IErrorInfo(interface.toInterface(IID_IErrorInfo));
 
   int getGUID(Pointer<GUID> pGUID) => _vtable.GetGUID.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pGUID)>()(ptr, pGUID);
+      int Function(VTablePointer lpVtbl, Pointer<GUID> pGUID)>()(ptr, pGUID);
 
   int getSource(Pointer<Pointer<Utf16>> pBstrSource) =>
       _vtable.GetSource.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pBstrSource)>()(ptr, pBstrSource);
 
   int getDescription(Pointer<Pointer<Utf16>> pBstrDescription) =>
       _vtable.GetDescription.asFunction<
-              int Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pBstrDescription)>()(
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pBstrDescription)>()(
           ptr, pBstrDescription);
 
   int getHelpFile(Pointer<Pointer<Utf16>> pBstrHelpFile) =>
       _vtable.GetHelpFile.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pBstrHelpFile)>()(ptr, pBstrHelpFile);
 
   int getHelpContext(Pointer<Uint32> pdwHelpContext) =>
       _vtable.GetHelpContext.asFunction<
-              int Function(VTablePointer, Pointer<Uint32> pdwHelpContext)>()(
-          ptr, pdwHelpContext);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint32> pdwHelpContext)>()(ptr, pdwHelpContext);
 }
 
 /// @nodoc
 base class IErrorInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pGUID)>>
-      GetGUID;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pGUID)>> GetGUID;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pBstrSource)>>
+      GetSource;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer, Pointer<Pointer<Utf16>> pBstrSource)>> GetSource;
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pBstrDescription)>> GetDescription;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pBstrDescription)>>
-      GetDescription;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> pBstrHelpFile)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pBstrHelpFile)>>
       GetHelpFile;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pdwHelpContext)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Uint32> pdwHelpContext)>>
       GetHelpContext;
 }

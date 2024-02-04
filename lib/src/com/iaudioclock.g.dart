@@ -32,19 +32,19 @@ class IAudioClock extends IUnknown {
 
   int getFrequency(Pointer<Uint64> pu64Frequency) =>
       _vtable.GetFrequency.asFunction<
-              int Function(VTablePointer, Pointer<Uint64> pu64Frequency)>()(
-          ptr, pu64Frequency);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Uint64> pu64Frequency)>()(ptr, pu64Frequency);
 
   int getPosition(
           Pointer<Uint64> pu64Position, Pointer<Uint64>? pu64QPCPosition) =>
       _vtable.GetPosition.asFunction<
-              int Function(VTablePointer, Pointer<Uint64> pu64Position,
+              int Function(VTablePointer lpVtbl, Pointer<Uint64> pu64Position,
                   Pointer<Uint64> pu64QPCPosition)>()(
           ptr, pu64Position, pu64QPCPosition ?? nullptr);
 
   int getCharacteristics(Pointer<Uint32> pdwCharacteristics) =>
       _vtable.GetCharacteristics.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Uint32> pdwCharacteristics)>()(ptr, pdwCharacteristics);
 }
 
@@ -53,15 +53,16 @@ base class IAudioClockVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint64> pu64Frequency)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Uint64> pu64Frequency)>>
       GetFrequency;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint64> pu64Position,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> pu64Position,
               Pointer<Uint64> pu64QPCPosition)>> GetPosition;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Uint32> pdwCharacteristics)>>
+                  VTablePointer lpVtbl, Pointer<Uint32> pdwCharacteristics)>>
       GetCharacteristics;
 }

@@ -42,8 +42,8 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_ProxyFactory.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> factory)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> factory)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -58,8 +58,8 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_ClassName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> className)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> className)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -74,8 +74,8 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_ImageName.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> imageName)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> imageName)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -90,7 +90,7 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_AllowSubstringMatch.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Int32> allowSubstringMatch)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -106,8 +106,8 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_CanCheckBaseClass.asFunction<
-              int Function(VTablePointer, Pointer<Int32> canCheckBaseClass)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> canCheckBaseClass)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -122,8 +122,8 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
     try {
       final hr = _vtable.get_NeedsAdviseEvents.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> adviseEvents)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Int32> adviseEvents)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -135,33 +135,35 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
   set className(Pointer<Utf16> value) {
     final hr = _vtable.put_ClassName.asFunction<
-        int Function(VTablePointer, Pointer<Utf16> className)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, Pointer<Utf16> className)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set imageName(Pointer<Utf16> value) {
     final hr = _vtable.put_ImageName.asFunction<
-        int Function(VTablePointer, Pointer<Utf16> imageName)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, Pointer<Utf16> imageName)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set allowSubstringMatch(int value) {
-    final hr = _vtable.put_AllowSubstringMatch
-            .asFunction<int Function(VTablePointer, int allowSubstringMatch)>()(
-        ptr, value);
+    final hr = _vtable.put_AllowSubstringMatch.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int allowSubstringMatch)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set canCheckBaseClass(int value) {
-    final hr = _vtable.put_CanCheckBaseClass
-            .asFunction<int Function(VTablePointer, int canCheckBaseClass)>()(
-        ptr, value);
+    final hr = _vtable.put_CanCheckBaseClass.asFunction<
+        int Function(
+            VTablePointer lpVtbl, int canCheckBaseClass)>()(ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   set needsAdviseEvents(int value) {
     final hr = _vtable.put_NeedsAdviseEvents
-            .asFunction<int Function(VTablePointer, int adviseEvents)>()(
+            .asFunction<int Function(VTablePointer lpVtbl, int adviseEvents)>()(
         ptr, value);
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -169,14 +171,14 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
   int setWinEventsForAutomationEvent(
           int eventId, int propertyId, Pointer<SAFEARRAY> winEvents) =>
       _vtable.SetWinEventsForAutomationEvent.asFunction<
-              int Function(VTablePointer, int eventId, int propertyId,
+              int Function(VTablePointer lpVtbl, int eventId, int propertyId,
                   Pointer<SAFEARRAY> winEvents)>()(
           ptr, eventId, propertyId, winEvents);
 
   int getWinEventsForAutomationEvent(
           int eventId, int propertyId, Pointer<Pointer<SAFEARRAY>> winEvents) =>
       _vtable.GetWinEventsForAutomationEvent.asFunction<
-              int Function(VTablePointer, int eventId, int propertyId,
+              int Function(VTablePointer lpVtbl, int eventId, int propertyId,
                   Pointer<Pointer<SAFEARRAY>> winEvents)>()(
           ptr, eventId, propertyId, winEvents);
 }
@@ -186,55 +188,61 @@ base class IUIAutomationProxyFactoryEntryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> factory)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> factory)>>
       get_ProxyFactory;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> className)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> className)>>
       get_ClassName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> imageName)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> imageName)>>
       get_ImageName;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Int32> allowSubstringMatch)>>
+                  VTablePointer lpVtbl, Pointer<Int32> allowSubstringMatch)>>
       get_AllowSubstringMatch;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> canCheckBaseClass)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> canCheckBaseClass)>>
       get_CanCheckBaseClass;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> adviseEvents)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Int32> adviseEvents)>>
       get_NeedsAdviseEvents;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> className)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> className)>>
       put_ClassName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> imageName)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> imageName)>>
       put_ImageName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Int32 allowSubstringMatch)>>
+              Int32 Function(VTablePointer lpVtbl, Int32 allowSubstringMatch)>>
       put_AllowSubstringMatch;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Int32 canCheckBaseClass)>>
+              Int32 Function(VTablePointer lpVtbl, Int32 canCheckBaseClass)>>
       put_CanCheckBaseClass;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 adviseEvents)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Int32 adviseEvents)>>
       put_NeedsAdviseEvents;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 eventId, Int32 propertyId,
+          Int32 Function(VTablePointer lpVtbl, Int32 eventId, Int32 propertyId,
               Pointer<SAFEARRAY> winEvents)>> SetWinEventsForAutomationEvent;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Int32 eventId, Int32 propertyId,
-                  Pointer<Pointer<SAFEARRAY>> winEvents)>>
+              Int32 Function(VTablePointer lpVtbl, Int32 eventId,
+                  Int32 propertyId, Pointer<Pointer<SAFEARRAY>> winEvents)>>
       GetWinEventsForAutomationEvent;
 }

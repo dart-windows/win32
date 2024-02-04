@@ -31,14 +31,14 @@ class IMetaDataTables2 extends IMetaDataTables {
 
   int getMetaDataStorage(Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd) =>
       _vtable.GetMetaDataStorage.asFunction<
-          int Function(VTablePointer, Pointer<Pointer> ppvMd,
+          int Function(VTablePointer lpVtbl, Pointer<Pointer> ppvMd,
               Pointer<Uint32> pcbMd)>()(ptr, ppvMd, pcbMd);
 
   int getMetaDataStreamInfo(int ix, Pointer<Pointer<Int8>> ppchName,
           Pointer<Pointer> ppv, Pointer<Uint32> pcb) =>
       _vtable.GetMetaDataStreamInfo.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               int ix,
               Pointer<Pointer<Int8>> ppchName,
               Pointer<Pointer> ppv,
@@ -50,12 +50,12 @@ base class IMetaDataTables2Vtbl extends Struct {
   external IMetaDataTablesVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Pointer> ppvMd,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Pointer> ppvMd,
               Pointer<Uint32> pcbMd)>> GetMetaDataStorage;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 ix,
               Pointer<Pointer<Int8>> ppchName,
               Pointer<Pointer> ppv,

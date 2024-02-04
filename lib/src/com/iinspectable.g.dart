@@ -29,18 +29,18 @@ class IInspectable extends IUnknown {
 
   int getIids(Pointer<Uint32> iidCount, Pointer<Pointer<GUID>> iids) =>
       _vtable.GetIids.asFunction<
-          int Function(VTablePointer, Pointer<Uint32> iidCount,
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> iidCount,
               Pointer<Pointer<GUID>> iids)>()(ptr, iidCount, iids);
 
   int getRuntimeClassName(Pointer<IntPtr> className) =>
       _vtable.GetRuntimeClassName.asFunction<
-          int Function(
-              VTablePointer, Pointer<IntPtr> className)>()(ptr, className);
+              int Function(VTablePointer lpVtbl, Pointer<IntPtr> className)>()(
+          ptr, className);
 
   int getTrustLevel(Pointer<Int32> trustLevel) =>
       _vtable.GetTrustLevel.asFunction<
-          int Function(
-              VTablePointer, Pointer<Int32> trustLevel)>()(ptr, trustLevel);
+              int Function(VTablePointer lpVtbl, Pointer<Int32> trustLevel)>()(
+          ptr, trustLevel);
 }
 
 /// @nodoc
@@ -48,14 +48,14 @@ base class IInspectableVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> iidCount,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> iidCount,
               Pointer<Pointer<GUID>> iids)>> GetIids;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<IntPtr> className)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<IntPtr> className)>>
       GetRuntimeClassName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> trustLevel)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> trustLevel)>>
       GetTrustLevel;
 }

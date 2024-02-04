@@ -32,18 +32,19 @@ class IAppxManifestPackageDependency extends IUnknown {
           interface.toInterface(IID_IAppxManifestPackageDependency));
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
-      int Function(VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr, name);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
 
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>()(
-          ptr, publisher);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> publisher)>()(ptr, publisher);
 
   int getMinVersion(
           Pointer<Uint64> minVersion) =>
       _vtable.GetMinVersion.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint64> minVersion)>()(ptr, minVersion);
+              int Function(VTablePointer lpVtbl, Pointer<Uint64> minVersion)>()(
+          ptr, minVersion);
 }
 
 /// @nodoc
@@ -51,13 +52,15 @@ base class IAppxManifestPackageDependencyVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> name)>> GetName;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>> GetName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> publisher)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> publisher)>>
       GetPublisher;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint64> minVersion)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> minVersion)>>
       GetMinVersion;
 }

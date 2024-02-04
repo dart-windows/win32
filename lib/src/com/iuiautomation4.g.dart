@@ -38,7 +38,7 @@ class IUIAutomation4 extends IUIAutomation3 {
           VTablePointer handler) =>
       _vtable.AddChangesEventHandler.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer element,
                   int scope,
                   Pointer<Int32> changeTypes,
@@ -49,7 +49,7 @@ class IUIAutomation4 extends IUIAutomation3 {
 
   int removeChangesEventHandler(VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveChangesEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 }
 
@@ -59,7 +59,7 @@ base class IUIAutomation4Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
               Pointer<Int32> changeTypes,
@@ -67,8 +67,7 @@ base class IUIAutomation4Vtbl extends Struct {
               VTablePointer pCacheRequest,
               VTablePointer handler)>> AddChangesEventHandler;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer element, VTablePointer handler)>>
-      RemoveChangesEventHandler;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+              VTablePointer handler)>> RemoveChangesEventHandler;
 }

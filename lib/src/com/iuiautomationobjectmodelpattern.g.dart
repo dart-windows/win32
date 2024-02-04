@@ -32,8 +32,8 @@ class IUIAutomationObjectModelPattern extends IUnknown {
 
   int getUnderlyingObjectModel(Pointer<VTablePointer> retVal) =>
       _vtable.GetUnderlyingObjectModel.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
 }
 
 /// @nodoc
@@ -41,6 +41,7 @@ base class IUIAutomationObjectModelPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetUnderlyingObjectModel;
 }

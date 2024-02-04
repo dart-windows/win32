@@ -31,12 +31,13 @@ class IUIAutomationTextRange2 extends IUIAutomationTextRange {
           interface.toInterface(IID_IUIAutomationTextRange2));
 
   int showContextMenu() =>
-      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.ShowContextMenu.asFunction<int Function(VTablePointer lpVtbl)>()(
+          ptr);
 }
 
 /// @nodoc
 base class IUIAutomationTextRange2Vtbl extends Struct {
   external IUIAutomationTextRangeVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       ShowContextMenu;
 }

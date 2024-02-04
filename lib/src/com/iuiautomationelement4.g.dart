@@ -38,9 +38,9 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentPositionInSet
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentPositionInSet.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -54,9 +54,9 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentSizeOfSet
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentSizeOfSet.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -70,9 +70,9 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentLevel
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentLevel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -87,7 +87,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
 
     try {
       final hr = _vtable.get_CurrentAnnotationTypes.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -103,8 +103,8 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
 
     try {
       final hr = _vtable.get_CurrentAnnotationObjects.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -118,9 +118,9 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedPositionInSet
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedPositionInSet.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -134,9 +134,9 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedSizeOfSet
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedSizeOfSet.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -150,9 +150,9 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedLevel
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedLevel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -167,7 +167,7 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
 
     try {
       final hr = _vtable.get_CachedAnnotationTypes.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -183,8 +183,8 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
 
     try {
       final hr = _vtable.get_CachedAnnotationObjects.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> retVal)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -199,39 +199,47 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
 base class IUIAutomationElement4Vtbl extends Struct {
   external IUIAutomationElement3Vtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentPositionInSet;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentSizeOfSet;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentLevel;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       get_CurrentAnnotationTypes;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CurrentAnnotationObjects;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedPositionInSet;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedSizeOfSet;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedLevel;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Pointer<SAFEARRAY>> retVal)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       get_CachedAnnotationTypes;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> retVal)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CachedAnnotationObjects;
 }

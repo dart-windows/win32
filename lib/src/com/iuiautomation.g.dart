@@ -36,14 +36,17 @@ class IUIAutomation extends IUnknown {
   int compareElements(
           VTablePointer el1, VTablePointer el2, Pointer<Int32> areSame) =>
       _vtable.CompareElements.asFunction<
-          int Function(VTablePointer, VTablePointer el1, VTablePointer el2,
+          int Function(
+              VTablePointer lpVtbl,
+              VTablePointer el1,
+              VTablePointer el2,
               Pointer<Int32> areSame)>()(ptr, el1, el2, areSame);
 
   int compareRuntimeIds(Pointer<SAFEARRAY> runtimeId1,
           Pointer<SAFEARRAY> runtimeId2, Pointer<Int32> areSame) =>
       _vtable.CompareRuntimeIds.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<SAFEARRAY> runtimeId1,
               Pointer<SAFEARRAY> runtimeId2,
               Pointer<Int32> areSame)>()(ptr, runtimeId1, runtimeId2, areSame);
@@ -51,53 +54,59 @@ class IUIAutomation extends IUnknown {
   int getRootElement(Pointer<VTablePointer> root) =>
       _vtable.GetRootElement.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> root)>()(ptr, root);
+              VTablePointer lpVtbl, Pointer<VTablePointer> root)>()(ptr, root);
 
   int elementFromHandle(int hwnd, Pointer<VTablePointer> element) =>
       _vtable.ElementFromHandle.asFunction<
-          int Function(VTablePointer, int hwnd,
+          int Function(VTablePointer lpVtbl, int hwnd,
               Pointer<VTablePointer> element)>()(ptr, hwnd, element);
 
   int elementFromPoint(POINT pt, Pointer<VTablePointer> element) =>
       _vtable.ElementFromPoint.asFunction<
-          int Function(VTablePointer, POINT pt,
+          int Function(VTablePointer lpVtbl, POINT pt,
               Pointer<VTablePointer> element)>()(ptr, pt, element);
 
   int getFocusedElement(Pointer<VTablePointer> element) =>
       _vtable.GetFocusedElement.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> element)>()(ptr, element);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> element)>()(ptr, element);
 
   int getRootElementBuildCache(
           VTablePointer cacheRequest, Pointer<VTablePointer> root) =>
       _vtable.GetRootElementBuildCache.asFunction<
-          int Function(VTablePointer, VTablePointer cacheRequest,
+          int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> root)>()(ptr, cacheRequest, root);
 
   int elementFromHandleBuildCache(int hwnd, VTablePointer cacheRequest,
           Pointer<VTablePointer> element) =>
       _vtable.ElementFromHandleBuildCache.asFunction<
-              int Function(VTablePointer, int hwnd, VTablePointer cacheRequest,
+              int Function(
+                  VTablePointer lpVtbl,
+                  int hwnd,
+                  VTablePointer cacheRequest,
                   Pointer<VTablePointer> element)>()(
           ptr, hwnd, cacheRequest, element);
 
   int elementFromPointBuildCache(POINT pt, VTablePointer cacheRequest,
           Pointer<VTablePointer> element) =>
       _vtable.ElementFromPointBuildCache.asFunction<
-              int Function(VTablePointer, POINT pt, VTablePointer cacheRequest,
+              int Function(
+                  VTablePointer lpVtbl,
+                  POINT pt,
+                  VTablePointer cacheRequest,
                   Pointer<VTablePointer> element)>()(
           ptr, pt, cacheRequest, element);
 
   int getFocusedElementBuildCache(
           VTablePointer cacheRequest, Pointer<VTablePointer> element) =>
       _vtable.GetFocusedElementBuildCache.asFunction<
-          int Function(VTablePointer, VTablePointer cacheRequest,
+          int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> element)>()(ptr, cacheRequest, element);
 
   int createTreeWalker(
           VTablePointer pCondition, Pointer<VTablePointer> walker) =>
       _vtable.CreateTreeWalker.asFunction<
-          int Function(VTablePointer, VTablePointer pCondition,
+          int Function(VTablePointer lpVtbl, VTablePointer pCondition,
               Pointer<VTablePointer> walker)>()(ptr, pCondition, walker);
 
   VTablePointer get controlViewWalker {
@@ -105,8 +114,8 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ControlViewWalker.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> walker)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> walker)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -121,8 +130,8 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ContentViewWalker.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> walker)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> walker)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -137,8 +146,8 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_RawViewWalker.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> walker)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> walker)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -153,8 +162,8 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_RawViewCondition.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> condition)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -169,8 +178,8 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ControlViewCondition.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> condition)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -185,8 +194,8 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ContentViewCondition.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> condition)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -198,30 +207,30 @@ class IUIAutomation extends IUnknown {
 
   int createCacheRequest(Pointer<VTablePointer> cacheRequest) =>
       _vtable.CreateCacheRequest.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> cacheRequest)>()(ptr, cacheRequest);
 
   int createTrueCondition(Pointer<VTablePointer> newCondition) =>
       _vtable.CreateTrueCondition.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> newCondition)>()(ptr, newCondition);
 
   int createFalseCondition(Pointer<VTablePointer> newCondition) =>
       _vtable.CreateFalseCondition.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> newCondition)>()(ptr, newCondition);
 
   int createPropertyCondition(
           int propertyId, VARIANT value, Pointer<VTablePointer> newCondition) =>
       _vtable.CreatePropertyCondition.asFunction<
-              int Function(VTablePointer, int propertyId, VARIANT value,
+              int Function(VTablePointer lpVtbl, int propertyId, VARIANT value,
                   Pointer<VTablePointer> newCondition)>()(
           ptr, propertyId, value, newCondition);
 
   int createPropertyConditionEx(int propertyId, VARIANT value, int flags,
           Pointer<VTablePointer> newCondition) =>
       _vtable.CreatePropertyConditionEx.asFunction<
-              int Function(VTablePointer, int propertyId, VARIANT value,
+              int Function(VTablePointer lpVtbl, int propertyId, VARIANT value,
                   int flags, Pointer<VTablePointer> newCondition)>()(
           ptr, propertyId, value, flags, newCondition);
 
@@ -229,7 +238,7 @@ class IUIAutomation extends IUnknown {
           Pointer<VTablePointer> newCondition) =>
       _vtable.CreateAndCondition.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer condition1,
                   VTablePointer condition2,
                   Pointer<VTablePointer> newCondition)>()(
@@ -238,22 +247,25 @@ class IUIAutomation extends IUnknown {
   int createAndConditionFromArray(
           Pointer<SAFEARRAY> conditions, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateAndConditionFromArray.asFunction<
-              int Function(VTablePointer, Pointer<SAFEARRAY> conditions,
+              int Function(VTablePointer lpVtbl, Pointer<SAFEARRAY> conditions,
                   Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, newCondition);
 
   int createAndConditionFromNativeArray(Pointer<VTablePointer> conditions,
           int conditionCount, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateAndConditionFromNativeArray.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> conditions,
-                  int conditionCount, Pointer<VTablePointer> newCondition)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<VTablePointer> conditions,
+                  int conditionCount,
+                  Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, conditionCount, newCondition);
 
   int createOrCondition(VTablePointer condition1, VTablePointer condition2,
           Pointer<VTablePointer> newCondition) =>
       _vtable.CreateOrCondition.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer condition1,
                   VTablePointer condition2,
                   Pointer<VTablePointer> newCondition)>()(
@@ -262,21 +274,24 @@ class IUIAutomation extends IUnknown {
   int createOrConditionFromArray(
           Pointer<SAFEARRAY> conditions, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateOrConditionFromArray.asFunction<
-              int Function(VTablePointer, Pointer<SAFEARRAY> conditions,
+              int Function(VTablePointer lpVtbl, Pointer<SAFEARRAY> conditions,
                   Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, newCondition);
 
   int createOrConditionFromNativeArray(Pointer<VTablePointer> conditions,
           int conditionCount, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateOrConditionFromNativeArray.asFunction<
-              int Function(VTablePointer, Pointer<VTablePointer> conditions,
-                  int conditionCount, Pointer<VTablePointer> newCondition)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<VTablePointer> conditions,
+                  int conditionCount,
+                  Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, conditionCount, newCondition);
 
   int createNotCondition(
           VTablePointer condition, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateNotCondition.asFunction<
-              int Function(VTablePointer, VTablePointer condition,
+              int Function(VTablePointer lpVtbl, VTablePointer condition,
                   Pointer<VTablePointer> newCondition)>()(
           ptr, condition, newCondition);
 
@@ -284,7 +299,7 @@ class IUIAutomation extends IUnknown {
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddAutomationEventHandler.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int eventId,
                   VTablePointer element,
                   int scope,
@@ -295,7 +310,7 @@ class IUIAutomation extends IUnknown {
   int removeAutomationEventHandler(
           int eventId, VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveAutomationEventHandler.asFunction<
-          int Function(VTablePointer, int eventId, VTablePointer element,
+          int Function(VTablePointer lpVtbl, int eventId, VTablePointer element,
               VTablePointer handler)>()(ptr, eventId, element, handler);
 
   int addPropertyChangedEventHandlerNativeArray(
@@ -307,7 +322,7 @@ class IUIAutomation extends IUnknown {
           int propertyCount) =>
       _vtable.AddPropertyChangedEventHandlerNativeArray.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer element,
                   int scope,
                   VTablePointer cacheRequest,
@@ -324,7 +339,7 @@ class IUIAutomation extends IUnknown {
           Pointer<SAFEARRAY> propertyArray) =>
       _vtable.AddPropertyChangedEventHandler.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer element,
                   int scope,
                   VTablePointer cacheRequest,
@@ -335,67 +350,71 @@ class IUIAutomation extends IUnknown {
   int removePropertyChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemovePropertyChangedEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 
   int addStructureChangedEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddStructureChangedEventHandler.asFunction<
-              int Function(VTablePointer, VTablePointer element, int scope,
-                  VTablePointer cacheRequest, VTablePointer handler)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer element,
+                  int scope,
+                  VTablePointer cacheRequest,
+                  VTablePointer handler)>()(
           ptr, element, scope, cacheRequest, handler);
 
   int removeStructureChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveStructureChangedEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 
   int addFocusChangedEventHandler(
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddFocusChangedEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer cacheRequest,
+          int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               VTablePointer handler)>()(ptr, cacheRequest, handler);
 
   int removeFocusChangedEventHandler(VTablePointer handler) =>
       _vtable.RemoveFocusChangedEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer handler)>()(ptr, handler);
+          int Function(
+              VTablePointer lpVtbl, VTablePointer handler)>()(ptr, handler);
 
-  int removeAllEventHandlers() =>
-      _vtable.RemoveAllEventHandlers.asFunction<int Function(VTablePointer)>()(
-          ptr);
+  int removeAllEventHandlers() => _vtable.RemoveAllEventHandlers.asFunction<
+      int Function(VTablePointer lpVtbl)>()(ptr);
 
   int intNativeArrayToSafeArray(Pointer<Int32> array, int arrayCount,
           Pointer<Pointer<SAFEARRAY>> safeArray) =>
       _vtable.IntNativeArrayToSafeArray.asFunction<
-              int Function(VTablePointer, Pointer<Int32> array, int arrayCount,
-                  Pointer<Pointer<SAFEARRAY>> safeArray)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Int32> array,
+                  int arrayCount, Pointer<Pointer<SAFEARRAY>> safeArray)>()(
           ptr, array, arrayCount, safeArray);
 
   int intSafeArrayToNativeArray(Pointer<SAFEARRAY> intArray,
           Pointer<Pointer<Int32>> array, Pointer<Int32> arrayCount) =>
       _vtable.IntSafeArrayToNativeArray.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<SAFEARRAY> intArray,
               Pointer<Pointer<Int32>> array,
               Pointer<Int32> arrayCount)>()(ptr, intArray, array, arrayCount);
 
   int rectToVariant(RECT rc, Pointer<VARIANT> var_) =>
       _vtable.RectToVariant.asFunction<
-          int Function(
-              VTablePointer, RECT rc, Pointer<VARIANT> var_)>()(ptr, rc, var_);
+          int Function(VTablePointer lpVtbl, RECT rc,
+              Pointer<VARIANT> var_)>()(ptr, rc, var_);
 
   int variantToRect(VARIANT var_, Pointer<RECT> rc) =>
       _vtable.VariantToRect.asFunction<
-          int Function(
-              VTablePointer, VARIANT var_, Pointer<RECT> rc)>()(ptr, var_, rc);
+          int Function(VTablePointer lpVtbl, VARIANT var_,
+              Pointer<RECT> rc)>()(ptr, var_, rc);
 
   int safeArrayToRectNativeArray(Pointer<SAFEARRAY> rects,
           Pointer<Pointer<RECT>> rectArray, Pointer<Int32> rectArrayCount) =>
       _vtable.SafeArrayToRectNativeArray.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<SAFEARRAY> rects,
                   Pointer<Pointer<RECT>> rectArray,
                   Pointer<Int32> rectArrayCount)>()(
@@ -404,7 +423,7 @@ class IUIAutomation extends IUnknown {
   int createProxyFactoryEntry(
           VTablePointer factory, Pointer<VTablePointer> factoryEntry) =>
       _vtable.CreateProxyFactoryEntry.asFunction<
-              int Function(VTablePointer, VTablePointer factory,
+              int Function(VTablePointer lpVtbl, VTablePointer factory,
                   Pointer<VTablePointer> factoryEntry)>()(
           ptr, factory, factoryEntry);
 
@@ -413,7 +432,7 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ProxyFactoryMapping.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> factoryMapping)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -426,12 +445,12 @@ class IUIAutomation extends IUnknown {
 
   int getPropertyProgrammaticName(int property, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetPropertyProgrammaticName.asFunction<
-          int Function(VTablePointer, int property,
+          int Function(VTablePointer lpVtbl, int property,
               Pointer<Pointer<Utf16>> name)>()(ptr, property, name);
 
   int getPatternProgrammaticName(int pattern, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetPatternProgrammaticName.asFunction<
-          int Function(VTablePointer, int pattern,
+          int Function(VTablePointer lpVtbl, int pattern,
               Pointer<Pointer<Utf16>> name)>()(ptr, pattern, name);
 
   int pollForPotentialSupportedPatterns(
@@ -440,7 +459,7 @@ class IUIAutomation extends IUnknown {
           Pointer<Pointer<SAFEARRAY>> patternNames) =>
       _vtable.PollForPotentialSupportedPatterns.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer pElement,
                   Pointer<Pointer<SAFEARRAY>> patternIds,
                   Pointer<Pointer<SAFEARRAY>> patternNames)>()(
@@ -452,7 +471,7 @@ class IUIAutomation extends IUnknown {
           Pointer<Pointer<SAFEARRAY>> propertyNames) =>
       _vtable.PollForPotentialSupportedProperties.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer pElement,
                   Pointer<Pointer<SAFEARRAY>> propertyIds,
                   Pointer<Pointer<SAFEARRAY>> propertyNames)>()(
@@ -460,7 +479,7 @@ class IUIAutomation extends IUnknown {
 
   int checkNotSupported(VARIANT value, Pointer<Int32> isNotSupported) =>
       _vtable.CheckNotSupported.asFunction<
-          int Function(VTablePointer, VARIANT value,
+          int Function(VTablePointer lpVtbl, VARIANT value,
               Pointer<Int32> isNotSupported)>()(ptr, value, isNotSupported);
 
   VTablePointer get reservedNotSupportedValue {
@@ -468,7 +487,7 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ReservedNotSupportedValue.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> notSupportedValue)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -484,7 +503,7 @@ class IUIAutomation extends IUnknown {
 
     try {
       final hr = _vtable.get_ReservedMixedAttributeValue.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> mixedAttributeValue)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -498,15 +517,15 @@ class IUIAutomation extends IUnknown {
   int elementFromIAccessible(VTablePointer accessible, int childId,
           Pointer<VTablePointer> element) =>
       _vtable.ElementFromIAccessible.asFunction<
-              int Function(VTablePointer, VTablePointer accessible, int childId,
-                  Pointer<VTablePointer> element)>()(
+              int Function(VTablePointer lpVtbl, VTablePointer accessible,
+                  int childId, Pointer<VTablePointer> element)>()(
           ptr, accessible, childId, element);
 
   int elementFromIAccessibleBuildCache(VTablePointer accessible, int childId,
           VTablePointer cacheRequest, Pointer<VTablePointer> element) =>
       _vtable.ElementFromIAccessibleBuildCache.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer accessible,
                   int childId,
                   VTablePointer cacheRequest,
@@ -519,100 +538,112 @@ base class IUIAutomationVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer el1, VTablePointer el2,
-              Pointer<Int32> areSame)>> CompareElements;
+          Int32 Function(VTablePointer lpVtbl, VTablePointer el1,
+              VTablePointer el2, Pointer<Int32> areSame)>> CompareElements;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<SAFEARRAY> runtimeId1,
               Pointer<SAFEARRAY> runtimeId2,
               Pointer<Int32> areSame)>> CompareRuntimeIds;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> root)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> root)>>
       GetRootElement;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, IntPtr hwnd, Pointer<VTablePointer> element)>>
-      ElementFromHandle;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, IntPtr hwnd,
+              Pointer<VTablePointer> element)>> ElementFromHandle;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, POINT pt,
+              Pointer<VTablePointer> element)>> ElementFromPoint;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, POINT pt, Pointer<VTablePointer> element)>>
-      ElementFromPoint;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> element)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> element)>>
       GetFocusedElement;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer cacheRequest,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> root)>> GetRootElementBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr hwnd, VTablePointer cacheRequest,
+          Int32 Function(
+              VTablePointer lpVtbl,
+              IntPtr hwnd,
+              VTablePointer cacheRequest,
               Pointer<VTablePointer> element)>> ElementFromHandleBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, POINT pt, VTablePointer cacheRequest,
+          Int32 Function(
+              VTablePointer lpVtbl,
+              POINT pt,
+              VTablePointer cacheRequest,
               Pointer<VTablePointer> element)>> ElementFromPointBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer cacheRequest,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> element)>> GetFocusedElementBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer pCondition,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pCondition,
               Pointer<VTablePointer> walker)>> CreateTreeWalker;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> walker)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> walker)>>
       get_ControlViewWalker;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> walker)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> walker)>>
       get_ContentViewWalker;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> walker)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> walker)>>
       get_RawViewWalker;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> condition)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> condition)>>
       get_RawViewCondition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> condition)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> condition)>>
       get_ControlViewCondition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> condition)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> condition)>>
       get_ContentViewCondition;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> cacheRequest)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> cacheRequest)>>
       CreateCacheRequest;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> newCondition)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> newCondition)>>
       CreateTrueCondition;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> newCondition)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> newCondition)>>
       CreateFalseCondition;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 propertyId, VARIANT value,
+          Int32 Function(VTablePointer lpVtbl, Int32 propertyId, VARIANT value,
               Pointer<VTablePointer> newCondition)>> CreatePropertyCondition;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 propertyId,
               VARIANT value,
               Int32 flags,
@@ -620,44 +651,52 @@ base class IUIAutomationVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer condition1,
               VTablePointer condition2,
               Pointer<VTablePointer> newCondition)>> CreateAndCondition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<SAFEARRAY> conditions,
+              Int32 Function(
+                  VTablePointer lpVtbl,
+                  Pointer<SAFEARRAY> conditions,
                   Pointer<VTablePointer> newCondition)>>
       CreateAndConditionFromArray;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> conditions,
-                  Int32 conditionCount, Pointer<VTablePointer> newCondition)>>
+              Int32 Function(
+                  VTablePointer lpVtbl,
+                  Pointer<VTablePointer> conditions,
+                  Int32 conditionCount,
+                  Pointer<VTablePointer> newCondition)>>
       CreateAndConditionFromNativeArray;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer condition1,
               VTablePointer condition2,
               Pointer<VTablePointer> newCondition)>> CreateOrCondition;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<SAFEARRAY> conditions,
+          Int32 Function(VTablePointer lpVtbl, Pointer<SAFEARRAY> conditions,
               Pointer<VTablePointer> newCondition)>> CreateOrConditionFromArray;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> conditions,
-                  Int32 conditionCount, Pointer<VTablePointer> newCondition)>>
+              Int32 Function(
+                  VTablePointer lpVtbl,
+                  Pointer<VTablePointer> conditions,
+                  Int32 conditionCount,
+                  Pointer<VTablePointer> newCondition)>>
       CreateOrConditionFromNativeArray;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer condition,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer condition,
               Pointer<VTablePointer> newCondition)>> CreateNotCondition;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 eventId,
               VTablePointer element,
               Int32 scope,
@@ -665,12 +704,15 @@ base class IUIAutomationVtbl extends Struct {
               VTablePointer handler)>> AddAutomationEventHandler;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Int32 eventId, VTablePointer element,
+          Int32 Function(
+              VTablePointer lpVtbl,
+              Int32 eventId,
+              VTablePointer element,
               VTablePointer handler)>> RemoveAutomationEventHandler;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
               VTablePointer cacheRequest,
@@ -680,7 +722,7 @@ base class IUIAutomationVtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer element,
                   Int32 scope,
                   VTablePointer cacheRequest,
@@ -688,82 +730,81 @@ base class IUIAutomationVtbl extends Struct {
                   Pointer<SAFEARRAY> propertyArray)>>
       AddPropertyChangedEventHandler;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer element, VTablePointer handler)>>
-      RemovePropertyChangedEventHandler;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+              VTablePointer handler)>> RemovePropertyChangedEventHandler;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
               VTablePointer cacheRequest,
               VTablePointer handler)>> AddStructureChangedEventHandler;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer element, VTablePointer handler)>>
-      RemoveStructureChangedEventHandler;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+              VTablePointer handler)>> RemoveStructureChangedEventHandler;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer cacheRequest,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               VTablePointer handler)>> AddFocusChangedEventHandler;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer handler)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer handler)>>
       RemoveFocusChangedEventHandler;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       RemoveAllEventHandlers;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Int32> array,
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> array,
                   Int32 arrayCount, Pointer<Pointer<SAFEARRAY>> safeArray)>>
       IntNativeArrayToSafeArray;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<SAFEARRAY> intArray,
               Pointer<Pointer<Int32>> array,
               Pointer<Int32> arrayCount)>> IntSafeArrayToNativeArray;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, RECT rc, Pointer<VARIANT> var_)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, RECT rc, Pointer<VARIANT> var_)>>
       RectToVariant;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, VARIANT var_, Pointer<RECT> rc)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, VARIANT var_, Pointer<RECT> rc)>>
       VariantToRect;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<SAFEARRAY> rects,
               Pointer<Pointer<RECT>> rectArray,
               Pointer<Int32> rectArrayCount)>> SafeArrayToRectNativeArray;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer factory,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer factory,
               Pointer<VTablePointer> factoryEntry)>> CreateProxyFactoryEntry;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> factoryMapping)>>
+                  VTablePointer lpVtbl, Pointer<VTablePointer> factoryMapping)>>
       get_ProxyFactoryMapping;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Int32 property, Pointer<Pointer<Utf16>> name)>>
-      GetPropertyProgrammaticName;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Int32 property,
+              Pointer<Pointer<Utf16>> name)>> GetPropertyProgrammaticName;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Int32 pattern,
+              Pointer<Pointer<Utf16>> name)>> GetPatternProgrammaticName;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Int32 pattern, Pointer<Pointer<Utf16>> name)>>
-      GetPatternProgrammaticName;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer pElement,
                   Pointer<Pointer<SAFEARRAY>> patternIds,
                   Pointer<Pointer<SAFEARRAY>> patternNames)>>
@@ -771,34 +812,36 @@ base class IUIAutomationVtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer pElement,
                   Pointer<Pointer<SAFEARRAY>> propertyIds,
                   Pointer<Pointer<SAFEARRAY>> propertyNames)>>
       PollForPotentialSupportedProperties;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VARIANT value, Pointer<Int32> isNotSupported)>>
-      CheckNotSupported;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VARIANT value,
+              Pointer<Int32> isNotSupported)>> CheckNotSupported;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> notSupportedValue)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> notSupportedValue)>>
       get_ReservedNotSupportedValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<VTablePointer> mixedAttributeValue)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> mixedAttributeValue)>>
       get_ReservedMixedAttributeValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer accessible, Int32 childId,
+          Int32 Function(
+              VTablePointer lpVtbl,
+              VTablePointer accessible,
+              Int32 childId,
               Pointer<VTablePointer> element)>> ElementFromIAccessible;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer accessible,
                   Int32 childId,
                   VTablePointer cacheRequest,

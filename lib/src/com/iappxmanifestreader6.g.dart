@@ -31,7 +31,7 @@ class IAppxManifestReader6 extends IUnknown {
   int getIsNonQualifiedResourcePackage(
           Pointer<Int32> isNonQualifiedResourcePackage) =>
       _vtable.GetIsNonQualifiedResourcePackage.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<Int32> isNonQualifiedResourcePackage)>()(
           ptr, isNonQualifiedResourcePackage);
 }
@@ -41,7 +41,7 @@ base class IAppxManifestReader6Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Int32> isNonQualifiedResourcePackage)>>
+              Int32 Function(VTablePointer lpVtbl,
+                  Pointer<Int32> isNonQualifiedResourcePackage)>>
       GetIsNonQualifiedResourcePackage;
 }

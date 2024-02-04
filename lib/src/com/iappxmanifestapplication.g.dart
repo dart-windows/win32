@@ -32,12 +32,12 @@ class IAppxManifestApplication extends IUnknown {
 
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> name,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>()(ptr, name, value);
 
   int getAppUserModelId(Pointer<Pointer<Utf16>> appUserModelId) =>
       _vtable.GetAppUserModelId.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> appUserModelId)>()(ptr, appUserModelId);
 }
 
@@ -46,11 +46,10 @@ base class IAppxManifestApplicationVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> name,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>> GetStringValue;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Pointer<Utf16>> appUserModelId)>>
-      GetAppUserModelId;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> appUserModelId)>> GetAppUserModelId;
 }

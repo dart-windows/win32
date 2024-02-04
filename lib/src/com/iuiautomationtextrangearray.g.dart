@@ -38,9 +38,9 @@ class IUIAutomationTextRangeArray extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_Length
-              .asFunction<int Function(VTablePointer, Pointer<Int32> length)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_Length.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,7 +52,7 @@ class IUIAutomationTextRangeArray extends IUnknown {
 
   int getElement(int index, Pointer<VTablePointer> element) =>
       _vtable.GetElement.asFunction<
-          int Function(VTablePointer, int index,
+          int Function(VTablePointer lpVtbl, int index,
               Pointer<VTablePointer> element)>()(ptr, index, element);
 }
 
@@ -60,11 +60,11 @@ class IUIAutomationTextRangeArray extends IUnknown {
 base class IUIAutomationTextRangeArrayVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> length)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> length)>>
       get_Length;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Int32 index, Pointer<VTablePointer> element)>>
-      GetElement;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Int32 index,
+              Pointer<VTablePointer> element)>> GetElement;
 }

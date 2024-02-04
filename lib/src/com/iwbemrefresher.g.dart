@@ -30,15 +30,15 @@ class IWbemRefresher extends IUnknown {
   factory IWbemRefresher.from(IUnknown interface) =>
       IWbemRefresher(interface.toInterface(IID_IWbemRefresher));
 
-  int refresh(int lFlags) =>
-      _vtable.Refresh.asFunction<int Function(VTablePointer, int lFlags)>()(
-          ptr, lFlags);
+  int refresh(int lFlags) => _vtable.Refresh.asFunction<
+      int Function(VTablePointer lpVtbl, int lFlags)>()(ptr, lFlags);
 }
 
 /// @nodoc
 base class IWbemRefresherVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 lFlags)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 lFlags)>>
       Refresh;
 }
 

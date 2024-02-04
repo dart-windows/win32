@@ -32,12 +32,13 @@ class IAudioClientDuckingControl extends IUnknown {
 
   int setDuckingOptionsForCurrentStream(int options) =>
       _vtable.SetDuckingOptionsForCurrentStream.asFunction<
-          int Function(VTablePointer, int options)>()(ptr, options);
+          int Function(VTablePointer lpVtbl, int options)>()(ptr, options);
 }
 
 /// @nodoc
 base class IAudioClientDuckingControlVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 options)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 options)>>
       SetDuckingOptionsForCurrentStream;
 }

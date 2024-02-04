@@ -30,10 +30,12 @@ class IAppxManifestOSPackageDependency extends IUnknown {
           interface.toInterface(IID_IAppxManifestOSPackageDependency));
 
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
-      int Function(VTablePointer, Pointer<Pointer<Utf16>> name)>()(ptr, name);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
 
   int getVersion(Pointer<Uint64> version) => _vtable.GetVersion.asFunction<
-      int Function(VTablePointer, Pointer<Uint64> version)>()(ptr, version);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Uint64> version)>()(ptr, version);
 }
 
 /// @nodoc
@@ -41,8 +43,10 @@ base class IAppxManifestOSPackageDependencyVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> name)>> GetName;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>> GetName;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint64> version)>> GetVersion;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> version)>>
+      GetVersion;
 }

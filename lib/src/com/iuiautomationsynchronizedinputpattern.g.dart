@@ -31,16 +31,17 @@ class IUIAutomationSynchronizedInputPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationSynchronizedInputPattern));
 
   int startListening(int inputType) => _vtable.StartListening.asFunction<
-      int Function(VTablePointer, int inputType)>()(ptr, inputType);
+      int Function(VTablePointer lpVtbl, int inputType)>()(ptr, inputType);
 
-  int cancel() => _vtable.Cancel.asFunction<int Function(VTablePointer)>()(ptr);
+  int cancel() =>
+      _vtable.Cancel.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }
 
 /// @nodoc
 base class IUIAutomationSynchronizedInputPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 inputType)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 inputType)>>
       StartListening;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Cancel;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Cancel;
 }

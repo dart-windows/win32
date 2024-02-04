@@ -28,13 +28,14 @@ class IEnumWbemClassObject extends IUnknown {
   factory IEnumWbemClassObject.from(IUnknown interface) =>
       IEnumWbemClassObject(interface.toInterface(IID_IEnumWbemClassObject));
 
-  int reset() => _vtable.Reset.asFunction<int Function(VTablePointer)>()(ptr);
+  int reset() =>
+      _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
   int next(int lTimeout, int uCount, Pointer<VTablePointer> apObjects,
           Pointer<Uint32> puReturned) =>
       _vtable.Next.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int lTimeout,
                   int uCount,
                   Pointer<VTablePointer> apObjects,
@@ -43,38 +44,41 @@ class IEnumWbemClassObject extends IUnknown {
 
   int nextAsync(int uCount, VTablePointer pSink) =>
       _vtable.NextAsync.asFunction<
-              int Function(VTablePointer, int uCount, VTablePointer pSink)>()(
-          ptr, uCount, pSink);
+          int Function(VTablePointer lpVtbl, int uCount,
+              VTablePointer pSink)>()(ptr, uCount, pSink);
 
   int clone(Pointer<VTablePointer> ppEnum) => _vtable.Clone.asFunction<
       int Function(
-          VTablePointer, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
+          VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 
   int skip(int lTimeout, int nCount) => _vtable.Skip.asFunction<
-      int Function(
-          VTablePointer, int lTimeout, int nCount)>()(ptr, lTimeout, nCount);
+          int Function(VTablePointer lpVtbl, int lTimeout, int nCount)>()(
+      ptr, lTimeout, nCount);
 }
 
 /// @nodoc
 base class IEnumWbemClassObjectVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Reset;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Int32 lTimeout,
               Uint32 uCount,
               Pointer<VTablePointer> apObjects,
               Pointer<Uint32> puReturned)>> Next;
   external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, Uint32 uCount, VTablePointer pSink)>>
+      NextAsync;
+  external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer, Uint32 uCount, VTablePointer pSink)>> NextAsync;
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>> Clone;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<VTablePointer> ppEnum)>> Clone;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Int32 lTimeout, Uint32 nCount)>> Skip;
+          Int32 Function(
+              VTablePointer lpVtbl, Int32 lTimeout, Uint32 nCount)>> Skip;
 }

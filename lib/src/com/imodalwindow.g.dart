@@ -26,14 +26,14 @@ class IModalWindow extends IUnknown {
   factory IModalWindow.from(IUnknown interface) =>
       IModalWindow(interface.toInterface(IID_IModalWindow));
 
-  int show(int? hwndOwner) =>
-      _vtable.Show.asFunction<int Function(VTablePointer, int hwndOwner)>()(
-          ptr, hwndOwner ?? 0);
+  int show(int? hwndOwner) => _vtable.Show.asFunction<
+      int Function(VTablePointer lpVtbl, int hwndOwner)>()(ptr, hwndOwner ?? 0);
 }
 
 /// @nodoc
 base class IModalWindowVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, IntPtr hwndOwner)>> Show;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, IntPtr hwndOwner)>> Show;
 }

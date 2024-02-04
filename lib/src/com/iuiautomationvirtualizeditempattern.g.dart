@@ -31,11 +31,12 @@ class IUIAutomationVirtualizedItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationVirtualizedItemPattern));
 
   int realize() =>
-      _vtable.Realize.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.Realize.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }
 
 /// @nodoc
 base class IUIAutomationVirtualizedItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>> Realize;
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      Realize;
 }

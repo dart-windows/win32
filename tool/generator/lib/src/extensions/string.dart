@@ -243,13 +243,13 @@ const _win32TypesUsedAsIdentifiers = <String>{'GUID', 'UiInfo'};
 /// types that are also used as identifiers. Using these words as identifiers
 /// may lead to conflicts or compilation issues.
 ///
-/// Additionally, the word `ptr` is included as it is commonly used in COM.
+/// Additionally, the word `ptr` is included as it is used in COM.
 const _badIdentifierNames = <String>{
   ..._dartReservedWords,
   ..._dartTypes,
   ..._ffiTypes,
   ..._win32TypesUsedAsIdentifiers,
-  'ptr' // Commonly used in COM.
+  'ptr' // Used in COM.
 };
 
 extension StringListHelpers on List<String> {

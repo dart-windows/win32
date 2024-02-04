@@ -34,26 +34,26 @@ class IAudioStreamVolume extends IUnknown {
   int getChannelCount(Pointer<Uint32> pdwCount) =>
       _vtable.GetChannelCount.asFunction<
           int Function(
-              VTablePointer, Pointer<Uint32> pdwCount)>()(ptr, pdwCount);
+              VTablePointer lpVtbl, Pointer<Uint32> pdwCount)>()(ptr, pdwCount);
 
   int setChannelVolume(int dwIndex, double fLevel) =>
       _vtable.SetChannelVolume.asFunction<
-              int Function(VTablePointer, int dwIndex, double fLevel)>()(
+              int Function(VTablePointer lpVtbl, int dwIndex, double fLevel)>()(
           ptr, dwIndex, fLevel);
 
   int getChannelVolume(int dwIndex, Pointer<Float> pfLevel) =>
       _vtable.GetChannelVolume.asFunction<
-          int Function(VTablePointer, int dwIndex,
+          int Function(VTablePointer lpVtbl, int dwIndex,
               Pointer<Float> pfLevel)>()(ptr, dwIndex, pfLevel);
 
   int setAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.SetAllVolumes.asFunction<
-          int Function(VTablePointer, int dwCount,
+          int Function(VTablePointer lpVtbl, int dwCount,
               Pointer<Float> pfVolumes)>()(ptr, dwCount, pfVolumes);
 
   int getAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.GetAllVolumes.asFunction<
-          int Function(VTablePointer, int dwCount,
+          int Function(VTablePointer lpVtbl, int dwCount,
               Pointer<Float> pfVolumes)>()(ptr, dwCount, pfVolumes);
 }
 
@@ -62,25 +62,23 @@ base class IAudioStreamVolumeVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> pdwCount)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwCount)>>
       GetChannelCount;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Uint32 dwIndex, Float fLevel)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Uint32 dwIndex, Float fLevel)>>
       SetChannelVolume;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Uint32 dwIndex, Pointer<Float> pfLevel)>>
-      GetChannelVolume;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwIndex,
+              Pointer<Float> pfLevel)>> GetChannelVolume;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Uint32 dwCount, Pointer<Float> pfVolumes)>>
-      SetAllVolumes;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwCount,
+              Pointer<Float> pfVolumes)>> SetAllVolumes;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Uint32 dwCount, Pointer<Float> pfVolumes)>>
-      GetAllVolumes;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Uint32 dwCount,
+              Pointer<Float> pfVolumes)>> GetAllVolumes;
 }

@@ -31,13 +31,12 @@ class IClassFactory extends IUnknown {
   int createInstance(VTablePointer? pUnkOuter, Pointer<GUID> riid,
           Pointer<Pointer> ppvObject) =>
       _vtable.CreateInstance.asFunction<
-              int Function(VTablePointer, VTablePointer pUnkOuter,
+              int Function(VTablePointer lpVtbl, VTablePointer pUnkOuter,
                   Pointer<GUID> riid, Pointer<Pointer> ppvObject)>()(
           ptr, pUnkOuter ?? nullptr, riid, ppvObject);
 
-  int lockServer(int fLock) =>
-      _vtable.LockServer.asFunction<int Function(VTablePointer, int fLock)>()(
-          ptr, fLock);
+  int lockServer(int fLock) => _vtable.LockServer.asFunction<
+      int Function(VTablePointer lpVtbl, int fLock)>()(ptr, fLock);
 }
 
 /// @nodoc
@@ -45,8 +44,9 @@ base class IClassFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer pUnkOuter,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pUnkOuter,
               Pointer<GUID> riid, Pointer<Pointer> ppvObject)>> CreateInstance;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 fLock)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 fLock)>>
       LockServer;
 }

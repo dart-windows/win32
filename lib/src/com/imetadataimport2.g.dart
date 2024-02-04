@@ -39,7 +39,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> pcGenericParams) =>
       _vtable.EnumGenericParams.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer> phEnum,
                   int tk,
                   Pointer<Uint32> rGenericParams,
@@ -58,7 +58,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> pchName) =>
       _vtable.GetGenericParamProps.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int gp,
                   Pointer<Uint32> pulParamSeq,
                   Pointer<Uint32> pdwParamFlags,
@@ -81,7 +81,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Pointer<Uint8>> ppvSigBlob, Pointer<Uint32> pcbSigBlob) =>
       _vtable.GetMethodSpecProps.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int mi,
                   Pointer<Uint32> tkParent,
                   Pointer<Pointer<Uint8>> ppvSigBlob,
@@ -96,7 +96,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> pcGenericParamConstraints) =>
       _vtable.EnumGenericParamConstraints.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer> phEnum,
                   int tk,
                   Pointer<Uint32> rGenericParamConstraints,
@@ -108,7 +108,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> ptkConstraintType) =>
       _vtable.GetGenericParamConstraintProps.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int gpc,
                   Pointer<Uint32> ptGenericParam,
                   Pointer<Uint32> ptkConstraintType)>()(
@@ -116,14 +116,14 @@ class IMetaDataImport2 extends IMetaDataImport {
 
   int getPEKind(Pointer<Uint32> pdwPEKind, Pointer<Uint32> pdwMAchine) =>
       _vtable.GetPEKind.asFunction<
-          int Function(VTablePointer, Pointer<Uint32> pdwPEKind,
+          int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwPEKind,
               Pointer<Uint32> pdwMAchine)>()(ptr, pdwPEKind, pdwMAchine);
 
   int getVersionString(
           Pointer<Utf16>? pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
       _vtable.GetVersionString.asFunction<
-              int Function(VTablePointer, Pointer<Utf16> pwzBuf, int ccBufSize,
-                  Pointer<Uint32> pccBufSize)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> pwzBuf,
+                  int ccBufSize, Pointer<Uint32> pccBufSize)>()(
           ptr, pwzBuf ?? nullptr, ccBufSize, pccBufSize);
 
   int enumMethodSpecs(
@@ -134,7 +134,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> pcMethodSpecs) =>
       _vtable.EnumMethodSpecs.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer> phEnum,
                   int tk,
                   Pointer<Uint32> rMethodSpecs,
@@ -149,7 +149,7 @@ base class IMetaDataImport2Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Pointer> phEnum,
               Uint32 tk,
               Pointer<Uint32> rGenericParams,
@@ -158,7 +158,7 @@ base class IMetaDataImport2Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 gp,
               Pointer<Uint32> pulParamSeq,
               Pointer<Uint32> pdwParamFlags,
@@ -170,7 +170,7 @@ base class IMetaDataImport2Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 mi,
               Pointer<Uint32> tkParent,
               Pointer<Pointer<Uint8>> ppvSigBlob,
@@ -178,7 +178,7 @@ base class IMetaDataImport2Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer> phEnum,
                   Uint32 tk,
                   Pointer<Uint32> rGenericParamConstraints,
@@ -188,23 +188,23 @@ base class IMetaDataImport2Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Uint32 gpc,
                   Pointer<Uint32> ptGenericParam,
                   Pointer<Uint32> ptkConstraintType)>>
       GetGenericParamConstraintProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Uint32> pdwPEKind,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwPEKind,
               Pointer<Uint32> pdwMAchine)>> GetPEKind;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> pwzBuf, Uint32 ccBufSize,
-              Pointer<Uint32> pccBufSize)>> GetVersionString;
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pwzBuf,
+              Uint32 ccBufSize, Pointer<Uint32> pccBufSize)>> GetVersionString;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<Pointer> phEnum,
               Uint32 tk,
               Pointer<Uint32> rMethodSpecs,

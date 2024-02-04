@@ -34,13 +34,13 @@ class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
 
   int getActiveComposition(Pointer<VTablePointer> range) =>
       _vtable.GetActiveComposition.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> range)>()(ptr, range);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> range)>()(ptr, range);
 
   int getConversionTarget(Pointer<VTablePointer> range) =>
       _vtable.GetConversionTarget.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> range)>()(ptr, range);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> range)>()(ptr, range);
 }
 
 /// @nodoc
@@ -48,10 +48,12 @@ base class IUIAutomationTextEditPatternVtbl extends Struct {
   external IUIAutomationTextPatternVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       GetActiveComposition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> range)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       GetConversionTarget;
 }

@@ -31,14 +31,14 @@ class IProvideClassInfo extends IUnknown {
   int getClassInfo(Pointer<VTablePointer> ppTI) =>
       _vtable.GetClassInfo.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> ppTI)>()(ptr, ppTI);
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppTI)>()(ptr, ppTI);
 }
 
 /// @nodoc
 base class IProvideClassInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppTI)>>
-      GetClassInfo;
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppTI)>> GetClassInfo;
 }

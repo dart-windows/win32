@@ -35,23 +35,22 @@ class IUIAutomationTransformPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationTransformPattern));
 
   int move(double x, double y) => _vtable.Move.asFunction<
-      int Function(VTablePointer, double x, double y)>()(ptr, x, y);
+      int Function(VTablePointer lpVtbl, double x, double y)>()(ptr, x, y);
 
   int resize(double width, double height) => _vtable.Resize.asFunction<
-      int Function(
-          VTablePointer, double width, double height)>()(ptr, width, height);
+          int Function(VTablePointer lpVtbl, double width, double height)>()(
+      ptr, width, height);
 
-  int rotate(double degrees) =>
-      _vtable.Rotate.asFunction<int Function(VTablePointer, double degrees)>()(
-          ptr, degrees);
+  int rotate(double degrees) => _vtable.Rotate.asFunction<
+      int Function(VTablePointer lpVtbl, double degrees)>()(ptr, degrees);
 
   int get currentCanMove {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentCanMove
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentCanMove.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -65,9 +64,9 @@ class IUIAutomationTransformPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentCanResize
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentCanResize.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -81,9 +80,9 @@ class IUIAutomationTransformPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CurrentCanRotate
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CurrentCanRotate.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -97,9 +96,9 @@ class IUIAutomationTransformPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedCanMove
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedCanMove.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -113,9 +112,9 @@ class IUIAutomationTransformPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedCanResize
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedCanResize.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -129,9 +128,9 @@ class IUIAutomationTransformPattern extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CachedCanRotate
-              .asFunction<int Function(VTablePointer, Pointer<Int32> retVal)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CachedCanRotate.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -146,28 +145,37 @@ class IUIAutomationTransformPattern extends IUnknown {
 base class IUIAutomationTransformPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Double x, Double y)>> Move;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Double x, Double y)>> Move;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Double width, Double height)>> Resize;
+          Int32 Function(
+              VTablePointer lpVtbl, Double width, Double height)>> Resize;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Double degrees)>> Rotate;
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Double degrees)>>
+      Rotate;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentCanMove;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentCanResize;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentCanRotate;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedCanMove;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedCanResize;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> retVal)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedCanRotate;
 }

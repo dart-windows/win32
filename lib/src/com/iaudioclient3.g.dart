@@ -41,7 +41,7 @@ class IAudioClient3 extends IAudioClient2 {
           Pointer<Uint32> pMaxPeriodInFrames) =>
       _vtable.GetSharedModeEnginePeriod.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<WAVEFORMATEX> pFormat,
                   Pointer<Uint32> pDefaultPeriodInFrames,
                   Pointer<Uint32> pFundamentalPeriodInFrames,
@@ -58,7 +58,7 @@ class IAudioClient3 extends IAudioClient2 {
           Pointer<Uint32> pCurrentPeriodInFrames) =>
       _vtable.GetCurrentSharedModeEnginePeriod.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<WAVEFORMATEX>> ppFormat,
                   Pointer<Uint32> pCurrentPeriodInFrames)>()(
           ptr, ppFormat, pCurrentPeriodInFrames);
@@ -67,7 +67,7 @@ class IAudioClient3 extends IAudioClient2 {
           Pointer<WAVEFORMATEX> pFormat, Pointer<GUID>? audioSessionGuid) =>
       _vtable.InitializeSharedAudioStream.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int streamFlags,
                   int periodInFrames,
                   Pointer<WAVEFORMATEX> pFormat,
@@ -81,7 +81,7 @@ base class IAudioClient3Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<WAVEFORMATEX> pFormat,
               Pointer<Uint32> pDefaultPeriodInFrames,
               Pointer<Uint32> pFundamentalPeriodInFrames,
@@ -90,14 +90,14 @@ base class IAudioClient3Vtbl extends Struct {
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   Pointer<Pointer<WAVEFORMATEX>> ppFormat,
                   Pointer<Uint32> pCurrentPeriodInFrames)>>
       GetCurrentSharedModeEnginePeriod;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 streamFlags,
               Uint32 periodInFrames,
               Pointer<WAVEFORMATEX> pFormat,

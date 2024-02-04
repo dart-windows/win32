@@ -30,13 +30,15 @@ class IPersist extends IUnknown {
       IPersist(interface.toInterface(IID_IPersist));
 
   int getClassID(Pointer<GUID> pClassID) => _vtable.GetClassID.asFunction<
-      int Function(VTablePointer, Pointer<GUID> pClassID)>()(ptr, pClassID);
+      int Function(
+          VTablePointer lpVtbl, Pointer<GUID> pClassID)>()(ptr, pClassID);
 }
 
 /// @nodoc
 base class IPersistVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> pClassID)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pClassID)>>
       GetClassID;
 }

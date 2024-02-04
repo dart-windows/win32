@@ -39,7 +39,7 @@ class IShellFolder extends IUnknown {
           Pointer<Uint32> pdwAttributes) =>
       _vtable.ParseDisplayName.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int hwnd,
                   VTablePointer pbc,
                   Pointer<Utf16> pszDisplayName,
@@ -51,7 +51,7 @@ class IShellFolder extends IUnknown {
   int enumObjects(
           int hwnd, int grfFlags, Pointer<VTablePointer> ppenumIDList) =>
       _vtable.EnumObjects.asFunction<
-              int Function(VTablePointer, int hwnd, int grfFlags,
+              int Function(VTablePointer lpVtbl, int hwnd, int grfFlags,
                   Pointer<VTablePointer> ppenumIDList)>()(
           ptr, hwnd, grfFlags, ppenumIDList);
 
@@ -59,7 +59,7 @@ class IShellFolder extends IUnknown {
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.BindToObject.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<ITEMIDLIST> pidl,
               VTablePointer pbc,
               Pointer<GUID> riid,
@@ -69,7 +69,7 @@ class IShellFolder extends IUnknown {
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.BindToStorage.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<ITEMIDLIST> pidl,
               VTablePointer pbc,
               Pointer<GUID> riid,
@@ -78,20 +78,23 @@ class IShellFolder extends IUnknown {
   int compareIDs(
           int lParam, Pointer<ITEMIDLIST> pidl1, Pointer<ITEMIDLIST> pidl2) =>
       _vtable.CompareIDs.asFunction<
-          int Function(VTablePointer, int lParam, Pointer<ITEMIDLIST> pidl1,
+          int Function(
+              VTablePointer lpVtbl,
+              int lParam,
+              Pointer<ITEMIDLIST> pidl1,
               Pointer<ITEMIDLIST> pidl2)>()(ptr, lParam, pidl1, pidl2);
 
   int createViewObject(
           int hwndOwner, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.CreateViewObject.asFunction<
-          int Function(VTablePointer, int hwndOwner, Pointer<GUID> riid,
+          int Function(VTablePointer lpVtbl, int hwndOwner, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, hwndOwner, riid, ppv);
 
   int getAttributesOf(int cidl, Pointer<Pointer<ITEMIDLIST>> apidl,
           Pointer<Uint32> rgfInOut) =>
       _vtable.GetAttributesOf.asFunction<
           int Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               int cidl,
               Pointer<Pointer<ITEMIDLIST>> apidl,
               Pointer<Uint32> rgfInOut)>()(ptr, cidl, apidl, rgfInOut);
@@ -100,7 +103,7 @@ class IShellFolder extends IUnknown {
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetUIObjectOf.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int hwndOwner,
                   int cidl,
                   Pointer<Pointer<ITEMIDLIST>> apidl,
@@ -112,14 +115,14 @@ class IShellFolder extends IUnknown {
   int getDisplayNameOf(
           Pointer<ITEMIDLIST> pidl, int uFlags, Pointer<STRRET> pName) =>
       _vtable.GetDisplayNameOf.asFunction<
-          int Function(VTablePointer, Pointer<ITEMIDLIST> pidl, int uFlags,
-              Pointer<STRRET> pName)>()(ptr, pidl, uFlags, pName);
+          int Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
+              int uFlags, Pointer<STRRET> pName)>()(ptr, pidl, uFlags, pName);
 
   int setNameOf(int? hwnd, Pointer<ITEMIDLIST> pidl, Pointer<Utf16> pszName,
           int uFlags, Pointer<Pointer<ITEMIDLIST>>? ppidlOut) =>
       _vtable.SetNameOf.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   int hwnd,
                   Pointer<ITEMIDLIST> pidl,
                   Pointer<Utf16> pszName,
@@ -134,7 +137,7 @@ base class IShellFolderVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               IntPtr hwnd,
               VTablePointer pbc,
               Pointer<Utf16> pszDisplayName,
@@ -143,12 +146,12 @@ base class IShellFolderVtbl extends Struct {
               Pointer<Uint32> pdwAttributes)>> ParseDisplayName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr hwnd, Uint32 grfFlags,
+          Int32 Function(VTablePointer lpVtbl, IntPtr hwnd, Uint32 grfFlags,
               Pointer<VTablePointer> ppenumIDList)>> EnumObjects;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<ITEMIDLIST> pidl,
               VTablePointer pbc,
               Pointer<GUID> riid,
@@ -156,7 +159,7 @@ base class IShellFolderVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Pointer<ITEMIDLIST> pidl,
               VTablePointer pbc,
               Pointer<GUID> riid,
@@ -164,25 +167,25 @@ base class IShellFolderVtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               IntPtr lParam,
               Pointer<ITEMIDLIST> pidl1,
               Pointer<ITEMIDLIST> pidl2)>> CompareIDs;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, IntPtr hwndOwner, Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>> CreateViewObject;
+          Int32 Function(VTablePointer lpVtbl, IntPtr hwndOwner,
+              Pointer<GUID> riid, Pointer<Pointer> ppv)>> CreateViewObject;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               Uint32 cidl,
               Pointer<Pointer<ITEMIDLIST>> apidl,
               Pointer<Uint32> rgfInOut)>> GetAttributesOf;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               IntPtr hwndOwner,
               Uint32 cidl,
               Pointer<Pointer<ITEMIDLIST>> apidl,
@@ -191,12 +194,12 @@ base class IShellFolderVtbl extends Struct {
               Pointer<Pointer> ppv)>> GetUIObjectOf;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<ITEMIDLIST> pidl, Uint32 uFlags,
-              Pointer<STRRET> pName)>> GetDisplayNameOf;
+          Int32 Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
+              Uint32 uFlags, Pointer<STRRET> pName)>> GetDisplayNameOf;
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               IntPtr hwnd,
               Pointer<ITEMIDLIST> pidl,
               Pointer<Utf16> pszName,

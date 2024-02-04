@@ -32,74 +32,77 @@ class IDesktopWallpaper extends IUnknown {
 
   int setWallpaper(Pointer<Utf16> monitorID, Pointer<Utf16> wallpaper) =>
       _vtable.SetWallpaper.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> monitorID,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               Pointer<Utf16> wallpaper)>()(ptr, monitorID, wallpaper);
 
   int getWallpaper(
           Pointer<Utf16> monitorID, Pointer<Pointer<Utf16>> wallpaper) =>
       _vtable.GetWallpaper.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> monitorID,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               Pointer<Pointer<Utf16>> wallpaper)>()(ptr, monitorID, wallpaper);
 
   int getMonitorDevicePathAt(
           int monitorIndex, Pointer<Pointer<Utf16>> monitorID) =>
       _vtable.GetMonitorDevicePathAt.asFunction<
-              int Function(VTablePointer, int monitorIndex,
+              int Function(VTablePointer lpVtbl, int monitorIndex,
                   Pointer<Pointer<Utf16>> monitorID)>()(
           ptr, monitorIndex, monitorID);
 
   int getMonitorDevicePathCount(Pointer<Uint32> count) =>
       _vtable.GetMonitorDevicePathCount.asFunction<
-          int Function(VTablePointer, Pointer<Uint32> count)>()(ptr, count);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> count)>()(ptr, count);
 
   int getMonitorRECT(Pointer<Utf16> monitorID, Pointer<RECT> displayRect) =>
       _vtable.GetMonitorRECT.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> monitorID,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               Pointer<RECT> displayRect)>()(ptr, monitorID, displayRect);
 
   int setBackgroundColor(int color) => _vtable.SetBackgroundColor.asFunction<
-      int Function(VTablePointer, int color)>()(ptr, color);
+      int Function(VTablePointer lpVtbl, int color)>()(ptr, color);
 
   int getBackgroundColor(Pointer<Uint32> color) =>
       _vtable.GetBackgroundColor.asFunction<
-          int Function(VTablePointer, Pointer<Uint32> color)>()(ptr, color);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> color)>()(ptr, color);
 
   int setPosition(int position) => _vtable.SetPosition.asFunction<
-      int Function(VTablePointer, int position)>()(ptr, position);
+      int Function(VTablePointer lpVtbl, int position)>()(ptr, position);
 
   int getPosition(Pointer<Int32> position) => _vtable.GetPosition.asFunction<
-      int Function(VTablePointer, Pointer<Int32> position)>()(ptr, position);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Int32> position)>()(ptr, position);
 
   int setSlideshow(VTablePointer items) => _vtable.SetSlideshow.asFunction<
-      int Function(VTablePointer, VTablePointer items)>()(ptr, items);
+      int Function(VTablePointer lpVtbl, VTablePointer items)>()(ptr, items);
 
-  int getSlideshow(Pointer<VTablePointer> items) =>
+  int getSlideshow(
+          Pointer<VTablePointer> items) =>
       _vtable.GetSlideshow.asFunction<
-          int Function(
-              VTablePointer, Pointer<VTablePointer> items)>()(ptr, items);
+          int Function(VTablePointer lpVtbl,
+              Pointer<VTablePointer> items)>()(ptr, items);
 
   int setSlideshowOptions(int options, int slideshowTick) =>
       _vtable.SetSlideshowOptions.asFunction<
-              int Function(VTablePointer, int options, int slideshowTick)>()(
-          ptr, options, slideshowTick);
+          int Function(VTablePointer lpVtbl, int options,
+              int slideshowTick)>()(ptr, options, slideshowTick);
 
   int getSlideshowOptions(
           Pointer<Int32> options, Pointer<Uint32> slideshowTick) =>
       _vtable.GetSlideshowOptions.asFunction<
-          int Function(VTablePointer, Pointer<Int32> options,
+          int Function(VTablePointer lpVtbl, Pointer<Int32> options,
               Pointer<Uint32> slideshowTick)>()(ptr, options, slideshowTick);
 
   int advanceSlideshow(Pointer<Utf16> monitorID, int direction) =>
       _vtable.AdvanceSlideshow.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> monitorID,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               int direction)>()(ptr, monitorID, direction);
 
   int getStatus(Pointer<Int32> state) => _vtable.GetStatus.asFunction<
-      int Function(VTablePointer, Pointer<Int32> state)>()(ptr, state);
+      int Function(VTablePointer lpVtbl, Pointer<Int32> state)>()(ptr, state);
 
-  int enable(int enable) =>
-      _vtable.Enable.asFunction<int Function(VTablePointer, int enable)>()(
-          ptr, enable);
+  int enable(int enable) => _vtable.Enable.asFunction<
+      int Function(VTablePointer lpVtbl, int enable)>()(ptr, enable);
 }
 
 /// @nodoc
@@ -107,59 +110,66 @@ base class IDesktopWallpaperVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> monitorID,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               Pointer<Utf16> wallpaper)>> SetWallpaper;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> monitorID,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               Pointer<Pointer<Utf16>> wallpaper)>> GetWallpaper;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 monitorIndex,
+          Int32 Function(VTablePointer lpVtbl, Uint32 monitorIndex,
               Pointer<Pointer<Utf16>> monitorID)>> GetMonitorDevicePathAt;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> count)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> count)>>
       GetMonitorDevicePathCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> monitorID,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
               Pointer<RECT> displayRect)>> GetMonitorRECT;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 color)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 color)>>
       SetBackgroundColor;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> color)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> color)>>
       GetBackgroundColor;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Int32 position)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 position)>>
       SetPosition;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int32> position)>> GetPosition;
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> position)>>
+      GetPosition;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer items)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer items)>>
       SetSlideshow;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> items)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<VTablePointer> items)>>
       GetSlideshow;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Int32 options, Uint32 slideshowTick)>>
+                  VTablePointer lpVtbl, Int32 options, Uint32 slideshowTick)>>
       SetSlideshowOptions;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Int32> options,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> options,
               Pointer<Uint32> slideshowTick)>> GetSlideshowOptions;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, Pointer<Utf16> monitorID, Int32 direction)>>
-      AdvanceSlideshow;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
+              Int32 direction)>> AdvanceSlideshow;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> state)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> state)>>
       GetStatus;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 enable)>>
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 enable)>>
       Enable;
 }
 

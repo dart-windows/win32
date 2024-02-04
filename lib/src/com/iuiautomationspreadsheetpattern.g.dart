@@ -33,7 +33,7 @@ class IUIAutomationSpreadsheetPattern extends IUnknown {
 
   int getItemByName(Pointer<Utf16> name, Pointer<VTablePointer> element) =>
       _vtable.GetItemByName.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> name,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<VTablePointer> element)>()(ptr, name, element);
 }
 
@@ -42,6 +42,6 @@ base class IUIAutomationSpreadsheetPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> name,
+          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<VTablePointer> element)>> GetItemByName;
 }

@@ -37,7 +37,7 @@ class IUIAutomation3 extends IUIAutomation2 {
           VTablePointer handler) =>
       _vtable.AddTextEditTextChangedEventHandler.asFunction<
               int Function(
-                  VTablePointer,
+                  VTablePointer lpVtbl,
                   VTablePointer element,
                   int scope,
                   int textEditChangeType,
@@ -48,7 +48,7 @@ class IUIAutomation3 extends IUIAutomation2 {
   int removeTextEditTextChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveTextEditTextChangedEventHandler.asFunction<
-          int Function(VTablePointer, VTablePointer element,
+          int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 }
 
@@ -58,15 +58,14 @@ base class IUIAutomation3Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           Int32 Function(
-              VTablePointer,
+              VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
               Int32 textEditChangeType,
               VTablePointer cacheRequest,
               VTablePointer handler)>> AddTextEditTextChangedEventHandler;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer, VTablePointer element, VTablePointer handler)>>
-      RemoveTextEditTextChangedEventHandler;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+              VTablePointer handler)>> RemoveTextEditTextChangedEventHandler;
 }

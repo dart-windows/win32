@@ -91,10 +91,16 @@ void main() {
     final interfaceProjection = ComInterfaceProjection(textPattern);
     final documentRangeProjection = interfaceProjection.methodProjections
         .firstWhere((method) => method.name == 'get_DocumentRange');
-    expect(documentRangeProjection.nativePrototype,
-        equals('Int32 Function(VTablePointer, Pointer<VTablePointer> range)'));
-    expect(documentRangeProjection.dartPrototype,
-        equals('int Function(VTablePointer, Pointer<VTablePointer> range)'));
+    expect(
+      documentRangeProjection.nativePrototype,
+      equals(
+          'Int32 Function(VTablePointer lpVtbl, Pointer<VTablePointer> range)'),
+    );
+    expect(
+      documentRangeProjection.dartPrototype,
+      equals(
+          'int Function(VTablePointer lpVtbl, Pointer<VTablePointer> range)'),
+    );
   });
 
   group('Projection of INetwork', () {

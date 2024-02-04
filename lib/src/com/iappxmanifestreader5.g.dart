@@ -31,7 +31,7 @@ class IAppxManifestReader5 extends IUnknown {
   int getMainPackageDependencies(
           Pointer<VTablePointer> mainPackageDependencies) =>
       _vtable.GetMainPackageDependencies.asFunction<
-              int Function(VTablePointer,
+              int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> mainPackageDependencies)>()(
           ptr, mainPackageDependencies);
 }
@@ -41,7 +41,7 @@ base class IAppxManifestReader5Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer,
+              Int32 Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> mainPackageDependencies)>>
       GetMainPackageDependencies;
 }

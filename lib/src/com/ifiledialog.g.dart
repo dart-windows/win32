@@ -34,91 +34,98 @@ class IFileDialog extends IModalWindow {
 
   int setFileTypes(int cFileTypes, Pointer<COMDLG_FILTERSPEC> rgFilterSpec) =>
       _vtable.SetFileTypes.asFunction<
-              int Function(VTablePointer, int cFileTypes,
+              int Function(VTablePointer lpVtbl, int cFileTypes,
                   Pointer<COMDLG_FILTERSPEC> rgFilterSpec)>()(
           ptr, cFileTypes, rgFilterSpec);
 
   int setFileTypeIndex(int iFileType) => _vtable.SetFileTypeIndex.asFunction<
-      int Function(VTablePointer, int iFileType)>()(ptr, iFileType);
+      int Function(VTablePointer lpVtbl, int iFileType)>()(ptr, iFileType);
 
   int getFileTypeIndex(Pointer<Uint32> piFileType) =>
       _vtable.GetFileTypeIndex.asFunction<
-          int Function(
-              VTablePointer, Pointer<Uint32> piFileType)>()(ptr, piFileType);
+              int Function(VTablePointer lpVtbl, Pointer<Uint32> piFileType)>()(
+          ptr, piFileType);
 
   int advise(VTablePointer pfde, Pointer<Uint32> pdwCookie) =>
       _vtable.Advise.asFunction<
-          int Function(VTablePointer, VTablePointer pfde,
+          int Function(VTablePointer lpVtbl, VTablePointer pfde,
               Pointer<Uint32> pdwCookie)>()(ptr, pfde, pdwCookie);
 
-  int unadvise(int dwCookie) =>
-      _vtable.Unadvise.asFunction<int Function(VTablePointer, int dwCookie)>()(
-          ptr, dwCookie);
+  int unadvise(int dwCookie) => _vtable.Unadvise.asFunction<
+      int Function(VTablePointer lpVtbl, int dwCookie)>()(ptr, dwCookie);
 
-  int setOptions(int fos) =>
-      _vtable.SetOptions.asFunction<int Function(VTablePointer, int fos)>()(
-          ptr, fos);
+  int setOptions(int fos) => _vtable.SetOptions.asFunction<
+      int Function(VTablePointer lpVtbl, int fos)>()(ptr, fos);
 
   int getOptions(Pointer<Uint32> pfos) => _vtable.GetOptions.asFunction<
-      int Function(VTablePointer, Pointer<Uint32> pfos)>()(ptr, pfos);
+      int Function(VTablePointer lpVtbl, Pointer<Uint32> pfos)>()(ptr, pfos);
 
-  int setDefaultFolder(VTablePointer psi) => _vtable.SetDefaultFolder
-      .asFunction<int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
+  int setDefaultFolder(VTablePointer psi) =>
+      _vtable.SetDefaultFolder.asFunction<
+          int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 
   int setFolder(VTablePointer psi) => _vtable.SetFolder.asFunction<
-      int Function(VTablePointer, VTablePointer psi)>()(ptr, psi);
+      int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 
   int getFolder(Pointer<VTablePointer> ppsi) => _vtable.GetFolder.asFunction<
-      int Function(VTablePointer, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
+      int Function(
+          VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
   int getCurrentSelection(Pointer<VTablePointer> ppsi) =>
       _vtable.GetCurrentSelection.asFunction<
           int Function(
-              VTablePointer, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
   int setFileName(Pointer<Utf16> pszName) => _vtable.SetFileName.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> pszName)>()(ptr, pszName);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Utf16> pszName)>()(ptr, pszName);
 
   int getFileName(Pointer<Pointer<Utf16>> pszName) =>
       _vtable.GetFileName.asFunction<
-          int Function(
-              VTablePointer, Pointer<Pointer<Utf16>> pszName)>()(ptr, pszName);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszName)>()(ptr, pszName);
 
   int setTitle(Pointer<Utf16> pszTitle) => _vtable.SetTitle.asFunction<
-      int Function(VTablePointer, Pointer<Utf16> pszTitle)>()(ptr, pszTitle);
+      int Function(
+          VTablePointer lpVtbl, Pointer<Utf16> pszTitle)>()(ptr, pszTitle);
 
   int setOkButtonLabel(Pointer<Utf16> pszText) =>
       _vtable.SetOkButtonLabel.asFunction<
-          int Function(VTablePointer, Pointer<Utf16> pszText)>()(ptr, pszText);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Utf16> pszText)>()(ptr, pszText);
 
   int setFileNameLabel(Pointer<Utf16> pszLabel) =>
       _vtable.SetFileNameLabel.asFunction<
           int Function(
-              VTablePointer, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
+              VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
 
   int getResult(Pointer<VTablePointer> ppsi) => _vtable.GetResult.asFunction<
-      int Function(VTablePointer, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
+      int Function(
+          VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
   int addPlace(VTablePointer psi, int fdap) => _vtable.AddPlace.asFunction<
       int Function(
-          VTablePointer, VTablePointer psi, int fdap)>()(ptr, psi, fdap);
+          VTablePointer lpVtbl, VTablePointer psi, int fdap)>()(ptr, psi, fdap);
 
   int setDefaultExtension(Pointer<Utf16> pszDefaultExtension) =>
       _vtable.SetDefaultExtension.asFunction<
-          int Function(VTablePointer,
+          int Function(VTablePointer lpVtbl,
               Pointer<Utf16> pszDefaultExtension)>()(ptr, pszDefaultExtension);
 
   int close(int hr) =>
-      _vtable.Close.asFunction<int Function(VTablePointer, int hr)>()(ptr, hr);
+      _vtable.Close.asFunction<int Function(VTablePointer lpVtbl, int hr)>()(
+          ptr, hr);
 
   int setClientGuid(Pointer<GUID> guid) => _vtable.SetClientGuid.asFunction<
-      int Function(VTablePointer, Pointer<GUID> guid)>()(ptr, guid);
+      int Function(VTablePointer lpVtbl, Pointer<GUID> guid)>()(ptr, guid);
 
   int clearClientData() =>
-      _vtable.ClearClientData.asFunction<int Function(VTablePointer)>()(ptr);
+      _vtable.ClearClientData.asFunction<int Function(VTablePointer lpVtbl)>()(
+          ptr);
 
   int setFilter(VTablePointer pFilter) => _vtable.SetFilter.asFunction<
-      int Function(VTablePointer, VTablePointer pFilter)>()(ptr, pFilter);
+      int Function(
+          VTablePointer lpVtbl, VTablePointer pFilter)>()(ptr, pFilter);
 }
 
 /// @nodoc
@@ -126,78 +133,90 @@ base class IFileDialogVtbl extends Struct {
   external IModalWindowVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Uint32 cFileTypes,
+          Int32 Function(VTablePointer lpVtbl, Uint32 cFileTypes,
               Pointer<COMDLG_FILTERSPEC> rgFilterSpec)>> SetFileTypes;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Uint32 iFileType)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Uint32 iFileType)>>
       SetFileTypeIndex;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Uint32> piFileType)>>
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> piFileType)>>
       GetFileTypeIndex;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, VTablePointer pfde,
+          Int32 Function(VTablePointer lpVtbl, VTablePointer pfde,
               Pointer<Uint32> pdwCookie)>> Advise;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer, Uint32 dwCookie)>> Unadvise;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Uint32 fos)>>
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwCookie)>>
+      Unadvise;
+  external Pointer<
+          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 fos)>>
       SetOptions;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> pfos)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pfos)>>
       GetOptions;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>>
       SetDefaultFolder;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer psi)>>
-      SetFolder;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppsi)>>
-      GetFolder;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppsi)>>
-      GetCurrentSelection;
-  external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> pszName)>>
-      SetFileName;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> pszName)>>
-      GetFileName;
+      NativeFunction<
+          Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>> SetFolder;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer, Pointer<Utf16> pszTitle)>> SetTitle;
-  external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Utf16> pszText)>>
-      SetOkButtonLabel;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Utf16> pszLabel)>>
-      SetFileNameLabel;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, Pointer<VTablePointer> ppsi)>>
-      GetResult;
-  external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer, VTablePointer psi, Int32 fdap)>>
-      AddPlace;
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>> GetFolder;
   external Pointer<
           NativeFunction<
               Int32 Function(
-                  VTablePointer, Pointer<Utf16> pszDefaultExtension)>>
-      SetDefaultExtension;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer, Int32 hr)>>
-      Close;
+                  VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>>
+      GetCurrentSelection;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<GUID> guid)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszName)>>
+      SetFileName;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszName)>>
+      GetFileName;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszTitle)>>
+      SetTitle;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszText)>>
+      SetOkButtonLabel;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>>
+      SetFileNameLabel;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>> GetResult;
+  external Pointer<
+      NativeFunction<
+          Int32 Function(
+              VTablePointer lpVtbl, VTablePointer psi, Int32 fdap)>> AddPlace;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Utf16> pszDefaultExtension)>>
+      SetDefaultExtension;
+  external Pointer<
+      NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 hr)>> Close;
+  external Pointer<
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> guid)>>
       SetClientGuid;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer)>>
+  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
       ClearClientData;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, VTablePointer pFilter)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, VTablePointer pFilter)>>
       SetFilter;
 }

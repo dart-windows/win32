@@ -36,9 +36,9 @@ class ISpellingError extends IUnknown {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_StartIndex
-              .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_StartIndex.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -52,9 +52,9 @@ class ISpellingError extends IUnknown {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final hr = _vtable.get_Length
-              .asFunction<int Function(VTablePointer, Pointer<Uint32> value)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_Length.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -68,9 +68,9 @@ class ISpellingError extends IUnknown {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr = _vtable.get_CorrectiveAction
-              .asFunction<int Function(VTablePointer, Pointer<Int32> value)>()(
-          ptr, retValuePtr);
+      final hr = _vtable.get_CorrectiveAction.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -85,8 +85,8 @@ class ISpellingError extends IUnknown {
 
     try {
       final hr = _vtable.get_Replacement.asFunction<
-              int Function(VTablePointer, Pointer<Pointer<Utf16>> value)>()(
-          ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> value)>()(ptr, retValuePtr);
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
@@ -101,16 +101,20 @@ class ISpellingError extends IUnknown {
 base class ISpellingErrorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> value)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
       get_StartIndex;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Uint32> value)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
       get_Length;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer, Pointer<Int32> value)>>
+          NativeFunction<
+              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
       get_CorrectiveAction;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer, Pointer<Pointer<Utf16>> value)>>
+              Int32 Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> value)>>
       get_Replacement;
 }
