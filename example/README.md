@@ -42,8 +42,7 @@ following location:
 | `printer_raw.dart`  | Sends RAW data directly to a Windows Printer              |
 | `serial.dart`       | Demonstrates serial port management                       |
 | `setupapi.dart`     | Show using setup APIs to retrieve device interfaces       |
-| `speech.dart`       | Use Windows speech engine for text-to-speech              |
-| `speech_voice.dart` | Use `ISpeechVoice` for text-to-speech                     |
+| `speech.dart`       | Use Windows speech client for text-to-speech              |
 | `sysinfo.dart`      | Examples of getting device information from native C APIs |
 | `wasapi.dart`       | Demonstrates sound generation with WASAPI library         |
 
