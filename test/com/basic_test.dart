@@ -173,7 +173,6 @@ void main() {
       dialog.release();
     });
 
-    tearDown(forceGC);
     tearDownAll(CoUninitialize);
   });
 }

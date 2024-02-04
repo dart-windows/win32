@@ -118,7 +118,6 @@ void main() {
       spellCheckerFactory.release();
     });
 
-    tearDown(forceGC);
     tearDownAll(CoUninitialize);
   });
 }

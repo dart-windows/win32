@@ -87,7 +87,6 @@ void main() {
       free(descPtr);
     });
 
-    tearDown(forceGC);
     tearDownAll(CoUninitialize);
   });
 }

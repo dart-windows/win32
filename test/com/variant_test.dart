@@ -249,7 +249,6 @@ void main() {
       free(intVar);
     });
 
-    tearDown(forceGC);
     tearDownAll(CoUninitialize);
   });
 }
