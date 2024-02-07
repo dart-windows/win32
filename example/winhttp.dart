@@ -38,7 +38,9 @@ void main() {
     if (FAILED(hr)) throw WindowsException(hr);
 
     // Get response text
-    final responseText = winHttpRequest.responseText.toDartString();
+    final responseTextPtr = winHttpRequest.responseText;
+    final responseText = responseTextPtr.toDartString();
+    SysFreeString(responseTextPtr);
     print(responseText);
 
     winHttpRequest.release();
