@@ -12,121 +12,84 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-/// A helper object to work with IDispatch objects.
+/// A helper object to work with [IDispatch] objects.
 class Dispatcher {
-  final String progID;
-  final IDispatch disp;
+  Dispatcher._(this._dispatch) : _IID_NULL = calloc<GUID>();
 
-  late final Pointer<GUID> IID_NULL;
-
-  Dispatcher(this.progID, this.disp) {
-    IID_NULL = calloc<GUID>();
-  }
+  final IDispatch _dispatch;
+  final Pointer<GUID> _IID_NULL;
 
   factory Dispatcher.fromProgID(String progID) {
-    final ptrProgID = progID.toNativeUtf16();
-    final clsid = calloc<GUID>();
-    final pIID_IDispatch = calloc<GUID>()..ref.setGUID(IID_IDispatch);
-    final ppv = calloc<VTablePointer>();
+    return using((arena) {
+      final lpszProgID = progID.toNativeUtf16(allocator: arena);
+      final lpclsid = arena<GUID>();
+      final riid = GUIDFromString(IID_IDispatch, allocator: arena);
+      final ppv = arena<VTablePointer>();
 
-    try {
-      var hr = CLSIDFromProgID(ptrProgID, clsid);
+      var hr = CLSIDFromProgID(lpszProgID, lpclsid);
       if (FAILED(hr)) throw WindowsException(hr);
 
-      hr = CoCreateInstance(
-          clsid, null, CLSCTX_INPROC_SERVER, pIID_IDispatch, ppv);
+      hr = CoCreateInstance(lpclsid, null, CLSCTX_INPROC_SERVER, riid, ppv);
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final iDispatch = IDispatch(ppv.value);
-      free(ppv);
-
-      return Dispatcher(progID, iDispatch);
-    } finally {
-      free(ptrProgID);
-      free(clsid);
-      free(pIID_IDispatch);
-    }
+      return Dispatcher._(IDispatch(ppv.value));
+    });
   }
 
-  int getDispId(String member) {
-    final ptNameFunc = member.toNativeUtf16();
-    final ptName = calloc<Pointer<Utf16>>()..value = ptNameFunc;
-    final dispid = calloc<Int32>();
-
-    try {
-      final hr =
-          disp.getIDsOfNames(IID_NULL, ptName, 1, LOCALE_USER_DEFAULT, dispid);
-      if (FAILED(hr)) {
-        throw WindowsException(hr);
-      } else {
-        return dispid.value;
-      }
-    } finally {
-      free(ptNameFunc);
-      free(ptName);
-      free(dispid);
-    }
+  int _getDispId(String member) {
+    return using((arena) {
+      final ptrMember = member.toNativeUtf16(allocator: arena);
+      final rgszNames = arena<Pointer<Utf16>>()..value = ptrMember;
+      final rgDispId = arena<Int32>();
+      final hr = _dispatch.getIDsOfNames(
+        _IID_NULL,
+        rgszNames,
+        1,
+        LOCALE_USER_DEFAULT,
+        rgDispId,
+      );
+      if (FAILED(hr)) throw WindowsException(hr);
+      return rgDispId.value;
+    });
   }
 
-  int get typeInfoCount {
-    final count = calloc<Uint32>();
+  void invoke(String method, [Pointer<DISPPARAMS>? params]) {
+    final args = params ?? calloc<DISPPARAMS>();
+    final dispid = _getDispId(method);
 
-    try {
-      final hr = disp.getTypeInfoCount(count);
-      if (SUCCEEDED(hr)) {
-        return count.value;
-      } else {
-        throw WindowsException(hr);
-      }
-    } finally {
-      free(count);
-    }
-  }
+    final hr = _dispatch.invoke(
+      dispid,
+      _IID_NULL,
+      LOCALE_SYSTEM_DEFAULT,
+      DISPATCH_METHOD,
+      args,
+      null,
+      null,
+      null,
+    );
+    if (params == null) free(args);
 
-  void invokeMethod(int dispid, [Pointer<DISPPARAMS>? params]) {
-    Pointer<DISPPARAMS> args;
-    if (params == null) {
-      args = calloc<DISPPARAMS>();
-    } else {
-      args = params;
-    }
-
-    try {
-      final hr = disp.invoke(dispid, IID_NULL, LOCALE_SYSTEM_DEFAULT,
-          DISPATCH_METHOD, args, null, null, null);
-      if (FAILED(hr)) {
-        throw WindowsException(hr);
-      } else {
-        return;
-      }
-    } finally {
-      if (params == null) {
-        free(args);
-      }
-    }
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void dispose() {
-    free(IID_NULL);
-    disp.release();
+    free(_IID_NULL);
+    _dispatch.release();
   }
 }
 
 void main() {
-  final hr = OleInitialize();
-  if (FAILED(hr)) throw WindowsException(hr);
+  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
   final dispatcher = Dispatcher.fromProgID('Shell.Application');
 
-  // Example of calling an automation method with no parameters
+  // Example of calling an automation method with no parameters.
   print('Minimizing all windows via Shell.Application Automation object');
-  final minimizeAllMethod = dispatcher.getDispId('MinimizeAll');
-  dispatcher.invokeMethod(minimizeAllMethod);
+  dispatcher.invoke('MinimizeAll');
 
-  // Example of calling an automation method with a parameter
+  // Example of calling an automation method with a parameter.
   print(r'Launching the Windows Explorer, starting at the C:\ directory');
   final folderLocation = BSTR.fromString(r'C:\');
-  final exploreMethod = dispatcher.getDispId('Explore');
   final exploreParam = calloc<VARIANT>();
   VariantInit(exploreParam);
   exploreParam.ref
@@ -136,12 +99,12 @@ void main() {
   exploreParams.ref
     ..cArgs = 1
     ..rgvarg = exploreParam;
-  dispatcher.invokeMethod(exploreMethod, exploreParams);
+  dispatcher.invoke('Explore', exploreParams);
   free(exploreParams);
   free(exploreParam);
   folderLocation.free();
 
   print('Cleaning up.');
   dispatcher.dispose();
-  OleUninitialize();
+  CoUninitialize();
 }
