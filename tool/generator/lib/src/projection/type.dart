@@ -83,22 +83,23 @@ class TypeProjection {
 
   /// Unwraps the delegate type and returns the [TypeTuple] for it.
   TypeTuple unwrapDelegateType() {
-    final type = typeIdentifier.type;
-    if (type == null) throw StateError('TypeDef missing for $typeIdentifier.');
+    if (typeIdentifier.type case final type?) {
+      final method = type.methods.where((m) => m.name == 'Invoke').firstOrNull;
+      if (method == null) {
+        throw StateError(
+            'Callback $typeIdentifier is missing `Invoke` method.');
+      }
 
-    final method = typeIdentifier.type!.methods
-        .where((m) => m.name == 'Invoke')
-        .firstOrNull;
-    if (method == null) {
-      throw StateError('Callback $typeIdentifier is missing `Invoke` method.');
+      final callbackType = type.safeTypename;
+
+      if (method.parameters.isEmpty) {
+        return TypeTuple.fromNativeType(callbackType);
+      }
+
+      return TypeTuple.fromNativeType('Pointer<NativeFunction<$callbackType>>');
     }
 
-    if (method.parameters.isEmpty) {
-      return const TypeTuple.fromNativeType('Pointer');
-    }
-
-    final callbackType = typeIdentifier.type!.safeTypename;
-    return TypeTuple.fromNativeType('Pointer<NativeFunction<$callbackType>>');
+    throw StateError('TypeDef missing for $typeIdentifier.');
   }
 
   /// Unwraps the enum type and returns the [TypeTuple] for it.

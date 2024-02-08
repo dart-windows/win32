@@ -13,6 +13,12 @@ import 'package:ffi/ffi.dart';
 import 'structs.g.dart';
 import 'types.dart';
 
+typedef FARPROC = Pointer;
+
+typedef NEARPROC = Pointer;
+
+typedef PROC = Pointer;
+
 /// An application-defined or library-defined callback function used with the
 /// SetWindowsHookEx function. The system calls this function before calling the
 /// window procedure to process a message sent to the thread.

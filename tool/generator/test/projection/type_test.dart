@@ -389,8 +389,8 @@ void main() {
     expect(api, isNotNull);
     final param = api!.returnType;
     final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('Pointer'));
-    expect(projection.dartType, equals('Pointer'));
+    expect(projection.nativeType, equals('FARPROC'));
+    expect(projection.dartType, equals('FARPROC'));
     expect(projection.attribute, isEmpty);
   });
 

@@ -16,16 +16,17 @@ class CallbackProjection {
   CallbackProjection(TypeDef typeDef)
       : assert(typeDef.isDelegate && typeDef.findMethod('Invoke') != null,
             '${typeDef.name} is not a callback.'),
-        callbackName = typeDef.safeIdentifier,
-        functionProjection = FunctionProjection(typeDef.findMethod('Invoke')!);
+        name = typeDef.safeIdentifier,
+        type = typeDef.findMethod('Invoke')!.parameters.isEmpty
+            ? 'Pointer' // e.g., FARPROC, NEARPROC, PROC.
+            : FunctionProjection(typeDef.findMethod('Invoke')!).nativePrototype;
 
-  /// The name of the callback type.
-  final String callbackName;
+  /// The name of the callback.
+  final String name;
 
-  /// The function projection of the `Invoke` method of the callback.
-  final FunctionProjection functionProjection;
+  /// The type of the callback.
+  final String type;
 
   @override
-  String toString() =>
-      'typedef $callbackName = ${functionProjection.nativePrototype};';
+  String toString() => 'typedef $name = $type;';
 }

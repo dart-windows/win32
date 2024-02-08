@@ -3200,8 +3200,8 @@ void main() {
     test('Can instantiate GetProcAddress', () {
       final kernel32 = DynamicLibrary.open('kernel32.dll');
       final GetProcAddress = kernel32.lookupFunction<
-          Pointer Function(IntPtr hModule, Pointer<Utf8> lpProcName),
-          Pointer Function(
+          FARPROC Function(IntPtr hModule, Pointer<Utf8> lpProcName),
+          FARPROC Function(
               int hModule, Pointer<Utf8> lpProcName)>('GetProcAddress');
       expect(GetProcAddress, isA<Function>());
     });

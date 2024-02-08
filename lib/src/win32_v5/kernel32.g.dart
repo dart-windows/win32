@@ -3318,12 +3318,12 @@ final _GetPhysicallyInstalledSystemMemory = _kernel32.lookupFunction<
 /// );
 /// ```
 /// {@category kernel32}
-Pointer GetProcAddress(int hModule, Pointer<Utf8> lpProcName) =>
+FARPROC GetProcAddress(int hModule, Pointer<Utf8> lpProcName) =>
     _GetProcAddress(hModule, lpProcName);
 
 final _GetProcAddress = _kernel32.lookupFunction<
-    Pointer Function(IntPtr hModule, Pointer<Utf8> lpProcName),
-    Pointer Function(int hModule, Pointer<Utf8> lpProcName)>('GetProcAddress');
+    FARPROC Function(IntPtr hModule, Pointer<Utf8> lpProcName),
+    FARPROC Function(int hModule, Pointer<Utf8> lpProcName)>('GetProcAddress');
 
 /// Retrieves a handle to the default heap of the calling process. This handle
 /// can then be used in subsequent calls to the heap functions.
