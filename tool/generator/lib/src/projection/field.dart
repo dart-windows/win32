@@ -36,8 +36,7 @@ class FieldProjection {
           '  // ignore: unused_field\n  external $type ${field.name};'
 
         // Mark the field private if it is reserved.
-        else if (field.name.contains('Reserved') ||
-            field.name.startsWith('__OBSOLETE'))
+        else if (field.name.contains('Reserved'))
           '  // ignore: unused_field\n  external $type _${field.name};'
 
         // Generate a String getter/setter for char arrays.
