@@ -154,10 +154,9 @@ extension NestedStructExtension on TypeDef {
   void _handleVariantBoolVal(
       StringBuffer buffer, String fieldName, String instanceName) {
     buffer
-      ..writeln('bool get $fieldName => '
-          'this.$instanceName == -1 /* VARIANT_TRUE */;')
+      ..writeln('bool get $fieldName => this.$instanceName == VARIANT_TRUE;')
       ..writeln('set $fieldName(bool value) => this.$instanceName = value '
-          '? -1 /* VARIANT_TRUE */ : 0 /* VARIANT_FALSE */;')
+          '? VARIANT_TRUE : VARIANT_FALSE;')
       ..writeln();
   }
 

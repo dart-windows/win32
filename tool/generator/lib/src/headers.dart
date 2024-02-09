@@ -50,6 +50,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import 'callbacks.dart';
+import 'constants.dart';
 import 'guid.dart';
 import 'types.dart';
 ''';

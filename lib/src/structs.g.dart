@@ -14,6 +14,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import 'callbacks.dart';
+import 'constants.dart';
 import 'guid.dart';
 import 'types.dart';
 
@@ -7731,9 +7732,9 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
   set dblVal(double value) => this.Anonymous.Anonymous.Anonymous.dblVal = value;
 
   bool get boolVal =>
-      this.Anonymous.Anonymous.Anonymous.boolVal == -1 /* VARIANT_TRUE */;
+      this.Anonymous.Anonymous.Anonymous.boolVal == VARIANT_TRUE;
   set boolVal(bool value) => this.Anonymous.Anonymous.Anonymous.boolVal =
-      value ? -1 /* VARIANT_TRUE */ : 0 /* VARIANT_FALSE */;
+      value ? VARIANT_TRUE : VARIANT_FALSE;
 
   int get scode => this.Anonymous.Anonymous.Anonymous.scode;
   set scode(int value) => this.Anonymous.Anonymous.Anonymous.scode = value;
@@ -10770,9 +10771,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set dblVal(double value) => this.Anonymous.Anonymous.Anonymous.dblVal = value;
 
   bool get boolVal =>
-      this.Anonymous.Anonymous.Anonymous.boolVal == -1 /* VARIANT_TRUE */;
+      this.Anonymous.Anonymous.Anonymous.boolVal == VARIANT_TRUE;
   set boolVal(bool value) => this.Anonymous.Anonymous.Anonymous.boolVal =
-      value ? -1 /* VARIANT_TRUE */ : 0 /* VARIANT_FALSE */;
+      value ? VARIANT_TRUE : VARIANT_FALSE;
 
   int get scode => this.Anonymous.Anonymous.Anonymous.scode;
   set scode(int value) => this.Anonymous.Anonymous.Anonymous.scode = value;

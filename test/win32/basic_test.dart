@@ -36,7 +36,6 @@ void main() {
 
     try {
       final hModule = GetModuleHandle(lpKernelModuleName);
-
       final pGetNativeSystemInfo = GetProcAddress(hModule, lpBeepProcName);
       expect(pGetNativeSystemInfo.address, isNonZero);
     } finally {
@@ -50,7 +49,6 @@ void main() {
     // version of Windows could change this value. This is a pseudo-handle, and
     // so CloseHandle is not required.
     final hProcess = GetCurrentProcess();
-
     expect(hProcess, equals(-1));
   });
 }
