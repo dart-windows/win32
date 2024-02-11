@@ -163,8 +163,8 @@ String generateFunctionTests(String library, Iterable<Method> methods,
   test('Can instantiate $methodDartName', () {
     final $libraryDartName = DynamicLibrary.open('$library');
     final $methodDartName = $libraryDartName.lookupFunction<\n
-      $returnFFIType Function(${projection.nativeParams}),
-      $returnDartType Function(${projection.dartParams})>('${method.name}');
+      $returnFFIType Function(${projection.nativeParameters}),
+      $returnDartType Function(${projection.dartParameters})>('${method.name}');
     expect($methodDartName, isA<Function>());
   });''';
 

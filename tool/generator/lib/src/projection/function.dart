@@ -14,17 +14,17 @@ class FunctionProjection {
   /// Creates an instance of this class for a Win32 [method].
   FunctionProjection(this.method)
       : name = method.nameWithoutEncoding.safeTypename,
-        returnType = TypeProjection(method.returnType.typeIdentifier),
+        returnTypeProjection = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters.map(ParameterProjection.new).toList();
 
   /// The metadata associated with the method.
   final Method method;
 
-  /// The name of the method.
+  /// The name of the method converted to a legal Dart typename.
   final String name;
 
   /// The type projection for the return type of the method.
-  final TypeProjection returnType;
+  final TypeProjection returnTypeProjection;
 
   /// The parameter projections for the method.
   final List<ParameterProjection> parameters;
@@ -48,50 +48,48 @@ class FunctionProjection {
 
   /// The Dart parameter list for the method (e.g.,
   /// `int string1, int string2, Pointer<Int32> result`).
-  String get dartParams => parameters.map((p) => p.dartProjection).join(', ');
+  String get dartParameters =>
+      parameters.map((p) => p.dartProjection).join(', ');
 
   /// The Dart prototype for the method (e.g.,
   /// `int Function(int string1, int string2, Pointer<Int32> result)`).
-  String get dartPrototype => '${returnType.dartType} Function($dartParams)';
+  String get dartPrototype =>
+      '${returnTypeProjection.dartType} Function($dartParameters)';
 
   /// The native parameter list for the method (e.g.,
   /// `IntPtr string1, IntPtr string2, Pointer<Int32> result`).
-  String get nativeParams =>
+  String get nativeParameters =>
       parameters.map((p) => p.nativeProjection).join(', ');
 
   /// The native prototype for the method (e.g.,
   /// `Int32 Function(IntPtr string1, IntPtr string2, Pointer<Int32> result)`).
   String get nativePrototype =>
-      '${returnType.nativeType} Function($nativeParams)';
+      '${returnTypeProjection.nativeType} Function($nativeParameters)';
 
   /// The parameters exposed by the method (e.g.,
   /// `int? string1, int? string2, Pointer<Int32> result`).
-  String get functionParams => parameters
+  String get functionParameters => parameters
       .where((p) => !p.isReserved) // Hide reserved parameters.
-      .map((p) => p.paramProjection)
       .join(', ');
 
   /// The argument list for the function body (e.g.,
   /// `string1 ?? 0, string2 ?? 0, result`).
-  String get functionArguments => parameters
-      .map((p) => switch (p) {
-            _ when p.isOptional && !p.isReserved =>
-              p.type.startsWith(RegExp('(VTable)?Pointer'))
-                  ? '${p.identifier} ?? nullptr'
-                  : '${p.identifier} ?? 0',
-            _ when p.isReserved =>
-              p.type.startsWith(RegExp('(VTable)?Pointer')) ? 'nullptr' : '0',
-            _ => p.identifier,
-          })
-      .join(', ');
+  String get functionArguments =>
+      parameters.map((p) => p.identifier).join(', ');
+
+  /// The return type of the method.
+  String get returnType => returnTypeProjection.dartType.safeTypename;
+
+  /// The function header.
+  String get header => '$returnType $name($functionParameters)';
+
+  /// The function body.
+  String get functionBody => '_$name($functionArguments);';
+
+  /// The cached lookup for the function.
+  String get cachedLookup => "final _$name = _$lib.lookupFunction<"
+      "$nativePrototype, $dartPrototype>('${method.name}');";
 
   @override
-  String toString() => '''
-${returnType.dartType.safeTypename} $name($functionParams) =>
-    _$name($functionArguments);
-
-final _$name = _$lib.lookupFunction<
-    $nativePrototype,
-    $dartPrototype>('${method.name}');
-''';
+  String toString() => '$header => $functionBody\n\n$cachedLookup';
 }
