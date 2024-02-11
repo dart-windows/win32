@@ -9,14 +9,14 @@ import 'package:generator/generator.dart';
 import 'package:winmd/winmd.dart';
 
 Iterable<File> goldenFiles() => Directory('test/goldens')
-    .listSync()
+    .listSync(recursive: true)
     .whereType<File>()
     .where((file) => file.path.endsWith('.golden'));
 
 final comInterfacesToGenerate = loadMap('com_types.json');
 final structsToGenerate = loadMap('win32_structs.json');
 
-var updatedFiles = 0;
+var updatedGoldenFiles = 0;
 
 void main() async {
   await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
@@ -25,126 +25,103 @@ void main() async {
   print('Updating golden files...');
 
   for (final file in goldenFiles()) {
-    switch (file.fileName) {
-      case 'devmode.g.golden':
-        _updateDevModeGolden(file);
-      case 'enumdisplaymonitors.g.golden':
-        _updateEnumDisplayMonitorsGolden(file);
-      case 'ifileopendialog.g.golden':
-        _updateIFileOpenDialogGolden(file);
-      case 'inetwork.g.golden':
-        _updateINetworkGolden(file);
-      case 'ntqueryobject.g.golden':
-        _updateNtQueryObjectGolden(file);
-      case 'variant.g.golden':
-        _updateVariantGolden(file);
+    switch (file.parentDirectory) {
+      case 'functions':
+        updateFunctionGolden(file);
+      case 'interfaces':
+        updateInterfaceGolden(file);
+      case 'structs':
+        updateStructGolden(file);
       default:
         print(
-          'Skipping `${file.fileName}` file. Either update it manually or '
-          'update the `update_golden_tests.dart` file to support '
-          'auto-updating it.',
+          'Skipping `${file.fileName}` file. It is not a recognized golden '
+          'file. Make sure it is in the correct directory. Currently supported '
+          'directories are `functions`, `interfaces`, and `structs`.',
         );
     }
   }
 
-  print('Updated $updatedFiles golden file(s).');
+  print('Updated $updatedGoldenFiles golden file(s).');
   MetadataStore.close();
 }
 
-void _updateDevModeGolden(File file) {
-  const type = 'Windows.Win32.Graphics.Gdi.DEVMODEW';
-  final typeDef = MetadataStore.getMetadataForType(type);
+void updateFunctionGolden(File file) {
+  final fullyQualifiedType = file.fullyQualifiedType;
+  // The type that contains the function (e.g., `Windows.Wdk.Foundation.Apis`).
+  final parent = (fullyQualifiedType.split('.')..removeLast()).join('.');
+
+  // The function name (e.g., `NtQueryObject`).
+  final functionName = fullyQualifiedType.lastComponent;
+
+  final typeDef = MetadataStore.getMetadataForType(parent);
   if (typeDef == null) {
-    throw StateError('Could not find `$type` in the metadata.');
+    throw StateError('`$parent` type is not found in the metadata.');
   }
 
-  final projection =
-      StructProjection(typeDef, comment: structsToGenerate[type]!);
-  _updateGoldenFile(file, projection.format());
-}
-
-void _updateEnumDisplayMonitorsGolden(File file) {
-  const type = 'Windows.Win32.Graphics.Gdi.Apis';
-  final typeDef = MetadataStore.getMetadataForType(type);
-  if (typeDef == null) {
-    throw StateError('Could not find `$type` in the metadata.');
-  }
-
-  final method = typeDef.findMethod('EnumDisplayMonitors');
+  final method = typeDef.findMethod(functionName);
   if (method == null) {
-    throw StateError('Could not find `EnumDisplayMonitors` in the metadata.');
+    throw StateError('`$functionName` function is not found in `$parent`.');
   }
 
   final projection = FunctionProjection(method);
-  _updateGoldenFile(file, projection.format());
+  updateGoldenFile(file, '|$fullyQualifiedType|\n${projection.format()}');
 }
 
-void _updateIFileOpenDialogGolden(File file) {
-  const type = 'Windows.Win32.UI.Shell.IFileOpenDialog';
-  final typeDef = MetadataStore.getMetadataForType(type);
+void updateInterfaceGolden(File file) {
+  final fullyQualifiedType = file.fullyQualifiedType;
+  final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
   if (typeDef == null) {
-    throw StateError('Could not find `$type` in the metadata.');
+    throw StateError(
+      '`$fullyQualifiedType` type is not found in the metadata.',
+    );
   }
 
-  final projection =
-      ComInterfaceProjection(typeDef, comment: comInterfacesToGenerate[type]!);
-  _updateGoldenFile(file, projection.format());
+  final projection = ComInterfaceProjection(
+    typeDef,
+    comment: comInterfacesToGenerate[fullyQualifiedType]!,
+  );
+  updateGoldenFile(file, '|$fullyQualifiedType|\n${projection.format()}');
 }
 
-void _updateINetworkGolden(File file) {
-  const type = 'Windows.Win32.Networking.NetworkListManager.INetwork';
-  final typeDef = MetadataStore.getMetadataForType(type);
+void updateStructGolden(File file) {
+  final fullyQualifiedType = file.fullyQualifiedType;
+  final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
   if (typeDef == null) {
-    throw StateError('Could not find `$type` in the metadata.');
+    throw StateError(
+      '`$fullyQualifiedType` type is not found in the metadata.',
+    );
   }
 
-  final projection =
-      ComInterfaceProjection(typeDef, comment: comInterfacesToGenerate[type]!);
-  _updateGoldenFile(file, projection.format());
+  final projection = StructProjection(
+    typeDef,
+    comment: structsToGenerate[fullyQualifiedType]!,
+  );
+  updateGoldenFile(file, '|$fullyQualifiedType|\n${projection.format()}');
 }
 
-void _updateNtQueryObjectGolden(File file) {
-  const type = 'Windows.Wdk.Foundation.Apis';
-  final typeDef = MetadataStore.getMetadataForType(type);
-  if (typeDef == null) {
-    throw StateError('Could not find `$type` in the metadata.');
-  }
-
-  final method = typeDef.findMethod('NtQueryObject');
-  if (method == null) {
-    throw StateError('Could not find `NtQueryObject` in the metadata.');
-  }
-
-  final projection = FunctionProjection(method);
-  _updateGoldenFile(file, projection.format());
-}
-
-void _updateVariantGolden(File file) {
-  const type = 'Windows.Win32.System.Variant.VARIANT';
-  final typeDef = MetadataStore.getMetadataForType(type);
-  if (typeDef == null) {
-    throw StateError('Could not find `$type` in the metadata.');
-  }
-
-  final projection =
-      StructProjection(typeDef, comment: structsToGenerate[type]!);
-  _updateGoldenFile(file, projection.format());
-}
-
-void _updateGoldenFile(File file, String projection) {
-  final needsUpdate = file.readAsStringSync() != projection;
+void updateGoldenFile(File file, String content) {
+  final needsUpdate = file.readAsStringSync() != content;
   if (needsUpdate) {
     // Update the golden file with the latest projection.
-    file.writeAsStringSync(projection);
+    file.writeAsStringSync(content);
     print('Updated `${file.fileName}` file.');
-    updatedFiles++;
+    updatedGoldenFiles++;
   }
 }
 
 extension on File {
   String get fileName => path.split(RegExp(r'[/\\]')).last;
+
+  // The golden file's first line is the fully qualified type name of the
+  // function with the leading `|` and trailing `|`. For example,
+  // `|Windows.Wdk.Foundation.Apis.NtQueryObject|`.
+  String get fullyQualifiedType =>
+      readAsLinesSync().first.substring(1).split('|').first;
+
+  String get parentDirectory =>
+      path.split(RegExp(r'[/\\]')).reversed.skip(1).first;
 }
 
 extension on Object {
-  String format() => DartFormatter().format(toString());
+  String format() => DartFormatter(lineEnding: '\n').format(toString());
 }

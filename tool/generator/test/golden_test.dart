@@ -35,9 +35,18 @@ void main() {
 
 /// Compares the contents of a [content] with a golden file specified by the
 /// [fileName].
-void compareGolden(String fileName, String content) {
+void compareGolden(String fullyQualifiedType, String fileName, String content) {
   File('test/goldens/$fileName.comparison').writeAsStringSync(content);
-  final golden = File('test/goldens/$fileName.golden').readAsStringSync();
+  final golden = File('test/goldens/$fileName.golden')
+      .readAsStringSync()
+      // Skip the type identifier line (e.g.,
+      // `|Windows.Wdk.Foundation.Apis.NtQueryObject|`).
+      .replaceRange(
+        0,
+        '|'.length + fullyQualifiedType.length + '|'.length + '\n'.length,
+        '',
+      );
+
   expect(content, equals(golden.convertLineEndingsToLF()));
 }
 
@@ -53,7 +62,11 @@ void testComInterfaceGolden(String interfaceName) {
     final projection = ComInterfaceProjection(typeDef!,
         comment: comTypesToGenerate[interfaceName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
-    compareGolden('interfaces/$fileName.g', projection.toString().format());
+    compareGolden(
+      typeDef.name,
+      'interfaces/$fileName.g',
+      projection.toString().format(),
+    );
   });
 }
 
@@ -73,7 +86,11 @@ void testFunctionGolden(String parent, String functionName) {
     );
     final projection = FunctionProjection(method!);
     final fileName = method.nameWithoutEncoding.safeIdentifier.toLowerCase();
-    compareGolden('functions/$fileName.g', projection.toString().format());
+    compareGolden(
+      '${typeDef.name}.${method.name}',
+      'functions/$fileName.g',
+      projection.toString().format(),
+    );
   });
 }
 
@@ -89,12 +106,16 @@ void testStructGolden(String type) {
     final projection =
         StructProjection(typeDef!, comment: structsToGenerate[type] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
-    compareGolden('structs/$fileName.g', projection.toString().format());
+    compareGolden(
+      typeDef.name,
+      'structs/$fileName.g',
+      projection.toString().format(),
+    );
   });
 }
 
 extension on String {
   String convertLineEndingsToLF() => replaceAll('\r\n', '\n');
 
-  String format() => DartFormatter().format(this);
+  String format() => DartFormatter(lineEnding: '\n').format(this);
 }
