@@ -16,7 +16,7 @@ void main() {
 
   // Create an instance of the FileOpenDialog class w/ IFileDialog interface
   final fileDialog =
-      IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
+      IFileOpenDialog(createComObject(FileOpenDialog, IID_IFileOpenDialog));
   print('Created fileDialog.\n'
       'fileDialog.ptr is  ${fileDialog.ptr.address.toHexString(64)}');
   print('refCount is now ${refCount(fileDialog)}\n');

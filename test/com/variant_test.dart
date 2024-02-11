@@ -25,10 +25,10 @@ void main() {
     });
 
     test('pointer to an object that implements the IUnknown interface', () {
-      final spVoice = ISpVoice(createCOMObject(SpVoice, IID_ISpVoice))
+      final spVoice = ISpVoice(createComObject(SpVoice, IID_ISpVoice))
         ..addRef();
       final spellChecker = ISpellCheckerFactory(
-          createCOMObject(SpellCheckerFactory, IID_ISpellCheckerFactory))
+          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory))
         ..addRef();
 
       final variant = calloc<VARIANT>();
@@ -55,10 +55,10 @@ void main() {
     });
 
     test('reference to an IUnknown interface pointer', () {
-      final spVoice = ISpVoice(createCOMObject(SpVoice, IID_ISpVoice))
+      final spVoice = ISpVoice(createComObject(SpVoice, IID_ISpVoice))
         ..addRef();
       final spellChecker = ISpellCheckerFactory(
-          createCOMObject(SpellCheckerFactory, IID_ISpellCheckerFactory))
+          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory))
         ..addRef();
 
       final variant = calloc<VARIANT>();

@@ -23,7 +23,7 @@ void main() {
 
     test('supportedLanguages', () {
       final spellCheckerFactory = ISpellCheckerFactory(
-          createCOMObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
+          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
       final pEnumString = spellCheckerFactory.supportedLanguages;
       expect(pEnumString.value.address, isNonZero);
       final enumString = IEnumString(pEnumString);
@@ -49,7 +49,7 @@ void main() {
 
     test('isSupported', () {
       final spellCheckerFactory = ISpellCheckerFactory(
-          createCOMObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
+          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
 
       final supportedPtr = calloc<Int32>();
 
@@ -68,7 +68,7 @@ void main() {
 
     test('check', () {
       final spellCheckerFactory = ISpellCheckerFactory(
-          createCOMObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
+          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
       final supportedPtr = calloc<Int32>();
 
       final languageTagPtr = 'en-US'.toNativeUtf16();

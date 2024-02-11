@@ -58,7 +58,7 @@ void main() {
   if (FAILED(hr)) throw WindowsException(hr);
 
   wallpaper = IDesktopWallpaper(
-      createCOMObject(DesktopWallpaper, IID_IDesktopWallpaper));
+      createComObject(DesktopWallpaper, IID_IDesktopWallpaper));
 
   printWallpaper();
   printBackgroundColor();

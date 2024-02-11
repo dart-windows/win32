@@ -85,7 +85,7 @@ void main() {
 
   // Retrieve the list of available audio output devices.
   final pDeviceEnumerator = IMMDeviceEnumerator(
-      createCOMObject(MMDeviceEnumerator, IID_IMMDeviceEnumerator));
+      createComObject(MMDeviceEnumerator, IID_IMMDeviceEnumerator));
   final ppDevices = calloc<VTablePointer>();
   check(pDeviceEnumerator.enumAudioEndpoints(
       0, // dataflow: rendering device

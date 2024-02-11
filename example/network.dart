@@ -15,7 +15,7 @@ void main() {
   if (FAILED(hr)) throw WindowsException(hr);
 
   final netManager = INetworkListManager(
-      createCOMObject(NetworkListManager, IID_INetworkListManager));
+      createComObject(NetworkListManager, IID_INetworkListManager));
   final nlmConnectivity = calloc<Int32>();
   final descPtr = calloc<Pointer<Utf16>>();
   final elements = calloc<Uint32>();

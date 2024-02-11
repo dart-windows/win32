@@ -79,11 +79,11 @@ Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
 /// Example:
 /// ```dart
 /// final dialog = FileOpenDialog(
-///     createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
+///     createComObject(FileOpenDialog, IID_IFileOpenDialog));
 /// ```
 ///
 /// {@category com}
-VTablePointer createCOMObject(String clsid, String iid) {
+VTablePointer createComObject(String clsid, String iid) {
   final rclsid = convertToCLSID(clsid);
   final riid = convertToIID(iid);
   final ppv = calloc<VTablePointer>();

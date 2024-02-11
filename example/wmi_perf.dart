@@ -64,13 +64,13 @@ void main() {
 
   using((Arena arena) {
     final locator =
-        IWbemLocator(createCOMObject(WbemLocator, IID_IWbemLocator));
+        IWbemLocator(createComObject(WbemLocator, IID_IWbemLocator));
     final ppNamespace = calloc<VTablePointer>();
 
     connectWMI(locator, ppNamespace);
 
     final refresher =
-        IWbemRefresher(createCOMObject(WbemRefresher, IID_IWbemRefresher));
+        IWbemRefresher(createComObject(WbemRefresher, IID_IWbemRefresher));
     final pConfig = IWbemConfigureRefresher.from(refresher);
     final ppRefreshable = calloc<VTablePointer>();
 

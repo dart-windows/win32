@@ -14,7 +14,7 @@ void main() {
   if (FAILED(hr)) throw WindowsException(hr);
 
   final fileDialog =
-      IFileOpenDialog(createCOMObject(FileOpenDialog, IID_IFileOpenDialog));
+      IFileOpenDialog(createComObject(FileOpenDialog, IID_IFileOpenDialog));
 
   final pfos = calloc<Uint32>();
   hr = fileDialog.getOptions(pfos);

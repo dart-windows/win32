@@ -32,14 +32,14 @@ hr = CoCreateInstance(clsid, null, CLSCTX_INPROC_SERVER, riid, ppv);
 
 However, rather than manually allocate GUID structs for the `clsid` and `riid`
 values, checking the `hr` result code and deal with casting the `ppv` return
-object, it is easier to use the `createCOMObject` helper function:
+object, it is easier to use the `createComObject` helper function:
 
 ```dart
 final fileDialog2 = IFileDialog2(
-    createCOMObject(FileOpenDialog, IID_IFileDialog2));
+    createComObject(FileOpenDialog, IID_IFileDialog2));
 ```
 
-`createCOMObject` returns a `VTablePointer` containing the requested object,
+`createComObject` returns a `VTablePointer` containing the requested object,
 which can then be cast into the appropriate interface as shown above.
 
 ### Asking a COM object for an interface
@@ -67,7 +67,7 @@ or, you can use the `from` constructor that wraps the `toInterface` for you:
   final modalWindow = IModalWindow.from(fileDialog2);
 ```
 
-Where `createCOMObject` creates a new COM object, `toInterface` casts an
+Where `createComObject` creates a new COM object, `toInterface` casts an
 existing COM object to a new interface.
 
 Attempting to cast a COM object to an interface it does not support will fail,

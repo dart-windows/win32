@@ -16,7 +16,7 @@ void main() {
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
   final sensorManager =
-      ISensorManager(createCOMObject(SensorManager, IID_ISensorManager));
+      ISensorManager(createComObject(SensorManager, IID_ISensorManager));
 
   // Replace this with the sensor category you're looking for.
   final sampleDateTimeSensorCategory =
