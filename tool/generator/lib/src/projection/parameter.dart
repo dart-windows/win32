@@ -15,7 +15,7 @@ class ParameterProjection {
   ParameterProjection(this.parameter)
       : isOptional = parameter.isOptional,
         isReserved = parameter.isReserved,
-        name = parameter.name,
+        name = parameter.name.toCamelCase().safeIdentifier,
         typeProjection = TypeProjection(parameter.typeIdentifier);
 
   /// Whether the parameter is optional (nullable).
@@ -24,7 +24,8 @@ class ParameterProjection {
   /// Whether the parameter is reserved.
   final bool isReserved;
 
-  /// The name of the parameter.
+  /// The name of the parameter converted to camel case and safe for use as an
+  /// identifier in Dart code.
   final String name;
 
   /// The metadata associated with the parameter.
@@ -39,18 +40,32 @@ class ParameterProjection {
 
   /// The native projection of the parameter, for use in function signatures
   /// (e.g., `Int32 value`).
-  String get nativeProjection => '${typeProjection.nativeType} $identifier';
+  String get nativeProjection => '${typeProjection.nativeType} $name';
 
   /// The Dart projection of the parameter, for use in function signatures
   /// (e.g., `int value`).
-  String get dartProjection => '${typeProjection.dartType} $identifier';
+  String get dartProjection => '${typeProjection.dartType} $name';
 
-  /// The parameter projection for function signatures (e.g., `int value`).
-  String get paramProjection => '$type $identifier';
+  /// The identifier (name) for the parameter (e.g., `value`, `value ?? 0`) that
+  /// will be passed to the native function.
+  String get identifier => switch (parameter) {
+        // For optional non-reserved parameter, use the `??` operator to provide
+        // a default value of `nullptr` if the parameter is `null` and the type
+        // is a pointer, or `0` if the type is not a pointer.
+        _ when isOptional && !isReserved =>
+          type.startsWith(RegExp('(VTable)?Pointer'))
+              ? '$name ?? nullptr'
+              : '$name ?? 0',
 
-  /// The identifier (name) of the parameter (e.g., `value`).
-  String get identifier => name.toCamelCase().safeIdentifier;
+        // For reserved parameter, pass `nullptr` if the type is a pointer;
+        // otherwise, pass `0` (i.e. `NULL`).
+        _ when isReserved =>
+          type.startsWith(RegExp('(VTable)?Pointer')) ? 'nullptr' : '0',
+
+        // Otherwise, use the parameter name as the identifier.
+        _ => name
+      };
 
   @override
-  String toString() => '$type $identifier';
+  String toString() => '$type $name';
 }
