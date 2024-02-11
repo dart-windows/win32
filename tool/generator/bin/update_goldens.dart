@@ -46,7 +46,10 @@ void main() async {
 }
 
 void updateFunctionGolden(File file) {
+  // The fully qualified type name of the function (e.g.,
+  // `Windows.Wdk.Foundation.Apis.NtQueryObject`).
   final fullyQualifiedType = file.fullyQualifiedType;
+
   // The type that contains the function (e.g., `Windows.Wdk.Foundation.Apis`).
   final parent = (fullyQualifiedType.split('.')..removeLast()).join('.');
 
@@ -64,11 +67,14 @@ void updateFunctionGolden(File file) {
   }
 
   final projection = FunctionProjection(method);
-  updateGoldenFile(file, '|$fullyQualifiedType|\n${projection.format()}');
+  updateGoldenFile(file, projection.format());
 }
 
 void updateInterfaceGolden(File file) {
+  // The fully qualified type name of the COM interface (e.g.,
+  // `Windows.Win32.Networking.NetworkListManager.INetwork`).
   final fullyQualifiedType = file.fullyQualifiedType;
+
   final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
   if (typeDef == null) {
     throw StateError(
@@ -80,11 +86,14 @@ void updateInterfaceGolden(File file) {
     typeDef,
     comment: comInterfacesToGenerate[fullyQualifiedType]!,
   );
-  updateGoldenFile(file, '|$fullyQualifiedType|\n${projection.format()}');
+  updateGoldenFile(file, projection.format());
 }
 
 void updateStructGolden(File file) {
+  // The fully qualified type name of the struct (e.g.,
+  // `Windows.Win32.Graphics.Gdi.DEVMODEW`).
   final fullyQualifiedType = file.fullyQualifiedType;
+
   final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
   if (typeDef == null) {
     throw StateError(
@@ -96,14 +105,15 @@ void updateStructGolden(File file) {
     typeDef,
     comment: structsToGenerate[fullyQualifiedType]!,
   );
-  updateGoldenFile(file, '|$fullyQualifiedType|\n${projection.format()}');
+  updateGoldenFile(file, projection.format());
 }
 
-void updateGoldenFile(File file, String content) {
-  final needsUpdate = file.readAsStringSync() != content;
+void updateGoldenFile(File file, String projection) {
+  final contents = '${file.fullyQualifiedType}|\n$projection';
+  final needsUpdate = file.readAsStringSync() != contents;
   if (needsUpdate) {
     // Update the golden file with the latest projection.
-    file.writeAsStringSync(content);
+    file.writeAsStringSync(contents);
     print('Updated `${file.fileName}` file.');
     updatedGoldenFiles++;
   }
@@ -113,10 +123,20 @@ extension on File {
   String get fileName => path.split(RegExp(r'[/\\]')).last;
 
   // The golden file's first line is the fully qualified type name of the
-  // function with the leading `|` and trailing `|`. For example,
-  // `|Windows.Wdk.Foundation.Apis.NtQueryObject|`.
-  String get fullyQualifiedType =>
-      readAsLinesSync().first.substring(1).split('|').first;
+  // function with the trailing `|`. For example,
+  // `Windows.Wdk.Foundation.Apis.NtQueryObject|`.
+  String get fullyQualifiedType {
+    final firstLine = readAsLinesSync().first;
+    if (!firstLine.contains('|')) {
+      throw StateError(
+        'The first line of the golden file is not in the expected format.\n'
+        'The format should be the fully qualified type name followed by a `|` '
+        'character.\nExample: Windows.Wdk.Foundation.Apis.NtQueryObject|',
+      );
+    }
+
+    return firstLine.split('|').first;
+  }
 
   String get parentDirectory =>
       path.split(RegExp(r'[/\\]')).reversed.skip(1).first;

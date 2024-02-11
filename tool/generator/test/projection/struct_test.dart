@@ -166,13 +166,13 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
   tearDownAll(MetadataStore.close);
 }
 
-void testStruct(String type, void Function(StructProjection) projection) {
-  test(type, () {
-    final typeDef = MetadataStore.getMetadataForType(type);
+void testStruct(String structName, void Function(StructProjection) projection) {
+  test(structName, () {
+    final typeDef = MetadataStore.getMetadataForType(structName);
     expect(
       typeDef,
       isNotNull,
-      reason: '`$type` type is not found in the metadata.',
+      reason: '`$structName` type is not found in the metadata.',
     );
     projection(StructProjection(typeDef!));
   });

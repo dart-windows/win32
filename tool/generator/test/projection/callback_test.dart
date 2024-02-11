@@ -72,13 +72,14 @@ void main() {
   tearDownAll(MetadataStore.close);
 }
 
-void testCallback(String type, void Function(CallbackProjection) projection) {
-  test(type, () {
-    final typeDef = MetadataStore.getMetadataForType(type);
+void testCallback(
+    String callbackName, void Function(CallbackProjection) projection) {
+  test(callbackName, () {
+    final typeDef = MetadataStore.getMetadataForType(callbackName);
     expect(
       typeDef,
       isNotNull,
-      reason: '`$type` type is not found in the metadata.',
+      reason: '`$callbackName` type is not found in the metadata.',
     );
     projection(CallbackProjection(typeDef!));
   });

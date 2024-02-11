@@ -37,15 +37,18 @@ void main() {
 /// [fileName].
 void compareGolden(String fullyQualifiedType, String fileName, String content) {
   File('test/goldens/$fileName.comparison').writeAsStringSync(content);
-  final golden = File('test/goldens/$fileName.golden')
-      .readAsStringSync()
-      // Skip the type identifier line (e.g.,
-      // `|Windows.Wdk.Foundation.Apis.NtQueryObject|`).
-      .replaceRange(
-        0,
-        '|'.length + fullyQualifiedType.length + '|'.length + '\n'.length,
-        '',
-      );
+  var golden = File('test/goldens/$fileName.golden').readAsStringSync();
+  if (golden.contains('|')) {
+    // Skip the first line containing the fully qualified type name (e.g.,
+    // `Windows.Wdk.Foundation.Apis.NtQueryObject|`).
+    golden = golden.substring(golden.indexOf('|') + '\n'.length + 1);
+  } else {
+    throw StateError(
+      'The first line of the golden file is not in the expected format.\n'
+      'The format should be the fully qualified type name followed by a `|` '
+      'character.\nExample: Windows.Wdk.Foundation.Apis.NtQueryObject|',
+    );
+  }
 
   expect(content, equals(golden.convertLineEndingsToLF()));
 }

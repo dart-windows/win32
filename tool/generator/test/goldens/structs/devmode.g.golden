@@ -1,4 +1,4 @@
-|Windows.Win32.Graphics.Gdi.DEVMODEW|
+Windows.Win32.Graphics.Gdi.DEVMODEW|
 /// The DEVMODE data structure contains information about the initialization and
 /// environment of a printer or a display device.
 ///

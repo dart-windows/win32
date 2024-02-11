@@ -1,4 +1,4 @@
-|Windows.Wdk.Foundation.Apis.NtQueryObject|
+Windows.Wdk.Foundation.Apis.NtQueryObject|
 int NtQueryObject(
         int? handle,
         int objectInformationClass,

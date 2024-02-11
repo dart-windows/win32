@@ -1,4 +1,4 @@
-|Windows.Win32.System.Variant.VARIANT|
+Windows.Win32.System.Variant.VARIANT|
 /// The VARIANT type is used in Win32 to represent a dynamic type. It is
 /// represented as a struct containing a union of the types that could be
 /// stored.

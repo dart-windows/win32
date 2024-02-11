@@ -191,22 +191,22 @@ void main() {
 }
 
 void testField(
-  String struct,
+  String structName,
   String fieldName,
   void Function(FieldProjection) projection,
 ) {
-  test("$struct's $fieldName field", () {
-    final typeDef = MetadataStore.getMetadataForType(struct);
+  test("$structName's $fieldName field", () {
+    final typeDef = MetadataStore.getMetadataForType(structName);
     expect(
       typeDef,
       isNotNull,
-      reason: '`$struct` type is not found in the metadata.',
+      reason: '`$structName` type is not found in the metadata.',
     );
     final field = typeDef!.findField(fieldName);
     expect(
       field,
       isNotNull,
-      reason: '`$fieldName` field is not found in the `$struct`.',
+      reason: '`$fieldName` field is not found in the `$structName`.',
     );
     projection(FieldProjection(field!));
   });
