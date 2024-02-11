@@ -9,456 +9,411 @@ import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
 void main() {
-  late Scope scope;
-
   setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
+    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
   });
 
-  test('Simple int type', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Console.Apis');
-    final api = typedef?.findMethod('GenerateConsoleCtrlEvent');
-    expect(api, isNotNull);
-    final param = api!.parameters.first.typeIdentifier; // uint32
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Uint32'));
-    expect(typeProjection.dartType, equals('int'));
-  });
+  group('TypeProjection', () {
+    testMethodParameterType('Windows.Wdk.Foundation.Apis', 'NtQueryObject',
+        'ObjectInformationClass', (projection) {
+      expect(projection.nativeType, equals('Int32'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Int32()'));
+    });
 
-  test('HANDLE type', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
-    final api = typedef?.findMethod('CloseWindow');
-    expect(api, isNotNull);
-    final param = api!.parameters.first.typeIdentifier; // HWND
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('IntPtr'));
-    expect(typeProjection.dartType, equals('int'));
-  });
+    testMethodParameterType('Windows.Win32.Devices.Bluetooth.Apis',
+        'BluetoothRemoveDevice', 'pAddress', (projection) {
+      expect(projection.nativeType, equals('Pointer<BLUETOOTH_ADDRESS>'));
+      expect(projection.dartType, equals('Pointer<BLUETOOTH_ADDRESS>'));
+    });
 
-  test('HRESULT type', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Com.Apis');
-    final api = typedef?.findMethod('CoInitialize');
-    expect(api, isNotNull);
-    final hresult = api!.returnType.typeIdentifier; // HRESULT
-    final typeProjection = TypeProjection(hresult);
-    expect(typeProjection.nativeType, equals('Int32'));
-    expect(typeProjection.dartType, equals('int'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.Foundation.Apis', 'SysAllocString', 'psz', (projection) {
+      expect(projection.nativeType, equals('Pointer<Utf16>'));
+      expect(projection.dartType, equals('Pointer<Utf16>'));
+    });
 
-  test('CreatedHDC type', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Graphics.Gdi.Apis');
-    final api = typedef?.findMethod('CreateCompatibleDC');
-    expect(api, isNotNull);
-    final hresult = api!.returnType.typeIdentifier; // CreatedHDC
-    final typeProjection = TypeProjection(hresult);
-    expect(typeProjection.nativeType, equals('IntPtr'));
-    expect(typeProjection.dartType, equals('int'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.Graphics.Gdi.Apis', 'CreateDIBitmap', 'iUsage',
+        (projection) {
+      expect(projection.nativeType, equals('Uint32'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Uint32()'));
+    });
 
-  test('PWSTR type', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
-    final api = typedef?.findMethod('GetWindowTextW');
-    expect(api, isNotNull);
-    final param = api!.parameters[1].typeIdentifier; // PWSTR
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Pointer<Utf16>'));
-    expect(typeProjection.dartType, equals('Pointer<Utf16>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.Graphics.Gdi.Apis', 'EnumFontFamiliesExW', 'lpProc',
+        (projection) {
+      expect(projection.nativeType,
+          equals('Pointer<NativeFunction<FONTENUMPROC>>'));
+      expect(
+          projection.dartType, equals('Pointer<NativeFunction<FONTENUMPROC>>'));
+    });
 
-  test('LPSTR type', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.UI.Input.KeyboardAndMouse.Apis');
-    final api = typedef?.findMethod('GetKeyNameTextA');
-    expect(api, isNotNull);
-    final param = api!.parameters[1].typeIdentifier; // LPSTR
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Pointer<Utf8>'));
-    expect(typeProjection.dartType, equals('Pointer<Utf8>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.Security.Credentials.Apis', 'CredFree', 'Buffer',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer'));
+      expect(projection.dartType, equals('Pointer'));
+    });
 
-  test('Pointer<T>', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.UI.Input.KeyboardAndMouse.Apis');
-    final api = typedef?.findMethod('GetKeyboardState');
-    expect(api, isNotNull);
-    final param = api!.parameters.first.typeIdentifier; // PBYTE
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Pointer<Uint8>'));
-    expect(typeProjection.dartType, equals('Pointer<Uint8>'));
-  });
+    testMethodParameterType('Windows.Win32.System.Console.Apis',
+        'GenerateConsoleCtrlEvent', 'dwCtrlEvent', (projection) {
+      expect(projection.nativeType, equals('Uint32'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Uint32()'));
+    });
 
-  test('LPHANDLE-style parameters have the correct projection', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
-    final api = typedef?.findMethod('CascadeWindows');
-    expect(api, isNotNull);
-    final param = api!.parameters.last.typeIdentifier;
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Pointer<IntPtr>'));
-    expect(typeProjection.dartType, equals('Pointer<IntPtr>'));
-  });
+    testMethodParameterType('Windows.Win32.System.Diagnostics.Debug.Apis',
+        'SymEnumSymbolsW', 'EnumSymbolsCallback', (projection) {
+      expect(projection.nativeType,
+          equals('Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>'));
+      expect(projection.dartType,
+          equals('Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>'));
+    });
 
-  test('Unicode string w/ double pointer', () {
-    final typedef = scope.findTypeDef('Windows.Win32.UI.Shell.Apis');
-    final api = typedef?.findMethod('SHGetKnownFolderPath');
-    expect(api, isNotNull);
-    final param = api!.parameters.last.typeIdentifier; // PWSTR *
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Pointer<Pointer<Utf16>>'));
-    expect(typeProjection.dartType, equals('Pointer<Pointer<Utf16>>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.System.EventLog.Apis', 'ReportEventW', 'wType',
+        (projection) {
+      expect(projection.nativeType, equals('Uint16'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Uint16()'));
+    });
 
-  test('Pointer<Pointer<T>>', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.Security.Credentials.Apis');
-    final api = typedef?.findMethod('CredReadW');
-    expect(api, isNotNull);
-    final param = api!.parameters.last.typeIdentifier; // PCREDENTIALW *
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.nativeType, equals('Pointer<Pointer<CREDENTIAL>>'));
-    expect(typeProjection.dartType, equals('Pointer<Pointer<CREDENTIAL>>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.System.Ole.Apis', 'GetActiveObject', 'ppunk',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer<VTablePointer>'));
+      expect(projection.dartType, equals('Pointer<VTablePointer>'));
+    });
 
-  test('COM interface parameter', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Com.Apis');
-    final api = typedef?.findMethod('CoSetProxyBlanket');
-    expect(api, isNotNull);
-    final type = api!.parameters.first.typeIdentifier; // IUnknown
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.dartType, equals('VTablePointer'));
-    expect(typeProjection.nativeType, equals('VTablePointer'));
-    expect(typeProjection.isDartPrimitive, isTrue);
-  });
+    testMethodParameterType(
+        'Windows.Win32.Security.Credentials.Apis', 'CredReadW', 'Credential',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer<Pointer<CREDENTIAL>>'));
+      expect(projection.dartType, equals('Pointer<Pointer<CREDENTIAL>>'));
+    });
 
-  test('Inherited COM interface parameter', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Com.Apis');
-    final api = typedef?.findMethod('CreateAntiMoniker');
-    expect(api, isNotNull);
-    final type = api!.parameters.first.typeIdentifier; // IMoniker*
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
-    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
-  });
+    testMethodParameterType('Windows.Win32.Storage.FileSystem.Apis',
+        'SetFilePointerEx', 'liDistanceToMove', (projection) {
+      expect(projection.nativeType, equals('Int64'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Int64()'));
+    });
 
-  test('Pass pointers to COM interfaces', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Com.Apis');
-    final api = typedef?.findMethod('CoCreateInstance');
-    expect(api, isNotNull);
-    final param = api!.parameters[1].typeIdentifier; // LPUNKNOWN
-    final typeProjection = TypeProjection(param);
-    expect(typeProjection.dartType, equals('VTablePointer'));
-    expect(typeProjection.nativeType, equals('VTablePointer'));
-    expect(typeProjection.isDartPrimitive, isTrue);
-  });
+    testMethodParameterType(
+        'Windows.Win32.System.Com.Apis', 'CoCreateInstance', 'pUnkOuter',
+        (projection) {
+      expect(projection.dartType, equals('VTablePointer'));
+      expect(projection.nativeType, equals('VTablePointer'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-  test('Pass double pointers to COM interfaces', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Ole.Apis');
-    final api = typedef?.findMethod('GetActiveObject');
-    expect(api, isNotNull);
-    final type = api!.parameters.last.typeIdentifier; // IUnknown **
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Pointer<VTablePointer>'));
-    expect(typeProjection.dartType, equals('Pointer<VTablePointer>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.System.Com.Apis', 'CoSetProxyBlanket', 'pProxy',
+        (projection) {
+      expect(projection.dartType, equals('VTablePointer'));
+      expect(projection.nativeType, equals('VTablePointer'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-  test('OLECHAR is represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Foundation.Apis');
-    final api = typedef?.findMethod('SysAllocString');
-    expect(api, isNotNull);
-    final type = api!.parameters.first.typeIdentifier; // OLECHAR *
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Pointer<Utf16>'));
-    expect(typeProjection.dartType, equals('Pointer<Utf16>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.System.Com.Apis', 'CreateAntiMoniker', 'ppmk',
+        (projection) {
+      expect(projection.dartType, equals('Pointer<VTablePointer>'));
+      expect(projection.nativeType, equals('Pointer<VTablePointer>'));
+    });
 
-  test('Callbacks are represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Graphics.Gdi.Apis');
-    final api = typedef?.findMethod('EnumFontFamiliesExW');
-    expect(api, isNotNull);
-    final type = api!.parameters[2].typeIdentifier; // FONTENUMPROCW
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType,
-        equals('Pointer<NativeFunction<FONTENUMPROC>>'));
-    expect(typeProjection.dartType,
-        equals('Pointer<NativeFunction<FONTENUMPROC>>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.System.Pipes.Apis', 'GetNamedPipeInfo', 'lpFlags',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer<Uint32>'));
+      expect(projection.dartType, equals('Pointer<Uint32>'));
+    });
 
-  test('Callbacks are represented correctly 2', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.System.Diagnostics.Debug.Apis');
-    final api = typedef?.findMethod('SymEnumSymbolsW');
-    expect(api, isNotNull);
-    final type =
-        api!.parameters[3].typeIdentifier; // PSYM_ENUMERATESYMBOLS_CALLBACKW
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType,
-        equals('Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>'));
-    expect(typeProjection.dartType,
-        equals('Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>'));
-  });
+    testMethodParameterType('Windows.Win32.System.Threading.Apis',
+        'InitializeProcThreadAttributeList', 'lpAttributeList', (projection) {
+      expect(projection.nativeType, equals('Pointer'));
+      expect(projection.dartType, equals('Pointer'));
+    });
 
-  test('Pointers to structs are represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.UI.Controls.Dialogs.Apis');
-    final api = typedef?.findMethod('ChooseFontW');
-    expect(api, isNotNull);
-    final type = api!.parameters.first.typeIdentifier; // CHOOSEFONTW
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Pointer<CHOOSEFONT>'));
-    expect(typeProjection.dartType, equals('Pointer<CHOOSEFONT>'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.UI.Controls.Dialogs.Apis', 'ChooseFontW', 'param0',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer<CHOOSEFONT>'));
+      expect(projection.dartType, equals('Pointer<CHOOSEFONT>'));
+    });
 
-  test('Naked structs are represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Threading.Apis');
-    final api = typedef?.findMethod('InitializeProcThreadAttributeList');
-    expect(api, isNotNull);
-    final type =
-        api!.parameters.first.typeIdentifier; // LPPROC_THREAD_ATTRIBUTE_LIST
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Pointer'));
-    expect(typeProjection.dartType, equals('Pointer'));
-  });
+    testMethodParameterType('Windows.Win32.UI.Input.KeyboardAndMouse.Apis',
+        'GetKeyboardState', 'lpKeyState', (projection) {
+      expect(projection.nativeType, equals('Pointer<Uint8>'));
+      expect(projection.dartType, equals('Pointer<Uint8>'));
+    });
 
-  test('Enumeration params are represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Graphics.Gdi.Apis');
-    final api = typedef?.findMethod('CreateDIBitmap');
-    expect(api, isNotNull);
-    final type = api!.parameters.last.typeIdentifier;
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Uint32'));
-    expect(typeProjection.dartType, equals('int'));
-  });
+    testMethodParameterType('Windows.Win32.UI.Input.KeyboardAndMouse.Apis',
+        'GetKeyNameTextA', 'lpString', (projection) {
+      expect(projection.nativeType, equals('Pointer<Utf8>'));
+      expect(projection.dartType, equals('Pointer<Utf8>'));
+    });
 
-  test('Enumerations that are not 32-bit are represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.EventLog.Apis');
-    final api = typedef?.findMethod('ReportEventW');
-    expect(api, isNotNull);
-    final type = api!.parameters[1].typeIdentifier;
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Uint16'));
-    expect(typeProjection.dartType, equals('int'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.UI.Shell.Apis', 'SHGetKnownFolderPath', 'ppszPath',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer<Pointer<Utf16>>'));
+      expect(projection.dartType, equals('Pointer<Pointer<Utf16>>'));
+    });
 
-  test('Pointer<Enum> params are represented correctly', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Pipes.Apis');
-    final api = typedef?.findMethod('GetNamedPipeInfo');
-    expect(api, isNotNull);
-    final type = api!.parameters[1].typeIdentifier;
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Pointer<Uint32>'));
-    expect(typeProjection.dartType, equals('Pointer<Uint32>'));
-  });
+    testMethodParameterType('Windows.Win32.UI.Shell.PropertiesSystem.Apis',
+        'PSPropertyBag_WriteGUID', 'value', (projection) {
+      expect(projection.nativeType, equals('Pointer<GUID>'));
+      expect(projection.dartType, equals('Pointer<GUID>'));
+    });
 
-  test('Void returns are represented correctly', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.Security.Credentials.Apis');
-    final api = typedef?.findMethod('CredFree');
-    expect(api, isNotNull);
-    final type = api!.returnType.typeIdentifier;
-    final typeProjection = TypeProjection(type);
-    expect(typeProjection.nativeType, equals('Void'));
-    expect(typeProjection.dartType, equals('void'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.UI.WindowsAndMessaging.Apis', 'CloseWindow', 'hWnd',
+        (projection) {
+      expect(projection.nativeType, equals('IntPtr'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@IntPtr()'));
+    });
 
-  test('HANDLE should be projected as an IntPtr', () {
-    final typedef = scope.findTypeDef('Windows.Win32.System.Threading.Apis');
-    final api = typedef?.findMethod('GetCurrentProcess');
-    expect(api, isNotNull);
-    final returnType = api!.returnType.typeIdentifier;
-    expect(returnType.baseType, equals(BaseType.valueTypeModifier));
-    expect(returnType.name, equals('Windows.Win32.Foundation.HANDLE'));
-    final projection = TypeProjection(returnType);
-    expect(projection.nativeType, equals('IntPtr'));
-    expect(projection.dartType, equals('int'));
-  });
+    testMethodParameterType('Windows.Win32.UI.WindowsAndMessaging.Apis',
+        'GetWindowTextW', 'lpString', (projection) {
+      expect(projection.nativeType, equals('Pointer<Utf16>'));
+      expect(projection.dartType, equals('Pointer<Utf16>'));
+    });
 
-  test('LARGE_INTEGER should be projected as an Int64', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Storage.FileSystem.Apis');
-    final api = typedef?.findMethod('SetFilePointerEx');
-    expect(api, isNotNull);
-    final param = api!.parameters[1];
-    final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('Int64'));
-    expect(projection.dartType, equals('int'));
-  });
+    testMethodParameterType(
+        'Windows.Win32.UI.WindowsAndMessaging.Apis', 'CascadeWindows', 'lpKids',
+        (projection) {
+      expect(projection.nativeType, equals('Pointer<IntPtr>'));
+      expect(projection.dartType, equals('Pointer<IntPtr>'));
+    });
 
-  test('Struct array field projects correctly', () {
-    final procInfo = scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPINFO');
-    final bmiColors = procInfo?.fields.last.typeIdentifier;
-    expect(bmiColors, isNotNull);
-    final projection = TypeProjection(bmiColors!);
-    expect(projection.nativeType, equals('Array<RGBQUAD>'));
-    expect(projection.dartType, equals('Array<RGBQUAD>'));
-  });
+    testMethodReturnType('Windows.Wdk.Foundation.Apis', 'NtQueryObject',
+        (projection) {
+      expect(projection.nativeType, equals('Int32'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Int32()'));
+    });
 
-  test('ULARGE_INTEGER projects correctly', () {
-    final procInfo = scope.findTypeDef('Windows.Win32.System.Com.STATSTG');
-    final cbSize = procInfo?.fields[2].typeIdentifier; // cbSize
-    expect(cbSize, isNotNull);
-    final projection = TypeProjection(cbSize!);
-    expect(projection.nativeType, equals('Uint64'));
-    expect(projection.dartType, equals('int'));
-  });
+    testMethodReturnType(
+        'Windows.Win32.Graphics.Gdi.Apis', 'CreateCompatibleDC', (projection) {
+      expect(projection.nativeType, equals('IntPtr'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@IntPtr()'));
+    });
 
-  test('Native int parameters have the correct projection', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Devices.Bluetooth.Apis');
-    final api = typedef?.findMethod('BluetoothFindNextDevice');
-    expect(api, isNotNull);
-    final param = api!.parameters.first; // native int
-    final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('IntPtr'));
-    expect(projection.dartType, equals('int'));
-  });
+    testMethodReturnType('Windows.Win32.Security.Credentials.Apis', 'CredFree',
+        (projection) {
+      expect(projection.nativeType, equals('Void'));
+      expect(projection.dartType, equals('void'));
+    });
 
-  test('LPVOID parameters are projected to Pointer, not Pointer<Void>', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.Security.Credentials.Apis');
-    final api = typedef?.findMethod('CredFree');
-    expect(api, isNotNull);
-    final param = api!.parameters.first;
-    expect(param.name, equals('Buffer'));
-    final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('Pointer'));
-    expect(projection.dartType, equals('Pointer'));
-  });
+    testMethodReturnType('Windows.Win32.System.Com.Apis', 'CoInitialize',
+        (projection) {
+      expect(projection.nativeType, equals('Int32'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Int32()'));
+    });
 
-  test('BluetoothRemoveDevice struct', () {
-    final typedef = scope.findTypeDef('Windows.Win32.Devices.Bluetooth.Apis');
-    final api = typedef?.findMethod('BluetoothRemoveDevice');
-    expect(api, isNotNull);
-    final param = api!.parameters.first;
-    expect(param.name, equals('pAddress'));
-    final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('Pointer<BLUETOOTH_ADDRESS>'));
-    expect(projection.dartType, equals('Pointer<BLUETOOTH_ADDRESS>'));
-  });
+    testMethodReturnType(
+        'Windows.Win32.System.LibraryLoader.Apis', 'GetProcAddress',
+        (projection) {
+      expect(projection.nativeType, equals('FARPROC'));
+      expect(projection.dartType, equals('FARPROC'));
+    });
 
-  test('Array is projected correctly 1', () {
-    final struct = scope
-        .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_RADIO_INFO');
-    expect(struct, isNotNull);
-    final field = struct!.fields[2];
-    expect(field.name, equals('szName'));
-    final projection = TypeProjection(field.typeIdentifier);
-    expect(projection.nativeType, equals('Array<Uint16>'));
-    expect(projection.dartType, equals('Array<Uint16>'));
-    expect(projection.attribute, equals('@Array(248)'));
-  });
+    testMethodReturnType(
+        'Windows.Win32.System.Threading.Apis', 'GetCurrentProcess',
+        (projection) {
+      expect(projection.nativeType, equals('IntPtr'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@IntPtr()'));
+    });
 
-  test('Array is projected correctly 2', () {
-    final struct =
-        scope.findTypeDef('Windows.Win32.UI.Magnification.MAGCOLOREFFECT');
-    expect(struct, isNotNull);
-    final field = struct!.fields.first;
-    final projection = TypeProjection(field.typeIdentifier);
-    expect(projection.nativeType, equals('Array<Float>'));
-    expect(projection.dartType, equals('Array<Float>'));
-    expect(projection.attribute, equals('@Array(25)'));
-  });
+    testStructFieldType('Windows.Wdk.Foundation.ACCESS_STATE', 'ObjectName',
+        (projection) {
+      expect(projection.nativeType, equals('UNICODE_STRING'));
+      expect(projection.dartType, equals('UNICODE_STRING'));
+      expect(projection.isDartPrimitive, isFalse);
+    });
 
-  test('FlexibleArray is projected correctly', () {
-    final struct = scope
-        .findTypeDef('Windows.Win32.NetworkManagement.WiFi.DOT11_NETWORK_LIST');
-    expect(struct, isNotNull);
-    final field = struct!.fields.last;
-    expect(field.name, equals('Network'));
-    final projection = TypeProjection(field.typeIdentifier);
-    expect(projection.nativeType, equals('Array<DOT11_NETWORK>'));
-    expect(projection.dartType, equals('Array<DOT11_NETWORK>'));
-    expect(projection.attribute, equals('@Array(1)'));
-  });
+    testStructFieldType(
+        'Windows.Win32.Devices.Bluetooth.BLUETOOTH_RADIO_INFO', 'szName',
+        (projection) {
+      expect(projection.nativeType, equals('Array<Uint16>'));
+      expect(projection.dartType, equals('Array<Uint16>'));
+      expect(projection.attribute, equals('@Array(248)'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-  test('GUIDs are projected correctly', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.UI.Shell.PropertiesSystem.Apis');
-    final api = typedef?.findMethod('PSPropertyBag_WriteGUID');
-    expect(api, isNotNull);
-    final param = api!.parameters.last;
-    final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('Pointer<GUID>'));
-    expect(projection.dartType, equals('Pointer<GUID>'));
-    expect(projection.attribute, isEmpty);
-  });
+    testStructFieldType('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND', 'fEnable',
+        (projection) {
+      expect(projection.nativeType, equals('Int32'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Int32()'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-  test('FARPROC is projected correctly', () {
-    final typedef =
-        scope.findTypeDef('Windows.Win32.System.LibraryLoader.Apis');
-    final api = typedef?.findMethod('GetProcAddress');
-    expect(api, isNotNull);
-    final param = api!.returnType;
-    final projection = TypeProjection(param.typeIdentifier);
-    expect(projection.nativeType, equals('FARPROC'));
-    expect(projection.dartType, equals('FARPROC'));
-    expect(projection.attribute, isEmpty);
-  });
+    testStructFieldType('Windows.Win32.Graphics.Gdi.BITMAPINFO', 'bmiColors',
+        (projection) {
+      expect(projection.nativeType, equals('Array<RGBQUAD>'));
+      expect(projection.dartType, equals('Array<RGBQUAD>'));
+      expect(projection.attribute, equals('@Array(1)'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-  test('BOOL types are projected to int', () {
-    final typeDef =
-        scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND')!;
-    final fEnable = typeDef.fields[1].typeIdentifier; // BOOL fEnable;
-    final typeProjection = TypeProjection(fEnable);
-    expect(typeProjection.dartType, equals('int'));
-    expect(typeProjection.isDartPrimitive, isTrue);
-  });
+    testStructFieldType(
+        'Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT', 'wfx',
+        (projection) {
+      expect(projection.nativeType, equals('WAVEFORMATEX'));
+      expect(projection.dartType, equals('WAVEFORMATEX'));
+      expect(projection.isDartPrimitive, isFalse);
+    });
 
-  test('Structs are projected to classes', () {
-    final typeDef = scope
-        .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT')!;
-    final wfx = typeDef.fields.first.typeIdentifier; // WAVEFORMATEX wfx;
-    final TypeProjection(:dartType, :isDartPrimitive) = TypeProjection(wfx);
-    expect(dartType, equals('WAVEFORMATEX'));
-    expect(isDartPrimitive, isFalse);
-  });
+    testStructFieldType('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS',
+        'VendorOptions', (projection) {
+      expect(projection.nativeType, equals('Pointer<DHCP_ALL_OPTIONS_0>'));
+      expect(projection.dartType, equals('Pointer<DHCP_ALL_OPTIONS_0>'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-  test('Nested structs are projected correctly 1', () {
-    final typeDef = scope.findTypeDef('Windows.Win32.Graphics.Gdi.DEVMODEW')!;
+    testStructFieldType(
+        'Windows.Win32.NetworkManagement.WiFi.DOT11_NETWORK_LIST', 'Network',
+        (projection) {
+      expect(projection.nativeType, equals('Array<DOT11_NETWORK>'));
+      expect(projection.dartType, equals('Array<DOT11_NETWORK>'));
+      expect(projection.attribute, equals('@Array(1)'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-    final anonymous1 =
-        typeDef.fields[6].typeIdentifier; // _Anonymous1_e__Union Anonymous1;
-    final typeProjection1 = TypeProjection(anonymous1);
-    expect(typeProjection1.dartType, equals('DEVMODE_0'));
-    expect(typeProjection1.isDartPrimitive, isFalse);
+    testStructFieldType(
+        'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST', 'DataList',
+        (projection) {
+      expect(projection.nativeType, equals('Array<WLAN_RAW_DATA_LIST_0>'));
+      expect(projection.dartType, equals('Array<WLAN_RAW_DATA_LIST_0>'));
+      expect(projection.attribute, equals('@Array(1)'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-    final [anonymous1Field, anonymous2Field] = anonymous1.type!.fields;
+    testStructFieldType('Windows.Win32.System.Com.STATSTG', 'cbSize',
+        (projection) {
+      expect(projection.nativeType, equals('Uint64'));
+      expect(projection.dartType, equals('int'));
+      expect(projection.attribute, equals('@Uint64()'));
+    });
 
-    // _Anonymous1_e__Struct Anonymous1;
-    final typeProjection2 = TypeProjection(anonymous1Field.typeIdentifier);
-    expect(typeProjection2.dartType, equals('DEVMODE_0_0'));
-    expect(typeProjection2.isDartPrimitive, isFalse);
+    testStructFieldType(
+        'Windows.Win32.UI.Magnification.MAGCOLOREFFECT', 'transform',
+        (projection) {
+      expect(projection.nativeType, equals('Array<Float>'));
+      expect(projection.dartType, equals('Array<Float>'));
+      expect(projection.attribute, equals('@Array(25)'));
+      expect(projection.isDartPrimitive, isTrue);
+    });
 
-    // _Anonymous2_e__Struct Anonymous2;
-    final typeProjection3 = TypeProjection(anonymous2Field.typeIdentifier);
-    expect(typeProjection3.dartType, equals('DEVMODE_0_1'));
-    expect(typeProjection3.isDartPrimitive, isFalse);
+    testStructFieldType('Windows.Win32.Graphics.Gdi.DEVMODEW', 'Anonymous1',
+        (projection) {
+      expect(projection.nativeType, equals('DEVMODE_0'));
+      expect(projection.dartType, equals('DEVMODE_0'));
+      expect(projection.isDartPrimitive, isFalse);
+    });
 
-    final anonymous2 =
-        typeDef.fields[17].typeIdentifier; // _Anonymous2_e__Union Anonymous2;
-    final typeProjection4 = TypeProjection(anonymous2);
-    expect(typeProjection4.dartType, equals('DEVMODE_1'));
-    expect(typeProjection4.isDartPrimitive, isFalse);
-  });
+    testStructFieldType('Windows.Win32.Graphics.Gdi.DEVMODEW', 'Anonymous2',
+        (projection) {
+      expect(projection.nativeType, equals('DEVMODE_1'));
+      expect(projection.dartType, equals('DEVMODE_1'));
+      expect(projection.isDartPrimitive, isFalse);
+    });
 
-  test('Nested structs are projected correctly 2', () {
-    final typeDef = scope
-        .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS')!;
-    final vendorOptions =
-        typeDef.fields.last.typeIdentifier; // _Anonymous_e__Struct*
-    final typeProjection = TypeProjection(vendorOptions);
-    expect(typeProjection.dartType, equals('Pointer<DHCP_ALL_OPTIONS_0>'));
-    expect(typeProjection.isDartPrimitive, isTrue);
-  });
-
-  test('Nested structs are projected correctly 3', () {
-    final typeDef = scope.findTypeDef(
-        'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST')!;
-    final dataList =
-        typeDef.fields.last.typeIdentifier; // _Anonymous_e__Struct[] DataList;
-    final typeProjection = TypeProjection(dataList);
-    expect(typeProjection.dartType, equals('Array<WLAN_RAW_DATA_LIST_0>'));
-    expect(typeProjection.isDartPrimitive, isTrue);
+    test('Special types exist in metadata', () {
+      for (final specialType in specialTypes.keys
+          .where((type) => type.startsWith('Windows.Win32'))) {
+        expect(
+          MetadataStore.getMetadataForType(specialType),
+          isNotNull,
+          reason: '$specialType missing',
+        );
+      }
+    });
   });
 
   tearDownAll(MetadataStore.close);
+}
+
+void testMethodParameterType(
+  String parent,
+  String methodName,
+  String parameterName,
+  void Function(TypeProjection) projection,
+) {
+  test("$parent.$methodName method's $parameterName parameter", () {
+    final typeDef = MetadataStore.getMetadataForType(parent);
+    expect(
+      typeDef,
+      isNotNull,
+      reason: '`$parent` type is not found in the metadata.',
+    );
+    final method = typeDef!.findMethod(methodName);
+    expect(
+      method,
+      isNotNull,
+      reason: '`$methodName` method is not found in `$parent`.',
+    );
+    final parameter =
+        method!.parameters.where((p) => p.name == parameterName).firstOrNull;
+    expect(
+      parameter,
+      isNotNull,
+      reason: '`$parameterName` parameter is not found in the `$methodName` '
+          'method of `$parent`.',
+    );
+    projection(TypeProjection(parameter!.typeIdentifier));
+  });
+}
+
+void testMethodReturnType(
+  String parent,
+  String methodName,
+  void Function(TypeProjection) projection,
+) {
+  test("$parent.$methodName method's return type", () {
+    final typeDef = MetadataStore.getMetadataForType(parent);
+    expect(
+      typeDef,
+      isNotNull,
+      reason: '`$parent` type is not found in the metadata.',
+    );
+    final method = typeDef!.findMethod(methodName);
+    expect(
+      method,
+      isNotNull,
+      reason: '`$methodName` method is not found in `$parent`.',
+    );
+    projection(TypeProjection(method!.returnType.typeIdentifier));
+  });
+}
+
+void testStructFieldType(
+  String struct,
+  String fieldName,
+  void Function(TypeProjection) projection,
+) {
+  test("$struct's $fieldName field", () {
+    final typeDef = MetadataStore.getMetadataForType(struct);
+    expect(
+      typeDef,
+      isNotNull,
+      reason: '`$struct` type is not found in the metadata.',
+    );
+    final field = typeDef!.findField(fieldName);
+    expect(
+      field,
+      isNotNull,
+      reason: '`$fieldName` field is not found in the `$struct`.',
+    );
+    projection(TypeProjection(field!.typeIdentifier));
+  });
 }
