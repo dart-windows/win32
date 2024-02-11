@@ -148,7 +148,7 @@ void initApp(Function winMain) {
 
 /// Determines whether the Component Object Model (COM) is initialized on the
 /// current thread.
-bool get isCOMInitialized {
+bool get isComInitialized {
   final pAptType = calloc<Int32>();
   final pAptQualifier = calloc<Int32>();
   try {
