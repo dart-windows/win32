@@ -10,7 +10,6 @@ import '../extensions/typedef.dart';
 import '../headers.dart';
 import 'com_method.dart';
 import 'com_property.dart';
-import 'method.dart';
 import 'type.dart';
 
 /// Represents a Dart projection for a COM interface defined by a [TypeDef].
@@ -66,13 +65,13 @@ class ComInterfaceProjection {
     return fullyQualifiedClassName;
   }
 
-  List<MethodProjection>? _methodProjections;
+  List<ComMethodProjection>? _methodProjections;
 
   /// The method projections for the methods of the interface.
-  List<MethodProjection> get methodProjections =>
+  List<ComMethodProjection> get methodProjections =>
       _methodProjections ??= _cacheMethodProjections();
 
-  List<MethodProjection> _cacheMethodProjections() => typeDef.methods
+  List<ComMethodProjection> _cacheMethodProjections() => typeDef.methods
       .map((m) => switch (m) {
             _ when m.canBeProjectedAsGetter => ComGetPropertyProjection(m),
             _ when m.canBeProjectedAsSetter => ComSetPropertyProjection(m),
@@ -280,7 +279,7 @@ class $shortName $extendsClause {
 
   $fromInterfaceConstructor
 
-  ${methodProjections.join('\n')}
+  ${methodProjections.join('\n\n')}
 }
 
 $vtableStruct

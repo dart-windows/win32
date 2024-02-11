@@ -4,65 +4,87 @@
 
 import 'package:winmd/winmd.dart';
 
-import 'method.dart';
+import '../extensions/method.dart';
+import '../extensions/string.dart';
+import 'parameter.dart';
+import 'type.dart';
 
 /// Represents a Dart projection for a COM method defined by a [Method].
-class ComMethodProjection extends MethodProjection {
+class ComMethodProjection {
   /// Creates an instance of this class for a COM [method].
-  ComMethodProjection(super.method);
+  ComMethodProjection(this.method)
+      : name = method.uniqueName,
+        returnTypeProjection = TypeProjection(method.returnType.typeIdentifier),
+        parameters = method.parameters.map(ParameterProjection.new).toList();
 
-  @override
+  /// The metadata associated with the method.
+  final Method method;
+
+  /// A unique name for the method.
+  final String name;
+
+  /// The parameter projections for the method.
+  final List<ParameterProjection> parameters;
+
+  /// The type projection for the return type of the method.
+  final TypeProjection returnTypeProjection;
+
+  /// The method name in camel case format.
+  ///
+  /// COM methods and properties are typically named in TitleCase, but the Dart
+  /// idiom is camelCase. This also has the significant advantage of making it
+  /// easier to avoid name conflicts.
+  String get camelCasedName => name.toCamelCase().safeIdentifier;
+
+  /// The Dart parameter list for the method.
   String get dartParams => [
+        // The first parameter is always the v-table itself.
         'VTablePointer lpVtbl',
         ...parameters.map((param) => param.dartProjection)
       ].join(', ');
 
-  @override
-  String get dartPrototype => '${returnType.dartType} Function($dartParams)';
+  /// The Dart prototype for the method.
+  String get dartPrototype =>
+      '${returnTypeProjection.dartType} Function($dartParams)';
 
-  @override
+  /// The native parameter list for the method.
   String get nativeParams => [
+        // The first parameter is always the v-table itself.
         'VTablePointer lpVtbl',
         ...parameters.map((param) => param.nativeProjection)
       ].join(', ');
 
-  @override
+  /// The native prototype for the method.
   String get nativePrototype =>
-      '${returnType.nativeType} Function($nativeParams)';
+      '${returnTypeProjection.nativeType} Function($nativeParams)';
 
-  @override
-  String get methodArguments => [
-        'ptr',
-        ...parameters.map((p) => switch (p) {
-              // For optional non-reserved parameters, use the `??` operator to
-              // provide a default value of `nullptr` if the parameter is `null`
-              // and the type is a pointer, or `0` if the type is not a pointer.
-              _ when p.isOptional && !p.isReserved =>
-                p.type.startsWith(RegExp('(VTable)?Pointer'))
-                    ? '${p.identifier} ?? nullptr'
-                    : '${p.identifier} ?? 0',
+  /// The parameters exposed by the method.
+  String get methodParams => parameters
+      .where((p) => !p.isReserved) // Hide reserved parameters.
+      .join(', ');
 
-              // For reserved parameters, pass `nullptr` if the type is a
-              // pointer; otherwise, pass `0` (i.e. `NULL`).
-              _ when p.isReserved =>
-                p.type.startsWith(RegExp('(VTable)?Pointer')) ? 'nullptr' : '0',
+  /// The return type of the method.
+  String get returnType => returnTypeProjection.dartType;
 
-              // Use the parameter identifier for the rest.
-              _ => p.identifier,
-            })
-      ].join(', ');
+  /// The method header.
+  String get header => '$returnType $camelCasedName($methodParams)';
+
+  /// The argument list for the method body.
+  String get methodArguments =>
+      ['ptr', ...parameters.map((p) => p.identifier)].join(', ');
+
+  /// The method body.
+  String get methodBody =>
+      '_vtable.$name.asFunction<$dartPrototype>()($methodArguments);';
 
   @override
   String toString() {
     try {
-      return '''
-  ${returnType.dartType} $camelCasedName($methodParams) =>
-      _vtable.$name.asFunction<$dartPrototype>()($methodArguments);
-''';
+      return '$header => $methodBody';
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.
-      print('Unable to project COM method: ${method.name}');
+      print("Failed to project `$method` method from `${method.parent}`.");
       return '';
     }
   }
