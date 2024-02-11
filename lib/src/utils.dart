@@ -27,7 +27,7 @@ import 'win32_v5/user32.g.dart';
 ///
 /// You can pass this method one of two things: a brace-enclosed string, such as
 /// `{00000000-0000-0000-c000-000000000046}`, or a ProgID, such as
-/// 'Excel.Application'. If you pass a ProgID, it will look up the CLSID
+/// `Excel.Application`. If you pass a ProgID, it will look up the CLSID
 /// associated with it. In either case, it will return a pointer to a GUID
 /// struct that matches the string.
 ///
