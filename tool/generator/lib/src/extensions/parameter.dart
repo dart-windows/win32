@@ -8,5 +8,6 @@ import '../attributes.dart';
 
 extension ParameterHelpers on Parameter {
   /// Whether the parameter is reserved.
-  bool get isReserved => existsAttribute(reservedAttribute);
+  bool get isReserved =>
+      existsAttribute(reservedAttribute) || name.contains('Reserved');
 }

@@ -75,8 +75,7 @@ void main() {
       final iidClassFactory = GUIDFromString(IID_IClassFactory);
       final iidFileSaveDialog = GUIDFromString(IID_IFileSaveDialog);
 
-      var hr = CoGetClassObject(
-          clsid, CLSCTX_ALL, null, iidClassFactory, ptrFactory);
+      var hr = CoGetClassObject(clsid, CLSCTX_ALL, iidClassFactory, ptrFactory);
       expect(hr, equals(S_OK));
       expect(ptrFactory.address, isNonZero);
 

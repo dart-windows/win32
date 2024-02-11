@@ -171,9 +171,9 @@ final _CoGetApartmentType = _ole32.lookupFunction<
 /// );
 /// ```
 /// {@category ole32}
-int CoGetClassObject(Pointer<GUID> rclsid, int dwClsContext,
-        Pointer? pvReserved, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
-    _CoGetClassObject(rclsid, dwClsContext, pvReserved ?? nullptr, riid, ppv);
+int CoGetClassObject(Pointer<GUID> rclsid, int dwClsContext, Pointer<GUID> riid,
+        Pointer<Pointer> ppv) =>
+    _CoGetClassObject(rclsid, dwClsContext, nullptr, riid, ppv);
 
 final _CoGetClassObject = _ole32.lookupFunction<
     Int32 Function(Pointer<GUID> rclsid, Uint32 dwClsContext,

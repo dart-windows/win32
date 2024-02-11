@@ -132,8 +132,7 @@ final _mciSendString = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiConnect(int hmi, int hmo, Pointer? pReserved) =>
-    _midiConnect(hmi, hmo, pReserved ?? nullptr);
+int midiConnect(int hmi, int hmo) => _midiConnect(hmi, hmo, nullptr);
 
 final _midiConnect = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved),
@@ -151,8 +150,7 @@ final _midiConnect = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiDisconnect(int hmi, int hmo, Pointer? pReserved) =>
-    _midiDisconnect(hmi, hmo, pReserved ?? nullptr);
+int midiDisconnect(int hmi, int hmo) => _midiDisconnect(hmi, hmo, nullptr);
 
 final _midiDisconnect = _winmm.lookupFunction<
     Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved),

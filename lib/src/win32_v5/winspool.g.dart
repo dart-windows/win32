@@ -719,9 +719,9 @@ final _FindFirstPrinterChangeNotification = _winspool.lookupFunction<
 /// ```
 /// {@category winspool}
 int FindNextPrinterChangeNotification(int hChange, Pointer<Uint32>? pdwChange,
-        Pointer? pvReserved, Pointer<Pointer>? ppPrinterNotifyInfo) =>
-    _FindNextPrinterChangeNotification(hChange, pdwChange ?? nullptr,
-        pvReserved ?? nullptr, ppPrinterNotifyInfo ?? nullptr);
+        Pointer<Pointer>? ppPrinterNotifyInfo) =>
+    _FindNextPrinterChangeNotification(
+        hChange, pdwChange ?? nullptr, nullptr, ppPrinterNotifyInfo ?? nullptr);
 
 final _FindNextPrinterChangeNotification = _winspool.lookupFunction<
         Int32 Function(IntPtr hChange, Pointer<Uint32> pdwChange,

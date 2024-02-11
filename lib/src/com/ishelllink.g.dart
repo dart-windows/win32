@@ -103,10 +103,10 @@ class IShellLink extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<Utf16> pszIconPath,
               int iIcon)>()(ptr, pszIconPath, iIcon);
 
-  int setRelativePath(Pointer<Utf16> pszPathRel, int dwReserved) =>
+  int setRelativePath(Pointer<Utf16> pszPathRel) =>
       _vtable.SetRelativePath.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> pszPathRel,
-              int dwReserved)>()(ptr, pszPathRel, dwReserved);
+              int dwReserved)>()(ptr, pszPathRel, 0);
 
   int resolve(int hwnd, int fFlags) => _vtable.Resolve.asFunction<
       int Function(

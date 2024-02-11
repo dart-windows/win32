@@ -78,6 +78,45 @@ void main() {
       );
     });
 
+    testFunction('Windows.Win32.Media.Audio.Apis', 'midiConnect', (projection) {
+      expect(projection.lib, equals('winmm'));
+      expect(
+        projection.nativeParameters,
+        equals('IntPtr hmi, IntPtr hmo, Pointer pReserved'),
+      );
+      expect(
+        projection.nativePrototype,
+        equals('Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved)'),
+      );
+      expect(
+        projection.dartParameters,
+        equals('int hmi, int hmo, Pointer pReserved'),
+      );
+      expect(
+        projection.dartPrototype,
+        equals('int Function(int hmi, int hmo, Pointer pReserved)'),
+      );
+      expect(projection.functionParameters, equals('int hmi, int hmo'));
+      expect(projection.functionArguments, equals('hmi, hmo, nullptr'));
+      expect(projection.returnType, equals('int'));
+      expect(
+        projection.header,
+        equals('int midiConnect(int hmi, int hmo)'),
+      );
+      expect(
+        projection.functionBody,
+        equals('_midiConnect(hmi, hmo, nullptr);'),
+      );
+      expect(
+        projection.cachedLookup,
+        equals(
+          "final _midiConnect = _winmm.lookupFunction<"
+          "Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved), "
+          "int Function(int hmi, int hmo, Pointer pReserved)>('midiConnect');",
+        ),
+      );
+    });
+
     testFunction('Windows.Win32.System.Com.Apis', 'CoCreateInstanceEx',
         (projection) {
       expect(projection.lib, equals('ole32'));

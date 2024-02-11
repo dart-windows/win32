@@ -2880,14 +2880,9 @@ final _GetForegroundWindow = _user32
 /// );
 /// ```
 /// {@category user32}
-int GetGestureConfig(
-        int hwnd,
-        int dwReserved,
-        int dwFlags,
-        Pointer<Uint32> pcIDs,
-        Pointer<GESTURECONFIG> pGestureConfig,
-        int cbSize) =>
-    _GetGestureConfig(hwnd, dwReserved, dwFlags, pcIDs, pGestureConfig, cbSize);
+int GetGestureConfig(int hwnd, int dwFlags, Pointer<Uint32> pcIDs,
+        Pointer<GESTURECONFIG> pGestureConfig, int cbSize) =>
+    _GetGestureConfig(hwnd, 0, dwFlags, pcIDs, pGestureConfig, cbSize);
 
 final _GetGestureConfig = _user32.lookupFunction<
     Int32 Function(
@@ -7005,9 +7000,9 @@ final _SetForegroundWindow =
 /// );
 /// ```
 /// {@category user32}
-int SetGestureConfig(int hwnd, int dwReserved, int cIDs,
-        Pointer<GESTURECONFIG> pGestureConfig, int cbSize) =>
-    _SetGestureConfig(hwnd, dwReserved, cIDs, pGestureConfig, cbSize);
+int SetGestureConfig(int hwnd, int cIDs, Pointer<GESTURECONFIG> pGestureConfig,
+        int cbSize) =>
+    _SetGestureConfig(hwnd, 0, cIDs, pGestureConfig, cbSize);
 
 final _SetGestureConfig = _user32.lookupFunction<
     Int32 Function(IntPtr hwnd, Uint32 dwReserved, Uint32 cIDs,
