@@ -1,0 +1,26 @@
+int NtQueryObject(
+        int? handle,
+        int objectInformationClass,
+        Pointer? objectInformation,
+        int objectInformationLength,
+        Pointer<Uint32>? returnLength) =>
+    _NtQueryObject(
+        handle ?? 0,
+        objectInformationClass,
+        objectInformation ?? nullptr,
+        objectInformationLength,
+        returnLength ?? nullptr);
+
+final _NtQueryObject = _ntdll.lookupFunction<
+    Int32 Function(
+        IntPtr handle,
+        Int32 objectInformationClass,
+        Pointer objectInformation,
+        Uint32 objectInformationLength,
+        Pointer<Uint32> returnLength),
+    int Function(
+        int handle,
+        int objectInformationClass,
+        Pointer objectInformation,
+        int objectInformationLength,
+        Pointer<Uint32> returnLength)>('NtQueryObject');
