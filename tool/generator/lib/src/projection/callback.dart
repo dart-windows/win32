@@ -21,7 +21,7 @@ class CallbackProjection {
             ? 'Pointer' // e.g., FARPROC, NEARPROC, PROC.
             : FunctionProjection(typeDef.findMethod('Invoke')!).nativePrototype;
 
-  /// The name of the callback.
+  /// The name of the callback converted to safe Dart identifier.
   final String name;
 
   /// The type of the callback.

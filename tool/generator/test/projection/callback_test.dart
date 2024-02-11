@@ -9,56 +9,58 @@ import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
 void main() {
-  late Scope scope;
-
   setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
+    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
   });
 
   group('CallbackProjection', () {
-    test('FONTENUMPROCW', () {
-      final typeDef =
-          scope.findTypeDef('Windows.Win32.Graphics.Gdi.FONTENUMPROCW');
-      expect(typeDef, isNotNull);
-      final callbackProjection = CallbackProjection(typeDef!);
-      expect(callbackProjection.name, equals('FONTENUMPROC'));
+    testCallback('Windows.Wdk.Foundation.DRIVER_ADD_DEVICE', (projection) {
+      expect(projection.name, equals('DRIVER_ADD_DEVICE'));
       expect(
-        callbackProjection.type,
+        projection.type,
+        equals('Int32 Function(Pointer<DRIVER_OBJECT> driverObject, '
+            'Pointer<DEVICE_OBJECT> physicalDeviceObject)'),
+      );
+      expect(
+        projection.toString(),
+        equals('typedef DRIVER_ADD_DEVICE = Int32 Function('
+            'Pointer<DRIVER_OBJECT> driverObject, '
+            'Pointer<DEVICE_OBJECT> physicalDeviceObject);'),
+      );
+    });
+
+    testCallback('Windows.Win32.Foundation.PROC', (projection) {
+      expect(projection.name, equals('PROC'));
+      expect(projection.type, equals('Pointer'));
+      expect(projection.toString(), equals('typedef PROC = Pointer;'));
+    });
+
+    testCallback('Windows.Win32.Graphics.Gdi.FONTENUMPROCW', (projection) {
+      expect(projection.name, equals('FONTENUMPROC'));
+      expect(
+        projection.type,
         equals('Int32 Function(Pointer<LOGFONT> param0, '
             'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3)'),
       );
       expect(
-        callbackProjection.toString(),
+        projection.toString(),
         equals('typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> param0, '
             'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3);'),
       );
     });
 
-    test('PROC', () {
-      final typeDef = scope.findTypeDef('Windows.Win32.Foundation.PROC');
-      expect(typeDef, isNotNull);
-      final callbackProjection = CallbackProjection(typeDef!);
-      expect(callbackProjection.name, equals('PROC'));
-      expect(callbackProjection.type, equals('Pointer'));
-      expect(callbackProjection.toString(), equals('typedef PROC = Pointer;'));
-    });
-
-    test('WNDPROC', () {
-      final typeDef =
-          scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.WNDPROC');
-      expect(typeDef, isNotNull);
-      final callbackProjection = CallbackProjection(typeDef!);
-      expect(callbackProjection.name, equals('WNDPROC'));
+    testCallback('Windows.Win32.UI.WindowsAndMessaging.WNDPROC', (projection) {
+      expect(projection.name, equals('WNDPROC'));
       expect(
-        callbackProjection.type,
+        projection.type,
         equals(
           'IntPtr Function('
           'IntPtr param0, Uint32 param1, IntPtr param2, IntPtr param3)',
         ),
       );
       expect(
-        callbackProjection.toString(),
+        projection.toString(),
         equals(
           'typedef WNDPROC = IntPtr Function('
           'IntPtr param0, Uint32 param1, IntPtr param2, IntPtr param3);',
@@ -68,4 +70,16 @@ void main() {
   });
 
   tearDownAll(MetadataStore.close);
+}
+
+void testCallback(String type, void Function(CallbackProjection) projection) {
+  test(type, () {
+    final typeDef = MetadataStore.getMetadataForType(type);
+    expect(
+      typeDef,
+      isNotNull,
+      reason: '`$type` type is not found in the metadata.',
+    );
+    projection(CallbackProjection(typeDef!));
+  });
 }
