@@ -9,131 +9,171 @@ import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
 void main() {
-  late Scope scope;
-
   setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
+    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
   });
 
   group('StructProjection', () {
-    test('baseType', () {
-      final bluetoothAddress = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
-      expect(bluetoothAddress, isNotNull);
-
-      final structProjection1 = StructProjection(bluetoothAddress!);
-      expect(structProjection1.baseType, equals('Struct'));
-
-      final bluetoothAddress0 =
-          bluetoothAddress.fields.first.typeIdentifier.type;
-      expect(bluetoothAddress0, isNotNull);
-      final structProjection2 = StructProjection(bluetoothAddress0!);
-      expect(structProjection2.baseType, equals('Union'));
+    testStruct('Windows.Wdk.Foundation.DRIVER_EXTENSION', (projection) {
+      expect(projection.packingAlignment, isZero);
+      expect(projection.classPreamble, equals('/// {@category struct}'));
+      expect(projection.classModifier, equals('base'));
+      expect(projection.baseType, equals('Struct'));
+      expect(projection.classHeader,
+          equals('base class DRIVER_EXTENSION extends Struct'));
+      final [driverObject, addDevice, count, serviceKeyName] =
+          projection.fieldProjections;
+      expect(driverObject.toString(),
+          equals('external Pointer<DRIVER_OBJECT> DriverObject;'));
+      expect(
+          addDevice.toString(),
+          equals(
+              'external Pointer<Pointer<NativeFunction<DRIVER_ADD_DEVICE>>> AddDevice;'));
+      expect(count.toString(), equals('@Uint32()\nexternal int Count;'));
+      expect(serviceKeyName.toString(),
+          equals('external UNICODE_STRING ServiceKeyName;'));
+      expect(projection.propertyAccessors, isEmpty);
+      expect(projection.nestedTypeProjections, isEmpty);
     });
 
-    test('classModifier', () {
-      final bluetoothAddress = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
-      expect(bluetoothAddress, isNotNull);
+    testStruct('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS',
+        (projection) {
+      expect(projection.packingAlignment, isZero);
+      expect(projection.classPreamble, equals('/// {@category struct}'));
+      expect(projection.classModifier, equals('base'));
+      expect(projection.baseType, equals('Struct'));
+      expect(projection.classHeader,
+          equals('base class BLUETOOTH_ADDRESS extends Struct'));
+      final [anonymous] = projection.fieldProjections;
+      expect(anonymous.toString(),
+          equals('external BLUETOOTH_ADDRESS_0 Anonymous;'));
+      expect(projection.propertyAccessors, isEmpty);
+      final [bluetoothAddress0] = projection.nestedTypeProjections;
+      expect(bluetoothAddress0.packingAlignment, isZero);
+      expect(bluetoothAddress0.classPreamble, equals('/// {@category union}'));
+      expect(bluetoothAddress0.classModifier, equals('sealed'));
+      expect(bluetoothAddress0.baseType, equals('Union'));
+      expect(bluetoothAddress0.classHeader,
+          equals('sealed class BLUETOOTH_ADDRESS_0 extends Union'));
+      final [ullLong, rgBytes] = bluetoothAddress0.fieldProjections;
+      expect(ullLong.toString(), equals('@Uint64()\nexternal int ullLong;'));
+      expect(rgBytes.toString(),
+          equals('@Array(6)\nexternal Array<Uint8> rgBytes;'));
+      expect(bluetoothAddress0.propertyAccessors, equalsIgnoringWhitespace('''
+extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
+  int get ullLong => this.Anonymous.ullLong;
+  set ullLong(int value) => this.Anonymous.ullLong = value;
 
-      final structProjection1 = StructProjection(bluetoothAddress!);
-      expect(structProjection1.classModifier, equals('base'));
-
-      final bluetoothAddress0 =
-          bluetoothAddress.fields.first.typeIdentifier.type;
-      expect(bluetoothAddress0, isNotNull);
-      final structProjection2 = StructProjection(bluetoothAddress0!);
-      expect(structProjection2.classModifier, equals('sealed'));
+  Array<Uint8> get rgBytes => this.Anonymous.rgBytes;
+  set rgBytes(Array<Uint8> value) => this.Anonymous.rgBytes = value;
+}'''));
     });
 
-    test('nestedTypes 1', () {
-      final wlanRawDataList = scope.findTypeDef(
-          'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST');
-      expect(wlanRawDataList, isNotNull);
-      final structProjection = StructProjection(wlanRawDataList!);
-      expect(structProjection.fieldsProjection, equalsIgnoringWhitespace('''
-@Uint32()
-external int dwTotalSize;
-@Uint32()
-external int dwNumberOfItems;
-@Array(1)
-external Array<WLAN_RAW_DATA_LIST_0> DataList;
-'''));
-      expect(structProjection.nestedTypes, equalsIgnoringWhitespace('''
-/// {@category struct}
-sealed class WLAN_RAW_DATA_LIST_0 extends Struct {
-@Uint32()
-external int dwDataOffset;
-
-@Uint32()
-external int dwDataSize;
-}
-'''));
+    testStruct('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER', (projection) {
+      expect(projection.packingAlignment, equals(2));
+      expect(projection.classPreamble,
+          equals('/// {@category struct}\n@Packed(2)'));
+      expect(projection.classModifier, equals('base'));
+      expect(projection.baseType, equals('Struct'));
+      expect(projection.classHeader,
+          equals('base class BITMAPFILEHEADER extends Struct'));
+      final [bfType, bfSize, bfReserved1, bfReserved2, bfOffBits] =
+          projection.fieldProjections;
+      expect(bfType.toString(), equals('@Uint16()\nexternal int bfType;'));
+      expect(bfSize.toString(), equals('@Uint32()\nexternal int bfSize;'));
+      expect(
+          bfReserved1.toString(),
+          equals(
+              '@Uint16()\n  // ignore: unused_field\nexternal int _bfReserved1;'));
+      expect(
+          bfReserved2.toString(),
+          equals(
+              '@Uint16()\n  // ignore: unused_field\nexternal int _bfReserved2;'));
+      expect(
+          bfOffBits.toString(), equals('@Uint32()\nexternal int bfOffBits;'));
+      expect(projection.propertyAccessors, isEmpty);
+      expect(projection.nestedTypeProjections, isEmpty);
     });
 
-    test('nestedTypes 2', () {
-      final dhcpAllOptions = scope
-          .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
-      expect(dhcpAllOptions, isNotNull);
-      final structProjection = StructProjection(dhcpAllOptions!);
-      expect(structProjection.fieldsProjection, equalsIgnoringWhitespace('''
-@Uint32()
- external int Flags;
-external Pointer<DHCP_OPTION_ARRAY> NonVendorOptions;
-@Uint32()
-external int NumVendorOptions;
-external Pointer<DHCP_ALL_OPTIONS_0> VendorOptions;
-'''));
-      expect(structProjection.nestedTypes, equalsIgnoringWhitespace('''
-/// {@category struct}
-sealed class DHCP_ALL_OPTIONS_0 extends Struct {
-external DHCP_OPTION Option;
-external Pointer<Utf16> VendorName;
-external Pointer<Utf16> ClassName;
-}
-'''));
+    testStruct('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS',
+        (projection) {
+      expect(projection.packingAlignment, isZero);
+      expect(projection.classPreamble, equals('/// {@category struct}'));
+      expect(projection.classModifier, equals('base'));
+      expect(projection.baseType, equals('Struct'));
+      expect(projection.classHeader,
+          equals('base class DHCP_ALL_OPTIONS extends Struct'));
+      final [flags, nonVendorOptions, numVendorOptions, vendorOptions] =
+          projection.fieldProjections;
+      expect(flags.toString(), equals('@Uint32()\nexternal int Flags;'));
+      expect(nonVendorOptions.toString(),
+          equals('external Pointer<DHCP_OPTION_ARRAY> NonVendorOptions;'));
+      expect(numVendorOptions.toString(),
+          equals('@Uint32()\nexternal int NumVendorOptions;'));
+      expect(vendorOptions.toString(),
+          equals('external Pointer<DHCP_ALL_OPTIONS_0> VendorOptions;'));
+      expect(projection.propertyAccessors, isEmpty);
+      final [dhcpAllOptions0] = projection.nestedTypeProjections;
+      expect(dhcpAllOptions0.packingAlignment, isZero);
+      expect(dhcpAllOptions0.classPreamble, equals('/// {@category struct}'));
+      expect(dhcpAllOptions0.classModifier, equals('sealed'));
+      expect(dhcpAllOptions0.baseType, equals('Struct'));
+      expect(dhcpAllOptions0.classHeader,
+          equals('sealed class DHCP_ALL_OPTIONS_0 extends Struct'));
+      final [option, vendorName, className] = dhcpAllOptions0.fieldProjections;
+      expect(option.toString(), equals('external DHCP_OPTION Option;'));
+      expect(
+          vendorName.toString(), equals('external Pointer<Utf16> VendorName;'));
+      expect(
+          className.toString(), equals('external Pointer<Utf16> ClassName;'));
+      expect(dhcpAllOptions0.propertyAccessors, isEmpty);
     });
 
-    test('packingAlignment', () {
-      // DWM_BLURBEHIND contains a BOOL, which appears in Win32 metadata as a
-      // struct, but that shouldn't stop it being packed.
-      final typeDef1 =
-          scope.findTypeDef('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND');
-      expect(typeDef1, isNotNull);
-      final structProjection1 = StructProjection(typeDef1!);
-      expect(structProjection1.packingAlignment, equals(1));
-      expect(structProjection1.classPreamble, contains('@Packed(1)'));
-
-      final typeDef2 =
-          scope.findTypeDef('Windows.Win32.Media.Multimedia.MCI_OPEN_PARMSW');
-      expect(typeDef2, isNotNull);
-      final structProjection2 = StructProjection(typeDef2!);
-      expect(structProjection2.packingAlignment, equals(1));
-      expect(structProjection2.classPreamble, contains('@Packed(1)'));
-
-      final typeDef3 = scope
-          .findTypeDef('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT');
-      expect(typeDef3, isNotNull);
-      final structProjection3 = StructProjection(typeDef3!);
-      expect(structProjection3.packingAlignment, equals(1));
-      expect(structProjection3.classPreamble, contains('@Packed(1)'));
-
-      final typeDef4 =
-          scope.findTypeDef('Windows.Win32.Devices.Bluetooth.SOCKADDR_BTH');
-      expect(typeDef4, isNotNull);
-      final structProjection4 = StructProjection(typeDef4!);
-      expect(structProjection4.packingAlignment, equals(1));
-      expect(structProjection4.classPreamble, contains('@Packed(1)'));
-
-      final typeDef5 =
-          scope.findTypeDef('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER');
-      expect(typeDef5, isNotNull);
-      final structProjection5 = StructProjection(typeDef5!);
-      expect(structProjection5.packingAlignment, equals(2));
-      expect(structProjection5.classPreamble, contains('@Packed(2)'));
+    testStruct('Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST',
+        (projection) {
+      expect(projection.packingAlignment, isZero);
+      expect(projection.classPreamble, equals('/// {@category struct}'));
+      expect(projection.classModifier, equals('base'));
+      expect(projection.baseType, equals('Struct'));
+      expect(projection.classHeader,
+          equals('base class WLAN_RAW_DATA_LIST extends Struct'));
+      final [dwTotalSize, dwNumberOfItems, dataList] =
+          projection.fieldProjections;
+      expect(dwTotalSize.toString(),
+          equals('@Uint32()\nexternal int dwTotalSize;'));
+      expect(dwNumberOfItems.toString(),
+          equals('@Uint32()\nexternal int dwNumberOfItems;'));
+      expect(dataList.toString(),
+          equals('@Array(1)\nexternal Array<WLAN_RAW_DATA_LIST_0> DataList;'));
+      expect(projection.propertyAccessors, isEmpty);
+      final [wlanRawDataList0] = projection.nestedTypeProjections;
+      expect(wlanRawDataList0.packingAlignment, isZero);
+      expect(wlanRawDataList0.classPreamble, equals('/// {@category struct}'));
+      expect(wlanRawDataList0.classModifier, equals('sealed'));
+      expect(wlanRawDataList0.baseType, equals('Struct'));
+      expect(wlanRawDataList0.classHeader,
+          equals('sealed class WLAN_RAW_DATA_LIST_0 extends Struct'));
+      final [dwDataOffset, dwDataSize] = wlanRawDataList0.fieldProjections;
+      expect(dwDataOffset.toString(),
+          equals('@Uint32()\nexternal int dwDataOffset;'));
+      expect(
+          dwDataSize.toString(), equals('@Uint32()\nexternal int dwDataSize;'));
+      expect(wlanRawDataList0.propertyAccessors, isEmpty);
     });
   });
 
   tearDownAll(MetadataStore.close);
+}
+
+void testStruct(String type, void Function(StructProjection) projection) {
+  test(type, () {
+    final typeDef = MetadataStore.getMetadataForType(type);
+    expect(
+      typeDef,
+      isNotNull,
+      reason: '`$type` type is not found in the metadata.',
+    );
+    projection(StructProjection(typeDef!));
+  });
 }

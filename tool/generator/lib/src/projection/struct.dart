@@ -51,46 +51,61 @@ class StructProjection {
   String get classModifier =>
       typeDef.isNested || typeDef.isUnion ? 'sealed' : 'base';
 
-  /// The field projections for the fields of the struct.
-  String get fieldsProjection =>
-      typeDef.fields.map(FieldProjection.new).join('\n\n');
+  /// The class header for the generated class.
+  String get classHeader => '$classModifier class $name extends $baseType';
 
-  String? _nestedTypes;
+  /// The field projections of the struct.
+  List<FieldProjection> get fieldProjections =>
+      typeDef.fields.map(FieldProjection.new).toList(growable: false);
 
-  /// The nested types of the struct.
-  String get nestedTypes => _nestedTypes ??= _cacheNestedTypes();
+  String? _propertyAccessors;
 
-  String _cacheNestedTypes() {
-    final buffer = StringBuffer();
+  /// The property accessors for a nested struct to allow accessing its members
+  /// from the parent type.
+  String get propertyAccessors {
+    // Property accessors are only generated for nested structs.
+    if (!typeDef.isNested) return '';
 
-    for (final field in typeDef.fields) {
-      if (field.isNested || field.isNestedArray || field.isNestedPointer) {
-        final type = field.isNested
-            ? field.typeIdentifier.type!
-            : field.typeIdentifier.typeArg!.type!;
-        final projection = StructProjection(type);
-        buffer.writeln(projection);
+    // Try to find the parent field corresponding to the current TypeDef.
+    // This ignores Array<T> or Pointer<T> types because property accessors are
+    // not generated for them.
+    final parentField = typeDef.enclosingClass!.fields
+        .where((field) => field.typeIdentifier.type == typeDef)
+        .firstOrNull;
 
-        if (field.isNested) {
-          // Add property accessors for the nested struct.
-          buffer
-            ..writeln()
-            ..write(type.propertyAccessors);
-        }
-      }
+    // If the parent field is found, then generate property accessors for the
+    // nested struct.
+    if (parentField != null) {
+      return _propertyAccessors ??= typeDef.propertyAccessors;
     }
 
-    return buffer.toString();
+    // Otherwise, return an empty string.
+    return '';
   }
+
+  List<StructProjection>? _nestedTypeProjections;
+
+  /// The nested type projections of the struct.
+  List<StructProjection> get nestedTypeProjections =>
+      _nestedTypeProjections ??= _cacheNestedTypeProjections();
+
+  List<StructProjection> _cacheNestedTypeProjections() => typeDef.fields
+      .where((f) => f.isNested || f.isNestedArray || f.isNestedPointer)
+      .map((field) => StructProjection(field.isNested
+          ? field.typeIdentifier.type!
+          : field.typeIdentifier.typeArg!.type!))
+      .toList(growable: false);
 
   @override
   String toString() => '''
 $classPreamble
-$classModifier class $name extends $baseType {
-  $fieldsProjection
+$classHeader {
+  ${fieldProjections.join('\n\n')}
 }
 
-$nestedTypes
+$propertyAccessors
+
+${nestedTypeProjections.join('\n\n')}
 ''';
 }
 

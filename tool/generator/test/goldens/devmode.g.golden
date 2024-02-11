@@ -124,6 +124,14 @@ sealed class DEVMODE_0 extends Union {
   external DEVMODE_0_1 Anonymous2;
 }
 
+extension DEVMODE_0_Extension on DEVMODE {
+  DEVMODE_0_0 get Anonymous1 => this.Anonymous1.Anonymous1;
+  set Anonymous1(DEVMODE_0_0 value) => this.Anonymous1.Anonymous1 = value;
+
+  DEVMODE_0_1 get Anonymous2 => this.Anonymous1.Anonymous2;
+  set Anonymous2(DEVMODE_0_1 value) => this.Anonymous1.Anonymous2 = value;
+}
+
 /// {@category struct}
 sealed class DEVMODE_0_0 extends Struct {
   @Int16()
@@ -206,14 +214,6 @@ extension DEVMODE_0_1_Extension on DEVMODE {
       this.Anonymous1.Anonymous2.dmDisplayFixedOutput;
   set dmDisplayFixedOutput(int value) =>
       this.Anonymous1.Anonymous2.dmDisplayFixedOutput = value;
-}
-
-extension DEVMODE_0_Extension on DEVMODE {
-  DEVMODE_0_0 get Anonymous1 => this.Anonymous1.Anonymous1;
-  set Anonymous1(DEVMODE_0_0 value) => this.Anonymous1.Anonymous1 = value;
-
-  DEVMODE_0_1 get Anonymous2 => this.Anonymous1.Anonymous2;
-  set Anonymous2(DEVMODE_0_1 value) => this.Anonymous1.Anonymous2 = value;
 }
 
 /// {@category union}

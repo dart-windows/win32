@@ -18,7 +18,7 @@ class FieldProjection {
   /// The metadata associated with the field.
   final Field field;
 
-  /// The name of the field.
+  /// The name of the field converted to safe Dart identifier.
   final String name;
 
   /// The type projection for the field.
@@ -29,36 +29,36 @@ class FieldProjection {
 
   @override
   String toString() => [
-        typeProjection.attribute,
+        if (typeProjection.attribute.isNotEmpty) typeProjection.attribute,
 
         // Don't strip off leading underscores if the field is obsolete.
         if (field.name.startsWith('__OBSOLETE'))
-          '  // ignore: unused_field\n  external $type ${field.name};'
+          '  // ignore: unused_field\nexternal $type ${field.name};'
 
         // Mark the field private if it is reserved.
         else if (field.name.contains('Reserved'))
-          '  // ignore: unused_field\n  external $type _${field.name};'
+          '  // ignore: unused_field\nexternal $type _${field.name};'
 
         // Generate a String getter/setter for char arrays.
         else if (field.isCharArray && !field.isFlexibleArray)
           '''
-  external $type _$name;
+external $type _$name;
 
-  String get $name {
-    final charCodes = <int>[];
-    for (var i = 0; i < ${field.arrayUpperBound}; i++) {
-      if (_$name[i] == 0x00) break;
-      charCodes.add(_$name[i]);
-    }
-    return String.fromCharCodes(charCodes);
+String get $name {
+  final charCodes = <int>[];
+  for (var i = 0; i < ${field.arrayUpperBound}; i++) {
+    if (_$name[i] == 0x00) break;
+    charCodes.add(_$name[i]);
   }
+  return String.fromCharCodes(charCodes);
+}
 
-  set $name(String value) {
-    final stringToStore = value.padRight(${field.arrayUpperBound}, '\\x00');
-    for (var i = 0; i < ${field.arrayUpperBound}; i++) {
-      _$name[i] = stringToStore.codeUnitAt(i);
-    }
-  }'''
+set $name(String value) {
+  final stringToStore = value.padRight(${field.arrayUpperBound}, '\\x00');
+  for (var i = 0; i < ${field.arrayUpperBound}; i++) {
+    _$name[i] = stringToStore.codeUnitAt(i);
+  }
+}'''
         else
           'external $type $name;'
       ].join('\n');
