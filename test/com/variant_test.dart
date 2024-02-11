@@ -14,7 +14,7 @@ import '../helpers.dart';
 
 void main() {
   group('VARIANT', () {
-    setUp(initializeCOM);
+    setUp(initializeCom);
 
     test('creation', () {
       final variant = calloc<VARIANT>();

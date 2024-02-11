@@ -14,7 +14,7 @@ import '../helpers.dart';
 
 void main() {
   group('Network testing', () {
-    setUpAll(initializeCOM);
+    setUpAll(initializeCom);
 
     test('network is connected', () {
       final nlm = INetworkListManager(

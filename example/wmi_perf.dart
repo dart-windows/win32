@@ -10,7 +10,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-void initializeCOM() {
+void initializeCom() {
   // Initialize COM
   var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
@@ -60,7 +60,7 @@ int connectWMI(IWbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
 void main() {
   const processToMonitor = 'winlogon';
 
-  initializeCOM();
+  initializeCom();
 
   using((Arena arena) {
     final locator =

@@ -19,7 +19,7 @@ void main() {
   if (getWindowsBuildNumber() <= 9200) return;
 
   group('SpellChecker', () {
-    setUpAll(initializeCOM);
+    setUpAll(initializeCom);
 
     test('supportedLanguages', () {
       final spellCheckerFactory = ISpellCheckerFactory(

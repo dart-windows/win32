@@ -50,7 +50,7 @@ void main() {
   });
 
   group('COM testing', () {
-    setUpAll(initializeCOM);
+    setUpAll(initializeCom);
 
     test('create COM object with CoCreateInstance', () {
       final ptr = calloc<VTablePointer>();

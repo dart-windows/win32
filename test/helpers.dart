@@ -57,7 +57,7 @@ Object getRegistryValue(int key, String subKey, String valueName) {
   return dataValue;
 }
 
-void initializeCOM() {
+void initializeCom() {
   final hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 }
