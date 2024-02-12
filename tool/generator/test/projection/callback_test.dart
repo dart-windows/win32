@@ -19,14 +19,18 @@ void main() {
       expect(projection.name, equals('DRIVER_ADD_DEVICE'));
       expect(
         projection.type,
-        equals('Int32 Function(Pointer<DRIVER_OBJECT> driverObject, '
-            'Pointer<DEVICE_OBJECT> physicalDeviceObject)'),
+        equals(
+          'Int32 Function(Pointer<DRIVER_OBJECT> driverObject, '
+          'Pointer<DEVICE_OBJECT> physicalDeviceObject)',
+        ),
       );
       expect(
         projection.toString(),
-        equals('typedef DRIVER_ADD_DEVICE = Int32 Function('
-            'Pointer<DRIVER_OBJECT> driverObject, '
-            'Pointer<DEVICE_OBJECT> physicalDeviceObject);'),
+        equals(
+          'typedef DRIVER_ADD_DEVICE = Int32 Function('
+          'Pointer<DRIVER_OBJECT> driverObject, '
+          'Pointer<DEVICE_OBJECT> physicalDeviceObject);',
+        ),
       );
     });
 
@@ -36,17 +40,38 @@ void main() {
       expect(projection.toString(), equals('typedef PROC = Pointer;'));
     });
 
+    testCallback(
+        'Windows.Win32.Security.Authentication.Identity.INIT_SECURITY_INTERFACE_W',
+        (projection) {
+      expect(projection.name, equals('INIT_SECURITY_INTERFACE_'));
+      expect(
+        projection.type,
+        equals('Pointer<SecurityFunctionTable> Function()'),
+      );
+      expect(
+        projection.toString(),
+        equals(
+          'typedef INIT_SECURITY_INTERFACE_ = '
+          'Pointer<SecurityFunctionTable> Function();',
+        ),
+      );
+    });
+
     testCallback('Windows.Win32.Graphics.Gdi.FONTENUMPROCW', (projection) {
       expect(projection.name, equals('FONTENUMPROC'));
       expect(
         projection.type,
-        equals('Int32 Function(Pointer<LOGFONT> param0, '
-            'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3)'),
+        equals(
+          'Int32 Function(Pointer<LOGFONT> param0, '
+          'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3)',
+        ),
       );
       expect(
         projection.toString(),
-        equals('typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> param0, '
-            'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3);'),
+        equals(
+          'typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> param0, '
+          'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3);',
+        ),
       );
     });
 
