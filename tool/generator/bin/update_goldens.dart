@@ -8,7 +8,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:generator/generator.dart';
 import 'package:winmd/winmd.dart';
 
-Iterable<File> goldenFiles() => Directory('test/goldens')
+Iterable<File> get goldenFiles => Directory('test/goldens')
     .listSync(recursive: true)
     .whereType<File>()
     .where((file) => file.path.endsWith('.golden'));
@@ -24,7 +24,7 @@ void main() async {
 
   print('Updating golden files...');
 
-  for (final file in goldenFiles()) {
+  for (final file in goldenFiles) {
     switch (file.parentDirectory) {
       case 'functions':
         updateFunctionGolden(file);
@@ -34,9 +34,10 @@ void main() async {
         updateStructGolden(file);
       default:
         print(
-          'Skipping `${file.fileName}` file. It is not a recognized golden '
-          'file. Make sure it is in the correct directory. Currently supported '
-          'directories are `functions`, `interfaces`, and `structs`.',
+          'Skipping the file `${file.fileName}`. It is not located within a '
+          'recognized directory.\nSupported directories include: `functions/`, '
+          '`interfaces/`, `structs/`.\nPlease ensure the file is placed in one '
+          'of these directories.',
         );
     }
   }
@@ -122,20 +123,17 @@ void updateGoldenFile(File file, String projection) {
 extension on File {
   String get fileName => path.split(RegExp(r'[/\\]')).last;
 
-  // The golden file's first line is the fully qualified type name of the
-  // function with the trailing `|`. For example,
-  // `Windows.Wdk.Foundation.Apis.NtQueryObject|`.
+  /// The golden file's first line should be the fully qualified type name of
+  /// the function with the trailing `|` (e.g.,
+  /// `Windows.Wdk.Foundation.Apis.NtQueryObject|`).
   String get fullyQualifiedType {
     final firstLine = readAsLinesSync().first;
-    if (!firstLine.contains('|')) {
-      throw StateError(
-        'The first line of the golden file is not in the expected format.\n'
-        'The format should be the fully qualified type name followed by a `|` '
-        'character.\nExample: Windows.Wdk.Foundation.Apis.NtQueryObject|',
-      );
-    }
-
-    return firstLine.split('|').first;
+    if (firstLine.contains('|')) return firstLine.split('|').first;
+    throw StateError(
+      'The first line of the golden file does not match the expected format.\n'
+      'Expected format: Fully qualified type followed by a `|` character.\n'
+      'Example: Windows.Wdk.Foundation.Apis.NtQueryObject|',
+    );
   }
 
   String get parentDirectory =>

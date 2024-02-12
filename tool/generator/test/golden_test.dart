@@ -44,9 +44,9 @@ void compareGolden(String fullyQualifiedType, String fileName, String content) {
     golden = golden.substring(golden.indexOf('|') + '\n'.length + 1);
   } else {
     throw StateError(
-      'The first line of the golden file is not in the expected format.\n'
-      'The format should be the fully qualified type name followed by a `|` '
-      'character.\nExample: Windows.Wdk.Foundation.Apis.NtQueryObject|',
+      'The first line of the golden file does not match the expected format.\n'
+      'Expected format: Fully qualified type followed by a `|` character.\n'
+      'Example: Windows.Wdk.Foundation.Apis.NtQueryObject|',
     );
   }
 
