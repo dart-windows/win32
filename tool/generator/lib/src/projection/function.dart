@@ -17,16 +17,16 @@ class FunctionProjection {
         returnTypeProjection = TypeProjection(method.returnType.typeIdentifier),
         parameters = method.parameters.map(ParameterProjection.new).toList();
 
-  /// The metadata associated with the method.
+  /// The metadata associated with the function.
   final Method method;
 
   /// The name of the method converted to a legal Dart typename.
   final String name;
 
-  /// The type projection for the return type of the method.
+  /// The type projection for the return type of the function.
   final TypeProjection returnTypeProjection;
 
-  /// The parameter projections for the method.
+  /// The parameter projections for the function.
   final List<ParameterProjection> parameters;
 
   /// A legal Dart identifier based on the Win32 module name.
@@ -46,27 +46,27 @@ class FunctionProjection {
   String get lib =>
       method.module.name.toLowerCase().replaceAll('-', '_').split('.').first;
 
-  /// The Dart parameter list for the method (e.g.,
+  /// The Dart parameter list for the function (e.g.,
   /// `int string1, int string2, Pointer<Int32> result`).
   String get dartParameters =>
       parameters.map((p) => p.dartProjection).join(', ');
 
-  /// The Dart prototype for the method (e.g.,
+  /// The Dart prototype for the function (e.g.,
   /// `int Function(int string1, int string2, Pointer<Int32> result)`).
   String get dartPrototype =>
       '${returnTypeProjection.dartType} Function($dartParameters)';
 
-  /// The native parameter list for the method (e.g.,
+  /// The native parameter list for the function (e.g.,
   /// `IntPtr string1, IntPtr string2, Pointer<Int32> result`).
   String get nativeParameters =>
       parameters.map((p) => p.nativeProjection).join(', ');
 
-  /// The native prototype for the method (e.g.,
+  /// The native prototype for the function (e.g.,
   /// `Int32 Function(IntPtr string1, IntPtr string2, Pointer<Int32> result)`).
   String get nativePrototype =>
       '${returnTypeProjection.nativeType} Function($nativeParameters)';
 
-  /// The parameters exposed by the method (e.g.,
+  /// The parameters exposed by the function (e.g.,
   /// `int? string1, int? string2, Pointer<Int32> result`).
   String get functionParameters => parameters
       .where((p) => !p.isReserved) // Hide reserved parameters.
@@ -77,7 +77,7 @@ class FunctionProjection {
   String get functionArguments =>
       parameters.map((p) => p.identifier).join(', ');
 
-  /// The return type of the method.
+  /// The return type of the function.
   String get returnType => returnTypeProjection.dartType.safeTypename;
 
   /// The function header.
