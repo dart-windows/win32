@@ -14,7 +14,7 @@ void generateStructs(List<Scope> scopes, Map<String, String> structs) {
   final typeDefs = scopes.expand((scope) => scope.structs
       .where((typeDef) => structs.keys.contains(typeDef.name))
       .where((typeDef) => typeDef.supportedArchitectures.x64)
-      .toList()
+      .toFixedList()
     ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
 
   final structProjections = typeDefs.map(

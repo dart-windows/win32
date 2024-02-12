@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/collection.dart';
 import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
@@ -56,7 +57,7 @@ class StructProjection {
 
   /// The field projections of the struct.
   List<FieldProjection> get fieldProjections =>
-      typeDef.fields.map(FieldProjection.new).toList(growable: false);
+      typeDef.fields.map(FieldProjection.new).toFixedList();
 
   String? _propertyAccessors;
 
@@ -94,7 +95,7 @@ class StructProjection {
       .map((field) => StructProjection(field.isNested
           ? field.typeIdentifier.type!
           : field.typeIdentifier.typeArg!.type!))
-      .toList(growable: false);
+      .toFixedList();
 
   @override
   String toString() => '''

@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/collection.dart';
 import '../extensions/field.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
@@ -150,7 +151,7 @@ class TypeProjection {
       final enclosingType = wrappedType.enclosingClass!;
       final index = enclosingType.fields
           .where((f) => f.isNested || f.isNestedArray || f.isNestedPointer)
-          .toList()
+          .toFixedList()
           .indexWhere((f) => f.isArray || f.isNestedPointer
               ? f.typeIdentifier.typeArg!.type!.name == wrappedType.name
               : f.typeIdentifier.type!.name == wrappedType.name);

@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../attributes.dart';
+import 'collection.dart';
 import 'custom_attributes_mixin.dart';
 import 'field.dart';
 import 'string.dart';
@@ -34,7 +35,7 @@ extension TypeDefHelpers on TypeDef {
           .map((f) => f.isNested
               ? f.typeIdentifier.type!
               : f.typeIdentifier.typeArg!.type!)
-          .toList();
+          .toFixedList();
 
       // Find the index of the current type definition within the list of nested
       // types.

@@ -8,6 +8,7 @@ library;
 
 export 'src/attributes.dart';
 export 'src/exclusions.dart';
+export 'src/extensions/collection.dart';
 export 'src/extensions/custom_attributes_mixin.dart';
 export 'src/extensions/field.dart';
 export 'src/extensions/method.dart';

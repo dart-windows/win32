@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/collection.dart';
 import '../extensions/method.dart';
 import '../extensions/string.dart';
 import 'parameter.dart';
@@ -15,7 +16,8 @@ class ComMethodProjection {
   ComMethodProjection(this.method)
       : name = method.uniqueName,
         returnTypeProjection = TypeProjection(method.returnType.typeIdentifier),
-        parameters = method.parameters.map(ParameterProjection.new).toList();
+        parameters =
+            method.parameters.map(ParameterProjection.new).toFixedList();
 
   /// The metadata associated with the method.
   final Method method;

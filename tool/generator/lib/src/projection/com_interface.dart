@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/collection.dart';
 import '../extensions/method.dart';
 import '../extensions/string.dart';
 import '../extensions/typedef.dart';
@@ -77,7 +78,7 @@ class ComInterfaceProjection {
             _ when m.canBeProjectedAsSetter => ComSetPropertyProjection(m),
             _ => ComMethodProjection(m),
           })
-      .toList();
+      .toFixedList();
 
   /// The short name of the interface (e.g., `IUnknown`).
   String get shortName => typeDef.safeIdentifier;
@@ -183,7 +184,7 @@ class ComInterfaceProjection {
     };
     return imports
         .map((import) => "import '$import';")
-        .toList()
+        .toFixedList()
         .sortImports()
         .join('\n');
   }

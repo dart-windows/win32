@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../projection/type.dart';
+import 'collection.dart';
 import 'custom_attributes_mixin.dart';
 import 'string.dart';
 
@@ -103,7 +104,7 @@ extension MethodHelpers on Method {
     // If there is more than one entry with the same name, add a suffix to all
     //but the first.
     if (overloads.length > 1) {
-      final reversedOverloads = overloads.reversed.toList();
+      final reversedOverloads = overloads.reversed.toFixedList();
       final overloadIndex =
           reversedOverloads.indexWhere((m) => m.token == token);
       if (overloadIndex > 0) return '${name.safeIdentifier}_$overloadIndex';
