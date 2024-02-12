@@ -10,7 +10,7 @@ doc/**
 
 # We create these files for inspection if the goldens tests fail, but we don't
 # need to check them in.
-test/goldens/*.comparison
+test/goldens/**/*.comparison
 
 # Don't need to check in coverage files
 coverage/*
