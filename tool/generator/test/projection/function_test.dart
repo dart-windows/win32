@@ -17,87 +17,73 @@ void main() {
   group('FunctionProjection', () {
     testFunction('Windows.Wdk.Foundation.Apis', 'NtQueryObject', (projection) {
       expect(projection.lib, equals('ntdll'));
+      final FunctionProjection(
+        :nativePrototype,
+        :dartPrototype,
+        :functionArguments
+      ) = projection;
       expect(
-        projection.nativeParameters,
-        equals('IntPtr handle, Int32 objectInformationClass, '
-            'Pointer objectInformation, Uint32 objectInformationLength, '
-            'Pointer<Uint32> returnLength'),
+        nativePrototype,
+        equals(
+          'Int32 Function(IntPtr handle, Int32 objectInformationClass, '
+          'Pointer objectInformation, Uint32 objectInformationLength, '
+          'Pointer<Uint32> returnLength)',
+        ),
       );
       expect(
-        projection.nativePrototype,
-        equals('Int32 Function(IntPtr handle, Int32 objectInformationClass, '
-            'Pointer objectInformation, Uint32 objectInformationLength, '
-            'Pointer<Uint32> returnLength)'),
+        dartPrototype,
+        equals(
+          'int Function(int handle, int objectInformationClass, '
+          'Pointer objectInformation, int objectInformationLength, '
+          'Pointer<Uint32> returnLength)',
+        ),
       );
       expect(
-        projection.dartParameters,
-        equals('int handle, int objectInformationClass, '
-            'Pointer objectInformation, int objectInformationLength, '
-            'Pointer<Uint32> returnLength'),
-      );
-      expect(
-        projection.dartPrototype,
-        equals('int Function(int handle, int objectInformationClass, '
-            'Pointer objectInformation, int objectInformationLength, '
-            'Pointer<Uint32> returnLength)'),
-      );
-      expect(
-        projection.functionParameters,
-        equals('int? handle, int objectInformationClass, '
-            'Pointer? objectInformation, int objectInformationLength, '
-            'Pointer<Uint32>? returnLength'),
-      );
-      expect(
-        projection.functionArguments,
-        equals('handle ?? 0, objectInformationClass, '
-            'objectInformation ?? nullptr, objectInformationLength, '
-            'returnLength ?? nullptr'),
+        functionArguments,
+        equals(
+          'handle ?? 0, objectInformationClass, '
+          'objectInformation ?? nullptr, objectInformationLength, '
+          'returnLength ?? nullptr',
+        ),
       );
       expect(projection.returnType, equals('int'));
       expect(
         projection.header,
-        equals('int NtQueryObject(int? handle, '
-            'int objectInformationClass, Pointer? objectInformation, '
-            'int objectInformationLength, Pointer<Uint32>? returnLength)'),
+        equals(
+          'int NtQueryObject(int? handle, '
+          'int objectInformationClass, Pointer? objectInformation, '
+          'int objectInformationLength, Pointer<Uint32>? returnLength)',
+        ),
       );
       expect(
         projection.functionBody,
-        equals('_NtQueryObject(handle ?? 0, '
-            'objectInformationClass, objectInformation ?? nullptr, '
-            'objectInformationLength, returnLength ?? nullptr);'),
+        equals('_NtQueryObject($functionArguments);'),
       );
       expect(
         projection.cachedLookup,
-        equals("final _NtQueryObject = _ntdll.lookupFunction<"
-            "Int32 Function(IntPtr handle, Int32 objectInformationClass, "
-            "Pointer objectInformation, Uint32 objectInformationLength, "
-            "Pointer<Uint32> returnLength), "
-            "int Function(int handle, int objectInformationClass, "
-            "Pointer objectInformation, int objectInformationLength, "
-            "Pointer<Uint32> returnLength)>('NtQueryObject');"),
+        equals(
+          "final _NtQueryObject = _ntdll.lookupFunction<"
+          "$nativePrototype, $dartPrototype>('NtQueryObject');",
+        ),
       );
     });
 
     testFunction('Windows.Win32.Media.Audio.Apis', 'midiConnect', (projection) {
       expect(projection.lib, equals('winmm'));
+      final FunctionProjection(
+        :nativePrototype,
+        :dartPrototype,
+        :functionArguments
+      ) = projection;
       expect(
-        projection.nativeParameters,
-        equals('IntPtr hmi, IntPtr hmo, Pointer pReserved'),
-      );
-      expect(
-        projection.nativePrototype,
+        nativePrototype,
         equals('Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved)'),
       );
       expect(
-        projection.dartParameters,
-        equals('int hmi, int hmo, Pointer pReserved'),
-      );
-      expect(
-        projection.dartPrototype,
+        dartPrototype,
         equals('int Function(int hmi, int hmo, Pointer pReserved)'),
       );
-      expect(projection.functionParameters, equals('int hmi, int hmo'));
-      expect(projection.functionArguments, equals('hmi, hmo, nullptr'));
+      expect(functionArguments, equals('hmi, hmo, nullptr'));
       expect(projection.returnType, equals('int'));
       expect(
         projection.header,
@@ -105,14 +91,13 @@ void main() {
       );
       expect(
         projection.functionBody,
-        equals('_midiConnect(hmi, hmo, nullptr);'),
+        equals('_midiConnect($functionArguments);'),
       );
       expect(
         projection.cachedLookup,
         equals(
           "final _midiConnect = _winmm.lookupFunction<"
-          "Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved), "
-          "int Function(int hmi, int hmo, Pointer pReserved)>('midiConnect');",
+          "$nativePrototype, $dartPrototype>('midiConnect');",
         ),
       );
     });
@@ -120,140 +105,134 @@ void main() {
     testFunction('Windows.Win32.System.Com.Apis', 'CoCreateInstanceEx',
         (projection) {
       expect(projection.lib, equals('ole32'));
+      final FunctionProjection(
+        :nativePrototype,
+        :dartPrototype,
+        :functionArguments
+      ) = projection;
       expect(
-        projection.nativeParameters,
-        equals('Pointer<GUID> clsid, VTablePointer punkOuter, Uint32 dwClsCtx, '
-            'Pointer<COSERVERINFO> pServerInfo, Uint32 dwCount, '
-            'Pointer<MULTI_QI> pResults'),
+        nativePrototype,
+        equals(
+          'Int32 Function('
+          'Pointer<GUID> clsid, VTablePointer punkOuter, Uint32 dwClsCtx, '
+          'Pointer<COSERVERINFO> pServerInfo, Uint32 dwCount, '
+          'Pointer<MULTI_QI> pResults)',
+        ),
       );
       expect(
-        projection.nativePrototype,
-        equals('Int32 Function('
-            'Pointer<GUID> clsid, VTablePointer punkOuter, Uint32 dwClsCtx, '
-            'Pointer<COSERVERINFO> pServerInfo, Uint32 dwCount, '
-            'Pointer<MULTI_QI> pResults)'),
+        dartPrototype,
+        equals(
+          'int Function('
+          'Pointer<GUID> clsid, VTablePointer punkOuter, int dwClsCtx, '
+          'Pointer<COSERVERINFO> pServerInfo, int dwCount, '
+          'Pointer<MULTI_QI> pResults)',
+        ),
       );
       expect(
-        projection.dartParameters,
-        equals('Pointer<GUID> clsid, VTablePointer punkOuter, int dwClsCtx, '
-            'Pointer<COSERVERINFO> pServerInfo, int dwCount, '
-            'Pointer<MULTI_QI> pResults'),
-      );
-      expect(
-        projection.dartPrototype,
-        equals('int Function('
-            'Pointer<GUID> clsid, VTablePointer punkOuter, int dwClsCtx, '
-            'Pointer<COSERVERINFO> pServerInfo, int dwCount, '
-            'Pointer<MULTI_QI> pResults)'),
-      );
-      expect(
-        projection.functionParameters,
-        equals('Pointer<GUID> clsid, VTablePointer? punkOuter, int dwClsCtx, '
-            'Pointer<COSERVERINFO>? pServerInfo, int dwCount, '
-            'Pointer<MULTI_QI> pResults'),
-      );
-      expect(
-        projection.functionArguments,
-        equals('clsid, punkOuter ?? nullptr, dwClsCtx, pServerInfo ?? nullptr, '
-            'dwCount, pResults'),
+        functionArguments,
+        equals(
+          'clsid, punkOuter ?? nullptr, dwClsCtx, pServerInfo ?? nullptr, '
+          'dwCount, pResults',
+        ),
       );
       expect(projection.returnType, equals('int'));
       expect(
         projection.header,
         equals(
-            'int CoCreateInstanceEx(Pointer<GUID> clsid, VTablePointer? punkOuter, '
-            'int dwClsCtx, Pointer<COSERVERINFO>? pServerInfo, int dwCount, '
-            'Pointer<MULTI_QI> pResults)'),
+          'int CoCreateInstanceEx(Pointer<GUID> clsid, VTablePointer? punkOuter, '
+          'int dwClsCtx, Pointer<COSERVERINFO>? pServerInfo, int dwCount, '
+          'Pointer<MULTI_QI> pResults)',
+        ),
       );
       expect(
         projection.functionBody,
-        equals('_CoCreateInstanceEx(clsid, punkOuter ?? nullptr, dwClsCtx, '
-            'pServerInfo ?? nullptr, dwCount, pResults);'),
+        equals('_CoCreateInstanceEx($functionArguments);'),
       );
       expect(
         projection.cachedLookup,
-        equals("final _CoCreateInstanceEx = _ole32.lookupFunction<"
-            "Int32 Function("
-            "Pointer<GUID> clsid, VTablePointer punkOuter, Uint32 dwClsCtx, "
-            "Pointer<COSERVERINFO> pServerInfo, Uint32 dwCount, "
-            "Pointer<MULTI_QI> pResults), "
-            "int Function("
-            "Pointer<GUID> clsid, VTablePointer punkOuter, int dwClsCtx, "
-            "Pointer<COSERVERINFO> pServerInfo, int dwCount, "
-            "Pointer<MULTI_QI> pResults)>('CoCreateInstanceEx');"),
+        equals(
+          "final _CoCreateInstanceEx = _ole32.lookupFunction<"
+          "$nativePrototype, $dartPrototype>('CoCreateInstanceEx');",
+        ),
       );
     });
 
     testFunction('Windows.Win32.System.Com.Apis', 'CoInitializeEx',
         (projection) {
       expect(projection.lib, equals('ole32'));
-      expect(projection.nativeParameters,
-          equals('Pointer pvReserved, Uint32 dwCoInit'));
-      expect(projection.nativePrototype,
-          equals('Int32 Function(Pointer pvReserved, Uint32 dwCoInit)'));
-      expect(projection.dartParameters,
-          equals('Pointer pvReserved, int dwCoInit'));
-      expect(projection.dartPrototype,
-          equals('int Function(Pointer pvReserved, int dwCoInit)'));
-      expect(projection.functionParameters, equals('int dwCoInit'));
-      expect(projection.functionArguments, equals('nullptr, dwCoInit'));
+      final FunctionProjection(
+        :nativePrototype,
+        :dartPrototype,
+        :functionArguments
+      ) = projection;
+      expect(
+        nativePrototype,
+        equals('Int32 Function(Pointer pvReserved, Uint32 dwCoInit)'),
+      );
+      expect(
+        dartPrototype,
+        equals('int Function(Pointer pvReserved, int dwCoInit)'),
+      );
+      expect(functionArguments, equals('nullptr, dwCoInit'));
       expect(projection.returnType, equals('int'));
       expect(projection.header, equals('int CoInitializeEx(int dwCoInit)'));
-      expect(projection.functionBody,
-          equals('_CoInitializeEx(nullptr, dwCoInit);'));
+      expect(
+        projection.functionBody,
+        equals('_CoInitializeEx($functionArguments);'),
+      );
       expect(
         projection.cachedLookup,
-        equals("final _CoInitializeEx = _ole32.lookupFunction<"
-            "Int32 Function(Pointer pvReserved, Uint32 dwCoInit), "
-            "int Function(Pointer pvReserved, int dwCoInit)>('CoInitializeEx');"),
+        equals(
+          "final _CoInitializeEx = _ole32.lookupFunction<"
+          "$nativePrototype, $dartPrototype>('CoInitializeEx');",
+        ),
       );
     });
 
     testFunction('Windows.Win32.System.WinRT.Apis', 'WindowsConcatString',
         (projection) {
       expect(projection.lib, equals('api_ms_win_core_winrt_string_l1_1_0'));
+      final FunctionProjection(
+        :nativePrototype,
+        :dartPrototype,
+        :functionArguments
+      ) = projection;
       expect(
-        projection.nativeParameters,
-        equals('IntPtr string1, IntPtr string2, Pointer<IntPtr> newString'),
-      );
-      expect(
-        projection.nativePrototype,
-        equals('Int32 Function(IntPtr string1, IntPtr string2, '
-            'Pointer<IntPtr> newString)'),
-      );
-      expect(
-        projection.dartParameters,
-        equals('int string1, int string2, Pointer<IntPtr> newString'),
-      );
-      expect(
-        projection.dartPrototype,
+        nativePrototype,
         equals(
-            'int Function(int string1, int string2, Pointer<IntPtr> newString)'),
+          'Int32 Function(IntPtr string1, IntPtr string2, '
+          'Pointer<IntPtr> newString)',
+        ),
       );
       expect(
-        projection.functionParameters,
-        equals('int? string1, int? string2, Pointer<IntPtr> newString'),
+        dartPrototype,
+        equals(
+          'int Function(int string1, int string2, Pointer<IntPtr> newString)',
+        ),
       );
       expect(
-        projection.functionArguments,
+        functionArguments,
         equals('string1 ?? 0, string2 ?? 0, newString'),
       );
       expect(projection.returnType, equals('int'));
       expect(
         projection.header,
-        equals('int WindowsConcatString(int? string1, int? string2, '
-            'Pointer<IntPtr> newString)'),
+        equals(
+          'int WindowsConcatString(int? string1, int? string2, '
+          'Pointer<IntPtr> newString)',
+        ),
       );
       expect(
         projection.functionBody,
-        equals('_WindowsConcatString(string1 ?? 0, string2 ?? 0, newString);'),
+        equals('_WindowsConcatString($functionArguments);'),
       );
       expect(
         projection.cachedLookup,
         equals(
-            "final _WindowsConcatString = _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<"
-            "Int32 Function(IntPtr string1, IntPtr string2, Pointer<IntPtr> newString), "
-            "int Function(int string1, int string2, Pointer<IntPtr> newString)>('WindowsConcatString');"),
+          "final _WindowsConcatString = _api_ms_win_core_winrt_string_l1_1_0"
+          ".lookupFunction<$nativePrototype, $dartPrototype>("
+          "'WindowsConcatString');",
+        ),
       );
     });
   });
