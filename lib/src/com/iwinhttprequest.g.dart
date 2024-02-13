@@ -74,69 +74,67 @@ class IWinHttpRequest extends IDispatch {
       int Function(VTablePointer lpVtbl, VARIANT body)>()(ptr, body);
 
   int get status {
-    final retValuePtr = calloc<Int32>();
-
+    final status = calloc<Int32>();
     try {
       final hr = _vtable.get_Status.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> status)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> status)>()(ptr, status);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = status.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(status);
     }
   }
 
   Pointer<Utf16> get statusText {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final status = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_StatusText.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> status)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> status)>()(ptr, status);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = status.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(status);
     }
   }
 
   Pointer<Utf16> get responseText {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final body = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_ResponseText.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> body)>()(ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> body)>()(ptr, body);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = body.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(body);
     }
   }
 
   Pointer<VARIANT> get responseBody {
-    final retValuePtr = calloc<VARIANT>();
+    final body = calloc<VARIANT>();
     final hr = _vtable.get_ResponseBody.asFunction<
-        int Function(
-            VTablePointer lpVtbl, Pointer<VARIANT> body)>()(ptr, retValuePtr);
-    if (FAILED(hr)) throw WindowsException(hr);
-    return retValuePtr;
+        int Function(VTablePointer lpVtbl, Pointer<VARIANT> body)>()(ptr, body);
+    if (FAILED(hr)) {
+      free(body);
+      throw WindowsException(hr);
+    }
+    return body;
   }
 
   Pointer<VARIANT> get responseStream {
-    final retValuePtr = calloc<VARIANT>();
+    final body = calloc<VARIANT>();
     final hr = _vtable.get_ResponseStream.asFunction<
-        int Function(
-            VTablePointer lpVtbl, Pointer<VARIANT> body)>()(ptr, retValuePtr);
-    if (FAILED(hr)) throw WindowsException(hr);
-    return retValuePtr;
+        int Function(VTablePointer lpVtbl, Pointer<VARIANT> body)>()(ptr, body);
+    if (FAILED(hr)) {
+      free(body);
+      throw WindowsException(hr);
+    }
+    return body;
   }
 
   int get_Option(int option, Pointer<VARIANT> value) =>

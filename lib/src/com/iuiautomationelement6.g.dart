@@ -35,34 +35,30 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
       IUIAutomationElement6(interface.toInterface(IID_IUIAutomationElement6));
 
   Pointer<Utf16> get currentFullDescription {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentFullDescription.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   Pointer<Utf16> get cachedFullDescription {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedFullDescription.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 }

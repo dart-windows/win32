@@ -37,18 +37,16 @@ class IUIAutomationOrCondition extends IUIAutomationCondition {
           interface.toInterface(IID_IUIAutomationOrCondition));
 
   int get childCount {
-    final retValuePtr = calloc<Int32>();
-
+    final childCount = calloc<Int32>();
     try {
       final hr = _vtable.get_ChildCount.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> childCount)>()(
-          ptr, retValuePtr);
+          ptr, childCount);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = childCount.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(childCount);
     }
   }
 

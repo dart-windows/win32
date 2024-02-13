@@ -46,69 +46,63 @@ class IUIAutomationCacheRequest extends IUnknown {
           Pointer<VTablePointer> clonedRequest)>()(ptr, clonedRequest);
 
   int get treeScope {
-    final retValuePtr = calloc<Int32>();
-
+    final scope = calloc<Int32>();
     try {
       final hr = _vtable.get_TreeScope.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> scope)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> scope)>()(ptr, scope);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = scope.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(scope);
     }
   }
 
-  set treeScope(int value) {
+  set treeScope(int scope) {
     final hr = _vtable.put_TreeScope
             .asFunction<int Function(VTablePointer lpVtbl, int scope)>()(
-        ptr, value);
+        ptr, scope);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   VTablePointer get treeFilter {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final filter = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_TreeFilter.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> filter)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> filter)>()(ptr, filter);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = filter.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(filter);
     }
   }
 
-  set treeFilter(VTablePointer value) {
+  set treeFilter(VTablePointer filter) {
     final hr = _vtable.put_TreeFilter.asFunction<
-        int Function(VTablePointer lpVtbl, VTablePointer filter)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, VTablePointer filter)>()(ptr, filter);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get automationElementMode {
-    final retValuePtr = calloc<Int32>();
-
+    final mode = calloc<Int32>();
     try {
       final hr = _vtable.get_AutomationElementMode.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<Int32> mode)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl, Pointer<Int32> mode)>()(ptr, mode);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = mode.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(mode);
     }
   }
 
-  set automationElementMode(int value) {
+  set automationElementMode(int mode) {
     final hr = _vtable.put_AutomationElementMode
-        .asFunction<int Function(VTablePointer lpVtbl, int mode)>()(ptr, value);
+        .asFunction<int Function(VTablePointer lpVtbl, int mode)>()(ptr, mode);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }

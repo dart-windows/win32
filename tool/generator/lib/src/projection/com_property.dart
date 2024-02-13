@@ -9,13 +9,12 @@ import 'com_method.dart';
 import 'type.dart';
 
 /// Represents a Dart projection for a COM property defined by a [Method].
-abstract class ComPropertyProjection extends ComMethodProjection {
+sealed class ComPropertyProjection extends ComMethodProjection {
   /// Creates an instance of this class for a COM [method].
   ComPropertyProjection(super.method);
 
-  /// The exposed method name without the `get_` or `put_` prefix in camel case
-  /// format.
-  String get exposedMethodName {
+  @override
+  String get camelCasedName {
     final startIndex =
         name.startsWith('get__') | method.name.startsWith('put__') ? 5 : 4;
     return name.substring(startIndex).toCamelCase().safeIdentifier;
@@ -36,6 +35,10 @@ abstract class ComPropertyProjection extends ComMethodProjection {
         else
           'if (FAILED(hr)) throw WindowsException(hr);'
       ].join('\n');
+
+  /// The name of the parameter that is safe to use as a Dart identifier.
+  String get parameterIdentifier =>
+      parameters.first.name.toCamelCase().safeIdentifier;
 }
 
 /// Represents a Dart projection for a COM get property defined by a [Method].
@@ -46,43 +49,55 @@ class ComGetPropertyProjection extends ComPropertyProjection {
             '$method is not a COM get property.');
 
   /// Whether to convert the return value to a Dart [bool].
-  bool get convertBool => parameters.first.type == 'bool';
+  bool get _convertBool => parameters.first.type == 'bool';
+
+  TypeProjection get _returnValue =>
+      parameters.first.typeProjection.dereference();
+
+  String get _valRef => _returnValue.dartType == 'double' ||
+          _returnValue.dartType == 'int' ||
+          _returnValue.dartType == 'VTablePointer' ||
+          _returnValue.dartType.startsWith('Pointer')
+      ? 'value'
+      : 'ref';
 
   @override
-  String toString() {
-    final returnValue = parameters.first.typeProjection.dereference();
-    final valRef = returnValue.dartType == 'double' ||
-            returnValue.dartType == 'int' ||
-            returnValue.dartType == 'VTablePointer' ||
-            returnValue.dartType.startsWith('Pointer')
-        ? 'value'
-        : 'ref';
+  String get returnType => _valRef == 'ref'
+      ? parameters.first.typeProjection.dartType
+      : _returnValue.dartType;
 
-    if (valRef == 'ref') {
-      return '''
-  ${parameters.first.typeProjection.dartType} get $exposedMethodName {
-    final retValuePtr = calloc<${returnValue.nativeType}>();
-    ${ffiCall(identifier: 'retValuePtr')}
-    return retValuePtr;
-  }
-''';
+  @override
+  String get header => '$returnType get $camelCasedName';
+
+  @override
+  String get methodBody {
+    final buffer = StringBuffer()
+      ..writeln(
+        'final $parameterIdentifier = calloc<${_returnValue.nativeType}>();',
+      );
+
+    if (_valRef == 'ref') {
+      buffer
+        ..writeln(
+          ffiCall(identifier: parameterIdentifier, freeRetValOnFailure: true),
+        )
+        ..write('return $parameterIdentifier;');
+    } else {
+      buffer
+        ..writeln('try {')
+        ..writeln(ffiCall(identifier: parameterIdentifier))
+        ..writeln('final retValue = $parameterIdentifier.$_valRef;')
+        ..writeln('return ${_convertBool ? 'retValue == 0' : 'retValue'};')
+        ..writeln('} finally {')
+        ..writeln('free($parameterIdentifier);')
+        ..writeln('}');
     }
 
-    return '''
-  ${returnValue.dartType} get $exposedMethodName {
-    final retValuePtr = calloc<${returnValue.nativeType}>();
-
-    try {
-      ${ffiCall(identifier: 'retValuePtr')}
-
-      final retValue = retValuePtr.$valRef;
-      return ${convertBool ? 'retValue == 0' : 'retValue'};
-    } finally {
-      free(retValuePtr);
-    }
+    return buffer.toString();
   }
-''';
-  }
+
+  @override
+  String toString() => '$header {\n$methodBody\n}';
 }
 
 /// Represents a Dart projection for a COM set property defined by a [Method].
@@ -98,14 +113,23 @@ class ComSetPropertyProjection extends ComPropertyProjection {
   }
 
   String get identifier {
-    if (parameterType == 'VTablePointer?') return 'value ?? nullptr';
-    return 'value';
+    if (parameterType == 'VTablePointer?') {
+      return '$parameterIdentifier ?? nullptr';
+    }
+
+    return parameterIdentifier;
   }
 
   @override
-  String toString() => '''
-  set $exposedMethodName($parameterType value) {
-    ${ffiCall(identifier: identifier)}
-  }
-''';
+  String get returnType => 'void';
+
+  @override
+  String get header =>
+      'set $camelCasedName($parameterType $parameterIdentifier)';
+
+  @override
+  String get methodBody => ffiCall(identifier: identifier);
+
+  @override
+  String toString() => '$header {\n$methodBody\n}';
 }

@@ -55,34 +55,31 @@ class IUIAutomationTextPattern extends IUnknown {
               Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
   VTablePointer get documentRange {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final range = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_DocumentRange.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> range)>()(ptr, range);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = range.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(range);
     }
   }
 
   int get supportedTextSelection {
-    final retValuePtr = calloc<Int32>();
-
+    final supportedTextSelection = calloc<Int32>();
     try {
       final hr = _vtable.get_SupportedTextSelection.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Int32> supportedTextSelection)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> supportedTextSelection)>()(
+          ptr, supportedTextSelection);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = supportedTextSelection.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(supportedTextSelection);
     }
   }
 }

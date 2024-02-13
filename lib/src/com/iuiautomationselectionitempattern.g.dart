@@ -46,66 +46,58 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
       int Function(VTablePointer lpVtbl)>()(ptr);
 
   int get currentIsSelected {
-    final retValuePtr = calloc<Int32>();
-
+    final retVal = calloc<Int32>();
     try {
       final hr = _vtable.get_CurrentIsSelected.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   VTablePointer get currentSelectionContainer {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final retVal = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_CurrentSelectionContainer.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   int get cachedIsSelected {
-    final retValuePtr = calloc<Int32>();
-
+    final retVal = calloc<Int32>();
     try {
       final hr = _vtable.get_CachedIsSelected.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   VTablePointer get cachedSelectionContainer {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final retVal = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_CachedSelectionContainer.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> retVal)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 }

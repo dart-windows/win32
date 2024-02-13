@@ -35,66 +35,58 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
       IUIAutomationElement5(interface.toInterface(IID_IUIAutomationElement5));
 
   int get currentLandmarkType {
-    final retValuePtr = calloc<Int32>();
-
+    final retVal = calloc<Int32>();
     try {
       final hr = _vtable.get_CurrentLandmarkType.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   Pointer<Utf16> get currentLocalizedLandmarkType {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   int get cachedLandmarkType {
-    final retValuePtr = calloc<Int32>();
-
+    final retVal = calloc<Int32>();
     try {
       final hr = _vtable.get_CachedLandmarkType.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   Pointer<Utf16> get cachedLocalizedLandmarkType {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 }

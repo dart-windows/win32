@@ -38,43 +38,42 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
           interface.toInterface(IID_IUIAutomationPropertyCondition));
 
   int get propertyId {
-    final retValuePtr = calloc<Int32>();
-
+    final propertyId = calloc<Int32>();
     try {
       final hr = _vtable.get_PropertyId.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> propertyId)>()(
-          ptr, retValuePtr);
+          ptr, propertyId);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = propertyId.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(propertyId);
     }
   }
 
   Pointer<VARIANT> get propertyValue {
-    final retValuePtr = calloc<VARIANT>();
+    final propertyValue = calloc<VARIANT>();
     final hr = _vtable.get_PropertyValue.asFunction<
         int Function(VTablePointer lpVtbl,
-            Pointer<VARIANT> propertyValue)>()(ptr, retValuePtr);
-    if (FAILED(hr)) throw WindowsException(hr);
-    return retValuePtr;
+            Pointer<VARIANT> propertyValue)>()(ptr, propertyValue);
+    if (FAILED(hr)) {
+      free(propertyValue);
+      throw WindowsException(hr);
+    }
+    return propertyValue;
   }
 
   int get propertyConditionFlags {
-    final retValuePtr = calloc<Int32>();
-
+    final flags = calloc<Int32>();
     try {
       final hr = _vtable.get_PropertyConditionFlags.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> flags)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> flags)>()(ptr, flags);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = flags.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(flags);
     }
   }
 }

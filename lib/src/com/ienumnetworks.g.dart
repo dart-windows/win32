@@ -35,18 +35,16 @@ class IEnumNetworks extends IDispatch {
       IEnumNetworks(interface.toInterface(IID_IEnumNetworks));
 
   VTablePointer get newEnum {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final ppEnumVar = calloc<VTablePointer>();
     try {
       final hr = _vtable.get__NewEnum.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> ppEnumVar)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> ppEnumVar)>()(ptr, ppEnumVar);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = ppEnumVar.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(ppEnumVar);
     }
   }
 

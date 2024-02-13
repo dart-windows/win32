@@ -121,18 +121,16 @@ class IUIAutomationTreeWalker extends IUnknown {
           ptr, element, cacheRequest, normalized);
 
   VTablePointer get condition {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final condition = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_Condition.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> condition)>()(ptr, condition);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = condition.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(condition);
     }
   }
 }

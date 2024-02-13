@@ -35,71 +35,65 @@ class IUIAutomation2 extends IUIAutomation {
       IUIAutomation2(interface.toInterface(IID_IUIAutomation2));
 
   int get autoSetFocus {
-    final retValuePtr = calloc<Int32>();
-
+    final autoSetFocus = calloc<Int32>();
     try {
       final hr = _vtable.get_AutoSetFocus.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> autoSetFocus)>()(ptr, retValuePtr);
+              Pointer<Int32> autoSetFocus)>()(ptr, autoSetFocus);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = autoSetFocus.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(autoSetFocus);
     }
   }
 
-  set autoSetFocus(int value) {
+  set autoSetFocus(int autoSetFocus) {
     final hr = _vtable.put_AutoSetFocus
             .asFunction<int Function(VTablePointer lpVtbl, int autoSetFocus)>()(
-        ptr, value);
+        ptr, autoSetFocus);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get connectionTimeout {
-    final retValuePtr = calloc<Uint32>();
-
+    final timeout = calloc<Uint32>();
     try {
       final hr = _vtable.get_ConnectionTimeout.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> timeout)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> timeout)>()(ptr, timeout);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = timeout.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(timeout);
     }
   }
 
-  set connectionTimeout(int value) {
+  set connectionTimeout(int timeout) {
     final hr = _vtable.put_ConnectionTimeout
             .asFunction<int Function(VTablePointer lpVtbl, int timeout)>()(
-        ptr, value);
+        ptr, timeout);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get transactionTimeout {
-    final retValuePtr = calloc<Uint32>();
-
+    final timeout = calloc<Uint32>();
     try {
       final hr = _vtable.get_TransactionTimeout.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Uint32> timeout)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Uint32> timeout)>()(ptr, timeout);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = timeout.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(timeout);
     }
   }
 
-  set transactionTimeout(int value) {
+  set transactionTimeout(int timeout) {
     final hr = _vtable.put_TransactionTimeout
             .asFunction<int Function(VTablePointer lpVtbl, int timeout)>()(
-        ptr, value);
+        ptr, timeout);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 }

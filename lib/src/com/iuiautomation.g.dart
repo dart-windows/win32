@@ -110,98 +110,86 @@ class IUIAutomation extends IUnknown {
               Pointer<VTablePointer> walker)>()(ptr, pCondition, walker);
 
   VTablePointer get controlViewWalker {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final walker = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ControlViewWalker.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> walker)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> walker)>()(ptr, walker);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = walker.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(walker);
     }
   }
 
   VTablePointer get contentViewWalker {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final walker = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ContentViewWalker.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> walker)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> walker)>()(ptr, walker);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = walker.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(walker);
     }
   }
 
   VTablePointer get rawViewWalker {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final walker = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_RawViewWalker.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> walker)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> walker)>()(ptr, walker);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = walker.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(walker);
     }
   }
 
   VTablePointer get rawViewCondition {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final condition = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_RawViewCondition.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> condition)>()(ptr, condition);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = condition.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(condition);
     }
   }
 
   VTablePointer get controlViewCondition {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final condition = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ControlViewCondition.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> condition)>()(ptr, condition);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = condition.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(condition);
     }
   }
 
   VTablePointer get contentViewCondition {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final condition = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ContentViewCondition.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> condition)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> condition)>()(ptr, condition);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = condition.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(condition);
     }
   }
 
@@ -428,18 +416,16 @@ class IUIAutomation extends IUnknown {
           ptr, factory, factoryEntry);
 
   VTablePointer get proxyFactoryMapping {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final factoryMapping = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ProxyFactoryMapping.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> factoryMapping)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> factoryMapping)>()(ptr, factoryMapping);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = factoryMapping.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(factoryMapping);
     }
   }
 
@@ -483,34 +469,32 @@ class IUIAutomation extends IUnknown {
               Pointer<Int32> isNotSupported)>()(ptr, value, isNotSupported);
 
   VTablePointer get reservedNotSupportedValue {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final notSupportedValue = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ReservedNotSupportedValue.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> notSupportedValue)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> notSupportedValue)>()(
+          ptr, notSupportedValue);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = notSupportedValue.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(notSupportedValue);
     }
   }
 
   VTablePointer get reservedMixedAttributeValue {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final mixedAttributeValue = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ReservedMixedAttributeValue.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> mixedAttributeValue)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> mixedAttributeValue)>()(
+          ptr, mixedAttributeValue);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = mixedAttributeValue.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(mixedAttributeValue);
     }
   }
 

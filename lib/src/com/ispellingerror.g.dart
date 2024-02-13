@@ -33,66 +33,58 @@ class ISpellingError extends IUnknown {
       ISpellingError(interface.toInterface(IID_ISpellingError));
 
   int get startIndex {
-    final retValuePtr = calloc<Uint32>();
-
+    final value = calloc<Uint32>();
     try {
       final hr = _vtable.get_StartIndex.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Uint32> value)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int get length {
-    final retValuePtr = calloc<Uint32>();
-
+    final value = calloc<Uint32>();
     try {
       final hr = _vtable.get_Length.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Uint32> value)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Uint32> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int get correctiveAction {
-    final retValuePtr = calloc<Int32>();
-
+    final value = calloc<Int32>();
     try {
       final hr = _vtable.get_CorrectiveAction.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> value)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Pointer<Utf16> get replacement {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final value = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Replacement.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> value)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 }

@@ -51,49 +51,47 @@ class IUIAutomation6 extends IUIAutomation5 {
               VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
   int get connectionRecoveryBehavior {
-    final retValuePtr = calloc<Int32>();
-
+    final connectionRecoveryBehaviorOptions = calloc<Int32>();
     try {
       final hr = _vtable.get_ConnectionRecoveryBehavior.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> connectionRecoveryBehaviorOptions)>()(
-          ptr, retValuePtr);
+          ptr, connectionRecoveryBehaviorOptions);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = connectionRecoveryBehaviorOptions.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(connectionRecoveryBehaviorOptions);
     }
   }
 
-  set connectionRecoveryBehavior(int value) {
+  set connectionRecoveryBehavior(int connectionRecoveryBehaviorOptions) {
     final hr = _vtable.put_ConnectionRecoveryBehavior.asFunction<
-        int Function(VTablePointer lpVtbl,
-            int connectionRecoveryBehaviorOptions)>()(ptr, value);
+            int Function(
+                VTablePointer lpVtbl, int connectionRecoveryBehaviorOptions)>()(
+        ptr, connectionRecoveryBehaviorOptions);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get coalesceEvents {
-    final retValuePtr = calloc<Int32>();
-
+    final coalesceEventsOptions = calloc<Int32>();
     try {
       final hr = _vtable.get_CoalesceEvents.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Int32> coalesceEventsOptions)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> coalesceEventsOptions)>()(
+          ptr, coalesceEventsOptions);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = coalesceEventsOptions.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(coalesceEventsOptions);
     }
   }
 
-  set coalesceEvents(int value) {
+  set coalesceEvents(int coalesceEventsOptions) {
     final hr = _vtable.put_CoalesceEvents.asFunction<
-        int Function(
-            VTablePointer lpVtbl, int coalesceEventsOptions)>()(ptr, value);
+            int Function(VTablePointer lpVtbl, int coalesceEventsOptions)>()(
+        ptr, coalesceEventsOptions);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 

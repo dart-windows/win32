@@ -32,34 +32,30 @@ class ISpeechVoice extends IDispatch {
       ISpeechVoice(interface.toInterface(IID_ISpeechVoice));
 
   VTablePointer get status {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final status = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_Status.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> status)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> status)>()(ptr, status);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = status.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(status);
     }
   }
 
   VTablePointer get voice {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final voice = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_Voice.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> voice)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> voice)>()(ptr, voice);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = voice.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(voice);
     }
   }
 
@@ -68,18 +64,16 @@ class ISpeechVoice extends IDispatch {
           VTablePointer lpVtbl, VTablePointer voice)>()(ptr, voice ?? nullptr);
 
   VTablePointer get audioOutput {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final audioOutput = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_AudioOutput.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> audioOutput)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> audioOutput)>()(ptr, audioOutput);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = audioOutput.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(audioOutput);
     }
   }
 
@@ -89,18 +83,17 @@ class ISpeechVoice extends IDispatch {
           ptr, audioOutput ?? nullptr);
 
   VTablePointer get audioOutputStream {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final audioOutputStream = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_AudioOutputStream.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> audioOutputStream)>()(ptr, retValuePtr);
+              int Function(VTablePointer lpVtbl,
+                  Pointer<VTablePointer> audioOutputStream)>()(
+          ptr, audioOutputStream);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = audioOutputStream.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(audioOutputStream);
     }
   }
 
@@ -111,162 +104,147 @@ class ISpeechVoice extends IDispatch {
           ptr, audioOutputStream ?? nullptr);
 
   int get rate {
-    final retValuePtr = calloc<Int32>();
-
+    final rate = calloc<Int32>();
     try {
       final hr = _vtable.get_Rate.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<Int32> rate)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl, Pointer<Int32> rate)>()(ptr, rate);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = rate.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(rate);
     }
   }
 
-  set rate(int value) {
+  set rate(int rate) {
     final hr = _vtable.put_Rate
-        .asFunction<int Function(VTablePointer lpVtbl, int rate)>()(ptr, value);
+        .asFunction<int Function(VTablePointer lpVtbl, int rate)>()(ptr, rate);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get volume {
-    final retValuePtr = calloc<Int32>();
-
+    final volume = calloc<Int32>();
     try {
       final hr = _vtable.get_Volume.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> volume)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> volume)>()(ptr, volume);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = volume.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(volume);
     }
   }
 
-  set volume(int value) {
+  set volume(int volume) {
     final hr = _vtable.put_Volume
             .asFunction<int Function(VTablePointer lpVtbl, int volume)>()(
-        ptr, value);
+        ptr, volume);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  set allowAudioOutputFormatChangesOnNextSet(int value) {
+  set allowAudioOutputFormatChangesOnNextSet(int allow) {
     final hr = _vtable.put_AllowAudioOutputFormatChangesOnNextSet
             .asFunction<int Function(VTablePointer lpVtbl, int allow)>()(
-        ptr, value);
+        ptr, allow);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get allowAudioOutputFormatChangesOnNextSet {
-    final retValuePtr = calloc<Int16>();
-
+    final allow = calloc<Int16>();
     try {
       final hr = _vtable.get_AllowAudioOutputFormatChangesOnNextSet.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int16> allow)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int16> allow)>()(ptr, allow);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = allow.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(allow);
     }
   }
 
   int get eventInterests {
-    final retValuePtr = calloc<Int32>();
-
+    final eventInterestFlags = calloc<Int32>();
     try {
       final hr = _vtable.get_EventInterests.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> eventInterestFlags)>()(ptr, retValuePtr);
+              Pointer<Int32> eventInterestFlags)>()(ptr, eventInterestFlags);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = eventInterestFlags.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(eventInterestFlags);
     }
   }
 
-  set eventInterests(int value) {
+  set eventInterests(int eventInterestFlags) {
     final hr = _vtable.put_EventInterests.asFunction<
-        int Function(
-            VTablePointer lpVtbl, int eventInterestFlags)>()(ptr, value);
+            int Function(VTablePointer lpVtbl, int eventInterestFlags)>()(
+        ptr, eventInterestFlags);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  set priority(int value) {
+  set priority(int priority) {
     final hr = _vtable.put_Priority
             .asFunction<int Function(VTablePointer lpVtbl, int priority)>()(
-        ptr, value);
+        ptr, priority);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get priority {
-    final retValuePtr = calloc<Int32>();
-
+    final priority = calloc<Int32>();
     try {
       final hr = _vtable.get_Priority.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> priority)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> priority)>()(ptr, priority);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = priority.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(priority);
     }
   }
 
-  set alertBoundary(int value) {
+  set alertBoundary(int boundary) {
     final hr = _vtable.put_AlertBoundary
             .asFunction<int Function(VTablePointer lpVtbl, int boundary)>()(
-        ptr, value);
+        ptr, boundary);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get alertBoundary {
-    final retValuePtr = calloc<Int32>();
-
+    final boundary = calloc<Int32>();
     try {
       final hr = _vtable.get_AlertBoundary.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> boundary)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> boundary)>()(ptr, boundary);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = boundary.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(boundary);
     }
   }
 
-  set synchronousSpeakTimeout(int value) {
+  set synchronousSpeakTimeout(int msTimeout) {
     final hr = _vtable.put_SynchronousSpeakTimeout
             .asFunction<int Function(VTablePointer lpVtbl, int msTimeout)>()(
-        ptr, value);
+        ptr, msTimeout);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get synchronousSpeakTimeout {
-    final retValuePtr = calloc<Int32>();
-
+    final msTimeout = calloc<Int32>();
     try {
       final hr = _vtable.get_SynchronousSpeakTimeout.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> msTimeout)>()(
-          ptr, retValuePtr);
+          ptr, msTimeout);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = msTimeout.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(msTimeout);
     }
   }
 

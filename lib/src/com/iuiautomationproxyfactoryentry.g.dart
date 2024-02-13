@@ -38,133 +38,121 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
           interface.toInterface(IID_IUIAutomationProxyFactoryEntry));
 
   VTablePointer get proxyFactory {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final factory = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_ProxyFactory.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> factory)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> factory)>()(ptr, factory);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = factory.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(factory);
     }
   }
 
   Pointer<Utf16> get className {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final className = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_ClassName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> className)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> className)>()(ptr, className);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = className.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(className);
     }
   }
 
   Pointer<Utf16> get imageName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final imageName = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_ImageName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> imageName)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> imageName)>()(ptr, imageName);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = imageName.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(imageName);
     }
   }
 
   int get allowSubstringMatch {
-    final retValuePtr = calloc<Int32>();
-
+    final allowSubstringMatch = calloc<Int32>();
     try {
       final hr = _vtable.get_AllowSubstringMatch.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> allowSubstringMatch)>()(ptr, retValuePtr);
+              Pointer<Int32> allowSubstringMatch)>()(ptr, allowSubstringMatch);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = allowSubstringMatch.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(allowSubstringMatch);
     }
   }
 
   int get canCheckBaseClass {
-    final retValuePtr = calloc<Int32>();
-
+    final canCheckBaseClass = calloc<Int32>();
     try {
       final hr = _vtable.get_CanCheckBaseClass.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> canCheckBaseClass)>()(ptr, retValuePtr);
+              Pointer<Int32> canCheckBaseClass)>()(ptr, canCheckBaseClass);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = canCheckBaseClass.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(canCheckBaseClass);
     }
   }
 
   int get needsAdviseEvents {
-    final retValuePtr = calloc<Int32>();
-
+    final adviseEvents = calloc<Int32>();
     try {
       final hr = _vtable.get_NeedsAdviseEvents.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> adviseEvents)>()(ptr, retValuePtr);
+              Pointer<Int32> adviseEvents)>()(ptr, adviseEvents);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = adviseEvents.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(adviseEvents);
     }
   }
 
-  set className(Pointer<Utf16> value) {
+  set className(Pointer<Utf16> className) {
     final hr = _vtable.put_ClassName.asFunction<
         int Function(
-            VTablePointer lpVtbl, Pointer<Utf16> className)>()(ptr, value);
+            VTablePointer lpVtbl, Pointer<Utf16> className)>()(ptr, className);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  set imageName(Pointer<Utf16> value) {
+  set imageName(Pointer<Utf16> imageName) {
     final hr = _vtable.put_ImageName.asFunction<
         int Function(
-            VTablePointer lpVtbl, Pointer<Utf16> imageName)>()(ptr, value);
+            VTablePointer lpVtbl, Pointer<Utf16> imageName)>()(ptr, imageName);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  set allowSubstringMatch(int value) {
+  set allowSubstringMatch(int allowSubstringMatch) {
     final hr = _vtable.put_AllowSubstringMatch.asFunction<
-        int Function(
-            VTablePointer lpVtbl, int allowSubstringMatch)>()(ptr, value);
+            int Function(VTablePointer lpVtbl, int allowSubstringMatch)>()(
+        ptr, allowSubstringMatch);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  set canCheckBaseClass(int value) {
+  set canCheckBaseClass(int canCheckBaseClass) {
     final hr = _vtable.put_CanCheckBaseClass.asFunction<
-        int Function(
-            VTablePointer lpVtbl, int canCheckBaseClass)>()(ptr, value);
+            int Function(VTablePointer lpVtbl, int canCheckBaseClass)>()(
+        ptr, canCheckBaseClass);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  set needsAdviseEvents(int value) {
+  set needsAdviseEvents(int adviseEvents) {
     final hr = _vtable.put_NeedsAdviseEvents
             .asFunction<int Function(VTablePointer lpVtbl, int adviseEvents)>()(
-        ptr, value);
+        ptr, adviseEvents);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 

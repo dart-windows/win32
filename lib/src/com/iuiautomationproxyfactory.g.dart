@@ -43,18 +43,16 @@ class IUIAutomationProxyFactory extends IUnknown {
           ptr, hwnd, idObject, idChild, provider);
 
   Pointer<Utf16> get proxyFactoryId {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final factoryId = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_ProxyFactoryId.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> factoryId)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> factoryId)>()(ptr, factoryId);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = factoryId.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(factoryId);
     }
   }
 }

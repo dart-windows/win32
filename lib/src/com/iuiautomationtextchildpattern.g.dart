@@ -36,34 +36,30 @@ class IUIAutomationTextChildPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationTextChildPattern));
 
   VTablePointer get textContainer {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final container = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_TextContainer.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> container)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> container)>()(ptr, container);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = container.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(container);
     }
   }
 
   VTablePointer get textRange {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final range = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_TextRange.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> range)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> range)>()(ptr, range);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = range.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(range);
     }
   }
 }

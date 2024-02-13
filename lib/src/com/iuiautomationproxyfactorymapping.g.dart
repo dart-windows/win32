@@ -39,18 +39,16 @@ class IUIAutomationProxyFactoryMapping extends IUnknown {
           interface.toInterface(IID_IUIAutomationProxyFactoryMapping));
 
   int get count {
-    final retValuePtr = calloc<Uint32>();
-
+    final count = calloc<Uint32>();
     try {
       final hr = _vtable.get_Count.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Uint32> count)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Uint32> count)>()(ptr, count);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = count.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(count);
     }
   }
 

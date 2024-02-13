@@ -32,47 +32,43 @@ class ISpeechAudioFormat extends IDispatch {
       ISpeechAudioFormat(interface.toInterface(IID_ISpeechAudioFormat));
 
   int get type {
-    final retValuePtr = calloc<Int32>();
-
+    final audioFormat = calloc<Int32>();
     try {
       final hr = _vtable.get_Type.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> audioFormat)>()(
-          ptr, retValuePtr);
+          ptr, audioFormat);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = audioFormat.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(audioFormat);
     }
   }
 
-  set type(int value) {
+  set type(int audioFormat) {
     final hr = _vtable.put_Type
             .asFunction<int Function(VTablePointer lpVtbl, int audioFormat)>()(
-        ptr, value);
+        ptr, audioFormat);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Pointer<Utf16> get guid {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final guid = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Guid.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> guid)>()(ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> guid)>()(ptr, guid);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = guid.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(guid);
     }
   }
 
-  set guid(Pointer<Utf16> value) {
+  set guid(Pointer<Utf16> guid) {
     final hr = _vtable.put_Guid.asFunction<
-        int Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>()(ptr, value);
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>()(ptr, guid);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 

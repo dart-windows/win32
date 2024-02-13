@@ -34,18 +34,16 @@ class IUIAutomationElementArray extends IUnknown {
           interface.toInterface(IID_IUIAutomationElementArray));
 
   int get length {
-    final retValuePtr = calloc<Int32>();
-
+    final length = calloc<Int32>();
     try {
       final hr = _vtable.get_Length.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, length);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = length.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(length);
     }
   }
 

@@ -36,18 +36,16 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
           interface.toInterface(IID_IUIAutomationBoolCondition));
 
   int get booleanValue {
-    final retValuePtr = calloc<Int32>();
-
+    final boolVal = calloc<Int32>();
     try {
       final hr = _vtable.get_BooleanValue.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> boolVal)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> boolVal)>()(ptr, boolVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = boolVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(boolVal);
     }
   }
 }

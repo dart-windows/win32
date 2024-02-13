@@ -37,18 +37,16 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationSpreadsheetItemPattern));
 
   Pointer<Utf16> get currentFormula {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentFormula.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
@@ -63,18 +61,16 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
   Pointer<Utf16> get cachedFormula {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedFormula.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 

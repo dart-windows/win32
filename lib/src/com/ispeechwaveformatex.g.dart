@@ -33,137 +33,128 @@ class ISpeechWaveFormatEx extends IDispatch {
       ISpeechWaveFormatEx(interface.toInterface(IID_ISpeechWaveFormatEx));
 
   int get formatTag {
-    final retValuePtr = calloc<Int16>();
-
+    final formatTag = calloc<Int16>();
     try {
       final hr = _vtable.get_FormatTag.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int16> formatTag)>()(
-          ptr, retValuePtr);
+          ptr, formatTag);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = formatTag.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(formatTag);
     }
   }
 
-  set formatTag(int value) {
+  set formatTag(int formatTag) {
     final hr = _vtable.put_FormatTag
             .asFunction<int Function(VTablePointer lpVtbl, int formatTag)>()(
-        ptr, value);
+        ptr, formatTag);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get channels {
-    final retValuePtr = calloc<Int16>();
-
+    final channels = calloc<Int16>();
     try {
       final hr = _vtable.get_Channels.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int16> channels)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int16> channels)>()(ptr, channels);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = channels.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(channels);
     }
   }
 
-  set channels(int value) {
+  set channels(int channels) {
     final hr = _vtable.put_Channels
             .asFunction<int Function(VTablePointer lpVtbl, int channels)>()(
-        ptr, value);
+        ptr, channels);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get samplesPerSec {
-    final retValuePtr = calloc<Int32>();
-
+    final samplesPerSec = calloc<Int32>();
     try {
       final hr = _vtable.get_SamplesPerSec.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> samplesPerSec)>()(ptr, retValuePtr);
+              Pointer<Int32> samplesPerSec)>()(ptr, samplesPerSec);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = samplesPerSec.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(samplesPerSec);
     }
   }
 
-  set samplesPerSec(int value) {
+  set samplesPerSec(int samplesPerSec) {
     final hr = _vtable.put_SamplesPerSec.asFunction<
-        int Function(VTablePointer lpVtbl, int samplesPerSec)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, int samplesPerSec)>()(ptr, samplesPerSec);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get avgBytesPerSec {
-    final retValuePtr = calloc<Int32>();
-
+    final avgBytesPerSec = calloc<Int32>();
     try {
       final hr = _vtable.get_AvgBytesPerSec.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> avgBytesPerSec)>()(ptr, retValuePtr);
+              Pointer<Int32> avgBytesPerSec)>()(ptr, avgBytesPerSec);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = avgBytesPerSec.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(avgBytesPerSec);
     }
   }
 
-  set avgBytesPerSec(int value) {
+  set avgBytesPerSec(int avgBytesPerSec) {
     final hr = _vtable.put_AvgBytesPerSec.asFunction<
-        int Function(VTablePointer lpVtbl, int avgBytesPerSec)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, int avgBytesPerSec)>()(ptr, avgBytesPerSec);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get blockAlign {
-    final retValuePtr = calloc<Int16>();
-
+    final blockAlign = calloc<Int16>();
     try {
       final hr = _vtable.get_BlockAlign.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int16> blockAlign)>()(
-          ptr, retValuePtr);
+          ptr, blockAlign);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = blockAlign.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(blockAlign);
     }
   }
 
-  set blockAlign(int value) {
+  set blockAlign(int blockAlign) {
     final hr = _vtable.put_BlockAlign
             .asFunction<int Function(VTablePointer lpVtbl, int blockAlign)>()(
-        ptr, value);
+        ptr, blockAlign);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get bitsPerSample {
-    final retValuePtr = calloc<Int16>();
-
+    final bitsPerSample = calloc<Int16>();
     try {
       final hr = _vtable.get_BitsPerSample.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> bitsPerSample)>()(ptr, retValuePtr);
+              Pointer<Int16> bitsPerSample)>()(ptr, bitsPerSample);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = bitsPerSample.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(bitsPerSample);
     }
   }
 
-  set bitsPerSample(int value) {
+  set bitsPerSample(int bitsPerSample) {
     final hr = _vtable.put_BitsPerSample.asFunction<
-        int Function(VTablePointer lpVtbl, int bitsPerSample)>()(ptr, value);
+        int Function(
+            VTablePointer lpVtbl, int bitsPerSample)>()(ptr, bitsPerSample);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 

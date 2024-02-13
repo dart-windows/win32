@@ -33,135 +33,122 @@ class IShellLinkDual extends IDispatch {
       IShellLinkDual(interface.toInterface(IID_IShellLinkDual));
 
   Pointer<Utf16> get path {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final pbs = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Path.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbs)>()(ptr, pbs);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = pbs.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(pbs);
     }
   }
 
-  set path(Pointer<Utf16> value) {
+  set path(Pointer<Utf16> bs) {
     final hr = _vtable.put_Path.asFunction<
-        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, value);
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, bs);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Pointer<Utf16> get description {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final pbs = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Description.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbs)>()(ptr, pbs);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = pbs.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(pbs);
     }
   }
 
-  set description(Pointer<Utf16> value) {
+  set description(Pointer<Utf16> bs) {
     final hr = _vtable.put_Description.asFunction<
-        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, value);
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, bs);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Pointer<Utf16> get workingDirectory {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final pbs = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_WorkingDirectory.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbs)>()(ptr, pbs);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = pbs.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(pbs);
     }
   }
 
-  set workingDirectory(Pointer<Utf16> value) {
+  set workingDirectory(Pointer<Utf16> bs) {
     final hr = _vtable.put_WorkingDirectory.asFunction<
-        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, value);
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, bs);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Pointer<Utf16> get arguments {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final pbs = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Arguments.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pbs)>()(ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbs)>()(ptr, pbs);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = pbs.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(pbs);
     }
   }
 
-  set arguments(Pointer<Utf16> value) {
+  set arguments(Pointer<Utf16> bs) {
     final hr = _vtable.put_Arguments.asFunction<
-        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, value);
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)>()(ptr, bs);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get hotkey {
-    final retValuePtr = calloc<Int32>();
-
+    final piHK = calloc<Int32>();
     try {
       final hr = _vtable.get_Hotkey.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<Int32> piHK)>()(ptr, retValuePtr);
+          int Function(VTablePointer lpVtbl, Pointer<Int32> piHK)>()(ptr, piHK);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = piHK.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(piHK);
     }
   }
 
-  set hotkey(int value) {
+  set hotkey(int iHK) {
     final hr = _vtable.put_Hotkey
-        .asFunction<int Function(VTablePointer lpVtbl, int iHK)>()(ptr, value);
+        .asFunction<int Function(VTablePointer lpVtbl, int iHK)>()(ptr, iHK);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int get showCommand {
-    final retValuePtr = calloc<Int32>();
-
+    final piShowCommand = calloc<Int32>();
     try {
       final hr = _vtable.get_ShowCommand.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> piShowCommand)>()(ptr, retValuePtr);
+              Pointer<Int32> piShowCommand)>()(ptr, piShowCommand);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = piShowCommand.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(piShowCommand);
     }
   }
 
-  set showCommand(int value) {
+  set showCommand(int iShowCommand) {
     final hr = _vtable.put_ShowCommand
             .asFunction<int Function(VTablePointer lpVtbl, int iShowCommand)>()(
-        ptr, value);
+        ptr, iShowCommand);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 

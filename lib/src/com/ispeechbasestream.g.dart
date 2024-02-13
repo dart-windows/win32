@@ -36,18 +36,16 @@ class ISpeechBaseStream extends IDispatch {
       ISpeechBaseStream(interface.toInterface(IID_ISpeechBaseStream));
 
   VTablePointer get format {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final audioFormat = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_Format.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> audioFormat)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> audioFormat)>()(ptr, audioFormat);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = audioFormat.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(audioFormat);
     }
   }
 

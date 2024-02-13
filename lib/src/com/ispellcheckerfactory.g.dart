@@ -34,18 +34,16 @@ class ISpellCheckerFactory extends IUnknown {
       ISpellCheckerFactory(interface.toInterface(IID_ISpellCheckerFactory));
 
   VTablePointer get supportedLanguages {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final value = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_SupportedLanguages.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> value)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

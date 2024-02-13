@@ -41,34 +41,30 @@ class INetworkConnection extends IDispatch {
               Pointer<VTablePointer> ppNetwork)>()(ptr, ppNetwork);
 
   int get isConnectedToInternet {
-    final retValuePtr = calloc<Int16>();
-
+    final pbIsConnected = calloc<Int16>();
     try {
       final hr = _vtable.get_IsConnectedToInternet.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, retValuePtr);
+              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = pbIsConnected.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(pbIsConnected);
     }
   }
 
   int get isConnected {
-    final retValuePtr = calloc<Int16>();
-
+    final pbIsConnected = calloc<Int16>();
     try {
       final hr = _vtable.get_IsConnected.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, retValuePtr);
+              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = pbIsConnected.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(pbIsConnected);
     }
   }
 

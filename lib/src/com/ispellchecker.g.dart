@@ -34,18 +34,16 @@ class ISpellChecker extends IUnknown {
       ISpellChecker(interface.toInterface(IID_ISpellChecker));
 
   Pointer<Utf16> get languageTag {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final value = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_LanguageTag.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> value)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -76,50 +74,44 @@ class ISpellChecker extends IUnknown {
               Pointer<Uint8> value)>()(ptr, optionId, value);
 
   VTablePointer get optionIds {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final value = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_OptionIds.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> value)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Pointer<Utf16> get id {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final value = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Id.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> value)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Pointer<Utf16> get localizedName {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final value = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_LocalizedName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> value)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = value.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

@@ -38,66 +38,58 @@ class IUIAutomationDropTargetPattern extends IUnknown {
           interface.toInterface(IID_IUIAutomationDropTargetPattern));
 
   Pointer<Utf16> get currentDropTargetEffect {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentDropTargetEffect.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   Pointer<Utf16> get cachedDropTargetEffect {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedDropTargetEffect.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   Pointer<SAFEARRAY> get currentDropTargetEffects {
-    final retValuePtr = calloc<Pointer<SAFEARRAY>>();
-
+    final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
       final hr = _vtable.get_CurrentDropTargetEffects.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 
   Pointer<SAFEARRAY> get cachedDropTargetEffects {
-    final retValuePtr = calloc<Pointer<SAFEARRAY>>();
-
+    final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
       final hr = _vtable.get_CachedDropTargetEffects.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retValuePtr);
+              Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = retVal.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(retVal);
     }
   }
 }

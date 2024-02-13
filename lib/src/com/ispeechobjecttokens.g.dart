@@ -35,18 +35,16 @@ class ISpeechObjectTokens extends IDispatch {
       ISpeechObjectTokens(interface.toInterface(IID_ISpeechObjectTokens));
 
   int get count {
-    final retValuePtr = calloc<Int32>();
-
+    final count = calloc<Int32>();
     try {
       final hr = _vtable.get_Count.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> count)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> count)>()(ptr, count);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = count.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(count);
     }
   }
 
@@ -55,18 +53,16 @@ class ISpeechObjectTokens extends IDispatch {
           Pointer<VTablePointer> token)>()(ptr, index, token);
 
   VTablePointer get newEnum {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final ppEnumVARIANT = calloc<VTablePointer>();
     try {
       final hr = _vtable.get__NewEnum.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> ppEnumVARIANT)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> ppEnumVARIANT)>()(ptr, ppEnumVARIANT);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = ppEnumVARIANT.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(ppEnumVARIANT);
     }
   }
 }

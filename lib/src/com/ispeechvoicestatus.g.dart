@@ -35,194 +35,170 @@ class ISpeechVoiceStatus extends IDispatch {
       ISpeechVoiceStatus(interface.toInterface(IID_ISpeechVoiceStatus));
 
   int get currentStreamNumber {
-    final retValuePtr = calloc<Int32>();
-
+    final streamNumber = calloc<Int32>();
     try {
       final hr = _vtable.get_CurrentStreamNumber.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> streamNumber)>()(ptr, retValuePtr);
+              Pointer<Int32> streamNumber)>()(ptr, streamNumber);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = streamNumber.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(streamNumber);
     }
   }
 
   int get lastStreamNumberQueued {
-    final retValuePtr = calloc<Int32>();
-
+    final streamNumber = calloc<Int32>();
     try {
       final hr = _vtable.get_LastStreamNumberQueued.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int32> streamNumber)>()(ptr, retValuePtr);
+              Pointer<Int32> streamNumber)>()(ptr, streamNumber);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = streamNumber.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(streamNumber);
     }
   }
 
   int get lastHResult {
-    final retValuePtr = calloc<Int32>();
-
+    final hResult = calloc<Int32>();
     try {
       final hr = _vtable.get_LastHResult.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> hResult)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> hResult)>()(ptr, hResult);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = hResult.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(hResult);
     }
   }
 
   int get runningState {
-    final retValuePtr = calloc<Int32>();
-
+    final state = calloc<Int32>();
     try {
       final hr = _vtable.get_RunningState.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> state)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> state)>()(ptr, state);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = state.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(state);
     }
   }
 
   int get inputWordPosition {
-    final retValuePtr = calloc<Int32>();
-
+    final position = calloc<Int32>();
     try {
       final hr = _vtable.get_InputWordPosition.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> position)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> position)>()(ptr, position);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = position.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(position);
     }
   }
 
   int get inputWordLength {
-    final retValuePtr = calloc<Int32>();
-
+    final length = calloc<Int32>();
     try {
       final hr = _vtable.get_InputWordLength.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, length);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = length.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(length);
     }
   }
 
   int get inputSentencePosition {
-    final retValuePtr = calloc<Int32>();
-
+    final position = calloc<Int32>();
     try {
       final hr = _vtable.get_InputSentencePosition.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> position)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int32> position)>()(ptr, position);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = position.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(position);
     }
   }
 
   int get inputSentenceLength {
-    final retValuePtr = calloc<Int32>();
-
+    final length = calloc<Int32>();
     try {
       final hr = _vtable.get_InputSentenceLength.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, retValuePtr);
+              VTablePointer lpVtbl, Pointer<Int32> length)>()(ptr, length);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = length.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(length);
     }
   }
 
   Pointer<Utf16> get lastBookmark {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final bookmark = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_LastBookmark.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> bookmark)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> bookmark)>()(ptr, bookmark);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = bookmark.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(bookmark);
     }
   }
 
   int get lastBookmarkId {
-    final retValuePtr = calloc<Int32>();
-
+    final bookmarkId = calloc<Int32>();
     try {
       final hr = _vtable.get_LastBookmarkId.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> bookmarkId)>()(
-          ptr, retValuePtr);
+          ptr, bookmarkId);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = bookmarkId.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(bookmarkId);
     }
   }
 
   int get phonemeId {
-    final retValuePtr = calloc<Int16>();
-
+    final phoneId = calloc<Int16>();
     try {
       final hr = _vtable.get_PhonemeId.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int16> phoneId)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int16> phoneId)>()(ptr, phoneId);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = phoneId.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(phoneId);
     }
   }
 
   int get visemeId {
-    final retValuePtr = calloc<Int16>();
-
+    final visemeId = calloc<Int16>();
     try {
       final hr = _vtable.get_VisemeId.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int16> visemeId)>()(
-          ptr, retValuePtr);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Int16> visemeId)>()(ptr, visemeId);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = visemeId.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(visemeId);
     }
   }
 }

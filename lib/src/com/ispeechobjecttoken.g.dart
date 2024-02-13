@@ -33,50 +33,44 @@ class ISpeechObjectToken extends IDispatch {
       ISpeechObjectToken(interface.toInterface(IID_ISpeechObjectToken));
 
   Pointer<Utf16> get id {
-    final retValuePtr = calloc<Pointer<Utf16>>();
-
+    final objectId = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Id.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> objectId)>()(ptr, retValuePtr);
+              Pointer<Pointer<Utf16>> objectId)>()(ptr, objectId);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = objectId.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(objectId);
     }
   }
 
   VTablePointer get dataKey {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final dataKey = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_DataKey.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> dataKey)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> dataKey)>()(ptr, dataKey);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = dataKey.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(dataKey);
     }
   }
 
   VTablePointer get category {
-    final retValuePtr = calloc<VTablePointer>();
-
+    final category = calloc<VTablePointer>();
     try {
       final hr = _vtable.get_Category.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<VTablePointer> category)>()(ptr, retValuePtr);
+              Pointer<VTablePointer> category)>()(ptr, category);
       if (FAILED(hr)) throw WindowsException(hr);
-
-      final retValue = retValuePtr.value;
+      final retValue = category.value;
       return retValue;
     } finally {
-      free(retValuePtr);
+      free(category);
     }
   }
 
