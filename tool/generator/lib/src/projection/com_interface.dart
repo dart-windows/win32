@@ -212,9 +212,12 @@ factory $shortName.from(IUnknown interface) =>
         '/// {@category $category}',
       ].join('\n');
 
-  /// The `extends` clause of the generated class.
-  String get extendsClause =>
-      inheritsFrom.isEmpty ? '' : 'extends $inheritsFrom';
+  /// The class header of the generated class.
+  String get classHeader {
+    final extendsClause =
+        inheritsFrom.isNotEmpty ? ' extends $inheritsFrom' : '';
+    return 'class $shortName$extendsClause';
+  }
 
   /// Whether the interface has methods.
   bool get hasMethods => typeDef.methods.isNotEmpty;
@@ -271,7 +274,7 @@ $importHeader
 $interfaceGuidConstant
 
 $classPreamble
-class $shortName $extendsClause {
+$classHeader {
   $constructor
 
   $ptrField
