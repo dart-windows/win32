@@ -5,6 +5,7 @@
 @TestOn('windows')
 
 import 'package:generator/generator.dart';
+import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
@@ -245,9 +246,10 @@ void main() {
   tearDownAll(MetadataStore.close);
 }
 
+@isTest
 void testFunction(String parent, String functionName,
     void Function(FunctionProjection) projection) {
-  test("$parent.$functionName function", () {
+  test('$parent.$functionName function', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,

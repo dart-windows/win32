@@ -5,6 +5,7 @@
 @TestOn('windows')
 
 import 'package:generator/generator.dart';
+import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
@@ -174,6 +175,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
   tearDownAll(MetadataStore.close);
 }
 
+@isTest
 void testStruct(String structName, void Function(StructProjection) projection) {
   test(structName, () {
     final typeDef = MetadataStore.getMetadataForType(structName);

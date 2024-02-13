@@ -28,3 +28,6 @@ dependencies:
 
   # Win32 itself.
   win32: ^5.2.0
+
+dev_dependencies:
+  meta: ^1.12.0

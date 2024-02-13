@@ -5,6 +5,7 @@
 @TestOn('windows')
 
 import 'package:generator/generator.dart';
+import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
@@ -407,6 +408,7 @@ void main() {
   tearDownAll(MetadataStore.close);
 }
 
+@isTest
 void testMethodParameterType(
   String parent,
   String methodName,
@@ -438,6 +440,7 @@ void testMethodParameterType(
   });
 }
 
+@isTest
 void testMethodReturnType(
   String parent,
   String methodName,
@@ -460,6 +463,7 @@ void testMethodReturnType(
   });
 }
 
+@isTest
 void testStructFieldType(
   String struct,
   String fieldName,

@@ -5,6 +5,7 @@
 @TestOn('windows')
 
 import 'package:generator/generator.dart';
+import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
@@ -153,9 +154,10 @@ void main() {
   tearDownAll(MetadataStore.close);
 }
 
+@isTest
 void testMethod(String parent, String methodName,
     void Function(ComMethodProjection) projection) {
-  test("$parent.$methodName method", () {
+  test('$parent.$methodName method', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,

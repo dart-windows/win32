@@ -8,6 +8,7 @@ import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
 import 'package:generator/generator.dart';
+import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
@@ -18,15 +19,18 @@ void main() {
   });
 
   group('Golden testing', () {
-    testComInterfaceGolden('Windows.Win32.UI.Shell.IFileOpenDialog');
     testComInterfaceGolden(
         'Windows.Win32.Networking.NetworkListManager.INetwork');
 
-    testFunctionGolden(
-        'Windows.Win32.Graphics.Gdi.Apis', 'EnumDisplayMonitors');
+    testComInterfaceGolden('Windows.Win32.UI.Shell.IFileOpenDialog');
+
     testFunctionGolden('Windows.Wdk.Foundation.Apis', 'NtQueryObject');
 
+    testFunctionGolden(
+        'Windows.Win32.Graphics.Gdi.Apis', 'EnumDisplayMonitors');
+
     testStructGolden('Windows.Win32.Graphics.Gdi.DEVMODEW');
+
     testStructGolden('Windows.Win32.System.Variant.VARIANT');
   });
 
@@ -53,6 +57,7 @@ void compareGolden(String fullyQualifiedType, String fileName, String content) {
   expect(content, equals(golden.convertLineEndingsToLF()));
 }
 
+@isTest
 void testComInterfaceGolden(String interfaceName) {
   test(interfaceName, () {
     final typeDef = MetadataStore.getMetadataForType(interfaceName);
@@ -73,6 +78,7 @@ void testComInterfaceGolden(String interfaceName) {
   });
 }
 
+@isTest
 void testFunctionGolden(String parent, String functionName) {
   test('function $parent.$functionName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
@@ -97,6 +103,7 @@ void testFunctionGolden(String parent, String functionName) {
   });
 }
 
+@isTest
 void testStructGolden(String type) {
   test('struct $type', () {
     final typeDef = MetadataStore.getMetadataForType(type);
