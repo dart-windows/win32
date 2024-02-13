@@ -1,0 +1,173 @@
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+@TestOn('windows')
+
+import 'package:generator/generator.dart';
+import 'package:test/test.dart';
+import 'package:winmd/winmd.dart';
+
+void main() {
+  setUpAll(() async {
+    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
+    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+  });
+
+  group('ComMethodProjection', () {
+    testMethod('Windows.Win32.Media.Speech.ISpVoice', 'Speak', (projection) {
+      final ComMethodProjection(
+        :name,
+        :camelCasedName,
+        :nativePrototype,
+        :dartPrototype,
+        :methodArguments
+      ) = projection;
+      expect(name, equals('Speak'));
+      expect(camelCasedName, equals('speak'));
+      expect(
+        nativePrototype,
+        equals(
+          'Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pwcs, '
+          'Uint32 dwFlags, Pointer<Uint32> pulStreamNumber)',
+        ),
+      );
+      expect(
+        dartPrototype,
+        equals(
+          'int Function(VTablePointer lpVtbl, Pointer<Utf16> pwcs, '
+          'int dwFlags, Pointer<Uint32> pulStreamNumber)',
+        ),
+      );
+      expect(
+        methodArguments,
+        equals('ptr, pwcs ?? nullptr, dwFlags, pulStreamNumber ?? nullptr'),
+      );
+      expect(projection.returnType, equals('int'));
+      expect(
+        projection.header,
+        equals(
+          'int $camelCasedName(Pointer<Utf16>? pwcs, int dwFlags, '
+          'Pointer<Uint32>? pulStreamNumber)',
+        ),
+      );
+      expect(
+        projection.methodBody,
+        equals(
+          '_vtable.$name.asFunction<$dartPrototype>()($methodArguments);',
+        ),
+      );
+    });
+
+    testMethod('Windows.Win32.UI.Shell.IModalWindow', 'Show', (projection) {
+      final ComMethodProjection(
+        :name,
+        :camelCasedName,
+        :nativePrototype,
+        :dartPrototype,
+        :methodArguments
+      ) = projection;
+      expect(name, equals('Show'));
+      expect(camelCasedName, equals('show'));
+      expect(
+        nativePrototype,
+        equals(
+          'Int32 Function(VTablePointer lpVtbl, IntPtr hwndOwner)',
+        ),
+      );
+      expect(
+        dartPrototype,
+        equals(
+          'int Function(VTablePointer lpVtbl, int hwndOwner)',
+        ),
+      );
+      expect(
+        methodArguments,
+        equals('ptr, hwndOwner ?? 0'),
+      );
+      expect(projection.returnType, equals('int'));
+      expect(
+        projection.header,
+        equals(
+          'int $camelCasedName(int? hwndOwner)',
+        ),
+      );
+      expect(
+        projection.methodBody,
+        equals(
+          '_vtable.$name.asFunction<$dartPrototype>()($methodArguments);',
+        ),
+      );
+    });
+
+    testMethod('Windows.Win32.UI.Shell.IShellFolder', 'ParseDisplayName',
+        (projection) {
+      final ComMethodProjection(
+        :name,
+        :camelCasedName,
+        :nativePrototype,
+        :dartPrototype,
+        :methodArguments
+      ) = projection;
+      expect(name, equals('ParseDisplayName'));
+      expect(camelCasedName, equals('parseDisplayName'));
+      expect(
+        nativePrototype,
+        equals(
+          'Int32 Function(VTablePointer lpVtbl, IntPtr hwnd, '
+          'VTablePointer pbc, Pointer<Utf16> pszDisplayName, '
+          'Pointer<Uint32> pchEaten, Pointer<Pointer<ITEMIDLIST>> ppidl, '
+          'Pointer<Uint32> pdwAttributes)',
+        ),
+      );
+      expect(
+        dartPrototype,
+        equals(
+          'int Function(VTablePointer lpVtbl, int hwnd, VTablePointer pbc, '
+          'Pointer<Utf16> pszDisplayName, Pointer<Uint32> pchEaten, '
+          'Pointer<Pointer<ITEMIDLIST>> ppidl, Pointer<Uint32> pdwAttributes)',
+        ),
+      );
+      expect(
+        methodArguments,
+        equals('ptr, hwnd, pbc, pszDisplayName, nullptr, ppidl, pdwAttributes'),
+      );
+      expect(projection.returnType, equals('int'));
+      expect(
+        projection.header,
+        equals(
+          'int $camelCasedName(int hwnd, VTablePointer pbc, '
+          'Pointer<Utf16> pszDisplayName, Pointer<Pointer<ITEMIDLIST>> ppidl, '
+          'Pointer<Uint32> pdwAttributes)',
+        ),
+      );
+      expect(
+        projection.methodBody,
+        equals(
+          '_vtable.$name.asFunction<$dartPrototype>()($methodArguments);',
+        ),
+      );
+    });
+  });
+
+  tearDownAll(MetadataStore.close);
+}
+
+void testMethod(String parent, String methodName,
+    void Function(ComMethodProjection) projection) {
+  test("$parent.$methodName method", () {
+    final typeDef = MetadataStore.getMetadataForType(parent);
+    expect(
+      typeDef,
+      isNotNull,
+      reason: '`$parent` type is not found in the metadata.',
+    );
+    final method = typeDef!.findMethod(methodName);
+    expect(
+      method,
+      isNotNull,
+      reason: '`$methodName` method is not found in `$parent`.',
+    );
+    projection(ComMethodProjection(method!));
+  });
+}
