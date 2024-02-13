@@ -16,73 +16,72 @@ void main() {
 
   group('FieldProjection', () {
     testField('Windows.Wdk.Foundation.DEVICE_OBJECT', 'Queue', (projection) {
-      expect(projection.type, equals('DEVICE_OBJECT_0'));
-      expect(
-        projection.toString(),
-        equals('external DEVICE_OBJECT_0 Queue;'),
-      );
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('DEVICE_OBJECT_0'));
+      expect(toString(), equals('external $type Queue;'));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_OOB_DATA_INFO', 'C',
         (projection) {
-      expect(projection.type, equals('Array<Uint8>'));
-      expect(
-        projection.toString(),
-        equals('@Array(16)\nexternal Array<Uint8> C;'),
-      );
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Array<Uint8>'));
+      expect(toString(), equals('@Array(16)\nexternal $type C;'));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS', 'Anonymous',
         (projection) {
-      expect(projection.type, equals('BLUETOOTH_ADDRESS_0'));
-      expect(projection.toString(),
-          equals('external BLUETOOTH_ADDRESS_0 Anonymous;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('BLUETOOTH_ADDRESS_0'));
+      expect(toString(), equals('external $type Anonymous;'));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_DEVICE_SEARCH_PARAMS',
         'hRadio', (projection) {
-      expect(projection.type, equals('int'));
-      expect(projection.toString(), equals('@IntPtr()\nexternal int hRadio;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('int'));
+      expect(toString(), equals('@IntPtr()\nexternal $type hRadio;'));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_SELECT_DEVICE_PARAMS',
         'pszInfo', (projection) {
-      expect(projection.type, equals('Pointer<Utf16>'));
-      expect(projection.toString(), equals('external Pointer<Utf16> pszInfo;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<Utf16>'));
+      expect(toString(), equals('external $type pszInfo;'));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE', 'uuids',
         (projection) {
-      expect(projection.type, equals('Array<SdpQueryUuid>'));
-      expect(
-        projection.toString(),
-        equals('@Array(12)\nexternal Array<SdpQueryUuid> uuids;'),
-      );
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Array<SdpQueryUuid>'));
+      expect(toString(), equals('@Array(12)\nexternal $type uuids;'));
     });
 
     testField('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND', 'fEnable',
         (projection) {
-      expect(projection.type, equals('int'));
-      expect(projection.toString(), equals('@Int32()\nexternal int fEnable;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('int'));
+      expect(toString(), equals('@Int32()\nexternal $type fEnable;'));
     });
 
     testField('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER', 'bfReserved1',
         (projection) {
-      expect(projection.type, equals('int'));
-      expect(projection.toString(), equalsIgnoringWhitespace('''
-    @Uint16()
-    // ignore: unused_field
-    external int _bfReserved1;'''));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('int'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  @Uint16()
+  // ignore: unused_field
+  external $type _bfReserved1;'''));
     });
 
     testField('Windows.Win32.Graphics.Gdi.DEVMODEW', 'dmDeviceName',
         (projection) {
-      expect(projection.type, equals('Array<Uint16>'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Array<Uint16>'));
       expect(
-        projection.toString(),
+        toString(),
         equalsIgnoringWhitespace('''
   @Array(32)
-  external Array<Uint16> _dmDeviceName;
+  external $type _dmDeviceName;
 
   String get dmDeviceName {
     final charCodes = <int>[];
@@ -104,86 +103,93 @@ void main() {
 
     testField('Windows.Win32.Media.Audio.AudioClientProperties', 'Options',
         (projection) {
-      expect(projection.type, equals('int'));
-      expect(projection.toString(), equals('@Int32()\nexternal int Options;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('int'));
+      expect(toString(), equals('@Int32()\nexternal $type Options;'));
     });
 
     testField('Windows.Win32.Media.Multimedia.YAMAHA_ADPCMWAVEFORMAT', 'wfx',
         (projection) {
-      expect(projection.type, equals('WAVEFORMATEX'));
-      expect(projection.toString(), equals('external WAVEFORMATEX wfx;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('WAVEFORMATEX'));
+      expect(toString(), equals('external $type wfx;'));
     });
 
     testField('Windows.Win32.Security.Cryptography.CERT_EXTENSION', 'pszObjId',
         (projection) {
-      expect(projection.type, equals('Pointer<Utf8>'));
-      expect(projection.toString(), equals('external Pointer<Utf8> pszObjId;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<Utf8>'));
+      expect(toString(), equals('external $type pszObjId;'));
     });
 
     testField('Windows.Win32.System.Com.StructuredStorage.CALPSTR', 'pElems',
         (projection) {
-      expect(projection.type, equals('Pointer<Pointer<Utf8>>'));
-      expect(projection.toString(),
-          equals('external Pointer<Pointer<Utf8>> pElems;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<Pointer<Utf8>>'));
+      expect(toString(), equals('external $type pElems;'));
     });
 
     testField('Windows.Win32.System.Com.StructuredStorage.CALPWSTR', 'pElems',
         (projection) {
-      expect(projection.type, equals('Pointer<Pointer<Utf16>>'));
-      expect(projection.toString(),
-          equals('external Pointer<Pointer<Utf16>> pElems;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<Pointer<Utf16>>'));
+      expect(toString(), equals('external $type pElems;'));
     });
 
     testField(
         'Windows.Win32.System.Com.StructuredStorage.VERSIONEDSTREAM', 'pStream',
         (projection) {
-      expect(projection.type, equals('VTablePointer'));
-      expect(projection.toString(), equals('external VTablePointer pStream;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('VTablePointer'));
+      expect(toString(), equals('external $type pStream;'));
     });
 
     testField('Windows.Win32.System.Iis.CONFIGURATION_ENTRY', 'bstrKey',
         (projection) {
-      expect(projection.type, equals('Pointer<Utf16>'));
-      expect(projection.toString(), equals('external Pointer<Utf16> bstrKey;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<Utf16>'));
+      expect(toString(), equals('external $type bstrKey;'));
     });
 
     testField('Windows.Win32.System.Ole.ARRAYDESC', 'rgbounds', (projection) {
-      expect(projection.type, equals('Array<SAFEARRAYBOUND>'));
-      expect(projection.toString(),
-          equals('@Array(1)\nexternal Array<SAFEARRAYBOUND> rgbounds;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Array<SAFEARRAYBOUND>'));
+      expect(toString(), equals('@Array(1)\nexternal $type rgbounds;'));
     });
 
     testField('Windows.Win32.System.Search.RMTPACK', 'rgBSTR', (projection) {
-      expect(projection.type, equals('Pointer<Pointer<Utf16>>'));
-      expect(projection.toString(),
-          equals('external Pointer<Pointer<Utf16>> rgBSTR;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<Pointer<Utf16>>'));
+      expect(toString(), equals('external $type rgBSTR;'));
     });
 
     testField('Windows.Win32.UI.Controls.Dialogs.CHOOSECOLORW', 'Flags',
         (projection) {
-      expect(projection.type, equals('int'));
-      expect(projection.toString(), equals('@Uint32()\nexternal int Flags;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('int'));
+      expect(toString(), equals('@Uint32()\nexternal $type Flags;'));
     });
 
     testField('Windows.Win32.UI.Shell.KNOWNFOLDER_DEFINITION', 'fidParent',
         (projection) {
-      expect(projection.type, equals('GUID'));
-      expect(projection.toString(), equals('external GUID fidParent;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('GUID'));
+      expect(toString(), equals('external $type fidParent;'));
     });
 
     testField(
         'Windows.Win32.UI.WindowsAndMessaging.MENUITEMTEMPLATE', 'mtString',
         (projection) {
-      expect(projection.type, equals('Array<Uint16>'));
-      expect(projection.toString(),
-          equals('@Array(1)\nexternal Array<Uint16> mtString;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Array<Uint16>'));
+      expect(toString(), equals('@Array(1)\nexternal $type mtString;'));
     });
 
     testField('Windows.Win32.UI.WindowsAndMessaging.WNDCLASSW', 'lpfnWndProc',
         (projection) {
-      expect(projection.type, equals('Pointer<NativeFunction<WNDPROC>>'));
-      expect(projection.toString(),
-          equals('external Pointer<NativeFunction<WNDPROC>> lpfnWndProc;'));
+      final FieldProjection(:type, :toString) = projection;
+      expect(type, equals('Pointer<NativeFunction<WNDPROC>>'));
+      expect(toString(), equals('external $type lpfnWndProc;'));
     });
   });
 

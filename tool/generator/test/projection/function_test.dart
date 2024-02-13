@@ -16,6 +16,7 @@ void main() {
 
   group('FunctionProjection', () {
     testFunction('Windows.Wdk.Foundation.Apis', 'NtQueryObject', (projection) {
+      expect(projection.name, equals('NtQueryObject'));
       expect(projection.lib, equals('ntdll'));
       final FunctionProjection(
         :nativePrototype,
@@ -69,6 +70,7 @@ void main() {
     });
 
     testFunction('Windows.Win32.Media.Audio.Apis', 'midiConnect', (projection) {
+      expect(projection.name, equals('midiConnect'));
       expect(projection.lib, equals('winmm'));
       final FunctionProjection(
         :nativePrototype,
@@ -104,6 +106,7 @@ void main() {
 
     testFunction('Windows.Win32.System.Com.Apis', 'CoCreateInstanceEx',
         (projection) {
+      expect(projection.name, equals('CoCreateInstanceEx'));
       expect(projection.lib, equals('ole32'));
       final FunctionProjection(
         :nativePrototype,
@@ -159,6 +162,7 @@ void main() {
 
     testFunction('Windows.Win32.System.Com.Apis', 'CoInitializeEx',
         (projection) {
+      expect(projection.name, equals('CoInitializeEx'));
       expect(projection.lib, equals('ole32'));
       final FunctionProjection(
         :nativePrototype,
@@ -191,6 +195,7 @@ void main() {
 
     testFunction('Windows.Win32.System.WinRT.Apis', 'WindowsConcatString',
         (projection) {
+      expect(projection.name, equals('WindowsConcatString'));
       expect(projection.lib, equals('api_ms_win_core_winrt_string_l1_1_0'));
       final FunctionProjection(
         :nativePrototype,

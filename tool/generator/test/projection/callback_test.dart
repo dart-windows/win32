@@ -16,81 +16,61 @@ void main() {
 
   group('CallbackProjection', () {
     testCallback('Windows.Wdk.Foundation.DRIVER_ADD_DEVICE', (projection) {
-      expect(projection.name, equals('DRIVER_ADD_DEVICE'));
+      final CallbackProjection(:name, :type, :toString) = projection;
+      expect(name, equals('DRIVER_ADD_DEVICE'));
       expect(
-        projection.type,
+        type,
         equals(
           'Int32 Function(Pointer<DRIVER_OBJECT> driverObject, '
           'Pointer<DEVICE_OBJECT> physicalDeviceObject)',
         ),
       );
-      expect(
-        projection.toString(),
-        equals(
-          'typedef DRIVER_ADD_DEVICE = Int32 Function('
-          'Pointer<DRIVER_OBJECT> driverObject, '
-          'Pointer<DEVICE_OBJECT> physicalDeviceObject);',
-        ),
-      );
+      expect(toString(), equals('typedef $name = $type;'));
     });
 
     testCallback('Windows.Win32.Foundation.PROC', (projection) {
-      expect(projection.name, equals('PROC'));
-      expect(projection.type, equals('Pointer'));
-      expect(projection.toString(), equals('typedef PROC = Pointer;'));
+      final CallbackProjection(:name, :type, :toString) = projection;
+      expect(name, equals('PROC'));
+      expect(type, equals('Pointer'));
+      expect(toString(), equals('typedef $name = $type;'));
     });
 
     testCallback(
         'Windows.Win32.Security.Authentication.Identity.INIT_SECURITY_INTERFACE_W',
         (projection) {
-      expect(projection.name, equals('INIT_SECURITY_INTERFACE_'));
+      final CallbackProjection(:name, :type, :toString) = projection;
+      expect(name, equals('INIT_SECURITY_INTERFACE_'));
       expect(
-        projection.type,
+        type,
         equals('Pointer<SecurityFunctionTable> Function()'),
       );
-      expect(
-        projection.toString(),
-        equals(
-          'typedef INIT_SECURITY_INTERFACE_ = '
-          'Pointer<SecurityFunctionTable> Function();',
-        ),
-      );
+      expect(toString(), equals('typedef $name = $type;'));
     });
 
     testCallback('Windows.Win32.Graphics.Gdi.FONTENUMPROCW', (projection) {
-      expect(projection.name, equals('FONTENUMPROC'));
+      final CallbackProjection(:name, :type, :toString) = projection;
+      expect(name, equals('FONTENUMPROC'));
       expect(
-        projection.type,
+        type,
         equals(
           'Int32 Function(Pointer<LOGFONT> param0, '
           'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3)',
         ),
       );
-      expect(
-        projection.toString(),
-        equals(
-          'typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> param0, '
-          'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3);',
-        ),
-      );
+      expect(toString(), equals('typedef $name = $type;'));
     });
 
     testCallback('Windows.Win32.UI.WindowsAndMessaging.WNDPROC', (projection) {
-      expect(projection.name, equals('WNDPROC'));
+      final CallbackProjection(:name, :type, :toString) = projection;
+      expect(name, equals('WNDPROC'));
       expect(
-        projection.type,
+        type,
         equals(
           'IntPtr Function('
           'IntPtr param0, Uint32 param1, IntPtr param2, IntPtr param3)',
         ),
       );
-      expect(
-        projection.toString(),
-        equals(
-          'typedef WNDPROC = IntPtr Function('
-          'IntPtr param0, Uint32 param1, IntPtr param2, IntPtr param3);',
-        ),
-      );
+      expect(toString(), equals('typedef $name = $type;'));
     });
   });
 

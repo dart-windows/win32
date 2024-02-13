@@ -16,6 +16,7 @@ void main() {
 
   group('StructProjection', () {
     testStruct('Windows.Wdk.Foundation.DRIVER_EXTENSION', (projection) {
+      expect(projection.name, equals('DRIVER_EXTENSION'));
       expect(projection.packingAlignment, isZero);
       expect(projection.classPreamble, equals('/// {@category struct}'));
       expect(projection.classModifier, equals('base'));
@@ -39,6 +40,7 @@ void main() {
 
     testStruct('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS',
         (projection) {
+      expect(projection.name, equals('BLUETOOTH_ADDRESS'));
       expect(projection.packingAlignment, isZero);
       expect(projection.classPreamble, equals('/// {@category struct}'));
       expect(projection.classModifier, equals('base'));
@@ -50,6 +52,7 @@ void main() {
           equals('external BLUETOOTH_ADDRESS_0 Anonymous;'));
       expect(projection.propertyAccessors, isEmpty);
       final [bluetoothAddress0] = projection.nestedTypeProjections;
+      expect(bluetoothAddress0.name, equals('BLUETOOTH_ADDRESS_0'));
       expect(bluetoothAddress0.packingAlignment, isZero);
       expect(bluetoothAddress0.classPreamble, equals('/// {@category union}'));
       expect(bluetoothAddress0.classModifier, equals('sealed'));
@@ -71,6 +74,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
     });
 
     testStruct('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER', (projection) {
+      expect(projection.name, equals('BITMAPFILEHEADER'));
       expect(projection.packingAlignment, equals(2));
       expect(projection.classPreamble,
           equals('/// {@category struct}\n@Packed(2)'));
@@ -98,6 +102,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
 
     testStruct('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS',
         (projection) {
+      expect(projection.name, equals('DHCP_ALL_OPTIONS'));
       expect(projection.packingAlignment, isZero);
       expect(projection.classPreamble, equals('/// {@category struct}'));
       expect(projection.classModifier, equals('base'));
@@ -115,6 +120,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
           equals('external Pointer<DHCP_ALL_OPTIONS_0> VendorOptions;'));
       expect(projection.propertyAccessors, isEmpty);
       final [dhcpAllOptions0] = projection.nestedTypeProjections;
+      expect(dhcpAllOptions0.name, equals('DHCP_ALL_OPTIONS_0'));
       expect(dhcpAllOptions0.packingAlignment, isZero);
       expect(dhcpAllOptions0.classPreamble, equals('/// {@category struct}'));
       expect(dhcpAllOptions0.classModifier, equals('sealed'));
@@ -132,6 +138,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
 
     testStruct('Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST',
         (projection) {
+      expect(projection.name, equals('WLAN_RAW_DATA_LIST'));
       expect(projection.packingAlignment, isZero);
       expect(projection.classPreamble, equals('/// {@category struct}'));
       expect(projection.classModifier, equals('base'));
@@ -148,6 +155,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
           equals('@Array(1)\nexternal Array<WLAN_RAW_DATA_LIST_0> DataList;'));
       expect(projection.propertyAccessors, isEmpty);
       final [wlanRawDataList0] = projection.nestedTypeProjections;
+      expect(wlanRawDataList0.name, equals('WLAN_RAW_DATA_LIST_0'));
       expect(wlanRawDataList0.packingAlignment, isZero);
       expect(wlanRawDataList0.classPreamble, equals('/// {@category struct}'));
       expect(wlanRawDataList0.classModifier, equals('sealed'));
