@@ -65,9 +65,9 @@ following location:
 | `hello.dart`          | Basic Petzoldian "hello world" Win32 app                  |
 | `msgbox.dart`         | Demonstrates a MessageBox from the console                |
 | `commdlg.dart`        | Demonstrates using the color chooser common dialog box    |
+| `customtitlebar.dart` | Demonstrates creation of owner-draw title bar region      |
 | `customwin.dart`      | Displays a non-rectangular window                         |
 | `dialog.dart`         | Create a custom dialog box in code                        |
-| `customtitlebar.dart` | Demonstrates creation of owner-draw title bar region      |
 | `dialogshow.dart`     | Creates a common item dialog (file picker) using COM      |
 | `notepad\`            | Lightweight replica of the Windows notepad applet         |
 | `paint.dart`          | Demonstrates simple GDI drawing and min/max window sizing |
@@ -84,8 +84,8 @@ following location:
 | ------------------- | ----------------------------------------------------- |
 | `com_context.dart`  | Shows interaction of Dart isolates and COM apartments |
 | `com_demo.dart`     | Demonstrates COM object reference counting            |
+| `dispatcher.dart`   | Demonstrates calling a method using `Dispatcher`      |
 | `guid.dart`         | Creates a globally unique identifier (GUID)           |
-| `idispatch.dart`    | Demonstrates calling a method using `IDispatch`       |
 | `uiautomation.dart` | Demonstrates calling Windows UI Automation APIs       |
 | `winhttp.dart`      | Demonstrates using WinHTTP APIs to make HTTP requests |
 | `winmd.dart`        | Interrogate Windows Runtime types                     |

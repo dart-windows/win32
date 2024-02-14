@@ -2,23 +2,43 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Demonstrates the use of IDispatch for calling COM automation objects from
-// Dart.
-
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
 
-/// A helper object to work with [IDispatch] objects.
+import 'com/idispatch.g.dart';
+import 'constants.dart';
+import 'exceptions.dart';
+import 'guid.dart';
+import 'macros.dart';
+import 'structs.g.dart';
+import 'types.dart';
+import 'utils.dart';
+import 'win32_v5/ole32.g.dart';
+
+/// A thin wrapper around the [IDispatch] interface, which is used to invoke
+/// methods and properties on COM automation objects.
 class Dispatcher {
   Dispatcher._(this._dispatch) : _IID_NULL = calloc<GUID>();
 
+  /// The [IDispatch] interface associated with the object.
   final IDispatch _dispatch;
+
+  /// A pointer to the 'nil' GUID (i.e.
+  /// `{00000000-0000-0000-0000-000000000000}`).
   final Pointer<GUID> _IID_NULL;
 
+  var _isDisposed = false;
+
+  /// Constructs a [Dispatcher] instance from the given programmatic identifier
+  /// (ProgID).
+  ///
+  /// The COM must be initialized before calling this constructor by calling
+  /// [CoInitializeEx].
+  ///
+  /// Throws a [WindowsException] if the object cannot be created.
   factory Dispatcher.fromProgID(String progID) {
     return using((arena) {
       final lpszProgID = progID.toNativeUtf16(allocator: arena);
@@ -36,11 +56,14 @@ class Dispatcher {
     });
   }
 
+  /// Retrieves the dispatch identifier (DISPID) for the given [member] of the
+  /// object.
   int _getDispId(String member) {
     return using((arena) {
       final ptrMember = member.toNativeUtf16(allocator: arena);
       final rgszNames = arena<Pointer<Utf16>>()..value = ptrMember;
       final rgDispId = arena<Int32>();
+
       final hr = _dispatch.getIDsOfNames(
         _IID_NULL,
         rgszNames,
@@ -49,10 +72,14 @@ class Dispatcher {
         rgDispId,
       );
       if (FAILED(hr)) throw WindowsException(hr);
+
       return rgDispId.value;
     });
   }
 
+  /// Invokes the [method] on the object with the optional [params].
+  ///
+  /// Throws a [WindowsException] if the invocation fails.
   void invoke(String method, [Pointer<DISPPARAMS>? params]) {
     final args = params ?? calloc<DISPPARAMS>();
     final dispid = _getDispId(method);
@@ -68,43 +95,14 @@ class Dispatcher {
       null,
     );
     if (params == null) free(args);
-
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Releases the resources associated with the object.
   void dispose() {
+    if (_isDisposed) return;
     free(_IID_NULL);
     _dispatch.release();
+    _isDisposed = true;
   }
-}
-
-void main() {
-  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-
-  final dispatcher = Dispatcher.fromProgID('Shell.Application');
-
-  // Example of calling an automation method with no parameters.
-  print('Minimizing all windows via Shell.Application Automation object');
-  dispatcher.invoke('MinimizeAll');
-
-  // Example of calling an automation method with a parameter.
-  print(r'Launching the Windows Explorer, starting at the C:\ directory');
-  final folderLocation = BSTR.fromString(r'C:\');
-  final exploreParam = calloc<VARIANT>();
-  VariantInit(exploreParam);
-  exploreParam.ref
-    ..vt = VARENUM.VT_BSTR
-    ..bstrVal = folderLocation.ptr;
-  final exploreParams = calloc<DISPPARAMS>();
-  exploreParams.ref
-    ..cArgs = 1
-    ..rgvarg = exploreParam;
-  dispatcher.invoke('Explore', exploreParams);
-  free(exploreParams);
-  free(exploreParam);
-  folderLocation.free();
-
-  print('Cleaning up.');
-  dispatcher.dispose();
-  CoUninitialize();
 }

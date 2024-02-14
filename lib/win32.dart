@@ -25,10 +25,6 @@
 /// https://win32.pub/docs/category/win32-programming).
 library;
 
-// Core Win32 APIs, constants and macros
-export 'src/bstr.dart';
-export 'src/callbacks.dart';
-
 // COM interfaces
 export 'src/com/iagileobject.g.dart';
 export 'src/com/iapplicationactivationmanager.g.dart';
@@ -244,6 +240,10 @@ export 'src/extensions/set_string.dart';
 export 'src/extensions/set_string_array.dart';
 export 'src/extensions/unpack_utf16.dart';
 
+// Core Win32 APIs, constants and macros
+export 'src/bstr.dart';
+export 'src/callbacks.dart';
+export 'src/dispatcher.dart';
 export 'src/guid.dart';
 export 'src/inline.dart';
 export 'src/macros.dart';
