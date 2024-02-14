@@ -6,13 +6,9 @@
 // inadvertent change of signatures that path_provider (and transitively,
 // Flutter) depends upon.
 
-// ignore_for_file: override_on_non_overriding_member
-// ignore_for_file: omit_local_variable_types
-// ignore_for_file: prefer_conditional_assignment
-// ignore_for_file: annotate_overrides
-// ignore_for_file: always_declare_return_types
 // ignore_for_file: non_constant_identifier_names
-// ignore_for_file: comment_references
+
+@TestOn('windows')
 
 import 'dart:async';
 import 'dart:ffi';
@@ -25,7 +21,7 @@ import 'package:win32/win32.dart';
 
 /// A class containing the GUID references for each of the documented Windows
 /// known folders. A property of this class may be passed to the `getPath`
-/// method in the [PathProvidersWindows] class to retrieve a known folder from
+/// method in the [PathProviderWindows] class to retrieve a known folder from
 /// Windows.
 class WindowsKnownFolder {
   /// The file system directory that is used to store administrative tools for
@@ -258,21 +254,38 @@ class WindowsKnownFolder {
   static String get Windows => FOLDERID_Windows;
 }
 
+/// Constant for en-US language used in VersionInfo keys.
+const String languageEn = '0409';
+
+/// Constant for CP1252 encoding used in VersionInfo keys
+const String encodingCP1252 = '04e4';
+
+/// Constant for Unicode encoding used in VersionInfo keys
+const String encodingUnicode = '04b0';
+
 /// Wraps the Win32 VerQueryValue API call.
 ///
 /// This class exists to allow injecting alternate metadata in tests without
 /// building multiple custom test binaries.
 class VersionInfoQuerier {
-  /// Returns the value for [key] in [versionInfo]s English strings section, or
-  /// null if there is no such entry, or if versionInfo is null.
-  String? getStringValue(Pointer<Uint8>? versionInfo, String key) {
-    if (versionInfo == null) {
-      return null;
-    }
-    const kEnUsLanguageCode = '040904e4';
-    final keyPath =
-        '\\StringFileInfo\\$kEnUsLanguageCode\\$key'.toNativeUtf16();
-    final length = calloc<Uint32>();
+  /// Returns the value for [key] in [versionInfo]s in section with given
+  /// language and encoding, or null if there is no such entry,
+  /// or if versionInfo is null.
+  ///
+  /// See https://learn.microsoft.com/windows/win32/menurc/versioninfo-resource
+  /// for list of possible language and encoding values.
+  String? getStringValue(
+    Pointer<Uint8>? versionInfo,
+    String key, {
+    required String language,
+    required String encoding,
+  }) {
+    assert(language.isNotEmpty);
+    assert(encoding.isNotEmpty);
+    if (versionInfo == null) return null;
+
+    final keyPath = TEXT('\\StringFileInfo\\$language$encoding\\$key');
+    final length = calloc<UINT>();
     final valueAddress = calloc<Pointer<Utf16>>();
     try {
       if (VerQueryValue(versionInfo, keyPath, valueAddress, length) == 0) {
@@ -287,7 +300,7 @@ class VersionInfoQuerier {
   }
 }
 
-/// The Windows implementation of [PathProviderPlatform]
+/// The Windows implementation of `PathProviderPlatform`.
 ///
 /// This class implements the `package:path_provider` functionality for Windows.
 class PathProviderWindows {
@@ -295,9 +308,8 @@ class PathProviderWindows {
   VersionInfoQuerier versionInfoQuerier = VersionInfoQuerier();
 
   /// This is typically the same as the TMP environment variable.
-  @override
   Future<String?> getTemporaryPath() async {
-    final buffer = calloc<Uint16>(MAX_PATH + 1).cast<Utf16>();
+    final buffer = wsalloc(MAX_PATH + 1);
     String path;
 
     try {
@@ -312,7 +324,7 @@ class PathProviderWindows {
         // GetTempPath adds a trailing backslash, but SHGetKnownFolderPath does
         // not. Strip off trailing backslash for consistency with other methods
         // here.
-        if (path.endsWith('\\')) {
+        if (path.endsWith(r'\')) {
           path = path.substring(0, path.length - 1);
         }
       }
@@ -323,49 +335,36 @@ class PathProviderWindows {
         await directory.create(recursive: true);
       }
 
-      return Future.value(path);
+      return path;
     } finally {
       free(buffer);
     }
   }
 
-  @override
-  Future<String?> getApplicationSupportPath() async {
-    final appDataRoot = await getPath(WindowsKnownFolder.RoamingAppData);
-    final directory = Directory(
-        path.join(appDataRoot, _getApplicationSpecificSubdirectory()));
-    // Ensure that the directory exists if possible, since it will on other
-    // platforms. If the name is longer than MAXPATH, creating will fail, so
-    // skip that step; it's up to the client to decide what to do with the path
-    // in that case (e.g., using a short path).
-    if (directory.path.length <= MAX_PATH) {
-      if (!directory.existsSync()) {
-        await directory.create(recursive: true);
-      }
-    }
-    return directory.path;
-  }
+  Future<String?> getApplicationSupportPath() =>
+      _createApplicationSubdirectory(WindowsKnownFolder.RoamingAppData);
 
-  @override
   Future<String?> getApplicationDocumentsPath() =>
       getPath(WindowsKnownFolder.Documents);
 
-  @override
+  Future<String?> getApplicationCachePath() =>
+      _createApplicationSubdirectory(WindowsKnownFolder.LocalAppData);
+
   Future<String?> getDownloadsPath() => getPath(WindowsKnownFolder.Downloads);
 
   /// Retrieve any known folder from Windows.
   ///
   /// folderID is a GUID that represents a specific known folder ID, drawn from
   /// [WindowsKnownFolder].
-  Future<String> getPath(String folderID) {
+  Future<String?> getPath(String folderID) {
     final pathPtrPtr = calloc<Pointer<Utf16>>();
-    final Pointer<GUID> knownFolderID = calloc<GUID>()..ref.setGUID(folderID);
+    final knownFolderID = GUIDFromString(folderID);
 
     try {
       final hr = SHGetKnownFolderPath(
         knownFolderID,
         KF_FLAG_DEFAULT,
-        null,
+        NULL,
         pathPtrPtr,
       );
 
@@ -373,15 +372,22 @@ class PathProviderWindows {
         if (hr == E_INVALIDARG || hr == E_FAIL) {
           throw WindowsException(hr);
         }
+        return Future<String?>.value();
       }
 
       final path = pathPtrPtr.value.toDartString();
-      return Future.value(path);
+      return Future<String>.value(path);
     } finally {
       free(pathPtrPtr);
       free(knownFolderID);
     }
   }
+
+  String? _getStringValue(Pointer<Uint8>? infoBuffer, String key) =>
+      versionInfoQuerier.getStringValue(infoBuffer, key,
+          language: languageEn, encoding: encodingCP1252) ??
+      versionInfoQuerier.getStringValue(infoBuffer, key,
+          language: languageEn, encoding: encodingUnicode);
 
   /// Returns the relative path string to append to the root directory returned
   /// by Win32 APIs for application storage (such as RoamingAppDir) to get a
@@ -397,10 +403,9 @@ class PathProviderWindows {
     String? companyName;
     String? productName;
 
-    final Pointer<Utf16> moduleNameBuffer =
-        calloc<Uint16>(MAX_PATH + 1).cast<Utf16>();
-    final Pointer<Uint32> unused = calloc<Uint32>();
-    Pointer<Uint8>? infoBuffer;
+    final moduleNameBuffer = wsalloc(MAX_PATH + 1);
+    final unused = calloc<DWORD>();
+    Pointer<BYTE>? infoBuffer;
     try {
       // Get the module name.
       final moduleNameLength = GetModuleFileName(0, moduleNameBuffer, MAX_PATH);
@@ -412,22 +417,20 @@ class PathProviderWindows {
       // From that, load the VERSIONINFO resource
       final infoSize = GetFileVersionInfoSize(moduleNameBuffer, unused);
       if (infoSize != 0) {
-        infoBuffer = calloc<Uint8>(infoSize);
+        infoBuffer = calloc<BYTE>(infoSize);
         if (GetFileVersionInfo(moduleNameBuffer, infoSize, infoBuffer) == 0) {
           free(infoBuffer);
           infoBuffer = null;
         }
       }
-      companyName = _sanitizedDirectoryName(
-          versionInfoQuerier.getStringValue(infoBuffer, 'CompanyName'));
-      productName = _sanitizedDirectoryName(
-          versionInfoQuerier.getStringValue(infoBuffer, 'ProductName'));
+      companyName =
+          _sanitizedDirectoryName(_getStringValue(infoBuffer, 'CompanyName'));
+      productName =
+          _sanitizedDirectoryName(_getStringValue(infoBuffer, 'ProductName'));
 
       // If there was no product name, use the executable name.
-      if (productName == null) {
-        productName =
-            path.basenameWithoutExtension(moduleNameBuffer.toDartString());
-      }
+      productName ??=
+          path.basenameWithoutExtension(moduleNameBuffer.toDartString());
 
       return companyName != null
           ? path.join(companyName, productName)
@@ -442,132 +445,228 @@ class PathProviderWindows {
   }
 
   /// Makes [rawString] safe as a directory component. See
-  /// https://learn.microsoft.com/windows/win32/fileio/naming-a-file#naming-conventions
+  /// https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#naming-conventions
   ///
   /// If after sanitizing the string is empty, returns null.
   String? _sanitizedDirectoryName(String? rawString) {
-    if (rawString == null) {
-      return null;
-    }
-    String sanitized = rawString
+    if (rawString == null) return null;
+
+    var sanitized = rawString
         // Replace banned characters.
         .replaceAll(RegExp(r'[<>:"/\\|?*]'), '_')
         // Remove trailing whitespace.
         .trimRight()
         // Ensure that it does not end with a '.'.
         .replaceAll(RegExp(r'[.]+$'), '');
+
     const kMaxComponentLength = 255;
     if (sanitized.length > kMaxComponentLength) {
       sanitized = sanitized.substring(0, kMaxComponentLength);
     }
+
     return sanitized.isEmpty ? null : sanitized;
+  }
+
+  Future<String?> _createApplicationSubdirectory(String folderId) async {
+    final baseDir = await getPath(folderId);
+    if (baseDir == null) return null;
+
+    final directory =
+        Directory(path.join(baseDir, _getApplicationSpecificSubdirectory()));
+    // Ensure that the directory exists if possible, since it will on other
+    // platforms. If the name is longer than MAXPATH, creating will fail, so
+    // skip that step; it's up to the client to decide what to do with the path
+    // in that case (e.g., using a short path).
+    if (directory.path.length <= MAX_PATH) {
+      if (!directory.existsSync()) {
+        await directory.create(recursive: true);
+      }
+    }
+
+    return directory.path;
   }
 }
 
-// A fake VersionInfoQuerier that just returns preset responses.
+/// A fake VersionInfoQuerier that just returns preset responses.
 class FakeVersionInfoQuerier implements VersionInfoQuerier {
-  FakeVersionInfoQuerier(this.responses);
+  FakeVersionInfoQuerier(
+    this.responses, {
+    this.language = languageEn,
+    this.encoding = encodingUnicode,
+  });
 
+  final String language;
+  final String encoding;
   final Map<String, String> responses;
 
-  getStringValue(Pointer<Uint8>? versionInfo, key) => responses[key];
+  @override
+  String? getStringValue(
+    Pointer<Uint8>? versionInfo,
+    String key, {
+    required String language,
+    required String encoding,
+  }) {
+    if (language == this.language && encoding == this.encoding) {
+      return responses[key];
+    }
+
+    return null;
+  }
 }
 
 void main() {
-  test('getTemporaryPath', () async {
-    final pathProvider = PathProviderWindows();
-    expect(await pathProvider.getTemporaryPath(), contains(r'C:\'));
-  }, skip: !Platform.isWindows);
-
-  test('getApplicationSupportPath with no version info', () async {
-    final pathProvider = PathProviderWindows()
-      ..versionInfoQuerier = FakeVersionInfoQuerier(<String, String>{});
-    final path = await pathProvider.getApplicationSupportPath();
-    expect(path, contains(r'C:\'));
-    expect(path, contains(r'AppData'));
-  }, skip: !Platform.isWindows);
-
-  test('getApplicationSupportPath with full version info', () async {
-    final pathProvider = PathProviderWindows()
-      ..versionInfoQuerier = FakeVersionInfoQuerier(<String, String>{
-        'CompanyName': 'A Company',
-        'ProductName': 'Amazing App',
-      });
-    final path = await pathProvider.getApplicationSupportPath();
-    expect(path, isNotNull);
-    if (path != null) {
-      expect(path, endsWith(r'AppData\Roaming\A Company\Amazing App'));
-      expect(Directory(path).existsSync(), isTrue);
-    }
-  }, skip: !Platform.isWindows);
-
-  test('getApplicationSupportPath with missing company', () async {
-    final pathProvider = PathProviderWindows()
-      ..versionInfoQuerier = FakeVersionInfoQuerier(<String, String>{
-        'ProductName': 'Amazing App',
-      });
-    final path = await pathProvider.getApplicationSupportPath();
-    expect(path, isNotNull);
-    if (path != null) {
-      expect(path, endsWith(r'AppData\Roaming\Amazing App'));
-      expect(Directory(path).existsSync(), isTrue);
-    }
-  }, skip: !Platform.isWindows);
-
-  test('getApplicationSupportPath with problematic values', () async {
-    final pathProvider = PathProviderWindows()
-      ..versionInfoQuerier = FakeVersionInfoQuerier(<String, String>{
-        'CompanyName': r'A <Bad> Company: Name.',
-        'ProductName': r'A"/Terrible\|App?*Name',
-      });
-    final path = await pathProvider.getApplicationSupportPath();
-    expect(path, isNotNull);
-    if (path != null) {
-      expect(
-          path,
-          endsWith(r'AppData\Roaming\'
-              r'A _Bad_ Company_ Name\'
-              r'A__Terrible__App__Name'));
-      expect(Directory(path).existsSync(), isTrue);
-    }
-  }, skip: !Platform.isWindows);
-
-  test('getApplicationSupportPath with a completely invalid company', () async {
-    final pathProvider = PathProviderWindows()
-      ..versionInfoQuerier = FakeVersionInfoQuerier(<String, String>{
-        'CompanyName': r'..',
-        'ProductName': r'Amazing App',
-      });
-    final path = await pathProvider.getApplicationSupportPath();
-    expect(path, isNotNull);
-    if (path != null) {
-      expect(path, endsWith(r'AppData\Roaming\Amazing App'));
-      expect(Directory(path).existsSync(), isTrue);
-    }
-  }, skip: !Platform.isWindows);
-
-  test('getApplicationSupportPath with very long app name', () async {
-    final pathProvider = PathProviderWindows();
-    final truncatedName = 'A' * 255;
-    pathProvider.versionInfoQuerier = FakeVersionInfoQuerier(<String, String>{
-      'CompanyName': 'A Company',
-      'ProductName': truncatedName * 2,
+  group('PathProviderWindows', () {
+    test('getTemporaryPath', () async {
+      final pathProvider = PathProviderWindows();
+      expect(await pathProvider.getTemporaryPath(), contains(r'C:\'));
     });
-    final path = await pathProvider.getApplicationSupportPath();
-    expect(path, endsWith('\\$truncatedName'));
-    // The directory won't exist, since it's longer than MAXPATH, so don't check
-    // that here.
-  }, skip: !Platform.isWindows);
 
-  test('getApplicationDocumentsPath', () async {
-    final pathProvider = PathProviderWindows();
-    final path = await pathProvider.getApplicationDocumentsPath();
-    expect(path, anyOf(contains(r'C:\'), contains(r'Documents')));
-  }, skip: !Platform.isWindows);
+    test('getApplicationSupportPath with no version info', () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier({});
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, contains(r'C:\'));
+      expect(path, contains(r'AppData'));
+      // The last path component should be the executable name.
+      expect(path, endsWith(r'dart'));
+    });
 
-  test('getDownloadsPath', () async {
-    final pathProvider = PathProviderWindows();
-    final path = await pathProvider.getDownloadsPath();
-    expect(path, anyOf(contains(r'C:\'), contains(r'Downloads')));
-  }, skip: !Platform.isWindows);
+    test('getApplicationSupportPath with full version info in CP1252',
+        () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier(
+          {
+            'CompanyName': 'A Company',
+            'ProductName': 'Amazing App',
+          },
+          encoding: encodingCP1252,
+        );
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, isNotNull);
+      if (path != null) {
+        expect(path, endsWith(r'AppData\Roaming\A Company\Amazing App'));
+        expect(Directory(path).existsSync(), isTrue);
+      }
+    });
+
+    test('getApplicationSupportPath with full version info in Unicode',
+        () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier(
+            {'CompanyName': 'A Company', 'ProductName': 'Amazing App'});
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, isNotNull);
+      if (path != null) {
+        expect(path, endsWith(r'AppData\Roaming\A Company\Amazing App'));
+        expect(Directory(path).existsSync(), isTrue);
+      }
+    });
+
+    test(
+        'getApplicationSupportPath with full version info in Unsupported Encoding',
+        () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier(
+          {
+            'CompanyName': 'A Company',
+            'ProductName': 'Amazing App',
+          },
+          language: '0000',
+          encoding: '0000',
+        );
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, contains(r'C:\'));
+      expect(path, contains(r'AppData'));
+      // The last path component should be the executable name.
+      expect(path, endsWith(r'dart'));
+    });
+
+    test('getApplicationSupportPath with missing company', () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier =
+            FakeVersionInfoQuerier({'ProductName': 'Amazing App'});
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, isNotNull);
+      if (path != null) {
+        expect(path, endsWith(r'AppData\Roaming\Amazing App'));
+        expect(Directory(path).existsSync(), isTrue);
+      }
+    });
+
+    test('getApplicationSupportPath with problematic values', () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier(
+          {
+            'CompanyName': r'A <Bad> Company: Name.',
+            'ProductName': r'A"/Terrible\|App?*Name',
+          },
+        );
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, isNotNull);
+      if (path != null) {
+        expect(
+          path,
+          endsWith(
+            r'AppData\Roaming\A _Bad_ Company_ Name\A__Terrible__App__Name',
+          ),
+        );
+        expect(Directory(path).existsSync(), isTrue);
+      }
+    });
+
+    test('getApplicationSupportPath with a completely invalid company',
+        () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier(
+          {'CompanyName': r'..', 'ProductName': r'Amazing App'},
+        );
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, isNotNull);
+      if (path != null) {
+        expect(path, endsWith(r'AppData\Roaming\Amazing App'));
+        expect(Directory(path).existsSync(), isTrue);
+      }
+    });
+
+    test('getApplicationSupportPath with very long app name', () async {
+      final pathProvider = PathProviderWindows();
+      final truncatedName = 'A' * 255;
+      pathProvider.versionInfoQuerier = FakeVersionInfoQuerier({
+        'CompanyName': 'A Company',
+        'ProductName': truncatedName * 2,
+      });
+      final path = await pathProvider.getApplicationSupportPath();
+      expect(path, endsWith('\\$truncatedName'));
+      // The directory won't exist, since it's longer than MAXPATH, so don't check
+      // that here.
+    });
+
+    test('getApplicationDocumentsPath', () async {
+      final pathProvider = PathProviderWindows();
+      final path = await pathProvider.getApplicationDocumentsPath();
+      expect(path, contains(r'C:\'));
+      expect(path, contains(r'Documents'));
+    });
+
+    test('getApplicationCachePath', () async {
+      final pathProvider = PathProviderWindows()
+        ..versionInfoQuerier = FakeVersionInfoQuerier(
+          {'CompanyName': 'A Company', 'ProductName': 'Amazing App'},
+          encoding: encodingCP1252,
+        );
+      final path = await pathProvider.getApplicationCachePath();
+      expect(path, isNotNull);
+      if (path != null) {
+        expect(path, endsWith(r'AppData\Local\A Company\Amazing App'));
+        expect(Directory(path).existsSync(), isTrue);
+      }
+    });
+
+    test('getDownloadsPath', () async {
+      final pathProvider = PathProviderWindows();
+      final path = await pathProvider.getDownloadsPath();
+      expect(path, contains(r'C:\'));
+      expect(path, contains(r'Downloads'));
+    });
+  });
 }
