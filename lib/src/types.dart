@@ -23,6 +23,7 @@ import 'package:ffi/ffi.dart';
 typedef ATOM = WORD;
 typedef BOOL = Uint32;
 typedef BOOLEAN = BYTE;
+typedef BSTR = Pointer<Utf16>;
 typedef BYTE = Uint8;
 typedef CHAR = Uint8;
 typedef COLORREF = DWORD;
