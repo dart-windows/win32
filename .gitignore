@@ -18,5 +18,6 @@ build/
 *.exe.config
 
 # These files vary from machine to machine
+.idea/
 .vscode/c_cpp_properties.json
 .vscode/settings.json
