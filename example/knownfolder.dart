@@ -18,17 +18,18 @@ String getTemporaryPath() {
     if (length == 0) {
       final error = GetLastError();
       throw WindowsException(error);
-    } else {
-      var path = buffer.toDartString();
-
-      // GetTempPath adds a trailing backslash, but SHGetKnownFolderPath does
-      // not. Strip off trailing backslash for consistency with other methods
-      // here.
-      if (path.endsWith('\\')) {
-        path = path.substring(0, path.length - 1);
-      }
-      return path;
     }
+
+    var path = buffer.toDartString();
+
+    // GetTempPath adds a trailing backslash, but SHGetKnownFolderPath does
+    // not. Strip off trailing backslash for consistency with other methods
+    // here.
+    if (path.endsWith('\\')) {
+      path = path.substring(0, path.length - 1);
+    }
+
+    return path;
   } finally {
     free(buffer);
   }
@@ -40,12 +41,8 @@ String getDesktopPath1() {
 
   try {
     final result = SHGetFolderPath(NULL, CSIDL_DESKTOP, NULL, path);
-
-    if (SUCCEEDED(result)) {
-      return path.toDartString();
-    } else {
-      return 'error code 0x${result.toUnsigned(32).toRadixString(16)}';
-    }
+    if (SUCCEEDED(result)) return path.toDartString();
+    return 'error code 0x${result.toUnsigned(32).toRadixString(16)}';
   } finally {
     free(path);
   }
@@ -60,7 +57,6 @@ String getDesktopPath2() {
     final hr =
         SHGetKnownFolderPath(appsFolder, KF_FLAG_DEFAULT, null, ppszPath);
     if (FAILED(hr)) throw WindowsException(hr);
-
     final path = ppszPath.value.toDartString();
     return path;
   } finally {
@@ -94,6 +90,7 @@ String getDesktopPath3() {
   } finally {
     free(appsFolder);
     free(ppszPath);
+    CoUninitialize();
   }
 }
 
