@@ -7,11 +7,16 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-int getWindowsBuildNumber() => int.parse(getRegistryValue(
-    HKEY_LOCAL_MACHINE,
-    'SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\',
-    'CurrentBuildNumber') as String);
+/// Returns the Windows build number.
+int getWindowsBuildNumber() => int.parse(
+      getRegistryValue(
+        HKEY_LOCAL_MACHINE,
+        'SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\',
+        'CurrentBuildNumber',
+      ) as String,
+    );
 
+/// Returns the Registry value for the given key, subkey, and value name.
 Object getRegistryValue(int key, String subKey, String valueName) {
   late Object dataValue;
 
