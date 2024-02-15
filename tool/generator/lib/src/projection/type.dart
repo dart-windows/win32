@@ -87,7 +87,7 @@ class TypeProjection {
       typeIdentifier.baseType == BaseType.pointerTypeModifier;
 
   /// Whether the type is a special type.
-  bool get isSpecialType => specialTypes.keys.contains(typeIdentifier.name);
+  bool get isSpecialType => _specialTypes.keys.contains(typeIdentifier.name);
 
   /// Whether the type is a struct.
   bool get isStruct => typeIdentifier.type?.isStruct ?? false;
@@ -201,7 +201,7 @@ class TypeProjection {
   /// Projects the Win32 type to its Dart representation.
   TypeTuple projectType() {
     // Could be a System.Guid or other special type that we want to custom-map.
-    if (isSpecialType) return specialTypes[typeIdentifier.name]!;
+    if (isSpecialType) return _specialTypes[typeIdentifier.name]!;
 
     if (isArrayType) return unwrapArrayType();
 
@@ -214,13 +214,13 @@ class TypeProjection {
     // Could be an enum (e.g., FOLDERFLAGS).
     if (isEnum) return unwrapEnumType();
 
+    // Could be a COM interface (e.g., `IFileDialog`).
+    if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
+
     if (isPointerType) return unwrapPointerType();
 
     // Could be a struct (e.g., MMTIME, HWND).
     if (isStruct) return unwrapStructType();
-
-    // Could be a COM interface (e.g., `IFileDialog`).
-    if (isInterface) return const TypeTuple.fromNativeType('VTablePointer');
 
     throw StateError('Type information missing for $typeIdentifier.');
   }
@@ -280,7 +280,7 @@ const _baseNativeTypes = <BaseType, TypeTuple>{
 };
 
 /// Special mapping of certain Win32 types to Dart types.
-const specialTypes = <String, TypeTuple>{
+const _specialTypes = <String, TypeTuple>{
   // System.Guid does not exist in the metadata, so we need to manually project
   // it.
   'System.Guid': TypeTuple.fromNativeType('GUID'),

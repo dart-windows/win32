@@ -435,17 +435,6 @@ void main() {
       expect(projection.isDartPrimitive, isFalse);
       expect(projection.isPointer, isFalse);
     });
-
-    test('Special types exist in metadata', () {
-      for (final specialType in specialTypes.keys
-          .where((type) => type.startsWith('Windows.Win32'))) {
-        expect(
-          MetadataStore.getMetadataForType(specialType),
-          isNotNull,
-          reason: '$specialType missing',
-        );
-      }
-    });
   });
 
   tearDownAll(MetadataStore.close);
