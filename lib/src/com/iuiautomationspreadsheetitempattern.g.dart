@@ -36,12 +36,12 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
       IUIAutomationSpreadsheetItemPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetItemPattern));
 
-  Pointer<Utf16> get currentFormula {
-    final retVal = calloc<Pointer<Utf16>>();
+  BSTR get currentFormula {
+    final retVal = calloc<BSTR>();
     try {
       final hr = _vtable.get_CurrentFormula.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -60,12 +60,12 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
-  Pointer<Utf16> get cachedFormula {
-    final retVal = calloc<Pointer<Utf16>>();
+  BSTR get cachedFormula {
+    final retVal = calloc<BSTR>();
     try {
       final hr = _vtable.get_CachedFormula.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -90,32 +90,30 @@ base class IUIAutomationSpreadsheetItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
       get_CurrentFormula;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCurrentAnnotationObjects;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       GetCurrentAnnotationTypes;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
       get_CachedFormula;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       GetCachedAnnotationObjects;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       GetCachedAnnotationTypes;
 }

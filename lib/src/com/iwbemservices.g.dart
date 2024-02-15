@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -31,7 +30,7 @@ class IWbemServices extends IUnknown {
       IWbemServices(interface.toInterface(IID_IWbemServices));
 
   int openNamespace(
-          Pointer<Utf16> strNamespace,
+          BSTR strNamespace,
           int lFlags,
           VTablePointer pCtx,
           Pointer<VTablePointer>? ppWorkingNamespace,
@@ -39,7 +38,7 @@ class IWbemServices extends IUnknown {
       _vtable.OpenNamespace.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strNamespace,
+                  BSTR strNamespace,
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppWorkingNamespace,
@@ -59,7 +58,7 @@ class IWbemServices extends IUnknown {
           ptr, lFlags, ppResponseHandler);
 
   int getObject(
-          Pointer<Utf16> strObjectPath,
+          BSTR strObjectPath,
           int lFlags,
           VTablePointer pCtx,
           Pointer<VTablePointer>? ppObject,
@@ -67,22 +66,18 @@ class IWbemServices extends IUnknown {
       _vtable.GetObject.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strObjectPath,
+                  BSTR strObjectPath,
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppObject,
                   Pointer<VTablePointer> ppCallResult)>()(ptr, strObjectPath,
           lFlags, pCtx, ppObject ?? nullptr, ppCallResult ?? nullptr);
 
-  int getObjectAsync(Pointer<Utf16> strObjectPath, int lFlags,
-          VTablePointer pCtx, VTablePointer pResponseHandler) =>
+  int getObjectAsync(BSTR strObjectPath, int lFlags, VTablePointer pCtx,
+          VTablePointer pResponseHandler) =>
       _vtable.GetObjectAsync.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strObjectPath,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  VTablePointer pResponseHandler)>()(
+              int Function(VTablePointer lpVtbl, BSTR strObjectPath, int lFlags,
+                  VTablePointer pCtx, VTablePointer pResponseHandler)>()(
           ptr, strObjectPath, lFlags, pCtx, pResponseHandler);
 
   int putClass(VTablePointer pObject, int lFlags, VTablePointer pCtx,
@@ -107,48 +102,32 @@ class IWbemServices extends IUnknown {
                   VTablePointer pResponseHandler)>()(
           ptr, pObject, lFlags, pCtx, pResponseHandler);
 
-  int deleteClass(Pointer<Utf16> strClass, int lFlags, VTablePointer pCtx,
+  int deleteClass(BSTR strClass, int lFlags, VTablePointer pCtx,
           Pointer<VTablePointer>? ppCallResult) =>
       _vtable.DeleteClass.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strClass,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  Pointer<VTablePointer> ppCallResult)>()(
+              int Function(VTablePointer lpVtbl, BSTR strClass, int lFlags,
+                  VTablePointer pCtx, Pointer<VTablePointer> ppCallResult)>()(
           ptr, strClass, lFlags, pCtx, ppCallResult ?? nullptr);
 
-  int deleteClassAsync(Pointer<Utf16> strClass, int lFlags, VTablePointer pCtx,
+  int deleteClassAsync(BSTR strClass, int lFlags, VTablePointer pCtx,
           VTablePointer pResponseHandler) =>
       _vtable.DeleteClassAsync.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strClass,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  VTablePointer pResponseHandler)>()(
+              int Function(VTablePointer lpVtbl, BSTR strClass, int lFlags,
+                  VTablePointer pCtx, VTablePointer pResponseHandler)>()(
           ptr, strClass, lFlags, pCtx, pResponseHandler);
 
-  int createClassEnum(Pointer<Utf16> strSuperclass, int lFlags,
-          VTablePointer pCtx, Pointer<VTablePointer> ppEnum) =>
+  int createClassEnum(BSTR strSuperclass, int lFlags, VTablePointer pCtx,
+          Pointer<VTablePointer> ppEnum) =>
       _vtable.CreateClassEnum.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strSuperclass,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  Pointer<VTablePointer> ppEnum)>()(
+              int Function(VTablePointer lpVtbl, BSTR strSuperclass, int lFlags,
+                  VTablePointer pCtx, Pointer<VTablePointer> ppEnum)>()(
           ptr, strSuperclass, lFlags, pCtx, ppEnum);
 
-  int createClassEnumAsync(Pointer<Utf16> strSuperclass, int lFlags,
-          VTablePointer pCtx, VTablePointer pResponseHandler) =>
+  int createClassEnumAsync(BSTR strSuperclass, int lFlags, VTablePointer pCtx,
+          VTablePointer pResponseHandler) =>
       _vtable.CreateClassEnumAsync.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strSuperclass,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  VTablePointer pResponseHandler)>()(
+              int Function(VTablePointer lpVtbl, BSTR strSuperclass, int lFlags,
+                  VTablePointer pCtx, VTablePointer pResponseHandler)>()(
           ptr, strSuperclass, lFlags, pCtx, pResponseHandler);
 
   int putInstance(VTablePointer pInst, int lFlags, VTablePointer pCtx,
@@ -173,109 +152,85 @@ class IWbemServices extends IUnknown {
                   VTablePointer pResponseHandler)>()(
           ptr, pInst, lFlags, pCtx, pResponseHandler);
 
-  int deleteInstance(Pointer<Utf16> strObjectPath, int lFlags,
-          VTablePointer pCtx, Pointer<VTablePointer>? ppCallResult) =>
+  int deleteInstance(BSTR strObjectPath, int lFlags, VTablePointer pCtx,
+          Pointer<VTablePointer>? ppCallResult) =>
       _vtable.DeleteInstance.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strObjectPath,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  Pointer<VTablePointer> ppCallResult)>()(
+              int Function(VTablePointer lpVtbl, BSTR strObjectPath, int lFlags,
+                  VTablePointer pCtx, Pointer<VTablePointer> ppCallResult)>()(
           ptr, strObjectPath, lFlags, pCtx, ppCallResult ?? nullptr);
 
-  int deleteInstanceAsync(Pointer<Utf16> strObjectPath, int lFlags,
-          VTablePointer pCtx, VTablePointer pResponseHandler) =>
+  int deleteInstanceAsync(BSTR strObjectPath, int lFlags, VTablePointer pCtx,
+          VTablePointer pResponseHandler) =>
       _vtable.DeleteInstanceAsync.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strObjectPath,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  VTablePointer pResponseHandler)>()(
+              int Function(VTablePointer lpVtbl, BSTR strObjectPath, int lFlags,
+                  VTablePointer pCtx, VTablePointer pResponseHandler)>()(
           ptr, strObjectPath, lFlags, pCtx, pResponseHandler);
 
-  int createInstanceEnum(Pointer<Utf16> strFilter, int lFlags,
-          VTablePointer pCtx, Pointer<VTablePointer> ppEnum) =>
+  int createInstanceEnum(BSTR strFilter, int lFlags, VTablePointer pCtx,
+          Pointer<VTablePointer> ppEnum) =>
       _vtable.CreateInstanceEnum.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strFilter,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  Pointer<VTablePointer> ppEnum)>()(
+              int Function(VTablePointer lpVtbl, BSTR strFilter, int lFlags,
+                  VTablePointer pCtx, Pointer<VTablePointer> ppEnum)>()(
           ptr, strFilter, lFlags, pCtx, ppEnum);
 
-  int createInstanceEnumAsync(Pointer<Utf16> strFilter, int lFlags,
-          VTablePointer pCtx, VTablePointer pResponseHandler) =>
+  int createInstanceEnumAsync(BSTR strFilter, int lFlags, VTablePointer pCtx,
+          VTablePointer pResponseHandler) =>
       _vtable.CreateInstanceEnumAsync.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> strFilter,
-                  int lFlags,
-                  VTablePointer pCtx,
-                  VTablePointer pResponseHandler)>()(
+              int Function(VTablePointer lpVtbl, BSTR strFilter, int lFlags,
+                  VTablePointer pCtx, VTablePointer pResponseHandler)>()(
           ptr, strFilter, lFlags, pCtx, pResponseHandler);
 
-  int execQuery(Pointer<Utf16> strQueryLanguage, Pointer<Utf16> strQuery,
-          int lFlags, VTablePointer pCtx, Pointer<VTablePointer> ppEnum) =>
+  int execQuery(BSTR strQueryLanguage, BSTR strQuery, int lFlags,
+          VTablePointer pCtx, Pointer<VTablePointer> ppEnum) =>
       _vtable.ExecQuery.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strQueryLanguage,
-                  Pointer<Utf16> strQuery,
+                  BSTR strQueryLanguage,
+                  BSTR strQuery,
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppEnum)>()(
           ptr, strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
 
-  int execQueryAsync(Pointer<Utf16> strQueryLanguage, Pointer<Utf16> strQuery,
-          int lFlags, VTablePointer pCtx, VTablePointer pResponseHandler) =>
+  int execQueryAsync(BSTR strQueryLanguage, BSTR strQuery, int lFlags,
+          VTablePointer pCtx, VTablePointer pResponseHandler) =>
       _vtable.ExecQueryAsync.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strQueryLanguage,
-                  Pointer<Utf16> strQuery,
+                  BSTR strQueryLanguage,
+                  BSTR strQuery,
                   int lFlags,
                   VTablePointer pCtx,
                   VTablePointer pResponseHandler)>()(
           ptr, strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
 
-  int execNotificationQuery(
-          Pointer<Utf16> strQueryLanguage,
-          Pointer<Utf16> strQuery,
-          int lFlags,
-          VTablePointer pCtx,
-          Pointer<VTablePointer> ppEnum) =>
+  int execNotificationQuery(BSTR strQueryLanguage, BSTR strQuery, int lFlags,
+          VTablePointer pCtx, Pointer<VTablePointer> ppEnum) =>
       _vtable.ExecNotificationQuery.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strQueryLanguage,
-                  Pointer<Utf16> strQuery,
+                  BSTR strQueryLanguage,
+                  BSTR strQuery,
                   int lFlags,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppEnum)>()(
           ptr, strQueryLanguage, strQuery, lFlags, pCtx, ppEnum);
 
-  int execNotificationQueryAsync(
-          Pointer<Utf16> strQueryLanguage,
-          Pointer<Utf16> strQuery,
-          int lFlags,
-          VTablePointer pCtx,
-          VTablePointer pResponseHandler) =>
+  int execNotificationQueryAsync(BSTR strQueryLanguage, BSTR strQuery,
+          int lFlags, VTablePointer pCtx, VTablePointer pResponseHandler) =>
       _vtable.ExecNotificationQueryAsync.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strQueryLanguage,
-                  Pointer<Utf16> strQuery,
+                  BSTR strQueryLanguage,
+                  BSTR strQuery,
                   int lFlags,
                   VTablePointer pCtx,
                   VTablePointer pResponseHandler)>()(
           ptr, strQueryLanguage, strQuery, lFlags, pCtx, pResponseHandler);
 
   int execMethod(
-          Pointer<Utf16> strObjectPath,
-          Pointer<Utf16> strMethodName,
+          BSTR strObjectPath,
+          BSTR strMethodName,
           int lFlags,
           VTablePointer pCtx,
           VTablePointer pInParams,
@@ -284,8 +239,8 @@ class IWbemServices extends IUnknown {
       _vtable.ExecMethod.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strObjectPath,
-                  Pointer<Utf16> strMethodName,
+                  BSTR strObjectPath,
+                  BSTR strMethodName,
                   int lFlags,
                   VTablePointer pCtx,
                   VTablePointer pInParams,
@@ -301,8 +256,8 @@ class IWbemServices extends IUnknown {
           ppCallResult ?? nullptr);
 
   int execMethodAsync(
-          Pointer<Utf16> strObjectPath,
-          Pointer<Utf16> strMethodName,
+          BSTR strObjectPath,
+          BSTR strMethodName,
           int lFlags,
           VTablePointer pCtx,
           VTablePointer pInParams,
@@ -310,8 +265,8 @@ class IWbemServices extends IUnknown {
       _vtable.ExecMethodAsync.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> strObjectPath,
-                  Pointer<Utf16> strMethodName,
+                  BSTR strObjectPath,
+                  BSTR strMethodName,
                   int lFlags,
                   VTablePointer pCtx,
                   VTablePointer pInParams,
@@ -324,41 +279,41 @@ base class IWbemServicesVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strNamespace,
+              BSTR strNamespace,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppWorkingNamespace,
               Pointer<VTablePointer> ppResult)>> OpenNamespace;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pSink)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pSink)>>
       CancelAsyncCall;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 lFlags,
+          HRESULT Function(VTablePointer lpVtbl, Int32 lFlags,
               Pointer<VTablePointer> ppResponseHandler)>> QueryObjectSink;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strObjectPath,
+              BSTR strObjectPath,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppObject,
               Pointer<VTablePointer> ppCallResult)>> GetObject;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strObjectPath,
+              BSTR strObjectPath,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> GetObjectAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pObject,
               Int32 lFlags,
@@ -366,7 +321,7 @@ base class IWbemServicesVtbl extends Struct {
               Pointer<VTablePointer> ppCallResult)>> PutClass;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pObject,
               Int32 lFlags,
@@ -374,39 +329,39 @@ base class IWbemServicesVtbl extends Struct {
               VTablePointer pResponseHandler)>> PutClassAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strClass,
+              BSTR strClass,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppCallResult)>> DeleteClass;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strClass,
+              BSTR strClass,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> DeleteClassAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strSuperclass,
+              BSTR strSuperclass,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppEnum)>> CreateClassEnum;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strSuperclass,
+              BSTR strSuperclass,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> CreateClassEnumAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pInst,
               Int32 lFlags,
@@ -414,7 +369,7 @@ base class IWbemServicesVtbl extends Struct {
               Pointer<VTablePointer> ppCallResult)>> PutInstance;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pInst,
               Int32 lFlags,
@@ -422,78 +377,78 @@ base class IWbemServicesVtbl extends Struct {
               VTablePointer pResponseHandler)>> PutInstanceAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strObjectPath,
+              BSTR strObjectPath,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppCallResult)>> DeleteInstance;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strObjectPath,
+              BSTR strObjectPath,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> DeleteInstanceAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strFilter,
+              BSTR strFilter,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppEnum)>> CreateInstanceEnum;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strFilter,
+              BSTR strFilter,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> CreateInstanceEnumAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strQueryLanguage,
-              Pointer<Utf16> strQuery,
+              BSTR strQueryLanguage,
+              BSTR strQuery,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppEnum)>> ExecQuery;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strQueryLanguage,
-              Pointer<Utf16> strQuery,
+              BSTR strQueryLanguage,
+              BSTR strQuery,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> ExecQueryAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strQueryLanguage,
-              Pointer<Utf16> strQuery,
+              BSTR strQueryLanguage,
+              BSTR strQuery,
               Int32 lFlags,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppEnum)>> ExecNotificationQuery;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strQueryLanguage,
-              Pointer<Utf16> strQuery,
+              BSTR strQueryLanguage,
+              BSTR strQuery,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pResponseHandler)>> ExecNotificationQueryAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strObjectPath,
-              Pointer<Utf16> strMethodName,
+              BSTR strObjectPath,
+              BSTR strMethodName,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pInParams,
@@ -501,10 +456,10 @@ base class IWbemServicesVtbl extends Struct {
               Pointer<VTablePointer> ppCallResult)>> ExecMethod;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> strObjectPath,
-              Pointer<Utf16> strMethodName,
+              BSTR strObjectPath,
+              BSTR strMethodName,
               Int32 lFlags,
               VTablePointer pCtx,
               VTablePointer pInParams,

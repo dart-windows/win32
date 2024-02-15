@@ -8,10 +8,9 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -45,10 +44,10 @@ class IShellItem extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
-  int getDisplayName(int sigdnName, Pointer<Pointer<Utf16>> ppszName) =>
+  int getDisplayName(int sigdnName, Pointer<PWSTR> ppszName) =>
       _vtable.GetDisplayName.asFunction<
           int Function(VTablePointer lpVtbl, int sigdnName,
-              Pointer<Pointer<Utf16>> ppszName)>()(ptr, sigdnName, ppszName);
+              Pointer<PWSTR> ppszName)>()(ptr, sigdnName, ppszName);
 
   int getAttributes(int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
@@ -66,7 +65,7 @@ base class IShellItemVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               Pointer<GUID> bhid,
@@ -74,19 +73,19 @@ base class IShellItemVtbl extends Struct {
               Pointer<Pointer> ppv)>> BindToHandler;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>> GetParent;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 sigdnName,
-              Pointer<Pointer<Utf16>> ppszName)>> GetDisplayName;
+          HRESULT Function(VTablePointer lpVtbl, Int32 sigdnName,
+              Pointer<PWSTR> ppszName)>> GetDisplayName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 sfgaoMask,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 sfgaoMask,
               Pointer<Uint32> psfgaoAttribs)>> GetAttributes;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer psi, Uint32 hint,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer psi, Uint32 hint,
               Pointer<Int32> piOrder)>> Compare;
 }
 

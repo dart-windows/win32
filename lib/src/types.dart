@@ -18,15 +18,10 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
+import 'structs.g.dart';
 
 typedef ATOM = WORD;
-typedef BOOL = Uint32;
-typedef BOOLEAN = BYTE;
-typedef BSTR = Pointer<Utf16>;
 typedef BYTE = Uint8;
-typedef CHAR = Uint8;
-typedef COLORREF = DWORD;
 typedef DOUBLE = Double;
 typedef DWORD = Uint32;
 typedef DWORD32 = Uint32;
@@ -34,18 +29,7 @@ typedef DWORD64 = Uint64;
 typedef DWORDLONG = Uint64;
 typedef DWORD_PTR = ULONG_PTR;
 typedef FLOAT = Float;
-typedef HANDLE = IntPtr;
 typedef HCALL = DWORD;
-typedef HDC = IntPtr;
-typedef HINSTANCE = IntPtr;
-typedef HKEY = IntPtr;
-typedef HMIDIIN = IntPtr;
-typedef HMODULE = IntPtr;
-typedef HMONITOR = IntPtr;
-typedef HRESULT = LONG;
-typedef HRGN = IntPtr;
-typedef HSTRING = IntPtr;
-typedef HWND = IntPtr;
 typedef INT = Int32;
 typedef INT16 = Int16;
 typedef INT32 = Int32;
@@ -62,12 +46,8 @@ typedef LONG64 = Int64;
 typedef LONGLONG = Int64;
 typedef LONG_PTR = IntPtr;
 typedef LPBYTE = Pointer<BYTE>;
-typedef LPARAM = LONG_PTR;
-typedef LPSTR = Pointer<Utf8>;
-typedef LPWSTR = Pointer<Utf16>;
-typedef LRESULT = LONG_PTR;
-typedef NTSTATUS = Int32;
-typedef PSTR = Pointer<Utf8>;
+typedef LPSTR = PSTR;
+typedef LPWSTR = PWSTR;
 
 // Pointer is preferred over Pointer<Void>, because the latter points to a Void
 // data type. A C void* is usually an undefined type, rather than a strong void,
@@ -75,7 +55,6 @@ typedef PSTR = Pointer<Utf8>;
 typedef LPVOID = Pointer;
 typedef PVOID = Pointer;
 
-typedef PWSTR = Pointer<Utf16>;
 typedef QWORD = Uint64;
 typedef SHORT = Int16;
 typedef SIZE_T = ULONG_PTR;
@@ -98,4 +77,3 @@ typedef VTablePointer = Pointer<Pointer<IntPtr>>;
 
 typedef WCHAR = Uint16;
 typedef WORD = Uint16;
-typedef WPARAM = UINT_PTR;

@@ -4,8 +4,7 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
+import '../structs.g.dart';
 import '../utils.dart';
 
 extension SetStringArray on List<String> {
@@ -15,7 +14,7 @@ extension SetStringArray on List<String> {
   /// registry.
   ///
   /// It is the responsibility of the caller to [free] the returned pointer.
-  Pointer<Utf16> toWideCharArray() {
+  PWSTR toWideCharArray() {
     var size = 0;
 
     // calculate the amount of memory we need to store

@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,41 +28,38 @@ class IDesktopWallpaper extends IUnknown {
   factory IDesktopWallpaper.from(IUnknown interface) =>
       IDesktopWallpaper(interface.toInterface(IID_IDesktopWallpaper));
 
-  int setWallpaper(Pointer<Utf16> monitorID, Pointer<Utf16> wallpaper) =>
+  int setWallpaper(PWSTR monitorID, PWSTR wallpaper) =>
       _vtable.SetWallpaper.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
-              Pointer<Utf16> wallpaper)>()(ptr, monitorID, wallpaper);
+          int Function(VTablePointer lpVtbl, PWSTR monitorID,
+              PWSTR wallpaper)>()(ptr, monitorID, wallpaper);
 
-  int getWallpaper(
-          Pointer<Utf16> monitorID, Pointer<Pointer<Utf16>> wallpaper) =>
+  int getWallpaper(PWSTR monitorID, Pointer<PWSTR> wallpaper) =>
       _vtable.GetWallpaper.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
-              Pointer<Pointer<Utf16>> wallpaper)>()(ptr, monitorID, wallpaper);
+          int Function(VTablePointer lpVtbl, PWSTR monitorID,
+              Pointer<PWSTR> wallpaper)>()(ptr, monitorID, wallpaper);
 
-  int getMonitorDevicePathAt(
-          int monitorIndex, Pointer<Pointer<Utf16>> monitorID) =>
+  int getMonitorDevicePathAt(int monitorIndex, Pointer<PWSTR> monitorID) =>
       _vtable.GetMonitorDevicePathAt.asFunction<
-              int Function(VTablePointer lpVtbl, int monitorIndex,
-                  Pointer<Pointer<Utf16>> monitorID)>()(
-          ptr, monitorIndex, monitorID);
+          int Function(VTablePointer lpVtbl, int monitorIndex,
+              Pointer<PWSTR> monitorID)>()(ptr, monitorIndex, monitorID);
 
   int getMonitorDevicePathCount(Pointer<Uint32> count) =>
       _vtable.GetMonitorDevicePathCount.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<Uint32> count)>()(ptr, count);
 
-  int getMonitorRECT(Pointer<Utf16> monitorID, Pointer<RECT> displayRect) =>
+  int getMonitorRECT(PWSTR monitorID, Pointer<RECT> displayRect) =>
       _vtable.GetMonitorRECT.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
+          int Function(VTablePointer lpVtbl, PWSTR monitorID,
               Pointer<RECT> displayRect)>()(ptr, monitorID, displayRect);
 
   int setBackgroundColor(int color) => _vtable.SetBackgroundColor.asFunction<
       int Function(VTablePointer lpVtbl, int color)>()(ptr, color);
 
-  int getBackgroundColor(Pointer<Uint32> color) =>
+  int getBackgroundColor(Pointer<COLORREF> color) =>
       _vtable.GetBackgroundColor.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Uint32> color)>()(ptr, color);
+              VTablePointer lpVtbl, Pointer<COLORREF> color)>()(ptr, color);
 
   int setPosition(int position) => _vtable.SetPosition.asFunction<
       int Function(VTablePointer lpVtbl, int position)>()(ptr, position);
@@ -93,9 +88,9 @@ class IDesktopWallpaper extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<Int32> options,
               Pointer<Uint32> slideshowTick)>()(ptr, options, slideshowTick);
 
-  int advanceSlideshow(Pointer<Utf16> monitorID, int direction) =>
+  int advanceSlideshow(PWSTR monitorID, int direction) =>
       _vtable.AdvanceSlideshow.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
+          int Function(VTablePointer lpVtbl, PWSTR monitorID,
               int direction)>()(ptr, monitorID, direction);
 
   int getStatus(Pointer<Int32> state) => _vtable.GetStatus.asFunction<
@@ -109,67 +104,70 @@ class IDesktopWallpaper extends IUnknown {
 base class IDesktopWallpaperVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
-              Pointer<Utf16> wallpaper)>> SetWallpaper;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, PWSTR monitorID, PWSTR wallpaper)>>
+      SetWallpaper;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
-              Pointer<Pointer<Utf16>> wallpaper)>> GetWallpaper;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR monitorID,
+              Pointer<PWSTR> wallpaper)>> GetWallpaper;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 monitorIndex,
-              Pointer<Pointer<Utf16>> monitorID)>> GetMonitorDevicePathAt;
+          HRESULT Function(VTablePointer lpVtbl, Uint32 monitorIndex,
+              Pointer<PWSTR> monitorID)>> GetMonitorDevicePathAt;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> count)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> count)>>
       GetMonitorDevicePathCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR monitorID,
               Pointer<RECT> displayRect)>> GetMonitorRECT;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 color)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, COLORREF color)>>
       SetBackgroundColor;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> color)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<COLORREF> color)>>
       GetBackgroundColor;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 position)>>
-      SetPosition;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 position)>> SetPosition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> position)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> position)>>
       GetPosition;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer items)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer items)>>
       SetSlideshow;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> items)>>
       GetSlideshow;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Int32 options, Uint32 slideshowTick)>>
       SetSlideshowOptions;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> options,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> options,
               Pointer<Uint32> slideshowTick)>> GetSlideshowOptions;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> monitorID,
-              Int32 direction)>> AdvanceSlideshow;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, PWSTR monitorID, Int32 direction)>>
+      AdvanceSlideshow;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> state)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> state)>>
       GetStatus;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 enable)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, BOOL enable)>>
       Enable;
 }
 

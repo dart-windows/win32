@@ -36,10 +36,10 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
       IUIAutomationMultipleViewPattern(
           interface.toInterface(IID_IUIAutomationMultipleViewPattern));
 
-  int getViewName(int view, Pointer<Pointer<Utf16>> name) =>
+  int getViewName(int view, Pointer<BSTR> name) =>
       _vtable.GetViewName.asFunction<
           int Function(VTablePointer lpVtbl, int view,
-              Pointer<Pointer<Utf16>> name)>()(ptr, view, name);
+              Pointer<BSTR> name)>()(ptr, view, name);
 
   int setCurrentView(int view) => _vtable.SetCurrentView.asFunction<
       int Function(VTablePointer lpVtbl, int view)>()(ptr, view);
@@ -87,28 +87,29 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
 base class IUIAutomationMultipleViewPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 view,
-              Pointer<Pointer<Utf16>> name)>> GetViewName;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 view, Pointer<BSTR> name)>>
+      GetViewName;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 view)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 view)>>
       SetCurrentView;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentCurrentView;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       GetCurrentSupportedViews;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedCurrentView;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Pointer<SAFEARRAY>> retVal)>>
       GetCachedSupportedViews;
 }

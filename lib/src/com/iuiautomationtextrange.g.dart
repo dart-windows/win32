@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -37,10 +35,10 @@ class IUIAutomationTextRange extends IUnknown {
       int Function(VTablePointer lpVtbl,
           Pointer<VTablePointer> clonedRange)>()(ptr, clonedRange);
 
-  int compare(VTablePointer range, Pointer<Int32> areSame) =>
+  int compare(VTablePointer range, Pointer<BOOL> areSame) =>
       _vtable.Compare.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer range,
-              Pointer<Int32> areSame)>()(ptr, range, areSame);
+              Pointer<BOOL> areSame)>()(ptr, range, areSame);
 
   int compareEndpoints(int srcEndPoint, VTablePointer range, int targetEndPoint,
           Pointer<Int32> compValue) =>
@@ -67,15 +65,11 @@ class IUIAutomationTextRange extends IUnknown {
               int backward,
               Pointer<VTablePointer> found)>()(ptr, attr, val, backward, found);
 
-  int findText(Pointer<Utf16> text, int backward, int ignoreCase,
+  int findText(BSTR text, int backward, int ignoreCase,
           Pointer<VTablePointer> found) =>
       _vtable.FindText.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> text,
-                  int backward,
-                  int ignoreCase,
-                  Pointer<VTablePointer> found)>()(
+              int Function(VTablePointer lpVtbl, BSTR text, int backward,
+                  int ignoreCase, Pointer<VTablePointer> found)>()(
           ptr, text, backward, ignoreCase, found);
 
   int getAttributeValue(int attr, Pointer<VARIANT> value) =>
@@ -94,10 +88,9 @@ class IUIAutomationTextRange extends IUnknown {
                   Pointer<VTablePointer> enclosingElement)>()(
           ptr, enclosingElement);
 
-  int getText(int maxLength, Pointer<Pointer<Utf16>> text) =>
-      _vtable.GetText.asFunction<
-          int Function(VTablePointer lpVtbl, int maxLength,
-              Pointer<Pointer<Utf16>> text)>()(ptr, maxLength, text);
+  int getText(int maxLength, Pointer<BSTR> text) => _vtable.GetText.asFunction<
+      int Function(VTablePointer lpVtbl, int maxLength,
+          Pointer<BSTR> text)>()(ptr, maxLength, text);
 
   int move(int unit, int count, Pointer<Int32> moved) =>
       _vtable.Move.asFunction<
@@ -143,77 +136,76 @@ base class IUIAutomationTextRangeVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> clonedRange)>> Clone;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer range,
-              Pointer<Int32> areSame)>> Compare;
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer range,
+              Pointer<BOOL> areSame)>> Compare;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 srcEndPoint,
               VTablePointer range,
               Int32 targetEndPoint,
               Pointer<Int32> compValue)>> CompareEndpoints;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 textUnit)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 textUnit)>>
       ExpandToEnclosingUnit;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 attr, VARIANT val,
-              Int32 backward, Pointer<VTablePointer> found)>> FindAttribute;
+          HRESULT Function(VTablePointer lpVtbl, Int32 attr, VARIANT val,
+              BOOL backward, Pointer<VTablePointer> found)>> FindAttribute;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl,
-              Pointer<Utf16> text,
-              Int32 backward,
-              Int32 ignoreCase,
-              Pointer<VTablePointer> found)>> FindText;
+          HRESULT Function(VTablePointer lpVtbl, BSTR text, BOOL backward,
+              BOOL ignoreCase, Pointer<VTablePointer> found)>> FindText;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Int32 attr, Pointer<VARIANT> value)>>
       GetAttributeValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Pointer<Pointer<SAFEARRAY>> boundingRects)>>
       GetBoundingRectangles;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> enclosingElement)>> GetEnclosingElement;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 maxLength,
-              Pointer<Pointer<Utf16>> text)>> GetText;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Int32 maxLength, Pointer<BSTR> text)>>
+      GetText;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 unit, Int32 count,
+          HRESULT Function(VTablePointer lpVtbl, Int32 unit, Int32 count,
               Pointer<Int32> moved)>> Move;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 endpoint, Int32 unit,
+          HRESULT Function(VTablePointer lpVtbl, Int32 endpoint, Int32 unit,
               Int32 count, Pointer<Int32> moved)>> MoveEndpointByUnit;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 srcEndPoint,
+          HRESULT Function(VTablePointer lpVtbl, Int32 srcEndPoint,
               VTablePointer range, Int32 targetEndPoint)>> MoveEndpointByRange;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Select;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Select;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       AddToSelection;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       RemoveFromSelection;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 alignToTop)>>
+              HRESULT Function(VTablePointer lpVtbl, BOOL alignToTop)>>
       ScrollIntoView;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> children)>>
       GetChildren;
 }

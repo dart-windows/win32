@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -36,6 +37,6 @@ class IInitializeWithWindow extends IUnknown {
 base class IInitializeWithWindowVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, IntPtr hwnd)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, HWND hwnd)>>
       Initialize;
 }

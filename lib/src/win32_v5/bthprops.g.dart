@@ -45,8 +45,8 @@ int BluetoothAuthenticateDeviceEx(
 
 final _BluetoothAuthenticateDeviceEx = _bthprops.lookupFunction<
     Uint32 Function(
-        IntPtr hwndParentIn,
-        IntPtr hRadioIn,
+        HWND hwndParentIn,
+        HANDLE hRadioIn,
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdiInout,
         Pointer<BLUETOOTH_OOB_DATA_INFO> pbtOobData,
         Int32 authenticationRequirement),
@@ -72,7 +72,7 @@ int BluetoothDisplayDeviceProperties(
     _BluetoothDisplayDeviceProperties(hwndParent ?? 0, pbtdi);
 
 final _BluetoothDisplayDeviceProperties = _bthprops.lookupFunction<
-        Int32 Function(IntPtr hwndParent, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
+        BOOL Function(HWND hwndParent, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
         int Function(int hwndParent, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi)>(
     'BluetoothDisplayDeviceProperties');
 
@@ -88,7 +88,7 @@ int BluetoothSelectDevices(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp) =>
     _BluetoothSelectDevices(pbtsdp);
 
 final _BluetoothSelectDevices = _bthprops.lookupFunction<
-        Int32 Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp),
+        BOOL Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp),
         int Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp)>(
     'BluetoothSelectDevices');
 
@@ -106,6 +106,6 @@ int BluetoothSelectDevicesFree(
     _BluetoothSelectDevicesFree(pbtsdp);
 
 final _BluetoothSelectDevicesFree = _bthprops.lookupFunction<
-        Int32 Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp),
+        BOOL Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp),
         int Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp)>(
     'BluetoothSelectDevicesFree');

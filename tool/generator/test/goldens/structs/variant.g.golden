@@ -89,7 +89,7 @@ sealed class VARIANT_0_0_0 extends Union {
   @Double()
   external double date;
 
-  external Pointer<Utf16> bstrVal;
+  external BSTR bstrVal;
 
   external VTablePointer punkVal;
 
@@ -109,10 +109,10 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<Double> pdblVal;
 
-  external Pointer<Int16> pboolVal;
+  external Pointer<VARIANT_BOOL> pboolVal;
 
   // ignore: unused_field
-  external Pointer<Int16> __OBSOLETE__VARIANT_PBOOL;
+  external Pointer<VARIANT_BOOL> __OBSOLETE__VARIANT_PBOOL;
 
   external Pointer<Int32> pscode;
 
@@ -120,7 +120,7 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<Double> pdate;
 
-  external Pointer<Pointer<Utf16>> pbstrVal;
+  external Pointer<BSTR> pbstrVal;
 
   external Pointer<VTablePointer> ppunkVal;
 
@@ -152,7 +152,7 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<DECIMAL> pdecVal;
 
-  external Pointer<Utf8> pcVal;
+  external PSTR pcVal;
 
   external Pointer<Uint16> puiVal;
 
@@ -200,9 +200,8 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   double get date => this.Anonymous.Anonymous.Anonymous.date;
   set date(double value) => this.Anonymous.Anonymous.Anonymous.date = value;
 
-  Pointer<Utf16> get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
-  set bstrVal(Pointer<Utf16> value) =>
-      this.Anonymous.Anonymous.Anonymous.bstrVal = value;
+  BSTR get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
+  set bstrVal(BSTR value) => this.Anonymous.Anonymous.Anonymous.bstrVal = value;
 
   VTablePointer get punkVal => this.Anonymous.Anonymous.Anonymous.punkVal;
   set punkVal(VTablePointer value) =>
@@ -240,8 +239,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdblVal(Pointer<Double> value) =>
       this.Anonymous.Anonymous.Anonymous.pdblVal = value;
 
-  Pointer<Int16> get pboolVal => this.Anonymous.Anonymous.Anonymous.pboolVal;
-  set pboolVal(Pointer<Int16> value) =>
+  Pointer<VARIANT_BOOL> get pboolVal =>
+      this.Anonymous.Anonymous.Anonymous.pboolVal;
+  set pboolVal(Pointer<VARIANT_BOOL> value) =>
       this.Anonymous.Anonymous.Anonymous.pboolVal = value;
 
   Pointer<Int32> get pscode => this.Anonymous.Anonymous.Anonymous.pscode;
@@ -256,9 +256,8 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdate(Pointer<Double> value) =>
       this.Anonymous.Anonymous.Anonymous.pdate = value;
 
-  Pointer<Pointer<Utf16>> get pbstrVal =>
-      this.Anonymous.Anonymous.Anonymous.pbstrVal;
-  set pbstrVal(Pointer<Pointer<Utf16>> value) =>
+  Pointer<BSTR> get pbstrVal => this.Anonymous.Anonymous.Anonymous.pbstrVal;
+  set pbstrVal(Pointer<BSTR> value) =>
       this.Anonymous.Anonymous.Anonymous.pbstrVal = value;
 
   Pointer<VTablePointer> get ppunkVal =>
@@ -318,9 +317,8 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdecVal(Pointer<DECIMAL> value) =>
       this.Anonymous.Anonymous.Anonymous.pdecVal = value;
 
-  Pointer<Utf8> get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
-  set pcVal(Pointer<Utf8> value) =>
-      this.Anonymous.Anonymous.Anonymous.pcVal = value;
+  PSTR get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
+  set pcVal(PSTR value) => this.Anonymous.Anonymous.Anonymous.pcVal = value;
 
   Pointer<Uint16> get puiVal => this.Anonymous.Anonymous.Anonymous.puiVal;
   set puiVal(Pointer<Uint16> value) =>

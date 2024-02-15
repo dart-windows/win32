@@ -80,7 +80,7 @@ base class IAudioClient3Vtbl extends Struct {
   external IAudioClient2Vtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<WAVEFORMATEX> pFormat,
               Pointer<Uint32> pDefaultPeriodInFrames,
@@ -89,14 +89,14 @@ base class IAudioClient3Vtbl extends Struct {
               Pointer<Uint32> pMaxPeriodInFrames)>> GetSharedModeEnginePeriod;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl,
                   Pointer<Pointer<WAVEFORMATEX>> ppFormat,
                   Pointer<Uint32> pCurrentPeriodInFrames)>>
       GetCurrentSharedModeEnginePeriod;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 streamFlags,
               Uint32 periodInFrames,

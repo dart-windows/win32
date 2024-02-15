@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -62,9 +61,9 @@ class IAppxManifestReader extends IUnknown {
                   Pointer<VTablePointer> deviceCapabilities)>()(
           ptr, deviceCapabilities);
 
-  int getPrerequisite(Pointer<Utf16> name, Pointer<Uint64> value) =>
+  int getPrerequisite(PWSTR name, Pointer<Uint64> value) =>
       _vtable.GetPrerequisite.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+          int Function(VTablePointer lpVtbl, PWSTR name,
               Pointer<Uint64> value)>()(ptr, name, value);
 
   int getApplications(Pointer<VTablePointer> applications) =>
@@ -83,45 +82,46 @@ base class IAppxManifestReaderVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> packageId)>>
       GetPackageId;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> packageProperties)>> GetProperties;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> dependencies)>>
       GetPackageDependencies;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> capabilities)>>
       GetCapabilities;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> resources)>>
       GetResources;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> deviceCapabilities)>>
       GetDeviceCapabilities;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> name,
-              Pointer<Uint64> value)>> GetPrerequisite;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, PWSTR name, Pointer<Uint64> value)>>
+      GetPrerequisite;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> applications)>>
       GetApplications;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> manifestStream)>>
       GetStream;
 }

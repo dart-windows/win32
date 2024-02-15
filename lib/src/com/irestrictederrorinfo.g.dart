@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -29,24 +28,20 @@ class IRestrictedErrorInfo extends IUnknown {
   factory IRestrictedErrorInfo.from(IUnknown interface) =>
       IRestrictedErrorInfo(interface.toInterface(IID_IRestrictedErrorInfo));
 
-  int getErrorDetails(
-          Pointer<Pointer<Utf16>> description,
-          Pointer<Int32> error,
-          Pointer<Pointer<Utf16>> restrictedDescription,
-          Pointer<Pointer<Utf16>> capabilitySid) =>
+  int getErrorDetails(Pointer<BSTR> description, Pointer<HRESULT> error,
+          Pointer<BSTR> restrictedDescription, Pointer<BSTR> capabilitySid) =>
       _vtable.GetErrorDetails.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Pointer<Utf16>> description,
-                  Pointer<Int32> error,
-                  Pointer<Pointer<Utf16>> restrictedDescription,
-                  Pointer<Pointer<Utf16>> capabilitySid)>()(
+                  Pointer<BSTR> description,
+                  Pointer<HRESULT> error,
+                  Pointer<BSTR> restrictedDescription,
+                  Pointer<BSTR> capabilitySid)>()(
           ptr, description, error, restrictedDescription, capabilitySid);
 
-  int getReference(Pointer<Pointer<Utf16>> reference) =>
-      _vtable.GetReference.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> reference)>()(ptr, reference);
+  int getReference(Pointer<BSTR> reference) => _vtable.GetReference.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<BSTR> reference)>()(ptr, reference);
 }
 
 /// @nodoc
@@ -54,15 +49,14 @@ base class IRestrictedErrorInfoVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> description,
-              Pointer<Int32> error,
-              Pointer<Pointer<Utf16>> restrictedDescription,
-              Pointer<Pointer<Utf16>> capabilitySid)>> GetErrorDetails;
+              Pointer<BSTR> description,
+              Pointer<HRESULT> error,
+              Pointer<BSTR> restrictedDescription,
+              Pointer<BSTR> capabilitySid)>> GetErrorDetails;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> reference)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> reference)>>
       GetReference;
 }

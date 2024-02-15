@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -53,16 +54,16 @@ base class IAudioClockVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint64> pu64Frequency)>>
       GetFrequency;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> pu64Position,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> pu64Position,
               Pointer<Uint64> pu64QPCPosition)>> GetPosition;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint32> pdwCharacteristics)>>
       GetCharacteristics;
 }

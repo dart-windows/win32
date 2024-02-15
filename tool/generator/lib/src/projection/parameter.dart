@@ -53,14 +53,11 @@ class ParameterProjection {
         // a default value of `nullptr` if the parameter is `null` and the type
         // is a pointer, or `0` if the type is not a pointer.
         _ when isOptional && !isReserved =>
-          type.startsWith(RegExp('(VTable)?Pointer'))
-              ? '$name ?? nullptr'
-              : '$name ?? 0',
+          typeProjection.isPointer ? '$name ?? nullptr' : '$name ?? 0',
 
         // For reserved parameter, pass `nullptr` if the type is a pointer;
         // otherwise, pass `0` (i.e. `NULL`).
-        _ when isReserved =>
-          type.startsWith(RegExp('(VTable)?Pointer')) ? 'nullptr' : '0',
+        _ when isReserved => typeProjection.isPointer ? 'nullptr' : '0',
 
         // Otherwise, use the parameter name as the identifier.
         _ => name

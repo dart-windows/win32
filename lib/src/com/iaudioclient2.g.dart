@@ -31,10 +31,10 @@ class IAudioClient2 extends IAudioClient {
   factory IAudioClient2.from(IUnknown interface) =>
       IAudioClient2(interface.toInterface(IID_IAudioClient2));
 
-  int isOffloadCapable(int category, Pointer<Int32> pbOffloadCapable) =>
+  int isOffloadCapable(int category, Pointer<BOOL> pbOffloadCapable) =>
       _vtable.IsOffloadCapable.asFunction<
               int Function(VTablePointer lpVtbl, int category,
-                  Pointer<Int32> pbOffloadCapable)>()(
+                  Pointer<BOOL> pbOffloadCapable)>()(
           ptr, category, pbOffloadCapable);
 
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
@@ -62,18 +62,18 @@ base class IAudioClient2Vtbl extends Struct {
   external IAudioClientVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 category,
-              Pointer<Int32> pbOffloadCapable)>> IsOffloadCapable;
+          HRESULT Function(VTablePointer lpVtbl, Int32 category,
+              Pointer<BOOL> pbOffloadCapable)>> IsOffloadCapable;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<AudioClientProperties> pProperties)>> SetClientProperties;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<WAVEFORMATEX> pFormat,
-              Int32 bEventDriven,
+              BOOL bEventDriven,
               Pointer<Int64> phnsMinBufferDuration,
               Pointer<Int64> phnsMaxBufferDuration)>> GetBufferSizeLimits;
 }

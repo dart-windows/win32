@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'imetadatatables.g.dart';
 import 'iunknown.g.dart';
@@ -50,11 +51,11 @@ base class IMetaDataTables2Vtbl extends Struct {
   external IMetaDataTablesVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Pointer> ppvMd,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Pointer> ppvMd,
               Pointer<Uint32> pcbMd)>> GetMetaDataStorage;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 ix,
               Pointer<Pointer<Int8>> ppchName,

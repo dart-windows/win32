@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -73,15 +74,16 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationExpandCollapsePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Expand;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Expand;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       Collapse;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentExpandCollapseState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedExpandCollapseState;
 }

@@ -14,6 +14,7 @@ import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'idispatch.g.dart';
@@ -41,11 +42,11 @@ class INetworkConnection extends IDispatch {
               Pointer<VTablePointer> ppNetwork)>()(ptr, ppNetwork);
 
   int get isConnectedToInternet {
-    final pbIsConnected = calloc<Int16>();
+    final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_IsConnectedToInternet.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
+              Pointer<VARIANT_BOOL> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = pbIsConnected.value;
       return retValue;
@@ -55,11 +56,11 @@ class INetworkConnection extends IDispatch {
   }
 
   int get isConnected {
-    final pbIsConnected = calloc<Int16>();
+    final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_IsConnected.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
+              Pointer<VARIANT_BOOL> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = pbIsConnected.value;
       return retValue;
@@ -95,35 +96,35 @@ base class INetworkConnectionVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppNetwork)>>
       GetNetwork;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> pbIsConnected)>>
       get_IsConnectedToInternet;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> pbIsConnected)>>
       get_IsConnected;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> pConnectivity)>>
       GetConnectivity;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<GUID> pgdConnectionId)>>
       GetConnectionId;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pgdAdapterId)>>
-      GetAdapterId;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<GUID> pgdAdapterId)>> GetAdapterId;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pDomainType)>>
-      GetDomainType;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> pDomainType)>> GetDomainType;
 }

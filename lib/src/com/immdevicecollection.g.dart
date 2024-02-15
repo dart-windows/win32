@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -43,11 +44,11 @@ class IMMDeviceCollection extends IUnknown {
 base class IMMDeviceCollectionVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcDevices)>>
-      GetCount;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint32> pcDevices)>> GetCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 nDevice,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 nDevice,
               Pointer<VTablePointer> ppDevice)>> Item;
 }

@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -42,10 +40,10 @@ class ISensor extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<GUID> pSensorType)>()(ptr, pSensorType);
 
-  int getFriendlyName(Pointer<Pointer<Utf16>> pFriendlyName) =>
+  int getFriendlyName(Pointer<BSTR> pFriendlyName) =>
       _vtable.GetFriendlyName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pFriendlyName)>()(ptr, pFriendlyName);
+              Pointer<BSTR> pFriendlyName)>()(ptr, pFriendlyName);
 
   int getProperty(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> pProperty) =>
       _vtable.GetProperty.asFunction<
@@ -72,10 +70,10 @@ class ISensor extends IUnknown {
           ptr, pProperties ?? nullptr, ppResults);
 
   int supportsDataField(
-          Pointer<PROPERTYKEY> key, Pointer<Int16> pIsSupported) =>
+          Pointer<PROPERTYKEY> key, Pointer<VARIANT_BOOL> pIsSupported) =>
       _vtable.SupportsDataField.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<Int16> pIsSupported)>()(ptr, key, pIsSupported);
+              Pointer<VARIANT_BOOL> pIsSupported)>()(ptr, key, pIsSupported);
 
   int getState(Pointer<Int32> pState) => _vtable.GetState.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Int32> pState)>()(ptr, pState);
@@ -85,10 +83,12 @@ class ISensor extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppDataReport)>()(ptr, ppDataReport);
 
-  int supportsEvent(Pointer<GUID> eventGuid, Pointer<Int16> pIsSupported) =>
+  int supportsEvent(
+          Pointer<GUID> eventGuid, Pointer<VARIANT_BOOL> pIsSupported) =>
       _vtable.SupportsEvent.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<GUID> eventGuid,
-              Pointer<Int16> pIsSupported)>()(ptr, eventGuid, pIsSupported);
+              int Function(VTablePointer lpVtbl, Pointer<GUID> eventGuid,
+                  Pointer<VARIANT_BOOL> pIsSupported)>()(
+          ptr, eventGuid, pIsSupported);
 
   int getEventInterest(
           Pointer<Pointer<GUID>> ppValues, Pointer<Uint32> pCount) =>
@@ -111,67 +111,69 @@ base class ISensorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pID)>> GetID;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> pID)>> GetID;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<GUID> pSensorCategory)>>
       GetCategory;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pSensorType)>>
-      GetType;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<GUID> pSensorType)>> GetType;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pFriendlyName)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<BSTR> pFriendlyName)>>
       GetFriendlyName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> pProperty)>> GetProperty;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pKeys,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pKeys,
               Pointer<VTablePointer> ppProperties)>> GetProperties;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppDataFields)>>
       GetSupportedDataFields;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pProperties,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pProperties,
               Pointer<VTablePointer> ppResults)>> SetProperties;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<Int16> pIsSupported)>> SupportsDataField;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+              Pointer<VARIANT_BOOL> pIsSupported)>> SupportsDataField;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pState)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> pState)>>
       GetState;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppDataReport)>>
       GetData;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> eventGuid,
-              Pointer<Int16> pIsSupported)>> SupportsEvent;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> eventGuid,
+              Pointer<VARIANT_BOOL> pIsSupported)>> SupportsEvent;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Pointer<GUID>> ppValues,
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Pointer<Pointer<GUID>> ppValues,
               Pointer<Uint32> pCount)>> GetEventInterest;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<GUID> pValues, Uint32 count)>>
       SetEventInterest;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pEvents)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pEvents)>>
       SetEventSink;
 }
 

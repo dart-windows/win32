@@ -52,16 +52,16 @@ base class ISensorDataReportVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<SYSTEMTIME> pTimeStamp)>>
       GetTimestamp;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> pKey,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> pKey,
               Pointer<PROPVARIANT> pValue)>> GetSensorValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pKeys,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pKeys,
               Pointer<VTablePointer> ppValues)>> GetSensorValues;
 }
 

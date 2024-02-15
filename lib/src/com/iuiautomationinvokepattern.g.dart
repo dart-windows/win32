@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -36,5 +37,6 @@ class IUIAutomationInvokePattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationInvokePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Invoke;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Invoke;
 }

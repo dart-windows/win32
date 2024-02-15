@@ -46,7 +46,7 @@ void main() {
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_SELECT_DEVICE_PARAMS',
         'pszInfo', (projection) {
       final FieldProjection(:type, :toString) = projection;
-      expect(type, equals('Pointer<Utf16>'));
+      expect(type, equals('PWSTR'));
       expect(toString(), equals('external $type pszInfo;'));
     });
 
@@ -119,21 +119,21 @@ void main() {
     testField('Windows.Win32.Security.Cryptography.CERT_EXTENSION', 'pszObjId',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
-      expect(type, equals('Pointer<Utf8>'));
+      expect(type, equals('PSTR'));
       expect(toString(), equals('external $type pszObjId;'));
     });
 
     testField('Windows.Win32.System.Com.StructuredStorage.CALPSTR', 'pElems',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
-      expect(type, equals('Pointer<Pointer<Utf8>>'));
+      expect(type, equals('Pointer<PSTR>'));
       expect(toString(), equals('external $type pElems;'));
     });
 
     testField('Windows.Win32.System.Com.StructuredStorage.CALPWSTR', 'pElems',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
-      expect(type, equals('Pointer<Pointer<Utf16>>'));
+      expect(type, equals('Pointer<PWSTR>'));
       expect(toString(), equals('external $type pElems;'));
     });
 
@@ -148,7 +148,7 @@ void main() {
     testField('Windows.Win32.System.Iis.CONFIGURATION_ENTRY', 'bstrKey',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
-      expect(type, equals('Pointer<Utf16>'));
+      expect(type, equals('BSTR'));
       expect(toString(), equals('external $type bstrKey;'));
     });
 
@@ -160,7 +160,7 @@ void main() {
 
     testField('Windows.Win32.System.Search.RMTPACK', 'rgBSTR', (projection) {
       final FieldProjection(:type, :toString) = projection;
-      expect(type, equals('Pointer<Pointer<Utf16>>'));
+      expect(type, equals('Pointer<BSTR>'));
       expect(toString(), equals('external $type rgBSTR;'));
     });
 

@@ -55,17 +55,17 @@ base class ISpEventSourceVtbl extends Struct {
   external ISpNotifySourceVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint64 ullEventInterest,
+          HRESULT Function(VTablePointer lpVtbl, Uint64 ullEventInterest,
               Uint64 ullQueuedInterest)>> SetInterest;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 ulCount,
               Pointer<SPEVENT> pEventArray,
               Pointer<Uint32> pulFetched)>> GetEvents;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<SPEVENTSOURCEINFO> pInfo)>> GetInfo;
 }

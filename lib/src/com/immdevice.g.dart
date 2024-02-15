@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -51,9 +49,9 @@ class IMMDevice extends IUnknown {
                   Pointer<VTablePointer> ppProperties)>()(
           ptr, stgmAccess, ppProperties);
 
-  int getId(Pointer<Pointer<Utf16>> ppstrId) => _vtable.GetId.asFunction<
-      int Function(VTablePointer lpVtbl,
-          Pointer<Pointer<Utf16>> ppstrId)>()(ptr, ppstrId);
+  int getId(Pointer<PWSTR> ppstrId) => _vtable.GetId.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<PWSTR> ppstrId)>()(ptr, ppstrId);
 
   int getState(Pointer<Uint32> pdwState) => _vtable.GetState.asFunction<
       int Function(
@@ -65,7 +63,7 @@ base class IMMDeviceVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<GUID> iid,
               Uint32 dwClsCtx,
@@ -73,12 +71,12 @@ base class IMMDeviceVtbl extends Struct {
               Pointer<Pointer> ppInterface)>> Activate;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 stgmAccess,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 stgmAccess,
               Pointer<VTablePointer> ppProperties)>> OpenPropertyStore;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> ppstrId)>> GetId;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> ppstrId)>>
+      GetId;
   external Pointer<
           NativeFunction<
               Uint32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwState)>>

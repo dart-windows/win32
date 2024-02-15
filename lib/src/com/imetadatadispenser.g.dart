@@ -8,10 +8,9 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -41,15 +40,11 @@ class IMetaDataDispenser extends IUnknown {
                   Pointer<VTablePointer> ppIUnk)>()(
           ptr, rclsid, dwCreateFlags, riid, ppIUnk);
 
-  int openScope(Pointer<Utf16> szScope, int dwOpenFlags, Pointer<GUID> riid,
+  int openScope(PWSTR szScope, int dwOpenFlags, Pointer<GUID> riid,
           Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScope.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> szScope,
-                  int dwOpenFlags,
-                  Pointer<GUID> riid,
-                  Pointer<VTablePointer> ppIUnk)>()(
+              int Function(VTablePointer lpVtbl, PWSTR szScope, int dwOpenFlags,
+                  Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk)>()(
           ptr, szScope, dwOpenFlags, riid, ppIUnk);
 
   int openScopeOnMemory(Pointer pData, int cbData, int dwOpenFlags,
@@ -70,7 +65,7 @@ base class IMetaDataDispenserVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<GUID> rclsid,
               Uint32 dwCreateFlags,
@@ -78,15 +73,15 @@ base class IMetaDataDispenserVtbl extends Struct {
               Pointer<VTablePointer> ppIUnk)>> DefineScope;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> szScope,
+              PWSTR szScope,
               Uint32 dwOpenFlags,
               Pointer<GUID> riid,
               Pointer<VTablePointer> ppIUnk)>> OpenScope;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer pData,
               Uint32 cbData,

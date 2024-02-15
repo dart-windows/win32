@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -31,14 +30,12 @@ class IAppxManifestPackageDependency extends IUnknown {
       IAppxManifestPackageDependency(
           interface.toInterface(IID_IAppxManifestPackageDependency));
 
-  int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
+  int getName(Pointer<PWSTR> name) => _vtable.GetName.asFunction<
+      int Function(VTablePointer lpVtbl, Pointer<PWSTR> name)>()(ptr, name);
 
-  int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
-      _vtable.GetPublisher.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> publisher)>()(ptr, publisher);
+  int getPublisher(Pointer<PWSTR> publisher) => _vtable.GetPublisher.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<PWSTR> publisher)>()(ptr, publisher);
 
   int getMinVersion(
           Pointer<Uint64> minVersion) =>
@@ -52,15 +49,13 @@ base class IAppxManifestPackageDependencyVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>> GetName;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> name)>> GetName;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> publisher)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> publisher)>>
       GetPublisher;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> minVersion)>>
-      GetMinVersion;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Uint64> minVersion)>> GetMinVersion;
 }

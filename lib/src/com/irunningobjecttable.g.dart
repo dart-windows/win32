@@ -80,7 +80,7 @@ base class IRunningObjectTableVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 grfFlags,
               VTablePointer punkObject,
@@ -88,26 +88,26 @@ base class IRunningObjectTableVtbl extends Struct {
               Pointer<Uint32> pdwRegister)>> Register;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 dwRegister)>> Revoke;
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwRegister)>> Revoke;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, VTablePointer pmkObjectName)>> IsRunning;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pmkObjectName,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pmkObjectName,
               Pointer<VTablePointer> ppunkObject)>> GetObject;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 dwRegister,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwRegister,
               Pointer<FILETIME> pfiletime)>> NoteChangeTime;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pmkObjectName,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pmkObjectName,
               Pointer<FILETIME> pfiletime)>> GetTimeOfLastChange;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppenumMoniker)>>
       EnumRunning;
 }

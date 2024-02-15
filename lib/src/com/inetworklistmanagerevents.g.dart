@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -42,6 +43,6 @@ base class INetworkListManagerEventsVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 newConnectivity)>>
+              HRESULT Function(VTablePointer lpVtbl, Int32 newConnectivity)>>
       ConnectivityChanged;
 }

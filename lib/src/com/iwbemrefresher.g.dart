@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -38,7 +39,7 @@ class IWbemRefresher extends IUnknown {
 base class IWbemRefresherVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 lFlags)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 lFlags)>>
       Refresh;
 }
 

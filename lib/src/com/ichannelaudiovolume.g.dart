@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -69,25 +70,25 @@ base class IChannelAudioVolumeVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwCount)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pdwCount)>>
       GetChannelCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 dwIndex, Float fLevel,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwIndex, Float fLevel,
               Pointer<GUID> eventContext)>> SetChannelVolume;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 dwIndex,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwIndex,
               Pointer<Float> pfLevel)>> GetChannelVolume;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 dwCount,
               Pointer<Float> pfVolumes,
               Pointer<GUID> eventContext)>> SetAllVolumes;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 dwCount,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwCount,
               Pointer<Float> pfVolumes)>> GetAllVolumes;
 }

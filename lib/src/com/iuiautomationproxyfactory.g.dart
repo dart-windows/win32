@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -42,12 +43,12 @@ class IUIAutomationProxyFactory extends IUnknown {
                   int idChild, Pointer<VTablePointer> provider)>()(
           ptr, hwnd, idObject, idChild, provider);
 
-  Pointer<Utf16> get proxyFactoryId {
-    final factoryId = calloc<Pointer<Utf16>>();
+  BSTR get proxyFactoryId {
+    final factoryId = calloc<BSTR>();
     try {
       final hr = _vtable.get_ProxyFactoryId.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> factoryId)>()(ptr, factoryId);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> factoryId)>()(ptr, factoryId);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = factoryId.value;
       return retValue;
@@ -62,11 +63,10 @@ base class IUIAutomationProxyFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, IntPtr hwnd, Int32 idObject,
+          HRESULT Function(VTablePointer lpVtbl, HWND hwnd, Int32 idObject,
               Int32 idChild, Pointer<VTablePointer> provider)>> CreateProvider;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> factoryId)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> factoryId)>>
       get_ProxyFactoryId;
 }

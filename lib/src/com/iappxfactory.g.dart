@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -62,15 +60,13 @@ class IAppxFactory extends IUnknown {
                   Pointer<VTablePointer> blockMapReader)>()(
           ptr, inputStream, blockMapReader);
 
-  int createValidatedBlockMapReader(
-          VTablePointer blockMapStream,
-          Pointer<Utf16> signatureFileName,
-          Pointer<VTablePointer> blockMapReader) =>
+  int createValidatedBlockMapReader(VTablePointer blockMapStream,
+          PWSTR signatureFileName, Pointer<VTablePointer> blockMapReader) =>
       _vtable.CreateValidatedBlockMapReader.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   VTablePointer blockMapStream,
-                  Pointer<Utf16> signatureFileName,
+                  PWSTR signatureFileName,
                   Pointer<VTablePointer> blockMapReader)>()(
           ptr, blockMapStream, signatureFileName, blockMapReader);
 }
@@ -80,29 +76,29 @@ base class IAppxFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer outputStream,
               Pointer<APPX_PACKAGE_SETTINGS> settings,
               Pointer<VTablePointer> packageWriter)>> CreatePackageWriter;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer inputStream,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputStream,
               Pointer<VTablePointer> packageReader)>> CreatePackageReader;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer inputStream,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputStream,
               Pointer<VTablePointer> manifestReader)>> CreateManifestReader;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer inputStream,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer inputStream,
               Pointer<VTablePointer> blockMapReader)>> CreateBlockMapReader;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl,
                   VTablePointer blockMapStream,
-                  Pointer<Utf16> signatureFileName,
+                  PWSTR signatureFileName,
                   Pointer<VTablePointer> blockMapReader)>>
       CreateValidatedBlockMapReader;
 }

@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,12 +27,12 @@ class IShellLink extends IUnknown {
   factory IShellLink.from(IUnknown interface) =>
       IShellLink(interface.toInterface(IID_IShellLink));
 
-  int getPath(Pointer<Utf16> pszFile, int cch, Pointer<WIN32_FIND_DATA> pfd,
-          int fFlags) =>
+  int getPath(
+          PWSTR pszFile, int cch, Pointer<WIN32_FIND_DATA> pfd, int fFlags) =>
       _vtable.GetPath.asFunction<
           int Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> pszFile,
+              PWSTR pszFile,
               int cch,
               Pointer<WIN32_FIND_DATA> pfd,
               int fFlags)>()(ptr, pszFile, cch, pfd, fFlags);
@@ -49,34 +47,29 @@ class IShellLink extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl)>()(ptr, pidl);
 
-  int getDescription(Pointer<Utf16> pszName, int cch) =>
+  int getDescription(PWSTR pszName, int cch) =>
       _vtable.GetDescription.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszName,
-              int cch)>()(ptr, pszName, cch);
+              int Function(VTablePointer lpVtbl, PWSTR pszName, int cch)>()(
+          ptr, pszName, cch);
 
-  int setDescription(Pointer<Utf16> pszName) =>
-      _vtable.SetDescription.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<Utf16> pszName)>()(ptr, pszName);
+  int setDescription(PWSTR pszName) => _vtable.SetDescription.asFunction<
+      int Function(VTablePointer lpVtbl, PWSTR pszName)>()(ptr, pszName);
 
-  int getWorkingDirectory(Pointer<Utf16> pszDir, int cch) =>
+  int getWorkingDirectory(PWSTR pszDir, int cch) =>
       _vtable.GetWorkingDirectory.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszDir,
-              int cch)>()(ptr, pszDir, cch);
-
-  int setWorkingDirectory(Pointer<Utf16> pszDir) =>
-      _vtable.SetWorkingDirectory.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Utf16> pszDir)>()(ptr, pszDir);
+              VTablePointer lpVtbl, PWSTR pszDir, int cch)>()(ptr, pszDir, cch);
 
-  int getArguments(Pointer<Utf16> pszArgs, int cch) =>
-      _vtable.GetArguments.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszArgs,
-              int cch)>()(ptr, pszArgs, cch);
+  int setWorkingDirectory(PWSTR pszDir) =>
+      _vtable.SetWorkingDirectory.asFunction<
+          int Function(VTablePointer lpVtbl, PWSTR pszDir)>()(ptr, pszDir);
 
-  int setArguments(Pointer<Utf16> pszArgs) => _vtable.SetArguments.asFunction<
+  int getArguments(PWSTR pszArgs, int cch) => _vtable.GetArguments.asFunction<
       int Function(
-          VTablePointer lpVtbl, Pointer<Utf16> pszArgs)>()(ptr, pszArgs);
+          VTablePointer lpVtbl, PWSTR pszArgs, int cch)>()(ptr, pszArgs, cch);
+
+  int setArguments(PWSTR pszArgs) => _vtable.SetArguments.asFunction<
+      int Function(VTablePointer lpVtbl, PWSTR pszArgs)>()(ptr, pszArgs);
 
   int getHotkey(Pointer<Uint16> pwHotkey) => _vtable.GetHotkey.asFunction<
       int Function(
@@ -92,29 +85,26 @@ class IShellLink extends IUnknown {
   int setShowCmd(int iShowCmd) => _vtable.SetShowCmd.asFunction<
       int Function(VTablePointer lpVtbl, int iShowCmd)>()(ptr, iShowCmd);
 
-  int getIconLocation(
-          Pointer<Utf16> pszIconPath, int cch, Pointer<Int32> piIcon) =>
+  int getIconLocation(PWSTR pszIconPath, int cch, Pointer<Int32> piIcon) =>
       _vtable.GetIconLocation.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszIconPath,
-              int cch, Pointer<Int32> piIcon)>()(ptr, pszIconPath, cch, piIcon);
+          int Function(VTablePointer lpVtbl, PWSTR pszIconPath, int cch,
+              Pointer<Int32> piIcon)>()(ptr, pszIconPath, cch, piIcon);
 
-  int setIconLocation(Pointer<Utf16> pszIconPath, int iIcon) =>
+  int setIconLocation(PWSTR pszIconPath, int iIcon) =>
       _vtable.SetIconLocation.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszIconPath,
+          int Function(VTablePointer lpVtbl, PWSTR pszIconPath,
               int iIcon)>()(ptr, pszIconPath, iIcon);
 
-  int setRelativePath(Pointer<Utf16> pszPathRel) =>
-      _vtable.SetRelativePath.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszPathRel,
-              int dwReserved)>()(ptr, pszPathRel, 0);
+  int setRelativePath(PWSTR pszPathRel) => _vtable.SetRelativePath.asFunction<
+      int Function(VTablePointer lpVtbl, PWSTR pszPathRel,
+          int dwReserved)>()(ptr, pszPathRel, 0);
 
   int resolve(int hwnd, int fFlags) => _vtable.Resolve.asFunction<
       int Function(
           VTablePointer lpVtbl, int hwnd, int fFlags)>()(ptr, hwnd, fFlags);
 
-  int setPath(Pointer<Utf16> pszFile) => _vtable.SetPath.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<Utf16> pszFile)>()(ptr, pszFile);
+  int setPath(PWSTR pszFile) => _vtable.SetPath.asFunction<
+      int Function(VTablePointer lpVtbl, PWSTR pszFile)>()(ptr, pszFile);
 }
 
 /// @nodoc
@@ -122,77 +112,72 @@ base class IShellLinkVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszFile,
-              Int32 cch, Pointer<WIN32_FIND_DATA> pfd, Uint32 fFlags)>> GetPath;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR pszFile, Int32 cch,
+              Pointer<WIN32_FIND_DATA> pfd, Uint32 fFlags)>> GetPath;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Pointer<ITEMIDLIST>> ppidl)>>
       GetIDList;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl)>>
       SetIDList;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Utf16> pszName, Int32 cch)>>
+              HRESULT Function(VTablePointer lpVtbl, PWSTR pszName, Int32 cch)>>
       GetDescription;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszName)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszName)>>
       SetDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Utf16> pszDir, Int32 cch)>>
+              HRESULT Function(VTablePointer lpVtbl, PWSTR pszDir, Int32 cch)>>
       GetWorkingDirectory;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszDir)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszDir)>>
       SetWorkingDirectory;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Utf16> pszArgs, Int32 cch)>>
+              HRESULT Function(VTablePointer lpVtbl, PWSTR pszArgs, Int32 cch)>>
       GetArguments;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszArgs)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszArgs)>>
       SetArguments;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint16> pwHotkey)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint16> pwHotkey)>>
       GetHotkey;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint16 wHotkey)>>
-      SetHotkey;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint16 wHotkey)>> SetHotkey;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> piShowCmd)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> piShowCmd)>>
       GetShowCmd;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 iShowCmd)>>
-      SetShowCmd;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 iShowCmd)>> SetShowCmd;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszIconPath,
-              Int32 cch, Pointer<Int32> piIcon)>> GetIconLocation;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszIconPath,
-              Int32 iIcon)>> SetIconLocation;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszPathRel,
-              Uint32 dwReserved)>> SetRelativePath;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR pszIconPath, Int32 cch,
+              Pointer<Int32> piIcon)>> GetIconLocation;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, IntPtr hwnd, Uint32 fFlags)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, PWSTR pszIconPath, Int32 iIcon)>>
+      SetIconLocation;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, PWSTR pszPathRel, Uint32 dwReserved)>>
+      SetRelativePath;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, HWND hwnd, Uint32 fFlags)>>
       Resolve;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszFile)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszFile)>>
       SetPath;
 }
 

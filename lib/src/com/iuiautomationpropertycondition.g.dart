@@ -82,16 +82,16 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
 base class IUIAutomationPropertyConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> propertyId)>>
-      get_PropertyId;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> propertyId)>> get_PropertyId;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VARIANT> propertyValue)>>
       get_PropertyValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> flags)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> flags)>>
       get_PropertyConditionFlags;
 }

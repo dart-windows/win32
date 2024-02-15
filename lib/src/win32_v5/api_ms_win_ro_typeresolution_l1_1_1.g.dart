@@ -32,15 +32,15 @@ final _api_ms_win_ro_typeresolution_l1_1_1 =
 /// ```
 /// {@category winrt}
 int RoIsApiContractMajorVersionPresent(
-        Pointer<Utf16> name, int majorVersion, Pointer<Int32> present) =>
+        PWSTR name, int majorVersion, Pointer<BOOL> present) =>
     _RoIsApiContractMajorVersionPresent(name, majorVersion, present);
 
 final _RoIsApiContractMajorVersionPresent =
     _api_ms_win_ro_typeresolution_l1_1_1.lookupFunction<
-        Int32 Function(
-            Pointer<Utf16> name, Uint16 majorVersion, Pointer<Int32> present),
-        int Function(Pointer<Utf16> name, int majorVersion,
-            Pointer<Int32> present)>('RoIsApiContractMajorVersionPresent');
+        HRESULT Function(
+            PWSTR name, Uint16 majorVersion, Pointer<BOOL> present),
+        int Function(PWSTR name, int majorVersion,
+            Pointer<BOOL> present)>('RoIsApiContractMajorVersionPresent');
 
 /// Returns true or false to indicate whether the API contract with the
 /// specified name and major and minor version number is present.
@@ -54,13 +54,13 @@ final _RoIsApiContractMajorVersionPresent =
 /// );
 /// ```
 /// {@category winrt}
-int RoIsApiContractPresent(Pointer<Utf16> name, int majorVersion,
-        int minorVersion, Pointer<Int32> present) =>
+int RoIsApiContractPresent(PWSTR name, int majorVersion, int minorVersion,
+        Pointer<BOOL> present) =>
     _RoIsApiContractPresent(name, majorVersion, minorVersion, present);
 
 final _RoIsApiContractPresent =
     _api_ms_win_ro_typeresolution_l1_1_1.lookupFunction<
-        Int32 Function(Pointer<Utf16> name, Uint16 majorVersion,
-            Uint16 minorVersion, Pointer<Int32> present),
-        int Function(Pointer<Utf16> name, int majorVersion, int minorVersion,
-            Pointer<Int32> present)>('RoIsApiContractPresent');
+        HRESULT Function(PWSTR name, Uint16 majorVersion, Uint16 minorVersion,
+            Pointer<BOOL> present),
+        int Function(PWSTR name, int majorVersion, int minorVersion,
+            Pointer<BOOL> present)>('RoIsApiContractPresent');

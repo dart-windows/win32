@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -132,19 +130,16 @@ class IMoniker extends IPersistStream {
           ptr, pmkOther, ppmkRelPath);
 
   int getDisplayName(VTablePointer pbc, VTablePointer pmkToLeft,
-          Pointer<Pointer<Utf16>> ppszDisplayName) =>
+          Pointer<PWSTR> ppszDisplayName) =>
       _vtable.GetDisplayName.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  VTablePointer pbc,
-                  VTablePointer pmkToLeft,
-                  Pointer<Pointer<Utf16>> ppszDisplayName)>()(
+              int Function(VTablePointer lpVtbl, VTablePointer pbc,
+                  VTablePointer pmkToLeft, Pointer<PWSTR> ppszDisplayName)>()(
           ptr, pbc, pmkToLeft, ppszDisplayName);
 
   int parseDisplayName(
           VTablePointer pbc,
           VTablePointer pmkToLeft,
-          Pointer<Utf16> pszDisplayName,
+          PWSTR pszDisplayName,
           Pointer<Uint32> pchEaten,
           Pointer<VTablePointer> ppmkOut) =>
       _vtable.ParseDisplayName.asFunction<
@@ -152,7 +147,7 @@ class IMoniker extends IPersistStream {
                   VTablePointer lpVtbl,
                   VTablePointer pbc,
                   VTablePointer pmkToLeft,
-                  Pointer<Utf16> pszDisplayName,
+                  PWSTR pszDisplayName,
                   Pointer<Uint32> pchEaten,
                   Pointer<VTablePointer> ppmkOut)>()(
           ptr, pbc, pmkToLeft, pszDisplayName, pchEaten, ppmkOut);
@@ -168,7 +163,7 @@ base class IMonikerVtbl extends Struct {
   external IPersistStreamVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
@@ -176,7 +171,7 @@ base class IMonikerVtbl extends Struct {
               Pointer<Pointer> ppvResult)>> BindToObject;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
@@ -184,7 +179,7 @@ base class IMonikerVtbl extends Struct {
               Pointer<Pointer> ppvObj)>> BindToStorage;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               Uint32 dwReduceHowFar,
@@ -192,66 +187,67 @@ base class IMonikerVtbl extends Struct {
               Pointer<VTablePointer> ppmkReduced)>> Reduce;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pmkRight,
-              Int32 fOnlyIfNotGeneric,
+              BOOL fOnlyIfNotGeneric,
               Pointer<VTablePointer> ppmkComposite)>> ComposeWith;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 fForward,
+          HRESULT Function(VTablePointer lpVtbl, BOOL fForward,
               Pointer<VTablePointer> ppenumMoniker)>> Enum;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, VTablePointer pmkOtherMoniker)>> IsEqual;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwHash)>> Hash;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pdwHash)>>
+      Hash;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
               VTablePointer pmkNewlyRunning)>> IsRunning;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
               Pointer<FILETIME> pFileTime)>> GetTimeOfLastChange;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppmk)>> Inverse;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pmkOther,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pmkOther,
               Pointer<VTablePointer> ppmkPrefix)>> CommonPrefixWith;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pmkOther,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pmkOther,
               Pointer<VTablePointer> ppmkRelPath)>> RelativePathTo;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
-              Pointer<Pointer<Utf16>> ppszDisplayName)>> GetDisplayName;
+              Pointer<PWSTR> ppszDisplayName)>> GetDisplayName;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
-              Pointer<Utf16> pszDisplayName,
+              PWSTR pszDisplayName,
               Pointer<Uint32> pchEaten,
               Pointer<VTablePointer> ppmkOut)>> ParseDisplayName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwMksys)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pdwMksys)>>
       IsSystemMoniker;
 }

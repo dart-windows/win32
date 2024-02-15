@@ -151,11 +151,11 @@ class ISpeechVoice extends IDispatch {
   }
 
   int get allowAudioOutputFormatChangesOnNextSet {
-    final allow = calloc<Int16>();
+    final allow = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_AllowAudioOutputFormatChangesOnNextSet.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int16> allow)>()(ptr, allow);
+              VTablePointer lpVtbl, Pointer<VARIANT_BOOL> allow)>()(ptr, allow);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = allow.value;
       return retValue;
@@ -248,9 +248,9 @@ class ISpeechVoice extends IDispatch {
     }
   }
 
-  int speak(Pointer<Utf16> text, int flags, Pointer<Int32> streamNumber) =>
+  int speak(BSTR text, int flags, Pointer<Int32> streamNumber) =>
       _vtable.Speak.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> text, int flags,
+          int Function(VTablePointer lpVtbl, BSTR text, int flags,
               Pointer<Int32> streamNumber)>()(ptr, text, flags, streamNumber);
 
   int speakStream(
@@ -266,63 +266,56 @@ class ISpeechVoice extends IDispatch {
   int resume() =>
       _vtable.Resume.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
-  int skip(Pointer<Utf16> type, int numItems, Pointer<Int32> numSkipped) =>
+  int skip(BSTR type, int numItems, Pointer<Int32> numSkipped) =>
       _vtable.Skip.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> type, int numItems,
+          int Function(VTablePointer lpVtbl, BSTR type, int numItems,
               Pointer<Int32> numSkipped)>()(ptr, type, numItems, numSkipped);
 
-  int getVoices(
-          Pointer<Utf16> requiredAttributes,
-          Pointer<Utf16> optionalAttributes,
+  int getVoices(BSTR requiredAttributes, BSTR optionalAttributes,
           Pointer<VTablePointer> objectTokens) =>
       _vtable.GetVoices.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> requiredAttributes,
-                  Pointer<Utf16> optionalAttributes,
+                  BSTR requiredAttributes,
+                  BSTR optionalAttributes,
                   Pointer<VTablePointer> objectTokens)>()(
           ptr, requiredAttributes, optionalAttributes, objectTokens);
 
-  int getAudioOutputs(
-          Pointer<Utf16> requiredAttributes,
-          Pointer<Utf16> optionalAttributes,
+  int getAudioOutputs(BSTR requiredAttributes, BSTR optionalAttributes,
           Pointer<VTablePointer> objectTokens) =>
       _vtable.GetAudioOutputs.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> requiredAttributes,
-                  Pointer<Utf16> optionalAttributes,
+                  BSTR requiredAttributes,
+                  BSTR optionalAttributes,
                   Pointer<VTablePointer> objectTokens)>()(
           ptr, requiredAttributes, optionalAttributes, objectTokens);
 
-  int waitUntilDone(int msTimeout, Pointer<Int16> done) =>
+  int waitUntilDone(int msTimeout, Pointer<VARIANT_BOOL> done) =>
       _vtable.WaitUntilDone.asFunction<
           int Function(VTablePointer lpVtbl, int msTimeout,
-              Pointer<Int16> done)>()(ptr, msTimeout, done);
+              Pointer<VARIANT_BOOL> done)>()(ptr, msTimeout, done);
 
   int speakCompleteEvent(Pointer<Int32> handle) =>
       _vtable.SpeakCompleteEvent.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<Int32> handle)>()(ptr, handle);
 
-  int isUISupported(Pointer<Utf16> typeOfUI, Pointer<VARIANT> extraData,
-          Pointer<Int16> supported) =>
+  int isUISupported(BSTR typeOfUI, Pointer<VARIANT> extraData,
+          Pointer<VARIANT_BOOL> supported) =>
       _vtable.IsUISupported.asFunction<
-          int Function(
-              VTablePointer lpVtbl,
-              Pointer<Utf16> typeOfUI,
-              Pointer<VARIANT> extraData,
-              Pointer<Int16> supported)>()(ptr, typeOfUI, extraData, supported);
-
-  int displayUI(int hWndParent, Pointer<Utf16> title, Pointer<Utf16> typeOfUI,
-          Pointer<VARIANT> extraData) =>
-      _vtable.DisplayUI.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  int hWndParent,
-                  Pointer<Utf16> title,
-                  Pointer<Utf16> typeOfUI,
-                  Pointer<VARIANT> extraData)>()(
+                  BSTR typeOfUI,
+                  Pointer<VARIANT> extraData,
+                  Pointer<VARIANT_BOOL> supported)>()(
+          ptr, typeOfUI, extraData, supported);
+
+  int displayUI(int hWndParent, BSTR title, BSTR typeOfUI,
+          Pointer<VARIANT> extraData) =>
+      _vtable.DisplayUI.asFunction<
+              int Function(VTablePointer lpVtbl, int hWndParent, BSTR title,
+                  BSTR typeOfUI, Pointer<VARIANT> extraData)>()(
           ptr, hWndParent, title, typeOfUI, extraData);
 }
 
@@ -331,134 +324,137 @@ base class ISpeechVoiceVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> status)>> get_Status;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> voice)>> get_Voice;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer voice)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer voice)>>
       putref_Voice;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> audioOutput)>>
       get_AudioOutput;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer audioOutput)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, VTablePointer audioOutput)>>
       putref_AudioOutput;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> audioOutputStream)>> get_AudioOutputStream;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, VTablePointer audioOutputStream)>>
       putref_AudioOutputStream;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> rate)>> get_Rate;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> rate)>>
+      get_Rate;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 rate)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 rate)>>
       put_Rate;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> volume)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> volume)>>
       get_Volume;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 volume)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 volume)>>
       put_Volume;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int16 allow)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VARIANT_BOOL allow)>>
       put_AllowAudioOutputFormatChangesOnNextSet;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> allow)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> allow)>>
       get_AllowAudioOutputFormatChangesOnNextSet;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> eventInterestFlags)>>
       get_EventInterests;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 eventInterestFlags)>>
+              HRESULT Function(VTablePointer lpVtbl, Int32 eventInterestFlags)>>
       put_EventInterests;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 priority)>>
-      put_Priority;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 priority)>> put_Priority;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> priority)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> priority)>>
       get_Priority;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 boundary)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 boundary)>>
       put_AlertBoundary;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> boundary)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> boundary)>>
       get_AlertBoundary;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 msTimeout)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 msTimeout)>>
       put_SynchronousSpeakTimeout;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> msTimeout)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> msTimeout)>>
       get_SynchronousSpeakTimeout;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> text, Int32 flags,
+          HRESULT Function(VTablePointer lpVtbl, BSTR text, Int32 flags,
               Pointer<Int32> streamNumber)>> Speak;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer stream,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer stream,
               Int32 flags, Pointer<Int32> streamNumber)>> SpeakStream;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Pause;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Resume;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Pause;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Resume;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> type,
-              Int32 numItems, Pointer<Int32> numSkipped)>> Skip;
+          HRESULT Function(VTablePointer lpVtbl, BSTR type, Int32 numItems,
+              Pointer<Int32> numSkipped)>> Skip;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> requiredAttributes,
-              Pointer<Utf16> optionalAttributes,
+              BSTR requiredAttributes,
+              BSTR optionalAttributes,
               Pointer<VTablePointer> objectTokens)>> GetVoices;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> requiredAttributes,
-              Pointer<Utf16> optionalAttributes,
+              BSTR requiredAttributes,
+              BSTR optionalAttributes,
               Pointer<VTablePointer> objectTokens)>> GetAudioOutputs;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Int32 msTimeout, Pointer<Int16> done)>>
-      WaitUntilDone;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 msTimeout,
+              Pointer<VARIANT_BOOL> done)>> WaitUntilDone;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> handle)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> handle)>>
       SpeakCompleteEvent;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> typeOfUI,
+              BSTR typeOfUI,
               Pointer<VARIANT> extraData,
-              Pointer<Int16> supported)>> IsUISupported;
+              Pointer<VARIANT_BOOL> supported)>> IsUISupported;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl,
-              Int32 hWndParent,
-              Pointer<Utf16> title,
-              Pointer<Utf16> typeOfUI,
-              Pointer<VARIANT> extraData)>> DisplayUI;
+          HRESULT Function(VTablePointer lpVtbl, Int32 hWndParent, BSTR title,
+              BSTR typeOfUI, Pointer<VARIANT> extraData)>> DisplayUI;
 }

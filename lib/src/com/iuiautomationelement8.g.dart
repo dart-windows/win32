@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement7.g.dart';
@@ -67,10 +68,10 @@ base class IUIAutomationElement8Vtbl extends Struct {
   external IUIAutomationElement7Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentHeadingLevel;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedHeadingLevel;
 }

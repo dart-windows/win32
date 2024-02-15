@@ -35,7 +35,7 @@ int DefSubclassProc(int hWnd, int uMsg, int wParam, int lParam) =>
     _DefSubclassProc(hWnd, uMsg, wParam, lParam);
 
 final _DefSubclassProc = _comctl32.lookupFunction<
-    IntPtr Function(IntPtr hWnd, Uint32 uMsg, IntPtr wParam, IntPtr lParam),
+    LRESULT Function(HWND hWnd, Uint32 uMsg, WPARAM wParam, LPARAM lParam),
     int Function(
         int hWnd, int uMsg, int wParam, int lParam)>('DefSubclassProc');
 
@@ -51,14 +51,12 @@ final _DefSubclassProc = _comctl32.lookupFunction<
 /// );
 /// ```
 /// {@category comctl32}
-void DrawStatusText(
-        int hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText, int uFlags) =>
+void DrawStatusText(int hDC, Pointer<RECT> lprc, PWSTR pszText, int uFlags) =>
     _DrawStatusText(hDC, lprc, pszText, uFlags);
 
 final _DrawStatusText = _comctl32.lookupFunction<
-    Void Function(
-        IntPtr hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText, Uint32 uFlags),
-    void Function(int hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText,
+    Void Function(HDC hDC, Pointer<RECT> lprc, PWSTR pszText, Uint32 uFlags),
+    void Function(int hDC, Pointer<RECT> lprc, PWSTR pszText,
         int uFlags)>('DrawStatusTextW');
 
 /// Ensures that the common control DLL (Comctl32.dll) is loaded, and registers
@@ -75,7 +73,7 @@ int InitCommonControlsEx(Pointer<INITCOMMONCONTROLSEX> picce) =>
     _InitCommonControlsEx(picce);
 
 final _InitCommonControlsEx = _comctl32.lookupFunction<
-    Int32 Function(Pointer<INITCOMMONCONTROLSEX> picce),
+    BOOL Function(Pointer<INITCOMMONCONTROLSEX> picce),
     int Function(Pointer<INITCOMMONCONTROLSEX> picce)>('InitCommonControlsEx');
 
 /// Removes a subclass callback from a window.
@@ -93,8 +91,8 @@ int RemoveWindowSubclass(int hWnd,
     _RemoveWindowSubclass(hWnd, pfnSubclass, uIdSubclass);
 
 final _RemoveWindowSubclass = _comctl32.lookupFunction<
-    Int32 Function(IntPtr hWnd,
-        Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass, IntPtr uIdSubclass),
+    BOOL Function(HWND hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
+        IntPtr uIdSubclass),
     int Function(int hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass)>('RemoveWindowSubclass');
 
@@ -117,11 +115,8 @@ int SetWindowSubclass(
     _SetWindowSubclass(hWnd, pfnSubclass, uIdSubclass, dwRefData);
 
 final _SetWindowSubclass = _comctl32.lookupFunction<
-    Int32 Function(
-        IntPtr hWnd,
-        Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
-        IntPtr uIdSubclass,
-        IntPtr dwRefData),
+    BOOL Function(HWND hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
+        IntPtr uIdSubclass, IntPtr dwRefData),
     int Function(int hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass, int dwRefData)>('SetWindowSubclass');
 
@@ -146,11 +141,11 @@ final _SetWindowSubclass = _comctl32.lookupFunction<
 int TaskDialog(
         int? hwndOwner,
         int? hInstance,
-        Pointer<Utf16>? pszWindowTitle,
-        Pointer<Utf16>? pszMainInstruction,
-        Pointer<Utf16>? pszContent,
+        PWSTR? pszWindowTitle,
+        PWSTR? pszMainInstruction,
+        PWSTR? pszContent,
         int dwCommonButtons,
-        Pointer<Utf16>? pszIcon,
+        PWSTR? pszIcon,
         Pointer<Int32>? pnButton) =>
     _TaskDialog(
         hwndOwner ?? 0,
@@ -163,23 +158,23 @@ int TaskDialog(
         pnButton ?? nullptr);
 
 final _TaskDialog = _comctl32.lookupFunction<
-    Int32 Function(
-        IntPtr hwndOwner,
-        IntPtr hInstance,
-        Pointer<Utf16> pszWindowTitle,
-        Pointer<Utf16> pszMainInstruction,
-        Pointer<Utf16> pszContent,
+    HRESULT Function(
+        HWND hwndOwner,
+        HINSTANCE hInstance,
+        PWSTR pszWindowTitle,
+        PWSTR pszMainInstruction,
+        PWSTR pszContent,
         Int32 dwCommonButtons,
-        Pointer<Utf16> pszIcon,
+        PWSTR pszIcon,
         Pointer<Int32> pnButton),
     int Function(
         int hwndOwner,
         int hInstance,
-        Pointer<Utf16> pszWindowTitle,
-        Pointer<Utf16> pszMainInstruction,
-        Pointer<Utf16> pszContent,
+        PWSTR pszWindowTitle,
+        PWSTR pszMainInstruction,
+        PWSTR pszContent,
         int dwCommonButtons,
-        Pointer<Utf16> pszIcon,
+        PWSTR pszIcon,
         Pointer<Int32> pnButton)>('TaskDialog');
 
 /// The TaskDialogIndirect function creates, displays, and operates a task
@@ -200,18 +195,18 @@ int TaskDialogIndirect(
         Pointer<TASKDIALOGCONFIG> pTaskConfig,
         Pointer<Int32>? pnButton,
         Pointer<Int32>? pnRadioButton,
-        Pointer<Int32>? pfVerificationFlagChecked) =>
+        Pointer<BOOL>? pfVerificationFlagChecked) =>
     _TaskDialogIndirect(pTaskConfig, pnButton ?? nullptr,
         pnRadioButton ?? nullptr, pfVerificationFlagChecked ?? nullptr);
 
 final _TaskDialogIndirect = _comctl32.lookupFunction<
-    Int32 Function(
+    HRESULT Function(
         Pointer<TASKDIALOGCONFIG> pTaskConfig,
         Pointer<Int32> pnButton,
         Pointer<Int32> pnRadioButton,
-        Pointer<Int32> pfVerificationFlagChecked),
+        Pointer<BOOL> pfVerificationFlagChecked),
     int Function(
         Pointer<TASKDIALOGCONFIG> pTaskConfig,
         Pointer<Int32> pnButton,
         Pointer<Int32> pnRadioButton,
-        Pointer<Int32> pfVerificationFlagChecked)>('TaskDialogIndirect');
+        Pointer<BOOL> pfVerificationFlagChecked)>('TaskDialogIndirect');

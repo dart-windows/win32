@@ -61,7 +61,7 @@ class Dispatcher {
   int _getDispId(String member) {
     return using((arena) {
       final ptrMember = member.toNativeUtf16(allocator: arena);
-      final rgszNames = arena<Pointer<Utf16>>()..value = ptrMember;
+      final rgszNames = arena<PWSTR>()..value = ptrMember;
       final rgDispId = arena<Int32>();
 
       final hr = _dispatch.getIDsOfNames(

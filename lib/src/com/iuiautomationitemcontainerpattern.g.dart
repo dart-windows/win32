@@ -48,7 +48,7 @@ base class IUIAutomationItemContainerPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pStartAfter,
               Int32 propertyId,

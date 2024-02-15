@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iappxmanifestreader.g.dart';
 import 'iunknown.g.dart';
@@ -40,7 +41,7 @@ base class IAppxManifestReader2Vtbl extends Struct {
   external IAppxManifestReaderVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> resources)>>
       GetQualifiedResources;
 }

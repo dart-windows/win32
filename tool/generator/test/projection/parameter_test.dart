@@ -96,7 +96,7 @@ void main() {
       expect(projection.name, equals('hMem'));
       expect(projection.isOptional, isTrue);
       expect(projection.isReserved, isFalse);
-      expect(projection.nativeProjection, equals('IntPtr hMem'));
+      expect(projection.nativeProjection, equals('HANDLE hMem'));
       expect(projection.dartProjection, equals('int hMem'));
       expect(projection.type, equals('int?'));
       expect(projection.identifier, equals('hMem ?? 0'));

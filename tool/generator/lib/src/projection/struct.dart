@@ -97,8 +97,32 @@ class StructProjection {
           : field.typeIdentifier.typeArg!.type!))
       .toFixedList();
 
+  /// Special wrapper structs that require a custom Dart type projection.
+  ///
+  /// This is used to handle special cases where the struct is a wrapper around
+  /// a native string type, such as `BSTR`, `PSTR`, or `PWSTR`.
+  ///
+  /// They are projected as a `Pointer<Utf16>` or `Pointer<Utf8>` instead of a
+  /// `Pointer<Uint16>` or `Pointer<Uint8>`.
+  static const _specialWrapperStructs = <String, String>{
+    'Windows.Win32.Foundation.BSTR': 'Pointer<Utf16>',
+    'Windows.Win32.Foundation.PSTR': 'Pointer<Utf8>',
+    'Windows.Win32.Foundation.PWSTR': 'Pointer<Utf16>',
+  };
+
   @override
-  String toString() => '''
+  String toString() {
+    if (typeDef.isWrapperStruct) {
+      final [fieldProjection] = fieldProjections;
+      final nativeType = _specialWrapperStructs.containsKey(typeDef.name)
+          ? _specialWrapperStructs[typeDef.name]!
+          : fieldProjection.typeProjection.nativeType;
+      return '''
+/// {@category struct}
+typedef $name = $nativeType;''';
+    }
+
+    return '''
 $classPreamble
 $classHeader {
   ${fieldProjections.join('\n\n')}
@@ -108,6 +132,7 @@ $propertyAccessors
 
 ${nestedTypeProjections.join('\n\n')}
 ''';
+  }
 }
 
 extension NestedStructExtension on TypeDef {

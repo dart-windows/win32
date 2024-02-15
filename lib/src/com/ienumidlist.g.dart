@@ -58,16 +58,17 @@ base class IEnumIDListVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 celt,
               Pointer<Pointer<ITEMIDLIST>> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+      NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>> Clone;
 }

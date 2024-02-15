@@ -89,30 +89,30 @@ base class IUIAutomationTextPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, POINT pt,
+          HRESULT Function(VTablePointer lpVtbl, POINT pt,
               Pointer<VTablePointer> range)>> RangeFromPoint;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer child,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer child,
               Pointer<VTablePointer> range)>> RangeFromChild;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ranges)>>
       GetSelection;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ranges)>>
       GetVisibleRanges;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       get_DocumentRange;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> supportedTextSelection)>>
       get_SupportedTextSelection;
 }

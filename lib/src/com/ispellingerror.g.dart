@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -74,12 +75,12 @@ class ISpellingError extends IUnknown {
     }
   }
 
-  Pointer<Utf16> get replacement {
-    final value = calloc<Pointer<Utf16>>();
+  PWSTR get replacement {
+    final value = calloc<PWSTR>();
     try {
       final hr = _vtable.get_Replacement.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> value)>()(ptr, value);
+          int Function(
+              VTablePointer lpVtbl, Pointer<PWSTR> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = value.value;
       return retValue;
@@ -94,19 +95,18 @@ base class ISpellingErrorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
       get_StartIndex;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> value)>>
       get_Length;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> value)>>
       get_CorrectiveAction;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> value)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> value)>>
       get_Replacement;
 }

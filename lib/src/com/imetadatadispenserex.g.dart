@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -55,50 +53,50 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
           ptr, pITI, dwOpenFlags, riid, ppIUnk);
 
   int getCORSystemDirectory(
-          Pointer<Utf16>? szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
+          PWSTR? szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
       _vtable.GetCORSystemDirectory.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Utf16> szBuffer,
-                  int cchBuffer, Pointer<Uint32> pchBuffer)>()(
+              int Function(VTablePointer lpVtbl, PWSTR szBuffer, int cchBuffer,
+                  Pointer<Uint32> pchBuffer)>()(
           ptr, szBuffer ?? nullptr, cchBuffer, pchBuffer);
 
   int findAssembly(
-          Pointer<Utf16> szAppBase,
-          Pointer<Utf16> szPrivateBin,
-          Pointer<Utf16> szGlobalBin,
-          Pointer<Utf16> szAssemblyName,
-          Pointer<Utf16> szName,
+          PWSTR szAppBase,
+          PWSTR szPrivateBin,
+          PWSTR szGlobalBin,
+          PWSTR szAssemblyName,
+          PWSTR szName,
           int cchName,
           Pointer<Uint32> pcName) =>
       _vtable.FindAssembly.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> szAppBase,
-                  Pointer<Utf16> szPrivateBin,
-                  Pointer<Utf16> szGlobalBin,
-                  Pointer<Utf16> szAssemblyName,
-                  Pointer<Utf16> szName,
+                  PWSTR szAppBase,
+                  PWSTR szPrivateBin,
+                  PWSTR szGlobalBin,
+                  PWSTR szAssemblyName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pcName)>()(ptr, szAppBase, szPrivateBin,
           szGlobalBin, szAssemblyName, szName, cchName, pcName);
 
   int findAssemblyModule(
-          Pointer<Utf16> szAppBase,
-          Pointer<Utf16> szPrivateBin,
-          Pointer<Utf16> szGlobalBin,
-          Pointer<Utf16> szAssemblyName,
-          Pointer<Utf16> szModuleName,
-          Pointer<Utf16>? szName,
+          PWSTR szAppBase,
+          PWSTR szPrivateBin,
+          PWSTR szGlobalBin,
+          PWSTR szAssemblyName,
+          PWSTR szModuleName,
+          PWSTR? szName,
           int cchName,
           Pointer<Uint32> pcName) =>
       _vtable.FindAssemblyModule.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> szAppBase,
-                  Pointer<Utf16> szPrivateBin,
-                  Pointer<Utf16> szGlobalBin,
-                  Pointer<Utf16> szAssemblyName,
-                  Pointer<Utf16> szModuleName,
-                  Pointer<Utf16> szName,
+                  PWSTR szAppBase,
+                  PWSTR szPrivateBin,
+                  PWSTR szGlobalBin,
+                  PWSTR szAssemblyName,
+                  PWSTR szModuleName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pcName)>()(
           ptr,
@@ -117,15 +115,15 @@ base class IMetaDataDispenserExVtbl extends Struct {
   external IMetaDataDispenserVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> value)>> SetOption;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> pvalue)>> GetOption;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pITI,
               Uint32 dwOpenFlags,
@@ -133,32 +131,32 @@ base class IMetaDataDispenserExVtbl extends Struct {
               Pointer<VTablePointer> ppIUnk)>> OpenScopeOnITypeInfo;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> szBuffer,
+              PWSTR szBuffer,
               Uint32 cchBuffer,
               Pointer<Uint32> pchBuffer)>> GetCORSystemDirectory;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> szAppBase,
-              Pointer<Utf16> szPrivateBin,
-              Pointer<Utf16> szGlobalBin,
-              Pointer<Utf16> szAssemblyName,
-              Pointer<Utf16> szName,
+              PWSTR szAppBase,
+              PWSTR szPrivateBin,
+              PWSTR szGlobalBin,
+              PWSTR szAssemblyName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pcName)>> FindAssembly;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> szAppBase,
-              Pointer<Utf16> szPrivateBin,
-              Pointer<Utf16> szGlobalBin,
-              Pointer<Utf16> szAssemblyName,
-              Pointer<Utf16> szModuleName,
-              Pointer<Utf16> szName,
+              PWSTR szAppBase,
+              PWSTR szPrivateBin,
+              PWSTR szGlobalBin,
+              PWSTR szAssemblyName,
+              PWSTR szModuleName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pcName)>> FindAssemblyModule;
 }

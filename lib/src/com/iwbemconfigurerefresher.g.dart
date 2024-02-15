@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -33,7 +32,7 @@ class IWbemConfigureRefresher extends IUnknown {
 
   int addObjectByPath(
           VTablePointer pNamespace,
-          Pointer<Utf16> wszPath,
+          PWSTR wszPath,
           int lFlags,
           VTablePointer pContext,
           Pointer<VTablePointer> ppRefreshable,
@@ -42,7 +41,7 @@ class IWbemConfigureRefresher extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   VTablePointer pNamespace,
-                  Pointer<Utf16> wszPath,
+                  PWSTR wszPath,
                   int lFlags,
                   VTablePointer pContext,
                   Pointer<VTablePointer> ppRefreshable,
@@ -81,7 +80,7 @@ class IWbemConfigureRefresher extends IUnknown {
 
   int addEnum(
           VTablePointer pNamespace,
-          Pointer<Utf16> wszClassName,
+          PWSTR wszClassName,
           int lFlags,
           VTablePointer pContext,
           Pointer<VTablePointer> ppEnum,
@@ -90,7 +89,7 @@ class IWbemConfigureRefresher extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   VTablePointer pNamespace,
-                  Pointer<Utf16> wszClassName,
+                  PWSTR wszClassName,
                   int lFlags,
                   VTablePointer pContext,
                   Pointer<VTablePointer> ppEnum,
@@ -103,17 +102,17 @@ base class IWbemConfigureRefresherVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pNamespace,
-              Pointer<Utf16> wszPath,
+              PWSTR wszPath,
               Int32 lFlags,
               VTablePointer pContext,
               Pointer<VTablePointer> ppRefreshable,
               Pointer<Int32> plId)>> AddObjectByPath;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pNamespace,
               VTablePointer pTemplate,
@@ -123,18 +122,18 @@ base class IWbemConfigureRefresherVtbl extends Struct {
               Pointer<Int32> plId)>> AddObjectByTemplate;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pRefresher,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pRefresher,
               Int32 lFlags, Pointer<Int32> plId)>> AddRefresher;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 lId, Int32 lFlags)>>
+              HRESULT Function(VTablePointer lpVtbl, Int32 lId, Int32 lFlags)>>
       Remove;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pNamespace,
-              Pointer<Utf16> wszClassName,
+              PWSTR wszClassName,
               Int32 lFlags,
               VTablePointer pContext,
               Pointer<VTablePointer> ppEnum,

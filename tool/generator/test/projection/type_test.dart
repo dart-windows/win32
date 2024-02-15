@@ -22,6 +22,7 @@ void main() {
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Int32()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodParameterType('Windows.Win32.Devices.Bluetooth.Apis',
@@ -30,14 +31,16 @@ void main() {
       expect(projection.dartType, equals('Pointer<BLUETOOTH_ADDRESS>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
         'Windows.Win32.Foundation.Apis', 'SysAllocString', 'psz', (projection) {
-      expect(projection.nativeType, equals('Pointer<Utf16>'));
-      expect(projection.dartType, equals('Pointer<Utf16>'));
+      expect(projection.nativeType, equals('PWSTR'));
+      expect(projection.dartType, equals('PWSTR'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -47,6 +50,7 @@ void main() {
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Uint32()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodParameterType(
@@ -62,6 +66,7 @@ void main() {
       );
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -71,6 +76,7 @@ void main() {
       expect(projection.dartType, equals('Pointer'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType('Windows.Win32.System.Console.Apis',
@@ -79,6 +85,7 @@ void main() {
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Uint32()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodParameterType('Windows.Win32.System.Diagnostics.Debug.Apis',
@@ -93,6 +100,7 @@ void main() {
       );
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -102,6 +110,7 @@ void main() {
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Uint16()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodParameterType(
@@ -111,6 +120,7 @@ void main() {
       expect(projection.dartType, equals('Pointer<VTablePointer>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -120,6 +130,7 @@ void main() {
       expect(projection.dartType, equals('Pointer<Pointer<CREDENTIAL>>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType('Windows.Win32.Storage.FileSystem.Apis',
@@ -128,6 +139,7 @@ void main() {
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Int64()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodParameterType(
@@ -137,6 +149,7 @@ void main() {
       expect(projection.nativeType, equals('VTablePointer'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -146,6 +159,7 @@ void main() {
       expect(projection.nativeType, equals('VTablePointer'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -155,6 +169,7 @@ void main() {
       expect(projection.nativeType, equals('Pointer<VTablePointer>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -164,14 +179,16 @@ void main() {
       expect(projection.dartType, equals('Pointer<Uint32>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType('Windows.Win32.System.Threading.Apis',
         'InitializeProcThreadAttributeList', 'lpAttributeList', (projection) {
-      expect(projection.nativeType, equals('Pointer'));
-      expect(projection.dartType, equals('Pointer'));
+      expect(projection.nativeType, equals('LPPROC_THREAD_ATTRIBUTE_LIST'));
+      expect(projection.dartType, equals('LPPROC_THREAD_ATTRIBUTE_LIST'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
@@ -181,6 +198,7 @@ void main() {
       expect(projection.dartType, equals('Pointer<CHOOSEFONT>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType('Windows.Win32.UI.Input.KeyboardAndMouse.Apis',
@@ -189,23 +207,26 @@ void main() {
       expect(projection.dartType, equals('Pointer<Uint8>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType('Windows.Win32.UI.Input.KeyboardAndMouse.Apis',
         'GetKeyNameTextA', 'lpString', (projection) {
-      expect(projection.nativeType, equals('Pointer<Utf8>'));
-      expect(projection.dartType, equals('Pointer<Utf8>'));
+      expect(projection.nativeType, equals('PSTR'));
+      expect(projection.dartType, equals('PSTR'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
         'Windows.Win32.UI.Shell.Apis', 'SHGetKnownFolderPath', 'ppszPath',
         (projection) {
-      expect(projection.nativeType, equals('Pointer<Pointer<Utf16>>'));
-      expect(projection.dartType, equals('Pointer<Pointer<Utf16>>'));
+      expect(projection.nativeType, equals('Pointer<PWSTR>'));
+      expect(projection.dartType, equals('Pointer<PWSTR>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType('Windows.Win32.UI.Shell.PropertiesSystem.Apis',
@@ -214,48 +235,54 @@ void main() {
       expect(projection.dartType, equals('Pointer<GUID>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
         'Windows.Win32.UI.WindowsAndMessaging.Apis', 'CloseWindow', 'hWnd',
         (projection) {
-      expect(projection.nativeType, equals('IntPtr'));
+      expect(projection.nativeType, equals('HWND'));
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@IntPtr()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodParameterType('Windows.Win32.UI.WindowsAndMessaging.Apis',
         'GetWindowTextW', 'lpString', (projection) {
-      expect(projection.nativeType, equals('Pointer<Utf16>'));
-      expect(projection.dartType, equals('Pointer<Utf16>'));
+      expect(projection.nativeType, equals('PWSTR'));
+      expect(projection.dartType, equals('PWSTR'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodParameterType(
         'Windows.Win32.UI.WindowsAndMessaging.Apis', 'CascadeWindows', 'lpKids',
         (projection) {
-      expect(projection.nativeType, equals('Pointer<IntPtr>'));
-      expect(projection.dartType, equals('Pointer<IntPtr>'));
+      expect(projection.nativeType, equals('Pointer<HWND>'));
+      expect(projection.dartType, equals('Pointer<HWND>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodReturnType('Windows.Wdk.Foundation.Apis', 'NtQueryObject',
         (projection) {
-      expect(projection.nativeType, equals('Int32'));
+      expect(projection.nativeType, equals('NTSTATUS'));
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Int32()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodReturnType(
         'Windows.Win32.Graphics.Gdi.Apis', 'CreateCompatibleDC', (projection) {
-      expect(projection.nativeType, equals('IntPtr'));
+      expect(projection.nativeType, equals('HDC'));
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@IntPtr()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodReturnType('Windows.Win32.Security.Credentials.Apis', 'CredFree',
@@ -264,14 +291,16 @@ void main() {
       expect(projection.dartType, equals('void'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodReturnType('Windows.Win32.System.Com.Apis', 'CoInitialize',
         (projection) {
-      expect(projection.nativeType, equals('Int32'));
+      expect(projection.nativeType, equals('HRESULT'));
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Int32()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testMethodReturnType(
@@ -280,16 +309,18 @@ void main() {
       expect(projection.nativeType, equals('FARPROC'));
       expect(projection.dartType, equals('FARPROC'));
       expect(projection.attribute, isEmpty);
-      expect(projection.isDartPrimitive, isFalse);
+      expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testMethodReturnType(
         'Windows.Win32.System.Threading.Apis', 'GetCurrentProcess',
         (projection) {
-      expect(projection.nativeType, equals('IntPtr'));
+      expect(projection.nativeType, equals('HANDLE'));
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@IntPtr()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Wdk.Foundation.ACCESS_STATE', 'ObjectName',
@@ -298,6 +329,7 @@ void main() {
       expect(projection.dartType, equals('UNICODE_STRING'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isFalse);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType(
@@ -307,14 +339,16 @@ void main() {
       expect(projection.dartType, equals('Array<Uint16>'));
       expect(projection.attribute, equals('@Array(248)'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND', 'fEnable',
         (projection) {
-      expect(projection.nativeType, equals('Int32'));
+      expect(projection.nativeType, equals('BOOL'));
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Int32()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Win32.Graphics.Gdi.BITMAPINFO', 'bmiColors',
@@ -323,6 +357,7 @@ void main() {
       expect(projection.dartType, equals('Array<RGBQUAD>'));
       expect(projection.attribute, equals('@Array(1)'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType(
@@ -332,6 +367,7 @@ void main() {
       expect(projection.dartType, equals('WAVEFORMATEX'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isFalse);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS',
@@ -340,6 +376,7 @@ void main() {
       expect(projection.dartType, equals('Pointer<DHCP_ALL_OPTIONS_0>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isTrue);
     });
 
     testStructFieldType(
@@ -349,6 +386,7 @@ void main() {
       expect(projection.dartType, equals('Array<DOT11_NETWORK>'));
       expect(projection.attribute, equals('@Array(1)'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType(
@@ -358,6 +396,7 @@ void main() {
       expect(projection.dartType, equals('Array<WLAN_RAW_DATA_LIST_0>'));
       expect(projection.attribute, equals('@Array(1)'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Win32.System.Com.STATSTG', 'cbSize',
@@ -366,6 +405,7 @@ void main() {
       expect(projection.dartType, equals('int'));
       expect(projection.attribute, equals('@Uint64()'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType(
@@ -375,6 +415,7 @@ void main() {
       expect(projection.dartType, equals('Array<Float>'));
       expect(projection.attribute, equals('@Array(25)'));
       expect(projection.isDartPrimitive, isTrue);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Win32.Graphics.Gdi.DEVMODEW', 'Anonymous1',
@@ -383,6 +424,7 @@ void main() {
       expect(projection.dartType, equals('DEVMODE_0'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isFalse);
+      expect(projection.isPointer, isFalse);
     });
 
     testStructFieldType('Windows.Win32.Graphics.Gdi.DEVMODEW', 'Anonymous2',
@@ -391,6 +433,7 @@ void main() {
       expect(projection.dartType, equals('DEVMODE_1'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isFalse);
+      expect(projection.isPointer, isFalse);
     });
 
     test('Special types exist in metadata', () {

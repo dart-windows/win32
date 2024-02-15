@@ -29,6 +29,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'idispatch.g.dart';
@@ -85,14 +86,14 @@ import 'iunknown.g.dart';'''));
 /// @nodoc
 base class IEnumNetworkConnectionsVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Pointer<VTablePointer> ppEnumVar)>> get__NewEnum;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Uint32 celt, Pointer<VTablePointer> rgelt, Pointer<Uint32> pceltFetched)>> Next;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>> Reset;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Pointer<VTablePointer> ppEnumNetwork)>> Clone;
 }'''),
       );
@@ -108,6 +109,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';'''));
       expect(
         projection.interfaceGuidConstant,
@@ -149,7 +151,7 @@ import '../types.dart';'''));
         equalsIgnoringWhitespace('''
 /// @nodoc
 base class IUnknownVtbl extends Struct {
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Pointer<GUID> riid, Pointer<Pointer> ppvObject)>> QueryInterface;
   external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
       AddRef;
@@ -170,6 +172,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';'''));
       expect(
@@ -217,11 +220,11 @@ import 'iunknown.g.dart';'''));
 /// @nodoc
 base class IInspectableVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Pointer<Uint32> iidCount, Pointer<Pointer<GUID>> iids)>> GetIids;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
-        Pointer<IntPtr> className)>> GetRuntimeClassName;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl,
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
+        Pointer<HSTRING> className)>> GetRuntimeClassName;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl,
         Pointer<Int32> trustLevel)>> GetTrustLevel;
 }
 '''),

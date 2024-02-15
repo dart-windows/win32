@@ -6,14 +6,15 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import 'structs.g.dart';
 import 'win32_v5/oleaut32.g.dart';
 
-/// A wrapper for `BSTR` (Basic string or binary string), a string data type
+/// A wrapper for [BSTR] (Basic string or binary string), a string data type
 /// that is used by COM, Automation, and Interop functions.
 ///
-/// `BSTR`s should never be created directly using Dart's memory allocation
+/// BSTRs should never be created directly using Dart's memory allocation
 /// functions because they do not allocate and store the length prefix. Instead,
-/// this class wraps the COM memory allocation functions to safely create `BSTR`
+/// this class wraps the COM memory allocation functions to safely create BSTR
 /// types.
 ///
 /// For example, the following code is incorrect:
@@ -38,23 +39,22 @@ import 'win32_v5/oleaut32.g.dart';
 /// for a 17-byte character wide-string (UTF-16) in memory. The debugger will
 /// also show the terminator (`0x0000`) appearing after the data string.
 ///
-/// It's your responsibility to free the memory allocated for a `BSTR` when it's
-/// no longer needed. You can release its memory by calling the [free] method on
-/// the object.
+/// It's your responsibility to free the memory allocated for a Bstr when it's
+/// no longer needed by calling the [free] method on the object.
 class Bstr {
   const Bstr._(this.ptr);
 
   /// Pointer to the start of the string itself.
   ///
   /// The string is null-terminated with a two-byte value (`0x0000`).
-  final Pointer<Utf16> ptr;
+  final BSTR ptr;
 
-  /// Creates a new `BSTR` from a Dart [string].
+  /// Creates a new Bstr from a Dart [string].
   ///
-  /// This constructor allocates memory for the `BSTR` using [SysAllocString].
+  /// This constructor allocates memory for the Bstr using [SysAllocString].
   ///
-  /// Make sure to call [free] on the returned `BSTR` when it is no longer
-  /// needed to avoid memory leaks.
+  /// It's your responsibility to free the memory allocated for the Bstr when
+  /// it's no longer needed by calling the [free] method on the object.
   factory Bstr.fromString(String string) {
     final psz = string.toNativeUtf16();
     final pbstr = SysAllocString(psz);
@@ -62,28 +62,28 @@ class Bstr {
     return Bstr._(pbstr);
   }
 
-  /// The length of the `BSTR` in bytes.
+  /// The length in bytes.
   int get byteLength => SysStringByteLen(ptr);
 
-  /// Allocates a new `BSTR` that is a copy of the existing `BSTR`.
+  /// Allocates a new Bstr that is a copy of the existing Bstr.
   Bstr clone() => Bstr._(SysAllocString(ptr));
 
-  /// Releases the native memory allocated for the `BSTR`.
+  /// Releases the native memory allocated for the Bstr.
   void free() => SysFreeString(ptr);
 
-  /// The length of the `BSTR` in characters.
+  /// The length in characters.
   int get length => SysStringLen(ptr);
 
-  /// Creates a new `BSTR` by concatenating this `BSTR` with [other].
+  /// Creates a new Bstr by concatenating this Bstr with [other].
   Bstr operator +(Bstr other) {
-    final pbstrResult = calloc<Pointer<Utf16>>();
+    final pbstrResult = calloc<BSTR>();
     VarBstrCat(ptr, other.ptr, pbstrResult);
     final result = Bstr._(pbstrResult.value);
     calloc.free(pbstrResult);
     return result;
   }
 
-  /// Converts this `BSTR` to a Dart string.
+  /// Converts this Bstr into a Dart string.
   @override
   String toString() => ptr.toDartString();
 }

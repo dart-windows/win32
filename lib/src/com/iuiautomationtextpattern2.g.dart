@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iuiautomationtextpattern.g.dart';
 import 'iunknown.g.dart';
@@ -35,9 +36,9 @@ class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
           int Function(VTablePointer lpVtbl, VTablePointer annotation,
               Pointer<VTablePointer> range)>()(ptr, annotation, range);
 
-  int getCaretRange(Pointer<Int32> isActive, Pointer<VTablePointer> range) =>
+  int getCaretRange(Pointer<BOOL> isActive, Pointer<VTablePointer> range) =>
       _vtable.GetCaretRange.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Int32> isActive,
+          int Function(VTablePointer lpVtbl, Pointer<BOOL> isActive,
               Pointer<VTablePointer> range)>()(ptr, isActive, range);
 }
 
@@ -46,10 +47,10 @@ base class IUIAutomationTextPattern2Vtbl extends Struct {
   external IUIAutomationTextPatternVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer annotation,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer annotation,
               Pointer<VTablePointer> range)>> RangeFromAnnotation;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> isActive,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> isActive,
               Pointer<VTablePointer> range)>> GetCaretRange;
 }

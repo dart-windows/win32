@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -168,32 +169,33 @@ base class IMetaDataTablesVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcbStrings)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Uint32> pcbStrings)>>
       GetStringHeapSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcbBlobs)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pcbBlobs)>>
       GetBlobHeapSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcbGuids)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pcbGuids)>>
       GetGuidHeapSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcbBlobs)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pcbBlobs)>>
       GetUserStringHeapSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pcTables)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pcTables)>>
       GetNumTables;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Uint32 token, Pointer<Uint32> pixTbl)>>
       GetTableIndex;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 ixTbl,
               Pointer<Uint32> pcbRow,
@@ -203,7 +205,7 @@ base class IMetaDataTablesVtbl extends Struct {
               Pointer<Pointer<Int8>> ppName)>> GetTableInfo;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 ixTbl,
               Uint32 ixCol,
@@ -213,7 +215,7 @@ base class IMetaDataTablesVtbl extends Struct {
               Pointer<Pointer<Int8>> ppName)>> GetColumnInfo;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 ixCdTkn,
               Pointer<Uint32> pcTokens,
@@ -221,44 +223,44 @@ base class IMetaDataTablesVtbl extends Struct {
               Pointer<Pointer<Int8>> ppName)>> GetCodedTokenInfo;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixTbl, Uint32 rid,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixTbl, Uint32 rid,
               Pointer<Pointer> ppRow)>> GetRow;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixTbl, Uint32 ixCol,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixTbl, Uint32 ixCol,
               Uint32 rid, Pointer<Uint32> pVal)>> GetColumn;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixString,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixString,
               Pointer<Pointer<Int8>> ppString)>> GetString;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixBlob,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixBlob,
               Pointer<Uint32> pcbData, Pointer<Pointer> ppData)>> GetBlob;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixGuid,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixGuid,
               Pointer<Pointer<GUID>> ppGUID)>> GetGuid;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixUserString,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixUserString,
               Pointer<Uint32> pcbData, Pointer<Pointer> ppData)>> GetUserString;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixString,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixString,
               Pointer<Uint32> pNext)>> GetNextString;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Uint32 ixBlob, Pointer<Uint32> pNext)>>
       GetNextBlob;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Uint32 ixGuid, Pointer<Uint32> pNext)>>
       GetNextGuid;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ixUserString,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ixUserString,
               Pointer<Uint32> pNext)>> GetNextUserString;
 }

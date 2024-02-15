@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -181,44 +182,44 @@ base class IUIAutomationGridItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CurrentContainingGrid;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentRow;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentColumn;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentRowSpan;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentColumnSpan;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> retVal)>>
       get_CachedContainingGrid;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedRow;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedColumn;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedRowSpan;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedColumnSpan;
 }

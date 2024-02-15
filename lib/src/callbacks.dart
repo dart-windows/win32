@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import 'structs.g.dart';
 import 'types.dart';
 
@@ -64,13 +62,13 @@ typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> lpelfe,
 
 /// Application-defined callback function used with the EnumResourceNames and
 /// EnumResourceNamesEx functions. It receives the type and name of a resource.
-typedef ENUMRESNAMEPROC = BOOL Function(HMODULE hModule, Pointer<Utf16> lpType,
-    Pointer<Utf16> lpName, LONG_PTR lParam);
+typedef ENUMRESNAMEPROC = BOOL Function(
+    HMODULE hModule, PWSTR lpType, PWSTR lpName, LONG_PTR lParam);
 
 /// Application-defined callback function used with the EnumResourceTypes and
 /// EnumResourceTypesEx functions. It receives resource types.
 typedef ENUMRESTYPEPROC = BOOL Function(
-    HMODULE hModule, Pointer<Utf16> lpszType, LONG_PTR lParam);
+    HMODULE hModule, PWSTR lpszType, LONG_PTR lParam);
 
 /// Application-defined callback function used with the IDispatch::Invoke
 /// function to defer filling in bstrDescription, bstrHelpFile, and
@@ -162,8 +160,7 @@ typedef LPOCNCHKPROC = Int32 Function(IntPtr, IntPtr, Pointer);
 
 /// Application-defined callback function that allows callers to perform
 /// additional processing to connect to the smart card.
-typedef LPOCNCONNPROC = IntPtr Function(
-    IntPtr, Pointer<Utf16>, Pointer<Utf16>, Pointer);
+typedef LPOCNCONNPROC = IntPtr Function(IntPtr, PWSTR, PWSTR, Pointer);
 
 /// Application-defined callback function that can be used for disconnecting
 /// smart cards.
@@ -201,7 +198,8 @@ typedef PFN_DEVICE_CALLBACK = BOOL Function(
 /// passing the message to the destination window procedure. The SENDASYNCPROC
 /// type defines a pointer to this callback function. SendAsyncProc is a
 /// placeholder for the application-defined function name.
-typedef SENDASYNCPROC = Void Function(IntPtr, Uint32, IntPtr, IntPtr);
+typedef SENDASYNCPROC = Void Function(
+    HWND param0, Uint32 param1, IntPtr param2, LRESULT param3);
 
 // Application-defined callback function used with SAPI clients to receive
 // notifications.
@@ -221,15 +219,16 @@ typedef PSYM_ENUMERATESYMBOLS_CALLBACK = Int32 Function(
 /// function. It receives messages from the task dialog when various events
 /// occur.
 typedef PFTASKDIALOGCALLBACK = IntPtr Function(
-    IntPtr hwnd, Uint32 uMsg, IntPtr wParam, IntPtr lParam, IntPtr lpRefData);
+    HWND hwnd, Uint32 uMsg, WPARAM wParam, LPARAM lParam, IntPtr lpRefData);
 
 /// Application-defined callback function that serves as the starting address
 /// for a thread. Specify this address when calling the CreateThread,
 /// CreateRemoteThread, or CreateRemoteThreadEx function.
-typedef LPTHREAD_START_ROUTINE = DWORD Function(Pointer lpParameter);
+typedef LPTHREAD_START_ROUTINE = DWORD Function(Pointer lpThreadParameter);
 
 /// Application-defined callback function that processes WM_TIMER messages.
-typedef TIMERPROC = Void Function(IntPtr, Uint32, Pointer<Uint32>, Int32);
+typedef TIMERPROC = Void Function(
+    IntPtr param0, Uint32 param1, Pointer<Uint32> param2, Int32 param3);
 
 /// Application-defined callback function that processes messages sent to a
 /// window.

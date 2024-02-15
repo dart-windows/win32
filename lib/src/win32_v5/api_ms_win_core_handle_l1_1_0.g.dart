@@ -34,6 +34,6 @@ int CompareObjectHandles(int hFirstObjectHandle, int hSecondObjectHandle) =>
     _CompareObjectHandles(hFirstObjectHandle, hSecondObjectHandle);
 
 final _CompareObjectHandles = _api_ms_win_core_handle_l1_1_0.lookupFunction<
-    Int32 Function(IntPtr hFirstObjectHandle, IntPtr hSecondObjectHandle),
+    BOOL Function(HANDLE hFirstObjectHandle, HANDLE hSecondObjectHandle),
     int Function(int hFirstObjectHandle,
         int hSecondObjectHandle)>('CompareObjectHandles');

@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -51,10 +49,9 @@ class IKnownFolderManager extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
               Pointer<VTablePointer> ppkf)>()(ptr, rfid, ppkf);
 
-  int getFolderByName(
-          Pointer<Utf16> pszCanonicalName, Pointer<VTablePointer> ppkf) =>
+  int getFolderByName(PWSTR pszCanonicalName, Pointer<VTablePointer> ppkf) =>
       _vtable.GetFolderByName.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszCanonicalName,
+          int Function(VTablePointer lpVtbl, PWSTR pszCanonicalName,
               Pointer<VTablePointer> ppkf)>()(ptr, pszCanonicalName, ppkf);
 
   int registerFolder(
@@ -68,9 +65,9 @@ class IKnownFolderManager extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<GUID> rfid)>()(ptr, rfid);
 
   int findFolderFromPath(
-          Pointer<Utf16> pszPath, int mode, Pointer<VTablePointer> ppkf) =>
+          PWSTR pszPath, int mode, Pointer<VTablePointer> ppkf) =>
       _vtable.FindFolderFromPath.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszPath, int mode,
+          int Function(VTablePointer lpVtbl, PWSTR pszPath, int mode,
               Pointer<VTablePointer> ppkf)>()(ptr, pszPath, mode, ppkf);
 
   int findFolderFromIDList(
@@ -79,24 +76,18 @@ class IKnownFolderManager extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
               Pointer<VTablePointer> ppkf)>()(ptr, pidl, ppkf);
 
-  int redirect(
-          Pointer<GUID> rfid,
-          int? hwnd,
-          int flags,
-          Pointer<Utf16>? pszTargetPath,
-          int cFolders,
-          Pointer<GUID>? pExclusion,
-          Pointer<Pointer<Utf16>>? ppszError) =>
+  int redirect(Pointer<GUID> rfid, int? hwnd, int flags, PWSTR? pszTargetPath,
+          int cFolders, Pointer<GUID>? pExclusion, Pointer<PWSTR>? ppszError) =>
       _vtable.Redirect.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<GUID> rfid,
                   int hwnd,
                   int flags,
-                  Pointer<Utf16> pszTargetPath,
+                  PWSTR pszTargetPath,
                   int cFolders,
                   Pointer<GUID> pExclusion,
-                  Pointer<Pointer<Utf16>> ppszError)>()(
+                  Pointer<PWSTR> ppszError)>()(
           ptr,
           rfid,
           hwnd ?? 0,
@@ -112,52 +103,52 @@ base class IKnownFolderManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Int32 nCsidl, Pointer<GUID> pfid)>>
       FolderIdFromCsidl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
               Pointer<Int32> pnCsidl)>> FolderIdToCsidl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Pointer<GUID>> ppKFId,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Pointer<GUID>> ppKFId,
               Pointer<Uint32> pCount)>> GetFolderIds;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
               Pointer<VTablePointer> ppkf)>> GetFolder;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszCanonicalName,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR pszCanonicalName,
               Pointer<VTablePointer> ppkf)>> GetFolderByName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> rfid,
               Pointer<KNOWNFOLDER_DEFINITION> pKFD)>> RegisterFolder;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> rfid)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> rfid)>>
       UnregisterFolder;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszPath,
-              Int32 mode, Pointer<VTablePointer> ppkf)>> FindFolderFromPath;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR pszPath, Int32 mode,
+              Pointer<VTablePointer> ppkf)>> FindFolderFromPath;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
               Pointer<VTablePointer> ppkf)>> FindFolderFromIDList;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<GUID> rfid,
-              IntPtr hwnd,
+              HWND hwnd,
               Uint32 flags,
-              Pointer<Utf16> pszTargetPath,
+              PWSTR pszTargetPath,
               Uint32 cFolders,
               Pointer<GUID> pExclusion,
-              Pointer<Pointer<Utf16>> ppszError)>> Redirect;
+              Pointer<PWSTR> ppszError)>> Redirect;
 }
 
 /// @nodoc

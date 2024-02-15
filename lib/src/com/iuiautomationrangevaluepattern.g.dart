@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -52,11 +53,11 @@ class IUIAutomationRangeValuePattern extends IUnknown {
   }
 
   int get currentIsReadOnly {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CurrentIsReadOnly.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -136,11 +137,11 @@ class IUIAutomationRangeValuePattern extends IUnknown {
   }
 
   int get cachedIsReadOnly {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CachedIsReadOnly.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -210,54 +211,54 @@ class IUIAutomationRangeValuePattern extends IUnknown {
 base class IUIAutomationRangeValuePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Double val)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Double val)>>
       SetValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CurrentIsReadOnly;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentMaximum;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentMinimum;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentLargeChange;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CurrentSmallChange;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedValue;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CachedIsReadOnly;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedMaximum;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedMinimum;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedLargeChange;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)>>
       get_CachedSmallChange;
 }

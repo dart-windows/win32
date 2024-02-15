@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -59,21 +60,25 @@ base class IWbemHiPerfEnumVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 lFlags, Uint32 uNumObjects,
-              Pointer<Int32> apIds, Pointer<VTablePointer> apObj)>> AddObjects;
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 lFlags,
+              Uint32 uNumObjects,
+              Pointer<Int32> apIds,
+              Pointer<VTablePointer> apObj)>> AddObjects;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 lFlags, Uint32 uNumObjects,
-              Pointer<Int32> apIds)>> RemoveObjects;
+          HRESULT Function(VTablePointer lpVtbl, Int32 lFlags,
+              Uint32 uNumObjects, Pointer<Int32> apIds)>> RemoveObjects;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 lFlags,
               Uint32 uNumObjects,
               Pointer<VTablePointer> apObj,
               Pointer<Uint32> puReturned)>> GetObjects;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 lFlags)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 lFlags)>>
       RemoveAll;
 }

@@ -39,7 +39,7 @@ int NtQuerySystemInformation(
         systemInformationLength, returnLength);
 
 final _NtQuerySystemInformation = _ntdll.lookupFunction<
-    Int32 Function(Int32 systemInformationClass, Pointer systemInformation,
+    NTSTATUS Function(Int32 systemInformationClass, Pointer systemInformation,
         Uint32 systemInformationLength, Pointer<Uint32> returnLength),
     int Function(
         int systemInformationClass,

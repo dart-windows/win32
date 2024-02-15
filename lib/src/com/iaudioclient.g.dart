@@ -120,7 +120,7 @@ base class IAudioClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 shareMode,
               Uint32 streamFlags,
@@ -130,21 +130,22 @@ base class IAudioClientVtbl extends Struct {
               Pointer<GUID> audioSessionGuid)>> Initialize;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint32> pNumBufferFrames)>>
       GetBufferSize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int64> phnsLatency)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Int64> phnsLatency)>>
       GetStreamLatency;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint32> pNumPaddingFrames)>>
       GetCurrentPadding;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl,
                   Int32 shareMode,
                   Pointer<WAVEFORMATEX> pFormat,
@@ -152,23 +153,25 @@ base class IAudioClientVtbl extends Struct {
       IsFormatSupported;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>> GetMixFormat;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Int64> phnsDefaultDevicePeriod,
               Pointer<Int64> phnsMinimumDevicePeriod)>> GetDevicePeriod;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Start;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Stop;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Start;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>> Stop;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, IntPtr eventHandle)>>
+              HRESULT Function(VTablePointer lpVtbl, HANDLE eventHandle)>>
       SetEventHandle;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> riid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>> GetService;
 }

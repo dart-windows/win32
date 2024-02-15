@@ -43,8 +43,8 @@ import 'win32_v5/uxtheme.g.dart';
 ///
 /// {@category user32}
 int CreateWindow(
-        Pointer<Utf16> lpClassName,
-        Pointer<Utf16> lpWindowName,
+        PWSTR lpClassName,
+        PWSTR lpWindowName,
         int dwStyle,
         int X,
         int Y,

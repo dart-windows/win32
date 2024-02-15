@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 
 /// @nodoc
@@ -48,7 +49,7 @@ class IUnknown {
 base class IUnknownVtbl extends Struct {
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> riid,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<Pointer> ppvObject)>> QueryInterface;
   external Pointer<NativeFunction<Uint32 Function(VTablePointer lpVtbl)>>
       AddRef;

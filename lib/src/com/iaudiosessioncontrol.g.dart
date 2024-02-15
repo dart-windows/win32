@@ -8,10 +8,9 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -40,24 +39,23 @@ class IAudioSessionControl extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<Int32> pRetVal)>()(ptr, pRetVal);
 
-  int getDisplayName(Pointer<Pointer<Utf16>> pRetVal) =>
+  int getDisplayName(Pointer<PWSTR> pRetVal) =>
       _vtable.GetDisplayName.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pRetVal)>()(ptr, pRetVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>()(ptr, pRetVal);
 
-  int setDisplayName(Pointer<Utf16> value, Pointer<GUID> eventContext) =>
+  int setDisplayName(PWSTR value, Pointer<GUID> eventContext) =>
       _vtable.SetDisplayName.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> value,
+          int Function(VTablePointer lpVtbl, PWSTR value,
               Pointer<GUID> eventContext)>()(ptr, value, eventContext);
 
-  int getIconPath(Pointer<Pointer<Utf16>> pRetVal) =>
-      _vtable.GetIconPath.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pRetVal)>()(ptr, pRetVal);
+  int getIconPath(Pointer<PWSTR> pRetVal) => _vtable.GetIconPath.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>()(ptr, pRetVal);
 
-  int setIconPath(Pointer<Utf16> value, Pointer<GUID> eventContext) =>
+  int setIconPath(PWSTR value, Pointer<GUID> eventContext) =>
       _vtable.SetIconPath.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> value,
+          int Function(VTablePointer lpVtbl, PWSTR value,
               Pointer<GUID> eventContext)>()(ptr, value, eventContext);
 
   int getGroupingParam(Pointer<GUID> pRetVal) =>
@@ -86,42 +84,40 @@ base class IAudioSessionControlVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pRetVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> pRetVal)>>
       GetState;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pRetVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>>
       GetDisplayName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> value,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR value,
               Pointer<GUID> eventContext)>> SetDisplayName;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pRetVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>>
       GetIconPath;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> value,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR value,
               Pointer<GUID> eventContext)>> SetIconPath;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pRetVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> pRetVal)>>
       GetGroupingParam;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> override,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> override,
               Pointer<GUID> eventContext)>> SetGroupingParam;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, VTablePointer newNotifications)>>
       RegisterAudioSessionNotification;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, VTablePointer newNotifications)>>
       UnregisterAudioSessionNotification;
 }

@@ -61,7 +61,7 @@ void main() {
           createComObject(NetworkListManager, IID_INetworkListManager));
       final enumPtr = calloc<VTablePointer>();
       final netPtr = calloc<VTablePointer>();
-      final descPtr = calloc<Pointer<Utf16>>();
+      final descPtr = calloc<BSTR>();
 
       expect(
           nlm.getNetworks(NLM_ENUM_NETWORK.NLM_ENUM_NETWORK_CONNECTED, enumPtr),

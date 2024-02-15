@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -29,10 +30,10 @@ class IAppxManifestReader6 extends IUnknown {
       IAppxManifestReader6(interface.toInterface(IID_IAppxManifestReader6));
 
   int getIsNonQualifiedResourcePackage(
-          Pointer<Int32> isNonQualifiedResourcePackage) =>
+          Pointer<BOOL> isNonQualifiedResourcePackage) =>
       _vtable.GetIsNonQualifiedResourcePackage.asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> isNonQualifiedResourcePackage)>()(
+                  Pointer<BOOL> isNonQualifiedResourcePackage)>()(
           ptr, isNonQualifiedResourcePackage);
 }
 
@@ -41,7 +42,7 @@ base class IAppxManifestReader6Vtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
-                  Pointer<Int32> isNonQualifiedResourcePackage)>>
+              HRESULT Function(VTablePointer lpVtbl,
+                  Pointer<BOOL> isNonQualifiedResourcePackage)>>
       GetIsNonQualifiedResourcePackage;
 }

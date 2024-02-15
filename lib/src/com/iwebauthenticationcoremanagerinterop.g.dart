@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iinspectable.g.dart';
 import 'iunknown.g.dart';
@@ -66,17 +67,17 @@ base class IWebAuthenticationCoreManagerInteropVtbl extends Struct {
   external IInspectableVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              IntPtr appWindow,
+              HWND appWindow,
               VTablePointer request,
               Pointer<GUID> riid,
               Pointer<Pointer> asyncInfo)>> RequestTokenForWindowAsync;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl,
-                  IntPtr appWindow,
+                  HWND appWindow,
                   VTablePointer request,
                   VTablePointer webAccount,
                   Pointer<GUID> riid,

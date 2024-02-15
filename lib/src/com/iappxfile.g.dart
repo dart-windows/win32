@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -33,14 +32,14 @@ class IAppxFile extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> compressionOption)>()(ptr, compressionOption);
 
-  int getContentType(Pointer<Pointer<Utf16>> contentType) =>
+  int getContentType(Pointer<PWSTR> contentType) =>
       _vtable.GetContentType.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> contentType)>()(ptr, contentType);
+              int Function(VTablePointer lpVtbl, Pointer<PWSTR> contentType)>()(
+          ptr, contentType);
 
-  int getName(Pointer<Pointer<Utf16>> fileName) => _vtable.GetName.asFunction<
-      int Function(VTablePointer lpVtbl,
-          Pointer<Pointer<Utf16>> fileName)>()(ptr, fileName);
+  int getName(Pointer<PWSTR> fileName) => _vtable.GetName.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<PWSTR> fileName)>()(ptr, fileName);
 
   int getSize(Pointer<Uint64> size) => _vtable.GetSize.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Uint64> size)>()(ptr, size);
@@ -55,23 +54,24 @@ base class IAppxFileVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> compressionOption)>>
       GetCompressionOption;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> contentType)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<PWSTR> contentType)>>
       GetContentType;
   external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> fileName)>> GetName;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> fileName)>>
+      GetName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> size)>>
+      GetSize;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> size)>> GetSize;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> stream)>> GetStream;
 }

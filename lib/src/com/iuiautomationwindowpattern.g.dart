@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -36,20 +37,20 @@ class IUIAutomationWindowPattern extends IUnknown {
   int close() =>
       _vtable.Close.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
-  int waitForInputIdle(int milliseconds, Pointer<Int32> success) =>
+  int waitForInputIdle(int milliseconds, Pointer<BOOL> success) =>
       _vtable.WaitForInputIdle.asFunction<
           int Function(VTablePointer lpVtbl, int milliseconds,
-              Pointer<Int32> success)>()(ptr, milliseconds, success);
+              Pointer<BOOL> success)>()(ptr, milliseconds, success);
 
   int setWindowVisualState(int state) => _vtable.SetWindowVisualState
       .asFunction<int Function(VTablePointer lpVtbl, int state)>()(ptr, state);
 
   int get currentCanMaximize {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CurrentCanMaximize.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -59,11 +60,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get currentCanMinimize {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CurrentCanMinimize.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -73,11 +74,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get currentIsModal {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CurrentIsModal.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -87,11 +88,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get currentIsTopmost {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CurrentIsTopmost.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -129,11 +130,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get cachedCanMaximize {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CachedCanMaximize.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -143,11 +144,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get cachedCanMinimize {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CachedCanMinimize.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -157,11 +158,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get cachedIsModal {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CachedIsModal.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -171,11 +172,11 @@ class IUIAutomationWindowPattern extends IUnknown {
   }
 
   int get cachedIsTopmost {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CachedIsTopmost.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -216,60 +217,61 @@ class IUIAutomationWindowPattern extends IUnknown {
 /// @nodoc
 base class IUIAutomationWindowPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Close;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Close;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 milliseconds,
-              Pointer<Int32> success)>> WaitForInputIdle;
+          HRESULT Function(VTablePointer lpVtbl, Int32 milliseconds,
+              Pointer<BOOL> success)>> WaitForInputIdle;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 state)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 state)>>
       SetWindowVisualState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CurrentCanMaximize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CurrentCanMinimize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CurrentIsModal;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CurrentIsTopmost;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentWindowVisualState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentWindowInteractionState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CachedCanMaximize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CachedCanMinimize;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CachedIsModal;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CachedIsTopmost;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedWindowVisualState;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedWindowInteractionState;
 }

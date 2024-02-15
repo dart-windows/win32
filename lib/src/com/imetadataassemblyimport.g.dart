@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -36,7 +34,7 @@ class IMetaDataAssemblyImport extends IUnknown {
           Pointer<Pointer> ppbPublicKey,
           Pointer<Uint32> pcbPublicKey,
           Pointer<Uint32> pulHashAlgId,
-          Pointer<Utf16>? szName,
+          PWSTR? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -48,7 +46,7 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Pointer> ppbPublicKey,
                   Pointer<Uint32> pcbPublicKey,
                   Pointer<Uint32> pulHashAlgId,
-                  Pointer<Utf16> szName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pchName,
                   Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -68,7 +66,7 @@ class IMetaDataAssemblyImport extends IUnknown {
           int mdar,
           Pointer<Pointer> ppbPublicKeyOrToken,
           Pointer<Uint32> pcbPublicKeyOrToken,
-          Pointer<Utf16>? szName,
+          PWSTR? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -81,7 +79,7 @@ class IMetaDataAssemblyImport extends IUnknown {
                   int mdar,
                   Pointer<Pointer> ppbPublicKeyOrToken,
                   Pointer<Uint32> pcbPublicKeyOrToken,
-                  Pointer<Utf16> szName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pchName,
                   Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -102,7 +100,7 @@ class IMetaDataAssemblyImport extends IUnknown {
 
   int getFileProps(
           int mdf,
-          Pointer<Utf16>? szName,
+          PWSTR? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Pointer> ppbHashValue,
@@ -112,7 +110,7 @@ class IMetaDataAssemblyImport extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   int mdf,
-                  Pointer<Utf16> szName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pchName,
                   Pointer<Pointer> ppbHashValue,
@@ -122,7 +120,7 @@ class IMetaDataAssemblyImport extends IUnknown {
 
   int getExportedTypeProps(
           int mdct,
-          Pointer<Utf16>? szName,
+          PWSTR? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Uint32> ptkImplementation,
@@ -132,7 +130,7 @@ class IMetaDataAssemblyImport extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   int mdct,
-                  Pointer<Utf16> szName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pchName,
                   Pointer<Uint32> ptkImplementation,
@@ -149,7 +147,7 @@ class IMetaDataAssemblyImport extends IUnknown {
 
   int getManifestResourceProps(
           int mdmr,
-          Pointer<Utf16>? szName,
+          PWSTR? szName,
           int cchName,
           Pointer<Uint32> pchName,
           Pointer<Uint32> ptkImplementation,
@@ -159,7 +157,7 @@ class IMetaDataAssemblyImport extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   int mdmr,
-                  Pointer<Utf16> szName,
+                  PWSTR szName,
                   int cchName,
                   Pointer<Uint32> pchName,
                   Pointer<Uint32> ptkImplementation,
@@ -225,17 +223,17 @@ class IMetaDataAssemblyImport extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<Uint32> ptkAssembly)>()(ptr, ptkAssembly);
 
-  int findExportedTypeByName(Pointer<Utf16> szName, int mdtExportedType,
-          Pointer<Uint32> ptkExportedType) =>
+  int findExportedTypeByName(
+          PWSTR szName, int mdtExportedType, Pointer<Uint32> ptkExportedType) =>
       _vtable.FindExportedTypeByName.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Utf16> szName,
+              int Function(VTablePointer lpVtbl, PWSTR szName,
                   int mdtExportedType, Pointer<Uint32> ptkExportedType)>()(
           ptr, szName, mdtExportedType, ptkExportedType);
 
   int findManifestResourceByName(
-          Pointer<Utf16> szName, Pointer<Uint32> ptkManifestResource) =>
+          PWSTR szName, Pointer<Uint32> ptkManifestResource) =>
       _vtable.FindManifestResourceByName.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Utf16> szName,
+              int Function(VTablePointer lpVtbl, PWSTR szName,
                   Pointer<Uint32> ptkManifestResource)>()(
           ptr, szName, ptkManifestResource);
 
@@ -243,18 +241,18 @@ class IMetaDataAssemblyImport extends IUnknown {
       void Function(VTablePointer lpVtbl, Pointer hEnum)>()(ptr, hEnum);
 
   int findAssembliesByName(
-          Pointer<Utf16> szAppBase,
-          Pointer<Utf16> szPrivateBin,
-          Pointer<Utf16> szAssemblyName,
+          PWSTR szAppBase,
+          PWSTR szPrivateBin,
+          PWSTR szAssemblyName,
           Pointer<VTablePointer> ppIUnk,
           int cMax,
           Pointer<Uint32> pcAssemblies) =>
       _vtable.FindAssembliesByName.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> szAppBase,
-                  Pointer<Utf16> szPrivateBin,
-                  Pointer<Utf16> szAssemblyName,
+                  PWSTR szAppBase,
+                  PWSTR szPrivateBin,
+                  PWSTR szAssemblyName,
                   Pointer<VTablePointer> ppIUnk,
                   int cMax,
                   Pointer<Uint32> pcAssemblies)>()(ptr, szAppBase, szPrivateBin,
@@ -266,25 +264,25 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 mda,
               Pointer<Pointer> ppbPublicKey,
               Pointer<Uint32> pcbPublicKey,
               Pointer<Uint32> pulHashAlgId,
-              Pointer<Utf16> szName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pchName,
               Pointer<ASSEMBLYMETADATA> pMetaData,
               Pointer<Uint32> pdwAssemblyFlags)>> GetAssemblyProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 mdar,
               Pointer<Pointer> ppbPublicKeyOrToken,
               Pointer<Uint32> pcbPublicKeyOrToken,
-              Pointer<Utf16> szName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pchName,
               Pointer<ASSEMBLYMETADATA> pMetaData,
@@ -293,10 +291,10 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pdwAssemblyRefFlags)>> GetAssemblyRefProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 mdf,
-              Pointer<Utf16> szName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pchName,
               Pointer<Pointer> ppbHashValue,
@@ -304,10 +302,10 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pdwFileFlags)>> GetFileProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 mdct,
-              Pointer<Utf16> szName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pchName,
               Pointer<Uint32> ptkImplementation,
@@ -315,10 +313,10 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pdwExportedTypeFlags)>> GetExportedTypeProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 mdmr,
-              Pointer<Utf16> szName,
+              PWSTR szName,
               Uint32 cchName,
               Pointer<Uint32> pchName,
               Pointer<Uint32> ptkImplementation,
@@ -326,7 +324,7 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pdwResourceFlags)>> GetManifestResourceProps;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rAssemblyRefs,
@@ -334,7 +332,7 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pcTokens)>> EnumAssemblyRefs;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rFiles,
@@ -342,7 +340,7 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pcTokens)>> EnumFiles;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rExportedTypes,
@@ -350,7 +348,7 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pcTokens)>> EnumExportedTypes;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer> phEnum,
               Pointer<Uint32> rManifestResources,
@@ -358,30 +356,30 @@ base class IMetaDataAssemblyImportVtbl extends Struct {
               Pointer<Uint32> pcTokens)>> EnumManifestResources;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint32> ptkAssembly)>>
       GetAssemblyFromScope;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> szName,
+              PWSTR szName,
               Uint32 mdtExportedType,
               Pointer<Uint32> ptkExportedType)>> FindExportedTypeByName;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> szName,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR szName,
               Pointer<Uint32> ptkManifestResource)>> FindManifestResourceByName;
   external Pointer<
           NativeFunction<Void Function(VTablePointer lpVtbl, Pointer hEnum)>>
       CloseEnum;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> szAppBase,
-              Pointer<Utf16> szPrivateBin,
-              Pointer<Utf16> szAssemblyName,
+              PWSTR szAppBase,
+              PWSTR szPrivateBin,
+              PWSTR szAssemblyName,
               Pointer<VTablePointer> ppIUnk,
               Uint32 cMax,
               Pointer<Uint32> pcAssemblies)>> FindAssembliesByName;

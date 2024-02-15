@@ -13,8 +13,8 @@ int NtQueryObject(
         returnLength ?? nullptr);
 
 final _NtQueryObject = _ntdll.lookupFunction<
-    Int32 Function(
-        IntPtr handle,
+    NTSTATUS Function(
+        HANDLE handle,
         Int32 objectInformationClass,
         Pointer objectInformation,
         Uint32 objectInformationLength,

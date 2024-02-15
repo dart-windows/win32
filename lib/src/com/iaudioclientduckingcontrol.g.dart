@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -39,6 +40,6 @@ class IAudioClientDuckingControl extends IUnknown {
 base class IAudioClientDuckingControlVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 options)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 options)>>
       SetDuckingOptionsForCurrentStream;
 }

@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'ipersist.g.dart';
 import 'iunknown.g.dart';
@@ -47,18 +48,18 @@ class IPersistStream extends IPersist {
 /// @nodoc
 base class IPersistStreamVtbl extends Struct {
   external IPersistVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       IsDirty;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pStm)>> Load;
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pStm)>> Load;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, VTablePointer pStm, Int32 fClearDirty)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, VTablePointer pStm, BOOL fClearDirty)>>
       Save;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> pcbSize)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> pcbSize)>>
       GetSizeMax;
 }

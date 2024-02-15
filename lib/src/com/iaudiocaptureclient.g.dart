@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -68,7 +69,7 @@ base class IAudioCaptureClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer<Uint8>> ppData,
               Pointer<Uint32> pNumFramesToRead,
@@ -77,10 +78,10 @@ base class IAudioCaptureClientVtbl extends Struct {
               Pointer<Uint64> pu64QPCPosition)>> GetBuffer;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Uint32 numFramesRead)>>
+              HRESULT Function(VTablePointer lpVtbl, Uint32 numFramesRead)>>
       ReleaseBuffer;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<Uint32> pNumFramesInNextPacket)>> GetNextPacketSize;
 }

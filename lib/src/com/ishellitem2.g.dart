@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -94,10 +92,10 @@ class IShellItem2 extends IShellItem {
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<Int32> pi)>()(ptr, key, pi);
 
-  int getString(Pointer<PROPERTYKEY> key, Pointer<Pointer<Utf16>> ppsz) =>
+  int getString(Pointer<PROPERTYKEY> key, Pointer<PWSTR> ppsz) =>
       _vtable.GetString.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<Pointer<Utf16>> ppsz)>()(ptr, key, ppsz);
+              Pointer<PWSTR> ppsz)>()(ptr, key, ppsz);
 
   int getUInt32(Pointer<PROPERTYKEY> key, Pointer<Uint32> pui) =>
       _vtable.GetUInt32.asFunction<
@@ -109,10 +107,10 @@ class IShellItem2 extends IShellItem {
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<Uint64> pull)>()(ptr, key, pull);
 
-  int getBool(Pointer<PROPERTYKEY> key, Pointer<Int32> pf) =>
+  int getBool(Pointer<PROPERTYKEY> key, Pointer<BOOL> pf) =>
       _vtable.GetBool.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<Int32> pf)>()(ptr, key, pf);
+              Pointer<BOOL> pf)>()(ptr, key, pf);
 }
 
 /// @nodoc
@@ -120,11 +118,11 @@ base class IShellItem2Vtbl extends Struct {
   external IShellItemVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 flags, Pointer<GUID> riid,
-              Pointer<Pointer> ppv)>> GetPropertyStore;
+          HRESULT Function(VTablePointer lpVtbl, Int32 flags,
+              Pointer<GUID> riid, Pointer<Pointer> ppv)>> GetPropertyStore;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 flags,
               VTablePointer punkCreateObject,
@@ -132,7 +130,7 @@ base class IShellItem2Vtbl extends Struct {
               Pointer<Pointer> ppv)>> GetPropertyStoreWithCreateObject;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<PROPERTYKEY> rgKeys,
               Uint32 cKeys,
@@ -141,44 +139,44 @@ base class IShellItem2Vtbl extends Struct {
               Pointer<Pointer> ppv)>> GetPropertyStoreForKeys;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<PROPERTYKEY> keyType,
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>> GetPropertyDescriptionList;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pbc)>> Update;
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pbc)>> Update;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> ppropvar)>> GetProperty;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<GUID> pclsid)>> GetCLSID;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<FILETIME> pft)>> GetFileTime;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<Int32> pi)>> GetInt32;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<Pointer<Utf16>> ppsz)>> GetString;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+              Pointer<PWSTR> ppsz)>> GetString;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<Uint32> pui)>> GetUInt32;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<Uint64> pull)>> GetUInt64;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<Int32> pf)>> GetBool;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+              Pointer<BOOL> pf)>> GetBool;
 }

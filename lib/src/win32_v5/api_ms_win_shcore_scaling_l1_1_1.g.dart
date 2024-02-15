@@ -36,7 +36,7 @@ int GetDpiForMonitor(int hmonitor, int dpiType, Pointer<Uint32> dpiX,
     _GetDpiForMonitor(hmonitor, dpiType, dpiX, dpiY);
 
 final _GetDpiForMonitor = _api_ms_win_shcore_scaling_l1_1_1.lookupFunction<
-    Int32 Function(IntPtr hmonitor, Int32 dpiType, Pointer<Uint32> dpiX,
+    HRESULT Function(HMONITOR hmonitor, Int32 dpiType, Pointer<Uint32> dpiX,
         Pointer<Uint32> dpiY),
     int Function(int hmonitor, int dpiType, Pointer<Uint32> dpiX,
         Pointer<Uint32> dpiY)>('GetDpiForMonitor');
@@ -55,7 +55,7 @@ int GetProcessDpiAwareness(int? hprocess, Pointer<Int32> value) =>
 
 final _GetProcessDpiAwareness =
     _api_ms_win_shcore_scaling_l1_1_1.lookupFunction<
-        Int32 Function(IntPtr hprocess, Pointer<Int32> value),
+        HRESULT Function(HANDLE hprocess, Pointer<Int32> value),
         int Function(
             int hprocess, Pointer<Int32> value)>('GetProcessDpiAwareness');
 
@@ -73,7 +73,7 @@ int GetScaleFactorForMonitor(int hMon, Pointer<Int32> pScale) =>
 
 final _GetScaleFactorForMonitor =
     _api_ms_win_shcore_scaling_l1_1_1.lookupFunction<
-        Int32 Function(IntPtr hMon, Pointer<Int32> pScale),
+        HRESULT Function(HMONITOR hMon, Pointer<Int32> pScale),
         int Function(
             int hMon, Pointer<Int32> pScale)>('GetScaleFactorForMonitor');
 
@@ -90,5 +90,5 @@ final _GetScaleFactorForMonitor =
 int SetProcessDpiAwareness(int value) => _SetProcessDpiAwareness(value);
 
 final _SetProcessDpiAwareness = _api_ms_win_shcore_scaling_l1_1_1
-    .lookupFunction<Int32 Function(Int32 value), int Function(int value)>(
+    .lookupFunction<HRESULT Function(Int32 value), int Function(int value)>(
         'SetProcessDpiAwareness');

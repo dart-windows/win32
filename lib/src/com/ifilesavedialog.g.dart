@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'ifiledialog.g.dart';
 import 'iunknown.g.dart';
@@ -62,28 +63,28 @@ base class IFileSaveDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer psi)>>
       SetSaveAsItem;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pStore)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pStore)>>
       SetProperties;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pList,
-              Int32 fAppendDefault)>> SetCollectedProperties;
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pList,
+              BOOL fAppendDefault)>> SetCollectedProperties;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppStore)>>
       GetProperties;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer psi,
               VTablePointer pStore,
-              IntPtr hwnd,
+              HWND hwnd,
               VTablePointer pSink)>> ApplyProperties;
 }
 

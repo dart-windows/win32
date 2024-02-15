@@ -34,7 +34,8 @@ int RoActivateInstance(
     _RoActivateInstance(activatableClassId, instance);
 
 final _RoActivateInstance = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
-    Int32 Function(IntPtr activatableClassId, Pointer<VTablePointer> instance),
+    HRESULT Function(
+        HSTRING activatableClassId, Pointer<VTablePointer> instance),
     int Function(int activatableClassId,
         Pointer<VTablePointer> instance)>('RoActivateInstance');
 
@@ -53,8 +54,8 @@ int RoGetActivationFactory(
     _RoGetActivationFactory(activatableClassId, iid, factory);
 
 final _RoGetActivationFactory = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
-    Int32 Function(
-        IntPtr activatableClassId, Pointer<GUID> iid, Pointer<Pointer> factory),
+    HRESULT Function(HSTRING activatableClassId, Pointer<GUID> iid,
+        Pointer<Pointer> factory),
     int Function(int activatableClassId, Pointer<GUID> iid,
         Pointer<Pointer> factory)>('RoGetActivationFactory');
 
@@ -70,7 +71,7 @@ int RoGetApartmentIdentifier(Pointer<Uint64> apartmentIdentifier) =>
     _RoGetApartmentIdentifier(apartmentIdentifier);
 
 final _RoGetApartmentIdentifier = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
-    Int32 Function(Pointer<Uint64> apartmentIdentifier),
+    HRESULT Function(Pointer<Uint64> apartmentIdentifier),
     int Function(
         Pointer<Uint64> apartmentIdentifier)>('RoGetApartmentIdentifier');
 
@@ -86,7 +87,8 @@ final _RoGetApartmentIdentifier = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
 int RoInitialize(int initType) => _RoInitialize(initType);
 
 final _RoInitialize = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
-    Int32 Function(Int32 initType), int Function(int initType)>('RoInitialize');
+    HRESULT Function(Int32 initType),
+    int Function(int initType)>('RoInitialize');
 
 /// Closes the Windows Runtime on the current thread.
 ///

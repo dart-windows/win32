@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -36,14 +37,14 @@ class IAppxManifestPackageDependenciesEnumerator extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> dependency)>()(ptr, dependency);
 
-  int getHasCurrent(Pointer<Int32> hasCurrent) =>
+  int getHasCurrent(Pointer<BOOL> hasCurrent) =>
       _vtable.GetHasCurrent.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Int32> hasCurrent)>()(
+              int Function(VTablePointer lpVtbl, Pointer<BOOL> hasCurrent)>()(
           ptr, hasCurrent);
 
-  int moveNext(Pointer<Int32> hasNext) => _vtable.MoveNext.asFunction<
+  int moveNext(Pointer<BOOL> hasNext) => _vtable.MoveNext.asFunction<
       int Function(
-          VTablePointer lpVtbl, Pointer<Int32> hasNext)>()(ptr, hasNext);
+          VTablePointer lpVtbl, Pointer<BOOL> hasNext)>()(ptr, hasNext);
 }
 
 /// @nodoc
@@ -51,15 +52,15 @@ base class IAppxManifestPackageDependenciesEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> dependency)>>
       GetCurrent;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> hasCurrent)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> hasCurrent)>>
       GetHasCurrent;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> hasNext)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> hasNext)>>
       MoveNext;
 }

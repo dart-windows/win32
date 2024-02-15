@@ -110,7 +110,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
   external IUIAutomationElement6Vtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
@@ -119,7 +119,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
               Pointer<VTablePointer> found)>> FindFirstWithOptions;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
@@ -128,7 +128,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
               Pointer<VTablePointer> found)>> FindAllWithOptions;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
@@ -138,7 +138,7 @@ base class IUIAutomationElement7Vtbl extends Struct {
               Pointer<VTablePointer> found)>> FindFirstWithOptionsBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 scope,
               VTablePointer condition,
@@ -148,6 +148,9 @@ base class IUIAutomationElement7Vtbl extends Struct {
               Pointer<VTablePointer> found)>> FindAllWithOptionsBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 targetId, Int32 metadataId,
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 targetId,
+              Int32 metadataId,
               Pointer<VARIANT> returnVal)>> GetCurrentMetadataValue;
 }

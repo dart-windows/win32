@@ -22,7 +22,7 @@ void main() {
       expect(
         type,
         equals(
-          'Int32 Function(Pointer<DRIVER_OBJECT> driverObject, '
+          'NTSTATUS Function(Pointer<DRIVER_OBJECT> driverObject, '
           'Pointer<DEVICE_OBJECT> physicalDeviceObject)',
         ),
       );
@@ -55,7 +55,7 @@ void main() {
         type,
         equals(
           'Int32 Function(Pointer<LOGFONT> param0, '
-          'Pointer<TEXTMETRIC> param1, Uint32 param2, IntPtr param3)',
+          'Pointer<TEXTMETRIC> param1, Uint32 param2, LPARAM param3)',
         ),
       );
       expect(toString(), equals('typedef $name = $type;'));
@@ -67,8 +67,8 @@ void main() {
       expect(
         type,
         equals(
-          'IntPtr Function('
-          'IntPtr param0, Uint32 param1, IntPtr param2, IntPtr param3)',
+          'LRESULT Function('
+          'HWND param0, Uint32 param1, WPARAM param2, LPARAM param3)',
         ),
       );
       expect(toString(), equals('typedef $name = $type;'));

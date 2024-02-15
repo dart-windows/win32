@@ -60,16 +60,16 @@ base class IUIAutomationTextRange3Vtbl extends Struct {
   external IUIAutomationTextRange2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
                   Pointer<VTablePointer> enclosingElement)>>
       GetEnclosingElementBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> children)>> GetChildrenBuildCache;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Int32> attributeIds,
               Int32 attributeIdCount,

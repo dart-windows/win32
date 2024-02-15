@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomation.g.dart';
@@ -35,11 +36,11 @@ class IUIAutomation2 extends IUIAutomation {
       IUIAutomation2(interface.toInterface(IID_IUIAutomation2));
 
   int get autoSetFocus {
-    final autoSetFocus = calloc<Int32>();
+    final autoSetFocus = calloc<BOOL>();
     try {
       final hr = _vtable.get_AutoSetFocus.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Int32> autoSetFocus)>()(ptr, autoSetFocus);
+              int Function(VTablePointer lpVtbl, Pointer<BOOL> autoSetFocus)>()(
+          ptr, autoSetFocus);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = autoSetFocus.value;
       return retValue;
@@ -103,26 +104,28 @@ base class IUIAutomation2Vtbl extends Struct {
   external IUIAutomationVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int32> autoSetFocus)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<BOOL> autoSetFocus)>>
       get_AutoSetFocus;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 autoSetFocus)>>
+              HRESULT Function(VTablePointer lpVtbl, BOOL autoSetFocus)>>
       put_AutoSetFocus;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> timeout)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> timeout)>>
       get_ConnectionTimeout;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 timeout)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 timeout)>>
       put_ConnectionTimeout;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> timeout)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> timeout)>>
       get_TransactionTimeout;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 timeout)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 timeout)>>
       put_TransactionTimeout;
 }
 

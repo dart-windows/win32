@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -54,16 +55,17 @@ base class IEnumMonikerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 celt,
               Pointer<VTablePointer> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+      NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>> Clone;
 }

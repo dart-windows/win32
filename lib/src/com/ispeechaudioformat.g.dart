@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'idispatch.g.dart';
@@ -52,12 +53,11 @@ class ISpeechAudioFormat extends IDispatch {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  Pointer<Utf16> get guid {
-    final guid = calloc<Pointer<Utf16>>();
+  BSTR get guid {
+    final guid = calloc<BSTR>();
     try {
       final hr = _vtable.get_Guid.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> guid)>()(ptr, guid);
+          int Function(VTablePointer lpVtbl, Pointer<BSTR> guid)>()(ptr, guid);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = guid.value;
       return retValue;
@@ -66,9 +66,9 @@ class ISpeechAudioFormat extends IDispatch {
     }
   }
 
-  set guid(Pointer<Utf16> guid) {
-    final hr = _vtable.put_Guid.asFunction<
-        int Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>()(ptr, guid);
+  set guid(BSTR guid) {
+    final hr = _vtable.put_Guid
+        .asFunction<int Function(VTablePointer lpVtbl, BSTR guid)>()(ptr, guid);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -89,26 +89,25 @@ class ISpeechAudioFormat extends IDispatch {
 base class ISpeechAudioFormatVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> audioFormat)>>
-      get_Type;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> audioFormat)>> get_Type;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 audioFormat)>> put_Type;
+          HRESULT Function(VTablePointer lpVtbl, Int32 audioFormat)>> put_Type;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> guid)>> get_Guid;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> guid)>> get_Guid;
+  external Pointer<
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, BSTR guid)>>
+      put_Guid;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>> put_Guid;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> speechWaveFormatEx)>> GetWaveFormatEx;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, VTablePointer speechWaveFormatEx)>>
       SetWaveFormatEx;
 }

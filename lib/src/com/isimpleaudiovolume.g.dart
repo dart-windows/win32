@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -49,8 +50,8 @@ class ISimpleAudioVolume extends IUnknown {
           int Function(VTablePointer lpVtbl, int bMute,
               Pointer<GUID> eventContext)>()(ptr, bMute, eventContext);
 
-  int getMute(Pointer<Int32> pbMute) => _vtable.GetMute.asFunction<
-      int Function(VTablePointer lpVtbl, Pointer<Int32> pbMute)>()(ptr, pbMute);
+  int getMute(Pointer<BOOL> pbMute) => _vtable.GetMute.asFunction<
+      int Function(VTablePointer lpVtbl, Pointer<BOOL> pbMute)>()(ptr, pbMute);
 }
 
 /// @nodoc
@@ -58,17 +59,18 @@ base class ISimpleAudioVolumeVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Float fLevel,
+          HRESULT Function(VTablePointer lpVtbl, Float fLevel,
               Pointer<GUID> eventContext)>> SetMasterVolume;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Float> pfLevel)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Float> pfLevel)>>
       GetMasterVolume;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 bMute,
+          HRESULT Function(VTablePointer lpVtbl, BOOL bMute,
               Pointer<GUID> eventContext)>> SetMute;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pbMute)>> GetMute;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> pbMute)>>
+      GetMute;
 }

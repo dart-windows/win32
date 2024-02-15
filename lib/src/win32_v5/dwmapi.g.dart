@@ -32,7 +32,7 @@ int DwmEnableBlurBehindWindow(int hWnd, Pointer<DWM_BLURBEHIND> pBlurBehind) =>
     _DwmEnableBlurBehindWindow(hWnd, pBlurBehind);
 
 final _DwmEnableBlurBehindWindow = _dwmapi.lookupFunction<
-    Int32 Function(IntPtr hWnd, Pointer<DWM_BLURBEHIND> pBlurBehind),
+    HRESULT Function(HWND hWnd, Pointer<DWM_BLURBEHIND> pBlurBehind),
     int Function(int hWnd,
         Pointer<DWM_BLURBEHIND> pBlurBehind)>('DwmEnableBlurBehindWindow');
 
@@ -49,7 +49,7 @@ final _DwmEnableBlurBehindWindow = _dwmapi.lookupFunction<
 int DwmEnableMMCSS(int fEnableMMCSS) => _DwmEnableMMCSS(fEnableMMCSS);
 
 final _DwmEnableMMCSS = _dwmapi.lookupFunction<
-    Int32 Function(Int32 fEnableMMCSS),
+    HRESULT Function(BOOL fEnableMMCSS),
     int Function(int fEnableMMCSS)>('DwmEnableMMCSS');
 
 /// Extends the window frame into the client area.
@@ -65,7 +65,7 @@ int DwmExtendFrameIntoClientArea(int hWnd, Pointer<MARGINS> pMarInset) =>
     _DwmExtendFrameIntoClientArea(hWnd, pMarInset);
 
 final _DwmExtendFrameIntoClientArea = _dwmapi.lookupFunction<
-    Int32 Function(IntPtr hWnd, Pointer<MARGINS> pMarInset),
+    HRESULT Function(HWND hWnd, Pointer<MARGINS> pMarInset),
     int Function(
         int hWnd, Pointer<MARGINS> pMarInset)>('DwmExtendFrameIntoClientArea');
 
@@ -81,7 +81,7 @@ final _DwmExtendFrameIntoClientArea = _dwmapi.lookupFunction<
 int DwmFlush() => _DwmFlush();
 
 final _DwmFlush =
-    _dwmapi.lookupFunction<Int32 Function(), int Function()>('DwmFlush');
+    _dwmapi.lookupFunction<HRESULT Function(), int Function()>('DwmFlush');
 
 /// Retrieves the current color used for Desktop Window Manager (DWM) glass
 /// composition. This value is based on the current color scheme and can be
@@ -96,14 +96,14 @@ final _DwmFlush =
 /// ```
 /// {@category dwmapi}
 int DwmGetColorizationColor(
-        Pointer<Uint32> pcrColorization, Pointer<Int32> pfOpaqueBlend) =>
+        Pointer<Uint32> pcrColorization, Pointer<BOOL> pfOpaqueBlend) =>
     _DwmGetColorizationColor(pcrColorization, pfOpaqueBlend);
 
 final _DwmGetColorizationColor = _dwmapi.lookupFunction<
-    Int32 Function(
-        Pointer<Uint32> pcrColorization, Pointer<Int32> pfOpaqueBlend),
+    HRESULT Function(
+        Pointer<Uint32> pcrColorization, Pointer<BOOL> pfOpaqueBlend),
     int Function(Pointer<Uint32> pcrColorization,
-        Pointer<Int32> pfOpaqueBlend)>('DwmGetColorizationColor');
+        Pointer<BOOL> pfOpaqueBlend)>('DwmGetColorizationColor');
 
 /// Retrieves transport attributes.
 ///
@@ -115,14 +115,14 @@ final _DwmGetColorizationColor = _dwmapi.lookupFunction<
 /// );
 /// ```
 /// {@category dwmapi}
-int DwmGetTransportAttributes(Pointer<Int32> pfIsRemoting,
-        Pointer<Int32> pfIsConnected, Pointer<Uint32> pDwGeneration) =>
+int DwmGetTransportAttributes(Pointer<BOOL> pfIsRemoting,
+        Pointer<BOOL> pfIsConnected, Pointer<Uint32> pDwGeneration) =>
     _DwmGetTransportAttributes(pfIsRemoting, pfIsConnected, pDwGeneration);
 
 final _DwmGetTransportAttributes = _dwmapi.lookupFunction<
-    Int32 Function(Pointer<Int32> pfIsRemoting, Pointer<Int32> pfIsConnected,
+    HRESULT Function(Pointer<BOOL> pfIsRemoting, Pointer<BOOL> pfIsConnected,
         Pointer<Uint32> pDwGeneration),
-    int Function(Pointer<Int32> pfIsRemoting, Pointer<Int32> pfIsConnected,
+    int Function(Pointer<BOOL> pfIsRemoting, Pointer<BOOL> pfIsConnected,
         Pointer<Uint32> pDwGeneration)>('DwmGetTransportAttributes');
 
 /// Retrieves the current value of a specified Desktop Window Manager (DWM)
@@ -142,8 +142,8 @@ int DwmGetWindowAttribute(
     _DwmGetWindowAttribute(hwnd, dwAttribute, pvAttribute, cbAttribute);
 
 final _DwmGetWindowAttribute = _dwmapi.lookupFunction<
-    Int32 Function(IntPtr hwnd, Uint32 dwAttribute, Pointer pvAttribute,
-        Uint32 cbAttribute),
+    HRESULT Function(
+        HWND hwnd, Uint32 dwAttribute, Pointer pvAttribute, Uint32 cbAttribute),
     int Function(int hwnd, int dwAttribute, Pointer pvAttribute,
         int cbAttribute)>('DwmGetWindowAttribute');
 
@@ -160,7 +160,7 @@ final _DwmGetWindowAttribute = _dwmapi.lookupFunction<
 int DwmInvalidateIconicBitmaps(int hwnd) => _DwmInvalidateIconicBitmaps(hwnd);
 
 final _DwmInvalidateIconicBitmaps =
-    _dwmapi.lookupFunction<Int32 Function(IntPtr hwnd), int Function(int hwnd)>(
+    _dwmapi.lookupFunction<HRESULT Function(HWND hwnd), int Function(int hwnd)>(
         'DwmInvalidateIconicBitmaps');
 
 /// Notifies Desktop Window Manager (DWM) that a touch contact has been
@@ -180,7 +180,7 @@ int DwmRenderGesture(int gt, int cContacts, Pointer<Uint32> pdwPointerID,
     _DwmRenderGesture(gt, cContacts, pdwPointerID, pPoints);
 
 final _DwmRenderGesture = _dwmapi.lookupFunction<
-    Int32 Function(Int32 gt, Uint32 cContacts, Pointer<Uint32> pdwPointerID,
+    HRESULT Function(Int32 gt, Uint32 cContacts, Pointer<Uint32> pdwPointerID,
         Pointer<POINT> pPoints),
     int Function(int gt, int cContacts, Pointer<Uint32> pdwPointerID,
         Pointer<POINT> pPoints)>('DwmRenderGesture');
@@ -202,8 +202,8 @@ int DwmSetWindowAttribute(
     _DwmSetWindowAttribute(hwnd, dwAttribute, pvAttribute, cbAttribute);
 
 final _DwmSetWindowAttribute = _dwmapi.lookupFunction<
-    Int32 Function(IntPtr hwnd, Uint32 dwAttribute, Pointer pvAttribute,
-        Uint32 cbAttribute),
+    HRESULT Function(
+        HWND hwnd, Uint32 dwAttribute, Pointer pvAttribute, Uint32 cbAttribute),
     int Function(int hwnd, int dwAttribute, Pointer pvAttribute,
         int cbAttribute)>('DwmSetWindowAttribute');
 
@@ -221,5 +221,5 @@ int DwmShowContact(int dwPointerID, int eShowContact) =>
     _DwmShowContact(dwPointerID, eShowContact);
 
 final _DwmShowContact = _dwmapi.lookupFunction<
-    Int32 Function(Uint32 dwPointerID, Uint32 eShowContact),
+    HRESULT Function(Uint32 dwPointerID, Uint32 eShowContact),
     int Function(int dwPointerID, int eShowContact)>('DwmShowContact');

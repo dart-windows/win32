@@ -286,7 +286,7 @@ class VersionInfoQuerier {
 
     final keyPath = TEXT('\\StringFileInfo\\$language$encoding\\$key');
     final length = calloc<UINT>();
-    final valueAddress = calloc<Pointer<Utf16>>();
+    final valueAddress = calloc<PWSTR>();
     try {
       if (VerQueryValue(versionInfo, keyPath, valueAddress, length) == 0) {
         return null;
@@ -357,7 +357,7 @@ class PathProviderWindows {
   /// folderID is a GUID that represents a specific known folder ID, drawn from
   /// [WindowsKnownFolder].
   Future<String?> getPath(String folderID) {
-    final pathPtrPtr = calloc<Pointer<Utf16>>();
+    final pathPtrPtr = calloc<PWSTR>();
     final knownFolderID = GUIDFromString(folderID);
 
     try {

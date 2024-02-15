@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement4.g.dart';
@@ -48,12 +49,12 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
-  Pointer<Utf16> get currentLocalizedLandmarkType {
-    final retVal = calloc<Pointer<Utf16>>();
+  BSTR get currentLocalizedLandmarkType {
+    final retVal = calloc<BSTR>();
     try {
       final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -76,12 +77,12 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
-  Pointer<Utf16> get cachedLocalizedLandmarkType {
-    final retVal = calloc<Pointer<Utf16>>();
+  BSTR get cachedLocalizedLandmarkType {
+    final retVal = calloc<BSTR>();
     try {
       final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -96,20 +97,18 @@ base class IUIAutomationElement5Vtbl extends Struct {
   external IUIAutomationElement4Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CurrentLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
       get_CurrentLocalizedLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
       get_CachedLandmarkType;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
       get_CachedLocalizedLandmarkType;
 }

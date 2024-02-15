@@ -36,7 +36,7 @@ final _api_ms_win_service_core_l1_1_5 =
 int GetSharedServiceDirectory(
         int serviceHandle,
         int directoryType,
-        Pointer<Utf16>? pathBuffer,
+        PWSTR? pathBuffer,
         int pathBufferLength,
         Pointer<Uint32> requiredBufferLength) =>
     _GetSharedServiceDirectory(serviceHandle, directoryType,
@@ -45,15 +45,15 @@ int GetSharedServiceDirectory(
 final _GetSharedServiceDirectory =
     _api_ms_win_service_core_l1_1_5.lookupFunction<
         Uint32 Function(
-            IntPtr serviceHandle,
+            SC_HANDLE serviceHandle,
             Int32 directoryType,
-            Pointer<Utf16> pathBuffer,
+            PWSTR pathBuffer,
             Uint32 pathBufferLength,
             Pointer<Uint32> requiredBufferLength),
         int Function(
             int serviceHandle,
             int directoryType,
-            Pointer<Utf16> pathBuffer,
+            PWSTR pathBuffer,
             int pathBufferLength,
             Pointer<Uint32> requiredBufferLength)>('GetSharedServiceDirectory');
 
@@ -70,14 +70,13 @@ final _GetSharedServiceDirectory =
 /// ```
 /// {@category api_ms_win_service_core_l1_1_5}
 int GetSharedServiceRegistryStateKey(int serviceHandle, int stateType,
-        int accessMask, Pointer<IntPtr> serviceStateKey) =>
+        int accessMask, Pointer<HKEY> serviceStateKey) =>
     _GetSharedServiceRegistryStateKey(
         serviceHandle, stateType, accessMask, serviceStateKey);
 
 final _GetSharedServiceRegistryStateKey =
     _api_ms_win_service_core_l1_1_5.lookupFunction<
-            Uint32 Function(IntPtr serviceHandle, Int32 stateType,
-                Uint32 accessMask, Pointer<IntPtr> serviceStateKey),
-            int Function(int serviceHandle, int stateType, int accessMask,
-                Pointer<IntPtr> serviceStateKey)>(
-        'GetSharedServiceRegistryStateKey');
+        Uint32 Function(SC_HANDLE serviceHandle, Int32 stateType,
+            Uint32 accessMask, Pointer<HKEY> serviceStateKey),
+        int Function(int serviceHandle, int stateType, int accessMask,
+            Pointer<HKEY> serviceStateKey)>('GetSharedServiceRegistryStateKey');

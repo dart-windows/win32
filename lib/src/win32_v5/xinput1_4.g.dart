@@ -29,7 +29,7 @@ final _xinput1_4 = DynamicLibrary.open('xinput1_4.dll');
 /// {@category xinput}
 void XInputEnable(int enable) => _XInputEnable(enable);
 
-final _XInputEnable = _xinput1_4.lookupFunction<Void Function(Int32 enable),
+final _XInputEnable = _xinput1_4.lookupFunction<Void Function(BOOL enable),
     void Function(int enable)>('XInputEnable');
 
 /// Retrieves the sound rendering and sound capture audio device IDs that are
@@ -47,9 +47,9 @@ final _XInputEnable = _xinput1_4.lookupFunction<Void Function(Int32 enable),
 /// {@category xinput}
 int XInputGetAudioDeviceIds(
         int dwUserIndex,
-        Pointer<Utf16>? pRenderDeviceId,
+        PWSTR? pRenderDeviceId,
         Pointer<Uint32>? pRenderCount,
-        Pointer<Utf16>? pCaptureDeviceId,
+        PWSTR? pCaptureDeviceId,
         Pointer<Uint32>? pCaptureCount) =>
     _XInputGetAudioDeviceIds(
         dwUserIndex,
@@ -61,15 +61,15 @@ int XInputGetAudioDeviceIds(
 final _XInputGetAudioDeviceIds = _xinput1_4.lookupFunction<
     Uint32 Function(
         Uint32 dwUserIndex,
-        Pointer<Utf16> pRenderDeviceId,
+        PWSTR pRenderDeviceId,
         Pointer<Uint32> pRenderCount,
-        Pointer<Utf16> pCaptureDeviceId,
+        PWSTR pCaptureDeviceId,
         Pointer<Uint32> pCaptureCount),
     int Function(
         int dwUserIndex,
-        Pointer<Utf16> pRenderDeviceId,
+        PWSTR pRenderDeviceId,
         Pointer<Uint32> pRenderCount,
-        Pointer<Utf16> pCaptureDeviceId,
+        PWSTR pCaptureDeviceId,
         Pointer<Uint32> pCaptureCount)>('XInputGetAudioDeviceIds');
 
 /// Retrieves the battery type and charge status of a wireless controller.

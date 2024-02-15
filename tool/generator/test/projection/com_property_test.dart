@@ -31,24 +31,24 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, '
-          'Pointer<Pointer<Utf16>> value)',
+          'HRESULT Function(VTablePointer lpVtbl, '
+          'Pointer<PWSTR> value)',
         ),
       );
       expect(
         dartPrototype,
         equals(
           'int Function(VTablePointer lpVtbl, '
-          'Pointer<Pointer<Utf16>> value)',
+          'Pointer<PWSTR> value)',
         ),
       );
       expect(methodArguments, equals('ptr, value'));
-      expect(projection.returnType, equals('Pointer<Utf16>'));
-      expect(projection.header, equals('Pointer<Utf16> get $camelCasedName'));
+      expect(projection.returnType, equals('PWSTR'));
+      expect(projection.header, equals('PWSTR get $camelCasedName'));
       expect(
         projection.methodBody,
         equalsIgnoringWhitespace('''
-  final value = calloc<Pointer<Utf16>>();
+  final value = calloc<PWSTR>();
   try {
     final hr = _vtable.$name.asFunction<$dartPrototype>()($methodArguments);
     if (FAILED(hr)) throw WindowsException(hr);
@@ -75,7 +75,7 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, '
+          'HRESULT Function(VTablePointer lpVtbl, '
           'Pointer<VTablePointer> ppEnumVar)',
         ),
       );
@@ -122,13 +122,15 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)',
+          'HRESULT Function(VTablePointer lpVtbl, '
+          'Pointer<VARIANT_BOOL> pbIsConnected)',
         ),
       );
       expect(
         dartPrototype,
         equals(
-          'int Function(VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)',
+          'int Function(VTablePointer lpVtbl, '
+          'Pointer<VARIANT_BOOL> pbIsConnected)',
         ),
       );
       expect(methodArguments, equals('ptr, pbIsConnected'));
@@ -137,7 +139,7 @@ void main() {
       expect(
         projection.methodBody,
         equalsIgnoringWhitespace('''
-  final pbIsConnected = calloc<Int16>();
+  final pbIsConnected = calloc<VARIANT_BOOL>();
   try {
     final hr = _vtable.$name.asFunction<$dartPrototype>()($methodArguments);
     if (FAILED(hr)) throw WindowsException(hr);
@@ -165,7 +167,7 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, Pointer<VARIANT> body)',
+          'HRESULT Function(VTablePointer lpVtbl, Pointer<VARIANT> body)',
         ),
       );
       expect(
@@ -203,7 +205,7 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, Pointer<Double> retVal)',
+          'HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retVal)',
         ),
       );
       expect(
@@ -246,7 +248,7 @@ void main() {
       expect(camelCasedName, equals('volume'));
       expect(
         nativePrototype,
-        equals('Int32 Function(VTablePointer lpVtbl, Int32 volume)'),
+        equals('HRESULT Function(VTablePointer lpVtbl, Int32 volume)'),
       );
       expect(
         dartPrototype,
@@ -281,21 +283,18 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> bs)',
+          'HRESULT Function(VTablePointer lpVtbl, BSTR bs)',
         ),
       );
       expect(
         dartPrototype,
         equals(
-          'int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)',
+          'int Function(VTablePointer lpVtbl, BSTR bs)',
         ),
       );
       expect(methodArguments, equals('ptr, bs'));
       expect(projection.returnType, equals('void'));
-      expect(
-        projection.header,
-        equals('set $camelCasedName(Pointer<Utf16> bs)'),
-      );
+      expect(projection.header, equals('set $camelCasedName(BSTR bs)'));
       expect(
         projection.methodBody,
         equalsIgnoringWhitespace('''
@@ -318,7 +317,7 @@ if (FAILED(hr)) throw WindowsException(hr);
       expect(camelCasedName, equals('treeFilter'));
       expect(
         nativePrototype,
-        equals('Int32 Function(VTablePointer lpVtbl, VTablePointer filter)'),
+        equals('HRESULT Function(VTablePointer lpVtbl, VTablePointer filter)'),
       );
       expect(
         dartPrototype,

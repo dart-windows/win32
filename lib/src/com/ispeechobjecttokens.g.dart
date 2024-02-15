@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'idispatch.g.dart';
@@ -72,15 +73,15 @@ base class ISpeechObjectTokensVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> count)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> count)>>
       get_Count;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 index,
+          HRESULT Function(VTablePointer lpVtbl, Int32 index,
               Pointer<VTablePointer> token)>> Item;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppEnumVARIANT)>>
       get__NewEnum;
 }

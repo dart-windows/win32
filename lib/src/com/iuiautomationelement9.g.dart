@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement8.g.dart';
@@ -34,11 +35,11 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
       IUIAutomationElement9(interface.toInterface(IID_IUIAutomationElement9));
 
   int get currentIsDialog {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CurrentIsDialog.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -48,11 +49,11 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
   }
 
   int get cachedIsDialog {
-    final retVal = calloc<Int32>();
+    final retVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_CachedIsDialog.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> retVal)>()(ptr, retVal);
+              VTablePointer lpVtbl, Pointer<BOOL> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -67,10 +68,10 @@ base class IUIAutomationElement9Vtbl extends Struct {
   external IUIAutomationElement8Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CurrentIsDialog;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> retVal)>>
       get_CachedIsDialog;
 }

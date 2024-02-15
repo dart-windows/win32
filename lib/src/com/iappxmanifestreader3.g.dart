@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iappxmanifestreader2.g.dart';
 import 'iunknown.g.dart';
@@ -48,12 +49,12 @@ base class IAppxManifestReader3Vtbl extends Struct {
   external IAppxManifestReader2Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 capabilityClass,
+              HRESULT Function(VTablePointer lpVtbl, Int32 capabilityClass,
                   Pointer<VTablePointer> capabilities)>>
       GetCapabilitiesByCapabilityClass;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> targetDeviceFamilies)>>
       GetTargetDeviceFamilies;
 }

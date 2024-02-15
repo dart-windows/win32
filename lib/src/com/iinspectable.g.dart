@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -32,9 +33,9 @@ class IInspectable extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<Uint32> iidCount,
               Pointer<Pointer<GUID>> iids)>()(ptr, iidCount, iids);
 
-  int getRuntimeClassName(Pointer<IntPtr> className) =>
+  int getRuntimeClassName(Pointer<HSTRING> className) =>
       _vtable.GetRuntimeClassName.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<IntPtr> className)>()(
+              int Function(VTablePointer lpVtbl, Pointer<HSTRING> className)>()(
           ptr, className);
 
   int getTrustLevel(Pointer<Int32> trustLevel) =>
@@ -48,14 +49,15 @@ base class IInspectableVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> iidCount,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> iidCount,
               Pointer<Pointer<GUID>> iids)>> GetIids;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<IntPtr> className)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<HSTRING> className)>>
       GetRuntimeClassName;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> trustLevel)>>
-      GetTrustLevel;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> trustLevel)>> GetTrustLevel;
 }

@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -59,23 +60,25 @@ base class ISensorCollectionVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 ulIndex,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 ulIndex,
               Pointer<VTablePointer> ppSensor)>> GetAt;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pCount)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pCount)>>
       GetCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pSensor)>> Add;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pSensor)>> Remove;
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pSensor)>> Add;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorID)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pSensor)>>
+      Remove;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> sensorID)>>
       RemoveByID;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Clear;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Clear;
 }
 
 /// @nodoc

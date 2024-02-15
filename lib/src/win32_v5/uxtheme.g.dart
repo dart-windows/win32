@@ -29,7 +29,7 @@ final _uxtheme = DynamicLibrary.open('uxtheme.dll');
 /// {@category uxtheme}
 int CloseThemeData(int hTheme) => _CloseThemeData(hTheme);
 
-final _CloseThemeData = _uxtheme.lookupFunction<Int32 Function(IntPtr hTheme),
+final _CloseThemeData = _uxtheme.lookupFunction<HRESULT Function(HTHEME hTheme),
     int Function(int hTheme)>('CloseThemeData');
 
 /// Draws the border and fill defined by the visual style for the specified
@@ -52,7 +52,7 @@ int DrawThemeBackground(int hTheme, int hdc, int iPartId, int iStateId,
         hTheme, hdc, iPartId, iStateId, pRect, pClipRect ?? nullptr);
 
 final _DrawThemeBackground = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
+    HRESULT Function(HTHEME hTheme, HDC hdc, Int32 iPartId, Int32 iStateId,
         Pointer<RECT> pRect, Pointer<RECT> pClipRect),
     int Function(int hTheme, int hdc, int iPartId, int iStateId,
         Pointer<RECT> pRect, Pointer<RECT> pClipRect)>('DrawThemeBackground');
@@ -85,9 +85,9 @@ int DrawThemeEdge(
         pContentRect ?? nullptr);
 
 final _DrawThemeEdge = _uxtheme.lookupFunction<
-    Int32 Function(
-        IntPtr hTheme,
-        IntPtr hdc,
+    HRESULT Function(
+        HTHEME hTheme,
+        HDC hdc,
         Int32 iPartId,
         Int32 iStateId,
         Pointer<RECT> pDestRect,
@@ -124,8 +124,8 @@ int DrawThemeIcon(int hTheme, int hdc, int iPartId, int iStateId,
     _DrawThemeIcon(hTheme, hdc, iPartId, iStateId, pRect, himl, iImageIndex);
 
 final _DrawThemeIcon = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
-        Pointer<RECT> pRect, IntPtr himl, Int32 iImageIndex),
+    HRESULT Function(HTHEME hTheme, HDC hdc, Int32 iPartId, Int32 iStateId,
+        Pointer<RECT> pRect, HIMAGELIST himl, Int32 iImageIndex),
     int Function(int hTheme, int hdc, int iPartId, int iStateId,
         Pointer<RECT> pRect, int himl, int iImageIndex)>('DrawThemeIcon');
 
@@ -144,7 +144,7 @@ int DrawThemeParentBackground(int hwnd, int hdc, Pointer<RECT>? prc) =>
     _DrawThemeParentBackground(hwnd, hdc, prc ?? nullptr);
 
 final _DrawThemeParentBackground = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hwnd, IntPtr hdc, Pointer<RECT> prc),
+    HRESULT Function(HWND hwnd, HDC hdc, Pointer<RECT> prc),
     int Function(
         int hwnd, int hdc, Pointer<RECT> prc)>('DrawThemeParentBackground');
 
@@ -166,7 +166,7 @@ int DrawThemeParentBackgroundEx(
     _DrawThemeParentBackgroundEx(hwnd, hdc, dwFlags, prc ?? nullptr);
 
 final _DrawThemeParentBackgroundEx = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hwnd, IntPtr hdc, Uint32 dwFlags, Pointer<RECT> prc),
+    HRESULT Function(HWND hwnd, HDC hdc, Uint32 dwFlags, Pointer<RECT> prc),
     int Function(int hwnd, int hdc, int dwFlags,
         Pointer<RECT> prc)>('DrawThemeParentBackgroundEx');
 
@@ -191,7 +191,7 @@ int DrawThemeTextEx(
         int hdc,
         int iPartId,
         int iStateId,
-        Pointer<Utf16> pszText,
+        PWSTR pszText,
         int cchText,
         int dwTextFlags,
         Pointer<RECT> pRect,
@@ -200,12 +200,12 @@ int DrawThemeTextEx(
         dwTextFlags, pRect, pOptions ?? nullptr);
 
 final _DrawThemeTextEx = _uxtheme.lookupFunction<
-    Int32 Function(
-        IntPtr hTheme,
-        IntPtr hdc,
+    HRESULT Function(
+        HTHEME hTheme,
+        HDC hdc,
         Int32 iPartId,
         Int32 iStateId,
-        Pointer<Utf16> pszText,
+        PWSTR pszText,
         Int32 cchText,
         Uint32 dwTextFlags,
         Pointer<RECT> pRect,
@@ -215,7 +215,7 @@ final _DrawThemeTextEx = _uxtheme.lookupFunction<
         int hdc,
         int iPartId,
         int iStateId,
-        Pointer<Utf16> pszText,
+        PWSTR pszText,
         int cchText,
         int dwTextFlags,
         Pointer<RECT> pRect,
@@ -234,7 +234,7 @@ int EnableThemeDialogTexture(int hwnd, int dwFlags) =>
     _EnableThemeDialogTexture(hwnd, dwFlags);
 
 final _EnableThemeDialogTexture = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hwnd, Uint32 dwFlags),
+    HRESULT Function(HWND hwnd, Uint32 dwFlags),
     int Function(int hwnd, int dwFlags)>('EnableThemeDialogTexture');
 
 /// Retrieves the name of the current visual style, and optionally retrieves the
@@ -252,11 +252,11 @@ final _EnableThemeDialogTexture = _uxtheme.lookupFunction<
 /// ```
 /// {@category uxtheme}
 int GetCurrentThemeName(
-        Pointer<Utf16> pszThemeFileName,
+        PWSTR pszThemeFileName,
         int cchMaxNameChars,
-        Pointer<Utf16>? pszColorBuff,
+        PWSTR? pszColorBuff,
         int cchMaxColorChars,
-        Pointer<Utf16>? pszSizeBuff,
+        PWSTR? pszSizeBuff,
         int cchMaxSizeChars) =>
     _GetCurrentThemeName(
         pszThemeFileName,
@@ -267,19 +267,19 @@ int GetCurrentThemeName(
         cchMaxSizeChars);
 
 final _GetCurrentThemeName = _uxtheme.lookupFunction<
-    Int32 Function(
-        Pointer<Utf16> pszThemeFileName,
+    HRESULT Function(
+        PWSTR pszThemeFileName,
         Int32 cchMaxNameChars,
-        Pointer<Utf16> pszColorBuff,
+        PWSTR pszColorBuff,
         Int32 cchMaxColorChars,
-        Pointer<Utf16> pszSizeBuff,
+        PWSTR pszSizeBuff,
         Int32 cchMaxSizeChars),
     int Function(
-        Pointer<Utf16> pszThemeFileName,
+        PWSTR pszThemeFileName,
         int cchMaxNameChars,
-        Pointer<Utf16> pszColorBuff,
+        PWSTR pszColorBuff,
         int cchMaxColorChars,
-        Pointer<Utf16> pszSizeBuff,
+        PWSTR pszSizeBuff,
         int cchMaxSizeChars)>('GetCurrentThemeName');
 
 /// Retrieves the value of a metric property.
@@ -300,7 +300,7 @@ int GetThemeMetric(int hTheme, int? hdc, int iPartId, int iStateId, int iPropId,
     _GetThemeMetric(hTheme, hdc ?? 0, iPartId, iStateId, iPropId, piVal);
 
 final _GetThemeMetric = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
+    HRESULT Function(HTHEME hTheme, HDC hdc, Int32 iPartId, Int32 iStateId,
         Int32 iPropId, Pointer<Int32> piVal),
     int Function(int hTheme, int hdc, int iPartId, int iStateId, int iPropId,
         Pointer<Int32> piVal)>('GetThemeMetric');
@@ -325,7 +325,7 @@ int GetThemePartSize(int hTheme, int? hdc, int iPartId, int iStateId,
         hTheme, hdc ?? 0, iPartId, iStateId, prc ?? nullptr, eSize, psz);
 
 final _GetThemePartSize = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, IntPtr hdc, Int32 iPartId, Int32 iStateId,
+    HRESULT Function(HTHEME hTheme, HDC hdc, Int32 iPartId, Int32 iStateId,
         Pointer<RECT> prc, Int32 eSize, Pointer<SIZE> psz),
     int Function(int hTheme, int hdc, int iPartId, int iStateId,
         Pointer<RECT> prc, int eSize, Pointer<SIZE> psz)>('GetThemePartSize');
@@ -347,8 +347,8 @@ int GetThemeRect(int hTheme, int iPartId, int iStateId, int iPropId,
     _GetThemeRect(hTheme, iPartId, iStateId, iPropId, pRect);
 
 final _GetThemeRect = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, Int32 iPartId, Int32 iStateId, Int32 iPropId,
-        Pointer<RECT> pRect),
+    HRESULT Function(HTHEME hTheme, Int32 iPartId, Int32 iStateId,
+        Int32 iPropId, Pointer<RECT> pRect),
     int Function(int hTheme, int iPartId, int iStateId, int iPropId,
         Pointer<RECT> pRect)>('GetThemeRect');
 
@@ -365,7 +365,7 @@ int GetThemeSysColor(int? hTheme, int iColorId) =>
     _GetThemeSysColor(hTheme ?? 0, iColorId);
 
 final _GetThemeSysColor = _uxtheme.lookupFunction<
-    Uint32 Function(IntPtr hTheme, Int32 iColorId),
+    COLORREF Function(HTHEME hTheme, Int32 iColorId),
     int Function(int hTheme, int iColorId)>('GetThemeSysColor');
 
 /// Retrieves a system color brush.
@@ -381,7 +381,7 @@ int GetThemeSysColorBrush(int? hTheme, int iColorId) =>
     _GetThemeSysColorBrush(hTheme ?? 0, iColorId);
 
 final _GetThemeSysColorBrush = _uxtheme.lookupFunction<
-    IntPtr Function(IntPtr hTheme, Int32 iColorId),
+    HBRUSH Function(HTHEME hTheme, Int32 iColorId),
     int Function(int hTheme, int iColorId)>('GetThemeSysColorBrush');
 
 /// Retrieves the LOGFONT of a system font.
@@ -398,7 +398,7 @@ int GetThemeSysFont(int? hTheme, int iFontId, Pointer<LOGFONT> plf) =>
     _GetThemeSysFont(hTheme ?? 0, iFontId, plf);
 
 final _GetThemeSysFont = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, Int32 iFontId, Pointer<LOGFONT> plf),
+    HRESULT Function(HTHEME hTheme, Int32 iFontId, Pointer<LOGFONT> plf),
     int Function(
         int hTheme, int iFontId, Pointer<LOGFONT> plf)>('GetThemeSysFont');
 
@@ -415,7 +415,7 @@ int GetThemeSysSize(int? hTheme, int iSizeId) =>
     _GetThemeSysSize(hTheme ?? 0, iSizeId);
 
 final _GetThemeSysSize = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, Int32 iSizeId),
+    Int32 Function(HTHEME hTheme, Int32 iSizeId),
     int Function(int hTheme, int iSizeId)>('GetThemeSysSize');
 
 /// Retrieves a theme handle to a window that has visual styles applied.
@@ -428,8 +428,9 @@ final _GetThemeSysSize = _uxtheme.lookupFunction<
 /// {@category uxtheme}
 int GetWindowTheme(int hwnd) => _GetWindowTheme(hwnd);
 
-final _GetWindowTheme = _uxtheme.lookupFunction<IntPtr Function(IntPtr hwnd),
-    int Function(int hwnd)>('GetWindowTheme');
+final _GetWindowTheme =
+    _uxtheme.lookupFunction<HTHEME Function(HWND hwnd), int Function(int hwnd)>(
+        'GetWindowTheme');
 
 /// Reports whether the current application's user interface displays using
 /// visual styles.
@@ -441,7 +442,7 @@ final _GetWindowTheme = _uxtheme.lookupFunction<IntPtr Function(IntPtr hwnd),
 int IsAppThemed() => _IsAppThemed();
 
 final _IsAppThemed =
-    _uxtheme.lookupFunction<Int32 Function(), int Function()>('IsAppThemed');
+    _uxtheme.lookupFunction<BOOL Function(), int Function()>('IsAppThemed');
 
 /// Determines whether Desktop Window Manager (DWM) composition effects are
 /// available to the theme.
@@ -453,7 +454,7 @@ final _IsAppThemed =
 int IsCompositionActive() => _IsCompositionActive();
 
 final _IsCompositionActive = _uxtheme
-    .lookupFunction<Int32 Function(), int Function()>('IsCompositionActive');
+    .lookupFunction<BOOL Function(), int Function()>('IsCompositionActive');
 
 /// Tests if a visual style for the current application is active.
 ///
@@ -464,7 +465,7 @@ final _IsCompositionActive = _uxtheme
 int IsThemeActive() => _IsThemeActive();
 
 final _IsThemeActive =
-    _uxtheme.lookupFunction<Int32 Function(), int Function()>('IsThemeActive');
+    _uxtheme.lookupFunction<BOOL Function(), int Function()>('IsThemeActive');
 
 /// Retrieves whether the background specified by the visual style has
 /// transparent pieces or alpha-blended pieces.
@@ -482,7 +483,7 @@ int IsThemeBackgroundPartiallyTransparent(
     _IsThemeBackgroundPartiallyTransparent(hTheme, iPartId, iStateId);
 
 final _IsThemeBackgroundPartiallyTransparent = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, Int32 iPartId, Int32 iStateId),
+    BOOL Function(HTHEME hTheme, Int32 iPartId, Int32 iStateId),
     int Function(int hTheme, int iPartId,
         int iStateId)>('IsThemeBackgroundPartiallyTransparent');
 
@@ -496,9 +497,9 @@ final _IsThemeBackgroundPartiallyTransparent = _uxtheme.lookupFunction<
 /// {@category uxtheme}
 int IsThemeDialogTextureEnabled(int hwnd) => _IsThemeDialogTextureEnabled(hwnd);
 
-final _IsThemeDialogTextureEnabled = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hwnd),
-    int Function(int hwnd)>('IsThemeDialogTextureEnabled');
+final _IsThemeDialogTextureEnabled =
+    _uxtheme.lookupFunction<BOOL Function(HWND hwnd), int Function(int hwnd)>(
+        'IsThemeDialogTextureEnabled');
 
 /// Retrieves whether a visual style has defined parameters for the specified
 /// part and state.
@@ -515,7 +516,7 @@ int IsThemePartDefined(int hTheme, int iPartId, int iStateId) =>
     _IsThemePartDefined(hTheme, iPartId, iStateId);
 
 final _IsThemePartDefined = _uxtheme.lookupFunction<
-    Int32 Function(IntPtr hTheme, Int32 iPartId, Int32 iStateId),
+    BOOL Function(HTHEME hTheme, Int32 iPartId, Int32 iStateId),
     int Function(int hTheme, int iPartId, int iStateId)>('IsThemePartDefined');
 
 /// Opens the theme data for a window and its associated class.
@@ -527,12 +528,12 @@ final _IsThemePartDefined = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int OpenThemeData(int? hwnd, Pointer<Utf16> pszClassList) =>
+int OpenThemeData(int? hwnd, PWSTR pszClassList) =>
     _OpenThemeData(hwnd ?? 0, pszClassList);
 
 final _OpenThemeData = _uxtheme.lookupFunction<
-    IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList),
-    int Function(int hwnd, Pointer<Utf16> pszClassList)>('OpenThemeData');
+    HTHEME Function(HWND hwnd, PWSTR pszClassList),
+    int Function(int hwnd, PWSTR pszClassList)>('OpenThemeData');
 
 /// Opens the theme data associated with a window for specified theme classes.
 ///
@@ -544,13 +545,12 @@ final _OpenThemeData = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int OpenThemeDataEx(int? hwnd, Pointer<Utf16> pszClassList, int dwFlags) =>
+int OpenThemeDataEx(int? hwnd, PWSTR pszClassList, int dwFlags) =>
     _OpenThemeDataEx(hwnd ?? 0, pszClassList, dwFlags);
 
 final _OpenThemeDataEx = _uxtheme.lookupFunction<
-    IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList, Uint32 dwFlags),
-    int Function(
-        int hwnd, Pointer<Utf16> pszClassList, int dwFlags)>('OpenThemeDataEx');
+    HTHEME Function(HWND hwnd, PWSTR pszClassList, Uint32 dwFlags),
+    int Function(int hwnd, PWSTR pszClassList, int dwFlags)>('OpenThemeDataEx');
 
 /// A variant of OpenThemeData that opens a theme handle associated with a
 /// specific DPI.
@@ -563,13 +563,12 @@ final _OpenThemeDataEx = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int OpenThemeDataForDpi(int? hwnd, Pointer<Utf16> pszClassList, int dpi) =>
+int OpenThemeDataForDpi(int? hwnd, PWSTR pszClassList, int dpi) =>
     _OpenThemeDataForDpi(hwnd ?? 0, pszClassList, dpi);
 
 final _OpenThemeDataForDpi = _uxtheme.lookupFunction<
-    IntPtr Function(IntPtr hwnd, Pointer<Utf16> pszClassList, Uint32 dpi),
-    int Function(
-        int hwnd, Pointer<Utf16> pszClassList, int dpi)>('OpenThemeDataForDpi');
+    HTHEME Function(HWND hwnd, PWSTR pszClassList, Uint32 dpi),
+    int Function(int hwnd, PWSTR pszClassList, int dpi)>('OpenThemeDataForDpi');
 
 /// Sets the flags that determine how visual styles are implemented in the
 /// calling application.
@@ -597,15 +596,13 @@ final _SetThemeAppProperties = _uxtheme.lookupFunction<
 /// );
 /// ```
 /// {@category uxtheme}
-int SetWindowTheme(int hwnd, Pointer<Utf16>? pszSubAppName,
-        Pointer<Utf16>? pszSubIdList) =>
+int SetWindowTheme(int hwnd, PWSTR? pszSubAppName, PWSTR? pszSubIdList) =>
     _SetWindowTheme(hwnd, pszSubAppName ?? nullptr, pszSubIdList ?? nullptr);
 
 final _SetWindowTheme = _uxtheme.lookupFunction<
-    Int32 Function(
-        IntPtr hwnd, Pointer<Utf16> pszSubAppName, Pointer<Utf16> pszSubIdList),
-    int Function(int hwnd, Pointer<Utf16> pszSubAppName,
-        Pointer<Utf16> pszSubIdList)>('SetWindowTheme');
+    HRESULT Function(HWND hwnd, PWSTR pszSubAppName, PWSTR pszSubIdList),
+    int Function(
+        int hwnd, PWSTR pszSubAppName, PWSTR pszSubIdList)>('SetWindowTheme');
 
 /// Sets attributes to control how visual styles are applied to a specified
 /// window.
@@ -624,7 +621,7 @@ int SetWindowThemeAttribute(
     _SetWindowThemeAttribute(hwnd, eAttribute, pvAttribute, cbAttribute);
 
 final _SetWindowThemeAttribute = _uxtheme.lookupFunction<
-    Int32 Function(
-        IntPtr hwnd, Int32 eAttribute, Pointer pvAttribute, Uint32 cbAttribute),
+    HRESULT Function(
+        HWND hwnd, Int32 eAttribute, Pointer pvAttribute, Uint32 cbAttribute),
     int Function(int hwnd, int eAttribute, Pointer pvAttribute,
         int cbAttribute)>('SetWindowThemeAttribute');

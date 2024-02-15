@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomation5.g.dart';
@@ -118,40 +119,40 @@ base class IUIAutomation6Vtbl extends Struct {
   external IUIAutomation5Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> handlerGroup)>>
       CreateEventHandlerGroup;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>> AddEventHandlerGroup;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>> RemoveEventHandlerGroup;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Pointer<Int32> connectionRecoveryBehaviorOptions)>>
       get_ConnectionRecoveryBehavior;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Int32 connectionRecoveryBehaviorOptions)>>
       put_ConnectionRecoveryBehavior;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> coalesceEventsOptions)>>
       get_CoalesceEvents;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Int32 coalesceEventsOptions)>>
       put_CoalesceEvents;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
@@ -159,7 +160,7 @@ base class IUIAutomation6Vtbl extends Struct {
               VTablePointer handler)>> AddActiveTextPositionChangedEventHandler;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer element,
                   VTablePointer handler)>>
       RemoveActiveTextPositionChangedEventHandler;
 }

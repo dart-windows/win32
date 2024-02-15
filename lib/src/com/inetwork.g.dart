@@ -14,6 +14,7 @@ import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'idispatch.g.dart';
@@ -35,25 +36,22 @@ class INetwork extends IDispatch {
   factory INetwork.from(IUnknown interface) =>
       INetwork(interface.toInterface(IID_INetwork));
 
-  int getName(
-          Pointer<Pointer<Utf16>> pszNetworkName) =>
-      _vtable.GetName.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pszNetworkName)>()(ptr, pszNetworkName);
+  int getName(Pointer<BSTR> pszNetworkName) => _vtable.GetName.asFunction<
+          int Function(VTablePointer lpVtbl, Pointer<BSTR> pszNetworkName)>()(
+      ptr, pszNetworkName);
 
-  int setName(Pointer<Utf16> szNetworkNewName) => _vtable.SetName.asFunction<
-      int Function(VTablePointer lpVtbl,
-          Pointer<Utf16> szNetworkNewName)>()(ptr, szNetworkNewName);
+  int setName(BSTR szNetworkNewName) => _vtable.SetName.asFunction<
+          int Function(VTablePointer lpVtbl, BSTR szNetworkNewName)>()(
+      ptr, szNetworkNewName);
 
-  int getDescription(Pointer<Pointer<Utf16>> pszDescription) =>
+  int getDescription(Pointer<BSTR> pszDescription) =>
       _vtable.GetDescription.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pszDescription)>()(ptr, pszDescription);
+              Pointer<BSTR> pszDescription)>()(ptr, pszDescription);
 
-  int setDescription(Pointer<Utf16> szDescription) =>
-      _vtable.SetDescription.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Utf16> szDescription)>()(ptr, szDescription);
+  int setDescription(BSTR szDescription) => _vtable.SetDescription.asFunction<
+      int Function(
+          VTablePointer lpVtbl, BSTR szDescription)>()(ptr, szDescription);
 
   int getNetworkId(Pointer<GUID> pgdGuidNetworkId) =>
       _vtable.GetNetworkId.asFunction<
@@ -90,11 +88,11 @@ class INetwork extends IDispatch {
           pdwHighDateTimeConnected);
 
   int get isConnectedToInternet {
-    final pbIsConnected = calloc<Int16>();
+    final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_IsConnectedToInternet.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
+              Pointer<VARIANT_BOOL> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = pbIsConnected.value;
       return retValue;
@@ -104,11 +102,11 @@ class INetwork extends IDispatch {
   }
 
   int get isConnected {
-    final pbIsConnected = calloc<Int16>();
+    final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_IsConnected.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
+              Pointer<VARIANT_BOOL> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = pbIsConnected.value;
       return retValue;
@@ -135,39 +133,39 @@ base class INetworkVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pszNetworkName)>> GetName;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl, Pointer<Utf16> szNetworkNewName)>> SetName;
-  external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> pszDescription)>> GetDescription;
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<BSTR> pszNetworkName)>> GetName;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Utf16> szDescription)>>
+              HRESULT Function(VTablePointer lpVtbl, BSTR szNetworkNewName)>>
+      SetName;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<BSTR> pszDescription)>>
+      GetDescription;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, BSTR szDescription)>>
       SetDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<GUID> pgdGuidNetworkId)>>
       GetNetworkId;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> pNetworkType)>>
       GetDomainType;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> ppEnumNetworkConnection)>>
       GetNetworkConnections;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl,
                   Pointer<Uint32> pdwLowDateTimeCreated,
                   Pointer<Uint32> pdwHighDateTimeCreated,
@@ -176,24 +174,25 @@ base class INetworkVtbl extends Struct {
       GetTimeCreatedAndConnected;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> pbIsConnected)>>
       get_IsConnectedToInternet;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> pbIsConnected)>>
       get_IsConnected;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> pConnectivity)>>
       GetConnectivity;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pCategory)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> pCategory)>>
       GetCategory;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 newCategory)>> SetCategory;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 newCategory)>>
+      SetCategory;
 }

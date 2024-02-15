@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iuiautomationtextrange.g.dart';
 import 'iunknown.g.dart';
@@ -38,6 +39,6 @@ class IUIAutomationTextRange2 extends IUIAutomationTextRange {
 /// @nodoc
 base class IUIAutomationTextRange2Vtbl extends Struct {
   external IUIAutomationTextRangeVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       ShowContextMenu;
 }

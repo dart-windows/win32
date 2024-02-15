@@ -28,11 +28,11 @@ extension MethodHelpers on Method {
           TypeProjection(setProperty.parameters.first.typeIdentifier);
       final getterTypeArgProjection = getterProjection.dereference();
 
-      if (!getterTypeArgProjection.isDartPrimitive) {
-        return getterProjection.dartType == setterProjection.dartType;
+      if (getterTypeArgProjection.isDartPrimitive) {
+        return getterTypeArgProjection.dartType == setterProjection.dartType;
       }
 
-      return getterTypeArgProjection.dartType == setterProjection.dartType;
+      return getterProjection.dartType == setterProjection.dartType;
     }
 
     // If the method does not meet the conditions above, it cannot be projected

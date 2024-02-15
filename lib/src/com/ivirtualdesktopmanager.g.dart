@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -30,10 +31,10 @@ class IVirtualDesktopManager extends IUnknown {
       IVirtualDesktopManager(interface.toInterface(IID_IVirtualDesktopManager));
 
   int isWindowOnCurrentVirtualDesktop(
-          int topLevelWindow, Pointer<Int32> onCurrentDesktop) =>
+          int topLevelWindow, Pointer<BOOL> onCurrentDesktop) =>
       _vtable.IsWindowOnCurrentVirtualDesktop.asFunction<
               int Function(VTablePointer lpVtbl, int topLevelWindow,
-                  Pointer<Int32> onCurrentDesktop)>()(
+                  Pointer<BOOL> onCurrentDesktop)>()(
           ptr, topLevelWindow, onCurrentDesktop);
 
   int getWindowDesktopId(int topLevelWindow, Pointer<GUID> desktopId) =>
@@ -51,17 +52,16 @@ class IVirtualDesktopManager extends IUnknown {
 base class IVirtualDesktopManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, IntPtr topLevelWindow,
-                  Pointer<Int32> onCurrentDesktop)>>
-      IsWindowOnCurrentVirtualDesktop;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, HWND topLevelWindow,
+              Pointer<BOOL> onCurrentDesktop)>> IsWindowOnCurrentVirtualDesktop;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, IntPtr topLevelWindow,
+          HRESULT Function(VTablePointer lpVtbl, HWND topLevelWindow,
               Pointer<GUID> desktopId)>> GetWindowDesktopId;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, IntPtr topLevelWindow,
+          HRESULT Function(VTablePointer lpVtbl, HWND topLevelWindow,
               Pointer<GUID> desktopId)>> MoveWindowToDesktop;
 }
 

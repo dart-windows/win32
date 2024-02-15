@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -44,9 +43,9 @@ class IMMDeviceEnumerator extends IUnknown {
                   Pointer<VTablePointer> ppEndpoint)>()(
           ptr, dataFlow, role, ppEndpoint);
 
-  int getDevice(Pointer<Utf16> pwstrId, Pointer<VTablePointer> ppDevice) =>
+  int getDevice(PWSTR pwstrId, Pointer<VTablePointer> ppDevice) =>
       _vtable.GetDevice.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
+          int Function(VTablePointer lpVtbl, PWSTR pwstrId,
               Pointer<VTablePointer> ppDevice)>()(ptr, pwstrId, ppDevice);
 
   int registerEndpointNotificationCallback(VTablePointer pClient) =>
@@ -65,26 +64,26 @@ base class IMMDeviceEnumeratorVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 dataFlow,
               Uint32 dwStateMask,
               Pointer<VTablePointer> ppDevices)>> EnumAudioEndpoints;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 dataFlow, Int32 role,
+          HRESULT Function(VTablePointer lpVtbl, Int32 dataFlow, Int32 role,
               Pointer<VTablePointer> ppEndpoint)>> GetDefaultAudioEndpoint;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR pwstrId,
               Pointer<VTablePointer> ppDevice)>> GetDevice;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pClient)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pClient)>>
       RegisterEndpointNotificationCallback;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pClient)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pClient)>>
       UnregisterEndpointNotificationCallback;
 }
 

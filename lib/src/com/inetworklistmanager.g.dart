@@ -60,11 +60,11 @@ class INetworkListManager extends IDispatch {
           ptr, gdNetworkConnectionId, ppNetworkConnection);
 
   int get isConnectedToInternet {
-    final pbIsConnected = calloc<Int16>();
+    final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_IsConnectedToInternet.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
+              Pointer<VARIANT_BOOL> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = pbIsConnected.value;
       return retValue;
@@ -74,11 +74,11 @@ class INetworkListManager extends IDispatch {
   }
 
   int get isConnected {
-    final pbIsConnected = calloc<Int16>();
+    final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
       final hr = _vtable.get_IsConnected.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<Int16> pbIsConnected)>()(ptr, pbIsConnected);
+              Pointer<VARIANT_BOOL> pbIsConnected)>()(ptr, pbIsConnected);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = pbIsConnected.value;
       return retValue;
@@ -108,43 +108,43 @@ base class INetworkListManagerVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 flags,
+          HRESULT Function(VTablePointer lpVtbl, Int32 flags,
               Pointer<VTablePointer> ppEnumNetwork)>> GetNetworks;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, GUID gdNetworkId,
+          HRESULT Function(VTablePointer lpVtbl, GUID gdNetworkId,
               Pointer<VTablePointer> ppNetwork)>> GetNetwork;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>>
       GetNetworkConnections;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, GUID gdNetworkConnectionId,
+              HRESULT Function(VTablePointer lpVtbl, GUID gdNetworkConnectionId,
                   Pointer<VTablePointer> ppNetworkConnection)>>
       GetNetworkConnection;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> pbIsConnected)>>
       get_IsConnectedToInternet;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Int16> pbIsConnected)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<VARIANT_BOOL> pbIsConnected)>>
       get_IsConnected;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> pConnectivity)>>
       GetConnectivity;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl,
+              HRESULT Function(VTablePointer lpVtbl,
                   Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo)>>
       SetSimulatedProfileInfo;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       ClearSimulatedProfileInfo;
 }
 

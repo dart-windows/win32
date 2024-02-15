@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -59,10 +60,10 @@ base class IUIAutomationTextRangeArrayVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> length)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> length)>>
       get_Length;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 index,
+          HRESULT Function(VTablePointer lpVtbl, Int32 index,
               Pointer<VTablePointer> element)>> GetElement;
 }

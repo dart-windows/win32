@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationcondition.g.dart';
@@ -36,11 +37,11 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
           interface.toInterface(IID_IUIAutomationBoolCondition));
 
   int get booleanValue {
-    final boolVal = calloc<Int32>();
+    final boolVal = calloc<BOOL>();
     try {
       final hr = _vtable.get_BooleanValue.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<Int32> boolVal)>()(ptr, boolVal);
+              VTablePointer lpVtbl, Pointer<BOOL> boolVal)>()(ptr, boolVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = boolVal.value;
       return retValue;
@@ -55,6 +56,6 @@ base class IUIAutomationBoolConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> boolVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BOOL> boolVal)>>
       get_BooleanValue;
 }

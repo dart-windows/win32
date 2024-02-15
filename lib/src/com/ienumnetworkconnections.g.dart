@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'idispatch.g.dart';
@@ -78,22 +79,23 @@ base class IEnumNetworkConnectionsVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppEnumVar)>>
       get__NewEnum;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 celt,
               Pointer<VTablePointer> rgelt,
               Pointer<Uint32> pceltFetched)>> Next;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+      NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppEnumNetwork)>>
       Clone;
 }

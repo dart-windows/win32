@@ -54,16 +54,17 @@ base class IEnumResourcesVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Uint32 celt,
               Pointer<SHELL_ITEM_RESOURCE> psir,
               Pointer<Uint32> pceltFetched)>> Next;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+      NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppenumr)>> Clone;
 }

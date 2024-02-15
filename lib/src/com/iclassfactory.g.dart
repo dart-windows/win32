@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -44,9 +45,9 @@ base class IClassFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pUnkOuter,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pUnkOuter,
               Pointer<GUID> riid, Pointer<Pointer> ppvObject)>> CreateInstance;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 fLock)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, BOOL fLock)>>
       LockServer;
 }

@@ -56,8 +56,7 @@ class ComGetPropertyProjection extends ComPropertyProjection {
 
   String get _valRef => _returnValue.dartType == 'double' ||
           _returnValue.dartType == 'int' ||
-          _returnValue.dartType == 'VTablePointer' ||
-          _returnValue.dartType.startsWith('Pointer')
+          _returnValue.isPointer
       ? 'value'
       : 'ref';
 

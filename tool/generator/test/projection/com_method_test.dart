@@ -29,15 +29,15 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pwcs, '
-          'Uint32 dwFlags, Pointer<Uint32> pulStreamNumber)',
+          'HRESULT Function(VTablePointer lpVtbl, PWSTR pwcs, Uint32 dwFlags, '
+          'Pointer<Uint32> pulStreamNumber)',
         ),
       );
       expect(
         dartPrototype,
         equals(
-          'int Function(VTablePointer lpVtbl, Pointer<Utf16> pwcs, '
-          'int dwFlags, Pointer<Uint32> pulStreamNumber)',
+          'int Function(VTablePointer lpVtbl, PWSTR pwcs, int dwFlags, '
+          'Pointer<Uint32> pulStreamNumber)',
         ),
       );
       expect(
@@ -48,7 +48,7 @@ void main() {
       expect(
         projection.header,
         equals(
-          'int $camelCasedName(Pointer<Utf16>? pwcs, int dwFlags, '
+          'int $camelCasedName(PWSTR? pwcs, int dwFlags, '
           'Pointer<Uint32>? pulStreamNumber)',
         ),
       );
@@ -73,7 +73,7 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, IntPtr hwndOwner)',
+          'HRESULT Function(VTablePointer lpVtbl, HWND hwndOwner)',
         ),
       );
       expect(
@@ -115,8 +115,8 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(VTablePointer lpVtbl, IntPtr hwnd, '
-          'VTablePointer pbc, Pointer<Utf16> pszDisplayName, '
+          'HRESULT Function(VTablePointer lpVtbl, HWND hwnd, '
+          'VTablePointer pbc, PWSTR pszDisplayName, '
           'Pointer<Uint32> pchEaten, Pointer<Pointer<ITEMIDLIST>> ppidl, '
           'Pointer<Uint32> pdwAttributes)',
         ),
@@ -125,7 +125,7 @@ void main() {
         dartPrototype,
         equals(
           'int Function(VTablePointer lpVtbl, int hwnd, VTablePointer pbc, '
-          'Pointer<Utf16> pszDisplayName, Pointer<Uint32> pchEaten, '
+          'PWSTR pszDisplayName, Pointer<Uint32> pchEaten, '
           'Pointer<Pointer<ITEMIDLIST>> ppidl, Pointer<Uint32> pdwAttributes)',
         ),
       );
@@ -138,7 +138,7 @@ void main() {
         projection.header,
         equals(
           'int $camelCasedName(int hwnd, VTablePointer pbc, '
-          'Pointer<Utf16> pszDisplayName, Pointer<Pointer<ITEMIDLIST>> ppidl, '
+          'PWSTR pszDisplayName, Pointer<Pointer<ITEMIDLIST>> ppidl, '
           'Pointer<Uint32> pdwAttributes)',
         ),
       );

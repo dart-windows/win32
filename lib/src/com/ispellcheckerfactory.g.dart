@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -47,15 +48,14 @@ class ISpellCheckerFactory extends IUnknown {
     }
   }
 
-  int isSupported(Pointer<Utf16> languageTag, Pointer<Int32> value) =>
+  int isSupported(PWSTR languageTag, Pointer<BOOL> value) =>
       _vtable.IsSupported.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
-              Pointer<Int32> value)>()(ptr, languageTag, value);
+          int Function(VTablePointer lpVtbl, PWSTR languageTag,
+              Pointer<BOOL> value)>()(ptr, languageTag, value);
 
-  int createSpellChecker(
-          Pointer<Utf16> languageTag, Pointer<VTablePointer> value) =>
+  int createSpellChecker(PWSTR languageTag, Pointer<VTablePointer> value) =>
       _vtable.CreateSpellChecker.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
+          int Function(VTablePointer lpVtbl, PWSTR languageTag,
               Pointer<VTablePointer> value)>()(ptr, languageTag, value);
 }
 
@@ -64,16 +64,16 @@ base class ISpellCheckerFactoryVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> value)>>
       get_SupportedLanguages;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
-              Pointer<Int32> value)>> IsSupported;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR languageTag,
+              Pointer<BOOL> value)>> IsSupported;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR languageTag,
               Pointer<VTablePointer> value)>> CreateSpellChecker;
 }
 

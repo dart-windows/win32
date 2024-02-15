@@ -78,23 +78,23 @@ base class ISpeechBaseStreamVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> audioFormat)>>
       get_Format;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer audioFormat)>>
-      putref_Format;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, VTablePointer audioFormat)>> putref_Format;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<VARIANT> buffer,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<VARIANT> buffer,
               Int32 numberOfBytes, Pointer<Int32> bytesRead)>> Read;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VARIANT buffer,
+          HRESULT Function(VTablePointer lpVtbl, VARIANT buffer,
               Pointer<Int32> bytesWritten)>> Write;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VARIANT position, Uint32 origin,
-              Pointer<VARIANT> newPosition)>> Seek;
+          HRESULT Function(VTablePointer lpVtbl, VARIANT position,
+              Uint32 origin, Pointer<VARIANT> newPosition)>> Seek;
 }

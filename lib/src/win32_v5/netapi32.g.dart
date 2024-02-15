@@ -48,13 +48,13 @@ final _NetFreeAadJoinInformation = _netapi32.lookupFunction<
 /// );
 /// ```
 /// {@category netapi32}
-int NetGetAadJoinInformation(Pointer<Utf16>? pcszTenantId,
-        Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo) =>
+int NetGetAadJoinInformation(
+        PWSTR? pcszTenantId, Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo) =>
     _NetGetAadJoinInformation(pcszTenantId ?? nullptr, ppJoinInfo);
 
 final _NetGetAadJoinInformation = _netapi32.lookupFunction<
-        Int32 Function(Pointer<Utf16> pcszTenantId,
-            Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo),
-        int Function(Pointer<Utf16> pcszTenantId,
-            Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo)>(
+        HRESULT Function(
+            PWSTR pcszTenantId, Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo),
+        int Function(
+            PWSTR pcszTenantId, Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo)>(
     'NetGetAadJoinInformation');

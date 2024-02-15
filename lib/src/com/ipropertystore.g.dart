@@ -56,19 +56,20 @@ base class IPropertyStoreVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> cProps)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> cProps)>>
       GetCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 iProp,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 iProp,
               Pointer<PROPERTYKEY> pkey)>> GetAt;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> pv)>> GetValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> propvar)>> SetValue;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Commit;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Commit;
 }

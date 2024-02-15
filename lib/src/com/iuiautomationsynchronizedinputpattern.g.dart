@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -41,7 +42,9 @@ class IUIAutomationSynchronizedInputPattern extends IUnknown {
 base class IUIAutomationSynchronizedInputPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 inputType)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 inputType)>>
       StartListening;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Cancel;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Cancel;
 }

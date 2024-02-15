@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -66,24 +67,24 @@ base class ISensorManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorCategory,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> sensorCategory,
               Pointer<VTablePointer> ppSensorsFound)>> GetSensorsByCategory;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorType,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> sensorType,
               Pointer<VTablePointer> ppSensorsFound)>> GetSensorsByType;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<GUID> sensorID,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> sensorID,
               Pointer<VTablePointer> ppSensor)>> GetSensorByID;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pEvents)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer pEvents)>>
       SetEventSink;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, IntPtr hParent,
-              VTablePointer pSensors, Int32 fModal)>> RequestPermissions;
+          HRESULT Function(VTablePointer lpVtbl, HWND hParent,
+              VTablePointer pSensors, BOOL fModal)>> RequestPermissions;
 }
 
 /// @nodoc

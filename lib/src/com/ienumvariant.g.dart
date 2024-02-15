@@ -52,13 +52,14 @@ base class IEnumVARIANTVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 celt,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 celt,
               Pointer<VARIANT> rgVar, Pointer<Uint32> pCeltFetched)>> Next;
   external Pointer<
-      NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+      NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>> Clone;
 }

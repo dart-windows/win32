@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -39,6 +40,6 @@ base class IPersistVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pClassID)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> pClassID)>>
       GetClassID;
 }

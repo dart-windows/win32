@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -31,9 +30,9 @@ class IUIAutomationSpreadsheetPattern extends IUnknown {
       IUIAutomationSpreadsheetPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetPattern));
 
-  int getItemByName(Pointer<Utf16> name, Pointer<VTablePointer> element) =>
+  int getItemByName(BSTR name, Pointer<VTablePointer> element) =>
       _vtable.GetItemByName.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+          int Function(VTablePointer lpVtbl, BSTR name,
               Pointer<VTablePointer> element)>()(ptr, name, element);
 }
 
@@ -42,6 +41,6 @@ base class IUIAutomationSpreadsheetPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+          HRESULT Function(VTablePointer lpVtbl, BSTR name,
               Pointer<VTablePointer> element)>> GetItemByName;
 }

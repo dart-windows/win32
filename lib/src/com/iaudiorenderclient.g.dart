@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -48,10 +49,10 @@ base class IAudioRenderClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 numFramesRequested,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 numFramesRequested,
               Pointer<Pointer<Uint8>> ppData)>> GetBuffer;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 numFramesWritten,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 numFramesWritten,
               Uint32 dwFlags)>> ReleaseBuffer;
 }

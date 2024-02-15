@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -53,20 +54,20 @@ base class IShellLinkDataListVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer pDataBlock)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer pDataBlock)>>
       AddDataBlock;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 dwSig,
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwSig,
               Pointer<Pointer> ppDataBlock)>> CopyDataBlock;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwSig)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 dwSig)>>
       RemoveDataBlock;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint32> pdwFlags)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> pdwFlags)>>
       GetFlags;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwFlags)>>
-      SetFlags;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwFlags)>> SetFlags;
 }

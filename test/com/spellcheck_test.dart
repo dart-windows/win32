@@ -29,7 +29,7 @@ void main() {
       final enumString = IEnumString(pEnumString);
 
       final pElementsFetched = calloc<Uint32>();
-      final pElements = calloc<Pointer<Utf16>>();
+      final pElements = calloc<PWSTR>();
 
       final hr = enumString.next(1, pElements, pElementsFetched);
       expect(hr, equals(S_OK));
@@ -51,7 +51,7 @@ void main() {
       final spellCheckerFactory = ISpellCheckerFactory(
           createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
 
-      final supportedPtr = calloc<Int32>();
+      final supportedPtr = calloc<BOOL>();
 
       // Dart reports locale as (for example) en_US; Windows expects en-US
       final languageTagPtr =
@@ -69,13 +69,13 @@ void main() {
     test('check', () {
       final spellCheckerFactory = ISpellCheckerFactory(
           createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
-      final supportedPtr = calloc<Int32>();
+      final supportedPtr = calloc<BOOL>();
 
       final languageTagPtr = 'en-US'.toNativeUtf16();
       var hr = spellCheckerFactory.isSupported(languageTagPtr, supportedPtr);
       expect(hr, equals(S_OK));
 
-      if (supportedPtr.value == 1) {
+      if (supportedPtr.value == TRUE) {
         final spellCheckerPtr = calloc<VTablePointer>();
         hr = spellCheckerFactory.createSpellChecker(
             languageTagPtr, spellCheckerPtr);
@@ -101,20 +101,18 @@ void main() {
           expect(error.correctiveAction, equals(CORRECTIVE_ACTION.REPLACE));
           final replacement = error.replacement;
           expect(replacement.toDartString(), equals('have'));
-          WindowsDeleteString(replacement.address);
+          free(replacement);
           error.release();
         }
 
-        free(errorPtr);
         free(textPtr);
-
+        free(errorPtr);
         errors.release();
         spellChecker.release();
       }
 
-      free(supportedPtr);
       free(languageTagPtr);
-
+      free(supportedPtr);
       spellCheckerFactory.release();
     });
 

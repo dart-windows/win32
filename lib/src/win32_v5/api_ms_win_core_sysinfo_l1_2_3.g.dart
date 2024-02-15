@@ -34,5 +34,5 @@ int GetIntegratedDisplaySize(Pointer<Double> sizeInInches) =>
 
 final _GetIntegratedDisplaySize =
     _api_ms_win_core_sysinfo_l1_2_3.lookupFunction<
-        Int32 Function(Pointer<Double> sizeInInches),
+        HRESULT Function(Pointer<Double> sizeInInches),
         int Function(Pointer<Double> sizeInInches)>('GetIntegratedDisplaySize');

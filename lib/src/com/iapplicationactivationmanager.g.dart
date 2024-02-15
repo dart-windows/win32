@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -33,32 +32,28 @@ class IApplicationActivationManager extends IUnknown {
       IApplicationActivationManager(
           interface.toInterface(IID_IApplicationActivationManager));
 
-  int activateApplication(Pointer<Utf16> appUserModelId,
-          Pointer<Utf16> arguments, int options, Pointer<Uint32> processId) =>
+  int activateApplication(PWSTR appUserModelId, PWSTR arguments, int options,
+          Pointer<Uint32> processId) =>
       _vtable.ActivateApplication.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<Utf16> appUserModelId,
-                  Pointer<Utf16> arguments,
-                  int options,
-                  Pointer<Uint32> processId)>()(
+              int Function(VTablePointer lpVtbl, PWSTR appUserModelId,
+                  PWSTR arguments, int options, Pointer<Uint32> processId)>()(
           ptr, appUserModelId, arguments, options, processId);
 
-  int activateForFile(Pointer<Utf16> appUserModelId, VTablePointer itemArray,
-          Pointer<Utf16> verb, Pointer<Uint32> processId) =>
+  int activateForFile(PWSTR appUserModelId, VTablePointer itemArray, PWSTR verb,
+          Pointer<Uint32> processId) =>
       _vtable.ActivateForFile.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  Pointer<Utf16> appUserModelId,
+                  PWSTR appUserModelId,
                   VTablePointer itemArray,
-                  Pointer<Utf16> verb,
+                  PWSTR verb,
                   Pointer<Uint32> processId)>()(
           ptr, appUserModelId, itemArray, verb, processId);
 
-  int activateForProtocol(Pointer<Utf16> appUserModelId,
-          VTablePointer itemArray, Pointer<Uint32> processId) =>
+  int activateForProtocol(PWSTR appUserModelId, VTablePointer itemArray,
+          Pointer<Uint32> processId) =>
       _vtable.ActivateForProtocol.asFunction<
-              int Function(VTablePointer lpVtbl, Pointer<Utf16> appUserModelId,
+              int Function(VTablePointer lpVtbl, PWSTR appUserModelId,
                   VTablePointer itemArray, Pointer<Uint32> processId)>()(
           ptr, appUserModelId, itemArray, processId);
 }
@@ -68,25 +63,25 @@ base class IApplicationActivationManagerVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> appUserModelId,
-              Pointer<Utf16> arguments,
+              PWSTR appUserModelId,
+              PWSTR arguments,
               Int32 options,
               Pointer<Uint32> processId)>> ActivateApplication;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> appUserModelId,
+              PWSTR appUserModelId,
               VTablePointer itemArray,
-              Pointer<Utf16> verb,
+              PWSTR verb,
               Pointer<Uint32> processId)>> ActivateForFile;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
-              Pointer<Utf16> appUserModelId,
+              PWSTR appUserModelId,
               VTablePointer itemArray,
               Pointer<Uint32> processId)>> ActivateForProtocol;
 }

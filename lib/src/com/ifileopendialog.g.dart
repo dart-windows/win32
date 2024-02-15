@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'ifiledialog.g.dart';
 import 'iunknown.g.dart';
@@ -45,11 +46,11 @@ base class IFileOpenDialogVtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>> GetResults;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppsai)>>
       GetSelectedItems;
 }

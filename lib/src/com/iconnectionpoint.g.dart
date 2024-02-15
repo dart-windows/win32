@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
 import '../guid.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -56,23 +57,23 @@ base class IConnectionPointVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<GUID> pIID)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> pIID)>>
       GetConnectionInterface;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppCPC)>>
       GetConnectionPointContainer;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pUnkSink,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pUnkSink,
               Pointer<Uint32> pdwCookie)>> Advise;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Uint32 dwCookie)>>
-      Unadvise;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwCookie)>> Unadvise;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>>
       EnumConnections;
 }

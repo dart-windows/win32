@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iuiautomationtextpattern.g.dart';
 import 'iunknown.g.dart';
@@ -48,12 +49,12 @@ base class IUIAutomationTextEditPatternVtbl extends Struct {
   external IUIAutomationTextPatternVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       GetActiveComposition;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> range)>>
       GetConversionTarget;
 }

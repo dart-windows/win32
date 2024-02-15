@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -31,11 +30,9 @@ class IFileIsInUse extends IUnknown {
   factory IFileIsInUse.from(IUnknown interface) =>
       IFileIsInUse(interface.toInterface(IID_IFileIsInUse));
 
-  int getAppName(
-          Pointer<Pointer<Utf16>> ppszName) =>
-      _vtable.GetAppName.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> ppszName)>()(ptr, ppszName);
+  int getAppName(Pointer<PWSTR> ppszName) => _vtable.GetAppName.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<PWSTR> ppszName)>()(ptr, ppszName);
 
   int getUsage(Pointer<Int32> pfut) => _vtable.GetUsage.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Int32> pfut)>()(ptr, pfut);
@@ -46,10 +43,10 @@ class IFileIsInUse extends IUnknown {
               Pointer<Uint32> pdwCapFlags)>()(ptr, pdwCapFlags);
 
   int getSwitchToHWND(
-          Pointer<IntPtr> phwnd) =>
+          Pointer<HWND> phwnd) =>
       _vtable.GetSwitchToHWND.asFunction<
           int Function(
-              VTablePointer lpVtbl, Pointer<IntPtr> phwnd)>()(ptr, phwnd);
+              VTablePointer lpVtbl, Pointer<HWND> phwnd)>()(ptr, phwnd);
 
   int closeFile() =>
       _vtable.CloseFile.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
@@ -60,21 +57,21 @@ base class IFileIsInUseVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> ppszName)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> ppszName)>>
       GetAppName;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Int32> pfut)>> GetUsage;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> pfut)>>
+      GetUsage;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint32> pdwCapFlags)>>
       GetCapabilities;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<IntPtr> phwnd)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<HWND> phwnd)>>
       GetSwitchToHWND;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       CloseFile;
 }

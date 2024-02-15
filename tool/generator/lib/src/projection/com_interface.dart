@@ -11,7 +11,6 @@ import '../extensions/typedef.dart';
 import '../headers.dart';
 import 'com_method.dart';
 import 'com_property.dart';
-import 'type.dart';
 
 /// Represents a Dart projection for a COM interface defined by a [TypeDef].
 class ComInterfaceProjection {
@@ -102,12 +101,7 @@ class ComInterfaceProjection {
   String? getImportForTypeDef(TypeDef typeDef) => switch (typeDef) {
         _ when typeDef.isDelegate => '../callbacks.dart',
         _ when typeDef.isInterface => '../types.dart',
-        _
-            when typeDef.isWrapperStruct &&
-                specialTypes.containsKey(typeDef.name) =>
-          'package:ffi/ffi.dart',
-        _ when typeDef.isStruct && !typeDef.isWrapperStruct =>
-          '../structs.g.dart',
+        _ when typeDef.isStruct => '../structs.g.dart',
         _ => null
       };
 

@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -59,10 +60,11 @@ class IEnumWbemClassObject extends IUnknown {
 /// @nodoc
 base class IEnumWbemClassObjectVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Reset;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Reset;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Int32 lTimeout,
               Uint32 uCount,
@@ -70,15 +72,15 @@ base class IEnumWbemClassObjectVtbl extends Struct {
               Pointer<Uint32> puReturned)>> Next;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Uint32 uCount, VTablePointer pSink)>>
       NextAsync;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>> Clone;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Int32 lTimeout, Uint32 nCount)>> Skip;
 }

@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iuiautomationelement5.g.dart';
@@ -34,12 +35,12 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
   factory IUIAutomationElement6.from(IUnknown interface) =>
       IUIAutomationElement6(interface.toInterface(IID_IUIAutomationElement6));
 
-  Pointer<Utf16> get currentFullDescription {
-    final retVal = calloc<Pointer<Utf16>>();
+  BSTR get currentFullDescription {
+    final retVal = calloc<BSTR>();
     try {
       final hr = _vtable.get_CurrentFullDescription.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -48,12 +49,12 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
     }
   }
 
-  Pointer<Utf16> get cachedFullDescription {
-    final retVal = calloc<Pointer<Utf16>>();
+  BSTR get cachedFullDescription {
+    final retVal = calloc<BSTR>();
     try {
       final hr = _vtable.get_CachedFullDescription.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
+          int Function(
+              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -68,12 +69,10 @@ base class IUIAutomationElement6Vtbl extends Struct {
   external IUIAutomationElement5Vtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
       get_CurrentFullDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
       get_CachedFullDescription;
 }

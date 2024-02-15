@@ -70,17 +70,17 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
 base class IUIAutomationAndConditionVtbl extends Struct {
   external IUIAutomationConditionVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> childCount)>>
-      get_ChildCount;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int32> childCount)>> get_ChildCount;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer<VTablePointer>> childArray,
               Pointer<Int32> childArrayCount)>> GetChildrenAsNativeArray;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> childArray)>> GetChildren;
 }

@@ -27,7 +27,7 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(IntPtr handle, Int32 objectInformationClass, '
+          'NTSTATUS Function(HANDLE handle, Int32 objectInformationClass, '
           'Pointer objectInformation, Uint32 objectInformationLength, '
           'Pointer<Uint32> returnLength)',
         ),
@@ -80,7 +80,7 @@ void main() {
       ) = projection;
       expect(
         nativePrototype,
-        equals('Uint32 Function(IntPtr hmi, IntPtr hmo, Pointer pReserved)'),
+        equals('Uint32 Function(HMIDI hmi, HMIDIOUT hmo, Pointer pReserved)'),
       );
       expect(
         dartPrototype,
@@ -117,7 +117,7 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function('
+          'HRESULT Function('
           'Pointer<GUID> clsid, VTablePointer punkOuter, Uint32 dwClsCtx, '
           'Pointer<COSERVERINFO> pServerInfo, Uint32 dwCount, '
           'Pointer<MULTI_QI> pResults)',
@@ -172,7 +172,7 @@ void main() {
       ) = projection;
       expect(
         nativePrototype,
-        equals('Int32 Function(Pointer pvReserved, Uint32 dwCoInit)'),
+        equals('HRESULT Function(Pointer pvReserved, Uint32 dwCoInit)'),
       );
       expect(
         dartPrototype,
@@ -206,14 +206,14 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'Int32 Function(IntPtr string1, IntPtr string2, '
-          'Pointer<IntPtr> newString)',
+          'HRESULT Function(HSTRING string1, HSTRING string2, '
+          'Pointer<HSTRING> newString)',
         ),
       );
       expect(
         dartPrototype,
         equals(
-          'int Function(int string1, int string2, Pointer<IntPtr> newString)',
+          'int Function(int string1, int string2, Pointer<HSTRING> newString)',
         ),
       );
       expect(
@@ -225,7 +225,7 @@ void main() {
         projection.header,
         equals(
           'int WindowsConcatString(int? string1, int? string2, '
-          'Pointer<IntPtr> newString)',
+          'Pointer<HSTRING> newString)',
         ),
       );
       expect(

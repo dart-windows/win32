@@ -45,8 +45,8 @@ class TypeProjection {
   /// Whether the resultant Dart type atomic.
   bool get isDartPrimitive =>
       ['bool', 'double', 'int', 'void'].contains(dartType) ||
-      dartType.startsWith('Array') ||
-      dartType.startsWith(RegExp('(VTable)?Pointer'));
+      isArrayType ||
+      isPointer;
 
   /// Whether the type is a delegate.
   bool get isDelegate => typeIdentifier.type?.isDelegate ?? false;
@@ -56,6 +56,31 @@ class TypeProjection {
 
   /// Whether the type is a COM interface.
   bool get isInterface => typeIdentifier.type?.isInterface ?? false;
+
+  /// Determines whether the type is a pointer.
+  ///
+  /// A type is considered a pointer if it meets any of the following
+  /// conditions:
+  /// - It is a delegate type (e.g., `WNDPROC`).
+  /// - It is an interface type (e.g., `IUnknown`).
+  /// - It is a pointer type (e.g., `Pointer`, `Pointer<Int32>`).
+  /// - It is a wrapper struct and the projected native type of its field starts
+  ///   with `Pointer` (e.g., `BSTR`, `PSTR`, `PWSTR`, `HGLOBAL`).
+  bool get isPointer {
+    // Return true if the type is a delegate, interface, or pointer type.
+    if (isDelegate || isInterface || isPointerType) return true;
+
+    // Check if the type is a wrapper struct and the projected native type of
+    // its field starts with `Pointer`.
+    if (typeIdentifier.type?.isWrapperStruct ?? false) {
+      final [field] = typeIdentifier.type!.fields;
+      final fieldProjection = TypeProjection(field.typeIdentifier);
+      return fieldProjection.nativeType.startsWith('Pointer');
+    }
+
+    // Otherwise, it is not a pointer type.
+    return false;
+  }
 
   /// Whether the type is a pointer type.
   bool get isPointerType =>
@@ -144,7 +169,14 @@ class TypeProjection {
     // A wrapper struct like HWND.
     if (wrappedType.isWrapperStruct) {
       final [field] = wrappedType.fields;
-      return TypeProjection(field.typeIdentifier).projection;
+      final fieldProjection = TypeProjection(field.typeIdentifier);
+      return TypeTuple(
+        wrappedType.safeTypename,
+        fieldProjection.isPointer
+            ? wrappedType.safeTypename
+            : fieldProjection.dartType,
+        attribute: fieldProjection.attribute,
+      );
     }
 
     if (wrappedType.isNested) {
@@ -249,10 +281,7 @@ const _baseNativeTypes = <BaseType, TypeTuple>{
 
 /// Special mapping of certain Win32 types to Dart types.
 const specialTypes = <String, TypeTuple>{
+  // System.Guid does not exist in the metadata, so we need to manually project
+  // it.
   'System.Guid': TypeTuple.fromNativeType('GUID'),
-
-  // Wrapper structs.
-  'Windows.Win32.Foundation.BSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
-  'Windows.Win32.Foundation.PSTR': TypeTuple.fromNativeType('Pointer<Utf8>'),
-  'Windows.Win32.Foundation.PWSTR': TypeTuple.fromNativeType('Pointer<Utf16>'),
 };

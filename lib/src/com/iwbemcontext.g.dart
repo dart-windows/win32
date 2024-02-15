@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -44,33 +42,28 @@ class IWbemContext extends IUnknown {
   int beginEnumeration(int lFlags) => _vtable.BeginEnumeration.asFunction<
       int Function(VTablePointer lpVtbl, int lFlags)>()(ptr, lFlags);
 
-  int next(int lFlags, Pointer<Pointer<Utf16>> pstrName,
-          Pointer<VARIANT> pValue) =>
+  int next(int lFlags, Pointer<BSTR> pstrName, Pointer<VARIANT> pValue) =>
       _vtable.Next.asFunction<
-          int Function(
-              VTablePointer lpVtbl,
-              int lFlags,
-              Pointer<Pointer<Utf16>> pstrName,
+          int Function(VTablePointer lpVtbl, int lFlags, Pointer<BSTR> pstrName,
               Pointer<VARIANT> pValue)>()(ptr, lFlags, pstrName, pValue);
 
   int endEnumeration() =>
       _vtable.EndEnumeration.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);
 
-  int setValue(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pValue) =>
+  int setValue(PWSTR wszName, int lFlags, Pointer<VARIANT> pValue) =>
       _vtable.SetValue.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> wszName, int lFlags,
+          int Function(VTablePointer lpVtbl, PWSTR wszName, int lFlags,
               Pointer<VARIANT> pValue)>()(ptr, wszName, lFlags, pValue);
 
-  int getValue(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pValue) =>
+  int getValue(PWSTR wszName, int lFlags, Pointer<VARIANT> pValue) =>
       _vtable.GetValue.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> wszName, int lFlags,
+          int Function(VTablePointer lpVtbl, PWSTR wszName, int lFlags,
               Pointer<VARIANT> pValue)>()(ptr, wszName, lFlags, pValue);
 
-  int deleteValue(Pointer<Utf16> wszName, int lFlags) =>
-      _vtable.DeleteValue.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> wszName,
-              int lFlags)>()(ptr, wszName, lFlags);
+  int deleteValue(PWSTR wszName, int lFlags) => _vtable.DeleteValue.asFunction<
+          int Function(VTablePointer lpVtbl, PWSTR wszName, int lFlags)>()(
+      ptr, wszName, lFlags);
 
   int deleteAll() =>
       _vtable.DeleteAll.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
@@ -81,35 +74,34 @@ base class IWbemContextVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppNewCopy)>> Clone;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 lFlags,
+          HRESULT Function(VTablePointer lpVtbl, Int32 lFlags,
               Pointer<Pointer<SAFEARRAY>> pNames)>> GetNames;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 lFlags)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 lFlags)>>
       BeginEnumeration;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 lFlags,
-              Pointer<Pointer<Utf16>> pstrName, Pointer<VARIANT> pValue)>> Next;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+          HRESULT Function(VTablePointer lpVtbl, Int32 lFlags,
+              Pointer<BSTR> pstrName, Pointer<VARIANT> pValue)>> Next;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       EndEnumeration;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> wszName,
-              Int32 lFlags, Pointer<VARIANT> pValue)>> SetValue;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR wszName, Int32 lFlags,
+              Pointer<VARIANT> pValue)>> SetValue;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> wszName,
-              Int32 lFlags, Pointer<VARIANT> pValue)>> GetValue;
+          HRESULT Function(VTablePointer lpVtbl, PWSTR wszName, Int32 lFlags,
+              Pointer<VARIANT> pValue)>> GetValue;
   external Pointer<
-          NativeFunction<
-              Int32 Function(
-                  VTablePointer lpVtbl, Pointer<Utf16> wszName, Int32 lFlags)>>
-      DeleteValue;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, PWSTR wszName, Int32 lFlags)>> DeleteValue;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       DeleteAll;
 }
 

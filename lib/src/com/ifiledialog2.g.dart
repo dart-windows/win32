@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'ifiledialog.g.dart';
 import 'iunknown.g.dart';
@@ -32,10 +31,9 @@ class IFileDialog2 extends IFileDialog {
   factory IFileDialog2.from(IUnknown interface) =>
       IFileDialog2(interface.toInterface(IID_IFileDialog2));
 
-  int setCancelButtonLabel(Pointer<Utf16> pszLabel) =>
+  int setCancelButtonLabel(PWSTR pszLabel) =>
       _vtable.SetCancelButtonLabel.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
+          int Function(VTablePointer lpVtbl, PWSTR pszLabel)>()(ptr, pszLabel);
 
   int setNavigationRoot(VTablePointer psi) =>
       _vtable.SetNavigationRoot.asFunction<
@@ -47,10 +45,10 @@ base class IFileDialog2Vtbl extends Struct {
   external IFileDialogVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>>
+              HRESULT Function(VTablePointer lpVtbl, PWSTR pszLabel)>>
       SetCancelButtonLabel;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer psi)>>
       SetNavigationRoot;
 }

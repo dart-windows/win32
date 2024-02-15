@@ -8,8 +8,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -54,14 +52,11 @@ class IShellItemResources extends IUnknown {
                   Pointer<FILETIME> pftWrite, Pointer<FILETIME> pftAccess)>()(
           ptr, pftCreation, pftWrite, pftAccess);
 
-  int getResourceDescription(Pointer<SHELL_ITEM_RESOURCE> pcsir,
-          Pointer<Pointer<Utf16>> ppszDescription) =>
+  int getResourceDescription(
+          Pointer<SHELL_ITEM_RESOURCE> pcsir, Pointer<PWSTR> ppszDescription) =>
       _vtable.GetResourceDescription.asFunction<
-              int Function(
-                  VTablePointer lpVtbl,
-                  Pointer<SHELL_ITEM_RESOURCE> pcsir,
-                  Pointer<Pointer<Utf16>> ppszDescription)>()(
-          ptr, pcsir, ppszDescription);
+          int Function(VTablePointer lpVtbl, Pointer<SHELL_ITEM_RESOURCE> pcsir,
+              Pointer<PWSTR> ppszDescription)>()(ptr, pcsir, ppszDescription);
 
   int enumResources(Pointer<VTablePointer> ppenumr) =>
       _vtable.EnumResources.asFunction<
@@ -101,57 +96,57 @@ base class IShellItemResourcesVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Uint32> pdwAttributes)>>
       GetAttributes;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> pullSize)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> pullSize)>>
       GetSize;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<FILETIME> pftCreation,
               Pointer<FILETIME> pftWrite,
               Pointer<FILETIME> pftAccess)>> GetTimes;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<FILETIME> pftCreation,
               Pointer<FILETIME> pftWrite,
               Pointer<FILETIME> pftAccess)>> SetTimes;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<SHELL_ITEM_RESOURCE> pcsir,
-              Pointer<Pointer<Utf16>> ppszDescription)>> GetResourceDescription;
+              Pointer<PWSTR> ppszDescription)>> GetResourceDescription;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppenumr)>>
       EnumResources;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<SHELL_ITEM_RESOURCE> pcsir)>>
       SupportsResource;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<SHELL_ITEM_RESOURCE> pcsir,
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>> OpenResource;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<SHELL_ITEM_RESOURCE> pcsir,
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>> CreateResource;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       MarkForDelete;
 }

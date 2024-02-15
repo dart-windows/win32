@@ -80,33 +80,35 @@ base class IStreamVtbl extends Struct {
   external ISequentialStreamVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int64 dlibMove, Uint32 dwOrigin,
-              Pointer<Uint64> plibNewPosition)>> Seek;
+          HRESULT Function(VTablePointer lpVtbl, Int64 dlibMove,
+              Uint32 dwOrigin, Pointer<Uint64> plibNewPosition)>> Seek;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint64 libNewSize)>> SetSize;
+          HRESULT Function(VTablePointer lpVtbl, Uint64 libNewSize)>> SetSize;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pstm, Uint64 cb,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pstm, Uint64 cb,
               Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>> CopyTo;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint32 grfCommitFlags)>> Commit;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>> Revert;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Uint32 grfCommitFlags)>>
+      Commit;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
+      Revert;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint64 libOffset, Uint64 cb,
+          HRESULT Function(VTablePointer lpVtbl, Uint64 libOffset, Uint64 cb,
               Uint32 dwLockType)>> LockRegion;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Uint64 libOffset, Uint64 cb,
+          HRESULT Function(VTablePointer lpVtbl, Uint64 libOffset, Uint64 cb,
               Uint32 dwLockType)>> UnlockRegion;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<STATSTG> pstatstg,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<STATSTG> pstatstg,
               Uint32 grfStatFlag)>> Stat;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppstm)>> Clone;
 }

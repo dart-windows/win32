@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import '../callbacks.dart';
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -75,30 +76,30 @@ class ISpNotifySource extends IUnknown {
 base class ISpNotifySourceVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer pNotifySink)>>
-      SetNotifySink;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, VTablePointer pNotifySink)>> SetNotifySink;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, IntPtr hWnd, Uint32 msg,
-              IntPtr wParam, IntPtr lParam)>> SetNotifyWindowMessage;
+          HRESULT Function(VTablePointer lpVtbl, HWND hWnd, Uint32 msg,
+              WPARAM wParam, LPARAM lParam)>> SetNotifyWindowMessage;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<Pointer<NativeFunction<SPNOTIFYCALLBACK>>> pfnCallback,
-              IntPtr wParam,
-              IntPtr lParam)>> SetNotifyCallbackFunction;
+              WPARAM wParam,
+              LPARAM lParam)>> SetNotifyCallbackFunction;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer pSpCallback,
-              IntPtr wParam, IntPtr lParam)>> SetNotifyCallbackInterface;
-  external Pointer<NativeFunction<Int32 Function(VTablePointer lpVtbl)>>
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer pSpCallback,
+              WPARAM wParam, LPARAM lParam)>> SetNotifyCallbackInterface;
+  external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       SetNotifyWin32Event;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Uint32 dwMilliseconds)>>
+              HRESULT Function(VTablePointer lpVtbl, Uint32 dwMilliseconds)>>
       WaitForNotifyEvent;
-  external Pointer<NativeFunction<IntPtr Function(VTablePointer lpVtbl)>>
+  external Pointer<NativeFunction<HANDLE Function(VTablePointer lpVtbl)>>
       GetNotifyEventHandle;
 }

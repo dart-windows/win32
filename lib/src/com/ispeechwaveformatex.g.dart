@@ -173,59 +173,60 @@ base class ISpeechWaveFormatExVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> formatTag)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int16> formatTag)>>
       get_FormatTag;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int16 formatTag)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int16 formatTag)>>
       put_FormatTag;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> channels)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int16> channels)>>
       get_Channels;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int16 channels)>>
-      put_Channels;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int16 channels)>> put_Channels;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> samplesPerSec)>>
       get_SamplesPerSec;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 samplesPerSec)>>
+              HRESULT Function(VTablePointer lpVtbl, Int32 samplesPerSec)>>
       put_SamplesPerSec;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int32> avgBytesPerSec)>>
       get_AvgBytesPerSec;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int32 avgBytesPerSec)>>
+              HRESULT Function(VTablePointer lpVtbl, Int32 avgBytesPerSec)>>
       put_AvgBytesPerSec;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int16> blockAlign)>>
-      get_BlockAlign;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Int16> blockAlign)>> get_BlockAlign;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int16 blockAlign)>>
+              HRESULT Function(VTablePointer lpVtbl, Int16 blockAlign)>>
       put_BlockAlign;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<Int16> bitsPerSample)>>
       get_BitsPerSample;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Int16 bitsPerSample)>>
+              HRESULT Function(VTablePointer lpVtbl, Int16 bitsPerSample)>>
       put_BitsPerSample;
   external Pointer<
-          NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<VARIANT> extraData)>>
-      get_ExtraData;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<VARIANT> extraData)>> get_ExtraData;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VARIANT extraData)>>
+              HRESULT Function(VTablePointer lpVtbl, VARIANT extraData)>>
       put_ExtraData;
 }

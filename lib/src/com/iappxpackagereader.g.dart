@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -39,9 +38,9 @@ class IAppxPackageReader extends IUnknown {
           int Function(VTablePointer lpVtbl, int type,
               Pointer<VTablePointer> file)>()(ptr, type, file);
 
-  int getPayloadFile(Pointer<Utf16> fileName, Pointer<VTablePointer> file) =>
+  int getPayloadFile(PWSTR fileName, Pointer<VTablePointer> file) =>
       _vtable.GetPayloadFile.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<Utf16> fileName,
+          int Function(VTablePointer lpVtbl, PWSTR fileName,
               Pointer<VTablePointer> file)>()(ptr, fileName, file);
 
   int getPayloadFiles(Pointer<VTablePointer> filesEnumerator) =>
@@ -60,24 +59,24 @@ base class IAppxPackageReaderVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> blockMapReader)>>
       GetBlockMap;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 type,
+          HRESULT Function(VTablePointer lpVtbl, Int32 type,
               Pointer<VTablePointer> file)>> GetFootprintFile;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Pointer<Utf16> fileName,
+          HRESULT Function(VTablePointer lpVtbl, PWSTR fileName,
               Pointer<VTablePointer> file)>> GetPayloadFile;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl,
+          HRESULT Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> filesEnumerator)>> GetPayloadFiles;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> manifestReader)>>
       GetManifest;
 }

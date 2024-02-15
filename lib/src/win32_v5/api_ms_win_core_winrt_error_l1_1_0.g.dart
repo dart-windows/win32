@@ -34,6 +34,6 @@ int GetRestrictedErrorInfo(Pointer<VTablePointer> ppRestrictedErrorInfo) =>
 
 final _GetRestrictedErrorInfo =
     _api_ms_win_core_winrt_error_l1_1_0.lookupFunction<
-            Int32 Function(Pointer<VTablePointer> ppRestrictedErrorInfo),
+            HRESULT Function(Pointer<VTablePointer> ppRestrictedErrorInfo),
             int Function(Pointer<VTablePointer> ppRestrictedErrorInfo)>(
         'GetRestrictedErrorInfo');

@@ -33,7 +33,7 @@ int BluetoothEnableDiscovery(int? hRadio, int fEnabled) =>
     _BluetoothEnableDiscovery(hRadio ?? 0, fEnabled);
 
 final _BluetoothEnableDiscovery = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hRadio, Int32 fEnabled),
+    BOOL Function(HANDLE hRadio, BOOL fEnabled),
     int Function(int hRadio, int fEnabled)>('BluetoothEnableDiscovery');
 
 /// The BluetoothEnableIncomingConnections function modifies whether a local
@@ -50,7 +50,7 @@ int BluetoothEnableIncomingConnections(int? hRadio, int fEnabled) =>
     _BluetoothEnableIncomingConnections(hRadio ?? 0, fEnabled);
 
 final _BluetoothEnableIncomingConnections = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hRadio, Int32 fEnabled),
+    BOOL Function(HANDLE hRadio, BOOL fEnabled),
     int Function(
         int hRadio, int fEnabled)>('BluetoothEnableIncomingConnections');
 
@@ -75,7 +75,7 @@ int BluetoothEnumerateInstalledServices(
         hRadio ?? 0, pbtdi, pcServiceInout, pGuidServices ?? nullptr);
 
 final _BluetoothEnumerateInstalledServices = _bluetoothapis.lookupFunction<
-    Uint32 Function(IntPtr hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi,
+    Uint32 Function(HANDLE hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi,
         Pointer<Uint32> pcServiceInout, Pointer<GUID> pGuidServices),
     int Function(
         int hRadio,
@@ -95,7 +95,7 @@ final _BluetoothEnumerateInstalledServices = _bluetoothapis.lookupFunction<
 int BluetoothFindDeviceClose(int hFind) => _BluetoothFindDeviceClose(hFind);
 
 final _BluetoothFindDeviceClose = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hFind),
+    BOOL Function(HBLUETOOTH_DEVICE_FIND hFind),
     int Function(int hFind)>('BluetoothFindDeviceClose');
 
 /// The BluetoothFindFirstDevice function begins the enumeration Bluetooth
@@ -113,7 +113,8 @@ int BluetoothFindFirstDevice(Pointer<BLUETOOTH_DEVICE_SEARCH_PARAMS> pbtsp,
     _BluetoothFindFirstDevice(pbtsp, pbtdi);
 
 final _BluetoothFindFirstDevice = _bluetoothapis.lookupFunction<
-    IntPtr Function(Pointer<BLUETOOTH_DEVICE_SEARCH_PARAMS> pbtsp,
+    HBLUETOOTH_DEVICE_FIND Function(
+        Pointer<BLUETOOTH_DEVICE_SEARCH_PARAMS> pbtsp,
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
     int Function(Pointer<BLUETOOTH_DEVICE_SEARCH_PARAMS> pbtsp,
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdi)>('BluetoothFindFirstDevice');
@@ -129,14 +130,14 @@ final _BluetoothFindFirstDevice = _bluetoothapis.lookupFunction<
 /// ```
 /// {@category bluetooth}
 int BluetoothFindFirstRadio(
-        Pointer<BLUETOOTH_FIND_RADIO_PARAMS> pbtfrp, Pointer<IntPtr> phRadio) =>
+        Pointer<BLUETOOTH_FIND_RADIO_PARAMS> pbtfrp, Pointer<HANDLE> phRadio) =>
     _BluetoothFindFirstRadio(pbtfrp, phRadio);
 
 final _BluetoothFindFirstRadio = _bluetoothapis.lookupFunction<
-    IntPtr Function(
-        Pointer<BLUETOOTH_FIND_RADIO_PARAMS> pbtfrp, Pointer<IntPtr> phRadio),
+    HBLUETOOTH_RADIO_FIND Function(
+        Pointer<BLUETOOTH_FIND_RADIO_PARAMS> pbtfrp, Pointer<HANDLE> phRadio),
     int Function(Pointer<BLUETOOTH_FIND_RADIO_PARAMS> pbtfrp,
-        Pointer<IntPtr> phRadio)>('BluetoothFindFirstRadio');
+        Pointer<HANDLE> phRadio)>('BluetoothFindFirstRadio');
 
 /// The BluetoothFindNextDevice function finds the next Bluetooth device.
 ///
@@ -151,7 +152,8 @@ int BluetoothFindNextDevice(int hFind, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi) =>
     _BluetoothFindNextDevice(hFind, pbtdi);
 
 final _BluetoothFindNextDevice = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hFind, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
+    BOOL Function(
+        HBLUETOOTH_DEVICE_FIND hFind, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
     int Function(int hFind,
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdi)>('BluetoothFindNextDevice');
 
@@ -164,12 +166,12 @@ final _BluetoothFindNextDevice = _bluetoothapis.lookupFunction<
 /// );
 /// ```
 /// {@category bluetooth}
-int BluetoothFindNextRadio(int hFind, Pointer<IntPtr> phRadio) =>
+int BluetoothFindNextRadio(int hFind, Pointer<HANDLE> phRadio) =>
     _BluetoothFindNextRadio(hFind, phRadio);
 
 final _BluetoothFindNextRadio = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hFind, Pointer<IntPtr> phRadio),
-    int Function(int hFind, Pointer<IntPtr> phRadio)>('BluetoothFindNextRadio');
+    BOOL Function(HBLUETOOTH_RADIO_FIND hFind, Pointer<HANDLE> phRadio),
+    int Function(int hFind, Pointer<HANDLE> phRadio)>('BluetoothFindNextRadio');
 
 /// The BluetoothFindRadioClose function closes the enumeration handle
 /// associated with finding Bluetooth radios.
@@ -183,7 +185,7 @@ final _BluetoothFindNextRadio = _bluetoothapis.lookupFunction<
 int BluetoothFindRadioClose(int hFind) => _BluetoothFindRadioClose(hFind);
 
 final _BluetoothFindRadioClose = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hFind),
+    BOOL Function(HBLUETOOTH_RADIO_FIND hFind),
     int Function(int hFind)>('BluetoothFindRadioClose');
 
 /// Specifies the end of reliable write procedures, and the writes should be
@@ -202,7 +204,7 @@ int BluetoothGATTAbortReliableWrite(
     _BluetoothGATTAbortReliableWrite(hDevice, reliableWriteContext, flags);
 
 final _BluetoothGATTAbortReliableWrite = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hDevice, Uint64 reliableWriteContext, Uint32 flags),
+    HRESULT Function(HANDLE hDevice, Uint64 reliableWriteContext, Uint32 flags),
     int Function(int hDevice, int reliableWriteContext,
         int flags)>('BluetoothGATTAbortReliableWrite');
 
@@ -222,8 +224,8 @@ int BluetoothGATTBeginReliableWrite(
     _BluetoothGATTBeginReliableWrite(hDevice, reliableWriteContext, flags);
 
 final _BluetoothGATTBeginReliableWrite = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice, Pointer<Uint64> reliableWriteContext, Uint32 flags),
+    HRESULT Function(
+        HANDLE hDevice, Pointer<Uint64> reliableWriteContext, Uint32 flags),
     int Function(int hDevice, Pointer<Uint64> reliableWriteContext,
         int flags)>('BluetoothGATTBeginReliableWrite');
 
@@ -242,7 +244,7 @@ int BluetoothGATTEndReliableWrite(
     _BluetoothGATTEndReliableWrite(hDevice, reliableWriteContext, flags);
 
 final _BluetoothGATTEndReliableWrite = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hDevice, Uint64 reliableWriteContext, Uint32 flags),
+    HRESULT Function(HANDLE hDevice, Uint64 reliableWriteContext, Uint32 flags),
     int Function(int hDevice, int reliableWriteContext,
         int flags)>('BluetoothGATTEndReliableWrite');
 
@@ -275,8 +277,8 @@ int BluetoothGATTGetCharacteristics(
         flags);
 
 final _BluetoothGATTGetCharacteristics = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Pointer<BTH_LE_GATT_SERVICE> service,
         Uint16 characteristicsBufferCount,
         Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristicsBuffer,
@@ -319,8 +321,8 @@ int BluetoothGATTGetCharacteristicValue(
         flags);
 
 final _BluetoothGATTGetCharacteristicValue = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
         Uint32 characteristicValueDataSize,
         Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
@@ -363,8 +365,8 @@ int BluetoothGATTGetDescriptors(
         flags);
 
 final _BluetoothGATTGetDescriptors = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
         Uint16 descriptorsBufferCount,
         Pointer<BTH_LE_GATT_DESCRIPTOR> descriptorsBuffer,
@@ -407,8 +409,8 @@ int BluetoothGATTGetDescriptorValue(
         flags);
 
 final _BluetoothGATTGetDescriptorValue = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
         Uint32 descriptorValueDataSize,
         Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue,
@@ -451,8 +453,8 @@ int BluetoothGATTGetIncludedServices(
         flags);
 
 final _BluetoothGATTGetIncludedServices = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Pointer<BTH_LE_GATT_SERVICE> parentService,
         Uint16 includedServicesBufferCount,
         Pointer<BTH_LE_GATT_SERVICE> includedServicesBuffer,
@@ -489,8 +491,8 @@ int BluetoothGATTGetServices(
         servicesBuffer ?? nullptr, servicesBufferActual, flags);
 
 final _BluetoothGATTGetServices = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Uint16 servicesBufferCount,
         Pointer<BTH_LE_GATT_SERVICE> servicesBuffer,
         Pointer<Uint16> servicesBufferActual,
@@ -529,8 +531,8 @@ int BluetoothGATTRegisterEvent(
         callbackContext ?? nullptr, pEventHandle, flags);
 
 final _BluetoothGATTRegisterEvent = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hService,
+    HRESULT Function(
+        HANDLE hService,
         Int32 eventType,
         Pointer eventParameterIn,
         Pointer<NativeFunction<PFNBLUETOOTH_GATT_EVENT_CALLBACK>> callback,
@@ -568,8 +570,8 @@ int BluetoothGATTSetCharacteristicValue(
         characteristicValue, reliableWriteContext ?? 0, flags);
 
 final _BluetoothGATTSetCharacteristicValue = _bluetoothapis.lookupFunction<
-    Int32 Function(
-        IntPtr hDevice,
+    HRESULT Function(
+        HANDLE hDevice,
         Pointer<BTH_LE_GATT_CHARACTERISTIC> characteristic,
         Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> characteristicValue,
         Uint64 reliableWriteContext,
@@ -601,7 +603,7 @@ int BluetoothGATTSetDescriptorValue(
         hDevice, descriptor, descriptorValue, flags);
 
 final _BluetoothGATTSetDescriptorValue = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hDevice, Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
+    HRESULT Function(HANDLE hDevice, Pointer<BTH_LE_GATT_DESCRIPTOR> descriptor,
         Pointer<BTH_LE_GATT_DESCRIPTOR_VALUE> descriptorValue, Uint32 flags),
     int Function(
         int hDevice,
@@ -622,7 +624,7 @@ int BluetoothGATTUnregisterEvent(int eventHandle, int flags) =>
     _BluetoothGATTUnregisterEvent(eventHandle, flags);
 
 final _BluetoothGATTUnregisterEvent = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr eventHandle, Uint32 flags),
+    HRESULT Function(IntPtr eventHandle, Uint32 flags),
     int Function(int eventHandle, int flags)>('BluetoothGATTUnregisterEvent');
 
 /// TThe BluetoothGetDeviceInfo function retrieves information about a remote
@@ -640,7 +642,7 @@ int BluetoothGetDeviceInfo(int? hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi) =>
     _BluetoothGetDeviceInfo(hRadio ?? 0, pbtdi);
 
 final _BluetoothGetDeviceInfo = _bluetoothapis.lookupFunction<
-    Uint32 Function(IntPtr hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
+    Uint32 Function(HANDLE hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi),
     int Function(int hRadio,
         Pointer<BLUETOOTH_DEVICE_INFO> pbtdi)>('BluetoothGetDeviceInfo');
 
@@ -659,7 +661,7 @@ int BluetoothGetRadioInfo(
     _BluetoothGetRadioInfo(hRadio, pRadioInfo);
 
 final _BluetoothGetRadioInfo = _bluetoothapis.lookupFunction<
-    Uint32 Function(IntPtr hRadio, Pointer<BLUETOOTH_RADIO_INFO> pRadioInfo),
+    Uint32 Function(HANDLE hRadio, Pointer<BLUETOOTH_RADIO_INFO> pRadioInfo),
     int Function(int hRadio,
         Pointer<BLUETOOTH_RADIO_INFO> pRadioInfo)>('BluetoothGetRadioInfo');
 
@@ -675,7 +677,7 @@ final _BluetoothGetRadioInfo = _bluetoothapis.lookupFunction<
 int BluetoothIsConnectable(int? hRadio) => _BluetoothIsConnectable(hRadio ?? 0);
 
 final _BluetoothIsConnectable = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hRadio),
+    BOOL Function(HANDLE hRadio),
     int Function(int hRadio)>('BluetoothIsConnectable');
 
 /// The BluetoothIsDiscoverable function determines whether a Bluetooth radio or
@@ -691,7 +693,7 @@ int BluetoothIsDiscoverable(int? hRadio) =>
     _BluetoothIsDiscoverable(hRadio ?? 0);
 
 final _BluetoothIsDiscoverable = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hRadio),
+    BOOL Function(HANDLE hRadio),
     int Function(int hRadio)>('BluetoothIsDiscoverable');
 
 /// The BluetoothIsVersionAvailable function indicates if the installed
@@ -708,7 +710,7 @@ int BluetoothIsVersionAvailable(int majorVersion, int minorVersion) =>
     _BluetoothIsVersionAvailable(majorVersion, minorVersion);
 
 final _BluetoothIsVersionAvailable = _bluetoothapis.lookupFunction<
-    Int32 Function(Uint8 majorVersion, Uint8 minorVersion),
+    BOOL Function(Uint8 majorVersion, Uint8 minorVersion),
     int Function(
         int majorVersion, int minorVersion)>('BluetoothIsVersionAvailable');
 
@@ -782,7 +784,7 @@ int BluetoothSdpEnumAttributes(
     _BluetoothSdpEnumAttributes(pSDPStream, cbStreamSize, pfnCallback, pvParam);
 
 final _BluetoothSdpEnumAttributes = _bluetoothapis.lookupFunction<
-    Int32 Function(
+    BOOL Function(
         Pointer<Uint8> pSDPStream,
         Uint32 cbStreamSize,
         Pointer<NativeFunction<PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK>>
@@ -892,7 +894,7 @@ int BluetoothSdpGetString(
         int cbRecordLength,
         Pointer<SDP_STRING_TYPE_DATA>? pStringData,
         int usStringOffset,
-        Pointer<Utf16> pszString,
+        PWSTR pszString,
         Pointer<Uint32> pcchStringLength) =>
     _BluetoothSdpGetString(pRecordStream, cbRecordLength,
         pStringData ?? nullptr, usStringOffset, pszString, pcchStringLength);
@@ -903,14 +905,14 @@ final _BluetoothSdpGetString = _bluetoothapis.lookupFunction<
         Uint32 cbRecordLength,
         Pointer<SDP_STRING_TYPE_DATA> pStringData,
         Uint16 usStringOffset,
-        Pointer<Utf16> pszString,
+        PWSTR pszString,
         Pointer<Uint32> pcchStringLength),
     int Function(
         Pointer<Uint8> pRecordStream,
         int cbRecordLength,
         Pointer<SDP_STRING_TYPE_DATA> pStringData,
         int usStringOffset,
-        Pointer<Utf16> pszString,
+        PWSTR pszString,
         Pointer<Uint32> pcchStringLength)>('BluetoothSdpGetString');
 
 /// The BluetoothSendAuthenticationResponseEx function is called when an
@@ -929,7 +931,7 @@ int BluetoothSendAuthenticationResponseEx(int? hRadioIn,
     _BluetoothSendAuthenticationResponseEx(hRadioIn ?? 0, pauthResponse);
 
 final _BluetoothSendAuthenticationResponseEx = _bluetoothapis.lookupFunction<
-        Uint32 Function(IntPtr hRadioIn,
+        Uint32 Function(HANDLE hRadioIn,
             Pointer<BLUETOOTH_AUTHENTICATE_RESPONSE> pauthResponse),
         int Function(int hRadioIn,
             Pointer<BLUETOOTH_AUTHENTICATE_RESPONSE> pauthResponse)>(
@@ -952,7 +954,7 @@ int BluetoothSetServiceState(int? hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi,
     _BluetoothSetServiceState(hRadio ?? 0, pbtdi, pGuidService, dwServiceFlags);
 
 final _BluetoothSetServiceState = _bluetoothapis.lookupFunction<
-    Uint32 Function(IntPtr hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi,
+    Uint32 Function(HANDLE hRadio, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi,
         Pointer<GUID> pGuidService, Uint32 dwServiceFlags),
     int Function(
         int hRadio,
@@ -974,7 +976,7 @@ int BluetoothUnregisterAuthentication(int hRegHandle) =>
     _BluetoothUnregisterAuthentication(hRegHandle);
 
 final _BluetoothUnregisterAuthentication = _bluetoothapis.lookupFunction<
-    Int32 Function(IntPtr hRegHandle),
+    BOOL Function(IntPtr hRegHandle),
     int Function(int hRegHandle)>('BluetoothUnregisterAuthentication');
 
 /// The BluetoothUpdateDeviceRecord function updates the local computer cache

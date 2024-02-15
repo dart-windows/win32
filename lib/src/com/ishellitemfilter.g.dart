@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -41,10 +42,11 @@ class IShellItemFilter extends IUnknown {
 base class IShellItemFilterVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer psi)>> IncludeItem;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer psi)>>
+      IncludeItem;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer psi,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer psi,
               Pointer<Uint32> pgrfFlags)>> GetEnumFlagsForItem;
 }

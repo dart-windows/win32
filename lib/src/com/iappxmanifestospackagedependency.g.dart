@@ -8,9 +8,8 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
-
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iunknown.g.dart';
 
@@ -29,9 +28,8 @@ class IAppxManifestOSPackageDependency extends IUnknown {
       IAppxManifestOSPackageDependency(
           interface.toInterface(IID_IAppxManifestOSPackageDependency));
 
-  int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
+  int getName(Pointer<PWSTR> name) => _vtable.GetName.asFunction<
+      int Function(VTablePointer lpVtbl, Pointer<PWSTR> name)>()(ptr, name);
 
   int getVersion(Pointer<Uint64> version) => _vtable.GetVersion.asFunction<
       int Function(
@@ -43,10 +41,9 @@ base class IAppxManifestOSPackageDependencyVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
-              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>> GetName;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> name)>> GetName;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Uint64> version)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Uint64> version)>>
       GetVersion;
 }

@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../extensions/iunknown.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import 'iuiautomation3.g.dart';
 import 'iunknown.g.dart';
@@ -58,7 +59,7 @@ base class IUIAutomation4Vtbl extends Struct {
   external IUIAutomation3Vtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          Int32 Function(
+          HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer element,
               Int32 scope,
@@ -68,6 +69,6 @@ base class IUIAutomation4Vtbl extends Struct {
               VTablePointer handler)>> AddChangesEventHandler;
   external Pointer<
       NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, VTablePointer element,
+          HRESULT Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>> RemoveChangesEventHandler;
 }

@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../macros.dart';
+import '../structs.g.dart';
 import '../types.dart';
 import '../utils.dart';
 import 'iunknown.g.dart';
@@ -111,37 +112,38 @@ class IUIAutomationCacheRequest extends IUnknown {
 base class IUIAutomationCacheRequestVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-      NativeFunction<
-          Int32 Function(VTablePointer lpVtbl, Int32 propertyId)>> AddProperty;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Int32 propertyId)>>
+      AddProperty;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 patternId)>>
-      AddPattern;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 patternId)>> AddPattern;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> clonedRequest)>>
       Clone;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> scope)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> scope)>>
       get_TreeScope;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 scope)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 scope)>>
       put_TreeScope;
   external Pointer<
           NativeFunction<
-              Int32 Function(
+              HRESULT Function(
                   VTablePointer lpVtbl, Pointer<VTablePointer> filter)>>
       get_TreeFilter;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, VTablePointer filter)>>
+              HRESULT Function(VTablePointer lpVtbl, VTablePointer filter)>>
       put_TreeFilter;
   external Pointer<
           NativeFunction<
-              Int32 Function(VTablePointer lpVtbl, Pointer<Int32> mode)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> mode)>>
       get_AutomationElementMode;
   external Pointer<
-          NativeFunction<Int32 Function(VTablePointer lpVtbl, Int32 mode)>>
+          NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 mode)>>
       put_AutomationElementMode;
 }
