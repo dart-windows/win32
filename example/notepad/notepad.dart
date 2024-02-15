@@ -38,27 +38,28 @@ int mainWindowProc(int hwnd, int message, int wParam, int lParam) {
   switch (message) {
     case WM_CREATE:
       hwndEdit = CreateWindowEx(
-          0,
-          TEXT('edit'),
-          nullptr,
-          WS_CHILD |
-              WS_VISIBLE |
-              WS_HSCROLL |
-              WS_VSCROLL |
-              WS_BORDER |
-              ES_LEFT |
-              ES_MULTILINE |
-              ES_NOHIDESEL |
-              ES_AUTOHSCROLL |
-              ES_AUTOVSCROLL,
-          0,
-          0,
-          0,
-          0,
-          hwnd,
-          EDITID,
-          hInstance,
-          nullptr);
+        0,
+        TEXT('edit'),
+        nullptr,
+        WS_CHILD |
+            WS_VISIBLE |
+            WS_HSCROLL |
+            WS_VSCROLL |
+            WS_BORDER |
+            ES_LEFT |
+            ES_MULTILINE |
+            ES_NOHIDESEL |
+            ES_AUTOHSCROLL |
+            ES_AUTOVSCROLL,
+        0,
+        0,
+        0,
+        0,
+        hwnd,
+        EDITID,
+        hInstance,
+        nullptr,
+      );
 
       SendMessage(hwndEdit, EM_LIMITTEXT, 32767, 0);
 
@@ -316,21 +317,21 @@ void main() {
 
   // Create the window.
   final hWnd = CreateWindowEx(
-      0, // Optional window styles.
-      className, // Window class
-      TEXT(APP_NAME),
-      WS_OVERLAPPEDWINDOW, // Window style
+    0, // Optional window styles.
+    className, // Window class
+    TEXT(APP_NAME),
+    WS_OVERLAPPEDWINDOW, // Window style
 
-      // Size and position
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      null, // Parent window
-      hMenu, // Menu
-      hInstance, // Instance handle
-      nullptr // Additional application data
-      );
+    // Size and position
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    null, // Parent window
+    hMenu, // Menu
+    hInstance, // Instance handle
+    null, // Additional application data
+  );
 
   if (hWnd == 0) {
     final error = GetLastError();
@@ -345,7 +346,7 @@ void main() {
   // Run the message loop.
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     // Translate dialog messages
     if ((hDlgModeless == NULL) ||
         (IsDialogMessage(hDlgModeless, msg) == FALSE)) {

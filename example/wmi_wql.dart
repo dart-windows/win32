@@ -38,8 +38,8 @@ void main() {
   // on a particular host computer.
   final pLoc = calloc<VTablePointer>();
 
-  final clsid = calloc<GUID>()..ref.setGUID(WbemLocator);
-  final iid = calloc<GUID>()..ref.setGUID(IID_IWbemLocator);
+  final clsid = GUIDFromString(WbemLocator);
+  final iid = GUIDFromString(IID_IWbemLocator);
 
   hr = CoCreateInstance(clsid, null, CLSCTX_INPROC_SERVER, iid, pLoc);
 
@@ -61,15 +61,15 @@ void main() {
   // to make IWbemServices calls.
 
   hr = locator.connectServer(
-      TEXT('ROOT\\CIMV2'), // WMI namespace
-      nullptr, // User name
-      nullptr, // User password
-      nullptr, // Locale
-      NULL, // Security flags
-      nullptr, // Authority
-      nullptr, // Context object
-      proxy // IWbemServices proxy
-      );
+    TEXT('ROOT\\CIMV2'), // WMI namespace
+    nullptr, // User name
+    nullptr, // User password
+    nullptr, // Locale
+    NULL, // Security flags
+    nullptr, // Authority
+    nullptr, // Context object
+    proxy, // IWbemServices proxy
+  );
 
   if (FAILED(hr)) {
     final exception = WindowsException(hr);
@@ -87,15 +87,15 @@ void main() {
   // Set the IWbemServices proxy so that impersonation
   // of the user (client) occurs.
   hr = CoSetProxyBlanket(
-      proxy.value, // the proxy to set
-      RPC_C_AUTHN_WINNT, // authentication service
-      RPC_C_AUTHZ_NONE, // authorization service
-      null, // Server principal name
-      RPC_C_AUTHN_LEVEL_CALL, // authentication level
-      RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
-      null, // client identity
-      EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE // proxy capabilities
-      );
+    proxy.value, // the proxy to set
+    RPC_C_AUTHN_WINNT, // authentication service
+    RPC_C_AUTHZ_NONE, // authorization service
+    null, // Server principal name
+    RPC_C_AUTHN_LEVEL_CALL, // authentication level
+    RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
+    null, // client identity
+    EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // proxy capabilities
+  );
 
   if (FAILED(hr)) {
     final exception = WindowsException(hr);
@@ -128,7 +128,7 @@ void main() {
   } else {
     enumerator = IEnumWbemClassObject(pEnumerator.value);
 
-    final uReturn = calloc<Uint32>();
+    final uReturn = calloc<ULONG>();
 
     var idx = 0;
     while (enumerator.ptr.address > 0) {

@@ -5,6 +5,7 @@
 // Finds physical volumes on the system
 
 import 'dart:ffi';
+
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
@@ -22,7 +23,11 @@ void displayVolumePaths(String volumeName) {
   try {
     charCount.value = MAX_PATH;
     error = GetVolumePathNamesForVolumeName(
-        volumeNamePtr, pathNamePtr, charCount.value, charCount);
+      volumeNamePtr,
+      pathNamePtr,
+      charCount.value,
+      charCount,
+    );
 
     if (error != 0) {
       if (charCount.value > 1) {

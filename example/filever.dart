@@ -47,7 +47,7 @@ void main() {
   }
 }
 
-int getVersionBlockSize(Pointer<Utf16> lpFilename) {
+int getVersionBlockSize(PWSTR lpFilename) {
   int fviSize;
 
   // dwDummy isn't used; it's a historical vestige.
@@ -55,10 +55,7 @@ int getVersionBlockSize(Pointer<Utf16> lpFilename) {
 
   try {
     fviSize = GetFileVersionInfoSize(lpFilename, dwDummy);
-    if (fviSize == 0) {
-      throw Exception('GetFileVersionInfoSize failed.');
-    }
-
+    if (fviSize == 0) throw Exception('GetFileVersionInfoSize failed.');
     return fviSize;
   } finally {
     free(dwDummy);

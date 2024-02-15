@@ -47,14 +47,15 @@ List<Point> snakePoints = <Point>[];
 List<List<int>> data = [<int>[]];
 
 class Point {
+  Point([this.x = 0, this.y = 0]);
+
   int x;
   int y;
 
+  factory Point.clone(Point orig) => Point(orig.x, orig.y);
+
   @override
   String toString() => '($x, $y)';
-
-  Point([this.x = 0, this.y = 0]);
-  factory Point.clone(Point orig) => Point(orig.x, orig.y);
 }
 
 /// Fill rectangle with supplied 24-bit color in RGB format
@@ -407,20 +408,20 @@ void draw(int hdc, RECT rect, int x, int y, int width, int height) {
   final windowHeight = rect.bottom - rect.top;
 
   StretchDIBits(
-      hdc, // destination device context
-      0, // x-coordinate of dest rectangle origin
-      0, // y-coordinate of dest rectangle origin
-      bitmapWidth, // destination width in logical units
-      bitmapHeight, // destination height in logical units
-      0, // x-coordinate of source rectangle origin
-      windowHeight + 1, // y-coordinate of source rectangle origin
-      windowWidth, // source width in pixels
-      -windowHeight, // source height in pixels
-      bitmapMemory, // pointer to the image bits
-      bitmapInfo, // pointer to DIB
-      DIB_RGB_COLORS, // color table is literal RGB values
-      SRCCOPY // copy directly to dest rectangle
-      );
+    hdc, // destination device context
+    0, // x-coordinate of dest rectangle origin
+    0, // y-coordinate of dest rectangle origin
+    bitmapWidth, // destination width in logical units
+    bitmapHeight, // destination height in logical units
+    0, // x-coordinate of source rectangle origin
+    windowHeight + 1, // y-coordinate of source rectangle origin
+    windowWidth, // source width in pixels
+    -windowHeight, // source height in pixels
+    bitmapMemory, // pointer to the image bits
+    bitmapInfo, // pointer to DIB
+    DIB_RGB_COLORS, // color table is literal RGB values
+    SRCCOPY, // copy directly to dest rectangle
+  );
 }
 
 /// Updates game simulation (one tick of the game loop)
@@ -554,21 +555,21 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   if (RegisterClass(wc) != 0) {
     // Create the window.
     hWnd = CreateWindowEx(
-        0, // Optional window styles.
-        className, // Window class
-        TEXT('Dart WinSnake'), // Window caption
-        WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE,
+      0, // Optional window styles.
+      className, // Window class
+      TEXT('Dart WinSnake'), // Window caption
+      WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE,
 
-        // Size and position
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        800,
-        600,
-        null, // Parent window
-        null, // Menu
-        hInstance, // Instance handle
-        null // Additional application data
-        );
+      // Size and position
+      CW_USEDEFAULT,
+      CW_USEDEFAULT,
+      800,
+      600,
+      null, // Parent window
+      null, // Menu
+      hInstance, // Instance handle
+      null, // Additional application data
+    );
 
     if (hWnd != 0) {
       SetTimer(hWnd, IDT_TIMER1, timerAmount, null);
@@ -578,7 +579,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
         // Run the message loop.
 
         final msg = calloc<MSG>();
-        while (PeekMessage(msg, 0, 0, 0, PM_REMOVE) != 0) {
+        while (PeekMessage(msg, 0, 0, 0, PM_REMOVE) == TRUE) {
           if (msg.ref.message == WM_QUIT) {
             isRunning = false;
           }

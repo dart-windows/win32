@@ -15,9 +15,7 @@ int enumWindowsProc(int hWnd, int lParam) {
   if (IsWindowVisible(hWnd) == FALSE) return TRUE;
 
   final length = GetWindowTextLength(hWnd);
-  if (length == 0) {
-    return TRUE;
-  }
+  if (length == 0) return TRUE;
 
   final buffer = wsalloc(length + 1);
   GetWindowText(hWnd, buffer, length + 1);

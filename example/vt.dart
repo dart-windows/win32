@@ -35,14 +35,11 @@ bool enableVTMode() {
 
   final dwMode = calloc<DWORD>();
   try {
-    if (GetConsoleMode(hOut, dwMode) == 0) {
-      return false;
-    }
+    if (GetConsoleMode(hOut, dwMode) == 0) return false;
 
     dwMode.value |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (SetConsoleMode(hOut, dwMode.value) == 0) {
-      return false;
-    }
+    if (SetConsoleMode(hOut, dwMode.value) == 0) return false;
+
     return true;
   } finally {
     free(dwMode);

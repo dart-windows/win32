@@ -7,19 +7,20 @@
 import 'package:win32/win32.dart';
 
 void main() {
-  final message =
-      TEXT('This is not really an error, but we are pretending for the sake '
-          'of this test.\n\nResource error.\nDo you want to try again?');
+  final message = TEXT(
+    'This is not really an error, but we are pretending for the sake '
+    'of this test.\n\nResource error.\nDo you want to try again?',
+  );
   final title = TEXT('Dart MessageBox Test');
 
   final result = MessageBox(
-      null,
-      message,
-      title,
-      MB_ICONWARNING | // Warning
-          MB_CANCELTRYCONTINUE | // Action button
-          MB_DEFBUTTON2 // Second button is the default
-      );
+    null,
+    message,
+    title,
+    MB_ICONWARNING | // Warning
+        MB_CANCELTRYCONTINUE | // Action button
+        MB_DEFBUTTON2, // Second button is the default
+  );
 
   free(message);
   free(title);

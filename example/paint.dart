@@ -30,7 +30,8 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
       for (var i = 1; i <= 20; i++) {
         final color = (255 - 256 / 10 * i).round();
         final hBrush = CreateSolidBrush(
-            RGB(0, color >= 0 ? color : 0, color >= 0 ? color : 0));
+          RGB(0, color >= 0 ? color : 0, color >= 0 ? color : 0),
+        );
         rect.ref.left = rect.ref.left + 10;
         rect.ref.right = rect.ref.right - 10;
         rect.ref.top = rect.ref.top + 10;
@@ -72,21 +73,21 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Create the window.
 
   final hWnd = CreateWindowEx(
-      0, // Optional window styles.
-      className, // Window class
-      className, // Window caption
-      WS_OVERLAPPEDWINDOW, // Window style
+    0, // Optional window styles.
+    className, // Window class
+    className, // Window caption
+    WS_OVERLAPPEDWINDOW, // Window style
 
-      // Size and position
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      null, // Parent window
-      null, // Menu
-      hInstance, // Instance handle
-      null // Additional application data
-      );
+    // Size and position
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    null, // Parent window
+    null, // Menu
+    hInstance, // Instance handle
+    null, // Additional application data
+  );
 
   if (hWnd == 0) {
     final error = GetLastError();
@@ -98,7 +99,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
 
   // Run the message loop.
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

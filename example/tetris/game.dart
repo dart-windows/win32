@@ -26,7 +26,7 @@ class Game {
   /// Handles player's key press
   bool keyPress(int vk) {
     // When pausing, ignore keys other than PAUSE and ENTER
-    if (vk != VK_PAUSE && vk != VK_RETURN && isPaused) return false;
+    if (isPaused && vk != VK_PAUSE && vk != VK_RETURN) return false;
 
     switch (vk) {
       case VK_UP:

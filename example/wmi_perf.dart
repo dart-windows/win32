@@ -32,27 +32,27 @@ int connectWMI(IWbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
   // Connect to the root\cimv2 namespace with the current user and obtain
   // pointer pSvc to make IWbemServices calls.
   var hr = pLoc.connectServer(
-      TEXT('ROOT\\CIMV2'), // WMI namespace
-      nullptr, // User name
-      nullptr, // User password
-      nullptr, // Locale
-      NULL, // Security flags
-      nullptr, // Authority
-      nullptr, // Context object
-      ppNamespace // IWbemServices proxy
-      );
+    TEXT('ROOT\\CIMV2'), // WMI namespace
+    nullptr, // User name
+    nullptr, // User password
+    nullptr, // Locale
+    NULL, // Security flags
+    nullptr, // Authority
+    nullptr, // Context object
+    ppNamespace, // IWbemServices proxy
+  );
   if (FAILED(hr)) throw WindowsException(hr);
 
   hr = CoSetProxyBlanket(
-      ppNamespace.value, // the proxy to set
-      RPC_C_AUTHN_WINNT, // authentication service
-      RPC_C_AUTHZ_NONE, // authorization service
-      null, // Server principal name
-      RPC_C_AUTHN_LEVEL_CALL, // authentication level
-      RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
-      null, // client identity
-      EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE // proxy capabilities
-      );
+    ppNamespace.value, // the proxy to set
+    RPC_C_AUTHN_WINNT, // authentication service
+    RPC_C_AUTHZ_NONE, // authorization service
+    null, // Server principal name
+    RPC_C_AUTHN_LEVEL_CALL, // authentication level
+    RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
+    null, // client identity
+    EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // proxy capabilities
+  );
   if (FAILED(hr)) throw WindowsException(hr);
   return hr;
 }

@@ -32,15 +32,16 @@ void showSimpleTaskDialog() {
 
   try {
     final hr = TaskDialog(
-        null,
-        null,
-        windowTitle,
-        mainInstruction,
-        content,
-        TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_OK_BUTTON |
-            TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_CANCEL_BUTTON,
-        TD_INFORMATION_ICON,
-        buttonSelected);
+      null,
+      null,
+      windowTitle,
+      mainInstruction,
+      content,
+      TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_OK_BUTTON |
+          TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_CANCEL_BUTTON,
+      TD_INFORMATION_ICON,
+      buttonSelected,
+    );
     if (SUCCEEDED(hr)) {
       switch (buttonSelected.value) {
         case IDOK:
@@ -51,9 +52,11 @@ void showSimpleTaskDialog() {
     }
     // ignore: avoid_catching_errors
   } on ArgumentError {
-    print('If you see an error "Failed to lookup symbol", it\'s likely because '
-        'the app manifest\ndeclaring a dependency on comctl32.dll v6 is '
-        'missing.\n\nSee the comment at the top of the sample source code.\n');
+    print(
+      'If you see an error "Failed to lookup symbol", it\'s likely because '
+      'the app manifest\ndeclaring a dependency on comctl32.dll v6 is '
+      'missing.\n\nSee the comment at the top of the sample source code.\n',
+    );
     rethrow;
   } finally {
     free(windowTitle);

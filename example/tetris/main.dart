@@ -70,7 +70,7 @@ void main() {
 
   // Run the message loop.
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

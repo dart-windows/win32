@@ -12,14 +12,19 @@ import 'package:win32/win32.dart';
 
 /// Represents a configuration of an installed WSL distribution.
 class DistributionConfiguration {
+  const DistributionConfiguration(
+    this.name,
+    this.wslVersion,
+    this.userID,
+    this.flags,
+    this.environmentVariables,
+  );
+
   final String name;
   final int wslVersion;
   final int userID;
   final int flags;
   final List<String> environmentVariables;
-
-  const DistributionConfiguration(this.name, this.wslVersion, this.userID,
-      this.flags, this.environmentVariables);
 }
 
 /// Check whether a distribution exists
@@ -44,12 +49,13 @@ DistributionConfiguration getDistributionConfiguration(
 
   try {
     final hr = WslGetDistributionConfiguration(
-        TEXT(distributionName),
-        distributionVersion,
-        defaultUID,
-        wslDistributionFlags,
-        defaultEnvironmentVariables,
-        defaultEnvironmentVariableCount);
+      TEXT(distributionName),
+      distributionVersion,
+      defaultUID,
+      wslDistributionFlags,
+      defaultEnvironmentVariables,
+      defaultEnvironmentVariableCount,
+    );
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -81,13 +87,14 @@ int runCommand(String distributionName, String command) {
   final exitCode = calloc<DWORD>();
   try {
     final hr = WslLaunch(
-        pDistributionName,
-        pCommand,
-        FALSE,
-        GetStdHandle(STD_INPUT_HANDLE), // redirect as appropriate
-        GetStdHandle(STD_OUTPUT_HANDLE), // redirect as appropriate
-        GetStdHandle(STD_ERROR_HANDLE), // redirect as appropriate
-        processHandle);
+      pDistributionName,
+      pCommand,
+      FALSE,
+      GetStdHandle(STD_INPUT_HANDLE), // redirect as appropriate
+      GetStdHandle(STD_OUTPUT_HANDLE), // redirect as appropriate
+      GetStdHandle(STD_ERROR_HANDLE), // redirect as appropriate
+      processHandle,
+    );
     if (FAILED(hr)) throw WindowsException(hr);
     WaitForSingleObject(processHandle.value, INFINITE);
     GetExitCodeProcess(processHandle.value, exitCode);
@@ -101,8 +108,14 @@ int runCommand(String distributionName, String command) {
 }
 
 void main() {
-  print('WSL distributions registered:');
-  for (final distributionName in ['Ubuntu', 'Debian', 'kali-linux']) {
+  print('WSL distributions registered:\n');
+  for (final distributionName in [
+    'Ubuntu',
+    'Ubuntu-18.04',
+    'Ubuntu-20.04',
+    'Debian',
+    'kali-linux'
+  ]) {
     if (isDistributionRegistered(distributionName)) {
       final config = getDistributionConfiguration(distributionName);
       print('Distribution: $distributionName');

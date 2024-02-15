@@ -134,18 +134,19 @@ bool setupMagnifier(int hInst, Pointer<NativeFunction<WNDPROC>> lpfnWndProc) {
   // Create the host window
   registerHostWindowClass(hInst, lpfnWndProc);
   hwndHost = CreateWindowEx(
-      WS_EX_TOPMOST | WS_EX_LAYERED,
-      windowClassName,
-      windowTitle,
-      RESTOREDWINDOWSTYLES,
-      0,
-      0,
-      hostWindowRect.ref.right,
-      hostWindowRect.ref.bottom,
-      null,
-      null,
-      hInst,
-      null);
+    WS_EX_TOPMOST | WS_EX_LAYERED,
+    windowClassName,
+    windowTitle,
+    RESTOREDWINDOWSTYLES,
+    0,
+    0,
+    hostWindowRect.ref.right,
+    hostWindowRect.ref.bottom,
+    null,
+    null,
+    hInst,
+    null,
+  );
 
   if (hwndHost == FALSE) return false;
 
@@ -155,17 +156,18 @@ bool setupMagnifier(int hInst, Pointer<NativeFunction<WNDPROC>> lpfnWndProc) {
   // Create a magnifier control that fills the client area
   GetClientRect(hwndHost, magWindowRect);
   hwndMag = CreateWindow(
-      TEXT('Magnifier'),
-      TEXT('MagnifierWindow'),
-      WS_CHILD | MS_SHOWMAGNIFIEDCURSOR | WS_VISIBLE,
-      magWindowRect.ref.left,
-      magWindowRect.ref.top,
-      magWindowRect.ref.right,
-      magWindowRect.ref.bottom,
-      hwndHost,
-      NULL,
-      hInst,
-      nullptr);
+    TEXT('Magnifier'),
+    TEXT('MagnifierWindow'),
+    WS_CHILD | MS_SHOWMAGNIFIEDCURSOR | WS_VISIBLE,
+    magWindowRect.ref.left,
+    magWindowRect.ref.top,
+    magWindowRect.ref.right,
+    magWindowRect.ref.bottom,
+    hwndHost,
+    NULL,
+    hInst,
+    nullptr,
+  );
 
   if (hwndMag == FALSE) return false;
 
@@ -256,8 +258,15 @@ void updateMagWindow(int hwnd, int uMsg, Pointer<Uint32> idEvent, int dwTime) {
 
     // Reclaim topmost status, to prevent unmagnified menus from remaining in
     // view.
-    SetWindowPos(hwndHost, HWND_TOPMOST, 0, 0, 0, 0,
-        SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+    SetWindowPos(
+      hwndHost,
+      HWND_TOPMOST,
+      0,
+      0,
+      0,
+      0,
+      SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE,
+    );
 
     // Force redraw.
     InvalidateRect(hwndMag, null, TRUE);
@@ -275,7 +284,10 @@ void goFullScreen() {
   // The window must be styled as layered for proper rendering.
   // It is styled as transparent so that it does not capture mouse clicks.
   SetWindowLongPtr(
-      hwndHost, GWL_EXSTYLE, WS_EX_TOPMOST | WS_EX_LAYERED | WS_EX_TRANSPARENT);
+    hwndHost,
+    GWL_EXSTYLE,
+    WS_EX_TOPMOST | WS_EX_LAYERED | WS_EX_TRANSPARENT,
+  );
 
   // Give the window a system menu so it can be closed on the taskbar.
   SetWindowLongPtr(hwndHost, GWL_STYLE, WS_CAPTION | WS_SYSMENU);
@@ -297,8 +309,15 @@ void goFullScreen() {
   xSpan += 2 * xBorder;
   ySpan += 2 * yBorder + yCaption;
 
-  SetWindowPos(hwndHost, HWND_TOPMOST, xOrigin, yOrigin, xSpan, ySpan,
-      SWP_SHOWWINDOW | SWP_NOZORDER | SWP_NOACTIVATE);
+  SetWindowPos(
+    hwndHost,
+    HWND_TOPMOST,
+    xOrigin,
+    yOrigin,
+    xSpan,
+    ySpan,
+    SWP_SHOWWINDOW | SWP_NOZORDER | SWP_NOACTIVATE,
+  );
 }
 
 /// Makes the host window resizable and focusable.
@@ -308,11 +327,12 @@ void goPartialScreen() {
   SetWindowLongPtr(hwndHost, GWL_EXSTYLE, WS_EX_TOPMOST | WS_EX_LAYERED);
   SetWindowLongPtr(hwndHost, GWL_STYLE, RESTOREDWINDOWSTYLES);
   SetWindowPos(
-      hwndHost,
-      HWND_TOPMOST,
-      hostWindowRect.ref.left,
-      hostWindowRect.ref.top,
-      hostWindowRect.ref.right,
-      hostWindowRect.ref.bottom,
-      SWP_SHOWWINDOW | SWP_NOZORDER | SWP_NOACTIVATE);
+    hwndHost,
+    HWND_TOPMOST,
+    hostWindowRect.ref.left,
+    hostWindowRect.ref.top,
+    hostWindowRect.ref.right,
+    hostWindowRect.ref.bottom,
+    SWP_SHOWWINDOW | SWP_NOZORDER | SWP_NOACTIVATE,
+  );
 }

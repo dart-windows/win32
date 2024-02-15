@@ -281,10 +281,12 @@ void main() {
   // buggy version testing. Indeed, the API goes to some lengths to make it hard
   // to test versions. Yet version detection is the only reliable solution for
   // certain API calls, so the recommendation is noted but not followed.
-  final buildNumber = int.parse(getRegistryValue(
-      HKEY_LOCAL_MACHINE,
-      'SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\',
-      'CurrentBuildNumber') as String);
+  final buildNumber = int.parse(
+    getRegistryValue(
+        HKEY_LOCAL_MACHINE,
+        'SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\',
+        'CurrentBuildNumber') as String,
+  );
   if (buildNumber >= 10240) print(' - Windows 10');
   if (buildNumber >= 22000) print(' - Windows 11');
 

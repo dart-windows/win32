@@ -34,7 +34,7 @@ void main() {
       if (pTokens.value != nullptr) {
         final token = ISpeechObjectToken(pToken.value);
 
-        final pDescription = calloc<Pointer<Utf16>>();
+        final pDescription = calloc<BSTR>();
         hr = token.getDescription(0, pDescription);
         if (FAILED(hr)) throw WindowsException(hr);
         final description = pDescription.value.toDartString();

@@ -5,15 +5,15 @@
 import 'dart:math' show min, max;
 
 class Point {
+  Point([this.x = 0, this.y = 0]);
+
   int x;
   int y;
 
+  factory Point.clone(Point orig) => Point(orig.x, orig.y);
+
   @override
   String toString() => '($x, $y)';
-
-  Point([this.x = 0, this.y = 0]);
-
-  factory Point.clone(Point orig) => Point(orig.x, orig.y);
 }
 
 // A piece in Tetris game. This class is only used by PieceSet. Other classes

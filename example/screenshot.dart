@@ -34,9 +34,9 @@ class Displays {
 }
 
 class Display {
-  final String rawName;
-
   Display(this.rawName, this._stateFlags);
+
+  final String rawName;
 
   void saveScreenshot(String fileName) {
     final hdcScreen = _createDC();
@@ -79,9 +79,8 @@ class Display {
 
   final int _stateFlags;
 
-  bool get isConnected {
-    return (_stateFlags & DISPLAY_DEVICE_ACTIVE) == DISPLAY_DEVICE_ACTIVE;
-  }
+  bool get isConnected =>
+      (_stateFlags & DISPLAY_DEVICE_ACTIVE) == DISPLAY_DEVICE_ACTIVE;
 }
 
 class BmpFile {
@@ -117,7 +116,7 @@ class BmpFile {
                 bmpScreen.ref.bmHeight)
             .toInt();
 
-    final lpBitmap = arena<Uint8>(dwBmpSize);
+    final lpBitmap = arena<BYTE>(dwBmpSize);
 
     GetDIBits(
       hdcScreen,

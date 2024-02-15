@@ -262,15 +262,16 @@ void drawWindowCaption(
 
     GetWindowText(hwnd, titleText, 256);
     DrawThemeTextEx(
-        hTheme,
-        hdc,
-        0,
-        0,
-        titleText,
-        -1,
-        DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS,
-        titleBarTextRect,
-        drawThemeOptions);
+      hTheme,
+      hdc,
+      0,
+      0,
+      titleText,
+      -1,
+      DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS,
+      titleBarTextRect,
+      drawThemeOptions,
+    );
 
     if (savedFont != null) SelectObject(hdc, savedFont);
   } finally {
@@ -378,13 +379,14 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       // Inform the application of the frame change to force redrawing with the
       // new client area that is extended into the title bar.
       SetWindowPos(
-          hwnd,
-          null,
-          sizeRect.ref.left,
-          sizeRect.ref.top,
-          sizeRect.ref.right - sizeRect.ref.left,
-          sizeRect.ref.bottom - sizeRect.ref.top,
-          SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+        hwnd,
+        null,
+        sizeRect.ref.left,
+        sizeRect.ref.top,
+        sizeRect.ref.right - sizeRect.ref.left,
+        sizeRect.ref.bottom - sizeRect.ref.top,
+        SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE,
+      );
 
       free(sizeRect);
 
@@ -548,11 +550,23 @@ void main() {
 
   final windowCaption = 'Win32 Custom Title Bar Example'.toNativeUtf16();
 
-  CreateWindowEx(WS_EX_APPWINDOW, windowClassName, windowCaption, windowStyle,
-      CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, null, null, null, null);
+  CreateWindowEx(
+    WS_EX_APPWINDOW,
+    windowClassName,
+    windowCaption,
+    windowStyle,
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    800,
+    600,
+    null,
+    null,
+    null,
+    null,
+  );
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

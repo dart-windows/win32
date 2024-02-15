@@ -71,7 +71,7 @@ void main() {
 
     final item = IShellItem(ppsi.value);
     free(ppsi);
-    final pathPtr = calloc<Pointer<Utf16>>();
+    final pathPtr = calloc<PWSTR>();
     hr = item.getDisplayName(SIGDN.SIGDN_FILESYSPATH, pathPtr);
     if (FAILED(hr)) throw WindowsException(hr);
 

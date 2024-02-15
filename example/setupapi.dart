@@ -12,7 +12,7 @@ import 'package:win32/win32.dart';
 void main() {
   // https://learn.microsoft.com/windows-hardware/drivers/install/overview-of-device-setup-classes
   using((Arena arena) {
-    final deviceGuid = arena<GUID>()..ref.setGUID(GUID_DEVCLASS_NET);
+    final deviceGuid = GUIDFromString(GUID_DEVCLASS_NET, allocator: arena);
 
     final hDevInfo = SetupDiGetClassDevs(deviceGuid, null, null, DIGCF_PRESENT);
     try {
@@ -27,7 +27,8 @@ void main() {
 
   // https://learn.microsoft.com/windows-hardware/drivers/install/overview-of-device-interface-classes
   using((Arena arena) {
-    final interfaceGuid = arena<GUID>()..ref.setGUID(GUID_DEVINTERFACE_HID);
+    final interfaceGuid =
+        GUIDFromString(GUID_DEVINTERFACE_HID, allocator: arena);
 
     final hDevInfo = SetupDiGetClassDevs(
         interfaceGuid, null, null, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
@@ -122,8 +123,7 @@ Iterable<String> devicePathsByInterface(
 }
 
 extension on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> {
-  String get devicePath =>
-      Pointer<WCHAR>.fromAddress(address + sizeOf<Uint32>())
-          .cast<Utf16>()
-          .toDartString();
+  String get devicePath => Pointer<WCHAR>.fromAddress(address + sizeOf<DWORD>())
+      .cast<Utf16>()
+      .toDartString();
 }

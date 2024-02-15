@@ -47,8 +47,11 @@ void main(List<String> args) {
   try {
     final results = parser.parse(args);
     CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-    createShortcut(results['path'] as String, results['shortcut'] as String,
-        results['description'] as String?);
+    createShortcut(
+      results['path'] as String,
+      results['shortcut'] as String,
+      results['description'] as String?,
+    );
   } on FormatException {
     print('Creates a Windows shortcut to a given file.\n');
     print('Usage: shortcut [arguments]\n');

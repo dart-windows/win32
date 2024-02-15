@@ -138,10 +138,10 @@ void main() {
 
   // Retrieve the monitor handle for the first physical monitor in the returned
   // array.
-  final physicalMonitorHandle = physicalMonitorArray.cast<IntPtr>().value;
+  final physicalMonitorHandle = physicalMonitorArray.cast<HANDLE>().value;
   print('Physical monitor handle: $physicalMonitorHandle');
   final physicalMonitorDescription =
-      (physicalMonitorArray + sizeOf<IntPtr>()).cast<Utf16>().toDartString();
+      (physicalMonitorArray + sizeOf<HANDLE>()).cast<Utf16>().toDartString();
   print('Physical monitor description: $physicalMonitorDescription');
 
   final monitorCapabilitiesPtr = calloc<DWORD>();

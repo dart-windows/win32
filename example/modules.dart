@@ -16,11 +16,12 @@ int printModules(int processID) {
 
   // Get a handle to the process.
   final hProcess = OpenProcess(
-      PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID);
+    PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,
+    FALSE,
+    processID,
+  );
 
-  if (hProcess == 0) {
-    return 1;
-  }
+  if (hProcess == 0) return 1;
 
   // Get a list of all the modules in this process.
   final hMods = calloc<HMODULE>(1024);

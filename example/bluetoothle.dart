@@ -11,11 +11,14 @@ import 'package:win32/win32.dart';
 
 void main() {
   final devicePaths = using((Arena arena) {
-    final interfaceGuid = arena<GUID>()
-      ..ref.setGUID(GUID_BLUETOOTHLE_DEVICE_INTERFACE);
-
+    final interfaceGuid =
+        GUIDFromString(GUID_BLUETOOTHLE_DEVICE_INTERFACE, allocator: arena);
     final hDevInfo = SetupDiGetClassDevs(
-        interfaceGuid, null, null, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
+      interfaceGuid,
+      null,
+      null,
+      DIGCF_PRESENT | DIGCF_DEVICEINTERFACE,
+    );
     try {
       return devicesByInterface(hDevInfo, interfaceGuid).toList();
     } finally {
@@ -25,8 +28,15 @@ void main() {
 
   for (final path in devicePaths) {
     final pathPtr = path.toNativeUtf16();
-    final hDevice = CreateFile(pathPtr, 0, FILE_SHARE_READ | FILE_SHARE_WRITE,
-        null, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    final hDevice = CreateFile(
+      pathPtr,
+      0,
+      FILE_SHARE_READ | FILE_SHARE_WRITE,
+      null,
+      OPEN_EXISTING,
+      FILE_ATTRIBUTE_NORMAL,
+      NULL,
+    );
     if (hDevice == INVALID_HANDLE_VALUE) {
       final error = GetLastError();
       print('CreateFile - Get Device Handle error: $error');
@@ -52,12 +62,23 @@ Iterable<String> devicesByInterface(
   try {
     for (var index = 0;
         SetupDiEnumDeviceInterfaces(
-                hDevInfo, null, interfaceGuid, index, deviceInterfaceDataPtr) ==
+              hDevInfo,
+              null,
+              interfaceGuid,
+              index,
+              deviceInterfaceDataPtr,
+            ) ==
             TRUE;
         index++) {
       // final hr =
       SetupDiGetDeviceInterfaceDetail(
-          hDevInfo, deviceInterfaceDataPtr, null, 0, requiredSizePtr, null);
+        hDevInfo,
+        deviceInterfaceDataPtr,
+        null,
+        0,
+        requiredSizePtr,
+        null,
+      );
 
       // TODO(halildurmus): Uncomment when
       // https://github.com/dart-windows/win32/issues/384 is successfully
@@ -107,10 +128,9 @@ Iterable<String> devicesByInterface(
 }
 
 extension on Pointer<SP_DEVICE_INTERFACE_DETAIL_DATA_> {
-  String get devicePath =>
-      Pointer<WCHAR>.fromAddress(address + sizeOf<Uint32>())
-          .cast<Utf16>()
-          .toDartString();
+  String get devicePath => Pointer<WCHAR>.fromAddress(address + sizeOf<DWORD>())
+      .cast<Utf16>()
+      .toDartString();
 }
 
 // -----------------------------------------------------------------------------

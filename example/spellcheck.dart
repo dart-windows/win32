@@ -29,12 +29,12 @@ void main(List<String> args) {
   final spellCheckerFactory = ISpellCheckerFactory(
       createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
 
-  final supportedPtr = calloc<Int32>();
+  final supportedPtr = calloc<BOOL>();
   final languageTagPtr = Platform.localeName.toNativeUtf16();
 
   spellCheckerFactory.isSupported(languageTagPtr, supportedPtr);
 
-  if (supportedPtr.value == 1) {
+  if (supportedPtr.value == TRUE) {
     final spellCheckerPtr = calloc<VTablePointer>();
     spellCheckerFactory.createSpellChecker(languageTagPtr, spellCheckerPtr);
 
@@ -64,7 +64,6 @@ void main(List<String> args) {
       errorCount++;
 
       final error = ISpellingError(errorPtr.value);
-      free(errorPtr);
       final word = text.substring(
         error.startIndex,
         error.startIndex + error.length,
@@ -80,9 +79,9 @@ void main(List<String> args) {
           print('\n');
 
         case CORRECTIVE_ACTION.REPLACE:
-          final replacment = error.replacement;
-          print(' - replace with "${replacment.toDartString()}"');
-          WindowsDeleteString(replacment.address);
+          final replacement = error.replacement;
+          print(' - replace with "${replacement.toDartString()}"');
+          free(replacement);
 
         case CORRECTIVE_ACTION.GET_SUGGESTIONS:
           print(' - suggestions:');
@@ -93,26 +92,30 @@ void main(List<String> args) {
           final suggestions = IEnumString(suggestionsPtr.value);
           free(suggestionsPtr);
 
-          final suggestionPtr = calloc<Pointer<Utf16>>();
-          final suggestionResultPtr = calloc<Uint32>();
+          final suggestionPtr = calloc<PWSTR>();
+          final suggestionResultPtr = calloc<ULONG>();
 
           while (
               suggestions.next(1, suggestionPtr, suggestionResultPtr) == S_OK) {
             print('\t${suggestionPtr.value.toDartString()}');
-            WindowsDeleteString(suggestionPtr.value.address);
+            free(suggestionPtr.value);
           }
+
+          free(suggestionResultPtr);
+          free(suggestionPtr);
       }
 
       error.release();
     }
 
+    free(errorPtr);
     errors.release();
     free(textPtr);
     spellChecker2.release();
   }
 
-  free(supportedPtr);
   free(languageTagPtr);
+  free(supportedPtr);
   spellCheckerFactory.release();
   CoUninitialize();
   print('All done');

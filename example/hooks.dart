@@ -50,11 +50,11 @@ int cxChar = 0;
 int cyChar = 0;
 
 class Message {
+  const Message(this.uMsg, this.wParam, this.lParam);
+
   final int uMsg;
   final int wParam;
   final int lParam;
-
-  const Message(this.uMsg, this.wParam, this.lParam);
 }
 
 final List<Message> msgArr = <Message>[];
@@ -187,6 +187,7 @@ int mainWindowProc(int hWnd, int uMsg, int wParam, int lParam) {
       PostQuitMessage(0);
       return 0;
   }
+
   return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
@@ -236,7 +237,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   UpdateWindow(hWnd);
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

@@ -28,7 +28,7 @@ void main() {
 
   final coll = ISensorCollection(pSensorsColl.value);
   free(pSensorsColl);
-  final pCount = calloc<Uint32>();
+  final pCount = calloc<ULONG>();
   if (coll.getCount(pCount) > 1) {
     print('Found items');
   }

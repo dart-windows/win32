@@ -16,7 +16,11 @@ const EVENT_QUIT = WM_APP + 2;
 const EVENT_TRAY_NOTIFY = WM_APP + 1;
 
 typedef LocalWndProc = bool Function(
-    int hWnd, int uMsg, int wParam, int lParam);
+  int hWnd,
+  int uMsg,
+  int wParam,
+  int lParam,
+);
 
 final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
   _appWndProc,
@@ -25,7 +29,7 @@ final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
 
 void exec() {
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }
@@ -34,8 +38,14 @@ void exec() {
 
 int loadDartIcon() {
   final dartIconPath = _thisPath('dart.ico');
-  return LoadImage(0, TEXT(dartIconPath), IMAGE_ICON, 0, 0,
-      LR_LOADFROMFILE | LR_DEFAULTSIZE | LR_SHARED);
+  return LoadImage(
+    0,
+    TEXT(dartIconPath),
+    IMAGE_ICON,
+    0,
+    0,
+    LR_LOADFROMFILE | LR_DEFAULTSIZE | LR_SHARED,
+  );
 }
 
 final _localWndProcs = <LocalWndProc>[];

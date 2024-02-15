@@ -54,9 +54,10 @@ Object queryRegistryValue(int key, String subKey, String valueName) {
 
 bool isWindows11() {
   final windowsBuildNumber = int.parse(queryRegistryValue(
-      HKEY_LOCAL_MACHINE,
-      'SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\',
-      'CurrentBuildNumber') as String);
+    HKEY_LOCAL_MACHINE,
+    'SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\',
+    'CurrentBuildNumber',
+  ) as String);
 
   return windowsBuildNumber >= 22000;
 }

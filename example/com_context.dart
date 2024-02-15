@@ -44,22 +44,22 @@ enum ApartmentTypeQualifier {
 }
 
 class ThreadContext {
+  const ThreadContext(this.id, this.type, this.qualifier);
+
   final int id;
   final ApartmentType type;
   final ApartmentTypeQualifier qualifier;
-
-  const ThreadContext(this.id, this.type, this.qualifier);
 
   @override
   String toString() => '#$id: [${type.name}, ${qualifier.name}]';
 }
 
 void initializeMTA() {
-  final pCookie = calloc<IntPtr>();
+  final pCookie = calloc<CO_MTA_USAGE_COOKIE>();
   try {
-    // Ensure an multi-threaded apartment is created
-    final res = CoIncrementMTAUsage(pCookie);
-    if (FAILED(res)) throw WindowsException(res);
+    // Ensure an multi-threaded apartment is created.
+    final hr = CoIncrementMTAUsage(pCookie);
+    if (FAILED(hr)) throw WindowsException(hr);
   } finally {
     free(pCookie);
   }
@@ -83,8 +83,11 @@ ThreadContext getThreadContext() {
     // Some other error occurred
     if (hr != S_OK) throw WindowsException(hr);
 
-    return ThreadContext(threadID, ApartmentType.fromValue(pAptType.value),
-        ApartmentTypeQualifier.fromValue(pAptQualifier.value));
+    return ThreadContext(
+      threadID,
+      ApartmentType.fromValue(pAptType.value),
+      ApartmentTypeQualifier.fromValue(pAptQualifier.value),
+    );
   } finally {
     free(pAptType);
     free(pAptQualifier);

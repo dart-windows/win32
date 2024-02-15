@@ -10,10 +10,11 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-void write(
-    {required String credentialName,
-    required String userName,
-    required String password}) {
+void write({
+  required String credentialName,
+  required String userName,
+  required String password,
+}) {
   print('Writing $credentialName ...');
   final examplePassword = utf8.encode(password);
   final blob = examplePassword.allocatePointer();

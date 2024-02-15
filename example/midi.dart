@@ -21,7 +21,11 @@ void main() {
     ..lpstrElementName = elementName;
 
   var dwReturn = mciSendCommand(
-      NULL, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_ELEMENT, mciOpenParams.address);
+    NULL,
+    MCI_OPEN,
+    MCI_OPEN_TYPE | MCI_OPEN_ELEMENT,
+    mciOpenParams.address,
+  );
 
   if (dwReturn != 0) {
     // Don't close it; just return error.
@@ -37,7 +41,11 @@ void main() {
     ..ref.dwItem = MCI_SEQ_STATUS_PORT;
 
   dwReturn = mciSendCommand(
-      deviceID, MCI_STATUS, MCI_STATUS_ITEM, mciStatusParams.address);
+    deviceID,
+    MCI_STATUS,
+    MCI_STATUS_ITEM,
+    mciStatusParams.address,
+  );
 
   if (dwReturn != 0) {
     print('Status command failed.');

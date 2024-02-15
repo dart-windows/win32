@@ -280,21 +280,21 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Create the window.
 
   final hWnd = CreateWindowEx(
-      0, // Optional window styles.
-      className, // Window class
-      className, // Window caption
-      WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL, // Window style
+    0, // Optional window styles.
+    className, // Window class
+    className, // Window caption
+    WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL, // Window style
 
-      // Size and position
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      250,
-      250,
-      null, // Parent window
-      null, // Menu
-      hInstance, // Instance handle
-      null // Additional application data
-      );
+    // Size and position
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    250,
+    250,
+    null, // Parent window
+    null, // Menu
+    hInstance, // Instance handle
+    null, // Additional application data
+  );
 
   if (hWnd == 0) {
     final error = GetLastError();
@@ -307,7 +307,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Run the message loop.
 
   final msg = calloc<MSG>();
-  while (GetMessage(msg, null, 0, 0) != 0) {
+  while (GetMessage(msg, null, 0, 0) == TRUE) {
     TranslateMessage(msg);
     DispatchMessage(msg);
   }

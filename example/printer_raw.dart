@@ -18,10 +18,11 @@ class RawPrinter {
 
   RawPrinter(this.printerName, this.alloc);
 
-  Pointer<HANDLE> _startRawPrintJob(
-      {required String printerName,
-      required String documentTitle,
-      String dataType = 'RAW'}) {
+  Pointer<HANDLE> _startRawPrintJob({
+    required String printerName,
+    required String documentTitle,
+    String dataType = 'RAW',
+  }) {
     final pPrinterName = printerName.toNativeUtf16(allocator: alloc);
     final phPrinter = alloc<HANDLE>();
 
@@ -92,9 +93,10 @@ class RawPrinter {
     }
 
     final printerHandle = _startRawPrintJob(
-        printerName: printerName,
-        documentTitle: 'My document',
-        dataType: 'RAW');
+      printerName: printerName,
+      documentTitle: 'My document',
+      dataType: 'RAW',
+    );
 
     res = _startRawPrintPage(printerHandle);
 

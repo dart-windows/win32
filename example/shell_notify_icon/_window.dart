@@ -23,18 +23,19 @@ int createHidden() {
   final windowClassNme = _regWinClass();
   final rect = _getWindowCenterRect();
   final hWnd = CreateWindowEx(
-      0,
-      TEXT(windowClassNme),
-      TEXT('Tray Callback Window'),
-      WS_OVERLAPPEDWINDOW,
-      rect.left,
-      rect.top,
-      rect.width,
-      rect.height,
-      null,
-      null,
-      app.hInst,
-      nullptr);
+    0,
+    TEXT(windowClassNme),
+    TEXT('Tray Callback Window'),
+    WS_OVERLAPPEDWINDOW,
+    rect.left,
+    rect.top,
+    rect.width,
+    rect.height,
+    null,
+    null,
+    app.hInst,
+    null,
+  );
   app.registerWndProc(_windowWndProc);
   return hWnd;
 }

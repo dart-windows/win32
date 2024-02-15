@@ -12,9 +12,10 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 class Size {
+  const Size({required this.width, required this.height});
+
   final int width;
   final int height;
-  const Size({required this.width, required this.height});
 }
 
 Size getMonitorSizeInMM() {
@@ -31,7 +32,13 @@ Size getMonitorSizeInMM() {
   if (ret == TRUE) {
     // Get the registry key for the first member of the first monitor
     final hDevRegKey = SetupDiOpenDevRegKey(
-        ptr, data, DICS_FLAG_GLOBAL, 0, DIREG_DEV, KEY_READ);
+      ptr,
+      data,
+      DICS_FLAG_GLOBAL,
+      0,
+      DIREG_DEV,
+      KEY_READ,
+    );
 
     const nameSize = 128;
     final lpValueName = wsalloc(nameSize);
@@ -43,7 +50,14 @@ Size getMonitorSizeInMM() {
 
     // Get the first value of the registry key for the first member of the first monitor
     final retValue = RegEnumValue(
-        hDevRegKey, 0, lpValueName, lpcchValueName, null, lpData, lpcbData);
+      hDevRegKey,
+      0,
+      lpValueName,
+      lpcchValueName,
+      null,
+      lpData,
+      lpcbData,
+    );
 
     // https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
     // Extended Display Identification Data (EDID) of the first monitor

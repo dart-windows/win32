@@ -11,18 +11,19 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-bool GetDriveGeometry(Pointer<Utf16> wszPath, Pointer<DISK_GEOMETRY> pdg) {
-  final bytesReturned = calloc<Uint32>();
+bool GetDriveGeometry(PWSTR wszPath, Pointer<DISK_GEOMETRY> pdg) {
+  final bytesReturned = calloc<DWORD>();
 
   try {
     final hDevice = CreateFile(
-        wszPath, // drive to open
-        0, // no access to the drive
-        FILE_SHARE_READ | FILE_SHARE_WRITE,
-        null, // default security attributes
-        OPEN_EXISTING,
-        0, // file attributes
-        NULL); // do not copy file attributes
+      wszPath, // drive to open
+      0, // no access to the drive
+      FILE_SHARE_READ | FILE_SHARE_WRITE,
+      null, // default security attributes
+      OPEN_EXISTING,
+      0, // file attributes
+      NULL,
+    ); // do not copy file attributes
 
     if (hDevice == INVALID_HANDLE_VALUE) // cannot open the drive
     {
@@ -30,14 +31,15 @@ bool GetDriveGeometry(Pointer<Utf16> wszPath, Pointer<DISK_GEOMETRY> pdg) {
     }
 
     final bResult = DeviceIoControl(
-        hDevice, // device to be queried
-        IOCTL_DISK_GET_DRIVE_GEOMETRY, // operation to perform
-        null,
-        0, // no input buffer
-        pdg,
-        sizeOf<DISK_GEOMETRY>(), // output buffer
-        bytesReturned, // # bytes returned
-        null); // synchronous I/O
+      hDevice, // device to be queried
+      IOCTL_DISK_GET_DRIVE_GEOMETRY, // operation to perform
+      null,
+      0, // no input buffer
+      pdg,
+      sizeOf<DISK_GEOMETRY>(), // output buffer
+      bytesReturned, // # bytes returned
+      null,
+    ); // synchronous I/O
 
     CloseHandle(hDevice);
 

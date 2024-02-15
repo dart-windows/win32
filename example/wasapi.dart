@@ -95,7 +95,7 @@ void main() {
   // Get the number of available audio output devices.
   final pDevices = IMMDeviceCollection(ppDevices.value);
   free(ppDevices);
-  final pcDevices = calloc<Uint32>();
+  final pcDevices = calloc<ULONG>();
   check(pDevices.getCount(pcDevices));
   final deviceCount = pcDevices.value;
   print("$deviceCount audio device(s) detected:");
@@ -109,7 +109,7 @@ void main() {
     free(ppEndpoint);
 
     // Retrieve the current device id
-    final idPtr = calloc<Pointer<Utf16>>();
+    final idPtr = calloc<PWSTR>();
     check(pEndpoint.getId(idPtr));
     final id = idPtr.value.toDartString();
     free(idPtr.value);
@@ -118,8 +118,9 @@ void main() {
     // Retrieve the current device properties.
     final ppProps = calloc<VTablePointer>();
     check(pEndpoint.openPropertyStore(
-        STGM.STGM_READ, // Storage-access mode: read
-        ppProps));
+      STGM.STGM_READ, // Storage-access mode: read
+      ppProps,
+    ));
 
     // Build property key to get device friendly name.
     final pProps = IPropertyStore(ppProps.value);

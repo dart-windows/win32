@@ -13,10 +13,10 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 class RecycleBinInfo {
+  const RecycleBinInfo(this.itemCount, this.totalSizeInBytes);
+
   final int itemCount;
   final int totalSizeInBytes;
-
-  const RecycleBinInfo(this.itemCount, this.totalSizeInBytes);
 }
 
 RecycleBinInfo queryRecycleBin(String rootPath) {
@@ -27,9 +27,10 @@ RecycleBinInfo queryRecycleBin(String rootPath) {
   try {
     final hr = SHQueryRecycleBin(pszRootPath, pSHQueryRBInfo);
     if (hr != S_OK) throw WindowsException(hr);
-
     return RecycleBinInfo(
-        pSHQueryRBInfo.ref.i64NumItems, pSHQueryRBInfo.ref.i64Size);
+      pSHQueryRBInfo.ref.i64NumItems,
+      pSHQueryRBInfo.ref.i64Size,
+    );
   } finally {
     free(pszRootPath);
     free(pSHQueryRBInfo);
@@ -45,7 +46,6 @@ String getTempFileName() {
     final result =
         GetTempFileName(lpPathName, lpPrefixString, 0, lpTempFileName);
     if (result == 0) throw 'Unable to create filename';
-
     return lpTempFileName.toDartString();
   } finally {
     free(lpPathName);

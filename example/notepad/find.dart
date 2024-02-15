@@ -18,8 +18,8 @@ const MAX_STRING_LEN = 256;
 class NotepadFind {
   late Pointer<FINDREPLACE> find;
 
-  late Pointer<Utf16> szFindText;
-  late Pointer<Utf16> szReplText;
+  late PWSTR szFindText;
+  late PWSTR szReplText;
 
   NotepadFind() {
     szFindText = wsalloc(MAX_STRING_LEN);

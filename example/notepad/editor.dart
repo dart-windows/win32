@@ -109,7 +109,11 @@ class NotepadEditor {
 
   void showMessage(String szMessage) {
     MessageBox(
-        _hwnd, TEXT(szMessage), TEXT(APP_NAME), MB_OK | MB_ICONEXCLAMATION);
+      _hwnd,
+      TEXT(szMessage),
+      TEXT(APP_NAME),
+      MB_OK | MB_ICONEXCLAMATION,
+    );
   }
 
   int offerSave() {

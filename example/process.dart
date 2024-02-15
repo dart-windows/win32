@@ -43,16 +43,17 @@ void main() {
   try {
     // Retrieve timing information for the current process
     result = GetProcessTimes(
-        hProcess, pCreationTime, pExitTime, pKernelTime, pUserTime);
-    if (result == FALSE) {
-      throw WindowsException(result);
-    }
+      hProcess,
+      pCreationTime,
+      pExitTime,
+      pKernelTime,
+      pUserTime,
+    );
+    if (result == FALSE) throw WindowsException(result);
 
     // Convert process creation time to SYSTEMTIME format
     result = FileTimeToSystemTime(pCreationTime, pCreationTimeAsSystemTime);
-    if (result == FALSE) {
-      throw WindowsException(result);
-    }
+    if (result == FALSE) throw WindowsException(result);
 
     final processExited =
         pExitTime.ref.dwLowDateTime != 0 && pExitTime.ref.dwHighDateTime != 0;
@@ -60,9 +61,7 @@ void main() {
     if (processExited) {
       // Convert process exit time to SYSTEMTIME format
       result = FileTimeToSystemTime(pExitTime, pExitTimeAsSystemTime);
-      if (result == FALSE) {
-        throw WindowsException(result);
-      }
+      if (result == FALSE) throw WindowsException(result);
     }
 
     final creationTime = systemTimeToDateTime(pCreationTimeAsSystemTime.ref);
