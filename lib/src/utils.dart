@@ -23,7 +23,7 @@ import 'win32_v5/ole32.g.dart';
 import 'win32_v5/shell32.g.dart';
 import 'win32_v5/user32.g.dart';
 
-/// Converts a Dart string into an CLSID using the [CLSIDFromString] call.
+/// Converts a Dart string into an CLSID using the [CLSIDFromString] function.
 ///
 /// You can pass this method one of two things: a brace-enclosed string, such as
 /// `{00000000-0000-0000-c000-000000000046}`, or a ProgID, such as
@@ -49,7 +49,7 @@ Pointer<GUID> convertToCLSID(String strCLSID, {Allocator allocator = calloc}) {
   }
 }
 
-/// Converts a Dart string into an IID using the [IIDFromString] call.
+/// Converts a Dart string into an IID using the [IIDFromString] function.
 ///
 /// You can pass this method a brace-enclosed string, such as
 /// `{00000000-0000-0000-c000-000000000046}`, and it will return a pointer to a
@@ -180,7 +180,7 @@ void free(Pointer pointer) => calloc.free(pointer);
 /// For debugging, print the memory structure of a given struct.
 void printStruct(Pointer struct, int sizeInBytes) {
   final words = <int>[];
-  final ptr = struct.cast<Uint16>();
+  final ptr = struct.cast<WCHAR>();
   for (var i = 0; i < sizeInBytes ~/ 2; i++) {
     words.add((ptr + i).value);
   }
