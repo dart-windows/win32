@@ -23,14 +23,14 @@ if (FAILED(hr)) throw WindowsException(hr);
 
 ### Creating a COM object
 
-You can create COM objects using the [C
-library](https://learn.microsoft.com/windows/win32/learnwin32/creating-an-object-in-com):
+You can create COM objects using the [Clibrary](
+https://learn.microsoft.com/windows/win32/learnwin32/creating-an-object-in-com):
 
 ```dart
 hr = CoCreateInstance(clsid, null, CLSCTX_INPROC_SERVER, riid, ppv);
 ```
 
-However, rather than manually allocate GUID structs for the `clsid` and `riid`
+However, rather than manually allocate `GUID` structs for the `clsid` and `riid`
 values, checking the `hr` result code and deal with casting the `ppv` return
 object, it is easier to use the `createComObject` helper function:
 
@@ -51,8 +51,9 @@ derives from `IUnknown`, so as in other language implementations of COM, you
 may call `queryInterface` on any object to retrieve a pointer to a different
 supported interface.
 
-More information on COM interfaces may be found in the [Microsoft
-documentation](https://learn.microsoft.com/windows/win32/learnwin32/asking-an-object-for-an-interface).
+More information on COM interfaces may be found in the
+[Microsoft documentation](
+https://learn.microsoft.com/windows/win32/learnwin32/asking-an-object-for-an-interface).
 
 COM interfaces supply a method that wraps `queryInterface`. If you have an
 existing COM object, you can call it as follows:
@@ -82,7 +83,7 @@ return value to a variable and test it for success or failure. You can use the
 ```dart
 final hr = fileOpenDialog.show(null);
 if (SUCCEEDED(hr)) {
-  // Do something with the returned dialog box values
+  // Do something with the returned dialog box values.
 }
 ```
 
@@ -93,7 +94,7 @@ cancels a common dialog box:
 ```dart
 final hr = fileOpenDialog.show(null);
 if (FAILED(hr) && hr == HRESULT_FROM_WIN32(ERROR_CANCELLED)) {
-  // User clicked cancel
+  // User clicked cancel.
 }
 ```
 
@@ -103,7 +104,7 @@ When you have finished using a COM interface, you should release it with the
 `.release()` method:
 
 ```dart
-fileOpenDialog.release(); // Release the interface
+fileOpenDialog.release(); // Release the interface.
 ```
 
 Often this will be called as part of a `try` / `finally` block, to guarantee
