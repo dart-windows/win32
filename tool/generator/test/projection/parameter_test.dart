@@ -152,7 +152,7 @@ void testParameter(
   String parameterName,
   void Function(ParameterProjection) projection,
 ) {
-  test("$parent.$methodName method's $parameterName parameter", () {
+  test('$parent.$methodName.$parameterName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,

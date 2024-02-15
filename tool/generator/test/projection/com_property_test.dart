@@ -345,7 +345,7 @@ if (FAILED(hr)) throw WindowsException(hr);
 @isTest
 void testGetProperty(String parent, String propertyName,
     void Function(ComGetPropertyProjection) projection) {
-  test('$parent.$propertyName property', () {
+  test('$parent.$propertyName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,
@@ -365,7 +365,7 @@ void testGetProperty(String parent, String propertyName,
 @isTest
 void testSetProperty(String parent, String propertyName,
     void Function(ComSetPropertyProjection) projection) {
-  test("$parent.$propertyName property", () {
+  test('$parent.$propertyName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,

@@ -447,7 +447,7 @@ void testMethodParameterType(
   String parameterName,
   void Function(TypeProjection) projection,
 ) {
-  test("$parent.$methodName method's $parameterName parameter", () {
+  test('$parent.$methodName.$parameterName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,
@@ -478,7 +478,7 @@ void testMethodReturnType(
   String methodName,
   void Function(TypeProjection) projection,
 ) {
-  test("$parent.$methodName method's return type", () {
+  test('$parent.$methodName return type', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,
@@ -501,7 +501,7 @@ void testStructFieldType(
   String fieldName,
   void Function(TypeProjection) projection,
 ) {
-  test("$struct's $fieldName field", () {
+  test('$struct.$fieldName', () {
     final typeDef = MetadataStore.getMetadataForType(struct);
     expect(
       typeDef,

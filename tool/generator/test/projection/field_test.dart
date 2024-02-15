@@ -203,7 +203,7 @@ void testField(
   String fieldName,
   void Function(FieldProjection) projection,
 ) {
-  test("$structName's $fieldName field", () {
+  test('$structName.$fieldName', () {
     final typeDef = MetadataStore.getMetadataForType(structName);
     expect(
       typeDef,

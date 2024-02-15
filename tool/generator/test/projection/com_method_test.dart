@@ -157,7 +157,7 @@ void main() {
 @isTest
 void testMethod(String parent, String methodName,
     void Function(ComMethodProjection) projection) {
-  test('$parent.$methodName method', () {
+  test('$parent.$methodName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,

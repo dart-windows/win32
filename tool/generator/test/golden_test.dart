@@ -19,19 +19,28 @@ void main() {
   });
 
   group('Golden testing', () {
-    testComInterfaceGolden(
-        'Windows.Win32.Networking.NetworkListManager.INetwork');
+    group('function', () {
+      testFunctionGolden('Windows.Wdk.Foundation.Apis', 'NtQueryObject');
 
-    testComInterfaceGolden('Windows.Win32.UI.Shell.IFileOpenDialog');
+      testFunctionGolden(
+        'Windows.Win32.Graphics.Gdi.Apis',
+        'EnumDisplayMonitors',
+      );
+    });
 
-    testFunctionGolden('Windows.Wdk.Foundation.Apis', 'NtQueryObject');
+    group('interface', () {
+      testComInterfaceGolden(
+        'Windows.Win32.Networking.NetworkListManager.INetwork',
+      );
 
-    testFunctionGolden(
-        'Windows.Win32.Graphics.Gdi.Apis', 'EnumDisplayMonitors');
+      testComInterfaceGolden('Windows.Win32.UI.Shell.IFileOpenDialog');
+    });
 
-    testStructGolden('Windows.Win32.Graphics.Gdi.DEVMODEW');
+    group('struct', () {
+      testStructGolden('Windows.Win32.Graphics.Gdi.DEVMODEW');
 
-    testStructGolden('Windows.Win32.System.Variant.VARIANT');
+      testStructGolden('Windows.Win32.System.Variant.VARIANT');
+    });
   });
 
   tearDownAll(MetadataStore.close);
@@ -80,7 +89,7 @@ void testComInterfaceGolden(String interfaceName) {
 
 @isTest
 void testFunctionGolden(String parent, String functionName) {
-  test('function $parent.$functionName', () {
+  test('$parent.$functionName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,
@@ -104,17 +113,17 @@ void testFunctionGolden(String parent, String functionName) {
 }
 
 @isTest
-void testStructGolden(String type) {
-  test('struct $type', () {
-    final typeDef = MetadataStore.getMetadataForType(type);
+void testStructGolden(String structName) {
+  test(structName, () {
+    final typeDef = MetadataStore.getMetadataForType(structName);
     expect(
       typeDef,
       isNotNull,
-      reason: '`$type` type is not found in the metadata.',
+      reason: '`$structName` type is not found in the metadata.',
     );
     final structsToGenerate = loadMap('win32_structs.json');
-    final projection =
-        StructProjection(typeDef!, comment: structsToGenerate[type] ?? '');
+    final projection = StructProjection(typeDef!,
+        comment: structsToGenerate[structName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
       typeDef.name,

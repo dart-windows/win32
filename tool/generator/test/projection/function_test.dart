@@ -249,7 +249,7 @@ void main() {
 @isTest
 void testFunction(String parent, String functionName,
     void Function(FunctionProjection) projection) {
-  test('$parent.$functionName function', () {
+  test('$parent.$functionName', () {
     final typeDef = MetadataStore.getMetadataForType(parent);
     expect(
       typeDef,
