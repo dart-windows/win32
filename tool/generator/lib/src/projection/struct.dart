@@ -63,7 +63,10 @@ class StructProjection {
 
   /// The property accessors for a nested struct to allow accessing its members
   /// from the parent type.
-  String get propertyAccessors {
+  String get propertyAccessors =>
+      _propertyAccessors ??= _cachePropertyAccessors();
+
+  String _cachePropertyAccessors() {
     // Property accessors are only generated for nested structs.
     if (!typeDef.isNested) return '';
 
