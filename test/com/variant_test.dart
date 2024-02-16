@@ -24,6 +24,20 @@ void main() {
       free(variant);
     });
 
+    test('BSTR', () {
+      const testString = 'Hello, world';
+      final bstr = Bstr.fromString(testString);
+      final variant = calloc<VARIANT>();
+      VariantInit(variant);
+      variant.ref
+        ..vt = VARENUM.VT_BSTR
+        ..bstrVal = bstr.ptr;
+      expect(variant.ref.bstrVal.toDartString(), equals(testString));
+      VariantClear(variant);
+      free(variant);
+      bstr.free();
+    });
+
     test('pointer to an object that implements the IUnknown interface', () {
       final spVoice = ISpVoice(createComObject(SpVoice, IID_ISpVoice))
         ..addRef();
