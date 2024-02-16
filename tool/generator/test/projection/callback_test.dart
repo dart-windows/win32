@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('CallbackProjection', () {
     testCallback('Windows.Wdk.Foundation.DRIVER_ADD_DEVICE', (projection) {
@@ -82,12 +81,7 @@ void main() {
 void testCallback(
     String callbackName, void Function(CallbackProjection) projection) {
   test(callbackName, () {
-    final typeDef = MetadataStore.getMetadataForType(callbackName);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$callbackName` type is not found in the metadata.',
-    );
-    projection(CallbackProjection(typeDef!));
+    final typeDef = getTypeDef(callbackName);
+    projection(CallbackProjection(typeDef));
   });
 }

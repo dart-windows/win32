@@ -8,45 +8,32 @@ import 'package:generator/generator.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
-void main() {
-  late Scope scope;
+import '../helpers.dart';
 
-  setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+void main() {
+  setUpAll(loadMetadata);
 
   group('CustomAttributesMixin', () {
     test('isAnsi', () {
-      final devModeA = scope.findTypeDef('Windows.Win32.Graphics.Gdi.DEVMODEA');
-      expect(devModeA, isNotNull);
-      expect(devModeA!.isAnsi, isTrue);
+      final devModeA = getTypeDef('Windows.Win32.Graphics.Gdi.DEVMODEA');
+      expect(devModeA.isAnsi, isTrue);
 
-      final shellFolder =
-          scope.findTypeDef('Windows.Win32.UI.Shell.IShellFolder');
-      expect(shellFolder, isNotNull);
-      expect(shellFolder!.isAnsi, isFalse);
+      final shellFolder = getTypeDef('Windows.Win32.UI.Shell.IShellFolder');
+      expect(shellFolder.isAnsi, isFalse);
 
-      final shellLinkA =
-          scope.findTypeDef('Windows.Win32.UI.Shell.IShellLinkA');
-      expect(shellLinkA, isNotNull);
-      expect(shellLinkA!.isAnsi, isTrue);
+      final shellLinkA = getTypeDef('Windows.Win32.UI.Shell.IShellLinkA');
+      expect(shellLinkA.isAnsi, isTrue);
     });
 
     test('isUnicode', () {
-      final devModeW = scope.findTypeDef('Windows.Win32.Graphics.Gdi.DEVMODEW');
-      expect(devModeW, isNotNull);
-      expect(devModeW!.isUnicode, isTrue);
+      final devModeW = getTypeDef('Windows.Win32.Graphics.Gdi.DEVMODEW');
+      expect(devModeW.isUnicode, isTrue);
 
-      final shellFolder =
-          scope.findTypeDef('Windows.Win32.UI.Shell.IShellFolder');
-      expect(shellFolder, isNotNull);
-      expect(shellFolder!.isUnicode, isFalse);
+      final shellFolder = getTypeDef('Windows.Win32.UI.Shell.IShellFolder');
+      expect(shellFolder.isUnicode, isFalse);
 
-      final shellLinkW =
-          scope.findTypeDef('Windows.Win32.UI.Shell.IShellLinkW');
-      expect(shellLinkW, isNotNull);
-      expect(shellLinkW!.isUnicode, isTrue);
+      final shellLinkW = getTypeDef('Windows.Win32.UI.Shell.IShellLinkW');
+      expect(shellLinkW.isUnicode, isTrue);
     });
   });
 

@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('FieldProjection', () {
     testField('Windows.Wdk.Foundation.DEVICE_OBJECT', 'Queue', (projection) {
@@ -204,13 +203,8 @@ void testField(
   void Function(FieldProjection) projection,
 ) {
   test('$structName.$fieldName', () {
-    final typeDef = MetadataStore.getMetadataForType(structName);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$structName` type is not found in the metadata.',
-    );
-    final field = typeDef!.findField(fieldName);
+    final typeDef = getTypeDef(structName);
+    final field = typeDef.findField(fieldName);
     expect(
       field,
       isNotNull,

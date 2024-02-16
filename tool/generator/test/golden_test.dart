@@ -12,11 +12,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import 'helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('Golden testing', () {
     group('function', () {
@@ -69,14 +68,9 @@ void compareGolden(String fullyQualifiedType, String fileName, String content) {
 @isTest
 void testComInterfaceGolden(String interfaceName) {
   test(interfaceName, () {
-    final typeDef = MetadataStore.getMetadataForType(interfaceName);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$interfaceName` type is not found in the metadata.',
-    );
+    final typeDef = getTypeDef(interfaceName);
     final comTypesToGenerate = loadMap('com_types.json');
-    final projection = ComInterfaceProjection(typeDef!,
+    final projection = ComInterfaceProjection(typeDef,
         comment: comTypesToGenerate[interfaceName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
@@ -90,13 +84,8 @@ void testComInterfaceGolden(String interfaceName) {
 @isTest
 void testFunctionGolden(String parent, String functionName) {
   test('$parent.$functionName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(functionName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(functionName);
     expect(
       method,
       isNotNull,
@@ -115,15 +104,10 @@ void testFunctionGolden(String parent, String functionName) {
 @isTest
 void testStructGolden(String structName) {
   test(structName, () {
-    final typeDef = MetadataStore.getMetadataForType(structName);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$structName` type is not found in the metadata.',
-    );
+    final typeDef = getTypeDef(structName);
     final structsToGenerate = loadMap('win32_structs.json');
-    final projection = StructProjection(typeDef!,
-        comment: structsToGenerate[structName] ?? '');
+    final projection =
+        StructProjection(typeDef, comment: structsToGenerate[structName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
       typeDef.name,

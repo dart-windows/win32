@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('TypeProjection', () {
     testMethodParameterType('Windows.Wdk.Foundation.Apis', 'NtQueryObject',
@@ -448,13 +447,8 @@ void testMethodParameterType(
   void Function(TypeProjection) projection,
 ) {
   test('$parent.$methodName.$parameterName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(methodName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(methodName);
     expect(
       method,
       isNotNull,
@@ -479,13 +473,8 @@ void testMethodReturnType(
   void Function(TypeProjection) projection,
 ) {
   test('$parent.$methodName return type', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(methodName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(methodName);
     expect(
       method,
       isNotNull,
@@ -502,13 +491,8 @@ void testStructFieldType(
   void Function(TypeProjection) projection,
 ) {
   test('$struct.$fieldName', () {
-    final typeDef = MetadataStore.getMetadataForType(struct);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$struct` type is not found in the metadata.',
-    );
-    final field = typeDef!.findField(fieldName);
+    final typeDef = getTypeDef(struct);
+    final field = typeDef.findField(fieldName);
     expect(
       field,
       isNotNull,

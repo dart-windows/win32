@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('ComGetPropertyProjection', () {
     testGetProperty(
@@ -346,13 +345,8 @@ if (FAILED(hr)) throw WindowsException(hr);
 void testGetProperty(String parent, String propertyName,
     void Function(ComGetPropertyProjection) projection) {
   test('$parent.$propertyName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(propertyName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(propertyName);
     expect(
       method,
       isNotNull,
@@ -366,13 +360,8 @@ void testGetProperty(String parent, String propertyName,
 void testSetProperty(String parent, String propertyName,
     void Function(ComSetPropertyProjection) projection) {
   test('$parent.$propertyName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(propertyName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(propertyName);
     expect(
       method,
       isNotNull,

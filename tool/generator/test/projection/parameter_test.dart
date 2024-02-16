@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('ParameterProjection', () {
     testParameter(
@@ -153,13 +152,8 @@ void testParameter(
   void Function(ParameterProjection) projection,
 ) {
   test('$parent.$methodName.$parameterName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(methodName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(methodName);
     expect(
       method,
       isNotNull,

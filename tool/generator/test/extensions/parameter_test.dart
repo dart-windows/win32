@@ -8,20 +8,16 @@ import 'package:generator/generator.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
-void main() {
-  late Scope scope;
+import '../helpers.dart';
 
-  setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+void main() {
+  setUpAll(loadMetadata);
 
   group('Parameter', () {
     test('isReserved', () {
-      final apis = scope.findTypeDef('Windows.Win32.System.Com.Apis');
-      expect(apis, isNotNull);
+      final apis = getTypeDef('Windows.Win32.System.Com.Apis');
 
-      final coInitEx = apis!.findMethod('CoInitializeEx');
+      final coInitEx = apis.findMethod('CoInitializeEx');
       expect(coInitEx, isNotNull);
 
       final pvReserved = coInitEx!.parameters.first;

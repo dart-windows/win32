@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('ComMethodProjection', () {
     testMethod('Windows.Win32.Media.Speech.ISpVoice', 'Speak', (projection) {
@@ -158,13 +157,8 @@ void main() {
 void testMethod(String parent, String methodName,
     void Function(ComMethodProjection) projection) {
   test('$parent.$methodName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(methodName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(methodName);
     expect(
       method,
       isNotNull,

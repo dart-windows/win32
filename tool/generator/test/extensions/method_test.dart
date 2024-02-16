@@ -8,21 +8,17 @@ import 'package:generator/generator.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
-void main() {
-  late Scope scope;
+import '../helpers.dart';
 
-  setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+void main() {
+  setUpAll(loadMetadata);
 
   group('Method', () {
     test('canBeProjectedAsGetter', () {
-      final services = scope
-          .findTypeDef('Windows.Win32.Devices.Enumeration.Pnp.IUPnPServices');
-      expect(services, isNotNull);
+      final services =
+          getTypeDef('Windows.Win32.Devices.Enumeration.Pnp.IUPnPServices');
 
-      final method1 = services!.findMethod('get_Count');
+      final method1 = services.findMethod('get_Count');
       expect(method1, isNotNull);
       expect(method1!.canBeProjectedAsGetter, isTrue);
 
@@ -32,11 +28,10 @@ void main() {
     });
 
     test('canBeProjectedAsSetter', () {
-      final container = scope.findTypeDef(
-          'Windows.Win32.Media.DirectShow.Tv.ITuningSpaceContainer');
-      expect(container, isNotNull);
+      final container =
+          getTypeDef('Windows.Win32.Media.DirectShow.Tv.ITuningSpaceContainer');
 
-      final method1 = container!.findMethod('put_MaxCount');
+      final method1 = container.findMethod('put_MaxCount');
       expect(method1, isNotNull);
       expect(method1!.canBeProjectedAsSetter, isTrue);
 
@@ -46,11 +41,9 @@ void main() {
     });
 
     test('nameWithoutEncoding', () {
-      final apis1 =
-          scope.findTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
-      expect(apis1, isNotNull);
+      final apis1 = getTypeDef('Windows.Win32.UI.WindowsAndMessaging.Apis');
 
-      final method1 = apis1!.findMethod('EndMenu');
+      final method1 = apis1.findMethod('EndMenu');
       expect(method1, isNotNull);
       expect(method1!.nameWithoutEncoding, equals('EndMenu'));
 
@@ -62,33 +55,27 @@ void main() {
       expect(method3, isNotNull);
       expect(method3!.nameWithoutEncoding, equals('GetClassName'));
 
-      final apis2 = scope.findTypeDef('Windows.Win32.UI.Shell.Apis');
-      expect(apis2, isNotNull);
+      final apis2 = getTypeDef('Windows.Win32.UI.Shell.Apis');
 
-      final method4 = apis2!.findMethod('CommandLineToArgvW');
+      final method4 = apis2.findMethod('CommandLineToArgvW');
       expect(method4, isNotNull);
       expect(method4!.nameWithoutEncoding, equals('CommandLineToArgv'));
     });
 
     test('uniqueName', () {
-      final ipmTaskInfo = scope.findTypeDef(
+      final ipmTaskInfo = getTypeDef(
           'Windows.Win32.System.ApplicationInstallationAndServicing.IPMTaskInfo');
-      expect(ipmTaskInfo, isNotNull);
-      final runtimeType = ipmTaskInfo!.findMethod('get_RuntimeType');
+      final runtimeType = ipmTaskInfo.findMethod('get_RuntimeType');
       expect(runtimeType, isNotNull);
       expect(runtimeType!.uniqueName, equals('get_RuntimeType_'));
 
-      final inkStrokes =
-          scope.findTypeDef('Windows.Win32.UI.TabletPC.IInkStrokes');
-      expect(inkStrokes, isNotNull);
-      final toString1 = inkStrokes!.findMethod('ToString');
+      final inkStrokes = getTypeDef('Windows.Win32.UI.TabletPC.IInkStrokes');
+      final toString1 = inkStrokes.findMethod('ToString');
       expect(toString1, isNotNull);
       expect(toString1!.uniqueName, equals('ToUtf16String'));
 
-      final ihtmlDialog =
-          scope.findTypeDef('Windows.Win32.Web.MsHtml.IHTMLDialog');
-      expect(ihtmlDialog, isNotNull);
-      final toString2 = ihtmlDialog!.findMethod('toString');
+      final ihtmlDialog = getTypeDef('Windows.Win32.Web.MsHtml.IHTMLDialog');
+      final toString2 = ihtmlDialog.findMethod('toString');
       expect(toString2, isNotNull);
       expect(toString2!.uniqueName, equals('toUtf16String'));
     });

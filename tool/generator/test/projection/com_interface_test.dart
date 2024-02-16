@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('ComInterfaceProjection', () {
     testInterface(
@@ -241,12 +240,7 @@ base class IInspectableVtbl extends Struct {
 void testInterface(
     String interfaceName, void Function(ComInterfaceProjection) projection) {
   test(interfaceName, () {
-    final typeDef = MetadataStore.getMetadataForType(interfaceName);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$interfaceName` type is not found in the metadata.',
-    );
-    projection(ComInterfaceProjection(typeDef!));
+    final typeDef = getTypeDef(interfaceName);
+    projection(ComInterfaceProjection(typeDef));
   });
 }

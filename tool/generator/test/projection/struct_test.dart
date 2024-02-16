@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('StructProjection', () {
     testStruct('Windows.Wdk.Foundation.DRIVER_EXTENSION', (projection) {
@@ -176,12 +175,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
 @isTest
 void testStruct(String structName, void Function(StructProjection) projection) {
   test(structName, () {
-    final typeDef = MetadataStore.getMetadataForType(structName);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$structName` type is not found in the metadata.',
-    );
-    projection(StructProjection(typeDef!));
+    final typeDef = getTypeDef(structName);
+    projection(StructProjection(typeDef));
   });
 }

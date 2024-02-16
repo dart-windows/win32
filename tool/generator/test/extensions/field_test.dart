@@ -8,21 +8,17 @@ import 'package:generator/generator.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
-void main() {
-  late Scope scope;
+import '../helpers.dart';
 
-  setUpAll(() async {
-    scope =
-        await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+void main() {
+  setUpAll(loadMetadata);
 
   group('Field', () {
     test('arrayUpperBound', () {
-      final queryService = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
-      expect(queryService, isNotNull);
+      final queryService =
+          getTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
 
-      final uuids = queryService!.findField('uuids');
+      final uuids = queryService.findField('uuids');
       expect(uuids, isNotNull);
       expect(uuids!.arrayUpperBound, equals(12));
 
@@ -36,11 +32,9 @@ void main() {
     });
 
     test('instanceName', () {
-      final charInfo =
-          scope.findTypeDef('Windows.Win32.System.Console.CHAR_INFO');
-      expect(charInfo, isNotNull);
+      final charInfo = getTypeDef('Windows.Win32.System.Console.CHAR_INFO');
 
-      final char = charInfo!.findField('Char');
+      final char = charInfo.findField('Char');
       expect(char, isNotNull);
       expect(char!.instanceName, equals('Char'));
 
@@ -54,11 +48,10 @@ void main() {
     });
 
     test('isArray', () {
-      final queryService = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
-      expect(queryService, isNotNull);
+      final queryService =
+          getTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
 
-      final uuids = queryService!.findField('uuids');
+      final uuids = queryService.findField('uuids');
       expect(uuids, isNotNull);
       expect(uuids!.isArray, isTrue);
 
@@ -68,77 +61,71 @@ void main() {
     });
 
     test('isCharArray', () {
-      final deviceInfo = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_DEVICE_INFO');
-      expect(deviceInfo, isNotNull);
+      final deviceInfo =
+          getTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_DEVICE_INFO');
 
-      final szName = deviceInfo!.findField('szName');
+      final szName = deviceInfo.findField('szName');
       expect(szName, isNotNull);
       expect(szName!.isCharArray, isTrue);
 
-      final queryService = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
+      final queryService =
+          getTypeDef('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE');
       expect(queryService, isNotNull);
 
-      final uuids = queryService!.findField('uuids');
+      final uuids = queryService.findField('uuids');
       expect(uuids, isNotNull);
       expect(uuids!.isCharArray, isFalse);
     });
 
     test('isFlexibleArray', () {
-      final detailData = scope.findTypeDef(
+      final detailData = getTypeDef(
           'Windows.Win32.Devices.DeviceAndDriverInstallation.SP_DEVICE_INTERFACE_DETAIL_DATA_W');
-      expect(detailData, isNotNull);
 
-      final devicePath = detailData!.findField('DevicePath');
+      final devicePath = detailData.findField('DevicePath');
       expect(devicePath, isNotNull);
       expect(devicePath!.isFlexibleArray, isTrue);
 
       final designVector =
-          scope.findTypeDef('Windows.Win32.Graphics.Gdi.DESIGNVECTOR');
+          getTypeDef('Windows.Win32.Graphics.Gdi.DESIGNVECTOR');
       expect(designVector, isNotNull);
 
-      final dvValues = designVector!.findField('dvValues');
+      final dvValues = designVector.findField('dvValues');
       expect(dvValues, isNotNull);
       expect(dvValues!.isFlexibleArray, isFalse);
     });
 
     test('isNested', () {
-      final bluetoothAddress = scope
-          .findTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
-      expect(bluetoothAddress, isNotNull);
+      final bluetoothAddress =
+          getTypeDef('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS');
 
-      final anonymous = bluetoothAddress!.findField('Anonymous');
+      final anonymous = bluetoothAddress.findField('Anonymous');
       expect(anonymous, isNotNull);
       expect(anonymous!.isNested, isTrue);
     });
 
     test('isNestedArray', () {
-      final wlanRawDataList = scope.findTypeDef(
-          'Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST');
-      expect(wlanRawDataList, isNotNull);
+      final wlanRawDataList =
+          getTypeDef('Windows.Win32.NetworkManagement.WiFi.WLAN_RAW_DATA_LIST');
 
-      final dataList = wlanRawDataList!.findField('DataList');
+      final dataList = wlanRawDataList.findField('DataList');
       expect(dataList, isNotNull);
       expect(dataList!.isNestedArray, isTrue);
     });
 
     test('isNestedPointer', () {
-      final dhcpAllOptions = scope
-          .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
-      expect(dhcpAllOptions, isNotNull);
+      final dhcpAllOptions =
+          getTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
 
-      final vendorOptions = dhcpAllOptions!.findField('VendorOptions');
+      final vendorOptions = dhcpAllOptions.findField('VendorOptions');
       expect(vendorOptions, isNotNull);
       expect(vendorOptions!.isNestedPointer, isTrue);
     });
 
     test('isPointer', () {
-      final dhcpAllOptions = scope
-          .findTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
-      expect(dhcpAllOptions, isNotNull);
+      final dhcpAllOptions =
+          getTypeDef('Windows.Win32.NetworkManagement.Dhcp.DHCP_ALL_OPTIONS');
 
-      final vendorOptions = dhcpAllOptions!.findField('VendorOptions');
+      final vendorOptions = dhcpAllOptions.findField('VendorOptions');
       expect(vendorOptions, isNotNull);
       expect(vendorOptions!.isPointer, isTrue);
     });

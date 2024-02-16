@@ -9,11 +9,10 @@ import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
+import '../helpers.dart';
+
 void main() {
-  setUpAll(() async {
-    await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
-    await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  });
+  setUpAll(loadMetadata);
 
   group('FunctionProjection', () {
     testFunction('Windows.Wdk.Foundation.Apis', 'NtQueryObject', (projection) {
@@ -250,13 +249,8 @@ void main() {
 void testFunction(String parent, String functionName,
     void Function(FunctionProjection) projection) {
   test('$parent.$functionName', () {
-    final typeDef = MetadataStore.getMetadataForType(parent);
-    expect(
-      typeDef,
-      isNotNull,
-      reason: '`$parent` type is not found in the metadata.',
-    );
-    final method = typeDef!.findMethod(functionName);
+    final typeDef = getTypeDef(parent);
+    final method = typeDef.findMethod(functionName);
     expect(
       method,
       isNotNull,
