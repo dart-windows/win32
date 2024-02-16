@@ -79,9 +79,7 @@ class StructProjection {
 
     // If the parent field is found, then generate property accessors for the
     // nested struct.
-    if (parentField != null) {
-      return _propertyAccessors ??= typeDef.propertyAccessors;
-    }
+    if (parentField != null) return typeDef.propertyAccessors;
 
     // Otherwise, return an empty string.
     return '';
