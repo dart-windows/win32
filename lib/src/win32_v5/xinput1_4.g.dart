@@ -47,9 +47,9 @@ final _XInputEnable = _xinput1_4.lookupFunction<Void Function(BOOL enable),
 /// {@category xinput}
 int XInputGetAudioDeviceIds(
         int dwUserIndex,
-        PWSTR? pRenderDeviceId,
+        Pointer<Utf16>? pRenderDeviceId,
         Pointer<Uint32>? pRenderCount,
-        PWSTR? pCaptureDeviceId,
+        Pointer<Utf16>? pCaptureDeviceId,
         Pointer<Uint32>? pCaptureCount) =>
     _XInputGetAudioDeviceIds(
         dwUserIndex,
@@ -61,15 +61,15 @@ int XInputGetAudioDeviceIds(
 final _XInputGetAudioDeviceIds = _xinput1_4.lookupFunction<
     Uint32 Function(
         Uint32 dwUserIndex,
-        PWSTR pRenderDeviceId,
+        Pointer<Utf16> pRenderDeviceId,
         Pointer<Uint32> pRenderCount,
-        PWSTR pCaptureDeviceId,
+        Pointer<Utf16> pCaptureDeviceId,
         Pointer<Uint32> pCaptureCount),
     int Function(
         int dwUserIndex,
-        PWSTR pRenderDeviceId,
+        Pointer<Utf16> pRenderDeviceId,
         Pointer<Uint32> pRenderCount,
-        PWSTR pCaptureDeviceId,
+        Pointer<Utf16> pCaptureDeviceId,
         Pointer<Uint32> pCaptureCount)>('XInputGetAudioDeviceIds');
 
 /// Retrieves the battery type and charge status of a wireless controller.

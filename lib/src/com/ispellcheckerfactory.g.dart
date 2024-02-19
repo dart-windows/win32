@@ -48,14 +48,15 @@ class ISpellCheckerFactory extends IUnknown {
     }
   }
 
-  int isSupported(PWSTR languageTag, Pointer<BOOL> value) =>
+  int isSupported(Pointer<Utf16> languageTag, Pointer<BOOL> value) =>
       _vtable.IsSupported.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR languageTag,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<BOOL> value)>()(ptr, languageTag, value);
 
-  int createSpellChecker(PWSTR languageTag, Pointer<VTablePointer> value) =>
+  int createSpellChecker(
+          Pointer<Utf16> languageTag, Pointer<VTablePointer> value) =>
       _vtable.CreateSpellChecker.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR languageTag,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<VTablePointer> value)>()(ptr, languageTag, value);
 }
 
@@ -69,11 +70,11 @@ base class ISpellCheckerFactoryVtbl extends Struct {
       get_SupportedLanguages;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR languageTag,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<BOOL> value)>> IsSupported;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR languageTag,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<VTablePointer> value)>> CreateSpellChecker;
 }
 

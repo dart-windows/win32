@@ -30,7 +30,7 @@ void main(List<String> args) {
       createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));
 
   final supportedPtr = calloc<BOOL>();
-  final languageTagPtr = Platform.localeName.toNativeUtf16();
+  final languageTagPtr = PWSTR.fromString(Platform.localeName);
 
   spellCheckerFactory.isSupported(languageTagPtr, supportedPtr);
 
@@ -48,7 +48,7 @@ void main(List<String> args) {
     spellChecker.release();
 
     final errorsPtr = calloc<VTablePointer>();
-    final textPtr = text.toNativeUtf16();
+    final textPtr = PWSTR.fromString(text);
     spellChecker2.check(textPtr, errorsPtr);
 
     final errors = IEnumSpellingError(errorsPtr.value);
@@ -86,13 +86,14 @@ void main(List<String> args) {
         case CORRECTIVE_ACTION.GET_SUGGESTIONS:
           print(' - suggestions:');
 
-          final wordPtr = word.toNativeUtf16();
+          final wordPtr = PWSTR.fromString(word);
           final suggestionsPtr = calloc<VTablePointer>();
           spellChecker2.suggest(wordPtr, suggestionsPtr);
+          wordPtr.free();
           final suggestions = IEnumString(suggestionsPtr.value);
           free(suggestionsPtr);
 
-          final suggestionPtr = calloc<PWSTR>();
+          final suggestionPtr = calloc<Pointer<Utf16>>();
           final suggestionResultPtr = calloc<ULONG>();
 
           while (
@@ -110,11 +111,11 @@ void main(List<String> args) {
 
     free(errorPtr);
     errors.release();
-    free(textPtr);
+    textPtr.free();
     spellChecker2.release();
   }
 
-  free(languageTagPtr);
+  languageTagPtr.free();
   free(supportedPtr);
   spellCheckerFactory.release();
   CoUninitialize();

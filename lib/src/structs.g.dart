@@ -65,7 +65,7 @@ base class ACTCTX extends Struct {
   @Uint32()
   external int dwFlags;
 
-  external PWSTR lpSource;
+  external Pointer<Utf16> lpSource;
 
   @Uint16()
   external int wProcessorArchitecture;
@@ -73,11 +73,11 @@ base class ACTCTX extends Struct {
   @Uint16()
   external int wLangId;
 
-  external PWSTR lpAssemblyDirectory;
+  external Pointer<Utf16> lpAssemblyDirectory;
 
-  external PWSTR lpResourceName;
+  external Pointer<Utf16> lpResourceName;
 
-  external PWSTR lpApplicationName;
+  external Pointer<Utf16> lpApplicationName;
 
   @IntPtr()
   external int hModule;
@@ -88,7 +88,7 @@ base class ACTCTX extends Struct {
 ///
 /// {@category struct}
 base class ADDJOB_INFO_1 extends Struct {
-  external PWSTR Path;
+  external Pointer<Utf16> Path;
 
   @Uint32()
   external int JobId;
@@ -114,7 +114,7 @@ base class ADDRINFO extends Struct {
   @IntPtr()
   external int ai_addrlen;
 
-  external PWSTR ai_canonname;
+  external Pointer<Utf16> ai_canonname;
 
   external Pointer<SOCKADDR> ai_addr;
 
@@ -192,7 +192,7 @@ base class ASSEMBLYMETADATA extends Struct {
   @Uint16()
   external int usRevisionNumber;
 
-  external PWSTR szLocale;
+  external Pointer<Utf16> szLocale;
 
   @Uint32()
   external int cbLocale;
@@ -487,7 +487,7 @@ base class BLUETOOTH_COD_PAIRS extends Struct {
   @Uint32()
   external int ulCODMask;
 
-  external PWSTR pcszDescription;
+  external Pointer<Utf16> pcszDescription;
 }
 
 /// The BLUETOOTH_DEVICE_INFO structure provides information about a Bluetooth
@@ -696,7 +696,7 @@ base class BLUETOOTH_SELECT_DEVICE_PARAMS extends Struct {
 
   external Pointer<BLUETOOTH_COD_PAIRS> prgClassOfDevices;
 
-  external PWSTR pszInfo;
+  external Pointer<Utf16> pszInfo;
 
   @IntPtr()
   external int hwndParent;
@@ -751,9 +751,6 @@ base class BSMINFO extends Struct {
 
   external LUID luid;
 }
-
-/// {@category struct}
-typedef BSTR = Pointer<Utf16>;
 
 /// {@category struct}
 base class BSTRBLOB extends Struct {
@@ -1198,7 +1195,7 @@ base class CABSTR extends Struct {
   @Uint32()
   external int cElems;
 
-  external Pointer<BSTR> pElems;
+  external Pointer<Pointer<Utf16>> pElems;
 }
 
 /// {@category struct}
@@ -1214,7 +1211,7 @@ base class CAC extends Struct {
   @Uint32()
   external int cElems;
 
-  external PSTR pElems;
+  external Pointer<Utf8> pElems;
 }
 
 /// Describes the cache attributes.
@@ -1322,7 +1319,7 @@ base class CALPSTR extends Struct {
   @Uint32()
   external int cElems;
 
-  external Pointer<PSTR> pElems;
+  external Pointer<Pointer<Utf8>> pElems;
 }
 
 /// {@category struct}
@@ -1330,7 +1327,7 @@ base class CALPWSTR extends Struct {
   @Uint32()
   external int cElems;
 
-  external Pointer<PWSTR> pElems;
+  external Pointer<Pointer<Utf16>> pElems;
 }
 
 /// {@category struct}
@@ -1432,7 +1429,7 @@ base class CERT_CONTEXT extends Struct {
 ///
 /// {@category struct}
 base class CERT_EXTENSION extends Struct {
-  external PSTR pszObjId;
+  external Pointer<Utf8> pszObjId;
 
   @Int32()
   external int fCritical;
@@ -1551,7 +1548,7 @@ base class CHOOSECOLOR extends Struct {
 
   external Pointer<NativeFunction<LPCCHOOKPROC>> lpfnHook;
 
-  external PWSTR lpTemplateName;
+  external Pointer<Utf16> lpTemplateName;
 }
 
 /// Contains information that the ChooseFont function uses to initialize the
@@ -1585,12 +1582,12 @@ base class CHOOSEFONT extends Struct {
 
   external Pointer<NativeFunction<LPCFHOOKPROC>> lpfnHook;
 
-  external PWSTR lpTemplateName;
+  external Pointer<Utf16> lpTemplateName;
 
   @IntPtr()
   external int hInstance;
 
-  external PWSTR lpszStyle;
+  external Pointer<Utf16> lpszStyle;
 
   @Uint16()
   external int nFontType;
@@ -1678,9 +1675,9 @@ typedef COLORREF = Uint32;
 ///
 /// {@category struct}
 base class COMDLG_FILTERSPEC extends Struct {
-  external PWSTR pszName;
+  external Pointer<Utf16> pszName;
 
-  external PWSTR pszSpec;
+  external Pointer<Utf16> pszSpec;
 }
 
 /// Contains information about the configuration state of a communications
@@ -1947,9 +1944,9 @@ base class CREATESTRUCT extends Struct {
   @Int32()
   external int style;
 
-  external PWSTR lpszName;
+  external Pointer<Utf16> lpszName;
 
-  external PWSTR lpszClass;
+  external Pointer<Utf16> lpszClass;
 
   @Uint32()
   external int dwExStyle;
@@ -1965,9 +1962,9 @@ base class CREDENTIAL extends Struct {
   @Uint32()
   external int Type;
 
-  external PWSTR TargetName;
+  external Pointer<Utf16> TargetName;
 
-  external PWSTR Comment;
+  external Pointer<Utf16> Comment;
 
   external FILETIME LastWritten;
 
@@ -1984,9 +1981,9 @@ base class CREDENTIAL extends Struct {
 
   external Pointer<CREDENTIAL_ATTRIBUTE> Attributes;
 
-  external PWSTR TargetAlias;
+  external Pointer<Utf16> TargetAlias;
 
-  external PWSTR UserName;
+  external Pointer<Utf16> UserName;
 }
 
 /// The CREDENTIAL_ATTRIBUTE structure contains an application-defined attribute
@@ -1995,7 +1992,7 @@ base class CREDENTIAL extends Struct {
 ///
 /// {@category struct}
 base class CREDENTIAL_ATTRIBUTE extends Struct {
-  external PWSTR Keyword;
+  external Pointer<Utf16> Keyword;
 
   @Uint32()
   external int Flags;
@@ -2021,7 +2018,7 @@ base class CRYPTPROTECT_PROMPTSTRUCT extends Struct {
   @IntPtr()
   external int hwndApp;
 
-  external PWSTR szPrompt;
+  external Pointer<Utf16> szPrompt;
 }
 
 /// The CRYPT_ALGORITHM_IDENTIFIER structure specifies an algorithm used to
@@ -2031,7 +2028,7 @@ base class CRYPTPROTECT_PROMPTSTRUCT extends Struct {
 ///
 /// {@category struct}
 base class CRYPT_ALGORITHM_IDENTIFIER extends Struct {
-  external PSTR pszObjId;
+  external Pointer<Utf8> pszObjId;
 
   external CRYPT_INTEGER_BLOB Parameters;
 }
@@ -3109,11 +3106,11 @@ base class DLLVERSIONINFO extends Struct {
 ///
 /// {@category struct}
 base class DOC_INFO_1 extends Struct {
-  external PWSTR pDocName;
+  external Pointer<Utf16> pDocName;
 
-  external PWSTR pOutputFile;
+  external Pointer<Utf16> pOutputFile;
 
-  external PWSTR pDatatype;
+  external Pointer<Utf16> pDatatype;
 }
 
 /// The DOT11_AUTH_CIPHER_PAIR structure defines a pair of 802.11 authentication
@@ -3217,23 +3214,23 @@ base class DSREG_JOIN_INFO extends Struct {
 
   external Pointer<CERT_CONTEXT> pJoinCertificate;
 
-  external PWSTR pszDeviceId;
+  external Pointer<Utf16> pszDeviceId;
 
-  external PWSTR pszIdpDomain;
+  external Pointer<Utf16> pszIdpDomain;
 
-  external PWSTR pszTenantId;
+  external Pointer<Utf16> pszTenantId;
 
-  external PWSTR pszJoinUserEmail;
+  external Pointer<Utf16> pszJoinUserEmail;
 
-  external PWSTR pszTenantDisplayName;
+  external Pointer<Utf16> pszTenantDisplayName;
 
-  external PWSTR pszMdmEnrollmentUrl;
+  external Pointer<Utf16> pszMdmEnrollmentUrl;
 
-  external PWSTR pszMdmTermsOfUseUrl;
+  external Pointer<Utf16> pszMdmTermsOfUseUrl;
 
-  external PWSTR pszMdmComplianceUrl;
+  external Pointer<Utf16> pszMdmComplianceUrl;
 
-  external PWSTR pszUserSettingSyncUrl;
+  external Pointer<Utf16> pszUserSettingSyncUrl;
 
   external Pointer<DSREG_USER_INFO> pUserInfo;
 }
@@ -3243,11 +3240,11 @@ base class DSREG_JOIN_INFO extends Struct {
 ///
 /// {@category struct}
 base class DSREG_USER_INFO extends Struct {
-  external PWSTR pszUserEmail;
+  external Pointer<Utf16> pszUserEmail;
 
-  external PWSTR pszUserKeyId;
+  external Pointer<Utf16> pszUserKeyId;
 
-  external PWSTR pszUserKeyName;
+  external Pointer<Utf16> pszUserKeyName;
 }
 
 /// Defines the options for the DrawThemeBackgroundEx function.
@@ -3472,9 +3469,9 @@ base class ENUM_PAGE_FILE_INFORMATION extends Struct {
 ///
 /// {@category struct}
 base class ENUM_SERVICE_STATUS extends Struct {
-  external PWSTR lpServiceName;
+  external Pointer<Utf16> lpServiceName;
 
-  external PWSTR lpDisplayName;
+  external Pointer<Utf16> lpDisplayName;
 
   external SERVICE_STATUS ServiceStatus;
 }
@@ -3485,9 +3482,9 @@ base class ENUM_SERVICE_STATUS extends Struct {
 ///
 /// {@category struct}
 base class ENUM_SERVICE_STATUS_PROCESS extends Struct {
-  external PWSTR lpServiceName;
+  external Pointer<Utf16> lpServiceName;
 
-  external PWSTR lpDisplayName;
+  external Pointer<Utf16> lpDisplayName;
 
   external SERVICE_STATUS_PROCESS ServiceStatusProcess;
 }
@@ -3525,11 +3522,11 @@ base class EXCEPINFO extends Struct {
   // ignore: unused_field
   external int _wReserved;
 
-  external BSTR bstrSource;
+  external Pointer<Utf16> bstrSource;
 
-  external BSTR bstrDescription;
+  external Pointer<Utf16> bstrDescription;
 
-  external BSTR bstrHelpFile;
+  external Pointer<Utf16> bstrHelpFile;
 
   @Uint32()
   external int dwHelpContext;
@@ -3548,9 +3545,9 @@ base class EXCEPINFO extends Struct {
 ///
 /// {@category struct}
 base class ExtendedProperty extends Struct {
-  external BSTR PropertyName;
+  external Pointer<Utf16> PropertyName;
 
-  external BSTR PropertyValue;
+  external Pointer<Utf16> PropertyValue;
 }
 
 /// The fd_set structure is used by various Windows Sockets functions and
@@ -3608,9 +3605,9 @@ base class FINDREPLACE extends Struct {
   @Uint32()
   external int Flags;
 
-  external PWSTR lpstrFindWhat;
+  external Pointer<Utf16> lpstrFindWhat;
 
-  external PWSTR lpstrReplaceWith;
+  external Pointer<Utf16> lpstrReplaceWith;
 
   @Uint16()
   external int wFindWhatLen;
@@ -3623,7 +3620,7 @@ base class FINDREPLACE extends Struct {
 
   external Pointer<NativeFunction<LPFRHOOKPROC>> lpfnHook;
 
-  external PWSTR lpTemplateName;
+  external Pointer<Utf16> lpTemplateName;
 }
 
 /// Describes a focus event in a console INPUT_RECORD structure. These events
@@ -3884,7 +3881,7 @@ typedef HMONITOR = IntPtr;
 ///
 /// {@category struct}
 base class HOSTENT extends Struct {
-  external PSTR h_name;
+  external Pointer<Utf8> h_name;
 
   external Pointer<Pointer<Int8>> h_aliases;
 
@@ -4342,7 +4339,7 @@ base class IP_ADAPTER_ADDRESSES_LH extends Struct {
 
   external Pointer<IP_ADAPTER_ADDRESSES_LH> Next;
 
-  external PSTR AdapterName;
+  external Pointer<Utf8> AdapterName;
 
   external Pointer<IP_ADAPTER_UNICAST_ADDRESS_LH> FirstUnicastAddress;
 
@@ -4352,11 +4349,11 @@ base class IP_ADAPTER_ADDRESSES_LH extends Struct {
 
   external Pointer<IP_ADAPTER_DNS_SERVER_ADDRESS_XP> FirstDnsServerAddress;
 
-  external PWSTR DnsSuffix;
+  external Pointer<Utf16> DnsSuffix;
 
-  external PWSTR Description;
+  external Pointer<Utf16> Description;
 
-  external PWSTR FriendlyName;
+  external Pointer<Utf16> FriendlyName;
 
   @Array(8)
   external Array<Uint8> PhysicalAddress;
@@ -4974,7 +4971,7 @@ base class JOBOBJECT_IO_RATE_CONTROL_INFORMATION extends Struct {
   @Int64()
   external int ReservationIops;
 
-  external PWSTR VolumeName;
+  external Pointer<Utf16> VolumeName;
 
   @Uint32()
   external int BaseIoSize;
@@ -4993,17 +4990,17 @@ base class JOB_INFO_1 extends Struct {
   @Uint32()
   external int JobId;
 
-  external PWSTR pPrinterName;
+  external Pointer<Utf16> pPrinterName;
 
-  external PWSTR pMachineName;
+  external Pointer<Utf16> pMachineName;
 
-  external PWSTR pUserName;
+  external Pointer<Utf16> pUserName;
 
-  external PWSTR pDocument;
+  external Pointer<Utf16> pDocument;
 
-  external PWSTR pDatatype;
+  external Pointer<Utf16> pDatatype;
 
-  external PWSTR pStatus;
+  external Pointer<Utf16> pStatus;
 
   @Uint32()
   external int Status;
@@ -5109,23 +5106,23 @@ base class KNOWNFOLDER_DEFINITION extends Struct {
   @Int32()
   external int category;
 
-  external PWSTR pszName;
+  external Pointer<Utf16> pszName;
 
-  external PWSTR pszDescription;
+  external Pointer<Utf16> pszDescription;
 
   external GUID fidParent;
 
-  external PWSTR pszRelativePath;
+  external Pointer<Utf16> pszRelativePath;
 
-  external PWSTR pszParsingName;
+  external Pointer<Utf16> pszParsingName;
 
-  external PWSTR pszTooltip;
+  external Pointer<Utf16> pszTooltip;
 
-  external PWSTR pszLocalizedName;
+  external Pointer<Utf16> pszLocalizedName;
 
-  external PWSTR pszIcon;
+  external Pointer<Utf16> pszIcon;
 
-  external PWSTR pszSecurity;
+  external Pointer<Utf16> pszSecurity;
 
   @Uint32()
   external int dwAttributes;
@@ -5350,11 +5347,11 @@ base class MCI_OPEN_PARMS extends Struct {
   @Uint32()
   external int wDeviceID;
 
-  external PWSTR lpstrDeviceType;
+  external Pointer<Utf16> lpstrDeviceType;
 
-  external PWSTR lpstrElementName;
+  external Pointer<Utf16> lpstrElementName;
 
-  external PWSTR lpstrAlias;
+  external Pointer<Utf16> lpstrAlias;
 }
 
 /// The MCI_PLAY_PARMS structure contains positioning information for the
@@ -5543,7 +5540,7 @@ base class MENUITEMINFO extends Struct {
   @IntPtr()
   external int dwItemData;
 
-  external PWSTR dwTypeData;
+  external Pointer<Utf16> dwTypeData;
 
   @Uint32()
   external int cch;
@@ -5629,7 +5626,7 @@ base class MIDIEVENT extends Struct {
 /// {@category struct}
 @Packed(1)
 base class MIDIHDR extends Struct {
-  external PSTR lpData;
+  external Pointer<Utf8> lpData;
 
   @Uint32()
   external int dwBufferLength;
@@ -6561,12 +6558,12 @@ base class OPENCARDNAME extends Struct {
   @IntPtr()
   external int hSCardContext;
 
-  external PWSTR lpstrGroupNames;
+  external Pointer<Utf16> lpstrGroupNames;
 
   @Uint32()
   external int nMaxGroupNames;
 
-  external PWSTR lpstrCardNames;
+  external Pointer<Utf16> lpstrCardNames;
 
   @Uint32()
   external int nMaxCardNames;
@@ -6576,17 +6573,17 @@ base class OPENCARDNAME extends Struct {
   @Uint32()
   external int cguidInterfaces;
 
-  external PWSTR lpstrRdr;
+  external Pointer<Utf16> lpstrRdr;
 
   @Uint32()
   external int nMaxRdr;
 
-  external PWSTR lpstrCard;
+  external Pointer<Utf16> lpstrCard;
 
   @Uint32()
   external int nMaxCard;
 
-  external PWSTR lpstrTitle;
+  external Pointer<Utf16> lpstrTitle;
 
   @Uint32()
   external int dwFlags;
@@ -6630,9 +6627,9 @@ base class OPENCARDNAME_EX extends Struct {
   @Uint32()
   external int dwFlags;
 
-  external PWSTR lpstrTitle;
+  external Pointer<Utf16> lpstrTitle;
 
-  external PWSTR lpstrSearchDesc;
+  external Pointer<Utf16> lpstrSearchDesc;
 
   @IntPtr()
   external int hIcon;
@@ -6649,12 +6646,12 @@ base class OPENCARDNAME_EX extends Struct {
   @Uint32()
   external int dwPreferredProtocols;
 
-  external PWSTR lpstrRdr;
+  external Pointer<Utf16> lpstrRdr;
 
   @Uint32()
   external int nMaxRdr;
 
-  external PWSTR lpstrCard;
+  external Pointer<Utf16> lpstrCard;
 
   @Uint32()
   external int nMaxCard;
@@ -6676,7 +6673,7 @@ base class OPENCARD_SEARCH_CRITERIA extends Struct {
   @Uint32()
   external int dwStructSize;
 
-  external PWSTR lpstrGroupNames;
+  external Pointer<Utf16> lpstrGroupNames;
 
   @Uint32()
   external int nMaxGroupNames;
@@ -6686,7 +6683,7 @@ base class OPENCARD_SEARCH_CRITERIA extends Struct {
   @Uint32()
   external int cguidInterfaces;
 
-  external PWSTR lpstrCardNames;
+  external Pointer<Utf16> lpstrCardNames;
 
   @Uint32()
   external int nMaxCardNames;
@@ -6722,9 +6719,9 @@ base class OPENFILENAME extends Struct {
   @IntPtr()
   external int hInstance;
 
-  external PWSTR lpstrFilter;
+  external Pointer<Utf16> lpstrFilter;
 
-  external PWSTR lpstrCustomFilter;
+  external Pointer<Utf16> lpstrCustomFilter;
 
   @Uint32()
   external int nMaxCustFilter;
@@ -6732,19 +6729,19 @@ base class OPENFILENAME extends Struct {
   @Uint32()
   external int nFilterIndex;
 
-  external PWSTR lpstrFile;
+  external Pointer<Utf16> lpstrFile;
 
   @Uint32()
   external int nMaxFile;
 
-  external PWSTR lpstrFileTitle;
+  external Pointer<Utf16> lpstrFileTitle;
 
   @Uint32()
   external int nMaxFileTitle;
 
-  external PWSTR lpstrInitialDir;
+  external Pointer<Utf16> lpstrInitialDir;
 
-  external PWSTR lpstrTitle;
+  external Pointer<Utf16> lpstrTitle;
 
   @Uint32()
   external int Flags;
@@ -6755,14 +6752,14 @@ base class OPENFILENAME extends Struct {
   @Uint16()
   external int nFileExtension;
 
-  external PWSTR lpstrDefExt;
+  external Pointer<Utf16> lpstrDefExt;
 
   @IntPtr()
   external int lCustData;
 
   external Pointer<NativeFunction<LPOFNHOOKPROC>> lpfnHook;
 
-  external PWSTR lpTemplateName;
+  external Pointer<Utf16> lpTemplateName;
 
   // ignore: unused_field
   external Pointer _pvReserved;
@@ -7241,7 +7238,7 @@ base class POLYTEXT extends Struct {
   @Uint32()
   external int n;
 
-  external PWSTR lpstr;
+  external Pointer<Utf16> lpstr;
 
   @Uint32()
   external int uiFlags;
@@ -7255,18 +7252,18 @@ base class POLYTEXT extends Struct {
 ///
 /// {@category struct}
 base class PORT_INFO_1 extends Struct {
-  external PWSTR pName;
+  external Pointer<Utf16> pName;
 }
 
 /// The PORT_INFO_2 structure identifies a supported printer port.
 ///
 /// {@category struct}
 base class PORT_INFO_2 extends Struct {
-  external PWSTR pPortName;
+  external Pointer<Utf16> pPortName;
 
-  external PWSTR pMonitorName;
+  external Pointer<Utf16> pMonitorName;
 
-  external PWSTR pDescription;
+  external Pointer<Utf16> pDescription;
 
   @Uint32()
   external int fPortType;
@@ -7294,7 +7291,7 @@ base class POWERBROADCAST_SETTING extends Struct {
 ///
 /// {@category struct}
 base class PRINTER_DEFAULTS extends Struct {
-  external PWSTR pDatatype;
+  external Pointer<Utf16> pDatatype;
 
   external Pointer<DEVMODE> pDevMode;
 
@@ -7309,40 +7306,40 @@ base class PRINTER_INFO_1 extends Struct {
   @Uint32()
   external int Flags;
 
-  external PWSTR pDescription;
+  external Pointer<Utf16> pDescription;
 
-  external PWSTR pName;
+  external Pointer<Utf16> pName;
 
-  external PWSTR pComment;
+  external Pointer<Utf16> pComment;
 }
 
 /// The PRINTER_INFO_2 structure specifies detailed printer information.
 ///
 /// {@category struct}
 base class PRINTER_INFO_2 extends Struct {
-  external PWSTR pServerName;
+  external Pointer<Utf16> pServerName;
 
-  external PWSTR pPrinterName;
+  external Pointer<Utf16> pPrinterName;
 
-  external PWSTR pShareName;
+  external Pointer<Utf16> pShareName;
 
-  external PWSTR pPortName;
+  external Pointer<Utf16> pPortName;
 
-  external PWSTR pDriverName;
+  external Pointer<Utf16> pDriverName;
 
-  external PWSTR pComment;
+  external Pointer<Utf16> pComment;
 
-  external PWSTR pLocation;
+  external Pointer<Utf16> pLocation;
 
   external Pointer<DEVMODE> pDevMode;
 
-  external PWSTR pSepFile;
+  external Pointer<Utf16> pSepFile;
 
-  external PWSTR pPrintProcessor;
+  external Pointer<Utf16> pPrintProcessor;
 
-  external PWSTR pDatatype;
+  external Pointer<Utf16> pDatatype;
 
-  external PWSTR pParameters;
+  external Pointer<Utf16> pParameters;
 
   external PSECURITY_DESCRIPTOR pSecurityDescriptor;
 
@@ -7386,9 +7383,9 @@ base class PRINTER_INFO_3 extends Struct {
 ///
 /// {@category struct}
 base class PRINTER_INFO_4 extends Struct {
-  external PWSTR pPrinterName;
+  external Pointer<Utf16> pPrinterName;
 
-  external PWSTR pServerName;
+  external Pointer<Utf16> pServerName;
 
   @Uint32()
   external int Attributes;
@@ -7398,9 +7395,9 @@ base class PRINTER_INFO_4 extends Struct {
 ///
 /// {@category struct}
 base class PRINTER_INFO_5 extends Struct {
-  external PWSTR pPrinterName;
+  external Pointer<Utf16> pPrinterName;
 
-  external PWSTR pPortName;
+  external Pointer<Utf16> pPortName;
 
   @Uint32()
   external int Attributes;
@@ -7644,15 +7641,15 @@ sealed class PROPSPEC_0 extends Union {
   @Uint32()
   external int propid;
 
-  external PWSTR lpwstr;
+  external Pointer<Utf16> lpwstr;
 }
 
 extension PROPSPEC_0_Extension on PROPSPEC {
   int get propid => this.Anonymous.propid;
   set propid(int value) => this.Anonymous.propid = value;
 
-  PWSTR get lpwstr => this.Anonymous.lpwstr;
-  set lpwstr(PWSTR value) => this.Anonymous.lpwstr = value;
+  Pointer<Utf16> get lpwstr => this.Anonymous.lpwstr;
+  set lpwstr(Pointer<Utf16> value) => this.Anonymous.lpwstr = value;
 }
 
 /// The PROPVARIANT structure is used in the ReadMultiple and WriteMultiple
@@ -7767,15 +7764,15 @@ sealed class PROPVARIANT_0_0_0 extends Union {
 
   external Pointer<CLIPDATA> pclipdata;
 
-  external BSTR bstrVal;
+  external Pointer<Utf16> bstrVal;
 
   external BSTRBLOB bstrblobVal;
 
   external BLOB blob;
 
-  external PSTR pszVal;
+  external Pointer<Utf8> pszVal;
 
-  external PWSTR pwszVal;
+  external Pointer<Utf16> pwszVal;
 
   external VTablePointer punkVal;
 
@@ -7833,7 +7830,7 @@ sealed class PROPVARIANT_0_0_0 extends Union {
 
   external CAPROPVARIANT capropvar;
 
-  external PSTR pcVal;
+  external Pointer<Utf8> pcVal;
 
   external Pointer<Uint8> pbVal;
 
@@ -7863,7 +7860,7 @@ sealed class PROPVARIANT_0_0_0 extends Union {
 
   external Pointer<Double> pdate;
 
-  external Pointer<BSTR> pbstrVal;
+  external Pointer<Pointer<Utf16>> pbstrVal;
 
   external Pointer<VTablePointer> ppunkVal;
 
@@ -7938,8 +7935,9 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
   set pclipdata(Pointer<CLIPDATA> value) =>
       this.Anonymous.Anonymous.Anonymous.pclipdata = value;
 
-  BSTR get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
-  set bstrVal(BSTR value) => this.Anonymous.Anonymous.Anonymous.bstrVal = value;
+  Pointer<Utf16> get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
+  set bstrVal(Pointer<Utf16> value) =>
+      this.Anonymous.Anonymous.Anonymous.bstrVal = value;
 
   BSTRBLOB get bstrblobVal => this.Anonymous.Anonymous.Anonymous.bstrblobVal;
   set bstrblobVal(BSTRBLOB value) =>
@@ -7948,11 +7946,12 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
   BLOB get blob => this.Anonymous.Anonymous.Anonymous.blob;
   set blob(BLOB value) => this.Anonymous.Anonymous.Anonymous.blob = value;
 
-  PSTR get pszVal => this.Anonymous.Anonymous.Anonymous.pszVal;
-  set pszVal(PSTR value) => this.Anonymous.Anonymous.Anonymous.pszVal = value;
+  Pointer<Utf8> get pszVal => this.Anonymous.Anonymous.Anonymous.pszVal;
+  set pszVal(Pointer<Utf8> value) =>
+      this.Anonymous.Anonymous.Anonymous.pszVal = value;
 
-  PWSTR get pwszVal => this.Anonymous.Anonymous.Anonymous.pwszVal;
-  set pwszVal(PWSTR value) =>
+  Pointer<Utf16> get pwszVal => this.Anonymous.Anonymous.Anonymous.pwszVal;
+  set pwszVal(Pointer<Utf16> value) =>
       this.Anonymous.Anonymous.Anonymous.pwszVal = value;
 
   VTablePointer get punkVal => this.Anonymous.Anonymous.Anonymous.punkVal;
@@ -8054,8 +8053,9 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
   set capropvar(CAPROPVARIANT value) =>
       this.Anonymous.Anonymous.Anonymous.capropvar = value;
 
-  PSTR get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
-  set pcVal(PSTR value) => this.Anonymous.Anonymous.Anonymous.pcVal = value;
+  Pointer<Utf8> get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
+  set pcVal(Pointer<Utf8> value) =>
+      this.Anonymous.Anonymous.Anonymous.pcVal = value;
 
   Pointer<Uint8> get pbVal => this.Anonymous.Anonymous.Anonymous.pbVal;
   set pbVal(Pointer<Uint8> value) =>
@@ -8114,8 +8114,9 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
   set pdate(Pointer<Double> value) =>
       this.Anonymous.Anonymous.Anonymous.pdate = value;
 
-  Pointer<BSTR> get pbstrVal => this.Anonymous.Anonymous.Anonymous.pbstrVal;
-  set pbstrVal(Pointer<BSTR> value) =>
+  Pointer<Pointer<Utf16>> get pbstrVal =>
+      this.Anonymous.Anonymous.Anonymous.pbstrVal;
+  set pbstrVal(Pointer<Pointer<Utf16>> value) =>
       this.Anonymous.Anonymous.Anonymous.pbstrVal = value;
 
   Pointer<VTablePointer> get ppunkVal =>
@@ -8148,7 +8149,7 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
 ///
 /// {@category struct}
 base class PROTOENT extends Struct {
-  external PSTR p_name;
+  external Pointer<Utf8> p_name;
 
   external Pointer<Pointer<Int8>> p_aliases;
 
@@ -8161,12 +8162,6 @@ typedef PSECURITY_DESCRIPTOR = Pointer;
 
 /// {@category struct}
 typedef PSID = Pointer;
-
-/// {@category struct}
-typedef PSTR = Pointer<Utf8>;
-
-/// {@category struct}
-typedef PWSTR = Pointer<Utf16>;
 
 /// Contains configuration information for an installed service. It is used by
 /// the QueryServiceConfig function.
@@ -8182,18 +8177,18 @@ base class QUERY_SERVICE_CONFIG extends Struct {
   @Uint32()
   external int dwErrorControl;
 
-  external PWSTR lpBinaryPathName;
+  external Pointer<Utf16> lpBinaryPathName;
 
-  external PWSTR lpLoadOrderGroup;
+  external Pointer<Utf16> lpLoadOrderGroup;
 
   @Uint32()
   external int dwTagId;
 
-  external PWSTR lpDependencies;
+  external Pointer<Utf16> lpDependencies;
 
-  external PWSTR lpServiceStartName;
+  external Pointer<Utf16> lpServiceStartName;
 
-  external PWSTR lpDisplayName;
+  external Pointer<Utf16> lpDisplayName;
 }
 
 /// Contains information about the lock status of a service control manager
@@ -8204,7 +8199,7 @@ base class QUERY_SERVICE_LOCK_STATUS extends Struct {
   @Uint32()
   external int fIsLocked;
 
-  external PWSTR lpLockOwner;
+  external Pointer<Utf16> lpLockOwner;
 
   @Uint32()
   external int dwLockDuration;
@@ -8502,7 +8497,7 @@ base class SCARD_IO_REQUEST extends Struct {
 ///
 /// {@category struct}
 base class SCARD_READERSTATE extends Struct {
-  external PWSTR szReader;
+  external Pointer<Utf16> szReader;
 
   external Pointer pvUserData;
 
@@ -8852,11 +8847,11 @@ base class SECURITY_DESCRIPTOR extends Struct {
 ///
 /// {@category struct}
 base class SERVENT extends Struct {
-  external PSTR s_name;
+  external Pointer<Utf8> s_name;
 
   external Pointer<Pointer<Int8>> s_aliases;
 
-  external PSTR s_proto;
+  external Pointer<Utf8> s_proto;
 
   @Int16()
   external int s_port;
@@ -8869,7 +8864,7 @@ base class SERVICE_CONTROL_STATUS_REASON_PARAMS extends Struct {
   @Uint32()
   external int dwReason;
 
-  external PWSTR pszComment;
+  external Pointer<Utf16> pszComment;
 
   external SERVICE_STATUS_PROCESS ServiceStatus;
 }
@@ -8886,7 +8881,7 @@ base class SERVICE_DELAYED_AUTO_START_INFO extends Struct {
 ///
 /// {@category struct}
 base class SERVICE_DESCRIPTION extends Struct {
-  external PWSTR lpDescription;
+  external Pointer<Utf16> lpDescription;
 }
 
 /// Represents the action the service controller should take on each failure of
@@ -8898,9 +8893,9 @@ base class SERVICE_FAILURE_ACTIONS extends Struct {
   @Uint32()
   external int dwResetPeriod;
 
-  external PWSTR lpRebootMsg;
+  external Pointer<Utf16> lpRebootMsg;
 
-  external PWSTR lpCommand;
+  external Pointer<Utf16> lpCommand;
 
   @Uint32()
   external int cActions;
@@ -8945,7 +8940,7 @@ base class SERVICE_NOTIFY_2 extends Struct {
   @Uint32()
   external int dwNotificationTriggered;
 
-  external PWSTR pszServiceNames;
+  external Pointer<Utf16> pszServiceNames;
 }
 
 /// Represents the preferred node on which to run a service.
@@ -8971,7 +8966,7 @@ base class SERVICE_PRESHUTDOWN_INFO extends Struct {
 ///
 /// {@category struct}
 base class SERVICE_REQUIRED_PRIVILEGES_INFO extends Struct {
-  external PWSTR pmszRequiredPrivileges;
+  external Pointer<Utf16> pmszRequiredPrivileges;
 }
 
 /// Represents a service security identifier (SID).
@@ -9053,7 +9048,7 @@ base class SERVICE_STATUS_PROCESS extends Struct {
 ///
 /// {@category struct}
 base class SERVICE_TABLE_ENTRY extends Struct {
-  external PWSTR lpServiceName;
+  external Pointer<Utf16> lpServiceName;
 
   external Pointer<NativeFunction<LPSERVICE_MAIN_FUNCTION>> lpServiceProc;
 }
@@ -9132,13 +9127,13 @@ base class SHELLEXECUTEINFO extends Struct {
   @IntPtr()
   external int hwnd;
 
-  external PWSTR lpVerb;
+  external Pointer<Utf16> lpVerb;
 
-  external PWSTR lpFile;
+  external Pointer<Utf16> lpFile;
 
-  external PWSTR lpParameters;
+  external Pointer<Utf16> lpParameters;
 
-  external PWSTR lpDirectory;
+  external Pointer<Utf16> lpDirectory;
 
   @Int32()
   external int nShow;
@@ -9148,7 +9143,7 @@ base class SHELLEXECUTEINFO extends Struct {
 
   external Pointer lpIDList;
 
-  external PWSTR lpClass;
+  external Pointer<Utf16> lpClass;
 
   @IntPtr()
   external int hkeyClass;
@@ -9268,9 +9263,9 @@ base class SHFILEOPSTRUCT extends Struct {
   @Uint32()
   external int wFunc;
 
-  external PWSTR pFrom;
+  external Pointer<Utf16> pFrom;
 
-  external PWSTR pTo;
+  external Pointer<Utf16> pTo;
 
   @Uint16()
   external int fFlags;
@@ -9280,7 +9275,7 @@ base class SHFILEOPSTRUCT extends Struct {
 
   external Pointer hNameMappings;
 
-  external PWSTR lpszProgressTitle;
+  external Pointer<Utf16> lpszProgressTitle;
 }
 
 /// Defines an item identifier.
@@ -9392,7 +9387,7 @@ base class SOLE_AUTHENTICATION_SERVICE extends Struct {
   @Uint32()
   external int dwAuthzSvc;
 
-  external PWSTR pPrincipalName;
+  external Pointer<Utf16> pPrincipalName;
 
   @Int32()
   external int hr;
@@ -9540,11 +9535,11 @@ base class STARTUPINFO extends Struct {
   external int cb;
 
   // ignore: unused_field
-  external PWSTR _lpReserved;
+  external Pointer<Utf16> _lpReserved;
 
-  external PWSTR lpDesktop;
+  external Pointer<Utf16> lpDesktop;
 
-  external PWSTR lpTitle;
+  external Pointer<Utf16> lpTitle;
 
   @Uint32()
   external int dwX;
@@ -9628,7 +9623,7 @@ base class STATPROPSETSTG extends Struct {
 ///
 /// {@category struct}
 base class STATPROPSTG extends Struct {
-  external PWSTR lpwstrName;
+  external Pointer<Utf16> lpwstrName;
 
   @Uint32()
   external int propid;
@@ -9643,7 +9638,7 @@ base class STATPROPSTG extends Struct {
 ///
 /// {@category struct}
 base class STATSTG extends Struct {
-  external PWSTR pwcsName;
+  external Pointer<Utf16> pwcsName;
 
   @Uint32()
   external int type;
@@ -9699,7 +9694,7 @@ base class STRRET extends Struct {
 
 /// {@category union}
 sealed class STRRET_0 extends Union {
-  external PWSTR pOleStr;
+  external Pointer<Utf16> pOleStr;
 
   @Uint32()
   external int uOffset;
@@ -9709,8 +9704,8 @@ sealed class STRRET_0 extends Union {
 }
 
 extension STRRET_0_Extension on STRRET {
-  PWSTR get pOleStr => this.Anonymous.pOleStr;
-  set pOleStr(PWSTR value) => this.Anonymous.pOleStr = value;
+  Pointer<Utf16> get pOleStr => this.Anonymous.pOleStr;
+  set pOleStr(Pointer<Utf16> value) => this.Anonymous.pOleStr = value;
 
   int get uOffset => this.Anonymous.uOffset;
   set uOffset(int value) => this.Anonymous.uOffset = value;
@@ -10289,13 +10284,13 @@ base class TASKDIALOGCONFIG extends Struct {
   @Int32()
   external int dwCommonButtons;
 
-  external PWSTR pszWindowTitle;
+  external Pointer<Utf16> pszWindowTitle;
 
   external TASKDIALOGCONFIG_0 Anonymous1;
 
-  external PWSTR pszMainInstruction;
+  external Pointer<Utf16> pszMainInstruction;
 
-  external PWSTR pszContent;
+  external Pointer<Utf16> pszContent;
 
   @Uint32()
   external int cButtons;
@@ -10313,17 +10308,17 @@ base class TASKDIALOGCONFIG extends Struct {
   @Int32()
   external int nDefaultRadioButton;
 
-  external PWSTR pszVerificationText;
+  external Pointer<Utf16> pszVerificationText;
 
-  external PWSTR pszExpandedInformation;
+  external Pointer<Utf16> pszExpandedInformation;
 
-  external PWSTR pszExpandedControlText;
+  external Pointer<Utf16> pszExpandedControlText;
 
-  external PWSTR pszCollapsedControlText;
+  external Pointer<Utf16> pszCollapsedControlText;
 
   external TASKDIALOGCONFIG_1 Anonymous2;
 
-  external PWSTR pszFooter;
+  external Pointer<Utf16> pszFooter;
 
   external Pointer<NativeFunction<PFTASKDIALOGCALLBACK>> pfCallback;
 
@@ -10340,15 +10335,15 @@ sealed class TASKDIALOGCONFIG_0 extends Union {
   @IntPtr()
   external int hMainIcon;
 
-  external PWSTR pszMainIcon;
+  external Pointer<Utf16> pszMainIcon;
 }
 
 extension TASKDIALOGCONFIG_0_Extension on TASKDIALOGCONFIG {
   int get hMainIcon => this.Anonymous1.hMainIcon;
   set hMainIcon(int value) => this.Anonymous1.hMainIcon = value;
 
-  PWSTR get pszMainIcon => this.Anonymous1.pszMainIcon;
-  set pszMainIcon(PWSTR value) => this.Anonymous1.pszMainIcon = value;
+  Pointer<Utf16> get pszMainIcon => this.Anonymous1.pszMainIcon;
+  set pszMainIcon(Pointer<Utf16> value) => this.Anonymous1.pszMainIcon = value;
 }
 
 /// {@category union}
@@ -10357,15 +10352,16 @@ sealed class TASKDIALOGCONFIG_1 extends Union {
   @IntPtr()
   external int hFooterIcon;
 
-  external PWSTR pszFooterIcon;
+  external Pointer<Utf16> pszFooterIcon;
 }
 
 extension TASKDIALOGCONFIG_1_Extension on TASKDIALOGCONFIG {
   int get hFooterIcon => this.Anonymous2.hFooterIcon;
   set hFooterIcon(int value) => this.Anonymous2.hFooterIcon = value;
 
-  PWSTR get pszFooterIcon => this.Anonymous2.pszFooterIcon;
-  set pszFooterIcon(PWSTR value) => this.Anonymous2.pszFooterIcon = value;
+  Pointer<Utf16> get pszFooterIcon => this.Anonymous2.pszFooterIcon;
+  set pszFooterIcon(Pointer<Utf16> value) =>
+      this.Anonymous2.pszFooterIcon = value;
 }
 
 /// The TASKDIALOG_BUTTON structure contains information used to display a
@@ -10377,7 +10373,7 @@ base class TASKDIALOG_BUTTON extends Struct {
   @Int32()
   external int nButtonID;
 
-  external PWSTR pszButtonText;
+  external Pointer<Utf16> pszButtonText;
 }
 
 /// The TEXTMETRIC structure contains basic information about a physical font.
@@ -10581,7 +10577,7 @@ base class TYPEATTR extends Struct {
   @Int32()
   external int memidDestructor;
 
-  external PWSTR lpstrSchema;
+  external Pointer<Utf16> lpstrSchema;
 
   @Uint32()
   external int cbSizeInstance;
@@ -10661,7 +10657,7 @@ base class UNICODE_STRING extends Struct {
   @Uint16()
   external int MaximumLength;
 
-  external PWSTR Buffer;
+  external Pointer<Utf16> Buffer;
 }
 
 /// Defines a data type used by the Desktop Window Manager (DWM) APIs. It
@@ -10714,7 +10710,7 @@ base class UPDATELAYEREDWINDOWINFO extends Struct {
 ///
 /// {@category struct}
 base class VALENT extends Struct {
-  external PWSTR ve_valuename;
+  external Pointer<Utf16> ve_valuename;
 
   @Uint32()
   external int ve_valuelen;
@@ -10733,7 +10729,7 @@ base class VARDESC extends Struct {
   @Int32()
   external int memid;
 
-  external PWSTR lpstrSchema;
+  external Pointer<Utf16> lpstrSchema;
 
   external VARDESC_0 Anonymous;
 
@@ -10852,7 +10848,7 @@ sealed class VARIANT_0_0_0 extends Union {
   @Double()
   external double date;
 
-  external BSTR bstrVal;
+  external Pointer<Utf16> bstrVal;
 
   external VTablePointer punkVal;
 
@@ -10883,7 +10879,7 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<Double> pdate;
 
-  external Pointer<BSTR> pbstrVal;
+  external Pointer<Pointer<Utf16>> pbstrVal;
 
   external Pointer<VTablePointer> ppunkVal;
 
@@ -10915,7 +10911,7 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<DECIMAL> pdecVal;
 
-  external PSTR pcVal;
+  external Pointer<Utf8> pcVal;
 
   external Pointer<Uint16> puiVal;
 
@@ -10963,8 +10959,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   double get date => this.Anonymous.Anonymous.Anonymous.date;
   set date(double value) => this.Anonymous.Anonymous.Anonymous.date = value;
 
-  BSTR get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
-  set bstrVal(BSTR value) => this.Anonymous.Anonymous.Anonymous.bstrVal = value;
+  Pointer<Utf16> get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
+  set bstrVal(Pointer<Utf16> value) =>
+      this.Anonymous.Anonymous.Anonymous.bstrVal = value;
 
   VTablePointer get punkVal => this.Anonymous.Anonymous.Anonymous.punkVal;
   set punkVal(VTablePointer value) =>
@@ -11019,8 +11016,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdate(Pointer<Double> value) =>
       this.Anonymous.Anonymous.Anonymous.pdate = value;
 
-  Pointer<BSTR> get pbstrVal => this.Anonymous.Anonymous.Anonymous.pbstrVal;
-  set pbstrVal(Pointer<BSTR> value) =>
+  Pointer<Pointer<Utf16>> get pbstrVal =>
+      this.Anonymous.Anonymous.Anonymous.pbstrVal;
+  set pbstrVal(Pointer<Pointer<Utf16>> value) =>
       this.Anonymous.Anonymous.Anonymous.pbstrVal = value;
 
   Pointer<VTablePointer> get ppunkVal =>
@@ -11080,8 +11078,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdecVal(Pointer<DECIMAL> value) =>
       this.Anonymous.Anonymous.Anonymous.pdecVal = value;
 
-  PSTR get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
-  set pcVal(PSTR value) => this.Anonymous.Anonymous.Anonymous.pcVal = value;
+  Pointer<Utf8> get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
+  set pcVal(Pointer<Utf8> value) =>
+      this.Anonymous.Anonymous.Anonymous.pcVal = value;
 
   Pointer<Uint16> get puiVal => this.Anonymous.Anonymous.Anonymous.puiVal;
   set puiVal(Pointer<Uint16> value) =>
@@ -11271,7 +11270,7 @@ extension WAVEFORMATEXTENSIBLE_0_Extension on WAVEFORMATEXTENSIBLE {
 /// {@category struct}
 @Packed(1)
 base class WAVEHDR extends Struct {
-  external PSTR lpData;
+  external Pointer<Utf8> lpData;
 
   @Uint32()
   external int dwBufferLength;
@@ -11818,7 +11817,7 @@ base class WLAN_CONNECTION_PARAMETERS extends Struct {
   @Int32()
   external int wlanConnectionMode;
 
-  external PWSTR strProfile;
+  external Pointer<Utf16> strProfile;
 
   external Pointer<DOT11_SSID> pDot11Ssid;
 
@@ -12382,9 +12381,9 @@ base class WNDCLASS extends Struct {
   @IntPtr()
   external int hbrBackground;
 
-  external PWSTR lpszMenuName;
+  external Pointer<Utf16> lpszMenuName;
 
-  external PWSTR lpszClassName;
+  external Pointer<Utf16> lpszClassName;
 }
 
 /// Contains window class information. It is used with the RegisterClassEx and
@@ -12422,9 +12421,9 @@ base class WNDCLASSEX extends Struct {
   @IntPtr()
   external int hbrBackground;
 
-  external PWSTR lpszMenuName;
+  external Pointer<Utf16> lpszMenuName;
 
-  external PWSTR lpszClassName;
+  external Pointer<Utf16> lpszClassName;
 
   @IntPtr()
   external int hIconSm;

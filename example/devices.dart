@@ -16,9 +16,9 @@ void displayVolumePaths(String volumeName) {
 
   // Could be arbitrarily long, but 4*MAX_PATH is a reasonable default.
   // More sophisticated solutions can be found online
-  final pathNamePtr = wsalloc(MAX_PATH * 4);
+  final pathNamePtr = PWSTR.empty(MAX_PATH * 4);
   final charCount = calloc<DWORD>();
-  final volumeNamePtr = volumeName.toNativeUtf16();
+  final volumeNamePtr = PWSTR.fromString(volumeName);
 
   try {
     charCount.value = MAX_PATH;
@@ -42,7 +42,7 @@ void displayVolumePaths(String volumeName) {
       print('GetVolumePathNamesForVolumeName failed with error code $error');
     }
   } finally {
-    free(volumeNamePtr);
+    volumeNamePtr.free();
     free(pathNamePtr);
     free(charCount);
   }
@@ -50,7 +50,7 @@ void displayVolumePaths(String volumeName) {
 
 void main() {
   var error = 0;
-  final volumeNamePtr = wsalloc(MAX_PATH);
+  final volumeNamePtr = PWSTR.empty(MAX_PATH);
 
   final hFindVolume = FindFirstVolume(volumeNamePtr, MAX_PATH);
   if (hFindVolume == INVALID_HANDLE_VALUE) {
@@ -64,10 +64,12 @@ void main() {
 
     //  Skip the \\?\ prefix and remove the trailing backslash.
     final shortVolumeName = volumeName.substring(4, volumeName.length - 1);
-    final shortVolumeNamePtr = TEXT(shortVolumeName);
+    final shortVolumeNamePtr = PWSTR.fromString(shortVolumeName);
 
-    final deviceName = wsalloc(MAX_PATH);
+    final deviceName = PWSTR.empty(MAX_PATH);
     final charCount = QueryDosDevice(shortVolumeNamePtr, deviceName, MAX_PATH);
+
+    free(shortVolumeNamePtr);
 
     if (charCount == 0) {
       error = GetLastError();
@@ -76,6 +78,7 @@ void main() {
     }
 
     print('\nFound a device:\n${deviceName.toDartString()}');
+    deviceName.free();
     print('Volume name: $volumeName');
     print('Paths:');
     displayVolumePaths(volumeName);
@@ -91,8 +94,8 @@ void main() {
         break;
       }
     }
-    free(shortVolumeNamePtr);
   }
-  free(volumeNamePtr);
+
+  volumeNamePtr.free();
   FindVolumeClose(hFindVolume);
 }

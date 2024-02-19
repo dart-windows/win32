@@ -53,11 +53,12 @@ class ISpeechAudioFormat extends IDispatch {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  BSTR get guid {
-    final guid = calloc<BSTR>();
+  Pointer<Utf16> get guid {
+    final guid = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Guid.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<BSTR> guid)>()(ptr, guid);
+          int Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> guid)>()(ptr, guid);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = guid.value;
       return retValue;
@@ -66,9 +67,9 @@ class ISpeechAudioFormat extends IDispatch {
     }
   }
 
-  set guid(BSTR guid) {
-    final hr = _vtable.put_Guid
-        .asFunction<int Function(VTablePointer lpVtbl, BSTR guid)>()(ptr, guid);
+  set guid(Pointer<Utf16> guid) {
+    final hr = _vtable.put_Guid.asFunction<
+        int Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>()(ptr, guid);
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
@@ -97,9 +98,11 @@ base class ISpeechAudioFormatVtbl extends Struct {
           HRESULT Function(VTablePointer lpVtbl, Int32 audioFormat)>> put_Type;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> guid)>> get_Guid;
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> guid)>> get_Guid;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, BSTR guid)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> guid)>>
       put_Guid;
   external Pointer<
       NativeFunction<

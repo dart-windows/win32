@@ -35,8 +35,8 @@ void main() {
 
     testMethodParameterType(
         'Windows.Win32.Foundation.Apis', 'SysAllocString', 'psz', (projection) {
-      expect(projection.nativeType, equals('PWSTR'));
-      expect(projection.dartType, equals('PWSTR'));
+      expect(projection.nativeType, equals('Pointer<Utf16>'));
+      expect(projection.dartType, equals('Pointer<Utf16>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
       expect(projection.isPointer, isTrue);
@@ -211,8 +211,8 @@ void main() {
 
     testMethodParameterType('Windows.Win32.UI.Input.KeyboardAndMouse.Apis',
         'GetKeyNameTextA', 'lpString', (projection) {
-      expect(projection.nativeType, equals('PSTR'));
-      expect(projection.dartType, equals('PSTR'));
+      expect(projection.nativeType, equals('Pointer<Utf8>'));
+      expect(projection.dartType, equals('Pointer<Utf8>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
       expect(projection.isPointer, isTrue);
@@ -221,8 +221,8 @@ void main() {
     testMethodParameterType(
         'Windows.Win32.UI.Shell.Apis', 'SHGetKnownFolderPath', 'ppszPath',
         (projection) {
-      expect(projection.nativeType, equals('Pointer<PWSTR>'));
-      expect(projection.dartType, equals('Pointer<PWSTR>'));
+      expect(projection.nativeType, equals('Pointer<Pointer<Utf16>>'));
+      expect(projection.dartType, equals('Pointer<Pointer<Utf16>>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
       expect(projection.isPointer, isTrue);
@@ -249,8 +249,8 @@ void main() {
 
     testMethodParameterType('Windows.Win32.UI.WindowsAndMessaging.Apis',
         'GetWindowTextW', 'lpString', (projection) {
-      expect(projection.nativeType, equals('PWSTR'));
-      expect(projection.dartType, equals('PWSTR'));
+      expect(projection.nativeType, equals('Pointer<Utf16>'));
+      expect(projection.dartType, equals('Pointer<Utf16>'));
       expect(projection.attribute, isEmpty);
       expect(projection.isDartPrimitive, isTrue);
       expect(projection.isPointer, isTrue);

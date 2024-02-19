@@ -31,23 +31,23 @@ void main() {
         nativePrototype,
         equals(
           'HRESULT Function(VTablePointer lpVtbl, '
-          'Pointer<PWSTR> value)',
+          'Pointer<Pointer<Utf16>> value)',
         ),
       );
       expect(
         dartPrototype,
         equals(
           'int Function(VTablePointer lpVtbl, '
-          'Pointer<PWSTR> value)',
+          'Pointer<Pointer<Utf16>> value)',
         ),
       );
       expect(methodArguments, equals('ptr, value'));
-      expect(projection.returnType, equals('PWSTR'));
-      expect(projection.header, equals('PWSTR get $camelCasedName'));
+      expect(projection.returnType, equals('Pointer<Utf16>'));
+      expect(projection.header, equals('Pointer<Utf16> get $camelCasedName'));
       expect(
         projection.methodBody,
         equalsIgnoringWhitespace('''
-  final value = calloc<PWSTR>();
+  final value = calloc<Pointer<Utf16>>();
   try {
     final hr = _vtable.$name.asFunction<$dartPrototype>()($methodArguments);
     if (FAILED(hr)) throw WindowsException(hr);
@@ -282,18 +282,21 @@ void main() {
       expect(
         nativePrototype,
         equals(
-          'HRESULT Function(VTablePointer lpVtbl, BSTR bs)',
+          'HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> bs)',
         ),
       );
       expect(
         dartPrototype,
         equals(
-          'int Function(VTablePointer lpVtbl, BSTR bs)',
+          'int Function(VTablePointer lpVtbl, Pointer<Utf16> bs)',
         ),
       );
       expect(methodArguments, equals('ptr, bs'));
       expect(projection.returnType, equals('void'));
-      expect(projection.header, equals('set $camelCasedName(BSTR bs)'));
+      expect(
+        projection.header,
+        equals('set $camelCasedName(Pointer<Utf16> bs)'),
+      );
       expect(
         projection.methodBody,
         equalsIgnoringWhitespace('''

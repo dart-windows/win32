@@ -104,24 +104,24 @@ class NotepadEditor {
   void updateWindowTitle() {
     final caption =
         '$APP_NAME - ${file.title.isNotEmpty ? file.title : '(untitled)'}';
-    SetWindowText(_hwnd, TEXT(caption));
+    SetWindowText(_hwnd, PWSTR.fromString(caption));
   }
 
   void showMessage(String szMessage) {
     MessageBox(
       _hwnd,
-      TEXT(szMessage),
-      TEXT(APP_NAME),
+      PWSTR.fromString(szMessage),
+      PWSTR.fromString(APP_NAME),
       MB_OK | MB_ICONEXCLAMATION,
     );
   }
 
   int offerSave() {
-    final buffer = TEXT(file.title.isNotEmpty
+    final buffer = PWSTR.fromString(file.title.isNotEmpty
         ? 'Save current changes in ${file.title}?'
         : 'Save changes to file?');
-    final res = MessageBox(
-        _hwnd, buffer, TEXT(APP_NAME), MB_YESNOCANCEL | MB_ICONQUESTION);
+    final res = MessageBox(_hwnd, buffer, PWSTR.fromString(APP_NAME),
+        MB_YESNOCANCEL | MB_ICONQUESTION);
 
     if (res == IDYES) {
       if (SendMessage(_hwnd, WM_COMMAND, IDM_FILE_SAVE, 0) == FALSE) {

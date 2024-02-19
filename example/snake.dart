@@ -540,7 +540,7 @@ void main() => initApp(winMain);
 
 void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Register the window class.
-  final className = TEXT('WinSnakeWindowClass');
+  final className = PWSTR.fromString('WinSnakeWindowClass');
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,
@@ -557,7 +557,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     hWnd = CreateWindowEx(
       0, // Optional window styles.
       className, // Window class
-      TEXT('Dart WinSnake'), // Window caption
+      PWSTR.fromString('Dart WinSnake'), // Window caption
       WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE,
 
       // Size and position
@@ -604,11 +604,11 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
 
       lpfnWndProc.close();
     } else {
-      MessageBox(0, TEXT('Failed to create window'), TEXT('Error'),
-          MB_ICONEXCLAMATION | MB_OK);
+      MessageBox(0, PWSTR.fromString('Failed to create window'),
+          PWSTR.fromString('Error'), MB_ICONEXCLAMATION | MB_OK);
     }
   } else {
-    MessageBox(0, TEXT('Failed to create window'), TEXT('Error'),
-        MB_ICONEXCLAMATION | MB_OK);
+    MessageBox(0, PWSTR.fromString('Failed to create window'),
+        PWSTR.fromString('Error'), MB_ICONEXCLAMATION | MB_OK);
   }
 }

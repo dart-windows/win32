@@ -28,10 +28,11 @@ final _winmm = DynamicLibrary.open('winmm.dll');
 /// );
 /// ```
 /// {@category winmm}
-int mciGetDeviceID(PWSTR pszDevice) => _mciGetDeviceID(pszDevice);
+int mciGetDeviceID(Pointer<Utf16> pszDevice) => _mciGetDeviceID(pszDevice);
 
-final _mciGetDeviceID = _winmm.lookupFunction<Uint32 Function(PWSTR pszDevice),
-    int Function(PWSTR pszDevice)>('mciGetDeviceIDW');
+final _mciGetDeviceID = _winmm.lookupFunction<
+    Uint32 Function(Pointer<Utf16> pszDevice),
+    int Function(Pointer<Utf16> pszDevice)>('mciGetDeviceIDW');
 
 /// The mciGetDeviceIDFromElementID function retrieves the MCI device identifier
 /// corresponding to an element identifier.
@@ -43,13 +44,13 @@ final _mciGetDeviceID = _winmm.lookupFunction<Uint32 Function(PWSTR pszDevice),
 /// );
 /// ```
 /// {@category winmm}
-int mciGetDeviceIDFromElementID(int dwElementID, PWSTR lpstrType) =>
+int mciGetDeviceIDFromElementID(int dwElementID, Pointer<Utf16> lpstrType) =>
     _mciGetDeviceIDFromElementID(dwElementID, lpstrType);
 
 final _mciGetDeviceIDFromElementID = _winmm.lookupFunction<
-    Uint32 Function(Uint32 dwElementID, PWSTR lpstrType),
-    int Function(
-        int dwElementID, PWSTR lpstrType)>('mciGetDeviceIDFromElementIDW');
+    Uint32 Function(Uint32 dwElementID, Pointer<Utf16> lpstrType),
+    int Function(int dwElementID,
+        Pointer<Utf16> lpstrType)>('mciGetDeviceIDFromElementIDW');
 
 /// The mciGetErrorString function retrieves a string that describes the
 /// specified MCI error code.
@@ -62,12 +63,13 @@ final _mciGetDeviceIDFromElementID = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int mciGetErrorString(int mcierr, PWSTR pszText, int cchText) =>
+int mciGetErrorString(int mcierr, Pointer<Utf16> pszText, int cchText) =>
     _mciGetErrorString(mcierr, pszText, cchText);
 
 final _mciGetErrorString = _winmm.lookupFunction<
-    BOOL Function(Uint32 mcierr, PWSTR pszText, Uint32 cchText),
-    int Function(int mcierr, PWSTR pszText, int cchText)>('mciGetErrorStringW');
+    BOOL Function(Uint32 mcierr, Pointer<Utf16> pszText, Uint32 cchText),
+    int Function(
+        int mcierr, Pointer<Utf16> pszText, int cchText)>('mciGetErrorStringW');
 
 /// The mciSendCommand function sends a command message to the specified MCI
 /// device.
@@ -102,16 +104,22 @@ final _mciSendCommand = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int mciSendString(PWSTR lpstrCommand, PWSTR? lpstrReturnString,
-        int uReturnLength, int? hwndCallback) =>
+int mciSendString(
+        Pointer<Utf16> lpstrCommand,
+        Pointer<Utf16>? lpstrReturnString,
+        int uReturnLength,
+        int? hwndCallback) =>
     _mciSendString(lpstrCommand, lpstrReturnString ?? nullptr, uReturnLength,
         hwndCallback ?? 0);
 
 final _mciSendString = _winmm.lookupFunction<
-    Uint32 Function(PWSTR lpstrCommand, PWSTR lpstrReturnString,
-        Uint32 uReturnLength, HWND hwndCallback),
-    int Function(PWSTR lpstrCommand, PWSTR lpstrReturnString, int uReturnLength,
-        int hwndCallback)>('mciSendStringW');
+    Uint32 Function(
+        Pointer<Utf16> lpstrCommand,
+        Pointer<Utf16> lpstrReturnString,
+        Uint32 uReturnLength,
+        HWND hwndCallback),
+    int Function(Pointer<Utf16> lpstrCommand, Pointer<Utf16> lpstrReturnString,
+        int uReturnLength, int hwndCallback)>('mciSendStringW');
 
 /// The midiConnect function connects a MIDI input device to a MIDI thru or
 /// output device, or connects a MIDI thru device to a MIDI output device.
@@ -210,13 +218,13 @@ final _midiInGetDevCaps = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiInGetErrorText(int mmrError, PWSTR pszText, int cchText) =>
+int midiInGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _midiInGetErrorText(mmrError, pszText, cchText);
 
 final _midiInGetErrorText = _winmm.lookupFunction<
-    Uint32 Function(Uint32 mmrError, PWSTR pszText, Uint32 cchText),
-    int Function(
-        int mmrError, PWSTR pszText, int cchText)>('midiInGetErrorTextW');
+    Uint32 Function(Uint32 mmrError, Pointer<Utf16> pszText, Uint32 cchText),
+    int Function(int mmrError, Pointer<Utf16> pszText,
+        int cchText)>('midiInGetErrorTextW');
 
 /// The midiInGetID function gets the device identifier for the given MIDI input
 /// device.
@@ -456,13 +464,13 @@ final _midiOutGetDevCaps = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int midiOutGetErrorText(int mmrError, PWSTR pszText, int cchText) =>
+int midiOutGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _midiOutGetErrorText(mmrError, pszText, cchText);
 
 final _midiOutGetErrorText = _winmm.lookupFunction<
-    Uint32 Function(Uint32 mmrError, PWSTR pszText, Uint32 cchText),
-    int Function(
-        int mmrError, PWSTR pszText, int cchText)>('midiOutGetErrorTextW');
+    Uint32 Function(Uint32 mmrError, Pointer<Utf16> pszText, Uint32 cchText),
+    int Function(int mmrError, Pointer<Utf16> pszText,
+        int cchText)>('midiOutGetErrorTextW');
 
 /// The midiOutGetID function retrieves the device identifier for the given MIDI
 /// output device.
@@ -665,12 +673,13 @@ final _midiOutUnprepareHeader = _winmm.lookupFunction<
 ///   DWORD fdwSound);
 /// ```
 /// {@category winmm}
-int PlaySound(PWSTR? pszSound, int? hmod, int fdwSound) =>
+int PlaySound(Pointer<Utf16>? pszSound, int? hmod, int fdwSound) =>
     _PlaySound(pszSound ?? nullptr, hmod ?? 0, fdwSound);
 
 final _PlaySound = _winmm.lookupFunction<
-    BOOL Function(PWSTR pszSound, HMODULE hmod, Uint32 fdwSound),
-    int Function(PWSTR pszSound, int hmod, int fdwSound)>('PlaySoundW');
+    BOOL Function(Pointer<Utf16> pszSound, HMODULE hmod, Uint32 fdwSound),
+    int Function(
+        Pointer<Utf16> pszSound, int hmod, int fdwSound)>('PlaySoundW');
 
 /// The waveInAddBuffer function sends an input buffer to the given
 /// waveform-audio input device. When the buffer is filled, the application is
@@ -735,13 +744,13 @@ final _waveInGetDevCaps = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveInGetErrorText(int mmrError, PWSTR pszText, int cchText) =>
+int waveInGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _waveInGetErrorText(mmrError, pszText, cchText);
 
 final _waveInGetErrorText = _winmm.lookupFunction<
-    Uint32 Function(Uint32 mmrError, PWSTR pszText, Uint32 cchText),
-    int Function(
-        int mmrError, PWSTR pszText, int cchText)>('waveInGetErrorTextW');
+    Uint32 Function(Uint32 mmrError, Pointer<Utf16> pszText, Uint32 cchText),
+    int Function(int mmrError, Pointer<Utf16> pszText,
+        int cchText)>('waveInGetErrorTextW');
 
 /// The waveInGetID function gets the device identifier for the given
 /// waveform-audio input device.
@@ -977,13 +986,13 @@ final _waveOutGetDevCaps = _winmm.lookupFunction<
 /// );
 /// ```
 /// {@category winmm}
-int waveOutGetErrorText(int mmrError, PWSTR pszText, int cchText) =>
+int waveOutGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _waveOutGetErrorText(mmrError, pszText, cchText);
 
 final _waveOutGetErrorText = _winmm.lookupFunction<
-    Uint32 Function(Uint32 mmrError, PWSTR pszText, Uint32 cchText),
-    int Function(
-        int mmrError, PWSTR pszText, int cchText)>('waveOutGetErrorTextW');
+    Uint32 Function(Uint32 mmrError, Pointer<Utf16> pszText, Uint32 cchText),
+    int Function(int mmrError, Pointer<Utf16> pszText,
+        int cchText)>('waveOutGetErrorTextW');
 
 /// The waveOutGetID function retrieves the device identifier for the given
 /// waveform-audio output device.

@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -32,7 +34,7 @@ class IWbemConfigureRefresher extends IUnknown {
 
   int addObjectByPath(
           VTablePointer pNamespace,
-          PWSTR wszPath,
+          Pointer<Utf16> wszPath,
           int lFlags,
           VTablePointer pContext,
           Pointer<VTablePointer> ppRefreshable,
@@ -41,7 +43,7 @@ class IWbemConfigureRefresher extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   VTablePointer pNamespace,
-                  PWSTR wszPath,
+                  Pointer<Utf16> wszPath,
                   int lFlags,
                   VTablePointer pContext,
                   Pointer<VTablePointer> ppRefreshable,
@@ -80,7 +82,7 @@ class IWbemConfigureRefresher extends IUnknown {
 
   int addEnum(
           VTablePointer pNamespace,
-          PWSTR wszClassName,
+          Pointer<Utf16> wszClassName,
           int lFlags,
           VTablePointer pContext,
           Pointer<VTablePointer> ppEnum,
@@ -89,7 +91,7 @@ class IWbemConfigureRefresher extends IUnknown {
               int Function(
                   VTablePointer lpVtbl,
                   VTablePointer pNamespace,
-                  PWSTR wszClassName,
+                  Pointer<Utf16> wszClassName,
                   int lFlags,
                   VTablePointer pContext,
                   Pointer<VTablePointer> ppEnum,
@@ -105,7 +107,7 @@ base class IWbemConfigureRefresherVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pNamespace,
-              PWSTR wszPath,
+              Pointer<Utf16> wszPath,
               Int32 lFlags,
               VTablePointer pContext,
               Pointer<VTablePointer> ppRefreshable,
@@ -133,7 +135,7 @@ base class IWbemConfigureRefresherVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pNamespace,
-              PWSTR wszClassName,
+              Pointer<Utf16> wszClassName,
               Int32 lFlags,
               VTablePointer pContext,
               Pointer<VTablePointer> ppEnum,

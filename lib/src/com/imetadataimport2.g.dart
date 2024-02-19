@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -52,7 +54,7 @@ class IMetaDataImport2 extends IMetaDataImport {
           Pointer<Uint32> pdwParamFlags,
           Pointer<Uint32> ptOwner,
           Pointer<Uint32> reserved,
-          PWSTR? wzname,
+          Pointer<Utf16>? wzname,
           int cchName,
           Pointer<Uint32> pchName) =>
       _vtable.GetGenericParamProps.asFunction<
@@ -63,7 +65,7 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> pdwParamFlags,
                   Pointer<Uint32> ptOwner,
                   Pointer<Uint32> reserved,
-                  PWSTR wzname,
+                  Pointer<Utf16> wzname,
                   int cchName,
                   Pointer<Uint32> pchName)>()(
           ptr,
@@ -119,10 +121,10 @@ class IMetaDataImport2 extends IMetaDataImport {
               Pointer<Uint32> pdwMAchine)>()(ptr, pdwPEKind, pdwMAchine);
 
   int getVersionString(
-          PWSTR? pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
+          Pointer<Utf16>? pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
       _vtable.GetVersionString.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR pwzBuf, int ccBufSize,
-                  Pointer<Uint32> pccBufSize)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> pwzBuf,
+                  int ccBufSize, Pointer<Uint32> pccBufSize)>()(
           ptr, pwzBuf ?? nullptr, ccBufSize, pccBufSize);
 
   int enumMethodSpecs(
@@ -163,7 +165,7 @@ base class IMetaDataImport2Vtbl extends Struct {
               Pointer<Uint32> pdwParamFlags,
               Pointer<Uint32> ptOwner,
               Pointer<Uint32> reserved,
-              PWSTR wzname,
+              Pointer<Utf16> wzname,
               Uint32 cchName,
               Pointer<Uint32> pchName)>> GetGenericParamProps;
   external Pointer<
@@ -198,8 +200,8 @@ base class IMetaDataImport2Vtbl extends Struct {
               Pointer<Uint32> pdwMAchine)>> GetPEKind;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pwzBuf, Uint32 ccBufSize,
-              Pointer<Uint32> pccBufSize)>> GetVersionString;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pwzBuf,
+              Uint32 ccBufSize, Pointer<Uint32> pccBufSize)>> GetVersionString;
   external Pointer<
       NativeFunction<
           HRESULT Function(

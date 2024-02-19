@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -29,14 +31,18 @@ class IShellFolder extends IUnknown {
   factory IShellFolder.from(IUnknown interface) =>
       IShellFolder(interface.toInterface(IID_IShellFolder));
 
-  int parseDisplayName(int hwnd, VTablePointer pbc, PWSTR pszDisplayName,
-          Pointer<Pointer<ITEMIDLIST>> ppidl, Pointer<Uint32> pdwAttributes) =>
+  int parseDisplayName(
+          int hwnd,
+          VTablePointer pbc,
+          Pointer<Utf16> pszDisplayName,
+          Pointer<Pointer<ITEMIDLIST>> ppidl,
+          Pointer<Uint32> pdwAttributes) =>
       _vtable.ParseDisplayName.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   int hwnd,
                   VTablePointer pbc,
-                  PWSTR pszDisplayName,
+                  Pointer<Utf16> pszDisplayName,
                   Pointer<Uint32> pchEaten,
                   Pointer<Pointer<ITEMIDLIST>> ppidl,
                   Pointer<Uint32> pdwAttributes)>()(
@@ -112,14 +118,14 @@ class IShellFolder extends IUnknown {
           int Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
               int uFlags, Pointer<STRRET> pName)>()(ptr, pidl, uFlags, pName);
 
-  int setNameOf(int? hwnd, Pointer<ITEMIDLIST> pidl, PWSTR pszName, int uFlags,
-          Pointer<Pointer<ITEMIDLIST>>? ppidlOut) =>
+  int setNameOf(int? hwnd, Pointer<ITEMIDLIST> pidl, Pointer<Utf16> pszName,
+          int uFlags, Pointer<Pointer<ITEMIDLIST>>? ppidlOut) =>
       _vtable.SetNameOf.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   int hwnd,
                   Pointer<ITEMIDLIST> pidl,
-                  PWSTR pszName,
+                  Pointer<Utf16> pszName,
                   int uFlags,
                   Pointer<Pointer<ITEMIDLIST>> ppidlOut)>()(
           ptr, hwnd ?? 0, pidl, pszName, uFlags, ppidlOut ?? nullptr);
@@ -134,7 +140,7 @@ base class IShellFolderVtbl extends Struct {
               VTablePointer lpVtbl,
               HWND hwnd,
               VTablePointer pbc,
-              PWSTR pszDisplayName,
+              Pointer<Utf16> pszDisplayName,
               Pointer<Uint32> pchEaten,
               Pointer<Pointer<ITEMIDLIST>> ppidl,
               Pointer<Uint32> pdwAttributes)>> ParseDisplayName;
@@ -196,7 +202,7 @@ base class IShellFolderVtbl extends Struct {
               VTablePointer lpVtbl,
               HWND hwnd,
               Pointer<ITEMIDLIST> pidl,
-              PWSTR pszName,
+              Pointer<Utf16> pszName,
               Uint32 uFlags,
               Pointer<Pointer<ITEMIDLIST>> ppidlOut)>> SetNameOf;
 }

@@ -40,7 +40,7 @@ int loadDartIcon() {
   final dartIconPath = _thisPath('dart.ico');
   return LoadImage(
     0,
-    TEXT(dartIconPath),
+    PWSTR.fromString(dartIconPath),
     IMAGE_ICON,
     0,
     0,

@@ -4,43 +4,41 @@
 
 @TestOn('windows')
 
-import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-
 import 'package:win32/win32.dart';
 
 void main() {
   test('Successful GetModuleHandle', () {
-    final lpModuleName = 'kernel32.dll'.toNativeUtf16();
+    final lpModuleName = PWSTR.fromString('kernel32.dll');
     try {
       final hModule = GetModuleHandle(lpModuleName);
       expect(hModule, isNot(NULL));
     } finally {
-      free(lpModuleName);
+      lpModuleName.free();
     }
   });
 
   test('Failed GetModuleHandle', () {
-    final lpFakeModuleName = 'kernel33_fake_not_a_real.dll'.toNativeUtf16();
+    final lpFakeModuleName = PWSTR.fromString('kernel33_fake_not_a_real.dll');
     try {
       final hModule = GetModuleHandle(lpFakeModuleName);
       expect(hModule, equals(NULL));
     } finally {
-      free(lpFakeModuleName);
+      lpFakeModuleName.free();
     }
   });
 
   test('Successful GetProcAddress', () {
-    final lpKernelModuleName = 'kernel32.dll'.toNativeUtf16();
-    final lpBeepProcName = 'Beep'.toNativeUtf8(); // ANSI, not UTF-16
+    final lpKernelModuleName = PWSTR.fromString('kernel32.dll');
+    final lpBeepProcName = PSTR.fromString('Beep');
 
     try {
       final hModule = GetModuleHandle(lpKernelModuleName);
       final pGetNativeSystemInfo = GetProcAddress(hModule, lpBeepProcName);
       expect(pGetNativeSystemInfo.address, isNonZero);
     } finally {
-      free(lpKernelModuleName);
-      free(lpBeepProcName);
+      lpKernelModuleName.free();
+      lpBeepProcName.free();
     }
   });
 

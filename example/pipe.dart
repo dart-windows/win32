@@ -35,19 +35,20 @@ class ClientCommand extends Command<void> {
 
   @override
   void run() {
-    final lpPipeName = pipeName.toNativeUtf16();
-    final lpBuffer = wsalloc(128);
+    final lpPipeName = PWSTR.fromString(pipeName);
+    final lpBuffer = PWSTR.empty(128);
     final lpNumBytesRead = calloc<DWORD>();
     try {
       stdout.writeln('Connecting to pipe...');
       final pipe = CreateFile(
-          lpPipeName,
-          GENERIC_READ,
-          FILE_SHARE_READ | FILE_SHARE_WRITE,
-          nullptr,
-          OPEN_EXISTING,
-          FILE_ATTRIBUTE_NORMAL,
-          NULL);
+        lpPipeName,
+        GENERIC_READ,
+        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        nullptr,
+        OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL,
+        null,
+      );
       if (pipe == INVALID_HANDLE_VALUE) {
         stderr.writeln('Failed to connect to pipe.');
         exit(1);
@@ -68,7 +69,7 @@ class ClientCommand extends Command<void> {
       CloseHandle(pipe);
       stdout.writeln('Done.');
     } finally {
-      free(lpPipeName);
+      lpPipeName.free();
       free(lpBuffer);
       free(lpNumBytesRead);
     }
@@ -84,8 +85,8 @@ class ServerCommand extends Command<void> {
 
   @override
   void run() {
-    final lpPipeName = pipeName.toNativeUtf16();
-    final lpPipeMessage = pipeMessage.toNativeUtf16();
+    final lpPipeName = PWSTR.fromString(pipeName);
+    final lpPipeMessage = PWSTR.fromString(pipeMessage);
     final lpNumBytesWritten = calloc<DWORD>();
     try {
       final pipe = CreateNamedPipe(lpPipeName, PIPE_ACCESS_OUTBOUND,
@@ -114,8 +115,8 @@ class ServerCommand extends Command<void> {
       CloseHandle(pipe);
       stdout.writeln('Done.');
     } finally {
-      free(lpPipeName);
-      free(lpPipeMessage);
+      lpPipeName.free();
+      lpPipeMessage.free();
       free(lpNumBytesWritten);
     }
   }

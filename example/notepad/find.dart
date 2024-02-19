@@ -18,12 +18,12 @@ const MAX_STRING_LEN = 256;
 class NotepadFind {
   late Pointer<FINDREPLACE> find;
 
-  late PWSTR szFindText;
-  late PWSTR szReplText;
+  late LPWSTR szFindText;
+  late LPWSTR szReplText;
 
   NotepadFind() {
-    szFindText = wsalloc(MAX_STRING_LEN);
-    szReplText = wsalloc(MAX_STRING_LEN);
+    szFindText = PWSTR.empty(MAX_STRING_LEN);
+    szReplText = PWSTR.empty(MAX_STRING_LEN);
     find = calloc<FINDREPLACE>();
   }
 
@@ -56,7 +56,7 @@ class NotepadFind {
     // Read in the edit document
     iLength = GetWindowTextLength(hwndEdit);
 
-    final pDoc = wsalloc(iLength + 1);
+    final pDoc = PWSTR.empty(iLength + 1);
     GetWindowText(hwndEdit, pDoc, iLength + 1);
     final strDoc = pDoc.toDartString();
     free(pDoc);

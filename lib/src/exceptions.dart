@@ -4,10 +4,9 @@
 
 // Exceptions that may be caught or thrown by the win32 library.
 
-import 'package:ffi/ffi.dart';
-
 import 'constants.dart';
 import 'extensions/int_to_hexstring.dart';
+import 'pwstr.dart';
 import 'utils.dart';
 import 'win32_v5/kernel32.g.dart';
 
@@ -30,7 +29,7 @@ class WindowsException extends COMException {
   /// `FormatMessage()` function. For example, `E_INVALIDARG` (0x80070057)
   /// converts to `The parameter is incorrect.`
   String convertWindowsErrorToString(int windowsError) {
-    final buffer = wsalloc(256);
+    final buffer = PWSTR.empty(256);
 
     // If FormatMessage fails, it returns 0; otherwise it returns the number of
     // characters in the buffer.

@@ -12,7 +12,7 @@ import 'package:win32/win32.dart';
 late IDesktopWallpaper wallpaper;
 
 void printWallpaper() {
-  final pathPtr = calloc<PWSTR>();
+  final pathPtr = calloc<Pointer<Utf16>>();
 
   try {
     final hr = wallpaper.getWallpaper(nullptr, pathPtr);

@@ -149,12 +149,13 @@ final _EnumProcessModulesEx = _psapi.lookupFunction<
 /// );
 /// ```
 /// {@category psapi}
-int GetDeviceDriverBaseName(Pointer imageBase, PWSTR lpBaseName, int nSize) =>
+int GetDeviceDriverBaseName(
+        Pointer imageBase, Pointer<Utf16> lpBaseName, int nSize) =>
     _GetDeviceDriverBaseName(imageBase, lpBaseName, nSize);
 
 final _GetDeviceDriverBaseName = _psapi.lookupFunction<
-    Uint32 Function(Pointer imageBase, PWSTR lpBaseName, Uint32 nSize),
-    int Function(Pointer imageBase, PWSTR lpBaseName,
+    Uint32 Function(Pointer imageBase, Pointer<Utf16> lpBaseName, Uint32 nSize),
+    int Function(Pointer imageBase, Pointer<Utf16> lpBaseName,
         int nSize)>('GetDeviceDriverBaseNameW');
 
 /// Retrieves the path available for the specified device driver.
@@ -167,12 +168,13 @@ final _GetDeviceDriverBaseName = _psapi.lookupFunction<
 /// );
 /// ```
 /// {@category psapi}
-int GetDeviceDriverFileName(Pointer imageBase, PWSTR lpFilename, int nSize) =>
+int GetDeviceDriverFileName(
+        Pointer imageBase, Pointer<Utf16> lpFilename, int nSize) =>
     _GetDeviceDriverFileName(imageBase, lpFilename, nSize);
 
 final _GetDeviceDriverFileName = _psapi.lookupFunction<
-    Uint32 Function(Pointer imageBase, PWSTR lpFilename, Uint32 nSize),
-    int Function(Pointer imageBase, PWSTR lpFilename,
+    Uint32 Function(Pointer imageBase, Pointer<Utf16> lpFilename, Uint32 nSize),
+    int Function(Pointer imageBase, Pointer<Utf16> lpFilename,
         int nSize)>('GetDeviceDriverFileNameW');
 
 /// Checks whether the specified address is within a memory-mapped file in the
@@ -188,13 +190,14 @@ final _GetDeviceDriverFileName = _psapi.lookupFunction<
 /// );
 /// ```
 /// {@category psapi}
-int GetMappedFileName(int hProcess, Pointer lpv, PWSTR lpFilename, int nSize) =>
+int GetMappedFileName(
+        int hProcess, Pointer lpv, Pointer<Utf16> lpFilename, int nSize) =>
     _GetMappedFileName(hProcess, lpv, lpFilename, nSize);
 
 final _GetMappedFileName = _psapi.lookupFunction<
     Uint32 Function(
-        HANDLE hProcess, Pointer lpv, PWSTR lpFilename, Uint32 nSize),
-    int Function(int hProcess, Pointer lpv, PWSTR lpFilename,
+        HANDLE hProcess, Pointer lpv, Pointer<Utf16> lpFilename, Uint32 nSize),
+    int Function(int hProcess, Pointer lpv, Pointer<Utf16> lpFilename,
         int nSize)>('GetMappedFileNameW');
 
 /// Retrieves the base name of the specified module.
@@ -209,13 +212,13 @@ final _GetMappedFileName = _psapi.lookupFunction<
 /// ```
 /// {@category psapi}
 int GetModuleBaseName(
-        int hProcess, int? hModule, PWSTR lpBaseName, int nSize) =>
+        int hProcess, int? hModule, Pointer<Utf16> lpBaseName, int nSize) =>
     _GetModuleBaseName(hProcess, hModule ?? 0, lpBaseName, nSize);
 
 final _GetModuleBaseName = _psapi.lookupFunction<
-    Uint32 Function(
-        HANDLE hProcess, HMODULE hModule, PWSTR lpBaseName, Uint32 nSize),
-    int Function(int hProcess, int hModule, PWSTR lpBaseName,
+    Uint32 Function(HANDLE hProcess, HMODULE hModule, Pointer<Utf16> lpBaseName,
+        Uint32 nSize),
+    int Function(int hProcess, int hModule, Pointer<Utf16> lpBaseName,
         int nSize)>('GetModuleBaseNameW');
 
 /// Retrieves the fully qualified path for the file containing the specified
@@ -231,13 +234,13 @@ final _GetModuleBaseName = _psapi.lookupFunction<
 /// ```
 /// {@category psapi}
 int GetModuleFileNameEx(
-        int? hProcess, int? hModule, PWSTR lpFilename, int nSize) =>
+        int? hProcess, int? hModule, Pointer<Utf16> lpFilename, int nSize) =>
     _GetModuleFileNameEx(hProcess ?? 0, hModule ?? 0, lpFilename, nSize);
 
 final _GetModuleFileNameEx = _psapi.lookupFunction<
-    Uint32 Function(
-        HANDLE hProcess, HMODULE hModule, PWSTR lpFilename, Uint32 nSize),
-    int Function(int hProcess, int hModule, PWSTR lpFilename,
+    Uint32 Function(HANDLE hProcess, HMODULE hModule, Pointer<Utf16> lpFilename,
+        Uint32 nSize),
+    int Function(int hProcess, int hModule, Pointer<Utf16> lpFilename,
         int nSize)>('GetModuleFileNameExW');
 
 /// Retrieves information about the specified module in the MODULEINFO
@@ -292,10 +295,12 @@ final _GetPerformanceInfo = _psapi.lookupFunction<
 /// );
 /// ```
 /// {@category psapi}
-int GetProcessImageFileName(int hProcess, PWSTR lpImageFileName, int nSize) =>
+int GetProcessImageFileName(
+        int hProcess, Pointer<Utf16> lpImageFileName, int nSize) =>
     _GetProcessImageFileName(hProcess, lpImageFileName, nSize);
 
 final _GetProcessImageFileName = _psapi.lookupFunction<
-    Uint32 Function(HANDLE hProcess, PWSTR lpImageFileName, Uint32 nSize),
-    int Function(int hProcess, PWSTR lpImageFileName,
+    Uint32 Function(
+        HANDLE hProcess, Pointer<Utf16> lpImageFileName, Uint32 nSize),
+    int Function(int hProcess, Pointer<Utf16> lpImageFileName,
         int nSize)>('GetProcessImageFileNameW');

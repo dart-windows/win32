@@ -3,15 +3,15 @@
 // license that can be found in the LICENSE file.
 
 import 'dart:ffi';
-import 'package:ffi/ffi.dart';
 
+import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 Object queryRegistryValue(int key, String subKey, String valueName) {
   late Object dataValue;
 
-  final subKeyPtr = TEXT(subKey);
-  final valueNamePtr = TEXT(valueName);
+  final subKeyPtr = PWSTR.fromString(subKey);
+  final valueNamePtr = PWSTR.fromString(valueName);
   final openKeyPtr = calloc<HANDLE>();
   final dataType = calloc<DWORD>();
 
@@ -24,7 +24,12 @@ Object queryRegistryValue(int key, String subKey, String valueName) {
     var result = RegOpenKeyEx(key, subKeyPtr, 0, KEY_READ, openKeyPtr);
     if (result == ERROR_SUCCESS) {
       result = RegQueryValueEx(
-          openKeyPtr.value, valueNamePtr, nullptr, dataType, data, dataSize);
+        openKeyPtr.value,
+        valueNamePtr,
+        dataType,
+        data,
+        dataSize,
+      );
 
       if (result == ERROR_SUCCESS) {
         if (dataType.value == REG_DWORD) {
@@ -41,8 +46,8 @@ Object queryRegistryValue(int key, String subKey, String valueName) {
       throw WindowsException(HRESULT_FROM_WIN32(result));
     }
   } finally {
-    free(subKeyPtr);
-    free(valueNamePtr);
+    subKeyPtr.free();
+    valueNamePtr.free();
     free(openKeyPtr);
     free(data);
     free(dataSize);

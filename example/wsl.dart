@@ -29,48 +29,54 @@ class DistributionConfiguration {
 
 /// Check whether a distribution exists
 bool isDistributionRegistered(String distributionName) {
-  final pDistributionName = distributionName.toNativeUtf16();
+  final pDistributionName = PWSTR.fromString(distributionName);
   try {
     return WslIsDistributionRegistered(pDistributionName) == TRUE;
   } finally {
-    free(pDistributionName);
+    pDistributionName.free();
   }
 }
 
 /// Get information about a specified WSL distribution.
 DistributionConfiguration getDistributionConfiguration(
     String distributionName) {
-  final pDistributionName = distributionName.toNativeUtf16();
+  final pDistributionName = PWSTR.fromString(distributionName);
   final distributionVersion = calloc<ULONG>();
   final defaultUID = calloc<ULONG>();
   final wslDistributionFlags = calloc<LONG>();
-  final defaultEnvironmentVariables = calloc<Pointer<PSTR>>();
+  // TODO(halildurmus): Update this when
+  // https://github.com/dart-lang/sdk/issues/54944 is resolved.
+  final defaultEnvironmentVariables =
+      calloc<Pointer<Utf8>>().cast<Pointer<PSTR>>();
   final defaultEnvironmentVariableCount = calloc<ULONG>();
 
   try {
     final hr = WslGetDistributionConfiguration(
-      TEXT(distributionName),
+      PWSTR.fromString(distributionName),
       distributionVersion,
       defaultUID,
       wslDistributionFlags,
       defaultEnvironmentVariables,
       defaultEnvironmentVariableCount,
     );
-
     if (FAILED(hr)) throw WindowsException(hr);
 
     final vars = <String>[];
     for (var idx = 0; idx < defaultEnvironmentVariableCount.value; idx++) {
-      vars.add(defaultEnvironmentVariables.value[idx].toDartString());
+      final envVar = defaultEnvironmentVariables.value[idx];
+      vars.add(envVar.toDartString());
+      free(envVar);
     }
+
     return DistributionConfiguration(
-        distributionName,
-        distributionVersion.value,
-        defaultUID.value,
-        wslDistributionFlags.value,
-        vars);
+      distributionName,
+      distributionVersion.value,
+      defaultUID.value,
+      wslDistributionFlags.value,
+      vars,
+    );
   } finally {
-    free(pDistributionName);
+    pDistributionName.free();
     free(distributionVersion);
     free(defaultUID);
     free(wslDistributionFlags);
@@ -81,10 +87,11 @@ DistributionConfiguration getDistributionConfiguration(
 
 /// Run a test Linux shell command on a given distribution.
 int runCommand(String distributionName, String command) {
-  final pDistributionName = distributionName.toNativeUtf16();
-  final pCommand = command.toNativeUtf16();
+  final pDistributionName = PWSTR.fromString(distributionName);
+  final pCommand = PWSTR.fromString(command);
   final processHandle = calloc<HANDLE>();
   final exitCode = calloc<DWORD>();
+
   try {
     final hr = WslLaunch(
       pDistributionName,
@@ -96,12 +103,14 @@ int runCommand(String distributionName, String command) {
       processHandle,
     );
     if (FAILED(hr)) throw WindowsException(hr);
+
     WaitForSingleObject(processHandle.value, INFINITE);
     GetExitCodeProcess(processHandle.value, exitCode);
+
     return exitCode.value;
   } finally {
-    free(pDistributionName);
-    free(pCommand);
+    pDistributionName.free();
+    pCommand.free();
     free(processHandle);
     free(exitCode);
   }

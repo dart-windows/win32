@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -40,11 +42,15 @@ class IMetaDataDispenser extends IUnknown {
                   Pointer<VTablePointer> ppIUnk)>()(
           ptr, rclsid, dwCreateFlags, riid, ppIUnk);
 
-  int openScope(PWSTR szScope, int dwOpenFlags, Pointer<GUID> riid,
+  int openScope(Pointer<Utf16> szScope, int dwOpenFlags, Pointer<GUID> riid,
           Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScope.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR szScope, int dwOpenFlags,
-                  Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<Utf16> szScope,
+                  int dwOpenFlags,
+                  Pointer<GUID> riid,
+                  Pointer<VTablePointer> ppIUnk)>()(
           ptr, szScope, dwOpenFlags, riid, ppIUnk);
 
   int openScopeOnMemory(Pointer pData, int cbData, int dwOpenFlags,
@@ -75,7 +81,7 @@ base class IMetaDataDispenserVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR szScope,
+              Pointer<Utf16> szScope,
               Uint32 dwOpenFlags,
               Pointer<GUID> riid,
               Pointer<VTablePointer> ppIUnk)>> OpenScope;

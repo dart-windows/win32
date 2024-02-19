@@ -129,8 +129,14 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
           equals('sealed class DHCP_ALL_OPTIONS_0 extends Struct'));
       final [option, vendorName, className] = dhcpAllOptions0.fieldProjections;
       expect(option.toString(), equals('external DHCP_OPTION Option;'));
-      expect(vendorName.toString(), equals('external PWSTR VendorName;'));
-      expect(className.toString(), equals('external PWSTR ClassName;'));
+      expect(
+        vendorName.toString(),
+        equals('external Pointer<Utf16> VendorName;'),
+      );
+      expect(
+        className.toString(),
+        equals('external Pointer<Utf16> ClassName;'),
+      );
       expect(dhcpAllOptions0.propertyAccessors, isEmpty);
     });
 

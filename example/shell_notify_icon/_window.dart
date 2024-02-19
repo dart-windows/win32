@@ -24,8 +24,8 @@ int createHidden() {
   final rect = _getWindowCenterRect();
   final hWnd = CreateWindowEx(
     0,
-    TEXT(windowClassNme),
-    TEXT('Tray Callback Window'),
+    PWSTR.fromString(windowClassNme),
+    PWSTR.fromString('Tray Callback Window'),
     WS_OVERLAPPEDWINDOW,
     rect.left,
     rect.top,
@@ -49,7 +49,7 @@ String _regWinClass() {
     ..hInstance = app.hInst
     ..hIcon = app.loadDartIcon()
     ..hCursor = LoadCursor(null, IDC_ARROW)
-    ..lpszClassName = TEXT(windowClass);
+    ..lpszClassName = PWSTR.fromString(windowClass);
   RegisterClass(pWndClass);
   return windowClass;
 }

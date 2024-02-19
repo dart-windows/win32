@@ -30,7 +30,7 @@ int printModules(int processID) {
   if (EnumProcessModules(hProcess, hMods, sizeOf<HMODULE>() * 1024, cbNeeded) ==
       1) {
     for (var i = 0; i < (cbNeeded.value ~/ sizeOf<HMODULE>()); i++) {
-      final szModName = wsalloc(MAX_PATH);
+      final szModName = PWSTR.empty(MAX_PATH);
 
       // Get the full path to the module's file.
       final hModule = (hMods + i).value;

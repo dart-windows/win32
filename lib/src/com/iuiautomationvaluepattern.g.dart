@@ -35,15 +35,15 @@ class IUIAutomationValuePattern extends IUnknown {
       IUIAutomationValuePattern(
           interface.toInterface(IID_IUIAutomationValuePattern));
 
-  int setValue(BSTR val) => _vtable.SetValue.asFunction<
-      int Function(VTablePointer lpVtbl, BSTR val)>()(ptr, val);
+  int setValue(Pointer<Utf16> val) => _vtable.SetValue.asFunction<
+      int Function(VTablePointer lpVtbl, Pointer<Utf16> val)>()(ptr, val);
 
-  BSTR get currentValue {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentValue {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentValue.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -66,12 +66,12 @@ class IUIAutomationValuePattern extends IUnknown {
     }
   }
 
-  BSTR get cachedValue {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedValue {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedValue.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -99,11 +99,12 @@ class IUIAutomationValuePattern extends IUnknown {
 base class IUIAutomationValuePatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, BSTR val)>>
-      SetValue;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> val)>> SetValue;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentValue;
   external Pointer<
           NativeFunction<
@@ -111,7 +112,8 @@ base class IUIAutomationValuePatternVtbl extends Struct {
       get_CurrentIsReadOnly;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedValue;
   external Pointer<
           NativeFunction<

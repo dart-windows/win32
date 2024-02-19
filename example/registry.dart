@@ -25,7 +25,7 @@ class RegistryKeyValuePair {
 
 int getRegistryKeyHandle(int hive, String key) {
   final phKey = calloc<HANDLE>();
-  final lpKeyPath = key.toNativeUtf16();
+  final lpKeyPath = PWSTR.fromString(key);
 
   try {
     if (RegOpenKeyEx(hive, lpKeyPath, 0, KEY_READ, phKey) != ERROR_SUCCESS) {
@@ -35,12 +35,12 @@ int getRegistryKeyHandle(int hive, String key) {
     return phKey.value;
   } finally {
     free(phKey);
-    free(lpKeyPath);
+    lpKeyPath.free();
   }
 }
 
 RegistryKeyValuePair? enumerateKey(int hKey, int index) {
-  final lpValueName = wsalloc(MAX_PATH);
+  final lpValueName = PWSTR.empty(MAX_PATH);
   final lpcchValueName = calloc<DWORD>()..value = MAX_PATH;
   final lpType = calloc<DWORD>();
   final lpData = calloc<BYTE>(MAX_ITEMLENGTH);

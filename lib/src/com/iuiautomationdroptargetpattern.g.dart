@@ -37,12 +37,12 @@ class IUIAutomationDropTargetPattern extends IUnknown {
       IUIAutomationDropTargetPattern(
           interface.toInterface(IID_IUIAutomationDropTargetPattern));
 
-  BSTR get currentDropTargetEffect {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentDropTargetEffect {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentDropTargetEffect.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -51,12 +51,12 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     }
   }
 
-  BSTR get cachedDropTargetEffect {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedDropTargetEffect {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedDropTargetEffect.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -99,11 +99,13 @@ base class IUIAutomationDropTargetPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentDropTargetEffect;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedDropTargetEffect;
   external Pointer<
           NativeFunction<

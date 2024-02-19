@@ -36,10 +36,10 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
       IUIAutomationMultipleViewPattern(
           interface.toInterface(IID_IUIAutomationMultipleViewPattern));
 
-  int getViewName(int view, Pointer<BSTR> name) =>
+  int getViewName(int view, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetViewName.asFunction<
           int Function(VTablePointer lpVtbl, int view,
-              Pointer<BSTR> name)>()(ptr, view, name);
+              Pointer<Pointer<Utf16>> name)>()(ptr, view, name);
 
   int setCurrentView(int view) => _vtable.SetCurrentView.asFunction<
       int Function(VTablePointer lpVtbl, int view)>()(ptr, view);
@@ -87,10 +87,9 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
 base class IUIAutomationMultipleViewPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Int32 view, Pointer<BSTR> name)>>
-      GetViewName;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 view,
+              Pointer<Pointer<Utf16>> name)>> GetViewName;
   external Pointer<
           NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 view)>>
       SetCurrentView;

@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -52,11 +54,14 @@ class IShellItemResources extends IUnknown {
                   Pointer<FILETIME> pftWrite, Pointer<FILETIME> pftAccess)>()(
           ptr, pftCreation, pftWrite, pftAccess);
 
-  int getResourceDescription(
-          Pointer<SHELL_ITEM_RESOURCE> pcsir, Pointer<PWSTR> ppszDescription) =>
+  int getResourceDescription(Pointer<SHELL_ITEM_RESOURCE> pcsir,
+          Pointer<Pointer<Utf16>> ppszDescription) =>
       _vtable.GetResourceDescription.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<SHELL_ITEM_RESOURCE> pcsir,
-              Pointer<PWSTR> ppszDescription)>()(ptr, pcsir, ppszDescription);
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<SHELL_ITEM_RESOURCE> pcsir,
+                  Pointer<Pointer<Utf16>> ppszDescription)>()(
+          ptr, pcsir, ppszDescription);
 
   int enumResources(Pointer<VTablePointer> ppenumr) =>
       _vtable.EnumResources.asFunction<
@@ -122,7 +127,7 @@ base class IShellItemResourcesVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<SHELL_ITEM_RESOURCE> pcsir,
-              Pointer<PWSTR> ppszDescription)>> GetResourceDescription;
+              Pointer<Pointer<Utf16>> ppszDescription)>> GetResourceDescription;
   external Pointer<
           NativeFunction<
               HRESULT Function(

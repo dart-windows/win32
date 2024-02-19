@@ -74,14 +74,14 @@ final _WindowsConcatString =
 /// ```
 /// {@category winrt}
 int WindowsCreateString(
-        PWSTR? sourceString, int length, Pointer<HSTRING> string) =>
+        Pointer<Utf16>? sourceString, int length, Pointer<HSTRING> string) =>
     _WindowsCreateString(sourceString ?? nullptr, length, string);
 
 final _WindowsCreateString =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
-        HRESULT Function(
-            PWSTR sourceString, Uint32 length, Pointer<HSTRING> string),
-        int Function(PWSTR sourceString, int length,
+        HRESULT Function(Pointer<Utf16> sourceString, Uint32 length,
+            Pointer<HSTRING> string),
+        int Function(Pointer<Utf16> sourceString, int length,
             Pointer<HSTRING> string)>('WindowsCreateString');
 
 /// Decrements the reference count of a string buffer.
@@ -155,13 +155,14 @@ final _WindowsGetStringLen = _api_ms_win_core_winrt_string_l1_1_0
 /// );
 /// ```
 /// {@category winrt}
-PWSTR WindowsGetStringRawBuffer(int? string, Pointer<Uint32>? length) =>
+Pointer<Utf16> WindowsGetStringRawBuffer(
+        int? string, Pointer<Uint32>? length) =>
     _WindowsGetStringRawBuffer(string ?? 0, length ?? nullptr);
 
 final _WindowsGetStringRawBuffer =
     _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
-        PWSTR Function(HSTRING string, Pointer<Uint32> length),
-        PWSTR Function(
+        Pointer<Utf16> Function(HSTRING string, Pointer<Uint32> length),
+        Pointer<Utf16> Function(
             int string, Pointer<Uint32> length)>('WindowsGetStringRawBuffer');
 
 /// Indicates whether the specified string is the empty string.

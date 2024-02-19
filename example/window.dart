@@ -6,7 +6,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 // Callback for each window found
@@ -17,7 +16,7 @@ int enumWindowsProc(int hWnd, int lParam) {
   final length = GetWindowTextLength(hWnd);
   if (length == 0) return TRUE;
 
-  final buffer = wsalloc(length + 1);
+  final buffer = PWSTR.empty(length + 1);
   GetWindowText(hWnd, buffer, length + 1);
   print('hWnd $hWnd: ${buffer.toDartString()}');
   free(buffer);
@@ -38,7 +37,7 @@ void enumerateWindows() {
 
 /// Find the first open Notepad window and maximize it
 void findNotepad() {
-  final hwnd = FindWindowEx(0, 0, TEXT('Notepad'), null);
+  final hwnd = FindWindowEx(0, 0, PWSTR.fromString('Notepad'), null);
 
   if (hwnd == 0) {
     print('No Notepad window found.');

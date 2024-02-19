@@ -147,12 +147,12 @@ class ISpeechVoiceStatus extends IDispatch {
     }
   }
 
-  BSTR get lastBookmark {
-    final bookmark = calloc<BSTR>();
+  Pointer<Utf16> get lastBookmark {
+    final bookmark = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_LastBookmark.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> bookmark)>()(ptr, bookmark);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> bookmark)>()(ptr, bookmark);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = bookmark.value;
       return retValue;
@@ -243,7 +243,8 @@ base class ISpeechVoiceStatusVtbl extends Struct {
       get_InputSentenceLength;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> bookmark)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> bookmark)>>
       get_LastBookmark;
   external Pointer<
           NativeFunction<

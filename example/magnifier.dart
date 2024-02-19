@@ -18,8 +18,8 @@ const RESTOREDWINDOWSTYLES =
     WS_SIZEBOX | WS_SYSMENU | WS_CLIPCHILDREN | WS_CAPTION | WS_MAXIMIZEBOX;
 
 const timerInterval = 16;
-final windowClassName = TEXT('MagnifierWindow');
-final windowTitle = TEXT('Screen Magnifier Sample');
+final windowClassName = PWSTR.fromString('MagnifierWindow');
+final windowTitle = PWSTR.fromString('Screen Magnifier Sample');
 
 // Global variables
 int hwndMag = 0;
@@ -156,8 +156,8 @@ bool setupMagnifier(int hInst, Pointer<NativeFunction<WNDPROC>> lpfnWndProc) {
   // Create a magnifier control that fills the client area
   GetClientRect(hwndHost, magWindowRect);
   hwndMag = CreateWindow(
-    TEXT('Magnifier'),
-    TEXT('MagnifierWindow'),
+    PWSTR.fromString('Magnifier'),
+    PWSTR.fromString('MagnifierWindow'),
     WS_CHILD | MS_SHOWMAGNIFIEDCURSOR | WS_VISIBLE,
     magWindowRect.ref.left,
     magWindowRect.ref.top,

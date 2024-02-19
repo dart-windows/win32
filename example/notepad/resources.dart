@@ -46,45 +46,57 @@ class NotepadResources {
     final hMenu = CreateMenu();
 
     var hMenuPopup = CreateMenu();
-    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_NEW, TEXT('&New\tCtrl+N'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_OPEN, TEXT('&Open...\tCtrl+O'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_SAVE, TEXT('&Save\tCtrl+S'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_SAVE_AS, TEXT('Save &As...'));
+    AppendMenu(
+        hMenuPopup, MF_STRING, IDM_FILE_NEW, PWSTR.fromString('&New\tCtrl+N'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_OPEN,
+        PWSTR.fromString('&Open...\tCtrl+O'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_SAVE,
+        PWSTR.fromString('&Save\tCtrl+S'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_SAVE_AS,
+        PWSTR.fromString('Save &As...'));
     AppendMenu(hMenuPopup, MF_SEPARATOR, 0, nullptr);
-    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_PRINT, TEXT('&Print\tCtrl+P'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_FILE_PRINT,
+        PWSTR.fromString('&Print\tCtrl+P'));
     AppendMenu(hMenuPopup, MF_SEPARATOR, 0, nullptr);
-    AppendMenu(hMenuPopup, MF_STRING, IDM_APP_EXIT, TEXT('E&xit'));
-    AppendMenu(hMenu, MF_POPUP, hMenuPopup, TEXT('&File'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_APP_EXIT, PWSTR.fromString('E&xit'));
+    AppendMenu(hMenu, MF_POPUP, hMenuPopup, PWSTR.fromString('&File'));
 
     hMenuPopup = CreateMenu();
-    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_UNDO, TEXT('&Undo\tCtrl+Z'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_UNDO,
+        PWSTR.fromString('&Undo\tCtrl+Z'));
     AppendMenu(hMenuPopup, MF_SEPARATOR, 0, nullptr);
-    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_CUT, TEXT('Cu&t\tCtrl+X'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_COPY, TEXT('&Copy\tCtrl+C'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_PASTE, TEXT('&Paste\tCtrl+V'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_CLEAR, TEXT('De&lete\tDel'));
+    AppendMenu(
+        hMenuPopup, MF_STRING, IDM_EDIT_CUT, PWSTR.fromString('Cu&t\tCtrl+X'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_COPY,
+        PWSTR.fromString('&Copy\tCtrl+C'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_PASTE,
+        PWSTR.fromString('&Paste\tCtrl+V'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_CLEAR,
+        PWSTR.fromString('De&lete\tDel'));
     AppendMenu(hMenuPopup, MF_SEPARATOR, 0, nullptr);
     AppendMenu(hMenuPopup, MF_STRING, IDM_EDIT_SELECT_ALL,
-        TEXT('&Select All\tCtrl+A'));
-    AppendMenu(hMenu, MF_POPUP, hMenuPopup, TEXT('&Edit'));
+        PWSTR.fromString('&Select All\tCtrl+A'));
+    AppendMenu(hMenu, MF_POPUP, hMenuPopup, PWSTR.fromString('&Edit'));
+
+    hMenuPopup = CreateMenu();
+    AppendMenu(hMenuPopup, MF_STRING, IDM_SEARCH_FIND,
+        PWSTR.fromString('&Find...\tCtrl+F'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_SEARCH_NEXT,
+        PWSTR.fromString('Find &Next\tF3'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_SEARCH_REPLACE,
+        PWSTR.fromString('&Replace...\tCtrl+R'));
+    AppendMenu(hMenu, MF_POPUP, hMenuPopup, PWSTR.fromString('&Search'));
 
     hMenuPopup = CreateMenu();
     AppendMenu(
-        hMenuPopup, MF_STRING, IDM_SEARCH_FIND, TEXT('&Find...\tCtrl+F'));
-    AppendMenu(hMenuPopup, MF_STRING, IDM_SEARCH_NEXT, TEXT('Find &Next\tF3'));
-    AppendMenu(
-        hMenuPopup, MF_STRING, IDM_SEARCH_REPLACE, TEXT('&Replace...\tCtrl+R'));
-    AppendMenu(hMenu, MF_POPUP, hMenuPopup, TEXT('&Search'));
+        hMenuPopup, MF_STRING, IDM_FORMAT_FONT, PWSTR.fromString('&Font...'));
+    AppendMenu(hMenu, MF_POPUP, hMenuPopup, PWSTR.fromString('F&ormat'));
 
     hMenuPopup = CreateMenu();
-    AppendMenu(hMenuPopup, MF_STRING, IDM_FORMAT_FONT, TEXT('&Font...'));
-    AppendMenu(hMenu, MF_POPUP, hMenuPopup, TEXT('F&ormat'));
-
-    hMenuPopup = CreateMenu();
-    AppendMenu(hMenuPopup, MF_STRING, IDM_HELP, TEXT('&Help'));
-    AppendMenu(
-        hMenuPopup, MF_STRING, IDM_APP_ABOUT, TEXT('&About $APP_NAME...'));
-    AppendMenu(hMenu, MF_POPUP, hMenuPopup, TEXT('&Help'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_HELP, PWSTR.fromString('&Help'));
+    AppendMenu(hMenuPopup, MF_STRING, IDM_APP_ABOUT,
+        PWSTR.fromString('&About $APP_NAME...'));
+    AppendMenu(hMenu, MF_POPUP, hMenuPopup, PWSTR.fromString('&Help'));
 
     return hMenu;
   }

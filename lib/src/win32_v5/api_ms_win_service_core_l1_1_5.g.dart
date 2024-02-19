@@ -36,7 +36,7 @@ final _api_ms_win_service_core_l1_1_5 =
 int GetSharedServiceDirectory(
         int serviceHandle,
         int directoryType,
-        PWSTR? pathBuffer,
+        Pointer<Utf16>? pathBuffer,
         int pathBufferLength,
         Pointer<Uint32> requiredBufferLength) =>
     _GetSharedServiceDirectory(serviceHandle, directoryType,
@@ -47,13 +47,13 @@ final _GetSharedServiceDirectory =
         Uint32 Function(
             SC_HANDLE serviceHandle,
             Int32 directoryType,
-            PWSTR pathBuffer,
+            Pointer<Utf16> pathBuffer,
             Uint32 pathBufferLength,
             Pointer<Uint32> requiredBufferLength),
         int Function(
             int serviceHandle,
             int directoryType,
-            PWSTR pathBuffer,
+            Pointer<Utf16> pathBuffer,
             int pathBufferLength,
             Pointer<Uint32> requiredBufferLength)>('GetSharedServiceDirectory');
 

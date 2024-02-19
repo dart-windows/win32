@@ -20,107 +20,117 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void showSimpleTaskDialog() {
-  final windowTitle = 'Dart TaskDialog Sample'.toNativeUtf16();
-  final mainInstruction = 'Please read this important message'.toNativeUtf16();
-  final content = 'Task dialogs are great for sharing a longer string of '
-          'explanatory content, where you need a user to read an instruction '
-          'before making a decision. Of course, you cannot guarantee that the '
-          "user will actually read the text, so it's important that you also "
-          'provide an undo function for when the wrong choice is selected.'
-      .toNativeUtf16();
-  final buttonSelected = calloc<Int32>();
+  using((arena) {
+    final windowTitle =
+        PWSTR.fromString('Dart TaskDialog Sample', allocator: arena);
+    final mainInstruction = PWSTR
+        .fromString('Please read this important message', allocator: arena);
+    final content = PWSTR.fromString(
+      'Task dialogs are great for sharing a longer string of '
+      'explanatory content, where you need a user to read an instruction '
+      'before making a decision. Of course, you cannot guarantee that the '
+      "user will actually read the text, so it's important that you also "
+      'provide an undo function for when the wrong choice is selected.',
+      allocator: arena,
+    );
+    final buttonSelected = arena<Int32>();
 
-  try {
-    final hr = TaskDialog(
-      null,
-      null,
-      windowTitle,
-      mainInstruction,
-      content,
-      TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_OK_BUTTON |
-          TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_CANCEL_BUTTON,
-      TD_INFORMATION_ICON,
-      buttonSelected,
-    );
-    if (SUCCEEDED(hr)) {
-      switch (buttonSelected.value) {
-        case IDOK:
-          print('User clicked on the OK button.');
-        default:
-          print('User canceled the task dialog.');
+    try {
+      final hr = TaskDialog(
+        null,
+        null,
+        windowTitle,
+        mainInstruction,
+        content,
+        TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_OK_BUTTON |
+            TASKDIALOG_COMMON_BUTTON_FLAGS.TDCBF_CANCEL_BUTTON,
+        TD_INFORMATION_ICON,
+        buttonSelected,
+      );
+      if (SUCCEEDED(hr)) {
+        switch (buttonSelected.value) {
+          case IDOK:
+            print('User clicked on the OK button.');
+          default:
+            print('User canceled the task dialog.');
+        }
       }
+    } on ArgumentError {
+      print(
+        'If you see an error "Failed to lookup symbol", it\'s likely because '
+        'the app manifest\ndeclaring a dependency on comctl32.dll v6 is '
+        'missing.\n\nSee the comment at the top of the sample source code.\n',
+      );
+      rethrow;
     }
-    // ignore: avoid_catching_errors
-  } on ArgumentError {
-    print(
-      'If you see an error "Failed to lookup symbol", it\'s likely because '
-      'the app manifest\ndeclaring a dependency on comctl32.dll v6 is '
-      'missing.\n\nSee the comment at the top of the sample source code.\n',
-    );
-    rethrow;
-  } finally {
-    free(windowTitle);
-    free(mainInstruction);
-    free(content);
-  }
+  });
 }
 
 void showCustomTaskDialog() {
-  // Note that this example does not explicitly free allocated memory, since it
-  // returns quickly to the command prompt. As part of a real app, you'd
-  // certainly want to free each string here.
-  final buttonSelected = calloc<Int32>();
+  using((arena) {
+    // Note that this example does not explicitly free allocated memory, since it
+    // returns quickly to the command prompt. As part of a real app, you'd
+    // certainly want to free each string here.
+    final buttonSelected = arena<Int32>();
 
-  final buttons = calloc<TASKDIALOG_BUTTON>(2);
-  buttons[0]
-    ..nButtonID = 100
-    ..pszButtonText =
+    final buttons = arena<TASKDIALOG_BUTTON>(2);
+    buttons[0]
+      ..nButtonID = 100
+      ..pszButtonText = PWSTR.fromString(
         'Take the blue pill\nThe story ends, you wake up in your bed and '
-                'believe whatever you want to believe.'
-            .toNativeUtf16();
-  buttons[1]
-    ..nButtonID = 101
-    ..pszButtonText =
+        'believe whatever you want to believe.',
+        allocator: arena,
+      );
+    buttons[1]
+      ..nButtonID = 101
+      ..pszButtonText = PWSTR.fromString(
         'Take the red pill\nYou stay in Wonderland, and I show you how deep '
-                'the rabbit hole goes.'
-            .toNativeUtf16();
+        'the rabbit hole goes.',
+        allocator: arena,
+      );
 
-  const matrixDescription =
-      'In The Matrix, the main character Neo is offered  the choice between '
-      'a red pill and a blue pill by rebel leader Morpheus. The red pill '
-      'represents an uncertain future: it would free him from the enslaving '
-      'control of the machine-generated dream world and allow him to escape '
-      'into the real world, but living the "truth of reality" is harsher and '
-      'more difficult. On the other hand, the blue pill represents a '
-      'beautiful prison: it would lead him back to ignorance, living in '
-      'confined comfort without want or fear within '
-      'the simulated reality of the Matrix.';
+    const matrixDescription =
+        'In The Matrix, the main character Neo is offered the choice between '
+        'a red pill and a blue pill by rebel leader Morpheus. The red pill '
+        'represents an uncertain future: it would free him from the enslaving '
+        'control of the machine-generated dream world and allow him to escape '
+        'into the real world, but living the "truth of reality" is harsher and '
+        'more difficult. On the other hand, the blue pill represents a beautiful '
+        'prison: it would lead him back to ignorance, living in confined comfort '
+        'without want or fear within the simulated reality of the Matrix.';
 
-  final config = calloc<TASKDIALOGCONFIG>();
-  config.ref
-    ..cbSize = sizeOf<TASKDIALOGCONFIG>()
-    ..pszWindowTitle = 'TaskDialogIndirect Sample'.toNativeUtf16()
-    ..pszMainInstruction = 'Which pill will you take?'.toNativeUtf16()
-    ..pszContent =
-        'This is your last chance. There is no turning back.'.toNativeUtf16()
-    ..hMainIcon = TD_WARNING_ICON.address
-    ..pszCollapsedControlText = 'See more details.'.toNativeUtf16()
-    ..pszExpandedControlText = matrixDescription.toNativeUtf16()
-    ..dwFlags = TASKDIALOG_FLAGS.TDF_USE_COMMAND_LINKS
-    ..cButtons = 2
-    ..pButtons = buttons;
+    final config = arena<TASKDIALOGCONFIG>();
+    config.ref
+      ..cbSize = sizeOf<TASKDIALOGCONFIG>()
+      ..pszWindowTitle =
+          PWSTR.fromString('TaskDialogIndirect Sample', allocator: arena)
+      ..pszMainInstruction =
+          PWSTR.fromString('Which pill will you take?', allocator: arena)
+      ..pszContent = PWSTR.fromString(
+        'This is your last chance. There is no turning back.',
+        allocator: arena,
+      )
+      ..hMainIcon = TD_WARNING_ICON.address
+      ..pszCollapsedControlText =
+          PWSTR.fromString('See more details.', allocator: arena)
+      ..pszExpandedControlText =
+          PWSTR.fromString(matrixDescription, allocator: arena)
+      ..dwFlags = TASKDIALOG_FLAGS.TDF_USE_COMMAND_LINKS
+      ..cButtons = 2
+      ..pButtons = buttons;
 
-  final hr = TaskDialogIndirect(config, buttonSelected, null, null);
+    final hr = TaskDialogIndirect(config, buttonSelected, null, null);
 
-  if (SUCCEEDED(hr)) {
-    if (buttonSelected.value == 100) {
-      print('Ignorance is bliss.');
+    if (SUCCEEDED(hr)) {
+      if (buttonSelected.value == 100) {
+        print('Ignorance is bliss.');
+      } else {
+        print("I've been expecting you, Mr Anderson.");
+      }
     } else {
-      print("I've been expecting you, Mr Anderson.");
+      print('that failed.');
     }
-  } else {
-    print('that failed.');
-  }
+  });
 }
 
 void main() {

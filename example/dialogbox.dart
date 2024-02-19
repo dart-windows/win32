@@ -119,7 +119,7 @@ int dialogReturnProc(int hwndDlg, int message, int wParam, int lParam) {
         switch (LOWORD(wParam)) {
           case IDOK:
             print('OK');
-            final textPtr = wsalloc(256);
+            final textPtr = PWSTR.empty(256);
             GetDlgItemText(hwndDlg, ID_EDITTEXT, textPtr, 256);
             textEntered = textPtr.toDartString();
             free(textPtr);

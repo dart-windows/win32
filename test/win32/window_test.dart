@@ -23,7 +23,7 @@ void main() {
 
   test('RegisterClass()', () {
     final hInstance = GetModuleHandle(null);
-    final pClassName = 'CLASS_NAME'.toNativeUtf16();
+    final pClassName = PWSTR.fromString('CLASS_NAME');
     final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
       MainWindowProc,
       exceptionalReturn: 0,
@@ -44,7 +44,7 @@ void main() {
     } finally {
       lpfnWndProc.close();
       free(wc);
-      free(pClassName);
+      pClassName.free();
     }
   });
 }

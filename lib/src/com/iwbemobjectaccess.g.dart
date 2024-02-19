@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -33,10 +35,10 @@ class IWbemObjectAccess extends IWbemClassObject {
   factory IWbemObjectAccess.from(IUnknown interface) =>
       IWbemObjectAccess(interface.toInterface(IID_IWbemObjectAccess));
 
-  int getPropertyHandle(PWSTR wszPropertyName, Pointer<Int32> pType,
+  int getPropertyHandle(Pointer<Utf16> wszPropertyName, Pointer<Int32> pType,
           Pointer<Int32> plHandle) =>
       _vtable.GetPropertyHandle.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR wszPropertyName,
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> wszPropertyName,
                   Pointer<Int32> pType, Pointer<Int32> plHandle)>()(
           ptr, wszPropertyName, pType, plHandle);
 
@@ -70,13 +72,13 @@ class IWbemObjectAccess extends IWbemClassObject {
       int Function(
           VTablePointer lpVtbl, int lHandle, int pw)>()(ptr, lHandle, pw);
 
-  int getPropertyInfoByHandle(
-          int lHandle, Pointer<BSTR> pstrName, Pointer<Int32> pType) =>
+  int getPropertyInfoByHandle(int lHandle, Pointer<Pointer<Utf16>> pstrName,
+          Pointer<Int32> pType) =>
       _vtable.GetPropertyInfoByHandle.asFunction<
           int Function(
               VTablePointer lpVtbl,
               int lHandle,
-              Pointer<BSTR> pstrName,
+              Pointer<Pointer<Utf16>> pstrName,
               Pointer<Int32> pType)>()(ptr, lHandle, pstrName, pType);
 
   int lock(int lFlags) =>
@@ -94,7 +96,7 @@ base class IWbemObjectAccessVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR wszPropertyName,
+              Pointer<Utf16> wszPropertyName,
               Pointer<Int32> pType,
               Pointer<Int32> plHandle)>> GetPropertyHandle;
   external Pointer<
@@ -132,7 +134,7 @@ base class IWbemObjectAccessVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               Int32 lHandle,
-              Pointer<BSTR> pstrName,
+              Pointer<Pointer<Utf16>> pstrName,
               Pointer<Int32> pType)>> GetPropertyInfoByHandle;
   external Pointer<
           NativeFunction<HRESULT Function(VTablePointer lpVtbl, Int32 lFlags)>>

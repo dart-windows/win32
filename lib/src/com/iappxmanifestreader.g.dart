@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -61,9 +63,9 @@ class IAppxManifestReader extends IUnknown {
                   Pointer<VTablePointer> deviceCapabilities)>()(
           ptr, deviceCapabilities);
 
-  int getPrerequisite(PWSTR name, Pointer<Uint64> value) =>
+  int getPrerequisite(Pointer<Utf16> name, Pointer<Uint64> value) =>
       _vtable.GetPrerequisite.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR name,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Uint64> value)>()(ptr, name, value);
 
   int getApplications(Pointer<VTablePointer> applications) =>
@@ -110,10 +112,9 @@ base class IAppxManifestReaderVtbl extends Struct {
                   Pointer<VTablePointer> deviceCapabilities)>>
       GetDeviceCapabilities;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, PWSTR name, Pointer<Uint64> value)>>
-      GetPrerequisite;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+              Pointer<Uint64> value)>> GetPrerequisite;
   external Pointer<
           NativeFunction<
               HRESULT Function(

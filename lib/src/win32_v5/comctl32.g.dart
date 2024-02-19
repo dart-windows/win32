@@ -51,12 +51,14 @@ final _DefSubclassProc = _comctl32.lookupFunction<
 /// );
 /// ```
 /// {@category comctl32}
-void DrawStatusText(int hDC, Pointer<RECT> lprc, PWSTR pszText, int uFlags) =>
+void DrawStatusText(
+        int hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText, int uFlags) =>
     _DrawStatusText(hDC, lprc, pszText, uFlags);
 
 final _DrawStatusText = _comctl32.lookupFunction<
-    Void Function(HDC hDC, Pointer<RECT> lprc, PWSTR pszText, Uint32 uFlags),
-    void Function(int hDC, Pointer<RECT> lprc, PWSTR pszText,
+    Void Function(
+        HDC hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText, Uint32 uFlags),
+    void Function(int hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText,
         int uFlags)>('DrawStatusTextW');
 
 /// Ensures that the common control DLL (Comctl32.dll) is loaded, and registers
@@ -141,11 +143,11 @@ final _SetWindowSubclass = _comctl32.lookupFunction<
 int TaskDialog(
         int? hwndOwner,
         int? hInstance,
-        PWSTR? pszWindowTitle,
-        PWSTR? pszMainInstruction,
-        PWSTR? pszContent,
+        Pointer<Utf16>? pszWindowTitle,
+        Pointer<Utf16>? pszMainInstruction,
+        Pointer<Utf16>? pszContent,
         int dwCommonButtons,
-        PWSTR? pszIcon,
+        Pointer<Utf16>? pszIcon,
         Pointer<Int32>? pnButton) =>
     _TaskDialog(
         hwndOwner ?? 0,
@@ -161,20 +163,20 @@ final _TaskDialog = _comctl32.lookupFunction<
     HRESULT Function(
         HWND hwndOwner,
         HINSTANCE hInstance,
-        PWSTR pszWindowTitle,
-        PWSTR pszMainInstruction,
-        PWSTR pszContent,
+        Pointer<Utf16> pszWindowTitle,
+        Pointer<Utf16> pszMainInstruction,
+        Pointer<Utf16> pszContent,
         Int32 dwCommonButtons,
-        PWSTR pszIcon,
+        Pointer<Utf16> pszIcon,
         Pointer<Int32> pnButton),
     int Function(
         int hwndOwner,
         int hInstance,
-        PWSTR pszWindowTitle,
-        PWSTR pszMainInstruction,
-        PWSTR pszContent,
+        Pointer<Utf16> pszWindowTitle,
+        Pointer<Utf16> pszMainInstruction,
+        Pointer<Utf16> pszContent,
         int dwCommonButtons,
-        PWSTR pszIcon,
+        Pointer<Utf16> pszIcon,
         Pointer<Int32> pnButton)>('TaskDialog');
 
 /// The TaskDialogIndirect function creates, displays, and operates a task

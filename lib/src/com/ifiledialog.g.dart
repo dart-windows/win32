@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -74,21 +76,28 @@ class IFileDialog extends IModalWindow {
           int Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
-  int setFileName(PWSTR pszName) => _vtable.SetFileName.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR pszName)>()(ptr, pszName);
-
-  int getFileName(Pointer<PWSTR> pszName) => _vtable.GetFileName.asFunction<
+  int setFileName(Pointer<Utf16> pszName) => _vtable.SetFileName.asFunction<
       int Function(
-          VTablePointer lpVtbl, Pointer<PWSTR> pszName)>()(ptr, pszName);
+          VTablePointer lpVtbl, Pointer<Utf16> pszName)>()(ptr, pszName);
 
-  int setTitle(PWSTR pszTitle) => _vtable.SetTitle.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR pszTitle)>()(ptr, pszTitle);
+  int getFileName(Pointer<Pointer<Utf16>> pszName) =>
+      _vtable.GetFileName.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszName)>()(ptr, pszName);
 
-  int setOkButtonLabel(PWSTR pszText) => _vtable.SetOkButtonLabel.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR pszText)>()(ptr, pszText);
+  int setTitle(Pointer<Utf16> pszTitle) => _vtable.SetTitle.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<Utf16> pszTitle)>()(ptr, pszTitle);
 
-  int setFileNameLabel(PWSTR pszLabel) => _vtable.SetFileNameLabel.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR pszLabel)>()(ptr, pszLabel);
+  int setOkButtonLabel(Pointer<Utf16> pszText) =>
+      _vtable.SetOkButtonLabel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Utf16> pszText)>()(ptr, pszText);
+
+  int setFileNameLabel(Pointer<Utf16> pszLabel) =>
+      _vtable.SetFileNameLabel.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
 
   int getResult(Pointer<VTablePointer> ppsi) => _vtable.GetResult.asFunction<
       int Function(
@@ -98,10 +107,10 @@ class IFileDialog extends IModalWindow {
       int Function(
           VTablePointer lpVtbl, VTablePointer psi, int fdap)>()(ptr, psi, fdap);
 
-  int setDefaultExtension(PWSTR pszDefaultExtension) =>
+  int setDefaultExtension(Pointer<Utf16> pszDefaultExtension) =>
       _vtable.SetDefaultExtension.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR pszDefaultExtension)>()(
-          ptr, pszDefaultExtension);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Utf16> pszDefaultExtension)>()(ptr, pszDefaultExtension);
 
   int close(int hr) =>
       _vtable.Close.asFunction<int Function(VTablePointer lpVtbl, int hr)>()(
@@ -166,21 +175,25 @@ base class IFileDialogVtbl extends Struct {
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>>
       GetCurrentSelection;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszName)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszName)>>
       SetFileName;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> pszName)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pszName)>>
       GetFileName;
   external Pointer<
-      NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pszTitle)>> SetTitle;
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszTitle)>>
+      SetTitle;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszText)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszText)>>
       SetOkButtonLabel;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, PWSTR pszLabel)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>>
       SetFileNameLabel;
   external Pointer<
       NativeFunction<
@@ -193,7 +206,7 @@ base class IFileDialogVtbl extends Struct {
   external Pointer<
           NativeFunction<
               HRESULT Function(
-                  VTablePointer lpVtbl, PWSTR pszDefaultExtension)>>
+                  VTablePointer lpVtbl, Pointer<Utf16> pszDefaultExtension)>>
       SetDefaultExtension;
   external Pointer<
       NativeFunction<HRESULT Function(VTablePointer lpVtbl, HRESULT hr)>> Close;

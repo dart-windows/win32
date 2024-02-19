@@ -46,7 +46,7 @@ final _SymCleanup = _dbghelp.lookupFunction<BOOL Function(HANDLE hProcess),
 int SymEnumSymbols(
         int hProcess,
         int baseOfDll,
-        PWSTR? mask,
+        Pointer<Utf16>? mask,
         Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>
             enumSymbolsCallback,
         Pointer? userContext) =>
@@ -57,14 +57,14 @@ final _SymEnumSymbols = _dbghelp.lookupFunction<
     BOOL Function(
         HANDLE hProcess,
         Uint64 baseOfDll,
-        PWSTR mask,
+        Pointer<Utf16> mask,
         Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>
             enumSymbolsCallback,
         Pointer userContext),
     int Function(
         int hProcess,
         int baseOfDll,
-        PWSTR mask,
+        Pointer<Utf16> mask,
         Pointer<NativeFunction<PSYM_ENUMERATESYMBOLS_CALLBACK>>
             enumSymbolsCallback,
         Pointer userContext)>('SymEnumSymbolsW');
@@ -135,12 +135,14 @@ final _SymGetExtendedOption = _dbghelp.lookupFunction<
 /// );
 /// ```
 /// {@category dbghelp}
-int SymInitialize(int hProcess, PWSTR? userSearchPath, int fInvadeProcess) =>
+int SymInitialize(
+        int hProcess, Pointer<Utf16>? userSearchPath, int fInvadeProcess) =>
     _SymInitialize(hProcess, userSearchPath ?? nullptr, fInvadeProcess);
 
 final _SymInitialize = _dbghelp.lookupFunction<
-    BOOL Function(HANDLE hProcess, PWSTR userSearchPath, BOOL fInvadeProcess),
-    int Function(int hProcess, PWSTR userSearchPath,
+    BOOL Function(
+        HANDLE hProcess, Pointer<Utf16> userSearchPath, BOOL fInvadeProcess),
+    int Function(int hProcess, Pointer<Utf16> userSearchPath,
         int fInvadeProcess)>('SymInitializeW');
 
 /// Loads the symbol table for the specified module.
@@ -160,8 +162,8 @@ final _SymInitialize = _dbghelp.lookupFunction<
 int SymLoadModuleEx(
         int hProcess,
         int? hFile,
-        PWSTR? imageName,
-        PWSTR? moduleName,
+        Pointer<Utf16>? imageName,
+        Pointer<Utf16>? moduleName,
         int baseOfDll,
         int dllSize,
         Pointer<MODLOAD_DATA>? data,
@@ -173,8 +175,8 @@ final _SymLoadModuleEx = _dbghelp.lookupFunction<
     Uint64 Function(
         HANDLE hProcess,
         HANDLE hFile,
-        PWSTR imageName,
-        PWSTR moduleName,
+        Pointer<Utf16> imageName,
+        Pointer<Utf16> moduleName,
         Uint64 baseOfDll,
         Uint32 dllSize,
         Pointer<MODLOAD_DATA> data,
@@ -182,8 +184,8 @@ final _SymLoadModuleEx = _dbghelp.lookupFunction<
     int Function(
         int hProcess,
         int hFile,
-        PWSTR imageName,
-        PWSTR moduleName,
+        Pointer<Utf16> imageName,
+        Pointer<Utf16> moduleName,
         int baseOfDll,
         int dllSize,
         Pointer<MODLOAD_DATA> data,
@@ -296,12 +298,13 @@ final _SymSetScopeFromInlineContext = _dbghelp.lookupFunction<
 /// );
 /// ```
 /// {@category dbghelp}
-int SymSetSearchPath(int hProcess, PWSTR? searchPathA) =>
+int SymSetSearchPath(int hProcess, Pointer<Utf16>? searchPathA) =>
     _SymSetSearchPath(hProcess, searchPathA ?? nullptr);
 
 final _SymSetSearchPath = _dbghelp.lookupFunction<
-    BOOL Function(HANDLE hProcess, PWSTR searchPathA),
-    int Function(int hProcess, PWSTR searchPathA)>('SymSetSearchPathW');
+    BOOL Function(HANDLE hProcess, Pointer<Utf16> searchPathA),
+    int Function(
+        int hProcess, Pointer<Utf16> searchPathA)>('SymSetSearchPathW');
 
 /// Unloads the symbol table.
 ///
@@ -346,12 +349,12 @@ final _SymUnloadModule64 = _dbghelp.lookupFunction<
 /// );
 /// ```
 /// {@category dbghelp}
-int UnDecorateSymbolName(
-        PWSTR name, PWSTR outputString, int maxStringLength, int flags) =>
+int UnDecorateSymbolName(Pointer<Utf16> name, Pointer<Utf16> outputString,
+        int maxStringLength, int flags) =>
     _UnDecorateSymbolName(name, outputString, maxStringLength, flags);
 
 final _UnDecorateSymbolName = _dbghelp.lookupFunction<
-    Uint32 Function(
-        PWSTR name, PWSTR outputString, Uint32 maxStringLength, Uint32 flags),
-    int Function(PWSTR name, PWSTR outputString, int maxStringLength,
-        int flags)>('UnDecorateSymbolNameW');
+    Uint32 Function(Pointer<Utf16> name, Pointer<Utf16> outputString,
+        Uint32 maxStringLength, Uint32 flags),
+    int Function(Pointer<Utf16> name, Pointer<Utf16> outputString,
+        int maxStringLength, int flags)>('UnDecorateSymbolNameW');

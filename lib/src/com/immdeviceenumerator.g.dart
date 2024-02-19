@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -43,9 +45,9 @@ class IMMDeviceEnumerator extends IUnknown {
                   Pointer<VTablePointer> ppEndpoint)>()(
           ptr, dataFlow, role, ppEndpoint);
 
-  int getDevice(PWSTR pwstrId, Pointer<VTablePointer> ppDevice) =>
+  int getDevice(Pointer<Utf16> pwstrId, Pointer<VTablePointer> ppDevice) =>
       _vtable.GetDevice.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR pwstrId,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
               Pointer<VTablePointer> ppDevice)>()(ptr, pwstrId, ppDevice);
 
   int registerEndpointNotificationCallback(VTablePointer pClient) =>
@@ -75,7 +77,7 @@ base class IMMDeviceEnumeratorVtbl extends Struct {
               Pointer<VTablePointer> ppEndpoint)>> GetDefaultAudioEndpoint;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pwstrId,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
               Pointer<VTablePointer> ppDevice)>> GetDevice;
   external Pointer<
           NativeFunction<

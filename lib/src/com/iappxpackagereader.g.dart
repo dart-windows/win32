@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -38,9 +40,9 @@ class IAppxPackageReader extends IUnknown {
           int Function(VTablePointer lpVtbl, int type,
               Pointer<VTablePointer> file)>()(ptr, type, file);
 
-  int getPayloadFile(PWSTR fileName, Pointer<VTablePointer> file) =>
+  int getPayloadFile(Pointer<Utf16> fileName, Pointer<VTablePointer> file) =>
       _vtable.GetPayloadFile.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR fileName,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> fileName,
               Pointer<VTablePointer> file)>()(ptr, fileName, file);
 
   int getPayloadFiles(Pointer<VTablePointer> filesEnumerator) =>
@@ -68,7 +70,7 @@ base class IAppxPackageReaderVtbl extends Struct {
               Pointer<VTablePointer> file)>> GetFootprintFile;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR fileName,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> fileName,
               Pointer<VTablePointer> file)>> GetPayloadFile;
   external Pointer<
       NativeFunction<

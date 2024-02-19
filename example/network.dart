@@ -17,7 +17,7 @@ void main() {
   final netManager = INetworkListManager(
       createComObject(NetworkListManager, IID_INetworkListManager));
   final nlmConnectivity = calloc<Int32>();
-  final descPtr = calloc<BSTR>();
+  final descPtr = calloc<Pointer<Utf16>>();
   final elements = calloc<ULONG>();
 
   try {

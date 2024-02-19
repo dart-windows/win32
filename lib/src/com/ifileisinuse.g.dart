@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,9 +32,11 @@ class IFileIsInUse extends IUnknown {
   factory IFileIsInUse.from(IUnknown interface) =>
       IFileIsInUse(interface.toInterface(IID_IFileIsInUse));
 
-  int getAppName(Pointer<PWSTR> ppszName) => _vtable.GetAppName.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<PWSTR> ppszName)>()(ptr, ppszName);
+  int getAppName(
+          Pointer<Pointer<Utf16>> ppszName) =>
+      _vtable.GetAppName.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> ppszName)>()(ptr, ppszName);
 
   int getUsage(Pointer<Int32> pfut) => _vtable.GetUsage.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Int32> pfut)>()(ptr, pfut);
@@ -57,7 +61,8 @@ base class IFileIsInUseVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> ppszName)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> ppszName)>>
       GetAppName;
   external Pointer<
           NativeFunction<

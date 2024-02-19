@@ -894,7 +894,7 @@ int BluetoothSdpGetString(
         int cbRecordLength,
         Pointer<SDP_STRING_TYPE_DATA>? pStringData,
         int usStringOffset,
-        PWSTR pszString,
+        Pointer<Utf16> pszString,
         Pointer<Uint32> pcchStringLength) =>
     _BluetoothSdpGetString(pRecordStream, cbRecordLength,
         pStringData ?? nullptr, usStringOffset, pszString, pcchStringLength);
@@ -905,14 +905,14 @@ final _BluetoothSdpGetString = _bluetoothapis.lookupFunction<
         Uint32 cbRecordLength,
         Pointer<SDP_STRING_TYPE_DATA> pStringData,
         Uint16 usStringOffset,
-        PWSTR pszString,
+        Pointer<Utf16> pszString,
         Pointer<Uint32> pcchStringLength),
     int Function(
         Pointer<Uint8> pRecordStream,
         int cbRecordLength,
         Pointer<SDP_STRING_TYPE_DATA> pStringData,
         int usStringOffset,
-        PWSTR pszString,
+        Pointer<Utf16> pszString,
         Pointer<Uint32> pcchStringLength)>('BluetoothSdpGetString');
 
 /// The BluetoothSendAuthenticationResponseEx function is called when an

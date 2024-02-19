@@ -4,11 +4,10 @@
 
 // Demonstrates COM object creation and casting from Dart
 
-import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final pTitle = 'Dart Open File Dialog'.toNativeUtf16();
+  final pTitle = PWSTR.fromString('Dart Open File Dialog');
 
   // Initialize COM
   var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
@@ -60,7 +59,7 @@ void main() {
   fileDialog.release();
 
   // Clear up
-  free(pTitle);
+  pTitle.free();
   CoUninitialize();
   print('All done!');
 }

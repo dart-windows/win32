@@ -21,7 +21,7 @@ void printCommState(DCB dcb) => print('BaudRate = ${dcb.BaudRate}, '
     'StopBits = ${dcb.StopBits}');
 
 void main() {
-  final pcCommPort = 'COM1'.toNativeUtf16();
+  final pcCommPort = PWSTR.fromString('COM1');
   final dcb = calloc<DCB>();
 
   try {
@@ -56,7 +56,7 @@ void main() {
 
     printCommState(dcb.ref);
   } finally {
-    free(pcCommPort);
+    pcCommPort.free();
     free(dcb);
   }
 }

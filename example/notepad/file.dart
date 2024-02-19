@@ -27,11 +27,11 @@ class NotepadFile {
     ofn.ref
       ..lStructSize = sizeOf<OPENFILENAME>()
       ..hwndOwner = hwnd
-      ..lpstrFilter = TEXT(
+      ..lpstrFilter = PWSTR.fromString(
           'Text Files (*.txt)\u{0}*.txt\u{0}All Files (*.*)\u{0}*.*\u{0}\u{0}')
       ..nMaxFile = MAX_PATH
       ..nMaxFileTitle = MAX_PATH
-      ..lpstrDefExt = TEXT('txt');
+      ..lpstrDefExt = PWSTR.fromString('txt');
   }
 
   /// Shows open dialog.
@@ -39,23 +39,22 @@ class NotepadFile {
   /// Returns `true` if the the user selects a file and the common dialog
   /// is successful.
   bool showOpenDialog(int hwnd) {
-    final strFile = path.isNotEmpty ? path.toNativeUtf16() : wsalloc(MAX_PATH);
-
+    final strFile =
+        path.isNotEmpty ? PWSTR.fromString(path) : PWSTR.empty(MAX_PATH);
     final strFileTitle =
-        title.isNotEmpty ? title.toNativeUtf16() : wsalloc(MAX_PATH);
+        title.isNotEmpty ? PWSTR.fromString(title) : PWSTR.empty(MAX_PATH);
 
-    ofn.ref.lpstrFile = strFile;
-    ofn.ref.lpstrFileTitle = strFileTitle;
-    ofn.ref.Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
+    ofn.ref
+      ..lpstrFile = strFile
+      ..lpstrFileTitle = strFileTitle
+      ..Flags = OFN_HIDEREADONLY | OFN_CREATEPROMPT;
 
     final result = GetOpenFileName(ofn);
-    if (result == 0) {
-      return false;
-    } else {
-      path = ofn.ref.lpstrFile.toDartString();
-      title = ofn.ref.lpstrFileTitle.toDartString();
-      return true;
-    }
+    if (result == 0) return false;
+
+    path = ofn.ref.lpstrFile.toDartString();
+    title = ofn.ref.lpstrFileTitle.toDartString();
+    return true;
   }
 
   /// Shows save dialog and updates `fileFullPath` and `fileTitle` if the user
@@ -64,23 +63,22 @@ class NotepadFile {
   /// Returns `true` if the the user selects a file and the common dialog
   /// is successful.
   bool showSaveDialog(int hwnd) {
-    final strFile = path.isNotEmpty ? path.toNativeUtf16() : wsalloc(MAX_PATH);
-
+    final strFile =
+        path.isNotEmpty ? PWSTR.fromString(path) : PWSTR.empty(MAX_PATH);
     final strFileTitle =
-        title.isNotEmpty ? title.toNativeUtf16() : wsalloc(MAX_PATH);
+        title.isNotEmpty ? PWSTR.fromString(title) : PWSTR.empty(MAX_PATH);
 
-    ofn.ref.lpstrFile = strFile;
-    ofn.ref.lpstrFileTitle = strFileTitle;
-    ofn.ref.Flags = OFN_OVERWRITEPROMPT;
+    ofn.ref
+      ..lpstrFile = strFile
+      ..lpstrFileTitle = strFileTitle
+      ..Flags = OFN_OVERWRITEPROMPT;
 
     final result = GetSaveFileName(ofn);
-    if (result == 0) {
-      return false;
-    } else {
-      path = ofn.ref.lpstrFile.toDartString();
-      title = ofn.ref.lpstrFileTitle.toDartString();
-      return true;
-    }
+    if (result == 0) return false;
+
+    path = ofn.ref.lpstrFile.toDartString();
+    title = ofn.ref.lpstrFileTitle.toDartString();
+    return true;
   }
 
   void readFileIntoEditControl(int hwndEdit) {
@@ -88,18 +86,17 @@ class NotepadFile {
     // string encoding. That's fine -- this is a toy app!
     final file = File(path);
     final contents = file.readAsStringSync();
-
-    SetWindowText(hwndEdit, TEXT(contents));
+    SetWindowText(hwndEdit, PWSTR.fromString(contents));
   }
 
   void writeFileFromEditControl(int hwndEdit) {
     final file = File(path);
     final iLength = GetWindowTextLength(hwndEdit);
-    final buffer = wsalloc(iLength);
+    final buffer = PWSTR.empty(iLength);
 
     GetWindowText(hwndEdit, buffer, iLength + 1);
     file.writeAsStringSync(buffer.toDartString());
 
-    free(buffer);
+    buffer.free();
   }
 }

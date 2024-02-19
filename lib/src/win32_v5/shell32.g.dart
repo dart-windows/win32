@@ -28,13 +28,15 @@ final _shell32 = DynamicLibrary.open('shell32.dll');
 /// );
 /// ```
 /// {@category shell32}
-Pointer<PWSTR> CommandLineToArgv(PWSTR lpCmdLine, Pointer<Int32> pNumArgs) =>
+Pointer<Pointer<Utf16>> CommandLineToArgv(
+        Pointer<Utf16> lpCmdLine, Pointer<Int32> pNumArgs) =>
     _CommandLineToArgv(lpCmdLine, pNumArgs);
 
 final _CommandLineToArgv = _shell32.lookupFunction<
-    Pointer<PWSTR> Function(PWSTR lpCmdLine, Pointer<Int32> pNumArgs),
-    Pointer<PWSTR> Function(
-        PWSTR lpCmdLine, Pointer<Int32> pNumArgs)>('CommandLineToArgvW');
+    Pointer<Pointer<Utf16>> Function(
+        Pointer<Utf16> lpCmdLine, Pointer<Int32> pNumArgs),
+    Pointer<Pointer<Utf16>> Function(Pointer<Utf16> lpCmdLine,
+        Pointer<Int32> pNumArgs)>('CommandLineToArgvW');
 
 /// Gets a handle to an icon stored as a resource in a file or an icon stored in
 /// a file's associated executable file.
@@ -47,12 +49,13 @@ final _CommandLineToArgv = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int ExtractAssociatedIcon(PWSTR pszIconPath, Pointer<Uint16> piIcon) =>
+int ExtractAssociatedIcon(Pointer<Utf16> pszIconPath, Pointer<Uint16> piIcon) =>
     _ExtractAssociatedIcon(0, pszIconPath, piIcon);
 
 final _ExtractAssociatedIcon = _shell32.lookupFunction<
-    HICON Function(HINSTANCE hInst, PWSTR pszIconPath, Pointer<Uint16> piIcon),
-    int Function(int hInst, PWSTR pszIconPath,
+    HICON Function(
+        HINSTANCE hInst, Pointer<Utf16> pszIconPath, Pointer<Uint16> piIcon),
+    int Function(int hInst, Pointer<Utf16> pszIconPath,
         Pointer<Uint16> piIcon)>('ExtractAssociatedIconW');
 
 /// Retrieves the name of and handle to the executable (.exe) file associated
@@ -66,13 +69,15 @@ final _ExtractAssociatedIcon = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int FindExecutable(PWSTR lpFile, PWSTR? lpDirectory, PWSTR lpResult) =>
+int FindExecutable(Pointer<Utf16> lpFile, Pointer<Utf16>? lpDirectory,
+        Pointer<Utf16> lpResult) =>
     _FindExecutable(lpFile, lpDirectory ?? nullptr, lpResult);
 
 final _FindExecutable = _shell32.lookupFunction<
-    HINSTANCE Function(PWSTR lpFile, PWSTR lpDirectory, PWSTR lpResult),
-    int Function(
-        PWSTR lpFile, PWSTR lpDirectory, PWSTR lpResult)>('FindExecutableW');
+    HINSTANCE Function(Pointer<Utf16> lpFile, Pointer<Utf16> lpDirectory,
+        Pointer<Utf16> lpResult),
+    int Function(Pointer<Utf16> lpFile, Pointer<Utf16> lpDirectory,
+        Pointer<Utf16> lpResult)>('FindExecutableW');
 
 /// Creates and initializes a Shell item object from a parsing name.
 ///
@@ -85,14 +90,14 @@ final _FindExecutable = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHCreateItemFromParsingName(PWSTR pszPath, VTablePointer? pbc,
+int SHCreateItemFromParsingName(Pointer<Utf16> pszPath, VTablePointer? pbc,
         Pointer<GUID> riid, Pointer<Pointer> ppv) =>
     _SHCreateItemFromParsingName(pszPath, pbc ?? nullptr, riid, ppv);
 
 final _SHCreateItemFromParsingName = _shell32.lookupFunction<
-    HRESULT Function(PWSTR pszPath, VTablePointer pbc, Pointer<GUID> riid,
-        Pointer<Pointer> ppv),
-    int Function(PWSTR pszPath, VTablePointer pbc, Pointer<GUID> riid,
+    HRESULT Function(Pointer<Utf16> pszPath, VTablePointer pbc,
+        Pointer<GUID> riid, Pointer<Pointer> ppv),
+    int Function(Pointer<Utf16> pszPath, VTablePointer pbc, Pointer<GUID> riid,
         Pointer<Pointer> ppv)>('SHCreateItemFromParsingName');
 
 /// Sends a message to the taskbar's status area.
@@ -123,13 +128,15 @@ final _Shell_NotifyIcon = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int ShellAbout(int? hWnd, PWSTR szApp, PWSTR? szOtherStuff, int? hIcon) =>
+int ShellAbout(int? hWnd, Pointer<Utf16> szApp, Pointer<Utf16>? szOtherStuff,
+        int? hIcon) =>
     _ShellAbout(hWnd ?? 0, szApp, szOtherStuff ?? nullptr, hIcon ?? 0);
 
 final _ShellAbout = _shell32.lookupFunction<
-    Int32 Function(HWND hWnd, PWSTR szApp, PWSTR szOtherStuff, HICON hIcon),
-    int Function(
-        int hWnd, PWSTR szApp, PWSTR szOtherStuff, int hIcon)>('ShellAboutW');
+    Int32 Function(HWND hWnd, Pointer<Utf16> szApp, Pointer<Utf16> szOtherStuff,
+        HICON hIcon),
+    int Function(int hWnd, Pointer<Utf16> szApp, Pointer<Utf16> szOtherStuff,
+        int hIcon)>('ShellAboutW');
 
 /// Performs an operation on a specified file.
 ///
@@ -144,16 +151,31 @@ final _ShellAbout = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int ShellExecute(int? hwnd, PWSTR? lpOperation, PWSTR lpFile,
-        PWSTR? lpParameters, PWSTR? lpDirectory, int nShowCmd) =>
+int ShellExecute(
+        int? hwnd,
+        Pointer<Utf16>? lpOperation,
+        Pointer<Utf16> lpFile,
+        Pointer<Utf16>? lpParameters,
+        Pointer<Utf16>? lpDirectory,
+        int nShowCmd) =>
     _ShellExecute(hwnd ?? 0, lpOperation ?? nullptr, lpFile,
         lpParameters ?? nullptr, lpDirectory ?? nullptr, nShowCmd);
 
 final _ShellExecute = _shell32.lookupFunction<
-    HINSTANCE Function(HWND hwnd, PWSTR lpOperation, PWSTR lpFile,
-        PWSTR lpParameters, PWSTR lpDirectory, Int32 nShowCmd),
-    int Function(int hwnd, PWSTR lpOperation, PWSTR lpFile, PWSTR lpParameters,
-        PWSTR lpDirectory, int nShowCmd)>('ShellExecuteW');
+    HINSTANCE Function(
+        HWND hwnd,
+        Pointer<Utf16> lpOperation,
+        Pointer<Utf16> lpFile,
+        Pointer<Utf16> lpParameters,
+        Pointer<Utf16> lpDirectory,
+        Int32 nShowCmd),
+    int Function(
+        int hwnd,
+        Pointer<Utf16> lpOperation,
+        Pointer<Utf16> lpFile,
+        Pointer<Utf16> lpParameters,
+        Pointer<Utf16> lpDirectory,
+        int nShowCmd)>('ShellExecuteW');
 
 /// Performs an operation on a specified file.
 ///
@@ -180,13 +202,13 @@ final _ShellExecuteEx = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHEmptyRecycleBin(int? hwnd, PWSTR? pszRootPath, int dwFlags) =>
+int SHEmptyRecycleBin(int? hwnd, Pointer<Utf16>? pszRootPath, int dwFlags) =>
     _SHEmptyRecycleBin(hwnd ?? 0, pszRootPath ?? nullptr, dwFlags);
 
 final _SHEmptyRecycleBin = _shell32.lookupFunction<
-    HRESULT Function(HWND hwnd, PWSTR pszRootPath, Uint32 dwFlags),
-    int Function(
-        int hwnd, PWSTR pszRootPath, int dwFlags)>('SHEmptyRecycleBinW');
+    HRESULT Function(HWND hwnd, Pointer<Utf16> pszRootPath, Uint32 dwFlags),
+    int Function(int hwnd, Pointer<Utf16> pszRootPath,
+        int dwFlags)>('SHEmptyRecycleBinW');
 
 /// Copies, moves, renames, or deletes a file system object.
 ///
@@ -247,7 +269,7 @@ final _SHGetDesktopFolder = _shell32.lookupFunction<
 /// ```
 /// {@category shell32}
 int SHGetDiskFreeSpaceEx(
-        PWSTR pszDirectoryName,
+        Pointer<Utf16> pszDirectoryName,
         Pointer<Uint64>? pulFreeBytesAvailableToCaller,
         Pointer<Uint64>? pulTotalNumberOfBytes,
         Pointer<Uint64>? pulTotalNumberOfFreeBytes) =>
@@ -259,12 +281,12 @@ int SHGetDiskFreeSpaceEx(
 
 final _SHGetDiskFreeSpaceEx = _shell32.lookupFunction<
     BOOL Function(
-        PWSTR pszDirectoryName,
+        Pointer<Utf16> pszDirectoryName,
         Pointer<Uint64> pulFreeBytesAvailableToCaller,
         Pointer<Uint64> pulTotalNumberOfBytes,
         Pointer<Uint64> pulTotalNumberOfFreeBytes),
     int Function(
-        PWSTR pszDirectoryName,
+        Pointer<Utf16> pszDirectoryName,
         Pointer<Uint64> pulFreeBytesAvailableToCaller,
         Pointer<Uint64> pulTotalNumberOfBytes,
         Pointer<Uint64> pulTotalNumberOfFreeBytes)>('SHGetDiskFreeSpaceExW');
@@ -278,13 +300,13 @@ final _SHGetDiskFreeSpaceEx = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHGetDriveMedia(PWSTR pszDrive, Pointer<Uint32> pdwMediaContent) =>
+int SHGetDriveMedia(Pointer<Utf16> pszDrive, Pointer<Uint32> pdwMediaContent) =>
     _SHGetDriveMedia(pszDrive, pdwMediaContent);
 
 final _SHGetDriveMedia = _shell32.lookupFunction<
-    HRESULT Function(PWSTR pszDrive, Pointer<Uint32> pdwMediaContent),
-    int Function(
-        PWSTR pszDrive, Pointer<Uint32> pdwMediaContent)>('SHGetDriveMedia');
+    HRESULT Function(Pointer<Utf16> pszDrive, Pointer<Uint32> pdwMediaContent),
+    int Function(Pointer<Utf16> pszDrive,
+        Pointer<Uint32> pdwMediaContent)>('SHGetDriveMedia');
 
 /// Retrieves information about an object in the file system, such as a file,
 /// folder, directory, or drive root.
@@ -299,16 +321,20 @@ final _SHGetDriveMedia = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHGetFileInfo(PWSTR pszPath, int dwFileAttributes,
+int SHGetFileInfo(Pointer<Utf16> pszPath, int dwFileAttributes,
         Pointer<SHFILEINFO>? psfi, int cbFileInfo, int uFlags) =>
     _SHGetFileInfo(
         pszPath, dwFileAttributes, psfi ?? nullptr, cbFileInfo, uFlags);
 
 final _SHGetFileInfo = _shell32.lookupFunction<
-    IntPtr Function(PWSTR pszPath, Uint32 dwFileAttributes,
+    IntPtr Function(Pointer<Utf16> pszPath, Uint32 dwFileAttributes,
         Pointer<SHFILEINFO> psfi, Uint32 cbFileInfo, Uint32 uFlags),
-    int Function(PWSTR pszPath, int dwFileAttributes, Pointer<SHFILEINFO> psfi,
-        int cbFileInfo, int uFlags)>('SHGetFileInfoW');
+    int Function(
+        Pointer<Utf16> pszPath,
+        int dwFileAttributes,
+        Pointer<SHFILEINFO> psfi,
+        int cbFileInfo,
+        int uFlags)>('SHGetFileInfoW');
 
 /// Gets the path of a folder identified by a CSIDL value.
 ///
@@ -322,14 +348,15 @@ final _SHGetFileInfo = _shell32.lookupFunction<
 /// );
 /// ```
 /// {@category shell32}
-int SHGetFolderPath(int csidl, int? hToken, int dwFlags, PWSTR pszPath) =>
+int SHGetFolderPath(
+        int csidl, int? hToken, int dwFlags, Pointer<Utf16> pszPath) =>
     _SHGetFolderPath(0, csidl, hToken ?? 0, dwFlags, pszPath);
 
 final _SHGetFolderPath = _shell32.lookupFunction<
-    HRESULT Function(
-        HWND hwnd, Int32 csidl, HANDLE hToken, Uint32 dwFlags, PWSTR pszPath),
+    HRESULT Function(HWND hwnd, Int32 csidl, HANDLE hToken, Uint32 dwFlags,
+        Pointer<Utf16> pszPath),
     int Function(int hwnd, int csidl, int hToken, int dwFlags,
-        PWSTR pszPath)>('SHGetFolderPathW');
+        Pointer<Utf16> pszPath)>('SHGetFolderPathW');
 
 /// Retrieves the full path of a known folder identified by the folder's
 /// KNOWNFOLDERID.
@@ -344,14 +371,14 @@ final _SHGetFolderPath = _shell32.lookupFunction<
 /// ```
 /// {@category shell32}
 int SHGetKnownFolderPath(Pointer<GUID> rfid, int dwFlags, int? hToken,
-        Pointer<PWSTR> ppszPath) =>
+        Pointer<Pointer<Utf16>> ppszPath) =>
     _SHGetKnownFolderPath(rfid, dwFlags, hToken ?? 0, ppszPath);
 
 final _SHGetKnownFolderPath = _shell32.lookupFunction<
     HRESULT Function(Pointer<GUID> rfid, Uint32 dwFlags, HANDLE hToken,
-        Pointer<PWSTR> ppszPath),
+        Pointer<Pointer<Utf16>> ppszPath),
     int Function(Pointer<GUID> rfid, int dwFlags, int hToken,
-        Pointer<PWSTR> ppszPath)>('SHGetKnownFolderPath');
+        Pointer<Pointer<Utf16>> ppszPath)>('SHGetKnownFolderPath');
 
 /// Retrieves the size of the Recycle Bin and the number of items in it, for a
 /// specified drive.
@@ -364,10 +391,11 @@ final _SHGetKnownFolderPath = _shell32.lookupFunction<
 /// ```
 /// {@category shell32}
 int SHQueryRecycleBin(
-        PWSTR? pszRootPath, Pointer<SHQUERYRBINFO> pSHQueryRBInfo) =>
+        Pointer<Utf16>? pszRootPath, Pointer<SHQUERYRBINFO> pSHQueryRBInfo) =>
     _SHQueryRecycleBin(pszRootPath ?? nullptr, pSHQueryRBInfo);
 
 final _SHQueryRecycleBin = _shell32.lookupFunction<
-    HRESULT Function(PWSTR pszRootPath, Pointer<SHQUERYRBINFO> pSHQueryRBInfo),
-    int Function(PWSTR pszRootPath,
+    HRESULT Function(
+        Pointer<Utf16> pszRootPath, Pointer<SHQUERYRBINFO> pSHQueryRBInfo),
+    int Function(Pointer<Utf16> pszRootPath,
         Pointer<SHQUERYRBINFO> pSHQueryRBInfo)>('SHQueryRecycleBinW');

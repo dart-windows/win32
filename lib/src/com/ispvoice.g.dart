@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -59,10 +61,11 @@ class ISpVoice extends ISpEventSource {
           int Function(VTablePointer lpVtbl, Pointer<VTablePointer> ppToken)>()(
       ptr, ppToken);
 
-  int speak(PWSTR? pwcs, int dwFlags, Pointer<Uint32>? pulStreamNumber) =>
+  int speak(Pointer<Utf16>? pwcs, int dwFlags,
+          Pointer<Uint32>? pulStreamNumber) =>
       _vtable.Speak.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR pwcs, int dwFlags,
-                  Pointer<Uint32> pulStreamNumber)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> pwcs,
+                  int dwFlags, Pointer<Uint32> pulStreamNumber)>()(
           ptr, pwcs ?? nullptr, dwFlags, pulStreamNumber ?? nullptr);
 
   int speakStream(VTablePointer pStream, int dwFlags,
@@ -72,17 +75,18 @@ class ISpVoice extends ISpEventSource {
                   int dwFlags, Pointer<Uint32> pulStreamNumber)>()(
           ptr, pStream, dwFlags, pulStreamNumber ?? nullptr);
 
-  int getStatus(
-          Pointer<SPVOICESTATUS> pStatus, Pointer<PWSTR> ppszLastBookmark) =>
+  int getStatus(Pointer<SPVOICESTATUS> pStatus,
+          Pointer<Pointer<Utf16>> ppszLastBookmark) =>
       _vtable.GetStatus.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<SPVOICESTATUS> pStatus,
-                  Pointer<PWSTR> ppszLastBookmark)>()(
+                  Pointer<Pointer<Utf16>> ppszLastBookmark)>()(
           ptr, pStatus, ppszLastBookmark);
 
-  int skip(PWSTR pItemType, int lNumItems, Pointer<Uint32> pulNumSkipped) =>
+  int skip(Pointer<Utf16> pItemType, int lNumItems,
+          Pointer<Uint32> pulNumSkipped) =>
       _vtable.Skip.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR pItemType, int lNumItems,
-                  Pointer<Uint32> pulNumSkipped)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> pItemType,
+                  int lNumItems, Pointer<Uint32> pulNumSkipped)>()(
           ptr, pItemType, lNumItems, pulNumSkipped);
 
   int setPriority(int ePriority) => _vtable.SetPriority.asFunction<
@@ -129,22 +133,27 @@ class ISpVoice extends ISpEventSource {
   int speakCompleteEvent() => _vtable.SpeakCompleteEvent.asFunction<
       int Function(VTablePointer lpVtbl)>()(ptr);
 
-  int isUISupported(PWSTR pszTypeOfUI, Pointer pvExtraData, int cbExtraData,
-          Pointer<BOOL> pfSupported) =>
+  int isUISupported(Pointer<Utf16> pszTypeOfUI, Pointer pvExtraData,
+          int cbExtraData, Pointer<BOOL> pfSupported) =>
       _vtable.IsUISupported.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  PWSTR pszTypeOfUI,
+                  Pointer<Utf16> pszTypeOfUI,
                   Pointer pvExtraData,
                   int cbExtraData,
                   Pointer<BOOL> pfSupported)>()(
           ptr, pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
 
-  int displayUI(int hwndParent, PWSTR pszTitle, PWSTR pszTypeOfUI,
-          Pointer pvExtraData, int cbExtraData) =>
+  int displayUI(int hwndParent, Pointer<Utf16> pszTitle,
+          Pointer<Utf16> pszTypeOfUI, Pointer pvExtraData, int cbExtraData) =>
       _vtable.DisplayUI.asFunction<
-              int Function(VTablePointer lpVtbl, int hwndParent, PWSTR pszTitle,
-                  PWSTR pszTypeOfUI, Pointer pvExtraData, int cbExtraData)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  int hwndParent,
+                  Pointer<Utf16> pszTitle,
+                  Pointer<Utf16> pszTypeOfUI,
+                  Pointer pvExtraData,
+                  int cbExtraData)>()(
           ptr, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
 }
 
@@ -179,8 +188,8 @@ base class ISpVoiceVtbl extends Struct {
               VTablePointer lpVtbl, Pointer<VTablePointer> ppToken)>> GetVoice;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pwcs, Uint32 dwFlags,
-              Pointer<Uint32> pulStreamNumber)>> Speak;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pwcs,
+              Uint32 dwFlags, Pointer<Uint32> pulStreamNumber)>> Speak;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, VTablePointer pStream,
@@ -188,10 +197,10 @@ base class ISpVoiceVtbl extends Struct {
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Pointer<SPVOICESTATUS> pStatus,
-              Pointer<PWSTR> ppszLastBookmark)>> GetStatus;
+              Pointer<Pointer<Utf16>> ppszLastBookmark)>> GetStatus;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pItemType,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pItemType,
               Int32 lNumItems, Pointer<Uint32> pulNumSkipped)>> Skip;
   external Pointer<
       NativeFunction<
@@ -242,7 +251,7 @@ base class ISpVoiceVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR pszTypeOfUI,
+              Pointer<Utf16> pszTypeOfUI,
               Pointer pvExtraData,
               Uint32 cbExtraData,
               Pointer<BOOL> pfSupported)>> IsUISupported;
@@ -251,8 +260,8 @@ base class ISpVoiceVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               HWND hwndParent,
-              PWSTR pszTitle,
-              PWSTR pszTypeOfUI,
+              Pointer<Utf16> pszTitle,
+              Pointer<Utf16> pszTypeOfUI,
               Pointer pvExtraData,
               Uint32 cbExtraData)>> DisplayUI;
 }

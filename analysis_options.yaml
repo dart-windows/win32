@@ -1,7 +1,6 @@
 include: package:dartwindows_lints/analysis_options.yaml
 
 analyzer:
-  exclude: [example/explorer/**]
   errors:
     todo: ignore
 

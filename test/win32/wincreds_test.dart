@@ -15,8 +15,8 @@ void writeCredential(
     {required String credentialName,
     required String userName,
     required String password}) {
-  final pUserName = userName.toNativeUtf16();
-  final pCredName = credentialName.toNativeUtf16();
+  final pUserName = PWSTR.fromString(userName);
+  final pCredName = PWSTR.fromString(credentialName);
   final examplePassword = utf8.encode(password);
   final blob = examplePassword.allocatePointer();
 
@@ -36,14 +36,14 @@ void writeCredential(
   } finally {
     free(blob);
     free(credential);
-    free(pUserName);
-    free(pCredName);
+    pUserName.free();
+    pCredName.free();
   }
 }
 
 String readCredential(String credentialName) {
   final credPointer = calloc<Pointer<CREDENTIAL>>();
-  final pCredName = credentialName.toNativeUtf16();
+  final pCredName = PWSTR.fromString(credentialName);
 
   try {
     if (CredRead(pCredName, CRED_TYPE_GENERIC, credPointer) != TRUE) {
@@ -58,19 +58,19 @@ String readCredential(String credentialName) {
   } finally {
     if (credPointer.value.address != 0) CredFree(credPointer.value);
     free(credPointer);
-    free(pCredName);
+    pCredName.free();
   }
 }
 
 void deleteCredential(String credentialName) {
-  final pCredName = credentialName.toNativeUtf16();
+  final pCredName = PWSTR.fromString(credentialName);
 
   try {
     if (CredDelete(pCredName, CRED_TYPE_GENERIC) != TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
   } finally {
-    free(pCredName);
+    pCredName.free();
   }
 }
 

@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -92,10 +94,10 @@ class IShellItem2 extends IShellItem {
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<Int32> pi)>()(ptr, key, pi);
 
-  int getString(Pointer<PROPERTYKEY> key, Pointer<PWSTR> ppsz) =>
+  int getString(Pointer<PROPERTYKEY> key, Pointer<Pointer<Utf16>> ppsz) =>
       _vtable.GetString.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<PWSTR> ppsz)>()(ptr, key, ppsz);
+              Pointer<Pointer<Utf16>> ppsz)>()(ptr, key, ppsz);
 
   int getUInt32(Pointer<PROPERTYKEY> key, Pointer<Uint32> pui) =>
       _vtable.GetUInt32.asFunction<
@@ -166,7 +168,7 @@ base class IShellItem2Vtbl extends Struct {
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
-              Pointer<PWSTR> ppsz)>> GetString;
+              Pointer<Pointer<Utf16>> ppsz)>> GetString;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,

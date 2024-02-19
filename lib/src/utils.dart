@@ -16,6 +16,7 @@ import 'exceptions.dart';
 import 'extensions/int_to_hexstring.dart';
 import 'guid.dart';
 import 'macros.dart';
+import 'pwstr.dart';
 import 'structs.g.dart';
 import 'types.dart';
 import 'win32_v5/kernel32.g.dart';
@@ -37,7 +38,7 @@ import 'win32_v5/user32.g.dart';
 ///
 /// {@category com}
 Pointer<GUID> convertToCLSID(String strCLSID, {Allocator allocator = calloc}) {
-  final lpszCLSID = strCLSID.toNativeUtf16();
+  final lpszCLSID = PWSTR.fromString(strCLSID);
   final clsid = allocator<GUID>();
 
   try {
@@ -45,7 +46,7 @@ Pointer<GUID> convertToCLSID(String strCLSID, {Allocator allocator = calloc}) {
     if (FAILED(hr)) throw WindowsException(hr);
     return clsid;
   } finally {
-    free(lpszCLSID);
+    lpszCLSID.free();
   }
 }
 
@@ -61,7 +62,7 @@ Pointer<GUID> convertToCLSID(String strCLSID, {Allocator allocator = calloc}) {
 ///
 /// {@category com}
 Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
-  final lpszIID = strIID.toNativeUtf16();
+  final lpszIID = PWSTR.fromString(strIID);
   final iid = allocator<GUID>();
 
   try {
@@ -69,7 +70,7 @@ Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
     if (FAILED(hr)) throw WindowsException(hr);
     return iid;
   } finally {
-    free(lpszIID);
+    lpszIID.free();
   }
 }
 
@@ -78,8 +79,14 @@ Pointer<GUID> convertToIID(String strIID, {Allocator allocator = calloc}) {
 ///
 /// Example:
 /// ```dart
-/// final dialog = FileOpenDialog(
+/// final dialog = IFileOpenDialog(
 ///     createComObject(FileOpenDialog, IID_IFileOpenDialog));
+/// ```
+///
+/// Another example that uses a ProgID for [clsid]:
+/// ```dart
+/// final dispatch = IDispatch(
+///     createComObject('Shell.Application', IID_IDispatch));
 /// ```
 ///
 /// {@category com}
@@ -204,21 +211,9 @@ void registerHighDPISupport() {
   final result =
       SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
   if (result == FALSE) {
-    final debugMessage = 'WARNING: could not set DPI awareness'.toNativeUtf16();
+    final debugMessage =
+        PWSTR.fromString('WARNING: could not set DPI awareness');
     OutputDebugString(debugMessage);
-    free(debugMessage);
+    debugMessage.free();
   }
 }
-
-/// Converts a Dart string to a natively-allocated string.
-///
-/// The receiver is responsible for disposing its memory, typically by calling
-/// [free] when it has been used.
-LPWSTR TEXT(String string) => string.toNativeUtf16();
-
-/// Allocates memory for a Unicode string and returns a pointer.
-///
-/// The parameter indicates how many characters should be allocated. The
-/// receiver is responsible for disposing the memory allocated, typically by
-/// calling [free] when it is no longer required.
-LPWSTR wsalloc(int wChars) => calloc<WCHAR>(wChars).cast();

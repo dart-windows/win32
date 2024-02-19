@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -39,13 +41,13 @@ class IDispatch extends IUnknown {
           int Function(VTablePointer lpVtbl, int iTInfo, int lcid,
               Pointer<VTablePointer> ppTInfo)>()(ptr, iTInfo, lcid, ppTInfo);
 
-  int getIDsOfNames(Pointer<GUID> riid, Pointer<PWSTR> rgszNames, int cNames,
-          int lcid, Pointer<Int32> rgDispId) =>
+  int getIDsOfNames(Pointer<GUID> riid, Pointer<Pointer<Utf16>> rgszNames,
+          int cNames, int lcid, Pointer<Int32> rgDispId) =>
       _vtable.GetIDsOfNames.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   Pointer<GUID> riid,
-                  Pointer<PWSTR> rgszNames,
+                  Pointer<Pointer<Utf16>> rgszNames,
                   int cNames,
                   int lcid,
                   Pointer<Int32> rgDispId)>()(
@@ -98,7 +100,7 @@ base class IDispatchVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               Pointer<GUID> riid,
-              Pointer<PWSTR> rgszNames,
+              Pointer<Pointer<Utf16>> rgszNames,
               Uint32 cNames,
               Uint32 lcid,
               Pointer<Int32> rgDispId)>> GetIDsOfNames;

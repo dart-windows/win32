@@ -24,36 +24,36 @@ void main() {
   hr = fileDialog.setOptions(options);
   if (FAILED(hr)) throw WindowsException(hr);
 
-  final defaultExtensions = TEXT('txt;csv');
+  final defaultExtensions = PWSTR.fromString('txt;csv');
   hr = fileDialog.setDefaultExtension(defaultExtensions);
   if (FAILED(hr)) throw WindowsException(hr);
   free(defaultExtensions);
 
-  final fileNameLabel = TEXT('Custom Label:');
+  final fileNameLabel = PWSTR.fromString('Custom Label:');
   hr = fileDialog.setFileNameLabel(fileNameLabel);
   if (FAILED(hr)) throw WindowsException(hr);
   free(fileNameLabel);
 
-  final title = TEXT('Custom Title');
+  final title = PWSTR.fromString('Custom Title');
   hr = fileDialog.setTitle(title);
   if (FAILED(hr)) throw WindowsException(hr);
   free(title);
 
-  final okButtonLabel = TEXT('Go');
+  final okButtonLabel = PWSTR.fromString('Go');
   hr = fileDialog.setOkButtonLabel(okButtonLabel);
   if (FAILED(hr)) throw WindowsException(hr);
   free(okButtonLabel);
 
   final rgSpec = calloc<COMDLG_FILTERSPEC>(3);
   rgSpec[0]
-    ..pszName = TEXT('JPEG Files')
-    ..pszSpec = TEXT('*.jpg;*.jpeg');
+    ..pszName = PWSTR.fromString('JPEG Files')
+    ..pszSpec = PWSTR.fromString('*.jpg;*.jpeg');
   rgSpec[1]
-    ..pszName = TEXT('Bitmap Files')
-    ..pszSpec = TEXT('*.bmp');
+    ..pszName = PWSTR.fromString('Bitmap Files')
+    ..pszSpec = PWSTR.fromString('*.bmp');
   rgSpec[2]
-    ..pszName = TEXT('All Files (*.*)')
-    ..pszSpec = TEXT('*.*');
+    ..pszName = PWSTR.fromString('All Files (*.*)')
+    ..pszSpec = PWSTR.fromString('*.*');
   hr = fileDialog.setFileTypes(3, rgSpec);
   if (FAILED(hr)) throw WindowsException(hr);
 
@@ -71,7 +71,7 @@ void main() {
 
     final item = IShellItem(ppsi.value);
     free(ppsi);
-    final pathPtr = calloc<PWSTR>();
+    final pathPtr = calloc<Pointer<Utf16>>();
     hr = item.getDisplayName(SIGDN.SIGDN_FILESYSPATH, pathPtr);
     if (FAILED(hr)) throw WindowsException(hr);
 

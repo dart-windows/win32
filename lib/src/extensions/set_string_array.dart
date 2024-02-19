@@ -4,7 +4,9 @@
 
 import 'dart:ffi';
 
-import '../structs.g.dart';
+import 'package:ffi/ffi.dart';
+
+import '../pwstr.dart';
 import '../utils.dart';
 
 extension SetStringArray on List<String> {
@@ -14,28 +16,25 @@ extension SetStringArray on List<String> {
   /// registry.
   ///
   /// It is the responsibility of the caller to [free] the returned pointer.
-  PWSTR toWideCharArray() {
+  Pointer<Utf16> toWideCharArray() {
     var size = 0;
 
-    // calculate the amount of memory we need to store
-    // all of the strings.
+    // Calculate the amount of memory we need to store all of the strings.
     for (final value in this) {
       size += value.length + 1;
     }
 
-    /// Allow room for a terminating null after last value
+    // Allow room for a terminating null after last value
     size++;
 
-    final pArray = wsalloc(size);
+    final pArray = PWSTR.empty(size);
     final ptr = pArray.cast<Uint16>().asTypedList(size);
 
     var index = 0;
     for (final value in this) {
       final units = value.codeUnits;
-
       ptr.setAll(index, units);
       ptr[index + units.length] = 0;
-
       index += value.length + 1;
     }
     ptr[index] = 0;

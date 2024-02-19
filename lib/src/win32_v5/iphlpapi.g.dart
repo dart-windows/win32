@@ -92,13 +92,13 @@ final _DeleteIPAddress = _iphlpapi.lookupFunction<
 /// );
 /// ```
 /// {@category iphlpapi}
-int GetAdapterIndex(PWSTR adapterName, Pointer<Uint32> ifIndex) =>
+int GetAdapterIndex(Pointer<Utf16> adapterName, Pointer<Uint32> ifIndex) =>
     _GetAdapterIndex(adapterName, ifIndex);
 
 final _GetAdapterIndex = _iphlpapi.lookupFunction<
-    Uint32 Function(PWSTR adapterName, Pointer<Uint32> ifIndex),
-    int Function(
-        PWSTR adapterName, Pointer<Uint32> ifIndex)>('GetAdapterIndex');
+    Uint32 Function(Pointer<Utf16> adapterName, Pointer<Uint32> ifIndex),
+    int Function(Pointer<Utf16> adapterName,
+        Pointer<Uint32> ifIndex)>('GetAdapterIndex');
 
 /// The GetAdaptersAddresses function retrieves the addresses associated with
 /// the adapters on the local computer.

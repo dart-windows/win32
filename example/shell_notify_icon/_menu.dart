@@ -38,10 +38,10 @@ bool wndProc(int hWnd, int uMsg, int wParam, int lParam) {
 
 int _buildMenu() {
   final hMenu = CreateMenu();
-  AppendMenu(hMenu, MF_STRING, app.EVENT_QUIT, TEXT('&Quit'));
+  AppendMenu(hMenu, MF_STRING, app.EVENT_QUIT, PWSTR.fromString('&Quit'));
 
   final hMenubar = CreateMenu();
-  AppendMenu(hMenubar, MF_POPUP, hMenu, TEXT('_Parent'));
+  AppendMenu(hMenubar, MF_POPUP, hMenu, PWSTR.fromString('_Parent'));
 
   return GetSubMenu(hMenubar, 0);
 }

@@ -11,7 +11,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-bool GetDriveGeometry(PWSTR wszPath, Pointer<DISK_GEOMETRY> pdg) {
+bool GetDriveGeometry(Pointer<Utf16> wszPath, Pointer<DISK_GEOMETRY> pdg) {
   final bytesReturned = calloc<DWORD>();
 
   try {
@@ -50,7 +50,7 @@ bool GetDriveGeometry(PWSTR wszPath, Pointer<DISK_GEOMETRY> pdg) {
 }
 
 void main() {
-  final wszDrive = r"\\.\PhysicalDrive0".toNativeUtf16();
+  final wszDrive = PWSTR.fromString(r'\\.\PhysicalDrive0');
   final pdg = calloc<DISK_GEOMETRY>();
 
   try {
@@ -73,7 +73,7 @@ void main() {
       print('GetDriveGeometry failed.');
     }
   } finally {
-    free(wszDrive);
+    wszDrive.free();
     free(pdg);
   }
 }

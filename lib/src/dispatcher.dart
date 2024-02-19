@@ -13,6 +13,7 @@ import 'constants.dart';
 import 'exceptions.dart';
 import 'guid.dart';
 import 'macros.dart';
+import 'pwstr.dart';
 import 'structs.g.dart';
 import 'types.dart';
 import 'utils.dart';
@@ -41,7 +42,7 @@ class Dispatcher {
   /// Throws a [WindowsException] if the object cannot be created.
   factory Dispatcher.fromProgID(String progID) {
     return using((arena) {
-      final lpszProgID = progID.toNativeUtf16(allocator: arena);
+      final lpszProgID = PWSTR.fromString(progID, allocator: arena);
       final lpclsid = arena<GUID>();
       final riid = GUIDFromString(IID_IDispatch, allocator: arena);
       final ppv = arena<VTablePointer>();
@@ -60,8 +61,8 @@ class Dispatcher {
   /// object.
   int _getDispId(String member) {
     return using((arena) {
-      final ptrMember = member.toNativeUtf16(allocator: arena);
-      final rgszNames = arena<PWSTR>()..value = ptrMember;
+      final ptrMember = PWSTR.fromString(member, allocator: arena);
+      final rgszNames = arena<Pointer<Utf16>>()..value = ptrMember;
       final rgDispId = arena<Int32>();
 
       final hr = _dispatch.getIDsOfNames(

@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,28 +31,26 @@ class IAppxManifestProperties extends IUnknown {
       IAppxManifestProperties(
           interface.toInterface(IID_IAppxManifestProperties));
 
-  int getBoolValue(PWSTR name, Pointer<BOOL> value) =>
+  int getBoolValue(Pointer<Utf16> name, Pointer<BOOL> value) =>
       _vtable.GetBoolValue.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR name,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<BOOL> value)>()(ptr, name, value);
 
-  int getStringValue(PWSTR name, Pointer<PWSTR> value) =>
+  int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR name,
-              Pointer<PWSTR> value)>()(ptr, name, value);
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+              Pointer<Pointer<Utf16>> value)>()(ptr, name, value);
 }
 
 /// @nodoc
 base class IAppxManifestPropertiesVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, PWSTR name, Pointer<BOOL> value)>>
-      GetBoolValue;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+              Pointer<BOOL> value)>> GetBoolValue;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, PWSTR name, Pointer<PWSTR> value)>>
-      GetStringValue;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> name,
+              Pointer<Pointer<Utf16>> value)>> GetStringValue;
 }

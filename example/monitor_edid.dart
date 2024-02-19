@@ -41,7 +41,7 @@ Size getMonitorSizeInMM() {
     );
 
     const nameSize = 128;
-    final lpValueName = wsalloc(nameSize);
+    final lpValueName = PWSTR.empty(nameSize);
     const edidDataSize = 256;
 
     final lpcchValueName = calloc<DWORD>()..value = nameSize;

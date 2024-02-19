@@ -11,8 +11,8 @@ void main() {
   // Initialize COM
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
-  final method = Bstr.fromString('GET');
-  final url = Bstr.fromString('https://dart.dev');
+  final method = BSTR.fromString('GET');
+  final url = BSTR.fromString('https://dart.dev');
 
   final varFalse = calloc<VARIANT>();
   final varEmpty = calloc<VARIANT>();
@@ -29,8 +29,8 @@ void main() {
     final winHttpRequest =
         IWinHttpRequest(createComObject(WinHttpRequest, IID_IWinHttpRequest));
 
-    // Open an HTTP connection
-    var hr = winHttpRequest.open(method.ptr, url.ptr, varFalse.ref);
+    // Open an HTTP connection.
+    var hr = winHttpRequest.open(method, url, varFalse.ref);
     if (FAILED(hr)) throw WindowsException(hr);
 
     // Send request

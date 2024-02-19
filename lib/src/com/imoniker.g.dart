@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -130,16 +132,19 @@ class IMoniker extends IPersistStream {
           ptr, pmkOther, ppmkRelPath);
 
   int getDisplayName(VTablePointer pbc, VTablePointer pmkToLeft,
-          Pointer<PWSTR> ppszDisplayName) =>
+          Pointer<Pointer<Utf16>> ppszDisplayName) =>
       _vtable.GetDisplayName.asFunction<
-              int Function(VTablePointer lpVtbl, VTablePointer pbc,
-                  VTablePointer pmkToLeft, Pointer<PWSTR> ppszDisplayName)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  VTablePointer pbc,
+                  VTablePointer pmkToLeft,
+                  Pointer<Pointer<Utf16>> ppszDisplayName)>()(
           ptr, pbc, pmkToLeft, ppszDisplayName);
 
   int parseDisplayName(
           VTablePointer pbc,
           VTablePointer pmkToLeft,
-          PWSTR pszDisplayName,
+          Pointer<Utf16> pszDisplayName,
           Pointer<Uint32> pchEaten,
           Pointer<VTablePointer> ppmkOut) =>
       _vtable.ParseDisplayName.asFunction<
@@ -147,7 +152,7 @@ class IMoniker extends IPersistStream {
                   VTablePointer lpVtbl,
                   VTablePointer pbc,
                   VTablePointer pmkToLeft,
-                  PWSTR pszDisplayName,
+                  Pointer<Utf16> pszDisplayName,
                   Pointer<Uint32> pchEaten,
                   Pointer<VTablePointer> ppmkOut)>()(
           ptr, pbc, pmkToLeft, pszDisplayName, pchEaten, ppmkOut);
@@ -236,14 +241,14 @@ base class IMonikerVtbl extends Struct {
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
-              Pointer<PWSTR> ppszDisplayName)>> GetDisplayName;
+              Pointer<Pointer<Utf16>> ppszDisplayName)>> GetDisplayName;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
               VTablePointer pbc,
               VTablePointer pmkToLeft,
-              PWSTR pszDisplayName,
+              Pointer<Utf16> pszDisplayName,
               Pointer<Uint32> pchEaten,
               Pointer<VTablePointer> ppmkOut)>> ParseDisplayName;
   external Pointer<

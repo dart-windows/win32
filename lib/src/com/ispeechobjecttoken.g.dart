@@ -32,12 +32,12 @@ class ISpeechObjectToken extends IDispatch {
   factory ISpeechObjectToken.from(IUnknown interface) =>
       ISpeechObjectToken(interface.toInterface(IID_ISpeechObjectToken));
 
-  BSTR get id {
-    final objectId = calloc<BSTR>();
+  Pointer<Utf16> get id {
+    final objectId = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Id.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> objectId)>()(ptr, objectId);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> objectId)>()(ptr, objectId);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = objectId.value;
       return retValue;
@@ -74,20 +74,25 @@ class ISpeechObjectToken extends IDispatch {
     }
   }
 
-  int getDescription(int locale, Pointer<BSTR> description) =>
+  int getDescription(int locale, Pointer<Pointer<Utf16>> description) =>
       _vtable.GetDescription.asFunction<
           int Function(VTablePointer lpVtbl, int locale,
-              Pointer<BSTR> description)>()(ptr, locale, description);
+              Pointer<Pointer<Utf16>> description)>()(ptr, locale, description);
 
-  int setId(BSTR id, BSTR categoryID, int createIfNotExist) =>
+  int setId(
+          Pointer<Utf16> id, Pointer<Utf16> categoryID, int createIfNotExist) =>
       _vtable.SetId.asFunction<
-          int Function(VTablePointer lpVtbl, BSTR id, BSTR categoryID,
+          int Function(
+              VTablePointer lpVtbl,
+              Pointer<Utf16> id,
+              Pointer<Utf16> categoryID,
               int createIfNotExist)>()(ptr, id, categoryID, createIfNotExist);
 
-  int getAttribute(BSTR attributeName, Pointer<BSTR> attributeValue) =>
+  int getAttribute(Pointer<Utf16> attributeName,
+          Pointer<Pointer<Utf16>> attributeValue) =>
       _vtable.GetAttribute.asFunction<
-              int Function(VTablePointer lpVtbl, BSTR attributeName,
-                  Pointer<BSTR> attributeValue)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> attributeName,
+                  Pointer<Pointer<Utf16>> attributeValue)>()(
           ptr, attributeName, attributeValue);
 
   int createInstance(VTablePointer? pUnkOuter, int clsContext,
@@ -97,57 +102,62 @@ class ISpeechObjectToken extends IDispatch {
                   int clsContext, Pointer<VTablePointer> object)>()(
           ptr, pUnkOuter ?? nullptr, clsContext, object);
 
-  int remove(BSTR objectStorageCLSID) => _vtable.Remove.asFunction<
-          int Function(VTablePointer lpVtbl, BSTR objectStorageCLSID)>()(
-      ptr, objectStorageCLSID);
+  int remove(Pointer<Utf16> objectStorageCLSID) => _vtable.Remove.asFunction<
+      int Function(VTablePointer lpVtbl,
+          Pointer<Utf16> objectStorageCLSID)>()(ptr, objectStorageCLSID);
 
-  int getStorageFileName(BSTR objectStorageCLSID, BSTR keyName, BSTR fileName,
-          int folder, Pointer<BSTR> filePath) =>
+  int getStorageFileName(
+          Pointer<Utf16> objectStorageCLSID,
+          Pointer<Utf16> keyName,
+          Pointer<Utf16> fileName,
+          int folder,
+          Pointer<Pointer<Utf16>> filePath) =>
       _vtable.GetStorageFileName.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  BSTR objectStorageCLSID,
-                  BSTR keyName,
-                  BSTR fileName,
+                  Pointer<Utf16> objectStorageCLSID,
+                  Pointer<Utf16> keyName,
+                  Pointer<Utf16> fileName,
                   int folder,
-                  Pointer<BSTR> filePath)>()(
+                  Pointer<Pointer<Utf16>> filePath)>()(
           ptr, objectStorageCLSID, keyName, fileName, folder, filePath);
 
-  int removeStorageFileName(
-          BSTR objectStorageCLSID, BSTR keyName, int deleteFile) =>
+  int removeStorageFileName(Pointer<Utf16> objectStorageCLSID,
+          Pointer<Utf16> keyName, int deleteFile) =>
       _vtable.RemoveStorageFileName.asFunction<
           int Function(
               VTablePointer lpVtbl,
-              BSTR objectStorageCLSID,
-              BSTR keyName,
+              Pointer<Utf16> objectStorageCLSID,
+              Pointer<Utf16> keyName,
               int deleteFile)>()(ptr, objectStorageCLSID, keyName, deleteFile);
 
-  int isUISupported(BSTR typeOfUI, Pointer<VARIANT> extraData,
+  int isUISupported(Pointer<Utf16> typeOfUI, Pointer<VARIANT> extraData,
           VTablePointer? object, Pointer<VARIANT_BOOL> supported) =>
       _vtable.IsUISupported.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  BSTR typeOfUI,
+                  Pointer<Utf16> typeOfUI,
                   Pointer<VARIANT> extraData,
                   VTablePointer object,
                   Pointer<VARIANT_BOOL> supported)>()(
           ptr, typeOfUI, extraData, object ?? nullptr, supported);
 
-  int displayUI(int hWnd, BSTR title, BSTR typeOfUI, Pointer<VARIANT> extraData,
-          VTablePointer? object) =>
+  int displayUI(int hWnd, Pointer<Utf16> title, Pointer<Utf16> typeOfUI,
+          Pointer<VARIANT> extraData, VTablePointer? object) =>
       _vtable.DisplayUI.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   int hWnd,
-                  BSTR title,
-                  BSTR typeOfUI,
+                  Pointer<Utf16> title,
+                  Pointer<Utf16> typeOfUI,
                   Pointer<VARIANT> extraData,
                   VTablePointer object)>()(
           ptr, hWnd, title, typeOfUI, extraData, object ?? nullptr);
 
-  int matchesAttributes(BSTR attributes, Pointer<VARIANT_BOOL> matches) =>
+  int matchesAttributes(
+          Pointer<Utf16> attributes, Pointer<VARIANT_BOOL> matches) =>
       _vtable.MatchesAttributes.asFunction<
-          int Function(VTablePointer lpVtbl, BSTR attributes,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> attributes,
               Pointer<VARIANT_BOOL> matches)>()(ptr, attributes, matches);
 }
 
@@ -155,9 +165,9 @@ class ISpeechObjectToken extends IDispatch {
 base class ISpeechObjectTokenVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> objectId)>>
-      get_Id;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Pointer<Utf16>> objectId)>> get_Id;
   external Pointer<
           NativeFunction<
               HRESULT Function(
@@ -171,15 +181,15 @@ base class ISpeechObjectTokenVtbl extends Struct {
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 locale,
-              Pointer<BSTR> description)>> GetDescription;
+              Pointer<Pointer<Utf16>> description)>> GetDescription;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR id, BSTR categoryID,
-              VARIANT_BOOL createIfNotExist)>> SetId;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> id,
+              Pointer<Utf16> categoryID, VARIANT_BOOL createIfNotExist)>> SetId;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR attributeName,
-              Pointer<BSTR> attributeValue)>> GetAttribute;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> attributeName,
+              Pointer<Pointer<Utf16>> attributeValue)>> GetAttribute;
   external Pointer<
       NativeFunction<
           HRESULT Function(
@@ -188,27 +198,30 @@ base class ISpeechObjectTokenVtbl extends Struct {
               Uint32 clsContext,
               Pointer<VTablePointer> object)>> CreateInstance;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, BSTR objectStorageCLSID)>>
-      Remove;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Utf16> objectStorageCLSID)>> Remove;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              BSTR objectStorageCLSID,
-              BSTR keyName,
-              BSTR fileName,
+              Pointer<Utf16> objectStorageCLSID,
+              Pointer<Utf16> keyName,
+              Pointer<Utf16> fileName,
               Int32 folder,
-              Pointer<BSTR> filePath)>> GetStorageFileName;
-  external Pointer<
-      NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR objectStorageCLSID,
-              BSTR keyName, VARIANT_BOOL deleteFile)>> RemoveStorageFileName;
+              Pointer<Pointer<Utf16>> filePath)>> GetStorageFileName;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              BSTR typeOfUI,
+              Pointer<Utf16> objectStorageCLSID,
+              Pointer<Utf16> keyName,
+              VARIANT_BOOL deleteFile)>> RemoveStorageFileName;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Pointer<Utf16> typeOfUI,
               Pointer<VARIANT> extraData,
               VTablePointer object,
               Pointer<VARIANT_BOOL> supported)>> IsUISupported;
@@ -217,12 +230,12 @@ base class ISpeechObjectTokenVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               Int32 hWnd,
-              BSTR title,
-              BSTR typeOfUI,
+              Pointer<Utf16> title,
+              Pointer<Utf16> typeOfUI,
               Pointer<VARIANT> extraData,
               VTablePointer object)>> DisplayUI;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR attributes,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> attributes,
               Pointer<VARIANT_BOOL> matches)>> MatchesAttributes;
 }

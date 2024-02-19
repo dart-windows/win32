@@ -10,14 +10,14 @@ import 'package:win32/win32.dart';
 void main() {
   const testDartStringArray = ['heads', 'shoulders', 'knees', 'toes'];
 
-// String arrays are delimited with NUL characters, and ended with a double NUL.
-// Since the TEXT macro null-terminates all input, we only add one NUL character
-// to the end of the string here.
+  // String arrays are delimited with NUL characters, and ended with a double
+  // NUL. Since the TEXT macro null-terminates all input, we only add one NUL
+  // character to the end of the string here.
   const testStringArray =
       'apples\x00hazelnuts\x00bananas\x00raisins\x00coconuts\x00sultanas\x00';
 
   // Run these tests a large number of times to try and identify memory leaks or
-  // buffer overruns
+  // buffer overruns.
   const testRuns = 500;
 
   group('Unicode', () {
@@ -35,7 +35,7 @@ void main() {
 
     test('string array unpacking', () {
       for (var i = 0; i < testRuns; i++) {
-        final arrayPtr = TEXT(testStringArray);
+        final arrayPtr = PWSTR.fromString(testStringArray);
 
         // 400 is an arbitrarily long length to try and force an overflow error,
         // if one exists

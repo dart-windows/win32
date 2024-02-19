@@ -16,8 +16,8 @@ void main(List<String> args) {
   }
 
   final manifest = File(args[1]).readAsStringSync();
-  final manifestPtr = TEXT(manifest);
-  final filenamePtr = TEXT(args[0]);
+  final manifestPtr = PWSTR.fromString(manifest);
+  final filenamePtr = PWSTR.fromString(args[0]);
 
   final handle = BeginUpdateResource(filenamePtr, FALSE);
   if (handle == NULL) {

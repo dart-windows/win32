@@ -49,12 +49,12 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
-  BSTR get currentLocalizedLandmarkType {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentLocalizedLandmarkType {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentLocalizedLandmarkType.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -77,12 +77,12 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
-  BSTR get cachedLocalizedLandmarkType {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedLocalizedLandmarkType {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedLocalizedLandmarkType.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -101,7 +101,8 @@ base class IUIAutomationElement5Vtbl extends Struct {
       get_CurrentLandmarkType;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentLocalizedLandmarkType;
   external Pointer<
           NativeFunction<
@@ -109,6 +110,7 @@ base class IUIAutomationElement5Vtbl extends Struct {
       get_CachedLandmarkType;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedLocalizedLandmarkType;
 }

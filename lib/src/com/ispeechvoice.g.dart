@@ -248,9 +248,9 @@ class ISpeechVoice extends IDispatch {
     }
   }
 
-  int speak(BSTR text, int flags, Pointer<Int32> streamNumber) =>
+  int speak(Pointer<Utf16> text, int flags, Pointer<Int32> streamNumber) =>
       _vtable.Speak.asFunction<
-          int Function(VTablePointer lpVtbl, BSTR text, int flags,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> text, int flags,
               Pointer<Int32> streamNumber)>()(ptr, text, flags, streamNumber);
 
   int speakStream(
@@ -266,28 +266,32 @@ class ISpeechVoice extends IDispatch {
   int resume() =>
       _vtable.Resume.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
-  int skip(BSTR type, int numItems, Pointer<Int32> numSkipped) =>
+  int skip(Pointer<Utf16> type, int numItems, Pointer<Int32> numSkipped) =>
       _vtable.Skip.asFunction<
-          int Function(VTablePointer lpVtbl, BSTR type, int numItems,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> type, int numItems,
               Pointer<Int32> numSkipped)>()(ptr, type, numItems, numSkipped);
 
-  int getVoices(BSTR requiredAttributes, BSTR optionalAttributes,
+  int getVoices(
+          Pointer<Utf16> requiredAttributes,
+          Pointer<Utf16> optionalAttributes,
           Pointer<VTablePointer> objectTokens) =>
       _vtable.GetVoices.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  BSTR requiredAttributes,
-                  BSTR optionalAttributes,
+                  Pointer<Utf16> requiredAttributes,
+                  Pointer<Utf16> optionalAttributes,
                   Pointer<VTablePointer> objectTokens)>()(
           ptr, requiredAttributes, optionalAttributes, objectTokens);
 
-  int getAudioOutputs(BSTR requiredAttributes, BSTR optionalAttributes,
+  int getAudioOutputs(
+          Pointer<Utf16> requiredAttributes,
+          Pointer<Utf16> optionalAttributes,
           Pointer<VTablePointer> objectTokens) =>
       _vtable.GetAudioOutputs.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  BSTR requiredAttributes,
-                  BSTR optionalAttributes,
+                  Pointer<Utf16> requiredAttributes,
+                  Pointer<Utf16> optionalAttributes,
                   Pointer<VTablePointer> objectTokens)>()(
           ptr, requiredAttributes, optionalAttributes, objectTokens);
 
@@ -301,21 +305,25 @@ class ISpeechVoice extends IDispatch {
           int Function(
               VTablePointer lpVtbl, Pointer<Int32> handle)>()(ptr, handle);
 
-  int isUISupported(BSTR typeOfUI, Pointer<VARIANT> extraData,
+  int isUISupported(Pointer<Utf16> typeOfUI, Pointer<VARIANT> extraData,
           Pointer<VARIANT_BOOL> supported) =>
       _vtable.IsUISupported.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  BSTR typeOfUI,
+                  Pointer<Utf16> typeOfUI,
                   Pointer<VARIANT> extraData,
                   Pointer<VARIANT_BOOL> supported)>()(
           ptr, typeOfUI, extraData, supported);
 
-  int displayUI(int hWndParent, BSTR title, BSTR typeOfUI,
+  int displayUI(int hWndParent, Pointer<Utf16> title, Pointer<Utf16> typeOfUI,
           Pointer<VARIANT> extraData) =>
       _vtable.DisplayUI.asFunction<
-              int Function(VTablePointer lpVtbl, int hWndParent, BSTR title,
-                  BSTR typeOfUI, Pointer<VARIANT> extraData)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  int hWndParent,
+                  Pointer<Utf16> title,
+                  Pointer<Utf16> typeOfUI,
+                  Pointer<VARIANT> extraData)>()(
           ptr, hWndParent, title, typeOfUI, extraData);
 }
 
@@ -410,8 +418,8 @@ base class ISpeechVoiceVtbl extends Struct {
       get_SynchronousSpeakTimeout;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR text, Int32 flags,
-              Pointer<Int32> streamNumber)>> Speak;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> text,
+              Int32 flags, Pointer<Int32> streamNumber)>> Speak;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, VTablePointer stream,
@@ -422,21 +430,21 @@ base class ISpeechVoiceVtbl extends Struct {
       Resume;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR type, Int32 numItems,
-              Pointer<Int32> numSkipped)>> Skip;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> type,
+              Int32 numItems, Pointer<Int32> numSkipped)>> Skip;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              BSTR requiredAttributes,
-              BSTR optionalAttributes,
+              Pointer<Utf16> requiredAttributes,
+              Pointer<Utf16> optionalAttributes,
               Pointer<VTablePointer> objectTokens)>> GetVoices;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              BSTR requiredAttributes,
-              BSTR optionalAttributes,
+              Pointer<Utf16> requiredAttributes,
+              Pointer<Utf16> optionalAttributes,
               Pointer<VTablePointer> objectTokens)>> GetAudioOutputs;
   external Pointer<
       NativeFunction<
@@ -450,11 +458,15 @@ base class ISpeechVoiceVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              BSTR typeOfUI,
+              Pointer<Utf16> typeOfUI,
               Pointer<VARIANT> extraData,
               Pointer<VARIANT_BOOL> supported)>> IsUISupported;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, Int32 hWndParent, BSTR title,
-              BSTR typeOfUI, Pointer<VARIANT> extraData)>> DisplayUI;
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 hWndParent,
+              Pointer<Utf16> title,
+              Pointer<Utf16> typeOfUI,
+              Pointer<VARIANT> extraData)>> DisplayUI;
 }

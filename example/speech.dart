@@ -16,7 +16,7 @@ void main() {
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
   final speechVoice = ISpeechVoice(createComObject(SpVoice, IID_ISpeechVoice));
-  final pText = textToSpeak.toNativeUtf16();
+  final pText = BSTR.fromString(textToSpeak);
 
   final pTokens = calloc<VTablePointer>();
   final voices = speechVoice.getVoices(nullptr, nullptr, pTokens);
@@ -34,7 +34,7 @@ void main() {
       if (pTokens.value != nullptr) {
         final token = ISpeechObjectToken(pToken.value);
 
-        final pDescription = calloc<BSTR>();
+        final pDescription = calloc<Pointer<Utf16>>();
         hr = token.getDescription(0, pDescription);
         if (FAILED(hr)) throw WindowsException(hr);
         final description = pDescription.value.toDartString();
@@ -60,7 +60,7 @@ void main() {
   }
 
   free(pTokens);
-  free(pText);
+  pText.free();
   speechVoice.release();
   CoUninitialize();
 }

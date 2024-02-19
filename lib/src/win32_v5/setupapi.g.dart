@@ -106,16 +106,16 @@ final _SetupDiEnumDeviceInterfaces = _setupapi.lookupFunction<
 /// );
 /// ```
 /// {@category setupapi}
-int SetupDiGetClassDevs(Pointer<GUID>? classGuid, PWSTR? enumerator,
+int SetupDiGetClassDevs(Pointer<GUID>? classGuid, Pointer<Utf16>? enumerator,
         int? hwndParent, int flags) =>
     _SetupDiGetClassDevs(
         classGuid ?? nullptr, enumerator ?? nullptr, hwndParent ?? 0, flags);
 
 final _SetupDiGetClassDevs = _setupapi.lookupFunction<
-    HDEVINFO Function(Pointer<GUID> classGuid, PWSTR enumerator,
+    HDEVINFO Function(Pointer<GUID> classGuid, Pointer<Utf16> enumerator,
         HWND hwndParent, Uint32 flags),
-    int Function(Pointer<GUID> classGuid, PWSTR enumerator, int hwndParent,
-        int flags)>('SetupDiGetClassDevsW');
+    int Function(Pointer<GUID> classGuid, Pointer<Utf16> enumerator,
+        int hwndParent, int flags)>('SetupDiGetClassDevsW');
 
 /// The SetupDiGetDeviceInstanceId function retrieves the device instance ID
 /// that is associated with a device information element.
@@ -133,7 +133,7 @@ final _SetupDiGetClassDevs = _setupapi.lookupFunction<
 int SetupDiGetDeviceInstanceId(
         int deviceInfoSet,
         Pointer<SP_DEVINFO_DATA> deviceInfoData,
-        PWSTR? deviceInstanceId,
+        Pointer<Utf16>? deviceInstanceId,
         int deviceInstanceIdSize,
         Pointer<Uint32>? requiredSize) =>
     _SetupDiGetDeviceInstanceId(
@@ -147,13 +147,13 @@ final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
     BOOL Function(
         HDEVINFO deviceInfoSet,
         Pointer<SP_DEVINFO_DATA> deviceInfoData,
-        PWSTR deviceInstanceId,
+        Pointer<Utf16> deviceInstanceId,
         Uint32 deviceInstanceIdSize,
         Pointer<Uint32> requiredSize),
     int Function(
         int deviceInfoSet,
         Pointer<SP_DEVINFO_DATA> deviceInfoData,
-        PWSTR deviceInstanceId,
+        Pointer<Utf16> deviceInstanceId,
         int deviceInstanceIdSize,
         Pointer<Uint32> requiredSize)>('SetupDiGetDeviceInstanceIdW');
 

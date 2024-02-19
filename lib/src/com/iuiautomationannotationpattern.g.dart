@@ -49,12 +49,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  BSTR get currentAnnotationTypeName {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentAnnotationTypeName {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentAnnotationTypeName.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -63,12 +63,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  BSTR get currentAuthor {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentAuthor {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentAuthor.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -77,12 +77,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  BSTR get currentDateTime {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentDateTime {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentDateTime.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -119,12 +119,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  BSTR get cachedAnnotationTypeName {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedAnnotationTypeName {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedAnnotationTypeName.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -133,12 +133,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  BSTR get cachedAuthor {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedAuthor {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedAuthor.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -147,12 +147,12 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
-  BSTR get cachedDateTime {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedDateTime {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedDateTime.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -185,15 +185,18 @@ base class IUIAutomationAnnotationPatternVtbl extends Struct {
       get_CurrentAnnotationTypeId;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentAnnotationTypeName;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentAuthor;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentDateTime;
   external Pointer<
           NativeFunction<
@@ -206,15 +209,18 @@ base class IUIAutomationAnnotationPatternVtbl extends Struct {
       get_CachedAnnotationTypeId;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedAnnotationTypeName;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedAuthor;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedDateTime;
   external Pointer<
           NativeFunction<

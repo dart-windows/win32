@@ -13,8 +13,8 @@ import 'package:win32/win32.dart';
 void main() {
   // Open the device by specifying the device and filename.
   // MCI will attempt to choose the MIDI mapper as the output port.
-  final deviceType = TEXT('sequencer');
-  final elementName = TEXT(r'c:\Windows\Media\flourish.mid');
+  final deviceType = PWSTR.fromString('sequencer');
+  final elementName = PWSTR.fromString(r'c:\Windows\Media\flourish.mid');
   final mciOpenParams = calloc<MCI_OPEN_PARMS>();
   mciOpenParams.ref
     ..lpstrDeviceType = deviceType
@@ -56,7 +56,8 @@ void main() {
   // The output port is not the MIDI mapper.
   // Ask if the user wants to continue.
   if (LOWORD(mciStatusParams.ref.dwReturn) != MIDI_MAPPER) {
-    final warningMessage = TEXT('The MIDI mapper is not available. Continue?');
+    final warningMessage =
+        PWSTR.fromString('The MIDI mapper is not available. Continue?');
     try {
       if (MessageBox(null, warningMessage, null, MB_YESNO) == IDNO) {
         // User does not want to continue. Not an error;
@@ -82,8 +83,8 @@ void main() {
     exit(dwReturn);
   }
 
-  final message = TEXT('Press OK to stop');
-  final caption = TEXT('Midi Sample');
+  final message = PWSTR.fromString('Press OK to stop');
+  final caption = PWSTR.fromString('Midi Sample');
   MessageBox(null, message, caption, MB_OK);
 
   // Clear up

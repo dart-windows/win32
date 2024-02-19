@@ -239,7 +239,7 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
         final y = yChar * (i - yPos);
 
         // Write a line of text to the client area.
-        TextOut(hdc, x, y, TEXT(abc[i]), abc[i].length);
+        TextOut(hdc, x, y, PWSTR.fromString(abc[i]), abc[i].length);
       }
 
       // Indicate that painting is finished.
@@ -260,7 +260,7 @@ void main() => initApp(winMain);
 
 void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Register the window class.
-  final className = TEXT('Scrollbar Sample');
+  final className = PWSTR.fromString('Scrollbar Sample');
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,

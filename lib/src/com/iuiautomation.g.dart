@@ -429,15 +429,15 @@ class IUIAutomation extends IUnknown {
     }
   }
 
-  int getPropertyProgrammaticName(int property, Pointer<BSTR> name) =>
+  int getPropertyProgrammaticName(int property, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetPropertyProgrammaticName.asFunction<
           int Function(VTablePointer lpVtbl, int property,
-              Pointer<BSTR> name)>()(ptr, property, name);
+              Pointer<Pointer<Utf16>> name)>()(ptr, property, name);
 
-  int getPatternProgrammaticName(int pattern, Pointer<BSTR> name) =>
+  int getPatternProgrammaticName(int pattern, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetPatternProgrammaticName.asFunction<
           int Function(VTablePointer lpVtbl, int pattern,
-              Pointer<BSTR> name)>()(ptr, pattern, name);
+              Pointer<Pointer<Utf16>> name)>()(ptr, pattern, name);
 
   int pollForPotentialSupportedPatterns(
           VTablePointer pElement,
@@ -781,15 +781,13 @@ base class IUIAutomationVtbl extends Struct {
                   VTablePointer lpVtbl, Pointer<VTablePointer> factoryMapping)>>
       get_ProxyFactoryMapping;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Int32 property, Pointer<BSTR> name)>>
-      GetPropertyProgrammaticName;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 property,
+              Pointer<Pointer<Utf16>> name)>> GetPropertyProgrammaticName;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Int32 pattern, Pointer<BSTR> name)>>
-      GetPatternProgrammaticName;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 pattern,
+              Pointer<Pointer<Utf16>> name)>> GetPatternProgrammaticName;
   external Pointer<
           NativeFunction<
               HRESULT Function(

@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -40,10 +42,10 @@ class ISensor extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<GUID> pSensorType)>()(ptr, pSensorType);
 
-  int getFriendlyName(Pointer<BSTR> pFriendlyName) =>
+  int getFriendlyName(Pointer<Pointer<Utf16>> pFriendlyName) =>
       _vtable.GetFriendlyName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pFriendlyName)>()(ptr, pFriendlyName);
+              Pointer<Pointer<Utf16>> pFriendlyName)>()(ptr, pFriendlyName);
 
   int getProperty(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> pProperty) =>
       _vtable.GetProperty.asFunction<
@@ -124,7 +126,7 @@ base class ISensorVtbl extends Struct {
   external Pointer<
           NativeFunction<
               HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pFriendlyName)>>
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pFriendlyName)>>
       GetFriendlyName;
   external Pointer<
       NativeFunction<

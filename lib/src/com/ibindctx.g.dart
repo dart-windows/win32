@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -54,14 +56,14 @@ class IBindCtx extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> pprot)>()(ptr, pprot);
 
-  int registerObjectParam(PWSTR pszKey, VTablePointer punk) =>
+  int registerObjectParam(Pointer<Utf16> pszKey, VTablePointer punk) =>
       _vtable.RegisterObjectParam.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR pszKey,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszKey,
               VTablePointer punk)>()(ptr, pszKey, punk);
 
-  int getObjectParam(PWSTR pszKey, Pointer<VTablePointer> ppunk) =>
+  int getObjectParam(Pointer<Utf16> pszKey, Pointer<VTablePointer> ppunk) =>
       _vtable.GetObjectParam.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR pszKey,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pszKey,
               Pointer<VTablePointer> ppunk)>()(ptr, pszKey, ppunk);
 
   int enumObjectParam(Pointer<VTablePointer> ppenum) =>
@@ -69,8 +71,10 @@ class IBindCtx extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
 
-  int revokeObjectParam(PWSTR pszKey) => _vtable.RevokeObjectParam.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR pszKey)>()(ptr, pszKey);
+  int revokeObjectParam(Pointer<Utf16> pszKey) =>
+      _vtable.RevokeObjectParam.asFunction<
+          int Function(
+              VTablePointer lpVtbl, Pointer<Utf16> pszKey)>()(ptr, pszKey);
 }
 
 /// @nodoc
@@ -102,13 +106,12 @@ base class IBindCtxVtbl extends Struct {
                   VTablePointer lpVtbl, Pointer<VTablePointer> pprot)>>
       GetRunningObjectTable;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, PWSTR pszKey, VTablePointer punk)>>
-      RegisterObjectParam;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszKey,
+              VTablePointer punk)>> RegisterObjectParam;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pszKey,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszKey,
               Pointer<VTablePointer> ppunk)>> GetObjectParam;
   external Pointer<
           NativeFunction<
@@ -116,6 +119,7 @@ base class IBindCtxVtbl extends Struct {
                   VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>>
       EnumObjectParam;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR pszKey)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pszKey)>>
       RevokeObjectParam;
 }

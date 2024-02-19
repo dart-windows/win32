@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,23 +33,23 @@ class IWbemLocator extends IUnknown {
       IWbemLocator(interface.toInterface(IID_IWbemLocator));
 
   int connectServer(
-          BSTR strNetworkResource,
-          BSTR strUser,
-          BSTR strPassword,
-          BSTR strLocale,
+          Pointer<Utf16> strNetworkResource,
+          Pointer<Utf16> strUser,
+          Pointer<Utf16> strPassword,
+          Pointer<Utf16> strLocale,
           int lSecurityFlags,
-          BSTR strAuthority,
+          Pointer<Utf16> strAuthority,
           VTablePointer pCtx,
           Pointer<VTablePointer> ppNamespace) =>
       _vtable.ConnectServer.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  BSTR strNetworkResource,
-                  BSTR strUser,
-                  BSTR strPassword,
-                  BSTR strLocale,
+                  Pointer<Utf16> strNetworkResource,
+                  Pointer<Utf16> strUser,
+                  Pointer<Utf16> strPassword,
+                  Pointer<Utf16> strLocale,
                   int lSecurityFlags,
-                  BSTR strAuthority,
+                  Pointer<Utf16> strAuthority,
                   VTablePointer pCtx,
                   Pointer<VTablePointer> ppNamespace)>()(
           ptr,
@@ -68,12 +70,12 @@ base class IWbemLocatorVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              BSTR strNetworkResource,
-              BSTR strUser,
-              BSTR strPassword,
-              BSTR strLocale,
+              Pointer<Utf16> strNetworkResource,
+              Pointer<Utf16> strUser,
+              Pointer<Utf16> strPassword,
+              Pointer<Utf16> strLocale,
               Int32 lSecurityFlags,
-              BSTR strAuthority,
+              Pointer<Utf16> strAuthority,
               VTablePointer pCtx,
               Pointer<VTablePointer> ppNamespace)>> ConnectServer;
 }

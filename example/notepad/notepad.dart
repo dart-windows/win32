@@ -39,7 +39,7 @@ int mainWindowProc(int hwnd, int message, int wParam, int lParam) {
     case WM_CREATE:
       hwndEdit = CreateWindowEx(
         0,
-        TEXT('edit'),
+        PWSTR.fromString('edit'),
         nullptr,
         WS_CHILD |
             WS_VISIBLE |
@@ -66,7 +66,8 @@ int mainWindowProc(int hwnd, int message, int wParam, int lParam) {
       editor = NotepadEditor(hwnd, hwndEdit);
       find = NotepadFind();
 
-      messageFindReplace = RegisterWindowMessage(TEXT(FINDMSGSTRING));
+      messageFindReplace =
+          RegisterWindowMessage(PWSTR.fromString(FINDMSGSTRING));
 
       editor.updateWindowTitle();
       return 0;
@@ -124,8 +125,8 @@ int mainWindowProc(int hwnd, int message, int wParam, int lParam) {
             return 0;
           case EN_ERRSPACE:
           case EN_MAXTEXT:
-            MessageBox(hwnd, TEXT('Edit control out of space.'), TEXT(APP_NAME),
-                MB_OK | MB_ICONSTOP);
+            MessageBox(hwnd, PWSTR.fromString('Edit control out of space.'),
+                PWSTR.fromString(APP_NAME), MB_OK | MB_ICONSTOP);
             return 0;
         }
         break;
@@ -139,7 +140,7 @@ int mainWindowProc(int hwnd, int message, int wParam, int lParam) {
           }
 
           // Empty edit control
-          SetWindowText(hwndEdit, TEXT('\u{0}'));
+          SetWindowText(hwndEdit, PWSTR.fromString('\u{0}'));
 
           editor.newFile();
           return 0;
@@ -296,7 +297,7 @@ void main() {
   registerHighDPISupport();
 
   // Register the window class.
-  final className = TEXT(APP_NAME);
+  final className = PWSTR.fromString(APP_NAME);
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,
@@ -319,7 +320,7 @@ void main() {
   final hWnd = CreateWindowEx(
     0, // Optional window styles.
     className, // Window class
-    TEXT(APP_NAME),
+    PWSTR.fromString(APP_NAME),
     WS_OVERLAPPEDWINDOW, // Window style
 
     // Size and position

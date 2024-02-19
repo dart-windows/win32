@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -34,36 +36,38 @@ class IWbemClassObject extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppQualSet)>()(ptr, ppQualSet);
 
-  int get(PWSTR wszName, int lFlags, Pointer<VARIANT> pVal,
+  int get(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pVal,
           Pointer<Int32>? pType, Pointer<Int32>? plFlavor) =>
       _vtable.Get.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  PWSTR wszName,
+                  Pointer<Utf16> wszName,
                   int lFlags,
                   Pointer<VARIANT> pVal,
                   Pointer<Int32> pType,
                   Pointer<Int32> plFlavor)>()(
           ptr, wszName, lFlags, pVal, pType ?? nullptr, plFlavor ?? nullptr);
 
-  int put(PWSTR wszName, int lFlags, Pointer<VARIANT> pVal, int type) =>
+  int put(Pointer<Utf16> wszName, int lFlags, Pointer<VARIANT> pVal,
+          int type) =>
       _vtable.Put.asFunction<
           int Function(
               VTablePointer lpVtbl,
-              PWSTR wszName,
+              Pointer<Utf16> wszName,
               int lFlags,
               Pointer<VARIANT> pVal,
               int type)>()(ptr, wszName, lFlags, pVal, type);
 
-  int delete(PWSTR wszName) => _vtable.Delete.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR wszName)>()(ptr, wszName);
+  int delete(Pointer<Utf16> wszName) => _vtable.Delete.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<Utf16> wszName)>()(ptr, wszName);
 
-  int getNames(PWSTR wszQualifierName, int lFlags,
+  int getNames(Pointer<Utf16> wszQualifierName, int lFlags,
           Pointer<VARIANT> pQualifierVal, Pointer<Pointer<SAFEARRAY>> pNames) =>
       _vtable.GetNames.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  PWSTR wszQualifierName,
+                  Pointer<Utf16> wszQualifierName,
                   int lFlags,
                   Pointer<VARIANT> pQualifierVal,
                   Pointer<Pointer<SAFEARRAY>> pNames)>()(
@@ -72,13 +76,13 @@ class IWbemClassObject extends IUnknown {
   int beginEnumeration(int lEnumFlags) => _vtable.BeginEnumeration.asFunction<
       int Function(VTablePointer lpVtbl, int lEnumFlags)>()(ptr, lEnumFlags);
 
-  int next(int lFlags, Pointer<BSTR> strName, Pointer<VARIANT> pVal,
+  int next(int lFlags, Pointer<Pointer<Utf16>> strName, Pointer<VARIANT> pVal,
           Pointer<Int32> pType, Pointer<Int32> plFlavor) =>
       _vtable.Next.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   int lFlags,
-                  Pointer<BSTR> strName,
+                  Pointer<Pointer<Utf16>> strName,
                   Pointer<VARIANT> pVal,
                   Pointer<Int32> pType,
                   Pointer<Int32> plFlavor)>()(
@@ -89,19 +93,20 @@ class IWbemClassObject extends IUnknown {
           ptr);
 
   int getPropertyQualifierSet(
-          PWSTR wszProperty, Pointer<VTablePointer> ppQualSet) =>
+          Pointer<Utf16> wszProperty, Pointer<VTablePointer> ppQualSet) =>
       _vtable.GetPropertyQualifierSet.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR wszProperty,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> wszProperty,
               Pointer<VTablePointer> ppQualSet)>()(ptr, wszProperty, ppQualSet);
 
   int clone(Pointer<VTablePointer> ppCopy) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppCopy)>()(ptr, ppCopy);
 
-  int getObjectText(int lFlags, Pointer<BSTR> pstrObjectText) =>
+  int getObjectText(int lFlags, Pointer<Pointer<Utf16>> pstrObjectText) =>
       _vtable.GetObjectText.asFunction<
-          int Function(VTablePointer lpVtbl, int lFlags,
-              Pointer<BSTR> pstrObjectText)>()(ptr, lFlags, pstrObjectText);
+              int Function(VTablePointer lpVtbl, int lFlags,
+                  Pointer<Pointer<Utf16>> pstrObjectText)>()(
+          ptr, lFlags, pstrObjectText);
 
   int spawnDerivedClass(int lFlags, Pointer<VTablePointer> ppNewClass) =>
       _vtable.SpawnDerivedClass.asFunction<
@@ -119,35 +124,46 @@ class IWbemClassObject extends IUnknown {
           int Function(VTablePointer lpVtbl, int lFlags,
               VTablePointer pCompareTo)>()(ptr, lFlags, pCompareTo);
 
-  int getPropertyOrigin(PWSTR wszName, Pointer<BSTR> pstrClassName) =>
+  int getPropertyOrigin(
+          Pointer<Utf16> wszName, Pointer<Pointer<Utf16>> pstrClassName) =>
       _vtable.GetPropertyOrigin.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR wszName,
-              Pointer<BSTR> pstrClassName)>()(ptr, wszName, pstrClassName);
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> wszName,
+                  Pointer<Pointer<Utf16>> pstrClassName)>()(
+          ptr, wszName, pstrClassName);
 
-  int inheritsFrom(PWSTR strAncestor) => _vtable.InheritsFrom.asFunction<
-      int Function(
-          VTablePointer lpVtbl, PWSTR strAncestor)>()(ptr, strAncestor);
+  int inheritsFrom(Pointer<Utf16> strAncestor) =>
+      _vtable.InheritsFrom.asFunction<
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> strAncestor)>()(
+          ptr, strAncestor);
 
-  int getMethod(PWSTR wszName, int lFlags, Pointer<VTablePointer> ppInSignature,
+  int getMethod(
+          Pointer<Utf16> wszName,
+          int lFlags,
+          Pointer<VTablePointer> ppInSignature,
           Pointer<VTablePointer> ppOutSignature) =>
       _vtable.GetMethod.asFunction<
               int Function(
                   VTablePointer lpVtbl,
-                  PWSTR wszName,
+                  Pointer<Utf16> wszName,
                   int lFlags,
                   Pointer<VTablePointer> ppInSignature,
                   Pointer<VTablePointer> ppOutSignature)>()(
           ptr, wszName, lFlags, ppInSignature, ppOutSignature);
 
-  int putMethod(PWSTR wszName, int lFlags, VTablePointer pInSignature,
+  int putMethod(Pointer<Utf16> wszName, int lFlags, VTablePointer pInSignature,
           VTablePointer pOutSignature) =>
       _vtable.PutMethod.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR wszName, int lFlags,
-                  VTablePointer pInSignature, VTablePointer pOutSignature)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<Utf16> wszName,
+                  int lFlags,
+                  VTablePointer pInSignature,
+                  VTablePointer pOutSignature)>()(
           ptr, wszName, lFlags, pInSignature, pOutSignature);
 
-  int deleteMethod(PWSTR wszName) => _vtable.DeleteMethod.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR wszName)>()(ptr, wszName);
+  int deleteMethod(Pointer<Utf16> wszName) => _vtable.DeleteMethod.asFunction<
+      int Function(
+          VTablePointer lpVtbl, Pointer<Utf16> wszName)>()(ptr, wszName);
 
   int beginMethodEnumeration(int lEnumFlags) =>
       _vtable.BeginMethodEnumeration.asFunction<
@@ -156,14 +172,14 @@ class IWbemClassObject extends IUnknown {
 
   int nextMethod(
           int lFlags,
-          Pointer<BSTR> pstrName,
+          Pointer<Pointer<Utf16>> pstrName,
           Pointer<VTablePointer> ppInSignature,
           Pointer<VTablePointer> ppOutSignature) =>
       _vtable.NextMethod.asFunction<
               int Function(
                   VTablePointer lpVtbl,
                   int lFlags,
-                  Pointer<BSTR> pstrName,
+                  Pointer<Pointer<Utf16>> pstrName,
                   Pointer<VTablePointer> ppInSignature,
                   Pointer<VTablePointer> ppOutSignature)>()(
           ptr, lFlags, pstrName, ppInSignature, ppOutSignature);
@@ -172,15 +188,16 @@ class IWbemClassObject extends IUnknown {
       int Function(VTablePointer lpVtbl)>()(ptr);
 
   int getMethodQualifierSet(
-          PWSTR wszMethod, Pointer<VTablePointer> ppQualSet) =>
+          Pointer<Utf16> wszMethod, Pointer<VTablePointer> ppQualSet) =>
       _vtable.GetMethodQualifierSet.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR wszMethod,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> wszMethod,
               Pointer<VTablePointer> ppQualSet)>()(ptr, wszMethod, ppQualSet);
 
-  int getMethodOrigin(PWSTR wszMethodName, Pointer<BSTR> pstrClassName) =>
+  int getMethodOrigin(Pointer<Utf16> wszMethodName,
+          Pointer<Pointer<Utf16>> pstrClassName) =>
       _vtable.GetMethodOrigin.asFunction<
-              int Function(VTablePointer lpVtbl, PWSTR wszMethodName,
-                  Pointer<BSTR> pstrClassName)>()(
+              int Function(VTablePointer lpVtbl, Pointer<Utf16> wszMethodName,
+                  Pointer<Pointer<Utf16>> pstrClassName)>()(
           ptr, wszMethodName, pstrClassName);
 }
 
@@ -196,23 +213,24 @@ base class IWbemClassObjectVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR wszName,
+              Pointer<Utf16> wszName,
               Int32 lFlags,
               Pointer<VARIANT> pVal,
               Pointer<Int32> pType,
               Pointer<Int32> plFlavor)>> Get;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR wszName, Int32 lFlags,
-              Pointer<VARIANT> pVal, Int32 type)>> Put;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszName,
+              Int32 lFlags, Pointer<VARIANT> pVal, Int32 type)>> Put;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR wszName)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszName)>>
       Delete;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR wszQualifierName,
+              Pointer<Utf16> wszQualifierName,
               Int32 lFlags,
               Pointer<VARIANT> pQualifierVal,
               Pointer<Pointer<SAFEARRAY>> pNames)>> GetNames;
@@ -225,7 +243,7 @@ base class IWbemClassObjectVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               Int32 lFlags,
-              Pointer<BSTR> strName,
+              Pointer<Pointer<Utf16>> strName,
               Pointer<VARIANT> pVal,
               Pointer<Int32> pType,
               Pointer<Int32> plFlavor)>> Next;
@@ -233,7 +251,7 @@ base class IWbemClassObjectVtbl extends Struct {
       EndEnumeration;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR wszProperty,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszProperty,
               Pointer<VTablePointer> ppQualSet)>> GetPropertyQualifierSet;
   external Pointer<
       NativeFunction<
@@ -242,7 +260,7 @@ base class IWbemClassObjectVtbl extends Struct {
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 lFlags,
-              Pointer<BSTR> pstrObjectText)>> GetObjectText;
+              Pointer<Pointer<Utf16>> pstrObjectText)>> GetObjectText;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 lFlags,
@@ -257,17 +275,17 @@ base class IWbemClassObjectVtbl extends Struct {
               VTablePointer pCompareTo)>> CompareTo;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR wszName,
-              Pointer<BSTR> pstrClassName)>> GetPropertyOrigin;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszName,
+              Pointer<Pointer<Utf16>> pstrClassName)>> GetPropertyOrigin;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, PWSTR strAncestor)>>
-      InheritsFrom;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Utf16> strAncestor)>> InheritsFrom;
   external Pointer<
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR wszName,
+              Pointer<Utf16> wszName,
               Int32 lFlags,
               Pointer<VTablePointer> ppInSignature,
               Pointer<VTablePointer> ppOutSignature)>> GetMethod;
@@ -275,12 +293,13 @@ base class IWbemClassObjectVtbl extends Struct {
       NativeFunction<
           HRESULT Function(
               VTablePointer lpVtbl,
-              PWSTR wszName,
+              Pointer<Utf16> wszName,
               Int32 lFlags,
               VTablePointer pInSignature,
               VTablePointer pOutSignature)>> PutMethod;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR wszName)>>
+          NativeFunction<
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszName)>>
       DeleteMethod;
   external Pointer<
           NativeFunction<
@@ -291,19 +310,19 @@ base class IWbemClassObjectVtbl extends Struct {
           HRESULT Function(
               VTablePointer lpVtbl,
               Int32 lFlags,
-              Pointer<BSTR> pstrName,
+              Pointer<Pointer<Utf16>> pstrName,
               Pointer<VTablePointer> ppInSignature,
               Pointer<VTablePointer> ppOutSignature)>> NextMethod;
   external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>
       EndMethodEnumeration;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR wszMethod,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszMethod,
               Pointer<VTablePointer> ppQualSet)>> GetMethodQualifierSet;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR wszMethodName,
-              Pointer<BSTR> pstrClassName)>> GetMethodOrigin;
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> wszMethodName,
+              Pointer<Pointer<Utf16>> pstrClassName)>> GetMethodOrigin;
 }
 
 /// @nodoc

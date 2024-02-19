@@ -15,27 +15,27 @@ import '../helpers.dart';
 void main() {
   test('CLSIDFromString', () {
     final guid = calloc<GUID>();
-    final pCLSID = FileSaveDialog.toNativeUtf16();
+    final pCLSID = PWSTR.fromString(FileSaveDialog);
 
     final hr = CLSIDFromString(pCLSID, guid);
     expect(hr, equals(S_OK));
 
     expect(guid.ref.toString(), equalsIgnoringCase(FileSaveDialog));
 
-    free(pCLSID);
+    pCLSID.free();
     free(guid);
   });
 
   test('IIDFromString', () {
     final guid = calloc<GUID>();
-    final pIID = IID_IShellItem2.toNativeUtf16();
+    final pIID = PWSTR.fromString(IID_IShellItem2);
 
     final hr = IIDFromString(pIID, guid);
     expect(hr, equals(S_OK));
 
     expect(guid.ref.toString(), equalsIgnoringCase(IID_IShellItem2));
 
-    free(pIID);
+    pIID.free();
     free(guid);
   });
 

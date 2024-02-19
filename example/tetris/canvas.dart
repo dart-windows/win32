@@ -74,9 +74,9 @@ class Canvas {
   }
 
   void drawText(String text, int x, int y) {
-    final lpString = text.toNativeUtf16();
+    final lpString = PWSTR.fromString(text);
     TextOut(hdc, x, y, lpString, text.length);
-    free(lpString);
+    lpString.free();
   }
 
   void drawTextOpaque(String text, int x, int y) {

@@ -22,8 +22,8 @@ const VK_B = 0x42;
 
 const szTop = "Message        Key          Char       Scan Ext ALT Prev Tran";
 const szUnd = "_______        ___          ____       ____ ___ ___ ____ ____";
-final pszTop = TEXT(szTop);
-final pszUnd = TEXT(szUnd);
+final pszTop = PWSTR.fromString(szTop);
+final pszUnd = PWSTR.fromString(szUnd);
 
 const messages = <String>[
   'WM_KEYDOWN',
@@ -58,8 +58,8 @@ class Message {
 }
 
 final List<Message> msgArr = <Message>[];
-final className = TEXT('Keyboard Hook WndClass');
-final windowCaption = TEXT('Keyboard message viewer');
+final className = PWSTR.fromString('Keyboard Hook WndClass');
+final windowCaption = PWSTR.fromString('Keyboard message viewer');
 
 int lowlevelKeyboardHookProc(int code, int wParam, int lParam) {
   if (code == HC_ACTION) {
@@ -156,7 +156,7 @@ int mainWindowProc(int hWnd, int uMsg, int wParam, int lParam) {
             msg.uMsg == WM_DEADCHAR ||
             msg.uMsg == WM_SYSDEADCHAR;
 
-        final pszKeyName = wsalloc(256);
+        final pszKeyName = PWSTR.empty(256);
         GetKeyNameText(msg.lParam, pszKeyName, 256);
         final keyName = pszKeyName.toDartString();
         free(pszKeyName);
@@ -171,10 +171,15 @@ int mainWindowProc(int hWnd, int uMsg, int wParam, int lParam) {
             '${msg.lParam & 0x02000000 == 0x02000000 ? 'Yes' : 'No '}   '
             '${msg.lParam & 0x04000000 == 0x04000000 ? 'Down' : 'Up  '}  '
             '${msg.lParam & 0x08000000 == 0x08000000 ? 'Up  ' : 'Down'} ';
-        final pszBuffer = szBuffer.toNativeUtf16();
-        TextOut(hdc, 0, ((cyClient ~/ cyChar) - 1 - index++) * cyChar,
-            pszBuffer, szBuffer.length);
-        free(pszBuffer);
+        final pszBuffer = PWSTR.fromString(szBuffer);
+        TextOut(
+          hdc,
+          0,
+          ((cyClient ~/ cyChar) - 1 - index++) * cyChar,
+          pszBuffer,
+          szBuffer.length,
+        );
+        pszBuffer.free();
       }
 
       EndPaint(hWnd, ps);

@@ -7,17 +7,18 @@
 // Finds physical volumes on the system
 
 import 'dart:ffi';
+
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 final volumeHandles = <int, String>{};
 
 class Volume {
+  const Volume(this.deviceName, this.volumeName, this.paths);
+
   final String deviceName;
   final String volumeName;
   final List<String> paths;
-
-  const Volume(this.deviceName, this.volumeName, this.paths);
 }
 
 class Volumes {
@@ -30,14 +31,18 @@ class Volumes {
 
     // Could be arbitrarily long, but 4*MAX_PATH is a reasonable default.
     // More sophisticated solutions can be found online
-    final pathNamePtr = wsalloc(MAX_PATH * 4);
+    final pathNamePtr = PWSTR.empty(MAX_PATH * 4);
     final charCount = calloc<DWORD>();
-    final volumeNamePtr = volumeName.toNativeUtf16();
+    final volumeNamePtr = PWSTR.fromString(volumeName);
 
     try {
       charCount.value = MAX_PATH;
       final success = GetVolumePathNamesForVolumeName(
-          volumeNamePtr, pathNamePtr, charCount.value, charCount);
+        volumeNamePtr,
+        pathNamePtr,
+        charCount.value,
+        charCount,
+      );
 
       if (success != FALSE) {
         if (charCount.value > 1) {
@@ -52,14 +57,15 @@ class Volumes {
       }
       return paths;
     } finally {
-      free(pathNamePtr);
+      volumeNamePtr.free();
+      pathNamePtr.free();
       free(charCount);
     }
   }
 
   Volumes() {
     var error = 0;
-    final volumeNamePtr = wsalloc(MAX_PATH);
+    final volumeNamePtr = PWSTR.empty(MAX_PATH);
 
     final hFindVolume = FindFirstVolume(volumeNamePtr, MAX_PATH);
     if (hFindVolume == INVALID_HANDLE_VALUE) {
@@ -70,11 +76,11 @@ class Volumes {
     while (true) {
       final volumeName = volumeNamePtr.toDartString();
 
-      //  Skip the \\?\ prefix and remove the trailing backslash.
+      // Skip the \\?\ prefix and remove the trailing backslash.
       final shortVolumeName = volumeName.substring(4, volumeName.length - 1);
-      final shortVolumeNamePtr = shortVolumeName.toNativeUtf16();
+      final shortVolumeNamePtr = PWSTR.fromString(shortVolumeName);
 
-      final deviceName = wsalloc(MAX_PATH);
+      final deviceName = PWSTR.empty(MAX_PATH);
       final charCount =
           QueryDosDevice(shortVolumeNamePtr, deviceName, MAX_PATH);
 
@@ -83,8 +89,16 @@ class Volumes {
         throw Exception('QueryDosDevice failed with error code $error');
       }
 
-      _volumes.add(Volume(
-          deviceName.toDartString(), volumeName, getVolumePaths(volumeName)));
+      _volumes.add(
+        Volume(
+          deviceName.toDartString(),
+          volumeName,
+          getVolumePaths(volumeName),
+        ),
+      );
+
+      deviceName.free();
+      shortVolumeNamePtr.free();
 
       final success = FindNextVolume(hFindVolume, volumeNamePtr, MAX_PATH);
       if (success == FALSE) {
@@ -96,9 +110,9 @@ class Volumes {
           break;
         }
       }
-      free(shortVolumeNamePtr);
     }
-    free(volumeNamePtr);
+
+    volumeNamePtr.free();
     FindVolumeClose(hFindVolume);
   }
 }

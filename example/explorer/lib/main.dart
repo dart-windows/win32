@@ -2,7 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:ffi/ffi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -47,13 +46,13 @@ class MainPageState extends State<MainPage> {
   void showDocumentsPath() async {
     final appDocDir = await getApplicationDocumentsDirectory();
     final hwnd = GetForegroundWindow();
-    final pMessage = 'Path: ${appDocDir.path}'.toNativeUtf16();
-    final pTitle = 'Application Documents'.toNativeUtf16();
+    final pMessage = PWSTR.fromString('Path: ${appDocDir.path}');
+    final pTitle = PWSTR.fromString('Application Documents');
 
     MessageBox(hwnd, pMessage, pTitle, MB_OK);
 
-    free(pMessage);
-    free(pTitle);
+    pMessage.free();
+    pTitle.free();
   }
 
   @override

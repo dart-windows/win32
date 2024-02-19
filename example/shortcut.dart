@@ -6,28 +6,27 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:ffi';
-
 import 'package:args/args.dart';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void createShortcut(String path, String pathLink, String? description) {
   final shellLink = IShellLink(createComObject(ShellLink, IID_IShellLink));
-  final lpPath = path.toNativeUtf16();
-  final lpPathLink = pathLink.toNativeUtf16();
-  final lpDescription = description?.toNativeUtf16() ?? nullptr;
 
-  try {
+  using((arena) {
+    final lpPath = PWSTR.fromString(path, allocator: arena);
     shellLink.setPath(lpPath);
-    if (description != null) shellLink.setDescription(lpDescription);
 
-    IPersistFile.from(shellLink).save(lpPathLink, TRUE);
-  } finally {
-    free(lpPath);
-    free(lpPathLink);
-    if (lpDescription != nullptr) free(lpDescription);
-  }
+    if (description != null) {
+      shellLink.setDescription(PWSTR.fromString(description, allocator: arena));
+    }
+
+    final lpPathLink = PWSTR.fromString(pathLink, allocator: arena);
+    IPersistFile.from(shellLink)
+      ..save(lpPathLink, TRUE)
+      ..release();
+    shellLink.release();
+  });
 }
 
 void main(List<String> args) {
@@ -52,6 +51,7 @@ void main(List<String> args) {
       results['shortcut'] as String,
       results['description'] as String?,
     );
+    CoUninitialize();
   } on FormatException {
     print('Creates a Windows shortcut to a given file.\n');
     print('Usage: shortcut [arguments]\n');

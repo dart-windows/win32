@@ -26,12 +26,12 @@ void main() {
 
     test('BSTR', () {
       const testString = 'Hello, world';
-      final bstr = Bstr.fromString(testString);
+      final bstr = BSTR.fromString(testString);
       final variant = calloc<VARIANT>();
       VariantInit(variant);
       variant.ref
         ..vt = VARENUM.VT_BSTR
-        ..bstrVal = bstr.ptr;
+        ..bstrVal = bstr;
       expect(variant.ref.bstrVal.toDartString(), equals(testString));
       VariantClear(variant);
       free(variant);

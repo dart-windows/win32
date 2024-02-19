@@ -20,7 +20,7 @@ class RecycleBinInfo {
 }
 
 RecycleBinInfo queryRecycleBin(String rootPath) {
-  final pszRootPath = rootPath.toNativeUtf16();
+  final pszRootPath = PWSTR.fromString(rootPath);
   final pSHQueryRBInfo = calloc<SHQUERYRBINFO>()
     ..ref.cbSize = sizeOf<SHQUERYRBINFO>();
 
@@ -32,15 +32,15 @@ RecycleBinInfo queryRecycleBin(String rootPath) {
       pSHQueryRBInfo.ref.i64Size,
     );
   } finally {
-    free(pszRootPath);
+    pszRootPath.free();
     free(pSHQueryRBInfo);
   }
 }
 
 String getTempFileName() {
-  final lpPathName = '.'.toNativeUtf16();
-  final lpPrefixString = 'dart'.toNativeUtf16();
-  final lpTempFileName = wsalloc(MAX_PATH);
+  final lpPathName = PWSTR.fromString('.');
+  final lpPrefixString = PWSTR.fromString('dart');
+  final lpTempFileName = PWSTR.empty(MAX_PATH);
 
   try {
     final result =
@@ -48,9 +48,9 @@ String getTempFileName() {
     if (result == 0) throw 'Unable to create filename';
     return lpTempFileName.toDartString();
   } finally {
-    free(lpPathName);
-    free(lpPrefixString);
-    free(lpTempFileName);
+    lpPathName.free();
+    lpPrefixString.free();
+    lpTempFileName.free();
   }
 }
 

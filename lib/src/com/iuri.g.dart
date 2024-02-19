@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -28,12 +30,13 @@ class IUri extends IUnknown {
   factory IUri.from(IUnknown interface) =>
       IUri(interface.toInterface(IID_IUri));
 
-  int getPropertyBSTR(int uriProp, Pointer<BSTR> pbstrProperty, int dwFlags) =>
+  int getPropertyBSTR(
+          int uriProp, Pointer<Pointer<Utf16>> pbstrProperty, int dwFlags) =>
       _vtable.GetPropertyBSTR.asFunction<
           int Function(
               VTablePointer lpVtbl,
               int uriProp,
-              Pointer<BSTR> pbstrProperty,
+              Pointer<Pointer<Utf16>> pbstrProperty,
               int dwFlags)>()(ptr, uriProp, pbstrProperty, dwFlags);
 
   int getPropertyLength(
@@ -58,77 +61,81 @@ class IUri extends IUnknown {
           int Function(VTablePointer lpVtbl, int uriProp,
               Pointer<BOOL> pfHasProperty)>()(ptr, uriProp, pfHasProperty);
 
-  int getAbsoluteUri(Pointer<BSTR> pbstrAbsoluteUri) =>
+  int getAbsoluteUri(Pointer<Pointer<Utf16>> pbstrAbsoluteUri) =>
       _vtable.GetAbsoluteUri.asFunction<
-          int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrAbsoluteUri)>()(ptr, pbstrAbsoluteUri);
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pbstrAbsoluteUri)>()(
+          ptr, pbstrAbsoluteUri);
 
-  int getAuthority(
-          Pointer<BSTR> pbstrAuthority) =>
+  int getAuthority(Pointer<Pointer<Utf16>> pbstrAuthority) =>
       _vtable.GetAuthority.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrAuthority)>()(ptr, pbstrAuthority);
+              Pointer<Pointer<Utf16>> pbstrAuthority)>()(ptr, pbstrAuthority);
 
-  int getDisplayUri(Pointer<BSTR> pbstrDisplayString) =>
+  int getDisplayUri(Pointer<Pointer<Utf16>> pbstrDisplayString) =>
       _vtable.GetDisplayUri.asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pbstrDisplayString)>()(
+          ptr, pbstrDisplayString);
+
+  int getDomain(Pointer<Pointer<Utf16>> pbstrDomain) =>
+      _vtable.GetDomain.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrDisplayString)>()(ptr, pbstrDisplayString);
+              Pointer<Pointer<Utf16>> pbstrDomain)>()(ptr, pbstrDomain);
 
-  int getDomain(Pointer<BSTR> pbstrDomain) => _vtable.GetDomain.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<BSTR> pbstrDomain)>()(ptr, pbstrDomain);
-
-  int getExtension(
-          Pointer<BSTR> pbstrExtension) =>
+  int getExtension(Pointer<Pointer<Utf16>> pbstrExtension) =>
       _vtable.GetExtension.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrExtension)>()(ptr, pbstrExtension);
+              Pointer<Pointer<Utf16>> pbstrExtension)>()(ptr, pbstrExtension);
 
-  int getFragment(Pointer<BSTR> pbstrFragment) =>
+  int getFragment(Pointer<Pointer<Utf16>> pbstrFragment) =>
       _vtable.GetFragment.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrFragment)>()(ptr, pbstrFragment);
+              Pointer<Pointer<Utf16>> pbstrFragment)>()(ptr, pbstrFragment);
 
-  int getHost(Pointer<BSTR> pbstrHost) => _vtable.GetHost.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<BSTR> pbstrHost)>()(ptr, pbstrHost);
+  int getHost(Pointer<Pointer<Utf16>> pbstrHost) => _vtable.GetHost.asFunction<
+      int Function(VTablePointer lpVtbl,
+          Pointer<Pointer<Utf16>> pbstrHost)>()(ptr, pbstrHost);
 
-  int getPassword(Pointer<BSTR> pbstrPassword) =>
+  int getPassword(Pointer<Pointer<Utf16>> pbstrPassword) =>
       _vtable.GetPassword.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrPassword)>()(ptr, pbstrPassword);
+              Pointer<Pointer<Utf16>> pbstrPassword)>()(ptr, pbstrPassword);
 
-  int getPath(Pointer<BSTR> pbstrPath) => _vtable.GetPath.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<BSTR> pbstrPath)>()(ptr, pbstrPath);
+  int getPath(Pointer<Pointer<Utf16>> pbstrPath) => _vtable.GetPath.asFunction<
+      int Function(VTablePointer lpVtbl,
+          Pointer<Pointer<Utf16>> pbstrPath)>()(ptr, pbstrPath);
 
-  int getPathAndQuery(Pointer<BSTR> pbstrPathAndQuery) =>
+  int getPathAndQuery(Pointer<Pointer<Utf16>> pbstrPathAndQuery) =>
       _vtable.GetPathAndQuery.asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Pointer<Utf16>> pbstrPathAndQuery)>()(
+          ptr, pbstrPathAndQuery);
+
+  int getQuery(Pointer<Pointer<Utf16>> pbstrQuery) =>
+      _vtable.GetQuery.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrPathAndQuery)>()(ptr, pbstrPathAndQuery);
+              Pointer<Pointer<Utf16>> pbstrQuery)>()(ptr, pbstrQuery);
 
-  int getQuery(Pointer<BSTR> pbstrQuery) => _vtable.GetQuery.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<BSTR> pbstrQuery)>()(ptr, pbstrQuery);
+  int getRawUri(Pointer<Pointer<Utf16>> pbstrRawUri) =>
+      _vtable.GetRawUri.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrRawUri)>()(ptr, pbstrRawUri);
 
-  int getRawUri(Pointer<BSTR> pbstrRawUri) => _vtable.GetRawUri.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<BSTR> pbstrRawUri)>()(ptr, pbstrRawUri);
-
-  int getSchemeName(Pointer<BSTR> pbstrSchemeName) =>
+  int getSchemeName(Pointer<Pointer<Utf16>> pbstrSchemeName) =>
       _vtable.GetSchemeName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrSchemeName)>()(ptr, pbstrSchemeName);
+              Pointer<Pointer<Utf16>> pbstrSchemeName)>()(ptr, pbstrSchemeName);
 
-  int getUserInfo(Pointer<BSTR> pbstrUserInfo) =>
+  int getUserInfo(Pointer<Pointer<Utf16>> pbstrUserInfo) =>
       _vtable.GetUserInfo.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrUserInfo)>()(ptr, pbstrUserInfo);
+              Pointer<Pointer<Utf16>> pbstrUserInfo)>()(ptr, pbstrUserInfo);
 
-  int getUserName(Pointer<BSTR> pbstrUserName) =>
+  int getUserName(Pointer<Pointer<Utf16>> pbstrUserName) =>
       _vtable.GetUserName.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pbstrUserName)>()(ptr, pbstrUserName);
+              Pointer<Pointer<Utf16>> pbstrUserName)>()(ptr, pbstrUserName);
 
   int getHostType(Pointer<Uint32> pdwHostType) =>
       _vtable.GetHostType.asFunction<
@@ -163,8 +170,11 @@ base class IUriVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, Int32 uriProp,
-              Pointer<BSTR> pbstrProperty, Uint32 dwFlags)>> GetPropertyBSTR;
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Int32 uriProp,
+              Pointer<Pointer<Utf16>> pbstrProperty,
+              Uint32 dwFlags)>> GetPropertyBSTR;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 uriProp,
@@ -178,71 +188,74 @@ base class IUriVtbl extends Struct {
           HRESULT Function(VTablePointer lpVtbl, Int32 uriProp,
               Pointer<BOOL> pfHasProperty)>> HasProperty;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pbstrAbsoluteUri)>>
-      GetAbsoluteUri;
-  external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pbstrAuthority)>>
-      GetAuthority;
-  external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pbstrDisplayString)>>
-      GetDisplayUri;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrAbsoluteUri)>> GetAbsoluteUri;
   external Pointer<
       NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pbstrDomain)>> GetDomain;
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrAuthority)>> GetAuthority;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrDisplayString)>> GetDisplayUri;
   external Pointer<
           NativeFunction<
               HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pbstrExtension)>>
-      GetExtension;
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrDomain)>>
+      GetDomain;
   external Pointer<
       NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pbstrFragment)>> GetFragment;
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrExtension)>> GetExtension;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> pbstrHost)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrFragment)>>
+      GetFragment;
+  external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrHost)>>
       GetHost;
   external Pointer<
-      NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pbstrPassword)>> GetPassword;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrPassword)>>
+      GetPassword;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> pbstrPath)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrPath)>>
       GetPath;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pbstrPathAndQuery)>>
-      GetPathAndQuery;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrPathAndQuery)>> GetPathAndQuery;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> pbstrQuery)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrQuery)>>
       GetQuery;
   external Pointer<
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrRawUri)>>
+      GetRawUri;
+  external Pointer<
       NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pbstrRawUri)>> GetRawUri;
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pbstrSchemeName)>> GetSchemeName;
   external Pointer<
           NativeFunction<
               HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pbstrSchemeName)>>
-      GetSchemeName;
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrUserInfo)>>
+      GetUserInfo;
   external Pointer<
-      NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pbstrUserInfo)>> GetUserInfo;
-  external Pointer<
-      NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pbstrUserName)>> GetUserName;
+          NativeFunction<
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pbstrUserName)>>
+      GetUserName;
   external Pointer<
       NativeFunction<
           HRESULT Function(

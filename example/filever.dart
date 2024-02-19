@@ -10,14 +10,14 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  final lpFilename = TEXT('shell32.dll');
+  final lpFilename = PWSTR.fromString('shell32.dll');
 
   final fviSize = getVersionBlockSize(lpFilename);
 
   final pBlock = calloc<BYTE>(fviSize);
   final lpFixedFileVersionInfo = calloc<Pointer>();
   final uLen = calloc<UINT>();
-  final subBlock = TEXT(r'\');
+  final subBlock = PWSTR.fromString(r'\');
 
   try {
     var result = GetFileVersionInfo(lpFilename, fviSize, pBlock);
@@ -47,7 +47,7 @@ void main() {
   }
 }
 
-int getVersionBlockSize(PWSTR lpFilename) {
+int getVersionBlockSize(Pointer<Utf16> lpFilename) {
   int fviSize;
 
   // dwDummy isn't used; it's a historical vestige.

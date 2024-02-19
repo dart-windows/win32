@@ -36,12 +36,12 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
       IUIAutomationSpreadsheetItemPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetItemPattern));
 
-  BSTR get currentFormula {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get currentFormula {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CurrentFormula.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -60,12 +60,12 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
-  BSTR get cachedFormula {
-    final retVal = calloc<BSTR>();
+  Pointer<Utf16> get cachedFormula {
+    final retVal = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_CachedFormula.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> retVal)>()(ptr, retVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> retVal)>()(ptr, retVal);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = retVal.value;
       return retValue;
@@ -90,7 +90,8 @@ base class IUIAutomationSpreadsheetItemPatternVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CurrentFormula;
   external Pointer<
           NativeFunction<
@@ -104,7 +105,8 @@ base class IUIAutomationSpreadsheetItemPatternVtbl extends Struct {
       GetCurrentAnnotationTypes;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> retVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> retVal)>>
       get_CachedFormula;
   external Pointer<
           NativeFunction<

@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -28,9 +30,13 @@ class IEnumString extends IUnknown {
   factory IEnumString.from(IUnknown interface) =>
       IEnumString(interface.toInterface(IID_IEnumString));
 
-  int next(int celt, Pointer<PWSTR> rgelt, Pointer<Uint32>? pceltFetched) =>
+  int next(int celt, Pointer<Pointer<Utf16>> rgelt,
+          Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
-              int Function(VTablePointer lpVtbl, int celt, Pointer<PWSTR> rgelt,
+              int Function(
+                  VTablePointer lpVtbl,
+                  int celt,
+                  Pointer<Pointer<Utf16>> rgelt,
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
@@ -51,8 +57,11 @@ base class IEnumStringVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, Uint32 celt,
-              Pointer<PWSTR> rgelt, Pointer<Uint32> pceltFetched)>> Next;
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Uint32 celt,
+              Pointer<Pointer<Utf16>> rgelt,
+              Pointer<Uint32> pceltFetched)>> Next;
   external Pointer<
       NativeFunction<HRESULT Function(VTablePointer lpVtbl, Uint32 celt)>> Skip;
   external Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>

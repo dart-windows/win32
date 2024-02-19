@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import 'structs.g.dart';
 import 'types.dart';
 
@@ -39,7 +41,7 @@ typedef DLGPROC = INT_PTR Function(HWND, UINT, WPARAM, LPARAM);
 
 /// Application-defined callback function used with the DrawThemeTextEx
 /// function. This function is used instead of DrawText.
-typedef DTT_CALLBACK_PROC = Int32 Function(HDC hdc, LPWSTR pszText,
+typedef DTT_CALLBACK_PROC = Int32 Function(HDC hdc, Pointer<Utf16> pszText,
     Int32 cchText, Pointer<RECT> prc, UINT dwFlags, LPARAM lparam);
 
 /// Application-defined callback function that renders a complex image for the
@@ -48,8 +50,10 @@ typedef DRAWSTATEPROC = Int32 Function(
     IntPtr hdc, IntPtr lData, IntPtr wData, Int32 cx, Int32 cy);
 
 /// Application-defined callback function used with the EnumPageFiles function.
-typedef PENUM_PAGE_FILE_CALLBACK = BOOL Function(PVOID pContext,
-    Pointer<ENUM_PAGE_FILE_INFORMATION> pPageFileInfo, LPWSTR lpFilename);
+typedef PENUM_PAGE_FILE_CALLBACK = BOOL Function(
+    PVOID pContext,
+    Pointer<ENUM_PAGE_FILE_INFORMATION> pPageFileInfo,
+    Pointer<Utf16> lpFilename);
 
 /// Application-defined callback function used with the EnumChildWindows
 /// function. It receives the child window handles.
@@ -62,13 +66,13 @@ typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> lpelfe,
 
 /// Application-defined callback function used with the EnumResourceNames and
 /// EnumResourceNamesEx functions. It receives the type and name of a resource.
-typedef ENUMRESNAMEPROC = BOOL Function(
-    HMODULE hModule, PWSTR lpType, PWSTR lpName, LONG_PTR lParam);
+typedef ENUMRESNAMEPROC = BOOL Function(HMODULE hModule, Pointer<Utf16> lpType,
+    Pointer<Utf16> lpName, LONG_PTR lParam);
 
 /// Application-defined callback function used with the EnumResourceTypes and
 /// EnumResourceTypesEx functions. It receives resource types.
 typedef ENUMRESTYPEPROC = BOOL Function(
-    HMODULE hModule, PWSTR lpszType, LONG_PTR lParam);
+    HMODULE hModule, Pointer<Utf16> lpszType, LONG_PTR lParam);
 
 /// Application-defined callback function used with the IDispatch::Invoke
 /// function to defer filling in bstrDescription, bstrHelpFile, and
@@ -111,7 +115,7 @@ typedef LPOVERLAPPED_COMPLETION_ROUTINE = Void Function(DWORD dwErrorCode,
 /// function. ServiceMain is a placeholder for an application-defined function
 /// name.
 typedef LPSERVICE_MAIN_FUNCTION = Void Function(
-    DWORD dwNumServicesArgs, Pointer<LPWSTR> lpServiceArgVectors);
+    DWORD dwNumServicesArgs, Pointer<Utf16> lpServiceArgVectors);
 
 /// Application-defined callback function that receives a pointer to the
 /// SERVICE_NOTIFY structure provided by the caller.
@@ -160,7 +164,8 @@ typedef LPOCNCHKPROC = Int32 Function(IntPtr, IntPtr, Pointer);
 
 /// Application-defined callback function that allows callers to perform
 /// additional processing to connect to the smart card.
-typedef LPOCNCONNPROC = IntPtr Function(IntPtr, PWSTR, PWSTR, Pointer);
+typedef LPOCNCONNPROC = IntPtr Function(
+    IntPtr, Pointer<Utf16>, Pointer<Utf16>, Pointer);
 
 /// Application-defined callback function that can be used for disconnecting
 /// smart cards.

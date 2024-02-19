@@ -18,12 +18,12 @@ typedef GetNativeSystemInfoDart = void Function(
 void main() {
   final systemInfo = calloc<SYSTEM_INFO>();
 
-  final kernel32 = 'kernel32.dll'.toNativeUtf16();
+  final kernel32 = PWSTR.fromString('kernel32.dll');
   final hModule = GetModuleHandle(kernel32);
   if (hModule == NULL) throw Exception('Could not load kernel32.dll');
-  free(kernel32);
+  kernel32.free();
 
-  final ansi = 'GetNativeSystemInfo'.toANSI();
+  final ansi = PSTR.fromString('GetNativeSystemInfo');
   final pGetNativeSystemInfo = GetProcAddress(hModule, ansi);
   free(ansi);
 

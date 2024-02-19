@@ -25,7 +25,7 @@ late Game game;
 late Canvas canvas;
 
 void main() {
-  final szAppName = 'Tetris'.toNativeUtf16();
+  final szAppName = PWSTR.fromString('Tetris');
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,
@@ -44,21 +44,21 @@ void main() {
   RegisterClass(wc);
 
   final hWnd = CreateWindowEx(
-      0, // Optional window styles.
-      szAppName, // Window class
-      szAppName, // Window text
-      WS_MINIMIZEBOX | WS_SYSMENU, // Window style
+    0, // Optional window styles.
+    szAppName, // Window class
+    szAppName, // Window text
+    WS_MINIMIZEBOX | WS_SYSMENU, // Window style
 
-      // Size and position
-      CW_USEDEFAULT,
-      CW_USEDEFAULT,
-      SCREEN_WIDTH * PX_PER_BLOCK + 156,
-      SCREEN_HEIGHT * PX_PER_BLOCK + 25,
-      null, // Parent window
-      null, // Menu
-      hInstance, // Instance handle
-      nullptr // Additional application data
-      );
+    // Size and position
+    CW_USEDEFAULT,
+    CW_USEDEFAULT,
+    SCREEN_WIDTH * PX_PER_BLOCK + 156,
+    SCREEN_HEIGHT * PX_PER_BLOCK + 25,
+    null, // Parent window
+    null, // Menu
+    hInstance, // Instance handle
+    nullptr, // Additional application data
+  );
 
   if (hWnd == 0) {
     stderr.writeln('CreateWindowEx failed with error: ${GetLastError()}');
@@ -76,7 +76,7 @@ void main() {
   }
 
   lpfnWndProc.close();
-  free(szAppName);
+  szAppName.free();
 }
 
 int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {

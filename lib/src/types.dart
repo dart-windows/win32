@@ -18,7 +18,7 @@
 
 import 'dart:ffi';
 
-import 'structs.g.dart';
+import 'package:ffi/ffi.dart';
 
 typedef ATOM = WORD;
 typedef BYTE = Uint8;
@@ -46,8 +46,8 @@ typedef LONG64 = Int64;
 typedef LONGLONG = Int64;
 typedef LONG_PTR = IntPtr;
 typedef LPBYTE = Pointer<BYTE>;
-typedef LPSTR = PSTR;
-typedef LPWSTR = PWSTR;
+typedef LPSTR = Pointer<Utf8>;
+typedef LPWSTR = Pointer<Utf16>;
 
 // Pointer is preferred over Pointer<Void>, because the latter points to a Void
 // data type. A C void* is usually an undefined type, rather than a strong void,

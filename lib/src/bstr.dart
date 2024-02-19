@@ -6,84 +6,58 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'structs.g.dart';
+import 'pwstr.dart';
 import 'win32_v5/oleaut32.g.dart';
 
-/// A wrapper for [BSTR] (Basic string or binary string), a string data type
-/// that is used by COM, Automation, and Interop functions.
+/// A composite data type that consists of a length prefix, a data string, and
+/// a terminator.
 ///
-/// BSTRs should never be created directly using Dart's memory allocation
-/// functions because they do not allocate and store the length prefix. Instead,
-/// this class wraps the COM memory allocation functions to safely create BSTR
-/// types.
-///
-/// For example, the following code is incorrect:
-///
-/// ```dart
-/// final bstr = 'I am a happy BSTR'.toNativeUtf16();
-/// ```
-///
-/// This code will not function properly because the string does not have a
-/// length prefix. If you use a debugger to examine the memory location of this
-/// variable, you will not see a four-byte length prefix preceding the data
-/// string.
-///
-/// Instead, use the following code:
-///
-/// ```dart
-/// final bstr = Bstr.fromString('I am a happy BSTR');
-/// ```
-///
-/// A debugger that examines the memory location of this variable will now
-/// reveal a length prefix containing the value `34`. This is the expected value
-/// for a 17-byte character wide-string (UTF-16) in memory. The debugger will
-/// also show the terminator (`0x0000`) appearing after the data string.
-///
-/// It's your responsibility to free the memory allocated for a Bstr when it's
-/// no longer needed by calling the [free] method on the object.
-class Bstr {
-  const Bstr._(this.ptr);
-
-  /// Pointer to the start of the string itself.
+/// More details can be found here:
+/// https://learn.microsoft.com/previous-versions/windows/desktop/automat/bstr
+extension type const BSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
+  /// Creates a BSTR from the provided [string].
   ///
-  /// The string is null-terminated with a two-byte value (`0x0000`).
-  final BSTR ptr;
-
-  /// Creates a new Bstr from a Dart [string].
+  /// If this [String] contains NUL characters, converting it back to a string
+  /// using [toDartString] will truncate the result if a length is not passed.
   ///
-  /// This constructor allocates memory for the Bstr using [SysAllocString].
-  ///
-  /// It's your responsibility to free the memory allocated for the Bstr when
-  /// it's no longer needed by calling the [free] method on the object.
-  factory Bstr.fromString(String string) {
-    final psz = string.toNativeUtf16();
+  /// It's the caller's responsibility to free the memory allocated for the
+  /// returned BSTR when it's no longer needed. This can be done by calling
+  /// [free].
+  factory BSTR.fromString(String string) {
+    final psz = PWSTR.fromString(string);
     final pbstr = SysAllocString(psz);
-    calloc.free(psz);
-    return Bstr._(pbstr);
+    psz.free();
+    return BSTR(pbstr);
   }
 
-  /// The length in bytes.
-  int get byteLength => SysStringByteLen(ptr);
+  /// The length of the BSTR in bytes.
+  int get byteLength => SysStringByteLen(this);
 
-  /// Allocates a new Bstr that is a copy of the existing Bstr.
-  Bstr clone() => Bstr._(SysAllocString(ptr));
+  /// Creates a new BSTR that is a copy of this BSTR.
+  BSTR clone() => BSTR(SysAllocString(this));
 
-  /// Releases the native memory allocated for the Bstr.
-  void free() => SysFreeString(ptr);
+  /// Releases the memory allocated for this BSTR.
+  void free() => SysFreeString(this);
 
-  /// The length in characters.
-  int get length => SysStringLen(ptr);
+  /// The number of UTF-16 code units in this BSTR.
+  int get length => SysStringLen(this);
 
-  /// Creates a new Bstr by concatenating this Bstr with [other].
-  Bstr operator +(Bstr other) {
-    final pbstrResult = calloc<BSTR>();
-    VarBstrCat(ptr, other.ptr, pbstrResult);
-    final result = Bstr._(pbstrResult.value);
+  /// Concatenates this BSTR with [other] and returns the result.
+  BSTR operator +(BSTR other) {
+    final pbstrResult = calloc<Pointer<Utf16>>().cast<BSTR>();
+    VarBstrCat(this, other, pbstrResult);
+    final result = BSTR(pbstrResult.value);
     calloc.free(pbstrResult);
     return result;
   }
 
-  /// Converts this Bstr into a Dart string.
-  @override
-  String toString() => ptr.toDartString();
+  /// Converts this BSTR to a Dart string.
+  ///
+  /// If [length] is provided, zero-termination is ignored and the result can
+  /// contain NUL characters.
+  ///
+  /// If [length] is not provided, the returned string is the string up til but
+  /// not including the first NUL character.
+  String toDartString({int? length}) =>
+      Utf16Pointer(this).toDartString(length: length);
 }

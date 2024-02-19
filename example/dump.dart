@@ -34,7 +34,7 @@ Map<String, int> getExports(int hProcess, String module) {
     exit(1);
   }
 
-  final modulePtr = module.toNativeUtf16();
+  final modulePtr = PWSTR.fromString(module);
 
   final baseOfDll =
       SymLoadModuleEx(hProcess, null, modulePtr, null, 0, 0, null, 0);
@@ -46,7 +46,7 @@ Map<String, int> getExports(int hProcess, String module) {
     exit(1);
   }
 
-  final mask = '*'.toNativeUtf16();
+  final mask = PWSTR.fromString('*');
 
   final callback = NativeCallable<PSYM_ENUMERATESYMBOLS_CALLBACK>.isolateLocal(
     _enumSymbolProc,
@@ -61,8 +61,8 @@ Map<String, int> getExports(int hProcess, String module) {
 
   callback.close();
   SymCleanup(hProcess);
-  free(modulePtr);
-  free(mask);
+  modulePtr.free();
+  mask.free();
 
   return _exportedSymbols;
 }

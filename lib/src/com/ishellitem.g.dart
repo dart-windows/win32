@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -44,10 +46,10 @@ class IShellItem extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
-  int getDisplayName(int sigdnName, Pointer<PWSTR> ppszName) =>
+  int getDisplayName(int sigdnName, Pointer<Pointer<Utf16>> ppszName) =>
       _vtable.GetDisplayName.asFunction<
           int Function(VTablePointer lpVtbl, int sigdnName,
-              Pointer<PWSTR> ppszName)>()(ptr, sigdnName, ppszName);
+              Pointer<Pointer<Utf16>> ppszName)>()(ptr, sigdnName, ppszName);
 
   int getAttributes(int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
@@ -78,7 +80,7 @@ base class IShellItemVtbl extends Struct {
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 sigdnName,
-              Pointer<PWSTR> ppszName)>> GetDisplayName;
+              Pointer<Pointer<Utf16>> ppszName)>> GetDisplayName;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Uint32 sfgaoMask,

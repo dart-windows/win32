@@ -284,9 +284,10 @@ class VersionInfoQuerier {
     assert(encoding.isNotEmpty);
     if (versionInfo == null) return null;
 
-    final keyPath = TEXT('\\StringFileInfo\\$language$encoding\\$key');
+    final keyPath =
+        PWSTR.fromString('\\StringFileInfo\\$language$encoding\\$key');
     final length = calloc<UINT>();
-    final valueAddress = calloc<PWSTR>();
+    final valueAddress = calloc<Pointer<Utf16>>();
     try {
       if (VerQueryValue(versionInfo, keyPath, valueAddress, length) == 0) {
         return null;
@@ -309,7 +310,7 @@ class PathProviderWindows {
 
   /// This is typically the same as the TMP environment variable.
   Future<String?> getTemporaryPath() async {
-    final buffer = wsalloc(MAX_PATH + 1);
+    final buffer = PWSTR.empty(MAX_PATH + 1);
     String path;
 
     try {
@@ -357,7 +358,7 @@ class PathProviderWindows {
   /// folderID is a GUID that represents a specific known folder ID, drawn from
   /// [WindowsKnownFolder].
   Future<String?> getPath(String folderID) {
-    final pathPtrPtr = calloc<PWSTR>();
+    final pathPtrPtr = calloc<Pointer<Utf16>>();
     final knownFolderID = GUIDFromString(folderID);
 
     try {
@@ -403,7 +404,7 @@ class PathProviderWindows {
     String? companyName;
     String? productName;
 
-    final moduleNameBuffer = wsalloc(MAX_PATH + 1);
+    final moduleNameBuffer = PWSTR.empty(MAX_PATH + 1);
     final unused = calloc<DWORD>();
     Pointer<BYTE>? infoBuffer;
     try {

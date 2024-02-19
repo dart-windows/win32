@@ -15,10 +15,9 @@ import 'package:ffi/ffi.dart';
 extension SetString on Pointer<Utf16> {
   int setString(String string) {
     final ptr = cast<Uint16>();
-
     final units = string.codeUnits;
     final nativeString = ptr.asTypedList(units.length + 1)..setAll(0, units);
-    nativeString[units.length] = 0;
+    nativeString[units.length] = 0; // NUL-terminate the string.
     return (units.length + 1) * 2;
   }
 }

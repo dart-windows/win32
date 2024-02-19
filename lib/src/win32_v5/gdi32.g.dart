@@ -43,10 +43,11 @@ final _AbortPath = _gdi32
 /// );
 /// ```
 /// {@category gdi32}
-int AddFontResource(PWSTR param0) => _AddFontResource(param0);
+int AddFontResource(Pointer<Utf16> param0) => _AddFontResource(param0);
 
-final _AddFontResource = _gdi32.lookupFunction<Int32 Function(PWSTR param0),
-    int Function(PWSTR param0)>('AddFontResourceW');
+final _AddFontResource = _gdi32.lookupFunction<
+    Int32 Function(Pointer<Utf16> param0),
+    int Function(Pointer<Utf16> param0)>('AddFontResourceW');
 
 /// The AddFontResourceEx function adds the font resource from the specified
 /// file to the system. Fonts added with the AddFontResourceEx function can be
@@ -60,12 +61,13 @@ final _AddFontResource = _gdi32.lookupFunction<Int32 Function(PWSTR param0),
 /// );
 /// ```
 /// {@category gdi32}
-int AddFontResourceEx(PWSTR name, int fl) =>
+int AddFontResourceEx(Pointer<Utf16> name, int fl) =>
     _AddFontResourceEx(name, fl, nullptr);
 
 final _AddFontResourceEx = _gdi32.lookupFunction<
-    Int32 Function(PWSTR name, Uint32 fl, Pointer res),
-    int Function(PWSTR name, int fl, Pointer res)>('AddFontResourceExW');
+    Int32 Function(Pointer<Utf16> name, Uint32 fl, Pointer res),
+    int Function(
+        Pointer<Utf16> name, int fl, Pointer res)>('AddFontResourceExW');
 
 /// The AngleArc function draws a line segment and an arc. The line segment is
 /// drawn from the current position to the beginning of the arc. The arc is
@@ -346,16 +348,16 @@ final _CreateCompatibleDC =
 /// );
 /// ```
 /// {@category gdi32}
-int CreateDC(PWSTR? pwszDriver, PWSTR? pwszDevice, PWSTR? pszPort,
-        Pointer<DEVMODE>? pdm) =>
+int CreateDC(Pointer<Utf16>? pwszDriver, Pointer<Utf16>? pwszDevice,
+        Pointer<Utf16>? pszPort, Pointer<DEVMODE>? pdm) =>
     _CreateDC(pwszDriver ?? nullptr, pwszDevice ?? nullptr, pszPort ?? nullptr,
         pdm ?? nullptr);
 
 final _CreateDC = _gdi32.lookupFunction<
-    HDC Function(PWSTR pwszDriver, PWSTR pwszDevice, PWSTR pszPort,
-        Pointer<DEVMODE> pdm),
-    int Function(PWSTR pwszDriver, PWSTR pwszDevice, PWSTR pszPort,
-        Pointer<DEVMODE> pdm)>('CreateDCW');
+    HDC Function(Pointer<Utf16> pwszDriver, Pointer<Utf16> pwszDevice,
+        Pointer<Utf16> pszPort, Pointer<DEVMODE> pdm),
+    int Function(Pointer<Utf16> pwszDriver, Pointer<Utf16> pwszDevice,
+        Pointer<Utf16> pszPort, Pointer<DEVMODE> pdm)>('CreateDCW');
 
 /// The CreateDIBitmap function creates a compatible bitmap (DDB) from a DIB
 /// and, optionally, sets the bitmap bits.
@@ -575,12 +577,13 @@ final _DeleteObject =
 /// );
 /// ```
 /// {@category gdi32}
-int DrawEscape(int hdc, int iEscape, int cjIn, PSTR? lpIn) =>
+int DrawEscape(int hdc, int iEscape, int cjIn, Pointer<Utf8>? lpIn) =>
     _DrawEscape(hdc, iEscape, cjIn, lpIn ?? nullptr);
 
 final _DrawEscape = _gdi32.lookupFunction<
-    Int32 Function(HDC hdc, Int32 iEscape, Int32 cjIn, PSTR lpIn),
-    int Function(int hdc, int iEscape, int cjIn, PSTR lpIn)>('DrawEscape');
+    Int32 Function(HDC hdc, Int32 iEscape, Int32 cjIn, Pointer<Utf8> lpIn),
+    int Function(
+        int hdc, int iEscape, int cjIn, Pointer<Utf8> lpIn)>('DrawEscape');
 
 /// The Ellipse function draws an ellipse. The center of the ellipse is the
 /// center of the specified bounding rectangle. The ellipse is outlined by using
@@ -695,15 +698,22 @@ final _ExtCreatePen = _gdi32.lookupFunction<
 /// ```
 /// {@category gdi32}
 int ExtTextOut(int hdc, int x, int y, int options, Pointer<RECT>? lprect,
-        PWSTR? lpString, int c, Pointer<Int32>? lpDx) =>
+        Pointer<Utf16>? lpString, int c, Pointer<Int32>? lpDx) =>
     _ExtTextOut(hdc, x, y, options, lprect ?? nullptr, lpString ?? nullptr, c,
         lpDx ?? nullptr);
 
 final _ExtTextOut = _gdi32.lookupFunction<
-    BOOL Function(HDC hdc, Int32 x, Int32 y, Uint32 options,
-        Pointer<RECT> lprect, PWSTR lpString, Uint32 c, Pointer<Int32> lpDx),
+    BOOL Function(
+        HDC hdc,
+        Int32 x,
+        Int32 y,
+        Uint32 options,
+        Pointer<RECT> lprect,
+        Pointer<Utf16> lpString,
+        Uint32 c,
+        Pointer<Int32> lpDx),
     int Function(int hdc, int x, int y, int options, Pointer<RECT> lprect,
-        PWSTR lpString, int c, Pointer<Int32> lpDx)>('ExtTextOutW');
+        Pointer<Utf16> lpString, int c, Pointer<Int32> lpDx)>('ExtTextOutW');
 
 /// The FillPath function closes any open figures in the current path and fills
 /// the path's interior by using the current brush and polygon-filling mode.
@@ -1577,12 +1587,13 @@ final _StrokePath =
 /// );
 /// ```
 /// {@category gdi32}
-int TextOut(int hdc, int x, int y, PWSTR lpString, int c) =>
+int TextOut(int hdc, int x, int y, Pointer<Utf16> lpString, int c) =>
     _TextOut(hdc, x, y, lpString, c);
 
 final _TextOut = _gdi32.lookupFunction<
-    BOOL Function(HDC hdc, Int32 x, Int32 y, PWSTR lpString, Int32 c),
-    int Function(int hdc, int x, int y, PWSTR lpString, int c)>('TextOutW');
+    BOOL Function(HDC hdc, Int32 x, Int32 y, Pointer<Utf16> lpString, Int32 c),
+    int Function(
+        int hdc, int x, int y, Pointer<Utf16> lpString, int c)>('TextOutW');
 
 /// The WidenPath function redefines the current path as the area that would be
 /// painted if the path were stroked using the pen currently selected into the

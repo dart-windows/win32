@@ -38,7 +38,7 @@ int mainWindowProc(int hWnd, int uMsg, int wParam, int lParam) {
       DeleteObject(hPen);
 
       final rect = calloc<RECT>();
-      final msg = TEXT('What a strange window!');
+      final msg = PWSTR.fromString('What a strange window!');
 
       GetClientRect(hWnd, rect);
       DrawText(hdc, msg, -1, rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
@@ -58,7 +58,7 @@ void main() => initApp(winMain);
 
 void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Register the window class.
-  final className = TEXT('Sample Window Class');
+  final className = PWSTR.fromString('Sample Window Class');
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,

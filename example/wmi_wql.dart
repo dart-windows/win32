@@ -60,8 +60,9 @@ void main() {
   // current user and obtain pointer pSvc
   // to make IWbemServices calls.
 
+  final strNetworkResource = BSTR.fromString(r'ROOT\CIMV2');
   hr = locator.connectServer(
-    TEXT('ROOT\\CIMV2'), // WMI namespace
+    strNetworkResource, // WMI namespace
     nullptr, // User name
     nullptr, // User password
     nullptr, // Locale
@@ -70,6 +71,7 @@ void main() {
     nullptr, // Context object
     proxy, // IWbemServices proxy
   );
+  strNetworkResource.free();
 
   if (FAILED(hr)) {
     final exception = WindowsException(hr);
@@ -110,13 +112,18 @@ void main() {
   IEnumWbemClassObject enumerator;
 
   // For example, query for all the running processes
+  final strQueryLanguage = BSTR.fromString('WQL');
+  final strQuery = BSTR.fromString('SELECT * FROM Win32_Process');
   hr = pSvc.execQuery(
-      TEXT('WQL'),
-      TEXT('SELECT * FROM Win32_Process'),
-      WBEM_GENERIC_FLAG_TYPE.WBEM_FLAG_FORWARD_ONLY |
-          WBEM_GENERIC_FLAG_TYPE.WBEM_FLAG_RETURN_IMMEDIATELY,
-      nullptr,
-      pEnumerator);
+    strQueryLanguage,
+    strQuery,
+    WBEM_GENERIC_FLAG_TYPE.WBEM_FLAG_FORWARD_ONLY |
+        WBEM_GENERIC_FLAG_TYPE.WBEM_FLAG_RETURN_IMMEDIATELY,
+    nullptr,
+    pEnumerator,
+  );
+  strQueryLanguage.free();
+  strQuery.free();
 
   if (FAILED(hr)) {
     final exception = WindowsException(hr);
@@ -146,7 +153,7 @@ void main() {
       free(pClsObj);
 
       final vtProp = calloc<VARIANT>();
-      hr = clsObj.get(TEXT('Name'), 0, vtProp, null, nullptr);
+      hr = clsObj.get(PWSTR.fromString('Name'), 0, vtProp, null, nullptr);
       if (SUCCEEDED(hr)) {
         print('Process: ${vtProp.ref.bstrVal.toDartString()}');
       }

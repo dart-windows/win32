@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -33,14 +35,14 @@ class ISpellChecker2 extends ISpellChecker {
   factory ISpellChecker2.from(IUnknown interface) =>
       ISpellChecker2(interface.toInterface(IID_ISpellChecker2));
 
-  int remove(PWSTR word) => _vtable.Remove.asFunction<
-      int Function(VTablePointer lpVtbl, PWSTR word)>()(ptr, word);
+  int remove(Pointer<Utf16> word) => _vtable.Remove.asFunction<
+      int Function(VTablePointer lpVtbl, Pointer<Utf16> word)>()(ptr, word);
 }
 
 /// @nodoc
 base class ISpellChecker2Vtbl extends Struct {
   external ISpellCheckerVtbl baseVtbl;
   external Pointer<
-          NativeFunction<HRESULT Function(VTablePointer lpVtbl, PWSTR word)>>
-      Remove;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> word)>> Remove;
 }

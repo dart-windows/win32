@@ -75,12 +75,12 @@ class ISpellingError extends IUnknown {
     }
   }
 
-  PWSTR get replacement {
-    final value = calloc<PWSTR>();
+  Pointer<Utf16> get replacement {
+    final value = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_Replacement.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<PWSTR> value)>()(ptr, value);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> value)>()(ptr, value);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = value.value;
       return retValue;
@@ -107,6 +107,7 @@ base class ISpellingErrorVtbl extends Struct {
       get_CorrectiveAction;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> value)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> value)>>
       get_Replacement;
 }

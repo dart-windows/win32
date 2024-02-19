@@ -23,7 +23,7 @@ class RawPrinter {
     required String documentTitle,
     String dataType = 'RAW',
   }) {
-    final pPrinterName = printerName.toNativeUtf16(allocator: alloc);
+    final pPrinterName = PWSTR.fromString(printerName, allocator: alloc);
     final phPrinter = alloc<HANDLE>();
 
     // https://learn.microsoft.com/windows/win32/printdocs/openprinter
@@ -36,9 +36,9 @@ class RawPrinter {
     // https://learn.microsoft.com/windows/win32/printdocs/doc-info-1
     final pDocInfo = alloc<DOC_INFO_1>();
     pDocInfo.ref
-      ..pDocName = printerName.toNativeUtf16(allocator: alloc)
+      ..pDocName = PWSTR.fromString(printerName, allocator: alloc)
       ..pDatatype =
-          dataType.toNativeUtf16(allocator: alloc) // RAW, TEXT or XPS_PASS
+          PWSTR.fromString(dataType, allocator: alloc) // RAW, TEXT or XPS_PASS
       ..pOutputFile = nullptr;
 
     //https://learn.microsoft.com/windows/win32/printdocs/startdocprinter
@@ -71,7 +71,7 @@ class RawPrinter {
 
   bool _printRawData(Pointer<HANDLE> phPrinter, String dataToPrint) {
     final cWritten = alloc<DWORD>();
-    final data = dataToPrint.toNativeUtf8(allocator: alloc);
+    final data = PSTR.fromString(dataToPrint, allocator: alloc);
 
     // https://learn.microsoft.com/windows/win32/printdocs/writeprinter
     final result =

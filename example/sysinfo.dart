@@ -77,7 +77,7 @@ String getComputerName() {
   GetComputerNameEx(
       COMPUTER_NAME_FORMAT.ComputerNameDnsFullyQualified, null, nameLength);
 
-  final namePtr = wsalloc(nameLength.value);
+  final namePtr = PWSTR.empty(nameLength.value);
 
   try {
     final result = GetComputerNameEx(
@@ -101,8 +101,8 @@ String getComputerName() {
 Object getRegistryValue(int key, String subKey, String valueName) {
   late Object dataValue;
 
-  final subKeyPtr = subKey.toNativeUtf16();
-  final valueNamePtr = valueName.toNativeUtf16();
+  final subKeyPtr = PWSTR.fromString(subKey);
+  final valueNamePtr = PWSTR.fromString(valueName);
   final openKeyPtr = calloc<HANDLE>();
   final dataType = calloc<DWORD>();
 
@@ -132,8 +132,8 @@ Object getRegistryValue(int key, String subKey, String valueName) {
       throw WindowsException(HRESULT_FROM_WIN32(result));
     }
   } finally {
-    free(subKeyPtr);
-    free(valueNamePtr);
+    subKeyPtr.free();
+    valueNamePtr.free();
     free(openKeyPtr);
     free(data);
     free(dataSize);
@@ -254,7 +254,7 @@ void printBatteryStatusInfo() {
 String getUserName() {
   const usernameLength = 256;
   final pcbBuffer = calloc<DWORD>()..value = usernameLength + 1;
-  final lpBuffer = wsalloc(usernameLength + 1);
+  final lpBuffer = PWSTR.empty(usernameLength + 1);
 
   try {
     final result = GetUserName(lpBuffer, pcbBuffer);

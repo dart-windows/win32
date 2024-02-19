@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -44,14 +46,15 @@ class IKnownFolder extends IUnknown {
           int Function(VTablePointer lpVtbl, int dwFlags, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, dwFlags, riid, ppv);
 
-  int getPath(int dwFlags, Pointer<PWSTR> ppszPath) =>
+  int getPath(int dwFlags, Pointer<Pointer<Utf16>> ppszPath) =>
       _vtable.GetPath.asFunction<
           int Function(VTablePointer lpVtbl, int dwFlags,
-              Pointer<PWSTR> ppszPath)>()(ptr, dwFlags, ppszPath);
+              Pointer<Pointer<Utf16>> ppszPath)>()(ptr, dwFlags, ppszPath);
 
-  int setPath(int dwFlags, PWSTR pszPath) => _vtable.SetPath.asFunction<
-          int Function(VTablePointer lpVtbl, int dwFlags, PWSTR pszPath)>()(
-      ptr, dwFlags, pszPath);
+  int setPath(int dwFlags, Pointer<Utf16> pszPath) =>
+      _vtable.SetPath.asFunction<
+          int Function(VTablePointer lpVtbl, int dwFlags,
+              Pointer<Utf16> pszPath)>()(ptr, dwFlags, pszPath);
 
   int getIDList(int dwFlags, Pointer<Pointer<ITEMIDLIST>> ppidl) =>
       _vtable.GetIDList.asFunction<
@@ -89,11 +92,11 @@ base class IKnownFolderVtbl extends Struct {
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Uint32 dwFlags,
-              Pointer<PWSTR> ppszPath)>> GetPath;
+              Pointer<Pointer<Utf16>> ppszPath)>> GetPath;
   external Pointer<
       NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Uint32 dwFlags, PWSTR pszPath)>> SetPath;
+          HRESULT Function(VTablePointer lpVtbl, Uint32 dwFlags,
+              Pointer<Utf16> pszPath)>> SetPath;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Uint32 dwFlags,

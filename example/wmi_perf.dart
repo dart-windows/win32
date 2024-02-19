@@ -29,10 +29,11 @@ void initializeCom() {
 }
 
 int connectWMI(IWbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
+  final strNetworkResource = BSTR.fromString(r'ROOT\CIMV2');
   // Connect to the root\cimv2 namespace with the current user and obtain
   // pointer pSvc to make IWbemServices calls.
   var hr = pLoc.connectServer(
-    TEXT('ROOT\\CIMV2'), // WMI namespace
+    strNetworkResource, // WMI namespace
     nullptr, // User name
     nullptr, // User password
     nullptr, // Locale
@@ -54,6 +55,7 @@ int connectWMI(IWbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
     EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // proxy capabilities
   );
   if (FAILED(hr)) throw WindowsException(hr);
+  strNetworkResource.free();
   return hr;
 }
 
@@ -74,9 +76,10 @@ void main() {
     final pConfig = IWbemConfigureRefresher.from(refresher);
     final ppRefreshable = calloc<VTablePointer>();
 
-    final pszQuery =
-        'Win32_PerfRawData_PerfProc_Process.Name="$processToMonitor"'
-            .toNativeUtf16(allocator: arena);
+    final pszQuery = PWSTR.fromString(
+      'Win32_PerfRawData_PerfProc_Process.Name="$processToMonitor"',
+      allocator: arena,
+    );
 
     // Add the instance to be refreshed.
     var hr = pConfig.addObjectByPath(
@@ -89,7 +92,7 @@ void main() {
     final objectAccess = IWbemObjectAccess.from(classObject);
     classObject.release();
 
-    final pszVirtualBytes = 'WorkingSet'.toNativeUtf16(allocator: arena);
+    final pszVirtualBytes = PWSTR.fromString('WorkingSet', allocator: arena);
     final cimType = arena<Int32>();
     final plHandle = arena<Int32>();
 

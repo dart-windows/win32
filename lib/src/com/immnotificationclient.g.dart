@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,29 +33,31 @@ class IMMNotificationClient extends IUnknown {
   factory IMMNotificationClient.from(IUnknown interface) =>
       IMMNotificationClient(interface.toInterface(IID_IMMNotificationClient));
 
-  int onDeviceStateChanged(PWSTR pwstrDeviceId, int dwNewState) =>
+  int onDeviceStateChanged(Pointer<Utf16> pwstrDeviceId, int dwNewState) =>
       _vtable.OnDeviceStateChanged.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR pwstrDeviceId,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId,
               int dwNewState)>()(ptr, pwstrDeviceId, dwNewState);
 
-  int onDeviceAdded(PWSTR pwstrDeviceId) => _vtable.OnDeviceAdded.asFunction<
-      int Function(
-          VTablePointer lpVtbl, PWSTR pwstrDeviceId)>()(ptr, pwstrDeviceId);
+  int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) =>
+      _vtable.OnDeviceAdded.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Utf16> pwstrDeviceId)>()(ptr, pwstrDeviceId);
 
-  int onDeviceRemoved(PWSTR pwstrDeviceId) =>
+  int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) =>
       _vtable.OnDeviceRemoved.asFunction<
-          int Function(
-              VTablePointer lpVtbl, PWSTR pwstrDeviceId)>()(ptr, pwstrDeviceId);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Utf16> pwstrDeviceId)>()(ptr, pwstrDeviceId);
 
-  int onDefaultDeviceChanged(int flow, int role, PWSTR? pwstrDefaultDeviceId) =>
+  int onDefaultDeviceChanged(
+          int flow, int role, Pointer<Utf16>? pwstrDefaultDeviceId) =>
       _vtable.OnDefaultDeviceChanged.asFunction<
               int Function(VTablePointer lpVtbl, int flow, int role,
-                  PWSTR pwstrDefaultDeviceId)>()(
+                  Pointer<Utf16> pwstrDefaultDeviceId)>()(
           ptr, flow, role, pwstrDefaultDeviceId ?? nullptr);
 
-  int onPropertyValueChanged(PWSTR pwstrDeviceId, PROPERTYKEY key) =>
+  int onPropertyValueChanged(Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key) =>
       _vtable.OnPropertyValueChanged.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR pwstrDeviceId,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId,
               PROPERTYKEY key)>()(ptr, pwstrDeviceId, key);
 }
 
@@ -62,23 +66,24 @@ base class IMMNotificationClientVtbl extends Struct {
   external IUnknownVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR pwstrDeviceId,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId,
               Uint32 dwNewState)>> OnDeviceStateChanged;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, PWSTR pwstrDeviceId)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId)>>
       OnDeviceAdded;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, PWSTR pwstrDeviceId)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId)>>
       OnDeviceRemoved;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 flow, Int32 role,
-              PWSTR pwstrDefaultDeviceId)>> OnDefaultDeviceChanged;
+              Pointer<Utf16> pwstrDefaultDeviceId)>> OnDefaultDeviceChanged;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, PWSTR pwstrDeviceId, PROPERTYKEY key)>>
-      OnPropertyValueChanged;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId,
+              PROPERTYKEY key)>> OnPropertyValueChanged;
 }

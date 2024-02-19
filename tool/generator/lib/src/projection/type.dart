@@ -284,4 +284,14 @@ const _specialTypes = <String, TypeTuple>{
   // System.Guid does not exist in the metadata, so we need to manually project
   // it.
   'System.Guid': TypeTuple.fromNativeType('GUID'),
+
+  // Wrapper structs that represent various native string types.
+  // TODO(halildurmus): Update this when
+  // https://github.com/dart-lang/sdk/issues/54944 is resolved.
+  'Windows.Win32.Foundation.BSTR':
+      TypeTuple.fromNativeType('Pointer<Utf16>' /* BSTR */),
+  'Windows.Win32.Foundation.PSTR':
+      TypeTuple.fromNativeType('Pointer<Utf8>' /* PSTR */),
+  'Windows.Win32.Foundation.PWSTR':
+      TypeTuple.fromNativeType('Pointer<Utf16>' /* PWSTR */),
 };

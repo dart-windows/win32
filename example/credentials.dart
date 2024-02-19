@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Reads and writes credentials
+// Reads and writes credentials.
 
 import 'dart:convert';
 import 'dart:ffi';
@@ -12,19 +12,22 @@ import 'package:win32/win32.dart';
 
 void write({
   required String credentialName,
-  required String userName,
+  required String username,
   required String password,
 }) {
   print('Writing $credentialName ...');
+
+  final targetName = PWSTR.fromString(credentialName);
+  final userName = PWSTR.fromString(username);
   final examplePassword = utf8.encode(password);
   final blob = examplePassword.allocatePointer();
 
   final credential = calloc<CREDENTIAL>();
   credential.ref
     ..Type = CRED_TYPE_GENERIC
-    ..TargetName = credentialName.toNativeUtf16()
+    ..TargetName = targetName
     ..Persist = CRED_PERSIST_LOCAL_MACHINE
-    ..UserName = userName.toNativeUtf16()
+    ..UserName = userName
     ..CredentialBlob = blob
     ..CredentialBlobSize = examplePassword.length;
 
@@ -37,15 +40,18 @@ void write({
   }
   print('Success (blob size: ${credential.ref.CredentialBlobSize})');
 
+  targetName.free();
+  userName.free();
   free(blob);
   free(credential);
 }
 
 void read(String credentialName) {
-  print('Reading $credentialName ...');
+  print('Reading $credentialName...');
+  final targetName = PWSTR.fromString(credentialName);
   final credPointer = calloc<Pointer<CREDENTIAL>>();
-  final result =
-      CredRead(credentialName.toNativeUtf16(), CRED_TYPE_GENERIC, credPointer);
+  final result = CredRead(targetName, CRED_TYPE_GENERIC, credPointer);
+  targetName.free();
   if (result != TRUE) {
     final errorCode = GetLastError();
     var errorText = '$errorCode';
@@ -56,32 +62,35 @@ void read(String credentialName) {
     return;
   }
   final cred = credPointer.value.ref;
-  print('Success. Read username ${cred.UserName.toDartString()} '
-      'password size: ${cred.CredentialBlobSize}');
+  print('Success.');
+  print('Read username: ${cred.UserName.toDartString()}');
+  print('Password size: ${cred.CredentialBlobSize}');
   final blob = cred.CredentialBlob.asTypedList(cred.CredentialBlobSize);
   final password = utf8.decode(blob);
-  print('read password: $password');
+  print('Read password: $password');
   CredFree(credPointer.value);
   free(credPointer);
 }
 
 void delete(String credentialName) {
-  print('Deleting $credentialName');
-  final result = CredDelete(credentialName.toNativeUtf16(), CRED_TYPE_GENERIC);
+  print('Deleting $credentialName...');
+  final targetName = PWSTR.fromString(credentialName);
+  final result = CredDelete(targetName, CRED_TYPE_GENERIC);
   if (result != TRUE) {
     final errorCode = GetLastError();
     print('Error ($result): $errorCode');
     return;
   }
+  targetName.free();
   print('Successfully deleted credential.');
 }
 
 void main() {
-  print('Accessing Credentials.');
+  print('Accessing Credentials...');
   const credentialName = 'exampleCredential';
   write(
     credentialName: credentialName,
-    userName: 'MyUserName',
+    username: 'MyUserName',
     password: 'MyPassword',
   );
   read(credentialName);

@@ -36,22 +36,25 @@ class INetwork extends IDispatch {
   factory INetwork.from(IUnknown interface) =>
       INetwork(interface.toInterface(IID_INetwork));
 
-  int getName(Pointer<BSTR> pszNetworkName) => _vtable.GetName.asFunction<
-          int Function(VTablePointer lpVtbl, Pointer<BSTR> pszNetworkName)>()(
-      ptr, pszNetworkName);
+  int getName(
+          Pointer<Pointer<Utf16>> pszNetworkName) =>
+      _vtable.GetName.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszNetworkName)>()(ptr, pszNetworkName);
 
-  int setName(BSTR szNetworkNewName) => _vtable.SetName.asFunction<
-          int Function(VTablePointer lpVtbl, BSTR szNetworkNewName)>()(
-      ptr, szNetworkNewName);
+  int setName(Pointer<Utf16> szNetworkNewName) => _vtable.SetName.asFunction<
+      int Function(VTablePointer lpVtbl,
+          Pointer<Utf16> szNetworkNewName)>()(ptr, szNetworkNewName);
 
-  int getDescription(Pointer<BSTR> pszDescription) =>
+  int getDescription(Pointer<Pointer<Utf16>> pszDescription) =>
       _vtable.GetDescription.asFunction<
           int Function(VTablePointer lpVtbl,
-              Pointer<BSTR> pszDescription)>()(ptr, pszDescription);
+              Pointer<Pointer<Utf16>> pszDescription)>()(ptr, pszDescription);
 
-  int setDescription(BSTR szDescription) => _vtable.SetDescription.asFunction<
-      int Function(
-          VTablePointer lpVtbl, BSTR szDescription)>()(ptr, szDescription);
+  int setDescription(Pointer<Utf16> szDescription) =>
+      _vtable.SetDescription.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Utf16> szDescription)>()(ptr, szDescription);
 
   int getNetworkId(Pointer<GUID> pgdGuidNetworkId) =>
       _vtable.GetNetworkId.asFunction<
@@ -133,20 +136,20 @@ base class INetworkVtbl extends Struct {
   external IDispatchVtbl baseVtbl;
   external Pointer<
       NativeFunction<
-          HRESULT Function(
-              VTablePointer lpVtbl, Pointer<BSTR> pszNetworkName)>> GetName;
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszNetworkName)>> GetName;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, BSTR szNetworkNewName)>>
-      SetName;
+      NativeFunction<
+          HRESULT Function(
+              VTablePointer lpVtbl, Pointer<Utf16> szNetworkNewName)>> SetName;
+  external Pointer<
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pszDescription)>> GetDescription;
   external Pointer<
           NativeFunction<
               HRESULT Function(
-                  VTablePointer lpVtbl, Pointer<BSTR> pszDescription)>>
-      GetDescription;
-  external Pointer<
-          NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, BSTR szDescription)>>
+                  VTablePointer lpVtbl, Pointer<Utf16> szDescription)>>
       SetDescription;
   external Pointer<
           NativeFunction<

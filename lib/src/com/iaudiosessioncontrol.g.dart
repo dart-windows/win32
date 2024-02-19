@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -39,23 +41,24 @@ class IAudioSessionControl extends IUnknown {
       int Function(
           VTablePointer lpVtbl, Pointer<Int32> pRetVal)>()(ptr, pRetVal);
 
-  int getDisplayName(Pointer<PWSTR> pRetVal) =>
+  int getDisplayName(Pointer<Pointer<Utf16>> pRetVal) =>
       _vtable.GetDisplayName.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>()(ptr, pRetVal);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pRetVal)>()(ptr, pRetVal);
 
-  int setDisplayName(PWSTR value, Pointer<GUID> eventContext) =>
+  int setDisplayName(Pointer<Utf16> value, Pointer<GUID> eventContext) =>
       _vtable.SetDisplayName.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR value,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> value,
               Pointer<GUID> eventContext)>()(ptr, value, eventContext);
 
-  int getIconPath(Pointer<PWSTR> pRetVal) => _vtable.GetIconPath.asFunction<
-      int Function(
-          VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>()(ptr, pRetVal);
+  int getIconPath(Pointer<Pointer<Utf16>> pRetVal) =>
+      _vtable.GetIconPath.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> pRetVal)>()(ptr, pRetVal);
 
-  int setIconPath(PWSTR value, Pointer<GUID> eventContext) =>
+  int setIconPath(Pointer<Utf16> value, Pointer<GUID> eventContext) =>
       _vtable.SetIconPath.asFunction<
-          int Function(VTablePointer lpVtbl, PWSTR value,
+          int Function(VTablePointer lpVtbl, Pointer<Utf16> value,
               Pointer<GUID> eventContext)>()(ptr, value, eventContext);
 
   int getGroupingParam(Pointer<GUID> pRetVal) =>
@@ -88,19 +91,21 @@ base class IAudioSessionControlVtbl extends Struct {
       GetState;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pRetVal)>>
       GetDisplayName;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR value,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> value,
               Pointer<GUID> eventContext)>> SetDisplayName;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<PWSTR> pRetVal)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> pRetVal)>>
       GetIconPath;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, PWSTR value,
+          HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> value,
               Pointer<GUID> eventContext)>> SetIconPath;
   external Pointer<
           NativeFunction<

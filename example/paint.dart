@@ -53,7 +53,7 @@ void main() => initApp(winMain);
 
 void winMain(int hInstance, List<String> args, int nShowCmd) {
   // Register the window class.
-  final className = TEXT('Simple Paint Sample');
+  final className = PWSTR.fromString('Simple Paint Sample');
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,

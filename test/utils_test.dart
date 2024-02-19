@@ -6,7 +6,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
@@ -73,27 +72,5 @@ void main() {
     expect(refCount(unknown), equals(1));
     unknown.release();
     CoUninitialize();
-  });
-
-  group('TEXT', () {
-    const testString = "If my grandmother had wheels, she'd be a motorbike";
-
-    test('can create string', () {
-      final pwstr = TEXT(testString);
-      expect(pwstr.toDartString(), equals(testString));
-      free(pwstr);
-    });
-
-    test('can create empty string', () {
-      final pwstr = TEXT('');
-      expect(pwstr.toDartString(), isEmpty);
-      free(pwstr);
-    });
-  });
-
-  test('wsalloc', () {
-    final pwstr = wsalloc(MAX_PATH);
-    expect(pwstr.toDartString(), isEmpty);
-    free(pwstr);
   });
 }

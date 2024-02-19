@@ -89,7 +89,7 @@ sealed class VARIANT_0_0_0 extends Union {
   @Double()
   external double date;
 
-  external BSTR bstrVal;
+  external Pointer<Utf16> bstrVal;
 
   external VTablePointer punkVal;
 
@@ -120,7 +120,7 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<Double> pdate;
 
-  external Pointer<BSTR> pbstrVal;
+  external Pointer<Pointer<Utf16>> pbstrVal;
 
   external Pointer<VTablePointer> ppunkVal;
 
@@ -152,7 +152,7 @@ sealed class VARIANT_0_0_0 extends Union {
 
   external Pointer<DECIMAL> pdecVal;
 
-  external PSTR pcVal;
+  external Pointer<Utf8> pcVal;
 
   external Pointer<Uint16> puiVal;
 
@@ -200,8 +200,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   double get date => this.Anonymous.Anonymous.Anonymous.date;
   set date(double value) => this.Anonymous.Anonymous.Anonymous.date = value;
 
-  BSTR get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
-  set bstrVal(BSTR value) => this.Anonymous.Anonymous.Anonymous.bstrVal = value;
+  Pointer<Utf16> get bstrVal => this.Anonymous.Anonymous.Anonymous.bstrVal;
+  set bstrVal(Pointer<Utf16> value) =>
+      this.Anonymous.Anonymous.Anonymous.bstrVal = value;
 
   VTablePointer get punkVal => this.Anonymous.Anonymous.Anonymous.punkVal;
   set punkVal(VTablePointer value) =>
@@ -256,8 +257,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdate(Pointer<Double> value) =>
       this.Anonymous.Anonymous.Anonymous.pdate = value;
 
-  Pointer<BSTR> get pbstrVal => this.Anonymous.Anonymous.Anonymous.pbstrVal;
-  set pbstrVal(Pointer<BSTR> value) =>
+  Pointer<Pointer<Utf16>> get pbstrVal =>
+      this.Anonymous.Anonymous.Anonymous.pbstrVal;
+  set pbstrVal(Pointer<Pointer<Utf16>> value) =>
       this.Anonymous.Anonymous.Anonymous.pbstrVal = value;
 
   Pointer<VTablePointer> get ppunkVal =>
@@ -317,8 +319,9 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   set pdecVal(Pointer<DECIMAL> value) =>
       this.Anonymous.Anonymous.Anonymous.pdecVal = value;
 
-  PSTR get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
-  set pcVal(PSTR value) => this.Anonymous.Anonymous.Anonymous.pcVal = value;
+  Pointer<Utf8> get pcVal => this.Anonymous.Anonymous.Anonymous.pcVal;
+  set pcVal(Pointer<Utf8> value) =>
+      this.Anonymous.Anonymous.Anonymous.pcVal = value;
 
   Pointer<Uint16> get puiVal => this.Anonymous.Anonymous.Anonymous.puiVal;
   set puiVal(Pointer<Uint16> value) =>

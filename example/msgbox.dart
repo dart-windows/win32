@@ -7,11 +7,11 @@
 import 'package:win32/win32.dart';
 
 void main() {
-  final message = TEXT(
+  final message = PWSTR.fromString(
     'This is not really an error, but we are pretending for the sake '
     'of this test.\n\nResource error.\nDo you want to try again?',
   );
-  final title = TEXT('Dart MessageBox Test');
+  final title = PWSTR.fromString('Dart MessageBox Test');
 
   final result = MessageBox(
     null,

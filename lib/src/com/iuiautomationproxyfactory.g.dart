@@ -43,12 +43,12 @@ class IUIAutomationProxyFactory extends IUnknown {
                   int idChild, Pointer<VTablePointer> provider)>()(
           ptr, hwnd, idObject, idChild, provider);
 
-  BSTR get proxyFactoryId {
-    final factoryId = calloc<BSTR>();
+  Pointer<Utf16> get proxyFactoryId {
+    final factoryId = calloc<Pointer<Utf16>>();
     try {
       final hr = _vtable.get_ProxyFactoryId.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> factoryId)>()(ptr, factoryId);
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> factoryId)>()(ptr, factoryId);
       if (FAILED(hr)) throw WindowsException(hr);
       final retValue = factoryId.value;
       return retValue;
@@ -67,6 +67,7 @@ base class IUIAutomationProxyFactoryVtbl extends Struct {
               Int32 idChild, Pointer<VTablePointer> provider)>> CreateProvider;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> factoryId)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> factoryId)>>
       get_ProxyFactoryId;
 }

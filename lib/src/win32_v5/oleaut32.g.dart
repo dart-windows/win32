@@ -66,10 +66,12 @@ final _GetActiveObject = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-BSTR SysAllocString(PWSTR? psz) => _SysAllocString(psz ?? nullptr);
+Pointer<Utf16> SysAllocString(Pointer<Utf16>? psz) =>
+    _SysAllocString(psz ?? nullptr);
 
-final _SysAllocString = _oleaut32.lookupFunction<BSTR Function(PWSTR psz),
-    BSTR Function(PWSTR psz)>('SysAllocString');
+final _SysAllocString = _oleaut32.lookupFunction<
+    Pointer<Utf16> Function(Pointer<Utf16> psz),
+    Pointer<Utf16> Function(Pointer<Utf16> psz)>('SysAllocString');
 
 /// Takes an ANSI string as input, and returns a BSTR that contains an ANSI
 /// string. Does not perform any ANSI-to-Unicode translation.
@@ -81,12 +83,13 @@ final _SysAllocString = _oleaut32.lookupFunction<BSTR Function(PWSTR psz),
 /// );
 /// ```
 /// {@category oleaut32}
-BSTR SysAllocStringByteLen(PSTR? psz, int len) =>
+Pointer<Utf16> SysAllocStringByteLen(Pointer<Utf8>? psz, int len) =>
     _SysAllocStringByteLen(psz ?? nullptr, len);
 
 final _SysAllocStringByteLen = _oleaut32.lookupFunction<
-    BSTR Function(PSTR psz, Uint32 len),
-    BSTR Function(PSTR psz, int len)>('SysAllocStringByteLen');
+    Pointer<Utf16> Function(Pointer<Utf8> psz, Uint32 len),
+    Pointer<Utf16> Function(
+        Pointer<Utf8> psz, int len)>('SysAllocStringByteLen');
 
 /// Allocates a new string, copies the specified number of characters from the
 /// passed string, and appends a null-terminating character.
@@ -98,12 +101,12 @@ final _SysAllocStringByteLen = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-BSTR SysAllocStringLen(PWSTR? strIn, int ui) =>
+Pointer<Utf16> SysAllocStringLen(Pointer<Utf16>? strIn, int ui) =>
     _SysAllocStringLen(strIn ?? nullptr, ui);
 
 final _SysAllocStringLen = _oleaut32.lookupFunction<
-    BSTR Function(PWSTR strIn, Uint32 ui),
-    BSTR Function(PWSTR strIn, int ui)>('SysAllocStringLen');
+    Pointer<Utf16> Function(Pointer<Utf16> strIn, Uint32 ui),
+    Pointer<Utf16> Function(Pointer<Utf16> strIn, int ui)>('SysAllocStringLen');
 
 /// Deallocates a string allocated previously by SysAllocString,
 /// SysAllocStringByteLen, SysReAllocString, SysAllocStringLen, or
@@ -115,10 +118,12 @@ final _SysAllocStringLen = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-void SysFreeString(BSTR? bstrString) => _SysFreeString(bstrString ?? nullptr);
+void SysFreeString(Pointer<Utf16>? bstrString) =>
+    _SysFreeString(bstrString ?? nullptr);
 
-final _SysFreeString = _oleaut32.lookupFunction<Void Function(BSTR bstrString),
-    void Function(BSTR bstrString)>('SysFreeString');
+final _SysFreeString = _oleaut32.lookupFunction<
+    Void Function(Pointer<Utf16> bstrString),
+    void Function(Pointer<Utf16> bstrString)>('SysFreeString');
 
 /// Reallocates a previously allocated string to be the size of a second string
 /// and copies the second string into the reallocated memory.
@@ -130,12 +135,13 @@ final _SysFreeString = _oleaut32.lookupFunction<Void Function(BSTR bstrString),
 /// );
 /// ```
 /// {@category oleaut32}
-int SysReAllocString(Pointer<BSTR> pbstr, PWSTR? psz) =>
+int SysReAllocString(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16>? psz) =>
     _SysReAllocString(pbstr, psz ?? nullptr);
 
 final _SysReAllocString = _oleaut32.lookupFunction<
-    Int32 Function(Pointer<BSTR> pbstr, PWSTR psz),
-    int Function(Pointer<BSTR> pbstr, PWSTR psz)>('SysReAllocString');
+    Int32 Function(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz),
+    int Function(
+        Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz)>('SysReAllocString');
 
 /// Creates a new BSTR containing a specified number of characters from an old
 /// BSTR, and frees the old BSTR.
@@ -148,13 +154,15 @@ final _SysReAllocString = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int SysReAllocStringLen(Pointer<BSTR> pbstr, PWSTR? psz, int len) =>
+int SysReAllocStringLen(
+        Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16>? psz, int len) =>
     _SysReAllocStringLen(pbstr, psz ?? nullptr, len);
 
 final _SysReAllocStringLen = _oleaut32.lookupFunction<
-    Int32 Function(Pointer<BSTR> pbstr, PWSTR psz, Uint32 len),
-    int Function(
-        Pointer<BSTR> pbstr, PWSTR psz, int len)>('SysReAllocStringLen');
+    Int32 Function(
+        Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz, Uint32 len),
+    int Function(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz,
+        int len)>('SysReAllocStringLen');
 
 /// Decreases the pinning reference count for the specified string by one. When
 /// that count reaches 0, the memory for that string is no longer prevented from
@@ -166,11 +174,12 @@ final _SysReAllocStringLen = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-void SysReleaseString(BSTR bstrString) => _SysReleaseString(bstrString);
+void SysReleaseString(Pointer<Utf16> bstrString) =>
+    _SysReleaseString(bstrString);
 
 final _SysReleaseString = _oleaut32.lookupFunction<
-    Void Function(BSTR bstrString),
-    void Function(BSTR bstrString)>('SysReleaseString');
+    Void Function(Pointer<Utf16> bstrString),
+    void Function(Pointer<Utf16> bstrString)>('SysReleaseString');
 
 /// Returns the length (in bytes) of a BSTR.
 ///
@@ -180,10 +189,12 @@ final _SysReleaseString = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int SysStringByteLen(BSTR? bstr) => _SysStringByteLen(bstr ?? nullptr);
+int SysStringByteLen(Pointer<Utf16>? bstr) =>
+    _SysStringByteLen(bstr ?? nullptr);
 
-final _SysStringByteLen = _oleaut32.lookupFunction<Uint32 Function(BSTR bstr),
-    int Function(BSTR bstr)>('SysStringByteLen');
+final _SysStringByteLen = _oleaut32.lookupFunction<
+    Uint32 Function(Pointer<Utf16> bstr),
+    int Function(Pointer<Utf16> bstr)>('SysStringByteLen');
 
 /// Returns the length of a BSTR.
 ///
@@ -193,10 +204,11 @@ final _SysStringByteLen = _oleaut32.lookupFunction<Uint32 Function(BSTR bstr),
 /// );
 /// ```
 /// {@category oleaut32}
-int SysStringLen(BSTR? pbstr) => _SysStringLen(pbstr ?? nullptr);
+int SysStringLen(Pointer<Utf16>? pbstr) => _SysStringLen(pbstr ?? nullptr);
 
-final _SysStringLen = _oleaut32.lookupFunction<Uint32 Function(BSTR pbstr),
-    int Function(BSTR pbstr)>('SysStringLen');
+final _SysStringLen = _oleaut32.lookupFunction<
+    Uint32 Function(Pointer<Utf16> pbstr),
+    int Function(Pointer<Utf16> pbstr)>('SysStringLen');
 
 /// Converts a variant from one type to another.
 ///
@@ -208,13 +220,15 @@ final _SysStringLen = _oleaut32.lookupFunction<Uint32 Function(BSTR pbstr),
 /// );
 /// ```
 /// {@category oleaut32}
-int VarBstrCat(BSTR bstrLeft, BSTR bstrRight, Pointer<BSTR> pbstrResult) =>
+int VarBstrCat(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight,
+        Pointer<Pointer<Utf16>> pbstrResult) =>
     _VarBstrCat(bstrLeft, bstrRight, pbstrResult);
 
 final _VarBstrCat = _oleaut32.lookupFunction<
-    HRESULT Function(BSTR bstrLeft, BSTR bstrRight, Pointer<BSTR> pbstrResult),
-    int Function(BSTR bstrLeft, BSTR bstrRight,
-        Pointer<BSTR> pbstrResult)>('VarBstrCat');
+    HRESULT Function(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight,
+        Pointer<Pointer<Utf16>> pbstrResult),
+    int Function(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight,
+        Pointer<Pointer<Utf16>> pbstrResult)>('VarBstrCat');
 
 /// Compares two variants of type BSTR.
 ///
@@ -227,14 +241,15 @@ final _VarBstrCat = _oleaut32.lookupFunction<
 /// );
 /// ```
 /// {@category oleaut32}
-int VarBstrCmp(BSTR bstrLeft, BSTR bstrRight, int lcid, int dwFlags) =>
+int VarBstrCmp(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight, int lcid,
+        int dwFlags) =>
     _VarBstrCmp(bstrLeft, bstrRight, lcid, dwFlags);
 
 final _VarBstrCmp = _oleaut32.lookupFunction<
-    HRESULT Function(
-        BSTR bstrLeft, BSTR bstrRight, Uint32 lcid, Uint32 dwFlags),
-    int Function(
-        BSTR bstrLeft, BSTR bstrRight, int lcid, int dwFlags)>('VarBstrCmp');
+    HRESULT Function(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight,
+        Uint32 lcid, Uint32 dwFlags),
+    int Function(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight, int lcid,
+        int dwFlags)>('VarBstrCmp');
 
 /// Converts a variant from one type to another.
 ///

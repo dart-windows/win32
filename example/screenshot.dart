@@ -52,7 +52,7 @@ class Display {
     return using(
       (arena) => CreateDC(
         null,
-        rawName.toNativeUtf16(allocator: arena),
+        PWSTR.fromString(rawName, allocator: arena),
         null,
         null,
       ),
@@ -146,7 +146,7 @@ class BmpFile {
     BmpBinary bmpFileStructure,
   ) {
     final hFile = CreateFile(
-      fileName.toNativeUtf16(allocator: arena),
+      PWSTR.fromString(fileName, allocator: arena),
       GENERIC_WRITE,
       0,
       null,

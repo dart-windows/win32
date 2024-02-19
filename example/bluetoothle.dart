@@ -27,7 +27,7 @@ void main() {
   });
 
   for (final path in devicePaths) {
-    final pathPtr = path.toNativeUtf16();
+    final pathPtr = PWSTR.fromString(path);
     final hDevice = CreateFile(
       pathPtr,
       0,
@@ -48,7 +48,7 @@ void main() {
       printServicesByDevice(hDevice);
     } finally {
       CloseHandle(hDevice);
-      free(pathPtr);
+      pathPtr.free();
     }
   }
 }

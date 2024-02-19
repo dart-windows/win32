@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
+
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -65,11 +67,15 @@ class IUIAutomationTextRange extends IUnknown {
               int backward,
               Pointer<VTablePointer> found)>()(ptr, attr, val, backward, found);
 
-  int findText(BSTR text, int backward, int ignoreCase,
+  int findText(Pointer<Utf16> text, int backward, int ignoreCase,
           Pointer<VTablePointer> found) =>
       _vtable.FindText.asFunction<
-              int Function(VTablePointer lpVtbl, BSTR text, int backward,
-                  int ignoreCase, Pointer<VTablePointer> found)>()(
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<Utf16> text,
+                  int backward,
+                  int ignoreCase,
+                  Pointer<VTablePointer> found)>()(
           ptr, text, backward, ignoreCase, found);
 
   int getAttributeValue(int attr, Pointer<VARIANT> value) =>
@@ -88,9 +94,10 @@ class IUIAutomationTextRange extends IUnknown {
                   Pointer<VTablePointer> enclosingElement)>()(
           ptr, enclosingElement);
 
-  int getText(int maxLength, Pointer<BSTR> text) => _vtable.GetText.asFunction<
-      int Function(VTablePointer lpVtbl, int maxLength,
-          Pointer<BSTR> text)>()(ptr, maxLength, text);
+  int getText(int maxLength, Pointer<Pointer<Utf16>> text) =>
+      _vtable.GetText.asFunction<
+          int Function(VTablePointer lpVtbl, int maxLength,
+              Pointer<Pointer<Utf16>> text)>()(ptr, maxLength, text);
 
   int move(int unit, int count, Pointer<Int32> moved) =>
       _vtable.Move.asFunction<
@@ -160,8 +167,12 @@ base class IUIAutomationTextRangeVtbl extends Struct {
               BOOL backward, Pointer<VTablePointer> found)>> FindAttribute;
   external Pointer<
       NativeFunction<
-          HRESULT Function(VTablePointer lpVtbl, BSTR text, BOOL backward,
-              BOOL ignoreCase, Pointer<VTablePointer> found)>> FindText;
+          HRESULT Function(
+              VTablePointer lpVtbl,
+              Pointer<Utf16> text,
+              BOOL backward,
+              BOOL ignoreCase,
+              Pointer<VTablePointer> found)>> FindText;
   external Pointer<
           NativeFunction<
               HRESULT Function(
@@ -177,10 +188,9 @@ base class IUIAutomationTextRangeVtbl extends Struct {
           HRESULT Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> enclosingElement)>> GetEnclosingElement;
   external Pointer<
-          NativeFunction<
-              HRESULT Function(
-                  VTablePointer lpVtbl, Int32 maxLength, Pointer<BSTR> text)>>
-      GetText;
+      NativeFunction<
+          HRESULT Function(VTablePointer lpVtbl, Int32 maxLength,
+              Pointer<Pointer<Utf16>> text)>> GetText;
   external Pointer<
       NativeFunction<
           HRESULT Function(VTablePointer lpVtbl, Int32 unit, Int32 count,

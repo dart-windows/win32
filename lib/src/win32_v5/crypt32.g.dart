@@ -38,7 +38,7 @@ final _crypt32 = DynamicLibrary.open('crypt32.dll');
 /// {@category crypt32}
 int CryptProtectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        PWSTR? szDataDescr,
+        Pointer<Utf16>? szDataDescr,
         Pointer<CRYPT_INTEGER_BLOB>? pOptionalEntropy,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT>? pPromptStruct,
         int dwFlags,
@@ -55,7 +55,7 @@ int CryptProtectData(
 final _CryptProtectData = _crypt32.lookupFunction<
     BOOL Function(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        PWSTR szDataDescr,
+        Pointer<Utf16> szDataDescr,
         Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
         Pointer pvReserved,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
@@ -63,7 +63,7 @@ final _CryptProtectData = _crypt32.lookupFunction<
         Pointer<CRYPT_INTEGER_BLOB> pDataOut),
     int Function(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        PWSTR szDataDescr,
+        Pointer<Utf16> szDataDescr,
         Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
         Pointer pvReserved,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
@@ -113,7 +113,7 @@ final _CryptProtectMemory = _crypt32.lookupFunction<
 /// {@category crypt32}
 int CryptUnprotectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        Pointer<PWSTR>? ppszDataDescr,
+        Pointer<Pointer<Utf16>>? ppszDataDescr,
         Pointer<CRYPT_INTEGER_BLOB>? pOptionalEntropy,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT>? pPromptStruct,
         int dwFlags,
@@ -130,7 +130,7 @@ int CryptUnprotectData(
 final _CryptUnprotectData = _crypt32.lookupFunction<
     BOOL Function(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        Pointer<PWSTR> ppszDataDescr,
+        Pointer<Pointer<Utf16>> ppszDataDescr,
         Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
         Pointer pvReserved,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
@@ -138,7 +138,7 @@ final _CryptUnprotectData = _crypt32.lookupFunction<
         Pointer<CRYPT_INTEGER_BLOB> pDataOut),
     int Function(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
-        Pointer<PWSTR> ppszDataDescr,
+        Pointer<Pointer<Utf16>> ppszDataDescr,
         Pointer<CRYPT_INTEGER_BLOB> pOptionalEntropy,
         Pointer pvReserved,
         Pointer<CRYPTPROTECT_PROMPTSTRUCT> pPromptStruct,
@@ -181,7 +181,7 @@ final _CryptUnprotectMemory = _crypt32.lookupFunction<
 /// {@category crypt32}
 int CryptUpdateProtectedState(
         PSID? pOldSid,
-        PWSTR? pwszOldPassword,
+        Pointer<Utf16>? pwszOldPassword,
         int dwFlags,
         Pointer<Uint32>? pdwSuccessCount,
         Pointer<Uint32>? pdwFailureCount) =>
@@ -189,11 +189,11 @@ int CryptUpdateProtectedState(
         dwFlags, pdwSuccessCount ?? nullptr, pdwFailureCount ?? nullptr);
 
 final _CryptUpdateProtectedState = _crypt32.lookupFunction<
-    BOOL Function(PSID pOldSid, PWSTR pwszOldPassword, Uint32 dwFlags,
+    BOOL Function(PSID pOldSid, Pointer<Utf16> pwszOldPassword, Uint32 dwFlags,
         Pointer<Uint32> pdwSuccessCount, Pointer<Uint32> pdwFailureCount),
     int Function(
         PSID pOldSid,
-        PWSTR pwszOldPassword,
+        Pointer<Utf16> pwszOldPassword,
         int dwFlags,
         Pointer<Uint32> pdwSuccessCount,
         Pointer<Uint32> pdwFailureCount)>('CryptUpdateProtectedState');

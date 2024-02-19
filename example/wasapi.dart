@@ -109,7 +109,7 @@ void main() {
     free(ppEndpoint);
 
     // Retrieve the current device id
-    final idPtr = calloc<PWSTR>();
+    final idPtr = calloc<Pointer<Utf16>>();
     check(pEndpoint.getId(idPtr));
     final id = idPtr.value.toDartString();
     free(idPtr.value);

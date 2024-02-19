@@ -51,15 +51,33 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
-  int get_ClassName(Pointer<BSTR> className) =>
-      _vtable.get_ClassName.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> className)>()(ptr, className);
+  Pointer<Utf16> get className {
+    final className = calloc<Pointer<Utf16>>();
+    try {
+      final hr = _vtable.get_ClassName.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> className)>()(ptr, className);
+      if (FAILED(hr)) throw WindowsException(hr);
+      final retValue = className.value;
+      return retValue;
+    } finally {
+      free(className);
+    }
+  }
 
-  int get_ImageName(Pointer<BSTR> imageName) =>
-      _vtable.get_ImageName.asFunction<
-          int Function(
-              VTablePointer lpVtbl, Pointer<BSTR> imageName)>()(ptr, imageName);
+  Pointer<Utf16> get imageName {
+    final imageName = calloc<Pointer<Utf16>>();
+    try {
+      final hr = _vtable.get_ImageName.asFunction<
+          int Function(VTablePointer lpVtbl,
+              Pointer<Pointer<Utf16>> imageName)>()(ptr, imageName);
+      if (FAILED(hr)) throw WindowsException(hr);
+      final retValue = imageName.value;
+      return retValue;
+    } finally {
+      free(imageName);
+    }
+  }
 
   int get allowSubstringMatch {
     final allowSubstringMatch = calloc<BOOL>();
@@ -103,13 +121,19 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
-  int put_ClassName(PWSTR className) => _vtable.put_ClassName
-          .asFunction<int Function(VTablePointer lpVtbl, PWSTR className)>()(
-      ptr, className);
+  set className(Pointer<Utf16> className) {
+    final hr = _vtable.put_ClassName.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<Utf16> className)>()(ptr, className);
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
 
-  int put_ImageName(PWSTR imageName) => _vtable.put_ImageName
-          .asFunction<int Function(VTablePointer lpVtbl, PWSTR imageName)>()(
-      ptr, imageName);
+  set imageName(Pointer<Utf16> imageName) {
+    final hr = _vtable.put_ImageName.asFunction<
+        int Function(
+            VTablePointer lpVtbl, Pointer<Utf16> imageName)>()(ptr, imageName);
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
 
   set allowSubstringMatch(int allowSubstringMatch) {
     final hr = _vtable.put_AllowSubstringMatch.asFunction<
@@ -157,11 +181,13 @@ base class IUIAutomationProxyFactoryEntryVtbl extends Struct {
       get_ProxyFactory;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> className)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> className)>>
       get_ClassName;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, Pointer<BSTR> imageName)>>
+              HRESULT Function(
+                  VTablePointer lpVtbl, Pointer<Pointer<Utf16>> imageName)>>
       get_ImageName;
   external Pointer<
           NativeFunction<
@@ -180,11 +206,11 @@ base class IUIAutomationProxyFactoryEntryVtbl extends Struct {
       get_NeedsAdviseEvents;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, PWSTR className)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> className)>>
       put_ClassName;
   external Pointer<
           NativeFunction<
-              HRESULT Function(VTablePointer lpVtbl, PWSTR imageName)>>
+              HRESULT Function(VTablePointer lpVtbl, Pointer<Utf16> imageName)>>
       put_ImageName;
   external Pointer<
           NativeFunction<

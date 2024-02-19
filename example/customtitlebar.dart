@@ -77,9 +77,9 @@ Pointer<RECT> getMinimizeRect(int hwnd, Pointer<RECT> titleBarRect) {
 /// Returns a handle for the theme. The handle should be closed when it is no
 /// longer needed.
 int getWindowThemeHandle(int hwnd) {
-  final classDataSection = 'WINDOW'.toNativeUtf16();
+  final classDataSection = PWSTR.fromString('WINDOW');
   final hTheme = OpenThemeData(hwnd, classDataSection);
-  free(classDataSection);
+  classDataSection.free();
   return hTheme;
 }
 
@@ -243,7 +243,7 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
 void drawWindowCaption(
     int hwnd, int hdc, Pointer<RECT> titleBarTextRect, int titleBarItemColor) {
   final logicalFont = calloc<LOGFONT>();
-  final titleText = wsalloc(256);
+  final titleText = PWSTR.empty(256);
   final drawThemeOptions = calloc<DTTOPTS>();
   drawThemeOptions.ref
     ..dwSize = sizeOf<DTTOPTS>()
@@ -524,7 +524,7 @@ void main() {
   registerHighDPISupport();
 
   // Register the window class.
-  final windowClassName = 'WIN32_CUSTOM_TITLEBAR_EXAMPLE'.toNativeUtf16();
+  final windowClassName = PWSTR.fromString('WIN32_CUSTOM_TITLEBAR_EXAMPLE');
 
   final lpfnWndProc = NativeCallable<WNDPROC>.isolateLocal(
     mainWindowProc,
@@ -548,7 +548,7 @@ void main() {
       WS_MINIMIZEBOX | // Support minimizing via clicking taskbar icon
       WS_VISIBLE; // Make window visible after creation.
 
-  final windowCaption = 'Win32 Custom Title Bar Example'.toNativeUtf16();
+  final windowCaption = PWSTR.fromString('Win32 Custom Title Bar Example');
 
   CreateWindowEx(
     WS_EX_APPWINDOW,
@@ -573,7 +573,7 @@ void main() {
 
   lpfnWndProc.close();
   free(msg);
-  free(windowCaption);
+  windowCaption.free();
   free(windowClass);
-  free(windowClassName);
+  windowClassName.free();
 }
