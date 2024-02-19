@@ -135,11 +135,13 @@ const CLSCTX_ALL = CLSCTX_INPROC_SERVER |
     CLSCTX_LOCAL_SERVER |
     CLSCTX_REMOTE_SERVER;
 
-/// Initializes the thread for multithreaded object concurrency
+/// Initializes the thread for multithreaded object concurrency.
 const COINITBASE_MULTITHREADED = 0x0;
+
+/// Initializes the thread for multithreaded object concurrency.
 const COINIT_MULTITHREADED = COINITBASE_MULTITHREADED;
 
-// Initializes the thread for apartment-threaded object concurrency
+/// Initializes the thread for apartment-threaded object concurrency.
 const COINIT_APARTMENTTHREADED = 0x2;
 
 /// Disables DDE for OLE1 support.
