@@ -24,7 +24,9 @@ const IID_IUnknown = '{00000000-0000-0000-c000-000000000046}';
 ///
 /// {@category com}
 class IUnknown {
-  IUnknown(this.ptr) : _vtable = ptr.value.cast<IUnknownVtbl>().ref;
+  IUnknown(this.ptr)
+      : assert(ptr != nullptr, 'Pointer must not be nullptr.'),
+        _vtable = ptr.value.cast<IUnknownVtbl>().ref;
 
   final VTablePointer ptr;
 

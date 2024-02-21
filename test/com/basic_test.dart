@@ -41,16 +41,26 @@ void main() {
 
   test('Create COM object without calling CoInitialize should fail', () {
     expect(
-        () => IFileOpenDialog(
-            createComObject(FileOpenDialog, IID_IFileOpenDialog)),
-        throwsA(isA<WindowsException>()
+      () =>
+          IFileOpenDialog(createComObject(FileOpenDialog, IID_IFileOpenDialog)),
+      throwsA(
+        isA<WindowsException>()
             .having((e) => e.hr, 'hr', equals(CO_E_NOTINITIALIZED))
             .having((e) => e.toString(), 'message',
-                contains('CoInitialize has not been called.'))));
+                contains('CoInitialize has not been called.')),
+      ),
+    );
   });
 
   group('COM testing', () {
     setUpAll(initializeCom);
+
+    test('attempt to create COM object with nullptr throw AssertionError', () {
+      expect(
+        () => IUnknown(nullptr),
+        throwsA(isA<AssertionError>()),
+      );
+    });
 
     test('create COM object with CoCreateInstance', () {
       final ptr = calloc<VTablePointer>();

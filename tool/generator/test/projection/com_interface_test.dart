@@ -121,10 +121,10 @@ import '../types.dart';'''));
       expect(projection.classHeader, equals('class IUnknown'));
       expect(
         projection.constructor,
-        equals(
-          'IUnknown(this.ptr) '
-          ': _vtable = ptr.value.cast<IUnknownVtbl>().ref;',
-        ),
+        equalsIgnoringWhitespace('''
+IUnknown(this.ptr)
+    : assert(ptr != nullptr, 'Pointer must not be nullptr.'),
+      _vtable = ptr.value.cast<IUnknownVtbl>().ref;'''),
       );
       expect(projection.ptrField, equals('final VTablePointer ptr;'));
       expect(projection.vtableField, equals('final IUnknownVtbl _vtable;'));

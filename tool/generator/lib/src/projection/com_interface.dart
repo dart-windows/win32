@@ -229,7 +229,10 @@ factory $shortName.from(IUnknown interface) =>
   /// The default constructor of the generated class.
   String get constructor {
     if (shortName == 'IUnknown') {
-      return '$shortName(this.ptr) : _vtable = ptr.value.cast<${shortName}Vtbl>().ref;';
+      return '''
+$shortName(this.ptr)
+    : assert(ptr != nullptr, 'Pointer must not be nullptr.'),
+      _vtable = ptr.value.cast<${shortName}Vtbl>().ref;''';
     }
 
     if (hasMethods) {
