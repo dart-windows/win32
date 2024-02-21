@@ -17,64 +17,64 @@ void main() {
   const testString = 'Longhorn is a bar in the village resort between the '
       'Whistler and Blackcomb mountains';
 
-  group('PSTR', () {
+  group('PWSTR', () {
     test('empty', () {
       for (var i = 0; i < testRuns; i++) {
-        final pstr = PSTR.empty(256);
-        final ptr = pstr.cast<BYTE>();
+        final pwstr = PWSTR.empty(256);
+        final ptr = pwstr.cast<WCHAR>();
         for (var i = 0; i < 256; i++) {
           expect(ptr[i], isZero);
         }
-        pstr.free();
+        pwstr.free();
       }
     });
 
     test('length', () {
       for (var i = 0; i < testRuns; i++) {
-        final pstr = PSTR.fromString(testString);
+        final pwstr = PWSTR.fromString(testString);
         expect(testString.length, equals(84));
-        expect(pstr.length, equals(84));
-        pstr.free();
+        expect(pwstr.length, equals(84));
+        pwstr.free();
       }
     });
 
     test('toDartString', () {
       for (var i = 0; i < testRuns; i++) {
-        final pstr = PSTR.fromString(testString);
-        expect(pstr.toDartString(), equals(testString));
-        pstr.free();
+        final pwstr = PWSTR.fromString(testString);
+        expect(pwstr.toDartString(), equals(testString));
+        pwstr.free();
       }
     });
 
     test('toNativePSTR', () {
       for (var i = 0; i < testRuns; i++) {
-        final pstr = PSTR.fromString(testString);
-        expect(pstr.toDartString(), equals(testString));
+        final pwstr = PWSTR.fromString(testString);
+        expect(pwstr.toDartString(), equals(testString));
 
-        // A PSTR should end with a BYTE-length null terminator.
+        // A PWSTR should end with a WCHAR-length null terminator.
         final pNull =
-            Pointer<BYTE>.fromAddress(pstr.address + testString.length);
+            Pointer<WCHAR>.fromAddress(pwstr.address + testString.length * 2);
         expect(pNull.value, isZero, reason: 'test run $i');
 
-        pstr.free();
+        pwstr.free();
       }
     });
 
-    test('long PSTRs', () {
+    test('long PWSTRs', () {
       final longString = 'A very long string with padding.' * 65536;
 
       // Ten allocations is probably enough for an expensive test like this.
       for (var i = 0; i < 10; i++) {
-        // This string is 2MB (32 chars * 1 bytes * 65536).
-        final pstr = PSTR.fromString(longString);
-        expect(pstr.toDartString(), equals(longString));
+        // This string is 4MB (32 chars * 2 bytes * 65536).
+        final pwstr = PWSTR.fromString(longString);
+        expect(pwstr.toDartString(), equals(longString));
 
-        // A PSTR should end with a BYTE-length null terminator.
+        // A PWSTR should end with a WCHAR-length null terminator.
         final pNull =
-            Pointer<BYTE>.fromAddress(pstr.address + longString.length);
+            Pointer<WCHAR>.fromAddress(pwstr.address + longString.length * 2);
         expect(pNull.value, isZero, reason: 'test run $i');
 
-        pstr.free();
+        pwstr.free();
       }
     });
   });
