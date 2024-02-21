@@ -30,8 +30,9 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
 
   final valueParam = calloc<VARIANT>();
   VariantInit(valueParam);
-  valueParam.ref.vt = VARENUM.VT_I4;
-  valueParam.ref.intVal = processId;
+  valueParam.ref
+    ..vt = VARENUM.VT_I4
+    ..intVal = processId;
 
   try {
     final pCondition = calloc<VTablePointer>();

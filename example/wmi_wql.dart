@@ -153,10 +153,12 @@ void main() {
       free(pClsObj);
 
       final vtProp = calloc<VARIANT>();
-      hr = clsObj.get(PWSTR.fromString('Name'), 0, vtProp, null, nullptr);
+      final wszName = PWSTR.fromString('Name');
+      hr = clsObj.get(wszName, 0, vtProp, null, nullptr);
       if (SUCCEEDED(hr)) {
         print('Process: ${vtProp.ref.bstrVal.toDartString()}');
       }
+      wszName.free();
       // Free BSTRs in the returned variants
       VariantClear(vtProp);
       free(vtProp);

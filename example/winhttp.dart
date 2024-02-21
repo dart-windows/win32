@@ -18,8 +18,9 @@ void main() {
   final varEmpty = calloc<VARIANT>();
 
   VariantInit(varFalse);
-  varFalse.ref.vt = VARENUM.VT_BOOL;
-  varFalse.ref.boolVal = false;
+  varFalse.ref
+    ..vt = VARENUM.VT_BOOL
+    ..boolVal = false;
 
   VariantInit(varEmpty);
   varEmpty.ref.vt = VARENUM.VT_ERROR;

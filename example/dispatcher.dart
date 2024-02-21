@@ -21,20 +21,19 @@ void main() {
 
   // Example of calling an automation method with a parameter.
   print(r'Launching the Windows Explorer, starting at the C:\ directory');
-  final folderLocation = BSTR.fromString(r'C:\');
   final exploreParam = calloc<VARIANT>();
   VariantInit(exploreParam);
   exploreParam.ref
     ..vt = VARENUM.VT_BSTR
-    ..bstrVal = folderLocation;
+    ..bstrVal = BSTR.fromString(r'C:\');
   final exploreParams = calloc<DISPPARAMS>();
   exploreParams.ref
     ..cArgs = 1
     ..rgvarg = exploreParam;
   dispatcher.invoke('Explore', exploreParams);
+  VariantClear(exploreParam);
   free(exploreParams);
   free(exploreParam);
-  folderLocation.free();
 
   print('Cleaning up.');
   dispatcher.dispose();
