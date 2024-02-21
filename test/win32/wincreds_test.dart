@@ -11,21 +11,22 @@ import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 
-void writeCredential(
-    {required String credentialName,
-    required String userName,
-    required String password}) {
-  final pUserName = PWSTR.fromString(userName);
-  final pCredName = PWSTR.fromString(credentialName);
+void writeCredential({
+  required String credentialName,
+  required String username,
+  required String password,
+}) {
+  final targetName = PWSTR.fromString(credentialName);
+  final userName = PWSTR.fromString(username);
   final examplePassword = utf8.encode(password);
   final blob = examplePassword.allocatePointer();
 
   final credential = calloc<CREDENTIAL>();
   credential.ref
     ..Type = CRED_TYPE_GENERIC
-    ..TargetName = pCredName
+    ..TargetName = targetName
     ..Persist = CRED_PERSIST_LOCAL_MACHINE
-    ..UserName = pUserName
+    ..UserName = userName
     ..CredentialBlob = blob
     ..CredentialBlobSize = examplePassword.length;
 
@@ -34,43 +35,41 @@ void writeCredential(
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
   } finally {
+    targetName.free();
+    userName.free();
     free(blob);
     free(credential);
-    pUserName.free();
-    pCredName.free();
   }
 }
 
 String readCredential(String credentialName) {
   final credPointer = calloc<Pointer<CREDENTIAL>>();
-  final pCredName = PWSTR.fromString(credentialName);
+  final targetName = PWSTR.fromString(credentialName);
 
   try {
-    if (CredRead(pCredName, CRED_TYPE_GENERIC, credPointer) != TRUE) {
+    if (CredRead(targetName, CRED_TYPE_GENERIC, credPointer) != TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
 
     final cred = credPointer.value.ref;
     final blob = cred.CredentialBlob.asTypedList(cred.CredentialBlobSize);
     final password = utf8.decode(blob);
-
     return password;
   } finally {
     if (credPointer.value.address != 0) CredFree(credPointer.value);
     free(credPointer);
-    pCredName.free();
+    targetName.free();
   }
 }
 
 void deleteCredential(String credentialName) {
-  final pCredName = PWSTR.fromString(credentialName);
-
+  final targetName = PWSTR.fromString(credentialName);
   try {
-    if (CredDelete(pCredName, CRED_TYPE_GENERIC) != TRUE) {
+    if (CredDelete(targetName, CRED_TYPE_GENERIC) != TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
   } finally {
-    pCredName.free();
+    targetName.free();
   }
 }
 
@@ -82,7 +81,7 @@ void main() {
     // create credential
     writeCredential(
         credentialName: credentialName,
-        userName: 'userName',
+        username: 'userName',
         password: credentialValue);
 
     // read
@@ -99,15 +98,17 @@ void main() {
 
     // create credential
     writeCredential(
-        credentialName: credentialName,
-        userName: 'userName',
-        password: credentialValue);
+      credentialName: credentialName,
+      username: 'userName',
+      password: credentialValue,
+    );
 
     // update credential with a new value
     writeCredential(
-        credentialName: credentialName,
-        userName: 'userName',
-        password: credentialValue2);
+      credentialName: credentialName,
+      username: 'userName',
+      password: credentialValue2,
+    );
 
     expect(readCredential(credentialName), equals(credentialValue2));
 

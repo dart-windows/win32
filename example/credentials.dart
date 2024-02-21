@@ -31,19 +31,18 @@ void write({
     ..CredentialBlob = blob
     ..CredentialBlobSize = examplePassword.length;
 
-  final result = CredWrite(credential, 0);
-
-  if (result != TRUE) {
-    final errorCode = GetLastError();
-    print('Error ($result): $errorCode');
-    return;
+  try {
+    if (CredWrite(credential, 0) == TRUE) {
+      print('Success (blob size: ${credential.ref.CredentialBlobSize})');
+    } else {
+      throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
+    }
+  } finally {
+    targetName.free();
+    userName.free();
+    free(blob);
+    free(credential);
   }
-  print('Success (blob size: ${credential.ref.CredentialBlobSize})');
-
-  targetName.free();
-  userName.free();
-  free(blob);
-  free(credential);
 }
 
 void read(String credentialName) {
