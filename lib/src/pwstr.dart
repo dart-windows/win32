@@ -10,18 +10,19 @@ import 'types.dart';
 
 /// A native zero-terminated array of 8-bit Windows (ANSI) characters.
 extension type const PWSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
-  /// Creates an empty PWSTR with the provided [length].
+  /// Creates an empty PWSTR that can hold [length] characters, including the
+  /// terminator.
   ///
-  /// [length] indicates how many characters should be allocated.
+  /// [length] indicates the number of characters to allocate space for.
   ///
-  /// This is useful when you need to allocate a buffer for a string that will
-  /// be filled in later, such as when calling a Windows API that writes to a
-  /// buffer you provide.
+  /// This is useful when allocating a buffer for a string that will be
+  /// populated later, such as when calling a Windows API function that writes
+  /// to a buffer provided by the caller.
   ///
-  /// It's the caller's responsibility to free the memory allocated for the
-  /// returned PWSTR when it's no longer needed. This can be done by calling
-  /// [free]. A FFI `Arena` may be passed as a custom allocator for ease of
-  /// memory management.
+  /// It is the caller's responsibility to free the memory allocated for the
+  /// returned PWSTR when it is no longer needed. This can be achieved by
+  /// calling the [free] method. Optionally, a FFI `Arena` can be passed as a
+  /// custom allocator to facilitate memory management.
   PWSTR.empty(int length, {Allocator allocator = calloc})
       : this(allocator<WCHAR>(length).cast());
 
@@ -30,7 +31,10 @@ extension type const PWSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
   /// If this [String] contains NUL characters, converting it back to a string
   /// using [toDartString] will truncate the result if a length is not passed.
   ///
-  /// Returns an [allocator]-allocated pointer to the result.
+  /// It is the caller's responsibility to free the memory allocated for the
+  /// returned PWSTR when it is no longer needed. This can be achieved by
+  /// calling the [free] method. Optionally, a FFI `Arena` can be passed as a
+  /// custom allocator to facilitate memory management.
   PWSTR.fromString(String string, {Allocator allocator = malloc})
       : this(string.toNativeUtf16(allocator: allocator));
 
