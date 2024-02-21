@@ -20,9 +20,9 @@ extension type const PSTR(Pointer<Utf8> _) implements Pointer<Utf8> {
   /// to a buffer provided by the caller.
   ///
   /// It is the caller's responsibility to free the memory allocated for the
-  /// returned PSTR when it is no longer needed. This can be achieved by calling
-  /// the [free] method. Optionally, a FFI `Arena` can be passed as a custom
-  /// allocator to facilitate memory management.
+  /// returned PSTR when it's no longer needed. This can be done by calling
+  /// the [free] method. Optionally, a custom [allocator] can be provided, such
+  /// as an FFI `Arena`, to facilitate memory management.
   PSTR.empty(int length, {Allocator allocator = calloc})
       : this(allocator<BYTE>(length).cast());
 
@@ -38,9 +38,9 @@ extension type const PSTR(Pointer<Utf8> _) implements Pointer<Utf8> {
   /// using [toDartString] will truncate the result if a length is not passed.
   ///
   /// It is the caller's responsibility to free the memory allocated for the
-  /// returned PSTR when it is no longer needed. This can be achieved by calling
-  /// the [free] method. Optionally, a FFI `Arena` can be passed as a custom
-  /// allocator to facilitate memory management.
+  /// returned PSTR when it's no longer needed. This can be done by calling
+  /// the [free] method. Optionally, a custom [allocator] can be provided, such
+  /// as an FFI `Arena`, to facilitate memory management.
   factory PSTR.fromString(String string, {Allocator allocator = malloc}) {
     final length = string.length;
     final pstr = allocator<BYTE>(length + 1);

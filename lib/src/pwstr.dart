@@ -20,9 +20,9 @@ extension type const PWSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
   /// to a buffer provided by the caller.
   ///
   /// It is the caller's responsibility to free the memory allocated for the
-  /// returned PWSTR when it is no longer needed. This can be achieved by
-  /// calling the [free] method. Optionally, a FFI `Arena` can be passed as a
-  /// custom allocator to facilitate memory management.
+  /// returned PWSTR when it's no longer needed. This can be done by calling
+  /// the [free] method. Optionally, a custom [allocator] can be provided, such
+  /// as an FFI `Arena`, to facilitate memory management.
   PWSTR.empty(int length, {Allocator allocator = calloc})
       : this(allocator<WCHAR>(length).cast());
 
@@ -32,9 +32,9 @@ extension type const PWSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
   /// using [toDartString] will truncate the result if a length is not passed.
   ///
   /// It is the caller's responsibility to free the memory allocated for the
-  /// returned PWSTR when it is no longer needed. This can be achieved by
-  /// calling the [free] method. Optionally, a FFI `Arena` can be passed as a
-  /// custom allocator to facilitate memory management.
+  /// returned PWSTR when it's no longer needed. This can be done by calling
+  /// the [free] method. Optionally, a custom [allocator] can be provided, such
+  /// as an FFI `Arena`, to facilitate memory management.
   PWSTR.fromString(String string, {Allocator allocator = malloc})
       : this(string.toNativeUtf16(allocator: allocator));
 

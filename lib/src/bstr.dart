@@ -21,8 +21,8 @@ extension type const BSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
   /// using [toDartString] will truncate the result if a length is not passed.
   ///
   /// It's the caller's responsibility to free the memory allocated for the
-  /// returned BSTR when it's no longer needed. This can be done by calling
-  /// [free].
+  /// returned BSTR when it's no longer needed. This can be done by calling the
+  /// [free] method.
   factory BSTR.fromString(String string) {
     final psz = PWSTR.fromString(string);
     final pbstr = SysAllocString(psz);
