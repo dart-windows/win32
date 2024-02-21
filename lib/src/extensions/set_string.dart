@@ -2,19 +2,23 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Extension to write a string to an existing location of memory.
-
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-/// Sets the memory starting at the pointer location to the string supplied.
-///
-/// There should already be sufficient allocated memory at the pointer address
-/// to avoid a buffer overrun. Returns the number of bytes written.
-extension SetString on Pointer<Utf16> {
+import '../types.dart';
+
+/// Extension method for writing a string to a memory location pointed by a
+/// `Pointer<Utf16>`.
+extension Utf16PointerSetString on Pointer<Utf16> {
+  /// Writes the provided string to the memory starting at the pointer location.
+  ///
+  /// The memory at the pointer address should already be allocated with
+  /// sufficient space to accommodate the string to avoid buffer overruns.
+  ///
+  /// Returns the number of bytes written, including the terminator.
   int setString(String string) {
-    final ptr = cast<Uint16>();
+    final ptr = cast<WCHAR>();
     final units = string.codeUnits;
     final nativeString = ptr.asTypedList(units.length + 1)..setAll(0, units);
     nativeString[units.length] = 0; // NUL-terminate the string.

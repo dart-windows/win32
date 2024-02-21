@@ -5,7 +5,7 @@
 // Exceptions that may be caught or thrown by the win32 library.
 
 import 'constants.dart';
-import 'extensions/int_to_hexstring.dart';
+import 'extensions/int_to_hex.dart';
 import 'pwstr.dart';
 import 'utils.dart';
 import 'win32_v5/kernel32.g.dart';

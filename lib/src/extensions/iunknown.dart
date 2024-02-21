@@ -12,11 +12,18 @@ import '../macros.dart';
 import '../types.dart';
 import '../utils.dart';
 
-extension IUnknownToInterfaceHelper on IUnknown {
-  /// Cast an existing COM object to a specified interface.
+/// Extension method for casting COM objects to a specified interface.
+extension IUnknownToInterface on IUnknown {
+  /// Casts this COM object to the specified interface identified by its [iid].
   ///
-  /// Takes a string (typically a constant such as `IID_IModalWindow`) and does
-  /// a COM QueryInterface to return a reference to that interface.
+  /// The [iid] parameter specifies the IID (Interface Identifier) of the
+  /// interface to cast to. Typically, this is a constant such as
+  /// `IID_IModalWindow`.
+  ///
+  /// This method performs a COM QueryInterface operation to obtain a reference
+  /// to the desired interface.
+  ///
+  /// Throws a [WindowsException] if the QueryInterface call fails.
   VTablePointer toInterface(String iid) {
     final riid = convertToIID(iid);
     final ppvObject = calloc<VTablePointer>();

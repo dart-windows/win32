@@ -2,20 +2,20 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Extension methods to help set the dialog templates from memory.
-
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
 import '../constants.dart';
 import '../structs.g.dart';
+import '../types.dart';
 import 'set_string.dart';
 
-extension DialogTemplateHelper on Pointer<DLGTEMPLATE> {
+/// Extension method to help set the dialog templates from memory.
+extension DLGTEMPLATEPointer on Pointer<DLGTEMPLATE> {
   /// Sets the memory at the pointer location to the dialog supplied.
   ///
-  /// Returns the number of WORDs written.
+  /// Returns the number of [WORD]s written.
   int setDialog({
     required int style,
     int dwExtendedStyle = 0,
@@ -30,14 +30,14 @@ extension DialogTemplateHelper on Pointer<DLGTEMPLATE> {
     String fontName = '',
     int fontSize = 0,
   }) {
-    /// Size in 16-bit WORDs of the DLGTEMPLATE struct
+    // Size in 16-bit WORDs of the DLGTEMPLATE struct
     const dlgTemplateSize = 9;
 
-    final ptr = cast<Uint16>();
+    final ptr = cast<WORD>();
 
     var idx = 0; // 16-bit index offset
 
-    /// Specifies the properties of the DLGTEMPLATE structure.
+    // Specifies the properties of the DLGTEMPLATE structure.
     ptr.cast<DLGTEMPLATE>().ref
       ..style = style
       ..dwExtendedStyle = dwExtendedStyle
@@ -75,20 +75,20 @@ extension DialogTemplateHelper on Pointer<DLGTEMPLATE> {
       }
     }
 
-    /// Following the class array is a title array that specifies a
-    /// null-terminated Unicode string that contains the title of the dialog
-    /// box. If the first element of this array is 0x0000, the dialog box has no
-    /// title and the array has no other elements.
+    // Following the class array is a title array that specifies a
+    // null-terminated Unicode string that contains the title of the dialog box.
+    // If the first element of this array is 0x0000, the dialog box has no title
+    // and the array has no other elements.
     if (title.isEmpty) {
       ptr[idx++] = 0x0000;
     } else {
       idx += ((ptr + idx).cast<Utf16>().setString(title) / 2).ceil();
     }
 
-    /// Following the title array is a 16-bit point size value and the typeface
-    /// array, in that order, if the style member specifies the DS_SETFONT
-    /// style. These are set for the dialog box. The typeface array is a
-    /// null-terminated Unicode string.
+    // Following the title array is a 16-bit point size value and the typeface
+    // array, in that order, if the style member specifies the DS_SETFONT style.
+    // These are set for the dialog box. The typeface array is a null-terminated
+    // Unicode string.
     if ((style & DS_SETFONT == DS_SETFONT) && (fontName.isNotEmpty)) {
       ptr[idx++] = fontSize;
       idx += ((ptr + idx).cast<Utf16>().setString(fontName) / 2).ceil();
@@ -99,14 +99,16 @@ extension DialogTemplateHelper on Pointer<DLGTEMPLATE> {
     if ((ptr.address + idx) % 2 != 0) {
       ptr[idx++] = 0x0000;
     }
+
     return idx;
   }
 }
 
-extension DialogItemTemplateHelper on Pointer<DLGITEMTEMPLATE> {
+/// Extension method to help set the dialog templates from memory.
+extension DLGITEMTEMPLATEPointer on Pointer<DLGITEMTEMPLATE> {
   /// Sets the memory at the pointer location to the dialog item supplied.
   ///
-  /// Returns the number of WORDs written.
+  /// Returns the number of [WORD]s written.
   int setDialogItem({
     required int style,
     int dwExtendedStyle = 0,
@@ -120,13 +122,13 @@ extension DialogItemTemplateHelper on Pointer<DLGITEMTEMPLATE> {
     String text = '',
     List<int> creationDataBytes = const [],
   }) {
-    /// Size in 16-bit WORDs of the DLGITEMTEMPLATE struct
+    // Size in 16-bit WORDs of the DLGITEMTEMPLATE struct.
     const dlgItemTemplateSize = 9;
 
-    final ptr = cast<Uint16>();
+    final ptr = cast<WORD>();
     var idx = 0; // 16-bit index offset
 
-    /// Specifies the properties of the DLGITEMTEMPLATE structure.
+    // Specifies the properties of the DLGITEMTEMPLATE structure.
     ptr.cast<DLGITEMTEMPLATE>().ref
       ..style = style
       ..dwExtendedStyle = dwExtendedStyle
@@ -137,17 +139,17 @@ extension DialogItemTemplateHelper on Pointer<DLGITEMTEMPLATE> {
       ..id = id;
     idx += dlgItemTemplateSize;
 
-    /// Immediately following each DLGITEMTEMPLATE structure is a class array
-    /// that specifies the window class of the control. If the first element of
-    /// this array is any value other than 0xFFFF, the system treats the array
-    /// as a null-terminated Unicode string that specifies the name of a
-    /// registered window class. If the first element is 0xFFFF, the array has
-    /// one additional element that specifies the ordinal value of a predefined
-    /// system class.
-    ///
-    /// The ordinal can be one of the following atom values: 0x0080: Button
-    ///   0x0081: Edit 0x0082: Static 0x0083: List box 0x0084: Scroll bar
-    ///   0x0085: Combo box
+    // Immediately following each DLGITEMTEMPLATE structure is a class array
+    // that specifies the window class of the control. If the first element of
+    // this array is any value other than 0xFFFF, the system treats the array
+    // as a null-terminated Unicode string that specifies the name of a
+    // registered window class. If the first element is 0xFFFF, the array has
+    // one additional element that specifies the ordinal value of a predefined
+    // system class.
+    //
+    // The ordinal can be one of the following atom values: 0x0080: Button
+    //   0x0081: Edit 0x0082: Static 0x0083: List box 0x0084: Scroll bar
+    //   0x0085: Combo box
     if (windowClass.isNotEmpty) {
       idx += ((ptr + idx).cast<Utf16>().setString(windowClass) / 2).ceil();
     } else {
@@ -166,7 +168,7 @@ extension DialogItemTemplateHelper on Pointer<DLGITEMTEMPLATE> {
     if (creationDataBytes.isNotEmpty) {
       ptr[idx++] = creationDataBytes.length + 1;
       (ptr + idx)
-        ..cast<Uint8>()
+        ..cast<BYTE>()
         ..asTypedList(creationDataBytes.length).setAll(0, creationDataBytes);
       idx += (creationDataBytes.length / 2).ceil();
     } else {
@@ -177,6 +179,7 @@ extension DialogItemTemplateHelper on Pointer<DLGITEMTEMPLATE> {
     if ((ptr.address + idx) % 2 != 0) {
       ptr[idx++] = 0x0000;
     }
+
     return idx;
   }
 }
