@@ -29,7 +29,7 @@ int getRegistryKeyHandle(int hive, String key) {
 
   try {
     if (RegOpenKeyEx(hive, lpKeyPath, 0, KEY_READ, phKey) != ERROR_SUCCESS) {
-      throw Exception("Can't open registry key");
+      throw StateError("Can't open registry key");
     }
 
     return phKey.value;
@@ -52,18 +52,20 @@ RegistryKeyValuePair? enumerateKey(int hKey, int index) {
 
     switch (status) {
       case ERROR_SUCCESS:
-        if (lpType.value != REG_SZ) throw Exception('Non-string content.');
+        if (lpType.value != REG_SZ) throw StateError('Non-string content.');
         return RegistryKeyValuePair(
-            lpValueName.toDartString(), lpData.cast<Utf16>().toDartString());
+          lpValueName.toDartString(),
+          lpData.cast<Utf16>().toDartString(),
+        );
 
       case ERROR_MORE_DATA:
-        throw Exception('An item required more than $MAX_ITEMLENGTH bytes.');
+        throw StateError('An item required more than $MAX_ITEMLENGTH bytes.');
 
       case ERROR_NO_MORE_ITEMS:
         return null;
 
       default:
-        throw Exception('unknown error');
+        throw StateError('unknown error');
     }
   } finally {
     free(lpValueName);

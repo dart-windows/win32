@@ -38,9 +38,12 @@ void main() {
       NULL,
     );
     if (hDevice == INVALID_HANDLE_VALUE) {
-      final error = GetLastError();
-      print('CreateFile - Get Device Handle error: $error');
-      throw WindowsException(error);
+      // TODO(halildurmus): Uncomment when
+      // https://github.com/dart-windows/win32/issues/384 is resolved.
+      // final error = GetLastError();
+      // print('CreateFile - Get Device Handle error: $error');
+      // throw WindowsException(error);
+      throw StateError('CreateFile call failed.');
     }
 
     try {
@@ -70,8 +73,7 @@ Iterable<String> devicesByInterface(
             ) ==
             TRUE;
         index++) {
-      // final hr =
-      SetupDiGetDeviceInterfaceDetail(
+      final hr = SetupDiGetDeviceInterfaceDetail(
         hDevInfo,
         deviceInterfaceDataPtr,
         null,
@@ -80,18 +82,17 @@ Iterable<String> devicesByInterface(
         null,
       );
 
-      // TODO(halildurmus): Uncomment when
-      // https://github.com/dart-windows/win32/issues/384 is successfully
-      // resolved.
-
-      // if (hr != TRUE) {
-      //   final error = GetLastError();
-      //   if (error != ERROR_INSUFFICIENT_BUFFER) {
-      //     print(
-      //         'SetupDiGetDeviceInterfaceDetail - Get Data Size error: $error');
-      //     throw WindowsException(error);
-      //   }
-      // }
+      if (hr != TRUE) {
+        // TODO(halildurmus): Uncomment when
+        // https://github.com/dart-windows/win32/issues/384 is resolved.
+        // final error = GetLastError();
+        // if (error != ERROR_INSUFFICIENT_BUFFER) {
+        //   print(
+        //       'SetupDiGetDeviceInterfaceDetail - Get Data Size error: $error');
+        //   throw WindowsException(error);
+        // }
+        throw StateError('SetupDiGetDeviceInterfaceDetail call failed.');
+      }
 
       final deviceInterfaceDetailDataPtr = calloc<BYTE>(requiredSizePtr.value)
           .cast<SP_DEVICE_INTERFACE_DETAIL_DATA_>()

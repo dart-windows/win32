@@ -21,14 +21,10 @@ void main() {
 
   try {
     var result = GetFileVersionInfo(lpFilename, fviSize, pBlock);
-    if (result == 0) {
-      throw Exception('GetFileVersionInfo failed.');
-    }
+    if (result == 0) throw StateError('GetFileVersionInfo failed.');
 
     result = VerQueryValue(pBlock, subBlock, lpFixedFileVersionInfo, uLen);
-    if (result == 0) {
-      throw Exception('VerQueryValue failed.');
-    }
+    if (result == 0) throw StateError('VerQueryValue failed.');
 
     final fixedFileVersionInfo =
         lpFixedFileVersionInfo.value.cast<VS_FIXEDFILEINFO>();
@@ -55,7 +51,7 @@ int getVersionBlockSize(Pointer<Utf16> lpFilename) {
 
   try {
     fviSize = GetFileVersionInfoSize(lpFilename, dwDummy);
-    if (fviSize == 0) throw Exception('GetFileVersionInfoSize failed.');
+    if (fviSize == 0) throw StateError('GetFileVersionInfoSize failed.');
     return fviSize;
   } finally {
     free(dwDummy);

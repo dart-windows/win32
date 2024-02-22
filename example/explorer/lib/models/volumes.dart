@@ -52,8 +52,9 @@ class Volumes {
         }
       } else {
         final error = GetLastError();
-        throw Exception(
-            'GetVolumePathNamesForVolumeName failed with error code $error');
+        throw StateError(
+          'GetVolumePathNamesForVolumeName failed with error code $error',
+        );
       }
       return paths;
     } finally {
@@ -70,7 +71,7 @@ class Volumes {
     final hFindVolume = FindFirstVolume(volumeNamePtr, MAX_PATH);
     if (hFindVolume == INVALID_HANDLE_VALUE) {
       error = GetLastError();
-      throw Exception('FindFirstVolume failed with error code $error');
+      throw StateError('FindFirstVolume failed with error code $error');
     }
 
     while (true) {
@@ -86,7 +87,7 @@ class Volumes {
 
       if (charCount == 0) {
         error = GetLastError();
-        throw Exception('QueryDosDevice failed with error code $error');
+        throw StateError('QueryDosDevice failed with error code $error');
       }
 
       _volumes.add(

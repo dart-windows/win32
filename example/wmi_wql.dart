@@ -159,7 +159,7 @@ void main() {
         print('Process: ${vtProp.ref.bstrVal.toDartString()}');
       }
       wszName.free();
-      // Free BSTRs in the returned variants
+      // Free BSTRs in the returned variants.
       VariantClear(vtProp);
       free(vtProp);
       clsObj.release();

@@ -20,7 +20,7 @@ void main() {
 
   final kernel32 = PWSTR.fromString('kernel32.dll');
   final hModule = GetModuleHandle(kernel32);
-  if (hModule == NULL) throw Exception('Could not load kernel32.dll');
+  if (hModule == NULL) throw StateError('Could not load kernel32.dll');
   kernel32.free();
 
   final ansi = PSTR.fromString('GetNativeSystemInfo');

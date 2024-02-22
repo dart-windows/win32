@@ -30,7 +30,7 @@ class RawPrinter {
     var fSuccess = OpenPrinter(pPrinterName, phPrinter, null);
     if (fSuccess == 0) {
       final error = GetLastError();
-      throw Exception('OpenPrint error, status: $fSuccess, error: $error');
+      throw StateError('OpenPrint error, status: $fSuccess, error: $error');
     }
 
     // https://learn.microsoft.com/windows/win32/printdocs/doc-info-1
@@ -41,15 +41,16 @@ class RawPrinter {
           PWSTR.fromString(dataType, allocator: alloc) // RAW, TEXT or XPS_PASS
       ..pOutputFile = nullptr;
 
-    //https://learn.microsoft.com/windows/win32/printdocs/startdocprinter
+    // https://learn.microsoft.com/windows/win32/printdocs/startdocprinter
     fSuccess = StartDocPrinter(
         phPrinter.value,
         1, // Version of the structure to which pDocInfo points.
         pDocInfo);
     if (fSuccess == 0) {
       final error = GetLastError();
-      throw Exception(
-          'StartDocPrinter error, status: $fSuccess, error: $error');
+      throw StateError(
+        'StartDocPrinter error, status: $fSuccess, error: $error',
+      );
     }
 
     return phPrinter;
@@ -79,7 +80,7 @@ class RawPrinter {
 
     if (dataToPrint.length != cWritten.value) {
       final error = GetLastError();
-      throw Exception('WritePrinter error, status: $result, error: $error');
+      throw StateError('WritePrinter error, status: $result, error: $error');
     }
 
     return result != 0;
