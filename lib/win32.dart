@@ -308,6 +308,3 @@ export 'src/win32_v5/winscard.g.dart';
 export 'src/win32_v5/winspool.g.dart';
 export 'src/win32_v5/wlanapi.g.dart';
 export 'src/win32_v5/xinput1_4.g.dart';
-
-// Windows Runtime helpers
-export 'src/winrt_helpers.dart';
