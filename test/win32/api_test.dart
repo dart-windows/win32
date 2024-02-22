@@ -11044,6 +11044,13 @@ void main() {
               Pointer<Pointer<Utf16>> lplpszProgID)>('ProgIDFromCLSID');
       expect(ProgIDFromCLSID, isA<Function>());
     });
+    test('Can instantiate PropVariantClear', () {
+      final ole32 = DynamicLibrary.open('ole32.dll');
+      final PropVariantClear = ole32.lookupFunction<
+          HRESULT Function(Pointer<PROPVARIANT> pvar),
+          int Function(Pointer<PROPVARIANT> pvar)>('PropVariantClear');
+      expect(PropVariantClear, isA<Function>());
+    });
     test('Can instantiate StringFromCLSID', () {
       final ole32 = DynamicLibrary.open('ole32.dll');
       final StringFromCLSID = ole32.lookupFunction<
