@@ -43,10 +43,14 @@ extension type const PSTR(Pointer<Utf8> _) implements Pointer<Utf8> {
   /// as an FFI `Arena`, to facilitate memory management.
   factory PSTR.fromString(String string, {Allocator allocator = malloc}) {
     final length = string.length;
+
+    // Allocate memory for a PSTR of sufficient length
+    // (including the NUL terminator) to hold the string.
     final pstr = allocator<BYTE>(length + 1);
 
+    // Copy each character of the string (truncated to 8 bits) into the PSTR.
     for (var i = 0; i < length; i++) {
-      pstr[i] = string.codeUnitAt(i) & 0xFF; // Truncate to 8 bits.
+      pstr[i] = string.codeUnitAt(i) & 0xFF;
     }
 
     pstr[length] = 0; // NUL-terminate the string.
