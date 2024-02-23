@@ -29,6 +29,26 @@ void main() {
       testStringPtr.free();
     });
 
+    test('fromString', () {
+      for (var i = 0; i < testRuns; i++) {
+        final bstr = BSTR.fromString(testString);
+
+        // A BSTR should have a DWORD-length prefix containing its length.
+        final pIndex =
+            Pointer<DWORD>.fromAddress(bstr.address - sizeOf<DWORD>());
+        expect(pIndex.value, equals(testString.length * 2));
+
+        expect(bstr.toDartString(), equals(testString));
+
+        // A BSTR should end with a word-length null terminator.
+        final pNull =
+            Pointer<WORD>.fromAddress(bstr.address + testString.length * 2);
+        expect(pNull.value, isZero, reason: 'test run $i');
+
+        bstr.free();
+      }
+    });
+
     test('toNativeBSTR', () {
       for (var i = 0; i < testRuns; i++) {
         final bstr = BSTR.fromString(testString);

@@ -6,7 +6,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'pwstr.dart';
+import 'types.dart';
 import 'win32_v5/oleaut32.g.dart';
 
 /// A composite data type that consists of a length prefix, a data string, and
@@ -24,10 +24,20 @@ extension type const BSTR(Pointer<Utf16> _) implements Pointer<Utf16> {
   /// returned BSTR when it's no longer needed. This can be done by calling the
   /// [free] method.
   factory BSTR.fromString(String string) {
-    final psz = PWSTR.fromString(string);
-    final pbstr = SysAllocString(psz);
-    psz.free();
-    return BSTR(pbstr);
+    // Allocate memory for a BSTR of sufficient length to hold the string,
+    // without initializing it.
+    final bstr = SysAllocStringByteLen(null, sizeOf<WCHAR>() * string.length)
+        .cast<WCHAR>();
+
+    // Copy each character of the string into the BSTR.
+    for (var i = 0; i < string.length; i++) {
+      bstr[i] = string.codeUnitAt(i);
+    }
+
+    // No need to add a NUL terminator, as SysAllocStringByteLen already does
+    // that for us.
+
+    return BSTR(bstr.cast());
   }
 
   /// The length of the BSTR in bytes.
