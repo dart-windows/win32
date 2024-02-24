@@ -12,19 +12,29 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-class RawPrinter {
-  final String printerName;
-  final Arena alloc;
+enum DataType {
+  raw('RAW'),
+  text('TEXT'),
+  xpsPass('XPS_PASS');
 
-  RawPrinter(this.printerName, this.alloc);
+  const DataType(this.value);
+
+  final String value;
+}
+
+class RawPrinter {
+  RawPrinter(this.printerName, this.allocator);
+
+  final String printerName;
+  final Arena allocator;
 
   Pointer<HANDLE> _startRawPrintJob({
     required String printerName,
     required String documentTitle,
-    String dataType = 'RAW',
+    DataType dataType = DataType.raw,
   }) {
-    final pPrinterName = PWSTR.fromString(printerName, allocator: alloc);
-    final phPrinter = alloc<HANDLE>();
+    final pPrinterName = PWSTR.fromString(printerName, allocator: allocator);
+    final phPrinter = allocator<HANDLE>();
 
     // https://learn.microsoft.com/windows/win32/printdocs/openprinter
     var fSuccess = OpenPrinter(pPrinterName, phPrinter, null);
@@ -34,11 +44,10 @@ class RawPrinter {
     }
 
     // https://learn.microsoft.com/windows/win32/printdocs/doc-info-1
-    final pDocInfo = alloc<DOC_INFO_1>();
+    final pDocInfo = allocator<DOC_INFO_1>();
     pDocInfo.ref
-      ..pDocName = PWSTR.fromString(printerName, allocator: alloc)
-      ..pDatatype =
-          PWSTR.fromString(dataType, allocator: alloc) // RAW, TEXT or XPS_PASS
+      ..pDocName = PWSTR.fromString(printerName, allocator: allocator)
+      ..pDatatype = PWSTR.fromString(dataType.value, allocator: allocator)
       ..pOutputFile = nullptr;
 
     // https://learn.microsoft.com/windows/win32/printdocs/startdocprinter
@@ -56,23 +65,18 @@ class RawPrinter {
     return phPrinter;
   }
 
-  bool _startRawPrintPage(Pointer<HANDLE> phPrinter) {
-    //https://learn.microsoft.com/windows/win32/printdocs/startpageprinter
-    return StartPagePrinter(phPrinter.value) != 0;
-  }
+  bool _startRawPrintPage(Pointer<HANDLE> phPrinter) =>
+      StartPagePrinter(phPrinter.value) != 0;
 
-  bool _endRawPrintPage(Pointer<HANDLE> phPrinter) {
-    return EndPagePrinter(phPrinter.value) != 0;
-  }
+  bool _endRawPrintPage(Pointer<HANDLE> phPrinter) =>
+      EndPagePrinter(phPrinter.value) != 0;
 
-  bool _endRawPrintJob(Pointer<HANDLE> phPrinter) {
-    return EndDocPrinter(phPrinter.value) > 0 &&
-        ClosePrinter(phPrinter.value) != 0;
-  }
+  bool _endRawPrintJob(Pointer<HANDLE> phPrinter) =>
+      EndDocPrinter(phPrinter.value) > 0 && ClosePrinter(phPrinter.value) != 0;
 
   bool _printRawData(Pointer<HANDLE> phPrinter, String dataToPrint) {
-    final cWritten = alloc<DWORD>();
-    final data = PSTR.fromString(dataToPrint, allocator: alloc);
+    final cWritten = allocator<DWORD>();
+    final data = PSTR.fromString(dataToPrint, allocator: allocator);
 
     // https://learn.microsoft.com/windows/win32/printdocs/writeprinter
     final result =
@@ -89,14 +93,12 @@ class RawPrinter {
   bool printLines(List<String> data) {
     var res = false;
 
-    if (data.isEmpty) {
-      return res;
-    }
+    if (data.isEmpty) return res;
 
     final printerHandle = _startRawPrintJob(
       printerName: printerName,
       documentTitle: 'My document',
-      dataType: 'RAW',
+      dataType: DataType.raw,
     );
 
     res = _startRawPrintPage(printerHandle);
@@ -106,6 +108,7 @@ class RawPrinter {
         res = _printRawData(printerHandle, item);
       }
     }
+
     _endRawPrintPage(printerHandle);
     _endRawPrintJob(printerHandle);
 
@@ -114,21 +117,21 @@ class RawPrinter {
 }
 
 void main() {
-  // Example: ESC/POS sequence to open the cash drawer
+  // Example: ESC/POS sequence to open the cash drawer.
   const openCashDrawer = '\x1b\x70\x00';
 
-  using((Arena alloc) {
-    // NOTE: You can get the printer name from the printer_list.dart example
-    final printer = RawPrinter('EPSON TM-T20II Receipt', alloc);
+  using((arena) {
+    // NOTE: You can get the printer name from the printer_list.dart example.
+    final printer = RawPrinter('EPSON TM-T20II Receipt', arena);
 
     // At the end we send a printer command to open the cash drawer
-    // for example for thermal printers using ESC/POS
+    // for example for thermal printers using ESC/POS.
     final data = <String>[
       for (var i = 0; i < 10; i++) 'Hello world line $i',
       openCashDrawer
     ];
 
-    // Send to print all the lines at once
+    // Send to print all the lines at once.
     if (printer.printLines(data)) {
       print('Success!');
     }

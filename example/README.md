@@ -38,7 +38,7 @@ following location:
 | `midi.dart`         | Demonstrates MIDI playback using MCI commands             |
 | `monitor.dart`      | Uses DDC and monitor-config API to get monitor caps       |
 | `play_sound.dart`   | Plays a WAV file through the Windows `PlaySound` API      |
-| `printer_list.dart` | Enumerate available printers on the Windows system        |
+| `printer_list.dart` | Enumerate available printers on the system                |
 | `printer_raw.dart`  | Sends RAW data directly to a Windows Printer              |
 | `serial.dart`       | Demonstrates serial port management                       |
 | `setupapi.dart`     | Show using setup APIs to retrieve device interfaces       |
