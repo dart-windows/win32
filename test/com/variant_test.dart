@@ -13,91 +13,30 @@ import 'package:win32/win32.dart';
 import '../helpers.dart';
 
 void main() {
-  group('VARIANT', () {
-    setUp(initializeCom);
+  setUpAll(initializeCom);
 
+  group('VARIANT', () {
     test('creation', () {
       final variant = calloc<VARIANT>();
-      VariantInit(variant);
       expect(variant.ref.vt, equals(VARENUM.VT_EMPTY));
       VariantClear(variant);
       free(variant);
     });
 
-    test('BSTR', () {
-      const testString = 'Hello, world';
+    test('IUnknown BYREF', () {
+      final unknown = IUnknown(createComObject(SpVoice, IID_IUnknown));
       final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref
-        ..vt = VARENUM.VT_BSTR
-        ..bstrVal = BSTR.fromString(testString);
-      expect(variant.ref.bstrVal.toDartString(), equals(testString));
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('pointer to an object that implements the IUnknown interface', () {
-      final spVoice = ISpVoice(createComObject(SpVoice, IID_ISpVoice))
-        ..addRef();
-      final spellChecker = ISpellCheckerFactory(
-          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory))
-        ..addRef();
-
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref
-        ..vt = VARENUM.VT_UNKNOWN
-        ..punkVal = spVoice.ptr;
-      final unk = IUnknown(variant.ref.punkVal);
-      expect(unk.ptr.address, isNonZero);
-      expect(refCount(unk), equals(2));
-      unk.release();
-
-      variant.ref.punkVal = spellChecker.ptr;
-      final unk2 = IUnknown(variant.ref.punkVal);
-      expect(unk2.ptr.address, isNonZero);
-      expect(refCount(unk2), equals(2));
-      unk2.release();
-
-      VariantClear(variant);
-      free(variant);
-
-      spellChecker.release();
-      spVoice.release();
-    });
-
-    test('reference to an IUnknown interface pointer', () {
-      final spVoice = ISpVoice(createComObject(SpVoice, IID_ISpVoice))
-        ..addRef();
-      final spellChecker = ISpellCheckerFactory(
-          createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory))
-        ..addRef();
-
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      final ppunkval = calloc<VTablePointer>()..value = spVoice.ptr;
+      final ppunkval = calloc<VTablePointer>()..value = unknown.ptr;
       variant.ref
         ..vt = VARENUM.VT_UNKNOWN | VARENUM.VT_BYREF
         ..ppunkVal = ppunkval;
       final unk = IUnknown(variant.ref.ppunkVal.value);
       expect(unk.ptr.address, isNonZero);
-      expect(refCount(unk), equals(2));
-      unk.release();
+      expect(refCount(unk), equals(1));
       free(ppunkval);
-
-      final ppunkval2 = calloc<VTablePointer>()..value = spellChecker.ptr;
-      variant.ref.ppunkVal = ppunkval2;
-      final unk2 = IUnknown(variant.ref.ppunkVal.value);
-      expect(unk2.ptr.address, isNonZero);
-      expect(refCount(unk2), equals(2));
-      unk2.release();
-      free(ppunkval2);
-
       VariantClear(variant);
       free(variant);
-
-      spellChecker.release();
-      spVoice.release();
+      unknown.release();
     });
 
     test('time representation from DOS date/time', () {
@@ -123,144 +62,151 @@ void main() {
       free(dosDate);
       free(dosTime);
     });
-
-    test('LONG', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_I4;
-      variant.ref.lVal = -2147483648;
-      expect(variant.ref.lVal, equals(-2147483648));
-
-      variant.ref.lVal = 2147483647;
-      expect(variant.ref.lVal, equals(2147483647));
-
-      variant.ref.lVal = 0x80000000;
-      expect(variant.ref.lVal, equals(-2147483648));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('INT', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_I4;
-      variant.ref.intVal = -2147483648;
-      expect(variant.ref.intVal, equals(-2147483648));
-
-      variant.ref.intVal = 2147483647;
-      expect(variant.ref.intVal, equals(2147483647));
-
-      variant.ref.intVal = 0x80000000;
-      expect(variant.ref.intVal, equals(-2147483648));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('ULONGLONG', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_UI8;
-      variant.ref.ullVal = BigInt.zero;
-      expect(variant.ref.ullVal, equals(BigInt.from(0)));
-
-      variant.ref.ullVal = BigInt.parse('18446744073709551615');
-      final uint64Max = BigInt.parse('FFFFFFFFFFFFFFFF', radix: 16);
-      expect(variant.ref.ullVal, equals(uint64Max));
-
-      variant.ref.ullVal = BigInt.parse('8000000000000000', radix: 16);
-      final testValue2 = BigInt.parse('9223372036854775808');
-      expect(variant.ref.ullVal, equals(testValue2));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('ULONG', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_UI4;
-      variant.ref.ulVal = 0;
-      expect(variant.ref.ulVal, equals(0));
-
-      variant.ref.ulVal = 4294967295;
-      expect(variant.ref.ulVal, equals(4294967295));
-
-      variant.ref.ulVal = 0x80000000;
-      expect(variant.ref.ulVal, equals(2147483648));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('UINT', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_UI4;
-      variant.ref.uintVal = 0;
-      expect(variant.ref.uintVal, equals(0));
-
-      variant.ref.uintVal = 4294967295;
-      expect(variant.ref.uintVal, equals(4294967295));
-
-      variant.ref.uintVal = 0x80000000;
-      expect(variant.ref.uintVal, equals(2147483648));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('SHORT', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_I2;
-      variant.ref.iVal = -32768;
-      expect(variant.ref.iVal, equals(-32768));
-
-      variant.ref.iVal = 32767;
-      expect(variant.ref.iVal, equals(32767));
-
-      variant.ref.iVal = 0x8000;
-      expect(variant.ref.iVal, equals(-32768));
-
-      VariantClear(variant);
-      free(variant);
-    });
-    test('BYTE', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_UI1;
-      variant.ref.bVal = 0;
-      expect(variant.ref.bVal, equals(0));
-
-      variant.ref.bVal = 255;
-      expect(variant.ref.bVal, equals(255));
-
-      variant.ref.bVal = 0x80;
-      expect(variant.ref.bVal, equals(128));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    test('USHORT', () {
-      final variant = calloc<VARIANT>();
-      VariantInit(variant);
-      variant.ref.vt = VARENUM.VT_UI2;
-      variant.ref.uiVal = 0;
-      expect(variant.ref.uiVal, equals(0));
-
-      variant.ref.uiVal = 65535;
-      expect(variant.ref.uiVal, equals(65535));
-
-      variant.ref.uiVal = 0x8000;
-      expect(variant.ref.uiVal, equals(32768));
-
-      VariantClear(variant);
-      free(variant);
-    });
-
-    tearDownAll(CoUninitialize);
   });
+
+  group('Variant', () {
+    test('empty', () {
+      final variant = Variant.empty();
+      expect(variant.ref.vt, equals(VARENUM.VT_EMPTY));
+      expect(variant.isEmpty, isTrue);
+      variant.free();
+    });
+
+    test('bool', () {
+      final variant = Variant.bool_(true);
+      expect(variant.ref.vt, equals(VARENUM.VT_BOOL));
+      expect(variant.value, isTrue);
+      variant.value = false;
+      expect(variant.value, isFalse);
+      variant.free();
+    });
+
+    test('bstr', () {
+      const testString = 'Hello, world!';
+      final variant = Variant.bstr(testString);
+      expect(variant.ref.vt, equals(VARENUM.VT_BSTR));
+      expect(variant.value, equals(testString));
+      variant.free();
+    });
+
+    test('double', () {
+      const testValue = 3.14159;
+      final variant = Variant.double_(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_R8));
+      expect(variant.value, equals(testValue));
+      variant.free();
+    });
+
+    test('float', () {
+      const testValue = 3.14159;
+      final variant = Variant.float(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_R4));
+      expect(variant.value, equals(3.141590118408203));
+      variant.free();
+    });
+
+    test('int8', () {
+      const testValue = -128; // -2^7
+      final variant = Variant.int8(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_I1));
+      expect(variant.value, equals(testValue));
+      variant.value = 127; // 2^7 - 1
+      expect(variant.value, equals(127));
+      variant.free();
+    });
+
+    test('int16', () {
+      const testValue = -32768; // -2^15
+      final variant = Variant.int16(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_I2));
+      expect(variant.value, equals(testValue));
+      variant.value = 32767; // 2^15 - 1
+      expect(variant.value, equals(32767));
+      variant.free();
+    });
+
+    test('int32', () {
+      const testValue = -2147483648; // -2^31
+      final variant = Variant.int32(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_I4));
+      expect(variant.value, equals(testValue));
+      variant.value = 2147483647; // 2^31 - 1
+      expect(variant.value, equals(2147483647));
+      variant.free();
+    });
+
+    test('int64', () {
+      const testValue = -9223372036854775808; // -2^63
+      final variant = Variant.int64(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_I8));
+      expect(variant.value, equals(testValue));
+      variant.value = 9223372036854775807; // 2^63 - 1
+      expect(variant.value, equals(9223372036854775807));
+      variant.free();
+    });
+
+    test('idispatch', () {
+      final dispatch =
+          IDispatch(createComObject('Shell.Application', IID_IDispatch))
+            ..addRef();
+      final variant = Variant.idispatch(dispatch);
+      expect(variant.ref.vt, equals(VARENUM.VT_DISPATCH));
+      expect(refCount(variant.value), equals(2));
+      variant.free();
+      expect(refCount(dispatch), equals(1));
+    });
+
+    test('iunknown', () {
+      final unknown = IUnknown(createComObject(SpVoice, IID_IUnknown))
+        ..addRef();
+      final variant = Variant.iunknown(unknown);
+      expect(variant.ref.vt, equals(VARENUM.VT_UNKNOWN));
+      expect(refCount(variant.value), equals(2));
+      variant.free();
+      expect(refCount(unknown), equals(1));
+    });
+
+    test('uint8', () {
+      const testValue = 0;
+      final variant = Variant.uint8(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_UI1));
+      expect(variant.value, equals(testValue));
+      variant.value = 255; // 2^8 - 1
+      expect(variant.value, equals(255));
+      variant.free();
+    });
+
+    test('uint16', () {
+      const testValue = 0;
+      final variant = Variant.uint16(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_UI2));
+      expect(variant.value, equals(testValue));
+      variant.value = 65535; // 2^16 - 1
+      expect(variant.value, equals(65535));
+      variant.free();
+    });
+
+    test('uint32', () {
+      const testValue = 0;
+      final variant = Variant.uint32(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_UI4));
+      expect(variant.value, equals(testValue));
+      variant.value = 4294967295; // 2^32 - 1
+      expect(variant.value, equals(4294967295));
+      variant.free();
+    });
+
+    test('uint64', () {
+      final testValue = BigInt.zero;
+      final variant = Variant.uint64(testValue);
+      expect(variant.ref.vt, equals(VARENUM.VT_UI8));
+      expect(variant.value, equals(testValue));
+      final maxUint64 = BigInt.parse('18446744073709551615');
+      variant.value = maxUint64;
+      expect(variant.value, equals(maxUint64));
+      variant.free();
+    });
+  });
+
+  tearDownAll(CoUninitialize);
 }

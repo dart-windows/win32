@@ -11,7 +11,6 @@ import 'package:win32/win32.dart';
 /// Get the root element of the given [uiAutomation].
 IUIAutomationElement getRootElement(IUIAutomation uiAutomation) {
   final pElement = calloc<VTablePointer>();
-
   try {
     final hr = uiAutomation.getRootElement(pElement);
     if (FAILED(hr)) throw WindowsException(hr);
@@ -27,17 +26,15 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
   final uiAutomation =
       IUIAutomation(createComObject(CUIAutomation, IID_IUIAutomation));
   final root = getRootElement(uiAutomation);
-
-  final valueParam = calloc<VARIANT>();
-  VariantInit(valueParam);
-  valueParam.ref
-    ..vt = VARENUM.VT_I4
-    ..intVal = processId;
+  final valueParam = Variant.int32(processId);
 
   try {
     final pCondition = calloc<VTablePointer>();
     var hr = uiAutomation.createPropertyCondition(
-        UIA_ProcessIdPropertyId, valueParam.ref, pCondition);
+      UIA_ProcessIdPropertyId,
+      valueParam.ref,
+      pCondition,
+    );
     if (FAILED(hr)) {
       free(pCondition);
       throw WindowsException(hr);
@@ -48,7 +45,10 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
 
     final pElement = calloc<VTablePointer>();
     hr = root.findFirst(
-        TreeScope.TreeScope_Children, propertyCondition.ptr, pElement);
+      TreeScope.TreeScope_Children,
+      propertyCondition.ptr,
+      pElement,
+    );
     if (FAILED(hr)) {
       free(pElement);
       throw WindowsException(hr);
@@ -56,15 +56,14 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
 
     if (pElement.value == nullptr) {
       free(pElement);
-      throw Exception('Could not find the window');
+      throw StateError('Could not find the window.');
     }
 
     final elm = IUIAutomationElement(pElement.value);
     free(pElement);
     return elm;
   } finally {
-    VariantClear(valueParam);
-    free(valueParam);
+    valueParam.free();
     uiAutomation.release();
   }
 }
@@ -73,26 +72,22 @@ IUIAutomationElement getTopLevelWindowByProcessId(int processId) {
 /// `UIA_IsTextPatternAvailablePropertyId`) and checks if the given [element]
 /// supports that particular control pattern.
 bool isControlPatternAvailable(int propertyId, IUIAutomationElement element) {
-  final retValParam = calloc<VARIANT>();
-  VariantInit(retValParam);
-  retValParam.ref.vt = VARENUM.VT_BOOL;
-
+  final retVal = Variant.empty();
   try {
-    final hr = element.getCurrentPropertyValue(propertyId, retValParam);
+    final hr = element.getCurrentPropertyValue(propertyId, retVal);
     if (FAILED(hr)) throw WindowsException(hr);
-    return retValParam.ref.boolVal;
+    return retVal.ref.boolVal;
   } finally {
-    VariantClear(retValParam);
-    free(retValParam);
+    retVal.free();
   }
 }
 
 /// Get the window pattern of the given [element].
 IUIAutomationWindowPattern getWindowPattern(IUIAutomationElement element) {
-  // Check if the window pattern is available for the element
+  // Check if the window pattern is available for the element.
   if (!isControlPatternAvailable(
       UIA_IsWindowPatternAvailablePropertyId, element)) {
-    throw Exception('Window pattern is not available for this element');
+    throw StateError('Window pattern is not available for this element');
   }
 
   final pPattern = calloc<VTablePointer>();
@@ -104,7 +99,7 @@ IUIAutomationWindowPattern getWindowPattern(IUIAutomationElement element) {
 
   if (pPattern.value == nullptr) {
     free(pPattern);
-    throw Exception('Could not get the window pattern');
+    throw StateError('Could not get the window pattern');
   }
 
   final pattern = IUIAutomationWindowPattern(pPattern.value);
@@ -129,8 +124,8 @@ void closeWindow(IUIAutomationWindowPattern window) {
   if (FAILED(hr)) throw WindowsException(hr);
 }
 
-void main() async {
-  final process = await Process.start('notepad.exe', []); // Start notepad.exe
+void main() {
+  final process = Process.runSync('notepad.exe', []); // Start notepad.exe
   Sleep(500); // Wait for the Notepad to start
 
   // Initialize COM

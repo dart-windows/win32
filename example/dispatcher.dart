@@ -16,24 +16,19 @@ void main() {
   final dispatcher = Dispatcher.fromProgID('Shell.Application');
 
   // Example of calling an automation method with no parameters.
-  print('Minimizing all windows via Shell.Application Automation object');
+  print('Minimizing all windows via `Shell.Application` Automation object');
   dispatcher.invoke('MinimizeAll');
 
   // Example of calling an automation method with a parameter.
   print(r'Launching the Windows Explorer, starting at the C:\ directory');
-  final exploreParam = calloc<VARIANT>();
-  VariantInit(exploreParam);
-  exploreParam.ref
-    ..vt = VARENUM.VT_BSTR
-    ..bstrVal = BSTR.fromString(r'C:\');
+  final exploreParam = Variant.bstr(r'C:\');
   final exploreParams = calloc<DISPPARAMS>();
   exploreParams.ref
     ..cArgs = 1
     ..rgvarg = exploreParam;
   dispatcher.invoke('Explore', exploreParams);
-  VariantClear(exploreParam);
   free(exploreParams);
-  free(exploreParam);
+  exploreParam.free();
 
   print('Cleaning up.');
   dispatcher.dispose();

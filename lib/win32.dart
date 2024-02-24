@@ -246,6 +246,7 @@ export 'src/dispatcher.dart';
 export 'src/guid.dart';
 export 'src/inline.dart';
 export 'src/macros.dart';
+export 'src/propvariant.dart';
 export 'src/pstr.dart';
 export 'src/pwstr.dart';
 export 'src/structs.g.dart'
@@ -260,6 +261,7 @@ export 'src/structs.g.dart'
         SERVENT;
 export 'src/types.dart';
 export 'src/utils.dart';
+export 'src/variant.dart';
 
 // Traditional C-style Windows APIs
 export 'src/win32_v5/advapi32.g.dart';

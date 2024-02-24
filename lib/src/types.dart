@@ -6,7 +6,6 @@
 // types in Win32 development.
 //
 // These can be used for FFI pointer allocation, for example:
-//
 // ```dart
 // final returnValue = calloc<DWORD>();
 // ```
