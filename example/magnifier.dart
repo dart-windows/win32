@@ -219,7 +219,7 @@ bool setupMagnifier(int hInst, Pointer<NativeFunction<WNDPROC>> lpfnWndProc) {
 }
 
 /// Sets the source rectangle and updates the window. Called by a timer.
-void updateMagWindow(int hwnd, int uMsg, Pointer<Uint32> idEvent, int dwTime) {
+void updateMagWindow(int hwnd, int uMsg, int idEvent, int dwTime) {
   final mousePoint = calloc<POINT>();
   final pSourceRect = calloc<RECT>();
 

@@ -4,20 +4,25 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/string.dart';
 import '../extensions/typedef.dart';
 import 'function.dart';
 
 /// Represents a Dart projection for a Win32 delegate defined by a [TypeDef].
 class CallbackProjection {
-  /// Creates an instance of this class for the given Win32 delegate [typeDef].
+  /// Creates an instance of this class for the given Win32 delegate [typeDef]
+  /// and optional [comment].
   ///
   /// Throws an [AssertionError] if the provided [typeDef] is not a delegate or
   /// if it does not have the required `Invoke` method.
-  CallbackProjection(TypeDef typeDef)
+  CallbackProjection(TypeDef typeDef, {this.comment = ''})
       : assert(typeDef.isDelegate && typeDef.findMethod('Invoke') != null,
             '${typeDef.name} is not a callback.'),
         functionProjection = FunctionProjection(typeDef.findMethod('Invoke')!),
         name = typeDef.safeIdentifier;
+
+  /// The comment associated with the callback.
+  final String comment;
 
   /// The function projection of the callback.
   final FunctionProjection functionProjection;
@@ -38,5 +43,9 @@ class CallbackProjection {
   }
 
   @override
-  String toString() => 'typedef $name = $type;';
+  String toString() => [
+        if (comment.isNotEmpty) ...[comment.toDocComment(), '///'],
+        '/// {@category callback}',
+        'typedef $name = $type;'
+      ].join('\n');
 }

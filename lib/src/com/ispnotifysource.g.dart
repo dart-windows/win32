@@ -8,7 +8,7 @@
 
 import 'dart:ffi';
 
-import '../callbacks.dart';
+import '../callbacks.g.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';

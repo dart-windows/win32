@@ -10,7 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'callbacks.dart';
+import 'callbacks.g.dart';
 import 'constants.dart';
 import 'constants_nodoc.dart';
 import 'macros.dart';

@@ -105,7 +105,7 @@ class ComInterfaceProjection {
           'package:ffi/ffi.dart', // '../pstr.dart',
         _ when typeDef.name == 'Windows.Win32.Foundation.PWSTR' =>
           'package:ffi/ffi.dart', //'../pwstr.dart',
-        _ when typeDef.isDelegate => '../callbacks.dart',
+        _ when typeDef.isDelegate => '../callbacks.g.dart',
         _ when typeDef.isInterface => '../types.dart',
         _ when typeDef.isStruct => '../structs.g.dart',
         _ => null

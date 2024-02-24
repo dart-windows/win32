@@ -67,6 +67,9 @@ dartdoc:
     'struct':
       name: 'Structures'
       markdown: doc/struct.md
+    'callback':
+      name: 'Callbacks'
+      markdown: doc/callback.md
     'enum':
       name: 'Enumerations'
       markdown: doc/enum.md
@@ -103,6 +106,7 @@ dartdoc:
       'com',
       'winrt',
       'struct',
+      'callback',
       'enum',
     ]
   showUndocumentedCategories: true

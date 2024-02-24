@@ -241,7 +241,7 @@ export 'src/extensions/unpack_utf16.dart';
 
 // Core Win32 APIs, constants and macros
 export 'src/bstr.dart';
-export 'src/callbacks.dart';
+export 'src/callbacks.g.dart';
 export 'src/dispatcher.dart';
 export 'src/guid.dart';
 export 'src/inline.dart';

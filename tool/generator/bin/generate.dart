@@ -8,6 +8,49 @@ import 'package:dart_style/dart_style.dart';
 import 'package:generator/generator.dart';
 import 'package:winmd/winmd.dart';
 
+void generateCallbacks(List<Scope> scopes, Map<String, String> callbacks) {
+  final file = File('../../lib/src/callbacks.g.dart');
+
+  // These are the manually projected callbacks that are not in the metadata.
+  final manuallyProjectedCallbacks = '''
+// --- MANUALLY PROJECTED CALLBACKS START ---
+
+/// Application-defined callback function for handling incoming MIDI messages.
+///
+/// MidiInProc is a placeholder for the application-supplied function name. The
+/// address of this function can be specified in the callback-address parameter
+/// of the midiInOpen function.
+typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
+    DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
+
+/// Application-defined callback function for handling outgoing MIDI messages.
+///
+/// MidiOutProc is a placeholder for the application-supplied function name. The
+/// address of the function can be specified in the callback-address parameter
+/// of the midiOutOpen function.
+typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
+    DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
+
+// --- MANUALLY PROJECTED CALLBACKS END ---
+''';
+
+  final typeDefs = scopes.expand((scope) => scope.delegates
+      .where((typeDef) => callbacks.keys.contains(typeDef.name))
+      .where((typeDef) => typeDef.supportedArchitectures.x64)
+      .toFixedList()
+    ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
+
+  final callbackProjections = typeDefs.map((typeDef) =>
+      CallbackProjection(typeDef, comment: callbacks[typeDef.name]!));
+
+  final callbacksFile = [
+    callbackFileHeader,
+    manuallyProjectedCallbacks,
+    ...callbackProjections
+  ].join('\n');
+  file.writeAsStringSync(DartFormatter().format(callbacksFile));
+}
+
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
   final file = File('../../lib/src/structs.g.dart');
 
@@ -212,15 +255,15 @@ void main() async {
   final functionsToGenerate = loadFunctionsFromJson();
   saveFunctionsToJson(functionsToGenerate);
 
+  print('[${stopwatch.elapsed}] Generating callbacks...');
+  final callbacksToGenerate = loadMap('win32_callbacks.json');
+  saveMap(callbacksToGenerate, 'win32_callbacks.json');
+  generateCallbacks([wdkScope, win32Scope], callbacksToGenerate);
+
   print('[${stopwatch.elapsed}] Generating structs...');
   final structsToGenerate = loadMap('win32_structs.json');
   saveMap(structsToGenerate, 'win32_structs.json');
   generateStructs([wdkScope, win32Scope], structsToGenerate);
-
-  print('[${stopwatch.elapsed}] Validating callbacks...');
-  final callbacks = loadMap('win32_callbacks.json');
-  saveMap(callbacks, 'win32_callbacks.json');
-  // Win32 callbacks are manually created
 
   print('[${stopwatch.elapsed}] Generating FFI function bindings...');
   generateFunctions([wdkScope, win32Scope], functionsToGenerate);

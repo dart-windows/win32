@@ -25,14 +25,20 @@ void main() {
           'Pointer<DEVICE_OBJECT> physicalDeviceObject)',
         ),
       );
-      expect(toString(), equals('typedef $name = $type;'));
+      expect(
+        toString(),
+        equals('/// {@category callback}\ntypedef $name = $type;'),
+      );
     });
 
     testCallback('Windows.Win32.Foundation.PROC', (projection) {
       final CallbackProjection(:name, :type, :toString) = projection;
       expect(name, equals('PROC'));
       expect(type, equals('Pointer'));
-      expect(toString(), equals('typedef $name = $type;'));
+      expect(
+        toString(),
+        equals('/// {@category callback}\ntypedef $name = $type;'),
+      );
     });
 
     testCallback(
@@ -44,7 +50,10 @@ void main() {
         type,
         equals('Pointer<SecurityFunctionTable> Function()'),
       );
-      expect(toString(), equals('typedef $name = $type;'));
+      expect(
+        toString(),
+        equals('/// {@category callback}\ntypedef $name = $type;'),
+      );
     });
 
     testCallback('Windows.Win32.Graphics.Gdi.FONTENUMPROCW', (projection) {
@@ -57,7 +66,10 @@ void main() {
           'Pointer<TEXTMETRIC> param1, Uint32 param2, LPARAM param3)',
         ),
       );
-      expect(toString(), equals('typedef $name = $type;'));
+      expect(
+        toString(),
+        equals('/// {@category callback}\ntypedef $name = $type;'),
+      );
     });
 
     testCallback('Windows.Win32.UI.WindowsAndMessaging.WNDPROC', (projection) {
@@ -70,7 +82,10 @@ void main() {
           'HWND param0, Uint32 param1, WPARAM param2, LPARAM param3)',
         ),
       );
-      expect(toString(), equals('typedef $name = $type;'));
+      expect(
+        toString(),
+        equals('/// {@category callback}\ntypedef $name = $type;'),
+      );
     });
   });
 

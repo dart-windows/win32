@@ -8,6 +8,23 @@ const copyrightHeader = '''
 // license that can be found in the LICENSE file.
 ''';
 
+const callbackFileHeader = '''
+$copyrightHeader
+
+// Dart representations of common callbacks used in the Win32 API.
+
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
+
+import 'structs.g.dart';
+import 'types.dart';
+''';
+
 const comInterfaceHeader = '''
 $copyrightHeader
 
@@ -29,7 +46,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import '../callbacks.dart';
+import '../callbacks.g.dart';
 import '../guid.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -49,7 +66,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
-import 'callbacks.dart';
+import 'callbacks.g.dart';
 import 'constants.dart';
 import 'guid.dart';
 import 'types.dart';
