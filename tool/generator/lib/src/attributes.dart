@@ -13,6 +13,7 @@ const optionalAttribute = 'System.Runtime.InteropServices.OptionalAttribute';
 // -----------------------------------------------------------------------------
 const _metadataNamespace = 'Windows.Win32.Foundation.Metadata';
 const ansiAttribute = '$_metadataNamespace.AnsiAttribute';
+const associatedEnumAttribute = '$_metadataNamespace.AssociatedEnumAttribute';
 const documentationAttribute = '$_metadataNamespace.DocumentationAttribute';
 const flexibleArrayAttribute = '$_metadataNamespace.FlexibleArrayAttribute';
 const metadataTypedefAttribute = '$_metadataNamespace.MetadataTypedefAttribute';

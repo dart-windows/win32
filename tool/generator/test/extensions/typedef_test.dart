@@ -14,6 +14,19 @@ void main() {
   setUpAll(loadMetadata);
 
   group('TypeDef', () {
+    test('isBitwiseEnum', () {
+      final typeDef1 = getTypeDef(
+          'Windows.Win32.UI.Input.XboxController.XINPUT_CAPABILITIES_FLAGS');
+      expect(typeDef1.isBitwiseEnum, isTrue);
+
+      final typeDef2 =
+          getTypeDef('Windows.Win32.System.Memory.GLOBAL_ALLOC_FLAGS');
+      expect(typeDef2.isBitwiseEnum, isTrue);
+
+      final typeDef3 = getTypeDef('Windows.Win32.Foundation.WIN32_ERROR');
+      expect(typeDef3.isBitwiseEnum, isFalse);
+    });
+
     test('isWrapperStruct', () {
       final typeDef1 = getTypeDef('Windows.Win32.Foundation.HWND');
       expect(typeDef1.isWrapperStruct, isTrue);

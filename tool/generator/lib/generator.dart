@@ -22,6 +22,7 @@ export 'src/projection/callback.dart';
 export 'src/projection/com_interface.dart';
 export 'src/projection/com_method.dart';
 export 'src/projection/com_property.dart';
+export 'src/projection/enum.dart';
 export 'src/projection/field.dart';
 export 'src/projection/function.dart';
 export 'src/projection/parameter.dart';

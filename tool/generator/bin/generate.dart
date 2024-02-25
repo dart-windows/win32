@@ -48,7 +48,27 @@ typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
     manuallyProjectedCallbacks,
     ...callbackProjections
   ].join('\n');
-  file.writeAsStringSync(DartFormatter().format(callbacksFile));
+  file.writeAsStringSync(DartFormatter(
+    experimentFlags: ['inline-class'],
+  ).format(callbacksFile));
+}
+
+void generateEnums(List<Scope> scopes, Map<String, String> enums) {
+  final file = File('../../lib/src/enums.g.dart');
+
+  final typeDefs = scopes.expand((scope) => scope.enums
+      .where((typeDef) => enums.keys.contains(typeDef.name))
+      .where((typeDef) => typeDef.supportedArchitectures.x64)
+      .toFixedList()
+    ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
+
+  final enumProjections = typeDefs
+      .map((typeDef) => EnumProjection(typeDef, comment: enums[typeDef.name]!));
+
+  final enumsFile = [enumFileHeader, ...enumProjections].join('\n');
+  file.writeAsStringSync(DartFormatter(
+    experimentFlags: ['inline-class'],
+  ).format(enumsFile));
 }
 
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
@@ -64,7 +84,9 @@ void generateStructs(List<Scope> scopes, Map<String, String> structs) {
       (typeDef) => StructProjection(typeDef, comment: structs[typeDef.name]!));
 
   final structsFile = [structFileHeader, ...structProjections].join();
-  file.writeAsStringSync(DartFormatter().format(structsFile));
+  file.writeAsStringSync(DartFormatter(
+    experimentFlags: ['inline-class'],
+  ).format(structsFile));
 }
 
 String generateDocComment(Win32Function func, String libraryDartName) {
@@ -115,7 +137,9 @@ void generateDllFile(String library, List<Method> filteredMethods,
   }
 
   File('../../lib/src/win32_v5/$libraryDartName.g.dart')
-      .writeAsStringSync(DartFormatter().format(buffer.toString()));
+      .writeAsStringSync(DartFormatter(
+    experimentFlags: ['inline-class'],
+  ).format(buffer.toString()));
 }
 
 void generateFunctions(
@@ -165,8 +189,9 @@ void generateFunctions(
   }
 ''';
 
-  File('../../test/win32/api_test.dart')
-      .writeAsStringSync(DartFormatter().format(testFile));
+  File('../../test/win32/api_test.dart').writeAsStringSync(DartFormatter(
+    experimentFlags: ['inline-class'],
+  ).format(testFile));
 }
 
 String generateFunctionTests(String library, Iterable<Method> methods,
@@ -235,7 +260,9 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
     final dartClass = interfaceProjection.toString();
     final classOutputFilename = typeDef.safeFilename;
     final classOutputPath = '../../lib/src/com/$classOutputFilename';
-    File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
+    File(classOutputPath).writeAsStringSync(DartFormatter(
+      experimentFlags: ['inline-class'],
+    ).format(dartClass));
   }
 }
 
@@ -259,6 +286,11 @@ void main() async {
   final callbacksToGenerate = loadMap('win32_callbacks.json');
   saveMap(callbacksToGenerate, 'win32_callbacks.json');
   generateCallbacks([wdkScope, win32Scope], callbacksToGenerate);
+
+  print('[${stopwatch.elapsed}] Generating enums...');
+  final enumsToGenerate = loadMap('win32_enums.json');
+  saveMap(enumsToGenerate, 'win32_enums.json');
+  generateEnums([wdkScope, win32Scope], enumsToGenerate);
 
   print('[${stopwatch.elapsed}] Generating structs...');
   final structsToGenerate = loadMap('win32_structs.json');

@@ -33,6 +33,16 @@ $copyrightHeader
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 ''';
 
+const enumFileHeader = '''
+$copyrightHeader
+
+// Dart representations of common enums used in the Win32 API.
+
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+// ignore_for_file: camel_case_types, constant_identifier_names
+''';
+
 const functionFileHeader = '''
 $copyrightHeader
 

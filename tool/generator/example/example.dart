@@ -16,6 +16,16 @@ void printCallback(
   }
 }
 
+void printEnum(
+    [String type =
+        'Windows.Win32.UI.Input.XboxController.XINPUT_CAPABILITIES_FLAGS']) {
+  final typeDef = MetadataStore.getMetadataForType(type);
+  if (typeDef != null && typeDef.isDelegate) {
+    final enumProjection = EnumProjection(typeDef);
+    print(enumProjection.format());
+  }
+}
+
 void printFunction([String name = 'BroadcastSystemMessageW']) {
   final scopes = MetadataStore.scopeCache.values;
   for (final typeDef in scopes
@@ -76,7 +86,10 @@ void printComSetProperty(String interface, String propertyName) {
 }
 
 extension on Object {
-  String format() => DartFormatter(lineEnding: '\n').format(toString());
+  String format() => DartFormatter(
+        experimentFlags: ['inline-class'],
+        lineEnding: '\n',
+      ).format(toString());
 }
 
 void main() async {

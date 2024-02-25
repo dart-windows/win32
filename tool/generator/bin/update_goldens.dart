@@ -14,6 +14,7 @@ Iterable<File> get goldenFiles => Directory('test/goldens')
     .where((file) => file.path.endsWith('.golden'));
 
 final comInterfacesToGenerate = loadMap('com_types.json');
+final enumsToGenerate = loadMap('win32_enums.json');
 final structsToGenerate = loadMap('win32_structs.json');
 
 var updatedGoldenFiles = 0;
@@ -26,6 +27,8 @@ void main() async {
 
   for (final file in goldenFiles) {
     switch (file.parentDirectory) {
+      case 'enums':
+        updateEnumGolden(file);
       case 'functions':
         updateFunctionGolden(file);
       case 'interfaces':
@@ -35,15 +38,34 @@ void main() async {
       default:
         print(
           'Skipping the file `${file.fileName}`. It is not located within a '
-          'recognized directory.\nSupported directories include: `functions/`, '
-          '`interfaces/`, `structs/`.\nPlease ensure the file is placed in one '
-          'of these directories.',
+          'recognized directory.\nSupported directories include: `enums/`, '
+          '`functions/`, `interfaces/`, `structs/`.\nPlease ensure the file is '
+          'placed in one of these directories.',
         );
     }
   }
 
   print('Updated $updatedGoldenFiles golden file(s).');
   MetadataStore.close();
+}
+
+void updateEnumGolden(File file) {
+  // The fully qualified type name of the enum (e.g.,
+  // `Windows.Win32.Foundation.WIN32_ERROR`).
+  final fullyQualifiedType = file.fullyQualifiedType;
+
+  final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
+  if (typeDef == null) {
+    throw StateError(
+      '`$fullyQualifiedType` type is not found in the metadata.',
+    );
+  }
+
+  final projection = EnumProjection(
+    typeDef,
+    comment: enumsToGenerate[fullyQualifiedType]!,
+  );
+  updateGoldenFile(file, projection.format());
 }
 
 void updateFunctionGolden(File file) {
@@ -127,8 +149,8 @@ extension on File {
   /// the function with the trailing `|` (e.g.,
   /// `Windows.Wdk.Foundation.Apis.NtQueryObject|`).
   String get fullyQualifiedType {
-    final firstLine = readAsLinesSync().first;
-    if (firstLine.contains('|')) return firstLine.split('|').first;
+    final firstLine = readAsLinesSync().firstOrNull;
+    if (firstLine?.contains('|') ?? false) return firstLine!.split('|').first;
     throw StateError(
       'The first line of the golden file does not match the expected format.\n'
       'Expected format: Fully qualified type followed by a `|` character.\n'
@@ -141,5 +163,8 @@ extension on File {
 }
 
 extension on Object {
-  String format() => DartFormatter(lineEnding: '\n').format(toString());
+  String format() => DartFormatter(
+        experimentFlags: ['inline-class'],
+        lineEnding: '\n',
+      ).format(toString());
 }

@@ -18,6 +18,10 @@ void main() {
   setUpAll(loadMetadata);
 
   group('Golden testing', () {
+    group('enum', () {
+      testEnumGolden('Windows.Win32.Foundation.WIN32_ERROR');
+    });
+
     group('function', () {
       testFunctionGolden('Windows.Wdk.Foundation.Apis', 'NtQueryObject');
 
@@ -82,6 +86,22 @@ void testComInterfaceGolden(String interfaceName) {
 }
 
 @isTest
+void testEnumGolden(String enumName) {
+  test(enumName, () {
+    final typeDef = getTypeDef(enumName);
+    final enumsToGenerate = loadMap('win32_enums.json');
+    final projection =
+        EnumProjection(typeDef, comment: enumsToGenerate[enumName] ?? '');
+    final fileName = typeDef.safeIdentifier.toLowerCase();
+    compareGolden(
+      typeDef.name,
+      'enums/$fileName.g',
+      projection.toString().format(),
+    );
+  });
+}
+
+@isTest
 void testFunctionGolden(String parent, String functionName) {
   test('$parent.$functionName', () {
     final typeDef = getTypeDef(parent);
@@ -120,5 +140,8 @@ void testStructGolden(String structName) {
 extension on String {
   String convertLineEndingsToLF() => replaceAll('\r\n', '\n');
 
-  String format() => DartFormatter(lineEnding: '\n').format(this);
+  String format() => DartFormatter(
+        experimentFlags: ['inline-class'],
+        lineEnding: '\n',
+      ).format(this);
 }

@@ -11,6 +11,9 @@ import 'field.dart';
 import 'string.dart';
 
 extension TypeDefHelpers on TypeDef {
+  /// Whether the typeDef is a bitwise enum (e.g., `VARENUM`).
+  bool get isBitwiseEnum => isEnum && existsAttribute(flagsAttribute);
+
   /// Whether the typeDef is a wrapper struct (e.g., `HWND`,
   /// `MEMORY_MAPPED_VIEW_ADDRESS`).
   bool get isWrapperStruct =>
