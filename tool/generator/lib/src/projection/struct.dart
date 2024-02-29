@@ -156,12 +156,6 @@ extension NestedStructExtension on TypeDef {
           _handleVariantBoolVal(buffer, fieldName, instanceName);
           continue;
         }
-
-        if (fieldName == 'ullVal') {
-          // Generate getter/setter for handling the `ULONGLONG` value.
-          _handleVariantUllVal(buffer, fieldName, instanceName);
-          continue;
-        }
       }
 
       buffer
@@ -184,32 +178,6 @@ extension NestedStructExtension on TypeDef {
       ..writeln('bool get $fieldName => this.$instanceName == VARIANT_TRUE;')
       ..writeln('set $fieldName(bool value) => this.$instanceName = value '
           '? VARIANT_TRUE : VARIANT_FALSE;')
-      ..writeln();
-  }
-
-  /// Handles the conversion of the `VARIANT`'s `ullVal` field, representing a
-  /// `ULONGLONG` (64-bit unsigned integer) value to a [BigInt].
-  void _handleVariantUllVal(
-      StringBuffer buffer, String fieldName, String instanceName) {
-    buffer
-      ..write('''
-BigInt get ullVal {
-  final src = this.$instanceName;
-  final hi = ((src & 0xFFFFFFFF00000000) >> 32)
-      .toUnsigned(32)
-      .toRadixString(16)
-      .padLeft(8, '0');
-  final lo = (src & 0x00000000FFFFFFFF).toRadixString(16).padLeft(8, '0');
-  return BigInt.parse('\$hi\$lo', radix: 16);
-}
-''')
-      ..write('''
-set $fieldName(BigInt value) {
-  final hi = ((value & BigInt.from(0xFFFFFFFF00000000)) >> 32).toInt();
-  final lo = (value & BigInt.from(0x00000000FFFFFFFF)).toInt();
-  this.$instanceName = (hi << 32) + lo;
-}
-''')
       ..writeln();
   }
 }

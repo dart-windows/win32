@@ -197,13 +197,14 @@ void main() {
     });
 
     test('uint64', () {
-      final testValue = BigInt.zero;
+      const testValue = 0;
       final variant = Variant.uint64(testValue);
       expect(variant.ref.vt, equals(VARENUM.VT_UI8));
       expect(variant.value, equals(testValue));
-      final maxUint64 = BigInt.parse('18446744073709551615');
-      variant.value = maxUint64;
-      expect(variant.value, equals(maxUint64));
+      variant.value = (1 << 64) - 1; // 2^64 - 1
+      expect(variant.value, equals((1 << 64) - 1));
+      expect(variant.value, equals(-1));
+      expect(variant.value.toHexString(64), equals('0xffffffffffffffff'));
       variant.free();
     });
   });

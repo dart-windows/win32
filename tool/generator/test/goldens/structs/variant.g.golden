@@ -293,21 +293,8 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   int get ulVal => this.Anonymous.Anonymous.Anonymous.ulVal;
   set ulVal(int value) => this.Anonymous.Anonymous.Anonymous.ulVal = value;
 
-  BigInt get ullVal {
-    final src = this.Anonymous.Anonymous.Anonymous.ullVal;
-    final hi = ((src & 0xFFFFFFFF00000000) >> 32)
-        .toUnsigned(32)
-        .toRadixString(16)
-        .padLeft(8, '0');
-    final lo = (src & 0x00000000FFFFFFFF).toRadixString(16).padLeft(8, '0');
-    return BigInt.parse('$hi$lo', radix: 16);
-  }
-
-  set ullVal(BigInt value) {
-    final hi = ((value & BigInt.from(0xFFFFFFFF00000000)) >> 32).toInt();
-    final lo = (value & BigInt.from(0x00000000FFFFFFFF)).toInt();
-    this.Anonymous.Anonymous.Anonymous.ullVal = (hi << 32) + lo;
-  }
+  int get ullVal => this.Anonymous.Anonymous.Anonymous.ullVal;
+  set ullVal(int value) => this.Anonymous.Anonymous.Anonymous.ullVal = value;
 
   int get intVal => this.Anonymous.Anonymous.Anonymous.intVal;
   set intVal(int value) => this.Anonymous.Anonymous.Anonymous.intVal = value;

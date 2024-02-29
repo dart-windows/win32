@@ -65,7 +65,7 @@ extension type const Variant(Pointer<VARIANT> _) implements Pointer<VARIANT> {
   static VariantUint32 uint32(int value) => VariantUint32(value);
 
   /// Constructs a VARIANT holding a [Uint64] value.
-  static VariantUint64 uint64(BigInt value) => VariantUint64(value);
+  static VariantUint64 uint64(int value) => VariantUint64(value);
 
   /// Releases the memory allocated for this VARIANT.
   void free() {
@@ -285,7 +285,7 @@ extension type const VariantUint32._(Variant _) implements Variant {
 /// Represents a VARIANT holding a [Uint64] value.
 extension type const VariantUint64._(Variant _) implements Variant {
   /// Constructs a VARIANT holding a [Uint64] value.
-  factory VariantUint64(BigInt value) {
+  factory VariantUint64(int value) {
     final variant = Variant.empty();
     variant._.ref
       ..vt = VARENUM.VT_UI8
@@ -294,6 +294,6 @@ extension type const VariantUint64._(Variant _) implements Variant {
   }
 
   /// The [Uint64] value stored in this VARIANT.
-  BigInt get value => ref.ullVal;
-  set value(BigInt value) => ref.ullVal = value;
+  int get value => ref.ullVal;
+  set value(int value) => ref.ullVal = value;
 }
