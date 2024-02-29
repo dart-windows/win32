@@ -76,7 +76,7 @@ bool isControlPatternAvailable(int propertyId, IUIAutomationElement element) {
   try {
     final hr = element.getCurrentPropertyValue(propertyId, retVal);
     if (FAILED(hr)) throw WindowsException(hr);
-    return retVal.ref.boolVal;
+    return retVal.ref.boolVal == VARIANT_TRUE;
   } finally {
     retVal.free();
   }

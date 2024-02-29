@@ -78,13 +78,13 @@ extension type const PropVariantBool._(PropVariant _) implements PropVariant {
     final propVariant = PropVariant.empty();
     propVariant._.ref
       ..vt = VARENUM.VT_BOOL
-      ..boolVal = value;
+      ..boolVal = value ? VARIANT_TRUE : VARIANT_FALSE;
     return PropVariantBool._(propVariant);
   }
 
   /// The [VARIANT_BOOL] value stored in this PROPVARIANT.
-  bool get value => ref.boolVal;
-  set value(bool value) => ref.boolVal = value;
+  bool get value => ref.boolVal == VARIANT_TRUE;
+  set value(bool value) => ref.boolVal = value ? VARIANT_TRUE : VARIANT_FALSE;
 }
 
 /// Represents a PROPVARIANT holding a [BSTR] value.

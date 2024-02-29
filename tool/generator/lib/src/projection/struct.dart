@@ -149,15 +149,6 @@ extension NestedStructExtension on TypeDef {
           ? 'String'
           : typeProjection.dartType.safeTypename;
 
-      // Special handling for VARIANT and PROPVARIANT fields.
-      if (safeTypename.endsWith('VARIANT_0_0_0')) {
-        if (fieldName == 'boolVal') {
-          // Generate getter/setter for handling the `VARIANT_BOOL` value.
-          _handleVariantBoolVal(buffer, fieldName, instanceName);
-          continue;
-        }
-      }
-
       buffer
         ..writeln('$fieldType get $fieldName => this.$instanceName;')
         ..writeln(
@@ -168,16 +159,5 @@ extension NestedStructExtension on TypeDef {
     buffer.write('}');
 
     return buffer.toString();
-  }
-
-  /// Handles the conversion of the `VARIANT`'s `boolVal` field, representing a
-  /// `VARIANT_BOOL` value to a Dart [bool].
-  void _handleVariantBoolVal(
-      StringBuffer buffer, String fieldName, String instanceName) {
-    buffer
-      ..writeln('bool get $fieldName => this.$instanceName == VARIANT_TRUE;')
-      ..writeln('set $fieldName(bool value) => this.$instanceName = value '
-          '? VARIANT_TRUE : VARIANT_FALSE;')
-      ..writeln();
   }
 }

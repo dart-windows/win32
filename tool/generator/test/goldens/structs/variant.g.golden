@@ -186,10 +186,8 @@ extension VARIANT_0_0_0_Extension on VARIANT {
   double get dblVal => this.Anonymous.Anonymous.Anonymous.dblVal;
   set dblVal(double value) => this.Anonymous.Anonymous.Anonymous.dblVal = value;
 
-  bool get boolVal =>
-      this.Anonymous.Anonymous.Anonymous.boolVal == VARIANT_TRUE;
-  set boolVal(bool value) => this.Anonymous.Anonymous.Anonymous.boolVal =
-      value ? VARIANT_TRUE : VARIANT_FALSE;
+  int get boolVal => this.Anonymous.Anonymous.Anonymous.boolVal;
+  set boolVal(int value) => this.Anonymous.Anonymous.Anonymous.boolVal = value;
 
   int get scode => this.Anonymous.Anonymous.Anonymous.scode;
   set scode(int value) => this.Anonymous.Anonymous.Anonymous.scode = value;

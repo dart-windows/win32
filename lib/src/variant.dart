@@ -81,13 +81,13 @@ extension type const VariantBool._(Variant _) implements Variant {
     final variant = Variant.empty();
     variant._.ref
       ..vt = VARENUM.VT_BOOL
-      ..boolVal = value;
+      ..boolVal = value ? VARIANT_TRUE : VARIANT_FALSE;
     return VariantBool._(variant);
   }
 
   /// The [VARIANT_BOOL] value stored in this VARIANT.
-  bool get value => ref.boolVal;
-  set value(bool value) => ref.boolVal = value;
+  bool get value => ref.boolVal == VARIANT_TRUE;
+  set value(bool value) => ref.boolVal = value ? VARIANT_TRUE : VARIANT_FALSE;
 }
 
 /// Represents a VARIANT holding a [BSTR] value.
