@@ -111,6 +111,17 @@ void main() {
 /// This is the first paragraph.
 ///
 /// This is the second paragraph.'''));
+      expect(
+        'This is the first paragraph. \n This is the second paragraph. \n '
+                'https://learn.microsoft.com/windows/win32/api/inspectable/nn-inspectable-iinspectable'
+            .toDocComment(),
+        equals('''
+/// This is the first paragraph.
+///
+/// This is the second paragraph.
+///
+/// https://learn.microsoft.com/windows/win32/api/inspectable/nn-inspectable-iinspectable'''),
+      );
     });
 
     test('toFolderPath', () {
