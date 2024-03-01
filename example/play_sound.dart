@@ -9,19 +9,17 @@ import 'dart:io';
 import 'package:win32/win32.dart';
 
 void main() {
-  const logonSound = r'C:\Windows\Media\Windows Logon.wav';
+  const logonSoundPath = r'C:\Windows\Media\Windows Logon.wav';
 
-  final file = File(logonSound).existsSync();
-
+  final file = File(logonSoundPath).existsSync();
   if (!file) {
     print('WAV file missing.');
     exit(1);
-  } else {
-    final pszLogonSound = PWSTR.fromString(logonSound);
-    final result = PlaySound(pszLogonSound, null, SND_FILENAME | SND_SYNC);
-    if (result != TRUE) {
-      print('Sound playback failed.');
-    }
-    pszLogonSound.free();
   }
+
+  final pszSound = PWSTR.fromString(logonSoundPath);
+  if (PlaySound(pszSound, null, SND_FILENAME | SND_SYNC) != TRUE) {
+    print('Sound playback failed.');
+  }
+  pszSound.free();
 }
