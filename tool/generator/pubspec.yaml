@@ -12,7 +12,7 @@ platforms:
 
 dependencies:
   # For formatting Dart code (APIs for performing dart format).
-  dart_style: ^2.3.4
+  dart_style: ^2.3.6
 
   # Help ensure that the code is well-written.
   dartwindows_lints: ^1.1.0

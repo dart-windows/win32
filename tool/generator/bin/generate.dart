@@ -48,9 +48,7 @@ typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
     manuallyProjectedCallbacks,
     ...callbackProjections
   ].join('\n');
-  file.writeAsStringSync(DartFormatter(
-    experimentFlags: ['inline-class'],
-  ).format(callbacksFile));
+  file.writeAsStringSync(DartFormatter().format(callbacksFile));
 }
 
 void generateEnums(List<Scope> scopes, Map<String, String> enums) {
@@ -66,9 +64,7 @@ void generateEnums(List<Scope> scopes, Map<String, String> enums) {
       .map((typeDef) => EnumProjection(typeDef, comment: enums[typeDef.name]!));
 
   final enumsFile = [enumFileHeader, ...enumProjections].join('\n');
-  file.writeAsStringSync(DartFormatter(
-    experimentFlags: ['inline-class'],
-  ).format(enumsFile));
+  file.writeAsStringSync(DartFormatter().format(enumsFile));
 }
 
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
@@ -84,9 +80,7 @@ void generateStructs(List<Scope> scopes, Map<String, String> structs) {
       (typeDef) => StructProjection(typeDef, comment: structs[typeDef.name]!));
 
   final structsFile = [structFileHeader, ...structProjections].join();
-  file.writeAsStringSync(DartFormatter(
-    experimentFlags: ['inline-class'],
-  ).format(structsFile));
+  file.writeAsStringSync(DartFormatter().format(structsFile));
 }
 
 String generateDocComment(Win32Function func, String libraryDartName) {
@@ -137,9 +131,7 @@ void generateDllFile(String library, List<Method> filteredMethods,
   }
 
   File('../../lib/src/win32_v5/$libraryDartName.g.dart')
-      .writeAsStringSync(DartFormatter(
-    experimentFlags: ['inline-class'],
-  ).format(buffer.toString()));
+      .writeAsStringSync(DartFormatter().format(buffer.toString()));
 }
 
 void generateFunctions(
@@ -189,9 +181,8 @@ void generateFunctions(
   }
 ''';
 
-  File('../../test/win32/api_test.dart').writeAsStringSync(DartFormatter(
-    experimentFlags: ['inline-class'],
-  ).format(testFile));
+  File('../../test/win32/api_test.dart')
+      .writeAsStringSync(DartFormatter().format(testFile));
 }
 
 String generateFunctionTests(String library, Iterable<Method> methods,
@@ -260,9 +251,7 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
     final dartClass = interfaceProjection.toString();
     final classOutputFilename = typeDef.safeFilename;
     final classOutputPath = '../../lib/src/com/$classOutputFilename';
-    File(classOutputPath).writeAsStringSync(DartFormatter(
-      experimentFlags: ['inline-class'],
-    ).format(dartClass));
+    File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
   }
 }
 

@@ -86,10 +86,7 @@ void printComSetProperty(String interface, String propertyName) {
 }
 
 extension on Object {
-  String format() => DartFormatter(
-        experimentFlags: ['inline-class'],
-        lineEnding: '\n',
-      ).format(toString());
+  String format() => DartFormatter(lineEnding: '\n').format(toString());
 }
 
 void main() async {

@@ -140,8 +140,5 @@ void testStructGolden(String structName) {
 extension on String {
   String convertLineEndingsToLF() => replaceAll('\r\n', '\n');
 
-  String format() => DartFormatter(
-        experimentFlags: ['inline-class'],
-        lineEnding: '\n',
-      ).format(this);
+  String format() => DartFormatter(lineEnding: '\n').format(this);
 }

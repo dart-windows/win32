@@ -163,8 +163,5 @@ extension on File {
 }
 
 extension on Object {
-  String format() => DartFormatter(
-        experimentFlags: ['inline-class'],
-        lineEnding: '\n',
-      ).format(toString());
+  String format() => DartFormatter(lineEnding: '\n').format(toString());
 }
