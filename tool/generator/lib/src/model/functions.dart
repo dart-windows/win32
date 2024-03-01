@@ -75,9 +75,10 @@ class Win32Function {
 }
 
 SplayTreeMap<String, Win32Function> loadFunctionsFromJson() {
-  final jsonFile = File('data/win32_functions.json')
-      .readAsStringSync()
-      .replaceAll(r'\n', r'\\n');
+  final jsonFile =
+      File(Platform.script.resolve('../data/win32_functions.json').toFilePath())
+          .readAsStringSync()
+          .replaceAll(r'\n', r'\\n');
   final decodedJson = json.decode(jsonFile) as Map<String, dynamic>;
   final functions = SplayTreeMap<String, Win32Function>(
       (str1, str2) => str1.toLowerCase().compareTo(str2.toLowerCase()));
@@ -93,5 +94,6 @@ SplayTreeMap<String, Win32Function> loadFunctionsFromJson() {
 void saveFunctionsToJson(SplayTreeMap<String, Win32Function> functions) {
   final encoder = const JsonEncoder.withIndent('    ');
   final outputText = encoder.convert(functions).replaceAll(r'\\n', r'\n');
-  File('data/win32_functions.json').writeAsStringSync(outputText);
+  File(Platform.script.resolve('../data/win32_functions.json').toFilePath())
+      .writeAsStringSync(outputText);
 }

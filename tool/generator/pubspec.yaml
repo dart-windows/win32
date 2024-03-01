@@ -20,6 +20,9 @@ dependencies:
   # Foreign Function Interface extension methods.
   ffi: ^2.1.2
 
+  # For manipulating paths.
+  path: ^1.9.0
+
   # Running the test suite.
   test: ^1.25.2
 

@@ -6,8 +6,8 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
-Map<String, String> loadMap(String filename) {
-  final load = File('data/$filename').readAsStringSync();
+Map<String, String> loadMap(String filePath) {
+  final load = File(filePath).readAsStringSync();
   final decoded = json.decode(load) as Map<String, dynamic>;
   final items = SplayTreeMap<String, String>((a, b) => a.compareTo(b));
 
@@ -18,8 +18,8 @@ Map<String, String> loadMap(String filename) {
   return items;
 }
 
-void saveMap(Map<String, String> map, String filename) {
+void saveMap(Map<String, String> map, String filePath) {
   final encoder = const JsonEncoder.withIndent('    ');
   final file = encoder.convert(map);
-  File('data/$filename').writeAsStringSync(file);
+  File(filePath).writeAsStringSync(file);
 }

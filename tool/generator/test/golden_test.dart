@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:dart_style/dart_style.dart';
 import 'package:generator/generator.dart';
 import 'package:meta/meta.dart';
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 
@@ -52,8 +53,10 @@ void main() {
 /// Compares the contents of a [content] with a golden file specified by the
 /// [fileName].
 void compareGolden(String fullyQualifiedType, String fileName, String content) {
-  File('test/goldens/$fileName.comparison').writeAsStringSync(content);
-  var golden = File('test/goldens/$fileName.golden').readAsStringSync();
+  File(p.join('test', 'goldens', '$fileName.comparison'))
+      .writeAsStringSync(content);
+  var golden =
+      File(p.join('test', 'goldens', '$fileName.golden')).readAsStringSync();
   if (golden.contains('|')) {
     // Skip the first line containing the fully qualified type name (e.g.,
     // `Windows.Wdk.Foundation.Apis.NtQueryObject|`).
@@ -73,7 +76,7 @@ void compareGolden(String fullyQualifiedType, String fileName, String content) {
 void testComInterfaceGolden(String interfaceName) {
   test(interfaceName, () {
     final typeDef = getTypeDef(interfaceName);
-    final comTypesToGenerate = loadMap('com_types.json');
+    final comTypesToGenerate = loadMap(p.join('data', 'com_types.json'));
     final projection = ComInterfaceProjection(typeDef,
         comment: comTypesToGenerate[interfaceName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
@@ -89,7 +92,7 @@ void testComInterfaceGolden(String interfaceName) {
 void testEnumGolden(String enumName) {
   test(enumName, () {
     final typeDef = getTypeDef(enumName);
-    final enumsToGenerate = loadMap('win32_enums.json');
+    final enumsToGenerate = loadMap(p.join('data', 'win32_enums.json'));
     final projection =
         EnumProjection(typeDef, comment: enumsToGenerate[enumName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();
@@ -125,7 +128,7 @@ void testFunctionGolden(String parent, String functionName) {
 void testStructGolden(String structName) {
   test(structName, () {
     final typeDef = getTypeDef(structName);
-    final structsToGenerate = loadMap('win32_structs.json');
+    final structsToGenerate = loadMap(p.join('data', 'win32_structs.json'));
     final projection =
         StructProjection(typeDef, comment: structsToGenerate[structName] ?? '');
     final fileName = typeDef.safeIdentifier.toLowerCase();

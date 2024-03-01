@@ -9,7 +9,9 @@ import 'package:generator/generator.dart';
 import 'package:winmd/winmd.dart';
 
 void generateCallbacks(List<Scope> scopes, Map<String, String> callbacks) {
-  final file = File('../../lib/src/callbacks.g.dart');
+  final file = File(Platform.script
+      .resolve('../../../lib/src/callbacks.g.dart')
+      .toFilePath());
 
   // These are the manually projected callbacks that are not in the metadata.
   final manuallyProjectedCallbacks = '''
@@ -52,7 +54,8 @@ typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
 }
 
 void generateEnums(List<Scope> scopes, Map<String, String> enums) {
-  final file = File('../../lib/src/enums.g.dart');
+  final file = File(
+      Platform.script.resolve('../../../lib/src/enums.g.dart').toFilePath());
 
   final typeDefs = scopes.expand((scope) => scope.enums
       .where((typeDef) => enums.keys.contains(typeDef.name))
@@ -68,7 +71,8 @@ void generateEnums(List<Scope> scopes, Map<String, String> enums) {
 }
 
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
-  final file = File('../../lib/src/structs.g.dart');
+  final file = File(
+      Platform.script.resolve('../../../lib/src/structs.g.dart').toFilePath());
 
   final typeDefs = scopes.expand((scope) => scope.structs
       .where((typeDef) => structs.keys.contains(typeDef.name))
@@ -130,7 +134,9 @@ void generateDllFile(String library, List<Method> filteredMethods,
   ''');
   }
 
-  File('../../lib/src/win32_v5/$libraryDartName.g.dart')
+  File(Platform.script
+          .resolve('../../../lib/src/win32_v5/$libraryDartName.g.dart')
+          .toFilePath())
       .writeAsStringSync(DartFormatter().format(buffer.toString()));
 }
 
@@ -181,7 +187,9 @@ void generateFunctions(
   }
 ''';
 
-  File('../../test/win32/api_test.dart')
+  File(Platform.script
+          .resolve('../../../test/win32/api_test.dart')
+          .toFilePath())
       .writeAsStringSync(DartFormatter().format(testFile));
 }
 
@@ -250,8 +258,10 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
         comment: comInterfaces[interface] ?? '');
     final dartClass = interfaceProjection.toString();
     final classOutputFilename = typeDef.safeFilename;
-    final classOutputPath = '../../lib/src/com/$classOutputFilename';
-    File(classOutputPath).writeAsStringSync(DartFormatter().format(dartClass));
+    File(Platform.script
+            .resolve('../../../lib/src/com/$classOutputFilename')
+            .toFilePath())
+        .writeAsStringSync(DartFormatter().format(dartClass));
   }
 }
 
@@ -272,26 +282,34 @@ void main() async {
   saveFunctionsToJson(functionsToGenerate);
 
   print('[${stopwatch.elapsed}] Generating callbacks...');
-  final callbacksToGenerate = loadMap('win32_callbacks.json');
-  saveMap(callbacksToGenerate, 'win32_callbacks.json');
+  final win32CallbacksPath =
+      Platform.script.resolve('../data/win32_callbacks.json').toFilePath();
+  final callbacksToGenerate = loadMap(win32CallbacksPath);
+  saveMap(callbacksToGenerate, win32CallbacksPath);
   generateCallbacks([wdkScope, win32Scope], callbacksToGenerate);
 
   print('[${stopwatch.elapsed}] Generating enums...');
-  final enumsToGenerate = loadMap('win32_enums.json');
-  saveMap(enumsToGenerate, 'win32_enums.json');
+  final win32EnumsPath =
+      Platform.script.resolve('../data/win32_enums.json').toFilePath();
+  final enumsToGenerate = loadMap(win32EnumsPath);
+  saveMap(enumsToGenerate, win32EnumsPath);
   generateEnums([wdkScope, win32Scope], enumsToGenerate);
 
   print('[${stopwatch.elapsed}] Generating structs...');
-  final structsToGenerate = loadMap('win32_structs.json');
-  saveMap(structsToGenerate, 'win32_structs.json');
+  final win32StructsPath =
+      Platform.script.resolve('../data/win32_structs.json').toFilePath();
+  final structsToGenerate = loadMap(win32StructsPath);
+  saveMap(structsToGenerate, win32StructsPath);
   generateStructs([wdkScope, win32Scope], structsToGenerate);
 
   print('[${stopwatch.elapsed}] Generating FFI function bindings...');
   generateFunctions([wdkScope, win32Scope], functionsToGenerate);
 
   print('[${stopwatch.elapsed}] Generating COM interfaces...');
-  final comTypesToGenerate = loadMap('com_types.json');
-  saveMap(comTypesToGenerate, 'com_types.json');
+  final comTypesPath =
+      Platform.script.resolve('../data/com_types.json').toFilePath();
+  final comTypesToGenerate = loadMap(comTypesPath);
+  saveMap(comTypesToGenerate, comTypesPath);
   generateComInterfaces(win32Scope, comTypesToGenerate);
 
   MetadataStore.close();

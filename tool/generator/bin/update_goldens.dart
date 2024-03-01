@@ -8,14 +8,18 @@ import 'package:dart_style/dart_style.dart';
 import 'package:generator/generator.dart';
 import 'package:winmd/winmd.dart';
 
-Iterable<File> get goldenFiles => Directory('test/goldens')
-    .listSync(recursive: true)
-    .whereType<File>()
-    .where((file) => file.path.endsWith('.golden'));
+Iterable<File> get goldenFiles =>
+    Directory(Platform.script.resolve('../test/goldens').toFilePath())
+        .listSync(recursive: true)
+        .whereType<File>()
+        .where((file) => file.path.endsWith('.golden'));
 
-final comInterfacesToGenerate = loadMap('com_types.json');
-final enumsToGenerate = loadMap('win32_enums.json');
-final structsToGenerate = loadMap('win32_structs.json');
+final comInterfacesToGenerate =
+    loadMap(Platform.script.resolve('../data/com_types.json').toFilePath());
+final enumsToGenerate =
+    loadMap(Platform.script.resolve('../data/win32_enums.json').toFilePath());
+final structsToGenerate =
+    loadMap(Platform.script.resolve('../data/win32_structs.json').toFilePath());
 
 var updatedGoldenFiles = 0;
 
