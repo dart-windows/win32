@@ -169,16 +169,11 @@ extension StringHelpers on String {
 
       // If the word would exceed the wrapLength, wrap it to the next line.
       if ((textLine.length + word.length) >= wrapLength) {
-        // If the word is a URL, don't try to wrap it.
-        if (word.startsWith(RegExp(r'(http[s]://)'))) {
-          textLine.write(' $word');
-        } else {
-          textLine.write('\n');
-          wrappedText.write(textLine);
-          textLine
-            ..clear()
-            ..write('/// $word');
-        }
+        textLine.write('\n');
+        wrappedText.write(textLine);
+        textLine
+          ..clear()
+          ..write('/// $word');
       } else {
         // Otherwise, add the word to the current line.
         textLine.write(' $word');
