@@ -92,8 +92,9 @@ final _mciSendCommand = _winmm.lookupFunction<
     int Function(
         int mciId, int uMsg, int dwParam1, int dwParam2)>('mciSendCommandW');
 
-/// The mciSendString function sends a command string to an MCI device. The
-/// device that the command is sent to is specified in the command string.
+/// The mciSendString function sends a command string to an MCI device.
+///
+/// The device that the command is sent to is specified in the command string.
 ///
 /// ```c
 /// MCIERROR mciSendStringW(
@@ -157,7 +158,9 @@ final _midiDisconnect = _winmm.lookupFunction<
     int Function(int hmi, int hmo, Pointer pReserved)>('midiDisconnect');
 
 /// The midiInAddBuffer function sends an input buffer to a specified opened
-/// MIDI input device. This function is used for system-exclusive messages.
+/// MIDI input device.
+///
+/// This function is used for system-exclusive messages.
 ///
 /// ```c
 /// MMRESULT midiInAddBuffer(
@@ -536,9 +539,10 @@ final _midiOutLongMsg = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Pointer<MIDIHDR> pmh, Uint32 cbmh),
     int Function(int hmo, Pointer<MIDIHDR> pmh, int cbmh)>('midiOutLongMsg');
 
-/// The midiOutMessage function sends a message to the MIDI device drivers. This
-/// function is used only for driver-specific messages that are not supported by
-/// the MIDI API.
+/// The midiOutMessage function sends a message to the MIDI device drivers.
+///
+/// This function is used only for driver-specific messages that are not
+/// supported by the MIDI API.
 ///
 /// ```c
 /// MMRESULT midiOutMessage(
@@ -682,8 +686,9 @@ final _PlaySound = _winmm.lookupFunction<
         Pointer<Utf16> pszSound, int hmod, int fdwSound)>('PlaySoundW');
 
 /// The waveInAddBuffer function sends an input buffer to the given
-/// waveform-audio input device. When the buffer is filled, the application is
-/// notified.
+/// waveform-audio input device.
+///
+/// When the buffer is filled, the application is notified.
 ///
 /// ```c
 /// MMRESULT waveInAddBuffer(
@@ -922,9 +927,11 @@ final _waveInStop =
         'waveInStop');
 
 /// The waveInUnprepareHeader function cleans up the preparation performed by
-/// the waveInPrepareHeader function. This function must be called after the
-/// device driver fills a buffer and returns it to the application. You must
-/// call this function before freeing the buffer.
+/// the waveInPrepareHeader function.
+///
+/// This function must be called after the device driver fills a buffer and
+/// returns it to the application. You must call this function before freeing
+/// the buffer.
 ///
 /// ```c
 /// MMRESULT waveInUnprepareHeader(
@@ -1153,8 +1160,10 @@ final _waveOutOpen = _winmm.lookupFunction<
         int fdwOpen)>('waveOutOpen');
 
 /// The waveOutPause function pauses playback on the given waveform-audio output
-/// device. The current position is saved. Use the waveOutRestart function to
-/// resume playback from the current position.
+/// device.
+///
+/// The current position is saved. Use the waveOutRestart function to resume
+/// playback from the current position.
 ///
 /// ```c
 /// MMRESULT waveOutPause(
@@ -1188,8 +1197,10 @@ final _waveOutPrepareHeader = _winmm.lookupFunction<
         int hwo, Pointer<WAVEHDR> pwh, int cbwh)>('waveOutPrepareHeader');
 
 /// The waveOutReset function stops playback on the given waveform-audio output
-/// device and resets the current position to zero. All pending playback buffers
-/// are marked as done (WHDR_DONE) and returned to the application.
+/// device and resets the current position to zero.
+///
+/// All pending playback buffers are marked as done (WHDR_DONE) and returned to
+/// the application.
 ///
 /// ```c
 /// MMRESULT waveOutReset(
@@ -1269,9 +1280,10 @@ final _waveOutSetVolume = _winmm.lookupFunction<
     int Function(int hwo, int dwVolume)>('waveOutSetVolume');
 
 /// The waveOutUnprepareHeader function cleans up the preparation performed by
-/// the waveOutPrepareHeader function. This function must be called after the
-/// device driver is finished with a data block. You must call this function
-/// before freeing the buffer.
+/// the waveOutPrepareHeader function.
+///
+/// This function must be called after the device driver is finished with a data
+/// block. You must call this function before freeing the buffer.
 ///
 /// ```c
 /// MMRESULT waveOutUnprepareHeader(

@@ -178,8 +178,9 @@ final _GetDeviceDriverFileName = _psapi.lookupFunction<
         int nSize)>('GetDeviceDriverFileNameW');
 
 /// Checks whether the specified address is within a memory-mapped file in the
-/// address space of the specified process. If so, the function returns the name
-/// of the memory-mapped file.
+/// address space of the specified process.
+///
+/// If so, the function returns the name of the memory-mapped file.
 ///
 /// ```c
 /// DWORD GetMappedFileNameW(

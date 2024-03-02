@@ -262,8 +262,9 @@ final _WindowsStringHasEmbeddedNull =
         int Function(int string,
             Pointer<BOOL> hasEmbedNull)>('WindowsStringHasEmbeddedNull');
 
-/// Retrieves a substring from the specified string. The substring starts at the
-/// specified character position.
+/// Retrieves a substring from the specified string.
+///
+/// The substring starts at the specified character position.
 ///
 /// ```c
 /// HRESULT WindowsSubstring(
@@ -282,8 +283,10 @@ final _WindowsSubstring = _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
     int Function(int string, int startIndex,
         Pointer<HSTRING> newString)>('WindowsSubstring');
 
-/// Retrieves a substring from the specified string. The substring starts at a
-/// specified character position and has a specified length.
+/// Retrieves a substring from the specified string.
+///
+/// The substring starts at a specified character position and has a specified
+/// length.
 ///
 /// ```c
 /// HRESULT WindowsSubstringWithSpecifiedLength(

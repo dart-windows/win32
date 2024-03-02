@@ -37,9 +37,10 @@ final _NetFreeAadJoinInformation = _netapi32.lookupFunction<
     void Function(
         Pointer<DSREG_JOIN_INFO> pJoinInfo)>('NetFreeAadJoinInformation');
 
-/// Retrieves the join information for the specified tenant. This function
-/// examines the join information for Microsoft Azure Active Directory and the
-/// work account that the current user added.
+/// Retrieves the join information for the specified tenant.
+///
+/// This function examines the join information for Microsoft Azure Active
+/// Directory and the work account that the current user added.
 ///
 /// ```c
 /// HRESULT NET_API_FUNCTION NetGetAadJoinInformation(

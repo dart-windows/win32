@@ -91,6 +91,7 @@ final _ControlServiceEx = _advapi32.lookupFunction<
         Pointer pControlParams)>('ControlServiceExW');
 
 /// The CredDelete function deletes a credential from the user's credential set.
+///
 /// The credential set used is the one associated with the logon session of the
 /// current token. The token must not have the user's SID disabled.
 ///
@@ -124,8 +125,9 @@ void CredFree(Pointer buffer) => _CredFree(buffer);
 final _CredFree = _advapi32.lookupFunction<Void Function(Pointer buffer),
     void Function(Pointer buffer)>('CredFree');
 
-/// The CredRead function reads a credential from the user's credential set. The
-/// credential set used is the one associated with the logon session of the
+/// The CredRead function reads a credential from the user's credential set.
+///
+/// The credential set used is the one associated with the logon session of the
 /// current token. The token must not have the user's SID disabled.
 ///
 /// ```c
@@ -148,9 +150,11 @@ final _CredRead = _advapi32.lookupFunction<
         Pointer<Pointer<CREDENTIAL>> credential)>('CredReadW');
 
 /// The CredWrite function creates a new credential or modifies an existing
-/// credential in the user's credential set. The new credential is associated
-/// with the logon session of the current token. The token must not have the
-/// user's security identifier (SID) disabled.
+/// credential in the user's credential set.
+///
+/// The new credential is associated with the logon session of the current
+/// token. The token must not have the user's security identifier (SID)
+/// disabled.
 ///
 /// ```c
 /// BOOL CredWriteW(
@@ -196,8 +200,10 @@ final _DeleteService = _advapi32.lookupFunction<
     BOOL Function(SC_HANDLE hService),
     int Function(int hService)>('DeleteService');
 
-/// Encrypts a file or directory. All data streams in a file are encrypted. All
-/// new files created in an encrypted directory are encrypted.
+/// Encrypts a file or directory.
+///
+/// All data streams in a file are encrypted. All new files created in an
+/// encrypted directory are encrypted.
 ///
 /// ```c
 /// BOOL EncryptFileW(
@@ -252,8 +258,9 @@ final _EnumDependentServices = _advapi32.lookupFunction<
         Pointer<Uint32> pcbBytesNeeded,
         Pointer<Uint32> lpServicesReturned)>('EnumDependentServicesW');
 
-/// Enumerates services in the specified service control manager database. The
-/// name and status of each service are provided.
+/// Enumerates services in the specified service control manager database.
+///
+/// The name and status of each service are provided.
 ///
 /// ```c
 /// BOOL EnumServicesStatusW(
@@ -307,8 +314,9 @@ final _EnumServicesStatus = _advapi32.lookupFunction<
         Pointer<Uint32> lpServicesReturned,
         Pointer<Uint32> lpResumeHandle)>('EnumServicesStatusW');
 
-/// Enumerates services in the specified service control manager database. The
-/// name and status of each service are provided, along with additional data
+/// Enumerates services in the specified service control manager database.
+///
+/// The name and status of each service are provided, along with additional data
 /// based on the specified information level.
 ///
 /// ```c
@@ -441,8 +449,10 @@ final _GetServiceKeyName = _advapi32.lookupFunction<
         Pointer<Uint32> lpcchBuffer)>('GetServiceKeyNameW');
 
 /// The GetTokenInformation function retrieves a specified type of information
-/// about an access token. The calling process must have appropriate access
-/// rights to obtain the information.
+/// about an access token.
+///
+/// The calling process must have appropriate access rights to obtain the
+/// information.
 ///
 /// ```c
 /// BOOL GetTokenInformation(
@@ -521,9 +531,10 @@ final _InitiateShutdown = _advapi32.lookupFunction<
         int dwShutdownFlags,
         int dwReason)>('InitiateShutdownW');
 
-/// Reports the boot status to the service control manager. It is used by boot
-/// verification programs. This function can be called only by a process running
-/// in the LocalSystem or Administrator's account.
+/// Reports the boot status to the service control manager.
+///
+/// It is used by boot verification programs. This function can be called only
+/// by a process running in the LocalSystem or Administrator's account.
 ///
 /// ```c
 /// BOOL NotifyBootConfigStatus(
@@ -644,9 +655,10 @@ final _OpenThreadToken = _advapi32.lookupFunction<
     int Function(int threadHandle, int desiredAccess, int openAsSelf,
         Pointer<HANDLE> tokenHandle)>('OpenThreadToken');
 
-/// Retrieves the configuration parameters of the specified service. Optional
-/// configuration parameters are available using the QueryServiceConfig2
-/// function.
+/// Retrieves the configuration parameters of the specified service.
+///
+/// Optional configuration parameters are available using the
+/// QueryServiceConfig2 function.
 ///
 /// ```c
 /// BOOL QueryServiceConfigW(
@@ -722,8 +734,10 @@ final _QueryServiceDynamicInformation = _advapi32.lookupFunction<
         Pointer<Pointer> ppDynamicInfo)>('QueryServiceDynamicInformation');
 
 /// The QueryServiceObjectSecurity function retrieves a copy of the security
-/// descriptor associated with a service object. You can also use the
-/// GetNamedSecurityInfo function to retrieve a security descriptor.
+/// descriptor associated with a service object.
+///
+/// You can also use the GetNamedSecurityInfo function to retrieve a security
+/// descriptor.
 ///
 /// ```c
 /// BOOL QueryServiceObjectSecurity(
@@ -851,8 +865,9 @@ final _RegCopyTree = _advapi32.lookupFunction<
     int Function(
         int hKeySrc, Pointer<Utf16> lpSubKey, int hKeyDest)>('RegCopyTreeW');
 
-/// Creates the specified registry key. If the key already exists in the
-/// registry, the function opens it.
+/// Creates the specified registry key.
+///
+/// If the key already exists in the registry, the function opens it.
 ///
 /// ```c
 /// LSTATUS RegCreateKeyW(
@@ -870,8 +885,10 @@ final _RegCreateKey = _advapi32.lookupFunction<
     int Function(int hKey, Pointer<Utf16> lpSubKey,
         Pointer<HKEY> phkResult)>('RegCreateKeyW');
 
-/// Creates the specified registry key. If the key already exists, the function
-/// opens it. Note that key names are not case sensitive.
+/// Creates the specified registry key.
+///
+/// If the key already exists, the function opens it. Note that key names are
+/// not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegCreateKeyExW(
@@ -995,7 +1012,9 @@ final _RegCreateKeyTransacted = _advapi32.lookupFunction<
         int hTransaction,
         Pointer pExtendedParemeter)>('RegCreateKeyTransactedW');
 
-/// Deletes a subkey and its values. Note that key names are not case sensitive.
+/// Deletes a subkey and its values.
+///
+/// Note that key names are not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegDeleteKeyW(
@@ -1011,7 +1030,9 @@ final _RegDeleteKey = _advapi32.lookupFunction<
     int Function(int hKey, Pointer<Utf16> lpSubKey)>('RegDeleteKeyW');
 
 /// Deletes a subkey and its values from the specified platform-specific view of
-/// the registry. Note that key names are not case sensitive.
+/// the registry.
+///
+/// Note that key names are not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegDeleteKeyExW(
@@ -1031,8 +1052,9 @@ final _RegDeleteKeyEx = _advapi32.lookupFunction<
         int reserved)>('RegDeleteKeyExW');
 
 /// Deletes a subkey and its values from the specified platform-specific view of
-/// the registry as a transacted operation. Note that key names are not case
-/// sensitive.
+/// the registry as a transacted operation.
+///
+/// Note that key names are not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegDeleteKeyTransactedW(
@@ -1094,8 +1116,9 @@ final _RegDeleteTree = _advapi32.lookupFunction<
     Uint32 Function(HKEY hKey, Pointer<Utf16> lpSubKey),
     int Function(int hKey, Pointer<Utf16> lpSubKey)>('RegDeleteTreeW');
 
-/// Removes a named value from the specified registry key. Note that value names
-/// are not case sensitive.
+/// Removes a named value from the specified registry key.
+///
+/// Note that value names are not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegDeleteValueW(
@@ -1111,8 +1134,9 @@ final _RegDeleteValue = _advapi32.lookupFunction<
     int Function(int hKey, Pointer<Utf16> lpValueName)>('RegDeleteValueW');
 
 /// Disables handle caching of the predefined registry handle for
-/// HKEY_CURRENT_USER for the current process. This function does not work on a
-/// remote computer.
+/// HKEY_CURRENT_USER for the current process.
+///
+/// This function does not work on a remote computer.
 ///
 /// ```c
 /// LSTATUS RegDisablePredefinedCache();
@@ -1137,8 +1161,9 @@ final _RegDisablePredefinedCacheEx =
     _advapi32.lookupFunction<Uint32 Function(), int Function()>(
         'RegDisablePredefinedCacheEx');
 
-/// Disables registry reflection for the specified key. Disabling reflection for
-/// a key does not affect reflection of any subkeys.
+/// Disables registry reflection for the specified key.
+///
+/// Disabling reflection for a key does not affect reflection of any subkeys.
 ///
 /// ```c
 /// LONG RegDisableReflectionKey(
@@ -1151,8 +1176,9 @@ final _RegDisableReflectionKey = _advapi32.lookupFunction<
     Uint32 Function(HKEY hBase),
     int Function(int hBase)>('RegDisableReflectionKey');
 
-/// Restores registry reflection for the specified disabled key. Restoring
-/// reflection for a key does not affect reflection of any subkeys.
+/// Restores registry reflection for the specified disabled key.
+///
+/// Restoring reflection for a key does not affect reflection of any subkeys.
 ///
 /// ```c
 /// LONG RegEnableReflectionKey(
@@ -1165,8 +1191,9 @@ final _RegEnableReflectionKey = _advapi32.lookupFunction<
     Uint32 Function(HKEY hBase),
     int Function(int hBase)>('RegEnableReflectionKey');
 
-/// Enumerates the subkeys of the specified open registry key. The function
-/// retrieves the name of one subkey each time it is called.
+/// Enumerates the subkeys of the specified open registry key.
+///
+/// The function retrieves the name of one subkey each time it is called.
 ///
 /// ```c
 /// LSTATUS RegEnumKeyW(
@@ -1185,8 +1212,9 @@ final _RegEnumKey = _advapi32.lookupFunction<
     int Function(int hKey, int dwIndex, Pointer<Utf16> lpName,
         int cchName)>('RegEnumKeyW');
 
-/// Enumerates the subkeys of the specified open registry key. The function
-/// retrieves information about one subkey each time it is called.
+/// Enumerates the subkeys of the specified open registry key.
+///
+/// The function retrieves information about one subkey each time it is called.
 ///
 /// ```c
 /// LSTATUS RegEnumKeyExW(
@@ -1238,9 +1266,10 @@ final _RegEnumKeyEx = _advapi32.lookupFunction<
         Pointer<Uint32> lpcchClass,
         Pointer<FILETIME> lpftLastWriteTime)>('RegEnumKeyExW');
 
-/// Enumerates the values for the specified open registry key. The function
-/// copies one indexed value name and data block for the key each time it is
-/// called.
+/// Enumerates the values for the specified open registry key.
+///
+/// The function copies one indexed value name and data block for the key each
+/// time it is called.
 ///
 /// ```c
 /// LSTATUS RegEnumValueW(
@@ -1526,8 +1555,9 @@ final _RegOpenKey = _advapi32.lookupFunction<
     int Function(int hKey, Pointer<Utf16> lpSubKey,
         Pointer<HKEY> phkResult)>('RegOpenKeyW');
 
-/// Opens the specified registry key. Note that key names are not case
-/// sensitive.
+/// Opens the specified registry key.
+///
+/// Note that key names are not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegOpenKeyExW(
@@ -1550,8 +1580,9 @@ final _RegOpenKeyEx = _advapi32.lookupFunction<
     int Function(int hKey, Pointer<Utf16> lpSubKey, int ulOptions,
         int samDesired, Pointer<HKEY> phkResult)>('RegOpenKeyExW');
 
-/// Opens the specified registry key and associates it with a transaction. Note
-/// that key names are not case sensitive.
+/// Opens the specified registry key and associates it with a transaction.
+///
+/// Note that key names are not case sensitive.
 ///
 /// ```c
 /// LSTATUS RegOpenKeyTransactedW(
@@ -1587,8 +1618,9 @@ final _RegOpenKeyTransacted = _advapi32.lookupFunction<
         int hTransaction,
         Pointer pExtendedParemeter)>('RegOpenKeyTransactedW');
 
-/// Retrieves a handle to the HKEY_CLASSES_ROOT key for a specified user. The
-/// user is identified by an access token.
+/// Retrieves a handle to the HKEY_CLASSES_ROOT key for a specified user.
+///
+/// The user is identified by an access token.
 ///
 /// ```c
 /// LSTATUS RegOpenUserClassesRoot(
@@ -1740,7 +1772,9 @@ final _RegQueryReflectionKey = _advapi32.lookupFunction<
         Pointer<BOOL> bIsReflectionDisabled)>('RegQueryReflectionKey');
 
 /// Retrieves the data associated with the default or unnamed value of a
-/// specified registry key. The data must be a null-terminated string.
+/// specified registry key.
+///
+/// The data must be a null-terminated string.
 ///
 /// ```c
 /// LSTATUS RegQueryValueW(
@@ -1762,9 +1796,10 @@ final _RegQueryValue = _advapi32.lookupFunction<
         Pointer<Int32> lpcbData)>('RegQueryValueW');
 
 /// Retrieves the type and data for the specified value name associated with an
-/// open registry key. To ensure that any string values (REG_SZ, REG_MULTI_SZ,
-/// and REG_EXPAND_SZ) returned are null-terminated, use the RegGetValue
-/// function.
+/// open registry key.
+///
+/// To ensure that any string values (REG_SZ, REG_MULTI_SZ, and REG_EXPAND_SZ)
+/// returned are null-terminated, use the RegGetValue function.
 ///
 /// ```c
 /// LSTATUS RegQueryValueExW(
@@ -1845,8 +1880,10 @@ final _RegReplaceKey = _advapi32.lookupFunction<
         Pointer<Utf16> lpOldFile)>('RegReplaceKeyW');
 
 /// Reads the registry information in a specified file and copies it over the
-/// specified key. This registry information may be in the form of a key and
-/// multiple levels of subkeys.
+/// specified key.
+///
+/// This registry information may be in the form of a key and multiple levels of
+/// subkeys.
 ///
 /// ```c
 /// LSTATUS RegRestoreKeyW(
@@ -1937,6 +1974,7 @@ final _RegSetKeyValue = _advapi32.lookupFunction<
         int dwType, Pointer lpData, int cbData)>('RegSetKeyValueW');
 
 /// Sets the data for the default or unnamed value of a specified registry key.
+///
 /// The data must be a text string.
 ///
 /// ```c
@@ -2039,8 +2077,9 @@ final _SetServiceStatus = _advapi32.lookupFunction<
     int Function(int hServiceStatus,
         Pointer<SERVICE_STATUS> lpServiceStatus)>('SetServiceStatus');
 
-/// The SetThreadToken function assigns an impersonation token to a thread. The
-/// function can also cause a thread to stop using an impersonation token.
+/// The SetThreadToken function assigns an impersonation token to a thread.
+///
+/// The function can also cause a thread to stop using an impersonation token.
 ///
 /// ```c
 /// BOOL SetThreadToken(

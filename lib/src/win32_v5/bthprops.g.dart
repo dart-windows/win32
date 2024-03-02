@@ -20,9 +20,10 @@ import '../types.dart';
 final _bthprops = DynamicLibrary.open('bthprops.cpl');
 
 /// The BluetoothAuthenticateDeviceEx function sends an authentication request
-/// to a remote Bluetooth device. Additionally, this function allows for
-/// out-of-band data to be passed into the function call for the device being
-/// authenticated.
+/// to a remote Bluetooth device.
+///
+/// Additionally, this function allows for out-of-band data to be passed into
+/// the function call for the device being authenticated.
 ///
 /// ```c
 /// DWORD BluetoothAuthenticateDeviceEx(

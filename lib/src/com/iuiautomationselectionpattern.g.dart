@@ -22,8 +22,9 @@ import 'iunknown.g.dart';
 const IID_IUIAutomationSelectionPattern =
     '{5ed5202e-b2ac-47a6-b638-4b0bf140d78e}';
 
-/// Provides access to a control that contains selectable child items. The
-/// children of this element support IUIAutomationSelectionItemPattern.
+/// Provides access to a control that contains selectable child items.
+///
+/// The children of this element support IUIAutomationSelectionItemPattern.
 ///
 /// {@category com}
 class IUIAutomationSelectionPattern extends IUnknown {

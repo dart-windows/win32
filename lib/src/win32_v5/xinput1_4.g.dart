@@ -149,8 +149,9 @@ final _XInputGetState = _xinput1_4.lookupFunction<
     int Function(
         int dwUserIndex, Pointer<XINPUT_STATE> pState)>('XInputGetState');
 
-/// Sends data to a connected controller. This function is used to activate the
-/// vibration function of a controller.
+/// Sends data to a connected controller.
+///
+/// This function is used to activate the vibration function of a controller.
 ///
 /// ```c
 /// DWORD XInputSetState(

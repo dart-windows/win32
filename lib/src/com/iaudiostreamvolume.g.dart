@@ -17,10 +17,11 @@ import 'iunknown.g.dart';
 const IID_IAudioStreamVolume = '{93014887-242d-4068-8a15-cf5e93b90fe3}';
 
 /// The IAudioStreamVolume interface enables a client to control and monitor the
-/// volume levels for all of the channels in an audio stream. The client obtains
-/// a reference to the [IAudioStreamVolume] interface on a stream object by
-/// calling the `IAudioClient::GetService` method with parameter riid set to
-/// REFIID [IID_IAudioStreamVolume].
+/// volume levels for all of the channels in an audio stream.
+///
+/// The client obtains a reference to the [IAudioStreamVolume] interface on a
+/// stream object by calling the `IAudioClient::GetService` method with
+/// parameter riid set to REFIID [IID_IAudioStreamVolume].
 ///
 /// {@category com}
 class IAudioStreamVolume extends IUnknown {

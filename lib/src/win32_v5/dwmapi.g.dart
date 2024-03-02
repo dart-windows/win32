@@ -71,8 +71,10 @@ final _DwmExtendFrameIntoClientArea = _dwmapi.lookupFunction<
 
 /// Issues a flush call that blocks the caller until the next present, when all
 /// of the Microsoft DirectX surface updates that are currently outstanding have
-/// been made. This compensates for very complex scenes or calling processes
-/// with very low priority.
+/// been made.
+///
+/// This compensates for very complex scenes or calling processes with very low
+/// priority.
 ///
 /// ```c
 /// DWMAPI DwmFlush();
@@ -84,9 +86,11 @@ final _DwmFlush =
     _dwmapi.lookupFunction<HRESULT Function(), int Function()>('DwmFlush');
 
 /// Retrieves the current color used for Desktop Window Manager (DWM) glass
-/// composition. This value is based on the current color scheme and can be
-/// modified by the user. Applications can listen for color changes by handling
-/// the WM_DWMCOLORIZATIONCOLORCHANGED notification.
+/// composition.
+///
+/// This value is based on the current color scheme and can be modified by the
+/// user. Applications can listen for color changes by handling the
+/// WM_DWMCOLORIZATIONCOLORCHANGED notification.
 ///
 /// ```c
 /// DWMAPI DwmGetColorizationColor(

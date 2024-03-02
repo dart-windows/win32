@@ -19,8 +19,9 @@ const IID_ISpNotifySource = '{5eff4aef-8487-11d2-961c-00c04f8ee628}';
 
 /// In both speech synthesis and speech recognition, applications receive
 /// notifications when words have been spoken or when phrases have been
-/// recognized. SAPI components that generate notifications implement an
-/// ISpNotifySource.
+/// recognized.
+///
+/// SAPI components that generate notifications implement an ISpNotifySource.
 ///
 /// {@category com}
 class ISpNotifySource extends IUnknown {

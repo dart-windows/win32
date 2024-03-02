@@ -111,6 +111,9 @@ extension StringHelpers on String {
   /// of characters allowed in a single line of the doc comment. If a word would
   /// exceed the [wrapLength], it will be wrapped to the next line.
   ///
+  /// The first sentence of the doc comment is separated from the rest of the
+  /// content by an empty line.
+  ///
   /// Example usage:
   /// ```dart
   /// final content =
@@ -123,65 +126,56 @@ extension StringHelpers on String {
   ///
   /// Result:
   /// ```
-  /// /// This is a long text that needs to be formatted into a doc comment. It will
-  /// /// be broken down into multiple lines, each not exceeding the default
-  /// /// wrapLength of 80 characters.
-  /// ```
-  ///
-  /// If the string contains newline characters (`\n`), they will be treated as
-  /// line breaks, resulting in separate paragraphs in the doc comments.
-  ///
-  /// For example:
-  /// ```dart
-  /// final contentWithNewlines =
-  ///     'This is the first paragraph. \n This is the second paragraph.';
-  /// final docComment = contentWithNewlines.toDocComment();
-  /// print(docComment);
-  /// ```
-  ///
-  /// Result:
-  /// ```
-  /// /// This is the first paragraph.
+  /// /// This is a long text that needs to be formatted into a doc comment.
   /// ///
-  /// /// This is the second paragraph.
+  /// /// It will be broken down into multiple lines, each not exceeding the default
+  /// /// wrapLength of 80 characters.
   /// ```
   String toDocComment({int wrapLength = 80}) {
     if (isEmpty) return '';
 
-    // Split the input string into words for processing.
-    final words = split(' ');
+    // Split the string into sentences for processing.
+    final sentences = split(RegExp(r'(?<=[.!?])\s+'));
 
-    // Initialize the textLine to start the doc comment.
+    // Initialize the StringBuffer to start the doc comment.
     final textLine = StringBuffer('///');
 
-    // Initialize the wrappedText to store the formatted doc comment.
+    // Initialize the StringBuffer to store the formatted doc comment.
     final wrappedText = StringBuffer();
 
-    // Process each word in the input string.
-    for (final word in words) {
-      // If the word is a newline character, start a new paragraph.
-      if (word == '\n') {
-        textLine.write('\n///\n///');
-        wrappedText.write(textLine);
-        textLine.clear();
-        continue;
+    // Process each sentence in the string.
+    for (final (idx, sentence) in sentences.indexed) {
+      // Process each word in the sentence.
+      final words = sentence.trim().split(' ');
+      for (final word in words) {
+        // If the word would exceed the wrapLength, wrap it to the next line.
+        if ((textLine.length + word.length) >= wrapLength) {
+          textLine.write('\n');
+          wrappedText.write(textLine);
+          textLine
+            ..clear()
+            ..write('/// $word');
+        } else {
+          // Otherwise, add the word to the current line.
+          textLine.write(' $word');
+        }
       }
 
-      // If the word would exceed the wrapLength, wrap it to the next line.
-      if ((textLine.length + word.length) >= wrapLength) {
-        textLine.write('\n');
-        wrappedText.write(textLine);
+      // Separate the first sentence from the rest of the content.
+      if (idx == 0 && sentences.length > 1) {
+        wrappedText
+          ..write(textLine)
+          ..write('\n///\n');
         textLine
           ..clear()
-          ..write('/// $word');
+          ..write('///');
       } else {
-        // Otherwise, add the word to the current line.
-        textLine.write(' $word');
+        // Otherwise, add the current line to the formatted doc comment.
+        if (idx == sentences.length - 1) {
+          wrappedText.write(textLine);
+        }
       }
     }
-
-    // Add the last line of the doc comment to the wrappedText.
-    wrappedText.write(textLine);
 
     // Trim any trailing whitespace and return the formatted doc comment.
     return wrappedText.toString().trimRight();

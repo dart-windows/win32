@@ -628,8 +628,10 @@ final _BluetoothGATTUnregisterEvent = _bluetoothapis.lookupFunction<
     int Function(int eventHandle, int flags)>('BluetoothGATTUnregisterEvent');
 
 /// TThe BluetoothGetDeviceInfo function retrieves information about a remote
-/// Bluetooth device. The Bluetooth device must have been previously identified
-/// through a successful device inquiry function call.
+/// Bluetooth device.
+///
+/// The Bluetooth device must have been previously identified through a
+/// successful device inquiry function call.
 ///
 /// ```c
 /// DWORD BluetoothGetDeviceInfo(

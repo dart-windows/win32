@@ -18,8 +18,10 @@ import 'iunknown.g.dart';
 const IID_IPersist = '{0000010c-0000-0000-c000-000000000046}';
 
 /// Provides the CLSID of an object that can be stored persistently in the
-/// system. Allows the object to specify which object handler to use in the
-/// client process, as it is used in the default implementation of marshaling.
+/// system.
+///
+/// Allows the object to specify which object handler to use in the client
+/// process, as it is used in the default implementation of marshaling.
 ///
 /// {@category com}
 class IPersist extends IUnknown {

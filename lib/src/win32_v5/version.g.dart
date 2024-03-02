@@ -63,8 +63,10 @@ final _GetFileVersionInfoEx = _version.lookupFunction<
         int dwLen, Pointer lpData)>('GetFileVersionInfoExW');
 
 /// Determines whether the operating system can retrieve version information for
-/// a specified file. If version information is available,
-/// GetFileVersionInfoSize returns the size, in bytes, of that information.
+/// a specified file.
+///
+/// If version information is available, GetFileVersionInfoSize returns the
+/// size, in bytes, of that information.
 ///
 /// ```c
 /// DWORD GetFileVersionInfoSizeW(
@@ -83,8 +85,10 @@ final _GetFileVersionInfoSize = _version.lookupFunction<
         Pointer<Uint32> lpdwHandle)>('GetFileVersionInfoSizeW');
 
 /// Determines whether the operating system can retrieve version information for
-/// a specified file. If version information is available,
-/// GetFileVersionInfoSizeEx returns the size, in bytes, of that information.
+/// a specified file.
+///
+/// If version information is available, GetFileVersionInfoSizeEx returns the
+/// size, in bytes, of that information.
 ///
 /// ```c
 /// DWORD GetFileVersionInfoSizeExW(
@@ -105,9 +109,10 @@ final _GetFileVersionInfoSizeEx = _version.lookupFunction<
         Pointer<Uint32> lpdwHandle)>('GetFileVersionInfoSizeExW');
 
 /// Determines where to install a file based on whether it locates another
-/// version of the file in the system. The values VerFindFile returns in the
-/// specified buffers are used in a subsequent call to the VerInstallFile
-/// function.
+/// version of the file in the system.
+///
+/// The values VerFindFile returns in the specified buffers are used in a
+/// subsequent call to the VerInstallFile function.
 ///
 /// ```c
 /// DWORD VerFindFileW(
@@ -155,8 +160,10 @@ final _VerFindFile = _version.lookupFunction<
         Pointer<Uint32> puDestDirLen)>('VerFindFileW');
 
 /// Installs the specified file based on information returned from the
-/// VerFindFile function. VerInstallFile decompresses the file, if necessary,
-/// assigns a unique filename, and checks for errors, such as outdated files.
+/// VerFindFile function.
+///
+/// VerInstallFile decompresses the file, if necessary, assigns a unique
+/// filename, and checks for errors, such as outdated files.
 ///
 /// ```c
 /// DWORD VerInstallFileW(
@@ -204,9 +211,11 @@ final _VerInstallFile = _version.lookupFunction<
         Pointer<Uint32> puTmpFileLen)>('VerInstallFileW');
 
 /// Retrieves specified version information from the specified
-/// version-information resource. To retrieve the appropriate resource, before
-/// you call VerQueryValue, you must first call the GetFileVersionInfoSize
-/// function, and then the GetFileVersionInfo function.
+/// version-information resource.
+///
+/// To retrieve the appropriate resource, before you call VerQueryValue, you
+/// must first call the GetFileVersionInfoSize function, and then the
+/// GetFileVersionInfo function.
 ///
 /// ```c
 /// BOOL VerQueryValueW(

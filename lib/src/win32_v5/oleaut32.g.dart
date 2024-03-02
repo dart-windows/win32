@@ -74,7 +74,9 @@ final _SysAllocString = _oleaut32.lookupFunction<
     Pointer<Utf16> Function(Pointer<Utf16> psz)>('SysAllocString');
 
 /// Takes an ANSI string as input, and returns a BSTR that contains an ANSI
-/// string. Does not perform any ANSI-to-Unicode translation.
+/// string.
+///
+/// Does not perform any ANSI-to-Unicode translation.
 ///
 /// ```c
 /// BSTR SysAllocStringByteLen(
@@ -164,9 +166,10 @@ final _SysReAllocStringLen = _oleaut32.lookupFunction<
     int Function(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16> psz,
         int len)>('SysReAllocStringLen');
 
-/// Decreases the pinning reference count for the specified string by one. When
-/// that count reaches 0, the memory for that string is no longer prevented from
-/// being freed.
+/// Decreases the pinning reference count for the specified string by one.
+///
+/// When that count reaches 0, the memory for that string is no longer prevented
+/// from being freed.
 ///
 /// ```c
 /// void SysReleaseString(

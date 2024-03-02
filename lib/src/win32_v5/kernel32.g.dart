@@ -19,8 +19,9 @@ import '../types.dart';
 
 final _kernel32 = DynamicLibrary.open('kernel32.dll');
 
-/// The ActivateActCtx function activates the specified activation context. It
-/// does this by pushing the specified activation context to the top of the
+/// The ActivateActCtx function activates the specified activation context.
+///
+/// It does this by pushing the specified activation context to the top of the
 /// activation stack. The specified activation context is thus associated with
 /// the current thread and any appropriate side-by-side API functions.
 ///
@@ -79,8 +80,9 @@ final _AllocConsole =
     _kernel32.lookupFunction<BOOL Function(), int Function()>('AllocConsole');
 
 /// Determines whether the file I/O functions are using the ANSI or OEM
-/// character set code page. This function is useful for 8-bit console input and
-/// output operations.
+/// character set code page.
+///
+/// This function is useful for 8-bit console input and output operations.
 ///
 /// ```c
 /// BOOL AreFileApisANSI();
@@ -121,9 +123,10 @@ final _AttachConsole = _kernel32.lookupFunction<
     BOOL Function(Uint32 dwProcessId),
     int Function(int dwProcessId)>('AttachConsole');
 
-/// Generates simple tones on the speaker. The function is synchronous; it
-/// performs an alertable wait and does not return control to its caller until
-/// the sound finishes.
+/// Generates simple tones on the speaker.
+///
+/// The function is synchronous; it performs an alertable wait and does not
+/// return control to its caller until the sound finishes.
 ///
 /// ```c
 /// BOOL Beep(
@@ -158,7 +161,9 @@ final _BeginUpdateResource = _kernel32.lookupFunction<
         int bDeleteExistingResources)>('BeginUpdateResourceW');
 
 /// Fills a specified DCB structure with values specified in a device-control
-/// string. The device-control string uses the syntax of the mode command.
+/// string.
+///
+/// The device-control string uses the syntax of the mode command.
 ///
 /// ```c
 /// BOOL BuildCommDCBW(
@@ -175,10 +180,11 @@ final _BuildCommDCB = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpDef, Pointer<DCB> lpDCB)>('BuildCommDCBW');
 
 /// Translates a device-definition string into appropriate device-control block
-/// codes and places them into a device control block. The function can also set
-/// up time-out values, including the possibility of no time-outs, for a device;
-/// the function's behavior in this regard depends on the contents of the
-/// device-definition string.
+/// codes and places them into a device control block.
+///
+/// The function can also set up time-out values, including the possibility of
+/// no time-outs, for a device; the function's behavior in this regard depends
+/// on the contents of the device-definition string.
 ///
 /// ```c
 /// BOOL BuildCommDCBAndTimeoutsW(
@@ -243,8 +249,10 @@ final _CallNamedPipe = _kernel32.lookupFunction<
         int nTimeOut)>('CallNamedPipeW');
 
 /// Cancels all pending input and output (I/O) operations that are issued by the
-/// calling thread for the specified file. The function does not cancel I/O
-/// operations that other threads issue for a file handle.
+/// calling thread for the specified file.
+///
+/// The function does not cancel I/O operations that other threads issue for a
+/// file handle.
 ///
 /// ```c
 /// BOOL CancelIo(
@@ -257,9 +265,10 @@ int CancelIo(int hFile) => _CancelIo(hFile);
 final _CancelIo = _kernel32.lookupFunction<BOOL Function(HANDLE hFile),
     int Function(int hFile)>('CancelIo');
 
-/// Marks any outstanding I/O operations for the specified file handle. The
-/// function only cancels I/O operations in the current process, regardless of
-/// which thread created the I/O operation.
+/// Marks any outstanding I/O operations for the specified file handle.
+///
+/// The function only cancels I/O operations in the current process, regardless
+/// of which thread created the I/O operation.
 ///
 /// ```c
 /// BOOL CancelIoEx(
@@ -322,9 +331,10 @@ final _ClearCommBreak = _kernel32.lookupFunction<BOOL Function(HANDLE hFile),
     int Function(int hFile)>('ClearCommBreak');
 
 /// Retrieves information about a communications error and reports the current
-/// status of a communications device. The function is called when a
-/// communications error occurs, and it clears the device's error flag to enable
-/// additional input and output (I/O) operations.
+/// status of a communications device.
+///
+/// The function is called when a communications error occurs, and it clears the
+/// device's error flag to enable additional input and output (I/O) operations.
 ///
 /// ```c
 /// BOOL ClearCommError(
@@ -391,8 +401,10 @@ final _CommConfigDialog = _kernel32.lookupFunction<
         Pointer<COMMCONFIG> lpCC)>('CommConfigDialogW');
 
 /// Enables a named pipe server process to wait for a client process to connect
-/// to an instance of a named pipe. A client process connects by calling either
-/// the CreateFile or CallNamedPipe function.
+/// to an instance of a named pipe.
+///
+/// A client process connects by calling either the CreateFile or CallNamedPipe
+/// function.
 ///
 /// ```c
 /// BOOL ConnectNamedPipe(
@@ -473,9 +485,10 @@ final _CreateConsoleScreenBuffer = _kernel32.lookupFunction<
         int dwFlags,
         Pointer lpScreenBufferData)>('CreateConsoleScreenBuffer');
 
-/// Creates a new directory. If the underlying file system supports security on
-/// files and directories, the function applies a specified security descriptor
-/// to the new directory.
+/// Creates a new directory.
+///
+/// If the underlying file system supports security on files and directories,
+/// the function applies a specified security descriptor to the new directory.
 ///
 /// ```c
 /// BOOL CreateDirectoryW(
@@ -545,12 +558,13 @@ final _CreateEventEx = _kernel32.lookupFunction<
         int dwFlags,
         int dwDesiredAccess)>('CreateEventExW');
 
-/// Creates or opens a file or I/O device. The most commonly used I/O devices
-/// are as follows: file, file stream, directory, physical disk, volume, console
-/// buffer, tape drive, communications resource, mailslot, and pipe. The
-/// function returns a handle that can be used to access the file or device for
-/// various types of I/O depending on the file or device and the flags and
-/// attributes specified.
+/// Creates or opens a file or I/O device.
+///
+/// The most commonly used I/O devices are as follows: file, file stream,
+/// directory, physical disk, volume, console buffer, tape drive, communications
+/// resource, mailslot, and pipe. The function returns a handle that can be used
+/// to access the file or device for various types of I/O depending on the file
+/// or device and the flags and attributes specified.
 ///
 /// ```c
 /// HANDLE CreateFileW(
@@ -599,12 +613,13 @@ final _CreateFile = _kernel32.lookupFunction<
         int dwFlagsAndAttributes,
         int hTemplateFile)>('CreateFileW');
 
-/// Creates or opens a file or I/O device. The most commonly used I/O devices
-/// are as follows: file, file stream, directory, physical disk, volume, console
-/// buffer, tape drive, communications resource, mailslot, and pipe. The
-/// function returns a handle that can be used to access the file or device for
-/// various types of I/O depending on the file or device and the flags and
-/// attributes specified.
+/// Creates or opens a file or I/O device.
+///
+/// The most commonly used I/O devices are as follows: file, file stream,
+/// directory, physical disk, volume, console buffer, tape drive, communications
+/// resource, mailslot, and pipe. The function returns a handle that can be used
+/// to access the file or device for various types of I/O depending on the file
+/// or device and the flags and attributes specified.
 ///
 /// ```c
 /// HANDLE CreateFile2(
@@ -684,9 +699,11 @@ final _CreateJobObject = _kernel32.lookupFunction<
         Pointer<Utf16> lpName)>('CreateJobObjectW');
 
 /// Creates an instance of a named pipe and returns a handle for subsequent pipe
-/// operations. A named pipe server process uses this function either to create
-/// the first instance of a specific named pipe and establish its basic
-/// attributes or to create a new instance of an existing named pipe.
+/// operations.
+///
+/// A named pipe server process uses this function either to create the first
+/// instance of a specific named pipe and establish its basic attributes or to
+/// create a new instance of an existing named pipe.
 ///
 /// ```c
 /// HANDLE CreateNamedPipeW(
@@ -764,8 +781,9 @@ final _CreatePipe = _kernel32.lookupFunction<
         Pointer<SECURITY_ATTRIBUTES> lpPipeAttributes,
         int nSize)>('CreatePipe');
 
-/// Creates a new process and its primary thread. The new process runs in the
-/// security context of the calling process.
+/// Creates a new process and its primary thread.
+///
+/// The new process runs in the security context of the calling process.
 ///
 /// ```c
 /// BOOL CreateProcessW(
@@ -852,6 +870,7 @@ final _CreatePseudoConsole = _kernel32.lookupFunction<
         Pointer<HPCON> phPC)>('CreatePseudoConsole');
 
 /// Creates a thread that runs in the virtual address space of another process.
+///
 /// Use the CreateRemoteThreadEx function to create a thread that runs in the
 /// virtual address space of another process and optionally specify extended
 /// attributes.
@@ -1016,8 +1035,10 @@ final _DeactivateActCtx = _kernel32.lookupFunction<
     BOOL Function(Uint32 dwFlags, IntPtr ulCookie),
     int Function(int dwFlags, int ulCookie)>('DeactivateActCtx');
 
-/// Causes a breakpoint exception to occur in the current process. This allows
-/// the calling thread to signal the debugger to handle the exception.
+/// Causes a breakpoint exception to occur in the current process.
+///
+/// This allows the calling thread to signal the debugger to handle the
+/// exception.
 ///
 /// ```c
 /// void DebugBreak();
@@ -1028,8 +1049,10 @@ void DebugBreak() => _DebugBreak();
 final _DebugBreak =
     _kernel32.lookupFunction<Void Function(), void Function()>('DebugBreak');
 
-/// Causes a breakpoint exception to occur in the specified process. This allows
-/// the calling thread to signal the debugger to handle the exception.
+/// Causes a breakpoint exception to occur in the specified process.
+///
+/// This allows the calling thread to signal the debugger to handle the
+/// exception.
 ///
 /// ```c
 /// BOOL DebugBreakProcess(
@@ -1164,8 +1187,9 @@ final _DeviceIoControl = _kernel32.lookupFunction<
         Pointer<OVERLAPPED> lpOverlapped)>('DeviceIoControl');
 
 /// Disables the DLL_THREAD_ATTACH and DLL_THREAD_DETACH notifications for the
-/// specified dynamic-link library (DLL). This can reduce the size of the
-/// working set for some applications.
+/// specified dynamic-link library (DLL).
+///
+/// This can reduce the size of the working set for some applications.
 ///
 /// ```c
 /// BOOL DisableThreadLibraryCalls(
@@ -1292,10 +1316,11 @@ final _EndUpdateResource = _kernel32.lookupFunction<
     BOOL Function(HANDLE hUpdate, BOOL fDiscard),
     int Function(int hUpdate, int fDiscard)>('EndUpdateResourceW');
 
-/// Enumerates resources of a specified type within a binary module. For Windows
-/// Vista and later, this is typically a language-neutral Portable Executable
-/// (LN file), and the enumeration will also include resources from the
-/// corresponding language-specific resource files (.mui files) that contain
+/// Enumerates resources of a specified type within a binary module.
+///
+/// For Windows Vista and later, this is typically a language-neutral Portable
+/// Executable (LN file), and the enumeration will also include resources from
+/// the corresponding language-specific resource files (.mui files) that contain
 /// localizable language resources. It is also possible for hModule to specify
 /// an .mui file, in which case only that file is searched for resources.
 ///
@@ -1321,13 +1346,14 @@ final _EnumResourceNames = _kernel32.lookupFunction<
         Pointer<NativeFunction<ENUMRESNAMEPROC>> lpEnumFunc,
         int lParam)>('EnumResourceNamesW');
 
-/// Enumerates resource types within a binary module. Starting with Windows
-/// Vista, this is typically a language-neutral Portable Executable (LN file),
-/// and the enumeration also includes resources from one of the corresponding
-/// language-specific resource files (.mui files)—if one exists—that contain
-/// localizable language resources. It is also possible to use hModule to
-/// specify a .mui file, in which case only that file is searched for resource
-/// types.
+/// Enumerates resource types within a binary module.
+///
+/// Starting with Windows Vista, this is typically a language-neutral Portable
+/// Executable (LN file), and the enumeration also includes resources from one
+/// of the corresponding language-specific resource files (.mui files)—if one
+/// exists—that contain localizable language resources. It is also possible to
+/// use hModule to specify a .mui file, in which case only that file is searched
+/// for resource types.
 ///
 /// ```c
 /// BOOL EnumResourceTypesW(
@@ -1434,8 +1460,9 @@ final _FileTimeToDosDateTime = _kernel32.lookupFunction<
     int Function(Pointer<FILETIME> lpFileTime, Pointer<Uint16> lpFatDate,
         Pointer<Uint16> lpFatTime)>('FileTimeToDosDateTime');
 
-/// Converts a file time to system time format. System time is based on
-/// Coordinated Universal Time (UTC).
+/// Converts a file time to system time format.
+///
+/// System time is based on Coordinated Universal Time (UTC).
 ///
 /// ```c
 /// BOOL FileTimeToSystemTime(
@@ -1541,9 +1568,11 @@ final _FindCloseChangeNotification = _kernel32.lookupFunction<
     int Function(int hChangeHandle)>('FindCloseChangeNotification');
 
 /// Creates a change notification handle and sets up initial change notification
-/// filter conditions. A wait on a notification handle succeeds when a change
-/// matching the filter conditions occurs in the specified directory or subtree.
-/// The function does not report changes to the specified directory itself.
+/// filter conditions.
+///
+/// A wait on a notification handle succeeds when a change matching the filter
+/// conditions occurs in the specified directory or subtree. The function does
+/// not report changes to the specified directory itself.
 ///
 /// ```c
 /// HANDLE FindFirstChangeNotificationW(
@@ -1618,9 +1647,10 @@ final _FindFirstFileEx = _kernel32.lookupFunction<
         Pointer lpSearchFilter,
         int dwAdditionalFlags)>('FindFirstFileExW');
 
-/// Creates an enumeration of all the hard links to the specified file. The
-/// FindFirstFileNameW function returns a handle to the enumeration that can be
-/// used on subsequent calls to the FindNextFileNameW function.
+/// Creates an enumeration of all the hard links to the specified file.
+///
+/// The FindFirstFileNameW function returns a handle to the enumeration that can
+/// be used on subsequent calls to the FindNextFileNameW function.
 ///
 /// ```c
 /// HANDLE FindFirstFileNameW(
@@ -1666,8 +1696,9 @@ final _FindFirstStream = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpFileName, int infoLevel,
         Pointer lpFindStreamData, int dwFlags)>('FindFirstStreamW');
 
-/// Retrieves the name of a volume on a computer. FindFirstVolume is used to
-/// begin scanning the volumes of a computer.
+/// Retrieves the name of a volume on a computer.
+///
+/// FindFirstVolume is used to begin scanning the volumes of a computer.
 ///
 /// ```c
 /// HANDLE FindFirstVolumeW(
@@ -1757,6 +1788,7 @@ final _FindNextStream = _kernel32.lookupFunction<
     int Function(int hFindStream, Pointer lpFindStreamData)>('FindNextStreamW');
 
 /// Continues a volume search started by a call to the FindFirstVolume function.
+///
 /// FindNextVolume finds one volume per call.
 ///
 /// ```c
@@ -1908,8 +1940,10 @@ final _FindStringOrdinal = _kernel32.lookupFunction<
         int cchValue,
         int bIgnoreCase)>('FindStringOrdinal');
 
-/// Closes the specified volume search handle. The FindFirstVolume and
-/// FindNextVolume functions use this search handle to locate volumes.
+/// Closes the specified volume search handle.
+///
+/// The FindFirstVolume and FindNextVolume functions use this search handle to
+/// locate volumes.
 ///
 /// ```c
 /// BOOL FindVolumeClose(
@@ -1923,8 +1957,9 @@ final _FindVolumeClose = _kernel32.lookupFunction<
     BOOL Function(HANDLE hFindVolume),
     int Function(int hFindVolume)>('FindVolumeClose');
 
-/// Flushes the console input buffer. All input records currently in the input
-/// buffer are discarded.
+/// Flushes the console input buffer.
+///
+/// All input records currently in the input buffer are discarded.
 ///
 /// ```c
 /// BOOL FlushConsoleInputBuffer(
@@ -1939,14 +1974,16 @@ final _FlushConsoleInputBuffer = _kernel32.lookupFunction<
     BOOL Function(HANDLE hConsoleInput),
     int Function(int hConsoleInput)>('FlushConsoleInputBuffer');
 
-/// Formats a message string. The function requires a message definition as
-/// input. The message definition can come from a buffer passed into the
-/// function. It can come from a message table resource in an already-loaded
-/// module. Or the caller can ask the function to search the system's message
-/// table resource(s) for the message definition. The function finds the message
-/// definition in a message table resource based on a message identifier and a
-/// language identifier. The function copies the formatted message text to an
-/// output buffer, processing any embedded insert sequences if requested.
+/// Formats a message string.
+///
+/// The function requires a message definition as input. The message definition
+/// can come from a buffer passed into the function. It can come from a message
+/// table resource in an already-loaded module. Or the caller can ask the
+/// function to search the system's message table resource(s) for the message
+/// definition. The function finds the message definition in a message table
+/// resource based on a message identifier and a language identifier. The
+/// function copies the formatted message text to an output buffer, processing
+/// any embedded insert sequences if requested.
 ///
 /// ```c
 /// DWORD FormatMessageW(
@@ -2001,9 +2038,10 @@ final _FreeConsole =
     _kernel32.lookupFunction<BOOL Function(), int Function()>('FreeConsole');
 
 /// Frees the loaded dynamic-link library (DLL) module and, if necessary,
-/// decrements its reference count. When the reference count reaches zero, the
-/// module is unloaded from the address space of the calling process and the
-/// handle is no longer valid.
+/// decrements its reference count.
+///
+/// When the reference count reaches zero, the module is unloaded from the
+/// address space of the calling process and the handle is no longer valid.
 ///
 /// ```c
 /// BOOL FreeLibrary(
@@ -2017,8 +2055,9 @@ final _FreeLibrary = _kernel32.lookupFunction<BOOL Function(HMODULE hLibModule),
     int Function(int hLibModule)>('FreeLibrary');
 
 /// Decrements the reference count of a loaded dynamic-link library (DLL) by
-/// one, then calls ExitThread to terminate the calling thread. The function
-/// does not return.
+/// one, then calls ExitThread to terminate the calling thread.
+///
+/// The function does not return.
 ///
 /// ```c
 /// void FreeLibraryAndExitThread(
@@ -2212,11 +2251,13 @@ final _GetCommTimeouts = _kernel32.lookupFunction<
         int hFile, Pointer<COMMTIMEOUTS> lpCommTimeouts)>('GetCommTimeouts');
 
 /// Retrieves the actual number of bytes of disk storage used to store a
-/// specified file. If the file is located on a volume that supports compression
-/// and the file is compressed, the value obtained is the compressed size of the
-/// specified file. If the file is located on a volume that supports sparse
-/// files and the file is a sparse file, the value obtained is the sparse size
-/// of the specified file.
+/// specified file.
+///
+/// If the file is located on a volume that supports compression and the file is
+/// compressed, the value obtained is the compressed size of the specified file.
+/// If the file is located on a volume that supports sparse files and the file
+/// is a sparse file, the value obtained is the sparse size of the specified
+/// file.
 ///
 /// ```c
 /// DWORD GetCompressedFileSizeW(
@@ -2234,8 +2275,10 @@ final _GetCompressedFileSize = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpFileName,
         Pointer<Uint32> lpFileSizeHigh)>('GetCompressedFileSizeW');
 
-/// Retrieves the NetBIOS name of the local computer. This name is established
-/// at system startup, when the system reads it from the registry.
+/// Retrieves the NetBIOS name of the local computer.
+///
+/// This name is established at system startup, when the system reads it from
+/// the registry.
 ///
 /// ```c
 /// BOOL GetComputerNameW(
@@ -2252,9 +2295,10 @@ final _GetComputerName = _kernel32.lookupFunction<
     int Function(
         Pointer<Utf16> lpBuffer, Pointer<Uint32> nSize)>('GetComputerNameW');
 
-/// Retrieves a NetBIOS or DNS name associated with the local computer. The
-/// names are established at system startup, when the system reads them from the
-/// registry.
+/// Retrieves a NetBIOS or DNS name associated with the local computer.
+///
+/// The names are established at system startup, when the system reads them from
+/// the registry.
 ///
 /// ```c
 /// BOOL GetComputerNameExW(
@@ -2275,8 +2319,10 @@ final _GetComputerNameEx = _kernel32.lookupFunction<
         Pointer<Uint32> nSize)>('GetComputerNameExW');
 
 /// Retrieves the input code page used by the console associated with the
-/// calling process. A console uses its input code page to translate keyboard
-/// input into the corresponding character value.
+/// calling process.
+///
+/// A console uses its input code page to translate keyboard input into the
+/// corresponding character value.
 ///
 /// ```c
 /// UINT GetConsoleCP(void);
@@ -2326,9 +2372,11 @@ final _GetConsoleMode = _kernel32.lookupFunction<
     int Function(int hConsoleHandle, Pointer<Uint32> lpMode)>('GetConsoleMode');
 
 /// Retrieves the output code page used by the console associated with the
-/// calling process. A console uses its output code page to translate the
-/// character values written by the various output functions into the images
-/// displayed in the console window.
+/// calling process.
+///
+/// A console uses its output code page to translate the character values
+/// written by the various output functions into the images displayed in the
+/// console window.
 ///
 /// ```c
 /// UINT GetConsoleOutputCP(void);
@@ -2699,8 +2747,9 @@ final _GetFileInformationByHandle = _kernel32.lookupFunction<
             int hFile, Pointer<BY_HANDLE_FILE_INFORMATION> lpFileInformation)>(
     'GetFileInformationByHandle');
 
-/// Retrieves the size of the specified file, in bytes. It is recommended that
-/// you use GetFileSizeEx.
+/// Retrieves the size of the specified file, in bytes.
+///
+/// It is recommended that you use GetFileSizeEx.
 ///
 /// ```c
 /// DWORD GetFileSize(
@@ -2824,9 +2873,10 @@ final _GetLargestConsoleWindowSize = _kernel32.lookupFunction<
     COORD Function(HANDLE hConsoleOutput),
     COORD Function(int hConsoleOutput)>('GetLargestConsoleWindowSize');
 
-/// Retrieves the calling thread's last-error code value. The last-error code is
-/// maintained on a per-thread basis. Multiple threads do not overwrite each
-/// other's last-error code.
+/// Retrieves the calling thread's last-error code value.
+///
+/// The last-error code is maintained on a per-thread basis. Multiple threads do
+/// not overwrite each other's last-error code.
 ///
 /// ```c
 /// DWORD GetLastError();
@@ -2990,7 +3040,9 @@ final _GetMaximumProcessorGroupCount =
         'GetMaximumProcessorGroupCount');
 
 /// Retrieves the fully qualified path for the file that contains the specified
-/// module. The module must have been loaded by the current process.
+/// module.
+///
+/// The module must have been loaded by the current process.
 ///
 /// ```c
 /// DWORD GetModuleFileNameW(
@@ -3008,8 +3060,9 @@ final _GetModuleFileName = _kernel32.lookupFunction<
     int Function(int hModule, Pointer<Utf16> lpFilename,
         int nSize)>('GetModuleFileNameW');
 
-/// Retrieves a module handle for the specified module. The module must have
-/// been loaded by the calling process.
+/// Retrieves a module handle for the specified module.
+///
+/// The module must have been loaded by the calling process.
 ///
 /// ```c
 /// HMODULE GetModuleHandleW(
@@ -3026,7 +3079,9 @@ final _GetModuleHandle = _kernel32.lookupFunction<
 
 /// Retrieves a module handle for the specified module and increments the
 /// module's reference count unless GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT
-/// is specified. The module must have been loaded by the calling process.
+/// is specified.
+///
+/// The module must have been loaded by the calling process.
 ///
 /// ```c
 /// BOOL GetModuleHandleExW(
@@ -3101,8 +3156,10 @@ final _GetNamedPipeClientSessionId = _kernel32.lookupFunction<
     int Function(int pipe,
         Pointer<Uint32> clientSessionId)>('GetNamedPipeClientSessionId');
 
-/// Retrieves information about a specified named pipe. The information returned
-/// can vary during the lifetime of an instance of the named pipe.
+/// Retrieves information about a specified named pipe.
+///
+/// The information returned can vary during the lifetime of an instance of the
+/// named pipe.
 ///
 /// ```c
 /// BOOL GetNamedPipeHandleStateW(
@@ -3190,9 +3247,11 @@ final _GetNamedPipeInfo = _kernel32.lookupFunction<
         Pointer<Uint32> lpMaxInstances)>('GetNamedPipeInfo');
 
 /// Retrieves information about the current system to an application running
-/// under WOW64. If the function is called from a 64-bit application, or on a
-/// 64-bit system that does not have an Intel64 or x64 processor (such as
-/// ARM64), it is equivalent to the GetSystemInfo function.
+/// under WOW64.
+///
+/// If the function is called from a 64-bit application, or on a 64-bit system
+/// that does not have an Intel64 or x64 processor (such as ARM64), it is
+/// equivalent to the GetSystemInfo function.
 ///
 /// ```c
 /// void GetNativeSystemInfo(
@@ -3226,8 +3285,10 @@ final _GetNumberOfConsoleInputEvents = _kernel32.lookupFunction<
         Pointer<Uint32> lpNumberOfEvents)>('GetNumberOfConsoleInputEvents');
 
 /// Retrieves the results of an overlapped operation on the specified file,
-/// named pipe, or communications device. To specify a timeout interval or wait
-/// on an alertable thread, use GetOverlappedResultEx.
+/// named pipe, or communications device.
+///
+/// To specify a timeout interval or wait on an alertable thread, use
+/// GetOverlappedResultEx.
 ///
 /// ```c
 /// BOOL GetOverlappedResult(
@@ -3254,6 +3315,7 @@ final _GetOverlappedResult = _kernel32.lookupFunction<
 
 /// Retrieves the results of an overlapped operation on the specified file,
 /// named pipe, or communications device within the specified time-out interval.
+///
 /// The calling thread can perform an alertable wait.
 ///
 /// ```c
@@ -3323,8 +3385,9 @@ final _GetProcAddress = _kernel32.lookupFunction<
     FARPROC Function(HMODULE hModule, Pointer<Utf8> lpProcName),
     FARPROC Function(int hModule, Pointer<Utf8> lpProcName)>('GetProcAddress');
 
-/// Retrieves a handle to the default heap of the calling process. This handle
-/// can then be used in subsequent calls to the heap functions.
+/// Retrieves a handle to the default heap of the calling process.
+///
+/// This handle can then be used in subsequent calls to the heap functions.
 ///
 /// ```c
 /// HANDLE GetProcessHeap();
@@ -3496,8 +3559,10 @@ final _GetProductInfo = _kernel32.lookupFunction<
         Pointer<Uint32> pdwReturnedProductType)>('GetProductInfo');
 
 /// Attempts to dequeue an I/O completion packet from the specified I/O
-/// completion port. If there is no completion packet queued, the function waits
-/// for a pending I/O operation associated with the completion port to complete.
+/// completion port.
+///
+/// If there is no completion packet queued, the function waits for a pending
+/// I/O operation associated with the completion port to complete.
 ///
 /// ```c
 /// BOOL GetQueuedCompletionStatus(
@@ -3532,9 +3597,10 @@ final _GetQueuedCompletionStatus = _kernel32.lookupFunction<
         Pointer<Pointer<OVERLAPPED>> lpOverlapped,
         int dwMilliseconds)>('GetQueuedCompletionStatus');
 
-/// Retrieves multiple completion port entries simultaneously. It waits for
-/// pending I/O operations that are associated with the specified completion
-/// port to complete.
+/// Retrieves multiple completion port entries simultaneously.
+///
+/// It waits for pending I/O operations that are associated with the specified
+/// completion port to complete.
 ///
 /// ```c
 /// BOOL GetQueuedCompletionStatusEx(
@@ -3654,8 +3720,10 @@ final _GetSystemDefaultLocaleName = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpLocaleName,
         int cchLocaleName)>('GetSystemDefaultLocaleName');
 
-/// Retrieves the path of the system directory. The system directory contains
-/// system files such as dynamic-link libraries and drivers.
+/// Retrieves the path of the system directory.
+///
+/// The system directory contains system files such as dynamic-link libraries
+/// and drivers.
 ///
 /// ```c
 /// UINT GetSystemDirectoryW(
@@ -3671,9 +3739,10 @@ final _GetSystemDirectory = _kernel32.lookupFunction<
     Uint32 Function(Pointer<Utf16> lpBuffer, Uint32 uSize),
     int Function(Pointer<Utf16> lpBuffer, int uSize)>('GetSystemDirectoryW');
 
-/// Retrieves information about the current system. To retrieve accurate
-/// information for an application running on WOW64, call the
-/// GetNativeSystemInfo function.
+/// Retrieves information about the current system.
+///
+/// To retrieve accurate information for an application running on WOW64, call
+/// the GetNativeSystemInfo function.
 ///
 /// ```c
 /// void GetSystemInfo(
@@ -3688,9 +3757,11 @@ final _GetSystemInfo = _kernel32.lookupFunction<
     Void Function(Pointer<SYSTEM_INFO> lpSystemInfo),
     void Function(Pointer<SYSTEM_INFO> lpSystemInfo)>('GetSystemInfo');
 
-/// Retrieves the power status of the system. The status indicates whether the
-/// system is running on AC or DC power, whether the battery is currently
-/// charging, how much battery life remains, and if battery saver is on or off.
+/// Retrieves the power status of the system.
+///
+/// The status indicates whether the system is running on AC or DC power,
+/// whether the battery is currently charging, how much battery life remains,
+/// and if battery saver is on or off.
 ///
 /// ```c
 /// BOOL GetSystemPowerStatus(
@@ -3749,8 +3820,10 @@ final _GetSystemTimeAdjustment = _kernel32.lookupFunction<
         Pointer<Uint32> lpTimeIncrement,
         Pointer<BOOL> lpTimeAdjustmentDisabled)>('GetSystemTimeAdjustment');
 
-/// Retrieves system timing information. On a multiprocessor system, the values
-/// returned are the sum of the designated times across all processors.
+/// Retrieves system timing information.
+///
+/// On a multiprocessor system, the values returned are the sum of the
+/// designated times across all processors.
 ///
 /// ```c
 /// BOOL GetSystemTimes(
@@ -3771,9 +3844,10 @@ final _GetSystemTimes = _kernel32.lookupFunction<
     int Function(Pointer<FILETIME> lpIdleTime, Pointer<FILETIME> lpKernelTime,
         Pointer<FILETIME> lpUserTime)>('GetSystemTimes');
 
-/// Creates a name for a temporary file. If a unique file name is generated, an
-/// empty file is created and the handle to it is released; otherwise, only a
-/// file name is generated.
+/// Creates a name for a temporary file.
+///
+/// If a unique file name is generated, an empty file is created and the handle
+/// to it is released; otherwise, only a file name is generated.
 ///
 /// ```c
 /// UINT GetTempFileNameW(
@@ -4223,8 +4297,9 @@ final _GlobalSize = _kernel32.lookupFunction<IntPtr Function(HGLOBAL hMem),
     int Function(HGLOBAL hMem)>('GlobalSize');
 
 /// Decrements the lock count associated with a memory object that was allocated
-/// with GMEM_MOVEABLE. This function has no effect on memory objects allocated
-/// with GMEM_FIXED.
+/// with GMEM_MOVEABLE.
+///
+/// This function has no effect on memory objects allocated with GMEM_FIXED.
 ///
 /// ```c
 /// BOOL GlobalUnlock(
@@ -4237,8 +4312,9 @@ int GlobalUnlock(HGLOBAL hMem) => _GlobalUnlock(hMem);
 final _GlobalUnlock = _kernel32.lookupFunction<BOOL Function(HGLOBAL hMem),
     int Function(HGLOBAL hMem)>('GlobalUnlock');
 
-/// Allocates a block of memory from a heap. The allocated memory is not
-/// movable.
+/// Allocates a block of memory from a heap.
+///
+/// The allocated memory is not movable.
 ///
 /// ```c
 /// LPVOID HeapAlloc(
@@ -4256,6 +4332,7 @@ final _HeapAlloc = _kernel32.lookupFunction<
     Pointer Function(int hHeap, int dwFlags, int dwBytes)>('HeapAlloc');
 
 /// Returns the size of the largest committed free block in the specified heap.
+///
 /// If the Disable heap coalesce on free global flag is set, this function also
 /// coalesces adjacent free blocks of memory in the heap.
 ///
@@ -4272,8 +4349,9 @@ final _HeapCompact = _kernel32.lookupFunction<
     IntPtr Function(HANDLE hHeap, Uint32 dwFlags),
     int Function(int hHeap, int dwFlags)>('HeapCompact');
 
-/// Creates a private heap object that can be used by the calling process. The
-/// function reserves space in the virtual address space of the process and
+/// Creates a private heap object that can be used by the calling process.
+///
+/// The function reserves space in the virtual address space of the process and
 /// allocates physical storage for a specified initial portion of this block.
 ///
 /// ```c
@@ -4293,8 +4371,10 @@ final _HeapCreate = _kernel32.lookupFunction<
     int Function(
         int flOptions, int dwInitialSize, int dwMaximumSize)>('HeapCreate');
 
-/// Destroys the specified heap object. It decommits and releases all the pages
-/// of a private heap object, and it invalidates the handle to the heap.
+/// Destroys the specified heap object.
+///
+/// It decommits and releases all the pages of a private heap object, and it
+/// invalidates the handle to the heap.
 ///
 /// ```c
 /// BOOL HeapDestroy(
@@ -4442,8 +4522,9 @@ final _HeapSize = _kernel32.lookupFunction<
     int Function(int hHeap, int dwFlags, Pointer lpMem)>('HeapSize');
 
 /// Releases ownership of the critical section object, or lock, that is
-/// associated with a specified heap. It reverses the action of the HeapLock
-/// function.
+/// associated with a specified heap.
+///
+/// It reverses the action of the HeapLock function.
 ///
 /// ```c
 /// BOOL HeapUnlock(
@@ -4456,11 +4537,13 @@ int HeapUnlock(int hHeap) => _HeapUnlock(hHeap);
 final _HeapUnlock = _kernel32.lookupFunction<BOOL Function(HANDLE hHeap),
     int Function(int hHeap)>('HeapUnlock');
 
-/// Validates the specified heap. The function scans all the memory blocks in
-/// the heap and verifies that the heap control structures maintained by the
-/// heap manager are in a consistent state. You can also use the HeapValidate
-/// function to validate a single memory block within a specified heap without
-/// checking the validity of the entire heap.
+/// Validates the specified heap.
+///
+/// The function scans all the memory blocks in the heap and verifies that the
+/// heap control structures maintained by the heap manager are in a consistent
+/// state. You can also use the HeapValidate function to validate a single
+/// memory block within a specified heap without checking the validity of the
+/// entire heap.
 ///
 /// ```c
 /// BOOL HeapValidate(
@@ -4593,8 +4676,9 @@ final _IsValidLocaleName = _kernel32.lookupFunction<
     BOOL Function(Pointer<Utf16> lpLocaleName),
     int Function(Pointer<Utf16> lpLocaleName)>('IsValidLocaleName');
 
-/// Determines whether the specified process is running under WOW64. Also
-/// returns additional machine process and architecture information.
+/// Determines whether the specified process is running under WOW64.
+///
+/// Also returns additional machine process and architecture information.
 ///
 /// ```c
 /// BOOL IsWow64Process2(
@@ -4615,6 +4699,7 @@ final _IsWow64Process2 = _kernel32.lookupFunction<
         Pointer<Uint16> pNativeMachine)>('IsWow64Process2');
 
 /// Loads the specified module into the address space of the calling process.
+///
 /// The specified module may cause other modules to be loaded.
 ///
 /// ```c
@@ -4630,6 +4715,7 @@ final _LoadLibrary = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpLibFileName)>('LoadLibraryW');
 
 /// Loads the specified module into the address space of the calling process.
+///
 /// The specified module may cause other modules to be loaded.
 ///
 /// ```c
@@ -4702,9 +4788,10 @@ final _LockFile = _kernel32.lookupFunction<
     int Function(int hFile, int dwFileOffsetLow, int dwFileOffsetHigh,
         int nNumberOfBytesToLockLow, int nNumberOfBytesToLockHigh)>('LockFile');
 
-/// Locks the specified file for exclusive access by the calling process. This
-/// function can operate either synchronously or asynchronously and can request
-/// either an exclusive or a shared lock.
+/// Locks the specified file for exclusive access by the calling process.
+///
+/// This function can operate either synchronously or asynchronously and can
+/// request either an exclusive or a shared lock.
 ///
 /// ```c
 /// BOOL LockFileEx(
@@ -4893,7 +4980,9 @@ final _PeekConsoleInput = _kernel32.lookupFunction<
         Pointer<Uint32> lpNumberOfEventsRead)>('PeekConsoleInputW');
 
 /// Copies data from a named or anonymous pipe into a buffer without removing it
-/// from the pipe. It also returns information about data in the pipe.
+/// from the pipe.
+///
+/// It also returns information about data in the pipe.
 ///
 /// ```c
 /// BOOL PeekNamedPipe(
@@ -4965,8 +5054,9 @@ final _PostQueuedCompletionStatus = _kernel32.lookupFunction<
         Pointer<OVERLAPPED> lpOverlapped)>('PostQueuedCompletionStatus');
 
 /// Discards all characters from the output or input buffer of a specified
-/// communications resource. It can also terminate pending read or write
-/// operations on the resource.
+/// communications resource.
+///
+/// It can also terminate pending read or write operations on the resource.
 ///
 /// ```c
 /// BOOL PurgeComm(
@@ -4981,9 +5071,11 @@ final _PurgeComm = _kernel32.lookupFunction<
     BOOL Function(HANDLE hFile, Uint32 dwFlags),
     int Function(int hFile, int dwFlags)>('PurgeComm');
 
-/// Retrieves information about MS-DOS device names. The function can obtain the
-/// current mapping for a particular MS-DOS device name. The function can also
-/// obtain a list of all existing MS-DOS device names.
+/// Retrieves information about MS-DOS device names.
+///
+/// The function can obtain the current mapping for a particular MS-DOS device
+/// name. The function can also obtain a list of all existing MS-DOS device
+/// names.
 ///
 /// ```c
 /// DWORD QueryDosDeviceW(
@@ -5112,10 +5204,11 @@ final _QueryPerformanceCounter = _kernel32.lookupFunction<
     BOOL Function(Pointer<Int64> lpPerformanceCount),
     int Function(Pointer<Int64> lpPerformanceCount)>('QueryPerformanceCounter');
 
-/// Retrieves the frequency of the performance counter. The frequency of the
-/// performance counter is fixed at system boot and is consistent across all
-/// processors. Therefore, the frequency need only be queried upon application
-/// initialization, and the result can be cached.
+/// Retrieves the frequency of the performance counter.
+///
+/// The frequency of the performance counter is fixed at system boot and is
+/// consistent across all processors. Therefore, the frequency need only be
+/// queried upon application initialization, and the result can be cached.
 ///
 /// ```c
 /// BOOL QueryPerformanceFrequency(
@@ -5187,8 +5280,10 @@ final _ReadConsoleInput = _kernel32.lookupFunction<
     int Function(int hConsoleInput, Pointer<INPUT_RECORD> lpBuffer, int nLength,
         Pointer<Uint32> lpNumberOfEventsRead)>('ReadConsoleInputW');
 
-/// Reads data from the specified file or input/output (I/O) device. Reads occur
-/// at the position specified by the file pointer if supported by the device.
+/// Reads data from the specified file or input/output (I/O) device.
+///
+/// Reads occur at the position specified by the file pointer if supported by
+/// the device.
 ///
 /// ```c
 /// BOOL ReadFile(
@@ -5223,10 +5318,11 @@ final _ReadFile = _kernel32.lookupFunction<
         Pointer<Uint32> lpNumberOfBytesRead,
         Pointer<OVERLAPPED> lpOverlapped)>('ReadFile');
 
-/// Reads data from the specified file or input/output (I/O) device. It reports
-/// its completion status asynchronously, calling the specified completion
-/// routine when reading is completed or canceled and the calling thread is in
-/// an alertable wait state.
+/// Reads data from the specified file or input/output (I/O) device.
+///
+/// It reports its completion status asynchronously, calling the specified
+/// completion routine when reading is completed or canceled and the calling
+/// thread is in an alertable wait state.
 ///
 /// ```c
 /// BOOL ReadFileEx(
@@ -5264,9 +5360,11 @@ final _ReadFileEx = _kernel32.lookupFunction<
         Pointer<NativeFunction<LPOVERLAPPED_COMPLETION_ROUTINE>>
             lpCompletionRoutine)>('ReadFileEx');
 
-/// Reads data from a file and stores it in an array of buffers. The function
-/// starts reading data from the file at a position that is specified by an
-/// OVERLAPPED structure. The ReadFileScatter function operates asynchronously.
+/// Reads data from a file and stores it in an array of buffers.
+///
+/// The function starts reading data from the file at a position that is
+/// specified by an OVERLAPPED structure. The ReadFileScatter function operates
+/// asynchronously.
 ///
 /// ```c
 /// BOOL ReadFileScatter(
@@ -5299,8 +5397,10 @@ final _ReadFileScatter = _kernel32.lookupFunction<
 
 /// ReadProcessMemory copies the data in the specified address range from the
 /// address space of the specified process into the specified buffer of the
-/// current process. Any process that has a handle with PROCESS_VM_READ access
-/// can call the function.
+/// current process.
+///
+/// Any process that has a handle with PROCESS_VM_READ access can call the
+/// function.
 ///
 /// ```c
 /// BOOL ReadProcessMemory(
@@ -5416,9 +5516,11 @@ final _ResizePseudoConsole = _kernel32.lookupFunction<
     HRESULT Function(HPCON hPC, COORD size),
     int Function(int hPC, COORD size)>('ResizePseudoConsole');
 
-/// Moves a block of data in a screen buffer. The effects of the move can be
-/// limited by specifying a clipping rectangle, so the contents of the console
-/// screen buffer outside the clipping rectangle are unchanged.
+/// Moves a block of data in a screen buffer.
+///
+/// The effects of the move can be limited by specifying a clipping rectangle,
+/// so the contents of the console screen buffer outside the clipping rectangle
+/// are unchanged.
 ///
 /// ```c
 /// BOOL ScrollConsoleScreenBufferW(
@@ -5502,8 +5604,10 @@ final _SetCommMask = _kernel32.lookupFunction<
     int Function(int hFile, int dwEvtMask)>('SetCommMask');
 
 /// Configures a communications device according to the specifications in a
-/// device-control block (a DCB structure). The function reinitializes all
-/// hardware and control settings, but it does not empty output or input queues.
+/// device-control block (a DCB structure).
+///
+/// The function reinitializes all hardware and control settings, but it does
+/// not empty output or input queues.
 ///
 /// ```c
 /// BOOL SetCommState(
@@ -5634,8 +5738,9 @@ final _SetConsoleMode = _kernel32.lookupFunction<
 
 /// Sets the attributes of characters written to the console screen buffer by
 /// the WriteFile or WriteConsole function, or echoed by the ReadFile or
-/// ReadConsole function. This function affects text written after the function
-/// call.
+/// ReadConsole function.
+///
+/// This function affects text written after the function call.
 ///
 /// ```c
 /// BOOL SetConsoleTextAttribute(
@@ -5708,7 +5813,9 @@ final _SetDefaultCommConfig = _kernel32.lookupFunction<
         int dwSize)>('SetDefaultCommConfigW');
 
 /// Specifies a default set of directories to search when the calling process
-/// loads a DLL. This search path is used when LoadLibraryEx is called with no
+/// loads a DLL.
+///
+/// This search path is used when LoadLibraryEx is called with no
 /// LOAD_LIBRARY_SEARCH flags.
 ///
 /// ```c
@@ -5845,8 +5952,9 @@ final _SetFileInformationByHandle = _kernel32.lookupFunction<
     int Function(int hFile, int fileInformationClass, Pointer lpFileInformation,
         int dwBufferSize)>('SetFileInformationByHandle');
 
-/// Associates a virtual address range with the specified file handle. This
-/// indicates that the kernel should optimize any further asynchronous I/O
+/// Associates a virtual address range with the specified file handle.
+///
+/// This indicates that the kernel should optimize any further asynchronous I/O
 /// requests with overlapped structures inside this range. The overlapped range
 /// is locked in memory, and then unlocked when the file is closed. After a
 /// range is associated with a file handle, it cannot be disassociated.
@@ -5916,8 +6024,9 @@ final _SetFilePointerEx = _kernel32.lookupFunction<
     int Function(int hFile, int liDistanceToMove,
         Pointer<Int64> lpNewFilePointer, int dwMoveMethod)>('SetFilePointerEx');
 
-/// Sets the short name for the specified file. The file must be on an NTFS file
-/// system volume.
+/// Sets the short name for the specified file.
+///
+/// The file must be on an NTFS file system volume.
 ///
 /// ```c
 /// BOOL SetFileShortNameW(
@@ -5932,8 +6041,9 @@ final _SetFileShortName = _kernel32.lookupFunction<
     BOOL Function(HANDLE hFile, Pointer<Utf16> lpShortName),
     int Function(int hFile, Pointer<Utf16> lpShortName)>('SetFileShortNameW');
 
-/// Sets the valid data length of the specified file. This function is useful in
-/// very limited scenarios.
+/// Sets the valid data length of the specified file.
+///
+/// This function is useful in very limited scenarios.
 ///
 /// ```c
 /// BOOL SetFileValidData(
@@ -6056,10 +6166,11 @@ final _SetIoRateControlInformationJobObject = _kernel32.lookupFunction<
             Pointer<JOBOBJECT_IO_RATE_CONTROL_INFORMATION> ioRateControlInfo)>(
     'SetIoRateControlInformationJobObject');
 
-/// Sets the read mode and the blocking mode of the specified named pipe. If the
-/// specified handle is to the client end of a named pipe and if the named pipe
-/// server process is on a remote computer, the function can also be used to
-/// control local buffering.
+/// Sets the read mode and the blocking mode of the specified named pipe.
+///
+/// If the specified handle is to the client end of a named pipe and if the
+/// named pipe server process is on a remote computer, the function can also be
+/// used to control local buffering.
 ///
 /// ```c
 /// BOOL SetNamedPipeHandleState(
@@ -6292,10 +6403,11 @@ void Sleep(int dwMilliseconds) => _Sleep(dwMilliseconds);
 final _Sleep = _kernel32.lookupFunction<Void Function(Uint32 dwMilliseconds),
     void Function(int dwMilliseconds)>('Sleep');
 
-/// Suspends the current thread until the specified condition is met. Execution
-/// resumes when one of the following occurs: (i) an I/O completion callback
-/// function is called; (ii) an asynchronous procedure call (APC) is queued to
-/// the thread; (iii) the time-out interval elapses.
+/// Suspends the current thread until the specified condition is met.
+///
+/// Execution resumes when one of the following occurs: (i) an I/O completion
+/// callback function is called; (ii) an asynchronous procedure call (APC) is
+/// queued to the thread; (iii) the time-out interval elapses.
 ///
 /// ```c
 /// DWORD SleepEx(
@@ -6311,8 +6423,9 @@ final _SleepEx = _kernel32.lookupFunction<
     Uint32 Function(Uint32 dwMilliseconds, BOOL bAlertable),
     int Function(int dwMilliseconds, int bAlertable)>('SleepEx');
 
-/// Converts a system time to file time format. System time is based on
-/// Coordinated Universal Time (UTC).
+/// Converts a system time to file time format.
+///
+/// System time is based on Coordinated Universal Time (UTC).
 ///
 /// ```c
 /// BOOL SystemTimeToFileTime(
@@ -6331,9 +6444,10 @@ final _SystemTimeToFileTime = _kernel32.lookupFunction<
     int Function(Pointer<SYSTEMTIME> lpSystemTime,
         Pointer<FILETIME> lpFileTime)>('SystemTimeToFileTime');
 
-/// Terminates all processes currently associated with the job. If the job is
-/// nested, this function terminates all processes currently associated with the
-/// job and all of its child jobs in the hierarchy.
+/// Terminates all processes currently associated with the job.
+///
+/// If the job is nested, this function terminates all processes currently
+/// associated with the job and all of its child jobs in the hierarchy.
 ///
 /// ```c
 /// BOOL TerminateJobObject(
@@ -6445,8 +6559,9 @@ final _TransmitCommChar = _kernel32.lookupFunction<
     BOOL Function(HANDLE hFile, CHAR cChar),
     int Function(int hFile, int cChar)>('TransmitCommChar');
 
-/// Unlocks a region in an open file. Unlocking a region enables other processes
-/// to access the region.
+/// Unlocks a region in an open file.
+///
+/// Unlocking a region enables other processes to access the region.
 ///
 /// ```c
 /// BOOL UnlockFile(
@@ -6473,8 +6588,9 @@ final _UnlockFile = _kernel32.lookupFunction<
         int nNumberOfBytesToUnlockLow,
         int nNumberOfBytesToUnlockHigh)>('UnlockFile');
 
-/// Unlocks a region in the specified file. This function can operate either
-/// synchronously or asynchronously.
+/// Unlocks a region in the specified file.
+///
+/// This function can operate either synchronously or asynchronously.
 ///
 /// ```c
 /// BOOL UnlockFileEx(
@@ -6579,8 +6695,9 @@ final _UpdateResource = _kernel32.lookupFunction<
         int wLanguage, Pointer lpData, int cb)>('UpdateResourceW');
 
 /// Compares a set of operating system version requirements to the corresponding
-/// values for the currently running version of the system. This function is
-/// subject to manifest-based behavior.
+/// values for the currently running version of the system.
+///
+/// This function is subject to manifest-based behavior.
 ///
 /// ```c
 /// BOOL VerifyVersionInfoW(
@@ -6620,8 +6737,10 @@ final _VerLanguageName = _kernel32.lookupFunction<
         int wLang, Pointer<Utf16> szLang, int cchLang)>('VerLanguageNameW');
 
 /// Sets the bits of a 64-bit value to indicate the comparison operator to use
-/// for a specified operating system version attribute. This function is used to
-/// build the dwlConditionMask parameter of the VerifyVersionInfo function.
+/// for a specified operating system version attribute.
+///
+/// This function is used to build the dwlConditionMask parameter of the
+/// VerifyVersionInfo function.
 ///
 /// ```c
 /// ULONGLONG VerSetConditionMask(
@@ -6640,8 +6759,9 @@ final _VerSetConditionMask = _kernel32.lookupFunction<
         int conditionMask, int typeMask, int condition)>('VerSetConditionMask');
 
 /// Reserves, commits, or changes the state of a region of pages in the virtual
-/// address space of the calling process. Memory allocated by this function is
-/// automatically initialized to zero.
+/// address space of the calling process.
+///
+/// Memory allocated by this function is automatically initialized to zero.
 ///
 /// ```c
 /// LPVOID VirtualAlloc(
@@ -6663,8 +6783,9 @@ final _VirtualAlloc = _kernel32.lookupFunction<
         int flProtect)>('VirtualAlloc');
 
 /// Reserves, commits, or changes the state of a region of memory within the
-/// virtual address space of a specified process. The function initializes the
-/// memory it allocates to zero.
+/// virtual address space of a specified process.
+///
+/// The function initializes the memory it allocates to zero.
 ///
 /// ```c
 /// LPVOID VirtualAllocEx(
@@ -6809,9 +6930,10 @@ final _VirtualUnlock = _kernel32.lookupFunction<
     BOOL Function(Pointer lpAddress, IntPtr dwSize),
     int Function(Pointer lpAddress, int dwSize)>('VirtualUnlock');
 
-/// Waits for an event to occur for a specified communications device. The set
-/// of events that are monitored by this function is contained in the event mask
-/// associated with the device handle.
+/// Waits for an event to occur for a specified communications device.
+///
+/// The set of events that are monitored by this function is contained in the
+/// event mask associated with the device handle.
 ///
 /// ```c
 /// BOOL WaitCommEvent(
@@ -6848,8 +6970,9 @@ final _WaitForSingleObject = _kernel32.lookupFunction<
     Uint32 Function(HANDLE hHandle, Uint32 dwMilliseconds),
     int Function(int hHandle, int dwMilliseconds)>('WaitForSingleObject');
 
-/// Maps a UTF-16 (wide character) string to a new character string. The new
-/// character string is not necessarily from a multibyte character set.
+/// Maps a UTF-16 (wide character) string to a new character string.
+///
+/// The new character string is not necessarily from a multibyte character set.
 ///
 /// ```c
 /// int WideCharToMultiByte(
@@ -6984,10 +7107,11 @@ final _WriteFile = _kernel32.lookupFunction<
         Pointer<Uint32> lpNumberOfBytesWritten,
         Pointer<OVERLAPPED> lpOverlapped)>('WriteFile');
 
-/// Writes data to the specified file or input/output (I/O) device. It reports
-/// its completion status asynchronously, calling the specified completion
-/// routine when writing is completed or canceled and the calling thread is in
-/// an alertable wait state.
+/// Writes data to the specified file or input/output (I/O) device.
+///
+/// It reports its completion status asynchronously, calling the specified
+/// completion routine when writing is completed or canceled and the calling
+/// thread is in an alertable wait state.
 ///
 /// ```c
 /// BOOL WriteFileEx(
@@ -7025,9 +7149,10 @@ final _WriteFileEx = _kernel32.lookupFunction<
         Pointer<NativeFunction<LPOVERLAPPED_COMPLETION_ROUTINE>>
             lpCompletionRoutine)>('WriteFileEx');
 
-/// Retrieves data from an array of buffers and writes the data to a file. The
-/// function starts writing data to the file at a position that is specified by
-/// an OVERLAPPED structure. The WriteFileGather function operates
+/// Retrieves data from an array of buffers and writes the data to a file.
+///
+/// The function starts writing data to the file at a position that is specified
+/// by an OVERLAPPED structure. The WriteFileGather function operates
 /// asynchronously.
 ///
 /// ```c
@@ -7059,8 +7184,9 @@ final _WriteFileGather = _kernel32.lookupFunction<
         Pointer<Uint32> lpReserved,
         Pointer<OVERLAPPED> lpOverlapped)>('WriteFileGather');
 
-/// Writes data to an area of memory in a specified process. The entire area to
-/// be written to must be accessible or the operation fails.
+/// Writes data to an area of memory in a specified process.
+///
+/// The entire area to be written to must be accessible or the operation fails.
 ///
 /// ```c
 /// BOOL WriteProcessMemory(

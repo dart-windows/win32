@@ -19,9 +19,11 @@ const IID_IAudioSessionManager = '{bfa971f1-4d5e-40bb-935e-967039bfbee4}';
 
 /// The IAudioSessionManager interface enables a client to access the session
 /// controls and volume controls for both cross-process and process-specific
-/// audio sessions. The client obtains a reference to an [IAudioSessionManager]
-/// interface by calling the `IMMDevice::Activate` method with parameter `iid`
-/// set to REFIID [IID_IAudioSessionManager].
+/// audio sessions.
+///
+/// The client obtains a reference to an [IAudioSessionManager] interface by
+/// calling the `IMMDevice::Activate` method with parameter `iid` set to REFIID
+/// [IID_IAudioSessionManager].
 ///
 /// {@category com}
 class IAudioSessionManager extends IUnknown {

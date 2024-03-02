@@ -34,8 +34,9 @@ final _AbortPath = _gdi32
     .lookupFunction<BOOL Function(HDC hdc), int Function(int hdc)>('AbortPath');
 
 /// The AddFontResource function adds the font resource from the specified file
-/// to the system font table. The font can subsequently be used for text output
-/// by any application.
+/// to the system font table.
+///
+/// The font can subsequently be used for text output by any application.
 ///
 /// ```c
 /// int AddFontResourceW(
@@ -50,8 +51,10 @@ final _AddFontResource = _gdi32.lookupFunction<
     int Function(Pointer<Utf16> param0)>('AddFontResourceW');
 
 /// The AddFontResourceEx function adds the font resource from the specified
-/// file to the system. Fonts added with the AddFontResourceEx function can be
-/// marked as private and not enumerable.
+/// file to the system.
+///
+/// Fonts added with the AddFontResourceEx function can be marked as private and
+/// not enumerable.
 ///
 /// ```c
 /// int AddFontResourceExW(
@@ -69,10 +72,12 @@ final _AddFontResourceEx = _gdi32.lookupFunction<
     int Function(
         Pointer<Utf16> name, int fl, Pointer res)>('AddFontResourceExW');
 
-/// The AngleArc function draws a line segment and an arc. The line segment is
-/// drawn from the current position to the beginning of the arc. The arc is
-/// drawn along the perimeter of a circle with the given radius and center. The
-/// length of the arc is defined by the given start and sweep angles.
+/// The AngleArc function draws a line segment and an arc.
+///
+/// The line segment is drawn from the current position to the beginning of the
+/// arc. The arc is drawn along the perimeter of a circle with the given radius
+/// and center. The length of the arc is defined by the given start and sweep
+/// angles.
 ///
 /// ```c
 /// BOOL AngleArc(
@@ -225,8 +230,10 @@ final _CancelDC = _gdi32
     .lookupFunction<BOOL Function(HDC hdc), int Function(int hdc)>('CancelDC');
 
 /// The Chord function draws a chord (a region bounded by the intersection of an
-/// ellipse and a line segment, called a secant). The chord is outlined by using
-/// the current pen and filled by using the current brush.
+/// ellipse and a line segment, called a secant).
+///
+/// The chord is outlined by using the current pen and filled by using the
+/// current brush.
 ///
 /// ```c
 /// BOOL Chord(
@@ -407,10 +414,12 @@ final _CreateDIBPatternBrushPt = _gdi32.lookupFunction<
     int Function(Pointer lpPackedDIB, int iUsage)>('CreateDIBPatternBrushPt');
 
 /// The CreateDIBSection function creates a DIB that applications can write to
-/// directly. The function gives you a pointer to the location of the bitmap bit
-/// values. You can supply a handle to a file-mapping object that the function
-/// will use to create the bitmap, or you can let the system allocate the memory
-/// for the bitmap.
+/// directly.
+///
+/// The function gives you a pointer to the location of the bitmap bit values.
+/// You can supply a handle to a file-mapping object that the function will use
+/// to create the bitmap, or you can let the system allocate the memory for the
+/// bitmap.
 ///
 /// ```c
 /// HBITMAP CreateDIBSection(
@@ -456,8 +465,10 @@ final _CreateEllipticRgn = _gdi32.lookupFunction<
     int Function(int x1, int y1, int x2, int y2)>('CreateEllipticRgn');
 
 /// The CreateFontIndirect function creates a logical font that has the
-/// specified characteristics. The font can subsequently be selected as the
-/// current font for any device context.
+/// specified characteristics.
+///
+/// The font can subsequently be selected as the current font for any device
+/// context.
 ///
 /// ```c
 /// HFONT CreateFontIndirectW(
@@ -503,8 +514,10 @@ final _CreateHatchBrush = _gdi32.lookupFunction<
     int Function(int iHatch, int color)>('CreateHatchBrush');
 
 /// The CreatePen function creates a logical pen that has the specified style,
-/// width, and color. The pen can subsequently be selected into a device context
-/// and used to draw lines and curves.
+/// width, and color.
+///
+/// The pen can subsequently be selected into a device context and used to draw
+/// lines and curves.
 ///
 /// ```c
 /// HPEN CreatePen(
@@ -550,6 +563,7 @@ final _DeleteDC = _gdi32
 
 /// The DeleteObject function deletes a logical pen, brush, font, bitmap,
 /// region, or palette, freeing all system resources associated with the object.
+///
 /// After the object is deleted, the specified handle is no longer valid.
 ///
 /// ```c
@@ -585,9 +599,11 @@ final _DrawEscape = _gdi32.lookupFunction<
     int Function(
         int hdc, int iEscape, int cjIn, Pointer<Utf8> lpIn)>('DrawEscape');
 
-/// The Ellipse function draws an ellipse. The center of the ellipse is the
-/// center of the specified bounding rectangle. The ellipse is outlined by using
-/// the current pen and is filled by using the current brush.
+/// The Ellipse function draws an ellipse.
+///
+/// The center of the ellipse is the center of the specified bounding rectangle.
+/// The ellipse is outlined by using the current pen and is filled by using the
+/// current brush.
 ///
 /// ```c
 /// BOOL Ellipse(
@@ -622,8 +638,10 @@ final _EndPath = _gdi32
 
 /// The EnumFontFamiliesEx function enumerates all uniquely-named fonts in the
 /// system that match the font characteristics specified by the LOGFONT
-/// structure. EnumFontFamiliesEx enumerates fonts based on typeface name,
-/// character set, or both.
+/// structure.
+///
+/// EnumFontFamiliesEx enumerates fonts based on typeface name, character set,
+/// or both.
 ///
 /// ```c
 /// int EnumFontFamiliesExW(
@@ -681,8 +699,10 @@ final _ExtCreatePen = _gdi32.lookupFunction<
         int cStyle, Pointer<Uint32> pstyle)>('ExtCreatePen');
 
 /// The ExtTextOut function draws text using the currently selected font,
-/// background color, and text color. You can optionally provide dimensions to
-/// be used for clipping, opaquing, or both.
+/// background color, and text color.
+///
+/// You can optionally provide dimensions to be used for clipping, opaquing, or
+/// both.
 ///
 /// ```c
 /// BOOL ExtTextOutW(
@@ -959,8 +979,10 @@ final _MoveToEx = _gdi32.lookupFunction<
     int Function(int hdc, int x, int y, Pointer<POINT> lppt)>('MoveToEx');
 
 /// The Pie function draws a pie-shaped wedge bounded by the intersection of an
-/// ellipse and two radials. The pie is outlined by using the current pen and
-/// filled by using the current brush.
+/// ellipse and two radials.
+///
+/// The pie is outlined by using the current pen and filled by using the current
+/// brush.
 ///
 /// ```c
 /// BOOL Pie(
@@ -1040,8 +1062,10 @@ final _PolyDraw = _gdi32.lookupFunction<
         int hdc, Pointer<POINT> apt, Pointer<Uint8> aj, int cpt)>('PolyDraw');
 
 /// The Polygon function draws a polygon consisting of two or more vertices
-/// connected by straight lines. The polygon is outlined by using the current
-/// pen and filled by using the current brush and polygon fill mode.
+/// connected by straight lines.
+///
+/// The polygon is outlined by using the current pen and filled by using the
+/// current brush and polygon fill mode.
 ///
 /// ```c
 /// BOOL Polygon(
@@ -1091,9 +1115,11 @@ final _PolylineTo = _gdi32.lookupFunction<
     BOOL Function(HDC hdc, Pointer<POINT> apt, Uint32 cpt),
     int Function(int hdc, Pointer<POINT> apt, int cpt)>('PolylineTo');
 
-/// The PolyPolygon function draws a series of closed polygons. Each polygon is
-/// outlined by using the current pen and filled by using the current brush and
-/// polygon fill mode. The polygons drawn by this function can overlap.
+/// The PolyPolygon function draws a series of closed polygons.
+///
+/// Each polygon is outlined by using the current pen and filled by using the
+/// current brush and polygon fill mode. The polygons drawn by this function can
+/// overlap.
 ///
 /// ```c
 /// BOOL PolyPolygon(
@@ -1148,8 +1174,10 @@ final _PtInRegion = _gdi32.lookupFunction<
     BOOL Function(HRGN hrgn, Int32 x, Int32 y),
     int Function(int hrgn, int x, int y)>('PtInRegion');
 
-/// The Rectangle function draws a rectangle. The rectangle is outlined by using
-/// the current pen and filled by using the current brush.
+/// The Rectangle function draws a rectangle.
+///
+/// The rectangle is outlined by using the current pen and filled by using the
+/// current brush.
 ///
 /// ```c
 /// BOOL Rectangle(
@@ -1185,8 +1213,10 @@ final _RectInRegion = _gdi32.lookupFunction<
     BOOL Function(HRGN hrgn, Pointer<RECT> lprect),
     int Function(int hrgn, Pointer<RECT> lprect)>('RectInRegion');
 
-/// The RoundRect function draws a rectangle with rounded corners. The rectangle
-/// is outlined by using the current pen and filled by using the current brush.
+/// The RoundRect function draws a rectangle with rounded corners.
+///
+/// The rectangle is outlined by using the current pen and filled by using the
+/// current brush.
 ///
 /// ```c
 /// BOOL RoundRect(
@@ -1244,7 +1274,9 @@ final _SelectClipPath = _gdi32.lookupFunction<
     int Function(int hdc, int mode)>('SelectClipPath');
 
 /// The SelectObject function selects an object into the specified device
-/// context (DC). The new object replaces the previous object of the same type.
+/// context (DC).
+///
+/// The new object replaces the previous object of the same type.
 ///
 /// ```c
 /// HGDIOBJ SelectObject(
@@ -1277,8 +1309,10 @@ final _SetBkColor = _gdi32.lookupFunction<
     int Function(int hdc, int color)>('SetBkColor');
 
 /// The SetBkMode function sets the background mix mode of the specified device
-/// context. The background mix mode is used with text, hatched brushes, and pen
-/// styles that are not solid lines.
+/// context.
+///
+/// The background mix mode is used with text, hatched brushes, and pen styles
+/// that are not solid lines.
 ///
 /// ```c
 /// int SetBkMode(
@@ -1293,9 +1327,11 @@ final _SetBkMode = _gdi32.lookupFunction<Int32 Function(HDC hdc, Int32 mode),
     int Function(int hdc, int mode)>('SetBkMode');
 
 /// The SetMapMode function sets the mapping mode of the specified device
-/// context. The mapping mode defines the unit of measure used to transform
-/// page-space units into device-space units, and also defines the orientation
-/// of the device's x and y axes.
+/// context.
+///
+/// The mapping mode defines the unit of measure used to transform page-space
+/// units into device-space units, and also defines the orientation of the
+/// device's x and y axes.
 ///
 /// ```c
 /// int SetMapMode(
@@ -1420,9 +1456,10 @@ final _SetWindowExtEx = _gdi32.lookupFunction<
 
 /// The StretchBlt function copies a bitmap from a source rectangle into a
 /// destination rectangle, stretching or compressing the bitmap to fit the
-/// dimensions of the destination rectangle, if necessary. The system stretches
-/// or compresses the bitmap according to the stretching mode currently set in
-/// the destination device context.
+/// dimensions of the destination rectangle, if necessary.
+///
+/// The system stretches or compresses the bitmap according to the stretching
+/// mode currently set in the destination device context.
 ///
 /// ```c
 /// BOOL StretchBlt(
@@ -1472,9 +1509,10 @@ final _StretchBlt = _gdi32.lookupFunction<
         int rop)>('StretchBlt');
 
 /// The StretchDIBits function copies the color data for a rectangle of pixels
-/// in a DIB, JPEG, or PNG image to the specified destination rectangle. If the
-/// destination rectangle is larger than the source rectangle, this function
-/// stretches the rows and columns of color data to fit the destination
+/// in a DIB, JPEG, or PNG image to the specified destination rectangle.
+///
+/// If the destination rectangle is larger than the source rectangle, this
+/// function stretches the rows and columns of color data to fit the destination
 /// rectangle. If the destination rectangle is smaller than the source
 /// rectangle, this function compresses the rows and columns by using the
 /// specified raster operation.

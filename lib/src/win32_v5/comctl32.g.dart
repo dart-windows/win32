@@ -19,8 +19,10 @@ import '../types.dart';
 
 final _comctl32 = DynamicLibrary.open('comctl32.dll');
 
-/// Calls the next handler in a window's subclass chain. The last handler in the
-/// subclass chain calls the original window procedure for the window.
+/// Calls the next handler in a window's subclass chain.
+///
+/// The last handler in the subclass chain calls the original window procedure
+/// for the window.
 ///
 /// ```c
 /// LRESULT DefSubclassProc(
@@ -62,8 +64,9 @@ final _DrawStatusText = _comctl32.lookupFunction<
         int uFlags)>('DrawStatusTextW');
 
 /// Ensures that the common control DLL (Comctl32.dll) is loaded, and registers
-/// specific common control classes from the DLL. An application must call this
-/// function before creating a common control.
+/// specific common control classes from the DLL.
+///
+/// An application must call this function before creating a common control.
 ///
 /// ```c
 /// BOOL InitCommonControlsEx(
@@ -122,10 +125,11 @@ final _SetWindowSubclass = _comctl32.lookupFunction<
     int Function(int hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass, int dwRefData)>('SetWindowSubclass');
 
-/// The TaskDialog function creates, displays, and operates a task dialog. The
-/// task dialog contains application-defined message text and title, icons, and
-/// any combination of predefined push buttons. This function does not support
-/// the registration of a callback function to receive notifications.
+/// The TaskDialog function creates, displays, and operates a task dialog.
+///
+/// The task dialog contains application-defined message text and title, icons,
+/// and any combination of predefined push buttons. This function does not
+/// support the registration of a callback function to receive notifications.
 ///
 /// ```c
 /// HRESULT TaskDialog(
@@ -180,7 +184,9 @@ final _TaskDialog = _comctl32.lookupFunction<
         Pointer<Int32> pnButton)>('TaskDialog');
 
 /// The TaskDialogIndirect function creates, displays, and operates a task
-/// dialog. The task dialog contains application-defined icons, messages, title,
+/// dialog.
+///
+/// The task dialog contains application-defined icons, messages, title,
 /// verification check box, command links, push buttons, and radio buttons. This
 /// function can register a callback function to receive notification messages.
 ///

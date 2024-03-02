@@ -97,10 +97,12 @@ final _CoCreateGuid = _ole32.lookupFunction<
     int Function(Pointer<GUID> pguid)>('CoCreateGuid');
 
 /// Creates a single uninitialized object of the class associated with a
-/// specified CLSID. Call CoCreateInstance when you want to create only one
-/// object on the local system. To create a single object on a remote system,
-/// call the CoCreateInstanceEx function. To create multiple objects based on a
-/// single CLSID, call the CoGetClassObject function.
+/// specified CLSID.
+///
+/// Call CoCreateInstance when you want to create only one object on the local
+/// system. To create a single object on a remote system, call the
+/// CoCreateInstanceEx function. To create multiple objects based on a single
+/// CLSID, call the CoGetClassObject function.
 ///
 /// ```c
 /// HRESULT CoCreateInstance(
@@ -159,8 +161,10 @@ final _CoGetApartmentType = _ole32.lookupFunction<
         Pointer<Int32> pAptQualifier)>('CoGetApartmentType');
 
 /// Provides a pointer to an interface on a class object associated with a
-/// specified CLSID. CoGetClassObject locates, and if necessary, dynamically
-/// loads the executable code required to do this.
+/// specified CLSID.
+///
+/// CoGetClassObject locates, and if necessary, dynamically loads the executable
+/// code required to do this.
 ///
 /// ```c
 /// HRESULT CoGetClassObject(
@@ -182,8 +186,9 @@ final _CoGetClassObject = _ole32.lookupFunction<
     int Function(Pointer<GUID> rclsid, int dwClsContext, Pointer pvReserved,
         Pointer<GUID> riid, Pointer<Pointer> ppv)>('CoGetClassObject');
 
-/// Returns a value that is unique to the current thread. CoGetCurrentProcess
-/// can be used to avoid thread ID reuse problems.
+/// Returns a value that is unique to the current thread.
+///
+/// CoGetCurrentProcess can be used to avoid thread ID reuse problems.
 ///
 /// ```c
 /// DWORD CoGetCurrentProcess();
@@ -284,7 +289,9 @@ final _CoInitializeSecurity = _ole32.lookupFunction<
         Pointer pReserved3)>('CoInitializeSecurity');
 
 /// Sets the authentication information that will be used to make calls on the
-/// specified proxy. This is a helper function for IClientSecurity::SetBlanket.
+/// specified proxy.
+///
+/// This is a helper function for IClientSecurity::SetBlanket.
 ///
 /// ```c
 /// HRESULT CoSetProxyBlanket(
@@ -423,8 +430,10 @@ final _CoWaitForMultipleHandles = _ole32.lookupFunction<
         Pointer<HANDLE> pHandles,
         Pointer<Uint32> lpdwindex)>('CoWaitForMultipleHandles');
 
-/// A replacement for CoWaitForMultipleHandles. This replacement API hides the
-/// options for CoWaitForMultipleHandles that are not supported in ASTA.
+/// A replacement for CoWaitForMultipleHandles.
+///
+/// This replacement API hides the options for CoWaitForMultipleHandles that are
+/// not supported in ASTA.
 ///
 /// ```c
 /// HRESULT CoWaitForMultipleObjects(
@@ -452,8 +461,9 @@ final _CoWaitForMultipleObjects = _ole32.lookupFunction<
         Pointer<Uint32> lpdwindex)>('CoWaitForMultipleObjects');
 
 /// The CreateStreamOnHGlobal function creates a stream object that uses an
-/// HGLOBAL memory handle to store the stream contents. This object is the
-/// OLE-provided implementation of the IStream interface.
+/// HGLOBAL memory handle to store the stream contents.
+///
+/// This object is the OLE-provided implementation of the IStream interface.
 ///
 /// ```c
 /// HRESULT CreateStreamOnHGlobal(
@@ -527,9 +537,10 @@ final _IIDFromString = _ole32.lookupFunction<
     int Function(Pointer<Utf16> lpsz, Pointer<GUID> lpiid)>('IIDFromString');
 
 /// Initializes the COM library on the current apartment, and identifies the
-/// concurrency model as single-thread apartment (STA). Applications must
-/// initialize the COM library before they can call COM library functions other
-/// than CoGetMalloc and memory allocation functions.
+/// concurrency model as single-thread apartment (STA).
+///
+/// Applications must initialize the COM library before they can call COM
+/// library functions other than CoGetMalloc and memory allocation functions.
 ///
 /// ```c
 /// HRESULT OleInitialize(
@@ -588,8 +599,9 @@ final _PropVariantClear = _ole32.lookupFunction<
     HRESULT Function(Pointer<PROPVARIANT> pvar),
     int Function(Pointer<PROPVARIANT> pvar)>('PropVariantClear');
 
-/// Converts a CLSID into a string of printable characters. Different CLSIDs
-/// always convert to different strings.
+/// Converts a CLSID into a string of printable characters.
+///
+/// Different CLSIDs always convert to different strings.
 ///
 /// ```c
 /// HRESULT StringFromCLSID(

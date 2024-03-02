@@ -21,8 +21,9 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpellChecker = '{b6fd0b71-e2bc-4653-8d05-f197e412770b}';
 
-/// Represents a particular spell checker for a particular language. The
-/// `ISpellChecker` can be used to check text, get suggestions, update user
+/// Represents a particular spell checker for a particular language.
+///
+/// The `ISpellChecker` can be used to check text, get suggestions, update user
 /// dictionaries, and maintain options.
 ///
 /// {@category com}

@@ -34,9 +34,11 @@ final _ChooseColor = _comdlg32.lookupFunction<
     int Function(Pointer<CHOOSECOLOR> param0)>('ChooseColorW');
 
 /// Creates a Font dialog box that enables the user to choose attributes for a
-/// logical font. These attributes include a font family and associated font
-/// style, a point size, effects (underline, strikeout, and text color), and a
-/// script (or character set).
+/// logical font.
+///
+/// These attributes include a font family and associated font style, a point
+/// size, effects (underline, strikeout, and text color), and a script (or
+/// character set).
 ///
 /// ```c
 /// BOOL ChooseFontW(

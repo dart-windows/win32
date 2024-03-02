@@ -19,8 +19,10 @@ import '../types.dart';
 
 final _wlanapi = DynamicLibrary.open('wlanapi.dll');
 
-/// The WlanAllocateMemory function allocates memory. Any memory passed to other
-/// Native Wifi functions must be allocated with this function.
+/// The WlanAllocateMemory function allocates memory.
+///
+/// Any memory passed to other Native Wifi functions must be allocated with this
+/// function.
 ///
 /// ```c
 /// PVOID WlanAllocateMemory(
@@ -244,8 +246,9 @@ final _WlanExtractPsdIEDataList = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_RAW_DATA_LIST>> ppPsdIEDataList)>(
     'WlanExtractPsdIEDataList');
 
-/// The WlanFreeMemory function frees memory. Any memory returned from Native
-/// Wifi functions must be freed.
+/// The WlanFreeMemory function frees memory.
+///
+/// Any memory returned from Native Wifi functions must be freed.
 ///
 /// ```c
 /// void WlanFreeMemory(
@@ -1434,8 +1437,9 @@ final _WlanSetProfileCustomUserData = _wlanapi.lookupFunction<
         Pointer pReserved)>('WlanSetProfileCustomUserData');
 
 /// The WlanSetProfileEapUserData function sets the Extensible Authentication
-/// Protocol (EAP) user credentials as specified by raw EAP data. The user
-/// credentials apply to a profile on an interface.
+/// Protocol (EAP) user credentials as specified by raw EAP data.
+///
+/// The user credentials apply to a profile on an interface.
 ///
 /// ```c
 /// DWORD WlanSetProfileEapUserData(
@@ -1482,9 +1486,10 @@ final _WlanSetProfileEapUserData = _wlanapi.lookupFunction<
         Pointer pReserved)>('WlanSetProfileEapUserData');
 
 /// The WlanSetProfileEapXmlUserData function sets the Extensible Authentication
-/// Protocol (EAP) user credentials as specified by an XML string. The user
-/// credentials apply to a profile on an adapter. These credentials can be used
-/// only by the caller.
+/// Protocol (EAP) user credentials as specified by an XML string.
+///
+/// The user credentials apply to a profile on an adapter. These credentials can
+/// be used only by the caller.
 ///
 /// ```c
 /// DWORD WlanSetProfileEapXmlUserData(

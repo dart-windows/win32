@@ -17,10 +17,11 @@ import 'iunknown.g.dart';
 const IID_IEnumIDList = '{000214f2-0000-0000-c000-000000000046}';
 
 /// Exposes a standard set of methods used to enumerate the pointers to item
-/// identifier lists (PIDLs) of the items in a Shell folder. When a folder's
-/// `IShellFolder::EnumObjects` method is called, it creates an enumeration
-/// object and passes a pointer to the object's [IEnumIDList] interface back to
-/// the calling application.
+/// identifier lists (PIDLs) of the items in a Shell folder.
+///
+/// When a folder's `IShellFolder::EnumObjects` method is called, it creates an
+/// enumeration object and passes a pointer to the object's [IEnumIDList]
+/// interface back to the calling application.
 ///
 /// {@category com}
 class IEnumIDList extends IUnknown {

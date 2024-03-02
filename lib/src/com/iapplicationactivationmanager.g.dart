@@ -20,8 +20,9 @@ const IID_IApplicationActivationManager =
     '{2e941141-7f97-4756-ba1d-9decde894a3d}';
 
 /// Provides methods which activate Windows Store apps for the Launch, File, and
-/// Protocol extensions. You will normally use this interface in debuggers and
-/// design tools.
+/// Protocol extensions.
+///
+/// You will normally use this interface in debuggers and design tools.
 ///
 /// {@category com}
 class IApplicationActivationManager extends IUnknown {

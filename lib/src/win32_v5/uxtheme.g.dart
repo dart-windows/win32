@@ -149,8 +149,9 @@ final _DrawThemeParentBackground = _uxtheme.lookupFunction<
         int hwnd, int hdc, Pointer<RECT> prc)>('DrawThemeParentBackground');
 
 /// Used by partially-transparent or alpha-blended child controls to draw the
-/// part of their parent in front of which they appear. Sends a WM_ERASEBKGND
-/// message followed by a WM_PRINTCLIENT.
+/// part of their parent in front of which they appear.
+///
+/// Sends a WM_ERASEBKGND message followed by a WM_PRINTCLIENT.
 ///
 /// ```c
 /// HRESULT DrawThemeParentBackgroundEx(
