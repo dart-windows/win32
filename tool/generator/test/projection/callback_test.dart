@@ -69,7 +69,14 @@ void main() {
           'Pointer<TEXTMETRIC> param1, Uint32 param2, LPARAM param3)',
         ),
       );
-      expect(comment, equals('/// {@category callback}'));
+      expect(comment, equals('''
+/// An application defined callback function used with the EnumFontFamilies
+/// function.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/previous-versions/dd162621(v=vs.85)>.
+///
+/// {@category callback}'''));
       expect(
         toString(),
         equals('$comment\ntypedef $name = $type;'),

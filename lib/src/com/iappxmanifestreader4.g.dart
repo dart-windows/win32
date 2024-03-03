@@ -21,7 +21,7 @@ const IID_IAppxManifestReader4 = '{4579bb7c-741d-4161-b5a1-47bd3b78ad9b}';
 /// access manifest elements and attributes.
 ///
 /// To learn more about this interface, see
-/// <https://learn.microsoft.com/en-us/previous-versions/mt796948(v=vs.85)>.
+/// <https://learn.microsoft.com/previous-versions/mt796948(v=vs.85)>.
 ///
 /// {@category com}
 class IAppxManifestReader4 extends IAppxManifestReader3 {

@@ -88,6 +88,12 @@ typedef ENUMRESTYPEPROC = BOOL Function(
 /// {@category callback}
 typedef FARPROC = Pointer;
 
+/// An application defined callback function used with the EnumFontFamilies
+/// function.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/previous-versions/dd162621(v=vs.85)>.
+///
 /// {@category callback}
 typedef FONTENUMPROC = Int32 Function(Pointer<LOGFONT> param0,
     Pointer<TEXTMETRIC> param1, Uint32 param2, LPARAM param3);
@@ -220,6 +226,12 @@ typedef LPOVERLAPPED_COMPLETION_ROUTINE = Void Function(Uint32 dwErrorCode,
 typedef LPSERVICE_MAIN_FUNCTION = Void Function(
     Uint32 dwNumServicesArgs, Pointer<Pointer<Utf16>> lpServiceArgVectors);
 
+/// An application-defined function that serves as the starting address for a
+/// thread.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/legacy/ms686736(v=vs.85)>.
+///
 /// {@category callback}
 typedef LPTHREAD_START_ROUTINE = Uint32 Function(Pointer lpThreadParameter);
 
@@ -317,6 +329,12 @@ typedef PFN_SC_NOTIFY_CALLBACK = Void Function(Pointer pParameter);
 typedef PFTASKDIALOGCALLBACK = HRESULT Function(
     HWND hwnd, Uint32 msg, WPARAM wParam, LPARAM lParam, IntPtr lpRefData);
 
+/// An application-defined function used with the SetConsoleCtrlHandler
+/// function.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/windows/console/handlerroutine>.
+///
 /// {@category callback}
 typedef PHANDLER_ROUTINE = BOOL Function(Uint32 ctrlType);
 
@@ -377,6 +395,12 @@ typedef TIMERPROC = Void Function(
 typedef WLAN_NOTIFICATION_CALLBACK = Void Function(
     Pointer<L2_NOTIFICATION_DATA> param0, Pointer param1);
 
+/// An application-defined callback function used with the EnumWindows or
+/// EnumDesktopWindows function.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/legacy/ms633498(v=vs.85)>.
+///
 /// {@category callback}
 typedef WNDENUMPROC = BOOL Function(HWND param0, LPARAM param1);
 

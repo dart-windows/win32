@@ -2,7 +2,25 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-const callbackDocs = <String, String>{};
+const callbackDocs = <String, String>{
+  'Windows.Win32.Graphics.Gdi.FONTENUMPROCW':
+      'An application defined callback function used with the '
+          'EnumFontFamilies function. \nTo learn more about this callback, see '
+          '<https://learn.microsoft.com/previous-versions/dd162621(v=vs.85)>.',
+  'Windows.Win32.System.Console.PHANDLER_ROUTINE':
+      'An application-defined function used with the SetConsoleCtrlHandler '
+          'function. \nTo learn more about this callback, see '
+          '<https://learn.microsoft.com/windows/console/handlerroutine>.',
+  'Windows.Win32.System.Threading.LPTHREAD_START_ROUTINE':
+      'An application-defined function that serves as the starting address for '
+          'a thread. \nTo learn more about this callback, see '
+          '<https://learn.microsoft.com/previous-versions/windows/desktop/legacy/ms686736(v=vs.85)>.',
+  'Windows.Win32.UI.WindowsAndMessaging.WNDENUMPROC':
+      'An application-defined callback function used with the EnumWindows or '
+          'EnumDesktopWindows function. \nTo learn more about this callback, '
+          'see '
+          '<https://learn.microsoft.com/previous-versions/windows/desktop/legacy/ms633498(v=vs.85)>.',
+};
 
 const constantDocs = <String, String>{};
 
@@ -45,7 +63,7 @@ const interfaceDocs = <String, String>{
       'Represents an object model of the package manifest that provides '
           'methods to access manifest elements and attributes. \nTo learn more '
           'about this interface, see '
-          '<https://learn.microsoft.com/en-us/previous-versions/mt796948(v=vs.85)>.',
+          '<https://learn.microsoft.com/previous-versions/mt796948(v=vs.85)>.',
   'Windows.Win32.System.Com.IPersistMemory':
       'Saves and loads objects from a stream. \nTo learn more about this '
           'interface, see '
