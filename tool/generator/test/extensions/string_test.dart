@@ -138,25 +138,30 @@ void main() {
       expect(
         'Enables clients to get pointers to other interfaces on a given object '
                 'through the QueryInterface method, and manage the existence '
-                'of the object through the AddRef and Release methods. \nFor '
-                'more information, see: '
-                'https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown'
+                'of the object through the AddRef and Release methods. \nTo '
+                'learn more about this interface, see '
+                '<https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown>.'
+                ' \n{@category com}'
             .toDocComment(),
         equals('''
 /// Enables clients to get pointers to other interfaces on a given object
 /// through the QueryInterface method, and manage the existence of the object
 /// through the AddRef and Release methods.
 ///
-/// For more information, see:
-/// https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown'''),
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown>.
+///
+/// {@category com}'''),
       );
 
       expect(
         'The VARIANT type is used in Win32 to represent a dynamic type. '
                 'It is represented as a struct containing a union of the '
                 'types that could be stored. VARIANTs must be initialized '
-                'with `VariantInit` before their use. \nFor more information, '
-                'see: https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant'
+                'with `VariantInit` before their use. \nTo learn more about '
+                'this struct, see '
+                '<https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant>.'
+                ' \n{@category struct}'
             .toDocComment(),
         equals('''
 /// The VARIANT type is used in Win32 to represent a dynamic type.
@@ -164,8 +169,10 @@ void main() {
 /// It is represented as a struct containing a union of the types that could be
 /// stored. VARIANTs must be initialized with `VariantInit` before their use.
 ///
-/// For more information, see:
-/// https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant'''),
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant>.
+///
+/// {@category struct}'''),
       );
     });
 
