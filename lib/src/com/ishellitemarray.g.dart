@@ -19,6 +19,9 @@ const IID_IShellItemArray = '{b63ea76d-1f85-456f-a19c-48159efa858b}';
 
 /// Exposes methods that create and manipulate Shell item arrays.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishellitemarray>.
+///
 /// {@category com}
 class IShellItemArray extends IUnknown {
   IShellItemArray(super.ptr)

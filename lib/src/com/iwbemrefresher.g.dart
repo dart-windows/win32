@@ -16,12 +16,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IWbemRefresher = '{49353c99-516b-11d1-aea6-00c04fb68820}';
 
-/// The IWbemRefresher interface provides an entry point through which
-/// refreshable objects such as enumerators or refresher objects, can be
-/// refreshed.
+/// Provides an entry point through which refreshable objects such as
+/// enumerators or refresher objects, can be refreshed.
 ///
-/// Implementers of `IWbemHiPerfProvider` must provide an implementation of this
-/// interface.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/nn-wbemcli-iwbemrefresher>.
 ///
 /// {@category com}
 class IWbemRefresher extends IUnknown {

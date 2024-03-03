@@ -26,6 +26,9 @@ const IID_IUIAutomationDropTargetPattern =
 /// Automation provider for an element that can be the drop target of a
 /// drag-and-drop operation.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationdroptargetpattern>.
+///
 /// {@category com}
 class IUIAutomationDropTargetPattern extends IUnknown {
   IUIAutomationDropTargetPattern(super.ptr)

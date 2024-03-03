@@ -20,6 +20,9 @@ const IID_ISpellCheckerChangedEventHandler =
 /// Allows the caller to create a handler for notifications that the state of
 /// the speller has changed.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/spellcheck/nn-spellcheck-ispellcheckerchangedeventhandler>.
+///
 /// {@category com}
 class ISpellCheckerChangedEventHandler extends IUnknown {
   ISpellCheckerChangedEventHandler(super.ptr)

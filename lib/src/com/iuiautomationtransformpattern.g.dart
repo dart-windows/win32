@@ -24,6 +24,9 @@ const IID_IUIAutomationTransformPattern =
 
 /// Provides access to a control that can be moved, resized, or rotated.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtransformpattern>.
+///
 /// {@category com}
 class IUIAutomationTransformPattern extends IUnknown {
   IUIAutomationTransformPattern(super.ptr)

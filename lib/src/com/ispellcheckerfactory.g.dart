@@ -21,8 +21,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpellCheckerFactory = '{8e018a9d-2415-4677-bf08-794ea61f94bb}';
 
-/// A factory for instantiating a spell checker `ISpellChecker` as well as
+/// A factory for instantiating a spell checker (ISpellChecker) as well as
 /// providing functionality for determining which languages are supported.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/spellcheck/nn-spellcheck-ispellcheckerfactory>.
 ///
 /// {@category com}
 class ISpellCheckerFactory extends IUnknown {

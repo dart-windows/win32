@@ -4,6 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../doc/api_details.dart';
+import '../doc/api_docs.dart';
+import '../docs.dart';
 import '../extension/collection.dart';
 import '../extension/method.dart';
 import '../extension/string.dart';
@@ -14,18 +17,13 @@ import 'com_property.dart';
 
 /// Represents a Dart projection for a COM interface defined by a [TypeDef].
 class ComInterfaceProjection {
-  /// Creates an instance of this class for a [typeDef] and optional [comment].
-  ComInterfaceProjection(
-    this.typeDef, {
-    this.comment = '',
-  }) : classTypeDef = _findClassTypeDef(typeDef);
+  /// Creates an instance of this class for a [typeDef].
+  ComInterfaceProjection(this.typeDef)
+      : classTypeDef = _findClassTypeDef(typeDef);
 
   /// The metadata associated with the corresponding class for the interface,
   /// if available.
   final TypeDef? classTypeDef;
-
-  /// The comment associated with the interface.
-  final String comment;
 
   /// The metadata associated with the interface.
   final TypeDef typeDef;
@@ -202,15 +200,28 @@ factory $shortName.from(IUnknown interface) =>
     $shortName(interface.toInterface(IID_$shortName));
 ''';
 
-  /// The category to use for the dartdoc `@category` tag.
-  String get category => 'com';
+  /// The comment associated with the interface.
+  String get comment {
+    final buffer = StringBuffer();
 
-  /// The class preamble that includes a doc comment and a dartdoc `@category`
-  /// tag derived from the [category].
-  String get classPreamble => [
-        if (comment.isNotEmpty) ...[comment.toDocComment(), '///'],
-        '/// {@category $category}',
-      ].join('\n');
+    if (interfaceDocs.containsKey(typeDef.name)) {
+      buffer.write(interfaceDocs[typeDef.name]);
+    } else {
+      final docs = ApiDocs.getDocs(typeDef.name.lastComponent);
+      if (docs != null) {
+        final ApiDetails(:description, :helpLink) = docs;
+        buffer.write(description);
+        if (helpLink != null) {
+          buffer
+              .write(' \nTo learn more about this interface, see <$helpLink>.');
+        }
+      }
+    }
+
+    buffer.write(' \n{@category com}');
+
+    return buffer.toString().toDocComment();
+  }
 
   /// The class header of the generated class.
   String get classHeader {
@@ -276,7 +287,7 @@ $header
 $importHeader
 $interfaceGuidConstant
 
-$classPreamble
+$comment
 $classHeader {
   $constructor
 

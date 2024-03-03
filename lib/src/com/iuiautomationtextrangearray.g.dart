@@ -24,6 +24,9 @@ const IID_IUIAutomationTextRangeArray =
 
 /// Represents a collection of IUIAutomationTextRange objects.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextrangearray>.
+///
 /// {@category com}
 class IUIAutomationTextRangeArray extends IUnknown {
   IUIAutomationTextRangeArray(super.ptr)

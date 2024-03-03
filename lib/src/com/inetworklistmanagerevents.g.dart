@@ -22,6 +22,9 @@ const IID_INetworkListManagerEvents = '{dcb00001-570f-4a9b-8d69-199fdba5723b}';
 /// Applications that are interested on higher-level events, for example
 /// internet connectivity, implement this interface.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nn-netlistmgr-inetworklistmanagerevents>.
+///
 /// {@category com}
 class INetworkListManagerEvents extends IUnknown {
   INetworkListManagerEvents(super.ptr)

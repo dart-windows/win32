@@ -20,6 +20,9 @@ const IID_IShellLink = '{000214f9-0000-0000-c000-000000000046}';
 
 /// Exposes methods that create, modify, and resolve Shell links.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishelllinkw>.
+///
 /// {@category com}
 class IShellLink extends IUnknown {
   IShellLink(super.ptr) : _vtable = ptr.value.cast<IShellLinkVtbl>().ref;

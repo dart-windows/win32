@@ -24,6 +24,9 @@ const IID_IUIAutomationTextRange = '{a543cc6a-f4ae-494b-8239-c814481187a8}';
 /// Client applications can use the IUIAutomationTextRange interface to select,
 /// compare, and retrieve embedded objects from the text span.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextrange>.
+///
 /// {@category com}
 class IUIAutomationTextRange extends IUnknown {
   IUIAutomationTextRange(super.ptr)

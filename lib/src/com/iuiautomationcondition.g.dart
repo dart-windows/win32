@@ -17,6 +17,9 @@ const IID_IUIAutomationCondition = '{352ffba8-0973-437c-a61f-f64cafd81df9}';
 /// This is the primary interface for conditions used in filtering when
 /// searching for elements in the UI Automation tree.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationcondition>.
+///
 /// {@category com}
 class IUIAutomationCondition extends IUnknown {
   IUIAutomationCondition(super.ptr);

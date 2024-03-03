@@ -25,6 +25,9 @@ const IID_IUIAutomationElement5 = '{98141c1d-0d0e-4175-bbe2-6bff455842a7}';
 /// Extends the IUIAutomationElement4 interface to provide access to current and
 /// cached landmark data.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationelement5>.
+///
 /// {@category com}
 class IUIAutomationElement5 extends IUIAutomationElement4 {
   IUIAutomationElement5(super.ptr)

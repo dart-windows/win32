@@ -20,11 +20,14 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IShellItem2 = '{7e9fb0d3-919f-4307-ab2e-9b1860310c93}';
 
-/// Extends [IShellItem] with methods that retrieve various property values of
-/// the item.
+/// Extends IShellItem with methods that retrieve various property values of the
+/// item.
 ///
-/// [IShellItem] and [IShellItem2] are the preferred representations of items in
-/// any new code.
+/// IShellItem and IShellItem2 are the preferred representations of items in any
+/// new code.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishellitem2>.
 ///
 /// {@category com}
 class IShellItem2 extends IShellItem {

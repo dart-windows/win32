@@ -19,6 +19,9 @@ const IID_IUIAutomationNotCondition = '{f528b657-847b-498c-8896-d52b565407a1}';
 
 /// Represents a condition that is the negative of another condition.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationnotcondition>.
+///
 /// {@category com}
 class IUIAutomationNotCondition extends IUIAutomationCondition {
   IUIAutomationNotCondition(super.ptr)

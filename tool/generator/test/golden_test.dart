@@ -130,9 +130,7 @@ void testFunctionGolden(String parent, String functionName) {
 void testInterfaceGolden(String interfaceName) {
   test(interfaceName, () {
     final typeDef = getTypeDef(interfaceName);
-    final comTypesToGenerate = loadMap(p.join('data', 'com_types.json'));
-    final projection = ComInterfaceProjection(typeDef,
-        comment: comTypesToGenerate[interfaceName] ?? '');
+    final projection = ComInterfaceProjection(typeDef);
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
       typeDef.name,

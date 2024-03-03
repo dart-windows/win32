@@ -24,6 +24,9 @@ const IID_IUIAutomationValuePattern = '{a94cd8b1-0844-4cd6-9d2d-640537ab39e9}';
 /// Provides access to a control that contains a value that does not span a
 /// range and that can be represented as a string.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationvaluepattern>.
+///
 /// {@category com}
 class IUIAutomationValuePattern extends IUnknown {
   IUIAutomationValuePattern(super.ptr)

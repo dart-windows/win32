@@ -20,6 +20,9 @@ const IID_IAppxFactory = '{beb94909-e451-438b-b5a7-d79e767b75d8}';
 
 /// Creates objects for reading and writing app packages.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxfactory>.
+///
 /// {@category com}
 class IAppxFactory extends IUnknown {
   IAppxFactory(super.ptr) : _vtable = ptr.value.cast<IAppxFactoryVtbl>().ref;

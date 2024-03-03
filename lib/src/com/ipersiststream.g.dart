@@ -20,6 +20,9 @@ const IID_IPersistStream = '{00000109-0000-0000-c000-000000000046}';
 /// Enables the saving and loading of objects that use a simple serial stream
 /// for their storage needs.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/nn-objidl-ipersiststream>.
+///
 /// {@category com}
 class IPersistStream extends IPersist {
   IPersistStream(super.ptr)

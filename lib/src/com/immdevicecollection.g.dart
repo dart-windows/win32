@@ -16,8 +16,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IMMDeviceCollection = '{0bd7a1be-7a1a-44db-8397-cc5392387b5e}';
 
-/// The IMMDeviceCollection interface represents a collection of multimedia
-/// device resources.
+/// Represents a collection of multimedia device resources.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nn-mmdeviceapi-immdevicecollection>.
 ///
 /// {@category com}
 class IMMDeviceCollection extends IUnknown {

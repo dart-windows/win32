@@ -20,6 +20,9 @@ const IID_IUIAutomationTextRange2 = '{bb9b40e0-5e04-46bd-9be0-4b601b9afad4}';
 /// Extends the IUIAutomationTextRange interface to enable Microsoft UI
 /// Automation clients to programmatically invoke context menus.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextrange2>.
+///
 /// {@category com}
 class IUIAutomationTextRange2 extends IUIAutomationTextRange {
   IUIAutomationTextRange2(super.ptr)

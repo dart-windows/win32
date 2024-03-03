@@ -21,6 +21,9 @@ const IID_IShellLinkDataList = '{45e2b4ae-b1c3-11d0-b92f-00a0c90312e1}';
 ///
 /// These methods add, copy, or remove data blocks.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishelllinkdatalist>.
+///
 /// {@category com}
 class IShellLinkDataList extends IUnknown {
   IShellLinkDataList(super.ptr)

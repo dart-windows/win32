@@ -18,10 +18,12 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IMMNotificationClient = '{7991eec9-7e89-4d85-8390-6c703cec60c0}';
 
-/// The IMMNotificationClient interface provides notifications when an audio
-/// endpoint device is added or removed, when the state or properties of an
-/// endpoint device change, or when there is a change in the default role
-/// assigned to an endpoint device.
+/// Provides notifications when an audio endpoint device is added or removed,
+/// when the state or properties of an endpoint device change, or when there is
+/// a change in the default role assigned to an endpoint device.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nn-mmdeviceapi-immnotificationclient>.
 ///
 /// {@category com}
 class IMMNotificationClient extends IUnknown {

@@ -22,6 +22,9 @@ const IID_IMetaDataImport2 = '{fce5efa0-8bba-4f8e-a036-8f2022b08466}';
 /// Extends the IMetaDataImport interface to provide the capability of working
 /// with generic types.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nn-rometadataapi-imetadataimport2>.
+///
 /// {@category com}
 class IMetaDataImport2 extends IMetaDataImport {
   IMetaDataImport2(super.ptr)

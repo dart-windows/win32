@@ -25,6 +25,9 @@ const IID_IUIAutomationSelectionItemPattern =
 /// Provides access to the selectable child items of a container control that
 /// supports IUIAutomationSelectionPattern.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationselectionitempattern>.
+///
 /// {@category com}
 class IUIAutomationSelectionItemPattern extends IUnknown {
   IUIAutomationSelectionItemPattern(super.ptr)

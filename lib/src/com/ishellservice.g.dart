@@ -16,9 +16,12 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IShellService = '{5836fb00-8187-11cf-a12b-00aa004ae837}';
 
-/// IShellService Exposes one method that declares ownership when a service
-/// component implementing a certain interface is shared among multiple clients,
-/// such as Windows Internet Explorer and Windows Explorer.
+/// Exposes one method that declares ownership when a service component
+/// implementing a certain interface is shared among multiple clients, such as
+/// Windows Internet Explorer and Windows Explorer.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shdeprecated/nn-shdeprecated-ishellservice>.
 ///
 /// {@category com}
 class IShellService extends IUnknown {

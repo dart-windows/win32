@@ -23,9 +23,8 @@ const IID_ISpellChecker2 = '{e7ed1c71-87f7-4378-a840-c9200dacee47}';
 /// added ability to remove words from the added words dictionary, or from the
 /// ignore list.
 ///
-/// The `ISpellChecker2` can also be used to check text, get suggestions, update
-/// user dictionaries, and maintain options, as can ISpellChecker from which it
-/// is derived.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/spellcheck/nn-spellcheck-ispellchecker2>.
 ///
 /// {@category com}
 class ISpellChecker2 extends ISpellChecker {

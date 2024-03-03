@@ -20,6 +20,9 @@ const IID_IRestrictedErrorInfo = '{82ba7092-4c88-427d-a7bc-16dd93feb67e}';
 
 /// Represents the details of an error, including restricted error information.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/restrictederrorinfo/nn-restrictederrorinfo-irestrictederrorinfo>.
+///
 /// {@category com}
 class IRestrictedErrorInfo extends IUnknown {
   IRestrictedErrorInfo(super.ptr)

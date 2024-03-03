@@ -17,15 +17,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IChannelAudioVolume = '{1c158861-b533-4b30-b1cf-e853e51c59b8}';
 
-/// The IChannelAudioVolume interface enables a client to control and monitor
-/// the volume levels for all of the channels in the audio session that the
-/// stream belongs to.
+/// Enables a client to control and monitor the volume levels for all of the
+/// channels in the audio session that the stream belongs to.
 ///
-/// This is the session that the client assigned the stream to during the call
-/// to the `IAudioClient::Initialize` method. The client obtains a reference to
-/// the [IChannelAudioVolume] interface on a stream object by calling the
-/// `IAudioClient::GetService` method with parameter `riid` set to REFIID
-/// [IID_IChannelAudioVolume].
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-ichannelaudiovolume>.
 ///
 /// {@category com}
 class IChannelAudioVolume extends IUnknown {

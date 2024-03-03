@@ -17,7 +17,10 @@ import 'iunknown.g.dart';
 const IID_IInitializeWithWindow = '{3e68d4bd-7135-4d10-8018-9fb6d9f33fa1}';
 
 /// Exposes a method through which a client can provide an owner window to a
-/// Windows Runtime (WinRT) object used in a desktop application.
+/// Windows Runtime object used in a desktop application.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-iinitializewithwindow>.
 ///
 /// {@category com}
 class IInitializeWithWindow extends IUnknown {

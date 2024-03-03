@@ -17,13 +17,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioSessionManager = '{bfa971f1-4d5e-40bb-935e-967039bfbee4}';
 
-/// The IAudioSessionManager interface enables a client to access the session
-/// controls and volume controls for both cross-process and process-specific
-/// audio sessions.
+/// Enables a client to access the session controls and volume controls for both
+/// cross-process and process-specific audio sessions.
 ///
-/// The client obtains a reference to an [IAudioSessionManager] interface by
-/// calling the `IMMDevice::Activate` method with parameter `iid` set to REFIID
-/// [IID_IAudioSessionManager].
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audiopolicy/nn-audiopolicy-iaudiosessionmanager>.
 ///
 /// {@category com}
 class IAudioSessionManager extends IUnknown {

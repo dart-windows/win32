@@ -21,8 +21,11 @@ const IID_IShellItem = '{43826d1e-e718-42ee-bc55-a1e261c37bfe}';
 
 /// Exposes methods that retrieve information about a Shell item.
 ///
-/// [IShellItem] and `IShellItem2` are the preferred representations of items in
-/// any new code.
+/// IShellItem and IShellItem2 are the preferred representations of items in any
+/// new code.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishellitem>.
 ///
 /// {@category com}
 class IShellItem extends IUnknown {

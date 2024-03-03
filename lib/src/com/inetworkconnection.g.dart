@@ -23,7 +23,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_INetworkConnection = '{dcb00005-570f-4a9b-8d69-199fdba5723b}';
 
-/// The INetworkConnection interface represents a single network connection.
+/// Represents a single network connection.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nn-netlistmgr-inetworkconnection>.
 ///
 /// {@category com}
 class INetworkConnection extends IDispatch {

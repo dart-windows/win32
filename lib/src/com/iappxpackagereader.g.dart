@@ -20,6 +20,9 @@ const IID_IAppxPackageReader = '{b5c49650-99bc-481c-9a34-3d53a4106708}';
 
 /// Provides a read-only object model for app packages.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxpackagereader>.
+///
 /// {@category com}
 class IAppxPackageReader extends IUnknown {
   IAppxPackageReader(super.ptr)

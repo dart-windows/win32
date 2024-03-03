@@ -24,6 +24,9 @@ const IID_IUIAutomationRangeValuePattern =
 
 /// Provides access to a control that presents a range of values.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationrangevaluepattern>.
+///
 /// {@category com}
 class IUIAutomationRangeValuePattern extends IUnknown {
   IUIAutomationRangeValuePattern(super.ptr)

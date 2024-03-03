@@ -20,6 +20,9 @@ const IID_IVirtualDesktopManager = '{a5cd92ff-29be-454c-8d04-d82879fb3f1b}';
 /// Exposes methods that enable an application to interact with groups of
 /// windows that form virtual workspaces.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ivirtualdesktopmanager>.
+///
 /// {@category com}
 class IVirtualDesktopManager extends IUnknown {
   IVirtualDesktopManager(super.ptr)

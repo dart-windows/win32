@@ -20,6 +20,9 @@ const IID_IUIAutomationItemContainerPattern =
 /// Exposes a method that retrieves an item from a container, such as a virtual
 /// list.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationitemcontainerpattern>.
+///
 /// {@category com}
 class IUIAutomationItemContainerPattern extends IUnknown {
   IUIAutomationItemContainerPattern(super.ptr)

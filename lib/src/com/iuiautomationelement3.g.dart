@@ -24,6 +24,9 @@ const IID_IUIAutomationElement3 = '{8471df34-aee0-4a01-a7de-7db9af12c296}';
 
 /// Extends the IUIAutomationElement2 interface.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationelement3>.
+///
 /// {@category com}
 class IUIAutomationElement3 extends IUIAutomationElement2 {
   IUIAutomationElement3(super.ptr)

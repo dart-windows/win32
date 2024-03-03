@@ -25,6 +25,9 @@ const IID_IUIAutomation6 = '{aae072da-29e3-413d-87a7-192dbf81ed10}';
 /// Extends the IUIAutomation5 interface to expose additional methods for
 /// controlling Microsoft UI Automation functionality.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomation6>.
+///
 /// {@category com}
 class IUIAutomation6 extends IUIAutomation5 {
   IUIAutomation6(super.ptr)

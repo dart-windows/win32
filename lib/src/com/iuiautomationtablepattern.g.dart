@@ -24,6 +24,9 @@ const IID_IUIAutomationTablePattern = '{620e691c-ea96-4710-a850-754b24ce2417}';
 /// Provides access to a control that acts as a container for a collection of
 /// child elements.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtablepattern>.
+///
 /// {@category com}
 class IUIAutomationTablePattern extends IUnknown {
   IUIAutomationTablePattern(super.ptr)

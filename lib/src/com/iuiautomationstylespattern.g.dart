@@ -24,6 +24,9 @@ const IID_IUIAutomationStylesPattern = '{85b5f0a2-bd79-484a-ad2b-388c9838d5fb}';
 /// Enables Microsoft UI Automation clients to retrieve the visual styles
 /// associated with an element in a document.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationstylespattern>.
+///
 /// {@category com}
 class IUIAutomationStylesPattern extends IUnknown {
   IUIAutomationStylesPattern(super.ptr)

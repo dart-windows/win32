@@ -17,12 +17,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpEventSource = '{be7a9cce-5f9e-11d2-960f-00c04f8ee628}';
 
-/// Using the methods on ISpNotifySource an application can specify the
-/// mechanism by which it receives notifications.
+/// Provides the mechanism to filter and queue events.
 ///
-/// Applications can configure which events should trigger notifications and
-/// which events retrieve queued events. ISpEventSource inherits from the
-/// [ISpNotifySource] interface.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/ms717848(v=vs.85)>.
 ///
 /// {@category com}
 class ISpEventSource extends ISpNotifySource {

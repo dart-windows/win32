@@ -22,8 +22,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpeechObjectTokens = '{9285b776-2e7b-4bc0-b53e-580eb6fa967f}';
 
-/// The ISpeechObjectTokens automation interface represents a collection of
-/// SpObjectToken objects.
+/// Represents a collection of SpObjectToken objects.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/ms721389(v=vs.85)>.
 ///
 /// {@category com}
 class ISpeechObjectTokens extends IDispatch {

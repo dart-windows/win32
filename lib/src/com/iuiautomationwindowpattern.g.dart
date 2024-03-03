@@ -23,6 +23,9 @@ const IID_IUIAutomationWindowPattern = '{0faef453-9208-43ef-bbb2-3b485177864f}';
 
 /// Provides access to the fundamental functionality of a window.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationwindowpattern>.
+///
 /// {@category com}
 class IUIAutomationWindowPattern extends IUnknown {
   IUIAutomationWindowPattern(super.ptr)

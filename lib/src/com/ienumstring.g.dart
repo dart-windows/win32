@@ -18,10 +18,13 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IEnumString = '{00000101-0000-0000-c000-000000000046}';
 
-/// Enumerate strings.
+/// Enumerates strings.
 ///
-/// `LPWSTR` is the type that indicates a pointer to a zero-terminated string of
+/// LPWSTR is the type that indicates a pointer to a zero-terminated string of
 /// wide, or Unicode, characters.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/nn-objidlbase-ienumstring>.
 ///
 /// {@category com}
 class IEnumString extends IUnknown {

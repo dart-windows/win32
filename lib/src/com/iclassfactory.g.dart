@@ -17,8 +17,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IClassFactory = '{00000001-0000-0000-c000-000000000046}';
 
-/// Creates a call object for processing calls to the methods of an asynchronous
-/// interface.
+/// Enables a class of objects to be created.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iclassfactory>.
 ///
 /// {@category com}
 class IClassFactory extends IUnknown {

@@ -25,6 +25,9 @@ const IID_IUIAutomationGridItemPattern =
 /// Provides access to a child control in a grid-style container that supports
 /// the IUIAutomationGridPattern interface.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationgriditempattern>.
+///
 /// {@category com}
 class IUIAutomationGridItemPattern extends IUnknown {
   IUIAutomationGridItemPattern(super.ptr)

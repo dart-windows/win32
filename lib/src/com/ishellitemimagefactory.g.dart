@@ -21,6 +21,9 @@ const IID_IShellItemImageFactory = '{bcc18b79-ba16-442f-80c4-8a59c30c463b}';
 /// If no thumbnail or icon is available for the requested item, a per-class
 /// icon may be provided from the Shell.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishellitemimagefactory>.
+///
 /// {@category com}
 class IShellItemImageFactory extends IUnknown {
   IShellItemImageFactory(super.ptr)

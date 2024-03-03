@@ -20,6 +20,9 @@ const IID_IMetaDataTables2 = '{badb5f70-58da-43a9-a1c6-d74819f19b15}';
 /// Extends IMetaDataTables to include methods for working with metadata
 /// streams.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nn-rometadataapi-imetadatatables2>.
+///
 /// {@category com}
 class IMetaDataTables2 extends IMetaDataTables {
   IMetaDataTables2(super.ptr)

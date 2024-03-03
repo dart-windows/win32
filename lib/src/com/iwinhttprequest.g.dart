@@ -25,6 +25,9 @@ const IID_IWinHttpRequest = '{016fe2ec-b2c8-45f8-b23b-39e53a75396b}';
 /// Provides all of the nonevent methods for Microsoft Windows HTTP Services
 /// (WinHTTP).
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-interface>.
+///
 /// {@category com}
 class IWinHttpRequest extends IDispatch {
   IWinHttpRequest(super.ptr)

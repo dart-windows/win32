@@ -24,6 +24,9 @@ const IID_IUIAutomationTogglePattern = '{94cf8058-9b8d-4ab9-8bfd-4cd0a33c8c70}';
 /// Provides access to a control that can cycle through a set of states, and
 /// maintain a state after it is set.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtogglepattern>.
+///
 /// {@category com}
 class IUIAutomationTogglePattern extends IUnknown {
   IUIAutomationTogglePattern(super.ptr)

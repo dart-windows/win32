@@ -19,6 +19,9 @@ const IID_IAppxManifestApplicationsEnumerator =
 
 /// Enumerates the applications defined in the package manifest.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxmanifestapplicationsenumerator>.
+///
 /// {@category com}
 class IAppxManifestApplicationsEnumerator extends IUnknown {
   IAppxManifestApplicationsEnumerator(super.ptr)

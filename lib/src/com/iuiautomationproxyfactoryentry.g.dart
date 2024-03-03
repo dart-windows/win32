@@ -26,6 +26,9 @@ const IID_IUIAutomationProxyFactoryEntry =
 /// Automation, and exposes properties and methods that can be used by client
 /// applications to interact with IUIAutomationProxyFactory objects.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationproxyfactoryentry>.
+///
 /// {@category com}
 class IUIAutomationProxyFactoryEntry extends IUnknown {
   IUIAutomationProxyFactoryEntry(super.ptr)

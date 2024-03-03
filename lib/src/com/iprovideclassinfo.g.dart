@@ -19,6 +19,9 @@ const IID_IProvideClassInfo = '{b196b283-bab4-101a-b69c-00aa00341d07}';
 /// Provides access to the type information for an object's coclass entry in its
 /// type library.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/ocidl/nn-ocidl-iprovideclassinfo>.
+///
 /// {@category com}
 class IProvideClassInfo extends IUnknown {
   IProvideClassInfo(super.ptr)

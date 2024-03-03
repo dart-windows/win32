@@ -19,6 +19,9 @@ const IID_IShellItemFilter = '{2659b475-eeb8-48b7-8f07-b378810f48cf}';
 /// Exposed by a client to specify how to filter the enumeration of a Shell item
 /// by a server application.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishellitemfilter>.
+///
 /// {@category com}
 class IShellItemFilter extends IUnknown {
   IShellItemFilter(super.ptr)

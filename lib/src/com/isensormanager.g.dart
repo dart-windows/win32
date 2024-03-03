@@ -20,6 +20,9 @@ const IID_ISensorManager = '{bd77db67-45a8-42dc-8d00-6dcf15f8377a}';
 /// Provides methods for discovering and retrieving available sensors and a
 /// method to request sensor manager events.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nn-sensorsapi-isensormanager>.
+///
 /// {@category com}
 class ISensorManager extends IUnknown {
   ISensorManager(super.ptr)

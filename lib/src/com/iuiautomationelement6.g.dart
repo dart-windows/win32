@@ -25,6 +25,9 @@ const IID_IUIAutomationElement6 = '{4780d450-8bca-4977-afa5-a4a517f555e3}';
 /// Extends the IUIAutomationElement5 interface to provide access to current and
 /// cached full descriptions.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationelement6>.
+///
 /// {@category com}
 class IUIAutomationElement6 extends IUIAutomationElement5 {
   IUIAutomationElement6(super.ptr)

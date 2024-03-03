@@ -18,11 +18,14 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioClient3 = '{7ed4ee07-8e67-4cd4-8c1a-2b7a5987ad42}';
 
-/// The IAudioClient3 interface is derived from the IAudioClient2 interface,
-/// with a set of additional methods that enable a Windows Audio Session API
-/// (WASAPI) audio client to query for the audio engine's supported
-/// periodicities and current periodicity as well as request initialization of a
-/// shared audio stream with a specified periodicity.
+/// Derived from the IAudioClient2 interface, with a set of additional methods
+/// that enable a Windows Audio Session API (WASAPI) audio client to query for
+/// the audio engine's supported periodicities and current periodicity as well
+/// as request initialization of a shared audio stream with a specified
+/// periodicity.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-iaudioclient3>.
 ///
 /// {@category com}
 class IAudioClient3 extends IAudioClient2 {

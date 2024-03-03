@@ -27,6 +27,9 @@ const IID_IUIAutomationProxyFactory = '{85b94ecd-849d-42b6-b94d-d6db23fdf5a4}';
 ///
 /// This interface is implemented by proxies.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationproxyfactory>.
+///
 /// {@category com}
 class IUIAutomationProxyFactory extends IUnknown {
   IUIAutomationProxyFactory(super.ptr)

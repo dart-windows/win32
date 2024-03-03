@@ -19,6 +19,9 @@ const IID_IAppxManifestPackageDependenciesEnumerator =
 
 /// Enumerates the package dependencies defined in the package manifest.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxmanifestpackagedependenciesenumerator>.
+///
 /// {@category com}
 class IAppxManifestPackageDependenciesEnumerator extends IUnknown {
   IAppxManifestPackageDependenciesEnumerator(super.ptr)

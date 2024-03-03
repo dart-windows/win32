@@ -16,12 +16,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioCaptureClient = '{c8adbd64-e71e-48a0-a4de-185c395cd317}';
 
-/// The IAudioCaptureClient interface enables a client to read input data from a
-/// capture endpoint buffer.
+/// Enables a client to read input data from a capture endpoint buffer.
 ///
-/// The client obtains a reference to the `IAudioCaptureClient` interface on a
-/// stream object by calling the `IAudioClient::GetService` method with
-/// parameter `riid` set to REFIID [IID_IAudioCaptureClient].
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-iaudiocaptureclient>.
 ///
 /// {@category com}
 class IAudioCaptureClient extends IUnknown {

@@ -20,6 +20,9 @@ const IID_IUIAutomationTableItemPattern =
 /// Provides access to a child element in a container that supports
 /// IUIAutomationTablePattern.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtableitempattern>.
+///
 /// {@category com}
 class IUIAutomationTableItemPattern extends IUnknown {
   IUIAutomationTableItemPattern(super.ptr)

@@ -19,11 +19,8 @@ const IID_IRunningObjectTable = '{00000010-0000-0000-c000-000000000046}';
 /// Manages access to the running object table (ROT), a globally accessible
 /// look-up table on each workstation.
 ///
-/// A workstation's ROT keeps track of those objects that can be identified by a
-/// moniker and that are currently running on the workstation. When a client
-/// tries to bind a moniker to an object, the moniker checks the ROT to see if
-/// the object is already running; this allows the moniker to bind to the
-/// current instance instead of loading a new one.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/nn-objidl-irunningobjecttable>.
 ///
 /// {@category com}
 class IRunningObjectTable extends IUnknown {

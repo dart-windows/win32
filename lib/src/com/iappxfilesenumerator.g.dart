@@ -18,6 +18,9 @@ const IID_IAppxFilesEnumerator = '{f007eeaf-9831-411c-9847-917cdc62d1fe}';
 
 /// Enumerates the payload files in a package.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxfilesenumerator>.
+///
 /// {@category com}
 class IAppxFilesEnumerator extends IUnknown {
   IAppxFilesEnumerator(super.ptr)

@@ -28,6 +28,9 @@ const IID_IUIAutomationProxyFactoryMapping =
 /// interface. The entries are in the order in which the system will attempt to
 /// use the proxies.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationproxyfactorymapping>.
+///
 /// {@category com}
 class IUIAutomationProxyFactoryMapping extends IUnknown {
   IUIAutomationProxyFactoryMapping(super.ptr)

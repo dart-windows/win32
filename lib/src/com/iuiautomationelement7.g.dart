@@ -19,6 +19,9 @@ const IID_IUIAutomationElement7 = '{204e8572-cfc3-4c11-b0c8-7da7420750b7}';
 
 /// Extends the IUIAutomationElement6 interface.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationelement7>.
+///
 /// {@category com}
 class IUIAutomationElement7 extends IUIAutomationElement6 {
   IUIAutomationElement7(super.ptr)

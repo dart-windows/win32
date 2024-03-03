@@ -23,6 +23,9 @@ const IID_IUIAutomationElementArray = '{14314595-b4bc-4055-95f2-58f2e42c9855}';
 
 /// Represents a collection of UI Automation elements.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationelementarray>.
+///
 /// {@category com}
 class IUIAutomationElementArray extends IUnknown {
   IUIAutomationElementArray(super.ptr)

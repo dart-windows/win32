@@ -16,12 +16,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioRenderClient = '{f294acfc-3146-4483-a7bf-addca7c260e2}';
 
-/// The IAudioRenderClient interface enables a client to write output data to a
-/// rendering endpoint buffer.
+/// Enables a client to write output data to a rendering endpoint buffer.
 ///
-/// The client obtains a reference to the `IAudioRenderClient` interface of a
-/// stream object by calling the `IAudioClient::GetService` method with
-/// parameter `riid` set to REFIID [IID_IAudioRenderClient].
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-iaudiorenderclient>.
 ///
 /// {@category com}
 class IAudioRenderClient extends IUnknown {

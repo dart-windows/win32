@@ -19,8 +19,8 @@ const IID_IEnumVARIANT = '{00020404-0000-0000-c000-000000000046}';
 /// Provides a method for enumerating a collection of variants, including
 /// heterogeneous collections of objects and intrinsic types.
 ///
-/// Callers of this interface do not need to know the specific type (or types)
-/// of the elements in the collection.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/nn-oaidl-ienumvariant>.
 ///
 /// {@category com}
 class IEnumVARIANT extends IUnknown {

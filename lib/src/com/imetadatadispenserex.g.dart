@@ -20,8 +20,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IMetaDataDispenserEx = '{31bcfce2-dafb-11d2-9f81-00c04f79a0a3}';
 
-/// Extends the IMetaDataDispenser Interface interface to provide the capability
-/// to control how the metadata APIs operate on the current metadata scope.
+/// Extends the IMetaDataDispenser interface to provide the capability to
+/// control how the metadata APIs operate on the current metadata scope.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nn-rometadataapi-imetadatadispenserex>.
 ///
 /// {@category com}
 class IMetaDataDispenserEx extends IMetaDataDispenser {

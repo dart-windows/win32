@@ -20,6 +20,9 @@ const IID_ISensorCollection = '{23571e11-e545-4dd8-a337-b89bf44b10df}';
 /// Represents a collection of sensors, such as all the sensors connected to a
 /// computer.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nn-sensorsapi-isensorcollection>.
+///
 /// {@category com}
 class ISensorCollection extends IUnknown {
   ISensorCollection(super.ptr)

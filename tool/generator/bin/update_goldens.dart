@@ -14,8 +14,6 @@ Iterable<File> get goldenFiles =>
         .whereType<File>()
         .where((file) => file.path.endsWith('.golden'));
 
-final comInterfacesToGenerate =
-    loadMap(Platform.script.resolve('../data/com_types.json').toFilePath());
 final enumsToGenerate =
     loadMap(Platform.script.resolve('../data/win32_enums.json').toFilePath());
 final structsToGenerate =
@@ -128,10 +126,7 @@ void updateInterfaceGolden(File file) {
     );
   }
 
-  final projection = ComInterfaceProjection(
-    typeDef,
-    comment: comInterfacesToGenerate[fullyQualifiedType]!,
-  );
+  final projection = ComInterfaceProjection(typeDef);
   updateGoldenFile(file, projection.format());
 }
 

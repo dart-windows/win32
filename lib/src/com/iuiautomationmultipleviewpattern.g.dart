@@ -25,6 +25,9 @@ const IID_IUIAutomationMultipleViewPattern =
 /// Provides access to a control that can switch between multiple
 /// representations of the same information or set of child controls.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationmultipleviewpattern>.
+///
 /// {@category com}
 class IUIAutomationMultipleViewPattern extends IUnknown {
   IUIAutomationMultipleViewPattern(super.ptr)

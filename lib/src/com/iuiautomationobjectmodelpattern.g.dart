@@ -20,6 +20,9 @@ const IID_IUIAutomationObjectModelPattern =
 /// Provides access to the underlying object model implemented by a control or
 /// application.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationobjectmodelpattern>.
+///
 /// {@category com}
 class IUIAutomationObjectModelPattern extends IUnknown {
   IUIAutomationObjectModelPattern(super.ptr)

@@ -19,8 +19,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IMMDevice = '{d666063f-1587-4e43-81f1-b948e807363f}';
 
-/// The IMMDevice interface encapsulates the generic features of a multimedia
-/// device resource.
+/// Encapsulates the generic features of a multimedia device resource.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nn-mmdeviceapi-immdevice>.
 ///
 /// {@category com}
 class IMMDevice extends IUnknown {

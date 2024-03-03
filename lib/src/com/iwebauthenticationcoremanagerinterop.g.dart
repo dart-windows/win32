@@ -19,8 +19,10 @@ import 'iunknown.g.dart';
 const IID_IWebAuthenticationCoreManagerInterop =
     '{f4b8e804-811e-4436-b69c-44cb67b72084}';
 
-/// Provides Win32 apps with access to certain functions of
-/// WebAuthenticationCoreManager that are otherwise available only to UWP apps.
+/// Contains core methods for obtaining tokens from web account providers.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/webauthenticationcoremanagerinterop/nn-webauthenticationcoremanagerinterop-iwebauthenticationcoremanagerinterop>.
 ///
 /// {@category com}
 class IWebAuthenticationCoreManagerInterop extends IInspectable {

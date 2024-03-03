@@ -21,6 +21,9 @@ const IID_IFileDialogCustomize = '{e6fdd21a-163f-4975-9c8c-a69f1ba37034}';
 /// Exposes methods that allow an application to add controls to a common file
 /// dialog.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ifiledialogcustomize>.
+///
 /// {@category com}
 class IFileDialogCustomize extends IUnknown {
   IFileDialogCustomize(super.ptr)

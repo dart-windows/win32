@@ -20,6 +20,9 @@ const IID_IAppxManifestApplication = '{5da89bf4-3773-46be-b650-7e744863b7e8}';
 
 /// Provides access to attribute values of the application.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxmanifestapplication>.
+///
 /// {@category com}
 class IAppxManifestApplication extends IUnknown {
   IAppxManifestApplication(super.ptr)

@@ -19,6 +19,9 @@ const IID_IUIAutomationTextPattern2 = '{506a921a-fcc9-409f-b23b-37eb74106872}';
 
 /// Extends the IUIAutomationTextPattern interface.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextpattern2>.
+///
 /// {@category com}
 class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
   IUIAutomationTextPattern2(super.ptr)

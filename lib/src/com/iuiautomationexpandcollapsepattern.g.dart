@@ -25,6 +25,9 @@ const IID_IUIAutomationExpandCollapsePattern =
 /// Provides access to a control that can visually expand to display content,
 /// and collapse to hide content.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationexpandcollapsepattern>.
+///
 /// {@category com}
 class IUIAutomationExpandCollapsePattern extends IUnknown {
   IUIAutomationExpandCollapsePattern(super.ptr)

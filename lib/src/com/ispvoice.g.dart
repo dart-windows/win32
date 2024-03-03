@@ -19,12 +19,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpVoice = '{6c44df74-72b9-4992-a1ec-ef996e0422d4}';
 
-/// The ISpVoice interface enables an application to perform speech synthesis
-/// operations.
+/// Enables an application to perform text synthesis operations.
 ///
-/// Applications can speak text strings and text files, or play audio files
-/// through this interface. All of these can be done synchronously or
-/// asynchronously.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/ms719576(v=vs.85)>.
 ///
 /// {@category com}
 class ISpVoice extends ISpEventSource {

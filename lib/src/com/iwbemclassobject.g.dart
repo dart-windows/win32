@@ -18,8 +18,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IWbemClassObject = '{dc12a681-737f-11cf-884d-00aa004b2e24}';
 
-/// The IWbemClassObject interface contains and manipulates both class
-/// definitions and class object instances.
+/// Contains and manipulates both class definitions and class object instances.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/nn-wbemcli-iwbemclassobject>.
 ///
 /// {@category com}
 class IWbemClassObject extends IUnknown {

@@ -22,8 +22,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpeechBaseStream = '{6450336f-7d49-4ced-8097-49d6dee37294}';
 
-/// The ISpeechBaseStream automation interface defines properties and methods
-/// for manipulating data streams.
+/// Defines properties and methods for manipulating data streams.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/ms721006(v=vs.85)>.
 ///
 /// {@category com}
 class ISpeechBaseStream extends IDispatch {

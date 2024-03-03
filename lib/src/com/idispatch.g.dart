@@ -22,6 +22,9 @@ const IID_IDispatch = '{00020400-0000-0000-c000-000000000046}';
 /// Exposes objects, methods and properties to programming tools and other
 /// applications that support Automation.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/nn-oaidl-idispatch>.
+///
 /// {@category com}
 class IDispatch extends IUnknown {
   IDispatch(super.ptr) : _vtable = ptr.value.cast<IDispatchVtbl>().ref;

@@ -17,10 +17,18 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioClient2 = '{726778cd-f60a-4eda-82de-e47610cd78aa}';
 
-/// The IAudioClient2 interface is derived from the IAudioClient interface, with
-/// a set of additional methods that enable a Windows Audio Session API (WASAPI)
-/// audio client to do the following: opt in for offloading, query stream
-/// properties, and get information from the hardware that handles offloading.
+/// Derived from the IAudioClient interface, with a set of additional methods
+/// that enable a Windows Audio Session API (WASAPI) audio client to do the
+/// following: opt in for offloading, query stream properties, and get
+/// information from the hardware that handles offloading.
+///
+/// The audio client can be successful in creating an offloaded stream if the
+/// underlying endpoint supports the hardware audio engine, the endpoint has
+/// been enumerated and discovered by the audio system, and there are still
+/// offload pin instances available on the endpoint.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-iaudioclient2>.
 ///
 /// {@category com}
 class IAudioClient2 extends IAudioClient {

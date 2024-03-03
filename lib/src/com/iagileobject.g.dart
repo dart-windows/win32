@@ -16,6 +16,9 @@ const IID_IAgileObject = '{94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90}';
 
 /// Marks an interface as agile across apartments.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/nn-objidlbase-iagileobject>.
+///
 /// {@category com}
 class IAgileObject extends IUnknown {
   IAgileObject(super.ptr);

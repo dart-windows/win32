@@ -23,6 +23,9 @@ const IID_IPersist = '{0000010c-0000-0000-c000-000000000046}';
 /// Allows the object to specify which object handler to use in the client
 /// process, as it is used in the default implementation of marshaling.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/nn-objidl-ipersist>.
+///
 /// {@category com}
 class IPersist extends IUnknown {
   IPersist(super.ptr) : _vtable = ptr.value.cast<IPersistVtbl>().ref;

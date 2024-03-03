@@ -22,6 +22,9 @@ const IID_IShellFolder = '{000214e6-0000-0000-c000-000000000046}';
 /// Exposed by all Shell namespace folder objects, its methods are used to
 /// manage folders.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishellfolder>.
+///
 /// {@category com}
 class IShellFolder extends IUnknown {
   IShellFolder(super.ptr) : _vtable = ptr.value.cast<IShellFolderVtbl>().ref;

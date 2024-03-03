@@ -18,8 +18,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IMMDeviceEnumerator = '{a95664d2-9614-4f35-a746-de8db63617e6}';
 
-/// The IMMDeviceEnumerator interface provides methods for enumerating
-/// multimedia device resources.
+/// Provides methods for enumerating multimedia device resources.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nn-mmdeviceapi-immdeviceenumerator>.
 ///
 /// {@category com}
 class IMMDeviceEnumerator extends IUnknown {

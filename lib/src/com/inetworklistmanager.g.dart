@@ -23,8 +23,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_INetworkListManager = '{dcb00000-570f-4a9b-8d69-199fdba5723b}';
 
-/// The INetworkListManager interface provides a set of methods to perform
-/// network list management functions.
+/// Provides a set of methods to perform network list management functions.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nn-netlistmgr-inetworklistmanager>.
 ///
 /// {@category com}
 class INetworkListManager extends IDispatch {

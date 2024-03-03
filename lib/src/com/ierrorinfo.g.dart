@@ -19,13 +19,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IErrorInfo = '{1cf2b120-547d-101b-8e65-08002b2bd119}';
 
-/// IErrorInfo is defined by Automation; the following describes how the
-/// interface is used in OLE DB.
+/// Provides detailed contextual error information.
 ///
-/// IErrorInfo returns information about an error in addition to the return
-/// code. It returns the error message, name of the component and GUID of the
-/// interface in which the error occurred, and the name and topic of the Help
-/// file that applies to the error.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/nn-oaidl-ierrorinfo>.
 ///
 /// {@category com}
 class IErrorInfo extends IUnknown {

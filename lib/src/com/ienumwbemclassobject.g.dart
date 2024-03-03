@@ -16,8 +16,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IEnumWbemClassObject = '{027947e1-d731-11ce-a357-000000000001}';
 
-/// The IEnumWbemClassObject interface is used to enumerate Common Information
-/// Model (CIM) objects and is similar to a standard COM enumerator.
+/// Used to enumerate Common Information Model (CIM) objects and is similar to a
+/// standard COM enumerator.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/nn-wbemcli-ienumwbemclassobject>.
 ///
 /// {@category com}
 class IEnumWbemClassObject extends IUnknown {

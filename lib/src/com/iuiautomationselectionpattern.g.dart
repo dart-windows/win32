@@ -26,6 +26,9 @@ const IID_IUIAutomationSelectionPattern =
 ///
 /// The children of this element support IUIAutomationSelectionItemPattern.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationselectionpattern>.
+///
 /// {@category com}
 class IUIAutomationSelectionPattern extends IUnknown {
   IUIAutomationSelectionPattern(super.ptr)

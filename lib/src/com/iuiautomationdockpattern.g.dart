@@ -24,6 +24,9 @@ const IID_IUIAutomationDockPattern = '{fde5ef97-1464-48f6-90bf-43d0948e86ec}';
 /// Provides access to a control that enables child elements to be arranged
 /// horizontally and vertically, relative to each other.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationdockpattern>.
+///
 /// {@category com}
 class IUIAutomationDockPattern extends IUnknown {
   IUIAutomationDockPattern(super.ptr)

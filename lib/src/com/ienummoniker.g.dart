@@ -19,6 +19,9 @@ const IID_IEnumMoniker = '{00000102-0000-0000-c000-000000000046}';
 /// Enumerates the components of a moniker or the monikers in a table of
 /// monikers.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/nn-objidl-ienummoniker>.
+///
 /// {@category com}
 class IEnumMoniker extends IUnknown {
   IEnumMoniker(super.ptr) : _vtable = ptr.value.cast<IEnumMonikerVtbl>().ref;

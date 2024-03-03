@@ -26,6 +26,9 @@ const IID_IUIAutomationLegacyIAccessiblePattern =
 /// to retrieve UI information from Microsoft Active Accessibility (MSAA)
 /// servers.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationlegacyiaccessiblepattern>.
+///
 /// {@category com}
 class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
   IUIAutomationLegacyIAccessiblePattern(super.ptr)

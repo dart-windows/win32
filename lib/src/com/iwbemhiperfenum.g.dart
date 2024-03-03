@@ -16,12 +16,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IWbemHiPerfEnum = '{2705c288-79ae-11d2-b348-00105a1f8177}';
 
-/// The IWbemHiPerfEnum interface is used in refresher operations to provide
-/// rapid access to enumerations of instance objects.
+/// Used in refresher operations to provide rapid access to enumerations of
+/// instance objects.
 ///
-/// WMI provides an implementation of this interface, which it passes to
-/// providers when `IWbemHiPerfProvider::CreateRefreshableEnum` is called, and
-/// it returns to clients when `IWbemConfigureRefresher::AddEnum` is called.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/nn-wbemcli-iwbemhiperfenum>.
 ///
 /// {@category com}
 class IWbemHiPerfEnum extends IUnknown {

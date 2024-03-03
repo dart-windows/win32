@@ -21,6 +21,9 @@ const IID_IUIAutomationSpreadsheetPattern =
 
 /// Enables a client application to access the items (cells) in a spreadsheet.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationspreadsheetpattern>.
+///
 /// {@category com}
 class IUIAutomationSpreadsheetPattern extends IUnknown {
   IUIAutomationSpreadsheetPattern(super.ptr)

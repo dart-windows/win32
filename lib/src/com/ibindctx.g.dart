@@ -21,6 +21,9 @@ const IID_IBindCtx = '{0000000e-0000-0000-c000-000000000046}';
 /// Provides access to a bind context, which is an object that stores
 /// information about a particular moniker binding operation.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/nn-objidl-ibindctx>.
+///
 /// {@category com}
 class IBindCtx extends IUnknown {
   IBindCtx(super.ptr) : _vtable = ptr.value.cast<IBindCtxVtbl>().ref;

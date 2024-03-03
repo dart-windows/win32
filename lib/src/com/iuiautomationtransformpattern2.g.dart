@@ -27,6 +27,9 @@ const IID_IUIAutomationTransformPattern2 =
 /// Automation clients to programmatically access the viewport zooming
 /// functionality of a control.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtransformpattern2>.
+///
 /// {@category com}
 class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
   IUIAutomationTransformPattern2(super.ptr)

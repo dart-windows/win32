@@ -21,6 +21,9 @@ const IID_IUri = '{a39ee748-6a27-4817-a6f2-13914bef5890}';
 /// Exposes methods and properties used to parse and build Uniform Resource
 /// Identifiers (URIs).
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775038(v=vs.85)>.
+///
 /// {@category com}
 class IUri extends IUnknown {
   IUri(super.ptr) : _vtable = ptr.value.cast<IUriVtbl>().ref;

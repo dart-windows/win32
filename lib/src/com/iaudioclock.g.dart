@@ -16,12 +16,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioClock = '{cd63314f-3fba-4a1b-812c-ef96358728e7}';
 
-/// The IAudioClock interface enables a client to monitor a stream's data rate
-/// and the current position in the stream.
+/// Enables a client to monitor a stream's data rate and the current position in
+/// the stream.
 ///
-/// The client obtains a reference to the `IAudioClock` interface of a stream
-/// object by calling the `IAudioClient::GetService` method with parameter
-/// `riid` set to REFIID [IID_IAudioClock].
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-iaudioclock>.
 ///
 /// {@category com}
 class IAudioClock extends IUnknown {

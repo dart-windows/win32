@@ -20,6 +20,9 @@ const IID_IAppxFile = '{91df827b-94fd-468f-827b-57f41b2f6f2e}';
 
 /// Retrieves information about a payload or footprint file in a package.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxfile>.
+///
 /// {@category com}
 class IAppxFile extends IUnknown {
   IAppxFile(super.ptr) : _vtable = ptr.value.cast<IAppxFileVtbl>().ref;

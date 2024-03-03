@@ -25,6 +25,9 @@ const IID_IUIAutomationElement = '{d22108aa-8ac5-49a5-837b-37bbb3d7591e}';
 /// Exposes methods and properties for a UI Automation element, which represents
 /// a UI item.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationelement>.
+///
 /// {@category com}
 class IUIAutomationElement extends IUnknown {
   IUIAutomationElement(super.ptr)

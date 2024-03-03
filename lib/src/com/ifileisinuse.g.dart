@@ -21,9 +21,8 @@ const IID_IFileIsInUse = '{64a1cbf0-3a1a-4461-9158-376969693950}';
 /// Exposes methods that can be called to get information on or close a file
 /// that is in use by another application.
 ///
-/// When an application attempts to access a file and finds that file already in
-/// use, it can use the methods of this interface to gather information to
-/// present to the user in a dialog box.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ifileisinuse>.
 ///
 /// {@category com}
 class IFileIsInUse extends IUnknown {

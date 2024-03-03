@@ -19,14 +19,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioSessionControl = '{f4b1a599-7266-4319-a8ca-e70acb11e8cd}';
 
-/// The IAudioSessionControl interface enables a client to configure the control
-/// parameters for an audio session and to monitor events in the session.
+/// Enables a client to configure the control parameters for an audio session
+/// and to monitor events in the session.
 ///
-/// The `IAudioClient::Initialize` method initializes a stream object and
-/// assigns the stream to an audio session. The client obtains a reference to
-/// the IAudioSessionControl interface on a stream object by calling the
-/// `IAudioClient::GetService` method with parameter riid set to REFIID
-/// [IID_IAudioSessionControl].
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audiopolicy/nn-audiopolicy-iaudiosessioncontrol>.
 ///
 /// {@category com}
 class IAudioSessionControl extends IUnknown {

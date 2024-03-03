@@ -24,6 +24,9 @@ const IID_IApplicationActivationManager =
 ///
 /// You will normally use this interface in debuggers and design tools.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-iapplicationactivationmanager>.
+///
 /// {@category com}
 class IApplicationActivationManager extends IUnknown {
   IApplicationActivationManager(super.ptr)

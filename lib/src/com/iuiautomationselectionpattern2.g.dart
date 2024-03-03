@@ -26,6 +26,9 @@ const IID_IUIAutomationSelectionPattern2 =
 /// Extends the IUIAutomationSelectionPattern interface to provide information
 /// about selected items.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationselectionpattern2>.
+///
 /// {@category com}
 class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
   IUIAutomationSelectionPattern2(super.ptr)

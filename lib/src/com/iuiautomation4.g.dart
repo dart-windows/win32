@@ -20,6 +20,9 @@ const IID_IUIAutomation4 = '{1189c02a-05f8-4319-8e21-e817e3db2860}';
 /// Extends the IUIAutomation3 interface to expose additional methods for
 /// controlling Microsoft UI Automation functionality.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomation4>.
+///
 /// {@category com}
 class IUIAutomation4 extends IUIAutomation3 {
   IUIAutomation4(super.ptr)

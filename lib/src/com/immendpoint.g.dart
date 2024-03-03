@@ -16,7 +16,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IMMEndpoint = '{1be09788-6894-4089-8586-9a2a6c265ac5}';
 
-/// The IMMEndpoint interface represents an audio endpoint device.
+/// Represents an audio endpoint device.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nn-mmdeviceapi-immendpoint>.
 ///
 /// {@category com}
 class IMMEndpoint extends IUnknown {

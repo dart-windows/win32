@@ -20,6 +20,9 @@ const IID_IUIAutomationTextRange3 = '{6a315d69-5512-4c2e-85f0-53fce6dd4bc2}';
 /// Extends the IUIAutomationTextRange2 interface to support faster access to
 /// the underlying rich text data on a text range.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextrange3>.
+///
 /// {@category com}
 class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
   IUIAutomationTextRange3(super.ptr)

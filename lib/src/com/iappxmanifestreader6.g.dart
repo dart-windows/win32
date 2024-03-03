@@ -19,6 +19,9 @@ const IID_IAppxManifestReader6 = '{34deaca4-d3c0-4e3e-b312-e42625e3807e}';
 /// Represents an object model of the package manifest that provides methods to
 /// access manifest elements and attributes.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxmanifestreader6>.
+///
 /// {@category com}
 class IAppxManifestReader6 extends IUnknown {
   IAppxManifestReader6(super.ptr)

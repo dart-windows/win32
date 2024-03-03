@@ -20,6 +20,9 @@ const IID_IFileOpenDialog = '{d57c7288-d4ad-4768-be02-9d969532d960}';
 /// Extends the IFileDialog interface by adding methods specific to the open
 /// dialog.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ifileopendialog>.
+///
 /// {@category com}
 class IFileOpenDialog extends IFileDialog {
   IFileOpenDialog(super.ptr)

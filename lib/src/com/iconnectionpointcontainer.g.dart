@@ -19,6 +19,9 @@ const IID_IConnectionPointContainer = '{b196b284-bab4-101a-b69c-00aa00341d07}';
 
 /// Supports connection points for connectable objects.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/ocidl/nn-ocidl-iconnectionpointcontainer>.
+///
 /// {@category com}
 class IConnectionPointContainer extends IUnknown {
   IConnectionPointContainer(super.ptr)

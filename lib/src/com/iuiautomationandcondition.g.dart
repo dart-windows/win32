@@ -26,6 +26,9 @@ const IID_IUIAutomationAndCondition = '{a7d0af36-b912-45fe-9855-091ddc174aec}';
 /// applications can use to retrieve information about an AND-based property
 /// condition.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationandcondition>.
+///
 /// {@category com}
 class IUIAutomationAndCondition extends IUIAutomationCondition {
   IUIAutomationAndCondition(super.ptr)

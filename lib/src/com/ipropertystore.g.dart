@@ -19,6 +19,9 @@ const IID_IPropertyStore = '{886d8eeb-8cf2-4446-8d02-cdba1dbdcf99}';
 /// This interface exposes methods used to enumerate and manipulate property
 /// values.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/propsys/nn-propsys-ipropertystore>.
+///
 /// {@category com}
 class IPropertyStore extends IUnknown {
   IPropertyStore(super.ptr)

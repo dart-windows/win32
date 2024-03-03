@@ -24,6 +24,9 @@ const IID_IUIAutomationTreeWalker = '{4042c624-389c-4afc-a630-9df854a541fc}';
 /// Exposes properties and methods that UI Automation client applications use to
 /// view and navigate the UI Automation elements on the desktop.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtreewalker>.
+///
 /// {@category com}
 class IUIAutomationTreeWalker extends IUnknown {
   IUIAutomationTreeWalker(super.ptr)

@@ -25,6 +25,9 @@ const IID_IUIAutomationOrCondition = '{8753f032-3db1-47b5-a1fc-6e34a266c712}';
 /// Represents a condition made up of multiple conditions, at least one of which
 /// must be true.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationorcondition>.
+///
 /// {@category com}
 class IUIAutomationOrCondition extends IUIAutomationCondition {
   IUIAutomationOrCondition(super.ptr)

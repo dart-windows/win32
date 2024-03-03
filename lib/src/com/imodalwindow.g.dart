@@ -18,6 +18,9 @@ const IID_IModalWindow = '{b4db1657-70d7-485e-8e3e-6fcb5a5c1802}';
 
 /// Exposes a method that represents a modal window.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-imodalwindow>.
+///
 /// {@category com}
 class IModalWindow extends IUnknown {
   IModalWindow(super.ptr) : _vtable = ptr.value.cast<IModalWindowVtbl>().ref;

@@ -18,8 +18,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IWbemConfigureRefresher = '{49353c92-516b-11d1-aea6-00c04fb68820}';
 
-/// The IWbemConfigureRefresher interface is used by client code to add
-/// enumerators, objects, and nested refreshers into a refresher.
+/// Used by client code to add enumerators, objects, and nested refreshers into
+/// a refresher.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/nn-wbemcli-iwbemconfigurerefresher>.
 ///
 /// {@category com}
 class IWbemConfigureRefresher extends IUnknown {

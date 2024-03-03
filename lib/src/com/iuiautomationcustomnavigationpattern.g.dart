@@ -20,6 +20,9 @@ const IID_IUIAutomationCustomNavigationPattern =
 /// Exposes a method to support access by a Microsoft UI Automation client to
 /// controls that support a custom navigation order.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationcustomnavigationpattern>.
+///
 /// {@category com}
 class IUIAutomationCustomNavigationPattern extends IUnknown {
   IUIAutomationCustomNavigationPattern(super.ptr)

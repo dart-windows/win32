@@ -24,6 +24,9 @@ const IID_IUIAutomation = '{30cbe57d-d9d0-452a-ab13-7ac5ac4825ee}';
 /// Exposes methods that enable Microsoft UI Automation client applications to
 /// discover, access, and filter UI Automation elements.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomation>.
+///
 /// {@category com}
 class IUIAutomation extends IUnknown {
   IUIAutomation(super.ptr) : _vtable = ptr.value.cast<IUIAutomationVtbl>().ref;

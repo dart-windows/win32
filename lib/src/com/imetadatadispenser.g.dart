@@ -21,6 +21,9 @@ const IID_IMetaDataDispenser = '{809c652e-7396-11d2-9771-00a0c9b4d50c}';
 
 /// Provides methods to create a new metadata scope, or open an existing one.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nn-rometadataapi-imetadatadispenser>.
+///
 /// {@category com}
 class IMetaDataDispenser extends IUnknown {
   IMetaDataDispenser(super.ptr)

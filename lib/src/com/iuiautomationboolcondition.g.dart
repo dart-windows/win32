@@ -25,6 +25,9 @@ const IID_IUIAutomationBoolCondition = '{1b4e1f2e-75eb-4d0b-8952-5a69988e2307}';
 /// Represents a condition that can be either TRUE (selects all elements) or
 /// FALSE (selects no elements).
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationboolcondition>.
+///
 /// {@category com}
 class IUIAutomationBoolCondition extends IUIAutomationCondition {
   IUIAutomationBoolCondition(super.ptr)

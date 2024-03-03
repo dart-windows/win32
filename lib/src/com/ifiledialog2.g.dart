@@ -24,6 +24,9 @@ const IID_IFileDialog2 = '{61744fc7-85b5-4791-a9b0-272276309b13}';
 /// file dialog as well as to specify alternate text to display as a label on
 /// the Cancel button.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl/nn-shobjidl-ifiledialog2>.
+///
 /// {@category com}
 class IFileDialog2 extends IFileDialog {
   IFileDialog2(super.ptr) : _vtable = ptr.value.cast<IFileDialog2Vtbl>().ref;

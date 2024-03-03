@@ -23,6 +23,9 @@ const IID_IUIAutomationTextPattern = '{32eba289-3583-42c9-9c59-3b6d9a1e9b6a}';
 
 /// Provides access to a control that contains text.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextpattern>.
+///
 /// {@category com}
 class IUIAutomationTextPattern extends IUnknown {
   IUIAutomationTextPattern(super.ptr)

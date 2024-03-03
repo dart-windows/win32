@@ -257,8 +257,7 @@ void generateComInterfaces(Scope scope, Map<String, String> comInterfaces) {
     final typeDef = scope.findTypeDef(interface);
     if (typeDef == null) throw StateError("Can't find $interface");
 
-    final interfaceProjection = ComInterfaceProjection(typeDef,
-        comment: comInterfaces[interface] ?? '');
+    final interfaceProjection = ComInterfaceProjection(typeDef);
     final dartClass = interfaceProjection.toString();
     final classOutputFilename = typeDef.safeFilename;
     File(Platform.script

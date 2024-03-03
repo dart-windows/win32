@@ -21,6 +21,9 @@ const IID_IKnownFolderManager = '{8be2d872-86aa-4d47-b776-32cca40c7018}';
 
 /// Exposes methods that create, enumerate or manage existing known folders.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-iknownfoldermanager>.
+///
 /// {@category com}
 class IKnownFolderManager extends IUnknown {
   IKnownFolderManager(super.ptr)

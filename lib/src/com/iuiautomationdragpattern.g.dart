@@ -24,6 +24,9 @@ const IID_IUIAutomationDragPattern = '{1dc7b570-1f54-4bad-bcda-d36a722fb7bd}';
 /// Provides access to information exposed by a UI Automation provider for an
 /// element that can be dragged as part of a drag-and-drop operation.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationdragpattern>.
+///
 /// {@category com}
 class IUIAutomationDragPattern extends IUnknown {
   IUIAutomationDragPattern(super.ptr)

@@ -23,6 +23,9 @@ const IID_IFileDialog = '{42f85136-db7e-439c-85f1-e4075d135fc8}';
 /// Exposes methods that initialize, show, and get results from the common file
 /// dialog.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ifiledialog>.
+///
 /// {@category com}
 class IFileDialog extends IModalWindow {
   IFileDialog(super.ptr) : _vtable = ptr.value.cast<IFileDialogVtbl>().ref;

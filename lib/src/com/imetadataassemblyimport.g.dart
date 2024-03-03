@@ -20,6 +20,9 @@ const IID_IMetaDataAssemblyImport = '{ee62470b-e94b-424e-9b7c-2f00c9249f93}';
 
 /// Provides methods to access and examine the contents of an assembly manifest.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nn-rometadataapi-imetadataassemblyimport>.
+///
 /// {@category com}
 class IMetaDataAssemblyImport extends IUnknown {
   IMetaDataAssemblyImport(super.ptr)

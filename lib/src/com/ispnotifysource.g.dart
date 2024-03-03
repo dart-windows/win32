@@ -17,11 +17,11 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpNotifySource = '{5eff4aef-8487-11d2-961c-00c04f8ee628}';
 
-/// In both speech synthesis and speech recognition, applications receive
-/// notifications when words have been spoken or when phrases have been
-/// recognized.
+/// Provides a mechanism for a notification but no information on the events
+/// that caused the notification.
 ///
-/// SAPI components that generate notifications implement an ISpNotifySource.
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/ms717961(v=vs.85)>.
 ///
 /// {@category com}
 class ISpNotifySource extends IUnknown {

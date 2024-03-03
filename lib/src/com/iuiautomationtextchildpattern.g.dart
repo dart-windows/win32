@@ -25,6 +25,9 @@ const IID_IUIAutomationTextChildPattern =
 /// Provides access a text-based control (or an object embedded in text) that is
 /// a child or descendant of another text-based control.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtextchildpattern>.
+///
 /// {@category com}
 class IUIAutomationTextChildPattern extends IUnknown {
   IUIAutomationTextChildPattern(super.ptr)

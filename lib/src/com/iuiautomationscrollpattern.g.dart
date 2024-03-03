@@ -24,6 +24,9 @@ const IID_IUIAutomationScrollPattern = '{88f4d42a-e881-459d-a77c-73bbbb7e02dc}';
 /// Provides access to a control that acts as a scrollable container for a
 /// collection of child elements.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationscrollpattern>.
+///
 /// {@category com}
 class IUIAutomationScrollPattern extends IUnknown {
   IUIAutomationScrollPattern(super.ptr)

@@ -26,6 +26,9 @@ const IID_IUIAutomationPropertyCondition =
 /// Represents a condition based on a property value that is used to find UI
 /// Automation elements.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationpropertycondition>.
+///
 /// {@category com}
 class IUIAutomationPropertyCondition extends IUIAutomationCondition {
   IUIAutomationPropertyCondition(super.ptr)

@@ -26,6 +26,9 @@ const IID_IUIAutomationCacheRequest = '{b32a92b5-bc25-4078-9c08-d7ee95c48e03}';
 /// Client applications use this interface to specify the properties and control
 /// patterns to be cached when a Microsoft UI Automation element is obtained.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationcacherequest>.
+///
 /// {@category com}
 class IUIAutomationCacheRequest extends IUnknown {
   IUIAutomationCacheRequest(super.ptr)

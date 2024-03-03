@@ -21,6 +21,9 @@ const IID_ISensor = '{5fa08f80-2657-458e-af75-46f73fa6ac5c}';
 
 /// Represents a sensor.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nn-sensorsapi-isensor>.
+///
 /// {@category com}
 class ISensor extends IUnknown {
   ISensor(super.ptr) : _vtable = ptr.value.cast<ISensorVtbl>().ref;

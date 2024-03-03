@@ -25,6 +25,9 @@ const IID_IUIAutomationGridPattern = '{414c3cdc-856b-4f5b-8538-3131c6302550}';
 /// child controls that are organized in a two-dimensional logical coordinate
 /// system that can be traversed by row and column.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationgridpattern>.
+///
 /// {@category com}
 class IUIAutomationGridPattern extends IUnknown {
   IUIAutomationGridPattern(super.ptr)

@@ -21,6 +21,9 @@ const IID_IAppxManifestPackageDependency =
 
 /// Describes the dependency of one package on another package.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nn-appxpackaging-iappxmanifestpackagedependency>.
+///
 /// {@category com}
 class IAppxManifestPackageDependency extends IUnknown {
   IAppxManifestPackageDependency(super.ptr)

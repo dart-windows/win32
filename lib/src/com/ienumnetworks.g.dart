@@ -22,10 +22,13 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IEnumNetworks = '{dcb00003-570f-4a9b-8d69-199fdba5723b}';
 
-/// The IEnumNetworks interface is a standard enumerator for networks.
+/// A standard enumerator for networks.
 ///
 /// It enumerates all networks available on the local machine. This interface
-/// can be obtained from the `INetworkListManager` interface.
+/// can be obtained from the INetworkListManager interface.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nn-netlistmgr-ienumnetworks>.
 ///
 /// {@category com}
 class IEnumNetworks extends IDispatch {

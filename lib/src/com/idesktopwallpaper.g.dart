@@ -20,6 +20,9 @@ const IID_IDesktopWallpaper = '{b92b56a9-8b55-4e14-9a89-0199bbb6f93b}';
 
 /// Provides methods for managing the desktop wallpaper.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-idesktopwallpaper>.
+///
 /// {@category com}
 class IDesktopWallpaper extends IUnknown {
   IDesktopWallpaper(super.ptr)

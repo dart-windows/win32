@@ -22,6 +22,9 @@ const IID_IUIAutomationTextEditPattern =
 /// performs auto-correction or enables input composition through an Input
 /// Method Editor (IME).
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationtexteditpattern>.
+///
 /// {@category com}
 class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
   IUIAutomationTextEditPattern(super.ptr)

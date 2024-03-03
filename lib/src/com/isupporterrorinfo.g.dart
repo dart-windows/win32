@@ -23,6 +23,9 @@ const IID_ISupportErrorInfo = '{df0b3d60-548f-101b-8e65-08002b2bd119}';
 /// Automation objects that use the error handling interfaces must implement
 /// ISupportErrorInfo.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/nn-oaidl-isupporterrorinfo>.
+///
 /// {@category com}
 class ISupportErrorInfo extends IUnknown {
   ISupportErrorInfo(super.ptr)

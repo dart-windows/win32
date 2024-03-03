@@ -24,6 +24,9 @@ const IID_IUIAutomationAnnotationPattern =
 
 /// Provides access to the properties of an annotation in a document.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationannotationpattern>.
+///
 /// {@category com}
 class IUIAutomationAnnotationPattern extends IUnknown {
   IUIAutomationAnnotationPattern(super.ptr)

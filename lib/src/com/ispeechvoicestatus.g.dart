@@ -22,8 +22,10 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_ISpeechVoiceStatus = '{8be47b07-57f6-11d2-9eee-00c04f797396}';
 
-/// The ISpeechVoiceStatus automation interface defines the types of information
-/// returned by the SpVoice.Status method.
+/// Defines the types of information returned by the SpVoice.Status method.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/ms722539(v=vs.85)>.
 ///
 /// {@category com}
 class ISpeechVoiceStatus extends IDispatch {

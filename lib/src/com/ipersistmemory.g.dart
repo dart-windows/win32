@@ -19,6 +19,9 @@ const IID_IPersistMemory = '{bd1ae5e0-a6ae-11ce-bd37-504200c10000}';
 
 /// Saves and loads objects from a stream.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa768210(v=vs.85)>.
+///
 /// {@category com}
 class IPersistMemory extends IPersist {
   IPersistMemory(super.ptr)

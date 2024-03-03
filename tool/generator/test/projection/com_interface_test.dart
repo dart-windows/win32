@@ -40,7 +40,16 @@ import 'iunknown.g.dart';'''));
           "const IID_IEnumNetworkConnections = '{dcb00006-570f-4a9b-8d69-199fdba5723b}';",
         ),
       );
-      expect(projection.classPreamble, equals('/// {@category com}'));
+      expect(projection.comment, equals('''
+/// Provides a standard enumerator for network connections.
+///
+/// It enumerates active, disconnected, or all network connections within a
+/// network. This interface can be obtained from the INetwork interface.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nn-netlistmgr-ienumnetworkconnections>.
+///
+/// {@category com}'''));
       expect(
         projection.classHeader,
         equals('class IEnumNetworkConnections extends IDispatch'),
@@ -117,7 +126,15 @@ import '../types.dart';'''));
           "const IID_IUnknown = '{00000000-0000-0000-c000-000000000046}';",
         ),
       );
-      expect(projection.classPreamble, equals('/// {@category com}'));
+      expect(projection.comment, equals('''
+/// Enables clients to get pointers to other interfaces on a given object
+/// through the QueryInterface method, and manage the existence of the object
+/// through the AddRef and Release methods.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown>.
+///
+/// {@category com}'''));
       expect(projection.classHeader, equals('class IUnknown'));
       expect(
         projection.constructor,
@@ -181,7 +198,13 @@ import 'iunknown.g.dart';'''));
           "const IID_IInspectable = '{af86e2e0-b12d-4c6a-9c5a-d7aa65101e90}';",
         ),
       );
-      expect(projection.classPreamble, equals('/// {@category com}'));
+      expect(projection.comment, equals('''
+/// Provides functionality required for all Windows Runtime classes.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/inspectable/nn-inspectable-iinspectable>.
+///
+/// {@category com}'''));
       expect(
         projection.classHeader,
         equals('class IInspectable extends IUnknown'),

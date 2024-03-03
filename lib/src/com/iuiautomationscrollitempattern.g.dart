@@ -20,6 +20,9 @@ const IID_IUIAutomationScrollItemPattern =
 /// Exposes a method that enables an item in a scrollable view to be placed in a
 /// visible portion of the view.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationscrollitempattern>.
+///
 /// {@category com}
 class IUIAutomationScrollItemPattern extends IUnknown {
   IUIAutomationScrollItemPattern(super.ptr)

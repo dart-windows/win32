@@ -21,6 +21,9 @@ const IID_IFileSaveDialog = '{84bccd23-5fde-4cdb-aea4-af64b83d78ab}';
 /// dialog, which include those that provide support for the collection of
 /// metadata to be persisted with the file.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-ifilesavedialog>.
+///
 /// {@category com}
 class IFileSaveDialog extends IFileDialog {
   IFileSaveDialog(super.ptr)

@@ -19,6 +19,9 @@ const IID_IUIAutomationSynchronizedInputPattern =
 
 /// Provides access to the keyboard or mouse input of a control.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nn-uiautomationclient-iuiautomationsynchronizedinputpattern>.
+///
 /// {@category com}
 class IUIAutomationSynchronizedInputPattern extends IUnknown {
   IUIAutomationSynchronizedInputPattern(super.ptr)

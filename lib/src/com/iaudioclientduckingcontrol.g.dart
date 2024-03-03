@@ -16,9 +16,12 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IAudioClientDuckingControl = '{c789d381-a28c-4168-b28f-d3a837924dc3}';
 
-/// Provides a method, `SetDuckingOptionsForCurrentStream`, that allows an app
-/// to specify that the system shouldn't duck the audio of other streams when
-/// the app's audio render stream is active.
+/// Provides a method, SetDuckingOptionsForCurrentStream, that allows an app to
+/// specify that the system shouldn't duck the audio of other streams when the
+/// app's audio render stream is active.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/nn-audioclient-iaudioclientduckingcontrol>.
 ///
 /// {@category com}
 class IAudioClientDuckingControl extends IUnknown {

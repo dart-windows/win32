@@ -23,6 +23,9 @@ const IID_ISpellingError = '{b7c82d61-fbe8-4b47-9b27-6c0d2e0de0a3}';
 
 /// Provides information about a spelling error.
 ///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/spellcheck/nn-spellcheck-ispellingerror>.
+///
 /// {@category com}
 class ISpellingError extends IUnknown {
   ISpellingError(super.ptr)

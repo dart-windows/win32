@@ -18,12 +18,14 @@ import 'iunknown.g.dart';
 /// @nodoc
 const IID_IWbemContext = '{44aca674-e8fc-11d0-a07c-00c04fb68820}';
 
-/// The IWbemContext interface is optionally used to communicate additional
-/// context information to providers when submitting `IWbemServices` calls to
-/// WMI.
+/// Used to communicate additional context information to providers when
+/// submitting IWbemServices calls to WMI.
 ///
-/// All primary calls in `IWbemServices` take an optional parameter pointing to
-/// an object of this type.
+/// All primary calls in IWbemServices take an optional parameter pointing to an
+/// object of this type.
+///
+/// To learn more about this interface, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/nn-wbemcli-iwbemcontext>.
 ///
 /// {@category com}
 class IWbemContext extends IUnknown {
