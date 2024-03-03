@@ -135,7 +135,7 @@ extension StringHelpers on String {
     if (isEmpty) return '';
 
     // Split the string into sentences for processing.
-    final sentences = split(RegExp(r'(?<=[.!?])\s+'));
+    final sentences = split(RegExp(r'(?<=[.!?])\s'));
 
     // Initialize the StringBuffer to start the doc comment.
     final textLine = StringBuffer('///');
@@ -145,6 +145,17 @@ extension StringHelpers on String {
 
     // Process each sentence in the string.
     for (final (idx, sentence) in sentences.indexed) {
+      // If the sentence starts with `\n`, separate it to the next line unless
+      // it's one of the first two sentences.
+      if (idx >= 2 && sentence.startsWith('\n')) {
+        wrappedText
+          ..write(textLine)
+          ..write('\n///\n');
+        textLine
+          ..clear()
+          ..write('///');
+      }
+
       // Process each word in the sentence.
       final words = sentence.trim().split(' ');
       for (final word in words) {

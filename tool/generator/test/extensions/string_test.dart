@@ -136,16 +136,37 @@ void main() {
 /// wrapLength of 80 characters.'''),
       );
       expect(
-          'The VARIANT type is used in Win32 to represent a dynamic type. '
-                  'It is represented as a struct containing a union of the '
-                  'types that could be stored. VARIANTs must be initialized '
-                  'with `VariantInit` before their use.'
-              .toDocComment(),
-          equals('''
+        'Enables clients to get pointers to other interfaces on a given object '
+                'through the QueryInterface method, and manage the existence '
+                'of the object through the AddRef and Release methods. \n For '
+                'more information, see: '
+                'https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown'
+            .toDocComment(),
+        equals('''
+/// Enables clients to get pointers to other interfaces on a given object
+/// through the QueryInterface method, and manage the existence of the object
+/// through the AddRef and Release methods.
+///
+/// For more information, see:
+/// https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown'''),
+      );
+
+      expect(
+        'The VARIANT type is used in Win32 to represent a dynamic type. '
+                'It is represented as a struct containing a union of the '
+                'types that could be stored. VARIANTs must be initialized '
+                'with `VariantInit` before their use. \nFor more information, '
+                'see: https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant'
+            .toDocComment(),
+        equals('''
 /// The VARIANT type is used in Win32 to represent a dynamic type.
 ///
 /// It is represented as a struct containing a union of the types that could be
-/// stored. VARIANTs must be initialized with `VariantInit` before their use.'''));
+/// stored. VARIANTs must be initialized with `VariantInit` before their use.
+///
+/// For more information, see:
+/// https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant'''),
+      );
     });
 
     test('toFolderPath', () {
