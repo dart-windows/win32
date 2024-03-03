@@ -12,7 +12,7 @@ import 'package:winmd/winmd.dart';
 import '../helpers.dart';
 
 void main() {
-  setUpAll(loadMetadata);
+  setUpAll(loadMetadataAndDocs);
 
   group('FieldProjection', () {
     testField('Windows.Wdk.Foundation.DEVICE_OBJECT', 'Queue', (projection) {

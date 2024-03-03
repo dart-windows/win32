@@ -12,7 +12,7 @@ import 'package:winmd/winmd.dart';
 import '../helpers.dart';
 
 void main() {
-  setUpAll(loadMetadata);
+  setUpAll(loadMetadataAndDocs);
 
   group('StructProjection', () {
     testStruct('Windows.Wdk.Foundation.DRIVER_EXTENSION', (projection) {

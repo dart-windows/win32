@@ -7,6 +7,10 @@
 library;
 
 export 'src/attributes.dart';
+export 'src/docs/api_details.dart';
+export 'src/docs/api_docs.dart';
+export 'src/docs/local_storage.dart';
+export 'src/docs/nuget_package.dart';
 export 'src/exclusions.dart';
 export 'src/extensions/collection.dart';
 export 'src/extensions/custom_attributes_mixin.dart';

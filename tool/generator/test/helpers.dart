@@ -15,7 +15,11 @@ TypeDef getTypeDef(String typeName) {
 }
 
 /// Loads the WDK and Win32 metadata.
-Future<(Scope wdk, Scope win32)> loadMetadata() async => (
-      MetadataStore.loadWdkMetadata(version: wdkMetadataVersion),
-      MetadataStore.loadWin32Metadata(version: win32MetadataVersion)
-    ).wait;
+Future<(Scope wdk, Scope win32)> loadMetadataAndDocs() async {
+  final result = await (
+    MetadataStore.loadWdkMetadata(version: wdkMetadataVersion),
+    MetadataStore.loadWin32Metadata(version: win32MetadataVersion),
+    ApiDocs.load(version: win32DocsVersion)
+  ).wait;
+  return (result.$1, result.$2);
+}

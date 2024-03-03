@@ -11,6 +11,9 @@ platforms:
   windows:
 
 dependencies:
+  # For extracting the contents of the .nupkg files.
+  archive: ^3.4.10
+
   # For formatting Dart code (APIs for performing dart format).
   dart_style: ^2.3.6
 
@@ -19,6 +22,12 @@ dependencies:
 
   # Foreign Function Interface extension methods.
   ffi: ^2.1.2
+
+  # For de-serializing Messagepack formatted data.
+  msgpack_dart: ^1.0.1
+
+  # To download NuGet packages.
+  nuget: ^0.1.1
 
   # For manipulating paths.
   path: ^1.9.0

@@ -138,7 +138,7 @@ void main() {
       expect(
         'Enables clients to get pointers to other interfaces on a given object '
                 'through the QueryInterface method, and manage the existence '
-                'of the object through the AddRef and Release methods. \n For '
+                'of the object through the AddRef and Release methods. \nFor '
                 'more information, see: '
                 'https://learn.microsoft.com/windows/win32/api/unknwn/nn-unknwn-iunknown'
             .toDocComment(),

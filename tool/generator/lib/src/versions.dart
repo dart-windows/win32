@@ -28,3 +28,7 @@ const win32MetadataVersion = '58.0.18-preview';
 /// the `win32` package, as it may introduce breaking changes in the generated
 /// code.
 const winrtMetadataVersion = '10.0.22621.2428';
+
+/// The version of the Win32Docs package used for generating documentation for
+/// Win32 APIs.
+const win32DocsVersion = '0.1.42-alpha';
