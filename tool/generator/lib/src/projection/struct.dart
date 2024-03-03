@@ -4,10 +4,10 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/collection.dart';
-import '../extensions/field.dart';
-import '../extensions/string.dart';
-import '../extensions/typedef.dart';
+import '../extension/collection.dart';
+import '../extension/field.dart';
+import '../extension/string.dart';
+import '../extension/typedef.dart';
 import 'field.dart';
 import 'type.dart';
 

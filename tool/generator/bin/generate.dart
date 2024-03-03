@@ -17,19 +17,25 @@ void generateCallbacks(List<Scope> scopes, Map<String, String> callbacks) {
   final manuallyProjectedCallbacks = '''
 // --- MANUALLY PROJECTED CALLBACKS START ---
 
-/// Application-defined callback function for handling incoming MIDI messages.
+/// An application-defined callback function for handling incoming MIDI
+/// messages.
 ///
-/// MidiInProc is a placeholder for the application-supplied function name. The
+/// MIDIINPROC is a placeholder for the application-supplied function name. The
 /// address of this function can be specified in the callback-address parameter
 /// of the midiInOpen function.
+///
+/// {@category callback}
 typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
     DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
 
-/// Application-defined callback function for handling outgoing MIDI messages.
+/// An application-defined callback function for handling outgoing MIDI
+/// messages.
 ///
-/// MidiOutProc is a placeholder for the application-supplied function name. The
+/// MIDIOUTPROC is a placeholder for the application-supplied function name. The
 /// address of the function can be specified in the callback-address parameter
 /// of the midiOutOpen function.
+///
+/// {@category callback}
 typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
     DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
 
@@ -41,10 +47,7 @@ typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
       .where((typeDef) => typeDef.supportedArchitectures.x64)
       .toFixedList()
     ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
-
-  final callbackProjections = typeDefs.map((typeDef) =>
-      CallbackProjection(typeDef, comment: callbacks[typeDef.name]!));
-
+  final callbackProjections = typeDefs.map(CallbackProjection.new);
   final callbacksFile = [
     callbackFileHeader,
     manuallyProjectedCallbacks,

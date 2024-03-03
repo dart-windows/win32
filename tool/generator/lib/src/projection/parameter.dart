@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/parameter.dart';
-import '../extensions/string.dart';
+import '../extension/parameter.dart';
+import '../extension/string.dart';
 import 'type.dart';
 
 /// Represents a Dart projection for a function parameter defined by a

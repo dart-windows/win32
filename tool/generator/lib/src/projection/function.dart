@@ -4,9 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/collection.dart';
-import '../extensions/method.dart';
-import '../extensions/string.dart';
+import '../extension/collection.dart';
+import '../extension/method.dart';
+import '../extension/string.dart';
 import 'parameter.dart';
 import 'type.dart';
 

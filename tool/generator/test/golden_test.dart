@@ -19,6 +19,10 @@ void main() {
   setUpAll(loadMetadataAndDocs);
 
   group('Golden testing', () {
+    group('callback', () {
+      testCallbackGolden('Windows.Win32.Graphics.Gdi.MONITORENUMPROC');
+    });
+
     group('enum', () {
       testEnumGolden('Windows.Win32.Foundation.WIN32_ERROR');
     });
@@ -33,11 +37,11 @@ void main() {
     });
 
     group('interface', () {
-      testComInterfaceGolden(
+      testInterfaceGolden(
         'Windows.Win32.Networking.NetworkListManager.INetwork',
       );
 
-      testComInterfaceGolden('Windows.Win32.UI.Shell.IFileOpenDialog');
+      testInterfaceGolden('Windows.Win32.UI.Shell.IFileOpenDialog');
     });
 
     group('struct', () {
@@ -73,16 +77,14 @@ void compareGolden(String fullyQualifiedType, String fileName, String content) {
 }
 
 @isTest
-void testComInterfaceGolden(String interfaceName) {
-  test(interfaceName, () {
-    final typeDef = getTypeDef(interfaceName);
-    final comTypesToGenerate = loadMap(p.join('data', 'com_types.json'));
-    final projection = ComInterfaceProjection(typeDef,
-        comment: comTypesToGenerate[interfaceName] ?? '');
+void testCallbackGolden(String callbackName) {
+  test(callbackName, () {
+    final typeDef = getTypeDef(callbackName);
+    final projection = CallbackProjection(typeDef);
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
       typeDef.name,
-      'interfaces/$fileName.g',
+      'callbacks/$fileName.g',
       projection.toString().format(),
     );
   });
@@ -119,6 +121,22 @@ void testFunctionGolden(String parent, String functionName) {
     compareGolden(
       '${typeDef.name}.${method.name}',
       'functions/$fileName.g',
+      projection.toString().format(),
+    );
+  });
+}
+
+@isTest
+void testInterfaceGolden(String interfaceName) {
+  test(interfaceName, () {
+    final typeDef = getTypeDef(interfaceName);
+    final comTypesToGenerate = loadMap(p.join('data', 'com_types.json'));
+    final projection = ComInterfaceProjection(typeDef,
+        comment: comTypesToGenerate[interfaceName] ?? '');
+    final fileName = typeDef.safeIdentifier.toLowerCase();
+    compareGolden(
+      typeDef.name,
+      'interfaces/$fileName.g',
       projection.toString().format(),
     );
   });

@@ -68,19 +68,22 @@ final class ApiDetails {
 }
 
 extension on String {
-  static final pattern = RegExp(
-    r'(A|An|The)\s\w+\s(\(\w+\.h\)\s)?(function|interface)\s(is\s)?(optionally\s)?',
-  );
-
   String sanitize() {
     var string = replaceAll(r'\_', ' ')
         .replaceAllMapped(
             RegExp(r'\.([A-Z])'), (match) => '. ${match.group(1)}')
         .replaceFirst(RegExp(r'\. \(\w+\)$'), '.')
-        .replaceFirst(RegExp(r'Deprecated. (IShellService ){0,1}'), '')
-        .replaceFirst('A callback function prototype',
+        .replaceFirst(RegExp(r'^Deprecated. (IShellService )?'), '')
+        .replaceFirst(RegExp(r'^A callback function prototype'),
             'An application-defined callback function')
-        .replaceFirst(pattern, '');
+        .replaceFirst(RegExp(r'^Application-defined'), 'An application-defined')
+        .replaceFirst(RegExp(r'^\w+ \(\w+(\.h)?\)\sis\s'), '')
+        .replaceFirst(
+          RegExp(
+            r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(function|interface)\s(is\s)?(optionally\s)?',
+          ),
+          '',
+        );
     if (string.length > 1) {
       string = string[0].toUpperCase() + string.substring(1);
     }

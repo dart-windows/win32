@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/field.dart';
-import '../extensions/string.dart';
+import '../extension/field.dart';
+import '../extension/string.dart';
 import 'type.dart';
 
 /// Represents a Dart projection for a struct field defined by a [Field].

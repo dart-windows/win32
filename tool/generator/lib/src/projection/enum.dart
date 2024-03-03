@@ -5,8 +5,8 @@
 import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
-import '../extensions/string.dart';
-import '../extensions/typedef.dart';
+import '../extension/string.dart';
+import '../extension/typedef.dart';
 
 /// Represents a Dart projection for a Win32 enum defined by a [TypeDef].
 class EnumProjection {

@@ -1,0 +1,10 @@
+Windows.Win32.Graphics.Gdi.MONITORENUMPROC|
+/// An application-defined callback function that is called by the
+/// EnumDisplayMonitors function.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nc-winuser-monitorenumproc>.
+///
+/// {@category callback}
+typedef MONITORENUMPROC = BOOL Function(
+    HMONITOR param0, HDC param1, Pointer<RECT> param2, LPARAM param3);

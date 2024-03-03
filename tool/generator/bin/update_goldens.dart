@@ -26,11 +26,14 @@ var updatedGoldenFiles = 0;
 void main() async {
   await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
   await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
+  await ApiDocs.load(version: win32DocsVersion);
 
   print('Updating golden files...');
 
   for (final file in goldenFiles) {
     switch (file.parentDirectory) {
+      case 'callbacks':
+        updateCallbackGolden(file);
       case 'enums':
         updateEnumGolden(file);
       case 'functions':
@@ -51,6 +54,22 @@ void main() async {
 
   print('Updated $updatedGoldenFiles golden file(s).');
   MetadataStore.close();
+}
+
+void updateCallbackGolden(File file) {
+  // The fully qualified type name of the callback (e.g.,
+  // `Windows.Win32.Foundation.WIN32_ERROR`).
+  final fullyQualifiedType = file.fullyQualifiedType;
+
+  final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
+  if (typeDef == null) {
+    throw StateError(
+      '`$fullyQualifiedType` type is not found in the metadata.',
+    );
+  }
+
+  final projection = CallbackProjection(typeDef);
+  updateGoldenFile(file, projection.format());
 }
 
 void updateEnumGolden(File file) {

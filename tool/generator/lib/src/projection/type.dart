@@ -4,10 +4,10 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/collection.dart';
-import '../extensions/field.dart';
-import '../extensions/string.dart';
-import '../extensions/typedef.dart';
+import '../extension/collection.dart';
+import '../extension/field.dart';
+import '../extension/string.dart';
+import '../extension/typedef.dart';
 
 /// Represents a Dart type projection, providing information about a type in the
 /// metadata and how it should be represented in Dart.
