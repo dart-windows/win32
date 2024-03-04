@@ -4,6 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../doc/api_details.dart';
+import '../doc/api_docs.dart';
+import '../docs.dart';
 import '../extension/collection.dart';
 import '../extension/field.dart';
 import '../extension/string.dart';
@@ -13,12 +16,8 @@ import 'type.dart';
 
 /// Represents a Dart projection for a struct defined by a [TypeDef].
 class StructProjection {
-  /// Creates an instance of this class for a [typeDef] and optional [comment].
-  StructProjection(this.typeDef, {this.comment = ''})
-      : name = typeDef.safeTypename;
-
-  /// The comment associated with the struct.
-  final String comment;
+  /// Creates an instance of this class for a [typeDef].
+  StructProjection(this.typeDef) : name = typeDef.safeTypename;
 
   /// The name of the struct.
   final String name;
@@ -39,12 +38,34 @@ class StructProjection {
         _ => typeDef.classLayout.packingAlignment ?? 0
       };
 
+  /// The comment associated with the struct.
+  String get comment {
+    final buffer = StringBuffer();
+
+    if (structDocs.containsKey(typeDef.name)) {
+      buffer.write(structDocs[typeDef.name]);
+    } else {
+      final docs = ApiDocs.getDocs(typeDef.name.lastComponent);
+      if (docs != null) {
+        final ApiDetails(:description, :helpLink) = docs;
+        buffer.write(description);
+        if (helpLink != null) {
+          buffer.write(' \nTo learn more about this '
+              '${baseType.toLowerCase()}, see <$helpLink>.');
+        }
+      }
+    }
+
+    buffer.write(' \n{@category ${baseType.toLowerCase()}}');
+
+    return buffer.toString().toDocComment();
+  }
+
   /// The class preamble that includes a doc comment, a dartdoc `@category` tag
   /// derived from the [baseType], and an optional `@Packed` annotation if the
   /// [packingAlignment] is greater than `0`.
   String get classPreamble => [
-        if (comment.isNotEmpty) ...[comment.toDocComment(), '///'],
-        '/// {@category ${baseType.toLowerCase()}}',
+        if (comment.isNotEmpty) comment,
         if (packingAlignment > 0) '@Packed($packingAlignment)',
       ].join('\n');
 

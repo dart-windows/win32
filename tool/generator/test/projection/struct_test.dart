@@ -77,7 +77,15 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
       expect(projection.name, equals('BITMAPFILEHEADER'));
       expect(projection.packingAlignment, equals(2));
       expect(projection.classPreamble,
-          equals('/// {@category struct}\n@Packed(2)'));
+          equals('''
+/// Contains information about the type, size, and layout of a file that
+/// contains a DIB.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-bitmapfileheader>.
+///
+/// {@category struct}
+@Packed(2)'''));
       expect(projection.classModifier, equals('base'));
       expect(projection.baseType, equals('Struct'));
       expect(projection.classHeader,
@@ -104,7 +112,13 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
         (projection) {
       expect(projection.name, equals('DHCP_ALL_OPTIONS'));
       expect(projection.packingAlignment, isZero);
-      expect(projection.classPreamble, equals('/// {@category struct}'));
+      expect(projection.classPreamble, equals('''
+/// Defines the set of all options available on a DHCP server.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dhcpsapi/ns-dhcpsapi-dhcp_all_options>.
+///
+/// {@category struct}'''));
       expect(projection.classModifier, equals('base'));
       expect(projection.baseType, equals('Struct'));
       expect(projection.classHeader,
@@ -144,7 +158,14 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
         (projection) {
       expect(projection.name, equals('WLAN_RAW_DATA_LIST'));
       expect(projection.packingAlignment, isZero);
-      expect(projection.classPreamble, equals('/// {@category struct}'));
+      expect(projection.classPreamble, equals('''
+/// Contains raw data in the form of an array of data blobs that are used by
+/// some Native Wifi functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_raw_data_list>.
+///
+/// {@category struct}'''));
       expect(projection.classModifier, equals('base'));
       expect(projection.baseType, equals('Struct'));
       expect(projection.classHeader,

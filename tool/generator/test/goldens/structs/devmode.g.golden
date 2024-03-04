@@ -1,6 +1,9 @@
 Windows.Win32.Graphics.Gdi.DEVMODEW|
-/// The DEVMODE data structure contains information about the initialization and
-/// environment of a printer or a display device.
+/// Used for specifying characteristics of display and print devices in the
+/// Unicode (wide) character set.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-devmodew>.
 ///
 /// {@category struct}
 base class DEVMODE extends Struct {

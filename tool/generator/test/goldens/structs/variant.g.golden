@@ -1,8 +1,11 @@
 Windows.Win32.System.Variant.VARIANT|
-/// The VARIANT type is used in Win32 to represent a dynamic type.
+/// A container for a large union that carries many types of data.
 ///
-/// It is represented as a struct containing a union of the types that could be
-/// stored. VARIANTs must be initialized with `VariantInit` before their use.
+/// The value in the first member of the structure, vt, describes which of the
+/// union members is valid.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant>.
 ///
 /// {@category struct}
 base class VARIANT extends Struct {

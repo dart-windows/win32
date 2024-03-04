@@ -142,9 +142,7 @@ void testInterfaceGolden(String interfaceName) {
 void testStructGolden(String structName) {
   test(structName, () {
     final typeDef = getTypeDef(structName);
-    final structsToGenerate = loadMap(p.join('data', 'win32_structs.json'));
-    final projection =
-        StructProjection(typeDef, comment: structsToGenerate[structName] ?? '');
+    final projection = StructProjection(typeDef);
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
       typeDef.name,

@@ -78,4 +78,24 @@ const interfaceDocs = <String, String>{
           '<https://learn.microsoft.com/windows/win32/api/shobjidl_core/nn-shobjidl_core-idesktopwallpaper>.',
 };
 
-const structDocs = <String, String>{};
+const structDocs = <String, String>{
+  'Windows.Win32.Foundation.FILETIME':
+      'Holds an unsigned 64-bit date and time value for a file. This value '
+          'represents the number of 100-nanosecond units since the start of '
+          'January 1, 1601. \nTo learn more about this struct, see '
+          '<https://learn.microsoft.com/office/client-developer/outlook/mapi/filetime>.',
+  'Windows.Win32.NetworkManagement.WiFi.L2_NOTIFICATION_DATA':
+      'Used by the IHV Extensions DLL to send notifications to any service or '
+          'applications that has registered for the notification. \nTo learn '
+          'more about this struct, see '
+          '<https://learn.microsoft.com/windows/win32/api/l2cmn/ns-l2cmn-l2_notification_data>.',
+  'Windows.Win32.System.Com.BLOB':
+      'Contains information about a block of data. \nTo learn more about this '
+          'struct, see '
+          '<https://learn.microsoft.com/windows/win32/api/nspapi/ns-nspapi-blob>.',
+  'Windows.Win32.System.Variant.VARIANT':
+      'A container for a large union that carries many types of data. The '
+          'value in the first member of the structure, vt, describes which of '
+          'the union members is valid. \nTo learn more about this struct, see '
+          '<https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant>.',
+};

@@ -19,6 +19,9 @@ import 'types.dart';
 
 /// Defines an accelerator key used in an accelerator table.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-accel>.
+///
 /// {@category struct}
 base class ACCEL extends Struct {
   @Uint8()
@@ -31,10 +34,10 @@ base class ACCEL extends Struct {
   external int cmd;
 }
 
-/// The ACL structure is the header of an access control list (ACL).
+/// Header of an access control list (ACL).
 ///
-/// A complete ACL consists of an ACL structure followed by an ordered list of
-/// zero or more access control entries (ACEs).
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-acl>.
 ///
 /// {@category struct}
 base class ACL extends Struct {
@@ -54,8 +57,10 @@ base class ACL extends Struct {
   external int Sbz2;
 }
 
-/// The ACTCTX structure is used by the CreateActCtx function to create the
-/// activation context.
+/// Used by the CreateActCtx function to create the activation context.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-actctxw>.
 ///
 /// {@category struct}
 base class ACTCTX extends Struct {
@@ -83,8 +88,11 @@ base class ACTCTX extends Struct {
   external int hModule;
 }
 
-/// The ADDJOB_INFO_1 structure identifies a print job as well as the directory
-/// and file in which an application can store that job.
+/// Identifies a print job as well as the directory and file in which an
+/// application can store that job.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/addjob-info-1>.
 ///
 /// {@category struct}
 base class ADDJOB_INFO_1 extends Struct {
@@ -94,8 +102,10 @@ base class ADDJOB_INFO_1 extends Struct {
   external int JobId;
 }
 
-/// The addrinfoW structure is used by the GetAddrInfoW function to hold host
-/// address information.
+/// Used by the GetAddrInfoW function to hold host address information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ws2def/ns-ws2def-addrinfow>.
 ///
 /// {@category struct}
 base class ADDRINFO extends Struct {
@@ -122,6 +132,9 @@ base class ADDRINFO extends Struct {
 }
 
 /// Contains status information for the application-switching (ALT+TAB) window.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-alttabinfo>.
 ///
 /// {@category struct}
 base class ALTTABINFO extends Struct {
@@ -154,6 +167,9 @@ base class ALTTABINFO extends Struct {
 
 /// Represents package settings used to create a package.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/ns-appxpackaging-appx_package_settings>.
+///
 /// {@category struct}
 base class APPX_PACKAGE_SETTINGS extends Struct {
   @Int32()
@@ -163,6 +179,9 @@ base class APPX_PACKAGE_SETTINGS extends Struct {
 }
 
 /// Describes an array, its element type, and its dimension.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-arraydesc>.
 ///
 /// {@category struct}
 base class ARRAYDESC extends Struct {
@@ -175,9 +194,6 @@ base class ARRAYDESC extends Struct {
   external Array<SAFEARRAYBOUND> rgbounds;
 }
 
-/// Contains information about the referenced assembly, including its version
-/// and its level of support for locales, processors, and operating systems.
-///
 /// {@category struct}
 base class ASSEMBLYMETADATA extends Struct {
   @Uint16()
@@ -208,8 +224,11 @@ base class ASSEMBLYMETADATA extends Struct {
   external int ulOS;
 }
 
-/// The AudioClientProperties structure is used to set the parameters that
-/// describe the properties of the client's audio stream.
+/// Used to set the parameters that describe the properties of the client's
+/// audio stream.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/ns-audioclient-audioclientproperties~r1>.
 ///
 /// {@category struct}
 base class AudioClientProperties extends Struct {
@@ -228,6 +247,9 @@ base class AudioClientProperties extends Struct {
 
 /// Contains parameters used during a moniker-binding operation.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/ns-objidl-bind_opts>.
+///
 /// {@category struct}
 base class BIND_OPTS extends Struct {
   @Uint32()
@@ -243,8 +265,10 @@ base class BIND_OPTS extends Struct {
   external int dwTickCountDeadline;
 }
 
-/// The BITMAP structure defines the type, width, height, color format, and bit
-/// values of a bitmap.
+/// Defines the type, width, height, color format, and bit values of a bitmap.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-bitmap>.
 ///
 /// {@category struct}
 base class BITMAP extends Struct {
@@ -269,8 +293,11 @@ base class BITMAP extends Struct {
   external Pointer bmBits;
 }
 
-/// The BITMAPFILEHEADER structure contains information about the type, size,
-/// and layout of a file that contains a DIB.
+/// Contains information about the type, size, and layout of a file that
+/// contains a DIB.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-bitmapfileheader>.
 ///
 /// {@category struct}
 @Packed(2)
@@ -293,8 +320,10 @@ base class BITMAPFILEHEADER extends Struct {
   external int bfOffBits;
 }
 
-/// The BITMAPINFO structure defines the dimensions and color information for a
-/// device-independent bitmap (DIB).
+/// Defines the dimensions and color information for a DIB.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-bitmapinfo>.
 ///
 /// {@category struct}
 base class BITMAPINFO extends Struct {
@@ -304,8 +333,11 @@ base class BITMAPINFO extends Struct {
   external Array<RGBQUAD> bmiColors;
 }
 
-/// The BITMAPINFOHEADER structure contains information about the dimensions and
-/// color format of a device-independent bitmap (DIB).
+/// Contains information about the dimensions and color format of a
+/// device-independent bitmap (DIB).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-bitmapinfoheader>.
 ///
 /// {@category struct}
 base class BITMAPINFOHEADER extends Struct {
@@ -343,8 +375,11 @@ base class BITMAPINFOHEADER extends Struct {
   external int biClrImportant;
 }
 
-/// The BLENDFUNCTION structure controls blending by specifying the blending
-/// functions for source and destination bitmaps.
+/// Controls blending by specifying the blending functions for source and
+/// destination bitmaps.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-blendfunction>.
 ///
 /// {@category struct}
 base class BLENDFUNCTION extends Struct {
@@ -361,8 +396,10 @@ base class BLENDFUNCTION extends Struct {
   external int AlphaFormat;
 }
 
-/// The BLOB structure, derived from Binary Large Object, contains information
-/// about a block of data.
+/// Contains information about a block of data.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/nspapi/ns-nspapi-blob>.
 ///
 /// {@category struct}
 base class BLOB extends Struct {
@@ -372,8 +409,6 @@ base class BLOB extends Struct {
   external Pointer<Uint8> pBlobData;
 }
 
-/// The BLUETOOTH_ADDRESS structure provides the address of a Bluetooth device.
-///
 /// {@category struct}
 base class BLUETOOTH_ADDRESS extends Struct {
   external BLUETOOTH_ADDRESS_0 Anonymous;
@@ -396,8 +431,11 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
   set rgBytes(Array<Uint8> value) => this.Anonymous.rgBytes = value;
 }
 
-/// The BLUETOOTH_AUTHENTICATE_RESPONSE structure contains information passed in
-/// response to a BTH_REMOTE_AUTHENTICATE_REQUEST event.
+/// Contains information passed in response to a BTH_REMOTE_AUTHENTICATE_REQUEST
+/// event.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_authenticate_response>.
 ///
 /// {@category struct}
 base class BLUETOOTH_AUTHENTICATE_RESPONSE extends Struct {
@@ -441,9 +479,11 @@ extension BLUETOOTH_AUTHENTICATE_RESPONSE_0_Extension
       this.Anonymous.passkeyInfo = value;
 }
 
-/// The BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS structure contains specific
-/// configuration information about the Bluetooth device responding to an
-/// authentication request.
+/// Contains specific configuration information about the Bluetooth device
+/// responding to an authentication request.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_authentication_callback_params>.
 ///
 /// {@category struct}
 base class BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS extends Struct {
@@ -479,8 +519,11 @@ extension BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS_0_Extension
   set Passkey(int value) => this.Anonymous.Passkey = value;
 }
 
-/// The BLUETOOTH_COD_PAIRS structure provides for specification and retrieval
-/// of Bluetooth Class Of Device (COD) information.
+/// Provides for specification and retrieval of Bluetooth Class Of Device (COD)
+/// information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_cod_pairs>.
 ///
 /// {@category struct}
 base class BLUETOOTH_COD_PAIRS extends Struct {
@@ -490,9 +533,6 @@ base class BLUETOOTH_COD_PAIRS extends Struct {
   external Pointer<Utf16> pcszDescription;
 }
 
-/// The BLUETOOTH_DEVICE_INFO structure provides information about a Bluetooth
-/// device.
-///
 /// {@category struct}
 base class BLUETOOTH_DEVICE_INFO extends Struct {
   @Uint32()
@@ -536,8 +576,10 @@ base class BLUETOOTH_DEVICE_INFO extends Struct {
   }
 }
 
-/// The BLUETOOTH_DEVICE_SEARCH_PARAMS structure specifies search criteria for
-/// Bluetooth device searches.
+/// Specifies search criteria for Bluetooth device searches.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_device_search_params>.
 ///
 /// {@category struct}
 base class BLUETOOTH_DEVICE_SEARCH_PARAMS extends Struct {
@@ -566,8 +608,10 @@ base class BLUETOOTH_DEVICE_SEARCH_PARAMS extends Struct {
   external int hRadio;
 }
 
-/// The BLUETOOTH_FIND_RADIO_PARAMS structure facilitates enumerating installed
-/// Bluetooth radios.
+/// Facilitates enumerating installed Bluetooth radios.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_find_radio_params>.
 ///
 /// {@category struct}
 base class BLUETOOTH_FIND_RADIO_PARAMS extends Struct {
@@ -575,8 +619,10 @@ base class BLUETOOTH_FIND_RADIO_PARAMS extends Struct {
   external int dwSize;
 }
 
-/// The BLUETOOTH_GATT_VALUE_CHANGED_EVENT structure describes a changed
-/// attribute value.
+/// Describes a changed attribute value.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bluetooth_gatt_value_changed_event>.
 ///
 /// {@category struct}
 base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT extends Struct {
@@ -589,8 +635,10 @@ base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT extends Struct {
   external Pointer<BTH_LE_GATT_CHARACTERISTIC_VALUE> CharacteristicValue;
 }
 
-/// The BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION structure describes one
-/// or more characteristics that have changed.
+/// Describes one or more characteristics that have changed.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bluetooth_gatt_value_changed_event_registration>.
 ///
 /// {@category struct}
 base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION extends Struct {
@@ -601,8 +649,10 @@ base class BLUETOOTH_GATT_VALUE_CHANGED_EVENT_REGISTRATION extends Struct {
   external Array<BTH_LE_GATT_CHARACTERISTIC> Characteristics;
 }
 
-/// The BLUETOOTH_NUMERIC_COMPARISON_INFO structure contains the numeric value
-/// used for authentication via numeric comparison.
+/// Contains the numeric value used for authentication via numeric comparison.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_numeric_comparison_info>.
 ///
 /// {@category struct}
 base class BLUETOOTH_NUMERIC_COMPARISON_INFO extends Struct {
@@ -610,8 +660,11 @@ base class BLUETOOTH_NUMERIC_COMPARISON_INFO extends Struct {
   external int NumericValue;
 }
 
-/// The BLUETOOTH_OOB_DATA_INFO structure contains data used to authenticate
-/// prior to establishing an Out-of-Band device pairing.
+/// Contains data used to authenticate prior to establishing an Out-of-Band
+/// device pairing.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_oob_data_info>.
 ///
 /// {@category struct}
 base class BLUETOOTH_OOB_DATA_INFO extends Struct {
@@ -622,11 +675,13 @@ base class BLUETOOTH_OOB_DATA_INFO extends Struct {
   external Array<Uint8> R;
 }
 
-/// The BLUETOOTH_PASSKEY_INFO structure contains a passkey value used for
-/// authentication.
+/// Contains a passkey value used for authentication.
 ///
 /// A passkey is similar to a password, except that a passkey value is used for
 /// authentication only once.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_passkey_info>.
 ///
 /// {@category struct}
 base class BLUETOOTH_PASSKEY_INFO extends Struct {
@@ -634,8 +689,10 @@ base class BLUETOOTH_PASSKEY_INFO extends Struct {
   external int passkey;
 }
 
-/// The BLUETOOTH_PIN_INFO structure contains information used for
-/// authentication via PIN.
+/// Contains information used for authentication via PIN.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_pin_info>.
 ///
 /// {@category struct}
 base class BLUETOOTH_PIN_INFO extends Struct {
@@ -646,8 +703,10 @@ base class BLUETOOTH_PIN_INFO extends Struct {
   external int pinLength;
 }
 
-/// The BLUETOOTH_RADIO_INFO structure provides information about a Bluetooth
-/// radio.
+/// Contains information about a Bluetooth radio.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_radio_info>.
 ///
 /// {@category struct}
 base class BLUETOOTH_RADIO_INFO extends Struct {
@@ -685,8 +744,11 @@ base class BLUETOOTH_RADIO_INFO extends Struct {
   external int manufacturer;
 }
 
-/// The BLUETOOTH_SELECT_DEVICE_PARAMS structure facilitates and manages the
-/// visibility, authentication, and selection of Bluetooth devices and services.
+/// Facilitates and manages the visibility, authentication, and selection of
+/// Bluetooth devices and services.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-bluetooth_select_device_params>.
 ///
 /// {@category struct}
 base class BLUETOOTH_SELECT_DEVICE_PARAMS extends Struct {
@@ -740,6 +802,9 @@ typedef BOOLEAN = Uint8;
 /// Contains information about a window that denied a request from
 /// BroadcastSystemMessageEx.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-bsminfo>.
+///
 /// {@category struct}
 base class BSMINFO extends Struct {
   @Uint32()
@@ -762,7 +827,10 @@ base class BSTRBLOB extends Struct {
   external Pointer<Uint8> pData;
 }
 
-/// The BTH_DEVICE_INFO structure stores information about a Bluetooth device.
+/// Stores information about a Bluetooth device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthdef/ns-bthdef-bth_device_info>.
 ///
 /// {@category struct}
 base class BTH_DEVICE_INFO extends Struct {
@@ -779,8 +847,10 @@ base class BTH_DEVICE_INFO extends Struct {
   external Array<CHAR> name;
 }
 
-/// The BTH_HCI_EVENT_INFO structure is used in connection with obtaining
-/// WM_DEVICECHANGE messages for Bluetooth.
+/// Used in connection with obtaining WM_DEVICECHANGE messages for Bluetooth.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthdef/ns-bthdef-bth_hci_event_info>.
 ///
 /// {@category struct}
 base class BTH_HCI_EVENT_INFO extends Struct {
@@ -794,8 +864,10 @@ base class BTH_HCI_EVENT_INFO extends Struct {
   external int connected;
 }
 
-/// The BTH_L2CAP_EVENT_INFO structure contains data about events associated
-/// with an L2CAP channel.
+/// Contains data about events associated with an L2CAP channel.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthdef/ns-bthdef-bth_l2cap_event_info>.
 ///
 /// {@category struct}
 base class BTH_L2CAP_EVENT_INFO extends Struct {
@@ -812,8 +884,11 @@ base class BTH_L2CAP_EVENT_INFO extends Struct {
   external int initiated;
 }
 
-/// The BTH_LE_GATT_CHARACTERISTIC structure describes a Bluetooth Low Energy
-/// (LE) generic attribute (GATT) profile characteristic.
+/// Describes a Bluetooth Low Energy (LE) generic attribute (GATT) profile
+/// characteristic.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bth_le_gatt_characteristic>.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_CHARACTERISTIC extends Struct {
@@ -853,8 +928,11 @@ base class BTH_LE_GATT_CHARACTERISTIC extends Struct {
   external int HasExtendedProperties;
 }
 
-/// The BTH_LE_GATT_CHARACTERISTIC_VALUE structure describes a Bluetooth Low
-/// Energy (LE) generic attribute (GATT) profile characteristic value.
+/// Describes a Bluetooth Low Energy (LE) generic attribute (GATT) profile
+/// characteristic value.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bth_le_gatt_characteristic_value>.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_CHARACTERISTIC_VALUE extends Struct {
@@ -865,8 +943,11 @@ base class BTH_LE_GATT_CHARACTERISTIC_VALUE extends Struct {
   external Array<Uint8> Data;
 }
 
-/// The BTH_LE_GATT_DESCRIPTOR structure describes a Bluetooth Low Energy (LE)
-/// generic attribute (GATT) profile descriptor.
+/// Describes a Bluetooth Low Energy (LE) generic attribute (GATT) profile
+/// descriptor.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bth_le_gatt_descriptor>.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_DESCRIPTOR extends Struct {
@@ -885,8 +966,10 @@ base class BTH_LE_GATT_DESCRIPTOR extends Struct {
   external int AttributeHandle;
 }
 
-/// The BTH_LE_GATT_DESCRIPTOR_VALUE structure describes a parent
-/// characteristic.
+/// Describes a parent characteristic.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bth_le_gatt_descriptor_value>.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_DESCRIPTOR_VALUE extends Struct {
@@ -1045,8 +1128,11 @@ extension BTH_LE_GATT_DESCRIPTOR_VALUE_0_3_Extension
       this.Anonymous.CharacteristicFormat.Description = value;
 }
 
-/// The BTH_LE_GATT_SERVICE structure describes a Bluetooth Low Energy (LE)
-/// generic attribute (GATT) profile service.
+/// Describes a Bluetooth Low Energy (LE) generic attribute (GATT) profile
+/// service.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bth_le_gatt_service>.
 ///
 /// {@category struct}
 base class BTH_LE_GATT_SERVICE extends Struct {
@@ -1056,8 +1142,11 @@ base class BTH_LE_GATT_SERVICE extends Struct {
   external int AttributeHandle;
 }
 
-/// The BTH_LE_UUID structure contains information about a Bluetooth Low Energy
-/// (LE) Universally Unique Identifier (UUID).
+/// Contains information about a Bluetooth Low Energy (LE) Universally Unique
+/// Identifier (UUID).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ns-bthledef-bth_le_uuid>.
 ///
 /// {@category struct}
 base class BTH_LE_UUID extends Struct {
@@ -1083,8 +1172,10 @@ extension BTH_LE_UUID_0_Extension on BTH_LE_UUID {
   set LongUuid(GUID value) => this.Value.LongUuid = value;
 }
 
-/// The BTH_QUERY_DEVICE structure is used when querying for the presence of a
-/// Bluetooth device.
+/// Used when querying for the presence of a Bluetooth device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ws2bth/ns-ws2bth-bth_query_device>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -1096,7 +1187,10 @@ base class BTH_QUERY_DEVICE extends Struct {
   external int length;
 }
 
-/// The BTH_QUERY_SERVICE structure is used to query a Bluetooth service.
+/// Used to query a Bluetooth service.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ws2bth/ns-ws2bth-bth_query_service>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -1117,8 +1211,10 @@ base class BTH_QUERY_SERVICE extends Struct {
   external Array<SdpAttributeRange> pRange;
 }
 
-/// The BTH_RADIO_IN_RANGE structure stores data about Bluetooth devices within
-/// communication range.
+/// Stores data about Bluetooth devices within communication range.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthdef/ns-bthdef-bth_radio_in_range>.
 ///
 /// {@category struct}
 base class BTH_RADIO_IN_RANGE extends Struct {
@@ -1128,8 +1224,10 @@ base class BTH_RADIO_IN_RANGE extends Struct {
   external int previousDeviceFlags;
 }
 
-/// The BTH_SET_SERVICE structure provides service information for the specified
-/// Bluetooth service.
+/// Provides service information for the specified Bluetooth service.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ws2bth/ns-ws2bth-bth_set_service>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -1153,6 +1251,9 @@ base class BTH_SET_SERVICE extends Struct {
 }
 
 /// Contains information that the GetFileInformationByHandle function retrieves.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/ns-fileapi-by_handle_file_information>.
 ///
 /// {@category struct}
 base class BY_HANDLE_FILE_INFORMATION extends Struct {
@@ -1217,6 +1318,9 @@ base class CAC extends Struct {
 }
 
 /// Describes the cache attributes.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-cache_descriptor>.
 ///
 /// {@category struct}
 base class CACHE_DESCRIPTOR extends Struct {
@@ -1383,6 +1487,9 @@ base class CAUL extends Struct {
 /// Contains information passed to a WH_CBT hook procedure, CBTProc, before a
 /// window is activated.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-cbtactivatestruct>.
+///
 /// {@category struct}
 base class CBTACTIVATESTRUCT extends Struct {
   @Int32()
@@ -1395,6 +1502,9 @@ base class CBTACTIVATESTRUCT extends Struct {
 /// Contains information passed to a WH_CBT hook procedure, CBTProc, before a
 /// window is created.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-cbt_createwndw>.
+///
 /// {@category struct}
 base class CBT_CREATEWND extends Struct {
   external Pointer<CREATESTRUCT> lpcs;
@@ -1403,13 +1513,10 @@ base class CBT_CREATEWND extends Struct {
   external int hwndInsertAfter;
 }
 
-/// The CERT_CONTEXT structure contains both the encoded and decoded
-/// representations of a certificate.
+/// Contains both the encoded and decoded representations of a certificate.
 ///
-/// A certificate context returned by one of the functions defined in Wincrypt.h
-/// must be freed by calling the CertFreeCertificateContext function. The
-/// CertDuplicateCertificateContext function can be called to make a duplicate
-/// copy (which also must be freed by calling CertFreeCertificateContext).
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincrypt/ns-wincrypt-cert_context>.
 ///
 /// {@category struct}
 base class CERT_CONTEXT extends Struct {
@@ -1426,9 +1533,11 @@ base class CERT_CONTEXT extends Struct {
   external HCERTSTORE hCertStore;
 }
 
-/// The CERT_EXTENSION structure contains the extension information for a
-/// certificate, Certificate Revocation List (CRL) or Certificate Trust List
-/// (CTL).
+/// Contains the extension information for a certificate, Certificate Revocation
+/// List (CRL) or Certificate Trust List (CTL).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincrypt/ns-wincrypt-cert_extension>.
 ///
 /// {@category struct}
 base class CERT_EXTENSION extends Struct {
@@ -1440,7 +1549,10 @@ base class CERT_EXTENSION extends Struct {
   external CRYPT_INTEGER_BLOB Value;
 }
 
-/// The CERT_INFO structure contains the information of a certificate.
+/// Contains the information of a certificate.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincrypt/ns-wincrypt-cert_info>.
 ///
 /// {@category struct}
 base class CERT_INFO extends Struct {
@@ -1471,7 +1583,10 @@ base class CERT_INFO extends Struct {
   external Pointer<CERT_EXTENSION> rgExtension;
 }
 
-/// The CERT_PUBLIC_KEY_INFO structure contains a public key and its algorithm.
+/// Contains a public key and its algorithm.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincrypt/ns-wincrypt-cert_public_key_info>.
 ///
 /// {@category struct}
 base class CERT_PUBLIC_KEY_INFO extends Struct {
@@ -1482,6 +1597,9 @@ base class CERT_PUBLIC_KEY_INFO extends Struct {
 
 /// Contains extended result information obtained by calling the
 /// ChangeWindowMessageFilterEx function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-changefilterstruct>.
 ///
 /// {@category struct}
 base class CHANGEFILTERSTRUCT extends Struct {
@@ -1499,6 +1617,9 @@ typedef CHAR = Int8;
 ///
 /// This structure is used by console functions to read from and write to a
 /// console screen buffer.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/char-info-str>.
 ///
 /// {@category struct}
 base class CHAR_INFO extends Struct {
@@ -1528,8 +1649,8 @@ extension CHAR_INFO_0_Extension on CHAR_INFO {
 /// Contains information the ChooseColor function uses to initialize the Color
 /// dialog box.
 ///
-/// After the user closes the dialog box, the system returns information about
-/// the user's selection in this structure.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/ns-commdlg-choosecolorw>.
 ///
 /// {@category struct}
 base class CHOOSECOLOR extends Struct {
@@ -1563,6 +1684,9 @@ base class CHOOSECOLOR extends Struct {
 ///
 /// After the user closes the dialog box, the system returns information about
 /// the user's selection in this structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/ns-commdlg-choosefontw>.
 ///
 /// {@category struct}
 base class CHOOSEFONT extends Struct {
@@ -1611,8 +1735,6 @@ base class CHOOSEFONT extends Struct {
   external int nSizeMax;
 }
 
-/// The CLIENT_ID structure contains identifiers of a process and a thread.
-///
 /// {@category struct}
 base class CLIENT_ID extends Struct {
   @IntPtr()
@@ -1633,12 +1755,14 @@ base class CLIPDATA extends Struct {
   external Pointer<Uint8> pClipData;
 }
 
-/// The COLORADJUSTMENT structure defines the color adjustment values used by
-/// the StretchBlt and StretchDIBits functions when the stretch mode is
-/// HALFTONE.
+/// Defines the color adjustment values used by the StretchBlt and StretchDIBits
+/// functions when the stretch mode is HALFTONE.
 ///
 /// You can set the color adjustment values by calling the SetColorAdjustment
 /// function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-coloradjustment>.
 ///
 /// {@category struct}
 base class COLORADJUSTMENT extends Struct {
@@ -1684,6 +1808,9 @@ typedef COLORREF = Uint32;
 
 /// Used generically to filter elements.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shtypes/ns-shtypes-comdlg_filterspec>.
+///
 /// {@category struct}
 base class COMDLG_FILTERSPEC extends Struct {
   external Pointer<Utf16> pszName;
@@ -1693,6 +1820,9 @@ base class COMDLG_FILTERSPEC extends Struct {
 
 /// Contains information about the configuration state of a communications
 /// device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-commconfig>.
 ///
 /// {@category struct}
 base class COMMCONFIG extends Struct {
@@ -1722,6 +1852,9 @@ base class COMMCONFIG extends Struct {
 }
 
 /// Contains information about a communications driver.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-commprop>.
 ///
 /// {@category struct}
 base class COMMPROP extends Struct {
@@ -1783,8 +1916,8 @@ base class COMMPROP extends Struct {
 
 /// Contains the time-out parameters for a communications device.
 ///
-/// The parameters determine the behavior of ReadFile, WriteFile, ReadFileEx,
-/// and WriteFileEx operations on the device.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-commtimeouts>.
 ///
 /// {@category struct}
 base class COMMTIMEOUTS extends Struct {
@@ -1806,7 +1939,8 @@ base class COMMTIMEOUTS extends Struct {
 
 /// Contains information about a communications device.
 ///
-/// This structure is filled by the ClearCommError function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-comstat>.
 ///
 /// {@category struct}
 base class COMSTAT extends Struct {
@@ -1820,7 +1954,11 @@ base class COMSTAT extends Struct {
   external int cbOutQue;
 }
 
-/// Contains information about the console cursor.
+/// Contains the size and visibility information about the about the console
+/// cursor.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/console-cursor-info-str>.
 ///
 /// {@category struct}
 base class CONSOLE_CURSOR_INFO extends Struct {
@@ -1832,6 +1970,9 @@ base class CONSOLE_CURSOR_INFO extends Struct {
 }
 
 /// Contains information for a console read operation.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/console-readconsole-control>.
 ///
 /// {@category struct}
 base class CONSOLE_READCONSOLE_CONTROL extends Struct {
@@ -1850,6 +1991,9 @@ base class CONSOLE_READCONSOLE_CONTROL extends Struct {
 
 /// Contains information about a console screen buffer.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/console-screen-buffer-info-str>.
+///
 /// {@category struct}
 base class CONSOLE_SCREEN_BUFFER_INFO extends Struct {
   external COORD dwSize;
@@ -1866,6 +2010,9 @@ base class CONSOLE_SCREEN_BUFFER_INFO extends Struct {
 
 /// Contains information for a console selection.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/console-selection-info-str>.
+///
 /// {@category struct}
 base class CONSOLE_SELECTION_INFO extends Struct {
   @Uint32()
@@ -1878,8 +2025,8 @@ base class CONSOLE_SELECTION_INFO extends Struct {
 
 /// Defines the coordinates of a character cell in a console screen buffer.
 ///
-/// The origin of the coordinate system (0,0) is at the top, left cell of the
-/// buffer.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/coord-str>.
 ///
 /// {@category struct}
 base class COORD extends Struct {
@@ -1890,8 +2037,6 @@ base class COORD extends Struct {
   external int Y;
 }
 
-/// Stores the offset, within a class, of the specified field.
-///
 /// {@category struct}
 base class COR_FIELD_OFFSET extends Struct {
   @Uint32()
@@ -1905,6 +2050,9 @@ base class COR_FIELD_OFFSET extends Struct {
 typedef CO_MTA_USAGE_COOKIE = IntPtr;
 
 /// Contains optional extended parameters for CreateFile2.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/ns-fileapi-createfile2_extended_parameters>.
 ///
 /// {@category struct}
 base class CREATEFILE2_EXTENDED_PARAMETERS extends Struct {
@@ -1931,6 +2079,9 @@ base class CREATEFILE2_EXTENDED_PARAMETERS extends Struct {
 ///
 /// These members are identical to the parameters of the CreateWindowEx
 /// function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-createstructw>.
 ///
 /// {@category struct}
 base class CREATESTRUCT extends Struct {
@@ -1968,7 +2119,10 @@ base class CREATESTRUCT extends Struct {
   external int dwExStyle;
 }
 
-/// The CREDENTIAL structure contains an individual credential.
+/// Contains an individual credential.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincred/ns-wincred-credentialw>.
 ///
 /// {@category struct}
 base class CREDENTIAL extends Struct {
@@ -2002,11 +2156,13 @@ base class CREDENTIAL extends Struct {
   external Pointer<Utf16> UserName;
 }
 
-/// The CREDENTIAL_ATTRIBUTE structure contains an application-defined attribute
-/// of the credential.
+/// Contains an application-defined attribute of the credential.
 ///
 /// An attribute is a keyword-value pair. It is up to the application to define
 /// the meaning of the attribute.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincred/ns-wincred-credential_attributew>.
 ///
 /// {@category struct}
 base class CREDENTIAL_ATTRIBUTE extends Struct {
@@ -2021,9 +2177,12 @@ base class CREDENTIAL_ATTRIBUTE extends Struct {
   external Pointer<Uint8> Value;
 }
 
-/// The CRYPTPROTECT_PROMPTSTRUCT structure provides the text of a prompt and
-/// information about when and where that prompt is to be displayed when using
-/// the CryptProtectData and CryptUnprotectData functions.
+/// Provides the text of a prompt and information about when and where that
+/// prompt is to be displayed when using the CryptProtectData and
+/// CryptUnprotectData functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/ns-dpapi-cryptprotect_promptstruct>.
 ///
 /// {@category struct}
 base class CRYPTPROTECT_PROMPTSTRUCT extends Struct {
@@ -2039,12 +2198,10 @@ base class CRYPTPROTECT_PROMPTSTRUCT extends Struct {
   external Pointer<Utf16> szPrompt;
 }
 
-/// The CRYPT_ALGORITHM_IDENTIFIER structure specifies an algorithm used to
-/// encrypt a private key.
+/// Specifies an algorithm used to encrypt a private key.
 ///
-/// The structure includes the object identifier (OID) of the algorithm and any
-/// needed parameters for that algorithm. The parameters contained in its
-/// CRYPT_OBJID_BLOB are encoded.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincrypt/ns-wincrypt-crypt_algorithm_identifier>.
 ///
 /// {@category struct}
 base class CRYPT_ALGORITHM_IDENTIFIER extends Struct {
@@ -2053,8 +2210,10 @@ base class CRYPT_ALGORITHM_IDENTIFIER extends Struct {
   external CRYPT_INTEGER_BLOB Parameters;
 }
 
-/// The CRYPT_BIT_BLOB structure contains a set of bits represented by an array
-/// of bytes.
+/// Contains a set of bits represented by an array of bytes.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wincrypt/ns-wincrypt-crypt_bit_blob>.
 ///
 /// {@category struct}
 base class CRYPT_BIT_BLOB extends Struct {
@@ -2067,10 +2226,13 @@ base class CRYPT_BIT_BLOB extends Struct {
   external int cUnusedBits;
 }
 
-/// Contains an arbitrary array of bytes.
+/// Used for an arbitrary array of bytes.
 ///
-/// The structure definition includes aliases appropriate to the various
-/// functions that use it.
+/// It is declared in Wincrypt.h and provides flexibility for objects that can
+/// contain various data types.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/ns-dpapi-crypt_integer_blob>.
 ///
 /// {@category struct}
 base class CRYPT_INTEGER_BLOB extends Struct {
@@ -2081,6 +2243,9 @@ base class CRYPT_INTEGER_BLOB extends Struct {
 }
 
 /// Contains global cursor information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-cursorinfo>.
 ///
 /// {@category struct}
 base class CURSORINFO extends Struct {
@@ -2098,6 +2263,9 @@ base class CURSORINFO extends Struct {
 
 /// Defines the message parameters passed to a WH_CALLWNDPROCRET hook procedure,
 /// CallWndRetProc.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-cwpretstruct>.
 ///
 /// {@category struct}
 base class CWPRETSTRUCT extends Struct {
@@ -2120,6 +2288,9 @@ base class CWPRETSTRUCT extends Struct {
 /// Defines the message parameters passed to a WH_CALLWNDPROC hook procedure,
 /// CallWndProc.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-cwpstruct>.
+///
 /// {@category struct}
 base class CWPSTRUCT extends Struct {
   @IntPtr()
@@ -2135,12 +2306,11 @@ base class CWPSTRUCT extends Struct {
   external int hwnd;
 }
 
-/// A currency number stored as an 8-byte, two's complement integer, scaled by
-/// 10,000 to give a fixed-point number with 15 digits to the left of the
-/// decimal point and 4 digits to the right.
+/// Useful for calculations involving money, or for any fixed-point calculation
+/// where accuracy is particularly important.
 ///
-/// This IDispatch::GetTypeInfo representation provides a range of
-/// 922337203685477.5807 to -922337203685477.5808.
+/// To learn more about this union, see
+/// <https://learn.microsoft.com/windows/win32/api/wtypes/ns-wtypes-cy~r1>.
 ///
 /// {@category union}
 sealed class CY extends Union {
@@ -2168,6 +2338,9 @@ extension CY_0_Extension on CY {
 }
 
 /// Defines the control setting for a serial communications device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-dcb>.
 ///
 /// {@category struct}
 base class DCB extends Struct {
@@ -2222,6 +2395,9 @@ base class DCB extends Struct {
 /// Contains debugging information passed to a WH_DEBUG hook procedure,
 /// DebugProc.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-debughookinfo>.
+///
 /// {@category struct}
 base class DEBUGHOOKINFO extends Struct {
   @Uint32()
@@ -2240,12 +2416,10 @@ base class DEBUGHOOKINFO extends Struct {
   external int code;
 }
 
-/// Represents a decimal data type that provides a sign and scale for a number
-/// (as in coordinates.) Decimal variables are stored as 96-bit (12-byte)
-/// unsigned integers scaled by a variable power of 10.
+/// Represents a decimal data type that provides a sign and scale for a number.
 ///
-/// The power of 10 scaling factor specifies the number of digits to the right
-/// of the decimal point, and ranges from 0 to 28.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wtypes/ns-wtypes-decimal~r1>.
 ///
 /// {@category struct}
 base class DECIMAL extends Struct {
@@ -2327,8 +2501,11 @@ extension DECIMAL_1_0_Extension on DECIMAL {
   set Mid32(int value) => this.Anonymous2.Anonymous.Mid32 = value;
 }
 
-/// The DESIGNVECTOR structure is used by an application to specify values for
-/// the axes of a multiple master font.
+/// Used by an application to specify values for the axes of a multiple master
+/// font.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-designvector>.
 ///
 /// {@category struct}
 base class DESIGNVECTOR extends Struct {
@@ -2343,8 +2520,11 @@ base class DESIGNVECTOR extends Struct {
   external Array<Int32> dvValues;
 }
 
-/// The DEVMODE data structure contains information about the initialization and
-/// environment of a printer or a display device.
+/// Used for specifying characteristics of display and print devices in the
+/// Unicode (wide) character set.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-devmodew>.
 ///
 /// {@category struct}
 base class DEVMODE extends Struct {
@@ -2578,13 +2758,11 @@ extension DEVMODE_1_Extension on DEVMODE {
   set dmNup(int value) => this.Anonymous2.dmNup = value;
 }
 
-/// The DIBSECTION structure contains information about a DIB created by calling
-/// the CreateDIBSection function.
+/// Contains information about a DIB created by calling the CreateDIBSection
+/// function.
 ///
-/// A DIBSECTION structure includes information about the bitmap's dimensions,
-/// color format, color masks, optional file mapping object, and optional bit
-/// values storage offset. An application can obtain a filled-in DIBSECTION
-/// structure for a given DIB by calling the GetObject function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-dibsection>.
 ///
 /// {@category struct}
 base class DIBSECTION extends Struct {
@@ -2604,6 +2782,9 @@ base class DIBSECTION extends Struct {
 
 /// Represents a disk extent.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winioctl/ns-winioctl-disk_extent>.
+///
 /// {@category struct}
 base class DISK_EXTENT extends Struct {
   @Uint32()
@@ -2617,6 +2798,9 @@ base class DISK_EXTENT extends Struct {
 }
 
 /// Describes the geometry of disk devices and media.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winioctl/ns-winioctl-disk_geometry>.
 ///
 /// {@category struct}
 base class DISK_GEOMETRY extends Struct {
@@ -2638,6 +2822,9 @@ base class DISK_GEOMETRY extends Struct {
 
 /// Describes the extended geometry of disk devices and media.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winioctl/ns-winioctl-disk_geometry_ex>.
+///
 /// {@category struct}
 base class DISK_GEOMETRY_EX extends Struct {
   external DISK_GEOMETRY Geometry;
@@ -2649,8 +2836,10 @@ base class DISK_GEOMETRY_EX extends Struct {
   external Array<Uint8> Data;
 }
 
-/// The DISPLAYCONFIG_2DREGION structure represents a point or an offset in a
-/// two-dimensional space.
+/// Represents a point or an offset in a two-dimensional space.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_2dregion>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_2DREGION extends Struct {
@@ -2661,8 +2850,10 @@ base class DISPLAYCONFIG_2DREGION extends Struct {
   external int cy;
 }
 
-/// The DISPLAYCONFIG_DESKTOP_IMAGE_INFO structure contains information about
-/// the image displayed on the desktop.
+/// Contains information about the image displayed on the desktop.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_desktop_image_info>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_DESKTOP_IMAGE_INFO extends Struct {
@@ -2673,8 +2864,10 @@ base class DISPLAYCONFIG_DESKTOP_IMAGE_INFO extends Struct {
   external RECTL DesktopImageClip;
 }
 
-/// The DISPLAYCONFIG_DEVICE_INFO_HEADER structure contains display information
-/// about the device.
+/// Contains display information about the device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_device_info_header>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_DEVICE_INFO_HEADER extends Struct {
@@ -2690,8 +2883,10 @@ base class DISPLAYCONFIG_DEVICE_INFO_HEADER extends Struct {
   external int id;
 }
 
-/// The DISPLAYCONFIG_MODE_INFO structure contains either source mode or target
-/// mode information.
+/// Contains either source mode or target mode information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_mode_info>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_MODE_INFO extends Struct {
@@ -2730,8 +2925,10 @@ extension DISPLAYCONFIG_MODE_INFO_0_Extension on DISPLAYCONFIG_MODE_INFO {
       this.Anonymous.desktopImageInfo = value;
 }
 
-/// The DISPLAYCONFIG_PATH_INFO structure is used to describe a single path from
-/// a target to a source.
+/// Used to describe a single path from a target to a source.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_path_info>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_PATH_INFO extends Struct {
@@ -2743,8 +2940,10 @@ base class DISPLAYCONFIG_PATH_INFO extends Struct {
   external int flags;
 }
 
-/// The DISPLAYCONFIG_PATH_SOURCE_INFO structure contains source information for
-/// a single path.
+/// Contains source information for a single path.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_path_source_info>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_PATH_SOURCE_INFO extends Struct {
@@ -2789,8 +2988,10 @@ extension DISPLAYCONFIG_PATH_SOURCE_INFO_0_0_Extension
   set bitfield(int value) => this.Anonymous.Anonymous.bitfield = value;
 }
 
-/// The DISPLAYCONFIG_PATH_TARGET_INFO structure contains target information for
-/// a single path.
+/// Contains target information for a single path.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_path_target_info>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_PATH_TARGET_INFO extends Struct {
@@ -2852,9 +3053,11 @@ extension DISPLAYCONFIG_PATH_TARGET_INFO_0_0_Extension
   set bitfield(int value) => this.Anonymous.Anonymous.bitfield = value;
 }
 
-/// The DISPLAYCONFIG_RATIONAL structure describes a fractional value that
-/// represents vertical and horizontal frequencies of a video mode (that is,
-/// vertical sync and horizontal sync).
+/// Describes a fractional value that represents vertical and horizontal
+/// frequencies of a video mode (that is, vertical sync and horizontal sync).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_rational>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_RATIONAL extends Struct {
@@ -2865,8 +3068,10 @@ base class DISPLAYCONFIG_RATIONAL extends Struct {
   external int Denominator;
 }
 
-/// The DISPLAYCONFIG_SOURCE_MODE structure represents a point or an offset in a
-/// two-dimensional space.
+/// Represents a point or an offset in a two-dimensional space.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_source_mode>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_SOURCE_MODE extends Struct {
@@ -2882,16 +3087,20 @@ base class DISPLAYCONFIG_SOURCE_MODE extends Struct {
   external POINTL position;
 }
 
-/// The DISPLAYCONFIG_TARGET_MODE structure describes a display path target
-/// mode.
+/// Describes a display path target mode.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_target_mode>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_TARGET_MODE extends Struct {
   external DISPLAYCONFIG_VIDEO_SIGNAL_INFO targetVideoSignalInfo;
 }
 
-/// The DISPLAYCONFIG_VIDEO_SIGNAL_INFO structure contains information about the
-/// video signal for a display.
+/// Contains information about the video signal for a display.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-displayconfig_video_signal_info>.
 ///
 /// {@category struct}
 base class DISPLAYCONFIG_VIDEO_SIGNAL_INFO extends Struct {
@@ -2944,8 +3153,11 @@ extension DISPLAYCONFIG_VIDEO_SIGNAL_INFO_0_0_Extension
       this.Anonymous.AdditionalSignalInfo.bitfield = value;
 }
 
-/// The DISPLAY_DEVICE structure receives information about the display device
-/// specified by the iDevNum parameter of the EnumDisplayDevices function.
+/// Receives information about the display device specified by the iDevNum
+/// parameter of the EnumDisplayDevices function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-display_devicew>.
 ///
 /// {@category struct}
 base class DISPLAY_DEVICE extends Struct {
@@ -3034,6 +3246,9 @@ base class DISPLAY_DEVICE extends Struct {
 
 /// Contains the arguments passed to a method or property.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-dispparams>.
+///
 /// {@category struct}
 base class DISPPARAMS extends Struct {
   external Pointer<VARIANT> rgvarg;
@@ -3051,6 +3266,9 @@ base class DISPPARAMS extends Struct {
 ///
 /// One or more of these structures are combined with a DLGTEMPLATE structure to
 /// form a standard template for a dialog box.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-dlgitemtemplate>.
 ///
 /// {@category struct}
 @Packed(2)
@@ -3079,10 +3297,8 @@ base class DLGITEMTEMPLATE extends Struct {
 
 /// Defines the dimensions and style of a dialog box.
 ///
-/// This structure, always the first in a standard template for a dialog box,
-/// also specifies the number of controls in the dialog box and therefore
-/// specifies the number of subsequent DLGITEMTEMPLATE structures in the
-/// template.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-dlgtemplate>.
 ///
 /// {@category struct}
 @Packed(2)
@@ -3111,7 +3327,8 @@ base class DLGTEMPLATE extends Struct {
 
 /// Receives DLL-specific version information.
 ///
-/// It is used with the DllGetVersion function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shlwapi/ns-shlwapi-dllversioninfo>.
 ///
 /// {@category struct}
 base class DLLVERSIONINFO extends Struct {
@@ -3131,7 +3348,10 @@ base class DLLVERSIONINFO extends Struct {
   external int dwPlatformID;
 }
 
-/// The DOC_INFO_1 structure describes a document that will be printed.
+/// Describes a document that will be printed.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/doc-info-1>.
 ///
 /// {@category struct}
 base class DOC_INFO_1 extends Struct {
@@ -3142,9 +3362,11 @@ base class DOC_INFO_1 extends Struct {
   external Pointer<Utf16> pDatatype;
 }
 
-/// The DOT11_AUTH_CIPHER_PAIR structure defines a pair of 802.11 authentication
-/// and cipher algorithms that can be enabled at the same time on the 802.11
-/// station.
+/// Defines a pair of 802.11 authentication and cipher algorithms that can be
+/// enabled at the same time on the 802.11 station.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-auth-cipher-pair>.
 ///
 /// {@category struct}
 base class DOT11_AUTH_CIPHER_PAIR extends Struct {
@@ -3155,8 +3377,10 @@ base class DOT11_AUTH_CIPHER_PAIR extends Struct {
   external int CipherAlgoId;
 }
 
-/// The DOT11_BSSID_LIST structure contains a list of basic service set (BSS)
-/// identifiers.
+/// Contains a list of basic service set (BSS) identifiers.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-bssid-list>.
 ///
 /// {@category struct}
 base class DOT11_BSSID_LIST extends Struct {
@@ -3172,8 +3396,10 @@ base class DOT11_BSSID_LIST extends Struct {
   external Array<Uint8> BSSIDs;
 }
 
-/// The DOT11_NETWORK structure contains information about an available wireless
-/// network.
+/// Contains information about an available wireless network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-dot11_network>.
 ///
 /// {@category struct}
 base class DOT11_NETWORK extends Struct {
@@ -3183,8 +3409,10 @@ base class DOT11_NETWORK extends Struct {
   external int dot11BssType;
 }
 
-/// The DOT11_NETWORK_LIST structure contains a list of 802.11 wireless
-/// networks.
+/// Contains a list of 802.11 wireless networks.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-dot11_network_list>.
 ///
 /// {@category struct}
 base class DOT11_NETWORK_LIST extends Struct {
@@ -3198,7 +3426,10 @@ base class DOT11_NETWORK_LIST extends Struct {
   external Array<DOT11_NETWORK> Network;
 }
 
-/// A DOT11_SSID structure contains the SSID of an interface.
+/// Contains the SSID of an interface.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-ssid>.
 ///
 /// {@category struct}
 base class DOT11_SSID extends Struct {
@@ -3212,8 +3443,10 @@ base class DOT11_SSID extends Struct {
 /// {@category struct}
 typedef DPI_AWARENESS_CONTEXT = IntPtr;
 
-/// The DRAWTEXTPARAMS structure contains extended formatting options for the
-/// DrawTextEx function.
+/// Contains extended formatting options for the DrawTextEx function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-drawtextparams>.
 ///
 /// {@category struct}
 base class DRAWTEXTPARAMS extends Struct {
@@ -3235,6 +3468,9 @@ base class DRAWTEXTPARAMS extends Struct {
 
 /// Contains information about how a device is joined to Microsoft Azure Active
 /// Directory.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/lmjoin/ns-lmjoin-dsreg_join_info>.
 ///
 /// {@category struct}
 base class DSREG_JOIN_INFO extends Struct {
@@ -3267,6 +3503,9 @@ base class DSREG_JOIN_INFO extends Struct {
 /// Contains information about a user account that is used to join a device to
 /// Microsoft Azure Active Directory.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/lmjoin/ns-lmjoin-dsreg_user_info>.
+///
 /// {@category struct}
 base class DSREG_USER_INFO extends Struct {
   external Pointer<Utf16> pszUserEmail;
@@ -3277,6 +3516,9 @@ base class DSREG_USER_INFO extends Struct {
 }
 
 /// Defines the options for the DrawThemeBackgroundEx function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/ns-uxtheme-dtbgopts>.
 ///
 /// {@category struct}
 base class DTBGOPTS extends Struct {
@@ -3290,6 +3532,9 @@ base class DTBGOPTS extends Struct {
 }
 
 /// Defines the options for the DrawThemeTextEx function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/ns-uxtheme-dttopts>.
 ///
 /// {@category struct}
 base class DTTOPTS extends Struct {
@@ -3341,6 +3586,9 @@ base class DTTOPTS extends Struct {
 ///
 /// Used by the DwmEnableBlurBehindWindow function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/ns-dwmapi-dwm_blurbehind>.
+///
 /// {@category struct}
 @Packed(1)
 base class DWM_BLURBEHIND extends Struct {
@@ -3357,8 +3605,10 @@ base class DWM_BLURBEHIND extends Struct {
   external int fTransitionOnMaximized;
 }
 
-/// The EAP_METHOD_TYPE structure contains type, identification, and author
-/// information about an EAP method.
+/// Contains type, identification, and author information about an EAP method.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/eaptypes/ns-eaptypes-eap_method_type>.
 ///
 /// {@category struct}
 base class EAP_METHOD_TYPE extends Struct {
@@ -3368,8 +3618,10 @@ base class EAP_METHOD_TYPE extends Struct {
   external int dwAuthorId;
 }
 
-/// The EAP_TYPE structure contains type and vendor identification information
-/// for an EAP method.
+/// Contains type and vendor identification information for an EAP method.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/eaptypes/ns-eaptypes-eap_type>.
 ///
 /// {@category struct}
 base class EAP_TYPE extends Struct {
@@ -3385,6 +3637,9 @@ base class EAP_TYPE extends Struct {
 
 /// Contains the type description and process-transfer information for a
 /// variable, a function, or a function parameter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-elemdesc~r1>.
 ///
 /// {@category struct}
 base class ELEMDESC extends Struct {
@@ -3408,7 +3663,10 @@ extension ELEMDESC_0_Extension on ELEMDESC {
   set paramdesc(PARAMDESC value) => this.Anonymous.paramdesc = value;
 }
 
-/// The ENUMLOGFONTEX structure contains information about an enumerated font.
+/// Contains information about an enumerated font.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-enumlogfontexw>.
 ///
 /// {@category struct}
 base class ENUMLOGFONTEX extends Struct {
@@ -3474,6 +3732,9 @@ base class ENUMLOGFONTEX extends Struct {
 
 /// Contains information about a pagefile.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/ns-psapi-enum_page_file_information>.
+///
 /// {@category struct}
 base class ENUM_PAGE_FILE_INFORMATION extends Struct {
   @Uint32()
@@ -3498,6 +3759,9 @@ base class ENUM_PAGE_FILE_INFORMATION extends Struct {
 ///
 /// It is used by the EnumDependentServices and EnumServicesStatus functions.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-enum_service_statusw>.
+///
 /// {@category struct}
 base class ENUM_SERVICE_STATUS extends Struct {
   external Pointer<Utf16> lpServiceName;
@@ -3511,6 +3775,9 @@ base class ENUM_SERVICE_STATUS extends Struct {
 /// information about the service.
 ///
 /// It is used by the EnumServicesStatusEx function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-enum_service_status_processw>.
 ///
 /// {@category struct}
 base class ENUM_SERVICE_STATUS_PROCESS extends Struct {
@@ -3526,6 +3793,9 @@ base class ENUM_SERVICE_STATUS_PROCESS extends Struct {
 ///
 /// This structure is used to store message information for the
 /// JournalPlaybackProc callback function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-eventmsg>.
 ///
 /// {@category struct}
 base class EVENTMSG extends Struct {
@@ -3546,6 +3816,9 @@ base class EVENTMSG extends Struct {
 }
 
 /// Describes an exception that occurred during IDispatch::Invoke.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-excepinfo>.
 ///
 /// {@category struct}
 base class EXCEPINFO extends Struct {
@@ -3575,7 +3848,10 @@ base class EXCEPINFO extends Struct {
   external int scode;
 }
 
-/// Contains information about an extended property.
+/// Represents a Microsoft-extended property.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/SecCrypto/extendedproperty>.
 ///
 /// {@category struct}
 base class ExtendedProperty extends Struct {
@@ -3584,10 +3860,11 @@ base class ExtendedProperty extends Struct {
   external Pointer<Utf16> PropertyValue;
 }
 
-/// The fd_set structure is used by various Windows Sockets functions and
-/// service providers, such as the select function, to place sockets into a set
-/// for various purposes, such as testing a given socket for readability using
-/// the readfds parameter of the select function.
+/// Used by Windows Sockets (Winsock) functions and service providers to place
+/// sockets into a set.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsock/nf-winsock-fd_set>.
 ///
 /// {@category struct}
 base class FD_SET extends Struct {
@@ -3598,8 +3875,13 @@ base class FD_SET extends Struct {
   external Array<SOCKET> fd_array;
 }
 
-/// Contains a 64-bit value representing the number of 100-nanosecond intervals
-/// since January 1, 1601 (UTC).
+/// Holds an unsigned 64-bit date and time value for a file.
+///
+/// This value represents the number of 100-nanosecond units since the start of
+/// January 1, 1601.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/office/client-developer/outlook/mapi/filetime>.
 ///
 /// {@category struct}
 base class FILETIME extends Struct {
@@ -3610,7 +3892,10 @@ base class FILETIME extends Struct {
   external int dwHighDateTime;
 }
 
-/// Union that contains a 64-bit value that points to a page of data.
+/// Represents a segment buffer structure for scatter/gather read/write actions.
+///
+/// To learn more about this union, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-file_segment_element>.
 ///
 /// {@category union}
 sealed class FILE_SEGMENT_ELEMENT extends Union {
@@ -3623,9 +3908,8 @@ sealed class FILE_SEGMENT_ELEMENT extends Union {
 /// Contains information that the FindText and ReplaceText functions use to
 /// initialize the Find and Replace dialog boxes.
 ///
-/// The FINDMSGSTRING registered message uses this structure to pass the user's
-/// search or replacement input to the owner window of a Find or Replace dialog
-/// box.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/ns-commdlg-findreplacew>.
 ///
 /// {@category struct}
 base class FINDREPLACE extends Struct {
@@ -3659,9 +3943,12 @@ base class FINDREPLACE extends Struct {
   external Pointer<Utf16> lpTemplateName;
 }
 
-/// Describes a focus event in a console INPUT_RECORD structure.
+/// Describes a focus event in a console INPUT RECORD structure.
 ///
 /// These events are used internally and should be ignored.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/focus-event-record-str>.
 ///
 /// {@category struct}
 base class FOCUS_EVENT_RECORD extends Struct {
@@ -3670,6 +3957,9 @@ base class FOCUS_EVENT_RECORD extends Struct {
 }
 
 /// Describes a function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-funcdesc>.
 ///
 /// {@category struct}
 base class FUNCDESC extends Struct {
@@ -3710,6 +4000,9 @@ base class FUNCDESC extends Struct {
 /// Gets and sets the configuration for enabling gesture messages and the type
 /// of this configuration.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-gestureconfig>.
+///
 /// {@category struct}
 base class GESTURECONFIG extends Struct {
   @Uint32()
@@ -3723,6 +4016,9 @@ base class GESTURECONFIG extends Struct {
 }
 
 /// Stores information about a gesture.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-gestureinfo>.
 ///
 /// {@category struct}
 base class GESTUREINFO extends Struct {
@@ -3756,6 +4052,9 @@ base class GESTUREINFO extends Struct {
 /// When transmitted with WM_GESTURENOTIFY messages, passes information about a
 /// gesture.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-gesturenotifystruct>.
+///
 /// {@category struct}
 base class GESTURENOTIFYSTRUCT extends Struct {
   @Uint32()
@@ -3774,6 +4073,9 @@ base class GESTURENOTIFYSTRUCT extends Struct {
 }
 
 /// Contains information about a GUI thread.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-guithreadinfo>.
 ///
 /// {@category struct}
 base class GUITHREADINFO extends Struct {
@@ -3815,6 +4117,9 @@ typedef HANDLE_PTR = IntPtr;
 
 /// Contains information about a simulated message generated by an input device
 /// other than a keyboard or mouse.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-hardwareinput>.
 ///
 /// {@category struct}
 base class HARDWAREINPUT extends Struct {
@@ -3909,14 +4214,11 @@ typedef HMODULE = IntPtr;
 /// {@category struct}
 typedef HMONITOR = IntPtr;
 
-/// The hostent structure is used by functions to store information about a
-/// given host, such as host name, IPv4 address, and so forth.
+/// Used by functions to store information about a given host, such as host
+/// name, IPv4 address, and so forth.
 ///
-/// An application should never attempt to modify this structure or to free any
-/// of its components. Furthermore, only one copy of the hostent structure is
-/// allocated per thread, and an application should therefore copy any
-/// information that it needs before issuing any other Windows Sockets API
-/// calls.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsock/ns-winsock-hostent>.
 ///
 /// {@category struct}
 base class HOSTENT extends Struct {
@@ -3983,6 +4285,9 @@ typedef HWND = IntPtr;
 
 /// Contains information about an icon or a cursor.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-iconinfo>.
+///
 /// {@category struct}
 base class ICONINFO extends Struct {
   @Int32()
@@ -4004,6 +4309,9 @@ base class ICONINFO extends Struct {
 /// Contains information about an icon or a cursor.
 ///
 /// Extends ICONINFO. Used by GetIconInfoEx.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-iconinfoexw>.
 ///
 /// {@category struct}
 base class ICONINFOEX extends Struct {
@@ -4067,8 +4375,6 @@ base class ICONINFOEX extends Struct {
   }
 }
 
-/// Contains the IDL attributes of a type.
-///
 /// {@category struct}
 base class IDLDESC extends Struct {
   @IntPtr()
@@ -4084,6 +4390,9 @@ base class IDLDESC extends Struct {
 ///
 /// This structure is used with the InitCommonControlsEx function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/ns-commctrl-initcommoncontrolsex>.
+///
 /// {@category struct}
 base class INITCOMMONCONTROLSEX extends Struct {
   @Uint32()
@@ -4095,6 +4404,9 @@ base class INITCOMMONCONTROLSEX extends Struct {
 
 /// Used by SendInput to store information for synthesizing input events such as
 /// keystrokes, mouse movement, and mouse clicks.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-input>.
 ///
 /// {@category struct}
 base class INPUT extends Struct {
@@ -4126,9 +4438,8 @@ extension INPUT_0_Extension on INPUT {
 
 /// Describes an input event in the console input buffer.
 ///
-/// These records can be read from the input buffer by using the
-/// ReadConsoleInput or PeekConsoleInput function, or written to the input
-/// buffer by using the WriteConsoleInput function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/input-record-str>.
 ///
 /// {@category struct}
 base class INPUT_RECORD extends Struct {
@@ -4172,9 +4483,8 @@ extension INPUT_RECORD_0_Extension on INPUT_RECORD {
 
 /// Defines the matrix that represents a transform on a message consumer.
 ///
-/// This matrix can be used to transform pointer input data from client
-/// coordinates to screen coordinates, while the inverse can be used to
-/// transform pointer input data from screen coordinates to client coordinates.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-input_transform>.
 ///
 /// {@category struct}
 base class INPUT_TRANSFORM extends Struct {
@@ -4298,7 +4608,10 @@ extension INPUT_TRANSFORM_0_0_Extension on INPUT_TRANSFORM {
   set x44(double value) => this.Anonymous.Anonymous.x44 = value;
 }
 
-/// The IN_ADDR structure represents an IPv4 Internet address.
+/// Represents an IPv4 address.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/inaddr/ns-inaddr-in_addr>.
 ///
 /// {@category struct}
 base class IN_ADDR extends Struct {
@@ -4372,11 +4685,10 @@ extension IN_ADDR_0_1_Extension on IN_ADDR {
   set s_w2(int value) => this.S_un.S_un_w.s_w2 = value;
 }
 
-/// The IP_ADAPTER_ADDRESSES structure is the header node for a linked list of
-/// addresses for a particular adapter.
+/// The header node for a linked list of addresses for a particular adapter.
 ///
-/// This structure can simultaneously be used as part of a linked list of
-/// IP_ADAPTER_ADDRESSES structures.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_addresses_lh>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_ADDRESSES_LH extends Struct {
@@ -4532,8 +4844,11 @@ extension IP_ADAPTER_ADDRESSES_LH_1_0_Extension on IP_ADAPTER_ADDRESSES_LH {
   set bitfield(int value) => this.Anonymous2.Anonymous.bitfield = value;
 }
 
-/// The IP_ADAPTER_ANYCAST_ADDRESS structure stores a single anycast IP address
-/// in a linked list of addresses for a particular adapter.
+/// Stores a single anycast IP address in a linked list of addresses for a
+/// particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_anycast_address_xp>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_ANYCAST_ADDRESS_XP extends Struct {
@@ -4580,8 +4895,11 @@ extension IP_ADAPTER_ANYCAST_ADDRESS_XP_0_0_Extension
   set Flags(int value) => this.Anonymous.Anonymous.Flags = value;
 }
 
-/// The IP_ADAPTER_DNS_SERVER_ADDRESS structure stores a single DNS server
-/// address in a linked list of DNS server addresses for a particular adapter.
+/// Stores a single DNS server address in a linked list of DNS server addresses
+/// for a particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_dns_server_address_xp>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_DNS_SERVER_ADDRESS_XP extends Struct {
@@ -4627,8 +4945,11 @@ extension IP_ADAPTER_DNS_SERVER_ADDRESS_XP_0_0_Extension
   set Length(int value) => this.Anonymous.Anonymous.Length = value;
 }
 
-/// The IP_ADAPTER_DNS_SUFFIX structure stores a DNS suffix in a linked list of
-/// DNS suffixes for a particular adapter.
+/// Stores a DNS suffix in a linked list of DNS suffixes for a particular
+/// adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_dns_suffix>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_DNS_SUFFIX extends Struct {
@@ -4654,8 +4975,11 @@ base class IP_ADAPTER_DNS_SUFFIX extends Struct {
   }
 }
 
-/// The IP_ADAPTER_GATEWAY_ADDRESS structure stores a single gateway address in
-/// a linked list of gateway addresses for a particular adapter.
+/// Stores a single gateway address in a linked list of gateway addresses for a
+/// particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_gateway_address_lh>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_GATEWAY_ADDRESS_LH extends Struct {
@@ -4700,9 +5024,11 @@ extension IP_ADAPTER_GATEWAY_ADDRESS_LH_0_0_Extension
   set Length(int value) => this.Anonymous.Anonymous.Length = value;
 }
 
-/// The IP_ADAPTER_INDEX_MAP structure stores the interface index associated
-/// with a network adapter with IPv4 enabled together with the name of the
-/// network adapter.
+/// Stores the interface index associated with a network adapter with IPv4
+/// enabled together with the name of the network adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ipexport/ns-ipexport-ip_adapter_index_map>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_INDEX_MAP extends Struct {
@@ -4729,8 +5055,11 @@ base class IP_ADAPTER_INDEX_MAP extends Struct {
   }
 }
 
-/// The IP_ADAPTER_MULTICAST_ADDRESS structure stores a single multicast address
-/// in a linked-list of addresses for a particular adapter.
+/// Stores a single multicast address in a linked-list of addresses for a
+/// particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_multicast_address_xp>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_MULTICAST_ADDRESS_XP extends Struct {
@@ -4777,7 +5106,12 @@ extension IP_ADAPTER_MULTICAST_ADDRESS_XP_0_0_Extension
   set Flags(int value) => this.Anonymous.Anonymous.Flags = value;
 }
 
-/// The IP_ADAPTER_PREFIX structure stores an IP address prefix.
+/// Stores an IP address prefix.
+///
+/// I.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_prefix_xp>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_PREFIX_XP extends Struct {
@@ -4825,8 +5159,11 @@ extension IP_ADAPTER_PREFIX_XP_0_0_Extension on IP_ADAPTER_PREFIX_XP {
   set Flags(int value) => this.Anonymous.Anonymous.Flags = value;
 }
 
-/// The IP_ADAPTER_UNICAST_ADDRESS structure stores a single unicast IP address
-/// in a linked list of IP addresses for a particular adapter.
+/// Stores a single unicast IP address in a linked list of IP addresses for a
+/// particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_unicast_address_lh>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_UNICAST_ADDRESS_LH extends Struct {
@@ -4894,9 +5231,11 @@ extension IP_ADAPTER_UNICAST_ADDRESS_LH_0_0_Extension
   set Flags(int value) => this.Anonymous.Anonymous.Flags = value;
 }
 
-/// The IP_ADAPTER_WINS_SERVER_ADDRESS structure stores a single Windows
-/// Internet Name Service (WINS) server address in a linked list of WINS server
-/// addresses for a particular adapter.
+/// Stores a single Windows Internet Name Service (WINS) server address in a
+/// linked list of WINS server addresses for a particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_wins_server_address_lh>.
 ///
 /// {@category struct}
 base class IP_ADAPTER_WINS_SERVER_ADDRESS_LH extends Struct {
@@ -4942,11 +5281,10 @@ extension IP_ADAPTER_WINS_SERVER_ADDRESS_LH_0_0_Extension
   set Length(int value) => this.Anonymous.Anonymous.Length = value;
 }
 
-/// The IP_ADDRESS_STRING structure stores an IPv4 address in dotted decimal
-/// notation.
+/// Stores an IPv4 address in dotted decimal notation.
 ///
-/// The IP_ADDRESS_STRING structure definition is also the type definition for
-/// the IP_MASK_STRING structure.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_address_string>.
 ///
 /// {@category struct}
 base class IP_ADDRESS_STRING extends Struct {
@@ -4954,8 +5292,10 @@ base class IP_ADDRESS_STRING extends Struct {
   external Array<CHAR> String_;
 }
 
-/// The IP_ADDR_STRING structure represents a node in a linked-list of IPv4
-/// addresses.
+/// Represents a node in a linked-list of IPv4 addresses.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_addr_string>.
 ///
 /// {@category struct}
 base class IP_ADDR_STRING extends Struct {
@@ -4969,8 +5309,11 @@ base class IP_ADDR_STRING extends Struct {
   external int Context;
 }
 
-/// The IP_INTERFACE_INFO structure contains a list of the network interface
-/// adapters with IPv4 enabled on the local system.
+/// Contains a list of the network interface adapters with IPv4 enabled on the
+/// local system.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ipexport/ns-ipexport-ip_interface_info>.
 ///
 /// {@category struct}
 base class IP_INTERFACE_INFO extends Struct {
@@ -4981,8 +5324,10 @@ base class IP_INTERFACE_INFO extends Struct {
   external Array<IP_ADAPTER_INDEX_MAP> Adapter;
 }
 
-/// The IP_PER_ADAPTER_INFO structure contains information specific to a
-/// particular adapter.
+/// Contains information specific to a particular adapter.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_per_adapter_info_w2ksp1>.
 ///
 /// {@category struct}
 base class IP_PER_ADAPTER_INFO_W2KSP1 extends Struct {
@@ -4999,6 +5344,9 @@ base class IP_PER_ADAPTER_INFO_W2KSP1 extends Struct {
 
 /// Contains a list of item identifiers.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shtypes/ns-shtypes-itemidlist>.
+///
 /// {@category struct}
 @Packed(1)
 base class ITEMIDLIST extends Struct {
@@ -5006,6 +5354,12 @@ base class ITEMIDLIST extends Struct {
 }
 
 /// Contains information used to control the I/O rate for a job.
+///
+/// This structure is used by the SetIoRateControlInformationJobObject and
+/// QueryIoRateControlInformationJobObject functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/ns-jobapi2-jobobject_io_rate_control_information>.
 ///
 /// {@category struct}
 base class JOBOBJECT_IO_RATE_CONTROL_INFORMATION extends Struct {
@@ -5027,10 +5381,13 @@ base class JOBOBJECT_IO_RATE_CONTROL_INFORMATION extends Struct {
   external int ControlFlags;
 }
 
-/// The JOB_INFO_1 structure specifies print-job information such as the
-/// job-identifier value, the name of the printer for which the job is spooled,
-/// the name of the machine that created the print job, the name of the user
-/// that owns the print job, and so on.
+/// Specifies print-job information such as the job-identifier value, the name
+/// of the printer for which the job is spooled, the name of the machine that
+/// created the print job, the name of the user that owns the print job, and so
+/// on.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/job-info-1>.
 ///
 /// {@category struct}
 base class JOB_INFO_1 extends Struct {
@@ -5069,6 +5426,9 @@ base class JOB_INFO_1 extends Struct {
 
 /// Contains information about a low-level keyboard input event.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-kbdllhookstruct>.
+///
 /// {@category struct}
 base class KBDLLHOOKSTRUCT extends Struct {
   @Uint32()
@@ -5089,6 +5449,9 @@ base class KBDLLHOOKSTRUCT extends Struct {
 
 /// Contains information about a simulated keyboard event.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-keybdinput>.
+///
 /// {@category struct}
 base class KEYBDINPUT extends Struct {
   @Uint16()
@@ -5107,7 +5470,10 @@ base class KEYBDINPUT extends Struct {
   external int dwExtraInfo;
 }
 
-/// Describes a keyboard input event in a console INPUT_RECORD structure.
+/// Describes a keyboard input event in a console INPUT RECORD structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/key-event-record-str>.
 ///
 /// {@category struct}
 base class KEY_EVENT_RECORD extends Struct {
@@ -5148,6 +5514,9 @@ extension KEY_EVENT_RECORD_0_Extension on KEY_EVENT_RECORD {
 
 /// Defines the specifics of a known folder.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ns-shobjidl_core-knownfolder_definition>.
+///
 /// {@category struct}
 base class KNOWNFOLDER_DEFINITION extends Struct {
   @Int32()
@@ -5180,9 +5549,11 @@ base class KNOWNFOLDER_DEFINITION extends Struct {
   external GUID ftidType;
 }
 
-/// The L2_NOTIFICATION_DATA structure is used by the IHV Extensions DLL to send
-/// notifications to any service or applications that has registered for the
-/// notification.
+/// Used by the IHV Extensions DLL to send notifications to any service or
+/// applications that has registered for the notification.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/l2cmn/ns-l2cmn-l2_notification_data>.
 ///
 /// {@category struct}
 base class L2_NOTIFICATION_DATA extends Struct {
@@ -5202,6 +5573,9 @@ base class L2_NOTIFICATION_DATA extends Struct {
 
 /// Contains the time of the last input.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-lastinputinfo>.
+///
 /// {@category struct}
 base class LASTINPUTINFO extends Struct {
   @Uint32()
@@ -5211,10 +5585,12 @@ base class LASTINPUTINFO extends Struct {
   external int dwTime;
 }
 
-/// The LOGBRUSH structure defines the style, color, and pattern of a physical
-/// brush.
+/// Defines the style, color, and pattern of a physical brush.
 ///
 /// It is used by the CreateBrushIndirect and ExtCreatePen functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-logbrush>.
 ///
 /// {@category struct}
 base class LOGBRUSH extends Struct {
@@ -5228,7 +5604,10 @@ base class LOGBRUSH extends Struct {
   external int lbHatch;
 }
 
-/// The LOGFONT structure defines the attributes of a font.
+/// Defines the attributes of a font.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shtypes/ns-shtypes-logfontw>.
 ///
 /// {@category struct}
 base class LOGFONT extends Struct {
@@ -5291,7 +5670,10 @@ base class LOGFONT extends Struct {
   }
 }
 
-/// The LOGPALETTE structure defines a logical palette.
+/// Defines a logical palette.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-logpalette>.
 ///
 /// {@category struct}
 base class LOGPALETTE extends Struct {
@@ -5314,11 +5696,11 @@ typedef LPPROC_THREAD_ATTRIBUTE_LIST = Pointer;
 /// {@category struct}
 typedef LRESULT = IntPtr;
 
-/// A Locally Unique Identifier (LUID).
+/// An opaque structure that specifies an identifier that is guaranteed to be
+/// unique on the local machine.
 ///
-/// This is a value guaranteed to be unique only on the system on which it was
-/// generated. The uniqueness of a locally unique identifier is guaranteed only
-/// until the system is restarted.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ntdef/ns-ntdef-luid>.
 ///
 /// {@category struct}
 base class LUID extends Struct {
@@ -5332,6 +5714,9 @@ base class LUID extends Struct {
 /// Describes a color transformation matrix that a magnifier control uses to
 /// apply a color effect to magnified screen content.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/ns-magnification-magcoloreffect>.
+///
 /// {@category struct}
 base class MAGCOLOREFFECT extends Struct {
   @Array(25)
@@ -5339,6 +5724,9 @@ base class MAGCOLOREFFECT extends Struct {
 }
 
 /// Describes an image format.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/ns-magnification-magimageheader>.
 ///
 /// {@category struct}
 base class MAGIMAGEHEADER extends Struct {
@@ -5363,6 +5751,9 @@ base class MAGIMAGEHEADER extends Struct {
 /// Describes a transformation matrix that a magnifier control uses to magnify
 /// screen content.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/ns-magnification-magtransform>.
+///
 /// {@category struct}
 base class MAGTRANSFORM extends Struct {
   @Array(9)
@@ -5371,6 +5762,9 @@ base class MAGTRANSFORM extends Struct {
 
 /// Returned by the GetThemeMargins function to define the margins of windows
 /// that have visual styles applied.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/ns-uxtheme-margins>.
 ///
 /// {@category struct}
 base class MARGINS extends Struct {
@@ -5387,8 +5781,6 @@ base class MARGINS extends Struct {
   external int cyBottomHeight;
 }
 
-/// The MCI_OPEN_PARMS structure contains information for the MCI_OPEN command.
-///
 /// {@category struct}
 @Packed(1)
 base class MCI_OPEN_PARMS extends Struct {
@@ -5405,8 +5797,10 @@ base class MCI_OPEN_PARMS extends Struct {
   external Pointer<Utf16> lpstrAlias;
 }
 
-/// The MCI_PLAY_PARMS structure contains positioning information for the
-/// MCI_PLAY command.
+/// Contains positioning information for the MCI PLAY command.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/Multimedia/mci-play-parms>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5421,8 +5815,10 @@ base class MCI_PLAY_PARMS extends Struct {
   external int dwTo;
 }
 
-/// The MCI_SEEK_PARMS structure contains positioning information for the
-/// MCI_SEEK command.
+/// Contains positioning information for the MCI SEEK command.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/Multimedia/mci-seek-parms>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5434,8 +5830,10 @@ base class MCI_SEEK_PARMS extends Struct {
   external int dwTo;
 }
 
-/// The MCI_STATUS_PARMS structure contains information for the MCI_STATUS
-/// command.
+/// Contains information for the MCI STATUS command.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/Multimedia/mci-status-parms>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5456,7 +5854,8 @@ base class MCI_STATUS_PARMS extends Struct {
 /// Contains information about the current state of both physical and virtual
 /// memory, including extended memory.
 ///
-/// The GlobalMemoryStatusEx function stores information in this structure.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex>.
 ///
 /// {@category struct}
 base class MEMORYSTATUSEX extends Struct {
@@ -5491,7 +5890,8 @@ base class MEMORYSTATUSEX extends Struct {
 /// Contains information about a range of pages in the virtual address space of
 /// a process.
 ///
-/// The VirtualQuery and VirtualQueryEx functions use this structure.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-memory_basic_information>.
 ///
 /// {@category struct}
 base class MEMORY_BASIC_INFORMATION extends Struct {
@@ -5520,6 +5920,9 @@ base class MEMORY_BASIC_INFORMATION extends Struct {
 
 /// Contains menu bar information.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-menubarinfo>.
+///
 /// {@category struct}
 base class MENUBARINFO extends Struct {
   @Uint32()
@@ -5538,6 +5941,9 @@ base class MENUBARINFO extends Struct {
 }
 
 /// Contains information about a menu.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-menuinfo>.
 ///
 /// {@category struct}
 base class MENUINFO extends Struct {
@@ -5564,6 +5970,9 @@ base class MENUINFO extends Struct {
 }
 
 /// Contains information about a menu item.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-menuiteminfow>.
 ///
 /// {@category struct}
 base class MENUITEMINFO extends Struct {
@@ -5605,6 +6014,9 @@ base class MENUITEMINFO extends Struct {
 
 /// Defines a menu item in a menu template.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-menuitemtemplate>.
+///
 /// {@category struct}
 base class MENUITEMTEMPLATE extends Struct {
   @Uint16()
@@ -5622,6 +6034,9 @@ base class MENUITEMTEMPLATE extends Struct {
 /// A complete menu template consists of a header and one or more menu item
 /// lists.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-menuitemtemplateheader>.
+///
 /// {@category struct}
 base class MENUITEMTEMPLATEHEADER extends Struct {
   @Uint16()
@@ -5631,9 +6046,12 @@ base class MENUITEMTEMPLATEHEADER extends Struct {
   external int offset;
 }
 
-/// Describes a menu event in a console INPUT_RECORD structure.
+/// Describes a menu event in a console INPUT RECORD structure.
 ///
 /// These events are used internally and should be ignored.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/menu-event-record-str>.
 ///
 /// {@category struct}
 base class MENU_EVENT_RECORD extends Struct {
@@ -5643,6 +6061,9 @@ base class MENU_EVENT_RECORD extends Struct {
 
 /// Defines the metafile picture format used for exchanging metafile data
 /// through the clipboard.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-metafilepict>.
 ///
 /// {@category struct}
 base class METAFILEPICT extends Struct {
@@ -5659,7 +6080,10 @@ base class METAFILEPICT extends Struct {
   external int hMF;
 }
 
-/// The MIDIEVENT structure describes a MIDI event in a stream buffer.
+/// Describes a MIDI event in a stream buffer.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midievent>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5677,8 +6101,11 @@ base class MIDIEVENT extends Struct {
   external Array<Uint32> dwParms;
 }
 
-/// The MIDIHDR structure defines the header used to identify a MIDI
-/// system-exclusive or stream buffer.
+/// Defines the header used to identify a MIDI system-exclusive or stream
+/// buffer.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midihdr>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5710,7 +6137,10 @@ base class MIDIHDR extends Struct {
   external Array<IntPtr> _dwReserved;
 }
 
-/// The MIDIINCAPS structure describes the capabilities of a MIDI input device.
+/// Describes the capabilities of a MIDI input device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midiincapsw>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5747,8 +6177,10 @@ base class MIDIINCAPS extends Struct {
   external int dwSupport;
 }
 
-/// The MIDIOUTCAPS structure describes the capabilities of a MIDI output
-/// device.
+/// Describes the capabilities of a MIDI output device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midioutcapsw>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5797,7 +6229,10 @@ base class MIDIOUTCAPS extends Struct {
   external int dwSupport;
 }
 
-/// The MIDIPROPTEMPO structure contains the tempo property for a stream.
+/// Contains the tempo property for a stream.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midiproptempo>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5809,8 +6244,10 @@ base class MIDIPROPTEMPO extends Struct {
   external int dwTempo;
 }
 
-/// The MIDIPROPTIMEDIV structure contains the time division property for a
-/// stream.
+/// Contains the time division property for a stream.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midiproptimediv>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5822,8 +6259,10 @@ base class MIDIPROPTIMEDIV extends Struct {
   external int dwTimeDiv;
 }
 
-/// The MIDISTRMBUFFVER structure contains version information for a long MIDI
-/// event of the MEVT_VERSION type.
+/// Contains version information for a long MIDI event of the MEVT_VERSION type.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-midistrmbuffver>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -5841,6 +6280,9 @@ base class MIDISTRMBUFFVER extends Struct {
 /// Contains information about a window's maximized size and position and its
 /// minimum and maximum tracking size.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-minmaxinfo>.
+///
 /// {@category struct}
 base class MINMAXINFO extends Struct {
   // ignore: unused_field
@@ -5855,9 +6297,6 @@ base class MINMAXINFO extends Struct {
   external POINT ptMaxTrackSize;
 }
 
-/// The MMTIME structure contains timing information for different types of
-/// multimedia data.
-///
 /// {@category struct}
 @Packed(1)
 base class MMTIME extends Struct {
@@ -5968,6 +6407,9 @@ extension MMTIME_0_1_Extension on MMTIME {
 
 /// Contains information about the capabilities of a modem.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mcx/ns-mcx-modemdevcaps>.
+///
 /// {@category struct}
 base class MODEMDEVCAPS extends Struct {
   @Uint32()
@@ -6033,6 +6475,9 @@ base class MODEMDEVCAPS extends Struct {
 
 /// Contains information about a modem's configuration.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mcx/ns-mcx-modemsettings>.
+///
 /// {@category struct}
 base class MODEMSETTINGS extends Struct {
   @Uint32()
@@ -6074,6 +6519,9 @@ base class MODEMSETTINGS extends Struct {
 
 /// Contains module data.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/ns-dbghelp-modload_data>.
+///
 /// {@category struct}
 base class MODLOAD_DATA extends Struct {
   @Uint32()
@@ -6093,6 +6541,9 @@ base class MODLOAD_DATA extends Struct {
 
 /// Contains the module load address, size, and entry point.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/ns-psapi-moduleinfo>.
+///
 /// {@category struct}
 base class MODULEINFO extends Struct {
   external Pointer lpBaseOfDll;
@@ -6103,7 +6554,14 @@ base class MODULEINFO extends Struct {
   external Pointer EntryPoint;
 }
 
-/// The MONITORINFO structure contains information about a display monitor.
+/// Contains information about a display monitor.
+///
+/// The GetMonitorInfo function stores information in a MONITORINFO structure or
+/// a MONITORINFOEX structure. The MONITORINFO structure is a subset of the
+/// MONITORINFOEX structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-monitorinfo>.
 ///
 /// {@category struct}
 base class MONITORINFO extends Struct {
@@ -6118,7 +6576,14 @@ base class MONITORINFO extends Struct {
   external int dwFlags;
 }
 
-/// The MONITORINFOEX structure contains information about a display monitor.
+/// Contains information about a display monitor.
+///
+/// The GetMonitorInfo function stores information into a MONITORINFOEX
+/// structure or a MONITORINFO structure. The MONITORINFOEX structure is a
+/// superset of the MONITORINFO structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-monitorinfoexw>.
 ///
 /// {@category struct}
 base class MONITORINFOEX extends Struct {
@@ -6147,6 +6612,9 @@ base class MONITORINFOEX extends Struct {
 /// Contains information about a mouse event passed to a WH_MOUSE hook
 /// procedure, MouseProc.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-mousehookstruct>.
+///
 /// {@category struct}
 base class MOUSEHOOKSTRUCT extends Struct {
   external POINT pt;
@@ -6167,6 +6635,9 @@ base class MOUSEHOOKSTRUCT extends Struct {
 /// This is an extension of the MOUSEHOOKSTRUCT structure that includes
 /// information about wheel movement or the use of the X button.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-mousehookstructex>.
+///
 /// {@category struct}
 base class MOUSEHOOKSTRUCTEX extends Struct {
   external MOUSEHOOKSTRUCT Base;
@@ -6176,6 +6647,9 @@ base class MOUSEHOOKSTRUCTEX extends Struct {
 }
 
 /// Contains information about a simulated mouse event.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-mouseinput>.
 ///
 /// {@category struct}
 base class MOUSEINPUT extends Struct {
@@ -6200,6 +6674,9 @@ base class MOUSEINPUT extends Struct {
 
 /// Contains information about the mouse's location in screen coordinates.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-mousemovepoint>.
+///
 /// {@category struct}
 base class MOUSEMOVEPOINT extends Struct {
   @Int32()
@@ -6217,6 +6694,9 @@ base class MOUSEMOVEPOINT extends Struct {
 
 /// Describes a mouse input event in a console INPUT_RECORD structure.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/mouse-event-record-str>.
+///
 /// {@category struct}
 base class MOUSE_EVENT_RECORD extends Struct {
   external COORD dwMousePosition;
@@ -6232,6 +6712,9 @@ base class MOUSE_EVENT_RECORD extends Struct {
 }
 
 /// Contains message information from a thread's message queue.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-msg>.
 ///
 /// {@category struct}
 base class MSG extends Struct {
@@ -6255,6 +6738,9 @@ base class MSG extends Struct {
 
 /// Contains information about a low-level mouse input event.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-msllhookstruct>.
+///
 /// {@category struct}
 base class MSLLHOOKSTRUCT extends Struct {
   external POINT pt;
@@ -6276,6 +6762,9 @@ base class MSLLHOOKSTRUCT extends Struct {
 /// WM_NCCALCSIZE message to calculate the size, position, and valid contents of
 /// the client area of a window.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-nccalcsize_params>.
+///
 /// {@category struct}
 base class NCCALCSIZE_PARAMS extends Struct {
   @Array(3)
@@ -6284,8 +6773,11 @@ base class NCCALCSIZE_PARAMS extends Struct {
   external Pointer<WINDOWPOS> lppos;
 }
 
-/// The NDIS_OBJECT_HEADER structure packages the object type, version, and size
-/// information that is required in many NDIS 6.0 structures.
+/// Packages the object type, version, and size information that is required in
+/// many NDIS 6.0 structures.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/ndis-object-header>.
 ///
 /// {@category struct}
 base class NDIS_OBJECT_HEADER extends Struct {
@@ -6299,8 +6791,10 @@ base class NDIS_OBJECT_HEADER extends Struct {
   external int Size;
 }
 
-/// The NET_LUID union is the locally unique identifier (LUID) for a network
-/// interface.
+/// The locally unique identifier (LUID) for a network interface.
+///
+/// To learn more about this union, see
+/// <https://learn.microsoft.com/windows/win32/api/ifdef/ns-ifdef-net_luid_lh>.
 ///
 /// {@category union}
 sealed class NET_LUID_LH extends Union {
@@ -6321,7 +6815,10 @@ extension NET_LUID_LH_0_Extension on NET_LUID_LH {
   set bitfield(int value) => this.Info.bitfield = value;
 }
 
-/// The NEWTEXTMETRIC structure contains data that describes a physical font.
+/// Contains data that describes a physical font.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-newtextmetricw>.
 ///
 /// {@category struct}
 base class NEWTEXTMETRIC extends Struct {
@@ -6402,6 +6899,9 @@ base class NEWTEXTMETRIC extends Struct {
 /// current internet connection profile values in an RDP Child Session to
 /// support the simulation of specific metered internet connection conditions.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/ns-netlistmgr-nlm_simulated_profile_info>.
+///
 /// {@category struct}
 base class NLM_SIMULATED_PROFILE_INFO extends Struct {
   @Array(256)
@@ -6436,8 +6936,8 @@ base class NLM_SIMULATED_PROFILE_INFO extends Struct {
 /// Contains the scalable metrics associated with the nonclient area of a
 /// nonminimized window.
 ///
-/// This structure is used by the SPI_GETNONCLIENTMETRICS and
-/// SPI_SETNONCLIENTMETRICS actions of the SystemParametersInfo function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-nonclientmetricsw>.
 ///
 /// {@category struct}
 base class NONCLIENTMETRICS extends Struct {
@@ -6489,6 +6989,9 @@ base class NONCLIENTMETRICS extends Struct {
 /// notification area.
 ///
 /// Used by Shell_NotifyIcon.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/ns-shellapi-notifyicondataw>.
 ///
 /// {@category struct}
 base class NOTIFYICONDATA extends Struct {
@@ -6604,12 +7107,11 @@ extension NOTIFYICONDATA_0_Extension on NOTIFYICONDATA {
 /// {@category struct}
 typedef NTSTATUS = Int32;
 
-/// The OPENCARDNAME structure contains the information that the GetOpenCardName
-/// function uses to initialize a smart card Select Card dialog box.
+/// Contains the information that the GetOpenCardName function uses to
+/// initialize a smart card Select Card dialog box.
 ///
-/// Calling SCardUIDlgSelectCard with OPENCARDNAME_EX is recommended over
-/// calling GetOpenCardName with OPENCARDNAME. OPENCARDNAME is provided for
-/// backward compatibility.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winscard/ns-winscard-opencardnamew>.
 ///
 /// {@category struct}
 base class OPENCARDNAME extends Struct {
@@ -6673,9 +7175,11 @@ base class OPENCARDNAME extends Struct {
   external int hCardHandle;
 }
 
-/// The OPENCARDNAME_EX structure contains the information that the
-/// SCardUIDlgSelectCard function uses to initialize a smart card Select Card
-/// dialog box.
+/// Contains the information that the SCardUIDlgSelectCard function uses to
+/// initialize a smart card Select Card dialog box.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winscard/ns-winscard-opencardname_exw>.
 ///
 /// {@category struct}
 base class OPENCARDNAME_EX extends Struct {
@@ -6727,11 +7231,13 @@ base class OPENCARDNAME_EX extends Struct {
   external int hCardHandle;
 }
 
-/// The OPENCARD_SEARCH_CRITERIA structure is used by the SCardUIDlgSelectCard
-/// function in order to recognize cards that meet the requirements set forth by
-/// the caller.
+/// Used by the SCardUIDlgSelectCard function in order to recognize cards that
+/// meet the requirements set forth by the caller.
 ///
 /// You can, however, call SCardUIDlgSelectCard without using this structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winscard/ns-winscard-opencard_search_criteriaw>.
 ///
 /// {@category struct}
 base class OPENCARD_SEARCH_CRITERIA extends Struct {
@@ -6773,6 +7279,9 @@ base class OPENCARD_SEARCH_CRITERIA extends Struct {
 ///
 /// After the user closes the dialog box, the system returns information about
 /// the user's selection in this structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/ns-commdlg-openfilenamew>.
 ///
 /// {@category struct}
 base class OPENFILENAME extends Struct {
@@ -6838,8 +7347,6 @@ base class OPENFILENAME extends Struct {
   external int FlagsEx;
 }
 
-/// Contains details about the operating system for an assembly or module.
-///
 /// {@category struct}
 base class OSINFO extends Struct {
   @Uint32()
@@ -6854,9 +7361,8 @@ base class OSINFO extends Struct {
 
 /// Contains operating system version information.
 ///
-/// The information includes major and minor version numbers, a build number, a
-/// platform identifier, and descriptive text about the operating system. This
-/// structure is used with the GetVersionEx function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-osversioninfow>.
 ///
 /// {@category struct}
 base class OSVERSIONINFO extends Struct {
@@ -6899,8 +7405,10 @@ base class OSVERSIONINFO extends Struct {
 ///
 /// The information includes major and minor version numbers, a build number, a
 /// platform identifier, and information about product suites and the latest
-/// Service Pack installed on the system. This structure is used with the
-/// GetVersionEx and VerifyVersionInfo functions.
+/// Service Pack installed on the system.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-osversioninfoexw>.
 ///
 /// {@category struct}
 base class OSVERSIONINFOEX extends Struct {
@@ -6958,6 +7466,9 @@ base class OSVERSIONINFOEX extends Struct {
 /// Contains information used in asynchronous (or overlapped) input and output
 /// (I/O).
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ns-minwinbase-overlapped>.
+///
 /// {@category struct}
 base class OVERLAPPED extends Struct {
   @IntPtr()
@@ -7007,6 +7518,9 @@ extension OVERLAPPED_0_0_Extension on OVERLAPPED {
 /// Contains the information returned by a call to the
 /// GetQueuedCompletionStatusEx function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ns-minwinbase-overlapped_entry>.
+///
 /// {@category struct}
 base class OVERLAPPED_ENTRY extends Struct {
   @IntPtr()
@@ -7021,10 +7535,13 @@ base class OVERLAPPED_ENTRY extends Struct {
   external int dwNumberOfBytesTransferred;
 }
 
-/// The PAINTSTRUCT structure contains information for an application.
+/// Contains information for an application.
 ///
 /// This information can be used to paint the client area of a window owned by
 /// that application.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-paintstruct>.
 ///
 /// {@category struct}
 base class PAINTSTRUCT extends Struct {
@@ -7047,10 +7564,10 @@ base class PAINTSTRUCT extends Struct {
   external Array<Uint8> _rgbReserved;
 }
 
-/// The PALETTEENTRY structure specifies the color and usage of an entry in a
-/// logical palette.
+/// Specifies the color and usage of an entry in a logical palette.
 ///
-/// A logical palette is defined by a LOGPALETTE structure.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-paletteentry>.
 ///
 /// {@category struct}
 base class PALETTEENTRY extends Struct {
@@ -7070,6 +7587,9 @@ base class PALETTEENTRY extends Struct {
 /// Contains information needed for transferring a structure element, parameter,
 /// or function return value between processes.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-paramdesc>.
+///
 /// {@category struct}
 base class PARAMDESC extends Struct {
   external Pointer<PARAMDESCEX> pparamdescex;
@@ -7080,6 +7600,9 @@ base class PARAMDESC extends Struct {
 
 /// Contains information about the default value of a parameter.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-paramdescex>.
+///
 /// {@category struct}
 base class PARAMDESCEX extends Struct {
   @Uint32()
@@ -7089,6 +7612,9 @@ base class PARAMDESCEX extends Struct {
 }
 
 /// Contains performance information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/ns-psapi-performance_information>.
 ///
 /// {@category struct}
 base class PERFORMANCE_INFORMATION extends Struct {
@@ -7137,6 +7663,9 @@ base class PERFORMANCE_INFORMATION extends Struct {
 
 /// Contains a handle and text description corresponding to a physical monitor.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/physicalmonitorenumerationapi/ns-physicalmonitorenumerationapi-physical_monitor>.
+///
 /// {@category struct}
 @Packed(1)
 base class PHYSICAL_MONITOR extends Struct {
@@ -7163,7 +7692,10 @@ base class PHYSICAL_MONITOR extends Struct {
   }
 }
 
-/// The POINT structure defines the x- and y-coordinates of a point.
+/// Defines the x- and y-coordinates of a point.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ns-windef-point>.
 ///
 /// {@category struct}
 base class POINT extends Struct {
@@ -7179,6 +7711,9 @@ base class POINT extends Struct {
 /// Applications can retrieve this information using the GetPointerInfo,
 /// GetPointerFrameInfo, GetPointerInfoHistory and GetPointerFrameInfoHistory
 /// functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-pointer_info>.
 ///
 /// {@category struct}
 base class POINTER_INFO extends Struct {
@@ -7229,6 +7764,9 @@ base class POINTER_INFO extends Struct {
 
 /// Defines basic pen information common to all pointer types.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-pointer_pen_info>.
+///
 /// {@category struct}
 base class POINTER_PEN_INFO extends Struct {
   external POINTER_INFO pointerInfo;
@@ -7254,6 +7792,9 @@ base class POINTER_PEN_INFO extends Struct {
 
 /// Defines basic touch information common to all pointer types.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-pointer_touch_info>.
+///
 /// {@category struct}
 base class POINTER_TOUCH_INFO extends Struct {
   external POINTER_INFO pointerInfo;
@@ -7275,7 +7816,10 @@ base class POINTER_TOUCH_INFO extends Struct {
   external int pressure;
 }
 
-/// The POINTL structure defines the x- and y-coordinates of a point.
+/// Defines the x- and y-coordinates of a point.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ns-windef-pointl>.
 ///
 /// {@category struct}
 base class POINTL extends Struct {
@@ -7286,7 +7830,10 @@ base class POINTL extends Struct {
   external int y;
 }
 
-/// The POINTS structure defines the x- and y-coordinates of a point.
+/// Defines the x- and y-coordinates of a point.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ns-windef-points>.
 ///
 /// {@category struct}
 base class POINTS extends Struct {
@@ -7297,8 +7844,10 @@ base class POINTS extends Struct {
   external int y;
 }
 
-/// The POLYTEXT structure describes how the PolyTextOut function should draw a
-/// string of text.
+/// Describes how the PolyTextOut function should draw a string of text.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-polytextw>.
 ///
 /// {@category struct}
 base class POLYTEXT extends Struct {
@@ -7321,14 +7870,20 @@ base class POLYTEXT extends Struct {
   external Pointer<Int32> pdx;
 }
 
-/// The PORT_INFO_1 structure identifies a supported printer port.
+/// Identifies a supported printer port.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/port-info-1>.
 ///
 /// {@category struct}
 base class PORT_INFO_1 extends Struct {
   external Pointer<Utf16> pName;
 }
 
-/// The PORT_INFO_2 structure identifies a supported printer port.
+/// Identifies a supported printer port.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/port-info-2>.
 ///
 /// {@category struct}
 base class PORT_INFO_2 extends Struct {
@@ -7348,6 +7903,9 @@ base class PORT_INFO_2 extends Struct {
 
 /// Sent with a power setting event and contains data about the specific change.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-powerbroadcast_setting>.
+///
 /// {@category struct}
 base class POWERBROADCAST_SETTING extends Struct {
   external GUID PowerSetting;
@@ -7359,8 +7917,11 @@ base class POWERBROADCAST_SETTING extends Struct {
   external Array<Uint8> Data;
 }
 
-/// The PRINTER_DEFAULTS structure specifies the default data type, environment,
-/// initialization data, and access rights for a printer.
+/// Specifies the default data type, environment, initialization data, and
+/// access rights for a printer.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-defaults>.
 ///
 /// {@category struct}
 base class PRINTER_DEFAULTS extends Struct {
@@ -7372,7 +7933,10 @@ base class PRINTER_DEFAULTS extends Struct {
   external int DesiredAccess;
 }
 
-/// The PRINTER_INFO_1 structure specifies general printer information.
+/// Specifies general printer information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-info-1>.
 ///
 /// {@category struct}
 base class PRINTER_INFO_1 extends Struct {
@@ -7386,7 +7950,10 @@ base class PRINTER_INFO_1 extends Struct {
   external Pointer<Utf16> pComment;
 }
 
-/// The PRINTER_INFO_2 structure specifies detailed printer information.
+/// Specifies detailed printer information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-info-2>.
 ///
 /// {@category struct}
 base class PRINTER_INFO_2 extends Struct {
@@ -7441,19 +8008,23 @@ base class PRINTER_INFO_2 extends Struct {
   external int AveragePPM;
 }
 
-/// The PRINTER_INFO_3 structure specifies printer security information.
+/// Specifies printer security information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-info-3>.
 ///
 /// {@category struct}
 base class PRINTER_INFO_3 extends Struct {
   external PSECURITY_DESCRIPTOR pSecurityDescriptor;
 }
 
-/// The PRINTER_INFO_4 structure specifies general printer information.
+/// Specifies general printer information.
 ///
 /// The structure can be used to retrieve minimal printer information on a call
-/// to EnumPrinters. Such a call is a fast and easy way to retrieve the names
-/// and attributes of all locally installed printers on a system and all remote
-/// printer connections that a user has established.
+/// to EnumPrinters.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-info-4>.
 ///
 /// {@category struct}
 base class PRINTER_INFO_4 extends Struct {
@@ -7465,7 +8036,10 @@ base class PRINTER_INFO_4 extends Struct {
   external int Attributes;
 }
 
-/// The PRINTER_INFO_5 structure specifies detailed printer information.
+/// Specifies detailed printer information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-info-5>.
 ///
 /// {@category struct}
 base class PRINTER_INFO_5 extends Struct {
@@ -7483,7 +8057,10 @@ base class PRINTER_INFO_5 extends Struct {
   external int TransmissionRetryTimeout;
 }
 
-/// The PRINTER_INFO_6 specifies the status value of a printer.
+/// Specifies the status value of a printer.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-info-6>.
 ///
 /// {@category struct}
 base class PRINTER_INFO_6 extends Struct {
@@ -7491,11 +8068,14 @@ base class PRINTER_INFO_6 extends Struct {
   external int dwStatus;
 }
 
-/// The PRINTER_NOTIFY_INFO structure contains printer information returned by
-/// the FindNextPrinterChangeNotification function.
+/// Contains printer information returned by the
+/// FindNextPrinterChangeNotification function.
 ///
 /// The function returns this information after a wait operation on a printer
 /// change notification object has been satisfied.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-notify-info>.
 ///
 /// {@category struct}
 base class PRINTER_NOTIFY_INFO extends Struct {
@@ -7512,8 +8092,11 @@ base class PRINTER_NOTIFY_INFO extends Struct {
   external Array<PRINTER_NOTIFY_INFO_DATA> aData;
 }
 
-/// The PRINTER_NOTIFY_INFO_DATA structure identifies a job or printer
-/// information field and provides the current data for that field.
+/// Identifies a job or printer information field and provides the current data
+/// for that field.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-notify-info-data>.
 ///
 /// {@category struct}
 base class PRINTER_NOTIFY_INFO_DATA extends Struct {
@@ -7565,8 +8148,6 @@ extension PRINTER_NOTIFY_INFO_DATA_0_0_Extension on PRINTER_NOTIFY_INFO_DATA {
   set pBuf(Pointer value) => this.NotifyData.Data.pBuf = value;
 }
 
-/// Represents printer options.
-///
 /// {@category struct}
 base class PRINTER_OPTIONS extends Struct {
   @Uint32()
@@ -7579,6 +8160,9 @@ base class PRINTER_OPTIONS extends Struct {
 /// Contains the execution context of the printer driver that calls
 /// GetPrintExecutionData.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/print-execution-data>.
+///
 /// {@category struct}
 base class PRINT_EXECUTION_DATA extends Struct {
   @Int32()
@@ -7590,8 +8174,8 @@ base class PRINT_EXECUTION_DATA extends Struct {
 
 /// Contains information about a heap element.
 ///
-/// The HeapWalk function uses a PROCESS_HEAP_ENTRY structure to enumerate the
-/// elements of a heap.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ns-minwinbase-process_heap_entry>.
 ///
 /// {@category struct}
 base class PROCESS_HEAP_ENTRY extends Struct {
@@ -7676,6 +8260,9 @@ extension PROCESS_HEAP_ENTRY_0_1_Extension on PROCESS_HEAP_ENTRY {
 /// It is used with the CreateProcess, CreateProcessAsUser,
 /// CreateProcessWithLogonW, or CreateProcessWithTokenW function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/ns-processthreadsapi-process_information>.
+///
 /// {@category struct}
 base class PROCESS_INFORMATION extends Struct {
   @IntPtr()
@@ -7696,6 +8283,9 @@ base class PROCESS_INFORMATION extends Struct {
 ///
 /// Replaces SHCOLUMNID.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wtypes/ns-wtypes-propertykey>.
+///
 /// {@category struct}
 base class PROPERTYKEY extends Struct {
   external GUID fmtid;
@@ -7704,9 +8294,11 @@ base class PROPERTYKEY extends Struct {
   external int pid;
 }
 
-/// The PROPSPEC structure is used by many of the methods of IPropertyStorage to
-/// specify a property either by its property identifier (ID) or the associated
-/// string name.
+/// Used by many of the methods of IPropertyStorage to specify a property either
+/// by its property identifier (ID) or the associated string name.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/propidlbase/ns-propidlbase-propspec>.
 ///
 /// {@category struct}
 base class PROPSPEC extends Struct {
@@ -7732,9 +8324,11 @@ extension PROPSPEC_0_Extension on PROPSPEC {
   set lpwstr(Pointer<Utf16> value) => this.Anonymous.lpwstr = value;
 }
 
-/// The PROPVARIANT structure is used in the ReadMultiple and WriteMultiple
-/// methods of IPropertyStorage to define the type tag and the value of a
-/// property in a property set.
+/// Used in the ReadMultiple and WriteMultiple methods of IPropertyStorage to
+/// define the type tag and the value of a property in a property set.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/propidlbase/ns-propidlbase-propvariant>.
 ///
 /// {@category struct}
 base class PROPVARIANT extends Struct {
@@ -8218,13 +8812,11 @@ extension PROPVARIANT_0_0_0_Extension on PROPVARIANT {
       this.Anonymous.Anonymous.Anonymous.pvarVal = value;
 }
 
-/// The protoent structure contains the name and protocol numbers that
-/// correspond to a given protocol name.
+/// Contains the name and protocol numbers that correspond to a given protocol
+/// name.
 ///
-/// Applications must never attempt to modify this structure or to free any of
-/// its components. Furthermore, only one copy of this structure is allocated
-/// per thread, and therefore, the application should copy any information it
-/// needs before issuing any other Windows Sockets function calls.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsock/ns-winsock-protoent>.
 ///
 /// {@category struct}
 base class PROTOENT extends Struct {
@@ -8245,6 +8837,9 @@ typedef PSID = Pointer;
 /// Contains configuration information for an installed service.
 ///
 /// It is used by the QueryServiceConfig function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-query_service_configw>.
 ///
 /// {@category struct}
 base class QUERY_SERVICE_CONFIG extends Struct {
@@ -8276,6 +8871,9 @@ base class QUERY_SERVICE_CONFIG extends Struct {
 ///
 /// It is used by the QueryServiceLockStatus function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-query_service_lock_statusw>.
+///
 /// {@category struct}
 base class QUERY_SERVICE_LOCK_STATUS extends Struct {
   @Uint32()
@@ -8288,6 +8886,9 @@ base class QUERY_SERVICE_LOCK_STATUS extends Struct {
 }
 
 /// Describes the format of the raw input from a Human Interface Device (HID).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawhid>.
 ///
 /// {@category struct}
 base class RAWHID extends Struct {
@@ -8302,6 +8903,9 @@ base class RAWHID extends Struct {
 }
 
 /// Contains the raw input from a device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawinput>.
 ///
 /// {@category struct}
 base class RAWINPUT extends Struct {
@@ -8332,6 +8936,9 @@ extension RAWINPUT_0_Extension on RAWINPUT {
 
 /// Defines information for the raw input devices.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawinputdevice>.
+///
 /// {@category struct}
 base class RAWINPUTDEVICE extends Struct {
   @Uint16()
@@ -8349,6 +8956,9 @@ base class RAWINPUTDEVICE extends Struct {
 
 /// Contains information about a raw input device.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawinputdevicelist>.
+///
 /// {@category struct}
 base class RAWINPUTDEVICELIST extends Struct {
   @IntPtr()
@@ -8359,6 +8969,9 @@ base class RAWINPUTDEVICELIST extends Struct {
 }
 
 /// Contains the header information that is part of the raw input data.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawinputheader>.
 ///
 /// {@category struct}
 base class RAWINPUTHEADER extends Struct {
@@ -8376,6 +8989,9 @@ base class RAWINPUTHEADER extends Struct {
 }
 
 /// Contains information about the state of the keyboard.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawkeyboard>.
 ///
 /// {@category struct}
 base class RAWKEYBOARD extends Struct {
@@ -8400,6 +9016,9 @@ base class RAWKEYBOARD extends Struct {
 }
 
 /// Contains information about the state of the mouse.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-rawmouse>.
 ///
 /// {@category struct}
 base class RAWMOUSE extends Struct {
@@ -8455,8 +9074,11 @@ extension RAWMOUSE_0_0_Extension on RAWMOUSE {
   set usButtonData(int value) => this.Anonymous.Anonymous.usButtonData = value;
 }
 
-/// The RECT structure defines a rectangle by the coordinates of its upper-left
-/// and lower-right corners.
+/// Defines a rectangle by the coordinates of its upper-left and lower-right
+/// corners.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ns-windef-rect>.
 ///
 /// {@category struct}
 base class RECT extends Struct {
@@ -8473,8 +9095,11 @@ base class RECT extends Struct {
   external int bottom;
 }
 
-/// The RECTL structure defines a rectangle by the coordinates of its upper-left
-/// and lower-right corners.
+/// Defines a rectangle by the coordinates of its upper-left and lower-right
+/// corners.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ns-windef-rectl>.
 ///
 /// {@category struct}
 base class RECTL extends Struct {
@@ -8491,8 +9116,11 @@ base class RECTL extends Struct {
   external int bottom;
 }
 
-/// The RGBQUAD structure describes a color consisting of relative intensities
-/// of red, green, and blue.
+/// Describes a color consisting of relative intensities of red, green, and
+/// blue.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-rgbquad>.
 ///
 /// {@category struct}
 base class RGBQUAD extends Struct {
@@ -8511,6 +9139,9 @@ base class RGBQUAD extends Struct {
 }
 
 /// Represents a safe array.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-safearray>.
 ///
 /// {@category struct}
 base class SAFEARRAY extends Struct {
@@ -8534,6 +9165,9 @@ base class SAFEARRAY extends Struct {
 
 /// Represents the bounds of one dimension of the array.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-safearraybound>.
+///
 /// {@category struct}
 base class SAFEARRAYBOUND extends Struct {
   @Uint32()
@@ -8543,8 +9177,10 @@ base class SAFEARRAYBOUND extends Struct {
   external int lLbound;
 }
 
-/// The SCARD_ATRMASK structure is used by the SCardLocateCardsByATR function to
-/// locate cards.
+/// Used by the SCardLocateCardsByATR function to locate cards.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winscard/ns-winscard-scard_atrmask>.
 ///
 /// {@category struct}
 base class SCARD_ATRMASK extends Struct {
@@ -8558,14 +9194,10 @@ base class SCARD_ATRMASK extends Struct {
   external Array<Uint8> rgbMask;
 }
 
-/// The SCARD_IO_REQUEST structure begins a protocol control information
-/// structure.
+/// Begins a protocol control information structure.
 ///
-/// Any protocol-specific information then immediately follows this structure.
-/// The entire length of the structure must be aligned with the underlying
-/// hardware architecture word size. For example, in Win32 the length of any PCI
-/// information must be a multiple of four bytes so that it aligns on a 32-bit
-/// boundary.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/SecAuthN/scard-io-request>.
 ///
 /// {@category struct}
 base class SCARD_IO_REQUEST extends Struct {
@@ -8576,8 +9208,10 @@ base class SCARD_IO_REQUEST extends Struct {
   external int cbPciLength;
 }
 
-/// The SCARD_READERSTATE structure is used by functions for tracking smart
-/// cards within readers.
+/// Used by functions for tracking smart cards within readers.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winscard/ns-winscard-scard_readerstatew>.
 ///
 /// {@category struct}
 base class SCARD_READERSTATE extends Struct {
@@ -8598,7 +9232,10 @@ base class SCARD_READERSTATE extends Struct {
   external Array<Uint8> rgbAtr;
 }
 
-/// The SCROLLBARINFO structure contains scroll bar information.
+/// Contains scroll bar information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-scrollbarinfo>.
 ///
 /// {@category struct}
 base class SCROLLBARINFO extends Struct {
@@ -8623,9 +9260,12 @@ base class SCROLLBARINFO extends Struct {
   external Array<Uint32> rgstate;
 }
 
-/// The SCROLLINFO structure contains scroll bar parameters to be set by the
-/// SetScrollInfo function (or SBM_SETSCROLLINFO message), or retrieved by the
-/// GetScrollInfo function (or SBM_GETSCROLLINFO message)
+/// Contains scroll bar parameters to be set by the SetScrollInfo function (or
+/// SBM_SETSCROLLINFO message), or retrieved by the GetScrollInfo function (or
+/// SBM_GETSCROLLINFO message).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-scrollinfo>.
 ///
 /// {@category struct}
 base class SCROLLINFO extends Struct {
@@ -8653,6 +9293,9 @@ base class SCROLLINFO extends Struct {
 
 /// Represents an action that the service control manager can perform.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-sc_action>.
+///
 /// {@category struct}
 base class SC_ACTION extends Struct {
   @Int32()
@@ -8665,7 +9308,10 @@ base class SC_ACTION extends Struct {
 /// {@category struct}
 typedef SC_HANDLE = IntPtr;
 
-/// The SDP_ELEMENT_DATA structure stores SDP element data.
+/// Stores SDP element data.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-sdp_element_data>.
 ///
 /// {@category struct}
 base class SDP_ELEMENT_DATA extends Struct {
@@ -8848,8 +9494,6 @@ extension SDP_ELEMENT_DATA_0_3_Extension on SDP_ELEMENT_DATA {
   set length(int value) => this.data.alternative.length = value;
 }
 
-/// The union member for a 128-bit integer.
-///
 /// {@category struct}
 base class SDP_LARGE_INTEGER_16 extends Struct {
   @Uint64()
@@ -8859,8 +9503,10 @@ base class SDP_LARGE_INTEGER_16 extends Struct {
   external int HighPart;
 }
 
-/// The SDP_STRING_TYPE_DATA structure stores information about SDP string
-/// types.
+/// Stores information about SDP string types.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ns-bluetoothapis-sdp_string_type_data>.
 ///
 /// {@category struct}
 base class SDP_STRING_TYPE_DATA extends Struct {
@@ -8874,8 +9520,6 @@ base class SDP_STRING_TYPE_DATA extends Struct {
   external int attributeId;
 }
 
-/// The union member for a 128-bit unsigned integer.
-///
 /// {@category struct}
 base class SDP_ULARGE_INTEGER_16 extends Struct {
   @Uint64()
@@ -8885,13 +9529,11 @@ base class SDP_ULARGE_INTEGER_16 extends Struct {
   external int HighPart;
 }
 
-/// The SECURITY_ATTRIBUTES structure contains the security descriptor for an
-/// object and specifies whether the handle retrieved by specifying this
-/// structure is inheritable.
+/// Contains the security descriptor for an object and specifies whether the
+/// handle retrieved by specifying this structure is inheritable.
 ///
-/// This structure provides security settings for objects created by various
-/// functions, such as CreateFile, CreatePipe, CreateProcess, RegCreateKeyEx, or
-/// RegSaveKeyEx.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wtypesbase/ns-wtypesbase-security_attributes>.
 ///
 /// {@category struct}
 base class SECURITY_ATTRIBUTES extends Struct {
@@ -8904,11 +9546,10 @@ base class SECURITY_ATTRIBUTES extends Struct {
   external int bInheritHandle;
 }
 
-/// The SECURITY_DESCRIPTOR structure contains the security information
-/// associated with an object.
+/// Contains the security information associated with an object.
 ///
-/// Applications use this structure to set and query an object's security
-/// status.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-security_descriptor>.
 ///
 /// {@category struct}
 base class SECURITY_DESCRIPTOR extends Struct {
@@ -8930,8 +9571,11 @@ base class SECURITY_DESCRIPTOR extends Struct {
   external Pointer<ACL> Dacl;
 }
 
-/// The servent structure is used to store or return the name and service number
-/// for a given service name.
+/// Used to store or return the name and service number for a given service
+/// name.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsock/ns-winsock-servent>.
 ///
 /// {@category struct}
 base class SERVENT extends Struct {
@@ -8947,6 +9591,9 @@ base class SERVENT extends Struct {
 
 /// Contains service control parameters.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_control_status_reason_paramsw>.
+///
 /// {@category struct}
 base class SERVICE_CONTROL_STATUS_REASON_PARAMS extends Struct {
   @Uint32()
@@ -8959,6 +9606,9 @@ base class SERVICE_CONTROL_STATUS_REASON_PARAMS extends Struct {
 
 /// Contains the delayed auto-start setting of an auto-start service.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_delayed_auto_start_info>.
+///
 /// {@category struct}
 base class SERVICE_DELAYED_AUTO_START_INFO extends Struct {
   @Int32()
@@ -8966,6 +9616,9 @@ base class SERVICE_DELAYED_AUTO_START_INFO extends Struct {
 }
 
 /// Contains a service description.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_descriptionw>.
 ///
 /// {@category struct}
 base class SERVICE_DESCRIPTION extends Struct {
@@ -8977,6 +9630,9 @@ base class SERVICE_DESCRIPTION extends Struct {
 ///
 /// A service is considered failed when it terminates without reporting a status
 /// of SERVICE_STOPPED to the service controller.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_failure_actionsw>.
 ///
 /// {@category struct}
 base class SERVICE_FAILURE_ACTIONS extends Struct {
@@ -8997,6 +9653,9 @@ base class SERVICE_FAILURE_ACTIONS extends Struct {
 ///
 /// This setting determines when failure actions are to be executed.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_failure_actions_flag>.
+///
 /// {@category struct}
 base class SERVICE_FAILURE_ACTIONS_FLAG extends Struct {
   @Int32()
@@ -9004,6 +9663,9 @@ base class SERVICE_FAILURE_ACTIONS_FLAG extends Struct {
 }
 
 /// Indicates a service protection type.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_launch_protected_info>.
 ///
 /// {@category struct}
 base class SERVICE_LAUNCH_PROTECTED_INFO extends Struct {
@@ -9013,7 +9675,8 @@ base class SERVICE_LAUNCH_PROTECTED_INFO extends Struct {
 
 /// Represents service status notification information.
 ///
-/// It is used by the NotifyServiceStatusChange function.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_notify_2w>.
 ///
 /// {@category struct}
 base class SERVICE_NOTIFY_2 extends Struct {
@@ -9037,6 +9700,9 @@ base class SERVICE_NOTIFY_2 extends Struct {
 
 /// Represents the preferred node on which to run a service.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_preferred_node_info>.
+///
 /// {@category struct}
 base class SERVICE_PREFERRED_NODE_INFO extends Struct {
   @Uint16()
@@ -9048,6 +9714,9 @@ base class SERVICE_PREFERRED_NODE_INFO extends Struct {
 
 /// Contains preshutdown settings.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_preshutdown_info>.
+///
 /// {@category struct}
 base class SERVICE_PRESHUTDOWN_INFO extends Struct {
   @Uint32()
@@ -9056,6 +9725,9 @@ base class SERVICE_PRESHUTDOWN_INFO extends Struct {
 
 /// Represents the required privileges for a service.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_required_privileges_infow>.
+///
 /// {@category struct}
 base class SERVICE_REQUIRED_PRIVILEGES_INFO extends Struct {
   external Pointer<Utf16> pmszRequiredPrivileges;
@@ -9063,7 +9735,8 @@ base class SERVICE_REQUIRED_PRIVILEGES_INFO extends Struct {
 
 /// Represents a service security identifier (SID).
 ///
-///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_sid_info>.
 ///
 /// {@category struct}
 base class SERVICE_SID_INFO extends Struct {
@@ -9073,10 +9746,8 @@ base class SERVICE_SID_INFO extends Struct {
 
 /// Contains status information for a service.
 ///
-/// The ControlService, EnumDependentServices, EnumServicesStatus, and
-/// QueryServiceStatus functions use this structure. A service uses this
-/// structure in the SetServiceStatus function to report its current status to
-/// the service control manager.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_status>.
 ///
 /// {@category struct}
 base class SERVICE_STATUS extends Struct {
@@ -9109,6 +9780,9 @@ typedef SERVICE_STATUS_HANDLE = IntPtr;
 ///
 /// The ControlServiceEx, EnumServicesStatusEx, NotifyServiceStatusChange, and
 /// QueryServiceStatusEx functions use this structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_status_process>.
 ///
 /// {@category struct}
 base class SERVICE_STATUS_PROCESS extends Struct {
@@ -9145,6 +9819,9 @@ base class SERVICE_STATUS_PROCESS extends Struct {
 ///
 /// It is used by the StartServiceCtrlDispatcher function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_table_entryw>.
+///
 /// {@category struct}
 base class SERVICE_TABLE_ENTRY extends Struct {
   external Pointer<Utf16> lpServiceName;
@@ -9153,6 +9830,9 @@ base class SERVICE_TABLE_ENTRY extends Struct {
 }
 
 /// Contains system time change settings.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_timechange_info>.
 ///
 /// {@category struct}
 base class SERVICE_TIMECHANGE_INFO extends Struct {
@@ -9166,6 +9846,9 @@ base class SERVICE_TIMECHANGE_INFO extends Struct {
 /// Represents a service trigger event.
 ///
 /// This structure is used by the SERVICE_TRIGGER_INFO structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_trigger>.
 ///
 /// {@category struct}
 base class SERVICE_TRIGGER extends Struct {
@@ -9188,6 +9871,9 @@ base class SERVICE_TRIGGER extends Struct {
 /// This structure is used by the ChangeServiceConfig2 and QueryServiceConfig2
 /// functions.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_trigger_info>.
+///
 /// {@category struct}
 base class SERVICE_TRIGGER_INFO extends Struct {
   @Uint32()
@@ -9201,10 +9887,8 @@ base class SERVICE_TRIGGER_INFO extends Struct {
 
 /// Contains trigger-specific data for a service trigger event.
 ///
-/// This structure is used by the SERVICE_TRIGGER structure for
-/// SERVICE_TRIGGER_TYPE_CUSTOM, SERVICE_TRIGGER_TYPE_DEVICE_ARRIVAL,
-/// SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT, or
-/// SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT trigger events.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ns-winsvc-service_trigger_specific_data_item>.
 ///
 /// {@category struct}
 base class SERVICE_TRIGGER_SPECIFIC_DATA_ITEM extends Struct {
@@ -9218,6 +9902,9 @@ base class SERVICE_TRIGGER_SPECIFIC_DATA_ITEM extends Struct {
 }
 
 /// Contains information used by ShellExecuteEx.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/ns-shellapi-shellexecuteinfow>.
 ///
 /// {@category struct}
 base class SHELLEXECUTEINFO extends Struct {
@@ -9279,6 +9966,9 @@ extension SHELLEXECUTEINFO_0_Extension on SHELLEXECUTEINFO {
 
 /// Defines Shell item resource.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ns-shobjidl_core-shell_item_resource>.
+///
 /// {@category struct}
 base class SHELL_ITEM_RESOURCE extends Struct {
   external GUID guidType;
@@ -9304,6 +9994,9 @@ base class SHELL_ITEM_RESOURCE extends Struct {
 }
 
 /// Contains information about a file object.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/ns-shellapi-shfileinfow>.
 ///
 /// {@category struct}
 base class SHFILEINFO extends Struct {
@@ -9358,6 +10051,9 @@ base class SHFILEINFO extends Struct {
 /// Contains information that the SHFileOperation function uses to perform file
 /// operations.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/ns-shellapi-shfileopstructw>.
+///
 /// {@category struct}
 base class SHFILEOPSTRUCT extends Struct {
   @IntPtr()
@@ -9383,6 +10079,9 @@ base class SHFILEOPSTRUCT extends Struct {
 
 /// Defines an item identifier.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shtypes/ns-shtypes-shitemid>.
+///
 /// {@category struct}
 @Packed(1)
 base class SHITEMID extends Struct {
@@ -9396,6 +10095,9 @@ base class SHITEMID extends Struct {
 /// Contains the size and item count information retrieved by the
 /// SHQueryRecycleBin function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/ns-shellapi-shqueryrbinfo>.
+///
 /// {@category struct}
 base class SHQUERYRBINFO extends Struct {
   @Uint32()
@@ -9408,7 +10110,10 @@ base class SHQUERYRBINFO extends Struct {
   external int i64NumItems;
 }
 
-/// The SIZE structure defines the width and height of a rectangle.
+/// Defines the width and height of a rectangle.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ns-windef-size>.
 ///
 /// {@category struct}
 base class SIZE extends Struct {
@@ -9421,6 +10126,9 @@ base class SIZE extends Struct {
 
 /// Defines the coordinates of the upper left and lower right corners of a
 /// rectangle.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/small-rect-str>.
 ///
 /// {@category struct}
 base class SMALL_RECT extends Struct {
@@ -9437,7 +10145,10 @@ base class SMALL_RECT extends Struct {
   external int Bottom;
 }
 
-/// The SOCKADDR structure stores socket address information.
+/// Varies depending on the protocol selected.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsock/ns-winsock-sockaddr>.
 ///
 /// {@category struct}
 base class SOCKADDR extends Struct {
@@ -9448,8 +10159,11 @@ base class SOCKADDR extends Struct {
   external Array<CHAR> sa_data;
 }
 
-/// The SOCKADDR_BTH structure is used in conjunction with Bluetooth socket
-/// operations, defined by address family AF_BTH.
+/// Used in conjunction with Bluetooth socket operations, defined by address
+/// family AF_BTH.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ws2bth/ns-ws2bth-sockaddr_bth>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -9469,7 +10183,10 @@ base class SOCKADDR_BTH extends Struct {
 /// {@category struct}
 typedef SOCKET = IntPtr;
 
-/// The SOCKET_ADDRESS structure stores protocol-specific address information.
+/// Stores protocol-specific address information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/ws2def/ns-ws2def-socket_address>.
 ///
 /// {@category struct}
 base class SOCKET_ADDRESS extends Struct {
@@ -9481,6 +10198,9 @@ base class SOCKET_ADDRESS extends Struct {
 
 /// Identifies an authentication service that a server is willing to use to
 /// communicate to a client.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/ns-objidlbase-sole_authentication_service>.
 ///
 /// {@category struct}
 base class SOLE_AUTHENTICATION_SERVICE extends Struct {
@@ -9496,11 +10216,6 @@ base class SOLE_AUTHENTICATION_SERVICE extends Struct {
   external int hr;
 }
 
-/// SPEVENT contains information about an event.
-///
-/// Events are passed from the text-to-speech (TTS) or speech recognition (SR)
-/// engines or audio devices back to applications.
-///
 /// {@category struct}
 base class SPEVENT extends Struct {
   @Int32()
@@ -9519,12 +10234,6 @@ base class SPEVENT extends Struct {
   external int lParam;
 }
 
-/// SPEVENTSOURCEINFO is used by ISpEventSource::GetInfo to pass back
-/// information about the event source.
-///
-/// Event sources contain a queue, which hold events until a caller retrieves
-/// the events using ::GetEvents.
-///
 /// {@category struct}
 base class SPEVENTSOURCEINFO extends Struct {
   @Uint64()
@@ -9537,10 +10246,6 @@ base class SPEVENTSOURCEINFO extends Struct {
   external int ulCount;
 }
 
-/// SPVOICESTATUS contains voice status information.
-///
-/// This structure is returned by ISpVoice::GetStatus.
-///
 /// {@category struct}
 base class SPVOICESTATUS extends Struct {
   @Uint32()
@@ -9585,8 +10290,10 @@ base class SPVOICESTATUS extends Struct {
   external int _dwReserved2;
 }
 
-/// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device
-/// information set.
+/// Defines a device interface in a device information set.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_device_interface_data>.
 ///
 /// {@category struct}
 base class SP_DEVICE_INTERFACE_DATA extends Struct {
@@ -9603,8 +10310,10 @@ base class SP_DEVICE_INTERFACE_DATA extends Struct {
   external int _Reserved;
 }
 
-/// An SP_DEVICE_INTERFACE_DATA structure defines a device interface in a device
-/// information set.
+/// Contains the path for a device interface.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_device_interface_detail_data_w>.
 ///
 /// {@category struct}
 base class SP_DEVICE_INTERFACE_DETAIL_DATA_ extends Struct {
@@ -9615,8 +10324,10 @@ base class SP_DEVICE_INTERFACE_DETAIL_DATA_ extends Struct {
   external Array<Uint16> DevicePath;
 }
 
-/// An SP_DEVINFO_DATA structure defines a device instance that is a member of a
-/// device information set.
+/// Defines a device instance that is a member of a device information set.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/ns-setupapi-sp_devinfo_data>.
 ///
 /// {@category struct}
 base class SP_DEVINFO_DATA extends Struct {
@@ -9635,6 +10346,9 @@ base class SP_DEVINFO_DATA extends Struct {
 
 /// Specifies the window station, desktop, standard handles, and appearance of
 /// the main window for a process at creation time.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfow>.
 ///
 /// {@category struct}
 base class STARTUPINFO extends Struct {
@@ -9697,6 +10411,9 @@ base class STARTUPINFO extends Struct {
 ///
 /// It is used with the CreateProcess and CreateProcessAsUser functions.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-startupinfoexw>.
+///
 /// {@category struct}
 base class STARTUPINFOEX extends Struct {
   external STARTUPINFO StartupInfo;
@@ -9704,7 +10421,12 @@ base class STARTUPINFOEX extends Struct {
   external LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList;
 }
 
-/// The STATPROPSETSTG structure contains information about a property set.
+/// Contains information about a property set.
+///
+/// (STATPROPSETSTG structure).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/propidlbase/ns-propidlbase-statpropsetstg>.
 ///
 /// {@category struct}
 base class STATPROPSETSTG extends Struct {
@@ -9725,11 +10447,13 @@ base class STATPROPSETSTG extends Struct {
   external int dwOSVersion;
 }
 
-/// The STATPROPSTG structure contains data about a single property in a
-/// property set.
+/// Contains data about a single property in a property set.
 ///
 /// This data is the property ID and type tag, and the optional string name that
 /// may be associated with the property.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/propidlbase/ns-propidlbase-statpropstg>.
 ///
 /// {@category struct}
 base class STATPROPSTG extends Struct {
@@ -9742,11 +10466,11 @@ base class STATPROPSTG extends Struct {
   external int vt;
 }
 
-/// The STATSTG structure contains statistical data about an open storage,
-/// stream, or byte-array object.
+/// Contains statistical data about an open storage, stream, or byte-array
+/// object.
 ///
-/// This structure is used in the IEnumSTATSTG, ILockBytes, IStorage, and
-/// IStream interfaces.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/ns-objidl-statstg>.
 ///
 /// {@category struct}
 base class STATSTG extends Struct {
@@ -9783,6 +10507,9 @@ base class STATSTG extends Struct {
 ///
 /// This structure is used by the IOCTL_STORAGE_GET_DEVICE_NUMBER control code.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winioctl/ns-winioctl-storage_device_number>.
+///
 /// {@category struct}
 base class STORAGE_DEVICE_NUMBER extends Struct {
   @Uint32()
@@ -9796,6 +10523,9 @@ base class STORAGE_DEVICE_NUMBER extends Struct {
 }
 
 /// Contains strings returned from the IShellFolder interface methods.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/shtypes/ns-shtypes-strret>.
 ///
 /// {@category struct}
 base class STRRET extends Struct {
@@ -9829,6 +10559,9 @@ extension STRRET_0_Extension on STRRET {
 
 /// Contains the styles for a window.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-stylestruct>.
+///
 /// {@category struct}
 base class STYLESTRUCT extends Struct {
   @Uint32()
@@ -9839,6 +10572,9 @@ base class STYLESTRUCT extends Struct {
 }
 
 /// Contains symbol information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/ns-dbghelp-symbol_infow>.
 ///
 /// {@category struct}
 base class SYMBOL_INFO extends Struct {
@@ -9895,6 +10631,9 @@ base class SYMBOL_INFO extends Struct {
 /// The time is either in coordinated universal time (UTC) or local time,
 /// depending on the function that is being called.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ns-minwinbase-systemtime>.
+///
 /// {@category struct}
 base class SYSTEMTIME extends Struct {
   @Uint16()
@@ -9922,9 +10661,6 @@ base class SYSTEMTIME extends Struct {
   external int wMilliseconds;
 }
 
-/// The SYSTEM_BASIC_INFORMATION structure contains information about the number
-/// of processors present in the system.
-///
 /// {@category struct}
 base class SYSTEM_BASIC_INFORMATION extends Struct {
   @Array(24)
@@ -9940,6 +10676,9 @@ base class SYSTEM_BASIC_INFORMATION extends Struct {
 }
 
 /// Contains information about the current state of the system battery.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-system_battery_state>.
 ///
 /// {@category struct}
 base class SYSTEM_BATTERY_STATE extends Struct {
@@ -9980,9 +10719,6 @@ base class SYSTEM_BATTERY_STATE extends Struct {
   external int DefaultAlert2;
 }
 
-/// The SYSTEM_CODEINTEGRITY_INFORMATION structure contains information about
-/// the code integrity policy.
-///
 /// {@category struct}
 base class SYSTEM_CODEINTEGRITY_INFORMATION extends Struct {
   @Uint32()
@@ -10003,6 +10739,9 @@ base class SYSTEM_EXCEPTION_INFORMATION extends Struct {
 ///
 /// This includes the architecture and type of the processor, the number of
 /// processors in the system, the page size, and other such information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/ns-sysinfoapi-system_info>.
 ///
 /// {@category struct}
 base class SYSTEM_INFO extends Struct {
@@ -10077,6 +10816,9 @@ base class SYSTEM_INTERRUPT_INFORMATION extends Struct {
 /// Describes the relationship between the specified processor set.
 ///
 /// This structure is used with the GetLogicalProcessorInformation function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-system_logical_processor_information>.
 ///
 /// {@category struct}
 base class SYSTEM_LOGICAL_PROCESSOR_INFORMATION extends Struct {
@@ -10169,6 +10911,9 @@ base class SYSTEM_POLICY_INFORMATION extends Struct {
 
 /// Contains information about the power status of the system.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/ns-winbase-system_power_status>.
+///
 /// {@category struct}
 base class SYSTEM_POWER_STATUS extends Struct {
   @Uint8()
@@ -10190,9 +10935,6 @@ base class SYSTEM_POWER_STATUS extends Struct {
   external int BatteryFullLifeTime;
 }
 
-/// The SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION structure contains performance
-/// information for a processor.
-///
 /// {@category struct}
 base class SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION extends Struct {
   @Int64()
@@ -10213,9 +10955,6 @@ base class SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION extends Struct {
   external int _Reserved2;
 }
 
-/// The SYSTEM_PROCESS_INFORMATION structure contains information about a system
-/// process.
-///
 /// {@category struct}
 base class SYSTEM_PROCESS_INFORMATION extends Struct {
   @Uint32()
@@ -10302,9 +11041,6 @@ base class SYSTEM_REGISTRY_QUOTA_INFORMATION extends Struct {
   external Pointer _Reserved1;
 }
 
-/// The SYSTEM_THREAD_INFORMATION structure contains information about a thread
-/// running on a system.
-///
 /// {@category struct}
 base class SYSTEM_THREAD_INFORMATION extends Struct {
   @Array(3)
@@ -10343,8 +11079,11 @@ base class SYSTEM_TIMEOFDAY_INFORMATION extends Struct {
   external Array<Uint8> _Reserved1;
 }
 
-/// The SdpAttributeRange structure is used in a Bluetooth query to constrain
-/// the set of attributes to return in the query.
+/// Used in a Bluetooth query to constrain the set of attributes to return in
+/// the query.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthsdpdef/ns-bthsdpdef-sdpattributerange>.
 ///
 /// {@category struct}
 base class SdpAttributeRange extends Struct {
@@ -10355,7 +11094,10 @@ base class SdpAttributeRange extends Struct {
   external int maxAttribute;
 }
 
-/// The SdpQueryUuid structure facilitates searching for UUIDs.
+/// Facilitates searching for UUIDs.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/bthsdpdef/ns-bthsdpdef-sdpqueryuuid>.
 ///
 /// {@category struct}
 base class SdpQueryUuid extends Struct {
@@ -10365,10 +11107,12 @@ base class SdpQueryUuid extends Struct {
   external int uuidType;
 }
 
-/// The SdpQueryUuidUnion union contains the UUID on which to perform an SDP
-/// query.
+/// Contains the UUID on which to perform an SDP query.
 ///
 /// Used in conjunction with the SdpQueryUuid structure.
+///
+/// To learn more about this union, see
+/// <https://learn.microsoft.com/windows/win32/api/bthsdpdef/ns-bthsdpdef-sdpqueryuuidunion>.
 ///
 /// {@category union}
 sealed class SdpQueryUuidUnion extends Union {
@@ -10381,10 +11125,12 @@ sealed class SdpQueryUuidUnion extends Union {
   external int uuid16;
 }
 
-/// The TASKDIALOGCONFIG structure contains information used to display a task
-/// dialog.
+/// Contains information used to display a task dialog.
 ///
 /// The TaskDialogIndirect function uses this structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/ns-commctrl-taskdialogconfig>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -10484,10 +11230,12 @@ extension TASKDIALOGCONFIG_1_Extension on TASKDIALOGCONFIG {
       this.Anonymous2.pszFooterIcon = value;
 }
 
-/// The TASKDIALOG_BUTTON structure contains information used to display a
-/// button in a task dialog.
+/// Contains information used to display a button in a task dialog.
 ///
 /// The TASKDIALOGCONFIG structure uses this structure.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/ns-commctrl-taskdialog_button>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -10498,10 +11246,13 @@ base class TASKDIALOG_BUTTON extends Struct {
   external Pointer<Utf16> pszButtonText;
 }
 
-/// The TEXTMETRIC structure contains basic information about a physical font.
+/// Contains basic information about a physical font.
 ///
 /// All sizes are specified in logical units; that is, they depend on the
 /// current mapping mode of the display context.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-textmetricw>.
 ///
 /// {@category struct}
 base class TEXTMETRIC extends Struct {
@@ -10566,10 +11317,13 @@ base class TEXTMETRIC extends Struct {
   external int tmCharSet;
 }
 
-/// The timeval structure is used to specify a time interval.
+/// Used to specify a time interval.
 ///
 /// It is associated with the Berkeley Software Distribution (BSD) Time.h header
 /// file.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winsock/ns-winsock-timeval>.
 ///
 /// {@category struct}
 base class TIMEVAL extends Struct {
@@ -10581,6 +11335,9 @@ base class TIMEVAL extends Struct {
 }
 
 /// Contains title bar information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-titlebarinfo>.
 ///
 /// {@category struct}
 base class TITLEBARINFO extends Struct {
@@ -10596,7 +11353,8 @@ base class TITLEBARINFO extends Struct {
 /// Expands on the information described in the TITLEBARINFO structure by
 /// including the coordinates of each element of the title bar.
 ///
-/// This structure is sent with the WM_GETTITLEBARINFOEX message.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-titlebarinfoex>.
 ///
 /// {@category struct}
 base class TITLEBARINFOEX extends Struct {
@@ -10612,8 +11370,11 @@ base class TITLEBARINFOEX extends Struct {
   external Array<RECT> rgrect;
 }
 
-/// The TOKEN_APPCONTAINER_INFORMATION structure specifies all the information
-/// in a token that is necessary for an app container.
+/// Specifies all the information in a token that is necessary for an app
+/// container.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ns-winnt-token_appcontainer_information>.
 ///
 /// {@category struct}
 base class TOKEN_APPCONTAINER_INFORMATION extends Struct {
@@ -10621,6 +11382,9 @@ base class TOKEN_APPCONTAINER_INFORMATION extends Struct {
 }
 
 /// Encapsulates data for touch input.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-touchinput>.
 ///
 /// {@category struct}
 base class TOUCHINPUT extends Struct {
@@ -10659,6 +11423,9 @@ base class TOUCHINPUT extends Struct {
 /// and help compensate for hardware latency when processing touch and gesture
 /// input that contains distance and velocity data.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-touchpredictionparameters>.
+///
 /// {@category struct}
 base class TOUCHPREDICTIONPARAMETERS extends Struct {
   @Uint32()
@@ -10676,6 +11443,9 @@ base class TOUCHPREDICTIONPARAMETERS extends Struct {
 
 /// Contains extended parameters for the TrackPopupMenuEx function.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-tpmparams>.
+///
 /// {@category struct}
 base class TPMPARAMS extends Struct {
   @Uint32()
@@ -10685,6 +11455,9 @@ base class TPMPARAMS extends Struct {
 }
 
 /// Contains attributes of a type.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-typeattr>.
 ///
 /// {@category struct}
 base class TYPEATTR extends Struct {
@@ -10743,6 +11516,9 @@ base class TYPEATTR extends Struct {
 /// Describes the type of a variable, the return type of a function, or the type
 /// of a function parameter.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-typedesc>.
+///
 /// {@category struct}
 base class TYPEDESC extends Struct {
   external TYPEDESC_0 Anonymous;
@@ -10772,8 +11548,11 @@ extension TYPEDESC_0_Extension on TYPEDESC {
   set hreftype(int value) => this.Anonymous.hreftype = value;
 }
 
-/// The UNICODE_STRING structure is used by various Local Security Authority
-/// (LSA) functions to specify a Unicode string.
+/// Used by various Local Security Authority (LSA) functions to specify a
+/// Unicode string.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/subauth/ns-subauth-unicode_string>.
 ///
 /// {@category struct}
 base class UNICODE_STRING extends Struct {
@@ -10791,6 +11570,9 @@ base class UNICODE_STRING extends Struct {
 /// It represents a generic ratio and is used for different purposes and units
 /// even within a single API.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/ns-dwmapi-unsigned_ratio>.
+///
 /// {@category struct}
 @Packed(1)
 base class UNSIGNED_RATIO extends Struct {
@@ -10803,6 +11585,9 @@ base class UNSIGNED_RATIO extends Struct {
 
 /// Used by UpdateLayeredWindowIndirect to provide position, size, shape,
 /// content, and translucency information for a layered window.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-updatelayeredwindowinfo>.
 ///
 /// {@category struct}
 base class UPDATELAYEREDWINDOWINFO extends Struct {
@@ -10836,6 +11621,9 @@ base class UPDATELAYEREDWINDOWINFO extends Struct {
 ///
 /// The RegQueryMultipleValues function uses this structure.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/ns-winreg-valentw>.
+///
 /// {@category struct}
 base class VALENT extends Struct {
   external Pointer<Utf16> ve_valuename;
@@ -10851,6 +11639,9 @@ base class VALENT extends Struct {
 }
 
 /// Describes a variable, constant, or data member.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-vardesc>.
 ///
 /// {@category struct}
 base class VARDESC extends Struct {
@@ -10886,10 +11677,13 @@ extension VARDESC_0_Extension on VARDESC {
   set lpvarValue(Pointer<VARIANT> value) => this.Anonymous.lpvarValue = value;
 }
 
-/// The VARIANT type is used in Win32 to represent a dynamic type.
+/// A container for a large union that carries many types of data.
 ///
-/// It is represented as a struct containing a union of the types that could be
-/// stored. VARIANTs must be initialized with `VariantInit` before their use.
+/// The value in the first member of the structure, vt, describes which of the
+/// union members is valid.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ns-oaidl-variant>.
 ///
 /// {@category struct}
 base class VARIANT extends Struct {
@@ -11249,8 +12043,8 @@ base class VERSIONEDSTREAM extends Struct {
 
 /// Represents a physical location on a disk.
 ///
-/// It is the output buffer for the IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS control
-/// code.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winioctl/ns-winioctl-volume_disk_extents>.
 ///
 /// {@category struct}
 base class VOLUME_DISK_EXTENTS extends Struct {
@@ -11264,6 +12058,9 @@ base class VOLUME_DISK_EXTENTS extends Struct {
 /// Contains version information for a file.
 ///
 /// This information is language and code page independent.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/verrsrc/ns-verrsrc-vs_fixedfileinfo>.
 ///
 /// {@category struct}
 base class VS_FIXEDFILEINFO extends Struct {
@@ -11307,12 +12104,10 @@ base class VS_FIXEDFILEINFO extends Struct {
   external int dwFileDateLS;
 }
 
-/// The WAVEFORMATEX structure defines the format of waveform-audio data.
+/// Defines the format of waveform-audio data.
 ///
-/// Only format information common to all waveform-audio data formats is
-/// included in this structure. For formats that require additional information,
-/// this structure is included as the first member in another structure, along
-/// with the additional information.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-waveformatex>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -11339,12 +12134,11 @@ base class WAVEFORMATEX extends Struct {
   external int cbSize;
 }
 
-/// The WAVEFORMATEXTENSIBLE structure defines the format of waveform-audio data
-/// for formats having more than two channels or higher sample resolutions than
-/// allowed by WAVEFORMATEX.
+/// Defines the format of waveform-audio data for formats having more than two
+/// channels or higher sample resolutions than allowed by WAVEFORMATEX.
 ///
-/// It can also be used to define any format that can be defined by
-/// WAVEFORMATEX.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmreg/ns-mmreg-waveformatextensible>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -11382,8 +12176,10 @@ extension WAVEFORMATEXTENSIBLE_0_Extension on WAVEFORMATEXTENSIBLE {
   set wSamplesPerBlock(int value) => this.Samples.wSamplesPerBlock = value;
 }
 
-/// The WAVEHDR structure defines the header used to identify a waveform-audio
-/// buffer.
+/// Defines the header used to identify a waveform-audio buffer.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-wavehdr>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -11411,8 +12207,10 @@ base class WAVEHDR extends Struct {
   external int reserved;
 }
 
-/// The WAVEINCAPS structure describes the capabilities of a waveform-audio
-/// input device.
+/// Describes the capabilities of a waveform-audio input device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-waveincapsw>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -11456,8 +12254,10 @@ base class WAVEINCAPS extends Struct {
   external int _wReserved1;
 }
 
-/// The WAVEOUTCAPS structure describes the capabilities of a waveform-audio
-/// output device.
+/// Describes the capabilities of a waveform-audio output device.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/ns-mmeapi-waveoutcapsw>.
 ///
 /// {@category struct}
 @Packed(1)
@@ -11506,6 +12306,9 @@ base class WAVEOUTCAPS extends Struct {
 
 /// Contains information about the file that is found by the FindFirstFile,
 /// FindFirstFileEx, or FindNextFile function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ns-minwinbase-win32_find_dataw>.
 ///
 /// {@category struct}
 base class WIN32_FIND_DATA extends Struct {
@@ -11573,6 +12376,9 @@ base class WIN32_FIND_DATA extends Struct {
 
 /// Contains window information.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-windowinfo>.
+///
 /// {@category struct}
 base class WINDOWINFO extends Struct {
   @Uint32()
@@ -11606,6 +12412,9 @@ base class WINDOWINFO extends Struct {
 
 /// Contains information about the placement of a window on the screen.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-windowplacement>.
+///
 /// {@category struct}
 base class WINDOWPLACEMENT extends Struct {
   @Uint32()
@@ -11625,6 +12434,9 @@ base class WINDOWPLACEMENT extends Struct {
 }
 
 /// Contains information about the size and position of a window.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-windowpos>.
 ///
 /// {@category struct}
 base class WINDOWPOS extends Struct {
@@ -11652,13 +12464,18 @@ base class WINDOWPOS extends Struct {
 
 /// Describes a change in the size of the console screen buffer.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/console/window-buffer-size-record-str>.
+///
 /// {@category struct}
 base class WINDOW_BUFFER_SIZE_RECORD extends Struct {
   external COORD dwSize;
 }
 
-/// The WLAN_ASSOCIATION_ATTRIBUTES structure contains association attributes
-/// for a connection.
+/// Contains association attributes for a connection.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_association_attributes>.
 ///
 /// {@category struct}
 base class WLAN_ASSOCIATION_ATTRIBUTES extends Struct {
@@ -11686,8 +12503,10 @@ base class WLAN_ASSOCIATION_ATTRIBUTES extends Struct {
   external int ulTxRate;
 }
 
-/// The WLAN_AUTH_CIPHER_PAIR_LIST structure contains a list of authentication
-/// and cipher algorithm pairs.
+/// Contains a list of authentication and cipher algorithm pairs.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_auth_cipher_pair_list>.
 ///
 /// {@category struct}
 base class WLAN_AUTH_CIPHER_PAIR_LIST extends Struct {
@@ -11698,8 +12517,10 @@ base class WLAN_AUTH_CIPHER_PAIR_LIST extends Struct {
   external Array<DOT11_AUTH_CIPHER_PAIR> pAuthCipherPairList;
 }
 
-/// The WLAN_AVAILABLE_NETWORK structure contains information about an available
-/// wireless network.
+/// Contains information about an available wireless network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_available_network>.
 ///
 /// {@category struct}
 base class WLAN_AVAILABLE_NETWORK extends Struct {
@@ -11765,8 +12586,10 @@ base class WLAN_AVAILABLE_NETWORK extends Struct {
   external int _dwReserved;
 }
 
-/// The WLAN_AVAILABLE_NETWORK_LIST structure contains an array of information
-/// about available networks.
+/// Contains an array of information about available networks.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_available_network_list>.
 ///
 /// {@category struct}
 base class WLAN_AVAILABLE_NETWORK_LIST extends Struct {
@@ -11780,8 +12603,10 @@ base class WLAN_AVAILABLE_NETWORK_LIST extends Struct {
   external Array<WLAN_AVAILABLE_NETWORK> Network;
 }
 
-/// The WLAN_BSS_ENTRY structure contains information about a basic service set
-/// (BSS).
+/// Contains information about a basic service set (BSS).
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_bss_entry>.
 ///
 /// {@category struct}
 base class WLAN_BSS_ENTRY extends Struct {
@@ -11832,8 +12657,10 @@ base class WLAN_BSS_ENTRY extends Struct {
   external int ulIeSize;
 }
 
-/// The WLAN_BSS_LIST structure contains a list of basic service set (BSS)
-/// entries.
+/// Contains a list of basic service set (BSS) entries.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_bss_list>.
 ///
 /// {@category struct}
 base class WLAN_BSS_LIST extends Struct {
@@ -11847,8 +12674,10 @@ base class WLAN_BSS_LIST extends Struct {
   external Array<WLAN_BSS_ENTRY> wlanBssEntries;
 }
 
-/// The WLAN_CONNECTION_ATTRIBUTES structure defines the attributes of a
-/// wireless connection.
+/// Defines the attributes of a wireless connection.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_connection_attributes>.
 ///
 /// {@category struct}
 base class WLAN_CONNECTION_ATTRIBUTES extends Struct {
@@ -11882,8 +12711,10 @@ base class WLAN_CONNECTION_ATTRIBUTES extends Struct {
   external WLAN_SECURITY_ATTRIBUTES wlanSecurityAttributes;
 }
 
-/// The WLAN_CONNECTION_NOTIFICATION_DATA structure contains information about
-/// connection related notifications.
+/// Contains information about connection related notifications.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_connection_notification_data>.
 ///
 /// {@category struct}
 base class WLAN_CONNECTION_NOTIFICATION_DATA extends Struct {
@@ -11927,8 +12758,10 @@ base class WLAN_CONNECTION_NOTIFICATION_DATA extends Struct {
   external Array<Uint16> strProfileXml;
 }
 
-/// The WLAN_CONNECTION_PARAMETERS structure specifies the parameters used when
-/// using the WlanConnect function.
+/// Specifies the parameters used when using the WlanConnect function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_connection_parameters>.
 ///
 /// {@category struct}
 base class WLAN_CONNECTION_PARAMETERS extends Struct {
@@ -11948,8 +12781,10 @@ base class WLAN_CONNECTION_PARAMETERS extends Struct {
   external int dwFlags;
 }
 
-/// A WLAN_COUNTRY_OR_REGION_STRING_LIST structure contains a list of supported
-/// country or region strings.
+/// Contains a list of supported country or region strings.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_country_or_region_string_list>.
 ///
 /// {@category struct}
 base class WLAN_COUNTRY_OR_REGION_STRING_LIST extends Struct {
@@ -11961,6 +12796,9 @@ base class WLAN_COUNTRY_OR_REGION_STRING_LIST extends Struct {
 }
 
 /// Contains an array of device service GUIDs.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_device_service_guid_list>.
 ///
 /// {@category struct}
 base class WLAN_DEVICE_SERVICE_GUID_LIST extends Struct {
@@ -11976,6 +12814,9 @@ base class WLAN_DEVICE_SERVICE_GUID_LIST extends Struct {
 
 /// A structure that represents a device service notification.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_device_service_notification_data>.
+///
 /// {@category struct}
 base class WLAN_DEVICE_SERVICE_NOTIFICATION_DATA extends Struct {
   external GUID DeviceService;
@@ -11990,8 +12831,11 @@ base class WLAN_DEVICE_SERVICE_NOTIFICATION_DATA extends Struct {
   external Array<Uint8> DataBlob;
 }
 
-/// The WLAN_HOSTED_NETWORK_CONNECTION_SETTINGS structure contains information
-/// about the connection settings on the wireless Hosted Network.
+/// Contains information about the connection settings on the wireless Hosted
+/// Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_connection_settings>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_CONNECTION_SETTINGS extends Struct {
@@ -12001,9 +12845,11 @@ base class WLAN_HOSTED_NETWORK_CONNECTION_SETTINGS extends Struct {
   external int dwMaxNumberOfPeers;
 }
 
-/// The WLAN_HOSTED_NETWORK_DATA_PEER_STATE_CHANGE structure contains
-/// information about a network state change for a data peer on the wireless
-/// Hosted Network.
+/// Contains information about a network state change for a data peer on the
+/// wireless Hosted Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_data_peer_state_change>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_DATA_PEER_STATE_CHANGE extends Struct {
@@ -12015,8 +12861,11 @@ base class WLAN_HOSTED_NETWORK_DATA_PEER_STATE_CHANGE extends Struct {
   external int PeerStateChangeReason;
 }
 
-/// The WLAN_HOSTED_NETWORK_PEER_STATE structure contains information about the
-/// peer state for a peer on the wireless Hosted Network.
+/// Contains information about the peer state for a peer on the wireless Hosted
+/// Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_peer_state>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_PEER_STATE extends Struct {
@@ -12027,8 +12876,10 @@ base class WLAN_HOSTED_NETWORK_PEER_STATE extends Struct {
   external int PeerAuthState;
 }
 
-/// The WLAN_HOSTED_NETWORK_RADIO_STATE structure contains information about the
-/// radio state on the wireless Hosted Network.
+/// Contains information about the radio state on the wireless Hosted Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_radio_state>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_RADIO_STATE extends Struct {
@@ -12039,8 +12890,11 @@ base class WLAN_HOSTED_NETWORK_RADIO_STATE extends Struct {
   external int dot11HardwareRadioState;
 }
 
-/// The WLAN_HOSTED_NETWORK_SECURITY_SETTINGS structure contains information
-/// about the security settings on the wireless Hosted Network.
+/// Contains information about the security settings on the wireless Hosted
+/// Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_security_settings>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_SECURITY_SETTINGS extends Struct {
@@ -12051,8 +12905,11 @@ base class WLAN_HOSTED_NETWORK_SECURITY_SETTINGS extends Struct {
   external int dot11CipherAlgo;
 }
 
-/// The WLAN_HOSTED_NETWORK_STATE_CHANGE structure contains information about a
-/// network state change on the wireless Hosted Network.
+/// Contains information about a network state change on the wireless Hosted
+/// Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_state_change>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_STATE_CHANGE extends Struct {
@@ -12066,8 +12923,10 @@ base class WLAN_HOSTED_NETWORK_STATE_CHANGE extends Struct {
   external int StateChangeReason;
 }
 
-/// The WLAN_HOSTED_NETWORK_STATUS structure contains information about the
-/// status of the wireless Hosted Network.
+/// Contains information about the status of the wireless Hosted Network.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_hosted_network_status>.
 ///
 /// {@category struct}
 base class WLAN_HOSTED_NETWORK_STATUS extends Struct {
@@ -12092,8 +12951,10 @@ base class WLAN_HOSTED_NETWORK_STATUS extends Struct {
   external Array<WLAN_HOSTED_NETWORK_PEER_STATE> PeerList;
 }
 
-/// The WLAN_INTERFACE_CAPABILITY structure contains information about the
-/// capabilities of an interface.
+/// Contains information about the capabilities of an interface.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_interface_capability>.
 ///
 /// {@category struct}
 base class WLAN_INTERFACE_CAPABILITY extends Struct {
@@ -12116,8 +12977,10 @@ base class WLAN_INTERFACE_CAPABILITY extends Struct {
   external Array<Int32> dot11PhyTypes;
 }
 
-/// The WLAN_INTERFACE_INFO structure contains information about a wireless LAN
-/// interface.
+/// Contains information about a wireless LAN interface.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_interface_info>.
 ///
 /// {@category struct}
 base class WLAN_INTERFACE_INFO extends Struct {
@@ -12146,8 +13009,10 @@ base class WLAN_INTERFACE_INFO extends Struct {
   external int isState;
 }
 
-/// The WLAN_INTERFACE_INFO_LIST structure contains an array of NIC interface
-/// information.
+/// Array of NIC interface information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_interface_info_list>.
 ///
 /// {@category struct}
 base class WLAN_INTERFACE_INFO_LIST extends Struct {
@@ -12161,8 +13026,10 @@ base class WLAN_INTERFACE_INFO_LIST extends Struct {
   external Array<WLAN_INTERFACE_INFO> InterfaceInfo;
 }
 
-/// The WLAN_MAC_FRAME_STATISTICS structure contains information about sent and
-/// received MAC frames.
+/// Contains information about sent and received MAC frames.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_mac_frame_statistics>.
 ///
 /// {@category struct}
 base class WLAN_MAC_FRAME_STATISTICS extends Struct {
@@ -12203,8 +13070,11 @@ base class WLAN_MAC_FRAME_STATISTICS extends Struct {
   external int ullDecryptFailureCount;
 }
 
-/// The WLAN_MSM_NOTIFICATION_DATA structure contains information about media
-/// specific module (MSM) connection related notifications.
+/// Contains information about media specific module (MSM) connection related
+/// notifications.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_msm_notification_data>.
 ///
 /// {@category struct}
 base class WLAN_MSM_NOTIFICATION_DATA extends Struct {
@@ -12251,8 +13121,10 @@ base class WLAN_MSM_NOTIFICATION_DATA extends Struct {
   external int wlanReasonCode;
 }
 
-/// The WLAN_PHY_FRAME_STATISTICS structure contains information about sent and
-/// received PHY frames.
+/// Contains information about sent and received PHY frames.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_phy_frame_statistics>.
 ///
 /// {@category struct}
 base class WLAN_PHY_FRAME_STATISTICS extends Struct {
@@ -12311,8 +13183,10 @@ base class WLAN_PHY_FRAME_STATISTICS extends Struct {
   external int ullFCSErrorCount;
 }
 
-/// The WLAN_PHY_RADIO_STATE structure specifies the radio state on a specific
-/// physical layer (PHY) type.
+/// Specifies the radio state.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_phy_radio_state>.
 ///
 /// {@category struct}
 base class WLAN_PHY_RADIO_STATE extends Struct {
@@ -12326,7 +13200,10 @@ base class WLAN_PHY_RADIO_STATE extends Struct {
   external int dot11HardwareRadioState;
 }
 
-/// The WLAN_PROFILE_INFO structure contains basic information about a profile.
+/// Basic information about a profile.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_profile_info>.
 ///
 /// {@category struct}
 base class WLAN_PROFILE_INFO extends Struct {
@@ -12353,8 +13230,10 @@ base class WLAN_PROFILE_INFO extends Struct {
   external int dwFlags;
 }
 
-/// The WLAN_PROFILE_INFO_LIST structure contains a list of wireless profile
-/// information.
+/// Contains a list of wireless profile information.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_profile_info_list>.
 ///
 /// {@category struct}
 base class WLAN_PROFILE_INFO_LIST extends Struct {
@@ -12368,8 +13247,10 @@ base class WLAN_PROFILE_INFO_LIST extends Struct {
   external Array<WLAN_PROFILE_INFO> ProfileInfo;
 }
 
-/// The WLAN_RADIO_STATE structure specifies the radio state on a list of
-/// physical layer (PHY) types.
+/// Specifies the radio state on a list of physical layer (PHY) types.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_radio_state>.
 ///
 /// {@category struct}
 base class WLAN_RADIO_STATE extends Struct {
@@ -12382,6 +13263,9 @@ base class WLAN_RADIO_STATE extends Struct {
 
 /// The set of supported data rates.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_rate_set>.
+///
 /// {@category struct}
 base class WLAN_RATE_SET extends Struct {
   @Uint32()
@@ -12391,8 +13275,11 @@ base class WLAN_RATE_SET extends Struct {
   external Array<Uint16> usRateSet;
 }
 
-/// The WLAN_RAW_DATA structure contains raw data in the form of a blob that is
-/// used by some Native Wifi functions.
+/// Contains raw data in the form of a blob that is used by some Native Wifi
+/// functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_raw_data>.
 ///
 /// {@category struct}
 base class WLAN_RAW_DATA extends Struct {
@@ -12403,8 +13290,11 @@ base class WLAN_RAW_DATA extends Struct {
   external Array<Uint8> DataBlob;
 }
 
-/// The WLAN_RAW_DATA_LIST structure contains raw data in the form of an array
-/// of data blobs that are used by some Native Wifi functions.
+/// Contains raw data in the form of an array of data blobs that are used by
+/// some Native Wifi functions.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_raw_data_list>.
 ///
 /// {@category struct}
 base class WLAN_RAW_DATA_LIST extends Struct {
@@ -12427,8 +13317,10 @@ sealed class WLAN_RAW_DATA_LIST_0 extends Struct {
   external int dwDataSize;
 }
 
-/// The WLAN_SECURITY_ATTRIBUTES structure defines the security attributes for a
-/// wireless connection.
+/// Defines the security attributes for a wireless connection.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_security_attributes>.
 ///
 /// {@category struct}
 base class WLAN_SECURITY_ATTRIBUTES extends Struct {
@@ -12445,8 +13337,10 @@ base class WLAN_SECURITY_ATTRIBUTES extends Struct {
   external int dot11CipherAlgorithm;
 }
 
-/// The WLAN_STATISTICS structure contains assorted statistics about an
-/// interface.
+/// Assorted statistics about an interface.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ns-wlanapi-wlan_statistics>.
 ///
 /// {@category struct}
 base class WLAN_STATISTICS extends Struct {
@@ -12473,6 +13367,9 @@ base class WLAN_STATISTICS extends Struct {
 
 /// Contains the window class attributes that are registered by the
 /// RegisterClass function.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-wndclassw>.
 ///
 /// {@category struct}
 base class WNDCLASS extends Struct {
@@ -12506,11 +13403,8 @@ base class WNDCLASS extends Struct {
 
 /// Contains window class information.
 ///
-/// It is used with the RegisterClassEx and GetClassInfoEx functions. The
-/// WNDCLASSEX structure is similar to the WNDCLASS structure. There are two
-/// differences. WNDCLASSEX includes the cbSize member, which specifies the size
-/// of the structure, and the hIconSm member, which contains a handle to a small
-/// icon associated with the window class.
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ns-winuser-wndclassexw>.
 ///
 /// {@category struct}
 base class WNDCLASSEX extends Struct {
@@ -12553,6 +13447,9 @@ typedef WPARAM = IntPtr;
 
 /// Defines options that are used to set window visual style attributes.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/ns-uxtheme-wta_options>.
+///
 /// {@category struct}
 base class WTA_OPTIONS extends Struct {
   @Uint32()
@@ -12562,7 +13459,10 @@ base class WTA_OPTIONS extends Struct {
   external int dwMask;
 }
 
-/// The XFORM structure specifies a world-space to page-space transformation.
+/// Specifies a world-space to page-space transformation.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ns-wingdi-xform>.
 ///
 /// {@category struct}
 base class XFORM extends Struct {
@@ -12587,6 +13487,9 @@ base class XFORM extends Struct {
 
 /// Contains information on battery type and charge state.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/ns-xinput-xinput_battery_information>.
+///
 /// {@category struct}
 base class XINPUT_BATTERY_INFORMATION extends Struct {
   @Uint8()
@@ -12599,6 +13502,9 @@ base class XINPUT_BATTERY_INFORMATION extends Struct {
 /// Describes the capabilities of a connected controller.
 ///
 /// The XInputGetCapabilities function returns XINPUT_CAPABILITIES.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/ns-xinput-xinput_capabilities>.
 ///
 /// {@category struct}
 base class XINPUT_CAPABILITIES extends Struct {
@@ -12616,7 +13522,10 @@ base class XINPUT_CAPABILITIES extends Struct {
   external XINPUT_VIBRATION Vibration;
 }
 
-/// Describes the current state of the controller.
+/// Describes the current state of the Xbox 360 Controller.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/ns-xinput-xinput_gamepad>.
 ///
 /// {@category struct}
 base class XINPUT_GAMEPAD extends Struct {
@@ -12644,6 +13553,9 @@ base class XINPUT_GAMEPAD extends Struct {
 
 /// Specifies keystroke data returned by XInputGetKeystroke.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/ns-xinput-xinput_keystroke>.
+///
 /// {@category struct}
 base class XINPUT_KEYSTROKE extends Struct {
   @Uint16()
@@ -12664,6 +13576,9 @@ base class XINPUT_KEYSTROKE extends Struct {
 
 /// Represents the state of a controller.
 ///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/ns-xinput-xinput_state>.
+///
 /// {@category struct}
 base class XINPUT_STATE extends Struct {
   @Uint32()
@@ -12673,6 +13588,9 @@ base class XINPUT_STATE extends Struct {
 }
 
 /// Specifies motor speed levels for the vibration function of a controller.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/ns-xinput-xinput_vibration>.
 ///
 /// {@category struct}
 base class XINPUT_VIBRATION extends Struct {

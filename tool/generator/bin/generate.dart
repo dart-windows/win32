@@ -78,16 +78,12 @@ void generateEnums(List<Scope> scopes, Map<String, String> enums) {
 void generateStructs(List<Scope> scopes, Map<String, String> structs) {
   final file = File(
       Platform.script.resolve('../../../lib/src/structs.g.dart').toFilePath());
-
   final typeDefs = scopes.expand((scope) => scope.structs
       .where((typeDef) => structs.keys.contains(typeDef.name))
       .where((typeDef) => typeDef.supportedArchitectures.x64)
       .toFixedList()
     ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
-
-  final structProjections = typeDefs.map(
-      (typeDef) => StructProjection(typeDef, comment: structs[typeDef.name]!));
-
+  final structProjections = typeDefs.map(StructProjection.new);
   final structsFile = [structFileHeader, ...structProjections].join();
   file.writeAsStringSync(DartFormatter().format(structsFile));
 }

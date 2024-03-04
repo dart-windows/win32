@@ -14,9 +14,6 @@ Iterable<File> get goldenFiles =>
         .whereType<File>()
         .where((file) => file.path.endsWith('.golden'));
 
-final structsToGenerate =
-    loadMap(Platform.script.resolve('../data/win32_structs.json').toFilePath());
-
 var updatedGoldenFiles = 0;
 
 void main() async {
@@ -137,10 +134,7 @@ void updateStructGolden(File file) {
     );
   }
 
-  final projection = StructProjection(
-    typeDef,
-    comment: structsToGenerate[fullyQualifiedType]!,
-  );
+  final projection = StructProjection(typeDef);
   updateGoldenFile(file, projection.format());
 }
 

@@ -68,6 +68,7 @@ final class ApiDetails {
 }
 
 extension on String {
+  // TODO(halildurmus): Refactor this method to use a more efficient approach.
   String sanitize() {
     var string = replaceAll(r'\_', ' ')
         .replaceAllMapped(
@@ -89,15 +90,30 @@ extension on String {
         .replaceFirst(RegExp(r'^\w+\s\(\w+(\.h)?\)\sis\s'), '')
         .replaceFirstMapped(
             RegExp(
-                r'^\w+\s(enumeration|function|interface)\s(defines|specifies)'),
+                r'^[\w\_\s]+\s(enumeration|function|interface|structure|union)\s(defines|specifies)'),
             (match) =>
                 match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
         .replaceFirst(
-          RegExp(
-            r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(enumeration|function|interface)\s(is\s)?(optionally\s)?(type\s)?(values\s)?',
-          ),
-          '',
-        );
+            RegExp(r'^The\s[\w\s\_]+\sspecifies\sthe'), 'Specifies the')
+        .replaceFirst(
+            RegExp(r'^The\s[\w\s\_]+\s[\w\s\_]+\s\(\w+\.h\)\sstructure\sis\s'),
+            '')
+        .replaceFirst(
+            RegExp(
+              r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(enumeration|function|interface|structure|union)\s(\(\w+(\.h)?\)\s)?(is\s)?(optionally\s)?(type\s)?(values\s)?',
+            ),
+            '')
+        .replaceFirstMapped(
+            RegExp(
+                r'^(The\s)?[\w\s]+\sstructure\s(begins|contains|describes|identifies|stores)'),
+            (match) =>
+                match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
+        .replaceFirst(
+            RegExp(
+                r'^See\sreference\sinformation\sabout\sthe\s[\w\s\_]+\sstructure,\swhich\s'),
+            '')
+        .replaceFirst(
+            RegExp(r'\sFor more information,\ssee\sthe\s[\w\s\_]+.'), '');
     if (string.length > 1) {
       string = string[0].toUpperCase() + string.substring(1);
     }
