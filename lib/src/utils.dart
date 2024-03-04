@@ -117,7 +117,8 @@ VTablePointer createComObject(String clsid, String iid) {
 /// ...
 /// }
 /// ```
-void initApp(Function winMain) {
+void initApp(
+    void Function(int hInstance, List<String> args, int nShowCmd) winMain) {
   final nArgs = calloc<Int32>();
   final args = <String>[];
   final lpStartupInfo = calloc<STARTUPINFO>();
