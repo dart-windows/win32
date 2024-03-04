@@ -72,20 +72,37 @@ extension on String {
     var string = replaceAll(r'\_', ' ')
         .replaceAllMapped(
             RegExp(r'\.([A-Z])'), (match) => '. ${match.group(1)}')
-        .replaceFirst(RegExp(r'\. \(\w+\)$'), '.')
+        .replaceFirst(RegExp(r'\.\s\(\w+\)$'), '.')
         .replaceFirst(RegExp(r'^Deprecated. (IShellService )?'), '')
+        .replaceFirst(
+            RegExp(
+                r'^A callback function, which you define in your application,'),
+            'An application-defined callback function')
+        .replaceFirst(RegExp(r'^A callback prototype'),
+            'An application-defined callback function')
         .replaceFirst(RegExp(r'^A callback function prototype'),
             'An application-defined callback function')
+        .replaceFirst(
+            RegExp(r'^\w+\sfunction\sis\sa\scallback\sfunction\sprototype'),
+            'An application-defined callback function')
         .replaceFirst(RegExp(r'^Application-defined'), 'An application-defined')
-        .replaceFirst(RegExp(r'^\w+ \(\w+(\.h)?\)\sis\s'), '')
+        .replaceFirst(RegExp(r'^\w+\s\(\w+(\.h)?\)\sis\s'), '')
+        .replaceFirstMapped(
+            RegExp(
+                r'^\w+\s(enumeration|function|interface)\s(defines|specifies)'),
+            (match) =>
+                match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
         .replaceFirst(
           RegExp(
-            r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(function|interface)\s(is\s)?(optionally\s)?',
+            r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(enumeration|function|interface)\s(is\s)?(optionally\s)?(type\s)?(values\s)?',
           ),
           '',
         );
     if (string.length > 1) {
       string = string[0].toUpperCase() + string.substring(1);
+    }
+    if (!string.endsWith('.')) {
+      string = '$string.';
     }
 
     return string;

@@ -5,21 +5,20 @@
 import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
+import '../doc/api_details.dart';
+import '../doc/api_docs.dart';
+import '../docs.dart';
 import '../extension/string.dart';
 import '../extension/typedef.dart';
 
 /// Represents a Dart projection for a Win32 enum defined by a [TypeDef].
 class EnumProjection {
-  /// Creates an instance of this class for the given Win32 enum [typeDef] and
-  /// optional [comment].
-  EnumProjection(TypeDef typeDef, {this.comment = ''})
+  /// Creates an instance of this class for the given Win32 enum [typeDef].
+  EnumProjection(this.typeDef)
       : bits = typeDef.fields.first.bits,
         fields = typeDef.fields,
         isBitwiseEnum = typeDef.isBitwiseEnum,
         name = typeDef.safeIdentifier;
-
-  /// The comment associated with the enum.
-  final String comment;
 
   /// The number of bits for the base type of the enum (e.g., `8`, `16`).
   final int bits;
@@ -32,6 +31,31 @@ class EnumProjection {
 
   /// The name of the enum converted to safe Dart identifier.
   final String name;
+
+  /// The metadata associated with the enum.
+  final TypeDef typeDef;
+
+  /// The comment associated with the callback.
+  String get comment {
+    final buffer = StringBuffer();
+
+    if (enumDocs.containsKey(typeDef.name)) {
+      buffer.write(enumDocs[typeDef.name]);
+    } else {
+      final docs = ApiDocs.getDocs(typeDef.name.lastComponent);
+      if (docs != null) {
+        final ApiDetails(:description, :helpLink) = docs;
+        buffer.write(description);
+        if (helpLink != null) {
+          buffer.write(' \nTo learn more about this enum, see <$helpLink>.');
+        }
+      }
+    }
+
+    buffer.write(' \n{@category enum}');
+
+    return buffer.toString().toDocComment();
+  }
 
   // The field projections of the enum.
   List<String> get fieldProjections {
@@ -50,8 +74,7 @@ class EnumProjection {
 
   @override
   String toString() => [
-        if (comment.isNotEmpty) ...[comment.toDocComment(), '///'],
-        '/// {@category enum}',
+        if (comment.isNotEmpty) comment,
         'extension type const $name(int _) implements int {',
         fieldProjections.map((p) => '  $p').join('\n'),
         '}'

@@ -14,8 +14,6 @@ Iterable<File> get goldenFiles =>
         .whereType<File>()
         .where((file) => file.path.endsWith('.golden'));
 
-final enumsToGenerate =
-    loadMap(Platform.script.resolve('../data/win32_enums.json').toFilePath());
 final structsToGenerate =
     loadMap(Platform.script.resolve('../data/win32_structs.json').toFilePath());
 
@@ -82,10 +80,7 @@ void updateEnumGolden(File file) {
     );
   }
 
-  final projection = EnumProjection(
-    typeDef,
-    comment: enumsToGenerate[fullyQualifiedType]!,
-  );
+  final projection = EnumProjection(typeDef);
   updateGoldenFile(file, projection.format());
 }
 

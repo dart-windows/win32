@@ -97,6 +97,11 @@ extension type const ANIMATE_WINDOW_FLAGS(int _) implements int {
   static const AW_VER_NEGATIVE = ANIMATE_WINDOW_FLAGS(0x00000008);
 }
 
+/// Specifies the capabilities or privileges requested by a package.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/ne-appxpackaging-appx_capabilities>.
+///
 /// {@category enum}
 extension type const APPX_CAPABILITIES(int _) implements int {
   static const APPX_CAPABILITY_INTERNET_CLIENT = APPX_CAPABILITIES(0x00000001);
@@ -135,6 +140,11 @@ extension type const APPX_CAPABILITY_CLASS_TYPE(int _) implements int {
       APPX_CAPABILITY_CLASS_TYPE(0x00000008);
 }
 
+/// Specifies the degree of compression used to store the file in the package.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/ne-appxpackaging-appx_compression_option>.
+///
 /// {@category enum}
 extension type const APPX_COMPRESSION_OPTION(int _) implements int {
   static const APPX_COMPRESSION_OPTION_NONE =
@@ -149,6 +159,11 @@ extension type const APPX_COMPRESSION_OPTION(int _) implements int {
       APPX_COMPRESSION_OPTION(0x00000004);
 }
 
+/// Specifies the type of footprint file in a package.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/ne-appxpackaging-appx_footprint_file_type>.
+///
 /// {@category enum}
 extension type const APPX_FOOTPRINT_FILE_TYPE(int _) implements int {
   static const APPX_FOOTPRINT_FILE_TYPE_MANIFEST =
@@ -163,6 +178,11 @@ extension type const APPX_FOOTPRINT_FILE_TYPE(int _) implements int {
       APPX_FOOTPRINT_FILE_TYPE(0x00000004);
 }
 
+/// Specifies the processor architectures supported by a package.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/appxpackaging/ne-appxpackaging-appx_package_architecture>.
+///
 /// {@category enum}
 extension type const APPX_PACKAGE_ARCHITECTURE(int _) implements int {
   static const APPX_PACKAGE_ARCHITECTURE_X86 =
@@ -177,6 +197,11 @@ extension type const APPX_PACKAGE_ARCHITECTURE(int _) implements int {
       APPX_PACKAGE_ARCHITECTURE(0x0000000c);
 }
 
+/// Specifies different types of apartments.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/ne-objidlbase-apttype>.
+///
 /// {@category enum}
 extension type const APTTYPE(int _) implements int {
   static const APTTYPE_CURRENT = APTTYPE(0xffffffff);
@@ -186,6 +211,11 @@ extension type const APTTYPE(int _) implements int {
   static const APTTYPE_MAINSTA = APTTYPE(0x00000003);
 }
 
+/// Specifies the set of possible COM apartment type qualifiers.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/ne-objidlbase-apttypequalifier>.
+///
 /// {@category enum}
 extension type const APTTYPEQUALIFIER(int _) implements int {
   static const APTTYPEQUALIFIER_NONE = APTTYPEQUALIFIER(0x00000000);
@@ -199,12 +229,23 @@ extension type const APTTYPEQUALIFIER(int _) implements int {
   static const APTTYPEQUALIFIER_RESERVED_1 = APTTYPEQUALIFIER(0x00000007);
 }
 
+/// Defines constants that indicate whether an audio stream will run in shared
+/// mode or in exclusive mode.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/audiosessiontypes/ne-audiosessiontypes-audclnt_sharemode>.
+///
 /// {@category enum}
 extension type const AUDCLNT_SHAREMODE(int _) implements int {
   static const AUDCLNT_SHAREMODE_SHARED = AUDCLNT_SHAREMODE(0x00000000);
   static const AUDCLNT_SHAREMODE_EXCLUSIVE = AUDCLNT_SHAREMODE(0x00000001);
 }
 
+/// Defines values that describe the characteristics of an audio stream.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/ne-audioclient-audclnt_streamoptions>.
+///
 /// {@category enum}
 extension type const AUDCLNT_STREAMOPTIONS(int _) implements int {
   static const AUDCLNT_STREAMOPTIONS_NONE = AUDCLNT_STREAMOPTIONS(0x00000000);
@@ -215,6 +256,14 @@ extension type const AUDCLNT_STREAMOPTIONS(int _) implements int {
       AUDCLNT_STREAMOPTIONS(0x00000004);
 }
 
+/// Specifies audio ducking options.
+///
+/// Use values from this enumeration when calling
+/// IAudioClientDuckingControl::SetDuckingOptionsForCurrentStream.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/ne-audioclient-audio_ducking_options>.
+///
 /// {@category enum}
 extension type const AUDIO_DUCKING_OPTIONS(int _) implements int {
   static const AUDIO_DUCKING_OPTIONS_DEFAULT =
@@ -223,6 +272,11 @@ extension type const AUDIO_DUCKING_OPTIONS(int _) implements int {
       AUDIO_DUCKING_OPTIONS(0x00000001);
 }
 
+/// Specifies the category of an audio stream.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/audiosessiontypes/ne-audiosessiontypes-audio_stream_category>.
+///
 /// {@category enum}
 extension type const AUDIO_STREAM_CATEGORY(int _) implements int {
   static const AudioCategory_Other = AUDIO_STREAM_CATEGORY(0x00000000);
@@ -259,6 +313,11 @@ extension type const AUTHENTICATION_REQUIREMENTS(int _) implements int {
       AUTHENTICATION_REQUIREMENTS(0x000000ff);
 }
 
+/// Defines constants that indicate the current state of an audio session.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/audiosessiontypes/ne-audiosessiontypes-audiosessionstate>.
+///
 /// {@category enum}
 extension type const AudioSessionState(int _) implements int {
   static const AudioSessionStateInactive = AudioSessionState(0x00000000);
@@ -266,6 +325,12 @@ extension type const AudioSessionState(int _) implements int {
   static const AudioSessionStateExpired = AudioSessionState(0x00000002);
 }
 
+/// Contains values that specify the type of reference to use when returning UI
+/// Automation elements.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/ne-uiautomationclient-automationelementmode>.
+///
 /// {@category enum}
 extension type const AutomationElementMode(int _) implements int {
   static const AutomationElementMode_None = AutomationElementMode(0x00000000);
@@ -295,6 +360,11 @@ extension type const BATTERY_TYPE(int _) implements int {
   static const BATTERY_TYPE_UNKNOWN = BATTERY_TYPE(0xff);
 }
 
+/// Defines the supported authentication types during device pairing.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ne-bluetoothapis-bluetooth_authentication_method>.
+///
 /// {@category enum}
 extension type const BLUETOOTH_AUTHENTICATION_METHOD(int _) implements int {
   static const BLUETOOTH_AUTHENTICATION_METHOD_LEGACY =
@@ -309,6 +379,11 @@ extension type const BLUETOOTH_AUTHENTICATION_METHOD(int _) implements int {
       BLUETOOTH_AUTHENTICATION_METHOD(0x00000005);
 }
 
+/// Specifies the 'Man in the Middle' protection required for authentication.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ne-bluetoothapis-bluetooth_authentication_requirements>.
+///
 /// {@category enum}
 extension type const BLUETOOTH_AUTHENTICATION_REQUIREMENTS(int _)
     implements int {
@@ -328,6 +403,11 @@ extension type const BLUETOOTH_AUTHENTICATION_REQUIREMENTS(int _)
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x000000ff);
 }
 
+/// Defines the input/output capabilities of a Bluetooth Device.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/ne-bluetoothapis-bluetooth_io_capability>.
+///
 /// {@category enum}
 extension type const BLUETOOTH_IO_CAPABILITY(int _) implements int {
   static const BLUETOOTH_IO_CAPABILITY_DISPLAYONLY =
@@ -382,6 +462,11 @@ extension type const BRUSH_STYLE(int _) implements int {
   static const BS_MONOPATTERN = BRUSH_STYLE(0x00000009);
 }
 
+/// Describes the different types of Bluetooth LE generic attributes (GATT).
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ne-bthledef-bth_le_gatt_descriptor_type>.
+///
 /// {@category enum}
 extension type const BTH_LE_GATT_DESCRIPTOR_TYPE(int _) implements int {
   static const CharacteristicExtendedProperties =
@@ -398,12 +483,24 @@ extension type const BTH_LE_GATT_DESCRIPTOR_TYPE(int _) implements int {
   static const CustomDescriptor = BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000006);
 }
 
+/// Describes the different types of Bluetooth Low Energy (LE) generic attribute
+/// (GATT) profile events.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/bthledef/ne-bthledef-bth_le_gatt_event_type>.
+///
 /// {@category enum}
 extension type const BTH_LE_GATT_EVENT_TYPE(int _) implements int {
   static const CharacteristicValueChangedEvent =
       BTH_LE_GATT_EVENT_TYPE(0x00000000);
 }
 
+/// Identifies the calling convention used by a member function described in the
+/// METHODDATA structure.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-callconv>.
+///
 /// {@category enum}
 extension type const CALLCONV(int _) implements int {
   static const CC_FASTCALL = CALLCONV(0x00000000);
@@ -525,6 +622,12 @@ extension type const CLEAR_COMM_ERROR_FLAGS(int _) implements int {
   static const CE_RXPARITY = CLEAR_COMM_ERROR_FLAGS(0x00000004);
 }
 
+/// Values that are used in activation calls to indicate the execution contexts
+/// in which an object is to be run.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wtypesbase/ne-wtypesbase-clsctx>.
+///
 /// {@category enum}
 extension type const CLSCTX(int _) implements int {
   static const CLSCTX_INPROC_SERVER = CLSCTX(0x00000001);
@@ -588,6 +691,11 @@ extension type const COMM_EVENT_MASK(int _) implements int {
   static const EV_TXEMPTY = COMM_EVENT_MASK(0x00000004);
 }
 
+/// Specifies a type of computer name.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/ne-sysinfoapi-computer_name_format>.
+///
 /// {@category enum}
 extension type const COMPUTER_NAME_FORMAT(int _) implements int {
   static const ComputerNameNetBIOS = COMPUTER_NAME_FORMAT(0x00000000);
@@ -643,6 +751,11 @@ extension type const CONSOLE_MODE(int _) implements int {
   static const ENABLE_LVB_GRID_WORLDWIDE = CONSOLE_MODE(0x00000010);
 }
 
+/// Identifies the type of corrective action to be taken for a spelling error.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/spellcheck/ne-spellcheck-corrective_action>.
+///
 /// {@category enum}
 extension type const CORRECTIVE_ACTION(int _) implements int {
   static const CORRECTIVE_ACTION_NONE = CORRECTIVE_ACTION(0x00000000);
@@ -706,6 +819,13 @@ extension type const CWP_FLAGS(int _) implements int {
   static const CWP_SKIPTRANSPARENT = CWP_FLAGS(0x00000004);
 }
 
+/// Contains possible values for the CoalesceEvents property, which indicates
+/// whether an accessible technology client receives all events, or a subset
+/// where duplicate events are detected and filtered.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/ne-uiautomationclient-coalesceeventsoptions>.
+///
 /// {@category enum}
 extension type const CoalesceEventsOptions(int _) implements int {
   static const CoalesceEventsOptions_Disabled =
@@ -714,6 +834,13 @@ extension type const CoalesceEventsOptions(int _) implements int {
       CoalesceEventsOptions(0x00000001);
 }
 
+/// Contains possible values for the ConnectionRecoveryBehavior property, which
+/// indicates whether an accessible technology client adjusts provider request
+/// timeouts when the provider is non-responsive.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/ne-uiautomationclient-connectionrecoverybehavioroptions>.
+///
 /// {@category enum}
 extension type const ConnectionRecoveryBehaviorOptions(int _) implements int {
   static const ConnectionRecoveryBehaviorOptions_Disabled =
@@ -789,6 +916,11 @@ extension type const DESKTOP_SLIDESHOW_STATE(int _) implements int {
       DESKTOP_SLIDESHOW_STATE(0x00000004);
 }
 
+/// Specifies how the desktop wallpaper should be displayed.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-desktop_wallpaper_position>.
+///
 /// {@category enum}
 extension type const DESKTOP_WALLPAPER_POSITION(int _) implements int {
   static const DWPOS_CENTER = DESKTOP_WALLPAPER_POSITION(0x00000000);
@@ -799,6 +931,14 @@ extension type const DESKTOP_WALLPAPER_POSITION(int _) implements int {
   static const DWPOS_SPAN = DESKTOP_WALLPAPER_POSITION(0x00000005);
 }
 
+/// Indicates a spoofed device scale factor, as a percent.
+///
+/// Used by IApplicationDesignModeSettings::SetApplicationViewState and
+/// IApplicationDesignModeSettings::IsApplicationViewStateSupported.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shtypes/ne-shtypes-device_scale_factor>.
+///
 /// {@category enum}
 extension type const DEVICE_SCALE_FACTOR(int _) implements int {
   static const DEVICE_SCALE_FACTOR_INVALID = DEVICE_SCALE_FACTOR(0x00000000);
@@ -957,6 +1097,14 @@ extension type const DFC_TYPE(int _) implements int {
   static const DFC_POPUPMENU = DFC_TYPE(0x00000005);
 }
 
+/// Describes per-monitor DPI scaling behavior overrides for child windows
+/// within dialogs.
+///
+/// The values in this enumeration are bitfields and can be combined.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ne-winuser-dialog_control_dpi_change_behaviors>.
+///
 /// {@category enum}
 extension type const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(int _) implements int {
   static const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000000);
@@ -966,6 +1114,13 @@ extension type const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(int _) implements int {
       DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000002);
 }
 
+/// In Per Monitor v2 contexts, dialogs will automatically respond to DPI
+/// changes by resizing themselves and re-computing the positions of their child
+/// windows (here referred to as re-layouting).
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ne-winuser-dialog_dpi_change_behaviors>.
+///
 /// {@category enum}
 extension type const DIALOG_DPI_CHANGE_BEHAVIORS(int _) implements int {
   static const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS(0x00000000);
@@ -989,6 +1144,12 @@ extension type const DISPATCH_FLAGS(int _) implements int {
   static const DISPATCH_PROPERTYPUTREF = DISPATCH_FLAGS(0x0008);
 }
 
+/// Specifies the type of display device info to configure or obtain through the
+/// DisplayConfigSetDeviceInfo or DisplayConfigGetDeviceInfo function.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_device_info_type>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_DEVICE_INFO_TYPE(int _) implements int {
   static const DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME =
@@ -1019,6 +1180,12 @@ extension type const DISPLAYCONFIG_DEVICE_INFO_TYPE(int _) implements int {
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x0000000d);
 }
 
+/// Specifies that the information that is contained within the
+/// DISPLAYCONFIG_MODE_INFO structure is either source or target mode.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_mode_info_type>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_MODE_INFO_TYPE(int _) implements int {
   static const DISPLAYCONFIG_MODE_INFO_TYPE_SOURCE =
@@ -1029,6 +1196,11 @@ extension type const DISPLAYCONFIG_MODE_INFO_TYPE(int _) implements int {
       DISPLAYCONFIG_MODE_INFO_TYPE(0x00000003);
 }
 
+/// Specifies pixel format in various bits per pixel (BPP) values.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_pixelformat>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_PIXELFORMAT(int _) implements int {
   static const DISPLAYCONFIG_PIXELFORMAT_8BPP =
@@ -1043,6 +1215,11 @@ extension type const DISPLAYCONFIG_PIXELFORMAT(int _) implements int {
       DISPLAYCONFIG_PIXELFORMAT(0x00000005);
 }
 
+/// Specifies the clockwise rotation of the display.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_rotation>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_ROTATION(int _) implements int {
   static const DISPLAYCONFIG_ROTATION_IDENTITY =
@@ -1055,6 +1232,12 @@ extension type const DISPLAYCONFIG_ROTATION(int _) implements int {
       DISPLAYCONFIG_ROTATION(0x00000004);
 }
 
+/// Specifies the scaling transformation applied to content displayed on a video
+/// present network (VidPN) present path.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_scaling>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_SCALING(int _) implements int {
   static const DISPLAYCONFIG_SCALING_IDENTITY =
@@ -1070,6 +1253,11 @@ extension type const DISPLAYCONFIG_SCALING(int _) implements int {
       DISPLAYCONFIG_SCALING(0x00000080);
 }
 
+/// Specifies the method that the display uses to create an image on a screen.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_scanline_ordering>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_SCANLINE_ORDERING(int _) implements int {
   static const DISPLAYCONFIG_SCANLINE_ORDERING_UNSPECIFIED =
@@ -1084,6 +1272,11 @@ extension type const DISPLAYCONFIG_SCANLINE_ORDERING(int _) implements int {
       DISPLAYCONFIG_SCANLINE_ORDERING(0x00000003);
 }
 
+/// Specifies the target's connector type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wingdi/ne-wingdi-displayconfig_video_output_technology>.
+///
 /// {@category enum}
 extension type const DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(int _)
     implements int {
@@ -1148,6 +1341,11 @@ extension type const DLG_BUTTON_CHECK_STATE(int _) implements int {
   static const BST_UNCHECKED = DLG_BUTTON_CHECK_STATE(0x00000000);
 }
 
+/// Defines a wireless LAN authentication algorithm.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-auth-algorithm>.
+///
 /// {@category enum}
 extension type const DOT11_AUTH_ALGORITHM(int _) implements int {
   static const DOT11_AUTH_ALGO_80211_OPEN = DOT11_AUTH_ALGORITHM(0x00000001);
@@ -1167,6 +1365,11 @@ extension type const DOT11_AUTH_ALGORITHM(int _) implements int {
   static const DOT11_AUTH_ALGO_IHV_END = DOT11_AUTH_ALGORITHM(0xffffffff);
 }
 
+/// Defines a basic service set (BSS) network type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-bss-type>.
+///
 /// {@category enum}
 extension type const DOT11_BSS_TYPE(int _) implements int {
   static const dot11_BSS_type_infrastructure = DOT11_BSS_TYPE(0x00000001);
@@ -1174,6 +1377,11 @@ extension type const DOT11_BSS_TYPE(int _) implements int {
   static const dot11_BSS_type_any = DOT11_BSS_TYPE(0x00000003);
 }
 
+/// Defines a cipher algorithm for data encryption and decryption.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-cipher-algorithm>.
+///
 /// {@category enum}
 extension type const DOT11_CIPHER_ALGORITHM(int _) implements int {
   static const DOT11_CIPHER_ALGO_NONE = DOT11_CIPHER_ALGORITHM(0x00000000);
@@ -1200,6 +1408,11 @@ extension type const DOT11_CIPHER_ALGORITHM(int _) implements int {
   static const DOT11_CIPHER_ALGO_IHV_END = DOT11_CIPHER_ALGORITHM(0xffffffff);
 }
 
+/// Defines an 802.11 PHY and media type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/NativeWiFi/dot11-phy-type>.
+///
 /// {@category enum}
 extension type const DOT11_PHY_TYPE(int _) implements int {
   static const dot11_phy_type_unknown = DOT11_PHY_TYPE(0x00000000);
@@ -1219,6 +1432,11 @@ extension type const DOT11_PHY_TYPE(int _) implements int {
   static const dot11_phy_type_IHV_end = DOT11_PHY_TYPE(0xffffffff);
 }
 
+/// Specifies an 802.11 radio state.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-dot11_radio_state~r1>.
+///
 /// {@category enum}
 extension type const DOT11_RADIO_STATE(int _) implements int {
   static const dot11_radio_state_unknown = DOT11_RADIO_STATE(0x00000000);
@@ -1226,6 +1444,11 @@ extension type const DOT11_RADIO_STATE(int _) implements int {
   static const dot11_radio_state_off = DOT11_RADIO_STATE(0x00000002);
 }
 
+/// Identifies the dots per inch (dpi) setting for a thread, process, or window.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ne-windef-dpi_awareness>.
+///
 /// {@category enum}
 extension type const DPI_AWARENESS(int _) implements int {
   static const DPI_AWARENESS_INVALID = DPI_AWARENESS(0xffffffff);
@@ -1234,6 +1457,14 @@ extension type const DPI_AWARENESS(int _) implements int {
   static const DPI_AWARENESS_PER_MONITOR_AWARE = DPI_AWARENESS(0x00000002);
 }
 
+/// Identifies the DPI hosting behavior for a window.
+///
+/// This behavior allows windows created in the thread to host child windows
+/// with a different DPI_AWARENESS_CONTEXT.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/windef/ne-windef-dpi_hosting_behavior>.
+///
 /// {@category enum}
 extension type const DPI_HOSTING_BEHAVIOR(int _) implements int {
   static const DPI_HOSTING_BEHAVIOR_INVALID = DPI_HOSTING_BEHAVIOR(0xffffffff);
@@ -1344,6 +1575,12 @@ extension type const DRAW_THEME_PARENT_BACKGROUND_FLAGS(int _) implements int {
       DRAW_THEME_PARENT_BACKGROUND_FLAGS(0x00000004);
 }
 
+/// Specifies the possible ways that a device can be joined to Microsoft Azure
+/// Active Directory.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/lmjoin/ne-lmjoin-dsreg_join_type>.
+///
 /// {@category enum}
 extension type const DSREG_JOIN_TYPE(int _) implements int {
   static const DSREG_UNKNOWN_JOIN = DSREG_JOIN_TYPE(0x00000000);
@@ -1376,6 +1613,11 @@ extension type const DUPLICATE_HANDLE_OPTIONS(int _) implements int {
   static const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS(0x00000002);
 }
 
+/// Specifies the input operations for which visual feedback should be provided.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/ne-dwmapi-dwm_showcontact>.
+///
 /// {@category enum}
 extension type const DWM_SHOWCONTACT(int _) implements int {
   static const DWMSC_DOWN = DWM_SHOWCONTACT(0x00000001);
@@ -1387,6 +1629,12 @@ extension type const DWM_SHOWCONTACT(int _) implements int {
   static const DWMSC_ALL = DWM_SHOWCONTACT(0xffffffff);
 }
 
+/// Contains values that specify the location of a docking window represented by
+/// the Dock control pattern.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-dockposition>.
+///
 /// {@category enum}
 extension type const DockPosition(int _) implements int {
   static const DockPosition_Top = DockPosition(0x00000000);
@@ -1397,6 +1645,12 @@ extension type const DockPosition(int _) implements int {
   static const DockPosition_None = DockPosition(0x00000005);
 }
 
+/// Defines constants that indicate the direction in which audio data flows
+/// between an audio endpoint device and an application.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-edataflow>.
+///
 /// {@category enum}
 extension type const EDataFlow(int _) implements int {
   static const eRender = EDataFlow(0x00000000);
@@ -1458,12 +1712,24 @@ extension type const ENUM_SERVICE_TYPE(int _) implements int {
   static const SERVICE_USER_SHARE_PROCESS = ENUM_SERVICE_TYPE(0x00000060);
 }
 
+/// Specifies whether an XPS print job is in the spooling or the rendering
+/// phase.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/eprintxpsjoboperation>.
+///
 /// {@category enum}
 extension type const EPrintXPSJobOperation(int _) implements int {
   static const kJobProduction = EPrintXPSJobOperation(0x00000001);
   static const kJobConsumption = EPrintXPSJobOperation(0x00000002);
 }
 
+/// Specifies what the spooler is currently doing as it processes an XPS print
+/// job.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/eprintxpsjobprogress>.
+///
 /// {@category enum}
 extension type const EPrintXPSJobProgress(int _) implements int {
   static const kAddingDocumentSequence = EPrintXPSJobProgress(0x00000000);
@@ -1478,6 +1744,12 @@ extension type const EPrintXPSJobProgress(int _) implements int {
   static const kXpsDocumentCommitted = EPrintXPSJobProgress(0x00000009);
 }
 
+/// Defines constants that indicate the role that the system has assigned to an
+/// audio endpoint device.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-erole>.
+///
 /// {@category enum}
 extension type const ERole(int _) implements int {
   static const eConsole = ERole(0x00000000);
@@ -1520,6 +1792,12 @@ extension type const EXECUTION_STATE(int _) implements int {
   static const ES_USER_PRESENT = EXECUTION_STATE(0x00000004);
 }
 
+/// Contains values that specify the state of a UI element that can be expanded
+/// and collapsed.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-expandcollapsestate>.
+///
 /// {@category enum}
 extension type const ExpandCollapseState(int _) implements int {
   static const ExpandCollapseState_Collapsed = ExpandCollapseState(0x00000000);
@@ -1529,12 +1807,24 @@ extension type const ExpandCollapseState(int _) implements int {
   static const ExpandCollapseState_LeafNode = ExpandCollapseState(0x00000003);
 }
 
+/// Specifies list placement.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-fdap>.
+///
 /// {@category enum}
 extension type const FDAP(int _) implements int {
   static const FDAP_BOTTOM = FDAP(0x00000000);
   static const FDAP_TOP = FDAP(0x00000001);
 }
 
+/// Describes match criteria.
+///
+/// Used by methods of the IKnownFolderManager interface.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-fffp_mode>.
+///
 /// {@category enum}
 extension type const FFFP_MODE(int _) implements int {
   static const FFFP_EXACTMATCH = FFFP_MODE(0x00000000);
@@ -1642,6 +1932,12 @@ extension type const FILE_FLAGS_AND_ATTRIBUTES(int _) implements int {
       FILE_FLAGS_AND_ATTRIBUTES(0x001f0000);
 }
 
+/// Identifies the type of file information that GetFileInformationByHandleEx
+/// should retrieve or SetFileInformationByHandle should set.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ne-minwinbase-file_info_by_handle_class>.
+///
 /// {@category enum}
 extension type const FILE_INFO_BY_HANDLE_CLASS(int _) implements int {
   static const FileBasicInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000000);
@@ -1705,6 +2001,12 @@ extension type const FILE_TYPE(int _) implements int {
   static const FILE_TYPE_REMOTE = FILE_TYPE(0x00008000);
 }
 
+/// Constants used by IFileIsInUse::GetUsage to indicate how a file in use is
+/// being used.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-file_usage_type>.
+///
 /// {@category enum}
 extension type const FILE_USAGE_TYPE(int _) implements int {
   static const FUT_PLAYING = FILE_USAGE_TYPE(0x00000000);
@@ -1712,6 +2014,12 @@ extension type const FILE_USAGE_TYPE(int _) implements int {
   static const FUT_GENERIC = FILE_USAGE_TYPE(0x00000002);
 }
 
+/// Defines values that are used with the FindFirstFileEx function to specify
+/// the information level of the returned data.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ne-minwinbase-findex_info_levels>.
+///
 /// {@category enum}
 extension type const FINDEX_INFO_LEVELS(int _) implements int {
   static const FindExInfoStandard = FINDEX_INFO_LEVELS(0x00000000);
@@ -1719,6 +2027,12 @@ extension type const FINDEX_INFO_LEVELS(int _) implements int {
   static const FindExInfoMaxInfoLevel = FINDEX_INFO_LEVELS(0x00000002);
 }
 
+/// Defines values that are used with the FindFirstFileEx function to specify
+/// the type of filtering to perform.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ne-minwinbase-findex_search_ops>.
+///
 /// {@category enum}
 extension type const FINDEX_SEARCH_OPS(int _) implements int {
   static const FindExSearchNameMatch = FINDEX_SEARCH_OPS(0x00000000);
@@ -1857,6 +2171,11 @@ extension type const FORMAT_MESSAGE_OPTIONS(int _) implements int {
       FORMAT_MESSAGE_OPTIONS(0x00000200);
 }
 
+/// Specifies function flags.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-funcflags>.
+///
 /// {@category enum}
 extension type const FUNCFLAGS(int _) implements int {
   static const FUNCFLAG_FRESTRICTED = FUNCFLAGS(0x0001);
@@ -1874,6 +2193,11 @@ extension type const FUNCFLAGS(int _) implements int {
   static const FUNCFLAG_FIMMEDIATEBIND = FUNCFLAGS(0x1000);
 }
 
+/// Specifies the function type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-funckind>.
+///
 /// {@category enum}
 extension type const FUNCKIND(int _) implements int {
   static const FUNC_VIRTUAL = FUNCKIND(0x00000000);
@@ -1910,6 +2234,11 @@ extension type const GESTURECONFIG_ID(int _) implements int {
   static const GID_ROLLOVER = GESTURECONFIG_ID(0x00000007);
 }
 
+/// Identifies the gesture type specified in DwmRenderGesture.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/ne-dwmapi-gesture_type>.
+///
 /// {@category enum}
 extension type const GESTURE_TYPE(int _) implements int {
   static const GT_PEN_TAP = GESTURE_TYPE(0x00000000);
@@ -1936,6 +2265,13 @@ extension type const GETFINALPATHNAMEBYHANDLE_FLAGS(int _) implements int {
   static const FILE_NAME_OPENED = GETFINALPATHNAMEBYHANDLE_FLAGS(0x00000008);
 }
 
+/// Indicates flags that modify the property store object retrieved by methods
+/// that create a property store, such as IShellItem2::GetPropertyStore or
+/// IPropertyStoreFactory::GetPropertyStore.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/propsys/ne-propsys-getpropertystoreflags>.
+///
 /// {@category enum}
 extension type const GETPROPERTYSTOREFLAGS(int _) implements int {
   static const GPS_DEFAULT = GETPROPERTYSTOREFLAGS(0x00000000);
@@ -2023,6 +2359,13 @@ extension type const GET_DCX_FLAGS(int _) implements int {
   static const DCX_VALIDATE = GET_DCX_FLAGS(0x00200000);
 }
 
+/// Defines values that are used with the GetFileAttributesEx and
+/// GetFileAttributesTransacted functions to specify the information level of
+/// the returned data.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/minwinbase/ne-minwinbase-get_fileex_info_levels>.
+///
 /// {@category enum}
 extension type const GET_FILEEX_INFO_LEVELS(int _) implements int {
   static const GetFileExInfoStandard = GET_FILEEX_INFO_LEVELS(0x00000000);
@@ -2153,6 +2496,11 @@ extension type const HEAP_FLAGS(int _) implements int {
   static const HEAP_CREATE_HARDENED = HEAP_FLAGS(0x00000200);
 }
 
+/// Specifies the class of heap information to be set or retrieved.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ne-winnt-heap_information_class>.
+///
 /// {@category enum}
 extension type const HEAP_INFORMATION_CLASS(int _) implements int {
   static const HeapCompatibilityInformation =
@@ -2181,6 +2529,11 @@ extension type const IDLFLAGS(int _) implements int {
   static const IDLFLAG_FRETVAL = IDLFLAGS(0x0008);
 }
 
+/// Specifies the operational status of an interface.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/ifdef/ne-ifdef-if_oper_status>.
+///
 /// {@category enum}
 extension type const IF_OPER_STATUS(int _) implements int {
   static const IfOperStatusUp = IF_OPER_STATUS(0x00000001);
@@ -2192,6 +2545,12 @@ extension type const IF_OPER_STATUS(int _) implements int {
   static const IfOperStatusLowerLayerDown = IF_OPER_STATUS(0x00000007);
 }
 
+/// Lists the extended symbol options that you can get and set by using the
+/// SymGetExtendedOption and SymSetExtendedOption functions.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/ne-dbghelp-imagehlp_extended_options>.
+///
 /// {@category enum}
 extension type const IMAGEHLP_EXTENDED_OPTIONS(int _) implements int {
   static const SYMOPT_EX_DISABLEACCESSTIMEUPDATE =
@@ -2293,6 +2652,11 @@ extension type const INPUT_TYPE(int _) implements int {
   static const INPUT_HARDWARE = INPUT_TYPE(0x00000002);
 }
 
+/// Specifies the way a function is invoked.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-invokekind>.
+///
 /// {@category enum}
 extension type const INVOKEKIND(int _) implements int {
   static const INVOKE_FUNC = INVOKEKIND(0x00000001);
@@ -2384,6 +2748,12 @@ extension type const KEYBD_EVENT_FLAGS(int _) implements int {
   static const KEYEVENTF_UNICODE = KEYBD_EVENT_FLAGS(0x00000004);
 }
 
+/// Value that represent a category by which a folder registered with the Known
+/// Folder system can be classified.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-kf_category>.
+///
 /// {@category enum}
 extension type const KF_CATEGORY(int _) implements int {
   static const KF_CATEGORY_VIRTUAL = KF_CATEGORY(0x00000001);
@@ -2428,6 +2798,13 @@ extension type const LOCK_FILE_FLAGS(int _) implements int {
   static const LOCKFILE_FAIL_IMMEDIATELY = LOCK_FILE_FLAGS(0x00000001);
 }
 
+/// Represents the relationship between the processor set identified in the
+/// corresponding SYSTEM_LOGICAL_PROCESSOR_INFORMATION or
+/// SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX structure.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ne-winnt-logical_processor_relationship>.
+///
 /// {@category enum}
 extension type const LOGICAL_PROCESSOR_RELATIONSHIP(int _) implements int {
   static const RelationProcessorCore =
@@ -2445,6 +2822,14 @@ extension type const LOGICAL_PROCESSOR_RELATIONSHIP(int _) implements int {
   static const RelationAll = LOGICAL_PROCESSOR_RELATIONSHIP(0x0000ffff);
 }
 
+/// Contains possible values for the LiveSetting property.
+///
+/// This property is implemented by provider elements that are part of a live
+/// region.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-livesetting>.
+///
 /// {@category enum}
 extension type const LiveSetting(int _) implements int {
   static const Off = LiveSetting(0x00000000);
@@ -2452,6 +2837,14 @@ extension type const LiveSetting(int _) implements int {
   static const Assertive = LiveSetting(0x00000002);
 }
 
+/// Specifies the ways in which an architecture of code can run on a host
+/// operating system.
+///
+/// More than one bit may be set.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/ne-processthreadsapi-machine_attributes>.
+///
 /// {@category enum}
 extension type const MACHINE_ATTRIBUTES(int _) implements int {
   static const UserEnabled = MACHINE_ATTRIBUTES(0x00000001);
@@ -2468,6 +2861,11 @@ extension type const MAP_VIRTUAL_KEY_TYPE(int _) implements int {
   static const MAPVK_VK_TO_VSC_EX = MAP_VIRTUAL_KEY_TYPE(0x00000004);
 }
 
+/// Describes a monitor's color temperature.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/highlevelmonitorconfigurationapi/ne-highlevelmonitorconfigurationapi-mc_color_temperature>.
+///
 /// {@category enum}
 extension type const MC_COLOR_TEMPERATURE(int _) implements int {
   static const MC_COLOR_TEMPERATURE_UNKNOWN = MC_COLOR_TEMPERATURE(0x00000000);
@@ -2481,6 +2879,11 @@ extension type const MC_COLOR_TEMPERATURE(int _) implements int {
   static const MC_COLOR_TEMPERATURE_11500K = MC_COLOR_TEMPERATURE(0x00000008);
 }
 
+/// Identifies monitor display technologies.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/highlevelmonitorconfigurationapi/ne-highlevelmonitorconfigurationapi-mc_display_technology_type>.
+///
 /// {@category enum}
 extension type const MC_DISPLAY_TECHNOLOGY_TYPE(int _) implements int {
   static const MC_SHADOW_MASK_CATHODE_RAY_TUBE =
@@ -2500,6 +2903,11 @@ extension type const MC_DISPLAY_TECHNOLOGY_TYPE(int _) implements int {
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000008);
 }
 
+/// Specifies whether to set or get a monitor's red, green, or blue drive.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/highlevelmonitorconfigurationapi/ne-highlevelmonitorconfigurationapi-mc_drive_type>.
+///
 /// {@category enum}
 extension type const MC_DRIVE_TYPE(int _) implements int {
   static const MC_RED_DRIVE = MC_DRIVE_TYPE(0x00000000);
@@ -2507,6 +2915,11 @@ extension type const MC_DRIVE_TYPE(int _) implements int {
   static const MC_BLUE_DRIVE = MC_DRIVE_TYPE(0x00000002);
 }
 
+/// Specifies whether to get or set a monitor's red, green, or blue gain.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/highlevelmonitorconfigurationapi/ne-highlevelmonitorconfigurationapi-mc_gain_type>.
+///
 /// {@category enum}
 extension type const MC_GAIN_TYPE(int _) implements int {
   static const MC_RED_GAIN = MC_GAIN_TYPE(0x00000000);
@@ -2514,18 +2927,35 @@ extension type const MC_GAIN_TYPE(int _) implements int {
   static const MC_BLUE_GAIN = MC_GAIN_TYPE(0x00000002);
 }
 
+/// Specifies whether to get or set the vertical or horizontal position of a
+/// monitor's display area.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/highlevelmonitorconfigurationapi/ne-highlevelmonitorconfigurationapi-mc_position_type>.
+///
 /// {@category enum}
 extension type const MC_POSITION_TYPE(int _) implements int {
   static const MC_HORIZONTAL_POSITION = MC_POSITION_TYPE(0x00000000);
   static const MC_VERTICAL_POSITION = MC_POSITION_TYPE(0x00000001);
 }
 
+/// Specifies whether to get or set the width or height of a monitor's display
+/// area.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/highlevelmonitorconfigurationapi/ne-highlevelmonitorconfigurationapi-mc_size_type>.
+///
 /// {@category enum}
 extension type const MC_SIZE_TYPE(int _) implements int {
   static const MC_WIDTH = MC_SIZE_TYPE(0x00000000);
   static const MC_HEIGHT = MC_SIZE_TYPE(0x00000001);
 }
 
+/// Represents the various forms of device media.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winioctl/ne-winioctl-media_type>.
+///
 /// {@category enum}
 extension type const MEDIA_TYPE(int _) implements int {
   static const Unknown = MEDIA_TYPE(0x00000000);
@@ -2774,6 +3204,11 @@ extension type const MODLOAD_DATA_TYPE(int _) implements int {
   static const DBHHEADER_CVMISC = MODLOAD_DATA_TYPE(0x00000002);
 }
 
+/// Identifies the dots per inch (dpi) setting for a monitor.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shellscalingapi/ne-shellscalingapi-monitor_dpi_type>.
+///
 /// {@category enum}
 extension type const MONITOR_DPI_TYPE(int _) implements int {
   static const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE(0x00000000);
@@ -2857,6 +3292,11 @@ extension type const NAMED_PIPE_MODE(int _) implements int {
   static const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE(0x00000008);
 }
 
+/// Specifies the NDIS network interface connection type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/ifdef/ne-ifdef-net_if_connection_type>.
+///
 /// {@category enum}
 extension type const NET_IF_CONNECTION_TYPE(int _) implements int {
   static const NET_IF_CONNECTION_DEDICATED = NET_IF_CONNECTION_TYPE(0x00000001);
@@ -2865,6 +3305,12 @@ extension type const NET_IF_CONNECTION_TYPE(int _) implements int {
   static const NET_IF_CONNECTION_MAXIMUM = NET_IF_CONNECTION_TYPE(0x00000004);
 }
 
+/// Specifies a set of cost levels and cost flags supported in Windows 8 Cost
+/// APIs.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/ne-netlistmgr-nlm_connection_cost>.
+///
 /// {@category enum}
 extension type const NLM_CONNECTION_COST(int _) implements int {
   static const NLM_CONNECTION_COST_UNKNOWN = NLM_CONNECTION_COST(0x00000000);
@@ -2880,6 +3326,12 @@ extension type const NLM_CONNECTION_COST(int _) implements int {
       NLM_CONNECTION_COST(0x00080000);
 }
 
+/// A set of flags that provide notification whenever connectivity related
+/// parameters have changed.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/ne-netlistmgr-nlm_connectivity>.
+///
 /// {@category enum}
 extension type const NLM_CONNECTIVITY(int _) implements int {
   static const NLM_CONNECTIVITY_DISCONNECTED = NLM_CONNECTIVITY(0x00000000);
@@ -2895,6 +3347,11 @@ extension type const NLM_CONNECTIVITY(int _) implements int {
   static const NLM_CONNECTIVITY_IPV6_INTERNET = NLM_CONNECTIVITY(0x00000400);
 }
 
+/// A set of flags that specify the domain type of a network.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/ne-netlistmgr-nlm_domain_type>.
+///
 /// {@category enum}
 extension type const NLM_DOMAIN_TYPE(int _) implements int {
   static const NLM_DOMAIN_TYPE_NON_DOMAIN_NETWORK = NLM_DOMAIN_TYPE(0x00000000);
@@ -2903,6 +3360,11 @@ extension type const NLM_DOMAIN_TYPE(int _) implements int {
       NLM_DOMAIN_TYPE(0x00000002);
 }
 
+/// Contains a set of flags that specify what types of networks are enumerated.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/ne-netlistmgr-nlm_enum_network>.
+///
 /// {@category enum}
 extension type const NLM_ENUM_NETWORK(int _) implements int {
   static const NLM_ENUM_NETWORK_CONNECTED = NLM_ENUM_NETWORK(0x00000001);
@@ -2910,6 +3372,11 @@ extension type const NLM_ENUM_NETWORK(int _) implements int {
   static const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK(0x00000003);
 }
 
+/// A set of flags that specify the category type of a network.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/ne-netlistmgr-nlm_network_category>.
+///
 /// {@category enum}
 extension type const NLM_NETWORK_CATEGORY(int _) implements int {
   static const NLM_NETWORK_CATEGORY_PUBLIC = NLM_NETWORK_CATEGORY(0x00000000);
@@ -2918,6 +3385,12 @@ extension type const NLM_NETWORK_CATEGORY(int _) implements int {
       NLM_NETWORK_CATEGORY(0x00000002);
 }
 
+/// Specifies information about the duplicate address detection (DAD) state for
+/// an IPv4 or IPv6 address.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/nldef/ne-nldef-nl_dad_state>.
+///
 /// {@category enum}
 extension type const NL_DAD_STATE(int _) implements int {
   static const NldsInvalid = NL_DAD_STATE(0x00000000);
@@ -2932,6 +3405,12 @@ extension type const NL_DAD_STATE(int _) implements int {
   static const IpDadStatePreferred = NL_DAD_STATE(0x00000004);
 }
 
+/// Specifies the origin of an IPv4 or IPv6 address prefix, and is used with the
+/// IP_ADAPTER_UNICAST_ADDRESS structure.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/nldef/ne-nldef-nl_prefix_origin>.
+///
 /// {@category enum}
 extension type const NL_PREFIX_ORIGIN(int _) implements int {
   static const IpPrefixOriginOther = NL_PREFIX_ORIGIN(0x00000000);
@@ -2942,6 +3421,12 @@ extension type const NL_PREFIX_ORIGIN(int _) implements int {
   static const IpPrefixOriginUnchanged = NL_PREFIX_ORIGIN(0x00000010);
 }
 
+/// Specifies the origin of an IPv4 or IPv6 address suffix, and is used with the
+/// IP_ADAPTER_UNICAST_ADDRESS structure.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/nldef/ne-nldef-nl_suffix_origin>.
+///
 /// {@category enum}
 extension type const NL_SUFFIX_ORIGIN(int _) implements int {
   static const NlsoOther = NL_SUFFIX_ORIGIN(0x00000000);
@@ -2999,6 +3484,12 @@ extension type const NOTIFY_ICON_STATE(int _) implements int {
   static const NIS_SHAREDICON = NOTIFY_ICON_STATE(0x00000002);
 }
 
+/// Contains values used to specify the direction of navigation within the
+/// Microsoft UI Automation tree.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-navigatedirection>.
+///
 /// {@category enum}
 extension type const NavigateDirection(int _) implements int {
   static const NavigateDirection_Parent = NavigateDirection(0x00000000);
@@ -3097,6 +3588,11 @@ extension type const OPEN_THEME_DATA_FLAGS(int _) implements int {
   static const OTD_NONCLIENT = OPEN_THEME_DATA_FLAGS(0x00000002);
 }
 
+/// Indicates the screen orientation preference for a desktop app process.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ne-winuser-orientation_preference>.
+///
 /// {@category enum}
 extension type const ORIENTATION_PREFERENCE(int _) implements int {
   static const ORIENTATION_PREFERENCE_NONE = ORIENTATION_PREFERENCE(0x00000000);
@@ -3227,6 +3723,11 @@ extension type const OS_PRODUCT_TYPE(int _) implements int {
   static const PRODUCT_WEB_SERVER_CORE = OS_PRODUCT_TYPE(0x0000001d);
 }
 
+/// Contains values that specify the orientation of a control.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-orientationtype>.
+///
 /// {@category enum}
 extension type const OrientationType(int _) implements int {
   static const OrientationType_None = OrientationType(0x00000000);
@@ -3333,6 +3834,11 @@ extension type const PEN_STYLE(int _) implements int {
   static const PS_TYPE_MASK = PEN_STYLE(0x000f0000);
 }
 
+/// Identifies a change in the state of a button associated with a pointer.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/ne-winuser-pointer_button_change_type>.
+///
 /// {@category enum}
 extension type const POINTER_BUTTON_CHANGE_TYPE(int _) implements int {
   static const POINTER_CHANGE_NONE = POINTER_BUTTON_CHANGE_TYPE(0x00000000);
@@ -3540,6 +4046,11 @@ extension type const PRINTER_ACCESS_RIGHTS(int _) implements int {
       PRINTER_ACCESS_RIGHTS(0x00000040);
 }
 
+/// Represents the execution context when GetPrintExecutionData is called.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/print-execution-context>.
+///
 /// {@category enum}
 extension type const PRINT_EXECUTION_CONTEXT(int _) implements int {
   static const PRINT_EXECUTION_CONTEXT_APPLICATION =
@@ -3582,6 +4093,12 @@ extension type const PROCESSOR_ARCHITECTURE(int _) implements int {
   static const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE(0xffff);
 }
 
+/// Represents the type of processor cache identified in the corresponding
+/// CACHE_DESCRIPTOR structure.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ne-winnt-processor_cache_type>.
+///
 /// {@category enum}
 extension type const PROCESSOR_CACHE_TYPE(int _) implements int {
   static const CacheUnified = PROCESSOR_CACHE_TYPE(0x00000000);
@@ -3657,6 +4174,14 @@ extension type const PROCESS_CREATION_FLAGS(int _) implements int {
       PROCESS_CREATION_FLAGS(0x80000000);
 }
 
+/// Identifies dots per inch (dpi) awareness values.
+///
+/// DPI awareness indicates how much scaling work an application performs for
+/// DPI versus how much is done by the system.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shellscalingapi/ne-shellscalingapi-process_dpi_awareness>.
+///
 /// {@category enum}
 extension type const PROCESS_DPI_AWARENESS(int _) implements int {
   static const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS(0x00000000);
@@ -3685,6 +4210,11 @@ extension type const PURGE_COMM_FLAGS(int _) implements int {
   static const PURGE_TXCLEAR = PURGE_COMM_FLAGS(0x00000004);
 }
 
+/// Contains values used in creating property conditions.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/ne-uiautomationclient-propertyconditionflags>.
+///
 /// {@category enum}
 extension type const PropertyConditionFlags(int _) implements int {
   static const PropertyConditionFlags_None = PropertyConditionFlags(0x00000000);
@@ -3904,6 +4434,12 @@ extension type const ROT_FLAGS(int _) implements int {
   static const ROTFLAGS_ALLOWANYCLIENT = ROT_FLAGS(0x00000002);
 }
 
+/// Determines the concurrency model used for incoming calls to the objects
+/// created by this thread.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/roapi/ne-roapi-ro_init_type>.
+///
 /// {@category enum}
 extension type const RO_INIT_TYPE(int _) implements int {
   static const RO_INIT_SINGLETHREADED = RO_INIT_TYPE(0x00000000);
@@ -3930,6 +4466,12 @@ extension type const RPC_C_IMP_LEVEL(int _) implements int {
   static const RPC_C_IMP_LEVEL_DELEGATE = RPC_C_IMP_LEVEL(0x00000004);
 }
 
+/// Contains values that specify whether data in a table should be read
+/// primarily by row or by column.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-roworcolumnmajor>.
+///
 /// {@category enum}
 extension type const RowOrColumnMajor(int _) implements int {
   static const RowOrColumnMajor_RowMajor = RowOrColumnMajor(0x00000000);
@@ -4087,6 +4629,11 @@ extension type const SERVICE_CONFIG(int _) implements int {
   static const SERVICE_CONFIG_LAUNCH_PROTECTED = SERVICE_CONFIG(0x0000000c);
 }
 
+/// Specifies the type of a per-service directory path.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ne-winsvc-service_directory_type>.
+///
 /// {@category enum}
 extension type const SERVICE_DIRECTORY_TYPE(int _) implements int {
   static const ServiceDirectoryPersistentState =
@@ -4116,6 +4663,11 @@ extension type const SERVICE_NOTIFY(int _) implements int {
   static const SERVICE_NOTIFY_STOPPED = SERVICE_NOTIFY(0x00000001);
 }
 
+/// Specifies a state type for a service registry key.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ne-winsvc-service_registry_state_type>.
+///
 /// {@category enum}
 extension type const SERVICE_REGISTRY_STATE_TYPE(int _) implements int {
   static const ServiceRegistryStateParameters =
@@ -4134,12 +4686,22 @@ extension type const SERVICE_RUNS_IN_PROCESS(int _) implements int {
       SERVICE_RUNS_IN_PROCESS(0x00000001);
 }
 
+/// Specifies the type of a per-service shared directory path.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ne-winsvc-service_shared_directory_type>.
+///
 /// {@category enum}
 extension type const SERVICE_SHARED_DIRECTORY_TYPE(int _) implements int {
   static const ServiceSharedDirectoryPersistentState =
       SERVICE_SHARED_DIRECTORY_TYPE(0x00000000);
 }
 
+/// Specifies a state type for a service registry key.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/ne-winsvc-service_shared_registry_state_type>.
+///
 /// {@category enum}
 extension type const SERVICE_SHARED_REGISTRY_STATE_TYPE(int _) implements int {
   static const ServiceSharedRegistryPersistentState =
@@ -4507,6 +5069,12 @@ extension type const SIATTRIBFLAGS(int _) implements int {
   static const SIATTRIBFLAGS_ALLITEMS = SIATTRIBFLAGS(0x00004000);
 }
 
+/// Requests the form of an item's display name to retrieve through
+/// IShellItem::GetDisplayName and SHGetNameFromIDList.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-sigdn>.
+///
 /// {@category enum}
 extension type const SIGDN(int _) implements int {
   static const SIGDN_NORMALDISPLAY = SIGDN(0x00000000);
@@ -4656,6 +5224,12 @@ extension type const STD_HANDLE(int _) implements int {
   static const STD_ERROR_HANDLE = STD_HANDLE(0xfffffff4);
 }
 
+/// Flags that indicate conditions for creating and deleting the object and
+/// access modes for the object.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/Stg/stgm-constants>.
+///
 /// {@category enum}
 extension type const STGM(int _) implements int {
   static const STGM_DIRECT = STGM(0x00000000);
@@ -4678,12 +5252,23 @@ extension type const STGM(int _) implements int {
   static const STGM_DIRECT_SWMR = STGM(0x00400000);
 }
 
+/// Defines values that are used with the FindFirstStreamW function to specify
+/// the information level of the returned data.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/ne-fileapi-stream_info_levels>.
+///
 /// {@category enum}
 extension type const STREAM_INFO_LEVELS(int _) implements int {
   static const FindStreamInfoStandard = STREAM_INFO_LEVELS(0x00000000);
   static const FindStreamInfoMaxInfoLevel = STREAM_INFO_LEVELS(0x00000001);
 }
 
+/// Specify the origin from which to calculate the new seek-pointer location.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/objidl/ne-objidl-stream_seek>.
+///
 /// {@category enum}
 extension type const STREAM_SEEK(int _) implements int {
   static const STREAM_SEEK_SET = STREAM_SEEK(0x00000000);
@@ -5307,6 +5892,11 @@ extension type const SYS_COLOR_INDEX(int _) implements int {
   static const COLOR_BTNHILIGHT = SYS_COLOR_INDEX(0x00000014);
 }
 
+/// Contains values that specify the direction and distance to scroll.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-scrollamount>.
+///
 /// {@category enum}
 extension type const ScrollAmount(int _) implements int {
   static const ScrollAmount_LargeDecrement = ScrollAmount(0x00000000);
@@ -5316,6 +5906,11 @@ extension type const ScrollAmount(int _) implements int {
   static const ScrollAmount_SmallIncrement = ScrollAmount(0x00000004);
 }
 
+/// Defines possible operational states for sensors.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/sensorsapi/ne-sensorsapi-sensorstate>.
+///
 /// {@category enum}
 extension type const SensorState(int _) implements int {
   static const SENSOR_STATE_MIN = SensorState(0x00000000);
@@ -5474,6 +6069,11 @@ extension type const SpeechVoiceSpeakFlags(int _) implements int {
   static const SVSFUnusedFlags = SpeechVoiceSpeakFlags(0xfffffe00);
 }
 
+/// Contains values that specify the supported text selection attribute.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-supportedtextselection>.
+///
 /// {@category enum}
 extension type const SupportedTextSelection(int _) implements int {
   static const SupportedTextSelection_None = SupportedTextSelection(0x00000000);
@@ -5483,6 +6083,11 @@ extension type const SupportedTextSelection(int _) implements int {
       SupportedTextSelection(0x00000002);
 }
 
+/// Contains values that specify the type of synchronized input.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-synchronizedinputtype>.
+///
 /// {@category enum}
 extension type const SynchronizedInputType(int _) implements int {
   static const SynchronizedInputType_KeyUp = SynchronizedInputType(0x00000001);
@@ -5537,6 +6142,11 @@ extension type const TASKDIALOG_FLAGS(int _) implements int {
   static const TDF_SIZE_TO_CONTENT = TASKDIALOG_FLAGS(0x01000000);
 }
 
+/// Identifies the type of size value to retrieve for a visual style part.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/ne-uxtheme-themesize>.
+///
 /// {@category enum}
 extension type const THEMESIZE(int _) implements int {
   static const TS_MIN = THEMESIZE(0x00000000);
@@ -5601,6 +6211,12 @@ extension type const TOKEN_ACCESS_MASK(int _) implements int {
   static const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK(0x000f01ff);
 }
 
+/// Contains values that specify the type of information being assigned to or
+/// retrieved from an access token.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/ne-winnt-token_information_class>.
+///
 /// {@category enum}
 extension type const TOKEN_INFORMATION_CLASS(int _) implements int {
   static const TokenUser = TOKEN_INFORMATION_CLASS(0x00000001);
@@ -5702,6 +6318,12 @@ extension type const TRACK_POPUP_MENU_FLAGS(int _) implements int {
   static const TPM_WORKAREA = TRACK_POPUP_MENU_FLAGS(0x00010000);
 }
 
+/// Defines the encapsulation method used by a tunnel, as described by the
+/// Internet Assigned Names Authority (IANA).
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/ifdef/ne-ifdef-tunnel_type>.
+///
 /// {@category enum}
 extension type const TUNNEL_TYPE(int _) implements int {
   static const TUNNEL_TYPE_NONE = TUNNEL_TYPE(0x00000000);
@@ -5713,6 +6335,11 @@ extension type const TUNNEL_TYPE(int _) implements int {
   static const TUNNEL_TYPE_IPHTTPS = TUNNEL_TYPE(0x0000000f);
 }
 
+/// Specifies a type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-typekind>.
+///
 /// {@category enum}
 extension type const TYPEKIND(int _) implements int {
   static const TKIND_ENUM = TYPEKIND(0x00000000);
@@ -5726,6 +6353,12 @@ extension type const TYPEKIND(int _) implements int {
   static const TKIND_MAX = TYPEKIND(0x00000008);
 }
 
+/// Describes the text editing change being performed by controls when text-edit
+/// events are raised or handled.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-texteditchangetype>.
+///
 /// {@category enum}
 extension type const TextEditChangeType(int _) implements int {
   static const TextEditChangeType_None = TextEditChangeType(0x00000000);
@@ -5736,6 +6369,11 @@ extension type const TextEditChangeType(int _) implements int {
   static const TextEditChangeType_AutoComplete = TextEditChangeType(0x00000004);
 }
 
+/// Contains values that specify the endpoints of a text range.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-textpatternrangeendpoint>.
+///
 /// {@category enum}
 extension type const TextPatternRangeEndpoint(int _) implements int {
   static const TextPatternRangeEndpoint_Start =
@@ -5744,6 +6382,11 @@ extension type const TextPatternRangeEndpoint(int _) implements int {
       TextPatternRangeEndpoint(0x00000001);
 }
 
+/// Contains values that specify units of text for the purposes of navigation.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-textunit>.
+///
 /// {@category enum}
 extension type const TextUnit(int _) implements int {
   static const TextUnit_Character = TextUnit(0x00000000);
@@ -5755,6 +6398,12 @@ extension type const TextUnit(int _) implements int {
   static const TextUnit_Document = TextUnit(0x00000006);
 }
 
+/// Contains values that specify the toggle state of a Microsoft UI Automation
+/// element that implements the Toggle control pattern.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-togglestate>.
+///
 /// {@category enum}
 extension type const ToggleState(int _) implements int {
   static const ToggleState_Off = ToggleState(0x00000000);
@@ -5762,6 +6411,12 @@ extension type const ToggleState(int _) implements int {
   static const ToggleState_Indeterminate = ToggleState(0x00000002);
 }
 
+/// Contains values that specify the scope of various operations in the
+/// Microsoft UI Automation tree.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/ne-uiautomationclient-treescope>.
+///
 /// {@category enum}
 extension type const TreeScope(int _) implements int {
   static const TreeScope_None = TreeScope(0x00000000);
@@ -5773,6 +6428,11 @@ extension type const TreeScope(int _) implements int {
   static const TreeScope_Subtree = TreeScope(0x00000007);
 }
 
+/// Defines values that can be used to customize tree navigation order.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/ne-uiautomationclient-treetraversaloptions>.
+///
 /// {@category enum}
 extension type const TreeTraversalOptions(int _) implements int {
   static const TreeTraversalOptions_Default = TreeTraversalOptions(0x00000000);
@@ -5782,6 +6442,11 @@ extension type const TreeTraversalOptions(int _) implements int {
       TreeTraversalOptions(0x00000002);
 }
 
+/// Represents the trust level of an activatable class.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/inspectable/ne-inspectable-trustlevel>.
+///
 /// {@category enum}
 extension type const TrustLevel(int _) implements int {
   static const BaseTrust = TrustLevel(0x00000000);
@@ -6372,6 +7037,11 @@ extension type const Uri_PROPERTY(int _) implements int {
   static const Uri_PROPERTY_DWORD_LAST = Uri_PROPERTY(0x00000012);
 }
 
+/// Specifies the variant types.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wtypes/ne-wtypes-varenum>.
+///
 /// {@category enum}
 extension type const VARENUM(int _) implements int {
   static const VT_EMPTY = VARENUM(0x0000);
@@ -6428,6 +7098,11 @@ extension type const VARENUM(int _) implements int {
   static const VT_TYPEMASK = VARENUM(0x0fff);
 }
 
+/// Specifies variable flags.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-varflags>.
+///
 /// {@category enum}
 extension type const VARFLAGS(int _) implements int {
   static const VARFLAG_FREADONLY = VARFLAGS(0x0001);
@@ -6445,6 +7120,11 @@ extension type const VARFLAGS(int _) implements int {
   static const VARFLAG_FIMMEDIATEBIND = VARFLAGS(0x1000);
 }
 
+/// Specifies the variable type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/oaidl/ne-oaidl-varkind>.
+///
 /// {@category enum}
 extension type const VARKIND(int _) implements int {
   static const VAR_PERINSTANCE = VARKIND(0x00000000);
@@ -6829,6 +7509,12 @@ extension type const WAIT_EVENT(int _) implements int {
   static const WAIT_FAILED = WAIT_EVENT(0xffffffff);
 }
 
+/// Contains flags that define the comparison to perform when using the
+/// IWbemClassObject::CompareTo method.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/ne-wbemcli-wbem_comparison_flag>.
+///
 /// {@category enum}
 extension type const WBEM_COMPARISON_FLAG(int _) implements int {
   static const WBEM_COMPARISON_INCLUDE_ALL = WBEM_COMPARISON_FLAG(0x00000000);
@@ -6842,6 +7528,11 @@ extension type const WBEM_COMPARISON_FLAG(int _) implements int {
   static const WBEM_FLAG_IGNORE_FLAVOR = WBEM_COMPARISON_FLAG(0x00000020);
 }
 
+/// Contains flags used with the IWbemClassObject::GetNames method.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/ne-wbemcli-wbem_condition_flag_type>.
+///
 /// {@category enum}
 extension type const WBEM_CONDITION_FLAG_TYPE(int _) implements int {
   static const WBEM_FLAG_ALWAYS = WBEM_CONDITION_FLAG_TYPE(0x00000000);
@@ -6866,6 +7557,11 @@ extension type const WBEM_CONDITION_FLAG_TYPE(int _) implements int {
   static const WBEM_MASK_CLASS_CONDITION = WBEM_CONDITION_FLAG_TYPE(0x00000300);
 }
 
+/// Contains general-purpose method parameter flags.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/ne-wbemcli-wbem_generic_flag_type>.
+///
 /// {@category enum}
 extension type const WBEM_GENERIC_FLAG_TYPE(int _) implements int {
   static const WBEM_FLAG_RETURN_IMMEDIATELY =
@@ -10616,6 +11312,11 @@ extension type const WINDOWS_HOOK_ID(int _) implements int {
   static const WH_SYSMSGFILTER = WINDOWS_HOOK_ID(0x00000006);
 }
 
+/// Specifies the type of visual style attribute to set on a window.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/ne-uxtheme-windowthemeattributetype>.
+///
 /// {@category enum}
 extension type const WINDOWTHEMEATTRIBUTETYPE(int _) implements int {
   static const WTA_NONCLIENT = WINDOWTHEMEATTRIBUTETYPE(0x00000001);
@@ -10730,6 +11431,11 @@ extension type const WINSOCK_SOCKET_TYPE(int _) implements int {
   static const SOCK_SEQPACKET = WINSOCK_SOCKET_TYPE(0x00000005);
 }
 
+/// Specifies an automatic configuration parameter.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_autoconf_opcode~r1>.
+///
 /// {@category enum}
 extension type const WLAN_AUTOCONF_OPCODE(int _) implements int {
   static const wlan_autoconf_opcode_start = WLAN_AUTOCONF_OPCODE(0x00000000);
@@ -10748,6 +11454,11 @@ extension type const WLAN_AUTOCONF_OPCODE(int _) implements int {
   static const wlan_autoconf_opcode_end = WLAN_AUTOCONF_OPCODE(0x00000007);
 }
 
+/// Defines the mode of connection.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_connection_mode>.
+///
 /// {@category enum}
 extension type const WLAN_CONNECTION_MODE(int _) implements int {
   static const wlan_connection_mode_profile = WLAN_CONNECTION_MODE(0x00000000);
@@ -10769,6 +11480,11 @@ extension type const WLAN_CONNECTION_NOTIFICATION_FLAGS(int _) implements int {
       WLAN_CONNECTION_NOTIFICATION_FLAGS(0x00000004);
 }
 
+/// Indicates types of filter lists.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_filter_list_type>.
+///
 /// {@category enum}
 extension type const WLAN_FILTER_LIST_TYPE(int _) implements int {
   static const wlan_filter_list_type_gp_permit =
@@ -10781,6 +11497,12 @@ extension type const WLAN_FILTER_LIST_TYPE(int _) implements int {
       WLAN_FILTER_LIST_TYPE(0x00000003);
 }
 
+/// Specifies the possible values of the operation code for the properties to
+/// query or set on the wireless Hosted Network.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_hosted_network_opcode>.
+///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_OPCODE(int _) implements int {
   static const wlan_hosted_network_opcode_connection_settings =
@@ -10793,6 +11515,12 @@ extension type const WLAN_HOSTED_NETWORK_OPCODE(int _) implements int {
       WLAN_HOSTED_NETWORK_OPCODE(0x00000003);
 }
 
+/// Specifies the possible values for the authentication state of a peer on the
+/// wireless Hosted Network.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_hosted_network_peer_auth_state>.
+///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(int _) implements int {
   static const wlan_hosted_network_peer_state_invalid =
@@ -10801,6 +11529,12 @@ extension type const WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(int _) implements int {
       WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(0x00000001);
 }
 
+/// Specifies the possible values for the result of a wireless Hosted Network
+/// function call.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_hosted_network_reason>.
+///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_REASON(int _) implements int {
   static const wlan_hosted_network_reason_success =
@@ -10863,6 +11597,12 @@ extension type const WLAN_HOSTED_NETWORK_REASON(int _) implements int {
       WLAN_HOSTED_NETWORK_REASON(0x0000001c);
 }
 
+/// Specifies the possible values for the network state of the wireless Hosted
+/// Network.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_hosted_network_state>.
+///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_STATE(int _) implements int {
   static const wlan_hosted_network_unavailable =
@@ -10872,6 +11612,11 @@ extension type const WLAN_HOSTED_NETWORK_STATE(int _) implements int {
       WLAN_HOSTED_NETWORK_STATE(0x00000002);
 }
 
+/// Specifies the type of software bypassed by a vendor-specific method.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_ihv_control_type~r1>.
+///
 /// {@category enum}
 extension type const WLAN_IHV_CONTROL_TYPE(int _) implements int {
   static const wlan_ihv_control_type_service =
@@ -10879,6 +11624,11 @@ extension type const WLAN_IHV_CONTROL_TYPE(int _) implements int {
   static const wlan_ihv_control_type_driver = WLAN_IHV_CONTROL_TYPE(0x00000001);
 }
 
+/// Indicates the state of an interface.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_interface_state~r1>.
+///
 /// {@category enum}
 extension type const WLAN_INTERFACE_STATE(int _) implements int {
   static const wlan_interface_state_not_ready =
@@ -10899,6 +11649,11 @@ extension type const WLAN_INTERFACE_STATE(int _) implements int {
       WLAN_INTERFACE_STATE(0x00000007);
 }
 
+/// Specifies the wireless interface type.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_interface_type>.
+///
 /// {@category enum}
 extension type const WLAN_INTERFACE_TYPE(int _) implements int {
   static const wlan_interface_type_emulated_802_11 =
@@ -10908,6 +11663,12 @@ extension type const WLAN_INTERFACE_TYPE(int _) implements int {
   static const wlan_interface_type_invalid = WLAN_INTERFACE_TYPE(0x00000002);
 }
 
+/// Defines various opcodes used to set and query parameters on a wireless
+/// interface.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_intf_opcode~r1>.
+///
 /// {@category enum}
 extension type const WLAN_INTF_OPCODE(int _) implements int {
   static const wlan_intf_opcode_autoconf_start = WLAN_INTF_OPCODE(0x00000000);
@@ -10975,6 +11736,11 @@ extension type const WLAN_NOTIFICATION_SOURCES(int _) implements int {
       WLAN_NOTIFICATION_SOURCES(0x00000800);
 }
 
+/// Specifies the origin of automatic configuration (auto config) settings.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_opcode_value_type~r1>.
+///
 /// {@category enum}
 extension type const WLAN_OPCODE_VALUE_TYPE(int _) implements int {
   static const wlan_opcode_value_type_query_only =
@@ -10987,6 +11753,11 @@ extension type const WLAN_OPCODE_VALUE_TYPE(int _) implements int {
       WLAN_OPCODE_VALUE_TYPE(0x00000003);
 }
 
+/// Defines the securable objects used by Native Wifi Functions.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/ne-wlanapi-wlan_securable_object>.
+///
 /// {@category enum}
 extension type const WLAN_SECURABLE_OBJECT(int _) implements int {
   static const wlan_secure_permit_list = WLAN_SECURABLE_OBJECT(0x00000000);
@@ -11042,6 +11813,12 @@ extension type const WNDCLASS_STYLES(int _) implements int {
   static const CS_DROPSHADOW = WNDCLASS_STYLES(0x00020000);
 }
 
+/// Specifies the behavior of a distribution in the Windows Subsystem for Linux
+/// (WSL).
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/ne-wslapi-wsl_distribution_flags>.
+///
 /// {@category enum}
 extension type const WSL_DISTRIBUTION_FLAGS(int _) implements int {
   static const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS(0x00000000);
@@ -11053,6 +11830,11 @@ extension type const WSL_DISTRIBUTION_FLAGS(int _) implements int {
       WSL_DISTRIBUTION_FLAGS(0x00000004);
 }
 
+/// Includes possible settings for the Automatic Logon Policy.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/WinHttp/winhttprequestautologonpolicy>.
+///
 /// {@category enum}
 extension type const WinHttpRequestAutoLogonPolicy(int _) implements int {
   static const AutoLogonPolicy_Always =
@@ -11063,6 +11845,12 @@ extension type const WinHttpRequestAutoLogonPolicy(int _) implements int {
       WinHttpRequestAutoLogonPolicy(0x00000002);
 }
 
+/// Includes options that can be set or retrieved for the current Microsoft
+/// Windows HTTP Services (WinHTTP) session.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/WinHttp/winhttprequestoption>.
+///
 /// {@category enum}
 extension type const WinHttpRequestOption(int _) implements int {
   static const WinHttpRequestOption_UserAgentString =
@@ -11106,6 +11894,12 @@ extension type const WinHttpRequestOption(int _) implements int {
       WinHttpRequestOption(0x00000013);
 }
 
+/// Contains values that specify the current state of the window for purposes of
+/// user interaction.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-windowinteractionstate>.
+///
 /// {@category enum}
 extension type const WindowInteractionState(int _) implements int {
   static const WindowInteractionState_Running =
@@ -11120,6 +11914,11 @@ extension type const WindowInteractionState(int _) implements int {
       WindowInteractionState(0x00000004);
 }
 
+/// Contains values that specify the visual state of a window.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-windowvisualstate>.
+///
 /// {@category enum}
 extension type const WindowVisualState(int _) implements int {
   static const WindowVisualState_Normal = WindowVisualState(0x00000000);
@@ -11231,6 +12030,12 @@ extension type const XINPUT_VIRTUAL_KEY(int _) implements int {
   static const VK_PAD_RTHUMB_DOWNLEFT = XINPUT_VIRTUAL_KEY(0x5837);
 }
 
+/// Contains possible values for the IUIAutomationTransformPattern2::ZoomByUnit
+/// method, which zooms the viewport of a control by the specified unit.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationcore/ne-uiautomationcore-zoomunit>.
+///
 /// {@category enum}
 extension type const ZoomUnit(int _) implements int {
   static const ZoomUnit_NoAmount = ZoomUnit(0x00000000);

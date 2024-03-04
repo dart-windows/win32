@@ -94,9 +94,7 @@ void testCallbackGolden(String callbackName) {
 void testEnumGolden(String enumName) {
   test(enumName, () {
     final typeDef = getTypeDef(enumName);
-    final enumsToGenerate = loadMap(p.join('data', 'win32_enums.json'));
-    final projection =
-        EnumProjection(typeDef, comment: enumsToGenerate[enumName] ?? '');
+    final projection = EnumProjection(typeDef);
     final fileName = typeDef.safeIdentifier.toLowerCase();
     compareGolden(
       typeDef.name,

@@ -24,6 +24,9 @@ import 'types.dart';
 /// address of this function can be specified in the callback-address parameter
 /// of the midiInOpen function.
 ///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/previous-versions/dd798460(v=vs.85)>.
+///
 /// {@category callback}
 typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
     DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
@@ -34,6 +37,9 @@ typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
 /// MIDIOUTPROC is a placeholder for the application-supplied function name. The
 /// address of the function can be specified in the callback-address parameter
 /// of the midiOutOpen function.
+///
+/// To learn more about this callback, see
+/// <https://learn.microsoft.com/previous-versions/dd798478(v=vs.85)>.
 ///
 /// {@category callback}
 typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
@@ -287,8 +293,8 @@ typedef PENUM_PAGE_FILE_CALLBACK = BOOL Function(
 typedef PFNBLUETOOTH_GATT_EVENT_CALLBACK = Void Function(
     Int32 eventType, Pointer eventOutParameter, Pointer context);
 
-/// PFN_AUTHENTICATION_CALLBACK_EX function is a callback function prototype
-/// used in conjunction with the BluetoothRegisterForAuthenticationEx function.
+/// An application-defined callback function used in conjunction with the
+/// BluetoothRegisterForAuthenticationEx function.
 ///
 /// To learn more about this callback, see
 /// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/nc-bluetoothapis-pfn_authentication_callback_ex>.
@@ -308,7 +314,8 @@ typedef PFN_AUTHENTICATION_CALLBACK_EX = BOOL Function(Pointer pvParam,
 typedef PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = BOOL Function(Uint32 uAttribId,
     Pointer<Uint8> pValueStream, Uint32 cbStreamSize, Pointer pvParam);
 
-/// A callback prototype used in association with selecting Bluetooth devices.
+/// An application-defined callback function used in association with selecting
+/// Bluetooth devices.
 ///
 /// To learn more about this callback, see
 /// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/nc-bluetoothapis-pfn_device_callback>.
@@ -404,8 +411,8 @@ typedef WLAN_NOTIFICATION_CALLBACK = Void Function(
 /// {@category callback}
 typedef WNDENUMPROC = BOOL Function(HWND param0, LPARAM param1);
 
-/// A callback function, which you define in your application, that processes
-/// messages sent to a window.
+/// An application-defined callback function that processes messages sent to a
+/// window.
 ///
 /// To learn more about this callback, see
 /// <https://learn.microsoft.com/windows/win32/api/winuser/nc-winuser-wndproc>.

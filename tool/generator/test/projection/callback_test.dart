@@ -94,8 +94,8 @@ void main() {
         ),
       );
       expect(comment, equals('''
-/// A callback function, which you define in your application, that processes
-/// messages sent to a window.
+/// An application-defined callback function that processes messages sent to a
+/// window.
 ///
 /// To learn more about this callback, see
 /// <https://learn.microsoft.com/windows/win32/api/winuser/nc-winuser-wndproc>.

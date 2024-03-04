@@ -19,6 +19,7 @@ void main() {
       final EnumProjection(
         :name,
         :bits,
+        :comment,
         :fieldProjections,
         :isBitwiseEnum,
         :toString
@@ -26,6 +27,13 @@ void main() {
       expect(name, equals('APTTYPE'));
       expect(bits, equals(32));
       expect(isBitwiseEnum, isFalse);
+      expect(comment, equals('''
+/// Specifies different types of apartments.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/ne-objidlbase-apttype>.
+///
+/// {@category enum}'''));
       expect(fieldProjections, hasLength(5));
       expect(
         fieldProjections,
@@ -41,7 +49,7 @@ void main() {
         toString(),
         equalsIgnoringWhitespace(
           '''
-/// {@category enum}
+$comment
 extension type const $name(int _) implements int {
 ${fieldProjections.map((p) => '  $p').join('\n\n')}
 }''',
@@ -54,6 +62,7 @@ ${fieldProjections.map((p) => '  $p').join('\n\n')}
       final EnumProjection(
         :name,
         :bits,
+        :comment,
         :fieldProjections,
         :isBitwiseEnum,
         :toString
@@ -61,6 +70,7 @@ ${fieldProjections.map((p) => '  $p').join('\n\n')}
       expect(name, equals('XINPUT_CAPABILITIES_FLAGS'));
       expect(bits, equals(16));
       expect(isBitwiseEnum, isTrue);
+      expect(comment, equals('/// {@category enum}'));
       expect(fieldProjections, hasLength(5));
       expect(
         fieldProjections,
@@ -76,7 +86,7 @@ ${fieldProjections.map((p) => '  $p').join('\n\n')}
         toString(),
         equalsIgnoringWhitespace(
           '''
-/// {@category enum}
+$comment
 extension type const $name(int _) implements int {
 ${fieldProjections.map((p) => '  $p').join('\n\n')}
 }''',
