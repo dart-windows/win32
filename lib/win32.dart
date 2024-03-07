@@ -228,6 +228,7 @@ export 'src/com/iwinhttprequest.g.dart';
 export 'src/constants.dart';
 export 'src/constants_metadata.dart';
 export 'src/constants_nodoc.dart';
+export 'src/enums.dart';
 export 'src/exceptions.dart';
 
 // Useful extension methods
