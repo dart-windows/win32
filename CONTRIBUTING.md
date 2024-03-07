@@ -1,4 +1,6 @@
-# Contributing to Win32
+# Contributing to win32
+
+### TODO(halildurmus): Update the following content to reflect the current state of the project.
 
 Contributions are very much appreciated. With thousands of Win32 APIs, there's a
 lot of ground to cover. Don't hesitate to ask questions.
@@ -37,11 +39,48 @@ Begin by editing the [com_types.json][com_types_json_link] file, specifying the
 desired COM interface, and then execute the `tool\generate.cmd` script to
 generate the relevant class in the `lib\src\com` directory.
 
+## Code Reviews
+
+All submissions, including submissions by project members, require review. We
+use GitHub pull requests for this purpose. Consult
+[GitHub Help][about_pull_requests] for more information on using pull requests.
+
+## Coding style
+
+The Dart source code in this repo follows the
+[Effective Dart: Style guidelines][effective_dart_style]
+
+You should familiarize yourself with those guidelines.
+
+## File headers
+
+All files in the Dart project must start with the following header; if you add a
+new file please also add this. The year should be a single number stating the
+year the file was created (don't use a range like "2011-2012"). Additionally, if
+you edit an existing file, you shouldn't update the year.
+
+```dart
+// Copyright (c) 2024, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+```
+
+## Community Guidelines
+
+This project follows
+[Contributor Covenant Open Source Community Guidelines][contributor_covenant].
+
+We pledge to maintain an open and welcoming environment. For details, see our
+[code of conduct](CODE_OF_CONDUCT.md).
+
+[about_pull_requests]: https://help.github.com/articles/about-pull-requests/
 [command_prompt_link]: https://learn.microsoft.com/visualstudio/ide/reference/command-prompt-powershell
 [com_types_json_link]: https://github.com/dart-windows/win32/tree/main/tool/generator/data/com_types.json
 [constants_dart_link]: https://github.com/dart-windows/win32/tree/main/lib/src/constants.dart
 [constants_nodoc_dart_link]: https://github.com/dart-windows/win32/tree/main/lib/src/constants_nodoc.dart
+[contributor_covenant]: https://www.contributor-covenant.org
 [credwritea_link]: https://learn.microsoft.com/windows/win32/api/wincred/nf-wincred-credwritea
 [credwritew_link]: https://learn.microsoft.com/windows/win32/api/wincred/nf-wincred-credwritew
+[effective_dart_style]: https://dart.dev/guides/language/effective-dart/style
 [win32_functions_json_link]: https://github.com/dart-windows/win32/tree/main/tool/generator/data/win32_functions.json
 [win32_structs_json_link]: https://github.com/dart-windows/win32/tree/main/tool/generator/data/win32_structs.json
