@@ -19,7 +19,7 @@ var updatedGoldenFiles = 0;
 void main() async {
   await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
   await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
-  await ApiDocs.load(version: win32DocsVersion);
+  await DocsProvider.load(version: win32DocsVersion);
 
   print('Updating golden files...');
 

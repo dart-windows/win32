@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../doc/api_details.dart';
-import '../doc/api_docs.dart';
+import '../doc/docs_provider.dart';
 import '../docs.dart';
 import '../extension/string.dart';
 import '../extension/typedef.dart';
@@ -39,7 +39,7 @@ class CallbackProjection {
     if (callbackDocs.containsKey(typeDef.name)) {
       buffer.write(callbackDocs[typeDef.name]);
     } else {
-      final docs = ApiDocs.getDocs(typeDef.name.lastComponent);
+      final docs = DocsProvider.getDocs(typeDef.name.lastComponent);
       if (docs != null) {
         final ApiDetails(:description, :helpLink) = docs;
         buffer.write(description);

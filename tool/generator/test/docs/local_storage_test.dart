@@ -26,38 +26,40 @@ void main() {
     });
 
     test('can find a NuGet package from package name', () async {
-      await ApiDocs.load();
-      final package = LocalStorage.getPackage(ApiDocs.packageName);
+      await DocsProvider.load();
+      final package = LocalStorage.getPackage(DocsProvider.win32DocsPackage);
       expect(package, isNotNull);
-      expect(package!.name, equals(ApiDocs.packageName));
+      expect(package!.name, equals(DocsProvider.win32DocsPackage));
     });
 
     test('can find a NuGet package from package name and version', () async {
-      await ApiDocs.load(version: win32DocsVersion);
-      final package = LocalStorage.getPackage(ApiDocs.packageName,
+      await DocsProvider.load(version: win32DocsVersion);
+      final package = LocalStorage.getPackage(DocsProvider.win32DocsPackage,
           version: win32DocsVersion);
       expect(package, isNotNull);
-      expect(package!.name, equals(ApiDocs.packageName));
+      expect(package!.name, equals(DocsProvider.win32DocsPackage));
       expect(package.version, equals(win32DocsVersion));
     });
 
     test('lists NuGet packages', () async {
-      await ApiDocs.load(version: win32DocsVersion);
+      await DocsProvider.load(version: win32DocsVersion);
       final packages = LocalStorage.packages;
       expect(packages, isNotEmpty);
-      final win32DocsPackage =
-          packages.where((p) => p.name == ApiDocs.packageName).lastOrNull;
+      final win32DocsPackage = packages
+          .where((p) => p.name == DocsProvider.win32DocsPackage)
+          .lastOrNull;
       expect(win32DocsPackage, isNotNull);
-      expect(win32DocsPackage!.name, equals(ApiDocs.packageName));
+      expect(win32DocsPackage!.name, equals(DocsProvider.win32DocsPackage));
       expect(win32DocsPackage.version, isNotEmpty);
       expect(
         win32DocsPackage.path,
-        contains('${LocalStorage.directoryName}\\${ApiDocs.packageName}'),
+        contains(
+            '${LocalStorage.directoryName}\\${DocsProvider.win32DocsPackage}'),
       );
       expect(
         win32DocsPackage.toString(),
         equals(
-          '${ApiDocs.packageName}@${win32DocsPackage.version} (${win32DocsPackage.path})',
+          '${DocsProvider.win32DocsPackage}@${win32DocsPackage.version} (${win32DocsPackage.path})',
         ),
       );
     });

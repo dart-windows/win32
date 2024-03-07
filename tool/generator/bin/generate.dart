@@ -278,7 +278,7 @@ void main() async {
   await MetadataStore.loadWinRTMetadata(version: winrtMetadataVersion);
 
   print('[${stopwatch.elapsed}] Loading Win32 API docs...');
-  await ApiDocs.load(version: win32DocsVersion);
+  await DocsProvider.load(version: win32DocsVersion);
 
   print('[${stopwatch.elapsed}] Loading and sorting functions...');
   final functionsToGenerate = loadFunctionsFromJson();

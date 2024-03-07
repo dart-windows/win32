@@ -8,7 +8,7 @@ library;
 
 export 'src/attributes.dart';
 export 'src/doc/api_details.dart';
-export 'src/doc/api_docs.dart';
+export 'src/doc/docs_provider.dart';
 export 'src/doc/local_storage.dart';
 export 'src/doc/nuget_package.dart';
 export 'src/docs.dart';

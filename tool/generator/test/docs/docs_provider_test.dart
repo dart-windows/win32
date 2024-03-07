@@ -8,10 +8,10 @@ import 'package:generator/generator.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('ApiDocs', () {
+  group('DocsProvider', () {
     test('getDocs', () async {
-      await ApiDocs.load(version: win32DocsVersion);
-      final docs = ApiDocs.getDocs('MessageBoxW');
+      await DocsProvider.load(version: win32DocsVersion);
+      final docs = DocsProvider.getDocs('MessageBoxW');
       expect(docs, isNotNull);
       expect(
         docs!.description,
@@ -49,12 +49,12 @@ void main() {
               'be a combination of flags from the following groups of flags.',
         }),
       );
-      ApiDocs.clear();
+      DocsProvider.clear();
     });
 
     test('getDescription', () async {
-      await ApiDocs.load(version: win32DocsVersion);
-      final description = ApiDocs.getDescription('IUnknown');
+      await DocsProvider.load(version: win32DocsVersion);
+      final description = DocsProvider.getDescription('IUnknown');
       expect(description, isNotNull);
       expect(
         description,
@@ -62,12 +62,12 @@ void main() {
             'given object through the QueryInterface method, and manage the '
             'existence of the object through the AddRef and Release methods.'),
       );
-      ApiDocs.clear();
+      DocsProvider.clear();
     });
 
     test('getHelpLink', () async {
-      await ApiDocs.load(version: win32DocsVersion);
-      final helpLink = ApiDocs.getHelpLink('MessageBoxW');
+      await DocsProvider.load(version: win32DocsVersion);
+      final helpLink = DocsProvider.getHelpLink('MessageBoxW');
       expect(helpLink, isNotNull);
       expect(
         helpLink.toString(),
@@ -75,13 +75,13 @@ void main() {
           'https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-messageboxw',
         ),
       );
-      ApiDocs.clear();
+      DocsProvider.clear();
     });
 
     test('appropriate response to searching for empty type', () async {
-      await ApiDocs.load();
+      await DocsProvider.load();
       expect(
-        () => ApiDocs.getDocs(''),
+        () => DocsProvider.getDocs(''),
         throwsA(
           isA<ArgumentError>().having(
             (e) => e.message,
@@ -90,20 +90,22 @@ void main() {
           ),
         ),
       );
-      ApiDocs.clear();
+      DocsProvider.clear();
     });
 
     test(
         'appropriate response to searching for an API documentation without '
         'loading the API documentation first', () {
       expect(
-        () => ApiDocs.getDocs('IUnknown'),
+        () => DocsProvider.getDocs('IUnknown'),
         throwsA(
           isA<StateError>().having(
             (e) => e.message,
             'message',
-            equals('API documentation has not been loaded. Please call '
-                'ApiDocs.load() before attempting to retrieve documentation.'),
+            equals(
+              'API documentation has not been loaded. Please call '
+              'DocsProvider.load() before attempting to retrieve documentation.',
+            ),
           ),
         ),
       );
