@@ -98,7 +98,8 @@ void main() {
         while (errors.next(errorPtr) == S_OK) {
           expect(errorPtr.value.address, isNonZero);
           final error = ISpellingError(errorPtr.value);
-          expect(error.correctiveAction, equals(CORRECTIVE_ACTION.REPLACE));
+          expect(error.correctiveAction,
+              equals(CORRECTIVE_ACTION.CORRECTIVE_ACTION_REPLACE));
           final replacement = error.replacement;
           expect(replacement.toDartString(), equals('have'));
           free(replacement);

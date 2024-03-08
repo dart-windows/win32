@@ -11,6 +11,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import 'constants.dart';
+import 'enums.g.dart';
 import 'inline.dart';
 import 'structs.g.dart';
 

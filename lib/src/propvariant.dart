@@ -10,6 +10,7 @@ import 'bstr.dart';
 import 'com/idispatch.g.dart';
 import 'com/iunknown.g.dart';
 import 'constants.dart';
+import 'enums.g.dart';
 import 'structs.g.dart';
 import 'win32_v5/ole32.g.dart';
 

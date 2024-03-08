@@ -72,18 +72,18 @@ void main(List<String> args) {
       stdout.write('$errorCount. $word');
 
       switch (error.correctiveAction) {
-        case CORRECTIVE_ACTION.DELETE:
+        case CORRECTIVE_ACTION.CORRECTIVE_ACTION_DELETE:
           print(' - delete');
 
-        case CORRECTIVE_ACTION.NONE:
+        case CORRECTIVE_ACTION.CORRECTIVE_ACTION_NONE:
           print('\n');
 
-        case CORRECTIVE_ACTION.REPLACE:
+        case CORRECTIVE_ACTION.CORRECTIVE_ACTION_REPLACE:
           final replacement = error.replacement;
           print(' - replace with "${replacement.toDartString()}"');
           free(replacement);
 
-        case CORRECTIVE_ACTION.GET_SUGGESTIONS:
+        case CORRECTIVE_ACTION.CORRECTIVE_ACTION_GET_SUGGESTIONS:
           print(' - suggestions:');
 
           final wordPtr = PWSTR.fromString(word);

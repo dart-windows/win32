@@ -1358,45 +1358,6 @@ final TD_INFORMATION_ICON = Pointer<Utf16>.fromAddress(0xFFFD);
 final TD_SHIELD_ICON = Pointer<Utf16>.fromAddress(0xFFFC);
 
 /// {@category enum}
-class TASKDIALOG_FLAGS {
-  static const int TDF_ENABLE_HYPERLINKS = 0x0001;
-  static const int TDF_USE_HICON_MAIN = 0x0002;
-  static const int TDF_USE_HICON_FOOTER = 0x0004;
-  static const int TDF_ALLOW_DIALOG_CANCELLATION = 0x0008;
-  static const int TDF_USE_COMMAND_LINKS = 0x0010;
-  static const int TDF_USE_COMMAND_LINKS_NO_ICON = 0x0020;
-  static const int TDF_EXPAND_FOOTER_AREA = 0x0040;
-  static const int TDF_EXPANDED_BY_DEFAULT = 0x0080;
-  static const int TDF_VERIFICATION_FLAG_CHECKED = 0x0100;
-  static const int TDF_SHOW_PROGRESS_BAR = 0x0200;
-  static const int TDF_SHOW_MARQUEE_PROGRESS_BAR = 0x0400;
-  static const int TDF_CALLBACK_TIMER = 0x0800;
-  static const int TDF_POSITION_RELATIVE_TO_WINDOW = 0x1000;
-  static const int TDF_RTL_LAYOUT = 0x2000;
-  static const int TDF_NO_DEFAULT_RADIO_BUTTON = 0x4000;
-  static const int TDF_CAN_BE_MINIMIZED = 0x8000;
-  static const int TDF_NO_SET_FOREGROUND = 0x00010000;
-  static const int TDF_SIZE_TO_CONTENT = 0x01000000;
-}
-
-/// {@category enum}
-class TASKDIALOG_COMMON_BUTTON_FLAGS {
-  static const int TDCBF_OK_BUTTON = 0x0001;
-  static const int TDCBF_YES_BUTTON = 0x0002;
-  static const int TDCBF_NO_BUTTON = 0x0004;
-  static const int TDCBF_CANCEL_BUTTON = 0x0008;
-  static const int TDCBF_RETRY_BUTTON = 0x0010;
-  static const int TDCBF_CLOSE_BUTTON = 0x0020;
-}
-
-/// {@category enum}
-class THEMESIZE {
-  static const int TS_MIN = 0;
-  static const int TS_TRUE = 1;
-  static const int TS_DRAW = 2;
-}
-
-/// {@category enum}
 class WINDOWPARTS {
   static const int WP_CAPTION = 1;
   static const int WP_SMALLCAPTION = 2;
@@ -2024,127 +1985,6 @@ const BTH_MAX_PIN_SIZE = 16;
 const BTH_LINK_KEY_LENGTH = 16;
 
 /// {@category enum}
-class POWER_INFORMATION_LEVEL {
-  static const SystemPowerPolicyAc = 0;
-  static const SystemPowerPolicyDc = 1;
-  static const VerifySystemPolicyAc = 2;
-  static const VerifySystemPolicyDc = 3;
-  static const SystemPowerCapabilities = 4;
-  static const SystemBatteryState = 5;
-  static const SystemPowerStateHandler = 6;
-  static const ProcessorStateHandler = 7;
-  static const SystemPowerPolicyCurrent = 8;
-  static const AdministratorPowerPolicy = 9;
-  static const SystemReserveHiberFile = 10;
-  static const ProcessorInformation = 11;
-  static const SystemPowerInformation = 12;
-  static const ProcessorStateHandler2 = 13;
-  static const LastWakeTime = 14;
-  static const LastSleepTime = 15;
-  static const SystemExecutionState = 16;
-  static const SystemPowerStateNotifyHandler = 17;
-  static const ProcessorPowerPolicyAc = 18;
-  static const ProcessorPowerPolicyDc = 19;
-  static const VerifyProcessorPowerPolicyAc = 20;
-  static const VerifyProcessorPowerPolicyDc = 21;
-  static const ProcessorPowerPolicyCurrent = 22;
-  static const SystemPowerStateLogging = 23;
-  static const SystemPowerLoggingEntry = 24;
-  static const SetPowerSettingValue = 25;
-  static const NotifyUserPowerSetting = 26;
-  static const PowerInformationLevelUnused0 = 27;
-  static const SystemMonitorHiberBootPowerOff = 28;
-  static const SystemVideoState = 29;
-  static const TraceApplicationPowerMessage = 30;
-  static const TraceApplicationPowerMessageEnd = 31;
-  static const ProcessorPerfStates = 32;
-  static const ProcessorIdleStates = 33;
-  static const ProcessorCap = 34;
-  static const SystemWakeSource = 35;
-  static const SystemHiberFileInformation = 36;
-  static const TraceServicePowerMessage = 37;
-  static const ProcessorLoad = 38;
-  static const PowerShutdownNotification = 39;
-  static const MonitorCapabilities = 40;
-  static const SessionPowerInit = 41;
-  static const SessionDisplayState = 42;
-  static const PowerRequestCreate = 43;
-  static const PowerRequestAction = 44;
-  static const GetPowerRequestList = 45;
-  static const ProcessorInformationEx = 46;
-  static const NotifyUserModeLegacyPowerEvent = 47;
-  static const GroupPark = 48;
-  static const ProcessorIdleDomains = 49;
-  static const WakeTimerList = 50;
-  static const SystemHiberFileSize = 51;
-  static const ProcessorIdleStatesHv = 52;
-  static const ProcessorPerfStatesHv = 53;
-  static const ProcessorPerfCapHv = 54;
-  static const ProcessorSetIdle = 55;
-  static const LogicalProcessorIdling = 56;
-  static const UserPresence = 57;
-  static const PowerSettingNotificationName = 58;
-  static const GetPowerSettingValue = 59;
-  static const IdleResiliency = 60;
-  static const SessionRITState = 61;
-  static const SessionConnectNotification = 62;
-  static const SessionPowerCleanup = 63;
-  static const SessionLockState = 64;
-  static const SystemHiberbootState = 65;
-  static const PlatformInformation = 66;
-  static const PdcInvocation = 67;
-  static const MonitorInvocation = 68;
-  static const FirmwareTableInformationRegistered = 69;
-  static const SetShutdownSelectedTime = 70;
-  static const SuspendResumeInvocation = 71;
-  static const PlmPowerRequestCreate = 72;
-  static const ScreenOff = 73;
-  static const CsDeviceNotification = 74;
-  static const PlatformRole = 75;
-  static const LastResumePerformance = 76;
-  static const DisplayBurst = 77;
-  static const ExitLatencySamplingPercentage = 78;
-  static const RegisterSpmPowerSettings = 79;
-  static const PlatformIdleStates = 80;
-  static const ProcessorIdleVeto = 81;
-  static const PlatformIdleVeto = 82;
-  static const SystemBatteryStatePrecise = 83;
-  static const ThermalEvent = 84;
-  static const PowerRequestActionInternal = 85;
-  static const BatteryDeviceState = 86;
-  static const PowerInformationInternal = 87;
-  static const ThermalStandby = 88;
-  static const SystemHiberFileType = 89;
-  static const PhysicalPowerButtonPress = 90;
-  static const QueryPotentialDripsConstraint = 91;
-  static const EnergyTrackerCreate = 92;
-  static const EnergyTrackerQuery = 93;
-  static const UpdateBlackBoxRecorder = 94;
-  static const SessionAllowExternalDmaDevices = 95;
-  static const PowerInformationLevelMaximum = 96;
-}
-
-/// {@category enum}
-class FFFP_MODE {
-  static const FFFP_EXACTMATCH = 0;
-  static const FFFP_NEARESTPARENTMATCH = FFFP_EXACTMATCH + 1;
-}
-
-/// {@category enum}
-class FDAP {
-  static const FDAP_BOTTOM = 0;
-  static const FDAP_TOP = 1;
-}
-
-/// {@category enum}
-class KF_CATEGORY {
-  static const KF_CATEGORY_VIRTUAL = 1;
-  static const KF_CATEGORY_FIXED = 2;
-  static const KF_CATEGORY_COMMON = 3;
-  static const KF_CATEGORY_PERUSER = 4;
-}
-
-/// {@category enum}
 class KF_DEFINITION_FLAGS {
   static const KFDF_LOCAL_REDIRECT_ONLY = 0x2;
   static const KFDF_ROAMABLE = 0x4;
@@ -2169,21 +2009,6 @@ class KF_REDIRECT_FLAGS {
   static const KF_REDIRECT_EXCLUDE_ALL_KNOWN_SUBFOLDERS = 0x800;
 }
 
-/// Specifies a type of computer name.
-///
-/// {@category enum}
-class COMPUTER_NAME_FORMAT {
-  static const ComputerNameNetBIOS = 0;
-  static const ComputerNameDnsHostname = 1;
-  static const ComputerNameDnsDomain = 2;
-  static const ComputerNameDnsFullyQualified = 3;
-  static const ComputerNamePhysicalNetBIOS = 4;
-  static const ComputerNamePhysicalDnsHostname = 5;
-  static const ComputerNamePhysicalDnsDomain = 6;
-  static const ComputerNamePhysicalDnsFullyQualified = 7;
-  static const ComputerNameMax = 8;
-}
-
 /// {@category enum}
 class KF_REDIRECTION_CAPABILITIES {
   static const KF_REDIRECTION_CAPABILITIES_ALLOW_ALL = 0xff;
@@ -2192,20 +2017,6 @@ class KF_REDIRECTION_CAPABILITIES {
   static const KF_REDIRECTION_CAPABILITIES_DENY_POLICY_REDIRECTED = 0x100;
   static const KF_REDIRECTION_CAPABILITIES_DENY_POLICY = 0x200;
   static const KF_REDIRECTION_CAPABILITIES_DENY_PERMISSIONS = 0x400;
-}
-
-/// {@category enum}
-class SIGDN {
-  static const SIGDN_NORMALDISPLAY = 0;
-  static const SIGDN_PARENTRELATIVEPARSING = 0x80018001;
-  static const SIGDN_DESKTOPABSOLUTEPARSING = 0x80028000;
-  static const SIGDN_PARENTRELATIVEEDITING = 0x80031001;
-  static const SIGDN_DESKTOPABSOLUTEEDITING = 0x8004c000;
-  static const SIGDN_FILESYSPATH = 0x80058000;
-  static const SIGDN_URL = 0x80068000;
-  static const SIGDN_PARENTRELATIVEFORADDRESSBAR = 0x8007c001;
-  static const SIGDN_PARENTRELATIVE = 0x80080001;
-  static const SIGDN_PARENTRELATIVEFORUI = 0x8009400;
 }
 
 /// {@category enum}
@@ -2229,26 +2040,6 @@ class EOLE_AUTHENTICATION_CAPABILITIES {
 }
 
 /// {@category enum}
-class WBEM_GENERIC_FLAG_TYPE {
-  static const WBEM_FLAG_RETURN_IMMEDIATELY = 0x10;
-  static const WBEM_FLAG_RETURN_WBEM_COMPLETE = 0;
-  static const WBEM_FLAG_BIDIRECTIONAL = 0;
-  static const WBEM_FLAG_FORWARD_ONLY = 0x20;
-  static const WBEM_FLAG_NO_ERROR_OBJECT = 0x40;
-  static const WBEM_FLAG_RETURN_ERROR_OBJECT = 0;
-  static const WBEM_FLAG_SEND_STATUS = 0x80;
-  static const WBEM_FLAG_DONT_SEND_STATUS = 0;
-  static const WBEM_FLAG_ENSURE_LOCATABLE = 0x100;
-  static const WBEM_FLAG_DIRECT_READ = 0x200;
-  static const WBEM_FLAG_SEND_ONLY_SELECTED = 0;
-  static const WBEM_RETURN_WHEN_COMPLETE = 0;
-  static const WBEM_RETURN_IMMEDIATELY = 0x10;
-  static const WBEM_MASK_RESERVED_FLAGS = 0x1f000;
-  static const WBEM_FLAG_USE_AMENDED_QUALIFIERS = 0x20000;
-  static const WBEM_FLAG_STRONG_VALIDATION = 0x100000;
-}
-
-/// {@category enum}
 class WBEM_REFRESHER_FLAGS {
   static const WBEM_FLAG_REFRESH_AUTO_RECONNECT = 0;
   static const WBEM_FLAG_REFRESH_NO_AUTO_RECONNECT = 1;
@@ -2258,26 +2049,6 @@ class WBEM_REFRESHER_FLAGS {
 class WBEM_TIMEOUT_TYPE {
   static const WBEM_NO_WAIT = 0;
   static const WBEM_INFINITE = 0xffffffff;
-}
-
-/// {@category enum}
-class NLM_CONNECTIVITY {
-  static const NLM_CONNECTIVITY_DISCONNECTED = 0;
-  static const NLM_CONNECTIVITY_IPV4_NOTRAFFIC = 0x1;
-  static const NLM_CONNECTIVITY_IPV6_NOTRAFFIC = 0x2;
-  static const NLM_CONNECTIVITY_IPV4_SUBNET = 0x10;
-  static const NLM_CONNECTIVITY_IPV4_LOCALNETWORK = 0x20;
-  static const NLM_CONNECTIVITY_IPV4_INTERNET = 0x40;
-  static const NLM_CONNECTIVITY_IPV6_SUBNET = 0x100;
-  static const NLM_CONNECTIVITY_IPV6_LOCALNETWORK = 0x200;
-  static const NLM_CONNECTIVITY_IPV6_INTERNET = 0x400;
-}
-
-/// {@category enum}
-class NLM_ENUM_NETWORK {
-  static const NLM_ENUM_NETWORK_CONNECTED = 0x1;
-  static const NLM_ENUM_NETWORK_DISCONNECTED = 0x2;
-  static const NLM_ENUM_NETWORK_ALL = 0x3;
 }
 
 const PRODUCT_UNDEFINED = 0x00000000;

@@ -13,6 +13,7 @@ import 'package:ffi/ffi.dart';
 import 'callbacks.g.dart';
 import 'constants.dart';
 import 'constants_nodoc.dart';
+import 'enums.g.dart';
 import 'macros.dart';
 import 'structs.g.dart';
 import 'utils.dart';

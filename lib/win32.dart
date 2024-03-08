@@ -228,8 +228,6 @@ export 'src/com/iwinhttprequest.g.dart';
 export 'src/constants.dart';
 export 'src/constants_metadata.dart';
 export 'src/constants_nodoc.dart';
-export 'src/enums.dart';
-export 'src/exceptions.dart';
 
 // Useful extension methods
 export 'src/extensions/dialogs.dart';
@@ -244,6 +242,8 @@ export 'src/extensions/unpack_utf16.dart';
 export 'src/bstr.dart';
 export 'src/callbacks.g.dart';
 export 'src/dispatcher.dart';
+export 'src/enums.g.dart';
+export 'src/exceptions.dart';
 export 'src/guid.dart';
 export 'src/inline.dart';
 export 'src/macros.dart';
