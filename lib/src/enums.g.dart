@@ -229,6 +229,20 @@ extension type const APTTYPEQUALIFIER(int _) implements int {
   static const APTTYPEQUALIFIER_RESERVED_1 = APTTYPEQUALIFIER(0x00000007);
 }
 
+/// Defines flags that indicate the status of an audio endpoint buffer.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/audioclient/ne-audioclient-_audclnt_bufferflags>.
+///
+/// {@category enum}
+extension type const AUDCLNT_BUFFERFLAGS(int _) implements int {
+  static const AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY =
+      AUDCLNT_BUFFERFLAGS(0x00000001);
+  static const AUDCLNT_BUFFERFLAGS_SILENT = AUDCLNT_BUFFERFLAGS(0x00000002);
+  static const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR =
+      AUDCLNT_BUFFERFLAGS(0x00000004);
+}
+
 /// Defines constants that indicate whether an audio stream will run in shared
 /// mode or in exclusive mode.
 ///
@@ -847,6 +861,333 @@ extension type const ConnectionRecoveryBehaviorOptions(int _) implements int {
       ConnectionRecoveryBehaviorOptions(0x00000000);
   static const ConnectionRecoveryBehaviorOptions_Enabled =
       ConnectionRecoveryBehaviorOptions(0x00000001);
+}
+
+/// {@category enum}
+extension type const CorElementType(int _) implements int {
+  static const ELEMENT_TYPE_END = CorElementType(0x00);
+  static const ELEMENT_TYPE_VOID = CorElementType(0x01);
+  static const ELEMENT_TYPE_BOOLEAN = CorElementType(0x02);
+  static const ELEMENT_TYPE_CHAR = CorElementType(0x03);
+  static const ELEMENT_TYPE_I1 = CorElementType(0x04);
+  static const ELEMENT_TYPE_U1 = CorElementType(0x05);
+  static const ELEMENT_TYPE_I2 = CorElementType(0x06);
+  static const ELEMENT_TYPE_U2 = CorElementType(0x07);
+  static const ELEMENT_TYPE_I4 = CorElementType(0x08);
+  static const ELEMENT_TYPE_U4 = CorElementType(0x09);
+  static const ELEMENT_TYPE_I8 = CorElementType(0x0a);
+  static const ELEMENT_TYPE_U8 = CorElementType(0x0b);
+  static const ELEMENT_TYPE_R4 = CorElementType(0x0c);
+  static const ELEMENT_TYPE_R8 = CorElementType(0x0d);
+  static const ELEMENT_TYPE_STRING = CorElementType(0x0e);
+  static const ELEMENT_TYPE_PTR = CorElementType(0x0f);
+  static const ELEMENT_TYPE_BYREF = CorElementType(0x10);
+  static const ELEMENT_TYPE_VALUETYPE = CorElementType(0x11);
+  static const ELEMENT_TYPE_CLASS = CorElementType(0x12);
+  static const ELEMENT_TYPE_VAR = CorElementType(0x13);
+  static const ELEMENT_TYPE_ARRAY = CorElementType(0x14);
+  static const ELEMENT_TYPE_GENERICINST = CorElementType(0x15);
+  static const ELEMENT_TYPE_TYPEDBYREF = CorElementType(0x16);
+  static const ELEMENT_TYPE_I = CorElementType(0x18);
+  static const ELEMENT_TYPE_U = CorElementType(0x19);
+  static const ELEMENT_TYPE_FNPTR = CorElementType(0x1b);
+  static const ELEMENT_TYPE_OBJECT = CorElementType(0x1c);
+  static const ELEMENT_TYPE_SZARRAY = CorElementType(0x1d);
+  static const ELEMENT_TYPE_MVAR = CorElementType(0x1e);
+  static const ELEMENT_TYPE_CMOD_REQD = CorElementType(0x1f);
+  static const ELEMENT_TYPE_CMOD_OPT = CorElementType(0x20);
+  static const ELEMENT_TYPE_INTERNAL = CorElementType(0x21);
+  static const ELEMENT_TYPE_MAX = CorElementType(0x22);
+  static const ELEMENT_TYPE_MODIFIER = CorElementType(0x40);
+  static const ELEMENT_TYPE_SENTINEL = CorElementType(0x41);
+  static const ELEMENT_TYPE_PINNED = CorElementType(0x45);
+}
+
+/// {@category enum}
+extension type const CorEventAttr(int _) implements int {
+  static const evSpecialName = CorEventAttr(0x00000200);
+  static const evReservedMask = CorEventAttr(0x00000400);
+  static const evRTSpecialName = CorEventAttr(0x00000400);
+}
+
+/// {@category enum}
+extension type const CorFieldAttr(int _) implements int {
+  static const fdFieldAccessMask = CorFieldAttr(0x00000007);
+  static const fdPrivateScope = CorFieldAttr(0x00000000);
+  static const fdPrivate = CorFieldAttr(0x00000001);
+  static const fdFamANDAssem = CorFieldAttr(0x00000002);
+  static const fdAssembly = CorFieldAttr(0x00000003);
+  static const fdFamily = CorFieldAttr(0x00000004);
+  static const fdFamORAssem = CorFieldAttr(0x00000005);
+  static const fdPublic = CorFieldAttr(0x00000006);
+  static const fdStatic = CorFieldAttr(0x00000010);
+  static const fdInitOnly = CorFieldAttr(0x00000020);
+  static const fdLiteral = CorFieldAttr(0x00000040);
+  static const fdNotSerialized = CorFieldAttr(0x00000080);
+  static const fdSpecialName = CorFieldAttr(0x00000200);
+  static const fdPinvokeImpl = CorFieldAttr(0x00002000);
+  static const fdReservedMask = CorFieldAttr(0x00009500);
+  static const fdRTSpecialName = CorFieldAttr(0x00000400);
+  static const fdHasFieldMarshal = CorFieldAttr(0x00001000);
+  static const fdHasDefault = CorFieldAttr(0x00008000);
+  static const fdHasFieldRVA = CorFieldAttr(0x00000100);
+}
+
+/// {@category enum}
+extension type const CorGenericParamAttr(int _) implements int {
+  static const gpVarianceMask = CorGenericParamAttr(0x00000003);
+  static const gpNonVariant = CorGenericParamAttr(0x00000000);
+  static const gpCovariant = CorGenericParamAttr(0x00000001);
+  static const gpContravariant = CorGenericParamAttr(0x00000002);
+  static const gpSpecialConstraintMask = CorGenericParamAttr(0x0000001c);
+  static const gpNoSpecialConstraint = CorGenericParamAttr(0x00000000);
+  static const gpReferenceTypeConstraint = CorGenericParamAttr(0x00000004);
+  static const gpNotNullableValueTypeConstraint =
+      CorGenericParamAttr(0x00000008);
+  static const gpDefaultConstructorConstraint = CorGenericParamAttr(0x00000010);
+}
+
+/// {@category enum}
+extension type const CorMethodAttr(int _) implements int {
+  static const mdMemberAccessMask = CorMethodAttr(0x00000007);
+  static const mdPrivateScope = CorMethodAttr(0x00000000);
+  static const mdPrivate = CorMethodAttr(0x00000001);
+  static const mdFamANDAssem = CorMethodAttr(0x00000002);
+  static const mdAssem = CorMethodAttr(0x00000003);
+  static const mdFamily = CorMethodAttr(0x00000004);
+  static const mdFamORAssem = CorMethodAttr(0x00000005);
+  static const mdPublic = CorMethodAttr(0x00000006);
+  static const mdStatic = CorMethodAttr(0x00000010);
+  static const mdFinal = CorMethodAttr(0x00000020);
+  static const mdVirtual = CorMethodAttr(0x00000040);
+  static const mdHideBySig = CorMethodAttr(0x00000080);
+  static const mdVtableLayoutMask = CorMethodAttr(0x00000100);
+  static const mdReuseSlot = CorMethodAttr(0x00000000);
+  static const mdNewSlot = CorMethodAttr(0x00000100);
+  static const mdCheckAccessOnOverride = CorMethodAttr(0x00000200);
+  static const mdAbstract = CorMethodAttr(0x00000400);
+  static const mdSpecialName = CorMethodAttr(0x00000800);
+  static const mdPinvokeImpl = CorMethodAttr(0x00002000);
+  static const mdUnmanagedExport = CorMethodAttr(0x00000008);
+  static const mdReservedMask = CorMethodAttr(0x0000d000);
+  static const mdRTSpecialName = CorMethodAttr(0x00001000);
+  static const mdHasSecurity = CorMethodAttr(0x00004000);
+  static const mdRequireSecObject = CorMethodAttr(0x00008000);
+}
+
+/// {@category enum}
+extension type const CorMethodImpl(int _) implements int {
+  static const miCodeTypeMask = CorMethodImpl(0x00000003);
+  static const miIL = CorMethodImpl(0x00000000);
+  static const miNative = CorMethodImpl(0x00000001);
+  static const miOPTIL = CorMethodImpl(0x00000002);
+  static const miRuntime = CorMethodImpl(0x00000003);
+  static const miManagedMask = CorMethodImpl(0x00000004);
+  static const miUnmanaged = CorMethodImpl(0x00000004);
+  static const miManaged = CorMethodImpl(0x00000000);
+  static const miForwardRef = CorMethodImpl(0x00000010);
+  static const miPreserveSig = CorMethodImpl(0x00000080);
+  static const miInternalCall = CorMethodImpl(0x00001000);
+  static const miSynchronized = CorMethodImpl(0x00000020);
+  static const miNoInlining = CorMethodImpl(0x00000008);
+  static const miAggressiveInlining = CorMethodImpl(0x00000100);
+  static const miNoOptimization = CorMethodImpl(0x00000040);
+  static const miSecurityMitigations = CorMethodImpl(0x00000400);
+  static const miUserMask = CorMethodImpl(0x000015fc);
+  static const miMaxMethodImplVal = CorMethodImpl(0x0000ffff);
+}
+
+/// {@category enum}
+extension type const CorNativeType(int _) implements int {
+  static const NATIVE_TYPE_END = CorNativeType(0x00000000);
+  static const NATIVE_TYPE_VOID = CorNativeType(0x00000001);
+  static const NATIVE_TYPE_BOOLEAN = CorNativeType(0x00000002);
+  static const NATIVE_TYPE_I1 = CorNativeType(0x00000003);
+  static const NATIVE_TYPE_U1 = CorNativeType(0x00000004);
+  static const NATIVE_TYPE_I2 = CorNativeType(0x00000005);
+  static const NATIVE_TYPE_U2 = CorNativeType(0x00000006);
+  static const NATIVE_TYPE_I4 = CorNativeType(0x00000007);
+  static const NATIVE_TYPE_U4 = CorNativeType(0x00000008);
+  static const NATIVE_TYPE_I8 = CorNativeType(0x00000009);
+  static const NATIVE_TYPE_U8 = CorNativeType(0x0000000a);
+  static const NATIVE_TYPE_R4 = CorNativeType(0x0000000b);
+  static const NATIVE_TYPE_R8 = CorNativeType(0x0000000c);
+  static const NATIVE_TYPE_SYSCHAR = CorNativeType(0x0000000d);
+  static const NATIVE_TYPE_VARIANT = CorNativeType(0x0000000e);
+  static const NATIVE_TYPE_CURRENCY = CorNativeType(0x0000000f);
+  static const NATIVE_TYPE_PTR = CorNativeType(0x00000010);
+  static const NATIVE_TYPE_DECIMAL = CorNativeType(0x00000011);
+  static const NATIVE_TYPE_DATE = CorNativeType(0x00000012);
+  static const NATIVE_TYPE_BSTR = CorNativeType(0x00000013);
+  static const NATIVE_TYPE_LPSTR = CorNativeType(0x00000014);
+  static const NATIVE_TYPE_LPWSTR = CorNativeType(0x00000015);
+  static const NATIVE_TYPE_LPTSTR = CorNativeType(0x00000016);
+  static const NATIVE_TYPE_FIXEDSYSSTRING = CorNativeType(0x00000017);
+  static const NATIVE_TYPE_OBJECTREF = CorNativeType(0x00000018);
+  static const NATIVE_TYPE_IUNKNOWN = CorNativeType(0x00000019);
+  static const NATIVE_TYPE_IDISPATCH = CorNativeType(0x0000001a);
+  static const NATIVE_TYPE_STRUCT = CorNativeType(0x0000001b);
+  static const NATIVE_TYPE_INTF = CorNativeType(0x0000001c);
+  static const NATIVE_TYPE_SAFEARRAY = CorNativeType(0x0000001d);
+  static const NATIVE_TYPE_FIXEDARRAY = CorNativeType(0x0000001e);
+  static const NATIVE_TYPE_INT = CorNativeType(0x0000001f);
+  static const NATIVE_TYPE_UINT = CorNativeType(0x00000020);
+  static const NATIVE_TYPE_NESTEDSTRUCT = CorNativeType(0x00000021);
+  static const NATIVE_TYPE_BYVALSTR = CorNativeType(0x00000022);
+  static const NATIVE_TYPE_ANSIBSTR = CorNativeType(0x00000023);
+  static const NATIVE_TYPE_TBSTR = CorNativeType(0x00000024);
+  static const NATIVE_TYPE_VARIANTBOOL = CorNativeType(0x00000025);
+  static const NATIVE_TYPE_FUNC = CorNativeType(0x00000026);
+  static const NATIVE_TYPE_ASANY = CorNativeType(0x00000028);
+  static const NATIVE_TYPE_ARRAY = CorNativeType(0x0000002a);
+  static const NATIVE_TYPE_LPSTRUCT = CorNativeType(0x0000002b);
+  static const NATIVE_TYPE_CUSTOMMARSHALER = CorNativeType(0x0000002c);
+  static const NATIVE_TYPE_ERROR = CorNativeType(0x0000002d);
+  static const NATIVE_TYPE_IINSPECTABLE = CorNativeType(0x0000002e);
+  static const NATIVE_TYPE_HSTRING = CorNativeType(0x0000002f);
+  static const NATIVE_TYPE_LPUTF8STR = CorNativeType(0x00000030);
+  static const NATIVE_TYPE_MAX = CorNativeType(0x00000050);
+}
+
+/// {@category enum}
+extension type const CorOpenFlags(int _) implements int {
+  static const ofRead = CorOpenFlags(0x00000000);
+  static const ofWrite = CorOpenFlags(0x00000001);
+  static const ofReadWriteMask = CorOpenFlags(0x00000001);
+  static const ofCopyMemory = CorOpenFlags(0x00000002);
+  static const ofReadOnly = CorOpenFlags(0x00000010);
+  static const ofTakeOwnership = CorOpenFlags(0x00000020);
+  static const ofNoTypeLib = CorOpenFlags(0x00000080);
+  static const ofNoTransform = CorOpenFlags(0x00001000);
+  static const ofCheckIntegrity = CorOpenFlags(0x00000800);
+  static const ofReserved1 = CorOpenFlags(0x00000100);
+  static const ofReserved2 = CorOpenFlags(0x00000200);
+  static const ofReserved3 = CorOpenFlags(0x00000400);
+  static const ofReserved = CorOpenFlags(0xffffe740);
+}
+
+/// {@category enum}
+extension type const CorPEKind(int _) implements int {
+  static const peNot = CorPEKind(0x00000000);
+  static const peILonly = CorPEKind(0x00000001);
+  static const pe32BitRequired = CorPEKind(0x00000002);
+  static const pe32Plus = CorPEKind(0x00000004);
+  static const pe32Unmanaged = CorPEKind(0x00000008);
+  static const pe32BitPreferred = CorPEKind(0x00000010);
+}
+
+/// {@category enum}
+extension type const CorParamAttr(int _) implements int {
+  static const pdIn = CorParamAttr(0x00000001);
+  static const pdOut = CorParamAttr(0x00000002);
+  static const pdOptional = CorParamAttr(0x00000010);
+  static const pdReservedMask = CorParamAttr(0x0000f000);
+  static const pdHasDefault = CorParamAttr(0x00001000);
+  static const pdHasFieldMarshal = CorParamAttr(0x00002000);
+  static const pdUnused = CorParamAttr(0x0000cfe0);
+}
+
+/// {@category enum}
+extension type const CorPinvokeMap(int _) implements int {
+  static const pmNoMangle = CorPinvokeMap(0x00000001);
+  static const pmCharSetMask = CorPinvokeMap(0x00000006);
+  static const pmCharSetNotSpec = CorPinvokeMap(0x00000000);
+  static const pmCharSetAnsi = CorPinvokeMap(0x00000002);
+  static const pmCharSetUnicode = CorPinvokeMap(0x00000004);
+  static const pmCharSetAuto = CorPinvokeMap(0x00000006);
+  static const pmBestFitUseAssem = CorPinvokeMap(0x00000000);
+  static const pmBestFitEnabled = CorPinvokeMap(0x00000010);
+  static const pmBestFitDisabled = CorPinvokeMap(0x00000020);
+  static const pmBestFitMask = CorPinvokeMap(0x00000030);
+  static const pmThrowOnUnmappableCharUseAssem = CorPinvokeMap(0x00000000);
+  static const pmThrowOnUnmappableCharEnabled = CorPinvokeMap(0x00001000);
+  static const pmThrowOnUnmappableCharDisabled = CorPinvokeMap(0x00002000);
+  static const pmThrowOnUnmappableCharMask = CorPinvokeMap(0x00003000);
+  static const pmSupportsLastError = CorPinvokeMap(0x00000040);
+  static const pmCallConvMask = CorPinvokeMap(0x00000700);
+  static const pmCallConvWinapi = CorPinvokeMap(0x00000100);
+  static const pmCallConvCdecl = CorPinvokeMap(0x00000200);
+  static const pmCallConvStdcall = CorPinvokeMap(0x00000300);
+  static const pmCallConvThiscall = CorPinvokeMap(0x00000400);
+  static const pmCallConvFastcall = CorPinvokeMap(0x00000500);
+  static const pmMaxValue = CorPinvokeMap(0x0000ffff);
+}
+
+/// {@category enum}
+extension type const CorPropertyAttr(int _) implements int {
+  static const prSpecialName = CorPropertyAttr(0x00000200);
+  static const prReservedMask = CorPropertyAttr(0x0000f400);
+  static const prRTSpecialName = CorPropertyAttr(0x00000400);
+  static const prHasDefault = CorPropertyAttr(0x00001000);
+  static const prUnused = CorPropertyAttr(0x0000e9ff);
+}
+
+/// {@category enum}
+extension type const CorTokenType(int _) implements int {
+  static const mdtModule = CorTokenType(0x00000000);
+  static const mdtTypeRef = CorTokenType(0x01000000);
+  static const mdtTypeDef = CorTokenType(0x02000000);
+  static const mdtFieldDef = CorTokenType(0x04000000);
+  static const mdtMethodDef = CorTokenType(0x06000000);
+  static const mdtParamDef = CorTokenType(0x08000000);
+  static const mdtInterfaceImpl = CorTokenType(0x09000000);
+  static const mdtMemberRef = CorTokenType(0x0a000000);
+  static const mdtCustomAttribute = CorTokenType(0x0c000000);
+  static const mdtPermission = CorTokenType(0x0e000000);
+  static const mdtSignature = CorTokenType(0x11000000);
+  static const mdtEvent = CorTokenType(0x14000000);
+  static const mdtProperty = CorTokenType(0x17000000);
+  static const mdtMethodImpl = CorTokenType(0x19000000);
+  static const mdtModuleRef = CorTokenType(0x1a000000);
+  static const mdtTypeSpec = CorTokenType(0x1b000000);
+  static const mdtAssembly = CorTokenType(0x20000000);
+  static const mdtAssemblyRef = CorTokenType(0x23000000);
+  static const mdtFile = CorTokenType(0x26000000);
+  static const mdtExportedType = CorTokenType(0x27000000);
+  static const mdtManifestResource = CorTokenType(0x28000000);
+  static const mdtGenericParam = CorTokenType(0x2a000000);
+  static const mdtMethodSpec = CorTokenType(0x2b000000);
+  static const mdtGenericParamConstraint = CorTokenType(0x2c000000);
+  static const mdtString = CorTokenType(0x70000000);
+  static const mdtName = CorTokenType(0x71000000);
+  static const mdtBaseType = CorTokenType(0x72000000);
+}
+
+/// {@category enum}
+extension type const CorTypeAttr(int _) implements int {
+  static const tdVisibilityMask = CorTypeAttr(0x00000007);
+  static const tdNotPublic = CorTypeAttr(0x00000000);
+  static const tdPublic = CorTypeAttr(0x00000001);
+  static const tdNestedPublic = CorTypeAttr(0x00000002);
+  static const tdNestedPrivate = CorTypeAttr(0x00000003);
+  static const tdNestedFamily = CorTypeAttr(0x00000004);
+  static const tdNestedAssembly = CorTypeAttr(0x00000005);
+  static const tdNestedFamANDAssem = CorTypeAttr(0x00000006);
+  static const tdNestedFamORAssem = CorTypeAttr(0x00000007);
+  static const tdLayoutMask = CorTypeAttr(0x00000018);
+  static const tdAutoLayout = CorTypeAttr(0x00000000);
+  static const tdSequentialLayout = CorTypeAttr(0x00000008);
+  static const tdExplicitLayout = CorTypeAttr(0x00000010);
+  static const tdClassSemanticsMask = CorTypeAttr(0x00000020);
+  static const tdClass = CorTypeAttr(0x00000000);
+  static const tdInterface = CorTypeAttr(0x00000020);
+  static const tdAbstract = CorTypeAttr(0x00000080);
+  static const tdSealed = CorTypeAttr(0x00000100);
+  static const tdSpecialName = CorTypeAttr(0x00000400);
+  static const tdImport = CorTypeAttr(0x00001000);
+  static const tdSerializable = CorTypeAttr(0x00002000);
+  static const tdWindowsRuntime = CorTypeAttr(0x00004000);
+  static const tdStringFormatMask = CorTypeAttr(0x00030000);
+  static const tdAnsiClass = CorTypeAttr(0x00000000);
+  static const tdUnicodeClass = CorTypeAttr(0x00010000);
+  static const tdAutoClass = CorTypeAttr(0x00020000);
+  static const tdCustomFormatClass = CorTypeAttr(0x00030000);
+  static const tdCustomFormatMask = CorTypeAttr(0x00c00000);
+  static const tdBeforeFieldInit = CorTypeAttr(0x00100000);
+  static const tdForwarder = CorTypeAttr(0x00200000);
+  static const tdReservedMask = CorTypeAttr(0x00040800);
+  static const tdRTSpecialName = CorTypeAttr(0x00000800);
+  static const tdHasSecurity = CorTypeAttr(0x00040000);
 }
 
 /// {@category enum}
@@ -1613,6 +1954,46 @@ extension type const DUPLICATE_HANDLE_OPTIONS(int _) implements int {
   static const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS(0x00000002);
 }
 
+/// Flags used by the
+/// [DwmGetWindowAttribute](/windows/desktop/api/dwmapi/nf-dwmapi-dwmgetwindowattribute)
+/// and
+/// [DwmSetWindowAttribute](/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute)
+/// functions.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute>.
+///
+/// {@category enum}
+extension type const DWMWINDOWATTRIBUTE(int _) implements int {
+  static const DWMWA_NCRENDERING_ENABLED = DWMWINDOWATTRIBUTE(0x00000001);
+  static const DWMWA_NCRENDERING_POLICY = DWMWINDOWATTRIBUTE(0x00000002);
+  static const DWMWA_TRANSITIONS_FORCEDISABLED = DWMWINDOWATTRIBUTE(0x00000003);
+  static const DWMWA_ALLOW_NCPAINT = DWMWINDOWATTRIBUTE(0x00000004);
+  static const DWMWA_CAPTION_BUTTON_BOUNDS = DWMWINDOWATTRIBUTE(0x00000005);
+  static const DWMWA_NONCLIENT_RTL_LAYOUT = DWMWINDOWATTRIBUTE(0x00000006);
+  static const DWMWA_FORCE_ICONIC_REPRESENTATION =
+      DWMWINDOWATTRIBUTE(0x00000007);
+  static const DWMWA_FLIP3D_POLICY = DWMWINDOWATTRIBUTE(0x00000008);
+  static const DWMWA_EXTENDED_FRAME_BOUNDS = DWMWINDOWATTRIBUTE(0x00000009);
+  static const DWMWA_HAS_ICONIC_BITMAP = DWMWINDOWATTRIBUTE(0x0000000a);
+  static const DWMWA_DISALLOW_PEEK = DWMWINDOWATTRIBUTE(0x0000000b);
+  static const DWMWA_EXCLUDED_FROM_PEEK = DWMWINDOWATTRIBUTE(0x0000000c);
+  static const DWMWA_CLOAK = DWMWINDOWATTRIBUTE(0x0000000d);
+  static const DWMWA_CLOAKED = DWMWINDOWATTRIBUTE(0x0000000e);
+  static const DWMWA_FREEZE_REPRESENTATION = DWMWINDOWATTRIBUTE(0x0000000f);
+  static const DWMWA_PASSIVE_UPDATE_MODE = DWMWINDOWATTRIBUTE(0x00000010);
+  static const DWMWA_USE_HOSTBACKDROPBRUSH = DWMWINDOWATTRIBUTE(0x00000011);
+  static const DWMWA_USE_IMMERSIVE_DARK_MODE = DWMWINDOWATTRIBUTE(0x00000014);
+  static const DWMWA_WINDOW_CORNER_PREFERENCE = DWMWINDOWATTRIBUTE(0x00000021);
+  static const DWMWA_BORDER_COLOR = DWMWINDOWATTRIBUTE(0x00000022);
+  static const DWMWA_CAPTION_COLOR = DWMWINDOWATTRIBUTE(0x00000023);
+  static const DWMWA_TEXT_COLOR = DWMWINDOWATTRIBUTE(0x00000024);
+  static const DWMWA_VISIBLE_FRAME_BORDER_THICKNESS =
+      DWMWINDOWATTRIBUTE(0x00000025);
+  static const DWMWA_SYSTEMBACKDROP_TYPE = DWMWINDOWATTRIBUTE(0x00000026);
+  static const DWMWA_LAST = DWMWINDOWATTRIBUTE(0x00000027);
+}
+
 /// Specifies the input operations for which visual feedback should be provided.
 ///
 /// To learn more about this enum, see
@@ -1627,6 +2008,19 @@ extension type const DWM_SHOWCONTACT(int _) implements int {
   static const DWMSC_PENBARREL = DWM_SHOWCONTACT(0x00000010);
   static const DWMSC_NONE = DWM_SHOWCONTACT(0x00000000);
   static const DWMSC_ALL = DWM_SHOWCONTACT(0xffffffff);
+}
+
+/// Specifies the rounded corner preference for a window.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/ne-dwmapi-dwm_window_corner_preference>.
+///
+/// {@category enum}
+extension type const DWM_WINDOW_CORNER_PREFERENCE(int _) implements int {
+  static const DWMWCP_DEFAULT = DWM_WINDOW_CORNER_PREFERENCE(0x00000000);
+  static const DWMWCP_DONOTROUND = DWM_WINDOW_CORNER_PREFERENCE(0x00000001);
+  static const DWMWCP_ROUND = DWM_WINDOW_CORNER_PREFERENCE(0x00000002);
+  static const DWMWCP_ROUNDSMALL = DWM_WINDOW_CORNER_PREFERENCE(0x00000003);
 }
 
 /// Contains values that specify the location of a docking window represented by
@@ -5120,6 +5514,25 @@ extension type const SND_FLAGS(int _) implements int {
   static const SND_SENTRY = SND_FLAGS(0x00080000);
   static const SND_SYNC = SND_FLAGS(0x00000000);
   static const SND_SYSTEM = SND_FLAGS(0x00200000);
+}
+
+/// {@category enum}
+extension type const SPEAKFLAGS(int _) implements int {
+  static const SPF_DEFAULT = SPEAKFLAGS(0x00000000);
+  static const SPF_ASYNC = SPEAKFLAGS(0x00000001);
+  static const SPF_PURGEBEFORESPEAK = SPEAKFLAGS(0x00000002);
+  static const SPF_IS_FILENAME = SPEAKFLAGS(0x00000004);
+  static const SPF_IS_XML = SPEAKFLAGS(0x00000008);
+  static const SPF_IS_NOT_XML = SPEAKFLAGS(0x00000010);
+  static const SPF_PERSIST_XML = SPEAKFLAGS(0x00000020);
+  static const SPF_NLP_SPEAK_PUNC = SPEAKFLAGS(0x00000040);
+  static const SPF_PARSE_SAPI = SPEAKFLAGS(0x00000080);
+  static const SPF_PARSE_SSML = SPEAKFLAGS(0x00000100);
+  static const SPF_PARSE_AUTODETECT = SPEAKFLAGS(0x00000000);
+  static const SPF_NLP_MASK = SPEAKFLAGS(0x00000040);
+  static const SPF_PARSE_MASK = SPEAKFLAGS(0x00000180);
+  static const SPF_VOICE_MASK = SPEAKFLAGS(0x000001ff);
+  static const SPF_UNUSED_FLAGS = SPEAKFLAGS(0xfffffe00);
 }
 
 /// {@category enum}

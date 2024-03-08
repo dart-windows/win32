@@ -226,7 +226,6 @@ export 'src/com/iwbemservices.g.dart';
 export 'src/com/iwebauthenticationcoremanagerinterop.g.dart';
 export 'src/com/iwinhttprequest.g.dart';
 export 'src/constants.dart';
-export 'src/constants_metadata.dart';
 export 'src/constants_nodoc.dart';
 
 // Useful extension methods
