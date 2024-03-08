@@ -39,10 +39,11 @@ class EnumProjection {
   String get comment {
     final buffer = StringBuffer();
 
-    if (enumDocs.containsKey(typeDef.name)) {
-      buffer.write(enumDocs[typeDef.name]);
+    if (enumDocs.containsKey(name)) {
+      buffer.write(enumDocs[name]);
     } else {
-      final docs = DocsProvider.getDocs(typeDef.name.lastComponent);
+      final docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
+          DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
       if (docs != null) {
         final ApiDetails(:description, :helpLink) = docs;
         buffer.write(description);

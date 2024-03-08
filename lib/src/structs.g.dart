@@ -5779,6 +5779,11 @@ base class MARGINS extends Struct {
   external int cyBottomHeight;
 }
 
+/// Contains information for the MCI OPEN command.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/Multimedia/mci-open-parms>.
+///
 /// {@category struct}
 @Packed(1)
 base class MCI_OPEN_PARMS extends Struct {
@@ -8146,6 +8151,11 @@ extension PRINTER_NOTIFY_INFO_DATA_0_0_Extension on PRINTER_NOTIFY_INFO_DATA {
   set pBuf(Pointer value) => this.NotifyData.Data.pBuf = value;
 }
 
+/// Represents printer options.
+///
+/// To learn more about this struct, see
+/// <https://learn.microsoft.com/windows/win32/printdocs/printer-options>.
+///
 /// {@category struct}
 base class PRINTER_OPTIONS extends Struct {
   @Uint32()

@@ -76,8 +76,7 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
     testStruct('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER', (projection) {
       expect(projection.name, equals('BITMAPFILEHEADER'));
       expect(projection.packingAlignment, equals(2));
-      expect(projection.classPreamble,
-          equals('''
+      expect(projection.classPreamble, equals('''
 /// Contains information about the type, size, and layout of a file that
 /// contains a DIB.
 ///
