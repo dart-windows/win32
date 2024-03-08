@@ -23,15 +23,10 @@ final _api_ms_win_service_core_l1_1_3 =
 /// Returns a handle for a registry key for a service to read and/or write state
 /// to.
 ///
-/// ```c
-/// DWORD GetServiceRegistryStateKey(
-///   SERVICE_STATUS_HANDLE       ServiceStatusHandle,
-///   SERVICE_REGISTRY_STATE_TYPE StateType,
-///   DWORD                       AccessMask,
-///   HKEY                        *ServiceStateKey
-/// );
-/// ```
-/// {@category api_ms_win_service_core_l1_1_3}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-getserviceregistrystatekey>.
+///
+/// {@category onecore}
 int GetServiceRegistryStateKey(int serviceStatusHandle, int stateType,
         int accessMask, Pointer<HKEY> serviceStateKey) =>
     _GetServiceRegistryStateKey(

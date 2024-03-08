@@ -19,13 +19,11 @@ import '../types.dart';
 
 final _advapi32 = DynamicLibrary.open('advapi32.dll');
 
-/// ```c
-/// BOOL ChangeServiceConfig2W(
-///   [in]           SC_HANDLE hService,
-///   [in]           DWORD     dwInfoLevel,
-///   [in, optional] LPVOID    lpInfo
-/// );
-/// ```
+/// Changes the optional configuration parameters of a service.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-changeserviceconfig2w>.
+///
 /// {@category advapi32}
 int ChangeServiceConfig2(int hService, int dwInfoLevel, Pointer? lpInfo) =>
     _ChangeServiceConfig2(hService, dwInfoLevel, lpInfo ?? nullptr);
@@ -37,11 +35,9 @@ final _ChangeServiceConfig2 = _advapi32.lookupFunction<
 
 /// Closes a handle to a service control manager or service object.
 ///
-/// ```c
-/// BOOL CloseServiceHandle(
-///   [in] SC_HANDLE hSCObject
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-closeservicehandle>.
+///
 /// {@category advapi32}
 int CloseServiceHandle(int hSCObject) => _CloseServiceHandle(hSCObject);
 
@@ -51,13 +47,9 @@ final _CloseServiceHandle = _advapi32.lookupFunction<
 
 /// Sends a control code to a service.
 ///
-/// ```c
-/// BOOL ControlService(
-///   [in]  SC_HANDLE        hService,
-///   [in]  DWORD            dwControl,
-///   [out] LPSERVICE_STATUS lpServiceStatus
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-controlservice>.
+///
 /// {@category advapi32}
 int ControlService(
         int hService, int dwControl, Pointer<SERVICE_STATUS> lpServiceStatus) =>
@@ -71,14 +63,9 @@ final _ControlService = _advapi32.lookupFunction<
 
 /// Sends a control code to a service.
 ///
-/// ```c
-/// BOOL ControlServiceExW(
-///   [in]      SC_HANDLE hService,
-///   [in]      DWORD     dwControl,
-///   [in]      DWORD     dwInfoLevel,
-///   [in, out] PVOID     pControlParams
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-controlserviceexw>.
+///
 /// {@category advapi32}
 int ControlServiceEx(
         int hService, int dwControl, int dwInfoLevel, Pointer pControlParams) =>
@@ -90,18 +77,11 @@ final _ControlServiceEx = _advapi32.lookupFunction<
     int Function(int hService, int dwControl, int dwInfoLevel,
         Pointer pControlParams)>('ControlServiceExW');
 
-/// The CredDelete function deletes a credential from the user's credential set.
+/// Deletes a credential from the user's credential set.
 ///
-/// The credential set used is the one associated with the logon session of the
-/// current token. The token must not have the user's SID disabled.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wincred/nf-wincred-creddeletew>.
 ///
-/// ```c
-/// BOOL CredDeleteW(
-///   LPCWSTR TargetName,
-///   DWORD   Type,
-///   DWORD   Flags
-/// );
-/// ```
 /// {@category advapi32}
 int CredDelete(Pointer<Utf16> targetName, int type) =>
     _CredDelete(targetName, type, 0);
@@ -111,33 +91,22 @@ final _CredDelete = _advapi32.lookupFunction<
     int Function(
         Pointer<Utf16> targetName, int type, int flags)>('CredDeleteW');
 
-/// The CredFree function frees a buffer returned by any of the credentials
-/// management functions.
+/// Frees a buffer returned by any of the credentials management functions.
 ///
-/// ```c
-/// void CredFree(
-///   PVOID Buffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wincred/nf-wincred-credfree>.
+///
 /// {@category advapi32}
 void CredFree(Pointer buffer) => _CredFree(buffer);
 
 final _CredFree = _advapi32.lookupFunction<Void Function(Pointer buffer),
     void Function(Pointer buffer)>('CredFree');
 
-/// The CredRead function reads a credential from the user's credential set.
+/// Reads a credential from the user's credential set.
 ///
-/// The credential set used is the one associated with the logon session of the
-/// current token. The token must not have the user's SID disabled.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wincred/nf-wincred-credreadw>.
 ///
-/// ```c
-/// BOOL CredReadW(
-///   LPCWSTR      TargetName,
-///   DWORD        Type,
-///   DWORD        Flags,
-///   PCREDENTIALW *Credential
-/// );
-/// ```
 /// {@category advapi32}
 int CredRead(Pointer<Utf16> targetName, int type,
         Pointer<Pointer<CREDENTIAL>> credential) =>
@@ -149,19 +118,12 @@ final _CredRead = _advapi32.lookupFunction<
     int Function(Pointer<Utf16> targetName, int type, int flags,
         Pointer<Pointer<CREDENTIAL>> credential)>('CredReadW');
 
-/// The CredWrite function creates a new credential or modifies an existing
-/// credential in the user's credential set.
+/// Creates a new credential or modifies an existing credential in the user's
+/// credential set.
 ///
-/// The new credential is associated with the logon session of the current
-/// token. The token must not have the user's security identifier (SID)
-/// disabled.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wincred/nf-wincred-credwritew>.
 ///
-/// ```c
-/// BOOL CredWriteW(
-///   PCREDENTIALW Credential,
-///   DWORD        Flags
-/// );
-/// ```
 /// {@category advapi32}
 int CredWrite(Pointer<CREDENTIAL> credential, int flags) =>
     _CredWrite(credential, flags);
@@ -172,12 +134,9 @@ final _CredWrite = _advapi32.lookupFunction<
 
 /// Decrypts an encrypted file or directory.
 ///
-/// ```c
-/// BOOL DecryptFileW(
-///   LPCWSTR lpFileName,
-///   DWORD   dwReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-decryptfilew>.
+///
 /// {@category advapi32}
 int DecryptFile(Pointer<Utf16> lpFileName) => _DecryptFile(lpFileName, 0);
 
@@ -188,11 +147,9 @@ final _DecryptFile = _advapi32.lookupFunction<
 /// Marks the specified service for deletion from the service control manager
 /// database.
 ///
-/// ```c
-/// BOOL DeleteService(
-///   [in] SC_HANDLE hService
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-deleteservice>.
+///
 /// {@category advapi32}
 int DeleteService(int hService) => _DeleteService(hService);
 
@@ -202,14 +159,9 @@ final _DeleteService = _advapi32.lookupFunction<
 
 /// Encrypts a file or directory.
 ///
-/// All data streams in a file are encrypted. All new files created in an
-/// encrypted directory are encrypted.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-encryptfilew>.
 ///
-/// ```c
-/// BOOL EncryptFileW(
-///   LPCWSTR lpFileName
-/// );
-/// ```
 /// {@category advapi32}
 int EncryptFile(Pointer<Utf16> lpFileName) => _EncryptFile(lpFileName);
 
@@ -218,19 +170,11 @@ final _EncryptFile = _advapi32.lookupFunction<
     int Function(Pointer<Utf16> lpFileName)>('EncryptFileW');
 
 /// Retrieves the name and status of each service that depends on the specified
-/// service; that is, the specified service must be running before the dependent
-/// services can run.
+/// service.
 ///
-/// ```c
-/// BOOL EnumDependentServicesW(
-///   [in]            SC_HANDLE              hService,
-///   [in]            DWORD                  dwServiceState,
-///   [out, optional] LPENUM_SERVICE_STATUSW lpServices,
-///   [in]            DWORD                  cbBufSize,
-///   [out]           LPDWORD                pcbBytesNeeded,
-///   [out]           LPDWORD                lpServicesReturned
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-enumdependentservicesw>.
+///
 /// {@category advapi32}
 int EnumDependentServices(
         int hService,
@@ -262,18 +206,9 @@ final _EnumDependentServices = _advapi32.lookupFunction<
 ///
 /// The name and status of each service are provided.
 ///
-/// ```c
-/// BOOL EnumServicesStatusW(
-///   [in]                SC_HANDLE              hSCManager,
-///   [in]                DWORD                  dwServiceType,
-///   [in]                DWORD                  dwServiceState,
-///   [out, optional]     LPENUM_SERVICE_STATUSW lpServices,
-///   [in]                DWORD                  cbBufSize,
-///   [out]               LPDWORD                pcbBytesNeeded,
-///   [out]               LPDWORD                lpServicesReturned,
-///   [in, out, optional] LPDWORD                lpResumeHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-enumservicesstatusw>.
+///
 /// {@category advapi32}
 int EnumServicesStatus(
         int hSCManager,
@@ -319,20 +254,9 @@ final _EnumServicesStatus = _advapi32.lookupFunction<
 /// The name and status of each service are provided, along with additional data
 /// based on the specified information level.
 ///
-/// ```c
-/// BOOL EnumServicesStatusExW(
-///   [in]                SC_HANDLE    hSCManager,
-///   [in]                SC_ENUM_TYPE InfoLevel,
-///   [in]                DWORD        dwServiceType,
-///   [in]                DWORD        dwServiceState,
-///   [out, optional]     LPBYTE       lpServices,
-///   [in]                DWORD        cbBufSize,
-///   [out]               LPDWORD      pcbBytesNeeded,
-///   [out]               LPDWORD      lpServicesReturned,
-///   [in, out, optional] LPDWORD      lpResumeHandle,
-///   [in, optional]      LPCWSTR      pszGroupName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-enumservicesstatusexw>.
+///
 /// {@category advapi32}
 int EnumServicesStatusEx(
         int hSCManager,
@@ -383,12 +307,9 @@ final _EnumServicesStatusEx = _advapi32.lookupFunction<
 
 /// Retrieves the encryption status of the specified file.
 ///
-/// ```c
-/// BOOL FileEncryptionStatusW(
-///   LPCWSTR lpFileName,
-///   LPDWORD lpStatus
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-fileencryptionstatusw>.
+///
 /// {@category advapi32}
 int FileEncryptionStatus(Pointer<Utf16> lpFileName, Pointer<Uint32> lpStatus) =>
     _FileEncryptionStatus(lpFileName, lpStatus);
@@ -400,14 +321,9 @@ final _FileEncryptionStatus = _advapi32.lookupFunction<
 
 /// Retrieves the display name of the specified service.
 ///
-/// ```c
-/// BOOL GetServiceDisplayNameW(
-///   [in]            SC_HANDLE hSCManager,
-///   [in]            LPCWSTR   lpServiceName,
-///   [out, optional] LPWSTR    lpDisplayName,
-///   [in, out]       LPDWORD   lpcchBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-getservicedisplaynamew>.
+///
 /// {@category advapi32}
 int GetServiceDisplayName(int hSCManager, Pointer<Utf16> lpServiceName,
         Pointer<Utf16>? lpDisplayName, Pointer<Uint32> lpcchBuffer) =>
@@ -425,14 +341,9 @@ final _GetServiceDisplayName = _advapi32.lookupFunction<
 
 /// Retrieves the service name of the specified service.
 ///
-/// ```c
-/// BOOL GetServiceKeyNameW(
-///    [in]            SC_HANDLE hSCManager,
-///    [in]            LPCWSTR   lpDisplayName,
-///    [out, optional] LPWSTR    lpServiceName,
-///    [in, out]       LPDWORD   lpcchBuffer
-///  );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-getservicekeynamew>.
+///
 /// {@category advapi32}
 int GetServiceKeyName(int hSCManager, Pointer<Utf16> lpDisplayName,
         Pointer<Utf16>? lpServiceName, Pointer<Uint32> lpcchBuffer) =>
@@ -448,21 +359,14 @@ final _GetServiceKeyName = _advapi32.lookupFunction<
         Pointer<Utf16> lpServiceName,
         Pointer<Uint32> lpcchBuffer)>('GetServiceKeyNameW');
 
-/// The GetTokenInformation function retrieves a specified type of information
-/// about an access token.
+/// Retrieves a specified type of information about an access token.
 ///
 /// The calling process must have appropriate access rights to obtain the
 /// information.
 ///
-/// ```c
-/// BOOL GetTokenInformation(
-///   HANDLE                  TokenHandle,
-///   TOKEN_INFORMATION_CLASS TokenInformationClass,
-///   LPVOID                  TokenInformation,
-///   DWORD                   TokenInformationLength,
-///   PDWORD                  ReturnLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/securitybaseapi/nf-securitybaseapi-gettokeninformation>.
+///
 /// {@category advapi32}
 int GetTokenInformation(
         int tokenHandle,
@@ -489,11 +393,9 @@ final _GetTokenInformation = _advapi32.lookupFunction<
 
 /// Retrieves the name of the user associated with the current thread.
 ///
-/// ```c
-/// BOOL GetUserNameW(
-///   LPWSTR  lpBuffer,
-///   LPDWORD pcbBuffer);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getusernamew>.
+///
 /// {@category advapi32}
 int GetUserName(Pointer<Utf16>? lpBuffer, Pointer<Uint32> pcbBuffer) =>
     _GetUserName(lpBuffer ?? nullptr, pcbBuffer);
@@ -506,15 +408,9 @@ final _GetUserName = _advapi32.lookupFunction<
 /// Initiates a shutdown and restart of the specified computer, and restarts any
 /// applications that have been registered for restart.
 ///
-/// ```c
-/// DWORD InitiateShutdownW(
-///   LPWSTR lpMachineName,
-///   LPWSTR lpMessage,
-///   DWORD  dwGracePeriod,
-///   DWORD  dwShutdownFlags,
-///   DWORD  dwReason
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-initiateshutdownw>.
+///
 /// {@category advapi32}
 int InitiateShutdown(Pointer<Utf16>? lpMachineName, Pointer<Utf16>? lpMessage,
         int dwGracePeriod, int dwShutdownFlags, int dwReason) =>
@@ -533,14 +429,11 @@ final _InitiateShutdown = _advapi32.lookupFunction<
 
 /// Reports the boot status to the service control manager.
 ///
-/// It is used by boot verification programs. This function can be called only
-/// by a process running in the LocalSystem or Administrator's account.
+/// It is used by boot verification programs.
 ///
-/// ```c
-/// BOOL NotifyBootConfigStatus(
-///   [in] BOOL BootAcceptable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-notifybootconfigstatus>.
+///
 /// {@category advapi32}
 int NotifyBootConfigStatus(int bootAcceptable) =>
     _NotifyBootConfigStatus(bootAcceptable);
@@ -552,13 +445,9 @@ final _NotifyBootConfigStatus = _advapi32.lookupFunction<
 /// Enables an application to receive notification when the specified service is
 /// created or deleted or when its status changes.
 ///
-/// ```c
-/// DWORD NotifyServiceStatusChangeW(
-///   [in] SC_HANDLE        hService,
-///   [in] DWORD            dwNotifyMask,
-///   [in] PSERVICE_NOTIFYW pNotifyBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-notifyservicestatuschangew>.
+///
 /// {@category advapi32}
 int NotifyServiceStatusChange(int hService, int dwNotifyMask,
         Pointer<SERVICE_NOTIFY_2> pNotifyBuffer) =>
@@ -570,16 +459,11 @@ final _NotifyServiceStatusChange = _advapi32.lookupFunction<
     int Function(int hService, int dwNotifyMask,
         Pointer<SERVICE_NOTIFY_2> pNotifyBuffer)>('NotifyServiceStatusChangeW');
 
-/// The OpenProcessToken function opens the access token associated with a
-/// process.
+/// Opens the access token associated with a process.
 ///
-/// ```c
-/// BOOL OpenProcessToken(
-///   HANDLE  ProcessHandle,
-///   DWORD   DesiredAccess,
-///   PHANDLE TokenHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocesstoken>.
+///
 /// {@category advapi32}
 int OpenProcessToken(
         int processHandle, int desiredAccess, Pointer<HANDLE> tokenHandle) =>
@@ -594,13 +478,9 @@ final _OpenProcessToken = _advapi32.lookupFunction<
 /// Establishes a connection to the service control manager on the specified
 /// computer and opens the specified service control manager database.
 ///
-/// ```c
-/// SC_HANDLE OpenSCManagerW(
-///   [in, optional] LPCWSTR lpMachineName,
-///   [in, optional] LPCWSTR lpDatabaseName,
-///   [in]           DWORD   dwDesiredAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-openscmanagerw>.
+///
 /// {@category advapi32}
 int OpenSCManager(Pointer<Utf16>? lpMachineName, Pointer<Utf16>? lpDatabaseName,
         int dwDesiredAccess) =>
@@ -615,13 +495,9 @@ final _OpenSCManager = _advapi32.lookupFunction<
 
 /// Opens an existing service.
 ///
-/// ```c
-/// SC_HANDLE OpenServiceW(
-///   [in] SC_HANDLE hSCManager,
-///   [in] LPCWSTR   lpServiceName,
-///   [in] DWORD     dwDesiredAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-openservicew>.
+///
 /// {@category advapi32}
 int OpenService(
         int hSCManager, Pointer<Utf16> lpServiceName, int dwDesiredAccess) =>
@@ -633,17 +509,11 @@ final _OpenService = _advapi32.lookupFunction<
     int Function(int hSCManager, Pointer<Utf16> lpServiceName,
         int dwDesiredAccess)>('OpenServiceW');
 
-/// The OpenThreadToken function opens the access token associated with a
-/// thread.
+/// Opens the access token associated with a thread.
 ///
-/// ```c
-/// BOOL OpenThreadToken(
-///   HANDLE  ThreadHandle,
-///   DWORD   DesiredAccess,
-///   BOOL    OpenAsSelf,
-///   PHANDLE TokenHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-openthreadtoken>.
+///
 /// {@category advapi32}
 int OpenThreadToken(int threadHandle, int desiredAccess, int openAsSelf,
         Pointer<HANDLE> tokenHandle) =>
@@ -657,17 +527,9 @@ final _OpenThreadToken = _advapi32.lookupFunction<
 
 /// Retrieves the configuration parameters of the specified service.
 ///
-/// Optional configuration parameters are available using the
-/// QueryServiceConfig2 function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-queryserviceconfigw>.
 ///
-/// ```c
-/// BOOL QueryServiceConfigW(
-///   [in]            SC_HANDLE               hService,
-///   [out, optional] LPQUERY_SERVICE_CONFIGW lpServiceConfig,
-///   [in]            DWORD                   cbBufSize,
-///   [out]           LPDWORD                 pcbBytesNeeded
-/// );
-/// ```
 /// {@category advapi32}
 int QueryServiceConfig(
         int hService,
@@ -688,15 +550,9 @@ final _QueryServiceConfig = _advapi32.lookupFunction<
 
 /// Retrieves the optional configuration parameters of the specified service.
 ///
-/// ```c
-/// BOOL QueryServiceConfig2W(
-///   [in]            SC_HANDLE hService,
-///   [in]            DWORD     dwInfoLevel,
-///   [out, optional] LPBYTE    lpBuffer,
-///   [in]            DWORD     cbBufSize,
-///   [out]           LPDWORD   pcbBytesNeeded
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-queryserviceconfig2w>.
+///
 /// {@category advapi32}
 int QueryServiceConfig2(int hService, int dwInfoLevel, Pointer<Uint8>? lpBuffer,
         int cbBufSize, Pointer<Uint32> pcbBytesNeeded) =>
@@ -715,13 +571,9 @@ final _QueryServiceConfig2 = _advapi32.lookupFunction<
 
 /// Retrieves dynamic information related to the current service start.
 ///
-/// ```c
-/// BOOL QueryServiceDynamicInformation(
-///   [in] SERVICE_STATUS_HANDLE hServiceStatus,
-///   [in] DWORD                 dwInfoLevel,
-///        PVOID                 *ppDynamicInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-queryservicedynamicinformation>.
+///
 /// {@category advapi32}
 int QueryServiceDynamicInformation(
         int hServiceStatus, int dwInfoLevel, Pointer<Pointer> ppDynamicInfo) =>
@@ -733,21 +585,12 @@ final _QueryServiceDynamicInformation = _advapi32.lookupFunction<
     int Function(int hServiceStatus, int dwInfoLevel,
         Pointer<Pointer> ppDynamicInfo)>('QueryServiceDynamicInformation');
 
-/// The QueryServiceObjectSecurity function retrieves a copy of the security
-/// descriptor associated with a service object.
+/// Retrieves a copy of the security descriptor associated with a service
+/// object.
 ///
-/// You can also use the GetNamedSecurityInfo function to retrieve a security
-/// descriptor.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-queryserviceobjectsecurity>.
 ///
-/// ```c
-/// BOOL QueryServiceObjectSecurity(
-///   [in]            SC_HANDLE            hService,
-///   [in]            SECURITY_INFORMATION dwSecurityInformation,
-///   [out, optional] PSECURITY_DESCRIPTOR lpSecurityDescriptor,
-///   [in]            DWORD                cbBufSize,
-///   [out]           LPDWORD              pcbBytesNeeded
-/// );
-/// ```
 /// {@category advapi32}
 int QueryServiceObjectSecurity(
         int hService,
@@ -774,12 +617,9 @@ final _QueryServiceObjectSecurity = _advapi32.lookupFunction<
 
 /// Retrieves the current status of the specified service.
 ///
-/// ```c
-/// BOOL QueryServiceStatus(
-///   [in]  SC_HANDLE        hService,
-///   [out] LPSERVICE_STATUS lpServiceStatus
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-queryservicestatus>.
+///
 /// {@category advapi32}
 int QueryServiceStatus(int hService, Pointer<SERVICE_STATUS> lpServiceStatus) =>
     _QueryServiceStatus(hService, lpServiceStatus);
@@ -792,15 +632,9 @@ final _QueryServiceStatus = _advapi32.lookupFunction<
 /// Retrieves the current status of the specified service based on the specified
 /// information level.
 ///
-/// ```c
-/// BOOL QueryServiceStatusEx(
-///   [in]            SC_HANDLE      hService,
-///   [in]            SC_STATUS_TYPE InfoLevel,
-///   [out, optional] LPBYTE         lpBuffer,
-///   [in]            DWORD          cbBufSize,
-///   [out]           LPDWORD        pcbBytesNeeded
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-queryservicestatusex>.
+///
 /// {@category advapi32}
 int QueryServiceStatusEx(int hService, int infoLevel, Pointer<Uint8>? lpBuffer,
         int cbBufSize, Pointer<Uint32> pcbBytesNeeded) =>
@@ -815,11 +649,9 @@ final _QueryServiceStatusEx = _advapi32.lookupFunction<
 
 /// Closes a handle to the specified registry key.
 ///
-/// ```c
-/// LSTATUS RegCloseKey(
-///   HKEY hKey
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regclosekey>.
+///
 /// {@category advapi32}
 int RegCloseKey(int hKey) => _RegCloseKey(hKey);
 
@@ -828,13 +660,9 @@ final _RegCloseKey = _advapi32.lookupFunction<Uint32 Function(HKEY hKey),
 
 /// Establishes a connection to a predefined registry key on another computer.
 ///
-/// ```c
-/// LSTATUS RegConnectRegistryW(
-///   LPCWSTR lpMachineName,
-///   HKEY    hKey,
-///   PHKEY   phkResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regconnectregistryw>.
+///
 /// {@category advapi32}
 int RegConnectRegistry(
         Pointer<Utf16>? lpMachineName, int hKey, Pointer<HKEY> phkResult) =>
@@ -849,13 +677,9 @@ final _RegConnectRegistry = _advapi32.lookupFunction<
 /// Copies the specified registry key, along with its values and subkeys, to the
 /// specified destination key.
 ///
-/// ```c
-/// LSTATUS RegCopyTreeW(
-///   HKEY    hKeySrc,
-///   LPCWSTR lpSubKey,
-///   HKEY    hKeyDest
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regcopytreew>.
+///
 /// {@category advapi32}
 int RegCopyTree(int hKeySrc, Pointer<Utf16>? lpSubKey, int hKeyDest) =>
     _RegCopyTree(hKeySrc, lpSubKey ?? nullptr, hKeyDest);
@@ -869,12 +693,9 @@ final _RegCopyTree = _advapi32.lookupFunction<
 ///
 /// If the key already exists in the registry, the function opens it.
 ///
-/// ```c
-/// LSTATUS RegCreateKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   PHKEY   phkResult);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regcreatekeyw>.
+///
 /// {@category advapi32}
 int RegCreateKey(int hKey, Pointer<Utf16>? lpSubKey, Pointer<HKEY> phkResult) =>
     _RegCreateKey(hKey, lpSubKey ?? nullptr, phkResult);
@@ -890,19 +711,9 @@ final _RegCreateKey = _advapi32.lookupFunction<
 /// If the key already exists, the function opens it. Note that key names are
 /// not case sensitive.
 ///
-/// ```c
-/// LSTATUS RegCreateKeyExW(
-///   HKEY hKey,
-///   LPCWSTR lpSubKey,
-///   DWORD Reserved,
-///   LPWSTR lpClass,
-///   DWORD dwOptions,
-///   REGSAM samDesired,
-///   const LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-///   PHKEY phkResult,
-///   LPDWORD lpdwDisposition
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regcreatekeyexw>.
+///
 /// {@category advapi32}
 int RegCreateKeyEx(
         int hKey,
@@ -946,22 +757,11 @@ final _RegCreateKeyEx = _advapi32.lookupFunction<
         Pointer<HKEY> phkResult,
         Pointer<Uint32> lpdwDisposition)>('RegCreateKeyExW');
 
-/// Establishes a connection to a predefined registry key on another computer.
+/// Creates the specified registry key and associates it with a transaction.
 ///
-/// ```c
-/// LSTATUS RegCreateKeyTransactedW(
-///   HKEY     hKey,
-///   LPCWSTR  lpSubKey,
-///   DWORD    Reserved,
-///   LPWSTR   lpClass,
-///   DWORD    dwOptions,
-///   REGSAM   samDesired,
-///   const LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-///   PHKEY    phkResult,
-///   LPDWORD  lpdwDisposition,
-///   HANDLE   hTransaction,
-///   PVOID    pExtendedParemeter);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regcreatekeytransactedw>.
+///
 /// {@category advapi32}
 int RegCreateKeyTransacted(
         int hKey,
@@ -1014,13 +814,9 @@ final _RegCreateKeyTransacted = _advapi32.lookupFunction<
 
 /// Deletes a subkey and its values.
 ///
-/// Note that key names are not case sensitive.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdeletekeyw>.
 ///
-/// ```c
-/// LSTATUS RegDeleteKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey);
-/// ```
 /// {@category advapi32}
 int RegDeleteKey(int hKey, Pointer<Utf16> lpSubKey) =>
     _RegDeleteKey(hKey, lpSubKey);
@@ -1032,15 +828,9 @@ final _RegDeleteKey = _advapi32.lookupFunction<
 /// Deletes a subkey and its values from the specified platform-specific view of
 /// the registry.
 ///
-/// Note that key names are not case sensitive.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdeletekeyexw>.
 ///
-/// ```c
-/// LSTATUS RegDeleteKeyExW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   REGSAM  samDesired,
-///   DWORD   Reserved);
-/// ```
 /// {@category advapi32}
 int RegDeleteKeyEx(int hKey, Pointer<Utf16> lpSubKey, int samDesired) =>
     _RegDeleteKeyEx(hKey, lpSubKey, samDesired, 0);
@@ -1054,17 +844,9 @@ final _RegDeleteKeyEx = _advapi32.lookupFunction<
 /// Deletes a subkey and its values from the specified platform-specific view of
 /// the registry as a transacted operation.
 ///
-/// Note that key names are not case sensitive.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdeletekeytransactedw>.
 ///
-/// ```c
-/// LSTATUS RegDeleteKeyTransactedW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   REGSAM  samDesired,
-///   DWORD   Reserved,
-///   HANDLE  hTransaction,
-///   PVOID   pExtendedParameter);
-/// ```
 /// {@category advapi32}
 int RegDeleteKeyTransacted(
         int hKey, Pointer<Utf16> lpSubKey, int samDesired, int hTransaction) =>
@@ -1084,12 +866,9 @@ final _RegDeleteKeyTransacted = _advapi32.lookupFunction<
 
 /// Removes the specified value from the specified registry key and subkey.
 ///
-/// ```c
-/// LSTATUS RegDeleteKeyValueW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   LPCWSTR lpValueName);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdeletekeyvaluew>.
+///
 /// {@category advapi32}
 int RegDeleteKeyValue(
         int hKey, Pointer<Utf16>? lpSubKey, Pointer<Utf16>? lpValueName) =>
@@ -1103,11 +882,9 @@ final _RegDeleteKeyValue = _advapi32.lookupFunction<
 
 /// Deletes the subkeys and values of the specified key recursively.
 ///
-/// ```c
-/// LSTATUS RegDeleteTreeW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdeletetreew>.
+///
 /// {@category advapi32}
 int RegDeleteTree(int hKey, Pointer<Utf16>? lpSubKey) =>
     _RegDeleteTree(hKey, lpSubKey ?? nullptr);
@@ -1118,13 +895,9 @@ final _RegDeleteTree = _advapi32.lookupFunction<
 
 /// Removes a named value from the specified registry key.
 ///
-/// Note that value names are not case sensitive.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdeletevaluew>.
 ///
-/// ```c
-/// LSTATUS RegDeleteValueW(
-///   HKEY    hKey,
-///   LPCWSTR lpValueName);
-/// ```
 /// {@category advapi32}
 int RegDeleteValue(int hKey, Pointer<Utf16>? lpValueName) =>
     _RegDeleteValue(hKey, lpValueName ?? nullptr);
@@ -1136,11 +909,9 @@ final _RegDeleteValue = _advapi32.lookupFunction<
 /// Disables handle caching of the predefined registry handle for
 /// HKEY_CURRENT_USER for the current process.
 ///
-/// This function does not work on a remote computer.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdisablepredefinedcache>.
 ///
-/// ```c
-/// LSTATUS RegDisablePredefinedCache();
-/// ```
 /// {@category advapi32}
 int RegDisablePredefinedCache() => _RegDisablePredefinedCache();
 
@@ -1151,9 +922,9 @@ final _RegDisablePredefinedCache =
 /// Disables handle caching for all predefined registry handles for the current
 /// process.
 ///
-/// ```c
-/// LSTATUS RegDisablePredefinedCacheEx();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdisablepredefinedcacheex>.
+///
 /// {@category advapi32}
 int RegDisablePredefinedCacheEx() => _RegDisablePredefinedCacheEx();
 
@@ -1165,10 +936,9 @@ final _RegDisablePredefinedCacheEx =
 ///
 /// Disabling reflection for a key does not affect reflection of any subkeys.
 ///
-/// ```c
-/// LONG RegDisableReflectionKey(
-///   HKEY hBase);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regdisablereflectionkey>.
+///
 /// {@category advapi32}
 int RegDisableReflectionKey(int hBase) => _RegDisableReflectionKey(hBase);
 
@@ -1180,10 +950,9 @@ final _RegDisableReflectionKey = _advapi32.lookupFunction<
 ///
 /// Restoring reflection for a key does not affect reflection of any subkeys.
 ///
-/// ```c
-/// LONG RegEnableReflectionKey(
-///   HKEY hBase);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regenablereflectionkey>.
+///
 /// {@category advapi32}
 int RegEnableReflectionKey(int hBase) => _RegEnableReflectionKey(hBase);
 
@@ -1193,15 +962,9 @@ final _RegEnableReflectionKey = _advapi32.lookupFunction<
 
 /// Enumerates the subkeys of the specified open registry key.
 ///
-/// The function retrieves the name of one subkey each time it is called.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regenumkeyw>.
 ///
-/// ```c
-/// LSTATUS RegEnumKeyW(
-///   HKEY   hKey,
-///   DWORD  dwIndex,
-///   LPWSTR lpName,
-///   DWORD  cchName);
-/// ```
 /// {@category advapi32}
 int RegEnumKey(int hKey, int dwIndex, Pointer<Utf16>? lpName, int cchName) =>
     _RegEnumKey(hKey, dwIndex, lpName ?? nullptr, cchName);
@@ -1216,17 +979,9 @@ final _RegEnumKey = _advapi32.lookupFunction<
 ///
 /// The function retrieves information about one subkey each time it is called.
 ///
-/// ```c
-/// LSTATUS RegEnumKeyExW(
-///   HKEY      hKey,
-///   DWORD     dwIndex,
-///   LPWSTR    lpName,
-///   LPDWORD   lpcchName,
-///   LPDWORD   lpReserved,
-///   LPWSTR    lpClass,
-///   LPDWORD   lpcchClass,
-///   PFILETIME lpftLastWriteTime);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regenumkeyexw>.
+///
 /// {@category advapi32}
 int RegEnumKeyEx(
         int hKey,
@@ -1271,17 +1026,9 @@ final _RegEnumKeyEx = _advapi32.lookupFunction<
 /// The function copies one indexed value name and data block for the key each
 /// time it is called.
 ///
-/// ```c
-/// LSTATUS RegEnumValueW(
-///   HKEY    hKey,
-///   DWORD   dwIndex,
-///   LPWSTR  lpValueName,
-///   LPDWORD lpcchValueName,
-///   LPDWORD lpReserved,
-///   LPDWORD lpType,
-///   LPBYTE  lpData,
-///   LPDWORD lpcbData);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regenumvaluew>.
+///
 /// {@category advapi32}
 int RegEnumValue(
         int hKey,
@@ -1317,10 +1064,9 @@ final _RegEnumValue = _advapi32.lookupFunction<
 /// Writes all the attributes of the specified open registry key into the
 /// registry.
 ///
-/// ```c
-/// LSTATUS RegFlushKey(
-///   HKEY hKey);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regflushkey>.
+///
 /// {@category advapi32}
 int RegFlushKey(int hKey) => _RegFlushKey(hKey);
 
@@ -1329,16 +1075,9 @@ final _RegFlushKey = _advapi32.lookupFunction<Uint32 Function(HKEY hKey),
 
 /// Retrieves the type and data for the specified registry value.
 ///
-/// ```c
-/// LSTATUS RegGetValueW(
-///   HKEY    hkey,
-///   LPCWSTR lpSubKey,
-///   LPCWSTR lpValue,
-///   DWORD   dwFlags,
-///   LPDWORD pdwType,
-///   PVOID   pvData,
-///   LPDWORD pcbData);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-reggetvaluew>.
+///
 /// {@category advapi32}
 int RegGetValue(
         int hkey,
@@ -1371,12 +1110,9 @@ final _RegGetValue = _advapi32.lookupFunction<
 
 /// Registers a function to handle service control requests.
 ///
-/// ```c
-/// SERVICE_STATUS_HANDLE RegisterServiceCtrlHandlerW(
-///   [in] LPCWSTR            lpServiceName,
-///   [in] LPHANDLER_FUNCTION lpHandlerProc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-registerservicectrlhandlerw>.
+///
 /// {@category advapi32}
 int RegisterServiceCtrlHandler(Pointer<Utf16> lpServiceName,
         Pointer<NativeFunction<LPHANDLER_FUNCTION>> lpHandlerProc) =>
@@ -1391,13 +1127,9 @@ final _RegisterServiceCtrlHandler = _advapi32.lookupFunction<
 
 /// Registers a function to handle extended service control requests.
 ///
-/// ```c
-/// SERVICE_STATUS_HANDLE RegisterServiceCtrlHandlerExW(
-///   [in]           LPCWSTR               lpServiceName,
-///   [in]           LPHANDLER_FUNCTION_EX lpHandlerProc,
-///   [in, optional] LPVOID                lpContext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-registerservicectrlhandlerexw>.
+///
 /// {@category advapi32}
 int RegisterServiceCtrlHandlerEx(
         Pointer<Utf16> lpServiceName,
@@ -1418,14 +1150,9 @@ final _RegisterServiceCtrlHandlerEx = _advapi32.lookupFunction<
 
 /// Loads the specified registry hive as an application hive.
 ///
-/// ```c
-/// LSTATUS RegLoadAppKeyW(
-///   LPCWSTR lpFile,
-///   PHKEY   phkResult,
-///   REGSAM  samDesired,
-///   DWORD   dwOptions,
-///   DWORD   Reserved);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regloadappkeyw>.
+///
 /// {@category advapi32}
 int RegLoadAppKey(Pointer<Utf16> lpFile, Pointer<HKEY> phkResult,
         int samDesired, int dwOptions) =>
@@ -1440,12 +1167,9 @@ final _RegLoadAppKey = _advapi32.lookupFunction<
 /// Creates a subkey under HKEY_USERS or HKEY_LOCAL_MACHINE and loads the data
 /// from the specified registry hive into that subkey.
 ///
-/// ```c
-/// LSTATUS RegLoadKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   LPCWSTR lpFile);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regloadkeyw>.
+///
 /// {@category advapi32}
 int RegLoadKey(int hKey, Pointer<Utf16>? lpSubKey, Pointer<Utf16> lpFile) =>
     _RegLoadKey(hKey, lpSubKey ?? nullptr, lpFile);
@@ -1457,16 +1181,9 @@ final _RegLoadKey = _advapi32.lookupFunction<
 
 /// Loads the specified string from the specified key and subkey.
 ///
-/// ```c
-/// LSTATUS RegLoadMUIStringW(
-///   HKEY    hKey,
-///   LPCWSTR pszValue,
-///   LPWSTR  pszOutBuf,
-///   DWORD   cbOutBuf,
-///   LPDWORD pcbData,
-///   DWORD   Flags,
-///   LPCWSTR pszDirectory);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regloadmuistringw>.
+///
 /// {@category advapi32}
 int RegLoadMUIString(
         int hKey,
@@ -1500,14 +1217,9 @@ final _RegLoadMUIString = _advapi32.lookupFunction<
 /// Notifies the caller about changes to the attributes or contents of a
 /// specified registry key.
 ///
-/// ```c
-/// LSTATUS RegNotifyChangeKeyValue(
-///   HKEY   hKey,
-///   BOOL   bWatchSubtree,
-///   DWORD  dwNotifyFilter,
-///   HANDLE hEvent,
-///   BOOL   fAsynchronous);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regnotifychangekeyvalue>.
+///
 /// {@category advapi32}
 int RegNotifyChangeKeyValue(int hKey, int bWatchSubtree, int dwNotifyFilter,
         int? hEvent, int fAsynchronous) =>
@@ -1523,11 +1235,9 @@ final _RegNotifyChangeKeyValue = _advapi32.lookupFunction<
 /// Retrieves a handle to the HKEY_CURRENT_USER key for the user the current
 /// thread is impersonating.
 ///
-/// ```c
-/// LSTATUS RegOpenCurrentUser(
-///   REGSAM samDesired,
-///   PHKEY  phkResult);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regopencurrentuser>.
+///
 /// {@category advapi32}
 int RegOpenCurrentUser(int samDesired, Pointer<HKEY> phkResult) =>
     _RegOpenCurrentUser(samDesired, phkResult);
@@ -1539,12 +1249,9 @@ final _RegOpenCurrentUser = _advapi32.lookupFunction<
 
 /// Opens the specified registry key.
 ///
-/// ```c
-/// LSTATUS RegOpenKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   PHKEY   phkResult);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regopenkeyw>.
+///
 /// {@category advapi32}
 int RegOpenKey(int hKey, Pointer<Utf16>? lpSubKey, Pointer<HKEY> phkResult) =>
     _RegOpenKey(hKey, lpSubKey ?? nullptr, phkResult);
@@ -1559,15 +1266,9 @@ final _RegOpenKey = _advapi32.lookupFunction<
 ///
 /// Note that key names are not case sensitive.
 ///
-/// ```c
-/// LSTATUS RegOpenKeyExW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   DWORD   ulOptions,
-///   REGSAM  samDesired,
-///   PHKEY   phkResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regopenkeyexw>.
+///
 /// {@category advapi32}
 int RegOpenKeyEx(int hKey, Pointer<Utf16>? lpSubKey, int? ulOptions,
         int samDesired, Pointer<HKEY> phkResult) =>
@@ -1582,18 +1283,9 @@ final _RegOpenKeyEx = _advapi32.lookupFunction<
 
 /// Opens the specified registry key and associates it with a transaction.
 ///
-/// Note that key names are not case sensitive.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regopenkeytransactedw>.
 ///
-/// ```c
-/// LSTATUS RegOpenKeyTransactedW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   DWORD   ulOptions,
-///   REGSAM  samDesired,
-///   PHKEY   phkResult,
-///   HANDLE  hTransaction,
-///   PVOID   pExtendedParemeter);
-/// ```
 /// {@category advapi32}
 int RegOpenKeyTransacted(int hKey, Pointer<Utf16>? lpSubKey, int? ulOptions,
         int samDesired, Pointer<HKEY> phkResult, int hTransaction) =>
@@ -1622,13 +1314,9 @@ final _RegOpenKeyTransacted = _advapi32.lookupFunction<
 ///
 /// The user is identified by an access token.
 ///
-/// ```c
-/// LSTATUS RegOpenUserClassesRoot(
-///   HANDLE hToken,
-///   DWORD  dwOptions,
-///   REGSAM samDesired,
-///   PHKEY  phkResult);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regopenuserclassesroot>.
+///
 /// {@category advapi32}
 int RegOpenUserClassesRoot(
         int hToken, int samDesired, Pointer<HKEY> phkResult) =>
@@ -1642,11 +1330,9 @@ final _RegOpenUserClassesRoot = _advapi32.lookupFunction<
 
 /// Maps a predefined registry key to the specified registry key.
 ///
-/// ```c
-/// LSTATUS RegOverridePredefKey(
-///   HKEY hKey,
-///   HKEY hNewHKey);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regoverridepredefkey>.
+///
 /// {@category advapi32}
 int RegOverridePredefKey(int hKey, int? hNewHKey) =>
     _RegOverridePredefKey(hKey, hNewHKey ?? 0);
@@ -1657,21 +1343,9 @@ final _RegOverridePredefKey = _advapi32.lookupFunction<
 
 /// Retrieves information about the specified registry key.
 ///
-/// ```c
-/// LSTATUS RegQueryInfoKeyW(
-///   HKEY      hKey,
-///   LPWSTR    lpClass,
-///   LPDWORD   lpcchClass,
-///   LPDWORD   lpReserved,
-///   LPDWORD   lpcSubKeys,
-///   LPDWORD   lpcbMaxSubKeyLen,
-///   LPDWORD   lpcbMaxClassLen,
-///   LPDWORD   lpcValues,
-///   LPDWORD   lpcbMaxValueNameLen,
-///   LPDWORD   lpcbMaxValueLen,
-///   LPDWORD   lpcbSecurityDescriptor,
-///   PFILETIME lpftLastWriteTime);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regqueryinfokeyw>.
+///
 /// {@category advapi32}
 int RegQueryInfoKey(
         int hKey,
@@ -1730,14 +1404,9 @@ final _RegQueryInfoKey = _advapi32.lookupFunction<
 /// Retrieves the type and data for a list of value names associated with an
 /// open registry key.
 ///
-/// ```c
-/// LSTATUS RegQueryMultipleValuesW(
-///   HKEY     hKey,
-///   PVALENTW val_list,
-///   DWORD    num_vals,
-///   LPWSTR   lpValueBuf,
-///   LPDWORD  ldwTotsize);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regquerymultiplevaluesw>.
+///
 /// {@category advapi32}
 int RegQueryMultipleValues(int hKey, Pointer<VALENT> val_list, int num_vals,
         Pointer<Utf16>? lpValueBuf, Pointer<Uint32>? ldwTotsize) =>
@@ -1757,11 +1426,9 @@ final _RegQueryMultipleValues = _advapi32.lookupFunction<
 /// Determines whether reflection has been disabled or enabled for the specified
 /// key.
 ///
-/// ```c
-/// LONG RegQueryReflectionKey(
-///   HKEY hBase,
-///   BOOL *bIsReflectionDisabled);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regqueryreflectionkey>.
+///
 /// {@category advapi32}
 int RegQueryReflectionKey(int hBase, Pointer<BOOL> bIsReflectionDisabled) =>
     _RegQueryReflectionKey(hBase, bIsReflectionDisabled);
@@ -1776,13 +1443,9 @@ final _RegQueryReflectionKey = _advapi32.lookupFunction<
 ///
 /// The data must be a null-terminated string.
 ///
-/// ```c
-/// LSTATUS RegQueryValueW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   LPWSTR  lpData,
-///   PLONG   lpcbData);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regqueryvaluew>.
+///
 /// {@category advapi32}
 int RegQueryValue(int hKey, Pointer<Utf16>? lpSubKey, Pointer<Utf16>? lpData,
         Pointer<Int32>? lpcbData) =>
@@ -1798,19 +1461,9 @@ final _RegQueryValue = _advapi32.lookupFunction<
 /// Retrieves the type and data for the specified value name associated with an
 /// open registry key.
 ///
-/// To ensure that any string values (REG_SZ, REG_MULTI_SZ, and REG_EXPAND_SZ)
-/// returned are null-terminated, use the RegGetValue function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regqueryvalueexw>.
 ///
-/// ```c
-/// LSTATUS RegQueryValueExW(
-///   HKEY    hKey,
-///   LPCWSTR lpValueName,
-///   LPDWORD lpReserved,
-///   LPDWORD lpType,
-///   LPBYTE  lpData,
-///   LPDWORD lpcbData
-/// );
-/// ```
 /// {@category advapi32}
 int RegQueryValueEx(
         int hKey,
@@ -1839,13 +1492,9 @@ final _RegQueryValueEx = _advapi32.lookupFunction<
 
 /// Changes the name of the specified registry key.
 ///
-/// ```c
-/// LSTATUS RegRenameKey(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKeyName,
-///   LPCWSTR lpNewKeyName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regrenamekey>.
+///
 /// {@category advapi32}
 int RegRenameKey(
         int hKey, Pointer<Utf16>? lpSubKeyName, Pointer<Utf16> lpNewKeyName) =>
@@ -1861,13 +1510,9 @@ final _RegRenameKey = _advapi32.lookupFunction<
 /// file, so that when the system is next started, the key and subkeys will have
 /// the values stored in the new file.
 ///
-/// ```c
-/// LSTATUS RegReplaceKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   LPCWSTR lpNewFile,
-///   LPCWSTR lpOldFile);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regreplacekeyw>.
+///
 /// {@category advapi32}
 int RegReplaceKey(int hKey, Pointer<Utf16>? lpSubKey, Pointer<Utf16> lpNewFile,
         Pointer<Utf16> lpOldFile) =>
@@ -1885,12 +1530,9 @@ final _RegReplaceKey = _advapi32.lookupFunction<
 /// This registry information may be in the form of a key and multiple levels of
 /// subkeys.
 ///
-/// ```c
-/// LSTATUS RegRestoreKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpFile,
-///   DWORD   dwFlags);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regrestorekeyw>.
+///
 /// {@category advapi32}
 int RegRestoreKey(int hKey, Pointer<Utf16> lpFile, int dwFlags) =>
     _RegRestoreKey(hKey, lpFile, dwFlags);
@@ -1903,12 +1545,9 @@ final _RegRestoreKey = _advapi32.lookupFunction<
 /// Saves the specified key and all of its subkeys and values to a new file, in
 /// the standard format.
 ///
-/// ```c
-/// LSTATUS RegSaveKeyW(
-///   HKEY                        hKey,
-///   LPCWSTR                     lpFile,
-///   const LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regsavekeyw>.
+///
 /// {@category advapi32}
 int RegSaveKey(int hKey, Pointer<Utf16> lpFile,
         Pointer<SECURITY_ATTRIBUTES>? lpSecurityAttributes) =>
@@ -1923,13 +1562,9 @@ final _RegSaveKey = _advapi32.lookupFunction<
 /// Saves the specified key and all of its subkeys and values to a registry
 /// file, in the specified format.
 ///
-/// ```c
-/// LSTATUS RegSaveKeyExW(
-///   HKEY                        hKey,
-///   LPCWSTR                     lpFile,
-///   const LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-///   DWORD                       Flags);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regsavekeyexw>.
+///
 /// {@category advapi32}
 int RegSaveKeyEx(int hKey, Pointer<Utf16> lpFile,
         Pointer<SECURITY_ATTRIBUTES>? lpSecurityAttributes, int flags) =>
@@ -1947,15 +1582,9 @@ final _RegSaveKeyEx = _advapi32.lookupFunction<
 /// Sets the data for the specified value in the specified registry key and
 /// subkey.
 ///
-/// ```c
-/// LSTATUS RegSetKeyValueW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   LPCWSTR lpValueName,
-///   DWORD   dwType,
-///   LPCVOID lpData,
-///   DWORD   cbData);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regsetkeyvaluew>.
+///
 /// {@category advapi32}
 int RegSetKeyValue(int hKey, Pointer<Utf16>? lpSubKey,
         Pointer<Utf16>? lpValueName, int dwType, Pointer? lpData, int cbData) =>
@@ -1977,14 +1606,9 @@ final _RegSetKeyValue = _advapi32.lookupFunction<
 ///
 /// The data must be a text string.
 ///
-/// ```c
-/// LSTATUS RegSetValueW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey,
-///   DWORD   dwType,
-///   LPCWSTR lpData,
-///   DWORD   cbData);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regsetvaluew>.
+///
 /// {@category advapi32}
 int RegSetValue(int hKey, Pointer<Utf16>? lpSubKey, int dwType,
         Pointer<Utf16>? lpData, int cbData) =>
@@ -1998,16 +1622,9 @@ final _RegSetValue = _advapi32.lookupFunction<
 
 /// Sets the data and type of a specified value under a registry key.
 ///
-/// ```c
-/// LSTATUS RegSetValueExW(
-///   HKEY       hKey,
-///   LPCWSTR    lpValueName,
-///   DWORD      Reserved,
-///   DWORD      dwType,
-///   const BYTE *lpData,
-///   DWORD      cbData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regsetvalueexw>.
+///
 /// {@category advapi32}
 int RegSetValueEx(int hKey, Pointer<Utf16>? lpValueName, int dwType,
         Pointer<Uint8>? lpData, int cbData) =>
@@ -2022,11 +1639,9 @@ final _RegSetValueEx = _advapi32.lookupFunction<
 
 /// Unloads the specified registry key and its subkeys from the registry.
 ///
-/// ```c
-/// LSTATUS RegUnLoadKeyW(
-///   HKEY    hKey,
-///   LPCWSTR lpSubKey);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winreg/nf-winreg-regunloadkeyw>.
+///
 /// {@category advapi32}
 int RegUnLoadKey(int hKey, Pointer<Utf16>? lpSubKey) =>
     _RegUnLoadKey(hKey, lpSubKey ?? nullptr);
@@ -2035,16 +1650,11 @@ final _RegUnLoadKey = _advapi32.lookupFunction<
     Uint32 Function(HKEY hKey, Pointer<Utf16> lpSubKey),
     int Function(int hKey, Pointer<Utf16> lpSubKey)>('RegUnLoadKeyW');
 
-/// The SetServiceObjectSecurity function sets the security descriptor of a
-/// service object.
+/// Sets the security descriptor of a service object.
 ///
-/// ```c
-/// BOOL SetServiceObjectSecurity(
-///   [in] SC_HANDLE            hService,
-///   [in] SECURITY_INFORMATION dwSecurityInformation,
-///   [in] PSECURITY_DESCRIPTOR lpSecurityDescriptor
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-setserviceobjectsecurity>.
+///
 /// {@category advapi32}
 int SetServiceObjectSecurity(int hService, int dwSecurityInformation,
         PSECURITY_DESCRIPTOR lpSecurityDescriptor) =>
@@ -2060,12 +1670,9 @@ final _SetServiceObjectSecurity = _advapi32.lookupFunction<
 /// Updates the service control manager's status information for the calling
 /// service.
 ///
-/// ```c
-/// BOOL SetServiceStatus(
-///   [in] SERVICE_STATUS_HANDLE hServiceStatus,
-///   [in] LPSERVICE_STATUS      lpServiceStatus
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-setservicestatus>.
+///
 /// {@category advapi32}
 int SetServiceStatus(
         int hServiceStatus, Pointer<SERVICE_STATUS> lpServiceStatus) =>
@@ -2077,16 +1684,13 @@ final _SetServiceStatus = _advapi32.lookupFunction<
     int Function(int hServiceStatus,
         Pointer<SERVICE_STATUS> lpServiceStatus)>('SetServiceStatus');
 
-/// The SetThreadToken function assigns an impersonation token to a thread.
+/// Assigns an impersonation token to a thread.
 ///
 /// The function can also cause a thread to stop using an impersonation token.
 ///
-/// ```c
-/// BOOL SetThreadToken(
-///   PHANDLE Thread,
-///   HANDLE  Token
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-setthreadtoken>.
+///
 /// {@category advapi32}
 int SetThreadToken(Pointer<HANDLE>? thread, int? token) =>
     _SetThreadToken(thread ?? nullptr, token ?? 0);
@@ -2097,13 +1701,9 @@ final _SetThreadToken = _advapi32.lookupFunction<
 
 /// Starts a service.
 ///
-/// ```c
-/// BOOL StartServiceW(
-///   [in]           SC_HANDLE hService,
-///   [in]           DWORD     dwNumServiceArgs,
-///   [in, optional] LPCWSTR   *lpServiceArgVectors
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-startservicew>.
+///
 /// {@category advapi32}
 int StartService(int hService, int dwNumServiceArgs,
         Pointer<Pointer<Utf16>>? lpServiceArgVectors) =>
@@ -2119,11 +1719,9 @@ final _StartService = _advapi32.lookupFunction<
 /// manager, which causes the thread to be the service control dispatcher thread
 /// for the calling process.
 ///
-/// ```c
-/// BOOL StartServiceCtrlDispatcherW(
-///   [in] const SERVICE_TABLE_ENTRYW *lpServiceStartTable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-startservicectrldispatcherw>.
+///
 /// {@category advapi32}
 int StartServiceCtrlDispatcher(
         Pointer<SERVICE_TABLE_ENTRY> lpServiceStartTable) =>

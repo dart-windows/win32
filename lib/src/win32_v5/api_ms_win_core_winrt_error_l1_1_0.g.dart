@@ -23,11 +23,9 @@ final _api_ms_win_core_winrt_error_l1_1_0 =
 /// Gets the restricted error information object set by a previous call to
 /// SetRestrictedErrorInfo in the current logical thread.
 ///
-/// ```c
-/// HRESULT GetRestrictedErrorInfo(
-///   [out] IRestrictedErrorInfo **ppRestrictedErrorInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/roerrorapi/nf-roerrorapi-getrestrictederrorinfo>.
+///
 /// {@category winrt}
 int GetRestrictedErrorInfo(Pointer<VTablePointer> ppRestrictedErrorInfo) =>
     _GetRestrictedErrorInfo(ppRestrictedErrorInfo);

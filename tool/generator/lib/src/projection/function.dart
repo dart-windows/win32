@@ -4,6 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../doc/api_details.dart';
+import '../doc/docs_provider.dart';
+import '../docs.dart';
 import '../extension/collection.dart';
 import '../extension/method.dart';
 import '../extension/string.dart';
@@ -30,6 +33,52 @@ class FunctionProjection {
 
   /// The parameter projections for the function.
   final List<ParameterProjection> parameters;
+
+  /// The category of the function.
+  String get category => switch (lib) {
+        'api_ms_win_core_apiquery_l2_1_0' => 'onecore',
+        'api_ms_win_core_comm_l1_1_1' => 'onecore',
+        'api_ms_win_core_comm_l1_1_2' => 'onecore',
+        'api_ms_win_core_handle_l1_1_0' => 'kernelbase',
+        'api_ms_win_core_sysinfo_l1_2_3' => 'onecore',
+        'api_ms_win_core_winrt_error_l1_1_0' => 'winrt',
+        'api_ms_win_core_winrt_l1_1_0' => 'winrt',
+        'api_ms_win_core_winrt_string_l1_1_0' => 'winrt',
+        'api_ms_win_ro_typeresolution_l1_1_0' => 'winrt',
+        'api_ms_win_ro_typeresolution_l1_1_1' => 'winrt',
+        'api_ms_win_service_core_l1_1_3' => 'onecore',
+        'api_ms_win_service_core_l1_1_4' => 'onecore',
+        'api_ms_win_service_core_l1_1_5' => 'onecore',
+        'api_ms_win_shcore_scaling_l1_1_1' => 'shcore',
+        'api_ms_win_wsl_api_l1_1_0' => 'wslapi',
+        'xinput1_4' => 'xinput',
+        'ws2_32' => 'winsock',
+        _ => lib,
+      };
+
+  /// The comment associated with the function.
+  String get comment {
+    final buffer = StringBuffer();
+
+    if (functionDocs.containsKey(name)) {
+      buffer.write(functionDocs[name]);
+    } else {
+      final docs = DocsProvider.getDocs(method.name) ??
+          DocsProvider.getDocs(method.nameWithoutEncoding);
+      if (docs != null) {
+        final ApiDetails(:description, :helpLink) = docs;
+        buffer.write(description);
+        if (helpLink != null) {
+          buffer
+              .write(' \nTo learn more about this function, see <$helpLink>.');
+        }
+      }
+    }
+
+    buffer.write(' \n{@category $category}');
+
+    return buffer.toString().toDocComment();
+  }
 
   /// A legal Dart identifier based on the Win32 module name.
   ///
@@ -93,5 +142,8 @@ class FunctionProjection {
       "$nativePrototype, $dartPrototype>('${method.name}');";
 
   @override
-  String toString() => '$header => $functionBody\n\n$cachedLookup';
+  String toString() => [
+        if (comment.isNotEmpty) comment,
+        '$header => $functionBody\n\n$cachedLookup'
+      ].join('\n');
 }

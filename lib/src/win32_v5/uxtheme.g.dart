@@ -21,11 +21,9 @@ final _uxtheme = DynamicLibrary.open('uxtheme.dll');
 
 /// Closes the theme data handle.
 ///
-/// ```c
-/// HRESULT CloseThemeData(
-///   HTHEME hTheme
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-closethemedata>.
+///
 /// {@category uxtheme}
 int CloseThemeData(int hTheme) => _CloseThemeData(hTheme);
 
@@ -35,16 +33,9 @@ final _CloseThemeData = _uxtheme.lookupFunction<HRESULT Function(HTHEME hTheme),
 /// Draws the border and fill defined by the visual style for the specified
 /// control part.
 ///
-/// ```c
-/// HRESULT DrawThemeBackground(
-///   HTHEME  hTheme,
-///   HDC     hdc,
-///   int     iPartId,
-///   int     iStateId,
-///   LPCRECT pRect,
-///   LPCRECT pClipRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-drawthemebackground>.
+///
 /// {@category uxtheme}
 int DrawThemeBackground(int hTheme, int hdc, int iPartId, int iStateId,
         Pointer<RECT> pRect, Pointer<RECT>? pClipRect) =>
@@ -59,18 +50,9 @@ final _DrawThemeBackground = _uxtheme.lookupFunction<
 
 /// Draws one or more edges defined by the visual style of a rectangle.
 ///
-/// ```c
-/// HRESULT DrawThemeEdge(
-///   HTHEME  hTheme,
-///   HDC     hdc,
-///   int     iPartId,
-///   int     iStateId,
-///   LPCRECT pDestRect,
-///   UINT    uEdge,
-///   UINT    uFlags,
-///   LPRECT  pContentRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-drawthemeedge>.
+///
 /// {@category uxtheme}
 int DrawThemeEdge(
         int hTheme,
@@ -107,17 +89,9 @@ final _DrawThemeEdge = _uxtheme.lookupFunction<
 /// Draws an image from an image list with the icon effect defined by the visual
 /// style.
 ///
-/// ```c
-/// HRESULT DrawThemeIcon(
-///   HTHEME     hTheme,
-///   HDC        hdc,
-///   int        iPartId,
-///   int        iStateId,
-///   LPCRECT    pRect,
-///   HIMAGELIST himl,
-///   int        iImageIndex
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-drawthemeicon>.
+///
 /// {@category uxtheme}
 int DrawThemeIcon(int hTheme, int hdc, int iPartId, int iStateId,
         Pointer<RECT> pRect, int himl, int iImageIndex) =>
@@ -132,13 +106,9 @@ final _DrawThemeIcon = _uxtheme.lookupFunction<
 /// Draws the part of a parent control that is covered by a
 /// partially-transparent or alpha-blended child control.
 ///
-/// ```c
-/// HRESULT DrawThemeParentBackground(
-///   HWND       hwnd,
-///   HDC        hdc,
-///   const RECT *prc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-drawthemeparentbackground>.
+///
 /// {@category uxtheme}
 int DrawThemeParentBackground(int hwnd, int hdc, Pointer<RECT>? prc) =>
     _DrawThemeParentBackground(hwnd, hdc, prc ?? nullptr);
@@ -153,14 +123,9 @@ final _DrawThemeParentBackground = _uxtheme.lookupFunction<
 ///
 /// Sends a WM_ERASEBKGND message followed by a WM_PRINTCLIENT.
 ///
-/// ```c
-/// HRESULT DrawThemeParentBackgroundEx(
-///   HWND       hwnd,
-///   HDC        hdc,
-///   DWORD      dwFlags,
-///   const RECT *prc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-drawthemeparentbackgroundex>.
+///
 /// {@category uxtheme}
 int DrawThemeParentBackgroundEx(
         int hwnd, int hdc, int dwFlags, Pointer<RECT>? prc) =>
@@ -173,19 +138,11 @@ final _DrawThemeParentBackgroundEx = _uxtheme.lookupFunction<
 
 /// Draws text using the color and font defined by the visual style.
 ///
-/// ```c
-/// HRESULT DrawThemeTextEx(
-///   HTHEME        hTheme,
-///   HDC           hdc,
-///   int           iPartId,
-///   int           iStateId,
-///   LPCWSTR       pszText,
-///   int           cchText,
-///   DWORD         dwTextFlags,
-///   LPRECT        pRect,
-///   const DTTOPTS *pOptions
-/// );
-/// ```
+/// Extends DrawThemeText by allowing additional text format options.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-drawthemetextex>.
+///
 /// {@category uxtheme}
 int DrawThemeTextEx(
         int hTheme,
@@ -224,12 +181,9 @@ final _DrawThemeTextEx = _uxtheme.lookupFunction<
 
 /// Enables or disables the visual style of the background of a dialog window.
 ///
-/// ```c
-/// HRESULT EnableThemeDialogTexture(
-///   HWND  hwnd,
-///   DWORD dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-enablethemedialogtexture>.
+///
 /// {@category uxtheme}
 int EnableThemeDialogTexture(int hwnd, int dwFlags) =>
     _EnableThemeDialogTexture(hwnd, dwFlags);
@@ -241,16 +195,9 @@ final _EnableThemeDialogTexture = _uxtheme.lookupFunction<
 /// Retrieves the name of the current visual style, and optionally retrieves the
 /// color scheme name and size name.
 ///
-/// ```c
-/// HRESULT GetCurrentThemeName(
-///   LPWSTR pszThemeFileName,
-///   int    cchMaxNameChars,
-///   LPWSTR pszColorBuff,
-///   int    cchMaxColorChars,
-///   LPWSTR pszSizeBuff,
-///   int    cchMaxSizeChars
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getcurrentthemename>.
+///
 /// {@category uxtheme}
 int GetCurrentThemeName(
         Pointer<Utf16> pszThemeFileName,
@@ -285,16 +232,9 @@ final _GetCurrentThemeName = _uxtheme.lookupFunction<
 
 /// Retrieves the value of a metric property.
 ///
-/// ```c
-/// HRESULT GetThemeMetric(
-///   HTHEME hTheme,
-///   HDC    hdc,
-///   int    iPartId,
-///   int    iStateId,
-///   int    iPropId,
-///   int    *piVal
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthememetric>.
+///
 /// {@category uxtheme}
 int GetThemeMetric(int hTheme, int? hdc, int iPartId, int iStateId, int iPropId,
         Pointer<Int32> piVal) =>
@@ -308,17 +248,9 @@ final _GetThemeMetric = _uxtheme.lookupFunction<
 
 /// Calculates the original size of the part defined by a visual style.
 ///
-/// ```c
-/// HRESULT GetThemePartSize(
-///   HTHEME    hTheme,
-///   HDC       hdc,
-///   int       iPartId,
-///   int       iStateId,
-///   LPCRECT   prc,
-///   THEMESIZE eSize,
-///   SIZE      *psz
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthemepartsize>.
+///
 /// {@category uxtheme}
 int GetThemePartSize(int hTheme, int? hdc, int iPartId, int iStateId,
         Pointer<RECT>? prc, int eSize, Pointer<SIZE> psz) =>
@@ -333,15 +265,9 @@ final _GetThemePartSize = _uxtheme.lookupFunction<
 
 /// Retrieves the value of a RECT property.
 ///
-/// ```c
-/// HRESULT GetThemeRect(
-///   HTHEME hTheme,
-///   int    iPartId,
-///   int    iStateId,
-///   int    iPropId,
-///   LPRECT pRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthemerect>.
+///
 /// {@category uxtheme}
 int GetThemeRect(int hTheme, int iPartId, int iStateId, int iPropId,
         Pointer<RECT> pRect) =>
@@ -355,12 +281,9 @@ final _GetThemeRect = _uxtheme.lookupFunction<
 
 /// Retrieves the value of a system color.
 ///
-/// ```c
-/// COLORREF GetThemeSysColor(
-///   HTHEME hTheme,
-///   int    iColorId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthemesyscolor>.
+///
 /// {@category uxtheme}
 int GetThemeSysColor(int? hTheme, int iColorId) =>
     _GetThemeSysColor(hTheme ?? 0, iColorId);
@@ -371,12 +294,9 @@ final _GetThemeSysColor = _uxtheme.lookupFunction<
 
 /// Retrieves a system color brush.
 ///
-/// ```c
-/// HBRUSH GetThemeSysColorBrush(
-///   HTHEME hTheme,
-///   int    iColorId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthemesyscolorbrush>.
+///
 /// {@category uxtheme}
 int GetThemeSysColorBrush(int? hTheme, int iColorId) =>
     _GetThemeSysColorBrush(hTheme ?? 0, iColorId);
@@ -387,13 +307,9 @@ final _GetThemeSysColorBrush = _uxtheme.lookupFunction<
 
 /// Retrieves the LOGFONT of a system font.
 ///
-/// ```c
-/// HRESULT GetThemeSysFont(
-///   HTHEME   hTheme,
-///   int      iFontId,
-///   LOGFONTW *plf
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthemesysfont>.
+///
 /// {@category uxtheme}
 int GetThemeSysFont(int? hTheme, int iFontId, Pointer<LOGFONT> plf) =>
     _GetThemeSysFont(hTheme ?? 0, iFontId, plf);
@@ -405,12 +321,9 @@ final _GetThemeSysFont = _uxtheme.lookupFunction<
 
 /// Retrieves the value of a system size metric from theme data.
 ///
-/// ```c
-/// int GetThemeSysSize(
-///   HTHEME hTheme,
-///   int    iSizeId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getthemesyssize>.
+///
 /// {@category uxtheme}
 int GetThemeSysSize(int? hTheme, int iSizeId) =>
     _GetThemeSysSize(hTheme ?? 0, iSizeId);
@@ -421,11 +334,9 @@ final _GetThemeSysSize = _uxtheme.lookupFunction<
 
 /// Retrieves a theme handle to a window that has visual styles applied.
 ///
-/// ```c
-/// HTHEME GetWindowTheme(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-getwindowtheme>.
+///
 /// {@category uxtheme}
 int GetWindowTheme(int hwnd) => _GetWindowTheme(hwnd);
 
@@ -436,9 +347,9 @@ final _GetWindowTheme =
 /// Reports whether the current application's user interface displays using
 /// visual styles.
 ///
-/// ```c
-/// BOOL IsAppThemed();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-isappthemed>.
+///
 /// {@category uxtheme}
 int IsAppThemed() => _IsAppThemed();
 
@@ -448,9 +359,9 @@ final _IsAppThemed =
 /// Determines whether Desktop Window Manager (DWM) composition effects are
 /// available to the theme.
 ///
-/// ```c
-/// BOOL IsCompositionActive();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-iscompositionactive>.
+///
 /// {@category uxtheme}
 int IsCompositionActive() => _IsCompositionActive();
 
@@ -459,9 +370,9 @@ final _IsCompositionActive = _uxtheme
 
 /// Tests if a visual style for the current application is active.
 ///
-/// ```c
-/// BOOL IsThemeActive();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-isthemeactive>.
+///
 /// {@category uxtheme}
 int IsThemeActive() => _IsThemeActive();
 
@@ -471,13 +382,9 @@ final _IsThemeActive =
 /// Retrieves whether the background specified by the visual style has
 /// transparent pieces or alpha-blended pieces.
 ///
-/// ```c
-/// BOOL IsThemeBackgroundPartiallyTransparent(
-///   HTHEME hTheme,
-///   int    iPartId,
-///   int    iStateId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-isthemebackgroundpartiallytransparent>.
+///
 /// {@category uxtheme}
 int IsThemeBackgroundPartiallyTransparent(
         int hTheme, int iPartId, int iStateId) =>
@@ -490,11 +397,9 @@ final _IsThemeBackgroundPartiallyTransparent = _uxtheme.lookupFunction<
 
 /// Reports whether a specified dialog window supports background texturing.
 ///
-/// ```c
-/// BOOL IsThemeDialogTextureEnabled(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-isthemedialogtextureenabled>.
+///
 /// {@category uxtheme}
 int IsThemeDialogTextureEnabled(int hwnd) => _IsThemeDialogTextureEnabled(hwnd);
 
@@ -505,13 +410,9 @@ final _IsThemeDialogTextureEnabled =
 /// Retrieves whether a visual style has defined parameters for the specified
 /// part and state.
 ///
-/// ```c
-/// BOOL IsThemePartDefined(
-///   HTHEME hTheme,
-///   int    iPartId,
-///   int    iStateId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-isthemepartdefined>.
+///
 /// {@category uxtheme}
 int IsThemePartDefined(int hTheme, int iPartId, int iStateId) =>
     _IsThemePartDefined(hTheme, iPartId, iStateId);
@@ -522,12 +423,9 @@ final _IsThemePartDefined = _uxtheme.lookupFunction<
 
 /// Opens the theme data for a window and its associated class.
 ///
-/// ```c
-/// HTHEME OpenThemeData(
-///   HWND    hwnd,
-///   LPCWSTR pszClassList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-openthemedata>.
+///
 /// {@category uxtheme}
 int OpenThemeData(int? hwnd, Pointer<Utf16> pszClassList) =>
     _OpenThemeData(hwnd ?? 0, pszClassList);
@@ -538,13 +436,9 @@ final _OpenThemeData = _uxtheme.lookupFunction<
 
 /// Opens the theme data associated with a window for specified theme classes.
 ///
-/// ```c
-/// HTHEME OpenThemeDataEx(
-///   HWND    hwnd,
-///   LPCWSTR pszClassList,
-///   DWORD   dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-openthemedataex>.
+///
 /// {@category uxtheme}
 int OpenThemeDataEx(int? hwnd, Pointer<Utf16> pszClassList, int dwFlags) =>
     _OpenThemeDataEx(hwnd ?? 0, pszClassList, dwFlags);
@@ -557,13 +451,9 @@ final _OpenThemeDataEx = _uxtheme.lookupFunction<
 /// A variant of OpenThemeData that opens a theme handle associated with a
 /// specific DPI.
 ///
-/// ```c
-/// HTHEME OpenThemeDataForDpi(
-///   HWND    hwnd,
-///   LPCWSTR pszClassList,
-///   UINT    dpi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-openthemedatafordpi>.
+///
 /// {@category uxtheme}
 int OpenThemeDataForDpi(int? hwnd, Pointer<Utf16> pszClassList, int dpi) =>
     _OpenThemeDataForDpi(hwnd ?? 0, pszClassList, dpi);
@@ -576,11 +466,9 @@ final _OpenThemeDataForDpi = _uxtheme.lookupFunction<
 /// Sets the flags that determine how visual styles are implemented in the
 /// calling application.
 ///
-/// ```c
-/// void SetThemeAppProperties(
-///   DWORD dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-setthemeappproperties>.
+///
 /// {@category uxtheme}
 void SetThemeAppProperties(int dwFlags) => _SetThemeAppProperties(dwFlags);
 
@@ -591,13 +479,9 @@ final _SetThemeAppProperties = _uxtheme.lookupFunction<
 /// Causes a window to use a different set of visual style information than its
 /// class normally uses.
 ///
-/// ```c
-/// HRESULT SetWindowTheme(
-///   HWND    hwnd,
-///   LPCWSTR pszSubAppName,
-///   LPCWSTR pszSubIdList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-setwindowtheme>.
+///
 /// {@category uxtheme}
 int SetWindowTheme(int hwnd, Pointer<Utf16>? pszSubAppName,
         Pointer<Utf16>? pszSubIdList) =>
@@ -612,14 +496,9 @@ final _SetWindowTheme = _uxtheme.lookupFunction<
 /// Sets attributes to control how visual styles are applied to a specified
 /// window.
 ///
-/// ```c
-/// HRESULT SetWindowThemeAttribute(
-///   [in] HWND                     hwnd,
-///        WINDOWTHEMEATTRIBUTETYPE eAttribute,
-///   [in] PVOID                    pvAttribute,
-///   [in] DWORD                    cbAttribute
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/uxtheme/nf-uxtheme-setwindowthemeattribute>.
+///
 /// {@category uxtheme}
 int SetWindowThemeAttribute(
         int hwnd, int eAttribute, Pointer pvAttribute, int cbAttribute) =>

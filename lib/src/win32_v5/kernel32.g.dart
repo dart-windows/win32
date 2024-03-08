@@ -19,18 +19,11 @@ import '../types.dart';
 
 final _kernel32 = DynamicLibrary.open('kernel32.dll');
 
-/// The ActivateActCtx function activates the specified activation context.
+/// Activates the specified activation context.
 ///
-/// It does this by pushing the specified activation context to the top of the
-/// activation stack. The specified activation context is thus associated with
-/// the current thread and any appropriate side-by-side API functions.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-activateactctx>.
 ///
-/// ```c
-/// BOOL ActivateActCtx(
-///   HANDLE    hActCtx,
-///   ULONG_PTR *lpCookie
-/// );
-/// ```
 /// {@category kernel32}
 int ActivateActCtx(int? hActCtx, Pointer<IntPtr> lpCookie) =>
     _ActivateActCtx(hActCtx ?? 0, lpCookie);
@@ -41,11 +34,9 @@ final _ActivateActCtx = _kernel32.lookupFunction<
 
 /// Adds a directory to the process DLL search path.
 ///
-/// ```c
-/// DLL_DIRECTORY_COOKIE AddDllDirectory(
-///   [in] PCWSTR NewDirectory
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory>.
+///
 /// {@category kernel32}
 Pointer AddDllDirectory(Pointer<Utf16> newDirectory) =>
     _AddDllDirectory(newDirectory);
@@ -54,14 +45,11 @@ final _AddDllDirectory = _kernel32.lookupFunction<
     Pointer Function(Pointer<Utf16> newDirectory),
     Pointer Function(Pointer<Utf16> newDirectory)>('AddDllDirectory');
 
-/// The AddRefActCtx function increments the reference count of the specified
-/// activation context.
+/// Increments the reference count of the specified activation context.
 ///
-/// ```c
-/// void AddRefActCtx(
-///   HANDLE hActCtx
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-addrefactctx>.
+///
 /// {@category kernel32}
 void AddRefActCtx(int hActCtx) => _AddRefActCtx(hActCtx);
 
@@ -70,9 +58,9 @@ final _AddRefActCtx = _kernel32.lookupFunction<Void Function(HANDLE hActCtx),
 
 /// Allocates a new console for the calling process.
 ///
-/// ```c
-/// BOOL AllocConsole(void);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/allocconsole>.
+///
 /// {@category kernel32}
 int AllocConsole() => _AllocConsole();
 
@@ -82,11 +70,9 @@ final _AllocConsole =
 /// Determines whether the file I/O functions are using the ANSI or OEM
 /// character set code page.
 ///
-/// This function is useful for 8-bit console input and output operations.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-arefileapisansi>.
 ///
-/// ```c
-/// BOOL AreFileApisANSI();
-/// ```
 /// {@category kernel32}
 int AreFileApisANSI() => _AreFileApisANSI();
 
@@ -95,12 +81,9 @@ final _AreFileApisANSI = _kernel32
 
 /// Assigns a process to an existing job object.
 ///
-/// ```c
-/// BOOL AssignProcessToJobObject(
-///   [in] HANDLE hJob,
-///   [in] HANDLE hProcess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-assignprocesstojobobject>.
+///
 /// {@category kernel32}
 int AssignProcessToJobObject(int hJob, int hProcess) =>
     _AssignProcessToJobObject(hJob, hProcess);
@@ -111,11 +94,9 @@ final _AssignProcessToJobObject = _kernel32.lookupFunction<
 
 /// Attaches the calling process to the console of the specified process.
 ///
-/// ```c
-/// BOOL AttachConsole(
-///   _In_ DWORD dwProcessId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/attachconsole>.
+///
 /// {@category kernel32}
 int AttachConsole(int dwProcessId) => _AttachConsole(dwProcessId);
 
@@ -125,15 +106,9 @@ final _AttachConsole = _kernel32.lookupFunction<
 
 /// Generates simple tones on the speaker.
 ///
-/// The function is synchronous; it performs an alertable wait and does not
-/// return control to its caller until the sound finishes.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/utilapiset/nf-utilapiset-beep>.
 ///
-/// ```c
-/// BOOL Beep(
-///   DWORD dwFreq,
-///   DWORD dwDuration
-/// );
-/// ```
 /// {@category kernel32}
 int Beep(int dwFreq, int dwDuration) => _Beep(dwFreq, dwDuration);
 
@@ -144,12 +119,9 @@ final _Beep = _kernel32.lookupFunction<
 /// Retrieves a handle that can be used by the UpdateResource function to add,
 /// delete, or replace resources in a binary module.
 ///
-/// ```c
-/// HANDLE BeginUpdateResourceW(
-///   LPCWSTR pFileName,
-///   BOOL    bDeleteExistingResources
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-beginupdateresourcew>.
+///
 /// {@category kernel32}
 int BeginUpdateResource(
         Pointer<Utf16> pFileName, int bDeleteExistingResources) =>
@@ -163,14 +135,9 @@ final _BeginUpdateResource = _kernel32.lookupFunction<
 /// Fills a specified DCB structure with values specified in a device-control
 /// string.
 ///
-/// The device-control string uses the syntax of the mode command.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-buildcommdcbw>.
 ///
-/// ```c
-/// BOOL BuildCommDCBW(
-///   LPCWSTR lpDef,
-///   LPDCB   lpDCB
-/// );
-/// ```
 /// {@category kernel32}
 int BuildCommDCB(Pointer<Utf16> lpDef, Pointer<DCB> lpDCB) =>
     _BuildCommDCB(lpDef, lpDCB);
@@ -182,17 +149,9 @@ final _BuildCommDCB = _kernel32.lookupFunction<
 /// Translates a device-definition string into appropriate device-control block
 /// codes and places them into a device control block.
 ///
-/// The function can also set up time-out values, including the possibility of
-/// no time-outs, for a device; the function's behavior in this regard depends
-/// on the contents of the device-definition string.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-buildcommdcbandtimeoutsw>.
 ///
-/// ```c
-/// BOOL BuildCommDCBAndTimeoutsW(
-///   LPCWSTR        lpDef,
-///   LPDCB          lpDCB,
-///   LPCOMMTIMEOUTS lpCommTimeouts
-/// );
-/// ```
 /// {@category kernel32}
 int BuildCommDCBAndTimeouts(Pointer<Utf16> lpDef, Pointer<DCB> lpDCB,
         Pointer<COMMTIMEOUTS> lpCommTimeouts) =>
@@ -207,17 +166,9 @@ final _BuildCommDCBAndTimeouts = _kernel32.lookupFunction<
 /// Connects to a message-type pipe (and waits if an instance of the pipe is not
 /// available), writes to and reads from the pipe, and then closes the pipe.
 ///
-/// ```c
-/// BOOL CallNamedPipeW(
-///   LPCWSTR lpNamedPipeName,
-///   LPVOID  lpInBuffer,
-///   DWORD   nInBufferSize,
-///   LPVOID  lpOutBuffer,
-///   DWORD   nOutBufferSize,
-///   LPDWORD lpBytesRead,
-///   DWORD   nTimeOut
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-callnamedpipew>.
+///
 /// {@category kernel32}
 int CallNamedPipe(
         Pointer<Utf16> lpNamedPipeName,
@@ -251,14 +202,9 @@ final _CallNamedPipe = _kernel32.lookupFunction<
 /// Cancels all pending input and output (I/O) operations that are issued by the
 /// calling thread for the specified file.
 ///
-/// The function does not cancel I/O operations that other threads issue for a
-/// file handle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-cancelio>.
 ///
-/// ```c
-/// BOOL CancelIo(
-///   HANDLE hFile
-/// );
-/// ```
 /// {@category kernel32}
 int CancelIo(int hFile) => _CancelIo(hFile);
 
@@ -270,12 +216,9 @@ final _CancelIo = _kernel32.lookupFunction<BOOL Function(HANDLE hFile),
 /// The function only cancels I/O operations in the current process, regardless
 /// of which thread created the I/O operation.
 ///
-/// ```c
-/// BOOL CancelIoEx(
-///   HANDLE       hFile,
-///   LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-cancelioex>.
+///
 /// {@category kernel32}
 int CancelIoEx(int hFile, Pointer<OVERLAPPED>? lpOverlapped) =>
     _CancelIoEx(hFile, lpOverlapped ?? nullptr);
@@ -287,11 +230,9 @@ final _CancelIoEx = _kernel32.lookupFunction<
 /// Marks pending synchronous I/O operations that are issued by the specified
 /// thread as canceled.
 ///
-/// ```c
-/// BOOL CancelSynchronousIo(
-/// HANDLE hThread
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-cancelsynchronousio>.
+///
 /// {@category kernel32}
 int CancelSynchronousIo(int hThread) => _CancelSynchronousIo(hThread);
 
@@ -301,12 +242,9 @@ final _CancelSynchronousIo = _kernel32.lookupFunction<
 
 /// Determines whether the specified process is being debugged.
 ///
-/// ```c
-/// BOOL CheckRemoteDebuggerPresent(
-///   HANDLE hProcess,
-///   PBOOL  pbDebuggerPresent
-///       );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/debugapi/nf-debugapi-checkremotedebuggerpresent>.
+///
 /// {@category kernel32}
 int CheckRemoteDebuggerPresent(int hProcess, Pointer<BOOL> pbDebuggerPresent) =>
     _CheckRemoteDebuggerPresent(hProcess, pbDebuggerPresent);
@@ -319,11 +257,9 @@ final _CheckRemoteDebuggerPresent = _kernel32.lookupFunction<
 /// Restores character transmission for a specified communications device and
 /// places the transmission line in a nonbreak state.
 ///
-/// ```c
-/// BOOL ClearCommBreak(
-///   HANDLE hFile
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-clearcommbreak>.
+///
 /// {@category kernel32}
 int ClearCommBreak(int hFile) => _ClearCommBreak(hFile);
 
@@ -333,16 +269,9 @@ final _ClearCommBreak = _kernel32.lookupFunction<BOOL Function(HANDLE hFile),
 /// Retrieves information about a communications error and reports the current
 /// status of a communications device.
 ///
-/// The function is called when a communications error occurs, and it clears the
-/// device's error flag to enable additional input and output (I/O) operations.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-clearcommerror>.
 ///
-/// ```c
-/// BOOL ClearCommError(
-///   HANDLE    hFile,
-///   LPDWORD   lpErrors,
-///   LPCOMSTAT lpStat
-/// );
-/// ```
 /// {@category kernel32}
 int ClearCommError(
         int hFile, Pointer<Uint32>? lpErrors, Pointer<COMSTAT>? lpStat) =>
@@ -356,11 +285,9 @@ final _ClearCommError = _kernel32.lookupFunction<
 
 /// Closes an open object handle.
 ///
-/// ```c
-/// BOOL CloseHandle(
-///   HANDLE hObject
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/handleapi/nf-handleapi-closehandle>.
+///
 /// {@category kernel32}
 int CloseHandle(int hObject) => _CloseHandle(hObject);
 
@@ -369,11 +296,9 @@ final _CloseHandle = _kernel32.lookupFunction<BOOL Function(HANDLE hObject),
 
 /// Closes a pseudoconsole from the given handle.
 ///
-/// ```c
-/// void ClosePseudoConsole(
-///   _In_ HPCON hPC
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/closepseudoconsole>.
+///
 /// {@category kernel32}
 void ClosePseudoConsole(int hPC) => _ClosePseudoConsole(hPC);
 
@@ -383,13 +308,9 @@ final _ClosePseudoConsole =
 
 /// Displays a driver-supplied configuration dialog box.
 ///
-/// ```c
-/// BOOL CommConfigDialogW(
-///   LPCWSTR      lpszName,
-///   HWND         hWnd,
-///   LPCOMMCONFIG lpCC
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-commconfigdialogw>.
+///
 /// {@category kernel32}
 int CommConfigDialog(
         Pointer<Utf16> lpszName, int? hWnd, Pointer<COMMCONFIG> lpCC) =>
@@ -403,14 +324,9 @@ final _CommConfigDialog = _kernel32.lookupFunction<
 /// Enables a named pipe server process to wait for a client process to connect
 /// to an instance of a named pipe.
 ///
-/// A client process connects by calling either the CreateFile or CallNamedPipe
-/// function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-connectnamedpipe>.
 ///
-/// ```c
-/// BOOL ConnectNamedPipe(
-///   HANDLE       hNamedPipe,
-///   LPOVERLAPPED lpOverlapped);
-/// ```
 /// {@category kernel32}
 int ConnectNamedPipe(int hNamedPipe, Pointer<OVERLAPPED>? lpOverlapped) =>
     _ConnectNamedPipe(hNamedPipe, lpOverlapped ?? nullptr);
@@ -423,13 +339,9 @@ final _ConnectNamedPipe = _kernel32.lookupFunction<
 /// Enables a debugger to continue a thread that previously reported a debugging
 /// event.
 ///
-/// ```c
-/// BOOL ContinueDebugEvent(
-///   DWORD dwProcessId,
-///   DWORD dwThreadId,
-///   DWORD dwContinueStatus
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/debugapi/nf-debugapi-continuedebugevent>.
+///
 /// {@category kernel32}
 int ContinueDebugEvent(int dwProcessId, int dwThreadId, int dwContinueStatus) =>
     _ContinueDebugEvent(dwProcessId, dwThreadId, dwContinueStatus);
@@ -440,13 +352,11 @@ final _ContinueDebugEvent = _kernel32.lookupFunction<
     int Function(int dwProcessId, int dwThreadId,
         int dwContinueStatus)>('ContinueDebugEvent');
 
-/// The CreateActCtx function creates an activation context.
+/// Creates an activation context.
 ///
-/// ```c
-/// HANDLE CreateActCtxW(
-///   PCACTCTXW pActCtx
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-createactctxw>.
+///
 /// {@category kernel32}
 int CreateActCtx(Pointer<ACTCTX> pActCtx) => _CreateActCtx(pActCtx);
 
@@ -454,17 +364,11 @@ final _CreateActCtx = _kernel32.lookupFunction<
     HANDLE Function(Pointer<ACTCTX> pActCtx),
     int Function(Pointer<ACTCTX> pActCtx)>('CreateActCtxW');
 
-/// Creates a console screen buffer.
+/// Creates a screen buffer for the Windows Console.
 ///
-/// ```c
-/// HANDLE CreateConsoleScreenBuffer(
-///   _In_             DWORD               dwDesiredAccess,
-///   _In_             DWORD               dwShareMode,
-///   _In_opt_   const SECURITY_ATTRIBUTES *lpSecurityAttributes,
-///   _In_             DWORD               dwFlags,
-///   _Reserved_       LPVOID              lpScreenBufferData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/createconsolescreenbuffer>.
+///
 /// {@category kernel32}
 int CreateConsoleScreenBuffer(int dwDesiredAccess, int dwShareMode,
         Pointer<SECURITY_ATTRIBUTES>? lpSecurityAttributes, int dwFlags) =>
@@ -487,15 +391,9 @@ final _CreateConsoleScreenBuffer = _kernel32.lookupFunction<
 
 /// Creates a new directory.
 ///
-/// If the underlying file system supports security on files and directories,
-/// the function applies a specified security descriptor to the new directory.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-createdirectoryw>.
 ///
-/// ```c
-/// BOOL CreateDirectoryW(
-///   LPCWSTR               lpPathName,
-///   LPSECURITY_ATTRIBUTES lpSecurityAttributes
-/// );
-/// ```
 /// {@category kernel32}
 int CreateDirectory(Pointer<Utf16> lpPathName,
         Pointer<SECURITY_ATTRIBUTES>? lpSecurityAttributes) =>
@@ -509,14 +407,9 @@ final _CreateDirectory = _kernel32.lookupFunction<
 
 /// Creates or opens a named or unnamed event object.
 ///
-/// ```c
-/// HANDLE CreateEventW(
-///   LPSECURITY_ATTRIBUTES lpEventAttributes,
-///   BOOL bManualReset,
-///   BOOL  bInitialState,
-///   LPCWSTR lpName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-createeventw>.
+///
 /// {@category kernel32}
 int CreateEvent(Pointer<SECURITY_ATTRIBUTES>? lpEventAttributes,
         int bManualReset, int bInitialState, Pointer<Utf16>? lpName) =>
@@ -535,14 +428,9 @@ final _CreateEvent = _kernel32.lookupFunction<
 /// Creates or opens a named or unnamed event object and returns a handle to the
 /// object.
 ///
-/// ```c
-/// HANDLE CreateEventExW(
-///   LPSECURITY_ATTRIBUTES lpEventAttributes,
-///   LPCWSTR               lpName,
-///   DWORD                 dwFlags,
-///   DWORD                 dwDesiredAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-createeventexw>.
+///
 /// {@category kernel32}
 int CreateEventEx(Pointer<SECURITY_ATTRIBUTES>? lpEventAttributes,
         Pointer<Utf16>? lpName, int dwFlags, int dwDesiredAccess) =>
@@ -562,21 +450,11 @@ final _CreateEventEx = _kernel32.lookupFunction<
 ///
 /// The most commonly used I/O devices are as follows: file, file stream,
 /// directory, physical disk, volume, console buffer, tape drive, communications
-/// resource, mailslot, and pipe. The function returns a handle that can be used
-/// to access the file or device for various types of I/O depending on the file
-/// or device and the flags and attributes specified.
+/// resource, mailslot, and pipe.
 ///
-/// ```c
-/// HANDLE CreateFileW(
-///   LPCWSTR               lpFileName,
-///   DWORD                 dwDesiredAccess,
-///   DWORD                 dwShareMode,
-///   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-///   DWORD                 dwCreationDisposition,
-///   DWORD                 dwFlagsAndAttributes,
-///   HANDLE                hTemplateFile
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-createfilew>.
+///
 /// {@category kernel32}
 int CreateFile(
         Pointer<Utf16> lpFileName,
@@ -615,21 +493,9 @@ final _CreateFile = _kernel32.lookupFunction<
 
 /// Creates or opens a file or I/O device.
 ///
-/// The most commonly used I/O devices are as follows: file, file stream,
-/// directory, physical disk, volume, console buffer, tape drive, communications
-/// resource, mailslot, and pipe. The function returns a handle that can be used
-/// to access the file or device for various types of I/O depending on the file
-/// or device and the flags and attributes specified.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-createfile2>.
 ///
-/// ```c
-/// HANDLE CreateFile2(
-///   [in]           LPCWSTR                           lpFileName,
-///   [in]           DWORD                             dwDesiredAccess,
-///   [in]           DWORD                             dwShareMode,
-///   [in]           DWORD                             dwCreationDisposition,
-///   [in, optional] LPCREATEFILE2_EXTENDED_PARAMETERS pCreateExParams
-/// );
-/// ```
 /// {@category kernel32}
 int CreateFile2(
         Pointer<Utf16> lpFileName,
@@ -659,14 +525,9 @@ final _CreateFile2 = _kernel32.lookupFunction<
 /// specified file handle, or creates an I/O completion port that is not yet
 /// associated with a file handle, allowing association at a later time.
 ///
-/// ```c
-/// HANDLE CreateIoCompletionPort(
-///   HANDLE    FileHandle,
-///   HANDLE    ExistingCompletionPort,
-///   ULONG_PTR CompletionKey,
-///   DWORD     NumberOfConcurrentThreads
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-createiocompletionport>.
+///
 /// {@category kernel32}
 int CreateIoCompletionPort(int fileHandle, int? existingCompletionPort,
         int completionKey, int numberOfConcurrentThreads) =>
@@ -681,12 +542,9 @@ final _CreateIoCompletionPort = _kernel32.lookupFunction<
 
 /// Creates or opens a job object.
 ///
-/// ```c
-/// HANDLE CreateJobObjectW(
-///   [in, optional] LPSECURITY_ATTRIBUTES lpJobAttributes,
-///   [in, optional] LPCWSTR               lpName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-createjobobjectw>.
+///
 /// {@category kernel32}
 int CreateJobObject(Pointer<SECURITY_ATTRIBUTES>? lpJobAttributes,
         Pointer<Utf16>? lpName) =>
@@ -701,21 +559,9 @@ final _CreateJobObject = _kernel32.lookupFunction<
 /// Creates an instance of a named pipe and returns a handle for subsequent pipe
 /// operations.
 ///
-/// A named pipe server process uses this function either to create the first
-/// instance of a specific named pipe and establish its basic attributes or to
-/// create a new instance of an existing named pipe.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-createnamedpipew>.
 ///
-/// ```c
-/// HANDLE CreateNamedPipeW(
-///   LPCWSTR                lpName,
-///   DWORD                 dwOpenMode,
-///   DWORD                 dwPipeMode,
-///   DWORD                 nMaxInstances,
-///   DWORD                 nOutBufferSize,
-///   DWORD                 nInBufferSize,
-///   DWORD                 nDefaultTimeOut,
-///   LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-/// ```
 /// {@category kernel32}
 int CreateNamedPipe(
         Pointer<Utf16> lpName,
@@ -759,14 +605,9 @@ final _CreateNamedPipe = _kernel32.lookupFunction<
 /// Creates an anonymous pipe, and returns handles to the read and write ends of
 /// the pipe.
 ///
-/// ```c
-/// BOOL CreatePipe(
-///   PHANDLE               hReadPipe,
-///   PHANDLE               hWritePipe,
-///   LPSECURITY_ATTRIBUTES lpPipeAttributes,
-///   DWORD                 nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-createpipe>.
+///
 /// {@category kernel32}
 int CreatePipe(Pointer<HANDLE> hReadPipe, Pointer<HANDLE> hWritePipe,
         Pointer<SECURITY_ATTRIBUTES>? lpPipeAttributes, int nSize) =>
@@ -785,20 +626,9 @@ final _CreatePipe = _kernel32.lookupFunction<
 ///
 /// The new process runs in the security context of the calling process.
 ///
-/// ```c
-/// BOOL CreateProcessW(
-///   LPCWSTR               lpApplicationName,
-///   LPWSTR                lpCommandLine,
-///   LPSECURITY_ATTRIBUTES lpProcessAttributes,
-///   LPSECURITY_ATTRIBUTES lpThreadAttributes,
-///   BOOL                  bInheritHandles,
-///   DWORD                 dwCreationFlags,
-///   LPVOID                lpEnvironment,
-///   LPCWSTR               lpCurrentDirectory,
-///   LPSTARTUPINFOW        lpStartupInfo,
-///   LPPROCESS_INFORMATION lpProcessInformation
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw>.
+///
 /// {@category kernel32}
 int CreateProcess(
         Pointer<Utf16>? lpApplicationName,
@@ -847,17 +677,11 @@ final _CreateProcess = _kernel32.lookupFunction<
         Pointer<STARTUPINFO> lpStartupInfo,
         Pointer<PROCESS_INFORMATION> lpProcessInformation)>('CreateProcessW');
 
-/// Creates a new pseudoconsole object for the calling process.
+/// Allocates a new pseudoconsole for the calling process.
 ///
-/// ```c
-/// HRESULT CreatePseudoConsole(
-///   _In_ COORD size,
-///   _In_ HANDLE hInput,
-///   _In_ HANDLE hOutput,
-///   _In_ DWORD dwFlags,
-///   _Out_ HPCON* phPC
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/createpseudoconsole>.
+///
 /// {@category kernel32}
 int CreatePseudoConsole(COORD size, int hInput, int hOutput, int dwFlags,
         Pointer<HPCON> phPC) =>
@@ -871,21 +695,9 @@ final _CreatePseudoConsole = _kernel32.lookupFunction<
 
 /// Creates a thread that runs in the virtual address space of another process.
 ///
-/// Use the CreateRemoteThreadEx function to create a thread that runs in the
-/// virtual address space of another process and optionally specify extended
-/// attributes.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread>.
 ///
-/// ```c
-/// HANDLE CreateRemoteThread(
-///   HANDLE hProcess,
-///   LPSECURITY_ATTRIBUTES lpThreadAttributes,
-///   SIZE_T dwStackSize,
-///   LPTHREAD_START_ROUTINE lpStartAddress,
-///   LPVOID lpParameter,
-///   DWORD dwCreationFlags,
-///   LPDWORD lpThreadId
-/// );
-/// ```
 /// {@category kernel32}
 int CreateRemoteThread(
         int hProcess,
@@ -926,18 +738,9 @@ final _CreateRemoteThread = _kernel32.lookupFunction<
 /// and optionally specifies extended attributes such as processor group
 /// affinity.
 ///
-/// ```c
-/// HANDLE CreateRemoteThreadEx(
-///   HANDLE hProcess,
-///   LPSECURITY_ATTRIBUTES lpThreadAttributes,
-///   SIZE_T dwStackSize,
-///   LPTHREAD_START_ROUTINE lpStartAddress,
-///   LPVOID lpParameter,
-///   DWORD dwCreationFlags,
-///   LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList,
-///   LPDWORD lpThreadId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethreadex>.
+///
 /// {@category kernel32}
 int CreateRemoteThreadEx(
         int hProcess,
@@ -981,16 +784,9 @@ final _CreateRemoteThreadEx = _kernel32.lookupFunction<
 /// Creates a thread to execute within the virtual address space of the calling
 /// process.
 ///
-/// ```c
-/// HANDLE CreateThread(
-///   LPSECURITY_ATTRIBUTES lpThreadAttributes,
-///   SIZE_T dwStackSize,
-///   LPTHREAD_START_ROUTINE lpStartAddress,
-///   LPVOID lpParameter,
-///   DWORD dwCreationFlags,
-///   LPDWORD lpThreadId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread>.
+///
 /// {@category kernel32}
 int CreateThread(
         Pointer<SECURITY_ATTRIBUTES>? lpThreadAttributes,
@@ -1018,15 +814,11 @@ final _CreateThread = _kernel32.lookupFunction<
         int dwCreationFlags,
         Pointer<Uint32> lpThreadId)>('CreateThread');
 
-/// The DeactivateActCtx function deactivates the activation context
-/// corresponding to the specified cookie.
+/// Deactivates the activation context corresponding to the specified cookie.
 ///
-/// ```c
-/// BOOL DeactivateActCtx(
-///   DWORD     dwFlags,
-///   ULONG_PTR ulCookie
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-deactivateactctx>.
+///
 /// {@category kernel32}
 int DeactivateActCtx(int dwFlags, int ulCookie) =>
     _DeactivateActCtx(dwFlags, ulCookie);
@@ -1040,9 +832,9 @@ final _DeactivateActCtx = _kernel32.lookupFunction<
 /// This allows the calling thread to signal the debugger to handle the
 /// exception.
 ///
-/// ```c
-/// void DebugBreak();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/debugapi/nf-debugapi-debugbreak>.
+///
 /// {@category kernel32}
 void DebugBreak() => _DebugBreak();
 
@@ -1054,11 +846,9 @@ final _DebugBreak =
 /// This allows the calling thread to signal the debugger to handle the
 /// exception.
 ///
-/// ```c
-/// BOOL DebugBreakProcess(
-///   HANDLE Process
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-debugbreakprocess>.
+///
 /// {@category kernel32}
 int DebugBreakProcess(int process) => _DebugBreakProcess(process);
 
@@ -1068,11 +858,9 @@ final _DebugBreakProcess = _kernel32.lookupFunction<
 
 /// Sets the action to be performed when the calling thread exits.
 ///
-/// ```c
-/// BOOL DebugSetProcessKillOnExit(
-///   BOOL KillOnExit
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-debugsetprocesskillonexit>.
+///
 /// {@category kernel32}
 int DebugSetProcessKillOnExit(int killOnExit) =>
     _DebugSetProcessKillOnExit(killOnExit);
@@ -1083,13 +871,9 @@ final _DebugSetProcessKillOnExit = _kernel32.lookupFunction<
 
 /// Defines, redefines, or deletes MS-DOS device names.
 ///
-/// ```c
-/// BOOL DefineDosDeviceW(
-///   [in]           DWORD   dwFlags,
-///   [in]           LPCWSTR lpDeviceName,
-///   [in, optional] LPCWSTR lpTargetPath
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-definedosdevicew>.
+///
 /// {@category kernel32}
 int DefineDosDevice(int dwFlags, Pointer<Utf16> lpDeviceName,
         Pointer<Utf16>? lpTargetPath) =>
@@ -1103,11 +887,9 @@ final _DefineDosDevice = _kernel32.lookupFunction<
 
 /// Deletes an existing file.
 ///
-/// ```c
-/// BOOL DeleteFileW(
-///   LPCWSTR lpFileName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-deletefilew>.
+///
 /// {@category kernel32}
 int DeleteFile(Pointer<Utf16> lpFileName) => _DeleteFile(lpFileName);
 
@@ -1117,11 +899,9 @@ final _DeleteFile = _kernel32.lookupFunction<
 
 /// Deletes a drive letter or mounted folder.
 ///
-/// ```c
-/// BOOL DeleteVolumeMountPointW(
-///   [in] LPCWSTR lpszVolumeMountPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-deletevolumemountpointw>.
+///
 /// {@category kernel32}
 int DeleteVolumeMountPoint(Pointer<Utf16> lpszVolumeMountPoint) =>
     _DeleteVolumeMountPoint(lpszVolumeMountPoint);
@@ -1134,18 +914,9 @@ final _DeleteVolumeMountPoint = _kernel32.lookupFunction<
 /// Sends a control code directly to a specified device driver, causing the
 /// corresponding device to perform the corresponding operation.
 ///
-/// ```c
-/// BOOL DeviceIoControl(
-///   HANDLE       hDevice,
-///   DWORD        dwIoControlCode,
-///   LPVOID       lpInBuffer,
-///   DWORD        nInBufferSize,
-///   LPVOID       lpOutBuffer,
-///   DWORD        nOutBufferSize,
-///   LPDWORD      lpBytesReturned,
-///   LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol>.
+///
 /// {@category kernel32}
 int DeviceIoControl(
         int hDevice,
@@ -1189,13 +960,9 @@ final _DeviceIoControl = _kernel32.lookupFunction<
 /// Disables the DLL_THREAD_ATTACH and DLL_THREAD_DETACH notifications for the
 /// specified dynamic-link library (DLL).
 ///
-/// This can reduce the size of the working set for some applications.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-disablethreadlibrarycalls>.
 ///
-/// ```c
-/// BOOL DisableThreadLibraryCalls(
-///   HMODULE hLibModule
-/// );
-/// ```
 /// {@category kernel32}
 int DisableThreadLibraryCalls(int hLibModule) =>
     _DisableThreadLibraryCalls(hLibModule);
@@ -1206,10 +973,9 @@ final _DisableThreadLibraryCalls = _kernel32.lookupFunction<
 
 /// Disconnects the server end of a named pipe instance from a client process.
 ///
-/// ```c
-/// BOOL DisconnectNamedPipe(
-///   HANDLE hNamedPipe);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-disconnectnamedpipe>.
+///
 /// {@category kernel32}
 int DisconnectNamedPipe(int hNamedPipe) => _DisconnectNamedPipe(hNamedPipe);
 
@@ -1219,13 +985,9 @@ final _DisconnectNamedPipe = _kernel32.lookupFunction<
 
 /// Converts a DNS-style host name to a NetBIOS-style computer name.
 ///
-/// ```c
-/// BOOL DnsHostnameToComputerNameW(
-///   LPCWSTR Hostname,
-///   LPWSTR  ComputerName,
-///   LPDWORD nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-dnshostnametocomputernamew>.
+///
 /// {@category kernel32}
 int DnsHostnameToComputerName(Pointer<Utf16> hostname,
         Pointer<Utf16>? computerName, Pointer<Uint32> nSize) =>
@@ -1239,13 +1001,9 @@ final _DnsHostnameToComputerName = _kernel32.lookupFunction<
 
 /// Converts MS-DOS date and time values to a file time.
 ///
-/// ```c
-/// BOOL DosDateTimeToFileTime(
-///   WORD       wFatDate,
-///   WORD       wFatTime,
-///   LPFILETIME lpFileTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-dosdatetimetofiletime>.
+///
 /// {@category kernel32}
 int DosDateTimeToFileTime(
         int wFatDate, int wFatTime, Pointer<FILETIME> lpFileTime) =>
@@ -1259,17 +1017,9 @@ final _DosDateTimeToFileTime = _kernel32.lookupFunction<
 
 /// Duplicates an object handle.
 ///
-/// ```c
-/// BOOL DuplicateHandle(
-///   HANDLE   hSourceProcessHandle,
-///   HANDLE   hSourceHandle,
-///   HANDLE   hTargetProcessHandle,
-///   LPHANDLE lpTargetHandle,
-///   DWORD    dwDesiredAccess,
-///   BOOL     bInheritHandle,
-///   DWORD    dwOptions
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/handleapi/nf-handleapi-duplicatehandle>.
+///
 /// {@category kernel32}
 int DuplicateHandle(
         int hSourceProcessHandle,
@@ -1302,12 +1052,9 @@ final _DuplicateHandle = _kernel32.lookupFunction<
 
 /// Commits or discards changes made prior to a call to UpdateResource.
 ///
-/// ```c
-/// BOOL EndUpdateResourceW(
-///   HANDLE hUpdate,
-///   BOOL   fDiscard
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-endupdateresourcew>.
+///
 /// {@category kernel32}
 int EndUpdateResource(int hUpdate, int fDiscard) =>
     _EndUpdateResource(hUpdate, fDiscard);
@@ -1318,20 +1065,9 @@ final _EndUpdateResource = _kernel32.lookupFunction<
 
 /// Enumerates resources of a specified type within a binary module.
 ///
-/// For Windows Vista and later, this is typically a language-neutral Portable
-/// Executable (LN file), and the enumeration will also include resources from
-/// the corresponding language-specific resource files (.mui files) that contain
-/// localizable language resources. It is also possible for hModule to specify
-/// an .mui file, in which case only that file is searched for resources.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-enumresourcenamesw>.
 ///
-/// ```c
-/// BOOL EnumResourceNamesW(
-///   HMODULE          hModule,
-///   LPCWSTR          lpType,
-///   ENUMRESNAMEPROCW lpEnumFunc,
-///   LONG_PTR         lParam
-/// );
-/// ```
 /// {@category kernel32}
 int EnumResourceNames(int? hModule, Pointer<Utf16> lpType,
         Pointer<NativeFunction<ENUMRESNAMEPROC>> lpEnumFunc, int lParam) =>
@@ -1348,20 +1084,9 @@ final _EnumResourceNames = _kernel32.lookupFunction<
 
 /// Enumerates resource types within a binary module.
 ///
-/// Starting with Windows Vista, this is typically a language-neutral Portable
-/// Executable (LN file), and the enumeration also includes resources from one
-/// of the corresponding language-specific resource files (.mui files)—if one
-/// exists—that contain localizable language resources. It is also possible to
-/// use hModule to specify a .mui file, in which case only that file is searched
-/// for resource types.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-enumresourcetypesw>.
 ///
-/// ```c
-/// BOOL EnumResourceTypesW(
-///   HMODULE          hModule,
-///   ENUMRESTYPEPROCW lpEnumFunc,
-///   LONG_PTR         lParam
-/// );
-/// ```
 /// {@category kernel32}
 int EnumResourceTypes(int? hModule,
         Pointer<NativeFunction<ENUMRESTYPEPROC>> lpEnumFunc, int lParam) =>
@@ -1377,13 +1102,9 @@ final _EnumResourceTypes = _kernel32.lookupFunction<
 
 /// Enumerates all system firmware tables of the specified type.
 ///
-/// ```c
-/// UINT EnumSystemFirmwareTables(
-///   DWORD FirmwareTableProviderSignature,
-///   PVOID pFirmwareTableEnumBuffer,
-///   DWORD BufferSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-enumsystemfirmwaretables>.
+///
 /// {@category kernel32}
 int EnumSystemFirmwareTables(int firmwareTableProviderSignature,
         Pointer<Uint8>? pFirmwareTableEnumBuffer, int bufferSize) =>
@@ -1400,12 +1121,9 @@ final _EnumSystemFirmwareTables = _kernel32.lookupFunction<
 
 /// Directs the specified communications device to perform an extended function.
 ///
-/// ```c
-/// BOOL EscapeCommFunction(
-///   HANDLE hFile,
-///   DWORD  dwFunc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-escapecommfunction>.
+///
 /// {@category kernel32}
 int EscapeCommFunction(int hFile, int dwFunc) =>
     _EscapeCommFunction(hFile, dwFunc);
@@ -1416,11 +1134,9 @@ final _EscapeCommFunction = _kernel32.lookupFunction<
 
 /// Ends the calling process and all its threads.
 ///
-/// ```c
-/// void ExitProcess(
-///   UINT uExitCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess>.
+///
 /// {@category kernel32}
 void ExitProcess(int uExitCode) => _ExitProcess(uExitCode);
 
@@ -1429,11 +1145,9 @@ final _ExitProcess = _kernel32.lookupFunction<Void Function(Uint32 uExitCode),
 
 /// Ends the calling thread.
 ///
-/// ```c
-/// void ExitThread(
-///   DWORD dwExitCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitthread>.
+///
 /// {@category kernel32}
 void ExitThread(int dwExitCode) => _ExitThread(dwExitCode);
 
@@ -1442,13 +1156,9 @@ final _ExitThread = _kernel32.lookupFunction<Void Function(Uint32 dwExitCode),
 
 /// Converts a file time to MS-DOS date and time values.
 ///
-/// ```c
-/// BOOL FileTimeToDosDateTime(
-///   const FILETIME *lpFileTime,
-///   LPWORD         lpFatDate,
-///   LPWORD         lpFatTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-filetimetodosdatetime>.
+///
 /// {@category kernel32}
 int FileTimeToDosDateTime(Pointer<FILETIME> lpFileTime,
         Pointer<Uint16> lpFatDate, Pointer<Uint16> lpFatTime) =>
@@ -1464,12 +1174,9 @@ final _FileTimeToDosDateTime = _kernel32.lookupFunction<
 ///
 /// System time is based on Coordinated Universal Time (UTC).
 ///
-/// ```c
-/// BOOL FileTimeToSystemTime(
-///   const FILETIME *lpFileTime,
-///   LPSYSTEMTIME   lpSystemTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/timezoneapi/nf-timezoneapi-filetimetosystemtime>.
+///
 /// {@category kernel32}
 int FileTimeToSystemTime(
         Pointer<FILETIME> lpFileTime, Pointer<SYSTEMTIME> lpSystemTime) =>
@@ -1484,15 +1191,9 @@ final _FileTimeToSystemTime = _kernel32.lookupFunction<
 /// Sets the character attributes for a specified number of character cells,
 /// beginning at the specified coordinates in a screen buffer.
 ///
-/// ```c
-/// BOOL FillConsoleOutputAttribute(
-///   _In_  HANDLE  hConsoleOutput,
-///   _In_  WORD    wAttribute,
-///   _In_  DWORD   nLength,
-///   _In_  COORD   dwWriteCoord,
-///   _Out_ LPDWORD lpNumberOfAttrsWritten
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/fillconsoleoutputattribute>.
+///
 /// {@category kernel32}
 int FillConsoleOutputAttribute(int hConsoleOutput, int wAttribute, int nLength,
         COORD dwWriteCoord, Pointer<Uint32> lpNumberOfAttrsWritten) =>
@@ -1512,15 +1213,9 @@ final _FillConsoleOutputAttribute = _kernel32.lookupFunction<
 /// Writes a character to the console screen buffer a specified number of times,
 /// beginning at the specified coordinates.
 ///
-/// ```c
-/// BOOL FillConsoleOutputCharacterW(
-///   _In_  HANDLE  hConsoleOutput,
-///   _In_  WCHAR   cCharacter,
-///   _In_  DWORD   nLength,
-///   _In_  COORD   dwWriteCoord,
-///   _Out_ LPDWORD lpNumberOfCharsWritten
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/fillconsoleoutputcharacter>.
+///
 /// {@category kernel32}
 int FillConsoleOutputCharacter(int hConsoleOutput, int cCharacter, int nLength,
         COORD dwWriteCoord, Pointer<Uint32> lpNumberOfCharsWritten) =>
@@ -1541,11 +1236,9 @@ final _FillConsoleOutputCharacter = _kernel32.lookupFunction<
 /// FindFirstFileNameW, FindFirstFileNameTransactedW, FindFirstFileTransacted,
 /// FindFirstStreamTransactedW, or FindFirstStreamW functions.
 ///
-/// ```c
-/// BOOL FindClose(
-///   HANDLE hFindFile
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findclose>.
+///
 /// {@category kernel32}
 int FindClose(int hFindFile) => _FindClose(hFindFile);
 
@@ -1554,11 +1247,9 @@ final _FindClose = _kernel32.lookupFunction<BOOL Function(HANDLE hFindFile),
 
 /// Stops change notification handle monitoring.
 ///
-/// ```c
-/// BOOL FindCloseChangeNotification(
-///   HANDLE hChangeHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findclosechangenotification>.
+///
 /// {@category kernel32}
 int FindCloseChangeNotification(int hChangeHandle) =>
     _FindCloseChangeNotification(hChangeHandle);
@@ -1570,17 +1261,9 @@ final _FindCloseChangeNotification = _kernel32.lookupFunction<
 /// Creates a change notification handle and sets up initial change notification
 /// filter conditions.
 ///
-/// A wait on a notification handle succeeds when a change matching the filter
-/// conditions occurs in the specified directory or subtree. The function does
-/// not report changes to the specified directory itself.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirstchangenotificationw>.
 ///
-/// ```c
-/// HANDLE FindFirstChangeNotificationW(
-///   LPCWSTR lpPathName,
-///   BOOL    bWatchSubtree,
-///   DWORD   dwNotifyFilter
-/// );
-/// ```
 /// {@category kernel32}
 int FindFirstChangeNotification(
         Pointer<Utf16> lpPathName, int bWatchSubtree, int dwNotifyFilter) =>
@@ -1595,12 +1278,9 @@ final _FindFirstChangeNotification = _kernel32.lookupFunction<
 /// Searches a directory for a file or subdirectory with a name that matches a
 /// specific name (or partial name if wildcards are used).
 ///
-/// ```c
-/// HANDLE FindFirstFileW(
-///   LPCWSTR            lpFileName,
-///   LPWIN32_FIND_DATAW lpFindFileData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirstfilew>.
+///
 /// {@category kernel32}
 int FindFirstFile(
         Pointer<Utf16> lpFileName, Pointer<WIN32_FIND_DATA> lpFindFileData) =>
@@ -1615,16 +1295,9 @@ final _FindFirstFile = _kernel32.lookupFunction<
 /// Searches a directory for a file or subdirectory with a name and attributes
 /// that match those specified.
 ///
-/// ```c
-/// HANDLE FindFirstFileExW(
-///   [in]  LPCWSTR            lpFileName,
-///   [in]  FINDEX_INFO_LEVELS fInfoLevelId,
-///   [out] LPVOID             lpFindFileData,
-///   [in]  FINDEX_SEARCH_OPS  fSearchOp,
-///         LPVOID             lpSearchFilter,
-///   [in]  DWORD              dwAdditionalFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirstfileexw>.
+///
 /// {@category kernel32}
 int FindFirstFileEx(Pointer<Utf16> lpFileName, int fInfoLevelId,
         Pointer lpFindFileData, int fSearchOp, int dwAdditionalFlags) =>
@@ -1652,14 +1325,9 @@ final _FindFirstFileEx = _kernel32.lookupFunction<
 /// The FindFirstFileNameW function returns a handle to the enumeration that can
 /// be used on subsequent calls to the FindNextFileNameW function.
 ///
-/// ```c
-/// HANDLE FindFirstFileNameW(
-///   [in]      LPCWSTR lpFileName,
-///   [in]      DWORD   dwFlags,
-///   [in, out] LPDWORD StringLength,
-///   [in, out] PWSTR   LinkName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirstfilenamew>.
+///
 /// {@category kernel32}
 int FindFirstFileName(Pointer<Utf16> lpFileName, int dwFlags,
         Pointer<Uint32> stringLength, Pointer<Utf16> linkName) =>
@@ -1677,14 +1345,9 @@ final _FindFirstFileName = _kernel32.lookupFunction<
 /// Enumerates the first stream with a ::$DATA stream type in the specified file
 /// or directory.
 ///
-/// ```c
-/// HANDLE FindFirstStreamW(
-///   [in]  LPCWSTR            lpFileName,
-///   [in]  STREAM_INFO_LEVELS InfoLevel,
-///   [out] LPVOID             lpFindStreamData,
-///         DWORD              dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirststreamw>.
+///
 /// {@category kernel32}
 int FindFirstStream(
         Pointer<Utf16> lpFileName, int infoLevel, Pointer lpFindStreamData) =>
@@ -1698,14 +1361,9 @@ final _FindFirstStream = _kernel32.lookupFunction<
 
 /// Retrieves the name of a volume on a computer.
 ///
-/// FindFirstVolume is used to begin scanning the volumes of a computer.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findfirstvolumew>.
 ///
-/// ```c
-/// HANDLE FindFirstVolumeW(
-///   LPWSTR lpszVolumeName,
-///   DWORD  cchBufferLength
-/// );
-/// ```
 /// {@category kernel32}
 int FindFirstVolume(Pointer<Utf16> lpszVolumeName, int cchBufferLength) =>
     _FindFirstVolume(lpszVolumeName, cchBufferLength);
@@ -1718,11 +1376,9 @@ final _FindFirstVolume = _kernel32.lookupFunction<
 /// Requests that the operating system signal a change notification handle the
 /// next time it detects an appropriate change.
 ///
-/// ```c
-/// BOOL FindNextChangeNotification(
-///   HANDLE hChangeHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findnextchangenotification>.
+///
 /// {@category kernel32}
 int FindNextChangeNotification(int hChangeHandle) =>
     _FindNextChangeNotification(hChangeHandle);
@@ -1734,12 +1390,9 @@ final _FindNextChangeNotification = _kernel32.lookupFunction<
 /// Continues a file search from a previous call to the FindFirstFile,
 /// FindFirstFileEx, or FindFirstFileTransacted functions.
 ///
-/// ```c
-/// BOOL FindNextFileW(
-///   HANDLE             hFindFile,
-///   LPWIN32_FIND_DATAW lpFindFileData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findnextfilew>.
+///
 /// {@category kernel32}
 int FindNextFile(int hFindFile, Pointer<WIN32_FIND_DATA> lpFindFileData) =>
     _FindNextFile(hFindFile, lpFindFileData);
@@ -1752,13 +1405,9 @@ final _FindNextFile = _kernel32.lookupFunction<
 /// Continues enumerating the hard links to a file using the handle returned by
 /// a successful call to the FindFirstFileNameW function.
 ///
-/// ```c
-/// BOOL FindNextFileNameW(
-///   [in]      HANDLE  hFindStream,
-///   [in, out] LPDWORD StringLength,
-///   [in, out] PWSTR   LinkName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findnextfilenamew>.
+///
 /// {@category kernel32}
 int FindNextFileName(int hFindStream, Pointer<Uint32> stringLength,
         Pointer<Utf16> linkName) =>
@@ -1773,12 +1422,9 @@ final _FindNextFileName = _kernel32.lookupFunction<
 /// Continues a stream search started by a previous call to the FindFirstStreamW
 /// function.
 ///
-/// ```c
-/// BOOL FindNextStreamW(
-///   [in]  HANDLE hFindStream,
-///   [out] LPVOID lpFindStreamData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findnextstreamw>.
+///
 /// {@category kernel32}
 int FindNextStream(int hFindStream, Pointer lpFindStreamData) =>
     _FindNextStream(hFindStream, lpFindStreamData);
@@ -1789,15 +1435,9 @@ final _FindNextStream = _kernel32.lookupFunction<
 
 /// Continues a volume search started by a call to the FindFirstVolume function.
 ///
-/// FindNextVolume finds one volume per call.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findnextvolumew>.
 ///
-/// ```c
-/// BOOL FindNextVolumeW(
-///   HANDLE hFindVolume,
-///   LPWSTR lpszVolumeName,
-///   DWORD  cchBufferLength
-/// );
-/// ```
 /// {@category kernel32}
 int FindNextVolume(
         int hFindVolume, Pointer<Utf16> lpszVolumeName, int cchBufferLength) =>
@@ -1811,17 +1451,9 @@ final _FindNextVolume = _kernel32.lookupFunction<
 
 /// Finds the packages with the specified family name for the current user.
 ///
-/// ```c
-/// LONG FindPackagesByPackageFamily(
-///   PCWSTR packageFamilyName,
-///   UINT32 packageFilters,
-///   UINT32 *count,
-///   PWSTR  *packageFullNames,
-///   UINT32 *bufferLength,
-///   WCHAR  *buffer,
-///   UINT32 *packageProperties
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/appmodel/nf-appmodel-findpackagesbypackagefamily>.
+///
 /// {@category kernel32}
 int FindPackagesByPackageFamily(
         Pointer<Utf16> packageFamilyName,
@@ -1861,13 +1493,9 @@ final _FindPackagesByPackageFamily = _kernel32.lookupFunction<
 /// Determines the location of a resource with the specified type and name in
 /// the specified module.
 ///
-/// ```c
-/// HRSRC FindResourceW(
-///   HMODULE hModule,
-///   LPCWSTR  lpName,
-///   LPCWSTR  lpType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-findresourcew>.
+///
 /// {@category kernel32}
 int FindResource(int? hModule, Pointer<Utf16> lpName, Pointer<Utf16> lpType) =>
     _FindResource(hModule ?? 0, lpName, lpType);
@@ -1881,14 +1509,9 @@ final _FindResource = _kernel32.lookupFunction<
 /// Determines the location of the resource with the specified type, name, and
 /// language in the specified module.
 ///
-/// ```c
-/// HRSRC FindResourceExW(
-///   HMODULE hModule,
-///   LPCWSTR  lpType,
-///   LPCWSTR  lpName,
-///   WORD    wLanguage
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-findresourceexw>.
+///
 /// {@category kernel32}
 int FindResourceEx(int? hModule, Pointer<Utf16> lpType, Pointer<Utf16> lpName,
         int wLanguage) =>
@@ -1903,16 +1526,9 @@ final _FindResourceEx = _kernel32.lookupFunction<
 /// Locates a Unicode string (wide characters) in another Unicode string for a
 /// non-linguistic comparison.
 ///
-/// ```c
-/// int FindStringOrdinal(
-///   [in] DWORD   dwFindStringOrdinalFlags,
-///   [in] LPCWSTR lpStringSource,
-///   [in] int     cchSource,
-///   [in] LPCWSTR lpStringValue,
-///   [in] int     cchValue,
-///   [in] BOOL    bIgnoreCase
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-findstringordinal>.
+///
 /// {@category kernel32}
 int FindStringOrdinal(
         int dwFindStringOrdinalFlags,
@@ -1942,14 +1558,9 @@ final _FindStringOrdinal = _kernel32.lookupFunction<
 
 /// Closes the specified volume search handle.
 ///
-/// The FindFirstVolume and FindNextVolume functions use this search handle to
-/// locate volumes.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-findvolumeclose>.
 ///
-/// ```c
-/// BOOL FindVolumeClose(
-///   HANDLE hFindVolume
-/// );
-/// ```
 /// {@category kernel32}
 int FindVolumeClose(int hFindVolume) => _FindVolumeClose(hFindVolume);
 
@@ -1961,11 +1572,9 @@ final _FindVolumeClose = _kernel32.lookupFunction<
 ///
 /// All input records currently in the input buffer are discarded.
 ///
-/// ```c
-/// BOOL FlushConsoleInputBuffer(
-///   _In_ HANDLE hConsoleInput
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/flushconsoleinputbuffer>.
+///
 /// {@category kernel32}
 int FlushConsoleInputBuffer(int hConsoleInput) =>
     _FlushConsoleInputBuffer(hConsoleInput);
@@ -1976,26 +1585,9 @@ final _FlushConsoleInputBuffer = _kernel32.lookupFunction<
 
 /// Formats a message string.
 ///
-/// The function requires a message definition as input. The message definition
-/// can come from a buffer passed into the function. It can come from a message
-/// table resource in an already-loaded module. Or the caller can ask the
-/// function to search the system's message table resource(s) for the message
-/// definition. The function finds the message definition in a message table
-/// resource based on a message identifier and a language identifier. The
-/// function copies the formatted message text to an output buffer, processing
-/// any embedded insert sequences if requested.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-formatmessagew>.
 ///
-/// ```c
-/// DWORD FormatMessageW(
-///   DWORD   dwFlags,
-///   LPCVOID lpSource,
-///   DWORD   dwMessageId,
-///   DWORD   dwLanguageId,
-///   LPWSTR  lpBuffer,
-///   DWORD   nSize,
-///   va_list *Arguments
-/// );
-/// ```
 /// {@category kernel32}
 int FormatMessage(
         int dwFlags,
@@ -2028,9 +1620,9 @@ final _FormatMessage = _kernel32.lookupFunction<
 
 /// Detaches the calling process from its console.
 ///
-/// ```c
-/// BOOL FreeConsole(void);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/freeconsole>.
+///
 /// {@category kernel32}
 int FreeConsole() => _FreeConsole();
 
@@ -2040,14 +1632,9 @@ final _FreeConsole =
 /// Frees the loaded dynamic-link library (DLL) module and, if necessary,
 /// decrements its reference count.
 ///
-/// When the reference count reaches zero, the module is unloaded from the
-/// address space of the calling process and the handle is no longer valid.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-freelibrary>.
 ///
-/// ```c
-/// BOOL FreeLibrary(
-///   HMODULE hLibModule
-/// );
-/// ```
 /// {@category kernel32}
 int FreeLibrary(int hLibModule) => _FreeLibrary(hLibModule);
 
@@ -2057,14 +1644,9 @@ final _FreeLibrary = _kernel32.lookupFunction<BOOL Function(HMODULE hLibModule),
 /// Decrements the reference count of a loaded dynamic-link library (DLL) by
 /// one, then calls ExitThread to terminate the calling thread.
 ///
-/// The function does not return.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-freelibraryandexitthread>.
 ///
-/// ```c
-/// void FreeLibraryAndExitThread(
-///   [in] HMODULE hLibModule,
-///   [in] DWORD   dwExitCode
-/// );
-/// ```
 /// {@category kernel32}
 void FreeLibraryAndExitThread(int hLibModule, int dwExitCode) =>
     _FreeLibraryAndExitThread(hLibModule, dwExitCode);
@@ -2075,11 +1657,12 @@ final _FreeLibraryAndExitThread = _kernel32.lookupFunction<
 
 /// Frees memory that a function related to job objects allocated.
 ///
-/// ```c
-/// void FreeMemoryJobObject(
-///   [in] _Frees_ptr_ VOID *Buffer
-/// );
-/// ```
+/// Functions related to job objects that allocate memory include
+/// QueryIoRateControlInformationJobObject.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-freememoryjobobject>.
+///
 /// {@category kernel32}
 void FreeMemoryJobObject(Pointer buffer) => _FreeMemoryJobObject(buffer);
 
@@ -2090,11 +1673,9 @@ final _FreeMemoryJobObject = _kernel32.lookupFunction<
 /// Returns the number of active processors in a processor group or in the
 /// system.
 ///
-/// ```c
-/// DWORD GetActiveProcessorCount(
-///   WORD GroupNumber
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getactiveprocessorcount>.
+///
 /// {@category kernel32}
 int GetActiveProcessorCount(int groupNumber) =>
     _GetActiveProcessorCount(groupNumber);
@@ -2105,9 +1686,9 @@ final _GetActiveProcessorCount = _kernel32.lookupFunction<
 
 /// Returns the number of active processor groups in the system.
 ///
-/// ```c
-/// WORD GetActiveProcessorGroupCount();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getactiveprocessorgroupcount>.
+///
 /// {@category kernel32}
 int GetActiveProcessorGroupCount() => _GetActiveProcessorGroupCount();
 
@@ -2118,11 +1699,9 @@ final _GetActiveProcessorGroupCount =
 /// Determines whether a file is an executable (.exe) file, and if so, which
 /// subsystem runs the executable file.
 ///
-/// ```c
-/// BOOL GetBinaryTypeW(
-///   LPCWSTR lpApplicationName,
-///   LPDWORD lpBinaryType);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getbinarytypew>.
+///
 /// {@category kernel32}
 int GetBinaryType(
         Pointer<Utf16> lpApplicationName, Pointer<Uint32> lpBinaryType) =>
@@ -2134,13 +1713,11 @@ final _GetBinaryType = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpApplicationName,
         Pointer<Uint32> lpBinaryType)>('GetBinaryTypeW');
 
-/// Parses a Unicode command line string and returns an array of pointers to the
-/// command line arguments, along with a count of such arguments, in a way that
-/// is similar to the standard C run-time argv and argc values.
+/// Retrieves the command-line string for the current process.
 ///
-/// ```c
-/// LPWSTR GetCommandLineW();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processenv/nf-processenv-getcommandlinew>.
+///
 /// {@category kernel32}
 Pointer<Utf16> GetCommandLine() => _GetCommandLine();
 
@@ -2149,13 +1726,9 @@ final _GetCommandLine = _kernel32.lookupFunction<Pointer<Utf16> Function(),
 
 /// Retrieves the current configuration of a communications device.
 ///
-/// ```c
-/// BOOL GetCommConfig(
-///   HANDLE       hCommDev,
-///   LPCOMMCONFIG lpCC,
-///   LPDWORD      lpdwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommconfig>.
+///
 /// {@category kernel32}
 int GetCommConfig(
         int hCommDev, Pointer<COMMCONFIG>? lpCC, Pointer<Uint32> lpdwSize) =>
@@ -2169,12 +1742,9 @@ final _GetCommConfig = _kernel32.lookupFunction<
 
 /// Retrieves the value of the event mask for a specified communications device.
 ///
-/// ```c
-/// BOOL GetCommMask(
-///   HANDLE  hFile,
-///   LPDWORD lpEvtMask
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommmask>.
+///
 /// {@category kernel32}
 int GetCommMask(int hFile, Pointer<Uint32> lpEvtMask) =>
     _GetCommMask(hFile, lpEvtMask);
@@ -2185,12 +1755,9 @@ final _GetCommMask = _kernel32.lookupFunction<
 
 /// Retrieves the modem control-register values.
 ///
-/// ```c
-/// BOOL GetCommModemStatus(
-///   HANDLE  hFile,
-///   LPDWORD lpModemStat
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommmodemstatus>.
+///
 /// {@category kernel32}
 int GetCommModemStatus(int hFile, Pointer<Uint32> lpModemStat) =>
     _GetCommModemStatus(hFile, lpModemStat);
@@ -2202,12 +1769,9 @@ final _GetCommModemStatus = _kernel32.lookupFunction<
 /// Retrieves information about the communications properties for a specified
 /// communications device.
 ///
-/// ```c
-/// BOOL GetCommProperties(
-///   HANDLE     hFile,
-///   LPCOMMPROP lpCommProp
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommproperties>.
+///
 /// {@category kernel32}
 int GetCommProperties(int hFile, Pointer<COMMPROP> lpCommProp) =>
     _GetCommProperties(hFile, lpCommProp);
@@ -2219,12 +1783,9 @@ final _GetCommProperties = _kernel32.lookupFunction<
 /// Retrieves the current control settings for a specified communications
 /// device.
 ///
-/// ```c
-/// BOOL GetCommState(
-///   HANDLE hFile,
-///   LPDCB  lpDCB
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommstate>.
+///
 /// {@category kernel32}
 int GetCommState(int hFile, Pointer<DCB> lpDCB) => _GetCommState(hFile, lpDCB);
 
@@ -2235,12 +1796,9 @@ final _GetCommState = _kernel32.lookupFunction<
 /// Retrieves the time-out parameters for all read and write operations on a
 /// specified communications device.
 ///
-/// ```c
-/// BOOL GetCommTimeouts(
-///   HANDLE         hFile,
-///   LPCOMMTIMEOUTS lpCommTimeouts
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommtimeouts>.
+///
 /// {@category kernel32}
 int GetCommTimeouts(int hFile, Pointer<COMMTIMEOUTS> lpCommTimeouts) =>
     _GetCommTimeouts(hFile, lpCommTimeouts);
@@ -2253,18 +1811,9 @@ final _GetCommTimeouts = _kernel32.lookupFunction<
 /// Retrieves the actual number of bytes of disk storage used to store a
 /// specified file.
 ///
-/// If the file is located on a volume that supports compression and the file is
-/// compressed, the value obtained is the compressed size of the specified file.
-/// If the file is located on a volume that supports sparse files and the file
-/// is a sparse file, the value obtained is the sparse size of the specified
-/// file.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getcompressedfilesizew>.
 ///
-/// ```c
-/// DWORD GetCompressedFileSizeW(
-///   LPCWSTR lpFileName,
-///   LPDWORD lpFileSizeHigh
-/// );
-/// ```
 /// {@category kernel32}
 int GetCompressedFileSize(
         Pointer<Utf16> lpFileName, Pointer<Uint32>? lpFileSizeHigh) =>
@@ -2280,12 +1829,9 @@ final _GetCompressedFileSize = _kernel32.lookupFunction<
 /// This name is established at system startup, when the system reads it from
 /// the registry.
 ///
-/// ```c
-/// BOOL GetComputerNameW(
-///   LPWSTR  lpBuffer,
-///   LPDWORD nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcomputernamew>.
+///
 /// {@category kernel32}
 int GetComputerName(Pointer<Utf16>? lpBuffer, Pointer<Uint32> nSize) =>
     _GetComputerName(lpBuffer ?? nullptr, nSize);
@@ -2300,13 +1846,9 @@ final _GetComputerName = _kernel32.lookupFunction<
 /// The names are established at system startup, when the system reads them from
 /// the registry.
 ///
-/// ```c
-/// BOOL GetComputerNameExW(
-///   COMPUTER_NAME_FORMAT NameType,
-///   LPWSTR               lpBuffer,
-///   LPDWORD              nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getcomputernameexw>.
+///
 /// {@category kernel32}
 int GetComputerNameEx(
         int nameType, Pointer<Utf16>? lpBuffer, Pointer<Uint32> nSize) =>
@@ -2321,12 +1863,9 @@ final _GetComputerNameEx = _kernel32.lookupFunction<
 /// Retrieves the input code page used by the console associated with the
 /// calling process.
 ///
-/// A console uses its input code page to translate keyboard input into the
-/// corresponding character value.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsolecp>.
 ///
-/// ```c
-/// UINT GetConsoleCP(void);
-/// ```
 /// {@category kernel32}
 int GetConsoleCP() => _GetConsoleCP();
 
@@ -2336,12 +1875,9 @@ final _GetConsoleCP =
 /// Retrieves information about the size and visibility of the cursor for the
 /// specified console screen buffer.
 ///
-/// ```c
-/// BOOL GetConsoleCursorInfo(
-///   _In_  HANDLE               hConsoleOutput,
-///   _Out_ PCONSOLE_CURSOR_INFO lpConsoleCursorInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsolecursorinfo>.
+///
 /// {@category kernel32}
 int GetConsoleCursorInfo(
         int hConsoleOutput, Pointer<CONSOLE_CURSOR_INFO> lpConsoleCursorInfo) =>
@@ -2357,12 +1893,9 @@ final _GetConsoleCursorInfo = _kernel32.lookupFunction<
 /// Retrieves the current input mode of a console's input buffer or the current
 /// output mode of a console screen buffer.
 ///
-/// ```c
-/// BOOL GetConsoleMode(
-///   _In_  HANDLE  hConsoleHandle,
-///   _Out_ LPDWORD lpMode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsolemode>.
+///
 /// {@category kernel32}
 int GetConsoleMode(int hConsoleHandle, Pointer<Uint32> lpMode) =>
     _GetConsoleMode(hConsoleHandle, lpMode);
@@ -2374,13 +1907,9 @@ final _GetConsoleMode = _kernel32.lookupFunction<
 /// Retrieves the output code page used by the console associated with the
 /// calling process.
 ///
-/// A console uses its output code page to translate the character values
-/// written by the various output functions into the images displayed in the
-/// console window.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsoleoutputcp>.
 ///
-/// ```c
-/// UINT GetConsoleOutputCP(void);
-/// ```
 /// {@category kernel32}
 int GetConsoleOutputCP() => _GetConsoleOutputCP();
 
@@ -2389,12 +1918,9 @@ final _GetConsoleOutputCP = _kernel32
 
 /// Retrieves information about the specified console screen buffer.
 ///
-/// ```c
-/// BOOL GetConsoleScreenBufferInfo(
-///   _In_  HANDLE                      hConsoleOutput,
-///   _Out_ PCONSOLE_SCREEN_BUFFER_INFO lpConsoleScreenBufferInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsolescreenbufferinfo>.
+///
 /// {@category kernel32}
 int GetConsoleScreenBufferInfo(int hConsoleOutput,
         Pointer<CONSOLE_SCREEN_BUFFER_INFO> lpConsoleScreenBufferInfo) =>
@@ -2409,11 +1935,9 @@ final _GetConsoleScreenBufferInfo = _kernel32.lookupFunction<
 
 /// Retrieves information about the current console selection.
 ///
-/// ```c
-/// BOOL GetConsoleSelectionInfo(
-///   _Out_ PCONSOLE_SELECTION_INFO lpConsoleSelectionInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsoleselectioninfo>.
+///
 /// {@category kernel32}
 int GetConsoleSelectionInfo(
         Pointer<CONSOLE_SELECTION_INFO> lpConsoleSelectionInfo) =>
@@ -2424,14 +1948,11 @@ final _GetConsoleSelectionInfo = _kernel32.lookupFunction<
         int Function(Pointer<CONSOLE_SELECTION_INFO> lpConsoleSelectionInfo)>(
     'GetConsoleSelectionInfo');
 
-/// Retrieves the title for the current console window.
+/// Retrieves the title and size of the title for the current console window.
 ///
-/// ```c
-/// DWORD GetConsoleTitleW(
-///   _Out_ LPTSTR lpConsoleTitle,
-///   _In_  DWORD  nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsoletitle>.
+///
 /// {@category kernel32}
 int GetConsoleTitle(Pointer<Utf16> lpConsoleTitle, int nSize) =>
     _GetConsoleTitle(lpConsoleTitle, nSize);
@@ -2443,23 +1964,20 @@ final _GetConsoleTitle = _kernel32.lookupFunction<
 /// Retrieves the window handle used by the console associated with the calling
 /// process.
 ///
-/// ```c
-/// HWND GetConsoleWindow(void);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getconsolewindow>.
+///
 /// {@category kernel32}
 int GetConsoleWindow() => _GetConsoleWindow();
 
 final _GetConsoleWindow = _kernel32
     .lookupFunction<HWND Function(), int Function()>('GetConsoleWindow');
 
-/// The GetCurrentActCtx function returns the handle to the active activation
-/// context of the calling thread.
+/// Returns the handle to the active activation context of the calling thread.
 ///
-/// ```c
-/// BOOL GetCurrentActCtx(
-///   HANDLE *lphActCtx
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcurrentactctx>.
+///
 /// {@category kernel32}
 int GetCurrentActCtx(Pointer<HANDLE> lphActCtx) => _GetCurrentActCtx(lphActCtx);
 
@@ -2469,9 +1987,9 @@ final _GetCurrentActCtx = _kernel32.lookupFunction<
 
 /// Retrieves a pseudo handle for the current process.
 ///
-/// ```c
-/// HANDLE GetCurrentProcess();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocess>.
+///
 /// {@category kernel32}
 int GetCurrentProcess() => _GetCurrentProcess();
 
@@ -2480,9 +1998,9 @@ final _GetCurrentProcess = _kernel32
 
 /// Retrieves the process identifier of the calling process.
 ///
-/// ```c
-/// DWORD GetCurrentProcessId();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocessid>.
+///
 /// {@category kernel32}
 int GetCurrentProcessId() => _GetCurrentProcessId();
 
@@ -2492,9 +2010,9 @@ final _GetCurrentProcessId = _kernel32
 /// Retrieves the number of the processor the current thread was running on
 /// during the call to this function.
 ///
-/// ```c
-/// DWORD GetCurrentProcessorNumber();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocessornumber>.
+///
 /// {@category kernel32}
 int GetCurrentProcessorNumber() => _GetCurrentProcessorNumber();
 
@@ -2504,9 +2022,9 @@ final _GetCurrentProcessorNumber =
 
 /// Retrieves a pseudo handle for the calling thread.
 ///
-/// ```c
-/// HANDLE GetCurrentThread();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthread>.
+///
 /// {@category kernel32}
 int GetCurrentThread() => _GetCurrentThread();
 
@@ -2515,9 +2033,9 @@ final _GetCurrentThread = _kernel32
 
 /// Retrieves the thread identifier of the calling thread.
 ///
-/// ```c
-/// DWORD GetCurrentThreadId();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthreadid>.
+///
 /// {@category kernel32}
 int GetCurrentThreadId() => _GetCurrentThreadId();
 
@@ -2526,13 +2044,9 @@ final _GetCurrentThreadId = _kernel32
 
 /// Retrieves the default configuration for the specified communications device.
 ///
-/// ```c
-/// BOOL GetDefaultCommConfigW(
-///   LPCWSTR      lpszName,
-///   LPCOMMCONFIG lpCC,
-///   LPDWORD      lpdwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getdefaultcommconfigw>.
+///
 /// {@category kernel32}
 int GetDefaultCommConfig(Pointer<Utf16> lpszName, Pointer<COMMCONFIG> lpCC,
         Pointer<Uint32> lpdwSize) =>
@@ -2547,15 +2061,9 @@ final _GetDefaultCommConfig = _kernel32.lookupFunction<
 /// Retrieves information about the specified disk, including the amount of free
 /// space on the disk.
 ///
-/// ```c
-/// BOOL GetDiskFreeSpaceW(
-///   LPCWSTR lpRootPathName,
-///   LPDWORD lpSectorsPerCluster,
-///   LPDWORD lpBytesPerSector,
-///   LPDWORD lpNumberOfFreeClusters,
-///   LPDWORD lpTotalNumberOfClusters
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getdiskfreespacew>.
+///
 /// {@category kernel32}
 int GetDiskFreeSpace(
         Pointer<Utf16>? lpRootPathName,
@@ -2589,14 +2097,9 @@ final _GetDiskFreeSpace = _kernel32.lookupFunction<
 /// and the total amount of free space available to the user that is associated
 /// with the calling thread.
 ///
-/// ```c
-/// BOOL GetDiskFreeSpaceExW(
-///   [in, optional]  LPCWSTR         lpDirectoryName,
-///   [out, optional] PULARGE_INTEGER lpFreeBytesAvailableToCaller,
-///   [out, optional] PULARGE_INTEGER lpTotalNumberOfBytes,
-///   [out, optional] PULARGE_INTEGER lpTotalNumberOfFreeBytes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getdiskfreespaceexw>.
+///
 /// {@category kernel32}
 int GetDiskFreeSpaceEx(
         Pointer<Utf16>? lpDirectoryName,
@@ -2624,12 +2127,9 @@ final _GetDiskFreeSpaceEx = _kernel32.lookupFunction<
 /// Retrieves the application-specific portion of the search path used to locate
 /// DLLs for the application.
 ///
-/// ```c
-/// DWORD GetDllDirectoryW(
-///   DWORD  nBufferLength,
-///   LPWSTR lpBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getdlldirectoryw>.
+///
 /// {@category kernel32}
 int GetDllDirectory(int nBufferLength, Pointer<Utf16>? lpBuffer) =>
     _GetDllDirectory(nBufferLength, lpBuffer ?? nullptr);
@@ -2642,11 +2142,9 @@ final _GetDllDirectory = _kernel32.lookupFunction<
 /// Determines whether a disk drive is a removable, fixed, CD-ROM, RAM disk, or
 /// network drive.
 ///
-/// ```c
-/// UINT GetDriveTypeW(
-///   LPCWSTR lpRootPathName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getdrivetypew>.
+///
 /// {@category kernel32}
 int GetDriveType(Pointer<Utf16>? lpRootPathName) =>
     _GetDriveType(lpRootPathName ?? nullptr);
@@ -2658,13 +2156,9 @@ final _GetDriveType = _kernel32.lookupFunction<
 /// Retrieves the contents of the specified variable from the environment block
 /// of the calling process.
 ///
-/// ```c
-/// DWORD GetEnvironmentVariableW(
-///   LPCTSTR lpName,
-///   LPTSTR  lpBuffer,
-///   DWORD   nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processenv/nf-processenv-getenvironmentvariablew>.
+///
 /// {@category kernel32}
 int GetEnvironmentVariable(
         Pointer<Utf16>? lpName, Pointer<Utf16>? lpBuffer, int nSize) =>
@@ -2678,11 +2172,9 @@ final _GetEnvironmentVariable = _kernel32.lookupFunction<
 
 /// Retrieves the termination status of the specified process.
 ///
-/// ```c
-/// BOOL GetExitCodeProcess(
-///   HANDLE  hProcess,
-///   LPDWORD lpExitCode);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getexitcodeprocess>.
+///
 /// {@category kernel32}
 int GetExitCodeProcess(int hProcess, Pointer<Uint32> lpExitCode) =>
     _GetExitCodeProcess(hProcess, lpExitCode);
@@ -2694,11 +2186,9 @@ final _GetExitCodeProcess = _kernel32.lookupFunction<
 
 /// Retrieves file system attributes for a specified file or directory.
 ///
-/// ```c
-/// DWORD GetFileAttributesW(
-///   LPCWSTR lpFileName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfileattributesw>.
+///
 /// {@category kernel32}
 int GetFileAttributes(Pointer<Utf16> lpFileName) =>
     _GetFileAttributes(lpFileName);
@@ -2709,13 +2199,9 @@ final _GetFileAttributes = _kernel32.lookupFunction<
 
 /// Retrieves attributes for a specified file or directory.
 ///
-/// ```c
-/// BOOL GetFileAttributesExW(
-///   LPCWSTR                lpFileName,
-///   GET_FILEEX_INFO_LEVELS fInfoLevelId,
-///   LPVOID                 lpFileInformation
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfileattributesexw>.
+///
 /// {@category kernel32}
 int GetFileAttributesEx(Pointer<Utf16> lpFileName, int fInfoLevelId,
         Pointer lpFileInformation) =>
@@ -2729,12 +2215,9 @@ final _GetFileAttributesEx = _kernel32.lookupFunction<
 
 /// Retrieves file information for the specified file.
 ///
-/// ```c
-/// BOOL GetFileInformationByHandle(
-///   HANDLE                       hFile,
-///   LPBY_HANDLE_FILE_INFORMATION lpFileInformation
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfileinformationbyhandle>.
+///
 /// {@category kernel32}
 int GetFileInformationByHandle(
         int hFile, Pointer<BY_HANDLE_FILE_INFORMATION> lpFileInformation) =>
@@ -2749,14 +2232,9 @@ final _GetFileInformationByHandle = _kernel32.lookupFunction<
 
 /// Retrieves the size of the specified file, in bytes.
 ///
-/// It is recommended that you use GetFileSizeEx.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfilesize>.
 ///
-/// ```c
-/// DWORD GetFileSize(
-///   HANDLE  hFile,
-///   LPDWORD lpFileSizeHigh
-/// );
-/// ```
 /// {@category kernel32}
 int GetFileSize(int hFile, Pointer<Uint32>? lpFileSizeHigh) =>
     _GetFileSize(hFile, lpFileSizeHigh ?? nullptr);
@@ -2767,12 +2245,9 @@ final _GetFileSize = _kernel32.lookupFunction<
 
 /// Retrieves the size of the specified file.
 ///
-/// ```c
-/// BOOL GetFileSizeEx(
-///   HANDLE         hFile,
-///   PLARGE_INTEGER lpFileSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfilesizeex>.
+///
 /// {@category kernel32}
 int GetFileSizeEx(int hFile, Pointer<Int64> lpFileSize) =>
     _GetFileSizeEx(hFile, lpFileSize);
@@ -2783,11 +2258,9 @@ final _GetFileSizeEx = _kernel32.lookupFunction<
 
 /// Retrieves the file type of the specified file.
 ///
-/// ```c
-/// DWORD GetFileType(
-///   HANDLE hFile
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfiletype>.
+///
 /// {@category kernel32}
 int GetFileType(int hFile) => _GetFileType(hFile);
 
@@ -2796,14 +2269,9 @@ final _GetFileType = _kernel32.lookupFunction<Uint32 Function(HANDLE hFile),
 
 /// Retrieves the final path for the specified file.
 ///
-/// ```c
-/// DWORD GetFinalPathNameByHandleW(
-///   HANDLE hFile,
-///   LPWSTR lpszFilePath,
-///   DWORD  cchFilePath,
-///   DWORD  dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfinalpathnamebyhandlew>.
+///
 /// {@category kernel32}
 int GetFinalPathNameByHandle(
         int hFile, Pointer<Utf16> lpszFilePath, int cchFilePath, int dwFlags) =>
@@ -2817,14 +2285,9 @@ final _GetFinalPathNameByHandle = _kernel32.lookupFunction<
 
 /// Retrieves the full path and file name of the specified file.
 ///
-/// ```c
-/// DWORD GetFullPathNameW(
-///   LPCWSTR lpFileName,
-///   DWORD   nBufferLength,
-///   LPWSTR  lpBuffer,
-///   LPWSTR  *lpFilePart
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfullpathnamew>.
+///
 /// {@category kernel32}
 int GetFullPathName(Pointer<Utf16> lpFileName, int nBufferLength,
         Pointer<Utf16>? lpBuffer, Pointer<Pointer<Utf16>>? lpFilePart) =>
@@ -2842,12 +2305,9 @@ final _GetFullPathName = _kernel32.lookupFunction<
 
 /// Retrieves certain properties of an object handle.
 ///
-/// ```c
-/// BOOL GetHandleInformation(
-///   HANDLE  hObject,
-///   LPDWORD lpdwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/handleapi/nf-handleapi-gethandleinformation>.
+///
 /// {@category kernel32}
 int GetHandleInformation(int hObject, Pointer<Uint32> lpdwFlags) =>
     _GetHandleInformation(hObject, lpdwFlags);
@@ -2860,11 +2320,9 @@ final _GetHandleInformation = _kernel32.lookupFunction<
 /// Retrieves the size of the largest possible console window, based on the
 /// current font and the size of the display.
 ///
-/// ```c
-/// COORD GetLargestConsoleWindowSize(
-///   _In_ HANDLE hConsoleOutput
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getlargestconsolewindowsize>.
+///
 /// {@category kernel32}
 COORD GetLargestConsoleWindowSize(int hConsoleOutput) =>
     _GetLargestConsoleWindowSize(hConsoleOutput);
@@ -2875,12 +2333,9 @@ final _GetLargestConsoleWindowSize = _kernel32.lookupFunction<
 
 /// Retrieves the calling thread's last-error code value.
 ///
-/// The last-error code is maintained on a per-thread basis. Multiple threads do
-/// not overwrite each other's last-error code.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror>.
 ///
-/// ```c
-/// DWORD GetLastError();
-/// ```
 /// {@category kernel32}
 int GetLastError() => _GetLastError();
 
@@ -2889,14 +2344,15 @@ final _GetLastError =
 
 /// Retrieves information about a locale specified by name.
 ///
-/// ```c
-/// int GetLocaleInfoEx(
-///   LPCWSTR lpLocaleName,
-///   LCTYPE  LCType,
-///   LPWSTR  lpLCData,
-///   int     cchData
-/// );
-/// ```
+/// **Note**: The application should call this function in preference to
+/// GetLocaleInfo if designed to run only on Windows Vista and later. **Note**:
+/// This function can retrieve data that changes between releases, for example,
+/// due to a custom locale. If your application must persist or transmit data,
+/// see Using Persistent Locale Data.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getlocaleinfoex>.
+///
 /// {@category kernel32}
 int GetLocaleInfoEx(Pointer<Utf16>? lpLocaleName, int lCType,
         Pointer<Utf16>? lpLCData, int cchData) =>
@@ -2911,11 +2367,9 @@ final _GetLocaleInfoEx = _kernel32.lookupFunction<
 
 /// Retrieves the current local date and time.
 ///
-/// ```c
-/// void GetLocalTime(
-///   LPSYSTEMTIME lpSystemTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getlocaltime>.
+///
 /// {@category kernel32}
 void GetLocalTime(Pointer<SYSTEMTIME> lpSystemTime) =>
     _GetLocalTime(lpSystemTime);
@@ -2926,9 +2380,9 @@ final _GetLocalTime = _kernel32.lookupFunction<
 
 /// Retrieves a bitmask representing the currently available disk drives.
 ///
-/// ```c
-/// DWORD GetLogicalDrives();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getlogicaldrives>.
+///
 /// {@category kernel32}
 int GetLogicalDrives() => _GetLogicalDrives();
 
@@ -2937,12 +2391,9 @@ final _GetLogicalDrives = _kernel32
 
 /// Fills a buffer with strings that specify valid drives in the system.
 ///
-/// ```c
-/// DWORD GetLogicalDriveStringsW(
-///   DWORD  nBufferLength,
-///   LPWSTR lpBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getlogicaldrivestringsw>.
+///
 /// {@category kernel32}
 int GetLogicalDriveStrings(int nBufferLength, Pointer<Utf16>? lpBuffer) =>
     _GetLogicalDriveStrings(nBufferLength, lpBuffer ?? nullptr);
@@ -2954,12 +2405,9 @@ final _GetLogicalDriveStrings = _kernel32.lookupFunction<
 
 /// Retrieves information about logical processors and related hardware.
 ///
-/// ```c
-/// BOOL GetLogicalProcessorInformation(
-///   PSYSTEM_LOGICAL_PROCESSOR_INFORMATION Buffer,
-///   PDWORD ReturnedLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getlogicalprocessorinformation>.
+///
 /// {@category kernel32}
 int GetLogicalProcessorInformation(
         Pointer<SYSTEM_LOGICAL_PROCESSOR_INFORMATION>? buffer,
@@ -2974,13 +2422,9 @@ final _GetLogicalProcessorInformation = _kernel32.lookupFunction<
 
 /// Converts the specified path to its long form.
 ///
-/// ```c
-/// DWORD GetLongPathNameW(
-///   [in]  LPCWSTR lpszShortPath,
-///   [out] LPWSTR  lpszLongPath,
-///   [in]  DWORD   cchBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getlongpathnamew>.
+///
 /// {@category kernel32}
 int GetLongPathName(Pointer<Utf16> lpszShortPath, Pointer<Utf16>? lpszLongPath,
         int cchBuffer) =>
@@ -2995,12 +2439,9 @@ final _GetLongPathName = _kernel32.lookupFunction<
 /// Queries if the specified architecture is supported on the current system,
 /// either natively or by any form of compatibility or emulation layer.
 ///
-/// ```c
-/// HRESULT GetMachineTypeAttributes(
-///   USHORT Machine,
-///   MACHINE_ATTRIBUTES *MachineTypeAttributes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getmachinetypeattributes>.
+///
 /// {@category kernel32}
 int GetMachineTypeAttributes(
         int machine, Pointer<Int32> machineTypeAttributes) =>
@@ -3014,11 +2455,9 @@ final _GetMachineTypeAttributes = _kernel32.lookupFunction<
 /// Returns the maximum number of logical processors that a processor group or
 /// the system can have.
 ///
-/// ```c
-/// DWORD GetMaximumProcessorCount(
-///   WORD GroupNumber
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getmaximumprocessorcount>.
+///
 /// {@category kernel32}
 int GetMaximumProcessorCount(int groupNumber) =>
     _GetMaximumProcessorCount(groupNumber);
@@ -3029,9 +2468,9 @@ final _GetMaximumProcessorCount = _kernel32.lookupFunction<
 
 /// Returns the maximum number of processor groups that the system can have.
 ///
-/// ```c
-/// WORD GetMaximumProcessorGroupCount();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getmaximumprocessorgroupcount>.
+///
 /// {@category kernel32}
 int GetMaximumProcessorGroupCount() => _GetMaximumProcessorGroupCount();
 
@@ -3044,13 +2483,9 @@ final _GetMaximumProcessorGroupCount =
 ///
 /// The module must have been loaded by the current process.
 ///
-/// ```c
-/// DWORD GetModuleFileNameW(
-///   HMODULE hModule,
-///   LPWSTR  lpFilename,
-///   DWORD   nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew>.
+///
 /// {@category kernel32}
 int GetModuleFileName(int? hModule, Pointer<Utf16> lpFilename, int nSize) =>
     _GetModuleFileName(hModule ?? 0, lpFilename, nSize);
@@ -3064,11 +2499,9 @@ final _GetModuleFileName = _kernel32.lookupFunction<
 ///
 /// The module must have been loaded by the calling process.
 ///
-/// ```c
-/// HMODULE GetModuleHandleW(
-///   LPCWSTR lpModuleName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulehandlew>.
+///
 /// {@category kernel32}
 int GetModuleHandle(Pointer<Utf16>? lpModuleName) =>
     _GetModuleHandle(lpModuleName ?? nullptr);
@@ -3083,13 +2516,9 @@ final _GetModuleHandle = _kernel32.lookupFunction<
 ///
 /// The module must have been loaded by the calling process.
 ///
-/// ```c
-/// BOOL GetModuleHandleExW(
-///   [in]           DWORD   dwFlags,
-///   [in, optional] LPCWSTR lpModuleName,
-///   [out]          HMODULE *phModule
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulehandleexw>.
+///
 /// {@category kernel32}
 int GetModuleHandleEx(
         int dwFlags, Pointer<Utf16>? lpModuleName, Pointer<HMODULE> phModule) =>
@@ -3103,13 +2532,9 @@ final _GetModuleHandleEx = _kernel32.lookupFunction<
 
 /// Retrieves the client computer name for the specified named pipe.
 ///
-/// ```c
-/// BOOL GetNamedPipeClientComputerNameW(
-///   HANDLE Pipe,
-///   LPWSTR ClientComputerName,
-///   ULONG  ClientComputerNameLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-getnamedpipeclientcomputernamew>.
+///
 /// {@category kernel32}
 int GetNamedPipeClientComputerName(int pipe, Pointer<Utf16> clientComputerName,
         int clientComputerNameLength) =>
@@ -3124,12 +2549,9 @@ final _GetNamedPipeClientComputerName = _kernel32.lookupFunction<
 
 /// Retrieves the client process identifier for the specified named pipe.
 ///
-/// ```c
-/// BOOL GetNamedPipeClientProcessId(
-///   HANDLE Pipe,
-///   PULONG ClientProcessId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getnamedpipeclientprocessid>.
+///
 /// {@category kernel32}
 int GetNamedPipeClientProcessId(int pipe, Pointer<Uint32> clientProcessId) =>
     _GetNamedPipeClientProcessId(pipe, clientProcessId);
@@ -3139,14 +2561,11 @@ final _GetNamedPipeClientProcessId = _kernel32.lookupFunction<
     int Function(int pipe,
         Pointer<Uint32> clientProcessId)>('GetNamedPipeClientProcessId');
 
-/// Retrieves the client process identifier for the specified named pipe.
+/// Retrieves the client session identifier for the specified named pipe.
 ///
-/// ```c
-/// BOOL GetNamedPipeClientSessionId(
-///   HANDLE Pipe,
-///   PULONG ClientSessionId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getnamedpipeclientsessionid>.
+///
 /// {@category kernel32}
 int GetNamedPipeClientSessionId(int pipe, Pointer<Uint32> clientSessionId) =>
     _GetNamedPipeClientSessionId(pipe, clientSessionId);
@@ -3158,20 +2577,9 @@ final _GetNamedPipeClientSessionId = _kernel32.lookupFunction<
 
 /// Retrieves information about a specified named pipe.
 ///
-/// The information returned can vary during the lifetime of an instance of the
-/// named pipe.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-getnamedpipehandlestatew>.
 ///
-/// ```c
-/// BOOL GetNamedPipeHandleStateW(
-///   HANDLE  hNamedPipe,
-///   LPDWORD lpState,
-///   LPDWORD lpCurInstances,
-///   LPDWORD lpMaxCollectionCount,
-///   LPDWORD lpCollectDataTimeout,
-///   LPWSTR  lpUserName,
-///   DWORD   nMaxUserNameSize
-/// );
-/// ```
 /// {@category kernel32}
 int GetNamedPipeHandleState(
         int hNamedPipe,
@@ -3210,14 +2618,9 @@ final _GetNamedPipeHandleState = _kernel32.lookupFunction<
 
 /// Retrieves information about the specified named pipe.
 ///
-/// ```c
-/// BOOL GetNamedPipeInfo(
-///   HANDLE  hNamedPipe,
-///   LPDWORD lpFlags,
-///   LPDWORD lpOutBufferSize,
-///   LPDWORD lpInBufferSize,
-///   LPDWORD lpMaxInstances);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-getnamedpipeinfo>.
+///
 /// {@category kernel32}
 int GetNamedPipeInfo(
         int hNamedPipe,
@@ -3249,15 +2652,9 @@ final _GetNamedPipeInfo = _kernel32.lookupFunction<
 /// Retrieves information about the current system to an application running
 /// under WOW64.
 ///
-/// If the function is called from a 64-bit application, or on a 64-bit system
-/// that does not have an Intel64 or x64 processor (such as ARM64), it is
-/// equivalent to the GetSystemInfo function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getnativesysteminfo>.
 ///
-/// ```c
-/// void GetNativeSystemInfo(
-///   LPSYSTEM_INFO lpSystemInfo
-/// );
-/// ```
 /// {@category kernel32}
 void GetNativeSystemInfo(Pointer<SYSTEM_INFO> lpSystemInfo) =>
     _GetNativeSystemInfo(lpSystemInfo);
@@ -3268,12 +2665,9 @@ final _GetNativeSystemInfo = _kernel32.lookupFunction<
 
 /// Retrieves the number of unread input records in the console's input buffer.
 ///
-/// ```c
-/// BOOL GetNumberOfConsoleInputEvents(
-///   HANDLE hConsoleInput,
-///   LPDWORD lpcNumberOfEvents
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getnumberofconsoleinputevents>.
+///
 /// {@category kernel32}
 int GetNumberOfConsoleInputEvents(
         int hConsoleInput, Pointer<Uint32> lpNumberOfEvents) =>
@@ -3287,17 +2681,9 @@ final _GetNumberOfConsoleInputEvents = _kernel32.lookupFunction<
 /// Retrieves the results of an overlapped operation on the specified file,
 /// named pipe, or communications device.
 ///
-/// To specify a timeout interval or wait on an alertable thread, use
-/// GetOverlappedResultEx.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-getoverlappedresult>.
 ///
-/// ```c
-/// BOOL GetOverlappedResult(
-///   HANDLE       hFile,
-///   LPOVERLAPPED lpOverlapped,
-///   LPDWORD      lpNumberOfBytesTransferred,
-///   BOOL         bWait
-/// );
-/// ```
 /// {@category kernel32}
 int GetOverlappedResult(int hFile, Pointer<OVERLAPPED> lpOverlapped,
         Pointer<Uint32> lpNumberOfBytesTransferred, int bWait) =>
@@ -3318,15 +2704,9 @@ final _GetOverlappedResult = _kernel32.lookupFunction<
 ///
 /// The calling thread can perform an alertable wait.
 ///
-/// ```c
-/// BOOL GetOverlappedResultEx(
-///   HANDLE       hFile,
-///   LPOVERLAPPED lpOverlapped,
-///   LPDWORD      lpNumberOfBytesTransferred,
-///   DWORD        dwMilliseconds,
-///   BOOL         bAlertable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-getoverlappedresultex>.
+///
 /// {@category kernel32}
 int GetOverlappedResultEx(
         int hFile,
@@ -3353,11 +2733,9 @@ final _GetOverlappedResultEx = _kernel32.lookupFunction<
 
 /// Retrieves the amount of RAM that is physically installed on the computer.
 ///
-/// ```c
-/// BOOL GetPhysicallyInstalledSystemMemory(
-///   PULONGLONG TotalMemoryInKilobytes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getphysicallyinstalledsystemmemory>.
+///
 /// {@category kernel32}
 int GetPhysicallyInstalledSystemMemory(
         Pointer<Uint64> totalMemoryInKilobytes) =>
@@ -3371,12 +2749,9 @@ final _GetPhysicallyInstalledSystemMemory = _kernel32.lookupFunction<
 /// Retrieves the address of an exported function or variable from the specified
 /// dynamic-link library (DLL).
 ///
-/// ```c
-/// FARPROC GetProcAddress(
-///   HMODULE hModule,
-///   LPCSTR  lpProcName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress>.
+///
 /// {@category kernel32}
 FARPROC GetProcAddress(int hModule, Pointer<Utf8> lpProcName) =>
     _GetProcAddress(hModule, lpProcName);
@@ -3387,11 +2762,9 @@ final _GetProcAddress = _kernel32.lookupFunction<
 
 /// Retrieves a handle to the default heap of the calling process.
 ///
-/// This handle can then be used in subsequent calls to the heap functions.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-getprocessheap>.
 ///
-/// ```c
-/// HANDLE GetProcessHeap();
-/// ```
 /// {@category kernel32}
 int GetProcessHeap() => _GetProcessHeap();
 
@@ -3401,12 +2774,9 @@ final _GetProcessHeap = _kernel32
 /// Returns the number of active heaps and retrieves handles to all of the
 /// active heaps for the calling process.
 ///
-/// ```c
-/// DWORD GetProcessHeaps(
-///   DWORD   NumberOfHeaps,
-///   PHANDLE ProcessHeaps
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-getprocessheaps>.
+///
 /// {@category kernel32}
 int GetProcessHeaps(int numberOfHeaps, Pointer<HANDLE> processHeaps) =>
     _GetProcessHeaps(numberOfHeaps, processHeaps);
@@ -3418,11 +2788,9 @@ final _GetProcessHeaps = _kernel32.lookupFunction<
 
 /// Retrieves the process identifier of the specified process.
 ///
-/// ```c
-/// DWORD GetProcessId(
-///   HANDLE Process
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocessid>.
+///
 /// {@category kernel32}
 int GetProcessId(int process) => _GetProcessId(process);
 
@@ -3431,12 +2799,9 @@ final _GetProcessId = _kernel32.lookupFunction<Uint32 Function(HANDLE process),
 
 /// Retrieves the shutdown parameters for the currently calling process.
 ///
-/// ```c
-/// BOOL GetProcessShutdownParameters(
-///   LPDWORD lpdwLevel,
-///   LPDWORD lpdwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocessshutdownparameters>.
+///
 /// {@category kernel32}
 int GetProcessShutdownParameters(
         Pointer<Uint32> lpdwLevel, Pointer<Uint32> lpdwFlags) =>
@@ -3449,15 +2814,9 @@ final _GetProcessShutdownParameters = _kernel32.lookupFunction<
 
 /// Retrieves timing information for the specified process.
 ///
-/// ```c
-/// BOOL GetProcessTimes(
-///   HANDLE hProcess,
-///   LPFILETIME lpCreationTime,
-///   LPFILETIME lpExitTime,
-///   LPFILETIME lpKernelTime,
-///   LPFILETIME lpUserTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocesstimes>.
+///
 /// {@category kernel32}
 int GetProcessTimes(
         int hProcess,
@@ -3485,11 +2844,9 @@ final _GetProcessTimes = _kernel32.lookupFunction<
 /// Retrieves the major and minor version numbers of the system on which the
 /// specified process expects to run.
 ///
-/// ```c
-/// DWORD GetProcessVersion(
-///   DWORD ProcessId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocessversion>.
+///
 /// {@category kernel32}
 int GetProcessVersion(int processId) => _GetProcessVersion(processId);
 
@@ -3500,13 +2857,9 @@ final _GetProcessVersion = _kernel32.lookupFunction<
 /// Retrieves the minimum and maximum working set sizes of the specified
 /// process.
 ///
-/// ```c
-/// BOOL GetProcessWorkingSetSize(
-///   HANDLE  hProcess,
-///   PSIZE_T lpMinimumWorkingSetSize,
-///   PSIZE_T lpMaximumWorkingSetSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-getprocessworkingsetsize>.
+///
 /// {@category kernel32}
 int GetProcessWorkingSetSize(
         int hProcess,
@@ -3525,15 +2878,9 @@ final _GetProcessWorkingSetSize = _kernel32.lookupFunction<
 /// and maps the type to the product types supported by the specified operating
 /// system.
 ///
-/// ```c
-/// BOOL GetProductInfo(
-///   DWORD  dwOSMajorVersion,
-///   DWORD  dwOSMinorVersion,
-///   DWORD  dwSpMajorVersion,
-///   DWORD  dwSpMinorVersion,
-///   PDWORD pdwReturnedProductType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo>.
+///
 /// {@category kernel32}
 int GetProductInfo(
         int dwOSMajorVersion,
@@ -3561,18 +2908,9 @@ final _GetProductInfo = _kernel32.lookupFunction<
 /// Attempts to dequeue an I/O completion packet from the specified I/O
 /// completion port.
 ///
-/// If there is no completion packet queued, the function waits for a pending
-/// I/O operation associated with the completion port to complete.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-getqueuedcompletionstatus>.
 ///
-/// ```c
-/// BOOL GetQueuedCompletionStatus(
-///   HANDLE       CompletionPort,
-///   LPDWORD      lpNumberOfBytesTransferred,
-///   PULONG_PTR   lpCompletionKey,
-///   LPOVERLAPPED *lpOverlapped,
-///   DWORD        dwMilliseconds
-/// );
-/// ```
 /// {@category kernel32}
 int GetQueuedCompletionStatus(
         int completionPort,
@@ -3599,19 +2937,9 @@ final _GetQueuedCompletionStatus = _kernel32.lookupFunction<
 
 /// Retrieves multiple completion port entries simultaneously.
 ///
-/// It waits for pending I/O operations that are associated with the specified
-/// completion port to complete.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-getqueuedcompletionstatusex>.
 ///
-/// ```c
-/// BOOL GetQueuedCompletionStatusEx(
-///   HANDLE             CompletionPort,
-///   LPOVERLAPPED_ENTRY lpCompletionPortEntries,
-///   ULONG              ulCount,
-///   PULONG             ulNumEntriesRemoved,
-///   DWORD              dwMilliseconds,
-///   BOOL               fAlertable
-/// );
-/// ```
 /// {@category kernel32}
 int GetQueuedCompletionStatusEx(
         int completionPort,
@@ -3641,13 +2969,9 @@ final _GetQueuedCompletionStatusEx = _kernel32.lookupFunction<
 
 /// Retrieves the short path form of the specified path.
 ///
-/// ```c
-/// DWORD GetShortPathNameW(
-///   [in]  LPCWSTR lpszLongPath,
-///   [out] LPWSTR  lpszShortPath,
-///   [in]  DWORD   cchBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getshortpathnamew>.
+///
 /// {@category kernel32}
 int GetShortPathName(Pointer<Utf16> lpszLongPath, Pointer<Utf16>? lpszShortPath,
         int cchBuffer) =>
@@ -3662,11 +2986,9 @@ final _GetShortPathName = _kernel32.lookupFunction<
 /// Retrieves the contents of the STARTUPINFO structure that was specified when
 /// the calling process was created.
 ///
-/// ```c
-/// void GetStartupInfoW(
-///   LPSTARTUPINFOW lpStartupInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getstartupinfow>.
+///
 /// {@category kernel32}
 void GetStartupInfo(Pointer<STARTUPINFO> lpStartupInfo) =>
     _GetStartupInfo(lpStartupInfo);
@@ -3678,11 +3000,9 @@ final _GetStartupInfo = _kernel32.lookupFunction<
 /// Retrieves a handle to the specified standard device (standard input,
 /// standard output, or standard error).
 ///
-/// ```c
-/// HANDLE GetStdHandle(
-///   _In_ DWORD nStdHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/getstdhandle>.
+///
 /// {@category kernel32}
 int GetStdHandle(int nStdHandle) => _GetStdHandle(nStdHandle);
 
@@ -3692,9 +3012,9 @@ final _GetStdHandle = _kernel32.lookupFunction<
 
 /// Returns the language identifier for the system locale.
 ///
-/// ```c
-/// LANGID GetSystemDefaultLangID();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getsystemdefaultlangid>.
+///
 /// {@category kernel32}
 int GetSystemDefaultLangID() => _GetSystemDefaultLangID();
 
@@ -3704,12 +3024,12 @@ final _GetSystemDefaultLangID =
 
 /// Retrieves the system default locale name.
 ///
-/// ```c
-/// int GetSystemDefaultLocaleName(
-///   LPWSTR lpLocaleName,
-///   int    cchLocaleName
-/// );
-/// ```
+/// **Note**: It is recommended that applications call GetUserDefaultLocaleName
+/// in preference over this function.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getsystemdefaultlocalename>.
+///
 /// {@category kernel32}
 int GetSystemDefaultLocaleName(
         Pointer<Utf16> lpLocaleName, int cchLocaleName) =>
@@ -3722,15 +3042,9 @@ final _GetSystemDefaultLocaleName = _kernel32.lookupFunction<
 
 /// Retrieves the path of the system directory.
 ///
-/// The system directory contains system files such as dynamic-link libraries
-/// and drivers.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getsystemdirectoryw>.
 ///
-/// ```c
-/// UINT GetSystemDirectoryW(
-///   LPWSTR lpBuffer,
-///   UINT   uSize
-/// );
-/// ```
 /// {@category kernel32}
 int GetSystemDirectory(Pointer<Utf16>? lpBuffer, int uSize) =>
     _GetSystemDirectory(lpBuffer ?? nullptr, uSize);
@@ -3741,14 +3055,9 @@ final _GetSystemDirectory = _kernel32.lookupFunction<
 
 /// Retrieves information about the current system.
 ///
-/// To retrieve accurate information for an application running on WOW64, call
-/// the GetNativeSystemInfo function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getsysteminfo>.
 ///
-/// ```c
-/// void GetSystemInfo(
-///   LPSYSTEM_INFO lpSystemInfo
-/// );
-/// ```
 /// {@category kernel32}
 void GetSystemInfo(Pointer<SYSTEM_INFO> lpSystemInfo) =>
     _GetSystemInfo(lpSystemInfo);
@@ -3763,11 +3072,9 @@ final _GetSystemInfo = _kernel32.lookupFunction<
 /// whether the battery is currently charging, how much battery life remains,
 /// and if battery saver is on or off.
 ///
-/// ```c
-/// BOOL GetSystemPowerStatus(
-///   LPSYSTEM_POWER_STATUS lpSystemPowerStatus
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getsystempowerstatus>.
+///
 /// {@category kernel32}
 int GetSystemPowerStatus(Pointer<SYSTEM_POWER_STATUS> lpSystemPowerStatus) =>
     _GetSystemPowerStatus(lpSystemPowerStatus);
@@ -3777,13 +3084,12 @@ final _GetSystemPowerStatus = _kernel32.lookupFunction<
         int Function(Pointer<SYSTEM_POWER_STATUS> lpSystemPowerStatus)>(
     'GetSystemPowerStatus');
 
-/// Retrieves the current local date and time.
+/// Retrieves the current system date and time in Coordinated Universal Time
+/// (UTC) format.
 ///
-/// ```c
-/// void GetSystemTime(
-///   LPSYSTEMTIME lpSystemTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getsystemtime>.
+///
 /// {@category kernel32}
 void GetSystemTime(Pointer<SYSTEMTIME> lpSystemTime) =>
     _GetSystemTime(lpSystemTime);
@@ -3795,13 +3101,9 @@ final _GetSystemTime = _kernel32.lookupFunction<
 /// Determines whether the system is applying periodic time adjustments to its
 /// time-of-day clock, and obtains the value and period of any such adjustments.
 ///
-/// ```c
-/// BOOL GetSystemTimeAdjustment(
-///   PDWORD lpTimeAdjustment,
-///   PDWORD lpTimeIncrement,
-///   PBOOL  lpTimeAdjustmentDisabled
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getsystemtimeadjustment>.
+///
 /// {@category kernel32}
 int GetSystemTimeAdjustment(
         Pointer<Uint32> lpTimeAdjustment,
@@ -3825,13 +3127,9 @@ final _GetSystemTimeAdjustment = _kernel32.lookupFunction<
 /// On a multiprocessor system, the values returned are the sum of the
 /// designated times across all processors.
 ///
-/// ```c
-/// BOOL GetSystemTimes(
-///   PFILETIME lpIdleTime,
-///   PFILETIME lpKernelTime,
-///   PFILETIME lpUserTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getsystemtimes>.
+///
 /// {@category kernel32}
 int GetSystemTimes(Pointer<FILETIME>? lpIdleTime,
         Pointer<FILETIME>? lpKernelTime, Pointer<FILETIME>? lpUserTime) =>
@@ -3849,14 +3147,9 @@ final _GetSystemTimes = _kernel32.lookupFunction<
 /// If a unique file name is generated, an empty file is created and the handle
 /// to it is released; otherwise, only a file name is generated.
 ///
-/// ```c
-/// UINT GetTempFileNameW(
-///   [in]  LPCWSTR lpPathName,
-///   [in]  LPCWSTR lpPrefixString,
-///   [in]  UINT    uUnique,
-///   [out] LPWSTR  lpTempFileName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-gettempfilenamew>.
+///
 /// {@category kernel32}
 int GetTempFileName(Pointer<Utf16> lpPathName, Pointer<Utf16> lpPrefixString,
         int uUnique, Pointer<Utf16> lpTempFileName) =>
@@ -3870,12 +3163,9 @@ final _GetTempFileName = _kernel32.lookupFunction<
 
 /// Retrieves the path of the directory designated for temporary files.
 ///
-/// ```c
-/// DWORD GetTempPathW(
-///   DWORD  nBufferLength,
-///   LPWSTR lpBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-gettemppathw>.
+///
 /// {@category kernel32}
 int GetTempPath(int nBufferLength, Pointer<Utf16>? lpBuffer) =>
     _GetTempPath(nBufferLength, lpBuffer ?? nullptr);
@@ -3887,12 +3177,9 @@ final _GetTempPath = _kernel32.lookupFunction<
 /// Retrieves the path of the directory designated for temporary files, based on
 /// the privileges of the calling process.
 ///
-/// ```c
-/// DWORD GetTempPath2W(
-///   [in]  DWORD  BufferLength,
-///   [out] LPWSTR Buffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-gettemppath2w>.
+///
 /// {@category kernel32}
 int GetTempPath2(int bufferLength, Pointer<Utf16>? buffer) =>
     _GetTempPath2(bufferLength, buffer ?? nullptr);
@@ -3903,11 +3190,9 @@ final _GetTempPath2 = _kernel32.lookupFunction<
 
 /// Retrieves the thread identifier of the specified thread.
 ///
-/// ```c
-/// DWORD GetThreadId(
-///   HANDLE Thread
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getthreadid>.
+///
 /// {@category kernel32}
 int GetThreadId(int thread) => _GetThreadId(thread);
 
@@ -3916,9 +3201,12 @@ final _GetThreadId = _kernel32.lookupFunction<Uint32 Function(HANDLE thread),
 
 /// Returns the locale identifier of the current locale for the calling thread.
 ///
-/// ```c
-/// LCID GetThreadLocale();
-/// ```
+/// **Note**: This function can retrieve data that changes between releases, for
+/// example, due to a custom locale.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getthreadlocale>.
+///
 /// {@category kernel32}
 int GetThreadLocale() => _GetThreadLocale();
 
@@ -3927,15 +3215,9 @@ final _GetThreadLocale = _kernel32
 
 /// Retrieves timing information for the specified thread.
 ///
-/// ```c
-/// BOOL GetThreadTimes(
-///   HANDLE     hThread,
-///   LPFILETIME lpCreationTime,
-///   LPFILETIME lpExitTime,
-///   LPFILETIME lpKernelTime,
-///   LPFILETIME lpUserTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-getthreadtimes>.
+///
 /// {@category kernel32}
 int GetThreadTimes(
         int hThread,
@@ -3963,9 +3245,9 @@ final _GetThreadTimes = _kernel32.lookupFunction<
 /// Returns the language identifier of the first user interface language for the
 /// current thread.
 ///
-/// ```c
-/// LANGID GetThreadUILanguage();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getthreaduilanguage>.
+///
 /// {@category kernel32}
 int GetThreadUILanguage() => _GetThreadUILanguage();
 
@@ -3975,9 +3257,9 @@ final _GetThreadUILanguage = _kernel32
 /// Retrieves the number of milliseconds that have elapsed since the system was
 /// started, up to 49.7 days.
 ///
-/// ```c
-/// DWORD GetTickCount();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount>.
+///
 /// {@category kernel32}
 int GetTickCount() => _GetTickCount();
 
@@ -3987,9 +3269,9 @@ final _GetTickCount =
 /// Returns the language identifier of the Region Format setting for the current
 /// user.
 ///
-/// ```c
-/// LANGID GetUserDefaultLangID();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getuserdefaultlangid>.
+///
 /// {@category kernel32}
 int GetUserDefaultLangID() => _GetUserDefaultLangID();
 
@@ -3998,9 +3280,12 @@ final _GetUserDefaultLangID = _kernel32
 
 /// Returns the locale identifier for the user default locale.
 ///
-/// ```c
-/// LCID GetUserDefaultLCID();
-/// ```
+/// Caution  If the user default locale is a custom locale, an application
+/// cannot accurately tag data with the value or exchange it.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getuserdefaultlcid>.
+///
 /// {@category kernel32}
 int GetUserDefaultLCID() => _GetUserDefaultLCID();
 
@@ -4009,12 +3294,12 @@ final _GetUserDefaultLCID = _kernel32
 
 /// Retrieves the user default locale name.
 ///
-/// ```c
-/// int GetUserDefaultLocaleName(
-///   LPWSTR lpLocaleName,
-///   int    cchLocaleName
-/// );
-/// ```
+/// **Note**: The application should call this function in preference to
+/// GetUserDefaultLCID if designed to run only on Windows Vista and later.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-getuserdefaultlocalename>.
+///
 /// {@category kernel32}
 int GetUserDefaultLocaleName(Pointer<Utf16> lpLocaleName, int cchLocaleName) =>
     _GetUserDefaultLocaleName(lpLocaleName, cchLocaleName);
@@ -4024,13 +3309,15 @@ final _GetUserDefaultLocaleName = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpLocaleName,
         int cchLocaleName)>('GetUserDefaultLocaleName');
 
-/// Gets information about the operating system version.
+/// With the release of Windows 8.1, the behavior of the GetVersionEx API has
+/// changed in the value it will return for the operating system version.
 ///
-/// ```c
-/// BOOL GetVersionExW(
-///   LPOSVERSIONINFOW lpVersionInformation
-/// );
-/// ```
+/// The value returned by the GetVersionEx function now depends on how the
+/// application is manifested.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getversionexw>.
+///
 /// {@category kernel32}
 int GetVersionEx(Pointer<OSVERSIONINFO> lpVersionInformation) =>
     _GetVersionEx(lpVersionInformation);
@@ -4042,18 +3329,9 @@ final _GetVersionEx = _kernel32.lookupFunction<
 /// Retrieves information about the file system and volume associated with the
 /// specified root directory.
 ///
-/// ```c
-/// BOOL GetVolumeInformationW(
-///   LPCWSTR lpRootPathName,
-///   LPWSTR  lpVolumeNameBuffer,
-///   DWORD   nVolumeNameSize,
-///   LPDWORD lpVolumeSerialNumber,
-///   LPDWORD lpMaximumComponentLength,
-///   LPDWORD lpFileSystemFlags,
-///   LPWSTR  lpFileSystemNameBuffer,
-///   DWORD   nFileSystemNameSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getvolumeinformationw>.
+///
 /// {@category kernel32}
 int GetVolumeInformation(
         Pointer<Utf16>? lpRootPathName,
@@ -4097,18 +3375,9 @@ final _GetVolumeInformation = _kernel32.lookupFunction<
 /// Retrieves information about the file system and volume associated with the
 /// specified file.
 ///
-/// ```c
-/// BOOL GetVolumeInformationByHandleW(
-///   HANDLE  hFile,
-///   LPWSTR  lpVolumeNameBuffer,
-///   DWORD   nVolumeNameSize,
-///   LPDWORD lpVolumeSerialNumber,
-///   LPDWORD lpMaximumComponentLength,
-///   LPDWORD lpFileSystemFlags,
-///   LPWSTR  lpFileSystemNameBuffer,
-///   DWORD   nFileSystemNameSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getvolumeinformationbyhandlew>.
+///
 /// {@category kernel32}
 int GetVolumeInformationByHandle(
         int hFile,
@@ -4150,16 +3419,12 @@ final _GetVolumeInformationByHandle = _kernel32.lookupFunction<
         int nFileSystemNameSize)>('GetVolumeInformationByHandleW');
 
 /// Retrieves a volume GUID path for the volume that is associated with the
-/// specified volume mount point (drive letter, volume GUID path, or mounted
+/// specified volume mount point ( drive letter, volume GUID path, or mounted
 /// folder).
 ///
-/// ```c
-/// BOOL GetVolumeNameForVolumeMountPointW(
-///   [in]  LPCWSTR lpszVolumeMountPoint,
-///   [out] LPWSTR  lpszVolumeName,
-///   [in]  DWORD   cchBufferLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getvolumenameforvolumemountpointw>.
+///
 /// {@category kernel32}
 int GetVolumeNameForVolumeMountPoint(Pointer<Utf16> lpszVolumeMountPoint,
         Pointer<Utf16> lpszVolumeName, int cchBufferLength) =>
@@ -4176,12 +3441,9 @@ final _GetVolumeNameForVolumeMountPoint = _kernel32.lookupFunction<
 
 /// Retrieves the volume mount point where the specified path is mounted.
 ///
-/// ```c
-/// BOOL GetVolumePathNameW(
-///   LPCWSTR lpszFileName,
-///   LPWSTR  lpszVolumePathName,
-///   DWORD   cchBufferLength);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getvolumepathnamew>.
+///
 /// {@category kernel32}
 int GetVolumePathName(Pointer<Utf16> lpszFileName,
         Pointer<Utf16> lpszVolumePathName, int cchBufferLength) =>
@@ -4196,14 +3458,9 @@ final _GetVolumePathName = _kernel32.lookupFunction<
 /// Retrieves a list of drive letters and mounted folder paths for the specified
 /// volume.
 ///
-/// ```c
-/// BOOL GetVolumePathNamesForVolumeNameW(
-///   LPCWSTR lpszVolumeName,
-///   LPWCH   lpszVolumePathNames,
-///   DWORD   cchBufferLength,
-///   PDWORD  lpcchReturnLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getvolumepathnamesforvolumenamew>.
+///
 /// {@category kernel32}
 int GetVolumePathNamesForVolumeName(
         Pointer<Utf16> lpszVolumeName,
@@ -4227,12 +3484,9 @@ final _GetVolumePathNamesForVolumeName = _kernel32.lookupFunction<
 
 /// Allocates the specified number of bytes from the heap.
 ///
-/// ```c
-/// HGLOBAL GlobalAlloc(
-///   UINT   uFlags,
-///   SIZE_T dwBytes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-globalalloc>.
+///
 /// {@category kernel32}
 HGLOBAL GlobalAlloc(int uFlags, int dwBytes) => _GlobalAlloc(uFlags, dwBytes);
 
@@ -4242,11 +3496,9 @@ final _GlobalAlloc = _kernel32.lookupFunction<
 
 /// Frees the specified global memory object and invalidates its handle.
 ///
-/// ```c
-/// HGLOBAL GlobalFree(
-///   _Frees_ptr_opt_ HGLOBAL hMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-globalfree>.
+///
 /// {@category kernel32}
 HGLOBAL GlobalFree(HGLOBAL? hMem) => _GlobalFree(hMem ?? nullptr);
 
@@ -4256,11 +3508,9 @@ final _GlobalFree = _kernel32.lookupFunction<HGLOBAL Function(HGLOBAL hMem),
 /// Locks a global memory object and returns a pointer to the first byte of the
 /// object's memory block.
 ///
-/// ```c
-/// LPVOID GlobalLock(
-///   HGLOBAL hMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-globallock>.
+///
 /// {@category kernel32}
 Pointer GlobalLock(HGLOBAL hMem) => _GlobalLock(hMem);
 
@@ -4270,11 +3520,9 @@ final _GlobalLock = _kernel32.lookupFunction<Pointer Function(HGLOBAL hMem),
 /// Retrieves information about the system's current usage of both physical and
 /// virtual memory.
 ///
-/// ```c
-/// BOOL GlobalMemoryStatusEx(
-///   LPMEMORYSTATUSEX lpBuffer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-globalmemorystatusex>.
+///
 /// {@category kernel32}
 int GlobalMemoryStatusEx(Pointer<MEMORYSTATUSEX> lpBuffer) =>
     _GlobalMemoryStatusEx(lpBuffer);
@@ -4285,11 +3533,9 @@ final _GlobalMemoryStatusEx = _kernel32.lookupFunction<
 
 /// Retrieves the current size of the specified global memory object, in bytes.
 ///
-/// ```c
-/// SIZE_T GlobalSize(
-///   HGLOBAL hMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-globalsize>.
+///
 /// {@category kernel32}
 int GlobalSize(HGLOBAL hMem) => _GlobalSize(hMem);
 
@@ -4299,13 +3545,9 @@ final _GlobalSize = _kernel32.lookupFunction<IntPtr Function(HGLOBAL hMem),
 /// Decrements the lock count associated with a memory object that was allocated
 /// with GMEM_MOVEABLE.
 ///
-/// This function has no effect on memory objects allocated with GMEM_FIXED.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-globalunlock>.
 ///
-/// ```c
-/// BOOL GlobalUnlock(
-///   HGLOBAL hMem
-/// );
-/// ```
 /// {@category kernel32}
 int GlobalUnlock(HGLOBAL hMem) => _GlobalUnlock(hMem);
 
@@ -4316,13 +3558,9 @@ final _GlobalUnlock = _kernel32.lookupFunction<BOOL Function(HGLOBAL hMem),
 ///
 /// The allocated memory is not movable.
 ///
-/// ```c
-/// LPVOID HeapAlloc(
-///   HANDLE hHeap,
-///   DWORD  dwFlags,
-///   SIZE_T dwBytes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapalloc>.
+///
 /// {@category kernel32}
 Pointer HeapAlloc(int hHeap, int dwFlags, int dwBytes) =>
     _HeapAlloc(hHeap, dwFlags, dwBytes);
@@ -4336,12 +3574,9 @@ final _HeapAlloc = _kernel32.lookupFunction<
 /// If the Disable heap coalesce on free global flag is set, this function also
 /// coalesces adjacent free blocks of memory in the heap.
 ///
-/// ```c
-/// SIZE_T HeapCompact(
-///   HANDLE hHeap,
-///   DWORD  dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapcompact>.
+///
 /// {@category kernel32}
 int HeapCompact(int hHeap, int dwFlags) => _HeapCompact(hHeap, dwFlags);
 
@@ -4354,13 +3589,9 @@ final _HeapCompact = _kernel32.lookupFunction<
 /// The function reserves space in the virtual address space of the process and
 /// allocates physical storage for a specified initial portion of this block.
 ///
-/// ```c
-/// HANDLE HeapCreate(
-///   DWORD  flOptions,
-///   SIZE_T dwInitialSize,
-///   SIZE_T dwMaximumSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapcreate>.
+///
 /// {@category kernel32}
 int HeapCreate(int flOptions, int dwInitialSize, int dwMaximumSize) =>
     _HeapCreate(flOptions, dwInitialSize, dwMaximumSize);
@@ -4376,11 +3607,9 @@ final _HeapCreate = _kernel32.lookupFunction<
 /// It decommits and releases all the pages of a private heap object, and it
 /// invalidates the handle to the heap.
 ///
-/// ```c
-/// BOOL HeapDestroy(
-///   HANDLE hHeap
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapdestroy>.
+///
 /// {@category kernel32}
 int HeapDestroy(int hHeap) => _HeapDestroy(hHeap);
 
@@ -4390,13 +3619,9 @@ final _HeapDestroy = _kernel32.lookupFunction<BOOL Function(HANDLE hHeap),
 /// Frees a memory block allocated from a heap by the HeapAlloc or HeapReAlloc
 /// function.
 ///
-/// ```c
-/// BOOL HeapFree(
-///   HANDLE                 hHeap,
-///   DWORD                  dwFlags,
-///   _Frees_ptr_opt_ LPVOID lpMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapfree>.
+///
 /// {@category kernel32}
 int HeapFree(int hHeap, int dwFlags, Pointer? lpMem) =>
     _HeapFree(hHeap, dwFlags, lpMem ?? nullptr);
@@ -4408,11 +3633,9 @@ final _HeapFree = _kernel32.lookupFunction<
 /// Attempts to acquire the critical section object, or lock, that is associated
 /// with a specified heap.
 ///
-/// ```c
-/// BOOL HeapLock(
-///   HANDLE hHeap
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heaplock>.
+///
 /// {@category kernel32}
 int HeapLock(int hHeap) => _HeapLock(hHeap);
 
@@ -4421,15 +3644,9 @@ final _HeapLock = _kernel32.lookupFunction<BOOL Function(HANDLE hHeap),
 
 /// Retrieves information about the specified heap.
 ///
-/// ```c
-/// BOOL HeapQueryInformation(
-///   HANDLE                 HeapHandle,
-///   HEAP_INFORMATION_CLASS HeapInformationClass,
-///   PVOID                  HeapInformation,
-///   SIZE_T                 HeapInformationLength,
-///   PSIZE_T                ReturnLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapqueryinformation>.
+///
 /// {@category kernel32}
 int HeapQueryInformation(
         int? heapHandle,
@@ -4458,16 +3675,14 @@ final _HeapQueryInformation = _kernel32.lookupFunction<
         int heapInformationLength,
         Pointer<IntPtr> returnLength)>('HeapQueryInformation');
 
-/// Retrieves information about the specified heap.
+/// Reallocates a block of memory from a heap.
 ///
-/// ```c
-/// LPVOID HeapReAlloc(
-///   HANDLE                 hHeap,
-///   DWORD                  dwFlags,
-///   _Frees_ptr_opt_ LPVOID lpMem,
-///   SIZE_T                 dwBytes
-/// );
-/// ```
+/// This function enables you to resize a memory block and change other memory
+/// block properties.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heaprealloc>.
+///
 /// {@category kernel32}
 Pointer HeapReAlloc(int hHeap, int dwFlags, Pointer? lpMem, int dwBytes) =>
     _HeapReAlloc(hHeap, dwFlags, lpMem ?? nullptr, dwBytes);
@@ -4480,14 +3695,9 @@ final _HeapReAlloc = _kernel32.lookupFunction<
 
 /// Enables features for a specified heap.
 ///
-/// ```c
-/// BOOL HeapSetInformation(
-///   HANDLE                 HeapHandle,
-///   HEAP_INFORMATION_CLASS HeapInformationClass,
-///   PVOID                  HeapInformation,
-///   SIZE_T                 HeapInformationLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapsetinformation>.
+///
 /// {@category kernel32}
 int HeapSetInformation(int? heapHandle, int heapInformationClass,
         Pointer? heapInformation, int heapInformationLength) =>
@@ -4506,13 +3716,9 @@ final _HeapSetInformation = _kernel32.lookupFunction<
 /// Retrieves the size of a memory block allocated from a heap by the HeapAlloc
 /// or HeapReAlloc function.
 ///
-/// ```c
-/// SIZE_T HeapSize(
-///   HANDLE  hHeap,
-///   DWORD   dwFlags,
-///   LPCVOID lpMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapsize>.
+///
 /// {@category kernel32}
 int HeapSize(int hHeap, int dwFlags, Pointer lpMem) =>
     _HeapSize(hHeap, dwFlags, lpMem);
@@ -4524,13 +3730,9 @@ final _HeapSize = _kernel32.lookupFunction<
 /// Releases ownership of the critical section object, or lock, that is
 /// associated with a specified heap.
 ///
-/// It reverses the action of the HeapLock function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapunlock>.
 ///
-/// ```c
-/// BOOL HeapUnlock(
-///   HANDLE hHeap
-/// );
-/// ```
 /// {@category kernel32}
 int HeapUnlock(int hHeap) => _HeapUnlock(hHeap);
 
@@ -4541,17 +3743,11 @@ final _HeapUnlock = _kernel32.lookupFunction<BOOL Function(HANDLE hHeap),
 ///
 /// The function scans all the memory blocks in the heap and verifies that the
 /// heap control structures maintained by the heap manager are in a consistent
-/// state. You can also use the HeapValidate function to validate a single
-/// memory block within a specified heap without checking the validity of the
-/// entire heap.
+/// state.
 ///
-/// ```c
-/// BOOL HeapValidate(
-///   HANDLE  hHeap,
-///   DWORD   dwFlags,
-///   LPCVOID lpMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapvalidate>.
+///
 /// {@category kernel32}
 int HeapValidate(int hHeap, int dwFlags, Pointer? lpMem) =>
     _HeapValidate(hHeap, dwFlags, lpMem ?? nullptr);
@@ -4562,12 +3758,9 @@ final _HeapValidate = _kernel32.lookupFunction<
 
 /// Enumerates the memory blocks in the specified heap.
 ///
-/// ```c
-/// BOOL HeapWalk(
-///   HANDLE               hHeap,
-///   LPPROCESS_HEAP_ENTRY lpEntry
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/heapapi/nf-heapapi-heapwalk>.
+///
 /// {@category kernel32}
 int HeapWalk(int hHeap, Pointer<PROCESS_HEAP_ENTRY> lpEntry) =>
     _HeapWalk(hHeap, lpEntry);
@@ -4579,14 +3772,9 @@ final _HeapWalk = _kernel32.lookupFunction<
 /// Initializes the specified list of attributes for process and thread
 /// creation.
 ///
-/// ```c
-/// BOOL InitializeProcThreadAttributeList(
-///   LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList,
-///   DWORD                        dwAttributeCount,
-///   DWORD                        dwFlags,
-///   PSIZE_T                      lpSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-initializeprocthreadattributelist>.
+///
 /// {@category kernel32}
 int InitializeProcThreadAttributeList(
         LPPROC_THREAD_ATTRIBUTE_LIST? lpAttributeList,
@@ -4607,9 +3795,9 @@ final _InitializeProcThreadAttributeList = _kernel32.lookupFunction<
 /// Determines whether the calling process is being debugged by a user-mode
 /// debugger.
 ///
-/// ```c
-/// BOOL IsDebuggerPresent();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/debugapi/nf-debugapi-isdebuggerpresent>.
+///
 /// {@category kernel32}
 int IsDebuggerPresent() => _IsDebuggerPresent();
 
@@ -4618,11 +3806,9 @@ final _IsDebuggerPresent = _kernel32
 
 /// Indicates if the OS was booted from a VHD container.
 ///
-/// ```c
-/// BOOL IsNativeVhdBoot(
-///   PBOOL NativeVhdBoot
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-isnativevhdboot>.
+///
 /// {@category kernel32}
 int IsNativeVhdBoot(Pointer<BOOL> nativeVhdBoot) =>
     _IsNativeVhdBoot(nativeVhdBoot);
@@ -4633,13 +3819,9 @@ final _IsNativeVhdBoot = _kernel32.lookupFunction<
 
 /// Determines whether the process is running in the specified job.
 ///
-/// ```c
-/// BOOL IsProcessInJob(
-///   [in]           HANDLE ProcessHandle,
-///   [in, optional] HANDLE JobHandle,
-///   [out]          PBOOL  Result
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi/nf-jobapi-isprocessinjob>.
+///
 /// {@category kernel32}
 int IsProcessInJob(int processHandle, int? jobHandle, Pointer<BOOL> result) =>
     _IsProcessInJob(processHandle, jobHandle ?? 0, result);
@@ -4651,9 +3833,9 @@ final _IsProcessInJob = _kernel32.lookupFunction<
 
 /// Determines the current state of the computer.
 ///
-/// ```c
-/// BOOL IsSystemResumeAutomatic();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-issystemresumeautomatic>.
+///
 /// {@category kernel32}
 int IsSystemResumeAutomatic() => _IsSystemResumeAutomatic();
 
@@ -4663,11 +3845,13 @@ final _IsSystemResumeAutomatic = _kernel32
 /// Determines if the specified locale name is valid for a locale that is
 /// installed or supported on the operating system.
 ///
-/// ```c
-/// BOOL IsValidLocaleName(
-///   LPCWSTR lpLocaleName
-///   );
-/// ```
+/// **Note**: An application running only on Windows Vista and later should call
+/// this function in preference to IsValidLocale to determine the validity of a
+/// supplemental locale.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-isvalidlocalename>.
+///
 /// {@category kernel32}
 int IsValidLocaleName(Pointer<Utf16> lpLocaleName) =>
     _IsValidLocaleName(lpLocaleName);
@@ -4676,17 +3860,12 @@ final _IsValidLocaleName = _kernel32.lookupFunction<
     BOOL Function(Pointer<Utf16> lpLocaleName),
     int Function(Pointer<Utf16> lpLocaleName)>('IsValidLocaleName');
 
-/// Determines whether the specified process is running under WOW64.
+/// Determines whether the specified process is running under WOW64; also
+/// returns additional machine process and architecture information.
 ///
-/// Also returns additional machine process and architecture information.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wow64apiset/nf-wow64apiset-iswow64process2>.
 ///
-/// ```c
-/// BOOL IsWow64Process2(
-///   HANDLE hProcess,
-///   USHORT *pProcessMachine,
-///   USHORT *pNativeMachine
-/// );
-/// ```
 /// {@category kernel32}
 int IsWow64Process2(int hProcess, Pointer<Uint16> pProcessMachine,
         Pointer<Uint16>? pNativeMachine) =>
@@ -4700,13 +3879,9 @@ final _IsWow64Process2 = _kernel32.lookupFunction<
 
 /// Loads the specified module into the address space of the calling process.
 ///
-/// The specified module may cause other modules to be loaded.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw>.
 ///
-/// ```c
-/// HMODULE LoadLibraryW(
-///   LPCWSTR lpLibFileName
-/// );
-/// ```
 /// {@category kernel32}
 int LoadLibrary(Pointer<Utf16> lpLibFileName) => _LoadLibrary(lpLibFileName);
 
@@ -4716,15 +3891,9 @@ final _LoadLibrary = _kernel32.lookupFunction<
 
 /// Loads the specified module into the address space of the calling process.
 ///
-/// The specified module may cause other modules to be loaded.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw>.
 ///
-/// ```c
-/// HMODULE LoadLibraryExW(
-///   [in] LPCWSTR lpLibFileName,
-///        HANDLE  hFile,
-///   [in] DWORD   dwFlags
-/// );
-/// ```
 /// {@category kernel32}
 int LoadLibraryEx(Pointer<Utf16> lpLibFileName, int dwFlags) =>
     _LoadLibraryEx(lpLibFileName, 0, dwFlags);
@@ -4738,12 +3907,9 @@ final _LoadLibraryEx = _kernel32.lookupFunction<
 /// Retrieves a handle that can be used to obtain a pointer to the first byte of
 /// the specified resource in memory.
 ///
-/// ```c
-/// HGLOBAL LoadResource(
-///   HMODULE hModule,
-///   HRSRC   hResInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-loadresource>.
+///
 /// {@category kernel32}
 HGLOBAL LoadResource(int? hModule, int hResInfo) =>
     _LoadResource(hModule ?? 0, hResInfo);
@@ -4754,11 +3920,9 @@ final _LoadResource = _kernel32.lookupFunction<
 
 /// Frees the specified local memory object and invalidates its handle.
 ///
-/// ```c
-/// HLOCAL LocalFree(
-///   _Frees_ptr_opt_ HLOCAL hMem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-localfree>.
+///
 /// {@category kernel32}
 HLOCAL LocalFree(HLOCAL? hMem) => _LocalFree(hMem ?? nullptr);
 
@@ -4767,15 +3931,9 @@ final _LocalFree = _kernel32.lookupFunction<HLOCAL Function(HLOCAL hMem),
 
 /// Locks the specified file for exclusive access by the calling process.
 ///
-/// ```c
-/// BOOL LockFile(
-///   [in] HANDLE hFile,
-///   [in] DWORD  dwFileOffsetLow,
-///   [in] DWORD  dwFileOffsetHigh,
-///   [in] DWORD  nNumberOfBytesToLockLow,
-///   [in] DWORD  nNumberOfBytesToLockHigh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-lockfile>.
+///
 /// {@category kernel32}
 int LockFile(int hFile, int dwFileOffsetLow, int dwFileOffsetHigh,
         int nNumberOfBytesToLockLow, int nNumberOfBytesToLockHigh) =>
@@ -4793,16 +3951,9 @@ final _LockFile = _kernel32.lookupFunction<
 /// This function can operate either synchronously or asynchronously and can
 /// request either an exclusive or a shared lock.
 ///
-/// ```c
-/// BOOL LockFileEx(
-///   [in]      HANDLE       hFile,
-///   [in]      DWORD        dwFlags,
-///             DWORD        dwReserved,
-///   [in]      DWORD        nNumberOfBytesToLockLow,
-///   [in]      DWORD        nNumberOfBytesToLockHigh,
-///   [in, out] LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-lockfileex>.
+///
 /// {@category kernel32}
 int LockFileEx(int hFile, int dwFlags, int nNumberOfBytesToLockLow,
         int nNumberOfBytesToLockHigh, Pointer<OVERLAPPED> lpOverlapped) =>
@@ -4827,11 +3978,9 @@ final _LockFileEx = _kernel32.lookupFunction<
 
 /// Retrieves a pointer to the specified resource in memory.
 ///
-/// ```c
-/// LPVOID LockResource(
-///   HGLOBAL hResData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-lockresource>.
+///
 /// {@category kernel32}
 Pointer LockResource(HGLOBAL hResData) => _LockResource(hResData);
 
@@ -4841,12 +3990,9 @@ final _LockResource = _kernel32.lookupFunction<
 
 /// Moves an existing file or a directory, including its children.
 ///
-/// ```c
-/// BOOL MoveFileW(
-///   LPCWSTR lpExistingFileName,
-///   LPCWSTR lpNewFileName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-movefilew>.
+///
 /// {@category kernel32}
 int MoveFile(Pointer<Utf16> lpExistingFileName, Pointer<Utf16> lpNewFileName) =>
     _MoveFile(lpExistingFileName, lpNewFileName);
@@ -4859,13 +4005,9 @@ final _MoveFile = _kernel32.lookupFunction<
 
 /// Opens an existing named event object.
 ///
-/// ```c
-/// HANDLE OpenEventW(
-///   DWORD   dwDesiredAccess,
-///   BOOL    bInheritHandle,
-///   LPCWSTR lpName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-openeventw>.
+///
 /// {@category kernel32}
 int OpenEvent(int dwDesiredAccess, int bInheritHandle, Pointer<Utf16> lpName) =>
     _OpenEvent(dwDesiredAccess, bInheritHandle, lpName);
@@ -4878,13 +4020,9 @@ final _OpenEvent = _kernel32.lookupFunction<
 
 /// Opens an existing job object.
 ///
-/// ```c
-/// HANDLE OpenJobObjectW(
-///   [in] DWORD   dwDesiredAccess,
-///   [in] BOOL    bInheritHandle,
-///   [in] LPCWSTR lpName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-openjobobjectw>.
+///
 /// {@category kernel32}
 int OpenJobObject(
         int dwDesiredAccess, int bInheritHandle, Pointer<Utf16> lpName) =>
@@ -4898,13 +4036,9 @@ final _OpenJobObject = _kernel32.lookupFunction<
 
 /// Opens an existing local process object.
 ///
-/// ```c
-/// HANDLE OpenProcess(
-///   DWORD dwDesiredAccess,
-///   BOOL  bInheritHandle,
-///   DWORD dwProcessId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess>.
+///
 /// {@category kernel32}
 int OpenProcess(int dwDesiredAccess, int bInheritHandle, int dwProcessId) =>
     _OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
@@ -4917,11 +4051,9 @@ final _OpenProcess = _kernel32.lookupFunction<
 
 /// Sends a string to the debugger for display.
 ///
-/// ```c
-/// void OutputDebugStringW(
-///   LPCWSTR lpOutputString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/debugapi/nf-debugapi-outputdebugstringw>.
+///
 /// {@category kernel32}
 void OutputDebugString(Pointer<Utf16>? lpOutputString) =>
     _OutputDebugString(lpOutputString ?? nullptr);
@@ -4932,13 +4064,9 @@ final _OutputDebugString = _kernel32.lookupFunction<
 
 /// Gets the package family name for the specified package full name.
 ///
-/// ```c
-/// LONG PackageFamilyNameFromFullName(
-///   PCWSTR packageFullName,
-///   UINT32 *packageFamilyNameLength,
-///   PWSTR  packageFamilyName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/appmodel/nf-appmodel-packagefamilynamefromfullname>.
+///
 /// {@category kernel32}
 int PackageFamilyNameFromFullName(
         Pointer<Utf16> packageFullName,
@@ -4960,14 +4088,9 @@ final _PackageFamilyNameFromFullName = _kernel32.lookupFunction<
 /// Reads data from the specified console input buffer without removing it from
 /// the buffer.
 ///
-/// ```c
-/// BOOL PeekConsoleInputW(
-///   HANDLE        hConsoleInput,
-///   PINPUT_RECORD lpBuffer,
-///   DWORD         nLength,
-///   LPDWORD       lpNumberOfEventsRead
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/peekconsoleinput>.
+///
 /// {@category kernel32}
 int PeekConsoleInput(int hConsoleInput, Pointer<INPUT_RECORD> lpBuffer,
         int nLength, Pointer<Uint32> lpNumberOfEventsRead) =>
@@ -4982,17 +4105,9 @@ final _PeekConsoleInput = _kernel32.lookupFunction<
 /// Copies data from a named or anonymous pipe into a buffer without removing it
 /// from the pipe.
 ///
-/// It also returns information about data in the pipe.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-peeknamedpipe>.
 ///
-/// ```c
-/// BOOL PeekNamedPipe(
-///   HANDLE  hNamedPipe,
-///   LPVOID  lpBuffer,
-///   DWORD   nBufferSize,
-///   LPDWORD lpBytesRead,
-///   LPDWORD lpTotalBytesAvail,
-///   LPDWORD lpBytesLeftThisMessage);
-/// ```
 /// {@category kernel32}
 int PeekNamedPipe(
         int hNamedPipe,
@@ -5027,14 +4142,9 @@ final _PeekNamedPipe = _kernel32.lookupFunction<
 
 /// Posts an I/O completion packet to an I/O completion port.
 ///
-/// ```c
-/// BOOL PostQueuedCompletionStatus(
-///   HANDLE       CompletionPort,
-///   DWORD        dwNumberOfBytesTransferred,
-///   ULONG_PTR    dwCompletionKey,
-///   LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/ioapiset/nf-ioapiset-postqueuedcompletionstatus>.
+///
 /// {@category kernel32}
 int PostQueuedCompletionStatus(
         int completionPort,
@@ -5058,12 +4168,9 @@ final _PostQueuedCompletionStatus = _kernel32.lookupFunction<
 ///
 /// It can also terminate pending read or write operations on the resource.
 ///
-/// ```c
-/// BOOL PurgeComm(
-///   HANDLE hFile,
-///   DWORD  dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-purgecomm>.
+///
 /// {@category kernel32}
 int PurgeComm(int hFile, int dwFlags) => _PurgeComm(hFile, dwFlags);
 
@@ -5073,17 +4180,9 @@ final _PurgeComm = _kernel32.lookupFunction<
 
 /// Retrieves information about MS-DOS device names.
 ///
-/// The function can obtain the current mapping for a particular MS-DOS device
-/// name. The function can also obtain a list of all existing MS-DOS device
-/// names.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-querydosdevicew>.
 ///
-/// ```c
-/// DWORD QueryDosDeviceW(
-///   LPCWSTR lpDeviceName,
-///   LPWSTR  lpTargetPath,
-///   DWORD   ucchMax
-/// );
-/// ```
 /// {@category kernel32}
 int QueryDosDevice(Pointer<Utf16>? lpDeviceName, Pointer<Utf16>? lpTargetPath,
         int ucchMax) =>
@@ -5097,14 +4196,9 @@ final _QueryDosDevice = _kernel32.lookupFunction<
 
 /// Retrieves the full name of the executable image for the specified process.
 ///
-/// ```c
-/// BOOL QueryFullProcessImageNameW(
-///   HANDLE hProcess,
-///   DWORD  dwFlags,
-///   LPWSTR lpExeName,
-///   PDWORD lpdwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-queryfullprocessimagenamew>.
+///
 /// {@category kernel32}
 int QueryFullProcessImageName(int hProcess, int dwFlags,
         Pointer<Utf16> lpExeName, Pointer<Uint32> lpdwSize) =>
@@ -5118,15 +4212,9 @@ final _QueryFullProcessImageName = _kernel32.lookupFunction<
 
 /// Retrieves limit and job state information from the job object.
 ///
-/// ```c
-/// BOOL QueryInformationJobObject(
-///   [in, optional]  HANDLE             hJob,
-///   [in]            JOBOBJECTINFOCLASS JobObjectInformationClass,
-///   [out]           LPVOID             lpJobObjectInformation,
-///   [in]            DWORD              cbJobObjectInformationLength,
-///   [out, optional] LPDWORD            lpReturnLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-queryinformationjobobject>.
+///
 /// {@category kernel32}
 int QueryInformationJobObject(
         int? hJob,
@@ -5157,14 +4245,9 @@ final _QueryInformationJobObject = _kernel32.lookupFunction<
 
 /// Gets information about the control of the I/O rate for a job object.
 ///
-/// ```c
-/// DWORD QueryIoRateControlInformationJobObject(
-///   [in, optional] HANDLE                                hJob,
-///   [in, optional] PCWSTR                                VolumeName,
-///   [out]          JOBOBJECT_IO_RATE_CONTROL_INFORMATION **InfoBlocks,
-///   [out]          ULONG                                 *InfoBlockCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-queryioratecontrolinformationjobobject>.
+///
 /// {@category kernel32}
 int QueryIoRateControlInformationJobObject(
         int? hJob,
@@ -5188,14 +4271,12 @@ final _QueryIoRateControlInformationJobObject = _kernel32.lookupFunction<
     'QueryIoRateControlInformationJobObject');
 
 /// Retrieves the current value of the performance counter, which is a high
-/// resolution (<1us) time stamp that can be used for time-interval
+/// resolution (&lt;1us) time stamp that can be used for time-interval
 /// measurements.
 ///
-/// ```c
-/// BOOL QueryPerformanceCounter(
-///   LARGE_INTEGER *lpPerformanceCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter>.
+///
 /// {@category kernel32}
 int QueryPerformanceCounter(Pointer<Int64> lpPerformanceCount) =>
     _QueryPerformanceCounter(lpPerformanceCount);
@@ -5206,15 +4287,9 @@ final _QueryPerformanceCounter = _kernel32.lookupFunction<
 
 /// Retrieves the frequency of the performance counter.
 ///
-/// The frequency of the performance counter is fixed at system boot and is
-/// consistent across all processors. Therefore, the frequency need only be
-/// queried upon application initialization, and the result can be cached.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency>.
 ///
-/// ```c
-/// BOOL QueryPerformanceFrequency(
-///   LARGE_INTEGER *lpFrequency
-/// );
-/// ```
 /// {@category kernel32}
 int QueryPerformanceFrequency(Pointer<Int64> lpFrequency) =>
     _QueryPerformanceFrequency(lpFrequency);
@@ -5226,15 +4301,9 @@ final _QueryPerformanceFrequency = _kernel32.lookupFunction<
 /// Reads character input from the console input buffer and removes it from the
 /// buffer.
 ///
-/// ```c
-/// BOOL ReadConsoleW(
-///   _In_     HANDLE  hConsoleInput,
-///   _Out_    LPVOID  lpBuffer,
-///   _In_     DWORD   nNumberOfCharsToRead,
-///   _Out_    LPDWORD lpNumberOfCharsRead,
-///   _In_opt_ LPVOID  pInputControl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/readconsole>.
+///
 /// {@category kernel32}
 int ReadConsole(
         int hConsoleInput,
@@ -5261,14 +4330,9 @@ final _ReadConsole = _kernel32.lookupFunction<
 
 /// Reads data from a console input buffer and removes it from the buffer.
 ///
-/// ```c
-/// BOOL ReadConsoleInputW(
-///   HANDLE        hConsoleInput,
-///   PINPUT_RECORD lpBuffer,
-///   DWORD         nLength,
-///   LPDWORD       lpNumberOfEventsRead
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/readconsoleinput>.
+///
 /// {@category kernel32}
 int ReadConsoleInput(int hConsoleInput, Pointer<INPUT_RECORD> lpBuffer,
         int nLength, Pointer<Uint32> lpNumberOfEventsRead) =>
@@ -5285,15 +4349,9 @@ final _ReadConsoleInput = _kernel32.lookupFunction<
 /// Reads occur at the position specified by the file pointer if supported by
 /// the device.
 ///
-/// ```c
-/// BOOL ReadFile(
-///   HANDLE       hFile,
-///   LPVOID       lpBuffer,
-///   DWORD        nNumberOfBytesToRead,
-///   LPDWORD      lpNumberOfBytesRead,
-///   LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-readfile>.
+///
 /// {@category kernel32}
 int ReadFile(
         int hFile,
@@ -5324,15 +4382,9 @@ final _ReadFile = _kernel32.lookupFunction<
 /// completion routine when reading is completed or canceled and the calling
 /// thread is in an alertable wait state.
 ///
-/// ```c
-/// BOOL ReadFileEx(
-///   [in]            HANDLE                          hFile,
-///   [out, optional] LPVOID                          lpBuffer,
-///   [in]            DWORD                           nNumberOfBytesToRead,
-///   [in, out]       LPOVERLAPPED                    lpOverlapped,
-///   [in]            LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-readfileex>.
+///
 /// {@category kernel32}
 int ReadFileEx(
         int hFile,
@@ -5362,19 +4414,9 @@ final _ReadFileEx = _kernel32.lookupFunction<
 
 /// Reads data from a file and stores it in an array of buffers.
 ///
-/// The function starts reading data from the file at a position that is
-/// specified by an OVERLAPPED structure. The ReadFileScatter function operates
-/// asynchronously.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-readfilescatter>.
 ///
-/// ```c
-/// BOOL ReadFileScatter(
-///   [in]      HANDLE                  hFile,
-///   [in]      FILE_SEGMENT_ELEMENT [] aSegmentArray,
-///   [in]      DWORD                   nNumberOfBytesToRead,
-///             LPDWORD                 lpReserved,
-///   [in, out] LPOVERLAPPED            lpOverlapped
-/// );
-/// ```
 /// {@category kernel32}
 int ReadFileScatter(int hFile, Pointer<FILE_SEGMENT_ELEMENT> aSegmentArray,
         int nNumberOfBytesToRead, Pointer<OVERLAPPED> lpOverlapped) =>
@@ -5395,22 +4437,13 @@ final _ReadFileScatter = _kernel32.lookupFunction<
         Pointer<Uint32> lpReserved,
         Pointer<OVERLAPPED> lpOverlapped)>('ReadFileScatter');
 
-/// ReadProcessMemory copies the data in the specified address range from the
-/// address space of the specified process into the specified buffer of the
-/// current process.
+/// Reads data from an area of memory in a specified process.
 ///
-/// Any process that has a handle with PROCESS_VM_READ access can call the
-/// function.
+/// The entire area to be read must be accessible or the operation fails.
 ///
-/// ```c
-/// BOOL ReadProcessMemory(
-///   HANDLE  hProcess,
-///   LPCVOID lpBaseAddress,
-///   LPVOID  lpBuffer,
-///   SIZE_T  nSize,
-///   SIZE_T  *lpNumberOfBytesRead
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-readprocessmemory>.
+///
 /// {@category kernel32}
 int ReadProcessMemory(int hProcess, Pointer lpBaseAddress, Pointer lpBuffer,
         int nSize, Pointer<IntPtr>? lpNumberOfBytesRead) =>
@@ -5423,14 +4456,11 @@ final _ReadProcessMemory = _kernel32.lookupFunction<
     int Function(int hProcess, Pointer lpBaseAddress, Pointer lpBuffer,
         int nSize, Pointer<IntPtr> lpNumberOfBytesRead)>('ReadProcessMemory');
 
-/// The ReleaseActCtx function decrements the reference count of the specified
-/// activation context.
+/// Decrements the reference count of the specified activation context.
 ///
-/// ```c
-/// void ReleaseActCtx(
-///   HANDLE hActCtx
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-releaseactctx>.
+///
 /// {@category kernel32}
 void ReleaseActCtx(int hActCtx) => _ReleaseActCtx(hActCtx);
 
@@ -5439,11 +4469,9 @@ final _ReleaseActCtx = _kernel32.lookupFunction<Void Function(HANDLE hActCtx),
 
 /// Deletes an existing empty directory.
 ///
-/// ```c
-/// BOOL RemoveDirectoryW(
-///   LPCWSTR lpPathName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-removedirectoryw>.
+///
 /// {@category kernel32}
 int RemoveDirectory(Pointer<Utf16> lpPathName) => _RemoveDirectory(lpPathName);
 
@@ -5454,11 +4482,9 @@ final _RemoveDirectory = _kernel32.lookupFunction<
 /// Removes a directory that was added to the process DLL search path by using
 /// AddDllDirectory.
 ///
-/// ```c
-/// BOOL RemoveDllDirectory(
-///   [in] DLL_DIRECTORY_COOKIE Cookie
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory>.
+///
 /// {@category kernel32}
 int RemoveDllDirectory(Pointer cookie) => _RemoveDllDirectory(cookie);
 
@@ -5469,13 +4495,9 @@ final _RemoveDllDirectory = _kernel32.lookupFunction<
 /// Reopens the specified file system object with different access rights,
 /// sharing mode, and flags.
 ///
-/// ```c
-/// HANDLE ReOpenFile(
-///   HANDLE hOriginalFile,
-///   DWORD  dwDesiredAccess,
-///   DWORD  dwShareMode,
-///   DWORD  dwFlagsAndAttributes);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-reopenfile>.
+///
 /// {@category kernel32}
 int ReOpenFile(int hOriginalFile, int dwDesiredAccess, int dwShareMode,
         int dwFlagsAndAttributes) =>
@@ -5490,11 +4512,9 @@ final _ReOpenFile = _kernel32.lookupFunction<
 
 /// Sets the specified event object to the nonsignaled state.
 ///
-/// ```c
-/// BOOL ResetEvent(
-///   HANDLE hEvent
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-resetevent>.
+///
 /// {@category kernel32}
 int ResetEvent(int hEvent) => _ResetEvent(hEvent);
 
@@ -5503,12 +4523,9 @@ final _ResetEvent = _kernel32.lookupFunction<BOOL Function(HANDLE hEvent),
 
 /// Resizes the internal buffers for a pseudoconsole to the given size.
 ///
-/// ```c
-/// HRESULT ResizePseudoConsole(
-///   _In_ HPCON hPC ,
-///   _In_ COORD size
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/resizepseudoconsole>.
+///
 /// {@category kernel32}
 int ResizePseudoConsole(int hPC, COORD size) => _ResizePseudoConsole(hPC, size);
 
@@ -5518,19 +4535,9 @@ final _ResizePseudoConsole = _kernel32.lookupFunction<
 
 /// Moves a block of data in a screen buffer.
 ///
-/// The effects of the move can be limited by specifying a clipping rectangle,
-/// so the contents of the console screen buffer outside the clipping rectangle
-/// are unchanged.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/scrollconsolescreenbuffer>.
 ///
-/// ```c
-/// BOOL ScrollConsoleScreenBufferW(
-///   _In_           HANDLE     hConsoleOutput,
-///   _In_     const SMALL_RECT *lpScrollRectangle,
-///   _In_opt_ const SMALL_RECT *lpClipRectangle,
-///   _In_           COORD      dwDestinationOrigin,
-///   _In_     const CHAR_INFO  *lpFill
-/// );
-/// ```
 /// {@category kernel32}
 int ScrollConsoleScreenBuffer(
         int hConsoleOutput,
@@ -5559,11 +4566,9 @@ final _ScrollConsoleScreenBuffer = _kernel32.lookupFunction<
 /// places the transmission line in a break state until the ClearCommBreak
 /// function is called.
 ///
-/// ```c
-/// BOOL SetCommBreak(
-///   HANDLE hFile
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setcommbreak>.
+///
 /// {@category kernel32}
 int SetCommBreak(int hFile) => _SetCommBreak(hFile);
 
@@ -5572,13 +4577,9 @@ final _SetCommBreak = _kernel32.lookupFunction<BOOL Function(HANDLE hFile),
 
 /// Sets the current configuration of a communications device.
 ///
-/// ```c
-/// BOOL SetCommConfig(
-///   HANDLE       hCommDev,
-///   LPCOMMCONFIG lpCC,
-///   DWORD        dwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setcommconfig>.
+///
 /// {@category kernel32}
 int SetCommConfig(int hCommDev, Pointer<COMMCONFIG> lpCC, int dwSize) =>
     _SetCommConfig(hCommDev, lpCC, dwSize);
@@ -5590,12 +4591,9 @@ final _SetCommConfig = _kernel32.lookupFunction<
 
 /// Specifies a set of events to be monitored for a communications device.
 ///
-/// ```c
-/// BOOL SetCommMask(
-///   HANDLE hFile,
-///   DWORD  dwEvtMask
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setcommmask>.
+///
 /// {@category kernel32}
 int SetCommMask(int hFile, int dwEvtMask) => _SetCommMask(hFile, dwEvtMask);
 
@@ -5609,12 +4607,9 @@ final _SetCommMask = _kernel32.lookupFunction<
 /// The function reinitializes all hardware and control settings, but it does
 /// not empty output or input queues.
 ///
-/// ```c
-/// BOOL SetCommState(
-///   HANDLE hFile,
-///   LPDCB  lpDCB
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setcommstate>.
+///
 /// {@category kernel32}
 int SetCommState(int hFile, Pointer<DCB> lpDCB) => _SetCommState(hFile, lpDCB);
 
@@ -5625,12 +4620,9 @@ final _SetCommState = _kernel32.lookupFunction<
 /// Sets the time-out parameters for all read and write operations on a
 /// specified communications device.
 ///
-/// ```c
-/// BOOL SetCommTimeouts(
-///   HANDLE         hFile,
-///   LPCOMMTIMEOUTS lpCommTimeouts
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setcommtimeouts>.
+///
 /// {@category kernel32}
 int SetCommTimeouts(int hFile, Pointer<COMMTIMEOUTS> lpCommTimeouts) =>
     _SetCommTimeouts(hFile, lpCommTimeouts);
@@ -5643,12 +4635,9 @@ final _SetCommTimeouts = _kernel32.lookupFunction<
 /// Adds or removes an application-defined HandlerRoutine function from the list
 /// of handler functions for the calling process.
 ///
-/// ```c
-/// BOOL SetConsoleCtrlHandler(
-///   _In_opt_ PHANDLER_ROUTINE HandlerRoutine,
-///   _In_     BOOL             Add
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsolectrlhandler>.
+///
 /// {@category kernel32}
 int SetConsoleCtrlHandler(
         Pointer<NativeFunction<PHANDLER_ROUTINE>>? handlerRoutine, int add) =>
@@ -5663,12 +4652,9 @@ final _SetConsoleCtrlHandler = _kernel32.lookupFunction<
 /// Sets the size and visibility of the cursor for the specified console screen
 /// buffer.
 ///
-/// ```c
-/// BOOL SetConsoleCursorInfo(
-///   _In_       HANDLE              hConsoleOutput,
-///   _In_ const CONSOLE_CURSOR_INFO *lpConsoleCursorInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsolecursorinfo>.
+///
 /// {@category kernel32}
 int SetConsoleCursorInfo(
         int hConsoleOutput, Pointer<CONSOLE_CURSOR_INFO> lpConsoleCursorInfo) =>
@@ -5683,12 +4669,9 @@ final _SetConsoleCursorInfo = _kernel32.lookupFunction<
 
 /// Sets the cursor position in the specified console screen buffer.
 ///
-/// ```c
-/// BOOL SetConsoleCursorPosition(
-///   _In_ HANDLE hConsoleOutput,
-///   _In_ COORD  dwCursorPosition
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsolecursorposition>.
+///
 /// {@category kernel32}
 int SetConsoleCursorPosition(int hConsoleOutput, COORD dwCursorPosition) =>
     _SetConsoleCursorPosition(hConsoleOutput, dwCursorPosition);
@@ -5700,13 +4683,9 @@ final _SetConsoleCursorPosition = _kernel32.lookupFunction<
 
 /// Sets the display mode of the specified console screen buffer.
 ///
-/// ```c
-/// BOOL SetConsoleDisplayMode(
-///   _In_      HANDLE hConsoleOutput,
-///   _In_      DWORD  dwFlags,
-///   _Out_opt_ PCOORD lpNewScreenBufferDimensions
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsoledisplaymode>.
+///
 /// {@category kernel32}
 int SetConsoleDisplayMode(int hConsoleOutput, int dwFlags,
         Pointer<COORD>? lpNewScreenBufferDimensions) =>
@@ -5722,12 +4701,9 @@ final _SetConsoleDisplayMode = _kernel32.lookupFunction<
 /// Sets the input mode of a console's input buffer or the output mode of a
 /// console screen buffer.
 ///
-/// ```c
-/// BOOL SetConsoleMode(
-///   _In_ HANDLE hConsoleHandle,
-///   _In_ DWORD  dwMode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsolemode>.
+///
 /// {@category kernel32}
 int SetConsoleMode(int hConsoleHandle, int dwMode) =>
     _SetConsoleMode(hConsoleHandle, dwMode);
@@ -5740,14 +4716,9 @@ final _SetConsoleMode = _kernel32.lookupFunction<
 /// the WriteFile or WriteConsole function, or echoed by the ReadFile or
 /// ReadConsole function.
 ///
-/// This function affects text written after the function call.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsoletextattribute>.
 ///
-/// ```c
-/// BOOL SetConsoleTextAttribute(
-///   _In_ HANDLE hConsoleOutput,
-///   _In_ WORD   wAttributes
-/// );
-/// ```
 /// {@category kernel32}
 int SetConsoleTextAttribute(int hConsoleOutput, int wAttributes) =>
     _SetConsoleTextAttribute(hConsoleOutput, wAttributes);
@@ -5759,13 +4730,9 @@ final _SetConsoleTextAttribute = _kernel32.lookupFunction<
 
 /// Sets the current size and position of a console screen buffer's window.
 ///
-/// ```c
-/// BOOL SetConsoleWindowInfo(
-///   _In_       HANDLE     hConsoleOutput,
-///   _In_       BOOL       bAbsolute,
-///   _In_ const SMALL_RECT *lpConsoleWindow
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setconsolewindowinfo>.
+///
 /// {@category kernel32}
 int SetConsoleWindowInfo(int hConsoleOutput, int bAbsolute,
         Pointer<SMALL_RECT> lpConsoleWindow) =>
@@ -5779,11 +4746,9 @@ final _SetConsoleWindowInfo = _kernel32.lookupFunction<
 
 /// Changes the current directory for the current process.
 ///
-/// ```c
-/// BOOL SetCurrentDirectoryW(
-///   LPCTSTR lpPathName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setcurrentdirectory>.
+///
 /// {@category kernel32}
 int SetCurrentDirectory(Pointer<Utf16> lpPathName) =>
     _SetCurrentDirectory(lpPathName);
@@ -5794,13 +4759,9 @@ final _SetCurrentDirectory = _kernel32.lookupFunction<
 
 /// Sets the default configuration for a communications device.
 ///
-/// ```c
-/// BOOL SetDefaultCommConfigW(
-///   LPCWSTR      lpszName,
-///   LPCOMMCONFIG lpCC,
-///   DWORD        dwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setdefaultcommconfigw>.
+///
 /// {@category kernel32}
 int SetDefaultCommConfig(
         Pointer<Utf16> lpszName, Pointer<COMMCONFIG> lpCC, int dwSize) =>
@@ -5818,11 +4779,9 @@ final _SetDefaultCommConfig = _kernel32.lookupFunction<
 /// This search path is used when LoadLibraryEx is called with no
 /// LOAD_LIBRARY_SEARCH flags.
 ///
-/// ```c
-/// BOOL SetDefaultDllDirectories(
-///   [in] DWORD DirectoryFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-setdefaultdlldirectories>.
+///
 /// {@category kernel32}
 int SetDefaultDllDirectories(int directoryFlags) =>
     _SetDefaultDllDirectories(directoryFlags);
@@ -5834,11 +4793,9 @@ final _SetDefaultDllDirectories = _kernel32.lookupFunction<
 /// Sets the physical file size for the specified file to the current position
 /// of the file pointer.
 ///
-/// ```c
-/// BOOL SetEndOfFile(
-///   [in] HANDLE hFile
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setendoffile>.
+///
 /// {@category kernel32}
 int SetEndOfFile(int hFile) => _SetEndOfFile(hFile);
 
@@ -5848,12 +4805,9 @@ final _SetEndOfFile = _kernel32.lookupFunction<BOOL Function(HANDLE hFile),
 /// Sets the contents of the specified environment variable for the current
 /// process.
 ///
-/// ```c
-/// BOOL SetEnvironmentVariableW(
-///   LPCWSTR lpName,
-///   LPCWSTR lpValue
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processenv/nf-processenv-setenvironmentvariablew>.
+///
 /// {@category kernel32}
 int SetEnvironmentVariable(Pointer<Utf16> lpName, Pointer<Utf16>? lpValue) =>
     _SetEnvironmentVariable(lpName, lpValue ?? nullptr);
@@ -5863,13 +4817,12 @@ final _SetEnvironmentVariable = _kernel32.lookupFunction<
     int Function(Pointer<Utf16> lpName,
         Pointer<Utf16> lpValue)>('SetEnvironmentVariableW');
 
-/// Sets the specified event object to the signaled state.
+/// Controls whether the system will handle the specified types of serious
+/// errors or whether the process will handle them.
 ///
-/// ```c
-/// UINT SetErrorMode(
-///   UINT uMode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-seterrormode>.
+///
 /// {@category kernel32}
 int SetErrorMode(int uMode) => _SetErrorMode(uMode);
 
@@ -5878,11 +4831,9 @@ final _SetErrorMode = _kernel32.lookupFunction<Uint32 Function(Uint32 uMode),
 
 /// Sets the specified event object to the signaled state.
 ///
-/// ```c
-/// BOOL SetEvent(
-///   HANDLE hEvent
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-setevent>.
+///
 /// {@category kernel32}
 int SetEvent(int hEvent) => _SetEvent(hEvent);
 
@@ -5892,9 +4843,9 @@ final _SetEvent = _kernel32.lookupFunction<BOOL Function(HANDLE hEvent),
 /// Causes the file I/O functions to use the ANSI character set code page for
 /// the current process.
 ///
-/// ```c
-/// void SetFileApisToANSI();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfileapistoansi>.
+///
 /// {@category kernel32}
 void SetFileApisToANSI() => _SetFileApisToANSI();
 
@@ -5904,9 +4855,9 @@ final _SetFileApisToANSI = _kernel32
 /// Causes the file I/O functions for the process to use the OEM character set
 /// code page.
 ///
-/// ```c
-/// void SetFileApisToOEM();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfileapistooem>.
+///
 /// {@category kernel32}
 void SetFileApisToOEM() => _SetFileApisToOEM();
 
@@ -5915,12 +4866,9 @@ final _SetFileApisToOEM = _kernel32
 
 /// Sets the attributes for a file or directory.
 ///
-/// ```c
-/// BOOL SetFileAttributesW(
-///   [in] LPCWSTR lpFileName,
-///   [in] DWORD   dwFileAttributes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfileattributesw>.
+///
 /// {@category kernel32}
 int SetFileAttributes(Pointer<Utf16> lpFileName, int dwFileAttributes) =>
     _SetFileAttributes(lpFileName, dwFileAttributes);
@@ -5932,14 +4880,9 @@ final _SetFileAttributes = _kernel32.lookupFunction<
 
 /// Sets the file information for the specified file.
 ///
-/// ```c
-/// BOOL SetFileInformationByHandle(
-///   [in] HANDLE                    hFile,
-///   [in] FILE_INFO_BY_HANDLE_CLASS FileInformationClass,
-///   [in] LPVOID                    lpFileInformation,
-///   [in] DWORD                     dwBufferSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfileinformationbyhandle>.
+///
 /// {@category kernel32}
 int SetFileInformationByHandle(int hFile, int fileInformationClass,
         Pointer lpFileInformation, int dwBufferSize) =>
@@ -5954,18 +4897,9 @@ final _SetFileInformationByHandle = _kernel32.lookupFunction<
 
 /// Associates a virtual address range with the specified file handle.
 ///
-/// This indicates that the kernel should optimize any further asynchronous I/O
-/// requests with overlapped structures inside this range. The overlapped range
-/// is locked in memory, and then unlocked when the file is closed. After a
-/// range is associated with a file handle, it cannot be disassociated.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfileiooverlappedrange>.
 ///
-/// ```c
-/// BOOL SetFileIoOverlappedRange(
-///   [in] HANDLE FileHandle,
-///   [in] PUCHAR OverlappedRangeStart,
-///   [in] ULONG  Length
-/// );
-/// ```
 /// {@category kernel32}
 int SetFileIoOverlappedRange(
         int fileHandle, Pointer<Uint8> overlappedRangeStart, int length) =>
@@ -5979,14 +4913,9 @@ final _SetFileIoOverlappedRange = _kernel32.lookupFunction<
 
 /// Moves the file pointer of the specified file.
 ///
-/// ```c
-/// DWORD SetFilePointer(
-///   HANDLE hFile,
-///   LONG   lDistanceToMove,
-///   PLONG  lpDistanceToMoveHigh,
-///   DWORD  dwMoveMethod
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfilepointer>.
+///
 /// {@category kernel32}
 int SetFilePointer(int hFile, int lDistanceToMove,
         Pointer<Int32>? lpDistanceToMoveHigh, int dwMoveMethod) =>
@@ -6004,14 +4933,9 @@ final _SetFilePointer = _kernel32.lookupFunction<
 
 /// Moves the file pointer of the specified file.
 ///
-/// ```c
-/// BOOL SetFilePointerEx(
-///   HANDLE         hFile,
-///   LARGE_INTEGER  liDistanceToMove,
-///   PLARGE_INTEGER lpNewFilePointer,
-///   DWORD          dwMoveMethod
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfilepointerex>.
+///
 /// {@category kernel32}
 int SetFilePointerEx(int hFile, int liDistanceToMove,
         Pointer<Int64>? lpNewFilePointer, int dwMoveMethod) =>
@@ -6026,13 +4950,9 @@ final _SetFilePointerEx = _kernel32.lookupFunction<
 
 /// Sets the short name for the specified file.
 ///
-/// The file must be on an NTFS file system volume.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setfileshortnamew>.
 ///
-/// ```c
-/// BOOL SetFileShortNameW(
-///   HANDLE  hFile,
-///   LPCWSTR lpShortName);
-/// ```
 /// {@category kernel32}
 int SetFileShortName(int hFile, Pointer<Utf16> lpShortName) =>
     _SetFileShortName(hFile, lpShortName);
@@ -6045,12 +4965,9 @@ final _SetFileShortName = _kernel32.lookupFunction<
 ///
 /// This function is useful in very limited scenarios.
 ///
-/// ```c
-/// BOOL SetFileValidData(
-///   [in] HANDLE   hFile,
-///   [in] LONGLONG ValidDataLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-setfilevaliddata>.
+///
 /// {@category kernel32}
 int SetFileValidData(int hFile, int validDataLength) =>
     _SetFileValidData(hFile, validDataLength);
@@ -6061,14 +4978,9 @@ final _SetFileValidData = _kernel32.lookupFunction<
 
 /// Sets the value of the specified firmware environment variable.
 ///
-/// ```c
-/// BOOL SetFirmwareEnvironmentVariableW(
-///   LPCWSTR lpName,
-///   LPCWSTR lpGuid,
-///   PVOID   pValue,
-///   DWORD   nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setfirmwareenvironmentvariablew>.
+///
 /// {@category kernel32}
 int SetFirmwareEnvironmentVariable(Pointer<Utf16> lpName, Pointer<Utf16> lpGuid,
         Pointer? pValue, int nSize) =>
@@ -6083,15 +4995,9 @@ final _SetFirmwareEnvironmentVariable = _kernel32.lookupFunction<
 /// Sets the value of the specified firmware environment variable and the
 /// attributes that indicate how this variable is stored and maintained.
 ///
-/// ```c
-/// BOOL SetFirmwareEnvironmentVariableExW(
-///   LPCWSTR lpName,
-///   LPCWSTR lpGuid,
-///   PVOID   pValue,
-///   DWORD   nSize,
-///   DWORD   dwAttributes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setfirmwareenvironmentvariableexw>.
+///
 /// {@category kernel32}
 int SetFirmwareEnvironmentVariableEx(Pointer<Utf16> lpName,
         Pointer<Utf16> lpGuid, Pointer? pValue, int nSize, int dwAttributes) =>
@@ -6106,13 +5012,9 @@ final _SetFirmwareEnvironmentVariableEx = _kernel32.lookupFunction<
 
 /// Sets certain properties of an object handle.
 ///
-/// ```c
-/// BOOL SetHandleInformation(
-///   HANDLE hObject,
-///   DWORD  dwMask,
-///   DWORD  dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/handleapi/nf-handleapi-sethandleinformation>.
+///
 /// {@category kernel32}
 int SetHandleInformation(int hObject, int dwMask, int dwFlags) =>
     _SetHandleInformation(hObject, dwMask, dwFlags);
@@ -6123,14 +5025,9 @@ final _SetHandleInformation = _kernel32.lookupFunction<
 
 /// Sets limits for a job object.
 ///
-/// ```c
-/// BOOL SetInformationJobObject(
-///   [in] HANDLE             hJob,
-///   [in] JOBOBJECTINFOCLASS JobObjectInformationClass,
-///   [in] LPVOID             lpJobObjectInformation,
-///   [in] DWORD              cbJobObjectInformationLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-setinformationjobobject>.
+///
 /// {@category kernel32}
 int SetInformationJobObject(int hJob, int jobObjectInformationClass,
         Pointer lpJobObjectInformation, int cbJobObjectInformationLength) =>
@@ -6148,12 +5045,9 @@ final _SetInformationJobObject = _kernel32.lookupFunction<
 
 /// Sets I/O limits on a job object.
 ///
-/// ```c
-/// DWORD SetIoRateControlInformationJobObject(
-///   [in] HANDLE                                hJob,
-///   [in] JOBOBJECT_IO_RATE_CONTROL_INFORMATION *IoRateControlInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-setioratecontrolinformationjobobject>.
+///
 /// {@category kernel32}
 int SetIoRateControlInformationJobObject(int hJob,
         Pointer<JOBOBJECT_IO_RATE_CONTROL_INFORMATION> ioRateControlInfo) =>
@@ -6172,13 +5066,9 @@ final _SetIoRateControlInformationJobObject = _kernel32.lookupFunction<
 /// named pipe server process is on a remote computer, the function can also be
 /// used to control local buffering.
 ///
-/// ```c
-/// BOOL SetNamedPipeHandleState(
-///   HANDLE  hNamedPipe,
-///   LPDWORD lpMode,
-///   LPDWORD lpMaxCollectionCount,
-///   LPDWORD lpCollectDataTimeout);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-setnamedpipehandlestate>.
+///
 /// {@category kernel32}
 int SetNamedPipeHandleState(
         int hNamedPipe,
@@ -6202,12 +5092,9 @@ final _SetNamedPipeHandleState = _kernel32.lookupFunction<
 
 /// Sets a processor affinity mask for the threads of the specified process.
 ///
-/// ```c
-/// BOOL SetProcessAffinityMask(
-///   HANDLE    hProcess,
-///   DWORD_PTR dwProcessAffinityMask
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setprocessaffinitymask>.
+///
 /// {@category kernel32}
 int SetProcessAffinityMask(int hProcess, int dwProcessAffinityMask) =>
     _SetProcessAffinityMask(hProcess, dwProcessAffinityMask);
@@ -6220,12 +5107,9 @@ final _SetProcessAffinityMask = _kernel32.lookupFunction<
 /// Disables or enables the ability of the system to temporarily boost the
 /// priority of the threads of the specified process.
 ///
-/// ```c
-/// BOOL SetProcessPriorityBoost(
-///   HANDLE hProcess,
-///   BOOL   bDisablePriorityBoost
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-setprocesspriorityboost>.
+///
 /// {@category kernel32}
 int SetProcessPriorityBoost(int hProcess, int bDisablePriorityBoost) =>
     _SetProcessPriorityBoost(hProcess, bDisablePriorityBoost);
@@ -6237,13 +5121,9 @@ final _SetProcessPriorityBoost = _kernel32.lookupFunction<
 
 /// Sets the minimum and maximum working set sizes for the specified process.
 ///
-/// ```c
-/// BOOL SetProcessWorkingSetSize(
-///   HANDLE hProcess,
-///   SIZE_T dwMinimumWorkingSetSize,
-///   SIZE_T dwMaximumWorkingSetSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-setprocessworkingsetsize>.
+///
 /// {@category kernel32}
 int SetProcessWorkingSetSize(int hProcess, int dwMinimumWorkingSetSize,
         int dwMaximumWorkingSetSize) =>
@@ -6259,12 +5139,9 @@ final _SetProcessWorkingSetSize = _kernel32.lookupFunction<
 /// Sets the handle for the specified standard device (standard input, standard
 /// output, or standard error).
 ///
-/// ```c
-/// BOOL SetStdHandle(
-///   _In_ DWORD  nStdHandle,
-///   _In_ HANDLE hHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/setstdhandle>.
+///
 /// {@category kernel32}
 int SetStdHandle(int nStdHandle, int hHandle) =>
     _SetStdHandle(nStdHandle, hHandle);
@@ -6275,12 +5152,9 @@ final _SetStdHandle = _kernel32.lookupFunction<
 
 /// Sets a processor affinity mask for the specified thread.
 ///
-/// ```c
-/// DWORD_PTR SetThreadAffinityMask(
-///   HANDLE    hThread,
-///   DWORD_PTR dwThreadAffinityMask
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setthreadaffinitymask>.
+///
 /// {@category kernel32}
 int SetThreadAffinityMask(int hThread, int dwThreadAffinityMask) =>
     _SetThreadAffinityMask(hThread, dwThreadAffinityMask);
@@ -6293,12 +5167,9 @@ final _SetThreadAffinityMask = _kernel32.lookupFunction<
 /// Controls whether the system will handle the specified types of serious
 /// errors or whether the calling thread will handle them.
 ///
-/// ```c
-/// BOOL SetThreadErrorMode(
-///   DWORD   dwNewMode,
-///   LPDWORD lpOldMode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/errhandlingapi/nf-errhandlingapi-setthreaderrormode>.
+///
 /// {@category kernel32}
 int SetThreadErrorMode(int dwNewMode, Pointer<Uint32>? lpOldMode) =>
     _SetThreadErrorMode(dwNewMode, lpOldMode ?? nullptr);
@@ -6312,11 +5183,9 @@ final _SetThreadErrorMode = _kernel32.lookupFunction<
 /// preventing the system from entering sleep or turning off the display while
 /// the application is running.
 ///
-/// ```c
-/// EXECUTION_STATE SetThreadExecutionState(
-///   EXECUTION_STATE esFlags
-///   );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate>.
+///
 /// {@category kernel32}
 int SetThreadExecutionState(int esFlags) => _SetThreadExecutionState(esFlags);
 
@@ -6326,11 +5195,9 @@ final _SetThreadExecutionState = _kernel32.lookupFunction<
 
 /// Sets the user interface language for the current thread.
 ///
-/// ```c
-/// LANGID SetThreadUILanguage(
-///   LANGID LangId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnls/nf-winnls-setthreaduilanguage>.
+///
 /// {@category kernel32}
 int SetThreadUILanguage(int langId) => _SetThreadUILanguage(langId);
 
@@ -6341,13 +5208,9 @@ final _SetThreadUILanguage = _kernel32.lookupFunction<
 /// Initializes the communications parameters for a specified communications
 /// device.
 ///
-/// ```c
-/// BOOL SetupComm(
-///   HANDLE hFile,
-///   DWORD  dwInQueue,
-///   DWORD  dwOutQueue
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setupcomm>.
+///
 /// {@category kernel32}
 int SetupComm(int hFile, int dwInQueue, int dwOutQueue) =>
     _SetupComm(hFile, dwInQueue, dwOutQueue);
@@ -6358,11 +5221,9 @@ final _SetupComm = _kernel32.lookupFunction<
 
 /// Sets the label of a file system volume.
 ///
-/// ```c
-/// BOOL SetVolumeLabelW(
-///   LPCWSTR lpRootPathName,
-///   LPCWSTR lpVolumeName);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-setvolumelabelw>.
+///
 /// {@category kernel32}
 int SetVolumeLabel(
         Pointer<Utf16>? lpRootPathName, Pointer<Utf16>? lpVolumeName) =>
@@ -6375,12 +5236,9 @@ final _SetVolumeLabel = _kernel32.lookupFunction<
 
 /// Retrieves the size, in bytes, of the specified resource.
 ///
-/// ```c
-/// DWORD SizeofResource(
-///   [in, optional] HMODULE hModule,
-///   [in]           HRSRC   hResInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/libloaderapi/nf-libloaderapi-sizeofresource>.
+///
 /// {@category kernel32}
 int SizeofResource(int? hModule, int hResInfo) =>
     _SizeofResource(hModule ?? 0, hResInfo);
@@ -6392,11 +5250,9 @@ final _SizeofResource = _kernel32.lookupFunction<
 /// Suspends the execution of the current thread until the time-out interval
 /// elapses.
 ///
-/// ```c
-/// void Sleep(
-///   DWORD dwMilliseconds
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-sleep>.
+///
 /// {@category kernel32}
 void Sleep(int dwMilliseconds) => _Sleep(dwMilliseconds);
 
@@ -6405,16 +5261,9 @@ final _Sleep = _kernel32.lookupFunction<Void Function(Uint32 dwMilliseconds),
 
 /// Suspends the current thread until the specified condition is met.
 ///
-/// Execution resumes when one of the following occurs: (i) an I/O completion
-/// callback function is called; (ii) an asynchronous procedure call (APC) is
-/// queued to the thread; (iii) the time-out interval elapses.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-sleepex>.
 ///
-/// ```c
-/// DWORD SleepEx(
-///   DWORD dwMilliseconds,
-///   BOOL  bAlertable
-/// );
-/// ```
 /// {@category kernel32}
 int SleepEx(int dwMilliseconds, int bAlertable) =>
     _SleepEx(dwMilliseconds, bAlertable);
@@ -6427,12 +5276,9 @@ final _SleepEx = _kernel32.lookupFunction<
 ///
 /// System time is based on Coordinated Universal Time (UTC).
 ///
-/// ```c
-/// BOOL SystemTimeToFileTime(
-///   const SYSTEMTIME *lpSystemTime,
-///   LPFILETIME       lpFileTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/timezoneapi/nf-timezoneapi-systemtimetofiletime>.
+///
 /// {@category kernel32}
 int SystemTimeToFileTime(
         Pointer<SYSTEMTIME> lpSystemTime, Pointer<FILETIME> lpFileTime) =>
@@ -6446,15 +5292,9 @@ final _SystemTimeToFileTime = _kernel32.lookupFunction<
 
 /// Terminates all processes currently associated with the job.
 ///
-/// If the job is nested, this function terminates all processes currently
-/// associated with the job and all of its child jobs in the hierarchy.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/jobapi2/nf-jobapi2-terminatejobobject>.
 ///
-/// ```c
-/// BOOL TerminateJobObject(
-///   [in] HANDLE hJob,
-///   [in] UINT   uExitCode
-/// );
-/// ```
 /// {@category kernel32}
 int TerminateJobObject(int hJob, int uExitCode) =>
     _TerminateJobObject(hJob, uExitCode);
@@ -6465,11 +5305,9 @@ final _TerminateJobObject = _kernel32.lookupFunction<
 
 /// Terminates the specified process and all of its threads.
 ///
-/// ```c
-/// BOOL TerminateProcess(
-///   HANDLE hProcess,
-///   UINT   uExitCode);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess>.
+///
 /// {@category kernel32}
 int TerminateProcess(int hProcess, int uExitCode) =>
     _TerminateProcess(hProcess, uExitCode);
@@ -6480,12 +5318,9 @@ final _TerminateProcess = _kernel32.lookupFunction<
 
 /// Terminates a thread.
 ///
-/// ```c
-/// BOOL TerminateThread(
-///   HANDLE hThread,
-///   DWORD  dwExitCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminatethread>.
+///
 /// {@category kernel32}
 int TerminateThread(int hThread, int dwExitCode) =>
     _TerminateThread(hThread, dwExitCode);
@@ -6495,18 +5330,11 @@ final _TerminateThread = _kernel32.lookupFunction<
     int Function(int hThread, int dwExitCode)>('TerminateThread');
 
 /// Combines the functions that write a message to and read a message from the
-/// specified named pipe into a single network operation.
+/// specified named pipe into a single operation.
 ///
-/// ```c
-/// BOOL TransactNamedPipe(
-///   HANDLE       hNamedPipe,
-///   LPVOID       lpInBuffer,
-///   DWORD        nInBufferSize,
-///   LPVOID       lpOutBuffer,
-///   DWORD        nOutBufferSize,
-///   LPDWORD      lpBytesRead,
-///   LPOVERLAPPED lpOverlapped);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-transactnamedpipe>.
+///
 /// {@category kernel32}
 int TransactNamedPipe(
         int hNamedPipe,
@@ -6546,12 +5374,9 @@ final _TransactNamedPipe = _kernel32.lookupFunction<
 /// Transmits a specified character ahead of any pending data in the output
 /// buffer of the specified communications device.
 ///
-/// ```c
-/// BOOL TransmitCommChar(
-///   HANDLE hFile,
-///   char   cChar
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-transmitcommchar>.
+///
 /// {@category kernel32}
 int TransmitCommChar(int hFile, int cChar) => _TransmitCommChar(hFile, cChar);
 
@@ -6561,17 +5386,9 @@ final _TransmitCommChar = _kernel32.lookupFunction<
 
 /// Unlocks a region in an open file.
 ///
-/// Unlocking a region enables other processes to access the region.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-unlockfile>.
 ///
-/// ```c
-/// BOOL UnlockFile(
-///   [in] HANDLE hFile,
-///   [in] DWORD  dwFileOffsetLow,
-///   [in] DWORD  dwFileOffsetHigh,
-///   [in] DWORD  nNumberOfBytesToUnlockLow,
-///   [in] DWORD  nNumberOfBytesToUnlockHigh
-/// );
-/// ```
 /// {@category kernel32}
 int UnlockFile(int hFile, int dwFileOffsetLow, int dwFileOffsetHigh,
         int nNumberOfBytesToUnlockLow, int nNumberOfBytesToUnlockHigh) =>
@@ -6592,15 +5409,9 @@ final _UnlockFile = _kernel32.lookupFunction<
 ///
 /// This function can operate either synchronously or asynchronously.
 ///
-/// ```c
-/// BOOL UnlockFileEx(
-///   [in]      HANDLE       hFile,
-///             DWORD        dwReserved,
-///   [in]      DWORD        nNumberOfBytesToUnlockLow,
-///   [in]      DWORD        nNumberOfBytesToUnlockHigh,
-///   [in, out] LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-unlockfileex>.
+///
 /// {@category kernel32}
 int UnlockFileEx(int hFile, int nNumberOfBytesToUnlockLow,
         int nNumberOfBytesToUnlockHigh, Pointer<OVERLAPPED> lpOverlapped) =>
@@ -6624,17 +5435,9 @@ final _UnlockFileEx = _kernel32.lookupFunction<
 /// Updates the specified attribute in a list of attributes for process and
 /// thread creation.
 ///
-/// ```c
-/// BOOL UpdateProcThreadAttribute(
-///   LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList,
-///   DWORD                        dwFlags,
-///   DWORD_PTR                    Attribute,
-///   PVOID                        lpValue,
-///   SIZE_T                       cbSize,
-///   PVOID                        lpPreviousValue,
-///   PSIZE_T                      lpReturnSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute>.
+///
 /// {@category kernel32}
 int UpdateProcThreadAttribute(
         LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList,
@@ -6673,16 +5476,9 @@ final _UpdateProcThreadAttribute = _kernel32.lookupFunction<
 
 /// Adds, deletes, or replaces a resource in a portable executable (PE) file.
 ///
-/// ```c
-/// BOOL UpdateResourceW(
-///   HANDLE  hUpdate,
-///   LPCWSTR lpType,
-///   LPCWSTR lpName,
-///   WORD    wLanguage,
-///   LPVOID  lpData,
-///   DWORD   cb
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-updateresourcew>.
+///
 /// {@category kernel32}
 int UpdateResource(int hUpdate, Pointer<Utf16> lpType, Pointer<Utf16> lpName,
         int wLanguage, Pointer? lpData, int cb) =>
@@ -6697,15 +5493,9 @@ final _UpdateResource = _kernel32.lookupFunction<
 /// Compares a set of operating system version requirements to the corresponding
 /// values for the currently running version of the system.
 ///
-/// This function is subject to manifest-based behavior.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-verifyversioninfow>.
 ///
-/// ```c
-/// BOOL VerifyVersionInfoW(
-///   [in] LPOSVERSIONINFOEXW lpVersionInformation,
-///   [in] DWORD              dwTypeMask,
-///   [in] DWORDLONG          dwlConditionMask
-/// );
-/// ```
 /// {@category kernel32}
 int VerifyVersionInfo(Pointer<OSVERSIONINFOEX> lpVersionInformation,
         int dwTypeMask, int dwlConditionMask) =>
@@ -6720,13 +5510,9 @@ final _VerifyVersionInfo = _kernel32.lookupFunction<
 /// Retrieves a description string for the language associated with a specified
 /// binary Microsoft language identifier.
 ///
-/// ```c
-/// DWORD VerLanguageNameW(
-///   DWORD  wLang,
-///   LPWSTR szLang,
-///   DWORD  cchLang
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-verlanguagenamew>.
+///
 /// {@category kernel32}
 int VerLanguageName(int wLang, Pointer<Utf16> szLang, int cchLang) =>
     _VerLanguageName(wLang, szLang, cchLang);
@@ -6742,13 +5528,9 @@ final _VerLanguageName = _kernel32.lookupFunction<
 /// This function is used to build the dwlConditionMask parameter of the
 /// VerifyVersionInfo function.
 ///
-/// ```c
-/// ULONGLONG VerSetConditionMask(
-/// [in] ULONGLONG ConditionMask,
-/// [in] DWORD     TypeMask,
-/// [in] BYTE      Condition
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winnt/nf-winnt-versetconditionmask>.
+///
 /// {@category kernel32}
 int VerSetConditionMask(int conditionMask, int typeMask, int condition) =>
     _VerSetConditionMask(conditionMask, typeMask, condition);
@@ -6761,16 +5543,9 @@ final _VerSetConditionMask = _kernel32.lookupFunction<
 /// Reserves, commits, or changes the state of a region of pages in the virtual
 /// address space of the calling process.
 ///
-/// Memory allocated by this function is automatically initialized to zero.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc>.
 ///
-/// ```c
-/// LPVOID VirtualAlloc(
-///   LPVOID lpAddress,
-///   SIZE_T dwSize,
-///   DWORD  flAllocationType,
-///   DWORD  flProtect
-/// );
-/// ```
 /// {@category kernel32}
 Pointer VirtualAlloc(
         Pointer? lpAddress, int dwSize, int flAllocationType, int flProtect) =>
@@ -6787,15 +5562,9 @@ final _VirtualAlloc = _kernel32.lookupFunction<
 ///
 /// The function initializes the memory it allocates to zero.
 ///
-/// ```c
-/// LPVOID VirtualAllocEx(
-///   HANDLE hProcess,
-///   LPVOID lpAddress,
-///   SIZE_T dwSize,
-///   DWORD  flAllocationType,
-///   DWORD  flProtect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex>.
+///
 /// {@category kernel32}
 Pointer VirtualAllocEx(int hProcess, Pointer? lpAddress, int dwSize,
         int flAllocationType, int flProtect) =>
@@ -6811,13 +5580,9 @@ final _VirtualAllocEx = _kernel32.lookupFunction<
 /// Releases, decommits, or releases and decommits a region of pages within the
 /// virtual address space of the calling process.
 ///
-/// ```c
-/// BOOL VirtualFree(
-///   LPVOID lpAddress,
-///   SIZE_T dwSize,
-///   DWORD  dwFreeType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualfree>.
+///
 /// {@category kernel32}
 int VirtualFree(Pointer lpAddress, int dwSize, int dwFreeType) =>
     _VirtualFree(lpAddress, dwSize, dwFreeType);
@@ -6829,14 +5594,9 @@ final _VirtualFree = _kernel32.lookupFunction<
 /// Releases, decommits, or releases and decommits a region of memory within the
 /// virtual address space of a specified process.
 ///
-/// ```c
-/// BOOL VirtualFreeEx(
-///   HANDLE hProcess,
-///   LPVOID lpAddress,
-///   SIZE_T dwSize,
-///   DWORD  dwFreeType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualfreeex>.
+///
 /// {@category kernel32}
 int VirtualFreeEx(
         int hProcess, Pointer lpAddress, int dwSize, int dwFreeType) =>
@@ -6852,12 +5612,9 @@ final _VirtualFreeEx = _kernel32.lookupFunction<
 /// physical memory, ensuring that subsequent access to the region will not
 /// incur a page fault.
 ///
-/// ```c
-/// BOOL VirtualLock(
-///   LPVOID lpAddress,
-///   SIZE_T dwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtuallock>.
+///
 /// {@category kernel32}
 int VirtualLock(Pointer lpAddress, int dwSize) =>
     _VirtualLock(lpAddress, dwSize);
@@ -6869,13 +5626,9 @@ final _VirtualLock = _kernel32.lookupFunction<
 /// Retrieves information about a range of pages in the virtual address space of
 /// the calling process.
 ///
-/// ```c
-/// SIZE_T VirtualQuery(
-///   LPCVOID lpAddress,
-///   PMEMORY_BASIC_INFORMATION lpBuffer,
-///   SIZE_T dwLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualquery>.
+///
 /// {@category kernel32}
 int VirtualQuery(Pointer? lpAddress, Pointer<MEMORY_BASIC_INFORMATION> lpBuffer,
         int dwLength) =>
@@ -6890,14 +5643,9 @@ final _VirtualQuery = _kernel32.lookupFunction<
 /// Retrieves information about a range of pages within the virtual address
 /// space of a specified process.
 ///
-/// ```c
-/// SIZE_T VirtualQueryEx(
-///   HANDLE hProcess,
-///   LPCVOID lpAddress,
-///   PMEMORY_BASIC_INFORMATION lpBuffer,
-///   SIZE_T dwLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualqueryex>.
+///
 /// {@category kernel32}
 int VirtualQueryEx(int hProcess, Pointer? lpAddress,
         Pointer<MEMORY_BASIC_INFORMATION> lpBuffer, int dwLength) =>
@@ -6916,12 +5664,9 @@ final _VirtualQueryEx = _kernel32.lookupFunction<
 /// process, enabling the system to swap the pages out to the paging file if
 /// necessary.
 ///
-/// ```c
-/// BOOL VirtualUnlock(
-///   LPVOID lpAddress,
-///   SIZE_T dwSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-virtualunlock>.
+///
 /// {@category kernel32}
 int VirtualUnlock(Pointer lpAddress, int dwSize) =>
     _VirtualUnlock(lpAddress, dwSize);
@@ -6935,13 +5680,9 @@ final _VirtualUnlock = _kernel32.lookupFunction<
 /// The set of events that are monitored by this function is contained in the
 /// event mask associated with the device handle.
 ///
-/// ```c
-/// BOOL WaitCommEvent(
-///   HANDLE       hFile,
-///   LPDWORD      lpEvtMask,
-///   LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-waitcommevent>.
+///
 /// {@category kernel32}
 int WaitCommEvent(int hFile, Pointer<Uint32> lpEvtMask,
         Pointer<OVERLAPPED>? lpOverlapped) =>
@@ -6956,12 +5697,9 @@ final _WaitCommEvent = _kernel32.lookupFunction<
 /// Waits until the specified object is in the signaled state or the time-out
 /// interval elapses.
 ///
-/// ```c
-/// DWORD WaitForSingleObject(
-///   HANDLE hHandle,
-///   DWORD  dwMilliseconds
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject>.
+///
 /// {@category kernel32}
 int WaitForSingleObject(int hHandle, int dwMilliseconds) =>
     _WaitForSingleObject(hHandle, dwMilliseconds);
@@ -6972,20 +5710,9 @@ final _WaitForSingleObject = _kernel32.lookupFunction<
 
 /// Maps a UTF-16 (wide character) string to a new character string.
 ///
-/// The new character string is not necessarily from a multibyte character set.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte>.
 ///
-/// ```c
-/// int WideCharToMultiByte(
-///   UINT   CodePage,
-///   DWORD  dwFlags,
-///   LPCWCH lpWideCharStr,
-///   int    cchWideChar,
-///   LPSTR  lpMultiByteStr,
-///   int    cbMultiByte,
-///   LPCCH  lpDefaultChar,
-///   LPBOOL lpUsedDefaultChar
-/// );
-/// ```
 /// {@category kernel32}
 int WideCharToMultiByte(
         int codePage,
@@ -7028,11 +5755,9 @@ final _WideCharToMultiByte = _kernel32.lookupFunction<
 
 /// Suspends the specified WOW64 thread.
 ///
-/// ```c
-/// DWORD Wow64SuspendThread(
-///   HANDLE hThread
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-wow64suspendthread>.
+///
 /// {@category kernel32}
 int Wow64SuspendThread(int hThread) => _Wow64SuspendThread(hThread);
 
@@ -7043,15 +5768,9 @@ final _Wow64SuspendThread = _kernel32.lookupFunction<
 /// Writes a character string to a console screen buffer beginning at the
 /// current cursor location.
 ///
-/// ```c
-/// BOOL WriteConsoleW(
-///   _In_             HANDLE  hConsoleOutput,
-///   _In_       const VOID    *lpBuffer,
-///   _In_             DWORD   nNumberOfCharsToWrite,
-///   _Out_opt_        LPDWORD lpNumberOfCharsWritten,
-///   _Reserved_       LPVOID  lpReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/console/writeconsole>.
+///
 /// {@category kernel32}
 int WriteConsole(int hConsoleOutput, Pointer lpBuffer,
         int nNumberOfCharsToWrite, Pointer<Uint32>? lpNumberOfCharsWritten) =>
@@ -7074,15 +5793,9 @@ final _WriteConsole = _kernel32.lookupFunction<
 
 /// Writes data to the specified file or input/output (I/O) device.
 ///
-/// ```c
-/// BOOL WriteFile(
-///   HANDLE       hFile,
-///   LPCVOID      lpBuffer,
-///   DWORD        nNumberOfBytesToWrite,
-///   LPDWORD      lpNumberOfBytesWritten,
-///   LPOVERLAPPED lpOverlapped
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-writefile>.
+///
 /// {@category kernel32}
 int WriteFile(
         int hFile,
@@ -7113,15 +5826,9 @@ final _WriteFile = _kernel32.lookupFunction<
 /// completion routine when writing is completed or canceled and the calling
 /// thread is in an alertable wait state.
 ///
-/// ```c
-/// BOOL WriteFileEx(
-///   [in]           HANDLE                          hFile,
-///   [in, optional] LPCVOID                         lpBuffer,
-///   [in]           DWORD                           nNumberOfBytesToWrite,
-///   [in, out]      LPOVERLAPPED                    lpOverlapped,
-///   [in]           LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-writefileex>.
+///
 /// {@category kernel32}
 int WriteFileEx(
         int hFile,
@@ -7151,19 +5858,9 @@ final _WriteFileEx = _kernel32.lookupFunction<
 
 /// Retrieves data from an array of buffers and writes the data to a file.
 ///
-/// The function starts writing data to the file at a position that is specified
-/// by an OVERLAPPED structure. The WriteFileGather function operates
-/// asynchronously.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/fileapi/nf-fileapi-writefilegather>.
 ///
-/// ```c
-/// BOOL WriteFileGather(
-///   [in]      HANDLE                  hFile,
-///   [in]      FILE_SEGMENT_ELEMENT [] aSegmentArray,
-///   [in]      DWORD                   nNumberOfBytesToWrite,
-///             LPDWORD                 lpReserved,
-///   [in, out] LPOVERLAPPED            lpOverlapped
-/// );
-/// ```
 /// {@category kernel32}
 int WriteFileGather(int hFile, Pointer<FILE_SEGMENT_ELEMENT> aSegmentArray,
         int nNumberOfBytesToWrite, Pointer<OVERLAPPED> lpOverlapped) =>
@@ -7188,15 +5885,9 @@ final _WriteFileGather = _kernel32.lookupFunction<
 ///
 /// The entire area to be written to must be accessible or the operation fails.
 ///
-/// ```c
-/// BOOL WriteProcessMemory(
-///   HANDLE  hProcess,
-///   LPVOID  lpBaseAddress,
-///   LPCVOID lpBuffer,
-///   SIZE_T  nSize,
-///   SIZE_T  *lpNumberOfBytesWritten
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory>.
+///
 /// {@category kernel32}
 int WriteProcessMemory(int hProcess, Pointer lpBaseAddress, Pointer lpBuffer,
         int nSize, Pointer<IntPtr>? lpNumberOfBytesWritten) =>

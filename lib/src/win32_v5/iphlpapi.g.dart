@@ -19,18 +19,11 @@ import '../types.dart';
 
 final _iphlpapi = DynamicLibrary.open('iphlpapi.dll');
 
-/// The AddIPAddress function adds the specified IPv4 address to the specified
-/// adapter.
+/// Adds the specified IPv4 address to the specified adapter.
 ///
-/// ```c
-/// DWORD AddIPAddress(
-///   IPAddr Address,
-///   IPMask IpMask,
-///   DWORD  IfIndex,
-///   PULONG NTEContext,
-///   PULONG NTEInstance
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-addipaddress>.
+///
 /// {@category iphlpapi}
 int AddIPAddress(int address, int ipMask, int ifIndex,
         Pointer<Uint32> nTEContext, Pointer<Uint32> nTEInstance) =>
@@ -46,16 +39,12 @@ final _AddIPAddress = _iphlpapi.lookupFunction<
         Pointer<Uint32> nTEContext,
         Pointer<Uint32> nTEInstance)>('AddIPAddress');
 
-/// The ConvertInterfaceGuidToLuid function converts a globally unique
-/// identifier (GUID) for a network interface to the locally unique identifier
-/// (LUID) for the interface.
+/// Converts a globally unique identifier (GUID) for a network interface to the
+/// locally unique identifier (LUID) for the interface.
 ///
-/// ```c
-/// ConvertInterfaceGuidToLuid(
-///   [in]  const GUID *InterfaceGuid,
-///   [out] PNET_LUID  InterfaceLuid
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/netioapi/nf-netioapi-convertinterfaceguidtoluid>.
+///
 /// {@category iphlpapi}
 int ConvertInterfaceGuidToLuid(
         Pointer<GUID> interfaceGuid, Pointer<NET_LUID_LH> interfaceLuid) =>
@@ -67,14 +56,11 @@ final _ConvertInterfaceGuidToLuid = _iphlpapi.lookupFunction<
     int Function(Pointer<GUID> interfaceGuid,
         Pointer<NET_LUID_LH> interfaceLuid)>('ConvertInterfaceGuidToLuid');
 
-/// The DeleteIPAddress function deletes an IP address previously added using
-/// AddIPAddress.
+/// Deletes an IP address previously added using AddIPAddress.
 ///
-/// ```c
-/// DWORD DeleteIPAddress(
-///   ULONG NTEContext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-deleteipaddress>.
+///
 /// {@category iphlpapi}
 int DeleteIPAddress(int nTEContext) => _DeleteIPAddress(nTEContext);
 
@@ -82,15 +68,11 @@ final _DeleteIPAddress = _iphlpapi.lookupFunction<
     Uint32 Function(Uint32 nTEContext),
     int Function(int nTEContext)>('DeleteIPAddress');
 
-/// The GetAdapterIndex function obtains the index of an adapter, given its
-/// name.
+/// Obtains the index of an adapter, given its name.
 ///
-/// ```c
-/// DWORD GetAdapterIndex(
-///   LPWSTR AdapterName,
-///   PULONG IfIndex
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-getadapterindex>.
+///
 /// {@category iphlpapi}
 int GetAdapterIndex(Pointer<Utf16> adapterName, Pointer<Uint32> ifIndex) =>
     _GetAdapterIndex(adapterName, ifIndex);
@@ -100,18 +82,11 @@ final _GetAdapterIndex = _iphlpapi.lookupFunction<
     int Function(Pointer<Utf16> adapterName,
         Pointer<Uint32> ifIndex)>('GetAdapterIndex');
 
-/// The GetAdaptersAddresses function retrieves the addresses associated with
-/// the adapters on the local computer.
+/// Retrieves the addresses associated with the adapters on the local computer.
 ///
-/// ```c
-/// ULONG GetAdaptersAddresses(
-///   ULONG                 Family,
-///   ULONG                 Flags,
-///   PVOID                 Reserved,
-///   PIP_ADAPTER_ADDRESSES AdapterAddresses,
-///   PULONG                SizePointer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-getadaptersaddresses>.
+///
 /// {@category iphlpapi}
 int GetAdaptersAddresses(
         int family,
@@ -135,15 +110,12 @@ final _GetAdaptersAddresses = _iphlpapi.lookupFunction<
         Pointer<IP_ADAPTER_ADDRESSES_LH> adapterAddresses,
         Pointer<Uint32> sizePointer)>('GetAdaptersAddresses');
 
-/// The GetInterfaceInfo function obtains the list of the network interface
-/// adapters with IPv4 enabled on the local system.
+/// Obtains the list of the network interface adapters with IPv4 enabled on the
+/// local system.
 ///
-/// ```c
-/// DWORD GetInterfaceInfo(
-///   PIP_INTERFACE_INFO pIfTable,
-///   PULONG             dwOutBufLen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-getinterfaceinfo>.
+///
 /// {@category iphlpapi}
 int GetInterfaceInfo(
         Pointer<IP_INTERFACE_INFO>? pIfTable, Pointer<Uint32> dwOutBufLen) =>
@@ -155,16 +127,12 @@ final _GetInterfaceInfo = _iphlpapi.lookupFunction<
     int Function(Pointer<IP_INTERFACE_INFO> pIfTable,
         Pointer<Uint32> dwOutBufLen)>('GetInterfaceInfo');
 
-/// The GetPerAdapterInfo function retrieves information about the adapter
-/// corresponding to the specified interface.
+/// Retrieves information about the adapter corresponding to the specified
+/// interface.
 ///
-/// ```c
-/// DWORD GetPerAdapterInfo(
-///   ULONG                IfIndex,
-///   PIP_PER_ADAPTER_INFO pPerAdapterInfo,
-///   PULONG               pOutBufLen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-getperadapterinfo>.
+///
 /// {@category iphlpapi}
 int GetPerAdapterInfo(
         int ifIndex,
@@ -182,14 +150,12 @@ final _GetPerAdapterInfo = _iphlpapi.lookupFunction<
         Pointer<IP_PER_ADAPTER_INFO_W2KSP1> pPerAdapterInfo,
         Pointer<Uint32> pOutBufLen)>('GetPerAdapterInfo');
 
-/// The IpReleaseAddress function releases an IPv4 address previously obtained
-/// through the Dynamic Host Configuration Protocol (DHCP).
+/// Releases an IPv4 address previously obtained through the Dynamic Host
+/// Configuration Protocol (DHCP).
 ///
-/// ```c
-/// DWORD IpReleaseAddress(
-///   PIP_ADAPTER_INDEX_MAP AdapterInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-ipreleaseaddress>.
+///
 /// {@category iphlpapi}
 int IpReleaseAddress(Pointer<IP_ADAPTER_INDEX_MAP> adapterInfo) =>
     _IpReleaseAddress(adapterInfo);
@@ -199,14 +165,12 @@ final _IpReleaseAddress = _iphlpapi.lookupFunction<
     int Function(
         Pointer<IP_ADAPTER_INDEX_MAP> adapterInfo)>('IpReleaseAddress');
 
-/// The IpRenewAddress function renews a lease on an IPv4 address previously
-/// obtained through Dynamic Host Configuration Protocol (DHCP).
+/// Renews a lease on an IPv4 address previously obtained through Dynamic Host
+/// Configuration Protocol (DHCP).
 ///
-/// ```c
-/// DWORD IpRenewAddress(
-///   PIP_ADAPTER_INDEX_MAP AdapterInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/iphlpapi/nf-iphlpapi-iprenewaddress>.
+///
 /// {@category iphlpapi}
 int IpRenewAddress(Pointer<IP_ADAPTER_INDEX_MAP> adapterInfo) =>
     _IpRenewAddress(adapterInfo);

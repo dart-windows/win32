@@ -21,13 +21,10 @@ final _shlwapi = DynamicLibrary.open('shlwapi.dll');
 
 /// Creates a memory stream using a similar process to CreateStreamOnHGlobal.
 ///
-/// ```c
-/// IStream* SHCreateMemStream(
-///   [in, optional] const BYTE *pInit,
-///   [in]           UINT       cbInit
-/// );
-/// ```
-/// {@category shell32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shlwapi/nf-shlwapi-shcreatememstream>.
+///
+/// {@category shlwapi}
 VTablePointer SHCreateMemStream(Pointer<Uint8>? pInit, int cbInit) =>
     _SHCreateMemStream(pInit ?? nullptr, cbInit);
 

@@ -21,15 +21,9 @@ final _powrprof = DynamicLibrary.open('powrprof.dll');
 
 /// Sets or retrieves power information.
 ///
-/// ```c
-/// NTSTATUS CallNtPowerInformation(
-///   POWER_INFORMATION_LEVEL InformationLevel,
-///   PVOID                   InputBuffer,
-///   ULONG                   InputBufferLength,
-///   PVOID                   OutputBuffer,
-///   ULONG                   OutputBufferLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/powerbase/nf-powerbase-callntpowerinformation>.
+///
 /// {@category powrprof}
 int CallNtPowerInformation(int informationLevel, Pointer? inputBuffer,
         int inputBufferLength, Pointer? outputBuffer, int outputBufferLength) =>

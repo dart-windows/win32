@@ -22,13 +22,9 @@ final _oleaut32 = DynamicLibrary.open('oleaut32.dll');
 /// Converts the MS-DOS representation of time to the date and time
 /// representation stored in a variant.
 ///
-/// ```c
-/// INT DosDateTimeToVariantTime(
-///   USHORT wDosDate,
-///   USHORT wDosTime,
-///   DOUBLE *pvtime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-dosdatetimetovarianttime>.
+///
 /// {@category oleaut32}
 int DosDateTimeToVariantTime(
         int wDosDate, int wDosTime, Pointer<Double> pvtime) =>
@@ -41,13 +37,9 @@ final _DosDateTimeToVariantTime = _oleaut32.lookupFunction<
 
 /// Retrieves a pointer to a running object that has been registered with OLE.
 ///
-/// ```c
-/// HRESULT GetActiveObject(
-///   REFCLSID rclsid,
-///   void     *pvReserved,
-///   IUnknown **ppunk
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-getactiveobject>.
+///
 /// {@category oleaut32}
 int GetActiveObject(Pointer<GUID> rclsid, Pointer<VTablePointer> ppunk) =>
     _GetActiveObject(rclsid, nullptr, ppunk);
@@ -60,11 +52,9 @@ final _GetActiveObject = _oleaut32.lookupFunction<
 
 /// Allocates a new string and copies the passed string into it.
 ///
-/// ```c
-/// BSTR SysAllocString(
-///   const OLECHAR *psz
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysallocstring>.
+///
 /// {@category oleaut32}
 Pointer<Utf16> SysAllocString(Pointer<Utf16>? psz) =>
     _SysAllocString(psz ?? nullptr);
@@ -78,12 +68,9 @@ final _SysAllocString = _oleaut32.lookupFunction<
 ///
 /// Does not perform any ANSI-to-Unicode translation.
 ///
-/// ```c
-/// BSTR SysAllocStringByteLen(
-///   LPCSTR psz,
-///   UINT   len
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysallocstringbytelen>.
+///
 /// {@category oleaut32}
 Pointer<Utf16> SysAllocStringByteLen(Pointer<Utf8>? psz, int len) =>
     _SysAllocStringByteLen(psz ?? nullptr, len);
@@ -96,12 +83,9 @@ final _SysAllocStringByteLen = _oleaut32.lookupFunction<
 /// Allocates a new string, copies the specified number of characters from the
 /// passed string, and appends a null-terminating character.
 ///
-/// ```c
-/// BSTR SysAllocStringLen(
-///   const OLECHAR *strIn,
-///   UINT          ui
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysallocstringlen>.
+///
 /// {@category oleaut32}
 Pointer<Utf16> SysAllocStringLen(Pointer<Utf16>? strIn, int ui) =>
     _SysAllocStringLen(strIn ?? nullptr, ui);
@@ -114,11 +98,9 @@ final _SysAllocStringLen = _oleaut32.lookupFunction<
 /// SysAllocStringByteLen, SysReAllocString, SysAllocStringLen, or
 /// SysReAllocStringLen.
 ///
-/// ```c
-/// void SysFreeString(
-///   BSTR bstrString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysfreestring>.
+///
 /// {@category oleaut32}
 void SysFreeString(Pointer<Utf16>? bstrString) =>
     _SysFreeString(bstrString ?? nullptr);
@@ -130,12 +112,9 @@ final _SysFreeString = _oleaut32.lookupFunction<
 /// Reallocates a previously allocated string to be the size of a second string
 /// and copies the second string into the reallocated memory.
 ///
-/// ```c
-/// INT SysReAllocString(
-///   BSTR          *pbstr,
-///   const OLECHAR *psz
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysreallocstring>.
+///
 /// {@category oleaut32}
 int SysReAllocString(Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16>? psz) =>
     _SysReAllocString(pbstr, psz ?? nullptr);
@@ -148,13 +127,9 @@ final _SysReAllocString = _oleaut32.lookupFunction<
 /// Creates a new BSTR containing a specified number of characters from an old
 /// BSTR, and frees the old BSTR.
 ///
-/// ```c
-/// INT SysReAllocStringLen(
-///   BSTR          *pbstr,
-///   const OLECHAR *psz,
-///   UINT  len
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysreallocstringlen>.
+///
 /// {@category oleaut32}
 int SysReAllocStringLen(
         Pointer<Pointer<Utf16>> pbstr, Pointer<Utf16>? psz, int len) =>
@@ -171,11 +146,9 @@ final _SysReAllocStringLen = _oleaut32.lookupFunction<
 /// When that count reaches 0, the memory for that string is no longer prevented
 /// from being freed.
 ///
-/// ```c
-/// void SysReleaseString(
-/// BSTR bstrString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysreleasestring>.
+///
 /// {@category oleaut32}
 void SysReleaseString(Pointer<Utf16> bstrString) =>
     _SysReleaseString(bstrString);
@@ -186,11 +159,9 @@ final _SysReleaseString = _oleaut32.lookupFunction<
 
 /// Returns the length (in bytes) of a BSTR.
 ///
-/// ```c
-/// UINT SysStringByteLen(
-///   BSTR bstr
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysstringbytelen>.
+///
 /// {@category oleaut32}
 int SysStringByteLen(Pointer<Utf16>? bstr) =>
     _SysStringByteLen(bstr ?? nullptr);
@@ -201,11 +172,9 @@ final _SysStringByteLen = _oleaut32.lookupFunction<
 
 /// Returns the length of a BSTR.
 ///
-/// ```c
-/// UINT SysStringLen(
-///   BSTR pbstr
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-sysstringlen>.
+///
 /// {@category oleaut32}
 int SysStringLen(Pointer<Utf16>? pbstr) => _SysStringLen(pbstr ?? nullptr);
 
@@ -213,15 +182,11 @@ final _SysStringLen = _oleaut32.lookupFunction<
     Uint32 Function(Pointer<Utf16> pbstr),
     int Function(Pointer<Utf16> pbstr)>('SysStringLen');
 
-/// Converts a variant from one type to another.
+/// Concatenates two variants of type BSTR and returns the resulting BSTR.
 ///
-/// ```c
-/// HRESULT VarBstrCat(
-///   [in]  BSTR   bstrLeft,
-///   [in]  BSTR   bstrRight,
-///   [out] LPBSTR pbstrResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-varbstrcat>.
+///
 /// {@category oleaut32}
 int VarBstrCat(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight,
         Pointer<Pointer<Utf16>> pbstrResult) =>
@@ -235,14 +200,9 @@ final _VarBstrCat = _oleaut32.lookupFunction<
 
 /// Compares two variants of type BSTR.
 ///
-/// ```c
-/// HRESULT VarBstrCmp(
-///   [in] BSTR  bstrLeft,
-///   [in] BSTR  bstrRight,
-///   [in] LCID  lcid,
-///   [in] ULONG dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-varbstrcmp>.
+///
 /// {@category oleaut32}
 int VarBstrCmp(Pointer<Utf16> bstrLeft, Pointer<Utf16> bstrRight, int lcid,
         int dwFlags) =>
@@ -256,14 +216,9 @@ final _VarBstrCmp = _oleaut32.lookupFunction<
 
 /// Converts a variant from one type to another.
 ///
-/// ```c
-/// HRESULT VariantChangeType(
-///   VARIANTARG       *pvargDest,
-///   const VARIANTARG *pvarSrc,
-///   USHORT           wFlags,
-///   VARTYPE          vt
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-variantchangetype>.
+///
 /// {@category oleaut32}
 int VariantChangeType(Pointer<VARIANT> pvargDest, Pointer<VARIANT> pvarSrc,
         int wFlags, int vt) =>
@@ -277,11 +232,9 @@ final _VariantChangeType = _oleaut32.lookupFunction<
 
 /// Clears a variant.
 ///
-/// ```c
-/// HRESULT VariantClear(
-///   VARIANTARG *pvarg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-variantclear>.
+///
 /// {@category oleaut32}
 int VariantClear(Pointer<VARIANT> pvarg) => _VariantClear(pvarg);
 
@@ -291,12 +244,9 @@ final _VariantClear = _oleaut32.lookupFunction<
 
 /// Frees the destination variant and makes a copy of the source variant.
 ///
-/// ```c
-/// HRESULT VariantCopy(
-///   VARIANTARG       *pvargDest,
-///   const VARIANTARG *pvargSrc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-variantcopy>.
+///
 /// {@category oleaut32}
 int VariantCopy(Pointer<VARIANT> pvargDest, Pointer<VARIANT> pvargSrc) =>
     _VariantCopy(pvargDest, pvargSrc);
@@ -308,11 +258,9 @@ final _VariantCopy = _oleaut32.lookupFunction<
 
 /// Initializes a variant.
 ///
-/// ```c
-/// void VariantInit(
-///   VARIANTARG *pvarg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-variantinit>.
+///
 /// {@category oleaut32}
 void VariantInit(Pointer<VARIANT> pvarg) => _VariantInit(pvarg);
 
@@ -323,13 +271,9 @@ final _VariantInit = _oleaut32.lookupFunction<
 /// Converts the variant representation of a date and time to MS-DOS date and
 /// time values.
 ///
-/// ```c
-/// INT VariantTimeToDosDateTime(
-///   DOUBLE vtime,
-///   USHORT *pwDosDate,
-///   USHORT *pwDosTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-varianttimetodosdatetime>.
+///
 /// {@category oleaut32}
 int VariantTimeToDosDateTime(
         double vtime, Pointer<Uint16> pwDosDate, Pointer<Uint16> pwDosTime) =>
@@ -343,12 +287,9 @@ final _VariantTimeToDosDateTime = _oleaut32.lookupFunction<
 
 /// Converts the variant representation of time to system time values.
 ///
-/// ```c
-/// INT VariantTimeToSystemTime(
-///   DOUBLE       vtime,
-///   LPSYSTEMTIME lpSystemTime
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/oleauto/nf-oleauto-varianttimetosystemtime>.
+///
 /// {@category oleaut32}
 int VariantTimeToSystemTime(double vtime, Pointer<SYSTEMTIME> lpSystemTime) =>
     _VariantTimeToSystemTime(vtime, lpSystemTime);

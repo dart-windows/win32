@@ -19,24 +19,11 @@ import '../types.dart';
 
 final _crypt32 = DynamicLibrary.open('crypt32.dll');
 
-/// The CryptProtectData function performs encryption on the data in a DATA_BLOB
-/// structure.
+/// Performs encryption on the data in a DATA_BLOB structure.
 ///
-/// Typically, only a user with the same logon credential as the user who
-/// encrypted the data can decrypt the data. In addition, the encryption and
-/// decryption usually must be done on the same computer.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/nf-dpapi-cryptprotectdata>.
 ///
-/// ```c
-/// BOOL CryptProtectData(
-///   [in]           DATA_BLOB                 *pDataIn,
-///   [in, optional] LPCWSTR                   szDataDescr,
-///   [in, optional] DATA_BLOB                 *pOptionalEntropy,
-///   [in]           PVOID                     pvReserved,
-///   [in, optional] CRYPTPROTECT_PROMPTSTRUCT *pPromptStruct,
-///   [in]           DWORD                     dwFlags,
-///   [out]          DATA_BLOB                 *pDataOut
-/// );
-/// ```
 /// {@category crypt32}
 int CryptProtectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
@@ -72,21 +59,12 @@ final _CryptProtectData = _crypt32.lookupFunction<
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut)>('CryptProtectData');
 
-/// The CryptProtectMemory function encrypts memory to prevent others from
-/// viewing sensitive information in your process.
+/// Encrypts memory to prevent others from viewing sensitive information in your
+/// process.
 ///
-/// For example, use the CryptProtectMemory function to encrypt memory that
-/// contains a password. Encrypting the password prevents others from viewing it
-/// when the process is paged out to the swap file. Otherwise, the password is
-/// in plaintext and viewable by others.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/nf-dpapi-cryptprotectmemory>.
 ///
-/// ```c
-/// BOOL CryptProtectMemory(
-///   [in, out] LPVOID pDataIn,
-///   [in]      DWORD  cbDataIn,
-///   [in]      DWORD  dwFlags
-/// );
-/// ```
 /// {@category crypt32}
 int CryptProtectMemory(Pointer pDataIn, int cbDataIn, int dwFlags) =>
     _CryptProtectMemory(pDataIn, cbDataIn, dwFlags);
@@ -96,24 +74,11 @@ final _CryptProtectMemory = _crypt32.lookupFunction<
     int Function(
         Pointer pDataIn, int cbDataIn, int dwFlags)>('CryptProtectMemory');
 
-/// The CryptUnprotectData function decrypts and does an integrity check of the
-/// data in a DATA_BLOB structure.
+/// Decrypts and does an integrity check of the data in a DATA_BLOB structure.
 ///
-/// Usually, the only user who can decrypt the data is a user with the same
-/// logon credentials as the user who encrypted the data. In addition, the
-/// encryption and decryption must be done on the same computer.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/nf-dpapi-cryptunprotectdata>.
 ///
-/// ```c
-/// BOOL CryptUnprotectData(
-///   [in]            DATA_BLOB                 *pDataIn,
-///   [out, optional] LPWSTR                    *ppszDataDescr,
-///   [in, optional]  DATA_BLOB                 *pOptionalEntropy,
-///                   PVOID                     pvReserved,
-///   [in, optional]  CRYPTPROTECT_PROMPTSTRUCT *pPromptStruct,
-///   [in]            DWORD                     dwFlags,
-///   [out]           DATA_BLOB                 *pDataOut
-/// );
-/// ```
 /// {@category crypt32}
 int CryptUnprotectData(
         Pointer<CRYPT_INTEGER_BLOB> pDataIn,
@@ -149,16 +114,11 @@ final _CryptUnprotectData = _crypt32.lookupFunction<
         int dwFlags,
         Pointer<CRYPT_INTEGER_BLOB> pDataOut)>('CryptUnprotectData');
 
-/// The CryptUnprotectMemory function decrypts memory that was encrypted using
-/// the CryptProtectMemory function.
+/// Decrypts memory that was encrypted using the CryptProtectMemory function.
 ///
-/// ```c
-/// BOOL CryptUnprotectMemory(
-///   [in, out] LPVOID pDataIn,
-///   [in]      DWORD  cbDataIn,
-///   [in]      DWORD  dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/nf-dpapi-cryptunprotectmemory>.
+///
 /// {@category crypt32}
 int CryptUnprotectMemory(Pointer pDataIn, int cbDataIn, int dwFlags) =>
     _CryptUnprotectMemory(pDataIn, cbDataIn, dwFlags);
@@ -168,21 +128,12 @@ final _CryptUnprotectMemory = _crypt32.lookupFunction<
     int Function(
         Pointer pDataIn, int cbDataIn, int dwFlags)>('CryptUnprotectMemory');
 
-/// The CryptUpdateProtectedState function migrates the current user's master
-/// keys after the user's security identifier (SID) has changed.
+/// Migrates the current user's master keys after the user's security identifier
+/// (SID) has changed.
 ///
-/// This function can be used to preserve encrypted data after a user has been
-/// moved from one domain to another.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dpapi/nf-dpapi-cryptupdateprotectedstate>.
 ///
-/// ```c
-/// BOOL CryptUpdateProtectedState(
-///   [in]  PSID    pOldSid,
-///   [in]  LPCWSTR pwszOldPassword,
-///   [in]  DWORD   dwFlags,
-///   [out] DWORD   *pdwSuccessCount,
-///   [out] DWORD   *pdwFailureCount
-/// );
-/// ```
 /// {@category crypt32}
 int CryptUpdateProtectedState(
         PSID? pOldSid,

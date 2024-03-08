@@ -21,11 +21,9 @@ final _comdlg32 = DynamicLibrary.open('comdlg32.dll');
 
 /// Creates a Color dialog box that enables the user to select a color.
 ///
-/// ```c
-/// BOOL ChooseColorW(
-///   _Inout_ LPCHOOSECOLOR lpcc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/nc-commdlg-choosecolorw>.
+///
 /// {@category comdlg32}
 int ChooseColor(Pointer<CHOOSECOLOR> param0) => _ChooseColor(param0);
 
@@ -36,15 +34,9 @@ final _ChooseColor = _comdlg32.lookupFunction<
 /// Creates a Font dialog box that enables the user to choose attributes for a
 /// logical font.
 ///
-/// These attributes include a font family and associated font style, a point
-/// size, effects (underline, strikeout, and text color), and a script (or
-/// character set).
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/nc-commdlg-choosefontw>.
 ///
-/// ```c
-/// BOOL ChooseFontW(
-///   _Inout_ LPCHOOSEFONT lpcf
-/// );
-/// ```
 /// {@category comdlg32}
 int ChooseFont(Pointer<CHOOSEFONT> param0) => _ChooseFont(param0);
 
@@ -56,11 +48,9 @@ final _ChooseFont = _comdlg32.lookupFunction<
 /// a string to search for and options to use when searching for text in a
 /// document.
 ///
-/// ```c
-/// HWND FindTextW(
-///   LPFINDREPLACEW Arg1
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/nf-commdlg-findtextw>.
+///
 /// {@category comdlg32}
 int FindText(Pointer<FINDREPLACE> param0) => _FindText(param0);
 
@@ -71,11 +61,9 @@ final _FindText = _comdlg32.lookupFunction<
 /// Creates an Open dialog box that lets the user specify the drive, directory,
 /// and the name of a file or set of files to be opened.
 ///
-/// ```c
-/// BOOL GetOpenFileNameW(
-///   LPOPENFILENAMEW Arg1
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/nf-commdlg-getopenfilenamew>.
+///
 /// {@category comdlg32}
 int GetOpenFileName(Pointer<OPENFILENAME> param0) => _GetOpenFileName(param0);
 
@@ -86,11 +74,9 @@ final _GetOpenFileName = _comdlg32.lookupFunction<
 /// Creates a Save dialog box that lets the user specify the drive, directory,
 /// and name of a file to save.
 ///
-/// ```c
-/// BOOL GetSaveFileNameW(
-///   LPOPENFILENAMEW Arg1
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/nf-commdlg-getsavefilenamew>.
+///
 /// {@category comdlg32}
 int GetSaveFileName(Pointer<OPENFILENAME> param0) => _GetSaveFileName(param0);
 
@@ -102,11 +88,9 @@ final _GetSaveFileName = _comdlg32.lookupFunction<
 /// string to search for and a replacement string, as well as options to control
 /// the find and replace operations.
 ///
-/// ```c
-/// HWND ReplaceTextW(
-///   LPFINDREPLACEW Arg1
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commdlg/nf-commdlg-replacetextw>.
+///
 /// {@category comdlg32}
 int ReplaceText(Pointer<FINDREPLACE> param0) => _ReplaceText(param0);
 

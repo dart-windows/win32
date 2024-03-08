@@ -19,14 +19,11 @@ import '../types.dart';
 
 final _setupapi = DynamicLibrary.open('setupapi.dll');
 
-/// The SetupDiDestroyDeviceInfoList function deletes a device information set
-/// and frees all associated memory.
+/// Deletes a device information set and frees all associated memory.
 ///
-/// ```c
-/// BOOL SetupDiDestroyDeviceInfoList(
-///   HDEVINFO DeviceInfoSet
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdidestroydeviceinfolist>.
+///
 /// {@category setupapi}
 int SetupDiDestroyDeviceInfoList(int deviceInfoSet) =>
     _SetupDiDestroyDeviceInfoList(deviceInfoSet);
@@ -35,16 +32,12 @@ final _SetupDiDestroyDeviceInfoList = _setupapi.lookupFunction<
     BOOL Function(HDEVINFO deviceInfoSet),
     int Function(int deviceInfoSet)>('SetupDiDestroyDeviceInfoList');
 
-/// The SetupDiEnumDeviceInfo function returns a SP_DEVINFO_DATA structure that
-/// specifies a device information element in a device information set.
+/// Returns a SP_DEVINFO_DATA structure that specifies a device information
+/// element in a device information set.
 ///
-/// ```c
-/// BOOL SetupDiEnumDeviceInfo(
-///   HDEVINFO         DeviceInfoSet,
-///   DWORD            MemberIndex,
-///   PSP_DEVINFO_DATA DeviceInfoData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinfo>.
+///
 /// {@category setupapi}
 int SetupDiEnumDeviceInfo(int deviceInfoSet, int memberIndex,
         Pointer<SP_DEVINFO_DATA> deviceInfoData) =>
@@ -56,18 +49,12 @@ final _SetupDiEnumDeviceInfo = _setupapi.lookupFunction<
     int Function(int deviceInfoSet, int memberIndex,
         Pointer<SP_DEVINFO_DATA> deviceInfoData)>('SetupDiEnumDeviceInfo');
 
-/// The SetupDiEnumDeviceInterfaces function enumerates the device interfaces
-/// that are contained in a device information set.
+/// Enumerates the device interfaces that are contained in a device information
+/// set.
 ///
-/// ```c
-/// BOOL SetupDiEnumDeviceInterfaces(
-///   [in]           HDEVINFO                  DeviceInfoSet,
-///   [in, optional] PSP_DEVINFO_DATA          DeviceInfoData,
-///   [in]           const GUID                *InterfaceClassGuid,
-///   [in]           DWORD                     MemberIndex,
-///   [out]          PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdienumdeviceinterfaces>.
+///
 /// {@category setupapi}
 int SetupDiEnumDeviceInterfaces(
         int deviceInfoSet,
@@ -93,18 +80,12 @@ final _SetupDiEnumDeviceInterfaces = _setupapi.lookupFunction<
             Pointer<SP_DEVICE_INTERFACE_DATA> deviceInterfaceData)>(
     'SetupDiEnumDeviceInterfaces');
 
-/// The SetupDiGetClassDevs function returns a handle to a device information
-/// set that contains requested device information elements for a local
-/// computer.
+/// Returns a handle to a device information set that contains requested device
+/// information elements for a local computer.
 ///
-/// ```c
-/// HDEVINFO SetupDiGetClassDevsW(
-///   const GUID *ClassGuid,
-///   PCWSTR     Enumerator,
-///   HWND       hwndParent,
-///   DWORD      Flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetclassdevsw>.
+///
 /// {@category setupapi}
 int SetupDiGetClassDevs(Pointer<GUID>? classGuid, Pointer<Utf16>? enumerator,
         int? hwndParent, int flags) =>
@@ -117,18 +98,12 @@ final _SetupDiGetClassDevs = _setupapi.lookupFunction<
     int Function(Pointer<GUID> classGuid, Pointer<Utf16> enumerator,
         int hwndParent, int flags)>('SetupDiGetClassDevsW');
 
-/// The SetupDiGetDeviceInstanceId function retrieves the device instance ID
-/// that is associated with a device information element.
+/// Retrieves the device instance ID that is associated with a device
+/// information element.
 ///
-/// ```c
-/// BOOL SetupDiGetDeviceInstanceIdW(
-///   [in]            HDEVINFO         DeviceInfoSet,
-///   [in]            PSP_DEVINFO_DATA DeviceInfoData,
-///   [out, optional] PWSTR            DeviceInstanceId,
-///   [in]            DWORD            DeviceInstanceIdSize,
-///   [out, optional] PDWORD           RequiredSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinstanceidw>.
+///
 /// {@category setupapi}
 int SetupDiGetDeviceInstanceId(
         int deviceInfoSet,
@@ -157,19 +132,11 @@ final _SetupDiGetDeviceInstanceId = _setupapi.lookupFunction<
         int deviceInstanceIdSize,
         Pointer<Uint32> requiredSize)>('SetupDiGetDeviceInstanceIdW');
 
-/// The SetupDiGetDeviceInterfaceDetail function returns details about a device
-/// interface.
+/// Returns details about a device interface.
 ///
-/// ```c
-/// BOOL SetupDiGetDeviceInterfaceDetailW(
-///   [in]            HDEVINFO                           DeviceInfoSet,
-///   [in]            PSP_DEVICE_INTERFACE_DATA          DeviceInterfaceData,
-///   [out, optional] PSP_DEVICE_INTERFACE_DETAIL_DATA_W DeviceInterfaceDetailData,
-///   [in]            DWORD                              DeviceInterfaceDetailDataSize,
-///   [out, optional] PDWORD                             RequiredSize,
-///   [out, optional] PSP_DEVINFO_DATA                   DeviceInfoData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceinterfacedetailw>.
+///
 /// {@category setupapi}
 int SetupDiGetDeviceInterfaceDetail(
         int deviceInfoSet,
@@ -203,20 +170,11 @@ final _SetupDiGetDeviceInterfaceDetail = _setupapi.lookupFunction<
             Pointer<SP_DEVINFO_DATA> deviceInfoData)>(
     'SetupDiGetDeviceInterfaceDetailW');
 
-/// The SetupDiGetDeviceRegistryProperty function retrieves a specified Plug and
-/// Play device property.
+/// Retrieves a specified Plug and Play device property.
 ///
-/// ```c
-/// BOOL SetupDiGetDeviceRegistryPropertyW(
-///   [in]            HDEVINFO         DeviceInfoSet,
-///   [in]            PSP_DEVINFO_DATA DeviceInfoData,
-///   [in]            DWORD            Property,
-///   [out, optional] PDWORD           PropertyRegDataType,
-///   [out, optional] PBYTE            PropertyBuffer,
-///   [in]            DWORD            PropertyBufferSize,
-///  [out, optional] PDWORD           RequiredSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdigetdeviceregistrypropertyw>.
+///
 /// {@category setupapi}
 int SetupDiGetDeviceRegistryProperty(
         int deviceInfoSet,
@@ -253,19 +211,11 @@ final _SetupDiGetDeviceRegistryProperty = _setupapi.lookupFunction<
         int propertyBufferSize,
         Pointer<Uint32> requiredSize)>('SetupDiGetDeviceRegistryPropertyW');
 
-/// The SetupDiOpenDevRegKey function opens a registry key for device-specific
-/// configuration information.
+/// Opens a registry key for device-specific configuration information.
 ///
-/// ```c
-/// HKEY SetupDiOpenDevRegKey(
-///   HDEVINFO         DeviceInfoSet,
-///   PSP_DEVINFO_DATA DeviceInfoData,
-///   DWORD            Scope,
-///   DWORD            HwProfile,
-///   DWORD            KeyType,
-///   REGSAM           samDesired
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/setupapi/nf-setupapi-setupdiopendevregkey>.
+///
 /// {@category setupapi}
 int SetupDiOpenDevRegKey(
         int deviceInfoSet,

@@ -71,10 +71,16 @@ extension on String {
   // TODO(halildurmus): Refactor this method to use a more efficient approach.
   String sanitize() {
     var string = replaceAll(r'\_', ' ')
-        .replaceAllMapped(
-            RegExp(r'\.([A-Z])'), (match) => '. ${match.group(1)}')
+        .replaceAll(r'B�zier', 'Bézier')
+        .replaceAll(r'�', '—')
+        .replaceAllMapped(RegExp(r'(\w)\.([A-Z])'),
+            (match) => '${match.group(1)}. ${match.group(2)}')
         .replaceFirst(RegExp(r'\.\s\(\w+\)$'), '.')
+        .replaceAll('Note\u{00a0}', '**Note**:')
+        .replaceAll('\u{00a0}', ' ')
         .replaceFirst(RegExp(r'^Deprecated. (IShellService )?'), '')
+        .replaceFirst(RegExp(r'^The IpRenewAddressfunction'),
+            'The IpRenewAddress function')
         .replaceFirst(
             RegExp(
                 r'^A callback function, which you define in your application,'),
@@ -87,10 +93,11 @@ extension on String {
             RegExp(r'^\w+\sfunction\sis\sa\scallback\sfunction\sprototype'),
             'An application-defined callback function')
         .replaceFirst(RegExp(r'^Application-defined'), 'An application-defined')
+        .replaceFirst(RegExp(r'^Is\sused\s'), 'Used ')
         .replaceFirst(RegExp(r'^\w+\s\(\w+(\.h)?\)\sis\s'), '')
         .replaceFirstMapped(
             RegExp(
-                r'^[\w\_\s]+\s(enumeration|function|interface|structure|union)\s(defines|specifies)'),
+                r'^[\w\_\s]+\s(enumeration|function|interface|structure|union)\s(creates|defines|indicates|specifies)'),
             (match) =>
                 match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
         .replaceFirst(
@@ -100,7 +107,7 @@ extension on String {
             '')
         .replaceFirst(
             RegExp(
-              r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(enumeration|function|interface|structure|union)\s(\(\w+(\.h)?\)\s)?(is\s)?(optionally\s)?(type\s)?(values\s)?',
+              r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(macro\s)?(enumeration|function|interface|structure|union)\s(\(\w+(\.h)?\)\s)?(is\s)?(optionally\s)?(type\s)?(values\s)?',
             ),
             '')
         .replaceFirstMapped(
@@ -110,10 +117,9 @@ extension on String {
                 match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
         .replaceFirst(
             RegExp(
-                r'^See\sreference\sinformation\sabout\sthe\s[\w\s\_]+\sstructure,\swhich\s'),
+                r'^See\sreference\sinformation\sabout\sthe\s[\w\s\_]+\s(function|structure),\swhich\s'),
             '')
-        .replaceFirst(
-            RegExp(r'\sFor more information,\ssee\sthe\s[\w\s\_]+.'), '');
+        .replaceFirst(RegExp(r'\sFor more information,\ssee\s[\w\s\_]+.'), '');
     if (string.length > 1) {
       string = string[0].toUpperCase() + string.substring(1);
     }

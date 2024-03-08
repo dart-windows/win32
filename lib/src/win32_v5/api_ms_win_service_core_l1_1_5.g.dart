@@ -23,16 +23,10 @@ final _api_ms_win_service_core_l1_1_5 =
 /// Returns a path for a per-service filesystem location for a service and
 /// associated programs to read and/or write state to.
 ///
-/// ```c
-/// DWORD GetSharedServiceDirectory(
-///   SC_HANDLE                     ServiceHandle,
-///   SERVICE_SHARED_DIRECTORY_TYPE DirectoryType,
-///   PWCHAR                        PathBuffer,
-///   DWORD                         PathBufferLength,
-///   DWORD                         *RequiredBufferLength
-/// );
-/// ```
-/// {@category api_ms_win_service_core_l1_1_5}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-getsharedservicedirectory>.
+///
+/// {@category onecore}
 int GetSharedServiceDirectory(
         int serviceHandle,
         int directoryType,
@@ -60,15 +54,10 @@ final _GetSharedServiceDirectory =
 /// Returns a handle for a registry key for a service and associated programs to
 /// read and/or write state to.
 ///
-/// ```c
-/// DWORD GetSharedServiceRegistryStateKey(
-///   SC_HANDLE                          ServiceHandle,
-///   SERVICE_SHARED_REGISTRY_STATE_TYPE StateType,
-///   DWORD                              AccessMask,
-///   HKEY                               *ServiceStateKey
-/// );
-/// ```
-/// {@category api_ms_win_service_core_l1_1_5}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-getsharedserviceregistrystatekey>.
+///
+/// {@category onecore}
 int GetSharedServiceRegistryStateKey(int serviceHandle, int stateType,
         int accessMask, Pointer<HKEY> serviceStateKey) =>
     _GetSharedServiceRegistryStateKey(

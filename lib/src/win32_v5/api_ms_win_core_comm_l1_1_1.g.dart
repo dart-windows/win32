@@ -22,14 +22,10 @@ final _api_ms_win_core_comm_l1_1_1 =
 
 /// Attempts to open a communication device.
 ///
-/// ```c
-/// HANDLE OpenCommPort(
-///   ULONG uPortNumber,
-///   DWORD dwDesiredAccess,
-///   DWORD dwFlagsAndAttributes
-/// );
-/// ```
-/// {@category kernel32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-opencommport>.
+///
+/// {@category onecore}
 int OpenCommPort(
         int uPortNumber, int dwDesiredAccess, int dwFlagsAndAttributes) =>
     _OpenCommPort(uPortNumber, dwDesiredAccess, dwFlagsAndAttributes);

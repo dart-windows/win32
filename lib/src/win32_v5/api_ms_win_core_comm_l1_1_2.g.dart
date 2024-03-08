@@ -22,14 +22,10 @@ final _api_ms_win_core_comm_l1_1_2 =
 
 /// Gets an array that contains the well-formed COM ports.
 ///
-/// ```c
-/// ULONG GetCommPorts(
-///   PULONG lpPortNumbers,
-///   ULONG  uPortNumbersCount,
-///   PULONG puPortNumbersFound
-/// );
-/// ```
-/// {@category kernel32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winbase/nf-winbase-getcommports>.
+///
+/// {@category onecore}
 int GetCommPorts(Pointer<Uint32> lpPortNumbers, int uPortNumbersCount,
         Pointer<Uint32> puPortNumbersFound) =>
     _GetCommPorts(lpPortNumbers, uPortNumbersCount, puPortNumbersFound);

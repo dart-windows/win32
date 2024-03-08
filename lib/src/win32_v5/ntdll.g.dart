@@ -21,14 +21,9 @@ final _ntdll = DynamicLibrary.open('ntdll.dll');
 
 /// Retrieves the specified system information.
 ///
-/// ```c
-/// NTSTATUS NtQuerySystemInformation(
-///    [in]            SYSTEM_INFORMATION_CLASS SystemInformationClass,
-///    [in, out]       PVOID                    SystemInformation,
-///    [in]            ULONG                    SystemInformationLength,
-///    [out, optional] PULONG                   ReturnLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winternl/nf-winternl-ntquerysysteminformation>.
+///
 /// {@category ntdll}
 int NtQuerySystemInformation(
         int systemInformationClass,

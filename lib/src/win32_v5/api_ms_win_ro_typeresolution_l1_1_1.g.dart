@@ -23,13 +23,9 @@ final _api_ms_win_ro_typeresolution_l1_1_1 =
 /// Returns true or false to indicate whether the API contract with the
 /// specified name and major version number is present.
 ///
-/// ```c
-/// HRESULT RoIsApiContractMajorVersionPresent(
-///   PCWSTR name,
-///   UINT16 majorVersion,
-///   BOOL   *present
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataresolution/nf-rometadataresolution-roisapicontractmajorversionpresent>.
+///
 /// {@category winrt}
 int RoIsApiContractMajorVersionPresent(
         Pointer<Utf16> name, int majorVersion, Pointer<BOOL> present) =>
@@ -45,14 +41,9 @@ final _RoIsApiContractMajorVersionPresent =
 /// Returns true or false to indicate whether the API contract with the
 /// specified name and major and minor version number is present.
 ///
-/// ```c
-/// HRESULT RoIsApiContractPresent(
-///   PCWSTR name,
-///   UINT16 majorVersion,
-///   UINT16 minorVersion,
-///   BOOL   *present
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataresolution/nf-rometadataresolution-roisapicontractpresent>.
+///
 /// {@category winrt}
 int RoIsApiContractPresent(Pointer<Utf16> name, int majorVersion,
         int minorVersion, Pointer<BOOL> present) =>

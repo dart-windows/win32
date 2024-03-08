@@ -1,4 +1,17 @@
 Windows.Win32.Graphics.Gdi.Apis.EnumDisplayMonitors|
+/// Enumerates display monitors (including invisible pseudo-monitors associated
+/// with the mirroring drivers) that intersect a region formed by the
+/// intersection of a specified clipping rectangle and the visible region of a
+/// device context.
+///
+/// EnumDisplayMonitors calls an application-defined MonitorEnumProc callback
+/// function once for each monitor that is enumerated. Note that
+/// GetSystemMetrics (SM_CMONITORS) counts only the display monitors.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors>.
+///
+/// {@category user32}
 int EnumDisplayMonitors(int? hdc, Pointer<RECT>? lprcClip,
         Pointer<NativeFunction<MONITORENUMPROC>> lpfnEnum, int dwData) =>
     _EnumDisplayMonitors(hdc ?? 0, lprcClip ?? nullptr, lpfnEnum, dwData);

@@ -23,11 +23,9 @@ final _netapi32 = DynamicLibrary.open('netapi32.dll');
 /// which contains join information for a tenant and which you retrieved by
 /// calling the NetGetAadJoinInformation function.
 ///
-/// ```c
-/// VOID NET_API_FUNCTION NetFreeAadJoinInformation(
-///   [in, optional] PDSREG_JOIN_INFO pJoinInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/lmjoin/nf-lmjoin-netfreeaadjoininformation>.
+///
 /// {@category netapi32}
 void NetFreeAadJoinInformation(Pointer<DSREG_JOIN_INFO>? pJoinInfo) =>
     _NetFreeAadJoinInformation(pJoinInfo ?? nullptr);
@@ -42,12 +40,9 @@ final _NetFreeAadJoinInformation = _netapi32.lookupFunction<
 /// This function examines the join information for Microsoft Azure Active
 /// Directory and the work account that the current user added.
 ///
-/// ```c
-/// HRESULT NET_API_FUNCTION NetGetAadJoinInformation(
-///   [in, optional] LPCWSTR          pcszTenantId,
-///   [out]          PDSREG_JOIN_INFO *ppJoinInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/lmjoin/nf-lmjoin-netgetaadjoininformation>.
+///
 /// {@category netapi32}
 int NetGetAadJoinInformation(Pointer<Utf16>? pcszTenantId,
         Pointer<Pointer<DSREG_JOIN_INFO>> ppJoinInfo) =>

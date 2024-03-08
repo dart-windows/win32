@@ -19,15 +19,12 @@ import '../types.dart';
 
 final _scarddlg = DynamicLibrary.open('scarddlg.dll');
 
-/// The SCardUIDlgSelectCard function displays the smart card Select Card dialog
-/// box.
+/// Displays the smart card Select Card dialog box.
 ///
-/// ```c
-/// LONG SCardUIDlgSelectCardW(
-///   LPOPENCARDNAMEW_EX unnamedParam1
-/// );
-/// ```
-/// {@category winscard}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winscard/nf-winscard-scarduidlgselectcardw>.
+///
+/// {@category scarddlg}
 int SCardUIDlgSelectCard(Pointer<OPENCARDNAME_EX> param0) =>
     _SCardUIDlgSelectCard(param0);
 

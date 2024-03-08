@@ -25,12 +25,9 @@ final _user32 = DynamicLibrary.open('user32.dll');
 /// The input locale identifier specifies a locale as well as the physical
 /// layout of the keyboard.
 ///
-/// ```c
-/// HKL ActivateKeyboardLayout(
-///   HKL  hkl,
-///   UINT Flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-activatekeyboardlayout>.
+///
 /// {@category user32}
 int ActivateKeyboardLayout(int hkl, int flags) =>
     _ActivateKeyboardLayout(hkl, flags);
@@ -42,11 +39,9 @@ final _ActivateKeyboardLayout = _user32.lookupFunction<
 /// Places the given window in the system-maintained clipboard format listener
 /// list.
 ///
-/// ```c
-/// BOOL AddClipboardFormatListener(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-addclipboardformatlistener>.
+///
 /// {@category user32}
 int AddClipboardFormatListener(int hwnd) => _AddClipboardFormatListener(hwnd);
 
@@ -60,13 +55,9 @@ final _AddClipboardFormatListener =
 /// The window rectangle can then be passed to the CreateWindow function to
 /// create a window whose client area is the desired size.
 ///
-/// ```c
-/// BOOL AdjustWindowRect(
-///   LPRECT lpRect,
-///   DWORD  dwStyle,
-///   BOOL   bMenu
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-adjustwindowrect>.
+///
 /// {@category user32}
 int AdjustWindowRect(Pointer<RECT> lpRect, int dwStyle, int bMenu) =>
     _AdjustWindowRect(lpRect, dwStyle, bMenu);
@@ -82,14 +73,9 @@ final _AdjustWindowRect = _user32.lookupFunction<
 /// The window rectangle can then be passed to the CreateWindowEx function to
 /// create a window whose client area is the desired size.
 ///
-/// ```c
-/// BOOL AdjustWindowRectEx(
-///   LPRECT lpRect,
-///   DWORD  dwStyle,
-///   BOOL   bMenu,
-///   DWORD  dwExStyle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-adjustwindowrectex>.
+///
 /// {@category user32}
 int AdjustWindowRectEx(
         Pointer<RECT> lpRect, int dwStyle, int bMenu, int dwExStyle) =>
@@ -104,18 +90,9 @@ final _AdjustWindowRectEx = _user32.lookupFunction<
 /// Calculates the required size of the window rectangle, based on the desired
 /// size of the client rectangle and the provided DPI.
 ///
-/// This window rectangle can then be passed to the CreateWindowEx function to
-/// create a window with a client area of the desired size.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-adjustwindowrectexfordpi>.
 ///
-/// ```c
-/// BOOL AdjustWindowRectExForDpi(
-///   LPRECT lpRect,
-///   DWORD  dwStyle,
-///   BOOL   bMenu,
-///   DWORD  dwExStyle,
-///   UINT   dpi
-/// );
-/// ```
 /// {@category user32}
 int AdjustWindowRectExForDpi(
         Pointer<RECT> lpRect, int dwStyle, int bMenu, int dwExStyle, int dpi) =>
@@ -132,11 +109,9 @@ final _AdjustWindowRectExForDpi = _user32.lookupFunction<
 ///
 /// The calling process must already be able to set the foreground window.
 ///
-/// ```c
-/// BOOL AllowSetForegroundWindow(
-///   DWORD dwProcessId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-allowsetforegroundwindow>.
+///
 /// {@category user32}
 int AllowSetForegroundWindow(int dwProcessId) =>
     _AllowSetForegroundWindow(dwProcessId);
@@ -150,13 +125,9 @@ final _AllowSetForegroundWindow = _user32.lookupFunction<
 /// There are four types of animation: roll, slide, collapse or expand, and
 /// alpha-blended fade.
 ///
-/// ```c
-/// BOOL AnimateWindow(
-///   HWND  hWnd,
-///   DWORD dwTime,
-///   DWORD dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-animatewindow>.
+///
 /// {@category user32}
 int AnimateWindow(int hWnd, int dwTime, int dwFlags) =>
     _AnimateWindow(hWnd, dwTime, dwFlags);
@@ -171,9 +142,9 @@ final _AnimateWindow = _user32.lookupFunction<
 /// The function searches the entire screen, not just the calling application's
 /// client area.
 ///
-/// ```c
-/// BOOL AnyPopup();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-anypopup>.
+///
 /// {@category user32}
 int AnyPopup() => _AnyPopup();
 
@@ -186,14 +157,9 @@ final _AnyPopup =
 /// You can use this function to specify the content, appearance, and behavior
 /// of the menu item.
 ///
-/// ```c
-/// BOOL AppendMenuW(
-///   HMENU    hMenu,
-///   UINT     uFlags,
-///   UINT_PTR uIDNewItem,
-///   LPCWSTR  lpNewItem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-appendmenuw>.
+///
 /// {@category user32}
 int AppendMenu(
         int hMenu, int uFlags, int uIDNewItem, Pointer<Utf16>? lpNewItem) =>
@@ -207,12 +173,9 @@ final _AppendMenu = _user32.lookupFunction<
 
 /// Determines whether two DPI_AWARENESS_CONTEXT values are identical.
 ///
-/// ```c
-/// BOOL AreDpiAwarenessContextsEqual(
-///   DPI_AWARENESS_CONTEXT dpiContextA,
-///   DPI_AWARENESS_CONTEXT dpiContextB
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-aredpiawarenesscontextsequal>.
+///
 /// {@category user32}
 int AreDpiAwarenessContextsEqual(int dpiContextA, int dpiContextB) =>
     _AreDpiAwarenessContextsEqual(dpiContextA, dpiContextB);
@@ -226,11 +189,9 @@ final _AreDpiAwarenessContextsEqual = _user32.lookupFunction<
 /// Arranges all the minimized (iconic) child windows of the specified parent
 /// window.
 ///
-/// ```c
-/// UINT ArrangeIconicWindows(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-arrangeiconicwindows>.
+///
 /// {@category user32}
 int ArrangeIconicWindows(int hWnd) => _ArrangeIconicWindows(hWnd);
 
@@ -241,13 +202,9 @@ final _ArrangeIconicWindows =
 /// Attaches or detaches the input processing mechanism of one thread to that of
 /// another thread.
 ///
-/// ```c
-/// BOOL AttachThreadInput(
-///   DWORD idAttach,
-///   DWORD idAttachTo,
-///   BOOL  fAttach
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-attachthreadinput>.
+///
 /// {@category user32}
 int AttachThreadInput(int idAttach, int idAttachTo, int fAttach) =>
     _AttachThreadInput(idAttach, idAttachTo, fAttach);
@@ -260,11 +217,9 @@ final _AttachThreadInput = _user32.lookupFunction<
 /// Allocates memory for a multiple-window- position structure and returns the
 /// handle to the structure.
 ///
-/// ```c
-/// HDWP BeginDeferWindowPos(
-///   int nNumWindows
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-begindeferwindowpos>.
+///
 /// {@category user32}
 int BeginDeferWindowPos(int nNumWindows) => _BeginDeferWindowPos(nNumWindows);
 
@@ -272,15 +227,12 @@ final _BeginDeferWindowPos = _user32.lookupFunction<
     HDWP Function(Int32 nNumWindows),
     int Function(int nNumWindows)>('BeginDeferWindowPos');
 
-/// The BeginPaint function prepares the specified window for painting and fills
-/// a PAINTSTRUCT structure with information about the painting.
+/// Prepares the specified window for painting and fills a PAINTSTRUCT structure
+/// with information about the painting.
 ///
-/// ```c
-/// HDC BeginPaint(
-///   HWND          hWnd,
-///   LPPAINTSTRUCT lpPaint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-beginpaint>.
+///
 /// {@category user32}
 int BeginPaint(int hWnd, Pointer<PAINTSTRUCT> lpPaint) =>
     _BeginPaint(hWnd, lpPaint);
@@ -291,10 +243,9 @@ final _BeginPaint = _user32.lookupFunction<
 
 /// Blocks keyboard and mouse input events from reaching applications.
 ///
-/// ```c
-/// BOOL BlockInput(
-///   BOOL fBlockIt);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-blockinput>.
+///
 /// {@category user32}
 int BlockInput(int fBlockIt) => _BlockInput(fBlockIt);
 
@@ -307,11 +258,9 @@ final _BlockInput = _user32.lookupFunction<BOOL Function(BOOL fBlockIt),
 /// child window, the top-level parent window associated with the child window
 /// is activated.
 ///
-/// ```c
-/// BOOL BringWindowToTop(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-bringwindowtotop>.
+///
 /// {@category user32}
 int BringWindowToTop(int hWnd) => _BringWindowToTop(hWnd);
 
@@ -321,18 +270,9 @@ final _BringWindowToTop =
 
 /// Sends a message to the specified recipients.
 ///
-/// The recipients can be applications, installable drivers, network drivers,
-/// system-level device drivers, or any combination of these system components.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-broadcastsystemmessagew>.
 ///
-/// ```c
-/// long BroadcastSystemMessageW(
-///   DWORD   flags,
-///   LPDWORD lpInfo,
-///   UINT    Msg,
-///   WPARAM  wParam,
-///   LPARAM  lParam
-/// );
-/// ```
 /// {@category user32}
 int BroadcastSystemMessage(
         int flags, Pointer<Uint32>? lpInfo, int msg, int wParam, int lParam) =>
@@ -346,19 +286,9 @@ final _BroadcastSystemMessage = _user32.lookupFunction<
 
 /// Sends a message to the specified recipients.
 ///
-/// The recipients can be applications, installable drivers, network drivers,
-/// system-level device drivers, or any combination of these system components.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-broadcastsystemmessageexw>.
 ///
-/// ```c
-/// long BroadcastSystemMessageExW(
-///   DWORD    flags,
-///   LPDWORD  lpInfo,
-///   UINT     Msg,
-///   WPARAM   wParam,
-///   LPARAM   lParam,
-///   PBSMINFO pbsmInfo
-/// );
-/// ```
 /// {@category user32}
 int BroadcastSystemMessageEx(int flags, Pointer<Uint32>? lpInfo, int msg,
         int wParam, int lParam, Pointer<BSMINFO>? pbsmInfo) =>
@@ -374,20 +304,9 @@ final _BroadcastSystemMessageEx = _user32.lookupFunction<
 /// Calculates an appropriate pop-up window position using the specified anchor
 /// point, pop-up window size, flags, and the optional exclude rectangle.
 ///
-/// When the specified pop-up window size is smaller than the desktop window
-/// size, use the CalculatePopupWindowPosition function to ensure that the
-/// pop-up window is fully visible on the desktop window, regardless of the
-/// specified anchor point.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-calculatepopupwindowposition>.
 ///
-/// ```c
-/// BOOL CalculatePopupWindowPosition(
-///   const POINT *anchorPoint,
-///   const SIZE  *windowSize,
-///   UINT        flags,
-///   RECT        *excludeRect,
-///   RECT        *popupWindowPosition
-/// );
-/// ```
 /// {@category user32}
 int CalculatePopupWindowPosition(
         Pointer<POINT> anchorPoint,
@@ -415,16 +334,9 @@ final _CalculatePopupWindowPosition = _user32.lookupFunction<
 /// Passes the specified message and hook code to the hook procedures associated
 /// with the WH_SYSMSGFILTER and WH_MSGFILTER hooks.
 ///
-/// A WH_SYSMSGFILTER or WH_MSGFILTER hook procedure is an application-defined
-/// callback function that examines and, optionally, modifies messages for a
-/// dialog box, message box, menu, or scroll bar.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-callmsgfilterw>.
 ///
-/// ```c
-/// BOOL CallMsgFilterW(
-///   LPMSG lpMsg,
-///   int   nCode
-/// );
-/// ```
 /// {@category user32}
 int CallMsgFilter(Pointer<MSG> lpMsg, int nCode) =>
     _CallMsgFilter(lpMsg, nCode);
@@ -439,14 +351,9 @@ final _CallMsgFilter = _user32.lookupFunction<
 /// A hook procedure can call this function either before or after processing
 /// the hook information.
 ///
-/// ```c
-/// LRESULT CallNextHookEx(
-///   HHOOK  hhk,
-///   int    nCode,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-callnexthookex>.
+///
 /// {@category user32}
 int CallNextHookEx(int? hhk, int nCode, int wParam, int lParam) =>
     _CallNextHookEx(hhk ?? 0, nCode, wParam, lParam);
@@ -457,15 +364,9 @@ final _CallNextHookEx = _user32.lookupFunction<
 
 /// Passes message information to the specified window procedure.
 ///
-/// ```c
-/// LRESULT CallWindowProcW(
-///   WNDPROC lpPrevWndFunc,
-///   HWND    hWnd,
-///   UINT    Msg,
-///   WPARAM  wParam,
-///   LPARAM  lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-callwindowprocw>.
+///
 /// {@category user32}
 int CallWindowProc(Pointer<NativeFunction<WNDPROC>> lpPrevWndFunc, int hWnd,
         int msg, int wParam, int lParam) =>
@@ -479,15 +380,9 @@ final _CallWindowProc = _user32.lookupFunction<
 
 /// Cascades the specified child windows of the specified parent window.
 ///
-/// ```c
-/// WORD CascadeWindows(
-///   HWND       hwndParent,
-///   UINT       wHow,
-///   const RECT *lpRect,
-///   UINT       cKids,
-///   const HWND *lpKids
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-cascadewindows>.
+///
 /// {@category user32}
 int CascadeWindows(int? hwndParent, int wHow, Pointer<RECT>? lpRect, int cKids,
         Pointer<HWND>? lpKids) =>
@@ -502,12 +397,9 @@ final _CascadeWindows = _user32.lookupFunction<
 
 /// Removes a specified window from the chain of clipboard viewers.
 ///
-/// ```c
-/// BOOL ChangeClipboardChain(
-///   HWND hWndRemove,
-///   HWND hWndNewNext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-changeclipboardchain>.
+///
 /// {@category user32}
 int ChangeClipboardChain(int hWndRemove, int hWndNewNext) =>
     _ChangeClipboardChain(hWndRemove, hWndNewNext);
@@ -516,15 +408,12 @@ final _ChangeClipboardChain = _user32.lookupFunction<
     BOOL Function(HWND hWndRemove, HWND hWndNewNext),
     int Function(int hWndRemove, int hWndNewNext)>('ChangeClipboardChain');
 
-/// The ChangeDisplaySettings function changes the settings of the default
-/// display device to the specified graphics mode.
+/// Changes the settings of the default display device to the specified graphics
+/// mode.
 ///
-/// ```c
-/// LONG ChangeDisplaySettingsW(
-///   DEVMODEW *lpDevMode,
-///   DWORD    dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-changedisplaysettingsw>.
+///
 /// {@category user32}
 int ChangeDisplaySettings(Pointer<DEVMODE>? lpDevMode, int dwFlags) =>
     _ChangeDisplaySettings(lpDevMode ?? nullptr, dwFlags);
@@ -534,18 +423,12 @@ final _ChangeDisplaySettings = _user32.lookupFunction<
     int Function(
         Pointer<DEVMODE> lpDevMode, int dwFlags)>('ChangeDisplaySettingsW');
 
-/// The ChangeDisplaySettingsEx function changes the settings of the specified
-/// display device to the specified graphics mode.
+/// Changes the settings of the specified display device to the specified
+/// graphics mode.
 ///
-/// ```c
-/// LONG ChangeDisplaySettingsExW(
-///   LPCWSTR  lpszDeviceName,
-///   DEVMODEW *lpDevMode,
-///   HWND     hwnd,
-///   DWORD    dwflags,
-///   LPVOID   lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-changedisplaysettingsexw>.
+///
 /// {@category user32}
 int ChangeDisplaySettingsEx(Pointer<Utf16>? lpszDeviceName,
         Pointer<DEVMODE>? lpDevMode, int dwflags, Pointer? lParam) =>
@@ -561,12 +444,9 @@ final _ChangeDisplaySettingsEx = _user32.lookupFunction<
 /// Adds or removes a message from the User Interface Privilege Isolation (UIPI)
 /// message filter.
 ///
-/// ```c
-/// BOOL ChangeWindowMessageFilter(
-///   UINT  message,
-///   DWORD dwFlag
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-changewindowmessagefilter>.
+///
 /// {@category user32}
 int ChangeWindowMessageFilter(int message, int dwFlag) =>
     _ChangeWindowMessageFilter(message, dwFlag);
@@ -578,14 +458,9 @@ final _ChangeWindowMessageFilter = _user32.lookupFunction<
 /// Modifies the User Interface Privilege Isolation (UIPI) message filter for a
 /// specified window.
 ///
-/// ```c
-/// BOOL ChangeWindowMessageFilterEx(
-///   HWND                hwnd,
-///   UINT                message,
-///   DWORD               action,
-///   PCHANGEFILTERSTRUCT pChangeFilterStruct
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-changewindowmessagefilterex>.
+///
 /// {@category user32}
 int ChangeWindowMessageFilterEx(int hwnd, int message, int action,
         Pointer<CHANGEFILTERSTRUCT>? pChangeFilterStruct) =>
@@ -601,13 +476,9 @@ final _ChangeWindowMessageFilterEx = _user32.lookupFunction<
 
 /// Changes the check state of a button control.
 ///
-/// ```c
-/// BOOL CheckDlgButton(
-///   HWND hDlg,
-///   int  nIDButton,
-///   UINT uCheck
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-checkdlgbutton>.
+///
 /// {@category user32}
 int CheckDlgButton(int hDlg, int nIDButton, int uCheck) =>
     _CheckDlgButton(hDlg, nIDButton, uCheck);
@@ -619,14 +490,9 @@ final _CheckDlgButton = _user32.lookupFunction<
 /// Adds a check mark to (checks) a specified radio button in a group and
 /// removes a check mark from (clears) all other radio buttons in the group.
 ///
-/// ```c
-/// BOOL CheckRadioButton(
-///   HWND hDlg,
-///   int  nIDFirstButton,
-///   int  nIDLastButton,
-///   int  nIDCheckButton
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-checkradiobutton>.
+///
 /// {@category user32}
 int CheckRadioButton(
         int hDlg, int nIDFirstButton, int nIDLastButton, int nIDCheckButton) =>
@@ -644,12 +510,9 @@ final _CheckRadioButton = _user32.lookupFunction<
 /// The search is restricted to immediate child windows. Grandchildren, and
 /// deeper descendant windows are not searched.
 ///
-/// ```c
-/// HWND ChildWindowFromPoint(
-///   HWND  hWndParent,
-///   POINT Point
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-childwindowfrompoint>.
+///
 /// {@category user32}
 int ChildWindowFromPoint(int hWndParent, POINT point) =>
     _ChildWindowFromPoint(hWndParent, point);
@@ -661,16 +524,9 @@ final _ChildWindowFromPoint = _user32.lookupFunction<
 /// Determines which, if any, of the child windows belonging to the specified
 /// parent window contains the specified point.
 ///
-/// The function can ignore invisible, disabled, and transparent child windows.
-/// Grandchildren and deeper descendants are not searched.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-childwindowfrompointex>.
 ///
-/// ```c
-/// HWND ChildWindowFromPointEx(
-///   HWND  hwnd,
-///   POINT pt,
-///   UINT  flags
-/// );
-/// ```
 /// {@category user32}
 int ChildWindowFromPointEx(int hwnd, POINT pt, int flags) =>
     _ChildWindowFromPointEx(hwnd, pt, flags);
@@ -679,15 +535,12 @@ final _ChildWindowFromPointEx = _user32.lookupFunction<
     HWND Function(HWND hwnd, POINT pt, Uint32 flags),
     int Function(int hwnd, POINT pt, int flags)>('ChildWindowFromPointEx');
 
-/// The ClientToScreen function converts the client-area coordinates of a
-/// specified point to screen coordinates.
+/// Converts the client-area coordinates of a specified point to screen
+/// coordinates.
 ///
-/// ```c
-/// BOOL ClientToScreen(
-///   HWND    hWnd,
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-clienttoscreen>.
+///
 /// {@category user32}
 int ClientToScreen(int hWnd, Pointer<POINT> lpPoint) =>
     _ClientToScreen(hWnd, lpPoint);
@@ -698,15 +551,9 @@ final _ClientToScreen = _user32.lookupFunction<
 
 /// Confines the cursor to a rectangular area on the screen.
 ///
-/// If a subsequent cursor position (set by the SetCursorPos function or the
-/// mouse) lies outside the rectangle, the system automatically adjusts the
-/// position to keep the cursor inside the rectangular area.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-clipcursor>.
 ///
-/// ```c
-/// BOOL ClipCursor(
-///   const RECT *lpRect
-/// );
-/// ```
 /// {@category user32}
 int ClipCursor(Pointer<RECT>? lpRect) => _ClipCursor(lpRect ?? nullptr);
 
@@ -715,9 +562,9 @@ final _ClipCursor = _user32.lookupFunction<BOOL Function(Pointer<RECT> lpRect),
 
 /// Closes the clipboard.
 ///
-/// ```c
-/// BOOL CloseClipboard();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-closeclipboard>.
+///
 /// {@category user32}
 int CloseClipboard() => _CloseClipboard();
 
@@ -726,11 +573,9 @@ final _CloseClipboard =
 
 /// Closes resources associated with a gesture information handle.
 ///
-/// ```c
-/// BOOL CloseGestureInfoHandle(
-///   HGESTUREINFO hGestureInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-closegestureinfohandle>.
+///
 /// {@category user32}
 int CloseGestureInfoHandle(int hGestureInfo) =>
     _CloseGestureInfoHandle(hGestureInfo);
@@ -742,11 +587,9 @@ final _CloseGestureInfoHandle = _user32.lookupFunction<
 /// Closes a touch input handle, frees process memory associated with it, and
 /// invalidates the handle.
 ///
-/// ```c
-/// BOOL CloseTouchInputHandle(
-///   HTOUCHINPUT hTouchInput
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-closetouchinputhandle>.
+///
 /// {@category user32}
 int CloseTouchInputHandle(int hTouchInput) =>
     _CloseTouchInputHandle(hTouchInput);
@@ -757,11 +600,9 @@ final _CloseTouchInputHandle = _user32.lookupFunction<
 
 /// Minimizes (but does not destroy) the specified window.
 ///
-/// ```c
-/// BOOL CloseWindow(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-closewindow>.
+///
 /// {@category user32}
 int CloseWindow(int hWnd) => _CloseWindow(hWnd);
 
@@ -775,13 +616,9 @@ final _CloseWindow =
 /// to an accelerator-table handle, or to determine the size of the
 /// accelerator-table data.
 ///
-/// ```c
-/// int CopyAcceleratorTableW(
-///   HACCEL  hAccelSrc,
-///   LPACCEL lpAccelDst,
-///   int     cAccelEntries
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-copyacceleratortablew>.
+///
 /// {@category user32}
 int CopyAcceleratorTable(
         int hAccelSrc, Pointer<ACCEL>? lpAccelDst, int cAccelEntries) =>
@@ -795,11 +632,9 @@ final _CopyAcceleratorTable = _user32.lookupFunction<
 
 /// Copies the specified icon from another module to the current module.
 ///
-/// ```c
-/// HICON CopyIcon(
-///   HICON hIcon
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-copyicon>.
+///
 /// {@category user32}
 int CopyIcon(int hIcon) => _CopyIcon(hIcon);
 
@@ -812,15 +647,9 @@ final _CopyIcon = _user32.lookupFunction<HICON Function(HICON hIcon),
 /// If necessary, the function stretches the bits to fit the desired size of the
 /// new image.
 ///
-/// ```c
-/// HANDLE CopyImage(
-///   HANDLE h,
-///   UINT   type,
-///   int    cx,
-///   int    cy,
-///   UINT   flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-copyimage>.
+///
 /// {@category user32}
 int CopyImage(int h, int type, int cx, int cy, int flags) =>
     _CopyImage(h, type, cx, cy, flags);
@@ -829,14 +658,11 @@ final _CopyImage = _user32.lookupFunction<
     HANDLE Function(HANDLE h, Uint32 type, Int32 cx, Int32 cy, Uint32 flags),
     int Function(int h, int type, int cx, int cy, int flags)>('CopyImage');
 
-/// The CopyRect function copies the coordinates of one rectangle to another.
+/// Copies the coordinates of one rectangle to another.
 ///
-/// ```c
-/// BOOL CopyRect(
-///   LPRECT     lprcDst,
-///   const RECT *lprcSrc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-copyrect>.
+///
 /// {@category user32}
 int CopyRect(Pointer<RECT> lprcDst, Pointer<RECT> lprcSrc) =>
     _CopyRect(lprcDst, lprcSrc);
@@ -847,9 +673,9 @@ final _CopyRect = _user32.lookupFunction<
 
 /// Retrieves the number of different data formats currently on the clipboard.
 ///
-/// ```c
-/// int CountClipboardFormats();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-countclipboardformats>.
+///
 /// {@category user32}
 int CountClipboardFormats() => _CountClipboardFormats();
 
@@ -858,12 +684,9 @@ final _CountClipboardFormats = _user32
 
 /// Creates an accelerator table.
 ///
-/// ```c
-/// HACCEL CreateAcceleratorTableW(
-///   LPACCEL paccel,
-///   int     cAccel
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createacceleratortablew>.
+///
 /// {@category user32}
 int CreateAcceleratorTable(Pointer<ACCEL> paccel, int cAccel) =>
     _CreateAcceleratorTable(paccel, cAccel);
@@ -877,14 +700,9 @@ final _CreateAcceleratorTable = _user32.lookupFunction<
 ///
 /// The caret shape can be a line, a block, or a bitmap.
 ///
-/// ```c
-/// BOOL CreateCaret(
-///   [in]           HWND    hWnd,
-///   [in, optional] HBITMAP hBitmap,
-///   [in]           int     nWidth,
-///   [in]           int     nHeight
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createcaret>.
+///
 /// {@category user32}
 int CreateCaret(int hWnd, int? hBitmap, int nWidth, int nHeight) =>
     _CreateCaret(hWnd, hBitmap ?? 0, nWidth, nHeight);
@@ -894,20 +712,11 @@ final _CreateCaret = _user32.lookupFunction<
     int Function(
         int hWnd, int hBitmap, int nWidth, int nHeight)>('CreateCaret');
 
-/// Creates a monochrome cursor having the specified size, bit patterns, and hot
-/// spot.
+/// Creates a cursor having the specified size, bit patterns, and hot spot.
 ///
-/// ```c
-/// HCURSOR CreateCursor(
-///   [in, optional] HINSTANCE  hInst,
-///   [in]           int        xHotSpot,
-///   [in]           int        yHotSpot,
-///   [in]           int        nWidth,
-///   [in]           int        nHeight,
-///   [in]           const VOID *pvANDPlane,
-///   [in]           const VOID *pvXORPlane
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createcursor>.
+///
 /// {@category user32}
 int CreateCursor(int? hInst, int xHotSpot, int yHotSpot, int nWidth,
         int nHeight, Pointer pvANDPlane, Pointer pvXORPlane) =>
@@ -923,20 +732,9 @@ final _CreateCursor = _user32.lookupFunction<
 /// Creates a new desktop, associates it with the current window station of the
 /// calling process, and assigns it to the calling thread.
 ///
-/// The calling process must have an associated window station, either assigned
-/// by the system at process creation time or set by the SetProcessWindowStation
-/// function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createdesktopw>.
 ///
-/// ```c
-/// HDESK CreateDesktopW(
-///   LPCWSTR               lpszDesktop,
-///   LPCWSTR               lpszDevice,
-///   DEVMODEW              *pDevmode,
-///   DWORD                 dwFlags,
-///   ACCESS_MASK           dwDesiredAccess,
-///   LPSECURITY_ATTRIBUTES lpsa
-/// );
-/// ```
 /// {@category user32}
 int CreateDesktop(Pointer<Utf16> lpszDesktop, int dwFlags, int dwDesiredAccess,
         Pointer<SECURITY_ATTRIBUTES>? lpsa) =>
@@ -963,22 +761,9 @@ final _CreateDesktop = _user32.lookupFunction<
 /// current window station of the calling process, and assigns it to the calling
 /// thread.
 ///
-/// The calling process must have an associated window station, either assigned
-/// by the system at process creation time or set by the SetProcessWindowStation
-/// function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createdesktopexw>.
 ///
-/// ```c
-/// HDESK CreateDesktopExW(
-///   LPCWSTR               lpszDesktop,
-///   LPCWSTR               lpszDevice,
-///   DEVMODEW              *pDevmode,
-///   DWORD                 dwFlags,
-///   ACCESS_MASK           dwDesiredAccess,
-///   LPSECURITY_ATTRIBUTES lpsa,
-///   ULONG                 ulHeapSize,
-///   PVOID                 pvoid
-/// );
-/// ```
 /// {@category user32}
 int CreateDesktopEx(
         Pointer<Utf16> lpszDesktop,
@@ -1011,20 +796,9 @@ final _CreateDesktopEx = _user32.lookupFunction<
 
 /// Creates a modeless dialog box from a dialog box template in memory.
 ///
-/// Before displaying the dialog box, the function passes an application-defined
-/// value to the dialog box procedure as the lParam parameter of the
-/// WM_INITDIALOG message. An application can use this value to initialize
-/// dialog box controls.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createdialogindirectparamw>.
 ///
-/// ```c
-/// HWND CreateDialogIndirectParamW(
-///   HINSTANCE       hInstance,
-///   LPCDLGTEMPLATEW lpTemplate,
-///   HWND            hWndParent,
-///   DLGPROC         lpDialogFunc,
-///   LPARAM          dwInitParam
-/// );
-/// ```
 /// {@category user32}
 int CreateDialogIndirectParam(
         int? hInstance,
@@ -1051,17 +825,9 @@ final _CreateDialogIndirectParam = _user32.lookupFunction<
 
 /// Creates an icon that has the specified size, colors, and bit patterns.
 ///
-/// ```c
-/// HICON CreateIcon(
-///   HINSTANCE  hInstance,
-///   int        nWidth,
-///   int        nHeight,
-///   BYTE       cPlanes,
-///   BYTE       cBitsPixel,
-///   const BYTE *lpbANDbits,
-///   const BYTE *lpbXORbits
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createicon>.
+///
 /// {@category user32}
 int CreateIcon(int? hInstance, int nWidth, int nHeight, int cPlanes,
         int cBitsPixel, Pointer<Uint8> lpbANDbits, Pointer<Uint8> lpbXORbits) =>
@@ -1088,14 +854,9 @@ final _CreateIcon = _user32.lookupFunction<
 
 /// Creates an icon or cursor from resource bits describing the icon.
 ///
-/// ```c
-/// HICON CreateIconFromResource(
-///   [in] PBYTE presbits,
-///   [in] DWORD dwResSize,
-///   [in] BOOL  fIcon,
-///   [in] DWORD dwVer
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createiconfromresource>.
+///
 /// {@category user32}
 int CreateIconFromResource(
         Pointer<Uint8> presbits, int dwResSize, int fIcon, int dwVer) =>
@@ -1109,17 +870,9 @@ final _CreateIconFromResource = _user32.lookupFunction<
 
 /// Creates an icon or cursor from resource bits describing the icon.
 ///
-/// ```c
-/// HICON CreateIconFromResourceEx(
-///   [in] PBYTE presbits,
-///   [in] DWORD dwResSize,
-///   [in] BOOL  fIcon,
-///   [in] DWORD dwVer,
-///   [in] int   cxDesired,
-///   [in] int   cyDesired,
-///   [in] UINT  Flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createiconfromresourceex>.
+///
 /// {@category user32}
 int CreateIconFromResourceEx(Pointer<Uint8> presbits, int dwResSize, int fIcon,
         int dwVer, int cxDesired, int cyDesired, int flags) =>
@@ -1134,11 +887,9 @@ final _CreateIconFromResourceEx = _user32.lookupFunction<
 
 /// Creates an icon or cursor from an ICONINFO structure.
 ///
-/// ```c
-/// HICON CreateIconIndirect(
-///   [in] PICONINFO piconinfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createiconindirect>.
+///
 /// {@category user32}
 int CreateIconIndirect(Pointer<ICONINFO> piconinfo) =>
     _CreateIconIndirect(piconinfo);
@@ -1149,20 +900,9 @@ final _CreateIconIndirect = _user32.lookupFunction<
 
 /// Creates a multiple-document interface (MDI) child window.
 ///
-/// ```c
-/// HWND CreateMDIWindowW(
-///   LPCWSTR   lpClassName,
-///   LPCWSTR   lpWindowName,
-///   DWORD     dwStyle,
-///   int       X,
-///   int       Y,
-///   int       nWidth,
-///   int       nHeight,
-///   HWND      hWndParent,
-///   HINSTANCE hInstance,
-///   LPARAM    lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createmdiwindoww>.
+///
 /// {@category user32}
 int CreateMDIWindow(
         Pointer<Utf16> lpClassName,
@@ -1207,9 +947,9 @@ final _CreateMDIWindow = _user32.lookupFunction<
 /// The menu is initially empty, but it can be filled with menu items by using
 /// the InsertMenuItem, AppendMenu, and InsertMenu functions.
 ///
-/// ```c
-/// HMENU CreateMenu();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createmenu>.
+///
 /// {@category user32}
 int CreateMenu() => _CreateMenu();
 
@@ -1218,41 +958,21 @@ final _CreateMenu =
 
 /// Creates a drop-down menu, submenu, or shortcut menu.
 ///
-/// The menu is initially empty. You can insert or append menu items by using
-/// the InsertMenuItem function. You can also use the InsertMenu function to
-/// insert menu items and the AppendMenu function to append menu items.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createpopupmenu>.
 ///
-/// ```c
-/// HMENU CreatePopupMenu();
-/// ```
 /// {@category user32}
 int CreatePopupMenu() => _CreatePopupMenu();
 
 final _CreatePopupMenu =
     _user32.lookupFunction<HMENU Function(), int Function()>('CreatePopupMenu');
 
-/// Creates an overlapped, pop-up, or child window.
+/// Creates an overlapped, pop-up, or child window with an extended window
+/// style; otherwise, this function is identical to the CreateWindow function.
 ///
-/// It specifies the window class, window title, window style, and (optionally)
-/// the initial position and size of the window. The function also specifies the
-/// window's parent or owner, if any, and the window's menu.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createwindowexw>.
 ///
-/// ```c
-/// HWND CreateWindowExW(
-///   DWORD     dwExStyle,
-///   LPCWSTR   lpClassName,
-///   LPCWSTR   lpWindowName,
-///   DWORD     dwStyle,
-///   int       X,
-///   int       Y,
-///   int       nWidth,
-///   int       nHeight,
-///   HWND      hWndParent,
-///   HMENU     hMenu,
-///   HINSTANCE hInstance,
-///   LPVOID    lpParam
-/// );
-/// ```
 /// {@category user32}
 int CreateWindowEx(
         int dwExStyle,
@@ -1312,14 +1032,9 @@ final _CreateWindowEx = _user32.lookupFunction<
 /// Creates a window station object, associates it with the calling process, and
 /// assigns it to the current session.
 ///
-/// ```c
-/// HWINSTA CreateWindowStationW(
-///   LPCWSTR               lpwinsta,
-///   DWORD                 dwFlags,
-///   ACCESS_MASK           dwDesiredAccess,
-///   LPSECURITY_ATTRIBUTES lpsa
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-createwindowstationw>.
+///
 /// {@category user32}
 int CreateWindowStation(Pointer<Utf16>? lpwinsta, int dwFlags,
         int dwDesiredAccess, Pointer<SECURITY_ATTRIBUTES>? lpsa) =>
@@ -1332,26 +1047,12 @@ final _CreateWindowStation = _user32.lookupFunction<
     int Function(Pointer<Utf16> lpwinsta, int dwFlags, int dwDesiredAccess,
         Pointer<SECURITY_ATTRIBUTES> lpsa)>('CreateWindowStationW');
 
-/// Updates the specified multiple-window – position structure for the specified
+/// Updates the specified multiple-window — position structure for the specified
 /// window.
 ///
-/// The function then returns a handle to the updated structure. The
-/// EndDeferWindowPos function uses the information in this structure to change
-/// the position and size of a number of windows simultaneously. The
-/// BeginDeferWindowPos function creates the structure.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-deferwindowpos>.
 ///
-/// ```c
-/// HDWP DeferWindowPos(
-///   HDWP hWinPosInfo,
-///   HWND hWnd,
-///   HWND hWndInsertAfter,
-///   int  x,
-///   int  y,
-///   int  cx,
-///   int  cy,
-///   UINT uFlags
-/// );
-/// ```
 /// {@category user32}
 int DeferWindowPos(int hWinPosInfo, int hWnd, int? hWndInsertAfter, int x,
         int y, int cx, int cy, int uFlags) =>
@@ -1367,17 +1068,9 @@ final _DeferWindowPos = _user32.lookupFunction<
 /// Provides default processing for any window message that the window procedure
 /// of a multiple-document interface (MDI) child window does not process.
 ///
-/// A window message not processed by the window procedure must be passed to the
-/// DefMDIChildProc function, not to the DefWindowProc function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-defmdichildprocw>.
 ///
-/// ```c
-/// LRESULT DefMDIChildProcW(
-///   HWND   hWnd,
-///   UINT   uMsg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
 /// {@category user32}
 int DefMDIChildProc(int hWnd, int uMsg, int wParam, int lParam) =>
     _DefMDIChildProc(hWnd, uMsg, wParam, lParam);
@@ -1387,19 +1080,11 @@ final _DefMDIChildProc = _user32.lookupFunction<
     int Function(
         int hWnd, int uMsg, int wParam, int lParam)>('DefMDIChildProcW');
 
-/// Unlike DefWindowProcA and DefWindowProcW, this function doesn't do any
-/// processing.
+/// Verifies that the size of the RAWINPUTHEADER structure is correct.
 ///
-/// DefRawInputProc only checks whether cbSizeHeader's value corresponds to the
-/// expected size of RAWINPUTHEADER.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-defrawinputproc>.
 ///
-/// ```c
-/// LRESULT DefRawInputProc(
-///   PRAWINPUT *paRawInput,
-///   INT       nInput,
-///   UINT      cbSizeHeader
-/// );
-/// ```
 /// {@category user32}
 int DefRawInputProc(
         Pointer<Pointer<RAWINPUT>> paRawInput, int nInput, int cbSizeHeader) =>
@@ -1414,17 +1099,9 @@ final _DefRawInputProc = _user32.lookupFunction<
 /// Calls the default window procedure to provide default processing for any
 /// window messages that an application does not process.
 ///
-/// This function ensures that every message is processed. DefWindowProc is
-/// called with the same parameters received by the window procedure.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-defwindowprocw>.
 ///
-/// ```c
-/// LRESULT DefWindowProcW(
-///   HWND   hWnd,
-///   UINT   Msg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
 /// {@category user32}
 int DefWindowProc(int hWnd, int msg, int wParam, int lParam) =>
     _DefWindowProc(hWnd, msg, wParam, lParam);
@@ -1438,13 +1115,9 @@ final _DefWindowProc = _user32.lookupFunction<
 /// If the menu item opens a menu or submenu, this function destroys the handle
 /// to the menu or submenu and frees the memory used by the menu or submenu.
 ///
-/// ```c
-/// BOOL DeleteMenu(
-///   HMENU hMenu,
-///   UINT  uPosition,
-///   UINT  uFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-deletemenu>.
+///
 /// {@category user32}
 int DeleteMenu(int hMenu, int uPosition, int uFlags) =>
     _DeleteMenu(hMenu, uPosition, uFlags);
@@ -1455,11 +1128,9 @@ final _DeleteMenu = _user32.lookupFunction<
 
 /// Destroys an accelerator table.
 ///
-/// ```c
-/// BOOL DestroyAcceleratorTable(
-///   [in] HACCEL hAccel
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-destroyacceleratortable>.
+///
 /// {@category user32}
 int DestroyAcceleratorTable(int hAccel) => _DestroyAcceleratorTable(hAccel);
 
@@ -1470,9 +1141,9 @@ final _DestroyAcceleratorTable = _user32.lookupFunction<
 /// Destroys the caret's current shape, frees the caret from the window, and
 /// removes the caret from the screen.
 ///
-/// ```c
-/// BOOL DestroyCaret();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-destroycaret>.
+///
 /// {@category user32}
 int DestroyCaret() => _DestroyCaret();
 
@@ -1483,11 +1154,9 @@ final _DestroyCaret =
 ///
 /// Do not use this function to destroy a shared cursor.
 ///
-/// ```c
-/// BOOL DestroyCursor(
-///   HCURSOR hCursor
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-destroycursor>.
+///
 /// {@category user32}
 int DestroyCursor(int hCursor) => _DestroyCursor(hCursor);
 
@@ -1496,11 +1165,9 @@ final _DestroyCursor = _user32.lookupFunction<BOOL Function(HCURSOR hCursor),
 
 /// Destroys an icon and frees any memory the icon occupied.
 ///
-/// ```c
-/// BOOL DestroyIcon(
-///   HICON hIcon
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-destroyicon>.
+///
 /// {@category user32}
 int DestroyIcon(int hIcon) => _DestroyIcon(hIcon);
 
@@ -1510,11 +1177,9 @@ final _DestroyIcon =
 
 /// Destroys the specified menu and frees any memory that the menu occupies.
 ///
-/// ```c
-/// BOOL DestroyMenu(
-///   HMENU hMenu
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-destroymenu>.
+///
 /// {@category user32}
 int DestroyMenu(int hMenu) => _DestroyMenu(hMenu);
 
@@ -1524,17 +1189,9 @@ final _DestroyMenu =
 
 /// Destroys the specified window.
 ///
-/// The function sends WM_DESTROY and WM_NCDESTROY messages to the window to
-/// deactivate it and remove the keyboard focus from it. The function also
-/// destroys the window's menu, flushes the thread message queue, destroys
-/// timers, removes clipboard ownership, and breaks the clipboard viewer chain
-/// (if the window is at the top of the viewer chain).
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-destroywindow>.
 ///
-/// ```c
-/// BOOL DestroyWindow(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int DestroyWindow(int hWnd) => _DestroyWindow(hWnd);
 
@@ -1544,20 +1201,9 @@ final _DestroyWindow =
 
 /// Creates a modal dialog box from a dialog box template in memory.
 ///
-/// Before displaying the dialog box, the function passes an application-defined
-/// value to the dialog box procedure as the lParam parameter of the
-/// WM_INITDIALOG message. An application can use this value to initialize
-/// dialog box controls.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-dialogboxindirectparamw>.
 ///
-/// ```c
-/// INT_PTR DialogBoxIndirectParamW(
-///   HINSTANCE       hInstance,
-///   LPCDLGTEMPLATEW hDialogTemplate,
-///   HWND            hWndParent,
-///   DLGPROC         lpDialogFunc,
-///   LPARAM          dwInitParam
-/// );
-/// ```
 /// {@category user32}
 int DialogBoxIndirectParam(
         int? hInstance,
@@ -1587,9 +1233,9 @@ final _DialogBoxIndirectParam = _user32.lookupFunction<
 /// Window ghosting is a Windows Manager feature that lets the user minimize,
 /// move, or close the main window of an application that is not responding.
 ///
-/// ```c
-/// void DisableProcessWindowsGhosting();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-disableprocesswindowsghosting>.
+///
 /// {@category user32}
 void DisableProcessWindowsGhosting() => _DisableProcessWindowsGhosting();
 
@@ -1602,11 +1248,9 @@ final _DisableProcessWindowsGhosting =
 /// It is typically used to dispatch a message retrieved by the GetMessage
 /// function.
 ///
-/// ```c
-/// LRESULT DispatchMessageW(
-///   const MSG *lpMsg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-dispatchmessagew>.
+///
 /// {@category user32}
 int DispatchMessage(Pointer<MSG> lpMsg) => _DispatchMessage(lpMsg);
 
@@ -1618,11 +1262,9 @@ final _DispatchMessage = _user32.lookupFunction<
 /// button, presses the ESC key, or moves the mouse outside the drag rectangle
 /// around the specified point.
 ///
-/// ```c
-/// BOOL DragDetect(
-///   HWND  hwnd,
-///   POINT pt);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-dragdetect>.
+///
 /// {@category user32}
 int DragDetect(int hwnd, POINT pt) => _DragDetect(hwnd, pt);
 
@@ -1632,13 +1274,9 @@ final _DragDetect = _user32.lookupFunction<BOOL Function(HWND hwnd, POINT pt),
 /// Animates the caption of a window to indicate the opening of an icon or the
 /// minimizing or maximizing of a window.
 ///
-/// ```c
-/// BOOL DrawAnimatedRects(
-///   HWND       hwnd,
-///   int        idAni,
-///   const RECT *lprcFrom,
-///   const RECT *lprcTo);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawanimatedrects>.
+///
 /// {@category user32}
 int DrawAnimatedRects(
         int? hwnd, int idAni, Pointer<RECT> lprcFrom, Pointer<RECT> lprcTo) =>
@@ -1650,16 +1288,11 @@ final _DrawAnimatedRects = _user32.lookupFunction<
     int Function(int hwnd, int idAni, Pointer<RECT> lprcFrom,
         Pointer<RECT> lprcTo)>('DrawAnimatedRects');
 
-/// The DrawCaption function draws a window caption.
+/// Draws a window caption.
 ///
-/// ```c
-/// BOOL DrawCaption(
-///   HWND       hwnd,
-///   HDC        hdc,
-///   const RECT *lprect,
-///   UINT       flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawcaption>.
+///
 /// {@category user32}
 int DrawCaption(int hwnd, int hdc, Pointer<RECT> lprect, int flags) =>
     _DrawCaption(hwnd, hdc, lprect, flags);
@@ -1669,15 +1302,11 @@ final _DrawCaption = _user32.lookupFunction<
     int Function(
         int hwnd, int hdc, Pointer<RECT> lprect, int flags)>('DrawCaption');
 
-/// The DrawEdge function draws one or more edges of rectangle.
+/// Draws one or more edges of rectangle.
 ///
-/// ```c
-/// BOOL DrawEdge(
-///   HDC    hdc,
-///   LPRECT qrc,
-///   UINT   edge,
-///   UINT   grfFlags);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawedge>.
+///
 /// {@category user32}
 int DrawEdge(int hdc, Pointer<RECT> qrc, int edge, int grfFlags) =>
     _DrawEdge(hdc, qrc, edge, grfFlags);
@@ -1687,14 +1316,12 @@ final _DrawEdge = _user32.lookupFunction<
     int Function(
         int hdc, Pointer<RECT> qrc, int edge, int grfFlags)>('DrawEdge');
 
-/// The DrawFocusRect function draws a rectangle in the style used to indicate
-/// that the rectangle has the focus.
+/// Draws a rectangle in the style used to indicate that the rectangle has the
+/// focus.
 ///
-/// ```c
-/// BOOL DrawFocusRect(
-///   HDC        hDC,
-///   const RECT *lprc);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawfocusrect>.
+///
 /// {@category user32}
 int DrawFocusRect(int hDC, Pointer<RECT> lprc) => _DrawFocusRect(hDC, lprc);
 
@@ -1702,16 +1329,11 @@ final _DrawFocusRect = _user32.lookupFunction<
     BOOL Function(HDC hDC, Pointer<RECT> lprc),
     int Function(int hDC, Pointer<RECT> lprc)>('DrawFocusRect');
 
-/// The DrawFrameControl function draws a frame control of the specified type
-/// and style.
+/// Draws a frame control of the specified type and style.
 ///
-/// ```c
-/// BOOL DrawFrameControl(
-///   HDC    ,
-///   LPRECT ,
-///   UINT   ,
-///   UINT);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawframecontrol>.
+///
 /// {@category user32}
 int DrawFrameControl(
         int param0, Pointer<RECT> param1, int param2, int param3) =>
@@ -1725,14 +1347,9 @@ final _DrawFrameControl = _user32.lookupFunction<
 
 /// Draws an icon or cursor into the specified device context.
 ///
-/// ```c
-/// BOOL DrawIcon(
-///   HDC   hDC,
-///   int   X,
-///   int   Y,
-///   HICON hIcon
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawicon>.
+///
 /// {@category user32}
 int DrawIcon(int hDC, int x, int y, int hIcon) => _DrawIcon(hDC, x, y, hIcon);
 
@@ -1740,22 +1357,12 @@ final _DrawIcon = _user32.lookupFunction<
     BOOL Function(HDC hDC, Int32 x, Int32 y, HICON hIcon),
     int Function(int hDC, int x, int y, int hIcon)>('DrawIcon');
 
-/// The DrawState function displays an image and applies a visual effect to
-/// indicate a state, such as a disabled or default state.
+/// Displays an image and applies a visual effect to indicate a state, such as a
+/// disabled or default state.
 ///
-/// ```c
-/// BOOL DrawStateW(
-///   HDC           hdc,
-///   HBRUSH        hbrFore,
-///   DRAWSTATEPROC qfnCallBack,
-///   LPARAM        lData,
-///   WPARAM        wData,
-///   int           x,
-///   int           y,
-///   int           cx,
-///   int           cy,
-///   UINT          uFlags);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawstatew>.
+///
 /// {@category user32}
 int DrawState(
         int hdc,
@@ -1795,20 +1402,14 @@ final _DrawState = _user32.lookupFunction<
         int cy,
         int uFlags)>('DrawStateW');
 
-/// The DrawText function draws formatted text in the specified rectangle.
+/// Draws formatted text in the specified rectangle.
 ///
 /// It formats the text according to the specified method (expanding tabs,
 /// justifying characters, breaking lines, and so forth).
 ///
-/// ```c
-/// int DrawTextW(
-///   HDC     hdc,
-///   LPCWSTR lpchText,
-///   int     cchText,
-///   LPRECT  lprc,
-///   UINT    format
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawtextw>.
+///
 /// {@category user32}
 int DrawText(int hdc, Pointer<Utf16> lpchText, int cchText, Pointer<RECT> lprc,
         int format) =>
@@ -1820,18 +1421,11 @@ final _DrawText = _user32.lookupFunction<
     int Function(int hdc, Pointer<Utf16> lpchText, int cchText,
         Pointer<RECT> lprc, int format)>('DrawTextW');
 
-/// The DrawTextEx function draws formatted text in the specified rectangle.
+/// Draws formatted text in the specified rectangle.
 ///
-/// ```c
-/// int DrawTextExW(
-///   HDC              hdc,
-///   LPWSTR           lpchText,
-///   int              cchText,
-///   LPRECT           lprc,
-///   UINT             format,
-///   LPDRAWTEXTPARAMS lpdtp
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-drawtextexw>.
+///
 /// {@category user32}
 int DrawTextEx(int hdc, Pointer<Utf16> lpchText, int cchText,
         Pointer<RECT> lprc, int format, Pointer<DRAWTEXTPARAMS>? lpdtp) =>
@@ -1853,9 +1447,9 @@ final _DrawTextEx = _user32.lookupFunction<
 /// The function then assigns ownership of the clipboard to the window that
 /// currently has the clipboard open.
 ///
-/// ```c
-/// BOOL EmptyClipboard();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-emptyclipboard>.
+///
 /// {@category user32}
 int EmptyClipboard() => _EmptyClipboard();
 
@@ -1864,13 +1458,9 @@ final _EmptyClipboard =
 
 /// Enables, disables, or grays the specified menu item.
 ///
-/// ```c
-/// BOOL EnableMenuItem(
-///   HMENU hMenu,
-///   UINT  uIDEnableItem,
-///   UINT  uEnable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enablemenuitem>.
+///
 /// {@category user32}
 int EnableMenuItem(int hMenu, int uIDEnableItem, int uEnable) =>
     _EnableMenuItem(hMenu, uIDEnableItem, uEnable);
@@ -1882,11 +1472,9 @@ final _EnableMenuItem = _user32.lookupFunction<
 /// Enables the mouse to act as a pointer input device and send WM_POINTER
 /// messages.
 ///
-/// ```c
-/// BOOL EnableMouseInPointer(
-///   [in] BOOL fEnable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enablemouseinpointer>.
+///
 /// {@category user32}
 int EnableMouseInPointer(int fEnable) => _EnableMouseInPointer(fEnable);
 
@@ -1899,11 +1487,9 @@ final _EnableMouseInPointer = _user32.lookupFunction<
 ///
 /// Must be called during the initialization of that window.
 ///
-/// ```c
-/// BOOL EnableNonClientDpiScaling(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enablenonclientdpiscaling>.
+///
 /// {@category user32}
 int EnableNonClientDpiScaling(int hwnd) => _EnableNonClientDpiScaling(hwnd);
 
@@ -1911,16 +1497,11 @@ final _EnableNonClientDpiScaling =
     _user32.lookupFunction<BOOL Function(HWND hwnd), int Function(int hwnd)>(
         'EnableNonClientDpiScaling');
 
-/// The EnableScrollBar function enables or disables one or both scroll bar
-/// arrows.
+/// Enables or disables one or both scroll bar arrows.
 ///
-/// ```c
-/// BOOL EnableScrollBar(
-///   HWND hWnd,
-///   UINT wSBflags,
-///   UINT wArrows
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enablescrollbar>.
+///
 /// {@category user32}
 int EnableScrollBar(int hWnd, int wSBflags, int wArrows) =>
     _EnableScrollBar(hWnd, wSBflags, wArrows);
@@ -1936,12 +1517,9 @@ final _EnableScrollBar = _user32.lookupFunction<
 /// clicks and key presses. When input is enabled, the window receives all
 /// input.
 ///
-/// ```c
-/// BOOL EnableWindow(
-///   HWND hWnd,
-///   BOOL bEnable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enablewindow>.
+///
 /// {@category user32}
 int EnableWindow(int hWnd, int bEnable) => _EnableWindow(hWnd, bEnable);
 
@@ -1952,11 +1530,9 @@ final _EnableWindow = _user32.lookupFunction<
 /// Simultaneously updates the position and size of one or more windows in a
 /// single screen-refreshing cycle.
 ///
-/// ```c
-/// BOOL EndDeferWindowPos(
-///   HDWP hWinPosInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enddeferwindowpos>.
+///
 /// {@category user32}
 int EndDeferWindowPos(int hWinPosInfo) => _EndDeferWindowPos(hWinPosInfo);
 
@@ -1967,12 +1543,9 @@ final _EndDeferWindowPos = _user32.lookupFunction<
 /// Destroys a modal dialog box, causing the system to end any processing for
 /// the dialog box.
 ///
-/// ```c
-/// BOOL EndDialog(
-///   HWND    hDlg,
-///   INT_PTR nResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enddialog>.
+///
 /// {@category user32}
 int EndDialog(int hDlg, int nResult) => _EndDialog(hDlg, nResult);
 
@@ -1982,26 +1555,23 @@ final _EndDialog = _user32.lookupFunction<
 
 /// Ends the calling thread's active menu.
 ///
-/// ```c
-/// BOOL EndMenu();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-endmenu>.
+///
 /// {@category user32}
 int EndMenu() => _EndMenu();
 
 final _EndMenu =
     _user32.lookupFunction<BOOL Function(), int Function()>('EndMenu');
 
-/// The EndPaint function marks the end of painting in the specified window.
+/// Marks the end of painting in the specified window.
 ///
 /// This function is required for each call to the BeginPaint function, but only
 /// after painting is complete.
 ///
-/// ```c
-/// BOOL EndPaint(
-///   HWND              hWnd,
-///   const PAINTSTRUCT *lpPaint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-endpaint>.
+///
 /// {@category user32}
 int EndPaint(int hWnd, Pointer<PAINTSTRUCT> lpPaint) =>
     _EndPaint(hWnd, lpPaint);
@@ -2014,16 +1584,9 @@ final _EndPaint = _user32.lookupFunction<
 /// passing the handle to each child window, in turn, to an application-defined
 /// callback function.
 ///
-/// EnumChildWindows continues until the last child window is enumerated or the
-/// callback function returns FALSE.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumchildwindows>.
 ///
-/// ```c
-/// BOOL EnumChildWindows(
-///   HWND        hWndParent,
-///   WNDENUMPROC lpEnumFunc,
-///   LPARAM      lParam
-/// );
-/// ```
 /// {@category user32}
 int EnumChildWindows(int? hWndParent,
         Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc, int lParam) =>
@@ -2039,11 +1602,9 @@ final _EnumChildWindows = _user32.lookupFunction<
 
 /// Enumerates the data formats currently available on the clipboard.
 ///
-/// ```c
-/// UINT EnumClipboardFormats(
-///   UINT format
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumclipboardformats>.
+///
 /// {@category user32}
 int EnumClipboardFormats(int format) => _EnumClipboardFormats(format);
 
@@ -2056,13 +1617,9 @@ final _EnumClipboardFormats = _user32.lookupFunction<
 /// It passes the handle to each window, in turn, to an application-defined
 /// callback function.
 ///
-/// ```c
-/// BOOL EnumDesktopWindows(
-///   HDESK       hDesktop,
-///   WNDENUMPROC lpfn,
-///   LPARAM      lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumdesktopwindows>.
+///
 /// {@category user32}
 int EnumDesktopWindows(
         int? hDesktop, Pointer<NativeFunction<WNDENUMPROC>> lpfn, int lParam) =>
@@ -2074,17 +1631,12 @@ final _EnumDesktopWindows = _user32.lookupFunction<
     int Function(int hDesktop, Pointer<NativeFunction<WNDENUMPROC>> lpfn,
         int lParam)>('EnumDesktopWindows');
 
-/// The EnumDisplayDevices function lets you obtain information about the
-/// display devices in the current session.
+/// Lets you obtain information about the display devices in the current
+/// session.
 ///
-/// ```c
-/// BOOL EnumDisplayDevicesW(
-///   [in]  LPCWSTR          lpDevice,
-///   [in]  DWORD            iDevNum,
-///   [out] PDISPLAY_DEVICEW lpDisplayDevice,
-///   [in]  DWORD            dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesw>.
+///
 /// {@category user32}
 int EnumDisplayDevices(Pointer<Utf16>? lpDevice, int iDevNum,
         Pointer<DISPLAY_DEVICE> lpDisplayDevice, int dwFlags) =>
@@ -2099,23 +1651,18 @@ final _EnumDisplayDevices = _user32.lookupFunction<
         Pointer<DISPLAY_DEVICE> lpDisplayDevice,
         int dwFlags)>('EnumDisplayDevicesW');
 
-/// The EnumDisplayMonitors function enumerates display monitors (including
-/// invisible pseudo-monitors associated with the mirroring drivers) that
-/// intersect a region formed by the intersection of a specified clipping
-/// rectangle and the visible region of a device context.
+/// Enumerates display monitors (including invisible pseudo-monitors associated
+/// with the mirroring drivers) that intersect a region formed by the
+/// intersection of a specified clipping rectangle and the visible region of a
+/// device context.
 ///
 /// EnumDisplayMonitors calls an application-defined MonitorEnumProc callback
 /// function once for each monitor that is enumerated. Note that
 /// GetSystemMetrics (SM_CMONITORS) counts only the display monitors.
 ///
-/// ```c
-/// BOOL EnumDisplayMonitors(
-///   HDC             hdc,
-///   LPCRECT         lprcClip,
-///   MONITORENUMPROC lpfnEnum,
-///   LPARAM          dwData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumdisplaymonitors>.
+///
 /// {@category user32}
 int EnumDisplayMonitors(int? hdc, Pointer<RECT>? lprcClip,
         Pointer<NativeFunction<MONITORENUMPROC>> lpfnEnum, int dwData) =>
@@ -2130,19 +1677,14 @@ final _EnumDisplayMonitors = _user32.lookupFunction<
         Pointer<NativeFunction<MONITORENUMPROC>> lpfnEnum,
         int dwData)>('EnumDisplayMonitors');
 
-/// The EnumDisplaySettings function retrieves information about one of the
-/// graphics modes for a display device.
+/// Retrieves information about one of the graphics modes for a display device.
 ///
 /// To retrieve information for all the graphics modes of a display device, make
 /// a series of calls to this function.
 ///
-/// ```c
-/// BOOL EnumDisplaySettingsW(
-///   [in]  LPCWSTR  lpszDeviceName,
-///   [in]  DWORD    iModeNum,
-///   [out] DEVMODEW *lpDevMode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumdisplaysettingsw>.
+///
 /// {@category user32}
 int EnumDisplaySettings(Pointer<Utf16>? lpszDeviceName, int iModeNum,
         Pointer<DEVMODE> lpDevMode) =>
@@ -2154,20 +1696,14 @@ final _EnumDisplaySettings = _user32.lookupFunction<
     int Function(Pointer<Utf16> lpszDeviceName, int iModeNum,
         Pointer<DEVMODE> lpDevMode)>('EnumDisplaySettingsW');
 
-/// The EnumDisplaySettingsEx function retrieves information about one of the
-/// graphics modes for a display device.
+/// Retrieves information about one of the graphics modes for a display device.
 ///
 /// To retrieve information for all the graphics modes for a display device,
 /// make a series of calls to this function.
 ///
-/// ```c
-/// BOOL EnumDisplaySettingsExW(
-///   [in]  LPCWSTR  lpszDeviceName,
-///   [in]  DWORD    iModeNum,
-///   [out] DEVMODEW *lpDevMode,
-///   [in]  DWORD    dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumdisplaysettingsexw>.
+///
 /// {@category user32}
 int EnumDisplaySettingsEx(Pointer<Utf16>? lpszDeviceName, int iModeNum,
         Pointer<DEVMODE> lpDevMode, int dwFlags) =>
@@ -2183,16 +1719,9 @@ final _EnumDisplaySettingsEx = _user32.lookupFunction<
 /// Enumerates all nonchild windows associated with a thread by passing the
 /// handle to each window, in turn, to an application-defined callback function.
 ///
-/// EnumThreadWindows continues until the last window is enumerated or the
-/// callback function returns FALSE.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumthreadwindows>.
 ///
-/// ```c
-/// BOOL EnumThreadWindows(
-///   DWORD       dwThreadId,
-///   WNDENUMPROC lpfn,
-///   LPARAM      lParam
-/// );
-/// ```
 /// {@category user32}
 int EnumThreadWindows(int dwThreadId, Pointer<NativeFunction<WNDENUMPROC>> lpfn,
         int lParam) =>
@@ -2210,12 +1739,9 @@ final _EnumThreadWindows = _user32.lookupFunction<
 /// EnumWindows continues until the last top-level window is enumerated or the
 /// callback function returns FALSE.
 ///
-/// ```c
-/// BOOL EnumWindows(
-///   WNDENUMPROC lpEnumFunc,
-///   LPARAM      lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-enumwindows>.
+///
 /// {@category user32}
 int EnumWindows(Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc, int lParam) =>
     _EnumWindows(lpEnumFunc, lParam);
@@ -2226,16 +1752,12 @@ final _EnumWindows = _user32.lookupFunction<
     int Function(Pointer<NativeFunction<WNDENUMPROC>> lpEnumFunc,
         int lParam)>('EnumWindows');
 
-/// The EqualRect function determines whether the two specified rectangles are
-/// equal by comparing the coordinates of their upper-left and lower-right
-/// corners.
+/// Determines whether the two specified rectangles are equal by comparing the
+/// coordinates of their upper-left and lower-right corners.
 ///
-/// ```c
-/// BOOL EqualRect(
-///   const RECT *lprc1,
-///   const RECT *lprc2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-equalrect>.
+///
 /// {@category user32}
 int EqualRect(Pointer<RECT> lprc1, Pointer<RECT> lprc2) =>
     _EqualRect(lprc1, lprc2);
@@ -2244,15 +1766,12 @@ final _EqualRect = _user32.lookupFunction<
     BOOL Function(Pointer<RECT> lprc1, Pointer<RECT> lprc2),
     int Function(Pointer<RECT> lprc1, Pointer<RECT> lprc2)>('EqualRect');
 
-/// The ExcludeUpdateRgn function prevents drawing within invalid areas of a
-/// window by excluding an updated region in the window from a clipping region.
+/// Prevents drawing within invalid areas of a window by excluding an updated
+/// region in the window from a clipping region.
 ///
-/// ```c
-/// int ExcludeUpdateRgn(
-///   HDC  hDC,
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-excludeupdatergn>.
+///
 /// {@category user32}
 int ExcludeUpdateRgn(int hDC, int hWnd) => _ExcludeUpdateRgn(hDC, hWnd);
 
@@ -2260,18 +1779,14 @@ final _ExcludeUpdateRgn = _user32.lookupFunction<
     Int32 Function(HDC hDC, HWND hWnd),
     int Function(int hDC, int hWnd)>('ExcludeUpdateRgn');
 
-/// The FillRect function fills a rectangle by using the specified brush.
+/// Fills a rectangle by using the specified brush.
 ///
 /// This function includes the left and top borders, but excludes the right and
 /// bottom borders of the rectangle.
 ///
-/// ```c
-/// int FillRect(
-///   HDC        hDC,
-///   const RECT *lprc,
-///   HBRUSH     hbr
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-fillrect>.
+///
 /// {@category user32}
 int FillRect(int hDC, Pointer<RECT> lprc, int hbr) => _FillRect(hDC, lprc, hbr);
 
@@ -2285,12 +1800,9 @@ final _FillRect = _user32.lookupFunction<
 /// This function does not search child windows. This function does not perform
 /// a case-sensitive search.
 ///
-/// ```c
-/// HWND FindWindowW(
-///   LPCWSTR lpClassName,
-///   LPCWSTR lpWindowName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-findwindoww>.
+///
 /// {@category user32}
 int FindWindow(Pointer<Utf16>? lpClassName, Pointer<Utf16>? lpWindowName) =>
     _FindWindow(lpClassName ?? nullptr, lpWindowName ?? nullptr);
@@ -2307,14 +1819,9 @@ final _FindWindow = _user32.lookupFunction<
 /// specified child window. This function does not perform a case-sensitive
 /// search.
 ///
-/// ```c
-/// HWND FindWindowExW(
-///   HWND    hWndParent,
-///   HWND    hWndChildAfter,
-///   LPCWSTR lpszClass,
-///   LPCWSTR lpszWindow
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-findwindowexw>.
+///
 /// {@category user32}
 int FindWindowEx(int? hWndParent, int? hWndChildAfter,
         Pointer<Utf16>? lpszClass, Pointer<Utf16>? lpszWindow) =>
@@ -2327,18 +1834,13 @@ final _FindWindowEx = _user32.lookupFunction<
     int Function(int hWndParent, int hWndChildAfter, Pointer<Utf16> lpszClass,
         Pointer<Utf16> lpszWindow)>('FindWindowExW');
 
-/// The FrameRect function draws a border around the specified rectangle by
-/// using the specified brush.
+/// Draws a border around the specified rectangle by using the specified brush.
 ///
 /// The width and height of the border are always one logical unit.
 ///
-/// ```c
-/// int FrameRect(
-///   HDC        hDC,
-///   const RECT *lprc,
-///   HBRUSH     hbr
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-framerect>.
+///
 /// {@category user32}
 int FrameRect(int hDC, Pointer<RECT> lprc, int hbr) =>
     _FrameRect(hDC, lprc, hbr);
@@ -2350,9 +1852,9 @@ final _FrameRect = _user32.lookupFunction<
 /// Retrieves the window handle to the active window attached to the calling
 /// thread's message queue.
 ///
-/// ```c
-/// HWND GetActiveWindow();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getactivewindow>.
+///
 /// {@category user32}
 int GetActiveWindow() => _GetActiveWindow();
 
@@ -2362,15 +1864,9 @@ final _GetActiveWindow =
 /// Retrieves status information for the specified window if it is the
 /// application-switching (ALT+TAB) window.
 ///
-/// ```c
-/// BOOL GetAltTabInfoW(
-///   [in, optional]  HWND        hwnd,
-///   [in]            int         iItem,
-///   [in, out]       PALTTABINFO pati,
-///   [out, optional] LPWSTR      pszItemText,
-///   [in]            UINT        cchItemText
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getalttabinfow>.
+///
 /// {@category user32}
 int GetAltTabInfo(int? hwnd, int iItem, Pointer<ALTTABINFO> pati,
         Pointer<Utf16>? pszItemText, int cchItemText) =>
@@ -2384,12 +1880,9 @@ final _GetAltTabInfo = _user32.lookupFunction<
 
 /// Retrieves the handle to the ancestor of the specified window.
 ///
-/// ```c
-/// HWND GetAncestor(
-///   HWND hwnd,
-///   UINT gaFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getancestor>.
+///
 /// {@category user32}
 int GetAncestor(int hwnd, int gaFlags) => _GetAncestor(hwnd, gaFlags);
 
@@ -2400,11 +1893,9 @@ final _GetAncestor = _user32.lookupFunction<
 /// Determines whether a key is up or down at the time the function is called,
 /// and whether the key was pressed after a previous call to GetAsyncKeyState.
 ///
-/// ```c
-/// SHORT GetAsyncKeyState(
-///   int vKey
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getasynckeystate>.
+///
 /// {@category user32}
 int GetAsyncKeyState(int vKey) => _GetAsyncKeyState(vKey);
 
@@ -2414,11 +1905,9 @@ final _GetAsyncKeyState =
 
 /// Retrieves the DPI_AWARENESS value from a DPI_AWARENESS_CONTEXT.
 ///
-/// ```c
-/// DPI_AWARENESS GetAwarenessFromDpiAwarenessContext(
-///   DPI_AWARENESS_CONTEXT value
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getawarenessfromdpiawarenesscontext>.
+///
 /// {@category user32}
 int GetAwarenessFromDpiAwarenessContext(int value) =>
     _GetAwarenessFromDpiAwarenessContext(value);
@@ -2432,9 +1921,9 @@ final _GetAwarenessFromDpiAwarenessContext = _user32.lookupFunction<
 /// Only one window at a time can capture the mouse; this window receives mouse
 /// input whether or not the cursor is within its borders.
 ///
-/// ```c
-/// HWND GetCapture();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getcapture>.
+///
 /// {@category user32}
 int GetCapture() => _GetCapture();
 
@@ -2445,9 +1934,9 @@ final _GetCapture =
 ///
 /// The user can set this value.
 ///
-/// ```c
-/// UINT GetCaretBlinkTime();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getcaretblinktime>.
+///
 /// {@category user32}
 int GetCaretBlinkTime() => _GetCaretBlinkTime();
 
@@ -2456,11 +1945,9 @@ final _GetCaretBlinkTime = _user32
 
 /// Copies the caret's position to the specified POINT structure.
 ///
-/// ```c
-/// BOOL GetCaretPos(
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getcaretpos>.
+///
 /// {@category user32}
 int GetCaretPos(Pointer<POINT> lpPoint) => _GetCaretPos(lpPoint);
 
@@ -2470,13 +1957,9 @@ final _GetCaretPos = _user32.lookupFunction<
 
 /// Retrieves information about a window class.
 ///
-/// ```c
-/// BOOL GetClassInfoW(
-///   HINSTANCE   hInstance,
-///   LPCWSTR     lpClassName,
-///   LPWNDCLASSW lpWndClass
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclassinfow>.
+///
 /// {@category user32}
 int GetClassInfo(int? hInstance, Pointer<Utf16> lpClassName,
         Pointer<WNDCLASS> lpWndClass) =>
@@ -2493,13 +1976,9 @@ final _GetClassInfo = _user32.lookupFunction<
 ///
 /// The GetClassInfo function does not retrieve a handle to the small icon.
 ///
-/// ```c
-/// BOOL GetClassInfoExW(
-///   HINSTANCE     hInstance,
-///   LPCWSTR       lpszClass,
-///   LPWNDCLASSEXW lpwcx
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclassinfoexw>.
+///
 /// {@category user32}
 int GetClassInfoEx(
         int? hInstance, Pointer<Utf16> lpszClass, Pointer<WNDCLASSEX> lpwcx) =>
@@ -2514,12 +1993,9 @@ final _GetClassInfoEx = _user32.lookupFunction<
 /// Retrieves the specified value from the WNDCLASSEX structure associated with
 /// the specified window.
 ///
-/// ```c
-/// ULONG_PTR GetClassLongPtrW(
-///   HWND hWnd,
-///   int  nIndex
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclasslongptrw>.
+///
 /// {@category user32}
 int GetClassLongPtr(int hWnd, int nIndex) => _GetClassLongPtr(hWnd, nIndex);
 
@@ -2529,13 +2005,9 @@ final _GetClassLongPtr = _user32.lookupFunction<
 
 /// Retrieves the name of the class to which the specified window belongs.
 ///
-/// ```c
-/// int GetClassNameW(
-///   [in]  HWND   hWnd,
-///   [out] LPWSTR lpClassName,
-///   [in]  int    nMaxCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclassnamew>.
+///
 /// {@category user32}
 int GetClassName(int hWnd, Pointer<Utf16> lpClassName, int nMaxCount) =>
     _GetClassName(hWnd, lpClassName, nMaxCount);
@@ -2547,17 +2019,9 @@ final _GetClassName = _user32.lookupFunction<
 
 /// Retrieves the coordinates of a window's client area.
 ///
-/// The client coordinates specify the upper-left and lower-right corners of the
-/// client area. Because client coordinates are relative to the upper-left
-/// corner of a window's client area, the coordinates of the upper-left corner
-/// are (0,0).
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclientrect>.
 ///
-/// ```c
-/// BOOL GetClientRect(
-///   HWND   hWnd,
-///   LPRECT lpRect
-/// );
-/// ```
 /// {@category user32}
 int GetClientRect(int hWnd, Pointer<RECT> lpRect) =>
     _GetClientRect(hWnd, lpRect);
@@ -2570,11 +2034,9 @@ final _GetClientRect = _user32.lookupFunction<
 ///
 /// The clipboard must have been opened previously.
 ///
-/// ```c
-/// HANDLE GetClipboardData(
-///   UINT uFormat
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclipboarddata>.
+///
 /// {@category user32}
 int GetClipboardData(int uFormat) => _GetClipboardData(uFormat);
 
@@ -2586,13 +2048,9 @@ final _GetClipboardData = _user32.lookupFunction<
 ///
 /// The function copies the name to the specified buffer.
 ///
-/// ```c
-/// int GetClipboardFormatNameW(
-///   UINT format,
-///   LPWSTR lpszFormatName,
-///   int cchMaxCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclipboardformatnamew>.
+///
 /// {@category user32}
 int GetClipboardFormatName(
         int format, Pointer<Utf16> lpszFormatName, int cchMaxCount) =>
@@ -2606,9 +2064,9 @@ final _GetClipboardFormatName = _user32.lookupFunction<
 
 /// Retrieves the window handle of the current owner of the clipboard.
 ///
-/// ```c
-/// HWND GetClipboardOwner();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclipboardowner>.
+///
 /// {@category user32}
 int GetClipboardOwner() => _GetClipboardOwner();
 
@@ -2617,9 +2075,9 @@ final _GetClipboardOwner = _user32
 
 /// Retrieves the clipboard sequence number for the current window station.
 ///
-/// ```c
-/// DWORD GetClipboardSequenceNumber();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclipboardsequencenumber>.
+///
 /// {@category user32}
 int GetClipboardSequenceNumber() => _GetClipboardSequenceNumber();
 
@@ -2629,9 +2087,9 @@ final _GetClipboardSequenceNumber =
 
 /// Retrieves the handle to the first window in the clipboard viewer chain.
 ///
-/// ```c
-/// HWND GetClipboardViewer();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclipboardviewer>.
+///
 /// {@category user32}
 int GetClipboardViewer() => _GetClipboardViewer();
 
@@ -2641,11 +2099,9 @@ final _GetClipboardViewer = _user32
 /// Retrieves the screen coordinates of the rectangular area to which the cursor
 /// is confined.
 ///
-/// ```c
-/// BOOL GetClipCursor(
-///   LPRECT lpRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getclipcursor>.
+///
 /// {@category user32}
 int GetClipCursor(Pointer<RECT> lpRect) => _GetClipCursor(lpRect);
 
@@ -2655,9 +2111,9 @@ final _GetClipCursor = _user32.lookupFunction<
 
 /// Retrieves a handle to the current cursor.
 ///
-/// ```c
-/// HCURSOR GetCursor();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getcursor>.
+///
 /// {@category user32}
 int GetCursor() => _GetCursor();
 
@@ -2666,11 +2122,9 @@ final _GetCursor =
 
 /// Retrieves information about the global cursor.
 ///
-/// ```c
-/// BOOL GetCursorInfo(
-///   PCURSORINFO pci
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getcursorinfo>.
+///
 /// {@category user32}
 int GetCursorInfo(Pointer<CURSORINFO> pci) => _GetCursorInfo(pci);
 
@@ -2680,11 +2134,9 @@ final _GetCursorInfo = _user32.lookupFunction<
 
 /// Retrieves the position of the mouse cursor, in screen coordinates.
 ///
-/// ```c
-/// BOOL GetCursorPos(
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getcursorpos>.
+///
 /// {@category user32}
 int GetCursorPos(Pointer<POINT> lpPoint) => _GetCursorPos(lpPoint);
 
@@ -2692,38 +2144,24 @@ final _GetCursorPos = _user32.lookupFunction<
     BOOL Function(Pointer<POINT> lpPoint),
     int Function(Pointer<POINT> lpPoint)>('GetCursorPos');
 
-/// The GetDC function retrieves a handle to a device context (DC) for the
-/// client area of a specified window or for the entire screen.
+/// Retrieves a handle to a device context (DC) for the client area of a
+/// specified window or for the entire screen.
 ///
-/// You can use the returned handle in subsequent GDI functions to draw in the
-/// DC. The device context is an opaque data structure, whose values are used
-/// internally by GDI.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdc>.
 ///
-/// ```c
-/// HDC GetDC(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int GetDC(int? hWnd) => _GetDC(hWnd ?? 0);
 
 final _GetDC = _user32
     .lookupFunction<HDC Function(HWND hWnd), int Function(int hWnd)>('GetDC');
 
-/// The GetDCEx function retrieves a handle to a device context (DC) for the
-/// client area of a specified window or for the entire screen.
+/// Retrieves a handle to a device context (DC) for the client area of a
+/// specified window or for the entire screen.
 ///
-/// You can use the returned handle in subsequent GDI functions to draw in the
-/// DC. The device context is an opaque data structure, whose values are used
-/// internally by GDI.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdcex>.
 ///
-/// ```c
-/// HDC GetDCEx(
-///   HWND  hWnd,
-///   HRGN  hrgnClip,
-///   DWORD flags
-/// );
-/// ```
 /// {@category user32}
 int GetDCEx(int? hWnd, int? hrgnClip, int flags) =>
     _GetDCEx(hWnd ?? 0, hrgnClip ?? 0, flags);
@@ -2737,9 +2175,9 @@ final _GetDCEx = _user32.lookupFunction<
 /// The desktop window covers the entire screen. The desktop window is the area
 /// on top of which other windows are painted.
 ///
-/// ```c
-/// HWND GetDesktopWindow();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdesktopwindow>.
+///
 /// {@category user32}
 int GetDesktopWindow() => _GetDesktopWindow();
 
@@ -2749,15 +2187,9 @@ final _GetDesktopWindow =
 /// Retrieves the system's dialog base units, which are the average width and
 /// height of characters in the system font.
 ///
-/// For dialog boxes that use the system font, you can use these values to
-/// convert between dialog template units, as specified in dialog box templates,
-/// and pixels. For dialog boxes that do not use the system font, the conversion
-/// from dialog template units to pixels depends on the font used by the dialog
-/// box.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdialogbaseunits>.
 ///
-/// ```c
-/// long GetDialogBaseUnits();
-/// ```
 /// {@category user32}
 int GetDialogBaseUnits() => _GetDialogBaseUnits();
 
@@ -2767,11 +2199,9 @@ final _GetDialogBaseUnits = _user32
 /// Retrieves and per-monitor DPI scaling behavior overrides of a child window
 /// in a dialog.
 ///
-/// ```c
-/// DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS GetDialogControlDpiChangeBehavior(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdialogcontroldpichangebehavior>.
+///
 /// {@category user32}
 int GetDialogControlDpiChangeBehavior(int hWnd) =>
     _GetDialogControlDpiChangeBehavior(hWnd);
@@ -2783,14 +2213,9 @@ final _GetDialogControlDpiChangeBehavior =
 /// Returns the flags that might have been set on a given dialog by an earlier
 /// call to SetDialogDpiChangeBehavior.
 ///
-/// If that function was never called on the dialog, the return value will be
-/// zero.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdialogdpichangebehavior>.
 ///
-/// ```c
-/// DIALOG_DPI_CHANGE_BEHAVIORS GetDialogDpiChangeBehavior(
-///   HWND hDlg
-/// );
-/// ```
 /// {@category user32}
 int GetDialogDpiChangeBehavior(int hDlg) => _GetDialogDpiChangeBehavior(hDlg);
 
@@ -2800,11 +2225,9 @@ final _GetDialogDpiChangeBehavior =
 
 /// Retrieves the screen auto-rotation preferences for the current process.
 ///
-/// ```c
-/// BOOL GetDisplayAutoRotationPreferences(
-///   ORIENTATION_PREFERENCE *pOrientation
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdisplayautorotationpreferences>.
+///
 /// {@category user32}
 int GetDisplayAutoRotationPreferences(Pointer<Int32> pOrientation) =>
     _GetDisplayAutoRotationPreferences(pOrientation);
@@ -2816,12 +2239,9 @@ final _GetDisplayAutoRotationPreferences = _user32.lookupFunction<
 
 /// Retrieves a handle to a control in the specified dialog box.
 ///
-/// ```c
-/// HWND GetDlgItem(
-///   HWND hDlg,
-///   int  nIDDlgItem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdlgitem>.
+///
 /// {@category user32}
 int GetDlgItem(int? hDlg, int nIDDlgItem) => _GetDlgItem(hDlg ?? 0, nIDDlgItem);
 
@@ -2832,14 +2252,9 @@ final _GetDlgItem = _user32.lookupFunction<
 /// Translates the text of a specified control in a dialog box into an integer
 /// value.
 ///
-/// ```c
-/// UINT GetDlgItemInt(
-///   HWND hDlg,
-///   int  nIDDlgItem,
-///   BOOL *lpTranslated,
-///   BOOL bSigned
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdlgitemint>.
+///
 /// {@category user32}
 int GetDlgItemInt(
         int hDlg, int nIDDlgItem, Pointer<BOOL>? lpTranslated, int bSigned) =>
@@ -2853,14 +2268,9 @@ final _GetDlgItemInt = _user32.lookupFunction<
 
 /// Retrieves the title or text associated with a control in a dialog box.
 ///
-/// ```c
-/// UINT GetDlgItemTextW(
-///   HWND   hDlg,
-///   int    nIDDlgItem,
-///   LPWSTR lpString,
-///   int    cchMax
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdlgitemtextw>.
+///
 /// {@category user32}
 int GetDlgItemText(
         int hDlg, int nIDDlgItem, Pointer<Utf16> lpString, int cchMax) =>
@@ -2874,15 +2284,9 @@ final _GetDlgItemText = _user32.lookupFunction<
 
 /// Retrieves the current double-click time for the mouse.
 ///
-/// A double-click is a series of two clicks of the mouse button, the second
-/// occurring within a specified time after the first. The double-click time is
-/// the maximum number of milliseconds that may occur between the first and
-/// second click of a double-click. The maximum double-click time is 5000
-/// milliseconds.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdoubleclicktime>.
 ///
-/// ```c
-/// UINT GetDoubleClickTime();
-/// ```
 /// {@category user32}
 int GetDoubleClickTime() => _GetDoubleClickTime();
 
@@ -2891,22 +2295,20 @@ final _GetDoubleClickTime = _user32
 
 /// Returns the system DPI.
 ///
-/// ```c
-/// UINT GetDpiForSystem();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdpiforsystem>.
+///
 /// {@category user32}
 int GetDpiForSystem() => _GetDpiForSystem();
 
 final _GetDpiForSystem = _user32
     .lookupFunction<Uint32 Function(), int Function()>('GetDpiForSystem');
 
-/// Returns the dots per inch (dpi) value for the associated window.
+/// Returns the dots per inch (dpi) value for the specified window.
 ///
-/// ```c
-/// UINT GetDpiForWindow(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdpiforwindow>.
+///
 /// {@category user32}
 int GetDpiForWindow(int hwnd) => _GetDpiForWindow(hwnd);
 
@@ -2919,10 +2321,9 @@ final _GetDpiForWindow =
 /// This enables you to determine the DPI of a thread without needed to examine
 /// a window created within that thread.
 ///
-/// ```c
-/// UINT GetDpiFromDpiAwarenessContext(
-///   DPI_AWARENESS_CONTEXT value);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getdpifromdpiawarenesscontext>.
+///
 /// {@category user32}
 int GetDpiFromDpiAwarenessContext(int value) =>
     _GetDpiFromDpiAwarenessContext(value);
@@ -2934,9 +2335,9 @@ final _GetDpiFromDpiAwarenessContext = _user32.lookupFunction<
 /// Retrieves the handle to the window that has the keyboard focus, if the
 /// window is attached to the calling thread's message queue.
 ///
-/// ```c
-/// HWND GetFocus();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getfocus>.
+///
 /// {@category user32}
 int GetFocus() => _GetFocus();
 
@@ -2949,9 +2350,9 @@ final _GetFocus =
 /// The system assigns a slightly higher priority to the thread that creates the
 /// foreground window than it does to other threads.
 ///
-/// ```c
-/// HWND GetForegroundWindow();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getforegroundwindow>.
+///
 /// {@category user32}
 int GetForegroundWindow() => _GetForegroundWindow();
 
@@ -2961,16 +2362,9 @@ final _GetForegroundWindow = _user32
 /// Retrieves the configuration for which Windows Touch gesture messages are
 /// sent from a window.
 ///
-/// ```c
-/// BOOL GetGestureConfig(
-///   HWND           hwnd,
-///   DWORD          dwReserved,
-///   DWORD          dwFlags,
-///   PUINT          pcIDs,
-///   PGESTURECONFIG pGestureConfig,
-///   UINT           cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getgestureconfig>.
+///
 /// {@category user32}
 int GetGestureConfig(int hwnd, int dwFlags, Pointer<Uint32> pcIDs,
         Pointer<GESTURECONFIG> pGestureConfig, int cbSize) =>
@@ -2990,13 +2384,9 @@ final _GetGestureConfig = _user32.lookupFunction<
 /// Retrieves additional information about a gesture from its GESTUREINFO
 /// handle.
 ///
-/// ```c
-/// BOOL GetGestureExtraArgs(
-///   HGESTUREINFO hGestureInfo,
-///   UINT         cbExtraArgs,
-///   PBYTE        pExtraArgs
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getgestureextraargs>.
+///
 /// {@category user32}
 int GetGestureExtraArgs(
         int hGestureInfo, int cbExtraArgs, Pointer<Uint8> pExtraArgs) =>
@@ -3010,12 +2400,9 @@ final _GetGestureExtraArgs = _user32.lookupFunction<
 
 /// Retrieves a GESTUREINFO structure given a handle to the gesture information.
 ///
-/// ```c
-/// BOOL GetGestureInfo(
-///   HGESTUREINFO hGestureInfo,
-///   PGESTUREINFO pGestureInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getgestureinfo>.
+///
 /// {@category user32}
 int GetGestureInfo(int hGestureInfo, Pointer<GESTUREINFO> pGestureInfo) =>
     _GetGestureInfo(hGestureInfo, pGestureInfo);
@@ -3027,12 +2414,9 @@ final _GetGestureInfo = _user32.lookupFunction<
 
 /// Retrieves information about the active window or a specified GUI thread.
 ///
-/// ```c
-/// BOOL GetGUIThreadInfo(
-///   [in]      DWORD          idThread,
-///   [in, out] PGUITHREADINFO pgui
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getguithreadinfo>.
+///
 /// {@category user32}
 int GetGUIThreadInfo(int idThread, Pointer<GUITHREADINFO> pgui) =>
     _GetGUIThreadInfo(idThread, pgui);
@@ -3044,12 +2428,9 @@ final _GetGUIThreadInfo = _user32.lookupFunction<
 
 /// Retrieves information about the specified icon or cursor.
 ///
-/// ```c
-/// BOOL GetIconInfo(
-///   HICON     hIcon,
-///   PICONINFO piconinfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-geticoninfo>.
+///
 /// {@category user32}
 int GetIconInfo(int hIcon, Pointer<ICONINFO> piconinfo) =>
     _GetIconInfo(hIcon, piconinfo);
@@ -3058,14 +2439,13 @@ final _GetIconInfo = _user32.lookupFunction<
     BOOL Function(HICON hIcon, Pointer<ICONINFO> piconinfo),
     int Function(int hIcon, Pointer<ICONINFO> piconinfo)>('GetIconInfo');
 
-/// Retrieves the opacity and transparency color key of a layered window.
+/// Retrieves information about the specified icon or cursor.
 ///
-/// ```c
-/// BOOL GetIconInfoExW(
-///   HICON        hicon,
-///   PICONINFOEXW piconinfo
-/// );
-/// ```
+/// GetIconInfoEx extends GetIconInfo by using the newer ICONINFOEX structure.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-geticoninfoexw>.
+///
 /// {@category user32}
 int GetIconInfoEx(int hicon, Pointer<ICONINFOEX> piconinfo) =>
     _GetIconInfoEx(hicon, piconinfo);
@@ -3077,9 +2457,9 @@ final _GetIconInfoEx = _user32.lookupFunction<
 /// Determines whether there are mouse-button or keyboard messages in the
 /// calling thread's message queue.
 ///
-/// ```c
-/// BOOL GetInputState();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getinputstate>.
+///
 /// {@category user32}
 int GetInputState() => _GetInputState();
 
@@ -3089,11 +2469,9 @@ final _GetInputState =
 /// Retrieves the active input locale identifier (formerly called the keyboard
 /// layout).
 ///
-/// ```c
-/// HKL GetKeyboardLayout(
-///   DWORD idThread
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardlayout>.
+///
 /// {@category user32}
 int GetKeyboardLayout(int idThread) => _GetKeyboardLayout(idThread);
 
@@ -3105,12 +2483,9 @@ final _GetKeyboardLayout = _user32.lookupFunction<HKL Function(Uint32 idThread),
 ///
 /// The function copies the identifiers to the specified buffer.
 ///
-/// ```c
-/// int GetKeyboardLayoutList(
-///   int nBuff,
-///   HKL *lpList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardlayoutlist>.
+///
 /// {@category user32}
 int GetKeyboardLayoutList(int nBuff, Pointer<HKL>? lpList) =>
     _GetKeyboardLayoutList(nBuff, lpList ?? nullptr);
@@ -3122,11 +2497,9 @@ final _GetKeyboardLayoutList = _user32.lookupFunction<
 /// Retrieves the name of the active input locale identifier (formerly called
 /// the keyboard layout) for the system.
 ///
-/// ```c
-/// BOOL GetKeyboardLayoutNameW(
-///   LPWSTR pwszKLID
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardlayoutnamew>.
+///
 /// {@category user32}
 int GetKeyboardLayoutName(Pointer<Utf16> pwszKLID) =>
     _GetKeyboardLayoutName(pwszKLID);
@@ -3137,11 +2510,9 @@ final _GetKeyboardLayoutName = _user32.lookupFunction<
 
 /// Copies the status of the 256 virtual keys to the specified buffer.
 ///
-/// ```c
-/// BOOL GetKeyboardState(
-///   PBYTE lpKeyState
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardstate>.
+///
 /// {@category user32}
 int GetKeyboardState(Pointer<Uint8> lpKeyState) =>
     _GetKeyboardState(lpKeyState);
@@ -3152,11 +2523,9 @@ final _GetKeyboardState = _user32.lookupFunction<
 
 /// Retrieves information about the current keyboard.
 ///
-/// ```c
-/// int GetKeyboardType(
-///   int nTypeFlag
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeyboardtype>.
+///
 /// {@category user32}
 int GetKeyboardType(int nTypeFlag) => _GetKeyboardType(nTypeFlag);
 
@@ -3165,13 +2534,9 @@ final _GetKeyboardType = _user32.lookupFunction<Int32 Function(Int32 nTypeFlag),
 
 /// Retrieves a string that represents the name of a key.
 ///
-/// ```c
-/// int GetKeyNameTextW(
-///   LONG   lParam,
-///   LPWSTR lpString,
-///   int    cchSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeynametextw>.
+///
 /// {@category user32}
 int GetKeyNameText(int lParam, Pointer<Utf16> lpString, int cchSize) =>
     _GetKeyNameText(lParam, lpString, cchSize);
@@ -3186,11 +2551,9 @@ final _GetKeyNameText = _user32.lookupFunction<
 /// The status specifies whether the key is up, down, or toggled (on,
 /// off—alternating each time the key is pressed).
 ///
-/// ```c
-/// SHORT GetKeyState(
-///   int nVirtKey
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getkeystate>.
+///
 /// {@category user32}
 int GetKeyState(int nVirtKey) => _GetKeyState(nVirtKey);
 
@@ -3199,11 +2562,9 @@ final _GetKeyState = _user32.lookupFunction<Int16 Function(Int32 nVirtKey),
 
 /// Retrieves the time of the last input event.
 ///
-/// ```c
-/// BOOL GetLastInputInfo(
-///   PLASTINPUTINFO plii
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getlastinputinfo>.
+///
 /// {@category user32}
 int GetLastInputInfo(Pointer<LASTINPUTINFO> plii) => _GetLastInputInfo(plii);
 
@@ -3213,14 +2574,9 @@ final _GetLastInputInfo = _user32.lookupFunction<
 
 /// Retrieves the opacity and transparency color key of a layered window.
 ///
-/// ```c
-/// BOOL GetLayeredWindowAttributes(
-///   HWND     hwnd,
-///   COLORREF *pcrKey,
-///   BYTE     *pbAlpha,
-///   DWORD    *pdwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getlayeredwindowattributes>.
+///
 /// {@category user32}
 int GetLayeredWindowAttributes(int hwnd, Pointer<COLORREF>? pcrKey,
         Pointer<Uint8>? pbAlpha, Pointer<Uint32>? pdwFlags) =>
@@ -3235,11 +2591,9 @@ final _GetLayeredWindowAttributes = _user32.lookupFunction<
 
 /// Retrieves a handle to the menu assigned to the specified window.
 ///
-/// ```c
-/// HMENU GetMenu(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenu>.
+///
 /// {@category user32}
 int GetMenu(int hWnd) => _GetMenu(hWnd);
 
@@ -3249,14 +2603,9 @@ final _GetMenu =
 
 /// Retrieves information about the specified menu bar.
 ///
-/// ```c
-/// BOOL GetMenuBarInfo(
-///   [in]      HWND         hwnd,
-///   [in]      LONG         idObject,
-///   [in]      LONG         idItem,
-///   [in, out] PMENUBARINFO pmbi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenubarinfo>.
+///
 /// {@category user32}
 int GetMenuBarInfo(
         int hwnd, int idObject, int idItem, Pointer<MENUBARINFO> pmbi) =>
@@ -3270,13 +2619,9 @@ final _GetMenuBarInfo = _user32.lookupFunction<
 
 /// Determines the default menu item on the specified menu.
 ///
-/// ```c
-/// UINT GetMenuDefaultItem(
-///   [in] HMENU hMenu,
-///   [in] UINT  fByPos,
-///   [in] UINT  gmdiFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenudefaultitem>.
+///
 /// {@category user32}
 int GetMenuDefaultItem(int hMenu, int fByPos, int gmdiFlags) =>
     _GetMenuDefaultItem(hMenu, fByPos, gmdiFlags);
@@ -3287,12 +2632,9 @@ final _GetMenuDefaultItem = _user32.lookupFunction<
 
 /// Retrieves information about a specified menu.
 ///
-/// ```c
-/// HMENU GetMenuInfo(
-///   HMENU hMenu,
-///   LPMENUINFO lpMenuInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenuinfo>.
+///
 /// {@category user32}
 int GetMenuInfo(int param0, Pointer<MENUINFO> param1) =>
     _GetMenuInfo(param0, param1);
@@ -3303,11 +2645,9 @@ final _GetMenuInfo = _user32.lookupFunction<
 
 /// Determines the number of items in the specified menu.
 ///
-/// ```c
-/// int GetMenuItemCount(
-///   HMENU hMenu
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenuitemcount>.
+///
 /// {@category user32}
 int GetMenuItemCount(int? hMenu) => _GetMenuItemCount(hMenu ?? 0);
 
@@ -3317,12 +2657,9 @@ final _GetMenuItemCount = _user32.lookupFunction<Int32 Function(HMENU hMenu),
 /// Retrieves the menu item identifier of a menu item located at the specified
 /// position in a menu.
 ///
-/// ```c
-/// UINT GetMenuItemID(
-///   [in] HMENU hMenu,
-///   [in] int   nPos
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenuitemid>.
+///
 /// {@category user32}
 int GetMenuItemID(int hMenu, int nPos) => _GetMenuItemID(hMenu, nPos);
 
@@ -3332,14 +2669,9 @@ final _GetMenuItemID = _user32.lookupFunction<
 
 /// Retrieves information about a menu item.
 ///
-/// ```c
-/// BOOL GetMenuItemInfoW(
-///   HMENU           hmenu,
-///   UINT            item,
-///   BOOL            fByPosition,
-///   LPMENUITEMINFOW lpmii
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenuiteminfow>.
+///
 /// {@category user32}
 int GetMenuItemInfo(
         int hmenu, int item, int fByPosition, Pointer<MENUITEMINFO> lpmii) =>
@@ -3353,14 +2685,9 @@ final _GetMenuItemInfo = _user32.lookupFunction<
 
 /// Retrieves the bounding rectangle for the specified menu item.
 ///
-/// ```c
-/// BOOL GetMenuItemRect(
-///   HWND   hWnd,
-///   HMENU  hMenu,
-///   UINT   uItem,
-///   LPRECT lprcItem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenuitemrect>.
+///
 /// {@category user32}
 int GetMenuItemRect(int? hWnd, int hMenu, int uItem, Pointer<RECT> lprcItem) =>
     _GetMenuItemRect(hWnd ?? 0, hMenu, uItem, lprcItem);
@@ -3372,16 +2699,9 @@ final _GetMenuItemRect = _user32.lookupFunction<
 
 /// Retrieves the menu flags associated with the specified menu item.
 ///
-/// If the menu item opens a submenu, this function also returns the number of
-/// items in the submenu.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenustate>.
 ///
-/// ```c
-/// UINT GetMenuState(
-///   HMENU hMenu,
-///   UINT  uId,
-///   UINT  uFlags
-/// );
-/// ```
 /// {@category user32}
 int GetMenuState(int hMenu, int uId, int uFlags) =>
     _GetMenuState(hMenu, uId, uFlags);
@@ -3392,15 +2712,9 @@ final _GetMenuState = _user32.lookupFunction<
 
 /// Copies the text string of the specified menu item into the specified buffer.
 ///
-/// ```c
-/// int GetMenuStringW(
-///   HMENU  hMenu,
-///   UINT   uIDItem,
-///   LPWSTR lpString,
-///   int    cchMax,
-///   UINT   flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmenustringw>.
+///
 /// {@category user32}
 int GetMenuString(int hMenu, int uIDItem, Pointer<Utf16>? lpString, int cchMax,
         int flags) =>
@@ -3417,14 +2731,9 @@ final _GetMenuString = _user32.lookupFunction<
 /// The function dispatches incoming sent messages until a posted message is
 /// available for retrieval.
 ///
-/// ```c
-/// BOOL GetMessageW(
-///   LPMSG lpMsg,
-///   HWND  hWnd,
-///   UINT  wMsgFilterMin,
-///   UINT  wMsgFilterMax
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmessagew>.
+///
 /// {@category user32}
 int GetMessage(
         Pointer<MSG> lpMsg, int? hWnd, int wMsgFilterMin, int wMsgFilterMax) =>
@@ -3441,9 +2750,9 @@ final _GetMessage = _user32.lookupFunction<
 /// Extra message information is an application- or driver-defined value
 /// associated with the current thread's message queue.
 ///
-/// ```c
-/// LPARAM GetMessageExtraInfo();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmessageextrainfo>.
+///
 /// {@category user32}
 int GetMessageExtraInfo() => _GetMessageExtraInfo();
 
@@ -3453,9 +2762,9 @@ final _GetMessageExtraInfo = _user32
 /// Retrieves the cursor position for the last message retrieved by the
 /// GetMessage function.
 ///
-/// ```c
-/// DWORD GetMessagePos();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmessagepos>.
+///
 /// {@category user32}
 int GetMessagePos() => _GetMessagePos();
 
@@ -3465,27 +2774,20 @@ final _GetMessagePos =
 /// Retrieves the message time for the last message retrieved by the GetMessage
 /// function.
 ///
-/// The time is a long integer that specifies the elapsed time, in milliseconds,
-/// from the time the system was started to the time the message was created
-/// (that is, placed in the thread's message queue).
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmessagetime>.
 ///
-/// ```c
-/// LONG GetMessageTime();
-/// ```
 /// {@category user32}
 int GetMessageTime() => _GetMessageTime();
 
 final _GetMessageTime =
     _user32.lookupFunction<Int32 Function(), int Function()>('GetMessageTime');
 
-/// The GetMonitorInfo function retrieves information about a display monitor.
+/// Retrieves information about a display monitor.
 ///
-/// ```c
-/// BOOL GetMonitorInfoW(
-///   HMONITOR      hMonitor,
-///   LPMONITORINFO lpmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmonitorinfow>.
+///
 /// {@category user32}
 int GetMonitorInfo(int hMonitor, Pointer<MONITORINFO> lpmi) =>
     _GetMonitorInfo(hMonitor, lpmi);
@@ -3496,15 +2798,9 @@ final _GetMonitorInfo = _user32.lookupFunction<
 
 /// Retrieves a history of up to 64 previous coordinates of the mouse or pen.
 ///
-/// ```c
-/// int GetMouseMovePointsEx(
-///   UINT             cbSize,
-///   LPMOUSEMOVEPOINT lppt,
-///   LPMOUSEMOVEPOINT lpptBuf,
-///   int              nBufPoints,
-///   DWORD            resolution
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getmousemovepointsex>.
+///
 /// {@category user32}
 int GetMouseMovePointsEx(int cbSize, Pointer<MOUSEMOVEPOINT> lppt,
         Pointer<MOUSEMOVEPOINT> lpptBuf, int nBufPoints, int resolution) =>
@@ -3523,13 +2819,9 @@ final _GetMouseMovePointsEx = _user32.lookupFunction<
 /// Retrieves a handle to the first control in a group of controls that precedes
 /// (or follows) the specified control in a dialog box.
 ///
-/// ```c
-/// HWND GetNextDlgGroupItem(
-///   HWND hDlg,
-///   HWND hCtl,
-///   BOOL bPrevious
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getnextdlggroupitem>.
+///
 /// {@category user32}
 int GetNextDlgGroupItem(int hDlg, int? hCtl, int bPrevious) =>
     _GetNextDlgGroupItem(hDlg, hCtl ?? 0, bPrevious);
@@ -3541,13 +2833,9 @@ final _GetNextDlgGroupItem = _user32.lookupFunction<
 /// Retrieves a handle to the first control that has the WS_TABSTOP style that
 /// precedes (or follows) the specified control.
 ///
-/// ```c
-/// HWND GetNextDlgTabItem(
-///   HWND hDlg,
-///   HWND hCtl,
-///   BOOL bPrevious
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getnextdlgtabitem>.
+///
 /// {@category user32}
 int GetNextDlgTabItem(int hDlg, int? hCtl, int bPrevious) =>
     _GetNextDlgTabItem(hDlg, hCtl ?? 0, bPrevious);
@@ -3558,9 +2846,9 @@ final _GetNextDlgTabItem = _user32.lookupFunction<
 
 /// Retrieves the handle to the window that currently has the clipboard open.
 ///
-/// ```c
-/// HWND GetOpenClipboardWindow();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getopenclipboardwindow>.
+///
 /// {@category user32}
 int GetOpenClipboardWindow() => _GetOpenClipboardWindow();
 
@@ -3569,11 +2857,9 @@ final _GetOpenClipboardWindow = _user32
 
 /// Retrieves a handle to the specified window's parent or owner.
 ///
-/// ```c
-/// HWND GetParent(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getparent>.
+///
 /// {@category user32}
 int GetParent(int hWnd) => _GetParent(hWnd);
 
@@ -3583,11 +2869,9 @@ final _GetParent =
 
 /// Retrieves the position of the cursor in physical coordinates.
 ///
-/// ```c
-/// BOOL GetPhysicalCursorPos(
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getphysicalcursorpos>.
+///
 /// {@category user32}
 int GetPhysicalCursorPos(Pointer<POINT> lpPoint) =>
     _GetPhysicalCursorPos(lpPoint);
@@ -3598,12 +2882,9 @@ final _GetPhysicalCursorPos = _user32.lookupFunction<
 
 /// Retrieves the cursor identifier associated with the specified pointer.
 ///
-/// ```c
-/// BOOL GetPointerCursorId(
-///   [in]  UINT32 pointerId,
-///   [out] UINT32 *cursorId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointercursorid>.
+///
 /// {@category user32}
 int GetPointerCursorId(int pointerId, Pointer<Uint32> cursorId) =>
     _GetPointerCursorId(pointerId, cursorId);
@@ -3616,13 +2897,9 @@ final _GetPointerCursorId = _user32.lookupFunction<
 /// Gets the entire frame of information for the specified pointers associated
 /// with the current message.
 ///
-/// ```c
-/// BOOL GetPointerFrameInfo(
-///   [in]      UINT32       pointerId,
-///   [in, out] UINT32       *pointerCount,
-///   [out]     POINTER_INFO *pointerInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerframeinfo>.
+///
 /// {@category user32}
 int GetPointerFrameInfo(int pointerId, Pointer<Uint32> pointerCount,
         Pointer<POINTER_INFO>? pointerInfo) =>
@@ -3637,14 +2914,9 @@ final _GetPointerFrameInfo = _user32.lookupFunction<
 /// Gets the entire frame of information (including coalesced input frames) for
 /// the specified pointers associated with the current message.
 ///
-/// ```c
-/// BOOL GetPointerFrameInfoHistory(
-///   [in]      UINT32       pointerId,
-///   [in, out] UINT32       *entriesCount,
-///   [in, out] UINT32       *pointerCount,
-///   [out]     POINTER_INFO *pointerInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerframeinfohistory>.
+///
 /// {@category user32}
 int GetPointerFrameInfoHistory(int pointerId, Pointer<Uint32> entriesCount,
         Pointer<Uint32> pointerCount, Pointer<POINTER_INFO>? pointerInfo) =>
@@ -3663,13 +2935,9 @@ final _GetPointerFrameInfoHistory = _user32.lookupFunction<
 /// Gets the entire frame of pen-based information for the specified pointers
 /// (of type PT_PEN) associated with the current message.
 ///
-/// ```c
-/// BOOL GetPointerFramePenInfo(
-///   [in]      UINT32           pointerId,
-///   [in, out] UINT32           *pointerCount,
-///   [out]     POINTER_PEN_INFO *penInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerframepeninfo>.
+///
 /// {@category user32}
 int GetPointerFramePenInfo(int pointerId, Pointer<Uint32> pointerCount,
         Pointer<POINTER_PEN_INFO>? penInfo) =>
@@ -3685,14 +2953,9 @@ final _GetPointerFramePenInfo = _user32.lookupFunction<
 /// frames) for the specified pointers (of type PT_PEN) associated with the
 /// current message.
 ///
-/// ```c
-/// BOOL GetPointerFramePenInfoHistory(
-///   [in]            UINT32           pointerId,
-///   [in, out]       UINT32           *entriesCount,
-///   [in, out]       UINT32           *pointerCount,
-///   [out, optional] POINTER_PEN_INFO *penInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerframepeninfohistory>.
+///
 /// {@category user32}
 int GetPointerFramePenInfoHistory(int pointerId, Pointer<Uint32> entriesCount,
         Pointer<Uint32> pointerCount, Pointer<POINTER_PEN_INFO>? penInfo) =>
@@ -3711,13 +2974,9 @@ final _GetPointerFramePenInfoHistory = _user32.lookupFunction<
 /// Gets the entire frame of touch-based information for the specified pointers
 /// (of type PT_TOUCH) associated with the current message.
 ///
-/// ```c
-/// BOOL GetPointerFrameTouchInfo(
-///   [in]      UINT32             pointerId,
-///   [in, out] UINT32             *pointerCount,
-///   [out]     POINTER_TOUCH_INFO *touchInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerframetouchinfo>.
+///
 /// {@category user32}
 int GetPointerFrameTouchInfo(int pointerId, Pointer<Uint32> pointerCount,
         Pointer<POINTER_TOUCH_INFO>? touchInfo) =>
@@ -3733,14 +2992,9 @@ final _GetPointerFrameTouchInfo = _user32.lookupFunction<
 /// frames) for the specified pointers (of type PT_TOUCH) associated with the
 /// current message.
 ///
-/// ```c
-/// BOOL GetPointerFrameTouchInfoHistory(
-///   [in]      UINT32             pointerId,
-///   [in, out] UINT32             *entriesCount,
-///   [in, out] UINT32             *pointerCount,
-///   [out]     POINTER_TOUCH_INFO *touchInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerframetouchinfohistory>.
+///
 /// {@category user32}
 int GetPointerFrameTouchInfoHistory(int pointerId, Pointer<Uint32> entriesCount,
         Pointer<Uint32> pointerCount, Pointer<POINTER_TOUCH_INFO>? touchInfo) =>
@@ -3760,12 +3014,9 @@ final _GetPointerFrameTouchInfoHistory = _user32.lookupFunction<
 /// Gets the information for the specified pointer associated with the current
 /// message.
 ///
-/// ```c
-/// BOOL GetPointerInfo(
-///   [in]  UINT32       pointerId,
-///   [out] POINTER_INFO *pointerInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerinfo>.
+///
 /// {@category user32}
 int GetPointerInfo(int pointerId, Pointer<POINTER_INFO> pointerInfo) =>
     _GetPointerInfo(pointerId, pointerInfo);
@@ -3778,16 +3029,9 @@ final _GetPointerInfo = _user32.lookupFunction<
 /// Gets the information associated with the individual inputs, if any, that
 /// were coalesced into the current message for the specified pointer.
 ///
-/// The most recent input is included in the returned history and is the same as
-/// the most recent input returned by the GetPointerInfo function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerinfohistory>.
 ///
-/// ```c
-/// BOOL GetPointerInfoHistory(
-///   [in]            UINT32       pointerId,
-///   [in, out]       UINT32       *entriesCount,
-///   [out, optional] POINTER_INFO *pointerInfo
-/// );
-/// ```
 /// {@category user32}
 int GetPointerInfoHistory(int pointerId, Pointer<Uint32> entriesCount,
         Pointer<POINTER_INFO>? pointerInfo) =>
@@ -3802,13 +3046,9 @@ final _GetPointerInfoHistory = _user32.lookupFunction<
 /// Gets one or more transforms for the pointer information coordinates
 /// associated with the current message.
 ///
-/// ```c
-/// BOOL GetPointerInputTransform(
-///   [in]  UINT32          pointerId,
-///   [in]  UINT32          historyCount,
-///   [out] INPUT_TRANSFORM *inputTransform
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerinputtransform>.
+///
 /// {@category user32}
 int GetPointerInputTransform(int pointerId, int historyCount,
         Pointer<INPUT_TRANSFORM> inputTransform) =>
@@ -3823,12 +3063,9 @@ final _GetPointerInputTransform = _user32.lookupFunction<
 /// Gets the pen-based information for the specified pointer (of type PT_PEN)
 /// associated with the current message.
 ///
-/// ```c
-/// BOOL GetPointerPenInfo(
-///   [in]  UINT32           pointerId,
-///   [out] POINTER_PEN_INFO *penInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerpeninfo>.
+///
 /// {@category user32}
 int GetPointerPenInfo(int pointerId, Pointer<POINTER_PEN_INFO> penInfo) =>
     _GetPointerPenInfo(pointerId, penInfo);
@@ -3842,16 +3079,9 @@ final _GetPointerPenInfo = _user32.lookupFunction<
 /// any, that were coalesced into the current message for the specified pointer
 /// (of type PT_PEN).
 ///
-/// The most recent input is included in the returned history and is the same as
-/// the most recent input returned by the GetPointerPenInfo function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointerpeninfohistory>.
 ///
-/// ```c
-/// BOOL GetPointerPenInfoHistory(
-///   [in]            UINT32           pointerId,
-///   [in, out]       UINT32           *entriesCount,
-///   [out, optional] POINTER_PEN_INFO *penInfo
-/// );
-/// ```
 /// {@category user32}
 int GetPointerPenInfoHistory(int pointerId, Pointer<Uint32> entriesCount,
         Pointer<POINTER_PEN_INFO>? penInfo) =>
@@ -3866,12 +3096,9 @@ final _GetPointerPenInfoHistory = _user32.lookupFunction<
 /// Gets the touch-based information for the specified pointer (of type
 /// PT_TOUCH) associated with the current message.
 ///
-/// ```c
-/// BOOL GetPointerTouchInfo(
-///   [in]  UINT32             pointerId,
-///   [out] POINTER_TOUCH_INFO *touchInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointertouchinfo>.
+///
 /// {@category user32}
 int GetPointerTouchInfo(int pointerId, Pointer<POINTER_TOUCH_INFO> touchInfo) =>
     _GetPointerTouchInfo(pointerId, touchInfo);
@@ -3885,16 +3112,9 @@ final _GetPointerTouchInfo = _user32.lookupFunction<
 /// any, that were coalesced into the current message for the specified pointer
 /// (of type PT_TOUCH).
 ///
-/// The most recent input is included in the returned history and is the same as
-/// the most recent input returned by the GetPointerTouchInfo function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointertouchinfohistory>.
 ///
-/// ```c
-/// BOOL GetPointerTouchInfoHistory(
-///   [in]            UINT32             pointerId,
-///   [in, out]       UINT32             *entriesCount,
-///   [out, optional] POINTER_TOUCH_INFO *touchInfo
-/// );
-/// ```
 /// {@category user32}
 int GetPointerTouchInfoHistory(int pointerId, Pointer<Uint32> entriesCount,
         Pointer<POINTER_TOUCH_INFO>? touchInfo) =>
@@ -3908,12 +3128,9 @@ final _GetPointerTouchInfoHistory = _user32.lookupFunction<
 
 /// Retrieves the pointer type for a specified pointer.
 ///
-/// ```c
-/// BOOL GetPointerType(
-///   [in]  UINT32             pointerId,
-///   [out] POINTER_INPUT_TYPE *pointerType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpointertype>.
+///
 /// {@category user32}
 int GetPointerType(int pointerId, Pointer<Int32> pointerType) =>
     _GetPointerType(pointerId, pointerType);
@@ -3924,12 +3141,9 @@ final _GetPointerType = _user32.lookupFunction<
 
 /// Retrieves the first available clipboard format in the specified list.
 ///
-/// ```c
-/// int GetPriorityClipboardFormat(
-///   UINT *paFormatPriorityList,
-///   int  cFormats
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpriorityclipboardformat>.
+///
 /// {@category user32}
 int GetPriorityClipboardFormat(
         Pointer<Uint32> paFormatPriorityList, int cFormats) =>
@@ -3942,9 +3156,9 @@ final _GetPriorityClipboardFormat = _user32.lookupFunction<
 
 /// Retrieves a handle to the current window station for the calling process.
 ///
-/// ```c
-/// HWINSTA GetProcessWindowStation();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getprocesswindowstation>.
+///
 /// {@category user32}
 int GetProcessWindowStation() => _GetProcessWindowStation();
 
@@ -3958,12 +3172,9 @@ final _GetProcessWindowStation =
 /// handle must have been added to the property list by a previous call to the
 /// SetProp function.
 ///
-/// ```c
-/// HANDLE GetPropW(
-///   HWND    hWnd,
-///   LPCWSTR lpString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getpropw>.
+///
 /// {@category user32}
 int GetProp(int hWnd, Pointer<Utf16> lpString) => _GetProp(hWnd, lpString);
 
@@ -3971,16 +3182,11 @@ final _GetProp = _user32.lookupFunction<
     HANDLE Function(HWND hWnd, Pointer<Utf16> lpString),
     int Function(int hWnd, Pointer<Utf16> lpString)>('GetPropW');
 
-/// Performs a buffered read of the raw input messages data found in the calling
-/// thread's message queue.
+/// Performs a buffered read of the raw input data.
 ///
-/// ```c
-/// UINT GetRawInputBuffer(
-///   PRAWINPUT pData,
-///   PUINT     pcbSize,
-///   UINT      cbSizeHeader
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getrawinputbuffer>.
+///
 /// {@category user32}
 int GetRawInputBuffer(
         Pointer<RAWINPUT>? pData, Pointer<Uint32> pcbSize, int cbSizeHeader) =>
@@ -3994,15 +3200,9 @@ final _GetRawInputBuffer = _user32.lookupFunction<
 
 /// Retrieves the raw input from the specified device.
 ///
-/// ```c
-/// UINT GetRawInputData(
-///   HRAWINPUT hRawInput,
-///   UINT      uiCommand,
-///   LPVOID    pData,
-///   PUINT     pcbSize,
-///   UINT      cbSizeHeader
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getrawinputdata>.
+///
 /// {@category user32}
 int GetRawInputData(int hRawInput, int uiCommand, Pointer? pData,
         Pointer<Uint32> pcbSize, int cbSizeHeader) =>
@@ -4017,14 +3217,9 @@ final _GetRawInputData = _user32.lookupFunction<
 
 /// Retrieves information about the raw input device.
 ///
-/// ```c
-/// UINT GetRawInputDeviceInfoW(
-///   HANDLE hDevice,
-///   UINT   uiCommand,
-///   LPVOID pData,
-///   PUINT  pcbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getrawinputdeviceinfow>.
+///
 /// {@category user32}
 int GetRawInputDeviceInfo(
         int? hDevice, int uiCommand, Pointer? pData, Pointer<Uint32> pcbSize) =>
@@ -4038,13 +3233,9 @@ final _GetRawInputDeviceInfo = _user32.lookupFunction<
 
 /// Enumerates the raw input devices attached to the system.
 ///
-/// ```c
-/// UINT GetRawInputDeviceList(
-///   PRAWINPUTDEVICELIST pRawInputDeviceList,
-///   PUINT               puiNumDevices,
-///   UINT                cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getrawinputdevicelist>.
+///
 /// {@category user32}
 int GetRawInputDeviceList(Pointer<RAWINPUTDEVICELIST>? pRawInputDeviceList,
         Pointer<Uint32> puiNumDevices, int cbSize) =>
@@ -4060,13 +3251,9 @@ final _GetRawInputDeviceList = _user32.lookupFunction<
 /// Retrieves the information about the raw input devices for the current
 /// application.
 ///
-/// ```c
-/// UINT GetRegisteredRawInputDevices(
-///   PRAWINPUTDEVICE pRawInputDevices,
-///   PUINT           puiNumDevices,
-///   UINT            cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getregisteredrawinputdevices>.
+///
 /// {@category user32}
 int GetRegisteredRawInputDevices(Pointer<RAWINPUTDEVICE>? pRawInputDevices,
         Pointer<Uint32> puiNumDevices, int cbSize) =>
@@ -4081,16 +3268,11 @@ final _GetRegisteredRawInputDevices = _user32.lookupFunction<
         Pointer<Uint32> puiNumDevices,
         int cbSize)>('GetRegisteredRawInputDevices');
 
-/// The GetScrollBarInfo function retrieves information about the specified
-/// scroll bar.
+/// Retrieves information about the specified scroll bar.
 ///
-/// ```c
-/// BOOL GetScrollBarInfo(
-///   HWND           hwnd,
-///   LONG           idObject,
-///   PSCROLLBARINFO psbi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getscrollbarinfo>.
+///
 /// {@category user32}
 int GetScrollBarInfo(int hwnd, int idObject, Pointer<SCROLLBARINFO> psbi) =>
     _GetScrollBarInfo(hwnd, idObject, psbi);
@@ -4100,17 +3282,13 @@ final _GetScrollBarInfo = _user32.lookupFunction<
     int Function(int hwnd, int idObject,
         Pointer<SCROLLBARINFO> psbi)>('GetScrollBarInfo');
 
-/// The GetScrollInfo function retrieves the parameters of a scroll bar,
-/// including the minimum and maximum scrolling positions, the page size, and
-/// the position of the scroll box (thumb).
+/// Retrieves the parameters of a scroll bar, including the minimum and maximum
+/// scrolling positions, the page size, and the position of the scroll box
+/// (thumb).
 ///
-/// ```c
-/// BOOL GetScrollInfo(
-///   HWND         hwnd,
-///   int          nBar,
-///   LPSCROLLINFO lpsi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getscrollinfo>.
+///
 /// {@category user32}
 int GetScrollInfo(int hwnd, int nBar, Pointer<SCROLLINFO> lpsi) =>
     _GetScrollInfo(hwnd, nBar, lpsi);
@@ -4122,9 +3300,9 @@ final _GetScrollInfo = _user32.lookupFunction<
 
 /// Retrieves a handle to the Shell's desktop window.
 ///
-/// ```c
-/// HWND GetShellWindow();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getshellwindow>.
+///
 /// {@category user32}
 int GetShellWindow() => _GetShellWindow();
 
@@ -4134,12 +3312,9 @@ final _GetShellWindow =
 /// Retrieves a handle to the drop-down menu or submenu activated by the
 /// specified menu item.
 ///
-/// ```c
-/// HMENU GetSubMenu(
-///   HMENU hMenu,
-///   int nPos
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsubmenu>.
+///
 /// {@category user32}
 int GetSubMenu(int hMenu, int nPos) => _GetSubMenu(hMenu, nPos);
 
@@ -4149,28 +3324,21 @@ final _GetSubMenu = _user32.lookupFunction<
 
 /// Retrieves the current color of the specified display element.
 ///
-/// Display elements are the parts of a window and the display that appear on
-/// the system display screen.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsyscolor>.
 ///
-/// ```c
-/// DWORD GetSysColor(
-///   int nIndex
-/// );
-/// ```
 /// {@category user32}
 int GetSysColor(int nIndex) => _GetSysColor(nIndex);
 
 final _GetSysColor = _user32.lookupFunction<Uint32 Function(Int32 nIndex),
     int Function(int nIndex)>('GetSysColor');
 
-/// The GetSysColorBrush function retrieves a handle identifying a logical brush
-/// that corresponds to the specified color index.
+/// Retrieves a handle identifying a logical brush that corresponds to the
+/// specified color index.
 ///
-/// ```c
-/// HBRUSH GetSysColorBrush(
-///   int nIndex
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsyscolorbrush>.
+///
 /// {@category user32}
 int GetSysColorBrush(int nIndex) => _GetSysColorBrush(nIndex);
 
@@ -4183,11 +3351,9 @@ final _GetSysColorBrush = _user32.lookupFunction<HBRUSH Function(Int32 nIndex),
 /// DPI-sensitive information between multiple system-aware processes with
 /// different system DPI values.
 ///
-/// ```c
-/// UINT GetSystemDpiForProcess(
-///   HANDLE hProcess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsystemdpiforprocess>.
+///
 /// {@category user32}
 int GetSystemDpiForProcess(int hProcess) => _GetSystemDpiForProcess(hProcess);
 
@@ -4198,12 +3364,9 @@ final _GetSystemDpiForProcess = _user32.lookupFunction<
 /// Enables the application to access the window menu (also known as the system
 /// menu or the control menu) for copying and modifying.
 ///
-/// ```c
-/// HMENU GetSystemMenu(
-///   HWND hWnd,
-///   BOOL bRevert
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsystemmenu>.
+///
 /// {@category user32}
 int GetSystemMenu(int hWnd, int bRevert) => _GetSystemMenu(hWnd, bRevert);
 
@@ -4213,13 +3376,9 @@ final _GetSystemMenu = _user32.lookupFunction<
 
 /// Retrieves the specified system metric or system configuration setting.
 ///
-/// Note that all dimensions retrieved by GetSystemMetrics are in pixels.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsystemmetrics>.
 ///
-/// ```c
-/// int GetSystemMetrics(
-///   int nIndex
-/// );
-/// ```
 /// {@category user32}
 int GetSystemMetrics(int nIndex) => _GetSystemMetrics(nIndex);
 
@@ -4229,12 +3388,9 @@ final _GetSystemMetrics = _user32.lookupFunction<Int32 Function(Int32 nIndex),
 /// Retrieves the specified system metric or system configuration setting taking
 /// into account a provided DPI.
 ///
-/// ```c
-/// int GetSystemMetricsForDpi(
-///   int  nIndex,
-///   UINT dpi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getsystemmetricsfordpi>.
+///
 /// {@category user32}
 int GetSystemMetricsForDpi(int nIndex, int dpi) =>
     _GetSystemMetricsForDpi(nIndex, dpi);
@@ -4243,22 +3399,11 @@ final _GetSystemMetricsForDpi = _user32.lookupFunction<
     Int32 Function(Int32 nIndex, Uint32 dpi),
     int Function(int nIndex, int dpi)>('GetSystemMetricsForDpi');
 
-/// The GetTabbedTextExtent function computes the width and height of a
-/// character string.
+/// Computes the width and height of a character string.
 ///
-/// If the string contains one or more tab characters, the width of the string
-/// is based upon the specified tab stops. The GetTabbedTextExtent function uses
-/// the currently selected font to compute the dimensions of the string.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-gettabbedtextextentw>.
 ///
-/// ```c
-/// DWORD GetTabbedTextExtentW(
-///   HDC       hdc,
-///   LPCWSTR   lpString,
-///   int       chCount,
-///   int       nTabPositions,
-///   const INT *lpnTabStopPositions
-/// );
-/// ```
 /// {@category user32}
 int GetTabbedTextExtent(int hdc, Pointer<Utf16> lpString, int chCount,
         int nTabPositions, Pointer<Int32>? lpnTabStopPositions) =>
@@ -4277,11 +3422,9 @@ final _GetTabbedTextExtent = _user32.lookupFunction<
 
 /// Retrieves a handle to the desktop assigned to the specified thread.
 ///
-/// ```c
-/// HDESK GetThreadDesktop(
-///   DWORD dwThreadId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getthreaddesktop>.
+///
 /// {@category user32}
 int GetThreadDesktop(int dwThreadId) => _GetThreadDesktop(dwThreadId);
 
@@ -4291,9 +3434,9 @@ final _GetThreadDesktop = _user32.lookupFunction<
 
 /// Gets the DPI_AWARENESS_CONTEXT for the current thread.
 ///
-/// ```c
-/// DPI_AWARENESS_CONTEXT GetThreadDpiAwarenessContext();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getthreaddpiawarenesscontext>.
+///
 /// {@category user32}
 int GetThreadDpiAwarenessContext() => _GetThreadDpiAwarenessContext();
 
@@ -4303,9 +3446,9 @@ final _GetThreadDpiAwarenessContext =
 
 /// Retrieves the DPI_HOSTING_BEHAVIOR from the current thread.
 ///
-/// ```c
-/// DPI_HOSTING_BEHAVIOR GetThreadDpiHostingBehavior();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getthreaddpihostingbehavior>.
+///
 /// {@category user32}
 int GetThreadDpiHostingBehavior() => _GetThreadDpiHostingBehavior();
 
@@ -4315,12 +3458,9 @@ final _GetThreadDpiHostingBehavior =
 
 /// Retrieves information about the specified title bar.
 ///
-/// ```c
-/// BOOL GetTitleBarInfo(
-///   HWND          hwnd,
-///   PTITLEBARINFO pti
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-gettitlebarinfo>.
+///
 /// {@category user32}
 int GetTitleBarInfo(int hwnd, Pointer<TITLEBARINFO> pti) =>
     _GetTitleBarInfo(hwnd, pti);
@@ -4333,11 +3473,9 @@ final _GetTitleBarInfo = _user32.lookupFunction<
 /// parent window and retrieves a handle to the child window at the top of the Z
 /// order.
 ///
-/// ```c
-/// HWND GetTopWindow(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-gettopwindow>.
+///
 /// {@category user32}
 int GetTopWindow(int? hWnd) => _GetTopWindow(hWnd ?? 0);
 
@@ -4348,14 +3486,9 @@ final _GetTopWindow =
 /// Retrieves detailed information about touch inputs associated with a
 /// particular touch input handle.
 ///
-/// ```c
-/// BOOL GetTouchInputInfo(
-///   HTOUCHINPUT hTouchInput,
-///   UINT        cInputs,
-///   PTOUCHINPUT pInputs,
-///   int         cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-gettouchinputinfo>.
+///
 /// {@category user32}
 int GetTouchInputInfo(int hTouchInput, int cInputs, Pointer<TOUCHINPUT> pInputs,
         int cbSize) =>
@@ -4369,9 +3502,9 @@ final _GetTouchInputInfo = _user32.lookupFunction<
 
 /// Gets pointer data before it has gone through touch prediction processing.
 ///
-/// ```c
-/// DWORD GetUnpredictedMessagePos();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getunpredictedmessagepos>.
+///
 /// {@category user32}
 int GetUnpredictedMessagePos() => _GetUnpredictedMessagePos();
 
@@ -4381,13 +3514,9 @@ final _GetUnpredictedMessagePos =
 
 /// Retrieves the currently supported clipboard formats.
 ///
-/// ```c
-/// BOOL GetUpdatedClipboardFormats(
-///   PUINT lpuiFormats,
-///   UINT  cFormats,
-///   PUINT pcFormatsOut
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getupdatedclipboardformats>.
+///
 /// {@category user32}
 int GetUpdatedClipboardFormats(Pointer<Uint32> lpuiFormats, int cFormats,
         Pointer<Uint32> pcFormatsOut) =>
@@ -4399,21 +3528,12 @@ final _GetUpdatedClipboardFormats = _user32.lookupFunction<
     int Function(Pointer<Uint32> lpuiFormats, int cFormats,
         Pointer<Uint32> pcFormatsOut)>('GetUpdatedClipboardFormats');
 
-/// The GetUpdateRect function retrieves the coordinates of the smallest
-/// rectangle that completely encloses the update region of the specified
-/// window.
+/// Retrieves the coordinates of the smallest rectangle that completely encloses
+/// the update region of the specified window.
 ///
-/// GetUpdateRect retrieves the rectangle in logical coordinates. If there is no
-/// update region, GetUpdateRect retrieves an empty rectangle (sets all
-/// coordinates to zero).
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getupdaterect>.
 ///
-/// ```c
-/// BOOL GetUpdateRect(
-///   HWND   hWnd,
-///   LPRECT lpRect,
-///   BOOL   bErase
-/// );
-/// ```
 /// {@category user32}
 int GetUpdateRect(int hWnd, Pointer<RECT>? lpRect, int bErase) =>
     _GetUpdateRect(hWnd, lpRect ?? nullptr, bErase);
@@ -4422,19 +3542,15 @@ final _GetUpdateRect = _user32.lookupFunction<
     BOOL Function(HWND hWnd, Pointer<RECT> lpRect, BOOL bErase),
     int Function(int hWnd, Pointer<RECT> lpRect, int bErase)>('GetUpdateRect');
 
-/// The GetUpdateRgn function retrieves the update region of a window by copying
-/// it into the specified region.
+/// Retrieves the update region of a window by copying it into the specified
+/// region.
 ///
 /// The coordinates of the update region are relative to the upper-left corner
 /// of the window (that is, they are client coordinates).
 ///
-/// ```c
-/// int GetUpdateRgn(
-///   HWND hWnd,
-///   HRGN hRgn,
-///   BOOL bErase
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getupdatergn>.
+///
 /// {@category user32}
 int GetUpdateRgn(int hWnd, int hRgn, int bErase) =>
     _GetUpdateRgn(hWnd, hRgn, bErase);
@@ -4445,15 +3561,9 @@ final _GetUpdateRgn = _user32.lookupFunction<
 
 /// Retrieves information about the specified window station or desktop object.
 ///
-/// ```c
-/// BOOL GetUserObjectInformationW(
-///   HANDLE  hObj,
-///   int     nIndex,
-///   PVOID   pvInfo,
-///   DWORD   nLength,
-///   LPDWORD lpnLengthNeeded
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getuserobjectinformationw>.
+///
 /// {@category user32}
 int GetUserObjectInformation(int hObj, int nIndex, Pointer? pvInfo, int nLength,
         Pointer<Uint32>? lpnLengthNeeded) =>
@@ -4469,30 +3579,21 @@ final _GetUserObjectInformation = _user32.lookupFunction<
 /// Retrieves a handle to a window that has the specified relationship (Z-Order
 /// or owner) to the specified window.
 ///
-/// ```c
-/// HWND GetWindow(
-///   HWND hWnd,
-///   UINT uCmd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindow>.
+///
 /// {@category user32}
 int GetWindow(int hWnd, int uCmd) => _GetWindow(hWnd, uCmd);
 
 final _GetWindow = _user32.lookupFunction<HWND Function(HWND hWnd, Uint32 uCmd),
     int Function(int hWnd, int uCmd)>('GetWindow');
 
-/// The GetWindowDC function retrieves the device context (DC) for the entire
-/// window, including title bar, menus, and scroll bars.
+/// Retrieves the device context (DC) for the entire window, including title
+/// bar, menus, and scroll bars.
 ///
-/// A window device context permits painting anywhere in a window, because the
-/// origin of the device context is the upper-left corner of the window instead
-/// of the client area.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowdc>.
 ///
-/// ```c
-/// HDC GetWindowDC(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int GetWindowDC(int? hWnd) => _GetWindowDC(hWnd ?? 0);
 
@@ -4503,12 +3604,9 @@ final _GetWindowDC =
 /// Retrieves the current display affinity setting, from any process, for a
 /// given window.
 ///
-/// ```c
-/// BOOL GetWindowDisplayAffinity(
-///   HWND  hWnd,
-///   DWORD *pdwAffinity
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowdisplayaffinity>.
+///
 /// {@category user32}
 int GetWindowDisplayAffinity(int hWnd, Pointer<Uint32> pdwAffinity) =>
     _GetWindowDisplayAffinity(hWnd, pdwAffinity);
@@ -4520,10 +3618,9 @@ final _GetWindowDisplayAffinity = _user32.lookupFunction<
 
 /// Returns the DPI_AWARENESS_CONTEXT associated with a window.
 ///
-/// ```c
-/// DPI_AWARENESS_CONTEXT GetWindowDpiAwarenessContext(
-///   HWND hwnd);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowdpiawarenesscontext>.
+///
 /// {@category user32}
 int GetWindowDpiAwarenessContext(int hwnd) =>
     _GetWindowDpiAwarenessContext(hwnd);
@@ -4534,10 +3631,9 @@ final _GetWindowDpiAwarenessContext = _user32.lookupFunction<
 
 /// Returns the DPI_HOSTING_BEHAVIOR of the specified window.
 ///
-/// ```c
-/// DPI_HOSTING_BEHAVIOR GetWindowDpiHostingBehavior(
-///   HWND hwnd);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowdpihostingbehavior>.
+///
 /// {@category user32}
 int GetWindowDpiHostingBehavior(int hwnd) => _GetWindowDpiHostingBehavior(hwnd);
 
@@ -4547,12 +3643,9 @@ final _GetWindowDpiHostingBehavior =
 
 /// Retrieves information about the specified window.
 ///
-/// ```c
-/// BOOL GetWindowInfo(
-///   HWND hwnd,
-///   PWINDOWINFO pwi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowinfo>.
+///
 /// {@category user32}
 int GetWindowInfo(int hwnd, Pointer<WINDOWINFO> pwi) =>
     _GetWindowInfo(hwnd, pwi);
@@ -4566,12 +3659,9 @@ final _GetWindowInfo = _user32.lookupFunction<
 /// The function also retrieves the value at a specified offset into the extra
 /// window memory.
 ///
-/// ```c
-/// LONG_PTR GetWindowLongPtrW(
-///   HWND hWnd,
-///   int  nIndex
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowlongptrw>.
+///
 /// {@category user32}
 int GetWindowLongPtr(int hWnd, int nIndex) => _GetWindowLongPtr(hWnd, nIndex);
 
@@ -4582,13 +3672,9 @@ final _GetWindowLongPtr = _user32.lookupFunction<
 /// Retrieves the full path and file name of the module associated with the
 /// specified window handle.
 ///
-/// ```c
-/// UINT GetWindowModuleFileNameW(
-///   HWND   hwnd,
-///   LPWSTR pszFileName,
-///   UINT   cchFileNameMax
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowmodulefilenamew>.
+///
 /// {@category user32}
 int GetWindowModuleFileName(
         int hwnd, Pointer<Utf16> pszFileName, int cchFileNameMax) =>
@@ -4603,11 +3689,9 @@ final _GetWindowModuleFileName = _user32.lookupFunction<
 /// Retrieves the show state and the restored, minimized, and maximized
 /// positions of the specified window.
 ///
-/// ```c
-/// BOOL GetWindowPlacement(
-///   HWND            hWnd,
-///   WINDOWPLACEMENT *lpwndpl);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowplacement>.
+///
 /// {@category user32}
 int GetWindowPlacement(int hWnd, Pointer<WINDOWPLACEMENT> lpwndpl) =>
     _GetWindowPlacement(hWnd, lpwndpl);
@@ -4622,12 +3706,9 @@ final _GetWindowPlacement = _user32.lookupFunction<
 /// The dimensions are given in screen coordinates that are relative to the
 /// upper-left corner of the screen.
 ///
-/// ```c
-/// BOOL GetWindowRect(
-///   HWND   hWnd,
-///   LPRECT lpRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowrect>.
+///
 /// {@category user32}
 int GetWindowRect(int hWnd, Pointer<RECT> lpRect) =>
     _GetWindowRect(hWnd, lpRect);
@@ -4636,19 +3717,11 @@ final _GetWindowRect = _user32.lookupFunction<
     BOOL Function(HWND hWnd, Pointer<RECT> lpRect),
     int Function(int hWnd, Pointer<RECT> lpRect)>('GetWindowRect');
 
-/// The GetWindowRgn function obtains a copy of the window region of a window.
+/// Obtains a copy of the window region of a window.
 ///
-/// The window region of a window is set by calling the SetWindowRgn function.
-/// The window region determines the area within the window where the system
-/// permits drawing. The system does not display any portion of a window that
-/// lies outside of the window region.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowrgn>.
 ///
-/// ```c
-/// int GetWindowRgn(
-///   HWND hWnd,
-///   HRGN hRgn
-/// );
-/// ```
 /// {@category user32}
 int GetWindowRgn(int hWnd, int hRgn) => _GetWindowRgn(hWnd, hRgn);
 
@@ -4656,15 +3729,12 @@ final _GetWindowRgn = _user32.lookupFunction<
     Int32 Function(HWND hWnd, HRGN hRgn),
     int Function(int hWnd, int hRgn)>('GetWindowRgn');
 
-/// The GetWindowRgnBox function retrieves the dimensions of the tightest
-/// bounding rectangle for the window region of a window.
+/// Retrieves the dimensions of the tightest bounding rectangle for the window
+/// region of a window.
 ///
-/// ```c
-/// int GetWindowRgnBox(
-///   HWND   hWnd,
-///   LPRECT lprc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowrgnbox>.
+///
 /// {@category user32}
 int GetWindowRgnBox(int hWnd, Pointer<RECT> lprc) =>
     _GetWindowRgnBox(hWnd, lprc);
@@ -4680,13 +3750,9 @@ final _GetWindowRgnBox = _user32.lookupFunction<
 /// However, GetWindowText cannot retrieve the text of a control in another
 /// application.
 ///
-/// ```c
-/// int GetWindowTextW(
-///   HWND   hWnd,
-///   LPWSTR lpString,
-///   int    nMaxCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowtextw>.
+///
 /// {@category user32}
 int GetWindowText(int hWnd, Pointer<Utf16> lpString, int nMaxCount) =>
     _GetWindowText(hWnd, lpString, nMaxCount);
@@ -4699,15 +3765,9 @@ final _GetWindowText = _user32.lookupFunction<
 /// Retrieves the length, in characters, of the specified window's title bar
 /// text (if the window has a title bar).
 ///
-/// If the specified window is a control, the function retrieves the length of
-/// the text within the control. However, GetWindowTextLength cannot retrieve
-/// the length of the text of an edit control in another application.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowtextlengthw>.
 ///
-/// ```c
-/// int GetWindowTextLengthW(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int GetWindowTextLength(int hWnd) => _GetWindowTextLength(hWnd);
 
@@ -4718,12 +3778,9 @@ final _GetWindowTextLength =
 /// Retrieves the identifier of the thread that created the specified window
 /// and, optionally, the identifier of the process that created the window.
 ///
-/// ```c
-/// DWORD GetWindowThreadProcessId(
-///   HWND    hWnd,
-///   LPDWORD lpdwProcessId
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-getwindowthreadprocessid>.
+///
 /// {@category user32}
 int GetWindowThreadProcessId(int hWnd, Pointer<Uint32>? lpdwProcessId) =>
     _GetWindowThreadProcessId(hWnd, lpdwProcessId ?? nullptr);
@@ -4733,26 +3790,11 @@ final _GetWindowThreadProcessId = _user32.lookupFunction<
     int Function(
         int hWnd, Pointer<Uint32> lpdwProcessId)>('GetWindowThreadProcessId');
 
-/// The GrayString function draws gray text at the specified location.
+/// Draws gray text at the specified location.
 ///
-/// The function draws the text by copying it into a memory bitmap, graying the
-/// bitmap, and then copying the bitmap to the screen. The function grays the
-/// text regardless of the selected brush and background. GrayString uses the
-/// font currently selected for the specified device context.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-graystringw>.
 ///
-/// ```c
-/// BOOL GrayStringW(
-///   HDC            hDC,
-///   HBRUSH         hBrush,
-///   GRAYSTRINGPROC lpOutputFunc,
-///   LPARAM         lpData,
-///   int            nCount,
-///   int            X,
-///   int            Y,
-///   int            nWidth,
-///   int            nHeight
-/// );
-/// ```
 /// {@category user32}
 int GrayString(
         int hDC,
@@ -4794,11 +3836,9 @@ final _GrayString = _user32.lookupFunction<
 /// Hiding a caret does not destroy its current shape or invalidate the
 /// insertion point.
 ///
-/// ```c
-/// BOOL HideCaret(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-hidecaret>.
+///
 /// {@category user32}
 int HideCaret(int? hWnd) => _HideCaret(hWnd ?? 0);
 
@@ -4808,14 +3848,9 @@ final _HideCaret =
 
 /// Adds or removes highlighting from an item in a menu bar.
 ///
-/// ```c
-/// BOOL HiliteMenuItem(
-///   [in] HWND  hWnd,
-///   [in] HMENU hMenu,
-///   [in] UINT  uIDHiliteItem,
-///   [in] UINT  uHilite
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-hilitemenuitem>.
+///
 /// {@category user32}
 int HiliteMenuItem(int hWnd, int hMenu, int uIDHiliteItem, int uHilite) =>
     _HiliteMenuItem(hWnd, hMenu, uIDHiliteItem, uHilite);
@@ -4825,21 +3860,11 @@ final _HiliteMenuItem = _user32.lookupFunction<
     int Function(
         int hWnd, int hMenu, int uIDHiliteItem, int uHilite)>('HiliteMenuItem');
 
-/// The InflateRect function increases or decreases the width and height of the
-/// specified rectangle.
+/// Increases or decreases the width and height of the specified rectangle.
 ///
-/// The InflateRect function adds -dx units to the left end and dx to the right
-/// end of the rectangle and -dy units to the top and dy to the bottom. The dx
-/// and dy parameters are signed values; positive values increase the width and
-/// height, and negative values decrease them.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-inflaterect>.
 ///
-/// ```c
-/// BOOL InflateRect(
-///   LPRECT lprc,
-///   int    dx,
-///   int    dy
-/// );
-/// ```
 /// {@category user32}
 int InflateRect(Pointer<RECT> lprc, int dx, int dy) =>
     _InflateRect(lprc, dx, dy);
@@ -4852,9 +3877,9 @@ final _InflateRect = _user32.lookupFunction<
 /// was sent from another thread (in the same process or a different process) by
 /// a call to the SendMessage function.
 ///
-/// ```c
-/// BOOL InSendMessage();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-insendmessage>.
+///
 /// {@category user32}
 int InSendMessage() => _InSendMessage();
 
@@ -4864,11 +3889,9 @@ final _InSendMessage =
 /// Determines whether the current window procedure is processing a message that
 /// was sent from another thread (in the same process or a different process).
 ///
-/// ```c
-/// DWORD InSendMessageEx(
-///   LPVOID lpReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-insendmessageex>.
+///
 /// {@category user32}
 int InSendMessageEx() => _InSendMessageEx(nullptr);
 
@@ -4878,15 +3901,9 @@ final _InSendMessageEx = _user32.lookupFunction<
 
 /// Inserts a new menu item into a menu, moving other items down the menu.
 ///
-/// ```c
-/// BOOL InsertMenuW(
-///   HMENU    hMenu,
-///   UINT     uPosition,
-///   UINT     uFlags,
-///   UINT_PTR uIDNewItem,
-///   LPCWSTR  lpNewItem
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-insertmenuw>.
+///
 /// {@category user32}
 int InsertMenu(int hMenu, int uPosition, int uFlags, int uIDNewItem,
         Pointer<Utf16>? lpNewItem) =>
@@ -4900,14 +3917,9 @@ final _InsertMenu = _user32.lookupFunction<
 
 /// Inserts a new menu item at the specified position in a menu.
 ///
-/// ```c
-/// BOOL InsertMenuItemW(
-///   HMENU            hmenu,
-///   UINT             item,
-///   BOOL             fByPosition,
-///   LPCMENUITEMINFOW lpmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-insertmenuitemw>.
+///
 /// {@category user32}
 int InsertMenuItem(
         int hmenu, int item, int fByPosition, Pointer<MENUITEMINFO> lpmi) =>
@@ -4919,20 +3931,12 @@ final _InsertMenuItem = _user32.lookupFunction<
     int Function(int hmenu, int item, int fByPosition,
         Pointer<MENUITEMINFO> lpmi)>('InsertMenuItemW');
 
-/// The IntersectRect function calculates the intersection of two source
-/// rectangles and places the coordinates of the intersection rectangle into the
-/// destination rectangle.
+/// Calculates the intersection of two source rectangles and places the
+/// coordinates of the intersection rectangle into the destination rectangle.
 ///
-/// If the source rectangles do not intersect, an empty rectangle (in which all
-/// coordinates are set to zero) is placed into the destination rectangle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-intersectrect>.
 ///
-/// ```c
-/// BOOL IntersectRect(
-///   LPRECT     lprcDst,
-///   const RECT *lprcSrc1,
-///   const RECT *lprcSrc2
-/// );
-/// ```
 /// {@category user32}
 int IntersectRect(Pointer<RECT> lprcDst, Pointer<RECT> lprcSrc1,
         Pointer<RECT> lprcSrc2) =>
@@ -4944,19 +3948,14 @@ final _IntersectRect = _user32.lookupFunction<
     int Function(Pointer<RECT> lprcDst, Pointer<RECT> lprcSrc1,
         Pointer<RECT> lprcSrc2)>('IntersectRect');
 
-/// The InvalidateRect function adds a rectangle to the specified window's
-/// update region.
+/// Adds a rectangle to the specified window's update region.
 ///
 /// The update region represents the portion of the window's client area that
 /// must be redrawn.
 ///
-/// ```c
-/// BOOL InvalidateRect(
-///   HWND       hWnd,
-///   const RECT *lpRect,
-///   BOOL       bErase
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-invalidaterect>.
+///
 /// {@category user32}
 int InvalidateRect(int? hWnd, Pointer<RECT>? lpRect, int bErase) =>
     _InvalidateRect(hWnd ?? 0, lpRect ?? nullptr, bErase);
@@ -4965,19 +3964,12 @@ final _InvalidateRect = _user32.lookupFunction<
     BOOL Function(HWND hWnd, Pointer<RECT> lpRect, BOOL bErase),
     int Function(int hWnd, Pointer<RECT> lpRect, int bErase)>('InvalidateRect');
 
-/// The InvalidateRgn function invalidates the client area within the specified
-/// region by adding it to the current update region of a window.
+/// Invalidates the client area within the specified region by adding it to the
+/// current update region of a window.
 ///
-/// The invalidated region, along with all other areas in the update region, is
-/// marked for painting when the next WM_PAINT message occurs.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-invalidatergn>.
 ///
-/// ```c
-/// BOOL InvalidateRgn(
-///   HWND hWnd,
-///   HRGN hRgn,
-///   BOOL bErase
-/// );
-/// ```
 /// {@category user32}
 int InvalidateRgn(int hWnd, int? hRgn, int bErase) =>
     _InvalidateRgn(hWnd, hRgn ?? 0, bErase);
@@ -4986,16 +3978,12 @@ final _InvalidateRgn = _user32.lookupFunction<
     BOOL Function(HWND hWnd, HRGN hRgn, BOOL bErase),
     int Function(int hWnd, int hRgn, int bErase)>('InvalidateRgn');
 
-/// The InvertRect function inverts a rectangle in a window by performing a
-/// logical NOT operation on the color values for each pixel in the rectangle's
-/// interior.
+/// Inverts a rectangle in a window by performing a logical NOT operation on the
+/// color values for each pixel in the rectangle's interior.
 ///
-/// ```c
-/// BOOL InvertRect(
-///   HDC        hDC,
-///   const RECT *lprc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-invertrect>.
+///
 /// {@category user32}
 int InvertRect(int hDC, Pointer<RECT> lprc) => _InvertRect(hDC, lprc);
 
@@ -5006,16 +3994,9 @@ final _InvertRect = _user32.lookupFunction<
 /// Determines whether a window is a child window or descendant window of a
 /// specified parent window.
 ///
-/// A child window is the direct descendant of a specified parent window if that
-/// parent window is in the chain of parent windows; the chain of parent windows
-/// leads from the original overlapped or pop-up window to the child window.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-ischild>.
 ///
-/// ```c
-/// BOOL IsChild(
-///   HWND hWndParent,
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int IsChild(int hWndParent, int hWnd) => _IsChild(hWndParent, hWnd);
 
@@ -5025,11 +4006,9 @@ final _IsChild = _user32.lookupFunction<
 
 /// Determines whether the clipboard contains data in the specified format.
 ///
-/// ```c
-/// BOOL IsClipboardFormatAvailable(
-///   UINT format
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isclipboardformatavailable>.
+///
 /// {@category user32}
 int IsClipboardFormatAvailable(int format) =>
     _IsClipboardFormatAvailable(format);
@@ -5041,12 +4020,9 @@ final _IsClipboardFormatAvailable = _user32.lookupFunction<
 /// Determines whether a message is intended for the specified dialog box and,
 /// if it is, processes the message.
 ///
-/// ```c
-/// BOOL IsDialogMessageW(
-///   HWND  hDlg,
-///   LPMSG lpMsg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isdialogmessagew>.
+///
 /// {@category user32}
 int IsDialogMessage(int hDlg, Pointer<MSG> lpMsg) =>
     _IsDialogMessage(hDlg, lpMsg);
@@ -5055,16 +4031,12 @@ final _IsDialogMessage = _user32.lookupFunction<
     BOOL Function(HWND hDlg, Pointer<MSG> lpMsg),
     int Function(int hDlg, Pointer<MSG> lpMsg)>('IsDialogMessageW');
 
-/// The IsDlgButtonChecked function determines whether a button control is
-/// checked or whether a three-state button control is checked, unchecked, or
-/// indeterminate.
+/// Determines whether a button control is checked or whether a three-state
+/// button control is checked, unchecked, or indeterminate.
 ///
-/// ```c
-/// UINT IsDlgButtonChecked(
-///   HWND hDlg,
-///   int  nIDButton
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isdlgbuttonchecked>.
+///
 /// {@category user32}
 int IsDlgButtonChecked(int hDlg, int nIDButton) =>
     _IsDlgButtonChecked(hDlg, nIDButton);
@@ -5077,11 +4049,9 @@ final _IsDlgButtonChecked = _user32.lookupFunction<
 ///
 /// It can also optionally convert the thread to a GUI thread.
 ///
-/// ```c
-/// BOOL IsGUIThread(
-///   BOOL bConvert
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isguithread>.
+///
 /// {@category user32}
 int IsGUIThread(int bConvert) => _IsGUIThread(bConvert);
 
@@ -5091,15 +4061,9 @@ final _IsGUIThread = _user32.lookupFunction<BOOL Function(BOOL bConvert),
 /// Determines whether the system considers that a specified application is not
 /// responding.
 ///
-/// An application is considered to be not responding if it is not waiting for
-/// input, is not in startup processing, and has not called PeekMessage within
-/// the internal timeout period of 5 seconds.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-ishungappwindow>.
 ///
-/// ```c
-/// BOOL IsHungAppWindow(
-///   HWND hwnd
-/// );
-/// ```
 /// {@category user32}
 int IsHungAppWindow(int hwnd) => _IsHungAppWindow(hwnd);
 
@@ -5109,11 +4073,9 @@ final _IsHungAppWindow =
 
 /// Determines whether the specified window is minimized (iconic).
 ///
-/// ```c
-/// BOOL IsIconic(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isiconic>.
+///
 /// {@category user32}
 int IsIconic(int hWnd) => _IsIconic(hWnd);
 
@@ -5123,11 +4085,9 @@ final _IsIconic =
 
 /// Determines whether the process belongs to a Windows Store app.
 ///
-/// ```c
-/// BOOL IsImmersiveProcess(
-///   HANDLE hProcess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isimmersiveprocess>.
+///
 /// {@category user32}
 int IsImmersiveProcess(int hProcess) => _IsImmersiveProcess(hProcess);
 
@@ -5137,11 +4097,9 @@ final _IsImmersiveProcess = _user32.lookupFunction<
 
 /// Determines whether a handle is a menu handle.
 ///
-/// ```c
-/// BOOL IsMenu(
-///   HMENU hMenu
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-ismenu>.
+///
 /// {@category user32}
 int IsMenu(int hMenu) => _IsMenu(hMenu);
 
@@ -5152,9 +4110,9 @@ final _IsMenu =
 /// Indicates whether EnableMouseInPointer is set for the mouse to act as a
 /// pointer input device and send WM_POINTER messages.
 ///
-/// ```c
-/// BOOL IsMouseInPointerEnabled();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-ismouseinpointerenabled>.
+///
 /// {@category user32}
 int IsMouseInPointerEnabled() => _IsMouseInPointerEnabled();
 
@@ -5164,28 +4122,23 @@ final _IsMouseInPointerEnabled = _user32
 /// Determines whether the current process is dots per inch (dpi) aware such
 /// that it adjusts the sizes of UI elements to compensate for the dpi setting.
 ///
-/// ```c
-/// BOOL IsProcessDPIAware();
-/// ```
+/// **Note**: This function may be altered or unavailable in the newer versions
+/// of Windows. Use GetProcessDPIAwareness instead.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isprocessdpiaware>.
+///
 /// {@category user32}
 int IsProcessDPIAware() => _IsProcessDPIAware();
 
 final _IsProcessDPIAware = _user32
     .lookupFunction<BOOL Function(), int Function()>('IsProcessDPIAware');
 
-/// The IsRectEmpty function determines whether the specified rectangle is
-/// empty.
+/// Determines whether the specified rectangle is empty.
 ///
-/// An empty rectangle is one that has no area; that is, the coordinate of the
-/// right side is less than or equal to the coordinate of the left side, or the
-/// coordinate of the bottom side is less than or equal to the coordinate of the
-/// top side.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isrectempty>.
 ///
-/// ```c
-/// BOOL IsRectEmpty(
-///   const RECT *lprc
-/// );
-/// ```
 /// {@category user32}
 int IsRectEmpty(Pointer<RECT> lprc) => _IsRectEmpty(lprc);
 
@@ -5195,12 +4148,9 @@ final _IsRectEmpty = _user32.lookupFunction<BOOL Function(Pointer<RECT> lprc),
 /// Checks whether a specified window is touch-capable and, optionally,
 /// retrieves the modifier flags set for the window's touch capability.
 ///
-/// ```c
-/// BOOL IsTouchWindow(
-///   HWND   hwnd,
-///   PULONG pulFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-istouchwindow>.
+///
 /// {@category user32}
 int IsTouchWindow(int hwnd, Pointer<Uint32>? pulFlags) =>
     _IsTouchWindow(hwnd, pulFlags ?? nullptr);
@@ -5212,10 +4162,9 @@ final _IsTouchWindow = _user32.lookupFunction<
 /// Determines if a specified DPI_AWARENESS_CONTEXT is valid and supported by
 /// the current system.
 ///
-/// ```c
-/// BOOL IsValidDpiAwarenessContext(
-///   DPI_AWARENESS_CONTEXT value);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isvaliddpiawarenesscontext>.
+///
 /// {@category user32}
 int IsValidDpiAwarenessContext(int value) => _IsValidDpiAwarenessContext(value);
 
@@ -5226,10 +4175,9 @@ final _IsValidDpiAwarenessContext = _user32.lookupFunction<
 /// Determines whether the specified window handle identifies an existing
 /// window.
 ///
-/// ```c
-/// BOOL IsWindow(
-///   HWND hWnd);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-iswindow>.
+///
 /// {@category user32}
 int IsWindow(int? hWnd) => _IsWindow(hWnd ?? 0);
 
@@ -5240,11 +4188,9 @@ final _IsWindow =
 /// Determines whether the specified window is enabled for mouse and keyboard
 /// input.
 ///
-/// ```c
-/// BOOL IsWindowEnabled(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-iswindowenabled>.
+///
 /// {@category user32}
 int IsWindowEnabled(int hWnd) => _IsWindowEnabled(hWnd);
 
@@ -5254,10 +4200,9 @@ final _IsWindowEnabled =
 
 /// Determines whether the specified window is a native Unicode window.
 ///
-/// ```c
-/// BOOL IsWindowUnicode(
-///   HWND hWnd);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-iswindowunicode>.
+///
 /// {@category user32}
 int IsWindowUnicode(int hWnd) => _IsWindowUnicode(hWnd);
 
@@ -5267,11 +4212,9 @@ final _IsWindowUnicode =
 
 /// Determines the visibility state of the specified window.
 ///
-/// ```c
-/// BOOL IsWindowVisible(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-iswindowvisible>.
+///
 /// {@category user32}
 int IsWindowVisible(int hWnd) => _IsWindowVisible(hWnd);
 
@@ -5282,9 +4225,9 @@ final _IsWindowVisible =
 /// Determines whether the last message read from the current thread's queue
 /// originated from a WOW64 process.
 ///
-/// ```c
-/// BOOL IsWow64Message();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-iswow64message>.
+///
 /// {@category user32}
 int IsWow64Message() => _IsWow64Message();
 
@@ -5293,11 +4236,9 @@ final _IsWow64Message =
 
 /// Determines whether a window is maximized.
 ///
-/// ```c
-/// BOOL IsZoomed(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-iszoomed>.
+///
 /// {@category user32}
 int IsZoomed(int hWnd) => _IsZoomed(hWnd);
 
@@ -5307,12 +4248,9 @@ final _IsZoomed =
 
 /// Destroys the specified timer.
 ///
-/// ```c
-/// BOOL KillTimer(
-///   HWND     hWnd,
-///   UINT_PTR uIDEvent
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-killtimer>.
+///
 /// {@category user32}
 int KillTimer(int? hWnd, int uIDEvent) => _KillTimer(hWnd ?? 0, uIDEvent);
 
@@ -5322,12 +4260,9 @@ final _KillTimer = _user32.lookupFunction<
 
 /// Loads the specified accelerator table.
 ///
-/// ```c
-/// HACCEL LoadAcceleratorsW(
-///   HINSTANCE hInstance,
-///   LPCWSTR   lpTableName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadacceleratorsw>.
+///
 /// {@category user32}
 int LoadAccelerators(int? hInstance, Pointer<Utf16> lpTableName) =>
     _LoadAccelerators(hInstance ?? 0, lpTableName);
@@ -5340,14 +4275,9 @@ final _LoadAccelerators = _user32.lookupFunction<
 /// Loads the specified cursor resource from the executable (.EXE) file
 /// associated with an application instance.
 ///
-/// Note: this function has been superseded by the LoadImage function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadcursorw>.
 ///
-/// ```c
-/// HCURSOR LoadCursorW(
-///   HINSTANCE hInstance,
-///   LPCWSTR   lpCursorName
-/// );
-/// ```
 /// {@category user32}
 int LoadCursor(int? hInstance, Pointer<Utf16> lpCursorName) =>
     _LoadCursor(hInstance ?? 0, lpCursorName);
@@ -5358,11 +4288,9 @@ final _LoadCursor = _user32.lookupFunction<
 
 /// Creates a cursor based on data contained in a file.
 ///
-/// ```c
-/// HCURSOR LoadCursorFromFileW(
-///   LPCWSTR lpFileName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadcursorfromfilew>.
+///
 /// {@category user32}
 int LoadCursorFromFile(Pointer<Utf16> lpFileName) =>
     _LoadCursorFromFile(lpFileName);
@@ -5374,12 +4302,9 @@ final _LoadCursorFromFile = _user32.lookupFunction<
 /// Loads the specified icon resource from the executable (.exe) file associated
 /// with an application instance.
 ///
-/// ```c
-/// HICON LoadIconW(
-///   HINSTANCE hInstance,
-///   LPCWSTR   lpIconName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadiconw>.
+///
 /// {@category user32}
 int LoadIcon(int? hInstance, Pointer<Utf16> lpIconName) =>
     _LoadIcon(hInstance ?? 0, lpIconName);
@@ -5390,16 +4315,9 @@ final _LoadIcon = _user32.lookupFunction<
 
 /// Loads an icon, cursor, animated cursor, or bitmap.
 ///
-/// ```c
-/// HANDLE LoadImageW(
-///   HINSTANCE hInst,
-///   LPCWSTR   name,
-///   UINT      type,
-///   int       cx,
-///   int       cy,
-///   UINT      fuLoad
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadimagew>.
+///
 /// {@category user32}
 int LoadImage(int? hInst, Pointer<Utf16> name, int type, int cx, int cy,
         int fuLoad) =>
@@ -5414,12 +4332,9 @@ final _LoadImage = _user32.lookupFunction<
 /// Loads a new input locale identifier (formerly called the keyboard layout)
 /// into the system.
 ///
-/// ```c
-/// HKL LoadKeyboardLayoutW(
-///   LPCWSTR pwszKLID,
-///   UINT    Flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadkeyboardlayoutw>.
+///
 /// {@category user32}
 int LoadKeyboardLayout(Pointer<Utf16> pwszKLID, int flags) =>
     _LoadKeyboardLayout(pwszKLID, flags);
@@ -5431,12 +4346,9 @@ final _LoadKeyboardLayout = _user32.lookupFunction<
 /// Loads the specified menu resource from the executable (.exe) file associated
 /// with an application instance.
 ///
-/// ```c
-/// HMENU LoadMenuW(
-///   [in, optional] HINSTANCE hInstance,
-///   [in]           LPCWSTR   lpMenuName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadmenuw>.
+///
 /// {@category user32}
 int LoadMenu(int? hInstance, Pointer<Utf16> lpMenuName) =>
     _LoadMenu(hInstance ?? 0, lpMenuName);
@@ -5445,13 +4357,11 @@ final _LoadMenu = _user32.lookupFunction<
     HMENU Function(HINSTANCE hInstance, Pointer<Utf16> lpMenuName),
     int Function(int hInstance, Pointer<Utf16> lpMenuName)>('LoadMenuW');
 
-/// Creates a cursor based on data contained in a file.
+/// Loads the specified menu template in memory.
 ///
-/// ```c
-/// HMENU LoadMenuIndirectW(
-///   const MENUTEMPLATEW *lpMenuTemplate
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadmenuindirectw>.
+///
 /// {@category user32}
 int LoadMenuIndirect(Pointer lpMenuTemplate) =>
     _LoadMenuIndirect(lpMenuTemplate);
@@ -5461,17 +4371,12 @@ final _LoadMenuIndirect = _user32.lookupFunction<
     int Function(Pointer lpMenuTemplate)>('LoadMenuIndirectW');
 
 /// Loads a string resource from the executable file associated with a specified
-/// module and either copies the string into a buffer with a terminating null
-/// character or returns a read-only pointer to the string resource itself.
+/// module, copies the string into a buffer, and appends a terminating null
+/// character.
 ///
-/// ```c
-/// int LoadStringW(
-///   HINSTANCE hInstance,
-///   UINT      uID,
-///   LPWSTR    lpBuffer,
-///   int       cchBufferMax
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-loadstringw>.
+///
 /// {@category user32}
 int LoadString(
         int? hInstance, int uID, Pointer<Utf16> lpBuffer, int cchBufferMax) =>
@@ -5486,11 +4391,9 @@ final _LoadString = _user32.lookupFunction<
 /// The foreground process can call the LockSetForegroundWindow function to
 /// disable calls to the SetForegroundWindow function.
 ///
-/// ```c
-/// BOOL LockSetForegroundWindow(
-///   UINT uLockCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-locksetforegroundwindow>.
+///
 /// {@category user32}
 int LockSetForegroundWindow(int uLockCode) =>
     _LockSetForegroundWindow(uLockCode);
@@ -5499,16 +4402,13 @@ final _LockSetForegroundWindow = _user32.lookupFunction<
     BOOL Function(Uint32 uLockCode),
     int Function(int uLockCode)>('LockSetForegroundWindow');
 
-/// The LockWindowUpdate function disables or enables drawing in the specified
-/// window.
+/// Disables or enables drawing in the specified window.
 ///
 /// Only one window can be locked at a time.
 ///
-/// ```c
-/// BOOL LockWindowUpdate(
-///   HWND hWndLock
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-lockwindowupdate>.
+///
 /// {@category user32}
 int LockWindowUpdate(int? hWndLock) => _LockWindowUpdate(hWndLock ?? 0);
 
@@ -5517,11 +4417,9 @@ final _LockWindowUpdate = _user32.lookupFunction<BOOL Function(HWND hWndLock),
 
 /// Locks the workstation's display.
 ///
-/// Locking a workstation protects it from unauthorized use.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-lockworkstation>.
 ///
-/// ```c
-/// BOOL LockWorkStation();
-/// ```
 /// {@category user32}
 int LockWorkStation() => _LockWorkStation();
 
@@ -5531,12 +4429,9 @@ final _LockWorkStation =
 /// Converts the logical coordinates of a point in a window to physical
 /// coordinates.
 ///
-/// ```c
-/// BOOL LogicalToPhysicalPoint(
-///   HWND    hWnd,
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-logicaltophysicalpoint>.
+///
 /// {@category user32}
 int LogicalToPhysicalPoint(int hWnd, Pointer<POINT> lpPoint) =>
     _LogicalToPhysicalPoint(hWnd, lpPoint);
@@ -5548,12 +4443,9 @@ final _LogicalToPhysicalPoint = _user32.lookupFunction<
 /// Converts a point in a window from logical coordinates into physical
 /// coordinates, regardless of the dots per inch (dpi) awareness of the caller.
 ///
-/// ```c
-/// BOOL LogicalToPhysicalPointForPerMonitorDPI(
-///   HWND    hWnd,
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-logicaltophysicalpointforpermonitordpi>.
+///
 /// {@category user32}
 int LogicalToPhysicalPointForPerMonitorDPI(int? hWnd, Pointer<POINT> lpPoint) =>
     _LogicalToPhysicalPointForPerMonitorDPI(hWnd ?? 0, lpPoint);
@@ -5566,12 +4458,9 @@ final _LogicalToPhysicalPointForPerMonitorDPI = _user32.lookupFunction<
 /// Searches through icon or cursor data for the icon or cursor that best fits
 /// the current display device.
 ///
-/// ```c
-/// int LookupIconIdFromDirectory(
-///   PBYTE presbits,
-///   BOOL  fIcon
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-lookupiconidfromdirectory>.
+///
 /// {@category user32}
 int LookupIconIdFromDirectory(Pointer<Uint8> presbits, int fIcon) =>
     _LookupIconIdFromDirectory(presbits, fIcon);
@@ -5584,15 +4473,9 @@ final _LookupIconIdFromDirectory = _user32.lookupFunction<
 /// Searches through icon or cursor data for the icon or cursor that best fits
 /// the current display device.
 ///
-/// ```c
-/// int LookupIconIdFromDirectoryEx(
-///   PBYTE presbits,
-///   BOOL  fIcon,
-///   int   cxDesired,
-///   int   cyDesired,
-///   UINT  Flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-lookupiconidfromdirectoryex>.
+///
 /// {@category user32}
 int LookupIconIdFromDirectoryEx(Pointer<Uint8> presbits, int fIcon,
         int cxDesired, int cyDesired, int flags) =>
@@ -5606,16 +4489,9 @@ final _LookupIconIdFromDirectoryEx = _user32.lookupFunction<
 
 /// Converts the specified dialog box units to screen units (pixels).
 ///
-/// The function replaces the coordinates in the specified RECT structure with
-/// the converted coordinates, which allows the structure to be used to create a
-/// dialog box or position a control within a dialog box.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-mapdialogrect>.
 ///
-/// ```c
-/// BOOL MapDialogRect(
-///   HWND   hDlg,
-///   LPRECT lpRect
-/// );
-/// ```
 /// {@category user32}
 int MapDialogRect(int hDlg, Pointer<RECT> lpRect) =>
     _MapDialogRect(hDlg, lpRect);
@@ -5627,12 +4503,9 @@ final _MapDialogRect = _user32.lookupFunction<
 /// Translates (maps) a virtual-key code into a scan code or character value, or
 /// translates a scan code into a virtual-key code.
 ///
-/// ```c
-/// UINT MapVirtualKeyW(
-///   UINT uCode,
-///   UINT uMapType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-mapvirtualkeyw>.
+///
 /// {@category user32}
 int MapVirtualKey(int uCode, int uMapType) => _MapVirtualKey(uCode, uMapType);
 
@@ -5646,13 +4519,9 @@ final _MapVirtualKey = _user32.lookupFunction<
 /// The function translates the codes using the input language and an input
 /// locale identifier.
 ///
-/// ```c
-/// UINT MapVirtualKeyExW(
-///   UINT uCode,
-///   UINT uMapType,
-///   HKL  dwhkl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-mapvirtualkeyexw>.
+///
 /// {@category user32}
 int MapVirtualKeyEx(int uCode, int uMapType, int? dwhkl) =>
     _MapVirtualKeyEx(uCode, uMapType, dwhkl ?? 0);
@@ -5661,18 +4530,12 @@ final _MapVirtualKeyEx = _user32.lookupFunction<
     Uint32 Function(Uint32 uCode, Uint32 uMapType, HKL dwhkl),
     int Function(int uCode, int uMapType, int dwhkl)>('MapVirtualKeyExW');
 
-/// The MapWindowPoints function converts (maps) a set of points from a
-/// coordinate space relative to one window to a coordinate space relative to
-/// another window.
+/// Converts (maps) a set of points from a coordinate space relative to one
+/// window to a coordinate space relative to another window.
 ///
-/// ```c
-/// int MapWindowPoints(
-///   HWND    hWndFrom,
-///   HWND    hWndTo,
-///   LPPOINT lpPoints,
-///   UINT    cPoints
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-mapwindowpoints>.
+///
 /// {@category user32}
 int MapWindowPoints(
         int? hWndFrom, int? hWndTo, Pointer<POINT> lpPoints, int cPoints) =>
@@ -5686,13 +4549,9 @@ final _MapWindowPoints = _user32.lookupFunction<
 
 /// Determines which menu item, if any, is at the specified location.
 ///
-/// ```c
-/// int MenuItemFromPoint(
-///   HWND  hWnd,
-///   HMENU hMenu,
-///   POINT ptScreen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-menuitemfrompoint>.
+///
 /// {@category user32}
 int MenuItemFromPoint(int? hWnd, int hMenu, POINT ptScreen) =>
     _MenuItemFromPoint(hWnd ?? 0, hMenu, ptScreen);
@@ -5708,14 +4567,9 @@ final _MenuItemFromPoint = _user32.lookupFunction<
 /// The message box returns an integer value that indicates which button the
 /// user clicked.
 ///
-/// ```c
-/// int MessageBoxW(
-///   HWND    hWnd,
-///   LPCWSTR lpText,
-///   LPCWSTR lpCaption,
-///   UINT    uType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-messageboxw>.
+///
 /// {@category user32}
 int MessageBox(int? hWnd, Pointer<Utf16>? lpText, Pointer<Utf16>? lpCaption,
         int uType) =>
@@ -5729,19 +4583,9 @@ final _MessageBox = _user32.lookupFunction<
 
 /// Creates, displays, and operates a message box.
 ///
-/// The message box contains an application-defined message and title, plus any
-/// combination of predefined icons and push buttons. The buttons are in the
-/// language of the system user interface.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-messageboxexw>.
 ///
-/// ```c
-/// int MessageBoxExW(
-///   HWND    hWnd,
-///   LPCWSTR lpText,
-///   LPCWSTR lpCaption,
-///   UINT    uType,
-///   WORD    wLanguageId
-/// );
-/// ```
 /// {@category user32}
 int MessageBoxEx(int? hWnd, Pointer<Utf16>? lpText, Pointer<Utf16>? lpCaption,
         int uType, int wLanguageId) =>
@@ -5756,18 +4600,9 @@ final _MessageBoxEx = _user32.lookupFunction<
 
 /// Changes an existing menu item.
 ///
-/// This function is used to specify the content, appearance, and behavior of
-/// the menu item.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-modifymenuw>.
 ///
-/// ```c
-/// BOOL ModifyMenuW(
-///   HMENU    hMnu,
-///   UINT     uPosition,
-///   UINT     uFlags,
-///   UINT_PTR uIDNewItem,
-///   LPCWSTR  lpNewItem
-/// );
-/// ```
 /// {@category user32}
 int ModifyMenu(int hMnu, int uPosition, int uFlags, int uIDNewItem,
         Pointer<Utf16>? lpNewItem) =>
@@ -5779,15 +4614,11 @@ final _ModifyMenu = _user32.lookupFunction<
     int Function(int hMnu, int uPosition, int uFlags, int uIDNewItem,
         Pointer<Utf16> lpNewItem)>('ModifyMenuW');
 
-/// The MonitorFromPoint function retrieves a handle to the display monitor that
-/// contains a specified point.
+/// Retrieves a handle to the display monitor that contains a specified point.
 ///
-/// ```c
-/// HMONITOR MonitorFromPoint(
-///   POINT pt,
-///   DWORD dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-monitorfrompoint>.
+///
 /// {@category user32}
 int MonitorFromPoint(POINT pt, int dwFlags) => _MonitorFromPoint(pt, dwFlags);
 
@@ -5795,15 +4626,12 @@ final _MonitorFromPoint = _user32.lookupFunction<
     HMONITOR Function(POINT pt, Uint32 dwFlags),
     int Function(POINT pt, int dwFlags)>('MonitorFromPoint');
 
-/// The MonitorFromRect function retrieves a handle to the display monitor that
-/// has the largest area of intersection with a specified rectangle.
+/// Retrieves a handle to the display monitor that has the largest area of
+/// intersection with a specified rectangle.
 ///
-/// ```c
-/// HMONITOR MonitorFromRect(
-///   LPCRECT lprc,
-///   DWORD   dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-monitorfromrect>.
+///
 /// {@category user32}
 int MonitorFromRect(Pointer<RECT> lprc, int dwFlags) =>
     _MonitorFromRect(lprc, dwFlags);
@@ -5812,16 +4640,12 @@ final _MonitorFromRect = _user32.lookupFunction<
     HMONITOR Function(Pointer<RECT> lprc, Uint32 dwFlags),
     int Function(Pointer<RECT> lprc, int dwFlags)>('MonitorFromRect');
 
-/// The MonitorFromWindow function retrieves a handle to the display monitor
-/// that has the largest area of intersection with the bounding rectangle of a
-/// specified window.
+/// Retrieves a handle to the display monitor that has the largest area of
+/// intersection with the bounding rectangle of a specified window.
 ///
-/// ```c
-/// HMONITOR MonitorFromWindow(
-///   HWND  hwnd,
-///   DWORD dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-monitorfromwindow>.
+///
 /// {@category user32}
 int MonitorFromWindow(int hwnd, int dwFlags) =>
     _MonitorFromWindow(hwnd, dwFlags);
@@ -5832,20 +4656,9 @@ final _MonitorFromWindow = _user32.lookupFunction<
 
 /// Changes the position and dimensions of the specified window.
 ///
-/// For a top-level window, the position and dimensions are relative to the
-/// upper-left corner of the screen. For a child window, they are relative to
-/// the upper-left corner of the parent window's client area.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-movewindow>.
 ///
-/// ```c
-/// BOOL MoveWindow(
-///   HWND hWnd,
-///   int  X,
-///   int  Y,
-///   int  nWidth,
-///   int  nHeight,
-///   BOOL bRepaint
-/// );
-/// ```
 /// {@category user32}
 int MoveWindow(int hWnd, int x, int y, int nWidth, int nHeight, int bRepaint) =>
     _MoveWindow(hWnd, x, y, nWidth, nHeight, bRepaint);
@@ -5859,18 +4672,11 @@ final _MoveWindow = _user32.lookupFunction<
 /// Waits until one or all of the specified objects are in the signaled state or
 /// the time-out interval elapses.
 ///
-/// The objects can include input event objects, which you specify using the
-/// dwWakeMask parameter.
+/// The objects can include input event objects.
 ///
-/// ```c
-/// DWORD MsgWaitForMultipleObjects(
-///   DWORD        nCount,
-///   const HANDLE *pHandles,
-///   BOOL         fWaitAll,
-///   DWORD        dwMilliseconds,
-///   DWORD        dwWakeMask
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-msgwaitformultipleobjects>.
+///
 /// {@category user32}
 int MsgWaitForMultipleObjects(int nCount, Pointer<HANDLE>? pHandles,
         int fWaitAll, int dwMilliseconds, int dwWakeMask) =>
@@ -5887,18 +4693,11 @@ final _MsgWaitForMultipleObjects = _user32.lookupFunction<
 /// an I/O completion routine or asynchronous procedure call (APC) is queued to
 /// the thread, or the time-out interval elapses.
 ///
-/// The array of objects can include input event objects, which you specify
-/// using the dwWakeMask parameter.
+/// The array of objects can include input event objects.
 ///
-/// ```c
-/// DWORD MsgWaitForMultipleObjectsEx(
-///   DWORD        nCount,
-///   const HANDLE *pHandles,
-///   DWORD        dwMilliseconds,
-///   DWORD        dwWakeMask,
-///   DWORD        dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-msgwaitformultipleobjectsex>.
+///
 /// {@category user32}
 int MsgWaitForMultipleObjectsEx(int nCount, Pointer<HANDLE>? pHandles,
         int dwMilliseconds, int dwWakeMask, int dwFlags) =>
@@ -5916,14 +4715,9 @@ final _MsgWaitForMultipleObjectsEx = _user32.lookupFunction<
 /// If any client applications have registered a hook function for the event,
 /// the system calls the client's hook function.
 ///
-/// ```c
-/// void NotifyWinEvent(
-///   DWORD event,
-///   HWND  hwnd,
-///   LONG  idObject,
-///   LONG  idChild
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-notifywinevent>.
+///
 /// {@category user32}
 void NotifyWinEvent(int event, int hwnd, int idObject, int idChild) =>
     _NotifyWinEvent(event, hwnd, idObject, idChild);
@@ -5939,27 +4733,20 @@ final _NotifyWinEvent = _user32.lookupFunction<
 /// The function provides information that allows a program to send OEM text to
 /// another program by simulating keyboard input.
 ///
-/// ```c
-/// DWORD OemKeyScan(
-///   WORD wOemChar
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-oemkeyscan>.
+///
 /// {@category user32}
 int OemKeyScan(int wOemChar) => _OemKeyScan(wOemChar);
 
 final _OemKeyScan = _user32.lookupFunction<Uint32 Function(Uint16 wOemChar),
     int Function(int wOemChar)>('OemKeyScan');
 
-/// The OffsetRect function moves the specified rectangle by the specified
-/// offsets.
+/// Moves the specified rectangle by the specified offsets.
 ///
-/// ```c
-/// BOOL OffsetRect(
-///   LPRECT lprc,
-///   int    dx,
-///   int    dy
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-offsetrect>.
+///
 /// {@category user32}
 int OffsetRect(Pointer<RECT> lprc, int dx, int dy) => _OffsetRect(lprc, dx, dy);
 
@@ -5970,11 +4757,9 @@ final _OffsetRect = _user32.lookupFunction<
 /// Opens the clipboard for examination and prevents other applications from
 /// modifying the clipboard content.
 ///
-/// ```c
-/// BOOL OpenClipboard(
-///   HWND hWndNewOwner
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-openclipboard>.
+///
 /// {@category user32}
 int OpenClipboard(int? hWndNewOwner) => _OpenClipboard(hWndNewOwner ?? 0);
 
@@ -5983,14 +4768,9 @@ final _OpenClipboard = _user32.lookupFunction<BOOL Function(HWND hWndNewOwner),
 
 /// Opens the specified desktop object.
 ///
-/// ```c
-/// HDESK OpenDesktopW(
-///   LPCWSTR     lpszDesktop,
-///   DWORD       dwFlags,
-///   BOOL        fInherit,
-///   ACCESS_MASK dwDesiredAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-opendesktopw>.
+///
 /// {@category user32}
 int OpenDesktop(Pointer<Utf16> lpszDesktop, int dwFlags, int fInherit,
         int dwDesiredAccess) =>
@@ -6005,11 +4785,9 @@ final _OpenDesktop = _user32.lookupFunction<
 /// Restores a minimized (iconic) window to its previous size and position; it
 /// then activates the window.
 ///
-/// ```c
-/// BOOL OpenIcon(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-openicon>.
+///
 /// {@category user32}
 int OpenIcon(int hWnd) => _OpenIcon(hWnd);
 
@@ -6019,13 +4797,9 @@ final _OpenIcon =
 
 /// Opens the desktop that receives user input.
 ///
-/// ```c
-/// HDESK OpenInputDesktop(
-///   DWORD       dwFlags,
-///   BOOL        fInherit,
-///   ACCESS_MASK dwDesiredAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-openinputdesktop>.
+///
 /// {@category user32}
 int OpenInputDesktop(int dwFlags, int fInherit, int dwDesiredAccess) =>
     _OpenInputDesktop(dwFlags, fInherit, dwDesiredAccess);
@@ -6037,13 +4811,9 @@ final _OpenInputDesktop = _user32.lookupFunction<
 
 /// Opens the specified window station.
 ///
-/// ```c
-/// HWINSTA OpenWindowStationW(
-///   LPCWSTR     lpszWinSta,
-///   BOOL        fInherit,
-///   ACCESS_MASK dwDesiredAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-openwindowstationw>.
+///
 /// {@category user32}
 int OpenWindowStation(
         Pointer<Utf16> lpszWinSta, int fInherit, int dwDesiredAccess) =>
@@ -6055,16 +4825,14 @@ final _OpenWindowStation = _user32.lookupFunction<
     int Function(Pointer<Utf16> lpszWinSta, int fInherit,
         int dwDesiredAccess)>('OpenWindowStationW');
 
-/// The PaintDesktop function fills the clipping region in the specified device
-/// context with the desktop pattern or wallpaper.
+/// Fills the clipping region in the specified device context with the desktop
+/// pattern or wallpaper.
 ///
 /// The function is provided primarily for shell desktops.
 ///
-/// ```c
-/// BOOL PaintDesktop(
-///   HDC hdc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-paintdesktop>.
+///
 /// {@category user32}
 int PaintDesktop(int hdc) => _PaintDesktop(hdc);
 
@@ -6072,18 +4840,12 @@ final _PaintDesktop =
     _user32.lookupFunction<BOOL Function(HDC hdc), int Function(int hdc)>(
         'PaintDesktop');
 
-/// Dispatches incoming sent messages, checks the thread message queue for a
-/// posted message, and retrieves the message (if any exist).
+/// Dispatches incoming nonqueued messages, checks the thread message queue for
+/// a posted message, and retrieves the message (if any exist).
 ///
-/// ```c
-/// BOOL PeekMessageW(
-///   LPMSG lpMsg,
-///   HWND  hWnd,
-///   UINT  wMsgFilterMin,
-///   UINT  wMsgFilterMax,
-///   UINT  wRemoveMsg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-peekmessagew>.
+///
 /// {@category user32}
 int PeekMessage(Pointer<MSG> lpMsg, int? hWnd, int wMsgFilterMin,
         int wMsgFilterMax, int wRemoveMsg) =>
@@ -6098,12 +4860,9 @@ final _PeekMessage = _user32.lookupFunction<
 /// Converts the physical coordinates of a point in a window to logical
 /// coordinates.
 ///
-/// ```c
-/// BOOL PhysicalToLogicalPoint(
-///   HWND    hWnd,
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-physicaltologicalpoint>.
+///
 /// {@category user32}
 int PhysicalToLogicalPoint(int hWnd, Pointer<POINT> lpPoint) =>
     _PhysicalToLogicalPoint(hWnd, lpPoint);
@@ -6115,12 +4874,9 @@ final _PhysicalToLogicalPoint = _user32.lookupFunction<
 /// Converts a point in a window from physical coordinates into logical
 /// coordinates, regardless of the dots per inch (dpi) awareness of the caller.
 ///
-/// ```c
-/// BOOL PhysicalToLogicalPointForPerMonitorDPI(
-///   HWND    hWnd,
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-physicaltologicalpointforpermonitordpi>.
+///
 /// {@category user32}
 int PhysicalToLogicalPointForPerMonitorDPI(int? hWnd, Pointer<POINT> lpPoint) =>
     _PhysicalToLogicalPointForPerMonitorDPI(hWnd ?? 0, lpPoint);
@@ -6134,14 +4890,9 @@ final _PhysicalToLogicalPointForPerMonitorDPI = _user32.lookupFunction<
 /// that created the specified window and returns without waiting for the thread
 /// to process the message.
 ///
-/// ```c
-/// BOOL PostMessageW(
-///   HWND   hWnd,
-///   UINT   Msg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-postmessagew>.
+///
 /// {@category user32}
 int PostMessage(int? hWnd, int msg, int wParam, int lParam) =>
     _PostMessage(hWnd ?? 0, msg, wParam, lParam);
@@ -6155,11 +4906,9 @@ final _PostMessage = _user32.lookupFunction<
 ///
 /// It is typically used in response to a WM_DESTROY message.
 ///
-/// ```c
-/// void PostQuitMessage(
-///   int nExitCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-postquitmessage>.
+///
 /// {@category user32}
 void PostQuitMessage(int nExitCode) => _PostQuitMessage(nExitCode);
 
@@ -6170,14 +4919,9 @@ final _PostQuitMessage = _user32.lookupFunction<Void Function(Int32 nExitCode),
 ///
 /// It returns without waiting for the thread to process the message.
 ///
-/// ```c
-/// BOOL PostThreadMessageW(
-///   DWORD  idThread,
-///   UINT   Msg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-postthreadmessagew>.
+///
 /// {@category user32}
 int PostThreadMessage(int idThread, int msg, int wParam, int lParam) =>
     _PostThreadMessage(idThread, msg, wParam, lParam);
@@ -6187,16 +4931,12 @@ final _PostThreadMessage = _user32.lookupFunction<
     int Function(
         int idThread, int msg, int wParam, int lParam)>('PostThreadMessageW');
 
-/// The PrintWindow function copies a visual window into the specified device
-/// context (DC), typically a printer DC.
+/// Copies a visual window into the specified device context (DC), typically a
+/// printer DC.
 ///
-/// ```c
-/// BOOL PrintWindow(
-///   HWND hwnd,
-///   HDC  hdcBlt,
-///   UINT nFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-printwindow>.
+///
 /// {@category user32}
 int PrintWindow(int hwnd, int hdcBlt, int nFlags) =>
     _PrintWindow(hwnd, hdcBlt, nFlags);
@@ -6208,18 +4948,9 @@ final _PrintWindow = _user32.lookupFunction<
 /// Creates an array of handles to icons that are extracted from a specified
 /// file.
 ///
-/// ```c
-/// UINT PrivateExtractIconsW(
-///   [in]            LPCWSTR szFileName,
-///   [in]            int     nIconIndex,
-///   [in]            int     cxIcon,
-///   [in]            int     cyIcon,
-///   [out, optional] HICON   *phicon,
-///   [out, optional] UINT    *piconid,
-///   [in]            UINT    nIcons,
-///   [in]            UINT    flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-privateextracticonsw>.
+///
 /// {@category user32}
 int PrivateExtractIcons(
         Pointer<Utf16> szFileName,
@@ -6253,19 +4984,11 @@ final _PrivateExtractIcons = _user32.lookupFunction<
         int nIcons,
         int flags)>('PrivateExtractIconsW');
 
-/// The PtInRect function determines whether the specified point lies within the
-/// specified rectangle.
+/// Determines whether the specified point lies within the specified rectangle.
 ///
-/// A point is within a rectangle if it lies on the left or top side or is
-/// within all four sides. A point on the right or bottom side is considered
-/// outside the rectangle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-ptinrect>.
 ///
-/// ```c
-/// BOOL PtInRect(
-///   const RECT *lprc,
-///   POINT      pt
-/// );
-/// ```
 /// {@category user32}
 int PtInRect(Pointer<RECT> lprc, POINT pt) => _PtInRect(lprc, pt);
 
@@ -6273,17 +4996,11 @@ final _PtInRect = _user32.lookupFunction<
     BOOL Function(Pointer<RECT> lprc, POINT pt),
     int Function(Pointer<RECT> lprc, POINT pt)>('PtInRect');
 
-/// The RedrawWindow function updates the specified rectangle or region in a
-/// window's client area.
+/// Updates the specified rectangle or region in a window's client area.
 ///
-/// ```c
-/// BOOL RedrawWindow(
-///   HWND       hWnd,
-///   const RECT *lprcUpdate,
-///   HRGN       hrgnUpdate,
-///   UINT       flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-redrawwindow>.
+///
 /// {@category user32}
 int RedrawWindow(
         int? hWnd, Pointer<RECT>? lprcUpdate, int? hrgnUpdate, int flags) =>
@@ -6298,11 +5015,9 @@ final _RedrawWindow = _user32.lookupFunction<
 /// Registers a window class for subsequent use in calls to the CreateWindow or
 /// CreateWindowEx function.
 ///
-/// ```c
-/// ATOM RegisterClassW(
-///   const WNDCLASSW *lpWndClass
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerclassw>.
+///
 /// {@category user32}
 int RegisterClass(Pointer<WNDCLASS> lpWndClass) => _RegisterClass(lpWndClass);
 
@@ -6313,10 +5028,9 @@ final _RegisterClass = _user32.lookupFunction<
 /// Registers a window class for subsequent use in calls to the CreateWindow or
 /// CreateWindowEx function.
 ///
-/// ```c
-/// ATOM RegisterClassExW(
-///   const WNDCLASSEXW *unnamedParam1);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerclassexw>.
+///
 /// {@category user32}
 int RegisterClassEx(Pointer<WNDCLASSEX> param0) => _RegisterClassEx(param0);
 
@@ -6328,11 +5042,9 @@ final _RegisterClassEx = _user32.lookupFunction<
 ///
 /// This format can then be used as a valid clipboard format.
 ///
-/// ```c
-/// UINT RegisterClipboardFormatW(
-///   LPCWSTR lpszFormat
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerclipboardformatw>.
+///
 /// {@category user32}
 int RegisterClipboardFormat(Pointer<Utf16> lpszFormat) =>
     _RegisterClipboardFormat(lpszFormat);
@@ -6343,14 +5055,9 @@ final _RegisterClipboardFormat = _user32.lookupFunction<
 
 /// Defines a system-wide hot key.
 ///
-/// ```c
-/// BOOL RegisterHotKey(
-///   HWND hWnd,
-///   int  id,
-///   UINT fsModifiers,
-///   UINT vk
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerhotkey>.
+///
 /// {@category user32}
 int RegisterHotKey(int? hWnd, int id, int fsModifiers, int vk) =>
     _RegisterHotKey(hWnd ?? 0, id, fsModifiers, vk);
@@ -6362,13 +5069,9 @@ final _RegisterHotKey = _user32.lookupFunction<
 /// Registers the application to receive power setting notifications for the
 /// specific power setting event.
 ///
-/// ```c
-/// HPOWERNOTIFY RegisterPowerSettingNotification(
-///   HANDLE  hRecipient,
-///   LPCGUID PowerSettingGuid,
-///   DWORD   Flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerpowersettingnotification>.
+///
 /// {@category user32}
 int RegisterPowerSettingNotification(
         int hRecipient, Pointer<GUID> powerSettingGuid, int flags) =>
@@ -6382,13 +5085,9 @@ final _RegisterPowerSettingNotification = _user32.lookupFunction<
 
 /// Registers the devices that supply the raw input data.
 ///
-/// ```c
-/// BOOL RegisterRawInputDevices(
-///   PCRAWINPUTDEVICE pRawInputDevices,
-///   UINT             uiNumDevices,
-///   UINT             cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerrawinputdevices>.
+///
 /// {@category user32}
 int RegisterRawInputDevices(Pointer<RAWINPUTDEVICE> pRawInputDevices,
         int uiNumDevices, int cbSize) =>
@@ -6402,12 +5101,9 @@ final _RegisterRawInputDevices = _user32.lookupFunction<
 
 /// Registers a window to process the WM_TOUCHHITTESTING notification.
 ///
-/// ```c
-/// BOOL RegisterTouchHitTestingWindow(
-///   HWND  hwnd,
-///   ULONG value
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registertouchhittestingwindow>.
+///
 /// {@category user32}
 int RegisterTouchHitTestingWindow(int hwnd, int value) =>
     _RegisterTouchHitTestingWindow(hwnd, value);
@@ -6418,12 +5114,9 @@ final _RegisterTouchHitTestingWindow = _user32.lookupFunction<
 
 /// Registers a window as being touch-capable.
 ///
-/// ```c
-/// BOOL RegisterTouchWindow(
-///   HWND  hwnd,
-///   ULONG ulFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registertouchwindow>.
+///
 /// {@category user32}
 int RegisterTouchWindow(int hwnd, int ulFlags) =>
     _RegisterTouchWindow(hwnd, ulFlags);
@@ -6437,11 +5130,9 @@ final _RegisterTouchWindow = _user32.lookupFunction<
 ///
 /// The message value can be used when sending or posting messages.
 ///
-/// ```c
-/// UINT RegisterWindowMessageW(
-///   LPCWSTR lpString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-registerwindowmessagew>.
+///
 /// {@category user32}
 int RegisterWindowMessage(Pointer<Utf16> lpString) =>
     _RegisterWindowMessage(lpString);
@@ -6453,31 +5144,23 @@ final _RegisterWindowMessage = _user32.lookupFunction<
 /// Releases the mouse capture from a window in the current thread and restores
 /// normal mouse input processing.
 ///
-/// A window that has captured the mouse receives all mouse input, regardless of
-/// the position of the cursor, except when a mouse button is clicked while the
-/// cursor hot spot is in the window of another thread.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-releasecapture>.
 ///
-/// ```c
-/// BOOL ReleaseCapture();
-/// ```
 /// {@category user32}
 int ReleaseCapture() => _ReleaseCapture();
 
 final _ReleaseCapture =
     _user32.lookupFunction<BOOL Function(), int Function()>('ReleaseCapture');
 
-/// The ReleaseDC function releases a device context (DC), freeing it for use by
-/// other applications.
+/// Releases a device context (DC), freeing it for use by other applications.
 ///
 /// The effect of the ReleaseDC function depends on the type of DC. It frees
 /// only common and window DCs. It has no effect on class or private DCs.
 ///
-/// ```c
-/// int ReleaseDC(
-///   HWND hWnd,
-///   HDC  hDC
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-releasedc>.
+///
 /// {@category user32}
 int ReleaseDC(int? hWnd, int hDC) => _ReleaseDC(hWnd ?? 0, hDC);
 
@@ -6487,11 +5170,9 @@ final _ReleaseDC = _user32.lookupFunction<Int32 Function(HWND hWnd, HDC hDC),
 /// Removes the given window from the system-maintained clipboard format
 /// listener list.
 ///
-/// ```c
-/// BOOL RemoveClipboardFormatListener(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-removeclipboardformatlistener>.
+///
 /// {@category user32}
 int RemoveClipboardFormatListener(int hwnd) =>
     _RemoveClipboardFormatListener(hwnd);
@@ -6502,18 +5183,9 @@ final _RemoveClipboardFormatListener =
 
 /// Deletes a menu item or detaches a submenu from the specified menu.
 ///
-/// If the menu item opens a drop-down menu or submenu, RemoveMenu does not
-/// destroy the menu or its handle, allowing the menu to be reused. Before this
-/// function is called, the GetSubMenu function should retrieve a handle to the
-/// drop-down menu or submenu.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-removemenu>.
 ///
-/// ```c
-/// BOOL RemoveMenu(
-///   HMENU hMenu,
-///   UINT  uPosition,
-///   UINT  uFlags
-/// );
-/// ```
 /// {@category user32}
 int RemoveMenu(int hMenu, int uPosition, int uFlags) =>
     _RemoveMenu(hMenu, uPosition, uFlags);
@@ -6526,12 +5198,9 @@ final _RemoveMenu = _user32.lookupFunction<
 ///
 /// The specified character string identifies the entry to be removed.
 ///
-/// ```c
-/// HANDLE RemovePropW(
-///   HWND    hWnd,
-///   LPCWSTR lpString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-removepropw>.
+///
 /// {@category user32}
 int RemoveProp(int hWnd, Pointer<Utf16> lpString) =>
     _RemoveProp(hWnd, lpString);
@@ -6542,26 +5211,21 @@ final _RemoveProp = _user32.lookupFunction<
 
 /// Replies to a message sent from another thread by the SendMessage function.
 ///
-/// ```c
-/// BOOL ReplyMessage(
-///   LRESULT lResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-replymessage>.
+///
 /// {@category user32}
 int ReplyMessage(int lResult) => _ReplyMessage(lResult);
 
 final _ReplyMessage = _user32.lookupFunction<BOOL Function(LRESULT lResult),
     int Function(int lResult)>('ReplyMessage');
 
-/// The ScreenToClient function converts the screen coordinates of a specified
-/// point on the screen to client-area coordinates.
+/// Converts the screen coordinates of a specified point on the screen to
+/// client-area coordinates.
 ///
-/// ```c
-/// BOOL ScreenToClient(
-///   HWND    hWnd,
-///   LPPOINT lpPoint
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-screentoclient>.
+///
 /// {@category user32}
 int ScreenToClient(int hWnd, Pointer<POINT> lpPoint) =>
     _ScreenToClient(hWnd, lpPoint);
@@ -6570,20 +5234,11 @@ final _ScreenToClient = _user32.lookupFunction<
     BOOL Function(HWND hWnd, Pointer<POINT> lpPoint),
     int Function(int hWnd, Pointer<POINT> lpPoint)>('ScreenToClient');
 
-/// The ScrollDC function scrolls a rectangle of bits horizontally and
-/// vertically.
+/// Scrolls a rectangle of bits horizontally and vertically.
 ///
-/// ```c
-/// BOOL ScrollDC(
-///   HDC        hDC,
-///   int        dx,
-///   int        dy,
-///   const RECT *lprcScroll,
-///   const RECT *lprcClip,
-///   HRGN       hrgnUpdate,
-///   LPRECT     lprcUpdate
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-scrolldc>.
+///
 /// {@category user32}
 int ScrollDC(int hDC, int dx, int dy, Pointer<RECT>? lprcScroll,
         Pointer<RECT>? lprcClip, int? hrgnUpdate, Pointer<RECT>? lprcUpdate) =>
@@ -6602,18 +5257,11 @@ final _ScrollDC = _user32.lookupFunction<
         int hrgnUpdate,
         Pointer<RECT> lprcUpdate)>('ScrollDC');
 
-/// The ScrollWindow function scrolls the contents of the specified window's
-/// client area.
+/// Scrolls the contents of the specified window's client area.
 ///
-/// ```c
-/// BOOL ScrollWindow(
-///   HWND       hWnd,
-///   int        XAmount,
-///   int        YAmount,
-///   const RECT *lpRect,
-///   const RECT *lpClipRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-scrollwindow>.
+///
 /// {@category user32}
 int ScrollWindow(int hWnd, int xAmount, int yAmount, Pointer<RECT>? lpRect,
         Pointer<RECT>? lpClipRect) =>
@@ -6626,21 +5274,11 @@ final _ScrollWindow = _user32.lookupFunction<
     int Function(int hWnd, int xAmount, int yAmount, Pointer<RECT> lpRect,
         Pointer<RECT> lpClipRect)>('ScrollWindow');
 
-/// The ScrollWindowEx function scrolls the contents of the specified window's
-/// client area.
+/// Scrolls the contents of the specified window's client area.
 ///
-/// ```c
-/// int ScrollWindowEx(
-///   HWND       hWnd,
-///   int        dx,
-///   int        dy,
-///   const RECT *prcScroll,
-///   const RECT *prcClip,
-///   HRGN       hrgnUpdate,
-///   LPRECT     prcUpdate,
-///   UINT       flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-scrollwindowex>.
+///
 /// {@category user32}
 int ScrollWindowEx(
         int hWnd,
@@ -6676,15 +5314,9 @@ final _ScrollWindowEx = _user32.lookupFunction<
 
 /// Sends a message to the specified control in a dialog box.
 ///
-/// ```c
-/// LRESULT SendDlgItemMessageW(
-///   HWND   hDlg,
-///   int    nIDDlgItem,
-///   UINT   Msg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-senddlgitemmessagew>.
+///
 /// {@category user32}
 int SendDlgItemMessage(
         int hDlg, int nIDDlgItem, int msg, int wParam, int lParam) =>
@@ -6698,13 +5330,9 @@ final _SendDlgItemMessage = _user32.lookupFunction<
 
 /// Synthesizes keystrokes, mouse motions, and button clicks.
 ///
-/// ```c
-/// UINT SendInput(
-///   UINT    cInputs,
-///   LPINPUT pInputs,
-///   int     cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-sendinput>.
+///
 /// {@category user32}
 int SendInput(int cInputs, Pointer<INPUT> pInputs, int cbSize) =>
     _SendInput(cInputs, pInputs, cbSize);
@@ -6718,14 +5346,9 @@ final _SendInput = _user32.lookupFunction<
 /// The SendMessage function calls the window procedure for the specified window
 /// and does not return until the window procedure has processed the message.
 ///
-/// ```c
-/// LRESULT SendMessageW(
-///   HWND   hWnd,
-///   UINT   Msg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-sendmessagew>.
+///
 /// {@category user32}
 int SendMessage(int hWnd, int msg, int? wParam, int? lParam) =>
     _SendMessage(hWnd, msg, wParam ?? 0, lParam ?? 0);
@@ -6736,22 +5359,9 @@ final _SendMessage = _user32.lookupFunction<
 
 /// Sends the specified message to a window or windows.
 ///
-/// It calls the window procedure for the specified window and returns
-/// immediately if the window belongs to another thread. After the window
-/// procedure processes the message, the system calls the specified callback
-/// function, passing the result of the message processing and an
-/// application-defined value to the callback function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-sendmessagecallbackw>.
 ///
-/// ```c
-/// BOOL SendMessageCallbackW(
-///   HWND          hWnd,
-///   UINT          Msg,
-///   WPARAM        wParam,
-///   LPARAM        lParam,
-///   SENDASYNCPROC lpResultCallBack,
-///   ULONG_PTR     dwData
-/// );
-/// ```
 /// {@category user32}
 int SendMessageCallback(int hWnd, int msg, int wParam, int lParam,
         Pointer<NativeFunction<SENDASYNCPROC>> lpResultCallBack, int dwData) =>
@@ -6770,17 +5380,9 @@ final _SendMessageCallback = _user32.lookupFunction<
 
 /// Sends the specified message to one or more windows.
 ///
-/// ```c
-/// LRESULT SendMessageTimeoutW(
-///   HWND       hWnd,
-///   UINT       Msg,
-///   WPARAM     wParam,
-///   LPARAM     lParam,
-///   UINT       fuFlags,
-///   UINT       uTimeout,
-///   PDWORD_PTR lpdwResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-sendmessagetimeoutw>.
+///
 /// {@category user32}
 int SendMessageTimeout(int hWnd, int msg, int wParam, int lParam, int fuFlags,
         int uTimeout, Pointer<IntPtr>? lpdwResult) =>
@@ -6795,21 +5397,9 @@ final _SendMessageTimeout = _user32.lookupFunction<
 
 /// Sends the specified message to a window or windows.
 ///
-/// If the window was created by the calling thread, SendNotifyMessage calls the
-/// window procedure for the window and does not return until the window
-/// procedure has processed the message. If the window was created by a
-/// different thread, SendNotifyMessage passes the message to the window
-/// procedure and returns immediately; it does not wait for the window procedure
-/// to finish processing the message.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-sendnotifymessagew>.
 ///
-/// ```c
-/// BOOL SendNotifyMessageW(
-///   HWND   hWnd,
-///   UINT   Msg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
 /// {@category user32}
 int SendNotifyMessage(int hWnd, int msg, int wParam, int lParam) =>
     _SendNotifyMessage(hWnd, msg, wParam, lParam);
@@ -6823,11 +5413,9 @@ final _SendNotifyMessage = _user32.lookupFunction<
 ///
 /// The window must be attached to the calling thread's message queue.
 ///
-/// ```c
-/// HWND SetActiveWindow(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setactivewindow>.
+///
 /// {@category user32}
 int SetActiveWindow(int hWnd) => _SetActiveWindow(hWnd);
 
@@ -6838,16 +5426,9 @@ final _SetActiveWindow =
 /// Sets the mouse capture to the specified window belonging to the current
 /// thread.
 ///
-/// SetCapture captures mouse input either when the mouse is over the capturing
-/// window, or when the mouse button was pressed while the mouse was over the
-/// capturing window and the button is still down. Only one window at a time can
-/// capture the mouse.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setcapture>.
 ///
-/// ```c
-/// HWND SetCapture(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int SetCapture(int hWnd) => _SetCapture(hWnd);
 
@@ -6860,11 +5441,9 @@ final _SetCapture =
 /// The blink time is the elapsed time, in milliseconds, required to invert the
 /// caret's pixels.
 ///
-/// ```c
-/// BOOL SetCaretBlinkTime(
-///   UINT uMSeconds
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setcaretblinktime>.
+///
 /// {@category user32}
 int SetCaretBlinkTime(int uMSeconds) => _SetCaretBlinkTime(uMSeconds);
 
@@ -6878,12 +5457,9 @@ final _SetCaretBlinkTime = _user32.lookupFunction<
 /// then the specified coordinates are subject to the mapping mode of the device
 /// context associated with that window.
 ///
-/// ```c
-/// BOOL SetCaretPos(
-///   int X,
-///   int Y
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setcaretpos>.
+///
 /// {@category user32}
 int SetCaretPos(int x, int y) => _SetCaretPos(x, y);
 
@@ -6892,15 +5468,9 @@ final _SetCaretPos = _user32.lookupFunction<BOOL Function(Int32 x, Int32 y),
 
 /// Places data on the clipboard in a specified clipboard format.
 ///
-/// The window must be the current clipboard owner, and the application must
-/// have called the OpenClipboard function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setclipboarddata>.
 ///
-/// ```c
-/// HANDLE SetClipboardData(
-///   UINT   uFormat,
-///   HANDLE hMem
-/// );
-/// ```
 /// {@category user32}
 int SetClipboardData(int uFormat, int? hMem) =>
     _SetClipboardData(uFormat, hMem ?? 0);
@@ -6911,11 +5481,13 @@ final _SetClipboardData = _user32.lookupFunction<
 
 /// Adds the specified window to the chain of clipboard viewers.
 ///
-/// ```c
-/// HWND SetClipboardViewer(
-///   HWND hWndNewViewer
-/// );
-/// ```
+/// Clipboard viewer windows receive a WM_DRAWCLIPBOARD message whenever the
+/// content of the clipboard changes. This function is used for backward
+/// compatibility with earlier versions of Windows.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setclipboardviewer>.
+///
 /// {@category user32}
 int SetClipboardViewer(int hWndNewViewer) => _SetClipboardViewer(hWndNewViewer);
 
@@ -6926,15 +5498,9 @@ final _SetClipboardViewer = _user32.lookupFunction<
 /// Creates a timer with the specified time-out value and coalescing tolerance
 /// delay.
 ///
-/// ```c
-/// UINT_PTR SetCoalescableTimer(
-///   HWND      hWnd,
-///   UINT_PTR  nIDEvent,
-///   UINT      uElapse,
-///   TIMERPROC lpTimerFunc,
-///   ULONG     uToleranceDelay
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setcoalescabletimer>.
+///
 /// {@category user32}
 int SetCoalescableTimer(int? hWnd, int nIDEvent, int uElapse,
         Pointer<NativeFunction<TIMERPROC>>? lpTimerFunc, int uToleranceDelay) =>
@@ -6953,11 +5519,9 @@ final _SetCoalescableTimer = _user32.lookupFunction<
 
 /// Sets the cursor shape.
 ///
-/// ```c
-/// HCURSOR SetCursor(
-///   HCURSOR hCursor
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setcursor>.
+///
 /// {@category user32}
 int SetCursor(int? hCursor) => _SetCursor(hCursor ?? 0);
 
@@ -6966,16 +5530,9 @@ final _SetCursor = _user32.lookupFunction<HCURSOR Function(HCURSOR hCursor),
 
 /// Moves the cursor to the specified screen coordinates.
 ///
-/// If the new coordinates are not within the screen rectangle set by the most
-/// recent ClipCursor function call, the system automatically adjusts the
-/// coordinates so that the cursor stays within the rectangle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setcursorpos>.
 ///
-/// ```c
-/// BOOL SetCursorPos(
-///   int X,
-///   int Y
-/// );
-/// ```
 /// {@category user32}
 int SetCursorPos(int x, int y) => _SetCursorPos(x, y);
 
@@ -6985,13 +5542,9 @@ final _SetCursorPos = _user32.lookupFunction<BOOL Function(Int32 x, Int32 y),
 /// Overrides the default per-monitor DPI scaling behavior of a child window in
 /// a dialog.
 ///
-/// ```c
-/// BOOL SetDialogControlDpiChangeBehavior(
-///   HWND                                hWnd,
-///   DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS mask,
-///   DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS values
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdialogcontroldpichangebehavior>.
+///
 /// {@category user32}
 int SetDialogControlDpiChangeBehavior(int hWnd, int mask, int values) =>
     _SetDialogControlDpiChangeBehavior(hWnd, mask, values);
@@ -7003,19 +5556,11 @@ final _SetDialogControlDpiChangeBehavior = _user32.lookupFunction<
 
 /// Dialogs in Per-Monitor v2 contexts are automatically DPI scaled.
 ///
-/// This method lets you customize their DPI change behavior. This function
-/// works in conjunction with the DIALOG_DPI_CHANGE_BEHAVIORS enum in order to
-/// override the default DPI scaling behavior for dialogs. This function is
-/// called on a specified dialog, for which the specified flags are individually
-/// saved.
+/// This method lets you customize their DPI change behavior.
 ///
-/// ```c
-/// BOOL SetDialogDpiChangeBehavior(
-///   HWND                        hDlg,
-///   DIALOG_DPI_CHANGE_BEHAVIORS mask,
-///   DIALOG_DPI_CHANGE_BEHAVIORS values
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdialogdpichangebehavior>.
+///
 /// {@category user32}
 int SetDialogDpiChangeBehavior(int hDlg, int mask, int values) =>
     _SetDialogDpiChangeBehavior(hDlg, mask, values);
@@ -7026,11 +5571,9 @@ final _SetDialogDpiChangeBehavior = _user32.lookupFunction<
 
 /// Sets the screen auto-rotation preferences for the current process.
 ///
-/// ```c
-/// BOOL SetDisplayAutoRotationPreferences(
-///   ORIENTATION_PREFERENCE orientation
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdisplayautorotationpreferences>.
+///
 /// {@category user32}
 int SetDisplayAutoRotationPreferences(int orientation) =>
     _SetDisplayAutoRotationPreferences(orientation);
@@ -7039,19 +5582,12 @@ final _SetDisplayAutoRotationPreferences = _user32.lookupFunction<
     BOOL Function(Int32 orientation),
     int Function(int orientation)>('SetDisplayAutoRotationPreferences');
 
-/// The SetDisplayConfig function modifies the display topology, source, and
-/// target modes by exclusively enabling the specified paths in the current
-/// session.
+/// Modifies the display topology, source, and target modes by exclusively
+/// enabling the specified paths in the current session.
 ///
-/// ```c
-/// LONG SetDisplayConfig(
-///   [in]           UINT32                  numPathArrayElements,
-///   [in, optional] DISPLAYCONFIG_PATH_INFO *pathArray,
-///   [in]           UINT32                  numModeInfoArrayElements,
-///   [in, optional] DISPLAYCONFIG_MODE_INFO *modeInfoArray,
-///   [in]           UINT32                  flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdisplayconfig>.
+///
 /// {@category user32}
 int SetDisplayConfig(
         int numPathArrayElements,
@@ -7079,14 +5615,9 @@ final _SetDisplayConfig = _user32.lookupFunction<
 /// Sets the text of a control in a dialog box to the string representation of a
 /// specified integer value.
 ///
-/// ```c
-/// BOOL SetDlgItemInt(
-///   HWND hDlg,
-///   int  nIDDlgItem,
-///   UINT uValue,
-///   BOOL bSigned
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdlgitemint>.
+///
 /// {@category user32}
 int SetDlgItemInt(int hDlg, int nIDDlgItem, int uValue, int bSigned) =>
     _SetDlgItemInt(hDlg, nIDDlgItem, uValue, bSigned);
@@ -7098,13 +5629,9 @@ final _SetDlgItemInt = _user32.lookupFunction<
 
 /// Sets the title or text of a control in a dialog box.
 ///
-/// ```c
-/// BOOL SetDlgItemTextW(
-///   HWND    hDlg,
-///   int     nIDDlgItem,
-///   LPCWSTR lpString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdlgitemtextw>.
+///
 /// {@category user32}
 int SetDlgItemText(int hDlg, int nIDDlgItem, Pointer<Utf16> lpString) =>
     _SetDlgItemText(hDlg, nIDDlgItem, lpString);
@@ -7116,16 +5643,9 @@ final _SetDlgItemText = _user32.lookupFunction<
 
 /// Sets the double-click time for the mouse.
 ///
-/// A double-click is a series of two clicks of a mouse button, the second
-/// occurring within a specified time after the first. The double-click time is
-/// the maximum number of milliseconds that may occur between the first and
-/// second clicks of a double-click.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setdoubleclicktime>.
 ///
-/// ```c
-/// BOOL SetDoubleClickTime(
-///   UINT Arg1
-/// );
-/// ```
 /// {@category user32}
 int SetDoubleClickTime(int param0) => _SetDoubleClickTime(param0);
 
@@ -7136,11 +5656,9 @@ final _SetDoubleClickTime = _user32.lookupFunction<BOOL Function(Uint32 param0),
 ///
 /// The window must be attached to the calling thread's message queue.
 ///
-/// ```c
-/// HWND SetFocus(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setfocus>.
+///
 /// {@category user32}
 int SetFocus(int? hWnd) => _SetFocus(hWnd ?? 0);
 
@@ -7151,15 +5669,9 @@ final _SetFocus =
 /// Brings the thread that created the specified window into the foreground and
 /// activates the window.
 ///
-/// Keyboard input is directed to the window, and various visual cues are
-/// changed for the user. The system assigns a slightly higher priority to the
-/// thread that created the foreground window than it does to other threads.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setforegroundwindow>.
 ///
-/// ```c
-/// BOOL SetForegroundWindow(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int SetForegroundWindow(int hWnd) => _SetForegroundWindow(hWnd);
 
@@ -7170,15 +5682,9 @@ final _SetForegroundWindow =
 /// Configures the messages that are sent from a window for Windows Touch
 /// gestures.
 ///
-/// ```c
-/// BOOL SetGestureConfig(
-///   HWND           hwnd,
-///   DWORD          dwReserved,
-///   UINT           cIDs,
-///   PGESTURECONFIG pGestureConfig,
-///   UINT           cbSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setgestureconfig>.
+///
 /// {@category user32}
 int SetGestureConfig(int hwnd, int cIDs, Pointer<GESTURECONFIG> pGestureConfig,
         int cbSize) =>
@@ -7197,11 +5703,9 @@ final _SetGestureConfig = _user32.lookupFunction<
 /// functions. Changes made to this table do not affect keyboard input to any
 /// other thread.
 ///
-/// ```c
-/// BOOL SetKeyboardState(
-///   LPBYTE lpKeyState
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setkeyboardstate>.
+///
 /// {@category user32}
 int SetKeyboardState(Pointer<Uint8> lpKeyState) =>
     _SetKeyboardState(lpKeyState);
@@ -7212,14 +5716,9 @@ final _SetKeyboardState = _user32.lookupFunction<
 
 /// Sets the opacity and transparency color key of a layered window.
 ///
-/// ```c
-/// BOOL SetLayeredWindowAttributes(
-///   HWND     hwnd,
-///   COLORREF crKey,
-///   BYTE     bAlpha,
-///   DWORD    dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setlayeredwindowattributes>.
+///
 /// {@category user32}
 int SetLayeredWindowAttributes(int hwnd, int crKey, int bAlpha, int dwFlags) =>
     _SetLayeredWindowAttributes(hwnd, crKey, bAlpha, dwFlags);
@@ -7231,12 +5730,9 @@ final _SetLayeredWindowAttributes = _user32.lookupFunction<
 
 /// Assigns a new menu to the specified window.
 ///
-/// ```c
-/// BOOL SetMenu(
-///   [in]           HWND  hWnd,
-///   [in, optional] HMENU hMenu
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setmenu>.
+///
 /// {@category user32}
 int SetMenu(int hWnd, int? hMenu) => _SetMenu(hWnd, hMenu ?? 0);
 
@@ -7245,13 +5741,9 @@ final _SetMenu = _user32.lookupFunction<BOOL Function(HWND hWnd, HMENU hMenu),
 
 /// Sets the default menu item for the specified menu.
 ///
-/// ```c
-/// BOOL SetMenuDefaultItem(
-///   [in] HMENU hMenu,
-///   [in] UINT  uItem,
-///   [in] UINT  fByPos
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setmenudefaultitem>.
+///
 /// {@category user32}
 int SetMenuDefaultItem(int hMenu, int uItem, int fByPos) =>
     _SetMenuDefaultItem(hMenu, uItem, fByPos);
@@ -7262,12 +5754,9 @@ final _SetMenuDefaultItem = _user32.lookupFunction<
 
 /// Sets information for a specified menu.
 ///
-/// ```c
-/// BOOL SetMenuInfo(
-///   HMENU       hmenu,
-///   LPCMENUINFO lpmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setmenuinfo>.
+///
 /// {@category user32}
 int SetMenuInfo(int param0, Pointer<MENUINFO> param1) =>
     _SetMenuInfo(param0, param1);
@@ -7281,15 +5770,9 @@ final _SetMenuInfo = _user32.lookupFunction<
 /// Whether the menu item is selected or clear, the system displays the
 /// appropriate bitmap next to the menu item.
 ///
-/// ```c
-/// BOOL SetMenuItemBitmaps(
-///   HMENU   hMenu,
-///   UINT    uPosition,
-///   UINT    uFlags,
-///   HBITMAP hBitmapUnchecked,
-///   HBITMAP hBitmapChecked
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setmenuitembitmaps>.
+///
 /// {@category user32}
 int SetMenuItemBitmaps(int hMenu, int uPosition, int uFlags,
         int? hBitmapUnchecked, int? hBitmapChecked) =>
@@ -7304,14 +5787,9 @@ final _SetMenuItemBitmaps = _user32.lookupFunction<
 
 /// Changes information about a menu item.
 ///
-/// ```c
-/// BOOL SetMenuItemInfoW(
-///   HMENU            hmenu,
-///   UINT             item,
-///   BOOL             fByPositon,
-///   LPCMENUITEMINFOW lpmii
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setmenuiteminfow>.
+///
 /// {@category user32}
 int SetMenuItemInfo(
         int hmenu, int item, int fByPositon, Pointer<MENUITEMINFO> lpmii) =>
@@ -7325,16 +5803,9 @@ final _SetMenuItemInfo = _user32.lookupFunction<
 
 /// Sets the extra message information for the current thread.
 ///
-/// Extra message information is an application- or driver-defined value
-/// associated with the current thread's message queue. An application can use
-/// the GetMessageExtraInfo function to retrieve a thread's extra message
-/// information.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setmessageextrainfo>.
 ///
-/// ```c
-/// LPARAM SetMessageExtraInfo(
-///   LPARAM lParam
-/// );
-/// ```
 /// {@category user32}
 int SetMessageExtraInfo(int lParam) => _SetMessageExtraInfo(lParam);
 
@@ -7344,12 +5815,9 @@ final _SetMessageExtraInfo = _user32.lookupFunction<
 
 /// Changes the parent window of the specified child window.
 ///
-/// ```c
-/// HWND SetParent(
-///   HWND hWndChild,
-///   HWND hWndNewParent
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setparent>.
+///
 /// {@category user32}
 int SetParent(int hWndChild, int? hWndNewParent) =>
     _SetParent(hWndChild, hWndNewParent ?? 0);
@@ -7360,12 +5828,9 @@ final _SetParent = _user32.lookupFunction<
 
 /// Sets the position of the cursor in physical coordinates.
 ///
-/// ```c
-/// BOOL SetPhysicalCursorPos(
-///   [in] int X,
-///   [in] int Y
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setphysicalcursorpos>.
+///
 /// {@category user32}
 int SetPhysicalCursorPos(int x, int y) => _SetPhysicalCursorPos(x, y);
 
@@ -7375,29 +5840,26 @@ final _SetPhysicalCursorPos = _user32.lookupFunction<
 
 /// Sets the process-default DPI awareness to system-DPI awareness.
 ///
-/// ```c
-/// BOOL SetProcessDPIAware();
-/// ```
+/// **Note**: This function may be altered or unavailable in the newer versions
+/// of Windows. Use SetProcessDpiAwareness instead.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setprocessdpiaware>.
+///
 /// {@category user32}
 int SetProcessDPIAware() => _SetProcessDPIAware();
 
 final _SetProcessDPIAware = _user32
     .lookupFunction<BOOL Function(), int Function()>('SetProcessDPIAware');
 
-/// It is recommended that you set the process-default DPI awareness via
-/// application manifest.
+/// Sets the current process to a specified dots per inch (dpi) awareness
+/// context.
 ///
-/// See Setting the default DPI awareness for a process for more information.
-/// Setting the process-default DPI awareness via API call can lead to
-/// unexpected application behavior. Sets the current process to a specified
-/// dots per inch (dpi) awareness context. The DPI awareness contexts are from
-/// the DPI_AWARENESS_CONTEXT value.
+/// The DPI awareness contexts are from the DPI_AWARENESS_CONTEXT value.
 ///
-/// ```c
-/// BOOL SetProcessDpiAwarenessContext(
-///   DPI_AWARENESS_CONTEXT value
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setprocessdpiawarenesscontext>.
+///
 /// {@category user32}
 int SetProcessDpiAwarenessContext(int value) =>
     _SetProcessDpiAwarenessContext(value);
@@ -7409,18 +5871,9 @@ final _SetProcessDpiAwarenessContext = _user32.lookupFunction<
 /// Adds a new entry or changes an existing entry in the property list of the
 /// specified window.
 ///
-/// The function adds a new entry to the list if the specified character string
-/// does not exist already in the list. The new entry contains the string and
-/// the handle. Otherwise, the function replaces the string's current handle
-/// with the specified handle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setpropw>.
 ///
-/// ```c
-/// BOOL SetPropW(
-///   HWND    hWnd,
-///   LPCWSTR lpString,
-///   HANDLE  hData
-/// );
-/// ```
 /// {@category user32}
 int SetProp(int hWnd, Pointer<Utf16> lpString, int? hData) =>
     _SetProp(hWnd, lpString, hData ?? 0);
@@ -7429,20 +5882,14 @@ final _SetProp = _user32.lookupFunction<
     BOOL Function(HWND hWnd, Pointer<Utf16> lpString, HANDLE hData),
     int Function(int hWnd, Pointer<Utf16> lpString, int hData)>('SetPropW');
 
-/// The SetRect function sets the coordinates of the specified rectangle.
+/// Sets the coordinates of the specified rectangle.
 ///
 /// This is equivalent to assigning the left, top, right, and bottom arguments
 /// to the appropriate members of the RECT structure.
 ///
-/// ```c
-/// BOOL SetRect(
-///   LPRECT lprc,
-///   int    xLeft,
-///   int    yTop,
-///   int    xRight,
-///   int    yBottom
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setrect>.
+///
 /// {@category user32}
 int SetRect(Pointer<RECT> lprc, int xLeft, int yTop, int xRight, int yBottom) =>
     _SetRect(lprc, xLeft, yTop, xRight, yBottom);
@@ -7453,34 +5900,26 @@ final _SetRect = _user32.lookupFunction<
     int Function(Pointer<RECT> lprc, int xLeft, int yTop, int xRight,
         int yBottom)>('SetRect');
 
-/// The SetRectEmpty function creates an empty rectangle in which all
-/// coordinates are set to zero.
+/// Creates an empty rectangle in which all coordinates are set to zero.
 ///
-/// ```c
-/// BOOL SetRectEmpty(
-///   LPRECT lprc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setrectempty>.
+///
 /// {@category user32}
 int SetRectEmpty(Pointer<RECT> lprc) => _SetRectEmpty(lprc);
 
 final _SetRectEmpty = _user32.lookupFunction<BOOL Function(Pointer<RECT> lprc),
     int Function(Pointer<RECT> lprc)>('SetRectEmpty');
 
-/// The SetScrollInfo function sets the parameters of a scroll bar, including
-/// the minimum and maximum scrolling positions, the page size, and the position
-/// of the scroll box (thumb).
+/// Sets the parameters of a scroll bar, including the minimum and maximum
+/// scrolling positions, the page size, and the position of the scroll box
+/// (thumb).
 ///
 /// The function also redraws the scroll bar, if requested.
 ///
-/// ```c
-/// int SetScrollInfo(
-///   HWND          hwnd,
-///   int           nBar,
-///   LPCSCROLLINFO lpsi,
-///   BOOL          redraw
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setscrollinfo>.
+///
 /// {@category user32}
 int SetScrollInfo(int hwnd, int nBar, Pointer<SCROLLINFO> lpsi, int redraw) =>
     _SetScrollInfo(hwnd, nBar, lpsi, redraw);
@@ -7493,16 +5932,9 @@ final _SetScrollInfo = _user32.lookupFunction<
 
 /// Sets the colors for the specified display elements.
 ///
-/// Display elements are the various parts of a window and the display that
-/// appear on the system display screen.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setsyscolors>.
 ///
-/// ```c
-/// BOOL SetSysColors(
-///   int            cElements,
-///   const INT      *lpaElements,
-///   const COLORREF *lpaRgbValues
-/// );
-/// ```
 /// {@category user32}
 int SetSysColors(int cElements, Pointer<Int32> lpaElements,
         Pointer<COLORREF> lpaRgbValues) =>
@@ -7520,12 +5952,9 @@ final _SetSysColors = _user32.lookupFunction<
 /// with the contents of the cursor specified by the hcur parameter and then
 /// destroys hcur.
 ///
-/// ```c
-/// BOOL SetSystemCursor(
-///   HCURSOR hcur,
-///   DWORD   id
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setsystemcursor>.
+///
 /// {@category user32}
 int SetSystemCursor(int hcur, int id) => _SetSystemCursor(hcur, id);
 
@@ -7535,11 +5964,9 @@ final _SetSystemCursor = _user32.lookupFunction<
 
 /// Set the DPI awareness for the current thread to the provided value.
 ///
-/// ```c
-/// DPI_AWARENESS_CONTEXT SetThreadDpiAwarenessContext(
-///   DPI_AWARENESS_CONTEXT dpiContext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setthreaddpiawarenesscontext>.
+///
 /// {@category user32}
 int SetThreadDpiAwarenessContext(int dpiContext) =>
     _SetThreadDpiAwarenessContext(dpiContext);
@@ -7553,11 +5980,9 @@ final _SetThreadDpiAwarenessContext = _user32.lookupFunction<
 /// This behavior allows windows created in the thread to host child windows
 /// with a different DPI_AWARENESS_CONTEXT.
 ///
-/// ```c
-/// DPI_HOSTING_BEHAVIOR SetThreadDpiHostingBehavior(
-///   DPI_HOSTING_BEHAVIOR value
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setthreaddpihostingbehavior>.
+///
 /// {@category user32}
 int SetThreadDpiHostingBehavior(int value) =>
     _SetThreadDpiHostingBehavior(value);
@@ -7568,14 +5993,9 @@ final _SetThreadDpiHostingBehavior = _user32.lookupFunction<
 
 /// Creates a timer with the specified time-out value.
 ///
-/// ```c
-/// UINT_PTR SetTimer(
-///   HWND      hWnd,
-///   UINT_PTR  nIDEvent,
-///   UINT      uElapse,
-///   TIMERPROC lpTimerFunc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-settimer>.
+///
 /// {@category user32}
 int SetTimer(int? hWnd, int nIDEvent, int uElapse,
         Pointer<NativeFunction<TIMERPROC>>? lpTimerFunc) =>
@@ -7589,14 +6009,9 @@ final _SetTimer = _user32.lookupFunction<
 
 /// Sets information about the specified window station or desktop object.
 ///
-/// ```c
-/// BOOL SetUserObjectInformationW(
-///   HANDLE hObj,
-///   int    nIndex,
-///   PVOID  pvInfo,
-///   DWORD  nLength
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setuserobjectinformationw>.
+///
 /// {@category user32}
 int SetUserObjectInformation(
         int hObj, int nIndex, Pointer pvInfo, int nLength) =>
@@ -7607,14 +6022,12 @@ final _SetUserObjectInformation = _user32.lookupFunction<
     int Function(int hObj, int nIndex, Pointer pvInfo,
         int nLength)>('SetUserObjectInformationW');
 
-/// Specifies where the content of the window can be displayed.
+/// Stores the display affinity setting in kernel mode on the hWnd associated
+/// with the window.
 ///
-/// ```c
-/// BOOL SetWindowDisplayAffinity(
-///   HWND  hWnd,
-///   DWORD dwAffinity
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowdisplayaffinity>.
+///
 /// {@category user32}
 int SetWindowDisplayAffinity(int hWnd, int dwAffinity) =>
     _SetWindowDisplayAffinity(hWnd, dwAffinity);
@@ -7625,16 +6038,9 @@ final _SetWindowDisplayAffinity = _user32.lookupFunction<
 
 /// Changes an attribute of the specified window.
 ///
-/// The function also sets a value at the specified offset in the extra window
-/// memory.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowlongptrw>.
 ///
-/// ```c
-/// LONG_PTR SetWindowLongPtrW(
-///   HWND     hWnd,
-///   int      nIndex,
-///   LONG_PTR dwNewLong
-/// );
-/// ```
 /// {@category user32}
 int SetWindowLongPtr(int hWnd, int nIndex, int dwNewLong) =>
     _SetWindowLongPtr(hWnd, nIndex, dwNewLong);
@@ -7646,12 +6052,9 @@ final _SetWindowLongPtr = _user32.lookupFunction<
 /// Sets the show state and the restored, minimized, and maximized positions of
 /// the specified window.
 ///
-/// ```c
-/// BOOL SetWindowPlacement(
-///   HWND                  hWnd,
-///   const WINDOWPLACEMENT *lpwndpl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowplacement>.
+///
 /// {@category user32}
 int SetWindowPlacement(int hWnd, Pointer<WINDOWPLACEMENT> lpwndpl) =>
     _SetWindowPlacement(hWnd, lpwndpl);
@@ -7668,17 +6071,9 @@ final _SetWindowPlacement = _user32.lookupFunction<
 /// topmost window receives the highest rank and is the first window in the Z
 /// order.
 ///
-/// ```c
-/// BOOL SetWindowPos(
-///   HWND hWnd,
-///   HWND hWndInsertAfter,
-///   int  X,
-///   int  Y,
-///   int  cx,
-///   int  cy,
-///   UINT uFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowpos>.
+///
 /// {@category user32}
 int SetWindowPos(int hWnd, int? hWndInsertAfter, int x, int y, int cx, int cy,
         int uFlags) =>
@@ -7690,19 +6085,11 @@ final _SetWindowPos = _user32.lookupFunction<
     int Function(int hWnd, int hWndInsertAfter, int x, int y, int cx, int cy,
         int uFlags)>('SetWindowPos');
 
-/// The SetWindowRgn function sets the window region of a window.
+/// Sets the window region of a window.
 ///
-/// The window region determines the area within the window where the system
-/// permits drawing. The system does not display any portion of a window that
-/// lies outside of the window region
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowrgn>.
 ///
-/// ```c
-/// int SetWindowRgn(
-///   HWND hWnd,
-///   HRGN hRgn,
-///   BOOL bRedraw
-/// );
-/// ```
 /// {@category user32}
 int SetWindowRgn(int hWnd, int? hRgn, int bRedraw) =>
     _SetWindowRgn(hWnd, hRgn ?? 0, bRedraw);
@@ -7713,18 +6100,9 @@ final _SetWindowRgn = _user32.lookupFunction<
 
 /// Installs an application-defined hook procedure into a hook chain.
 ///
-/// You would install a hook procedure to monitor the system for certain types
-/// of events. These events are associated either with a specific thread or with
-/// all threads in the same desktop as the calling thread.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowshookexw>.
 ///
-/// ```c
-/// HHOOK SetWindowsHookExW(
-///   int       idHook,
-///   HOOKPROC  lpfn,
-///   HINSTANCE hmod,
-///   DWORD     dwThreadId
-/// );
-/// ```
 /// {@category user32}
 int SetWindowsHookEx(int idHook, Pointer<NativeFunction<HOOKPROC>> lpfn,
         int? hmod, int dwThreadId) =>
@@ -7742,12 +6120,9 @@ final _SetWindowsHookEx = _user32.lookupFunction<
 /// However, SetWindowText cannot change the text of a control in another
 /// application.
 ///
-/// ```c
-/// BOOL SetWindowTextW(
-///   HWND    hWnd,
-///   LPCWSTR lpString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setwindowtextw>.
+///
 /// {@category user32}
 int SetWindowText(int hWnd, Pointer<Utf16>? lpString) =>
     _SetWindowText(hWnd, lpString ?? nullptr);
@@ -7760,11 +6135,9 @@ final _SetWindowText = _user32.lookupFunction<
 ///
 /// When the caret becomes visible, it begins flashing automatically.
 ///
-/// ```c
-/// BOOL ShowCaret(
-///   HWND hWnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-showcaret>.
+///
 /// {@category user32}
 int ShowCaret(int? hWnd) => _ShowCaret(hWnd ?? 0);
 
@@ -7774,11 +6147,9 @@ final _ShowCaret =
 
 /// Displays or hides the cursor.
 ///
-/// ```c
-/// int ShowCursor(
-///   BOOL bShow
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-showcursor>.
+///
 /// {@category user32}
 int ShowCursor(int bShow) => _ShowCursor(bShow);
 
@@ -7788,12 +6159,9 @@ final _ShowCursor =
 
 /// Shows or hides all pop-up windows owned by the specified window.
 ///
-/// ```c
-/// BOOL ShowOwnedPopups(
-///   HWND hWnd,
-///   BOOL fShow
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-showownedpopups>.
+///
 /// {@category user32}
 int ShowOwnedPopups(int hWnd, int fShow) => _ShowOwnedPopups(hWnd, fShow);
 
@@ -7803,12 +6171,9 @@ final _ShowOwnedPopups = _user32.lookupFunction<
 
 /// Sets the specified window's show state.
 ///
-/// ```c
-/// BOOL ShowWindow(
-///   HWND hWnd,
-///   int  nCmdShow
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-showwindow>.
+///
 /// {@category user32}
 int ShowWindow(int hWnd, int nCmdShow) => _ShowWindow(hWnd, nCmdShow);
 
@@ -7819,12 +6184,9 @@ final _ShowWindow = _user32.lookupFunction<
 /// Sets the show state of a window without waiting for the operation to
 /// complete.
 ///
-/// ```c
-/// BOOL ShowWindowAsync(
-///   HWND hWnd,
-///   int  nCmdShow
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-showwindowasync>.
+///
 /// {@category user32}
 int ShowWindowAsync(int hWnd, int nCmdShow) => _ShowWindowAsync(hWnd, nCmdShow);
 
@@ -7836,16 +6198,9 @@ final _ShowWindowAsync = _user32.lookupFunction<
 /// message for the specified pointer and discards any queued (unretrieved)
 /// pointer input messages generated from the same pointer input frame.
 ///
-/// If an application has retrieved information for an entire frame using the
-/// GetPointerFrameInfo function, the GetPointerFrameInfoHistory function or one
-/// of their type-specific variants, it can use this function to avoid
-/// retrieving and discarding remaining messages from that frame one by one.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-skippointerframemessages>.
 ///
-/// ```c
-/// BOOL SkipPointerFrameMessages(
-///   [in] UINT32 pointerId
-/// );
-/// ```
 /// {@category user32}
 int SkipPointerFrameMessages(int pointerId) =>
     _SkipPointerFrameMessages(pointerId);
@@ -7856,25 +6211,21 @@ final _SkipPointerFrameMessages = _user32.lookupFunction<
 
 /// Triggers a visual signal to indicate that a sound is playing.
 ///
-/// ```c
-/// BOOL SoundSentry();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-soundsentry>.
+///
 /// {@category user32}
 int SoundSentry() => _SoundSentry();
 
 final _SoundSentry =
     _user32.lookupFunction<BOOL Function(), int Function()>('SoundSentry');
 
-/// The SubtractRect function determines the coordinates of a rectangle formed
-/// by subtracting one rectangle from another.
+/// Determines the coordinates of a rectangle formed by subtracting one
+/// rectangle from another.
 ///
-/// ```c
-/// BOOL SubtractRect(
-///   LPRECT     lprcDst,
-///   const RECT *lprcSrc1,
-///   const RECT *lprcSrc2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-subtractrect>.
+///
 /// {@category user32}
 int SubtractRect(Pointer<RECT> lprcDst, Pointer<RECT> lprcSrc1,
         Pointer<RECT> lprcSrc2) =>
@@ -7888,11 +6239,9 @@ final _SubtractRect = _user32.lookupFunction<
 
 /// Reverses or restores the meaning of the left and right mouse buttons.
 ///
-/// ```c
-/// BOOL SwapMouseButton(
-///   BOOL fSwap
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-swapmousebutton>.
+///
 /// {@category user32}
 int SwapMouseButton(int fSwap) => _SwapMouseButton(fSwap);
 
@@ -7902,15 +6251,11 @@ final _SwapMouseButton =
 
 /// Makes the specified desktop visible and activates it.
 ///
-/// This enables the desktop to receive input from the user. The calling process
-/// must have DESKTOP_SWITCHDESKTOP access to the desktop for the SwitchDesktop
-/// function to succeed.
+/// This enables the desktop to receive input from the user.
 ///
-/// ```c
-/// BOOL SwitchDesktop(
-///   HDESK hDesktop
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-switchdesktop>.
+///
 /// {@category user32}
 int SwitchDesktop(int hDesktop) => _SwitchDesktop(hDesktop);
 
@@ -7919,12 +6264,9 @@ final _SwitchDesktop = _user32.lookupFunction<BOOL Function(HDESK hDesktop),
 
 /// Switches focus to the specified window and brings it to the foreground.
 ///
-/// ```c
-/// void SwitchToThisWindow(
-///   HWND hwnd,
-///   BOOL fUnknown
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-switchtothiswindow>.
+///
 /// {@category user32}
 void SwitchToThisWindow(int hwnd, int fUnknown) =>
     _SwitchToThisWindow(hwnd, fUnknown);
@@ -7935,16 +6277,9 @@ final _SwitchToThisWindow = _user32.lookupFunction<
 
 /// Retrieves or sets the value of one of the system-wide parameters.
 ///
-/// This function can also update the user profile while setting a parameter.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-systemparametersinfow>.
 ///
-/// ```c
-/// BOOL SystemParametersInfoW(
-///   UINT  uiAction,
-///   UINT  uiParam,
-///   PVOID pvParam,
-///   UINT  fWinIni
-/// );
-/// ```
 /// {@category user32}
 int SystemParametersInfo(
         int uiAction, int uiParam, Pointer? pvParam, int fWinIni) =>
@@ -7959,15 +6294,9 @@ final _SystemParametersInfo = _user32.lookupFunction<
 /// Retrieves the value of one of the system-wide parameters, taking into
 /// account the provided DPI value.
 ///
-/// ```c
-/// BOOL SystemParametersInfoForDpi(
-///   UINT  uiAction,
-///   UINT  uiParam,
-///   PVOID pvParam,
-///   UINT  fWinIni,
-///   UINT  dpi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-systemparametersinfofordpi>.
+///
 /// {@category user32}
 int SystemParametersInfoForDpi(
         int uiAction, int uiParam, Pointer? pvParam, int fWinIni, int dpi) =>
@@ -7980,25 +6309,15 @@ final _SystemParametersInfoForDpi = _user32.lookupFunction<
     int Function(int uiAction, int uiParam, Pointer pvParam, int fWinIni,
         int dpi)>('SystemParametersInfoForDpi');
 
-/// The TabbedTextOut function writes a character string at a specified
-/// location, expanding tabs to the values specified in an array of tab-stop
-/// positions.
+/// Writes a character string at a specified location, expanding tabs to the
+/// values specified in an array of tab-stop positions.
 ///
 /// Text is written in the currently selected font, background color, and text
 /// color.
 ///
-/// ```c
-/// LONG TabbedTextOutW(
-///   HDC       hdc,
-///   int       x,
-///   int       y,
-///   LPCWSTR   lpString,
-///   int       chCount,
-///   int       nTabPositions,
-///   const INT *lpnTabStopPositions,
-///   int       nTabOrigin
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-tabbedtextoutw>.
+///
 /// {@category user32}
 int TabbedTextOut(
         int hdc,
@@ -8034,15 +6353,9 @@ final _TabbedTextOut = _user32.lookupFunction<
 
 /// Tiles the specified child windows of the specified parent window.
 ///
-/// ```c
-/// WORD TileWindows(
-///   HWND       hwndParent,
-///   UINT       wHow,
-///   const RECT *lpRect,
-///   UINT       cKids,
-///   const HWND *lpKids
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-tilewindows>.
+///
 /// {@category user32}
 int TileWindows(int? hwndParent, int wHow, Pointer<RECT>? lpRect, int cKids,
         Pointer<HWND>? lpKids) =>
@@ -8058,18 +6371,9 @@ final _TileWindows = _user32.lookupFunction<
 /// Translates the specified virtual-key code and keyboard state to the
 /// corresponding character or characters.
 ///
-/// The function translates the code using the input language and physical
-/// keyboard layout identified by the keyboard layout handle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-toascii>.
 ///
-/// ```c
-/// int ToAscii(
-///   UINT       uVirtKey,
-///   UINT       uScanCode,
-///   const BYTE *lpKeyState,
-///   LPWORD     lpChar,
-///   UINT       uFlags
-/// );
-/// ```
 /// {@category user32}
 int ToAscii(int uVirtKey, int uScanCode, Pointer<Uint8>? lpKeyState,
         Pointer<Uint16> lpChar, int uFlags) =>
@@ -8087,16 +6391,9 @@ final _ToAscii = _user32.lookupFunction<
 /// The function translates the code using the input language and physical
 /// keyboard layout identified by the input locale identifier.
 ///
-/// ```c
-/// int ToAsciiEx(
-///   UINT       uVirtKey,
-///   UINT       uScanCode,
-///   const BYTE *lpKeyState,
-///   LPWORD     lpChar,
-///   UINT       uFlags,
-///   HKL        dwhkl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-toasciiex>.
+///
 /// {@category user32}
 int ToAsciiEx(int uVirtKey, int uScanCode, Pointer<Uint8>? lpKeyState,
         Pointer<Uint16> lpChar, int uFlags, int? dwhkl) =>
@@ -8112,16 +6409,9 @@ final _ToAsciiEx = _user32.lookupFunction<
 /// Translates the specified virtual-key code and keyboard state to the
 /// corresponding Unicode character or characters.
 ///
-/// ```c
-/// int ToUnicode(
-///   UINT       wVirtKey,
-///   UINT       wScanCode,
-///   const BYTE *lpKeyState,
-///   LPWSTR     pwszBuff,
-///   int        cchBuff,
-///   UINT       wFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-tounicode>.
+///
 /// {@category user32}
 int ToUnicode(int wVirtKey, int wScanCode, Pointer<Uint8>? lpKeyState,
         Pointer<Utf16> pwszBuff, int cchBuff, int wFlags) =>
@@ -8137,17 +6427,9 @@ final _ToUnicode = _user32.lookupFunction<
 /// Translates the specified virtual-key code and keyboard state to the
 /// corresponding Unicode character or characters.
 ///
-/// ```c
-/// int ToUnicodeEx(
-///   UINT       wVirtKey,
-///   UINT       wScanCode,
-///   const BYTE *lpKeyState,
-///   LPWSTR     pwszBuff,
-///   int        cchBuff,
-///   UINT       wFlags,
-///   HKL        dwhkl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-tounicodeex>.
+///
 /// {@category user32}
 int ToUnicodeEx(int wVirtKey, int wScanCode, Pointer<Uint8> lpKeyState,
         Pointer<Utf16> pwszBuff, int cchBuff, int wFlags, int? dwhkl) =>
@@ -8171,17 +6453,9 @@ final _ToUnicodeEx = _user32.lookupFunction<
 ///
 /// The shortcut menu can appear anywhere on the screen.
 ///
-/// ```c
-/// BOOL TrackPopupMenu(
-///   [in]           HMENU      hMenu,
-///   [in]           UINT       uFlags,
-///   [in]           int        x,
-///   [in]           int        y,
-///   [in]           int        nReserved,
-///   [in]           HWND       hWnd,
-///   [in, optional] const RECT *prcRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-trackpopupmenu>.
+///
 /// {@category user32}
 int TrackPopupMenu(int hMenu, int uFlags, int x, int y, int hWnd,
         Pointer<RECT>? prcRect) =>
@@ -8198,16 +6472,9 @@ final _TrackPopupMenu = _user32.lookupFunction<
 ///
 /// The shortcut menu can appear anywhere on the screen.
 ///
-/// ```c
-/// BOOL TrackPopupMenuEx(
-///   HMENU hMenu,
-///   UINT uFlags,
-///   int x,
-///   int y,
-///   HWND hwnd,
-///   TPMPARAMS *lptpm
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-trackpopupmenuex>.
+///
 /// {@category user32}
 int TrackPopupMenuEx(int hMenu, int uFlags, int x, int y, int hwnd,
         Pointer<TPMPARAMS>? lptpm) =>
@@ -8221,19 +6488,9 @@ final _TrackPopupMenuEx = _user32.lookupFunction<
 
 /// Processes accelerator keys for menu commands.
 ///
-/// The function translates a WM_KEYDOWN or WM_SYSKEYDOWN message to a
-/// WM_COMMAND or WM_SYSCOMMAND message (if there is an entry for the key in the
-/// specified accelerator table) and then sends the WM_COMMAND or WM_SYSCOMMAND
-/// message directly to the specified window procedure. TranslateAccelerator
-/// does not return until the window procedure has processed the message.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-translateacceleratorw>.
 ///
-/// ```c
-/// int TranslateAcceleratorW(
-///   HWND   hWnd,
-///   HACCEL hAccTable,
-///   LPMSG  lpMsg
-/// );
-/// ```
 /// {@category user32}
 int TranslateAccelerator(int hWnd, int hAccTable, Pointer<MSG> lpMsg) =>
     _TranslateAccelerator(hWnd, hAccTable, lpMsg);
@@ -8247,15 +6504,9 @@ final _TranslateAccelerator = _user32.lookupFunction<
 /// multiple-document interface (MDI) child windows associated with the
 /// specified MDI client window.
 ///
-/// The function translates WM_KEYUP and WM_KEYDOWN messages to WM_SYSCOMMAND
-/// messages and sends them to the appropriate MDI child windows.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-translatemdisysaccel>.
 ///
-/// ```c
-/// BOOL TranslateMDISysAccel(
-///   HWND  hWndClient,
-///   LPMSG lpMsg
-/// );
-/// ```
 /// {@category user32}
 int TranslateMDISysAccel(int hWndClient, Pointer<MSG> lpMsg) =>
     _TranslateMDISysAccel(hWndClient, lpMsg);
@@ -8270,11 +6521,9 @@ final _TranslateMDISysAccel = _user32.lookupFunction<
 /// be read the next time the thread calls the GetMessage or PeekMessage
 /// function.
 ///
-/// ```c
-/// BOOL TranslateMessage(
-///   const MSG *lpMsg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-translatemessage>.
+///
 /// {@category user32}
 int TranslateMessage(Pointer<MSG> lpMsg) => _TranslateMessage(lpMsg);
 
@@ -8285,11 +6534,9 @@ final _TranslateMessage = _user32.lookupFunction<
 /// Removes a hook procedure installed in a hook chain by the SetWindowsHookEx
 /// function.
 ///
-/// ```c
-/// BOOL UnhookWindowsHookEx(
-///   HHOOK hhk
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unhookwindowshookex>.
+///
 /// {@category user32}
 int UnhookWindowsHookEx(int hhk) => _UnhookWindowsHookEx(hhk);
 
@@ -8297,17 +6544,13 @@ final _UnhookWindowsHookEx =
     _user32.lookupFunction<BOOL Function(HHOOK hhk), int Function(int hhk)>(
         'UnhookWindowsHookEx');
 
-/// The UnionRect function creates the union of two rectangles.
+/// Creates the union of two rectangles.
 ///
 /// The union is the smallest rectangle that contains both source rectangles.
 ///
-/// ```c
-/// BOOL UnionRect(
-///   LPRECT     lprcDst,
-///   const RECT *lprcSrc1,
-///   const RECT *lprcSrc2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unionrect>.
+///
 /// {@category user32}
 int UnionRect(Pointer<RECT> lprcDst, Pointer<RECT> lprcSrc1,
         Pointer<RECT> lprcSrc2) =>
@@ -8321,11 +6564,9 @@ final _UnionRect = _user32.lookupFunction<
 
 /// Unloads an input locale identifier (formerly called a keyboard layout).
 ///
-/// ```c
-/// BOOL UnloadKeyboardLayout(
-///   HKL hkl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unloadkeyboardlayout>.
+///
 /// {@category user32}
 int UnloadKeyboardLayout(int hkl) => _UnloadKeyboardLayout(hkl);
 
@@ -8335,12 +6576,9 @@ final _UnloadKeyboardLayout =
 
 /// Unregisters a window class, freeing the memory required for the class.
 ///
-/// ```c
-/// BOOL UnregisterClassW(
-///   LPCWSTR   lpClassName,
-///   HINSTANCE hInstance
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unregisterclassw>.
+///
 /// {@category user32}
 int UnregisterClass(Pointer<Utf16> lpClassName, int? hInstance) =>
     _UnregisterClass(lpClassName, hInstance ?? 0);
@@ -8352,12 +6590,9 @@ final _UnregisterClass = _user32.lookupFunction<
 
 /// Frees a hot key previously registered by the calling thread.
 ///
-/// ```c
-/// BOOL UnregisterHotKey(
-///   HWND hWnd,
-///   int  id
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unregisterhotkey>.
+///
 /// {@category user32}
 int UnregisterHotKey(int? hWnd, int id) => _UnregisterHotKey(hWnd ?? 0, id);
 
@@ -8367,11 +6602,9 @@ final _UnregisterHotKey = _user32.lookupFunction<
 
 /// Unregisters the power setting notification.
 ///
-/// ```c
-/// BOOL UnregisterPowerSettingNotification(
-///   HPOWERNOTIFY Handle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unregisterpowersettingnotification>.
+///
 /// {@category user32}
 int UnregisterPowerSettingNotification(int handle) =>
     _UnregisterPowerSettingNotification(handle);
@@ -8382,11 +6615,9 @@ final _UnregisterPowerSettingNotification = _user32.lookupFunction<
 
 /// Registers a window as no longer being touch-capable.
 ///
-/// ```c
-/// BOOL UnregisterTouchWindow(
-/// HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-unregistertouchwindow>.
+///
 /// {@category user32}
 int UnregisterTouchWindow(int hwnd) => _UnregisterTouchWindow(hwnd);
 
@@ -8397,12 +6628,9 @@ final _UnregisterTouchWindow =
 /// Updates the position, size, shape, content, and translucency of a layered
 /// window.
 ///
-/// ```c
-/// BOOL UpdateLayeredWindowIndirect(
-///   HWND hwnd,
-///   const UPDATELAYEREDWINDOWINFO *pULWInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions/windows/desktop/legacy/ms633557(v=vs.85)>.
+///
 /// {@category user32}
 int UpdateLayeredWindowIndirect(
         int hWnd, Pointer<UPDATELAYEREDWINDOWINFO> pULWInfo) =>
@@ -8413,19 +6641,12 @@ final _UpdateLayeredWindowIndirect = _user32.lookupFunction<
         int Function(int hWnd, Pointer<UPDATELAYEREDWINDOWINFO> pULWInfo)>(
     'UpdateLayeredWindowIndirect');
 
-/// The UpdateWindow function updates the client area of the specified window by
-/// sending a WM_PAINT message to the window if the window's update region is
-/// not empty.
+/// Updates the client area of the specified window by sending a WM_PAINT
+/// message to the window if the window's update region is not empty.
 ///
-/// The function sends a WM_PAINT message directly to the window procedure of
-/// the specified window, bypassing the application queue. If the update region
-/// is empty, no message is sent.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-updatewindow>.
 ///
-/// ```c
-/// BOOL UpdateWindow(
-///   HWND hWnd
-/// );
-/// ```
 /// {@category user32}
 int UpdateWindow(int hWnd) => _UpdateWindow(hWnd);
 
@@ -8436,17 +6657,9 @@ final _UpdateWindow =
 /// Grants or denies access to a handle to a User object to a job that has a
 /// user-interface restriction.
 ///
-/// When access is granted, all processes associated with the job can
-/// subsequently recognize and use the handle. When access is denied, the
-/// processes can no longer use the handle.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-userhandlegrantaccess>.
 ///
-/// ```c
-/// BOOL UserHandleGrantAccess(
-///   [in] HANDLE hUserHandle,
-///   [in] HANDLE hJob,
-///   [in] BOOL   bGrant
-/// );
-/// ```
 /// {@category user32}
 int UserHandleGrantAccess(int hUserHandle, int hJob, int bGrant) =>
     _UserHandleGrantAccess(hUserHandle, hJob, bGrant);
@@ -8456,15 +6669,12 @@ final _UserHandleGrantAccess = _user32.lookupFunction<
     int Function(
         int hUserHandle, int hJob, int bGrant)>('UserHandleGrantAccess');
 
-/// The ValidateRect function validates the client area within a rectangle by
-/// removing the rectangle from the update region of the specified window.
+/// Validates the client area within a rectangle by removing the rectangle from
+/// the update region of the specified window.
 ///
-/// ```c
-/// BOOL ValidateRect(
-///   HWND       hWnd,
-///   const RECT *lpRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-validaterect>.
+///
 /// {@category user32}
 int ValidateRect(int? hWnd, Pointer<RECT>? lpRect) =>
     _ValidateRect(hWnd ?? 0, lpRect ?? nullptr);
@@ -8473,15 +6683,12 @@ final _ValidateRect = _user32.lookupFunction<
     BOOL Function(HWND hWnd, Pointer<RECT> lpRect),
     int Function(int hWnd, Pointer<RECT> lpRect)>('ValidateRect');
 
-/// The ValidateRgn function validates the client area within a region by
-/// removing the region from the current update region of the specified window.
+/// Validates the client area within a region by removing the region from the
+/// current update region of the specified window.
 ///
-/// ```c
-/// BOOL ValidateRgn(
-///   HWND hWnd,
-///   HRGN hRgn
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-validatergn>.
+///
 /// {@category user32}
 int ValidateRgn(int hWnd, int? hRgn) => _ValidateRgn(hWnd, hRgn ?? 0);
 
@@ -8491,11 +6698,9 @@ final _ValidateRgn = _user32.lookupFunction<BOOL Function(HWND hWnd, HRGN hRgn),
 /// Translates a character to the corresponding virtual-key code and shift state
 /// for the current keyboard.
 ///
-/// ```c
-/// SHORT VkKeyScanW(
-///   WCHAR ch
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-vkkeyscanw>.
+///
 /// {@category user32}
 int VkKeyScan(int ch) => _VkKeyScan(ch);
 
@@ -8509,12 +6714,9 @@ final _VkKeyScan =
 /// The function translates the character using the input language and physical
 /// keyboard layout identified by the input locale identifier.
 ///
-/// ```c
-/// SHORT VkKeyScanExW(
-///   WCHAR ch,
-///   HKL   dwhkl
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-vkkeyscanexw>.
+///
 /// {@category user32}
 int VkKeyScanEx(int ch, int dwhkl) => _VkKeyScanEx(ch, dwhkl);
 
@@ -8526,12 +6728,9 @@ final _VkKeyScanEx = _user32.lookupFunction<
 /// and is waiting for user input with no input pending, or until the time-out
 /// interval has elapsed.
 ///
-/// ```c
-/// DWORD WaitForInputIdle(
-///   HANDLE hProcess,
-///   DWORD  dwMilliseconds
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-waitforinputidle>.
+///
 /// {@category user32}
 int WaitForInputIdle(int hProcess, int dwMilliseconds) =>
     _WaitForInputIdle(hProcess, dwMilliseconds);
@@ -8546,26 +6745,24 @@ final _WaitForInputIdle = _user32.lookupFunction<
 /// The WaitMessage function suspends the thread and does not return until a new
 /// message is placed in the thread's message queue.
 ///
-/// ```c
-/// BOOL WaitMessage();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-waitmessage>.
+///
 /// {@category user32}
 int WaitMessage() => _WaitMessage();
 
 final _WaitMessage =
     _user32.lookupFunction<BOOL Function(), int Function()>('WaitMessage');
 
-/// The WindowFromDC function returns a handle to the window associated with the
-/// specified display device context (DC).
+/// Returns a handle to the window associated with the specified display device
+/// context (DC).
 ///
 /// Output functions that use the specified device context draw into this
 /// window.
 ///
-/// ```c
-/// HWND WindowFromDC(
-///   HDC hDC
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-windowfromdc>.
+///
 /// {@category user32}
 int WindowFromDC(int hDC) => _WindowFromDC(hDC);
 
@@ -8575,11 +6772,9 @@ final _WindowFromDC =
 
 /// Retrieves a handle to the window that contains the specified physical point.
 ///
-/// ```c
-/// HWND WindowFromPhysicalPoint(
-///   POINT Point
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-windowfromphysicalpoint>.
+///
 /// {@category user32}
 int WindowFromPhysicalPoint(POINT point) => _WindowFromPhysicalPoint(point);
 
@@ -8589,11 +6784,9 @@ final _WindowFromPhysicalPoint = _user32.lookupFunction<
 
 /// Retrieves a handle to the window that contains the specified point.
 ///
-/// ```c
-/// HWND WindowFromPoint(
-///   POINT Point
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-windowfrompoint>.
+///
 /// {@category user32}
 int WindowFromPoint(POINT point) => _WindowFromPoint(point);
 

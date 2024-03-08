@@ -88,29 +88,9 @@ void generateStructs(List<Scope> scopes, Map<String, String> structs) {
   file.writeAsStringSync(DartFormatter().format(structsFile));
 }
 
-String generateDocComment(Win32Function func, String libraryDartName) {
-  final category = func.category.isNotEmpty ? func.category : libraryDartName;
-  final buffer = StringBuffer();
-
-  if (func.comment.isNotEmpty) {
-    buffer
-      ..writeln(func.comment.toDocComment())
-      ..writeln('///');
-  }
-
-  buffer
-    ..writeln('/// ```c')
-    ..write('/// ')
-    ..writeln(func.prototype.split(r'\n').join('\n/// '))
-    ..writeln('/// ```')
-    ..write('/// {@category $category}');
-
-  return buffer.toString();
-}
-
 void generateDllFile(String library, List<Method> filteredMethods,
     Iterable<Win32Function> functions) {
-  /// Methods we're trying to project
+  // Methods we're trying to project.
   final libraryMethods = filteredMethods
       .where((method) => method.module.name.toLowerCase() == library);
 
@@ -121,18 +101,14 @@ void generateDllFile(String library, List<Method> filteredMethods,
   final libraryDartName = library.replaceAll('-', '_').split('.').first;
 
   buffer.write('''
-  $functionFileHeader
+$functionFileHeader
 
-  final _$libraryDartName = DynamicLibrary.open('$library');\n
-  ''');
+final _$libraryDartName = DynamicLibrary.open('$library');
+
+''');
 
   for (final method in libraryMethods) {
-    final function =
-        functions.firstWhere((f) => f.functionSymbol == method.name);
-    buffer.write('''
-  ${generateDocComment(function, libraryDartName)}
-  ${FunctionProjection(method).toString()}
-  ''');
+    buffer.write(FunctionProjection(method).toString());
   }
 
   File(Platform.script

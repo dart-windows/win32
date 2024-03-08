@@ -5108,8 +5108,6 @@ extension IP_ADAPTER_MULTICAST_ADDRESS_XP_0_0_Extension
 
 /// Stores an IP address prefix.
 ///
-/// I.
-///
 /// To learn more about this struct, see
 /// <https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_prefix_xp>.
 ///

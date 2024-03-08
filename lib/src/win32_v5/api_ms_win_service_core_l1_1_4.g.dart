@@ -23,16 +23,10 @@ final _api_ms_win_service_core_l1_1_4 =
 /// Returns a path for a per-service filesystem location for a service to read
 /// and/or write state to.
 ///
-/// ```c
-/// DWORD GetServiceDirectory(
-///   SERVICE_STATUS_HANDLE  hServiceStatus,
-///   SERVICE_DIRECTORY_TYPE eDirectoryType,
-///   PWCHAR                 lpPathBuffer,
-///   DWORD                  cchPathBufferLength,
-///   DWORD                  *lpcchRequiredBufferLength
-/// );
-/// ```
-/// {@category api_ms_win_service_core_l1_1_4}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winsvc/nf-winsvc-getservicedirectory>.
+///
+/// {@category onecore}
 int GetServiceDirectory(
         int hServiceStatus,
         int eDirectoryType,

@@ -26,7 +26,71 @@ const constantDocs = <String, String>{};
 
 const enumDocs = <String, String>{};
 
-const functionDocs = <String, String>{};
+const functionDocs = <String, String>{
+  'ChooseColor':
+      'Creates a Color dialog box that enables the user to select a color. '
+          '\nTo learn more about this function, see '
+          '<https://learn.microsoft.com/windows/win32/api/commdlg/nc-commdlg-choosecolorw>.',
+  'ChooseFont':
+      'Creates a Font dialog box that enables the user to choose attributes '
+          'for a logical font. \nTo learn more about this function, see '
+          '<https://learn.microsoft.com/windows/win32/api/commdlg/nc-commdlg-choosefontw>.',
+  'IsProcessDPIAware':
+      'Determines whether the current process is dots per inch (dpi) aware '
+          'such that it adjusts the sizes of UI elements to compensate for the '
+          'dpi setting. **Note**: This function may be altered or unavailable '
+          'in the newer versions of Windows. Use GetProcessDPIAwareness '
+          'instead. \nTo learn more about this function, see '
+          '<https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-isprocessdpiaware>.',
+  'mciGetDeviceID':
+      'Retrieves the device identifier corresponding to the name of an open '
+          'device. \nTo learn more about this function, see '
+          '<https://learn.microsoft.com/previous-versions/dd757156(v=vs.85)>.',
+  'mciGetDeviceIDFromElementID':
+      'Retrieves the MCI device identifier corresponding to an element '
+          'identifier. \nTo learn more about this function, see '
+          '<https://learn.microsoft.com/previous-versions/dd757157(v=vs.85)>.',
+  'mciGetErrorString':
+      'Retrieves a string that describes the specified MCI error code. \nTo '
+          'learn more about this function, see '
+          '<https://learn.microsoft.com/previous-versions/dd757158(v=vs.85)>.',
+  'mciSendCommand': 'Sends a command message to the specified MCI device. \nTo '
+      'learn more about this function, see '
+      '<https://learn.microsoft.com/previous-versions/dd757160(v=vs.85)>.',
+  'mciSendString':
+      'Sends a command string to an MCI device. The device that the command is '
+          'sent to is specified in the command string. \nTo learn more about '
+          'this function, see '
+          '<https://learn.microsoft.com/previous-versions/dd757161(v=vs.85)>.',
+  'OleInitialize':
+      'Initializes the COM library on the current apartment and identifies the '
+          'concurrency model as single-thread apartment (STA). \nTo learn more '
+          'about this function, see '
+          '<https://learn.microsoft.com/windows/win32/api/ole2/nf-ole2-oleinitialize>.',
+  'PlaySound':
+      'Plays a sound specified by the given file name, resource, or system '
+          'event. \nTo learn more about this function, see '
+          '<https://learn.microsoft.com/previous-versions//dd743680(v=vs.85)>.',
+  'SetProcessDPIAware':
+      'Sets the process-default DPI awareness to system-DPI awareness. '
+          '**Note**: This function may be altered or unavailable in the newer '
+          'versions of Windows. Use SetProcessDpiAwareness instead. \nTo learn '
+          'more about this function, see '
+          '<https://learn.microsoft.com/windows/win32/api/winuser/nf-winuser-setprocessdpiaware>.',
+  'SHGetFolderPath': 'Gets the path of a folder identified by a CSIDL value. '
+      '\nTo learn more about this function, see '
+      '<https://learn.microsoft.com/windows/win32/api/shlobj_core/nf-shlobj_core-shgetfolderpathw>.',
+  'UpdateLayeredWindowIndirect':
+      'Updates the position, size, shape, content, and translucency of a '
+          'layered window. \nTo learn more about this function, see '
+          '<https://learn.microsoft.com/previous-versions/windows/desktop/legacy/ms633557(v=vs.85)>.',
+  'waveInGetPosition':
+      'Retrieves the current input position of the given waveform-audio input '
+          'device. **Note**: This function is no longer supported for use as of '
+          'Windows Vista. Instead, use IAudioClock.getPosition. \nTo learn more '
+          'about this function, see '
+          '<https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveingetposition>.',
+};
 
 const interfaceDocs = <String, String>{
   'Windows.Win32.Media.Speech.ISpeechBaseStream':
@@ -79,6 +143,9 @@ const interfaceDocs = <String, String>{
 };
 
 const structDocs = <String, String>{
+  'Windows.Win32.NetworkManagement.IpHelper.IP_ADAPTER_PREFIX_XP':
+      'Stores an IP address prefix. \nTo learn more about this struct, see '
+          '<https://learn.microsoft.com/windows/win32/api/iptypes/ns-iptypes-ip_adapter_prefix_xp>.',
   'Windows.Win32.Foundation.FILETIME':
       'Holds an unsigned 64-bit date and time value for a file. This value '
           'represents the number of 100-nanosecond units since the start of '

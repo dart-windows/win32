@@ -19,21 +19,11 @@ import '../types.dart';
 
 final _bthprops = DynamicLibrary.open('bthprops.cpl');
 
-/// The BluetoothAuthenticateDeviceEx function sends an authentication request
-/// to a remote Bluetooth device.
+/// Sends an authentication request to a remote Bluetooth device.
 ///
-/// Additionally, this function allows for out-of-band data to be passed into
-/// the function call for the device being authenticated.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/nf-bluetoothapis-bluetoothauthenticatedeviceex>.
 ///
-/// ```c
-/// DWORD BluetoothAuthenticateDeviceEx(
-///   HWND                        hwndParentIn,
-///   HANDLE                      hRadioIn,
-///   BLUETOOTH_DEVICE_INFO       *pbtdiInout,
-///   PBLUETOOTH_OOB_DATA_INFO    pbtOobData,
-///   AUTHENTICATION_REQUIREMENTS authenticationRequirement
-/// );
-/// ```
 /// {@category bthprops}
 int BluetoothAuthenticateDeviceEx(
         int? hwndParentIn,
@@ -58,16 +48,12 @@ final _BluetoothAuthenticateDeviceEx = _bthprops.lookupFunction<
         Pointer<BLUETOOTH_OOB_DATA_INFO> pbtOobData,
         int authenticationRequirement)>('BluetoothAuthenticateDeviceEx');
 
-/// The BluetoothDisplayDeviceProperties function opens the Control Panel device
-/// information property sheet.
+/// Starts Control Panel device information property sheet.
 ///
-/// ```c
-/// BOOL BluetoothDisplayDeviceProperties(
-///   HWND                  hwndParent,
-///   BLUETOOTH_DEVICE_INFO *pbtdi
-/// );
-/// ```
-/// {@category bluetooth}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/nf-bluetoothapis-bluetoothdisplaydeviceproperties>.
+///
+/// {@category bthprops}
 int BluetoothDisplayDeviceProperties(
         int? hwndParent, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi) =>
     _BluetoothDisplayDeviceProperties(hwndParent ?? 0, pbtdi);
@@ -77,14 +63,12 @@ final _BluetoothDisplayDeviceProperties = _bthprops.lookupFunction<
         int Function(int hwndParent, Pointer<BLUETOOTH_DEVICE_INFO> pbtdi)>(
     'BluetoothDisplayDeviceProperties');
 
-/// The BluetoothSelectDevices function enables Bluetooth device selection.
+/// Enables Bluetooth device selection.
 ///
-/// ```c
-/// BOOL BluetoothSelectDevices(
-///   BLUETOOTH_SELECT_DEVICE_PARAMS *pbtsdp
-/// );
-/// ```
-/// {@category bluetooth}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/nf-bluetoothapis-bluetoothselectdevices>.
+///
+/// {@category bthprops}
 int BluetoothSelectDevices(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp) =>
     _BluetoothSelectDevices(pbtsdp);
 
@@ -93,15 +77,12 @@ final _BluetoothSelectDevices = _bthprops.lookupFunction<
         int Function(Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp)>(
     'BluetoothSelectDevices');
 
-/// The BluetoothSelectDevicesFree function frees resources associated with a
-/// previous call to BluetoothSelectDevices.
+/// Frees resources associated with a previous call to BluetoothSelectDevices.
 ///
-/// ```c
-/// BOOL BluetoothSelectDevicesFree(
-///   BLUETOOTH_SELECT_DEVICE_PARAMS *pbtsdp
-/// );
-/// ```
-/// {@category bluetooth}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/bluetoothapis/nf-bluetoothapis-bluetoothselectdevicesfree>.
+///
+/// {@category bthprops}
 int BluetoothSelectDevicesFree(
         Pointer<BLUETOOTH_SELECT_DEVICE_PARAMS> pbtsdp) =>
     _BluetoothSelectDevicesFree(pbtsdp);

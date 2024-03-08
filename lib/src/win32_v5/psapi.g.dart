@@ -22,11 +22,9 @@ final _psapi = DynamicLibrary.open('psapi.dll');
 /// Removes as many pages as possible from the working set of the specified
 /// process.
 ///
-/// ```c
-/// BOOL EmptyWorkingSet(
-///   [in] HANDLE hProcess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-emptyworkingset>.
+///
 /// {@category psapi}
 int EmptyWorkingSet(int hProcess) => _EmptyWorkingSet(hProcess);
 
@@ -35,13 +33,9 @@ final _EmptyWorkingSet = _psapi.lookupFunction<BOOL Function(HANDLE hProcess),
 
 /// Retrieves the load address for each device driver in the system.
 ///
-/// ```c
-/// BOOL EnumDeviceDrivers(
-///   [out] LPVOID  *lpImageBase,
-///   [in]  DWORD   cb,
-///   [out] LPDWORD lpcbNeeded
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-enumdevicedrivers>.
+///
 /// {@category psapi}
 int EnumDeviceDrivers(
         Pointer<Pointer> lpImageBase, int cb, Pointer<Uint32> lpcbNeeded) =>
@@ -55,12 +49,9 @@ final _EnumDeviceDrivers = _psapi.lookupFunction<
 
 /// Calls the callback routine for each installed pagefile in the system.
 ///
-/// ```c
-/// BOOL EnumPageFilesW(
-///   [out] PENUM_PAGE_FILE_CALLBACKW pCallBackRoutine,
-///   [in]  LPVOID                    pContext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-enumpagefilesw>.
+///
 /// {@category psapi}
 int EnumPageFiles(
         Pointer<NativeFunction<PENUM_PAGE_FILE_CALLBACK>> pCallBackRoutine,
@@ -77,13 +68,9 @@ final _EnumPageFiles = _psapi.lookupFunction<
 
 /// Retrieves the process identifier for each process object in the system.
 ///
-/// ```c
-/// BOOL EnumProcesses(
-///   DWORD   *lpidProcess,
-///   DWORD   cb,
-///   LPDWORD lpcbNeeded
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-enumprocesses>.
+///
 /// {@category psapi}
 int EnumProcesses(
         Pointer<Uint32> lpidProcess, int cb, Pointer<Uint32> lpcbNeeded) =>
@@ -97,14 +84,9 @@ final _EnumProcesses = _psapi.lookupFunction<
 
 /// Retrieves a handle for each module in the specified process.
 ///
-/// ```c
-/// BOOL EnumProcessModules(
-///   HANDLE  hProcess,
-///   HMODULE *lphModule,
-///   DWORD   cb,
-///   LPDWORD lpcbNeeded
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-enumprocessmodules>.
+///
 /// {@category psapi}
 int EnumProcessModules(int hProcess, Pointer<HMODULE> lphModule, int cb,
         Pointer<Uint32> lpcbNeeded) =>
@@ -119,15 +101,9 @@ final _EnumProcessModules = _psapi.lookupFunction<
 /// Retrieves a handle for each module in the specified process that meets the
 /// specified filter criteria.
 ///
-/// ```c
-/// BOOL EnumProcessModulesEx(
-///   HANDLE  hProcess,
-///   HMODULE *lphModule,
-///   DWORD   cb,
-///   LPDWORD lpcbNeeded,
-///   DWORD   dwFilterFlag
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-enumprocessmodulesex>.
+///
 /// {@category psapi}
 int EnumProcessModulesEx(int hProcess, Pointer<HMODULE> lphModule, int cb,
         Pointer<Uint32> lpcbNeeded, int dwFilterFlag) =>
@@ -141,13 +117,9 @@ final _EnumProcessModulesEx = _psapi.lookupFunction<
 
 /// Retrieves the base name of the specified device driver.
 ///
-/// ```c
-/// DWORD GetDeviceDriverBaseNameW(
-///   [in]  LPVOID ImageBase,
-///   [out] LPWSTR lpBaseName,
-///   [in]  DWORD  nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getdevicedriverbasenamew>.
+///
 /// {@category psapi}
 int GetDeviceDriverBaseName(
         Pointer imageBase, Pointer<Utf16> lpBaseName, int nSize) =>
@@ -160,13 +132,9 @@ final _GetDeviceDriverBaseName = _psapi.lookupFunction<
 
 /// Retrieves the path available for the specified device driver.
 ///
-/// ```c
-/// DWORD GetDeviceDriverFileNameW(
-///   [in]  LPVOID ImageBase,
-///   [out] LPWSTR lpFilename,
-///   [in]  DWORD  nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getdevicedriverfilenamew>.
+///
 /// {@category psapi}
 int GetDeviceDriverFileName(
         Pointer imageBase, Pointer<Utf16> lpFilename, int nSize) =>
@@ -182,14 +150,9 @@ final _GetDeviceDriverFileName = _psapi.lookupFunction<
 ///
 /// If so, the function returns the name of the memory-mapped file.
 ///
-/// ```c
-/// DWORD GetMappedFileNameW(
-///   [in]  HANDLE hProcess,
-///   [in]  LPVOID lpv,
-///   [out] LPWSTR lpFilename,
-///   [in]  DWORD  nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getmappedfilenamew>.
+///
 /// {@category psapi}
 int GetMappedFileName(
         int hProcess, Pointer lpv, Pointer<Utf16> lpFilename, int nSize) =>
@@ -203,14 +166,9 @@ final _GetMappedFileName = _psapi.lookupFunction<
 
 /// Retrieves the base name of the specified module.
 ///
-/// ```c
-/// DWORD GetModuleBaseNameW(
-///   HANDLE  hProcess,
-///   HMODULE hModule,
-///   LPWSTR  lpBaseName,
-///   DWORD   nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getmodulebasenamew>.
+///
 /// {@category psapi}
 int GetModuleBaseName(
         int hProcess, int? hModule, Pointer<Utf16> lpBaseName, int nSize) =>
@@ -225,14 +183,9 @@ final _GetModuleBaseName = _psapi.lookupFunction<
 /// Retrieves the fully qualified path for the file containing the specified
 /// module.
 ///
-/// ```c
-/// DWORD GetModuleFileNameExW(
-///   HANDLE  hProcess,
-///   HMODULE hModule,
-///   LPWSTR  lpFilename,
-///   DWORD   nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getmodulefilenameexw>.
+///
 /// {@category psapi}
 int GetModuleFileNameEx(
         int? hProcess, int? hModule, Pointer<Utf16> lpFilename, int nSize) =>
@@ -247,14 +200,9 @@ final _GetModuleFileNameEx = _psapi.lookupFunction<
 /// Retrieves information about the specified module in the MODULEINFO
 /// structure.
 ///
-/// ```c
-/// BOOL GetModuleInformation(
-///   [in]  HANDLE       hProcess,
-///   [in]  HMODULE      hModule,
-///   [out] LPMODULEINFO lpmodinfo,
-///   [in]  DWORD        cb
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getmoduleinformation>.
+///
 /// {@category psapi}
 int GetModuleInformation(
         int hProcess, int hModule, Pointer<MODULEINFO> lpmodinfo, int cb) =>
@@ -269,12 +217,9 @@ final _GetModuleInformation = _psapi.lookupFunction<
 /// Retrieves the performance values contained in the PERFORMANCE_INFORMATION
 /// structure.
 ///
-/// ```c
-/// BOOL GetPerformanceInfo(
-///   [out] PPERFORMANCE_INFORMATION pPerformanceInformation,
-///   [in]  DWORD                    cb
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getperformanceinfo>.
+///
 /// {@category psapi}
 int GetPerformanceInfo(
         Pointer<PERFORMANCE_INFORMATION> pPerformanceInformation, int cb) =>
@@ -288,13 +233,9 @@ final _GetPerformanceInfo = _psapi.lookupFunction<
 
 /// Retrieves the name of the executable file for the specified process.
 ///
-/// ```c
-/// DWORD GetProcessImageFileNameW(
-///   [in]  HANDLE hProcess,
-///   [out] LPWSTR lpImageFileName,
-///   [in]  DWORD  nSize
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/psapi/nf-psapi-getprocessimagefilenamew>.
+///
 /// {@category psapi}
 int GetProcessImageFileName(
         int hProcess, Pointer<Utf16> lpImageFileName, int nSize) =>

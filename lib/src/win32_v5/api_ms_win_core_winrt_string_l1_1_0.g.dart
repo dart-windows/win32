@@ -23,13 +23,9 @@ final _api_ms_win_core_winrt_string_l1_1_0 =
 /// Compares two specified HSTRING objects and returns an integer that indicates
 /// their relative position in a sort order.
 ///
-/// ```c
-/// HRESULT WindowsCompareStringOrdinal(
-///   HSTRING string1,
-///   HSTRING string2,
-///   INT32   *result
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowscomparestringordinal>.
+///
 /// {@category winrt}
 int WindowsCompareStringOrdinal(
         int? string1, int? string2, Pointer<Int32> result) =>
@@ -44,13 +40,9 @@ final _WindowsCompareStringOrdinal =
 
 /// Concatenates two specified strings.
 ///
-/// ```c
-/// HRESULT WindowsConcatString(
-///   HSTRING string1,
-///   HSTRING string2,
-///   HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsconcatstring>.
+///
 /// {@category winrt}
 int WindowsConcatString(
         int? string1, int? string2, Pointer<HSTRING> newString) =>
@@ -65,13 +57,9 @@ final _WindowsConcatString =
 
 /// Creates a new HSTRING based on the specified source string.
 ///
-/// ```c
-/// HRESULT WindowsCreateString(
-///   PCNZWCH sourceString,
-///   UINT32  length,
-///   HSTRING *string
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowscreatestring>.
+///
 /// {@category winrt}
 int WindowsCreateString(
         Pointer<Utf16>? sourceString, int length, Pointer<HSTRING> string) =>
@@ -86,11 +74,9 @@ final _WindowsCreateString =
 
 /// Decrements the reference count of a string buffer.
 ///
-/// ```c
-/// HRESULT WindowsDeleteString(
-///   HSTRING string
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsdeletestring>.
+///
 /// {@category winrt}
 int WindowsDeleteString(int? string) => _WindowsDeleteString(string ?? 0);
 
@@ -100,11 +86,9 @@ final _WindowsDeleteString = _api_ms_win_core_winrt_string_l1_1_0
 
 /// Discards a preallocated string buffer if it was not promoted to an HSTRING.
 ///
-/// ```c
-/// HRESULT WindowsDeleteStringBuffer(
-///   HSTRING_BUFFER bufferHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsdeletestringbuffer>.
+///
 /// {@category winrt}
 int WindowsDeleteStringBuffer(int? bufferHandle) =>
     _WindowsDeleteStringBuffer(bufferHandle ?? 0);
@@ -116,12 +100,9 @@ final _WindowsDeleteStringBuffer =
 
 /// Creates a copy of the specified string.
 ///
-/// ```c
-/// HRESULT WindowsDuplicateString(
-///   HSTRING string,
-/// HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsduplicatestring>.
+///
 /// {@category winrt}
 int WindowsDuplicateString(int? string, Pointer<HSTRING> newString) =>
     _WindowsDuplicateString(string ?? 0, newString);
@@ -134,11 +115,9 @@ final _WindowsDuplicateString =
 
 /// Gets the length, in Unicode characters, of the specified string.
 ///
-/// ```c
-/// UINT32 WindowsGetStringLen(
-///   HSTRING string
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsgetstringlen>.
+///
 /// {@category winrt}
 int WindowsGetStringLen(int? string) => _WindowsGetStringLen(string ?? 0);
 
@@ -148,12 +127,9 @@ final _WindowsGetStringLen = _api_ms_win_core_winrt_string_l1_1_0
 
 /// Retrieves the backing buffer for the specified string.
 ///
-/// ```c
-/// PCWSTR WindowsGetStringRawBuffer(
-///   HSTRING string,
-///   UINT32  *length
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsgetstringrawbuffer>.
+///
 /// {@category winrt}
 Pointer<Utf16> WindowsGetStringRawBuffer(
         int? string, Pointer<Uint32>? length) =>
@@ -167,11 +143,9 @@ final _WindowsGetStringRawBuffer =
 
 /// Indicates whether the specified string is the empty string.
 ///
-/// ```c
-/// BOOL WindowsIsStringEmpty(
-///   HSTRING string
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsisstringempty>.
+///
 /// {@category winrt}
 int WindowsIsStringEmpty(int? string) => _WindowsIsStringEmpty(string ?? 0);
 
@@ -181,13 +155,9 @@ final _WindowsIsStringEmpty = _api_ms_win_core_winrt_string_l1_1_0
 
 /// Allocates a mutable character buffer for use in HSTRING creation.
 ///
-/// ```c
-/// HRESULT WindowsPreallocateStringBuffer(
-///   UINT32         length,
-///   WCHAR          **charBuffer,
-///   HSTRING_BUFFER *bufferHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowspreallocatestringbuffer>.
+///
 /// {@category winrt}
 int WindowsPreallocateStringBuffer(
         int length,
@@ -205,12 +175,9 @@ final _WindowsPreallocateStringBuffer =
 
 /// Creates an HSTRING from the specified HSTRING_BUFFER.
 ///
-/// ```c
-/// HRESULT WindowsPromoteStringBuffer(
-///   HSTRING_BUFFER bufferHandle,
-///   HSTRING        *string
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowspromotestringbuffer>.
+///
 /// {@category winrt}
 int WindowsPromoteStringBuffer(int bufferHandle, Pointer<HSTRING> string) =>
     _WindowsPromoteStringBuffer(bufferHandle, string);
@@ -224,14 +191,9 @@ final _WindowsPromoteStringBuffer =
 /// Replaces all occurrences of a set of characters in the specified string with
 /// another set of characters to create a new string.
 ///
-/// ```c
-/// HRESULT WindowsReplaceString(
-///   HSTRING string,
-///   HSTRING stringReplaced,
-///   HSTRING stringReplaceWith,
-///   HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsreplacestring>.
+///
 /// {@category winrt}
 int WindowsReplaceString(int? string, int? stringReplaced,
         int? stringReplaceWith, Pointer<HSTRING> newString) =>
@@ -247,11 +209,9 @@ final _WindowsReplaceString =
 
 /// Indicates whether the specified string has embedded null characters.
 ///
-/// ```c
-/// HRESULT WindowsStringHasEmbeddedNull(
-///   HSTRING string,
-///   BOOL    *hasEmbedNull);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowsstringhasembeddednull>.
+///
 /// {@category winrt}
 int WindowsStringHasEmbeddedNull(int? string, Pointer<BOOL> hasEmbedNull) =>
     _WindowsStringHasEmbeddedNull(string ?? 0, hasEmbedNull);
@@ -266,13 +226,9 @@ final _WindowsStringHasEmbeddedNull =
 ///
 /// The substring starts at the specified character position.
 ///
-/// ```c
-/// HRESULT WindowsSubstring(
-///   HSTRING string,
-///   UINT32  startIndex,
-///   HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowssubstring>.
+///
 /// {@category winrt}
 int WindowsSubstring(int? string, int startIndex, Pointer<HSTRING> newString) =>
     _WindowsSubstring(string ?? 0, startIndex, newString);
@@ -288,14 +244,9 @@ final _WindowsSubstring = _api_ms_win_core_winrt_string_l1_1_0.lookupFunction<
 /// The substring starts at a specified character position and has a specified
 /// length.
 ///
-/// ```c
-/// HRESULT WindowsSubstringWithSpecifiedLength(
-///   HSTRING string,
-///   UINT32  startIndex,
-///   UINT32  length,
-///   HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowssubstringwithspecifiedlength>.
+///
 /// {@category winrt}
 int WindowsSubstringWithSpecifiedLength(
         int? string, int startIndex, int length, Pointer<HSTRING> newString) =>
@@ -312,13 +263,9 @@ final _WindowsSubstringWithSpecifiedLength =
 /// Removes all trailing occurrences of a specified set of characters from the
 /// source string.
 ///
-/// ```c
-/// HRESULT WindowsTrimStringEnd(
-///   HSTRING string,
-///   HSTRING trimString,
-///   HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowstrimstringend>.
+///
 /// {@category winrt}
 int WindowsTrimStringEnd(
         int? string, int? trimString, Pointer<HSTRING> newString) =>
@@ -334,13 +281,9 @@ final _WindowsTrimStringEnd =
 /// Removes all leading occurrences of a specified set of characters from the
 /// source string.
 ///
-/// ```c
-/// HRESULT WindowsTrimStringStart(
-///   HSTRING string,
-///   HSTRING trimString,
-///   HSTRING *newString
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winstring/nf-winstring-windowstrimstringstart>.
+///
 /// {@category winrt}
 int WindowsTrimStringStart(
         int? string, int? trimString, Pointer<HSTRING> newString) =>

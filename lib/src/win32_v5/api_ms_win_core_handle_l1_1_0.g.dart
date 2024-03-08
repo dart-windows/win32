@@ -23,13 +23,10 @@ final _api_ms_win_core_handle_l1_1_0 =
 /// Compares two object handles to determine if they refer to the same
 /// underlying kernel object.
 ///
-/// ```c
-/// BOOL CompareObjectHandles(
-///   HANDLE hFirstObjectHandle,
-///   HANDLE hSecondObjectHandle
-/// );
-/// ```
-/// {@category kernel32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/handleapi/nf-handleapi-compareobjecthandles>.
+///
+/// {@category kernelbase}
 int CompareObjectHandles(int hFirstObjectHandle, int hSecondObjectHandle) =>
     _CompareObjectHandles(hFirstObjectHandle, hSecondObjectHandle);
 

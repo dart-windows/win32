@@ -22,15 +22,10 @@ final _api_ms_win_shcore_scaling_l1_1_1 =
 
 /// Queries the dots per inch (dpi) of a display.
 ///
-/// ```c
-/// HRESULT GetDpiForMonitor(
-///   HMONITOR         hmonitor,
-///   MONITOR_DPI_TYPE dpiType,
-///   UINT             *dpiX,
-///   UINT             *dpiY
-///   );
-/// ```
-/// {@category user32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellscalingapi/nf-shellscalingapi-getdpiformonitor>.
+///
+/// {@category shcore}
 int GetDpiForMonitor(int hmonitor, int dpiType, Pointer<Uint32> dpiX,
         Pointer<Uint32> dpiY) =>
     _GetDpiForMonitor(hmonitor, dpiType, dpiX, dpiY);
@@ -43,13 +38,10 @@ final _GetDpiForMonitor = _api_ms_win_shcore_scaling_l1_1_1.lookupFunction<
 
 /// Retrieves the dots per inch (dpi) awareness of the specified process.
 ///
-/// ```c
-/// HRESULT GetProcessDpiAwareness(
-///   HANDLE                hprocess,
-///   PROCESS_DPI_AWARENESS *value
-/// );
-/// ```
-/// {@category user32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellscalingapi/nf-shellscalingapi-getprocessdpiawareness>.
+///
+/// {@category shcore}
 int GetProcessDpiAwareness(int? hprocess, Pointer<Int32> value) =>
     _GetProcessDpiAwareness(hprocess ?? 0, value);
 
@@ -61,13 +53,12 @@ final _GetProcessDpiAwareness =
 
 /// Gets the scale factor of a specific monitor.
 ///
-/// ```c
-/// HRESULT GetScaleFactorForMonitor(
-///   HMONITOR            hMon,
-///   DEVICE_SCALE_FACTOR *pScale
-/// );
-/// ```
-/// {@category user32}
+/// This function replaces GetScaleFactorForDevice.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellscalingapi/nf-shellscalingapi-getscalefactorformonitor>.
+///
+/// {@category shcore}
 int GetScaleFactorForMonitor(int hMon, Pointer<Int32> pScale) =>
     _GetScaleFactorForMonitor(hMon, pScale);
 
@@ -82,12 +73,10 @@ final _GetScaleFactorForMonitor =
 /// This is equivalent to calling SetProcessDpiAwarenessContext with the
 /// corresponding DPI_AWARENESS_CONTEXT value.
 ///
-/// ```c
-/// HRESULT SetProcessDpiAwareness(
-///   PROCESS_DPI_AWARENESS value
-/// );
-/// ```
-/// {@category user32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellscalingapi/nf-shellscalingapi-setprocessdpiawareness>.
+///
+/// {@category shcore}
 int SetProcessDpiAwareness(int value) => _SetProcessDpiAwareness(value);
 
 final _SetProcessDpiAwareness = _api_ms_win_shcore_scaling_l1_1_1

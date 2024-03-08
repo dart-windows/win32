@@ -23,12 +23,10 @@ final _api_ms_win_core_sysinfo_l1_2_3 =
 /// Retrieves the best estimate of the diagonal size of the built-in screen, in
 /// inches.
 ///
-/// ```c
-/// HRESULT GetIntegratedDisplaySize(
-///   double *sizeInInches
-/// );
-/// ```
-/// {@category kernel32}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/sysinfoapi/nf-sysinfoapi-getintegrateddisplaysize>.
+///
+/// {@category onecore}
 int GetIntegratedDisplaySize(Pointer<Double> sizeInInches) =>
     _GetIntegratedDisplaySize(sizeInInches);
 

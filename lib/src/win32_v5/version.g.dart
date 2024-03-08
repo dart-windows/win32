@@ -21,14 +21,9 @@ final _version = DynamicLibrary.open('version.dll');
 
 /// Retrieves version information for the specified file.
 ///
-/// ```c
-/// BOOL GetFileVersionInfoW(
-///   LPCWSTR lptstrFilename,
-///   DWORD   dwHandle,
-///   DWORD   dwLen,
-///   LPVOID  lpData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-getfileversioninfow>.
+///
 /// {@category version}
 int GetFileVersionInfo(
         Pointer<Utf16> lptstrFilename, int dwLen, Pointer lpData) =>
@@ -42,15 +37,9 @@ final _GetFileVersionInfo = _version.lookupFunction<
 
 /// Retrieves version information for the specified file.
 ///
-/// ```c
-/// BOOL GetFileVersionInfoExW(
-///   DWORD   dwFlags,
-///   LPCWSTR lpwstrFilename,
-///   DWORD   dwHandle,
-///   DWORD   dwLen,
-///   LPVOID  lpData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-getfileversioninfoexw>.
+///
 /// {@category version}
 int GetFileVersionInfoEx(int dwFlags, Pointer<Utf16> lpwstrFilename, int dwLen,
         Pointer lpData) =>
@@ -68,12 +57,9 @@ final _GetFileVersionInfoEx = _version.lookupFunction<
 /// If version information is available, GetFileVersionInfoSize returns the
 /// size, in bytes, of that information.
 ///
-/// ```c
-/// DWORD GetFileVersionInfoSizeW(
-///   LPCWSTR lptstrFilename,
-///   LPDWORD lpdwHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-getfileversioninfosizew>.
+///
 /// {@category version}
 int GetFileVersionInfoSize(
         Pointer<Utf16> lptstrFilename, Pointer<Uint32>? lpdwHandle) =>
@@ -90,13 +76,9 @@ final _GetFileVersionInfoSize = _version.lookupFunction<
 /// If version information is available, GetFileVersionInfoSizeEx returns the
 /// size, in bytes, of that information.
 ///
-/// ```c
-/// DWORD GetFileVersionInfoSizeExW(
-///   DWORD   dwFlags,
-///   LPCWSTR lpwstrFilename,
-///   LPDWORD lpdwHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-getfileversioninfosizeexw>.
+///
 /// {@category version}
 int GetFileVersionInfoSizeEx(int dwFlags, Pointer<Utf16> lpwstrFilename,
         Pointer<Uint32> lpdwHandle) =>
@@ -114,18 +96,9 @@ final _GetFileVersionInfoSizeEx = _version.lookupFunction<
 /// The values VerFindFile returns in the specified buffers are used in a
 /// subsequent call to the VerInstallFile function.
 ///
-/// ```c
-/// DWORD VerFindFileW(
-///   DWORD   uFlags,
-///   LPCWSTR szFileName,
-///   LPCWSTR szWinDir,
-///   LPCWSTR szAppDir,
-///   LPWSTR  szCurDir,
-///   PUINT   puCurDirLen,
-///   LPWSTR  szDestDir,
-///   PUINT   puDestDirLen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-verfindfilew>.
+///
 /// {@category version}
 int VerFindFile(
         int uFlags,
@@ -165,18 +138,9 @@ final _VerFindFile = _version.lookupFunction<
 /// VerInstallFile decompresses the file, if necessary, assigns a unique
 /// filename, and checks for errors, such as outdated files.
 ///
-/// ```c
-/// DWORD VerInstallFileW(
-///   DWORD   uFlags,
-///   LPCWSTR szSrcFileName,
-///   LPCWSTR szDestFileName,
-///   LPCWSTR szSrcDir,
-///   LPCWSTR szDestDir,
-///   LPCWSTR szCurDir,
-///   LPWSTR  szTmpFile,
-///   PUINT   puTmpFileLen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-verinstallfilew>.
+///
 /// {@category version}
 int VerInstallFile(
         int uFlags,
@@ -213,18 +177,9 @@ final _VerInstallFile = _version.lookupFunction<
 /// Retrieves specified version information from the specified
 /// version-information resource.
 ///
-/// To retrieve the appropriate resource, before you call VerQueryValue, you
-/// must first call the GetFileVersionInfoSize function, and then the
-/// GetFileVersionInfo function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winver/nf-winver-verqueryvaluew>.
 ///
-/// ```c
-/// BOOL VerQueryValueW(
-///   LPCVOID pBlock,
-///   LPCWSTR lpSubBlock,
-///   LPVOID  *lplpBuffer,
-///   PUINT   puLen
-/// );
-/// ```
 /// {@category version}
 int VerQueryValue(Pointer pBlock, Pointer<Utf16> lpSubBlock,
         Pointer<Pointer> lplpBuffer, Pointer<Uint32> puLen) =>

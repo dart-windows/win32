@@ -21,11 +21,9 @@ final _xinput1_4 = DynamicLibrary.open('xinput1_4.dll');
 
 /// Sets the reporting state of XInput.
 ///
-/// ```c
-/// void XInputEnable(
-///   [in] BOOL enable
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputenable>.
+///
 /// {@category xinput}
 void XInputEnable(int enable) => _XInputEnable(enable);
 
@@ -35,15 +33,9 @@ final _XInputEnable = _xinput1_4.lookupFunction<Void Function(BOOL enable),
 /// Retrieves the sound rendering and sound capture audio device IDs that are
 /// associated with the headset connected to the specified controller.
 ///
-/// ```c
-/// DWORD XInputGetAudioDeviceIds(
-///   [in]                DWORD  dwUserIndex,
-///   [out, optional]     LPWSTR pRenderDeviceId,
-///   [in, out, optional] UINT   *pRenderCount,
-///   [out, optional]     LPWSTR pCaptureDeviceId,
-///   [in, out, optional] UINT   *pCaptureCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputgetaudiodeviceids>.
+///
 /// {@category xinput}
 int XInputGetAudioDeviceIds(
         int dwUserIndex,
@@ -74,13 +66,9 @@ final _XInputGetAudioDeviceIds = _xinput1_4.lookupFunction<
 
 /// Retrieves the battery type and charge status of a wireless controller.
 ///
-/// ```c
-/// DWORD XInputGetBatteryInformation(
-///   [in]  DWORD                      dwUserIndex,
-///   [in]  BYTE                       devType,
-///   [out] XINPUT_BATTERY_INFORMATION *pBatteryInformation
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputgetbatteryinformation>.
+///
 /// {@category xinput}
 int XInputGetBatteryInformation(int dwUserIndex, int devType,
         Pointer<XINPUT_BATTERY_INFORMATION> pBatteryInformation) =>
@@ -95,13 +83,9 @@ final _XInputGetBatteryInformation = _xinput1_4.lookupFunction<
 
 /// Retrieves the capabilities and features of a connected controller.
 ///
-/// ```c
-/// DWORD XInputGetCapabilities(
-///   [in]  DWORD               dwUserIndex,
-///   [in]  DWORD               dwFlags,
-///   [out] XINPUT_CAPABILITIES *pCapabilities
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputgetcapabilities>.
+///
 /// {@category xinput}
 int XInputGetCapabilities(int dwUserIndex, int dwFlags,
         Pointer<XINPUT_CAPABILITIES> pCapabilities) =>
@@ -115,13 +99,9 @@ final _XInputGetCapabilities = _xinput1_4.lookupFunction<
 
 /// Retrieves a gamepad input event.
 ///
-/// ```c
-/// DWORD XInputGetKeystroke(
-///   DWORD             dwUserIndex,
-///   DWORD             dwReserved,
-///   PXINPUT_KEYSTROKE pKeystroke
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputgetkeystroke>.
+///
 /// {@category xinput}
 int XInputGetKeystroke(int dwUserIndex, Pointer<XINPUT_KEYSTROKE> pKeystroke) =>
     _XInputGetKeystroke(dwUserIndex, 0, pKeystroke);
@@ -134,12 +114,9 @@ final _XInputGetKeystroke = _xinput1_4.lookupFunction<
 
 /// Retrieves the current state of the specified controller.
 ///
-/// ```c
-/// DWORD XInputGetState(
-///   [in]  DWORD        dwUserIndex,
-///   [out] XINPUT_STATE *pState
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputgetstate>.
+///
 /// {@category xinput}
 int XInputGetState(int dwUserIndex, Pointer<XINPUT_STATE> pState) =>
     _XInputGetState(dwUserIndex, pState);
@@ -153,12 +130,9 @@ final _XInputGetState = _xinput1_4.lookupFunction<
 ///
 /// This function is used to activate the vibration function of a controller.
 ///
-/// ```c
-/// DWORD XInputSetState(
-///   [in]      DWORD            dwUserIndex,
-///   [in, out] XINPUT_VIBRATION *pVibration
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/xinput/nf-xinput-xinputsetstate>.
+///
 /// {@category xinput}
 int XInputSetState(int dwUserIndex, Pointer<XINPUT_VIBRATION> pVibration) =>
     _XInputSetState(dwUserIndex, pVibration);

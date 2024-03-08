@@ -21,12 +21,9 @@ final _dwmapi = DynamicLibrary.open('dwmapi.dll');
 
 /// Enables the blur effect on a specified window.
 ///
-/// ```c
-/// DWMAPI DwmEnableBlurBehindWindow(
-///   HWND                 hWnd,
-///   const DWM_BLURBEHIND *pBlurBehind
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmenableblurbehindwindow>.
+///
 /// {@category dwmapi}
 int DwmEnableBlurBehindWindow(int hWnd, Pointer<DWM_BLURBEHIND> pBlurBehind) =>
     _DwmEnableBlurBehindWindow(hWnd, pBlurBehind);
@@ -40,11 +37,9 @@ final _DwmEnableBlurBehindWindow = _dwmapi.lookupFunction<
 /// Class Schedule Service (MMCSS) scheduling while the calling process is
 /// alive.
 ///
-/// ```c
-/// DWMAPI DwmEnableMMCSS(
-///   BOOL fEnableMMCSS
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmenablemmcss>.
+///
 /// {@category dwmapi}
 int DwmEnableMMCSS(int fEnableMMCSS) => _DwmEnableMMCSS(fEnableMMCSS);
 
@@ -54,12 +49,9 @@ final _DwmEnableMMCSS = _dwmapi.lookupFunction<
 
 /// Extends the window frame into the client area.
 ///
-/// ```c
-/// DWMAPI DwmExtendFrameIntoClientArea(
-///   HWND          hWnd,
-///   const MARGINS *pMarInset
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmextendframeintoclientarea>.
+///
 /// {@category dwmapi}
 int DwmExtendFrameIntoClientArea(int hWnd, Pointer<MARGINS> pMarInset) =>
     _DwmExtendFrameIntoClientArea(hWnd, pMarInset);
@@ -76,9 +68,9 @@ final _DwmExtendFrameIntoClientArea = _dwmapi.lookupFunction<
 /// This compensates for very complex scenes or calling processes with very low
 /// priority.
 ///
-/// ```c
-/// DWMAPI DwmFlush();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmflush>.
+///
 /// {@category dwmapi}
 int DwmFlush() => _DwmFlush();
 
@@ -88,16 +80,9 @@ final _DwmFlush =
 /// Retrieves the current color used for Desktop Window Manager (DWM) glass
 /// composition.
 ///
-/// This value is based on the current color scheme and can be modified by the
-/// user. Applications can listen for color changes by handling the
-/// WM_DWMCOLORIZATIONCOLORCHANGED notification.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmgetcolorizationcolor>.
 ///
-/// ```c
-/// DWMAPI DwmGetColorizationColor(
-///   DWORD *pcrColorization,
-///   BOOL  *pfOpaqueBlend
-/// );
-/// ```
 /// {@category dwmapi}
 int DwmGetColorizationColor(
         Pointer<Uint32> pcrColorization, Pointer<BOOL> pfOpaqueBlend) =>
@@ -111,13 +96,9 @@ final _DwmGetColorizationColor = _dwmapi.lookupFunction<
 
 /// Retrieves transport attributes.
 ///
-/// ```c
-/// DWMAPI DwmGetTransportAttributes(
-///   BOOL  *pfIsRemoting,
-///   BOOL  *pfIsConnected,
-///   DWORD *pDwGeneration
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmgettransportattributes>.
+///
 /// {@category dwmapi}
 int DwmGetTransportAttributes(Pointer<BOOL> pfIsRemoting,
         Pointer<BOOL> pfIsConnected, Pointer<Uint32> pDwGeneration) =>
@@ -132,14 +113,9 @@ final _DwmGetTransportAttributes = _dwmapi.lookupFunction<
 /// Retrieves the current value of a specified Desktop Window Manager (DWM)
 /// attribute applied to a window.
 ///
-/// ```c
-/// DWMAPI DwmGetWindowAttribute(
-///   HWND  hwnd,
-///   DWORD dwAttribute,
-///   PVOID pvAttribute,
-///   DWORD cbAttribute
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmgetwindowattribute>.
+///
 /// {@category dwmapi}
 int DwmGetWindowAttribute(
         int hwnd, int dwAttribute, Pointer pvAttribute, int cbAttribute) =>
@@ -155,11 +131,9 @@ final _DwmGetWindowAttribute = _dwmapi.lookupFunction<
 /// bitmaps from a window, both thumbnails and peek representations, should be
 /// refreshed.
 ///
-/// ```c
-/// DWMAPI DwmInvalidateIconicBitmaps(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwminvalidateiconicbitmaps>.
+///
 /// {@category dwmapi}
 int DwmInvalidateIconicBitmaps(int hwnd) => _DwmInvalidateIconicBitmaps(hwnd);
 
@@ -170,14 +144,9 @@ final _DwmInvalidateIconicBitmaps =
 /// Notifies Desktop Window Manager (DWM) that a touch contact has been
 /// recognized as a gesture, and that DWM should draw feedback for that gesture.
 ///
-/// ```c
-/// DWMAPI DwmRenderGesture(
-///   GESTURE_TYPE gt,
-///   UINT         cContacts,
-///   const DWORD  *pdwPointerID,
-///   const POINT  *pPoints
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmrendergesture>.
+///
 /// {@category dwmapi}
 int DwmRenderGesture(int gt, int cContacts, Pointer<Uint32> pdwPointerID,
         Pointer<POINT> pPoints) =>
@@ -192,14 +161,9 @@ final _DwmRenderGesture = _dwmapi.lookupFunction<
 /// Sets the value of Desktop Window Manager (DWM) non-client rendering
 /// attributes for a window.
 ///
-/// ```c
-/// DWMAPI DwmSetWindowAttribute(
-///   HWND    hwnd,
-///   DWORD   dwAttribute,
-///   LPCVOID pvAttribute,
-///   DWORD   cbAttribute
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute>.
+///
 /// {@category dwmapi}
 int DwmSetWindowAttribute(
         int hwnd, int dwAttribute, Pointer pvAttribute, int cbAttribute) =>
@@ -214,12 +178,9 @@ final _DwmSetWindowAttribute = _dwmapi.lookupFunction<
 /// Called by an app or framework to specify the visual feedback type to draw in
 /// response to a particular touch or pen contact.
 ///
-/// ```c
-/// DWMAPI DwmShowContact(
-///   DWORD           dwPointerID,
-///   DWM_SHOWCONTACT eShowContact
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dwmapi/nf-dwmapi-dwmshowcontact>.
+///
 /// {@category dwmapi}
 int DwmShowContact(int dwPointerID, int eShowContact) =>
     _DwmShowContact(dwPointerID, eShowContact);

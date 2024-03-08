@@ -3305,7 +3305,7 @@ extension type const NET_IF_CONNECTION_TYPE(int _) implements int {
   static const NET_IF_CONNECTION_MAXIMUM = NET_IF_CONNECTION_TYPE(0x00000004);
 }
 
-/// Specifies a set of cost levels and cost flags supported in Windows 8 Cost
+/// Specifies a set of cost levels and cost flags supported in Windows 8 Cost
 /// APIs.
 ///
 /// To learn more about this enum, see

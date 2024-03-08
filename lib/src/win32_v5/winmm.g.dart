@@ -19,14 +19,11 @@ import '../types.dart';
 
 final _winmm = DynamicLibrary.open('winmm.dll');
 
-/// The mciGetDeviceID function retrieves the device identifier corresponding to
-/// the name of an open device.
+/// Retrieves the device identifier corresponding to the name of an open device.
 ///
-/// ```c
-/// MCIDEVICEID mciGetDeviceIDW(
-///   LPCTSTR lpszDevice
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions/dd757156(v=vs.85)>.
+///
 /// {@category winmm}
 int mciGetDeviceID(Pointer<Utf16> pszDevice) => _mciGetDeviceID(pszDevice);
 
@@ -34,15 +31,11 @@ final _mciGetDeviceID = _winmm.lookupFunction<
     Uint32 Function(Pointer<Utf16> pszDevice),
     int Function(Pointer<Utf16> pszDevice)>('mciGetDeviceIDW');
 
-/// The mciGetDeviceIDFromElementID function retrieves the MCI device identifier
-/// corresponding to an element identifier.
+/// Retrieves the MCI device identifier corresponding to an element identifier.
 ///
-/// ```c
-/// MCIDEVICEID mciGetDeviceIDFromElementIDW(
-///   DWORD   dwElementID,
-///   LPCTSTR lpstrType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions/dd757157(v=vs.85)>.
+///
 /// {@category winmm}
 int mciGetDeviceIDFromElementID(int dwElementID, Pointer<Utf16> lpstrType) =>
     _mciGetDeviceIDFromElementID(dwElementID, lpstrType);
@@ -52,16 +45,11 @@ final _mciGetDeviceIDFromElementID = _winmm.lookupFunction<
     int Function(int dwElementID,
         Pointer<Utf16> lpstrType)>('mciGetDeviceIDFromElementIDW');
 
-/// The mciGetErrorString function retrieves a string that describes the
-/// specified MCI error code.
+/// Retrieves a string that describes the specified MCI error code.
 ///
-/// ```c
-/// BOOL mciGetErrorStringW(
-///   DWORD  fdwError,
-///   LPTSTR lpszErrorText,
-///   UINT   cchErrorText
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions/dd757158(v=vs.85)>.
+///
 /// {@category winmm}
 int mciGetErrorString(int mcierr, Pointer<Utf16> pszText, int cchText) =>
     _mciGetErrorString(mcierr, pszText, cchText);
@@ -71,17 +59,11 @@ final _mciGetErrorString = _winmm.lookupFunction<
     int Function(
         int mcierr, Pointer<Utf16> pszText, int cchText)>('mciGetErrorStringW');
 
-/// The mciSendCommand function sends a command message to the specified MCI
-/// device.
+/// Sends a command message to the specified MCI device.
 ///
-/// ```c
-/// MCIERROR mciSendCommandW(
-///   MCIDEVICEID IDDevice,
-///   UINT        uMsg,
-///   DWORD_PTR   fdwCommand,
-///   DWORD_PTR   dwParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions/dd757160(v=vs.85)>.
+///
 /// {@category winmm}
 int mciSendCommand(int mciId, int uMsg, int? dwParam1, int? dwParam2) =>
     _mciSendCommand(mciId, uMsg, dwParam1 ?? 0, dwParam2 ?? 0);
@@ -92,18 +74,13 @@ final _mciSendCommand = _winmm.lookupFunction<
     int Function(
         int mciId, int uMsg, int dwParam1, int dwParam2)>('mciSendCommandW');
 
-/// The mciSendString function sends a command string to an MCI device.
+/// Sends a command string to an MCI device.
 ///
 /// The device that the command is sent to is specified in the command string.
 ///
-/// ```c
-/// MCIERROR mciSendStringW(
-///   LPCTSTR lpszCommand,
-///   LPTSTR  lpszReturnString,
-///   UINT    cchReturn,
-///   HANDLE  hwndCallback
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions/dd757161(v=vs.85)>.
+///
 /// {@category winmm}
 int mciSendString(
         Pointer<Utf16> lpstrCommand,
@@ -122,16 +99,12 @@ final _mciSendString = _winmm.lookupFunction<
     int Function(Pointer<Utf16> lpstrCommand, Pointer<Utf16> lpstrReturnString,
         int uReturnLength, int hwndCallback)>('mciSendStringW');
 
-/// The midiConnect function connects a MIDI input device to a MIDI thru or
-/// output device, or connects a MIDI thru device to a MIDI output device.
+/// Connects a MIDI input device to a MIDI thru or output device, or connects a
+/// MIDI thru device to a MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiConnect(
-///   HMIDI    hmi,
-///   HMIDIOUT hmo,
-///   LPVOID   pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiconnect>.
+///
 /// {@category winmm}
 int midiConnect(int hmi, int hmo) => _midiConnect(hmi, hmo, nullptr);
 
@@ -139,17 +112,12 @@ final _midiConnect = _winmm.lookupFunction<
     Uint32 Function(HMIDI hmi, HMIDIOUT hmo, Pointer pReserved),
     int Function(int hmi, int hmo, Pointer pReserved)>('midiConnect');
 
-/// The midiDisconnect function disconnects a MIDI input device from a MIDI thru
-/// or output device, or disconnects a MIDI thru device from a MIDI output
-/// device.
+/// Disconnects a MIDI input device from a MIDI thru or output device, or
+/// disconnects a MIDI thru device from a MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiDisconnect(
-///   HMIDI    hmi,
-///   HMIDIOUT hmo,
-///   LPVOID   pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-mididisconnect>.
+///
 /// {@category winmm}
 int midiDisconnect(int hmi, int hmo) => _midiDisconnect(hmi, hmo, nullptr);
 
@@ -157,18 +125,13 @@ final _midiDisconnect = _winmm.lookupFunction<
     Uint32 Function(HMIDI hmi, HMIDIOUT hmo, Pointer pReserved),
     int Function(int hmi, int hmo, Pointer pReserved)>('midiDisconnect');
 
-/// The midiInAddBuffer function sends an input buffer to a specified opened
-/// MIDI input device.
+/// Sends an input buffer to a specified opened MIDI input device.
 ///
 /// This function is used for system-exclusive messages.
 ///
-/// ```c
-/// MMRESULT midiInAddBuffer(
-///   HMIDIIN   hmi,
-///   LPMIDIHDR pmh,
-///   UINT      cbmh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinaddbuffer>.
+///
 /// {@category winmm}
 int midiInAddBuffer(int hmi, Pointer<MIDIHDR> pmh, int cbmh) =>
     _midiInAddBuffer(hmi, pmh, cbmh);
@@ -177,13 +140,11 @@ final _midiInAddBuffer = _winmm.lookupFunction<
     Uint32 Function(HMIDIIN hmi, Pointer<MIDIHDR> pmh, Uint32 cbmh),
     int Function(int hmi, Pointer<MIDIHDR> pmh, int cbmh)>('midiInAddBuffer');
 
-/// The midiInClose function closes the specified MIDI input device.
+/// Closes the specified MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInClose(
-///   HMIDIIN hmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinclose>.
+///
 /// {@category winmm}
 int midiInClose(int hmi) => _midiInClose(hmi);
 
@@ -191,16 +152,11 @@ final _midiInClose =
     _winmm.lookupFunction<Uint32 Function(HMIDIIN hmi), int Function(int hmi)>(
         'midiInClose');
 
-/// The midiInGetDevCaps function determines the capabilities of a specified
-/// MIDI input device.
+/// Determines the capabilities of a specified MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInGetDevCapsW(
-///   UINT_PTR      uDeviceID,
-///   LPMIDIINCAPSW pmic,
-///   UINT          cbmic
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiingetdevcapsw>.
+///
 /// {@category winmm}
 int midiInGetDevCaps(int uDeviceID, Pointer<MIDIINCAPS> pmic, int cbmic) =>
     _midiInGetDevCaps(uDeviceID, pmic, cbmic);
@@ -210,16 +166,12 @@ final _midiInGetDevCaps = _winmm.lookupFunction<
     int Function(int uDeviceID, Pointer<MIDIINCAPS> pmic,
         int cbmic)>('midiInGetDevCapsW');
 
-/// The midiInGetErrorText function retrieves a textual description for an error
-/// identified by the specified error code.
+/// Retrieves a textual description for an error identified by the specified
+/// error code.
 ///
-/// ```c
-/// MMRESULT midiInGetErrorTextW(
-///   MMRESULT mmrError,
-///   LPWSTR   pszText,
-///   UINT     cchText
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiingeterrortextw>.
+///
 /// {@category winmm}
 int midiInGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _midiInGetErrorText(mmrError, pszText, cchText);
@@ -229,15 +181,11 @@ final _midiInGetErrorText = _winmm.lookupFunction<
     int Function(int mmrError, Pointer<Utf16> pszText,
         int cchText)>('midiInGetErrorTextW');
 
-/// The midiInGetID function gets the device identifier for the given MIDI input
-/// device.
+/// Gets the device identifier for the given MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInGetID(
-///   HMIDIIN hmi,
-///   LPUINT  puDeviceID
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiingetid>.
+///
 /// {@category winmm}
 int midiInGetID(int hmi, Pointer<Uint32> puDeviceID) =>
     _midiInGetID(hmi, puDeviceID);
@@ -246,28 +194,22 @@ final _midiInGetID = _winmm.lookupFunction<
     Uint32 Function(HMIDIIN hmi, Pointer<Uint32> puDeviceID),
     int Function(int hmi, Pointer<Uint32> puDeviceID)>('midiInGetID');
 
-/// The midiInGetNumDevs function retrieves the number of MIDI input devices in
-/// the system.
+/// Retrieves the number of MIDI input devices in the system.
 ///
-/// ```c
-/// UINT midiInGetNumDevs();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiingetnumdevs>.
+///
 /// {@category winmm}
 int midiInGetNumDevs() => _midiInGetNumDevs();
 
 final _midiInGetNumDevs = _winmm
     .lookupFunction<Uint32 Function(), int Function()>('midiInGetNumDevs');
 
-/// The midiInMessage function sends a message to the MIDI device driver.
+/// Sends a message to the MIDI device driver.
 ///
-/// ```c
-/// MMRESULT midiInMessage(
-///   HMIDIIN   hmi,
-///   UINT      uMsg,
-///   DWORD_PTR dw1,
-///   DWORD_PTR dw2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinmessage>.
+///
 /// {@category winmm}
 int midiInMessage(int? hmi, int uMsg, int? dw1, int? dw2) =>
     _midiInMessage(hmi ?? 0, uMsg, dw1 ?? 0, dw2 ?? 0);
@@ -276,17 +218,11 @@ final _midiInMessage = _winmm.lookupFunction<
     Uint32 Function(HMIDIIN hmi, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
     int Function(int hmi, int uMsg, int dw1, int dw2)>('midiInMessage');
 
-/// The midiInOpen function opens a specified MIDI input device.
+/// Opens a specified MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInOpen(
-///   LPHMIDIIN phmi,
-///   UINT      uDeviceID,
-///   DWORD_PTR dwCallback,
-///   DWORD_PTR dwInstance,
-///   DWORD     fdwOpen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinopen>.
+///
 /// {@category winmm}
 int midiInOpen(Pointer<HMIDIIN> phmi, int uDeviceID, int? dwCallback,
         int? dwInstance, int fdwOpen) =>
@@ -298,15 +234,11 @@ final _midiInOpen = _winmm.lookupFunction<
     int Function(Pointer<HMIDIIN> phmi, int uDeviceID, int dwCallback,
         int dwInstance, int fdwOpen)>('midiInOpen');
 
-/// The midiInPrepareHeader function prepares a buffer for MIDI input.
+/// Prepares a buffer for MIDI input.
 ///
-/// ```c
-/// MMRESULT midiInPrepareHeader(
-///   HMIDIIN   hmi,
-///   LPMIDIHDR pmh,
-///   UINT      cbmh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinprepareheader>.
+///
 /// {@category winmm}
 int midiInPrepareHeader(int hmi, Pointer<MIDIHDR> pmh, int cbmh) =>
     _midiInPrepareHeader(hmi, pmh, cbmh);
@@ -316,13 +248,11 @@ final _midiInPrepareHeader = _winmm.lookupFunction<
     int Function(
         int hmi, Pointer<MIDIHDR> pmh, int cbmh)>('midiInPrepareHeader');
 
-/// The midiInReset function stops input on a given MIDI input device.
+/// Stops input on a given MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInReset(
-///   HMIDIIN hmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinreset>.
+///
 /// {@category winmm}
 int midiInReset(int hmi) => _midiInReset(hmi);
 
@@ -330,14 +260,11 @@ final _midiInReset =
     _winmm.lookupFunction<Uint32 Function(HMIDIIN hmi), int Function(int hmi)>(
         'midiInReset');
 
-/// The midiInStart function starts MIDI input on the specified MIDI input
-/// device.
+/// Starts MIDI input on the specified MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInStart(
-///   HMIDIIN hmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinstart>.
+///
 /// {@category winmm}
 int midiInStart(int hmi) => _midiInStart(hmi);
 
@@ -345,13 +272,11 @@ final _midiInStart =
     _winmm.lookupFunction<Uint32 Function(HMIDIIN hmi), int Function(int hmi)>(
         'midiInStart');
 
-/// The midiInStop function stops MIDI input on the specified MIDI input device.
+/// Stops MIDI input on the specified MIDI input device.
 ///
-/// ```c
-/// MMRESULT midiInStop(
-///   HMIDIIN hmi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinstop>.
+///
 /// {@category winmm}
 int midiInStop(int hmi) => _midiInStop(hmi);
 
@@ -359,16 +284,11 @@ final _midiInStop =
     _winmm.lookupFunction<Uint32 Function(HMIDIIN hmi), int Function(int hmi)>(
         'midiInStop');
 
-/// The midiInUnprepareHeader function cleans up the preparation performed by
-/// the midiInPrepareHeader function.
+/// Cleans up the preparation performed by the midiInPrepareHeader function.
 ///
-/// ```c
-/// MMRESULT midiInUnprepareHeader(
-///   HMIDIIN   hmi,
-///   LPMIDIHDR pmh,
-///   UINT      cbmh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midiinunprepareheader>.
+///
 /// {@category winmm}
 int midiInUnprepareHeader(int hmi, Pointer<MIDIHDR> pmh, int cbmh) =>
     _midiInUnprepareHeader(hmi, pmh, cbmh);
@@ -378,18 +298,12 @@ final _midiInUnprepareHeader = _winmm.lookupFunction<
     int Function(
         int hmi, Pointer<MIDIHDR> pmh, int cbmh)>('midiInUnprepareHeader');
 
-/// The midiOutCacheDrumPatches function requests that an internal MIDI
-/// synthesizer device preload and cache a specified set of key-based percussion
-/// patches.
+/// Requests that an internal MIDI synthesizer device preload and cache a
+/// specified set of key-based percussion patches.
 ///
-/// ```c
-/// MMRESULT midiOutCacheDrumPatches(
-///   HMIDIOUT hmo,
-///   UINT     uPatch,
-///   LPWORD   pwkya,
-///   UINT     fuCache
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutcachedrumpatches>.
+///
 /// {@category winmm}
 int midiOutCacheDrumPatches(
         int hmo, int uPatch, Pointer<Uint16> pwkya, int fuCache) =>
@@ -401,17 +315,12 @@ final _midiOutCacheDrumPatches = _winmm.lookupFunction<
     int Function(int hmo, int uPatch, Pointer<Uint16> pwkya,
         int fuCache)>('midiOutCacheDrumPatches');
 
-/// The midiOutCachePatches function requests that an internal MIDI synthesizer
-/// device preload and cache a specified set of patches.
+/// Requests that an internal MIDI synthesizer device preload and cache a
+/// specified set of patches.
 ///
-/// ```c
-/// MMRESULT midiOutCachePatches(
-///   HMIDIOUT hmo,
-///   UINT     uBank,
-///   LPWORD   pwpa,
-///   UINT     fuCache
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutcachepatches>.
+///
 /// {@category winmm}
 int midiOutCachePatches(
         int hmo, int uBank, Pointer<Uint16> pwpa, int fuCache) =>
@@ -423,13 +332,11 @@ final _midiOutCachePatches = _winmm.lookupFunction<
     int Function(int hmo, int uBank, Pointer<Uint16> pwpa,
         int fuCache)>('midiOutCachePatches');
 
-/// The midiOutClose function closes the specified MIDI output device.
+/// Closes the specified MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiOutClose(
-///   HMIDIOUT hmo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutclose>.
+///
 /// {@category winmm}
 int midiOutClose(int hmo) => _midiOutClose(hmo);
 
@@ -437,16 +344,11 @@ final _midiOutClose =
     _winmm.lookupFunction<Uint32 Function(HMIDIOUT hmo), int Function(int hmo)>(
         'midiOutClose');
 
-/// The midiOutGetDevCaps function queries a specified MIDI output device to
-/// determine its capabilities.
+/// Queries a specified MIDI output device to determine its capabilities.
 ///
-/// ```c
-/// MMRESULT midiOutGetDevCapsW(
-///   UINT_PTR       uDeviceID,
-///   LPMIDIOUTCAPSW pmoc,
-///   UINT           cbmoc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutgetdevcapsw>.
+///
 /// {@category winmm}
 int midiOutGetDevCaps(int uDeviceID, Pointer<MIDIOUTCAPS> pmoc, int cbmoc) =>
     _midiOutGetDevCaps(uDeviceID, pmoc, cbmoc);
@@ -456,16 +358,12 @@ final _midiOutGetDevCaps = _winmm.lookupFunction<
     int Function(int uDeviceID, Pointer<MIDIOUTCAPS> pmoc,
         int cbmoc)>('midiOutGetDevCapsW');
 
-/// The midiOutGetErrorText function retrieves a textual description for an
-/// error identified by the specified error code.
+/// Retrieves a textual description for an error identified by the specified
+/// error code.
 ///
-/// ```c
-/// MMRESULT midiOutGetErrorTextW(
-///   MMRESULT mmrError,
-///   LPWSTR   pszText,
-///   UINT     cchText
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutgeterrortextw>.
+///
 /// {@category winmm}
 int midiOutGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _midiOutGetErrorText(mmrError, pszText, cchText);
@@ -475,15 +373,11 @@ final _midiOutGetErrorText = _winmm.lookupFunction<
     int Function(int mmrError, Pointer<Utf16> pszText,
         int cchText)>('midiOutGetErrorTextW');
 
-/// The midiOutGetID function retrieves the device identifier for the given MIDI
-/// output device.
+/// Retrieves the device identifier for the given MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiOutGetID(
-///   HMIDIOUT hmo,
-///   LPUINT   puDeviceID
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutgetid>.
+///
 /// {@category winmm}
 int midiOutGetID(int hmo, Pointer<Uint32> puDeviceID) =>
     _midiOutGetID(hmo, puDeviceID);
@@ -492,27 +386,22 @@ final _midiOutGetID = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Pointer<Uint32> puDeviceID),
     int Function(int hmo, Pointer<Uint32> puDeviceID)>('midiOutGetID');
 
-/// The midiOutGetNumDevs function retrieves the number of MIDI output devices
-/// present in the system.
+/// Retrieves the number of MIDI output devices present in the system.
 ///
-/// ```c
-/// UINT midiOutGetNumDevs();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutgetnumdevs>.
+///
 /// {@category winmm}
 int midiOutGetNumDevs() => _midiOutGetNumDevs();
 
 final _midiOutGetNumDevs = _winmm
     .lookupFunction<Uint32 Function(), int Function()>('midiOutGetNumDevs');
 
-/// The midiOutGetVolume function retrieves the current volume setting of a MIDI
-/// output device.
+/// Retrieves the current volume setting of a MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiOutGetVolume(
-///   HMIDIOUT hmo,
-///   LPDWORD  pdwVolume
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutgetvolume>.
+///
 /// {@category winmm}
 int midiOutGetVolume(int? hmo, Pointer<Uint32> pdwVolume) =>
     _midiOutGetVolume(hmo ?? 0, pdwVolume);
@@ -521,16 +410,11 @@ final _midiOutGetVolume = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Pointer<Uint32> pdwVolume),
     int Function(int hmo, Pointer<Uint32> pdwVolume)>('midiOutGetVolume');
 
-/// The midiOutLongMsg function sends a system-exclusive MIDI message to the
-/// specified MIDI output device.
+/// Sends a system-exclusive MIDI message to the specified MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiOutLongMsg(
-///   HMIDIOUT  hmo,
-///   LPMIDIHDR pmh,
-///   UINT      cbmh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutlongmsg>.
+///
 /// {@category winmm}
 int midiOutLongMsg(int hmo, Pointer<MIDIHDR> pmh, int cbmh) =>
     _midiOutLongMsg(hmo, pmh, cbmh);
@@ -539,19 +423,14 @@ final _midiOutLongMsg = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Pointer<MIDIHDR> pmh, Uint32 cbmh),
     int Function(int hmo, Pointer<MIDIHDR> pmh, int cbmh)>('midiOutLongMsg');
 
-/// The midiOutMessage function sends a message to the MIDI device drivers.
+/// Sends a message to the MIDI device drivers.
 ///
 /// This function is used only for driver-specific messages that are not
 /// supported by the MIDI API.
 ///
-/// ```c
-/// MMRESULT midiOutMessage(
-///   HMIDIOUT  hmo,
-///   UINT      uMsg,
-///   DWORD_PTR dw1,
-///   DWORD_PTR dw2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutmessage>.
+///
 /// {@category winmm}
 int midiOutMessage(int? hmo, int uMsg, int? dw1, int? dw2) =>
     _midiOutMessage(hmo ?? 0, uMsg, dw1 ?? 0, dw2 ?? 0);
@@ -560,17 +439,11 @@ final _midiOutMessage = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
     int Function(int hmo, int uMsg, int dw1, int dw2)>('midiOutMessage');
 
-/// The midiOutOpen function opens a MIDI output device for playback.
+/// Opens a MIDI output device for playback.
 ///
-/// ```c
-/// MMRESULT midiOutOpen(
-///   LPHMIDIOUT phmo,
-///   UINT       uDeviceID,
-///   DWORD_PTR  dwCallback,
-///   DWORD_PTR  dwInstance,
-///   DWORD      fdwOpen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutopen>.
+///
 /// {@category winmm}
 int midiOutOpen(Pointer<HMIDIOUT> phmo, int uDeviceID, int? dwCallback,
         int? dwInstance, int fdwOpen) =>
@@ -582,16 +455,11 @@ final _midiOutOpen = _winmm.lookupFunction<
     int Function(Pointer<HMIDIOUT> phmo, int uDeviceID, int dwCallback,
         int dwInstance, int fdwOpen)>('midiOutOpen');
 
-/// The midiOutPrepareHeader function prepares a MIDI system-exclusive or stream
-/// buffer for output.
+/// Prepares a MIDI system-exclusive or stream buffer for output.
 ///
-/// ```c
-/// MMRESULT midiOutPrepareHeader(
-///   HMIDIOUT  hmo,
-///   LPMIDIHDR pmh,
-///   UINT      cbmh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutprepareheader>.
+///
 /// {@category winmm}
 int midiOutPrepareHeader(int hmo, Pointer<MIDIHDR> pmh, int cbmh) =>
     _midiOutPrepareHeader(hmo, pmh, cbmh);
@@ -601,14 +469,12 @@ final _midiOutPrepareHeader = _winmm.lookupFunction<
     int Function(
         int hmo, Pointer<MIDIHDR> pmh, int cbmh)>('midiOutPrepareHeader');
 
-/// The midiOutReset function turns off all notes on all MIDI channels for the
-/// specified MIDI output device.
+/// Turns off all notes on all MIDI channels for the specified MIDI output
+/// device.
 ///
-/// ```c
-/// MMRESULT midiOutReset(
-///   HMIDIOUT hmo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutreset>.
+///
 /// {@category winmm}
 int midiOutReset(int hmo) => _midiOutReset(hmo);
 
@@ -616,14 +482,11 @@ final _midiOutReset =
     _winmm.lookupFunction<Uint32 Function(HMIDIOUT hmo), int Function(int hmo)>(
         'midiOutReset');
 
-/// The midiOutSetVolume function sets the volume of a MIDI output device.
+/// Sets the volume of a MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiOutSetVolume(
-///   HMIDIOUT hmo,
-///   DWORD    dwVolume
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutsetvolume>.
+///
 /// {@category winmm}
 int midiOutSetVolume(int? hmo, int dwVolume) =>
     _midiOutSetVolume(hmo ?? 0, dwVolume);
@@ -632,15 +495,11 @@ final _midiOutSetVolume = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Uint32 dwVolume),
     int Function(int hmo, int dwVolume)>('midiOutSetVolume');
 
-/// The midiOutShortMsg function sends a short MIDI message to the specified
-/// MIDI output device.
+/// Sends a short MIDI message to the specified MIDI output device.
 ///
-/// ```c
-/// MMRESULT midiOutShortMsg(
-///   HMIDIOUT hmo,
-///   DWORD    dwMsg
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutshortmsg>.
+///
 /// {@category winmm}
 int midiOutShortMsg(int hmo, int dwMsg) => _midiOutShortMsg(hmo, dwMsg);
 
@@ -648,16 +507,11 @@ final _midiOutShortMsg = _winmm.lookupFunction<
     Uint32 Function(HMIDIOUT hmo, Uint32 dwMsg),
     int Function(int hmo, int dwMsg)>('midiOutShortMsg');
 
-/// The midiOutUnprepareHeader function cleans up the preparation performed by
-/// the midiOutPrepareHeader function.
+/// Cleans up the preparation performed by the midiOutPrepareHeader function.
 ///
-/// ```c
-/// MMRESULT midiOutUnprepareHeader(
-///   HMIDIOUT  hmo,
-///   LPMIDIHDR pmh,
-///   UINT      cbmh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-midioutunprepareheader>.
+///
 /// {@category winmm}
 int midiOutUnprepareHeader(int hmo, Pointer<MIDIHDR> pmh, int cbmh) =>
     _midiOutUnprepareHeader(hmo, pmh, cbmh);
@@ -667,15 +521,11 @@ final _midiOutUnprepareHeader = _winmm.lookupFunction<
     int Function(
         int hmo, Pointer<MIDIHDR> pmh, int cbmh)>('midiOutUnprepareHeader');
 
-/// The PlaySound function plays a sound specified by the given file name,
-/// resource, or system event.
+/// Plays a sound specified by the given file name, resource, or system event.
 ///
-/// ```c
-/// BOOL PlaySoundW(
-///   LPCTSTR pszSound,
-///   HMODULE hmod,
-///   DWORD fdwSound);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/previous-versions//dd743680(v=vs.85)>.
+///
 /// {@category winmm}
 int PlaySound(Pointer<Utf16>? pszSound, int? hmod, int fdwSound) =>
     _PlaySound(pszSound ?? nullptr, hmod ?? 0, fdwSound);
@@ -685,18 +535,13 @@ final _PlaySound = _winmm.lookupFunction<
     int Function(
         Pointer<Utf16> pszSound, int hmod, int fdwSound)>('PlaySoundW');
 
-/// The waveInAddBuffer function sends an input buffer to the given
-/// waveform-audio input device.
+/// Sends an input buffer to the given waveform-audio input device.
 ///
 /// When the buffer is filled, the application is notified.
 ///
-/// ```c
-/// MMRESULT waveInAddBuffer(
-///   HWAVEIN   hwi,
-///   LPWAVEHDR pwh,
-///   UINT      cbwh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinaddbuffer>.
+///
 /// {@category winmm}
 int waveInAddBuffer(int hwi, Pointer<WAVEHDR> pwh, int cbwh) =>
     _waveInAddBuffer(hwi, pwh, cbwh);
@@ -705,13 +550,11 @@ final _waveInAddBuffer = _winmm.lookupFunction<
     Uint32 Function(HWAVEIN hwi, Pointer<WAVEHDR> pwh, Uint32 cbwh),
     int Function(int hwi, Pointer<WAVEHDR> pwh, int cbwh)>('waveInAddBuffer');
 
-/// The waveInClose function closes the given waveform-audio input device.
+/// Closes the given waveform-audio input device.
 ///
-/// ```c
-/// MMRESULT waveInClose(
-///   HWAVEIN hwi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinclose>.
+///
 /// {@category winmm}
 int waveInClose(int hwi) => _waveInClose(hwi);
 
@@ -719,16 +562,11 @@ final _waveInClose =
     _winmm.lookupFunction<Uint32 Function(HWAVEIN hwi), int Function(int hwi)>(
         'waveInClose');
 
-/// The waveInGetDevCaps function retrieves the capabilities of a given
-/// waveform-audio input device.
+/// Retrieves the capabilities of a given waveform-audio input device.
 ///
-/// ```c
-/// MMRESULT waveInGetDevCapsW(
-///   UINT         uDeviceID,
-///   LPWAVEINCAPS pwic,
-///   UINT         cbwic
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveingetdevcaps>.
+///
 /// {@category winmm}
 int waveInGetDevCaps(int uDeviceID, Pointer<WAVEINCAPS> pwic, int cbwic) =>
     _waveInGetDevCaps(uDeviceID, pwic, cbwic);
@@ -738,16 +576,12 @@ final _waveInGetDevCaps = _winmm.lookupFunction<
     int Function(int uDeviceID, Pointer<WAVEINCAPS> pwic,
         int cbwic)>('waveInGetDevCapsW');
 
-/// The waveInGetErrorText function retrieves a textual description of the error
-/// identified by the given error number.
+/// Retrieves a textual description of the error identified by the given error
+/// number.
 ///
-/// ```c
-/// MMRESULT waveInGetErrorTextW(
-///   MMRESULT mmrError,
-///   LPSTR    pszText,
-///   UINT     cchText
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveingeterrortext>.
+///
 /// {@category winmm}
 int waveInGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _waveInGetErrorText(mmrError, pszText, cchText);
@@ -757,15 +591,11 @@ final _waveInGetErrorText = _winmm.lookupFunction<
     int Function(int mmrError, Pointer<Utf16> pszText,
         int cchText)>('waveInGetErrorTextW');
 
-/// The waveInGetID function gets the device identifier for the given
-/// waveform-audio input device.
+/// Gets the device identifier for the given waveform-audio input device.
 ///
-/// ```c
-/// MMRESULT waveInGetID(
-///   HWAVEIN hwi,
-///   LPUINT  puDeviceID
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveingetid>.
+///
 /// {@category winmm}
 int waveInGetID(int hwi, Pointer<Uint32> puDeviceID) =>
     _waveInGetID(hwi, puDeviceID);
@@ -774,28 +604,26 @@ final _waveInGetID = _winmm.lookupFunction<
     Uint32 Function(HWAVEIN hwi, Pointer<Uint32> puDeviceID),
     int Function(int hwi, Pointer<Uint32> puDeviceID)>('waveInGetID');
 
-/// The waveInGetNumDevs function returns the number of waveform-audio input
-/// devices present in the system.
+/// Returns the number of waveform-audio input devices present in the system.
 ///
-/// ```c
-/// UINT waveInGetNumDevs();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveingetnumdevs>.
+///
 /// {@category winmm}
 int waveInGetNumDevs() => _waveInGetNumDevs();
 
 final _waveInGetNumDevs = _winmm
     .lookupFunction<Uint32 Function(), int Function()>('waveInGetNumDevs');
 
-/// The waveInGetPosition function retrieves the current input position of the
-/// given waveform-audio input device.
+/// Retrieves the current input position of the given waveform-audio input
+/// device.
 ///
-/// ```c
-/// MMRESULT waveInGetPosition(
-///   HWAVEIN  hwi,
-///   LPMMTIME pmmt,
-///   UINT     cbmmt
-/// );
-/// ```
+/// **Note**: This function is no longer supported for use as of Windows Vista.
+/// Instead, use IAudioClock.getPosition.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveingetposition>.
+///
 /// {@category winmm}
 int waveInGetPosition(int hwi, Pointer<MMTIME> pmmt, int cbmmt) =>
     _waveInGetPosition(hwi, pmmt, cbmmt);
@@ -805,17 +633,11 @@ final _waveInGetPosition = _winmm.lookupFunction<
     int Function(
         int hwi, Pointer<MMTIME> pmmt, int cbmmt)>('waveInGetPosition');
 
-/// The waveInMessage function sends messages to the waveform-audio input device
-/// drivers.
+/// Sends messages to the waveform-audio input device drivers.
 ///
-/// ```c
-/// MMRESULT waveInMessage(
-///   HWAVEIN   hwi,
-///   UINT      uMsg,
-///   DWORD_PTR dw1,
-///   DWORD_PTR dw2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinmessage>.
+///
 /// {@category winmm}
 int waveInMessage(int? hwi, int uMsg, int? dw1, int? dw2) =>
     _waveInMessage(hwi ?? 0, uMsg, dw1 ?? 0, dw2 ?? 0);
@@ -824,19 +646,11 @@ final _waveInMessage = _winmm.lookupFunction<
     Uint32 Function(HWAVEIN hwi, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
     int Function(int hwi, int uMsg, int dw1, int dw2)>('waveInMessage');
 
-/// The waveInOpen function opens the given waveform-audio input device for
-/// recording.
+/// Opens the given waveform-audio input device for recording.
 ///
-/// ```c
-/// MMRESULT waveInOpen(
-///   LPHWAVEIN       phwi,
-///   UINT            uDeviceID,
-///   LPCWAVEFORMATEX pwfx,
-///   DWORD_PTR       dwCallback,
-///   DWORD_PTR       dwInstance,
-///   DWORD           fdwOpen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinopen>.
+///
 /// {@category winmm}
 int waveInOpen(
         Pointer<HWAVEIN>? phwi,
@@ -864,15 +678,11 @@ final _waveInOpen = _winmm.lookupFunction<
         int dwInstance,
         int fdwOpen)>('waveInOpen');
 
-/// The waveInPrepareHeader function prepares a buffer for waveform-audio input.
+/// Prepares a buffer for waveform-audio input.
 ///
-/// ```c
-/// MMRESULT waveInPrepareHeader(
-///   HWAVEIN   hwi,
-///   LPWAVEHDR pwh,
-///   UINT      cbwh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinprepareheader>.
+///
 /// {@category winmm}
 int waveInPrepareHeader(int hwi, Pointer<WAVEHDR> pwh, int cbwh) =>
     _waveInPrepareHeader(hwi, pwh, cbwh);
@@ -882,14 +692,14 @@ final _waveInPrepareHeader = _winmm.lookupFunction<
     int Function(
         int hwi, Pointer<WAVEHDR> pwh, int cbwh)>('waveInPrepareHeader');
 
-/// The waveInReset function stops input on the given waveform-audio input
-/// device and resets the current position to zero.
+/// Stops input on the given waveform-audio input device and resets the current
+/// position to zero.
 ///
-/// ```c
-/// MMRESULT waveInReset(
-///   HWAVEIN hwi
-/// );
-/// ```
+/// All pending buffers are marked as done and returned to the application.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinreset>.
+///
 /// {@category winmm}
 int waveInReset(int hwi) => _waveInReset(hwi);
 
@@ -897,14 +707,11 @@ final _waveInReset =
     _winmm.lookupFunction<Uint32 Function(HWAVEIN hwi), int Function(int hwi)>(
         'waveInReset');
 
-/// The waveInStart function starts input on the given waveform-audio input
-/// device.
+/// Starts input on the given waveform-audio input device.
 ///
-/// ```c
-/// MMRESULT waveInStart(
-///   HWAVEIN hwi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinstart>.
+///
 /// {@category winmm}
 int waveInStart(int hwi) => _waveInStart(hwi);
 
@@ -912,13 +719,11 @@ final _waveInStart =
     _winmm.lookupFunction<Uint32 Function(HWAVEIN hwi), int Function(int hwi)>(
         'waveInStart');
 
-/// The waveInStop function stops waveform-audio input.
+/// Stops waveform-audio input.
 ///
-/// ```c
-/// MMRESULT waveInStop(
-///   HWAVEIN hwi
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinstop>.
+///
 /// {@category winmm}
 int waveInStop(int hwi) => _waveInStop(hwi);
 
@@ -926,20 +731,11 @@ final _waveInStop =
     _winmm.lookupFunction<Uint32 Function(HWAVEIN hwi), int Function(int hwi)>(
         'waveInStop');
 
-/// The waveInUnprepareHeader function cleans up the preparation performed by
-/// the waveInPrepareHeader function.
+/// Cleans up the preparation performed by the waveInPrepareHeader function.
 ///
-/// This function must be called after the device driver fills a buffer and
-/// returns it to the application. You must call this function before freeing
-/// the buffer.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveinunprepareheader>.
 ///
-/// ```c
-/// MMRESULT waveInUnprepareHeader(
-///   HWAVEIN   hwi,
-///   LPWAVEHDR pwh,
-///   UINT      cbwh
-/// );
-/// ```
 /// {@category winmm}
 int waveInUnprepareHeader(int hwi, Pointer<WAVEHDR> pwh, int cbwh) =>
     _waveInUnprepareHeader(hwi, pwh, cbwh);
@@ -949,13 +745,11 @@ final _waveInUnprepareHeader = _winmm.lookupFunction<
     int Function(
         int hwi, Pointer<WAVEHDR> pwh, int cbwh)>('waveInUnprepareHeader');
 
-/// The waveOutClose function closes the given waveform-audio output device.
+/// Closes the given waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutClose(
-///   HWAVEOUT hwo
-///   );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutclose>.
+///
 /// {@category winmm}
 int waveOutClose(int hwo) => _waveOutClose(hwo);
 
@@ -963,16 +757,11 @@ final _waveOutClose =
     _winmm.lookupFunction<Uint32 Function(HWAVEOUT hwo), int Function(int hwo)>(
         'waveOutClose');
 
-/// The waveOutGetDevCaps function retrieves the capabilities of a given
-/// waveform-audio output device.
+/// Retrieves the capabilities of a given waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutGetDevCapsW(
-///   UINT          uDeviceID,
-///   LPWAVEOUTCAPS pwoc,
-///   UINT          cbwoc
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetdevcaps>.
+///
 /// {@category winmm}
 int waveOutGetDevCaps(int uDeviceID, Pointer<WAVEOUTCAPS> pwoc, int cbwoc) =>
     _waveOutGetDevCaps(uDeviceID, pwoc, cbwoc);
@@ -982,16 +771,12 @@ final _waveOutGetDevCaps = _winmm.lookupFunction<
     int Function(int uDeviceID, Pointer<WAVEOUTCAPS> pwoc,
         int cbwoc)>('waveOutGetDevCapsW');
 
-/// The waveOutGetErrorText function retrieves a textual description of the
-/// error identified by the given error number.
+/// Retrieves a textual description of the error identified by the given error
+/// number.
 ///
-/// ```c
-/// MMRESULT waveOutGetErrorTextW(
-///   MMRESULT mmrError,
-///   LPWSTR    pszText,
-///   UINT     cchText
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgeterrortext>.
+///
 /// {@category winmm}
 int waveOutGetErrorText(int mmrError, Pointer<Utf16> pszText, int cchText) =>
     _waveOutGetErrorText(mmrError, pszText, cchText);
@@ -1001,15 +786,11 @@ final _waveOutGetErrorText = _winmm.lookupFunction<
     int Function(int mmrError, Pointer<Utf16> pszText,
         int cchText)>('waveOutGetErrorTextW');
 
-/// The waveOutGetID function retrieves the device identifier for the given
-/// waveform-audio output device.
+/// Retrieves the device identifier for the given waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutGetID(
-///   HWAVEOUT hwo,
-///   LPUINT   puDeviceID
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetid>.
+///
 /// {@category winmm}
 int waveOutGetID(int hwo, Pointer<Uint32> puDeviceID) =>
     _waveOutGetID(hwo, puDeviceID);
@@ -1018,27 +799,23 @@ final _waveOutGetID = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Pointer<Uint32> puDeviceID),
     int Function(int hwo, Pointer<Uint32> puDeviceID)>('waveOutGetID');
 
-/// The waveOutGetNumDevs function retrieves the number of waveform-audio output
-/// devices present in the system.
+/// Retrieves the number of waveform-audio output devices present in the system.
 ///
-/// ```c
-/// UINT waveOutGetNumDevs();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetnumdevs>.
+///
 /// {@category winmm}
 int waveOutGetNumDevs() => _waveOutGetNumDevs();
 
 final _waveOutGetNumDevs = _winmm
     .lookupFunction<Uint32 Function(), int Function()>('waveOutGetNumDevs');
 
-/// The waveOutGetPitch function retrieves the current pitch setting for the
-/// specified waveform-audio output device.
+/// Retrieves the current pitch setting for the specified waveform-audio output
+/// device.
 ///
-/// ```c
-/// MMRESULT waveOutGetPitch(
-///   HWAVEOUT hwo,
-///   LPDWORD  pdwPitch
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetpitch>.
+///
 /// {@category winmm}
 int waveOutGetPitch(int hwo, Pointer<Uint32> pdwPitch) =>
     _waveOutGetPitch(hwo, pdwPitch);
@@ -1047,15 +824,12 @@ final _waveOutGetPitch = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Pointer<Uint32> pdwPitch),
     int Function(int hwo, Pointer<Uint32> pdwPitch)>('waveOutGetPitch');
 
-/// The waveOutGetPlaybackRate function retrieves the current playback rate for
-/// the specified waveform-audio output device.
+/// Retrieves the current playback rate for the specified waveform-audio output
+/// device.
 ///
-/// ```c
-/// MMRESULT waveOutGetPlaybackRate(
-///   HWAVEOUT hwo,
-///   LPDWORD  pdwRate
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetplaybackrate>.
+///
 /// {@category winmm}
 int waveOutGetPlaybackRate(int hwo, Pointer<Uint32> pdwRate) =>
     _waveOutGetPlaybackRate(hwo, pdwRate);
@@ -1064,16 +838,12 @@ final _waveOutGetPlaybackRate = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Pointer<Uint32> pdwRate),
     int Function(int hwo, Pointer<Uint32> pdwRate)>('waveOutGetPlaybackRate');
 
-/// The waveOutGetPosition function retrieves the current playback position of
-/// the given waveform-audio output device.
+/// Retrieves the current playback position of the given waveform-audio output
+/// device.
 ///
-/// ```c
-/// MMRESULT waveOutGetPosition(
-///   HWAVEOUT hwo,
-///   LPMMTIME pmmt,
-///   UINT     cbmmt
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetposition>.
+///
 /// {@category winmm}
 int waveOutGetPosition(int hwo, Pointer<MMTIME> pmmt, int cbmmt) =>
     _waveOutGetPosition(hwo, pmmt, cbmmt);
@@ -1083,15 +853,12 @@ final _waveOutGetPosition = _winmm.lookupFunction<
     int Function(
         int hwo, Pointer<MMTIME> pmmt, int cbmmt)>('waveOutGetPosition');
 
-/// The waveOutGetVolume function retrieves the current volume level of the
-/// specified waveform-audio output device.
+/// Retrieves the current volume level of the specified waveform-audio output
+/// device.
 ///
-/// ```c
-/// MMRESULT waveOutGetVolume(
-///   HWAVEOUT hwo,
-///   LPDWORD  pdwVolume
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutgetvolume>.
+///
 /// {@category winmm}
 int waveOutGetVolume(int? hwo, Pointer<Uint32> pdwVolume) =>
     _waveOutGetVolume(hwo ?? 0, pdwVolume);
@@ -1100,17 +867,11 @@ final _waveOutGetVolume = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Pointer<Uint32> pdwVolume),
     int Function(int hwo, Pointer<Uint32> pdwVolume)>('waveOutGetVolume');
 
-/// The waveOutMessage function sends messages to the waveform-audio output
-/// device drivers.
+/// Sends messages to the waveform-audio output device drivers.
 ///
-/// ```c
-/// MMRESULT waveOutMessage(
-///   HWAVEOUT  hwo,
-///   UINT      uMsg,
-///   DWORD_PTR dw1,
-///   DWORD_PTR dw2
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutmessage>.
+///
 /// {@category winmm}
 int waveOutMessage(int? hwo, int uMsg, int dw1, int dw2) =>
     _waveOutMessage(hwo ?? 0, uMsg, dw1, dw2);
@@ -1119,19 +880,11 @@ final _waveOutMessage = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Uint32 uMsg, IntPtr dw1, IntPtr dw2),
     int Function(int hwo, int uMsg, int dw1, int dw2)>('waveOutMessage');
 
-/// The waveOutOpen function opens the given waveform-audio output device for
-/// playback.
+/// Opens the given waveform-audio output device for playback.
 ///
-/// ```c
-/// MMRESULT waveOutOpen(
-///   LPHWAVEOUT      phwo,
-///   UINT            uDeviceID,
-///   LPCWAVEFORMATEX pwfx,
-///   DWORD_PTR       dwCallback,
-///   DWORD_PTR       dwInstance,
-///   DWORD           fdwOpen
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutopen>.
+///
 /// {@category winmm}
 int waveOutOpen(
         Pointer<HWAVEOUT>? phwo,
@@ -1159,17 +912,14 @@ final _waveOutOpen = _winmm.lookupFunction<
         int dwInstance,
         int fdwOpen)>('waveOutOpen');
 
-/// The waveOutPause function pauses playback on the given waveform-audio output
-/// device.
+/// Pauses playback on the given waveform-audio output device.
 ///
 /// The current position is saved. Use the waveOutRestart function to resume
 /// playback from the current position.
 ///
-/// ```c
-/// MMRESULT waveOutPause(
-///   HWAVEOUT hwo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutpause>.
+///
 /// {@category winmm}
 int waveOutPause(int hwo) => _waveOutPause(hwo);
 
@@ -1177,16 +927,11 @@ final _waveOutPause =
     _winmm.lookupFunction<Uint32 Function(HWAVEOUT hwo), int Function(int hwo)>(
         'waveOutPause');
 
-/// The waveOutPrepareHeader function prepares a waveform-audio data block for
-/// playback.
+/// Prepares a waveform-audio data block for playback.
 ///
-/// ```c
-/// MMRESULT waveOutPrepareHeader(
-///   HWAVEOUT  hwo,
-///   LPWAVEHDR pwh,
-///   UINT      cbwh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutprepareheader>.
+///
 /// {@category winmm}
 int waveOutPrepareHeader(int hwo, Pointer<WAVEHDR> pwh, int cbwh) =>
     _waveOutPrepareHeader(hwo, pwh, cbwh);
@@ -1196,17 +941,15 @@ final _waveOutPrepareHeader = _winmm.lookupFunction<
     int Function(
         int hwo, Pointer<WAVEHDR> pwh, int cbwh)>('waveOutPrepareHeader');
 
-/// The waveOutReset function stops playback on the given waveform-audio output
-/// device and resets the current position to zero.
+/// Stops playback on the given waveform-audio output device and resets the
+/// current position to zero.
 ///
 /// All pending playback buffers are marked as done (WHDR_DONE) and returned to
 /// the application.
 ///
-/// ```c
-/// MMRESULT waveOutReset(
-///   HWAVEOUT hwo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutreset>.
+///
 /// {@category winmm}
 int waveOutReset(int hwo) => _waveOutReset(hwo);
 
@@ -1214,14 +957,11 @@ final _waveOutReset =
     _winmm.lookupFunction<Uint32 Function(HWAVEOUT hwo), int Function(int hwo)>(
         'waveOutReset');
 
-/// The waveOutRestart function resumes playback on a paused waveform-audio
-/// output device.
+/// Resumes playback on a paused waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutRestart(
-///   HWAVEOUT hwo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutrestart>.
+///
 /// {@category winmm}
 int waveOutRestart(int hwo) => _waveOutRestart(hwo);
 
@@ -1229,15 +969,11 @@ final _waveOutRestart =
     _winmm.lookupFunction<Uint32 Function(HWAVEOUT hwo), int Function(int hwo)>(
         'waveOutRestart');
 
-/// The waveOutSetPitch function sets the pitch for the specified waveform-audio
-/// output device.
+/// Sets the pitch for the specified waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutSetPitch(
-///   HWAVEOUT hwo,
-///   DWORD    dwPitch
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutsetpitch>.
+///
 /// {@category winmm}
 int waveOutSetPitch(int hwo, int dwPitch) => _waveOutSetPitch(hwo, dwPitch);
 
@@ -1245,15 +981,11 @@ final _waveOutSetPitch = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Uint32 dwPitch),
     int Function(int hwo, int dwPitch)>('waveOutSetPitch');
 
-/// The waveOutSetPlaybackRate function sets the playback rate for the specified
-/// waveform-audio output device.
+/// Sets the playback rate for the specified waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutSetPlaybackRate(
-///   HWAVEOUT hwo,
-///   DWORD    dwRate
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutsetplaybackrate>.
+///
 /// {@category winmm}
 int waveOutSetPlaybackRate(int hwo, int dwRate) =>
     _waveOutSetPlaybackRate(hwo, dwRate);
@@ -1262,15 +994,11 @@ final _waveOutSetPlaybackRate = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Uint32 dwRate),
     int Function(int hwo, int dwRate)>('waveOutSetPlaybackRate');
 
-/// The waveOutSetVolume function sets the volume level of the specified
-/// waveform-audio output device.
+/// Sets the volume level of the specified waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutSetVolume(
-///   HWAVEOUT hwo,
-///   DWORD    dwVolume
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutsetvolume>.
+///
 /// {@category winmm}
 int waveOutSetVolume(int? hwo, int dwVolume) =>
     _waveOutSetVolume(hwo ?? 0, dwVolume);
@@ -1279,19 +1007,14 @@ final _waveOutSetVolume = _winmm.lookupFunction<
     Uint32 Function(HWAVEOUT hwo, Uint32 dwVolume),
     int Function(int hwo, int dwVolume)>('waveOutSetVolume');
 
-/// The waveOutUnprepareHeader function cleans up the preparation performed by
-/// the waveOutPrepareHeader function.
+/// Cleans up the preparation performed by the waveOutPrepareHeader function.
 ///
 /// This function must be called after the device driver is finished with a data
 /// block. You must call this function before freeing the buffer.
 ///
-/// ```c
-/// MMRESULT waveOutUnprepareHeader(
-///   HWAVEOUT  hwo,
-///   LPWAVEHDR pwh,
-///   UINT      cbwh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutunprepareheader>.
+///
 /// {@category winmm}
 int waveOutUnprepareHeader(int hwo, Pointer<WAVEHDR> pwh, int cbwh) =>
     _waveOutUnprepareHeader(hwo, pwh, cbwh);
@@ -1301,16 +1024,11 @@ final _waveOutUnprepareHeader = _winmm.lookupFunction<
     int Function(
         int hwo, Pointer<WAVEHDR> pwh, int cbwh)>('waveOutUnprepareHeader');
 
-/// The waveOutWrite function sends a data block to the given waveform-audio
-/// output device.
+/// Sends a data block to the given waveform-audio output device.
 ///
-/// ```c
-/// MMRESULT waveOutWrite(
-///   HWAVEOUT  hwo,
-///   LPWAVEHDR pwh,
-///   UINT      cbwh
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/mmeapi/nf-mmeapi-waveoutwrite>.
+///
 /// {@category winmm}
 int waveOutWrite(int hwo, Pointer<WAVEHDR> pwh, int cbwh) =>
     _waveOutWrite(hwo, pwh, cbwh);

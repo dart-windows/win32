@@ -23,13 +23,9 @@ final _api_ms_win_wsl_api_l1_1_0 =
 /// Modifies the behavior of a distribution registered with the Windows
 /// Subsystem for Linux (WSL).
 ///
-/// ```c
-/// HRESULT WslConfigureDistribution(
-///   _In_ PCWSTR distributionName,
-///   _In_ ULONG defaultUID,
-///   WSL_DISTRIBUTION_FLAGS wslDistributionFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wslconfiguredistribution>.
+///
 /// {@category wslapi}
 int WslConfigureDistribution(Pointer<Utf16> distributionName, int defaultUID,
         int wslDistributionFlags) =>
@@ -45,16 +41,9 @@ final _WslConfigureDistribution = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
 /// Retrieves the current configuration of a distribution registered with the
 /// Windows Subsystem for Linux (WSL).
 ///
-/// ```c
-/// HRESULT WslGetDistributionConfiguration(
-///   _In_ PCWSTR distributionName,
-///   _Out_ ULONG *distributionVersion,
-///   _Out_ ULONG *defaultUID,
-///   _Out_ WSL_DISTRIBUTION_FLAGS *wslDistributionFlags,
-///   _Outptr_result_buffer_ PSTR **defaultEnvironmentVariables,
-///   _Out_ ULONG *defaultEnvironmentVariableCount
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wslgetdistributionconfiguration>.
+///
 /// {@category wslapi}
 int WslGetDistributionConfiguration(
         Pointer<Utf16> distributionName,
@@ -92,11 +81,9 @@ final _WslGetDistributionConfiguration =
 /// Determines if a distribution is registered with the Windows Subsystem for
 /// Linux (WSL).
 ///
-/// ```c
-/// BOOL WslIsDistributionRegistered(
-///   _In_ PCWSTR distributionName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wslisdistributionregistered>.
+///
 /// {@category wslapi}
 int WslIsDistributionRegistered(Pointer<Utf16> distributionName) =>
     _WslIsDistributionRegistered(distributionName);
@@ -109,17 +96,9 @@ final _WslIsDistributionRegistered = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
 /// Launches a Windows Subsystem for Linux (WSL) process in the context of a
 /// particular distribution.
 ///
-/// ```c
-/// HRESULT WslLaunch(
-///   _In_ PCWSTR distributionName,
-///   _In_opt_ PCWSTR command,
-///   _In_ BOOL useCurrentWorkingDirectory,
-///   _In_ HANDLE stdIn,
-///   _In_ HANDLE stdOut,
-///   _In_      HANDLE  stdErr,
-///   _Out_     HANDLE  *process
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wsllaunch>.
+///
 /// {@category wslapi}
 int WslLaunch(
         Pointer<Utf16> distributionName,
@@ -151,17 +130,11 @@ final _WslLaunch = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
         Pointer<HANDLE> process)>('WslLaunch');
 
 /// Launches an interactive Windows Subsystem for Linux (WSL) process in the
-/// context of a particular distribution.This differs from WslLaunch in that the
-/// end user will be able to interact with the newly-created process.
+/// context of a particular distribution.
 ///
-/// ```c
-/// HRESULT WslLaunchInteractive(
-///   _In_ PCWSTR distributionName,
-///   _In_opt_ command,
-///   _In_ BOOL useCurrentWorkingDirectory,
-///   _Out_ DWORD *exitCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wsllaunchinteractive>.
+///
 /// {@category wslapi}
 int WslLaunchInteractive(
         Pointer<Utf16> distributionName,
@@ -182,12 +155,9 @@ final _WslLaunchInteractive = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
 
 /// Registers a new distribution with the Windows Subsystem for Linux (WSL).
 ///
-/// ```c
-/// HRESULT WslRegisterDistribution(
-///   _In_ PCWSTR distributionName,
-///   _In_ PCWSTR tarGzFilename
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wslregisterdistribution>.
+///
 /// {@category wslapi}
 int WslRegisterDistribution(
         Pointer<Utf16> distributionName, Pointer<Utf16> tarGzFilename) =>
@@ -201,11 +171,9 @@ final _WslRegisterDistribution = _api_ms_win_wsl_api_l1_1_0.lookupFunction<
 
 /// Unregisters a distribution from the Windows Subsystem for Linux (WSL).
 ///
-/// ```c
-/// HRESULT WslUnregisterDistribution(
-///   _In_ PCWSTR distributionName
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wslapi/nf-wslapi-wslunregisterdistribution>.
+///
 /// {@category wslapi}
 int WslUnregisterDistribution(Pointer<Utf16> distributionName) =>
     _WslUnregisterDistribution(distributionName);

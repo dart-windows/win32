@@ -19,14 +19,13 @@ import '../types.dart';
 
 final _shell32 = DynamicLibrary.open('shell32.dll');
 
-/// Retrieves the command-line string for the current process.
+/// Parses a Unicode command line string and returns an array of pointers to the
+/// command line arguments, along with a count of such arguments, in a way that
+/// is similar to the standard C run-time argv and argc values.
 ///
-/// ```c
-/// LPWSTR CommandLineToArgvW(
-///   LPCWSTR lpCmdLine,
-///   int     *pNumArgs
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw>.
+///
 /// {@category shell32}
 Pointer<Pointer<Utf16>> CommandLineToArgv(
         Pointer<Utf16> lpCmdLine, Pointer<Int32> pNumArgs) =>
@@ -41,13 +40,9 @@ final _CommandLineToArgv = _shell32.lookupFunction<
 /// Gets a handle to an icon stored as a resource in a file or an icon stored in
 /// a file's associated executable file.
 ///
-/// ```c
-/// HICON ExtractAssociatedIconW(
-///   HINSTANCE hInst,
-///   LPWSTR    pszIconPath,
-///   WORD      *piIcon
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-extractassociatediconw>.
+///
 /// {@category shell32}
 int ExtractAssociatedIcon(Pointer<Utf16> pszIconPath, Pointer<Uint16> piIcon) =>
     _ExtractAssociatedIcon(0, pszIconPath, piIcon);
@@ -61,13 +56,9 @@ final _ExtractAssociatedIcon = _shell32.lookupFunction<
 /// Retrieves the name of and handle to the executable (.exe) file associated
 /// with a specific document file.
 ///
-/// ```c
-/// HINSTANCE FindExecutableW(
-///   LPCWSTR lpFile,
-///   LPCWSTR lpDirectory,
-///   LPWSTR  lpResult
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-findexecutablew>.
+///
 /// {@category shell32}
 int FindExecutable(Pointer<Utf16> lpFile, Pointer<Utf16>? lpDirectory,
         Pointer<Utf16> lpResult) =>
@@ -81,14 +72,9 @@ final _FindExecutable = _shell32.lookupFunction<
 
 /// Creates and initializes a Shell item object from a parsing name.
 ///
-/// ```c
-/// SHSTDAPI SHCreateItemFromParsingName(
-///   PCWSTR   pszPath,
-///   IBindCtx *pbc,
-///   REFIID   riid,
-///   void     **ppv
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-shcreateitemfromparsingname>.
+///
 /// {@category shell32}
 int SHCreateItemFromParsingName(Pointer<Utf16> pszPath, VTablePointer? pbc,
         Pointer<GUID> riid, Pointer<Pointer> ppv) =>
@@ -102,12 +88,9 @@ final _SHCreateItemFromParsingName = _shell32.lookupFunction<
 
 /// Sends a message to the taskbar's status area.
 ///
-/// ```c
-/// BOOL Shell_NotifyIconW(
-///   DWORD dwMessage,
-///   NOTIFYICONDATA *lpData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shell_notifyiconw>.
+///
 /// {@category shell32}
 int Shell_NotifyIcon(int dwMessage, Pointer<NOTIFYICONDATA> lpData) =>
     _Shell_NotifyIcon(dwMessage, lpData);
@@ -119,14 +102,9 @@ final _Shell_NotifyIcon = _shell32.lookupFunction<
 
 /// Displays a ShellAbout dialog box.
 ///
-/// ```c
-/// INT ShellAboutW(
-///   HWND    hWnd,
-///   LPCWSTR szApp,
-///   LPCWSTR szOtherStuff,
-///   HICON   hIcon
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shellaboutw>.
+///
 /// {@category shell32}
 int ShellAbout(int? hWnd, Pointer<Utf16> szApp, Pointer<Utf16>? szOtherStuff,
         int? hIcon) =>
@@ -140,16 +118,9 @@ final _ShellAbout = _shell32.lookupFunction<
 
 /// Performs an operation on a specified file.
 ///
-/// ```c
-/// HINSTANCE ShellExecuteW(
-///   HWND    hwnd,
-///   LPCWSTR lpOperation,
-///   LPCWSTR lpFile,
-///   LPCWSTR lpParameters,
-///   LPCWSTR lpDirectory,
-///   INT     nShowCmd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shellexecutew>.
+///
 /// {@category shell32}
 int ShellExecute(
         int? hwnd,
@@ -179,11 +150,9 @@ final _ShellExecute = _shell32.lookupFunction<
 
 /// Performs an operation on a specified file.
 ///
-/// ```c
-/// BOOL ShellExecuteExW(
-///   SHELLEXECUTEINFOW *pExecInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shellexecuteexw>.
+///
 /// {@category shell32}
 int ShellExecuteEx(Pointer<SHELLEXECUTEINFO> pExecInfo) =>
     _ShellExecuteEx(pExecInfo);
@@ -194,13 +163,9 @@ final _ShellExecuteEx = _shell32.lookupFunction<
 
 /// Empties the Recycle Bin on the specified drive.
 ///
-/// ```c
-/// SHSTDAPI SHEmptyRecycleBinW(
-///   HWND    hwnd,
-///   LPCWSTR pszRootPath,
-///   DWORD   dwFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shemptyrecyclebinw>.
+///
 /// {@category shell32}
 int SHEmptyRecycleBin(int? hwnd, Pointer<Utf16>? pszRootPath, int dwFlags) =>
     _SHEmptyRecycleBin(hwnd ?? 0, pszRootPath ?? nullptr, dwFlags);
@@ -212,11 +177,12 @@ final _SHEmptyRecycleBin = _shell32.lookupFunction<
 
 /// Copies, moves, renames, or deletes a file system object.
 ///
-/// ```c
-/// int SHFileOperationW(
-///   LPSHFILEOPSTRUCTW lpFileOp
-/// );
-/// ```
+/// On Windows Vista and later releases, we recommend that you use
+/// IFileOperation instead of this function.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shfileoperationw>.
+///
 /// {@category shell32}
 int SHFileOperation(Pointer<SHFILEOPSTRUCT> lpFileOp) =>
     _SHFileOperation(lpFileOp);
@@ -228,11 +194,9 @@ final _SHFileOperation = _shell32.lookupFunction<
 /// Frees a file name mapping object that was retrieved by the SHFileOperation
 /// function.
 ///
-/// ```c
-/// void SHFreeNameMappings(
-///   HANDLE hNameMappings
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shfreenamemappings>.
+///
 /// {@category shell32}
 void SHFreeNameMappings(int? hNameMappings) =>
     _SHFreeNameMappings(hNameMappings ?? 0);
@@ -244,11 +208,9 @@ final _SHFreeNameMappings = _shell32.lookupFunction<
 /// Retrieves the IShellFolder interface for the desktop folder, which is the
 /// root of the Shell's namespace.
 ///
-/// ```c
-/// SHSTDAPI SHGetDesktopFolder(
-///   IShellFolder **ppshf
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shlobj_core/nf-shlobj_core-shgetdesktopfolder>.
+///
 /// {@category shell32}
 int SHGetDesktopFolder(Pointer<VTablePointer> ppshf) =>
     _SHGetDesktopFolder(ppshf);
@@ -259,14 +221,9 @@ final _SHGetDesktopFolder = _shell32.lookupFunction<
 
 /// Retrieves disk space information for a disk volume.
 ///
-/// ```c
-/// BOOL SHGetDiskFreeSpaceExW(
-///   LPCWSTR        pszDirectoryName,
-///   ULARGE_INTEGER *pulFreeBytesAvailableToCaller,
-///   ULARGE_INTEGER *pulTotalNumberOfBytes,
-///   ULARGE_INTEGER *pulTotalNumberOfFreeBytes
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shgetdiskfreespaceexw>.
+///
 /// {@category shell32}
 int SHGetDiskFreeSpaceEx(
         Pointer<Utf16> pszDirectoryName,
@@ -293,12 +250,9 @@ final _SHGetDiskFreeSpaceEx = _shell32.lookupFunction<
 
 /// Returns the type of media that is in the given drive.
 ///
-/// ```c
-/// HRESULT SHGetDriveMedia(
-///   PCWSTR pszDrive,
-///   DWORD  *pdwMediaContent
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shgetdrivemedia>.
+///
 /// {@category shell32}
 int SHGetDriveMedia(Pointer<Utf16> pszDrive, Pointer<Uint32> pdwMediaContent) =>
     _SHGetDriveMedia(pszDrive, pdwMediaContent);
@@ -311,15 +265,9 @@ final _SHGetDriveMedia = _shell32.lookupFunction<
 /// Retrieves information about an object in the file system, such as a file,
 /// folder, directory, or drive root.
 ///
-/// ```c
-/// DWORD_PTR SHGetFileInfoW(
-///   LPCWSTR     pszPath,
-///   DWORD       dwFileAttributes,
-///   SHFILEINFOW *psfi,
-///   UINT        cbFileInfo,
-///   UINT        uFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shgetfileinfow>.
+///
 /// {@category shell32}
 int SHGetFileInfo(Pointer<Utf16> pszPath, int dwFileAttributes,
         Pointer<SHFILEINFO>? psfi, int cbFileInfo, int uFlags) =>
@@ -338,15 +286,9 @@ final _SHGetFileInfo = _shell32.lookupFunction<
 
 /// Gets the path of a folder identified by a CSIDL value.
 ///
-/// ```c
-/// SHFOLDERAPI SHGetFolderPathW(
-///   HWND   hwnd,
-///   int    csidl,
-///   HANDLE hToken,
-///   DWORD  dwFlags,
-///   LPWSTR pszPath
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shlobj_core/nf-shlobj_core-shgetfolderpathw>.
+///
 /// {@category shell32}
 int SHGetFolderPath(
         int csidl, int? hToken, int dwFlags, Pointer<Utf16> pszPath) =>
@@ -361,14 +303,9 @@ final _SHGetFolderPath = _shell32.lookupFunction<
 /// Retrieves the full path of a known folder identified by the folder's
 /// KNOWNFOLDERID.
 ///
-/// ```c
-/// HRESULT SHGetKnownFolderPath(
-///   REFKNOWNFOLDERID rfid,
-///   DWORD            dwFlags,
-///   HANDLE           hToken,
-///   PWSTR            *ppszPath
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath>.
+///
 /// {@category shell32}
 int SHGetKnownFolderPath(Pointer<GUID> rfid, int dwFlags, int? hToken,
         Pointer<Pointer<Utf16>> ppszPath) =>
@@ -383,12 +320,9 @@ final _SHGetKnownFolderPath = _shell32.lookupFunction<
 /// Retrieves the size of the Recycle Bin and the number of items in it, for a
 /// specified drive.
 ///
-/// ```c
-/// SHSTDAPI SHQueryRecycleBinW(
-///   LPCWSTR         pszRootPath,
-///   LPSHQUERYRBINFO pSHQueryRBInfo
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/shellapi/nf-shellapi-shqueryrecyclebinw>.
+///
 /// {@category shell32}
 int SHQueryRecycleBin(
         Pointer<Utf16>? pszRootPath, Pointer<SHQUERYRBINFO> pSHQueryRBInfo) =>

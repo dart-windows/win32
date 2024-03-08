@@ -22,12 +22,9 @@ final _api_ms_win_core_winrt_l1_1_0 =
 
 /// Activates the specified Windows Runtime class.
 ///
-/// ```c
-/// HRESULT RoActivateInstance(
-///   HSTRING      activatableClassId,
-///   IInspectable **instance
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/roapi/nf-roapi-roactivateinstance>.
+///
 /// {@category winrt}
 int RoActivateInstance(
         int activatableClassId, Pointer<VTablePointer> instance) =>
@@ -41,13 +38,9 @@ final _RoActivateInstance = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
 
 /// Gets the activation factory for the specified runtime class.
 ///
-/// ```c
-/// HRESULT RoGetActivationFactory(
-///   HSTRING activatableClassId,
-///   REFIID  iid,
-///   void    **factory
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/roapi/nf-roapi-rogetactivationfactory>.
+///
 /// {@category winrt}
 int RoGetActivationFactory(
         int activatableClassId, Pointer<GUID> iid, Pointer<Pointer> factory) =>
@@ -61,11 +54,9 @@ final _RoGetActivationFactory = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
 
 /// Gets a unique identifier for the current apartment.
 ///
-/// ```c
-/// HRESULT RoGetApartmentIdentifier(
-///   UINT64 *apartmentIdentifier
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/roapi/nf-roapi-rogetapartmentidentifier>.
+///
 /// {@category winrt}
 int RoGetApartmentIdentifier(Pointer<Uint64> apartmentIdentifier) =>
     _RoGetApartmentIdentifier(apartmentIdentifier);
@@ -78,11 +69,9 @@ final _RoGetApartmentIdentifier = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
 /// Initializes the Windows Runtime on the current thread with the specified
 /// concurrency model.
 ///
-/// ```c
-/// HRESULT RoInitialize(
-///   RO_INIT_TYPE initType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/roapi/nf-roapi-roinitialize>.
+///
 /// {@category winrt}
 int RoInitialize(int initType) => _RoInitialize(initType);
 
@@ -92,9 +81,9 @@ final _RoInitialize = _api_ms_win_core_winrt_l1_1_0.lookupFunction<
 
 /// Closes the Windows Runtime on the current thread.
 ///
-/// ```c
-/// void RoUninitialize();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/roapi/nf-roapi-rouninitialize>.
+///
 /// {@category winrt}
 void RoUninitialize() => _RoUninitialize();
 

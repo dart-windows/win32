@@ -24,14 +24,9 @@ final _comctl32 = DynamicLibrary.open('comctl32.dll');
 /// The last handler in the subclass chain calls the original window procedure
 /// for the window.
 ///
-/// ```c
-/// LRESULT DefSubclassProc(
-///   HWND   hWnd,
-///   UINT   uMsg,
-///   WPARAM wParam,
-///   LPARAM lParam
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-defsubclassproc>.
+///
 /// {@category comctl32}
 int DefSubclassProc(int hWnd, int uMsg, int wParam, int lParam) =>
     _DefSubclassProc(hWnd, uMsg, wParam, lParam);
@@ -41,17 +36,11 @@ final _DefSubclassProc = _comctl32.lookupFunction<
     int Function(
         int hWnd, int uMsg, int wParam, int lParam)>('DefSubclassProc');
 
-/// The DrawStatusText function draws the specified text in the style of a
-/// status window with borders.
+/// Draws the specified text in the style of a status window with borders.
 ///
-/// ```c
-/// void DrawStatusTextW(
-///   HDC     hDC,
-///   LPCRECT lprc,
-///   LPCWSTR pszText,
-///   UINT    uFlags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-drawstatustextw>.
+///
 /// {@category comctl32}
 void DrawStatusText(
         int hDC, Pointer<RECT> lprc, Pointer<Utf16> pszText, int uFlags) =>
@@ -68,11 +57,9 @@ final _DrawStatusText = _comctl32.lookupFunction<
 ///
 /// An application must call this function before creating a common control.
 ///
-/// ```c
-/// BOOL InitCommonControlsEx(
-///   const INITCOMMONCONTROLSEX *picce
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-initcommoncontrolsex>.
+///
 /// {@category comctl32}
 int InitCommonControlsEx(Pointer<INITCOMMONCONTROLSEX> picce) =>
     _InitCommonControlsEx(picce);
@@ -83,13 +70,9 @@ final _InitCommonControlsEx = _comctl32.lookupFunction<
 
 /// Removes a subclass callback from a window.
 ///
-/// ```c
-/// BOOL RemoveWindowSubclass(
-///   HWND         hWnd,
-///   SUBCLASSPROC pfnSubclass,
-///   UINT_PTR     uIdSubclass
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-removewindowsubclass>.
+///
 /// {@category comctl32}
 int RemoveWindowSubclass(int hWnd,
         Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass, int uIdSubclass) =>
@@ -103,14 +86,9 @@ final _RemoveWindowSubclass = _comctl32.lookupFunction<
 
 /// Installs or updates a window subclass callback.
 ///
-/// ```c
-/// BOOL SetWindowSubclass(
-///   HWND         hWnd,
-///   SUBCLASSPROC pfnSubclass,
-///   UINT_PTR     uIdSubclass,
-///   DWORD_PTR    dwRefData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-setwindowsubclass>.
+///
 /// {@category comctl32}
 int SetWindowSubclass(
         int hWnd,
@@ -125,24 +103,11 @@ final _SetWindowSubclass = _comctl32.lookupFunction<
     int Function(int hWnd, Pointer<NativeFunction<SUBCLASSPROC>> pfnSubclass,
         int uIdSubclass, int dwRefData)>('SetWindowSubclass');
 
-/// The TaskDialog function creates, displays, and operates a task dialog.
+/// Creates, displays, and operates a task dialog.
 ///
-/// The task dialog contains application-defined message text and title, icons,
-/// and any combination of predefined push buttons. This function does not
-/// support the registration of a callback function to receive notifications.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-taskdialog>.
 ///
-/// ```c
-/// HRESULT TaskDialog(
-///   HWND                           hwndOwner,
-///   HINSTANCE                      hInstance,
-///   PCWSTR                         pszWindowTitle,
-///   PCWSTR                         pszMainInstruction,
-///   PCWSTR                         pszContent,
-///   TASKDIALOG_COMMON_BUTTON_FLAGS dwCommonButtons,
-///   PCWSTR                         pszIcon,
-///   int                            *pnButton
-/// );
-/// ```
 /// {@category comctl32}
 int TaskDialog(
         int? hwndOwner,
@@ -183,21 +148,11 @@ final _TaskDialog = _comctl32.lookupFunction<
         Pointer<Utf16> pszIcon,
         Pointer<Int32> pnButton)>('TaskDialog');
 
-/// The TaskDialogIndirect function creates, displays, and operates a task
-/// dialog.
+/// Creates, displays, and operates a task dialog.
 ///
-/// The task dialog contains application-defined icons, messages, title,
-/// verification check box, command links, push buttons, and radio buttons. This
-/// function can register a callback function to receive notification messages.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/commctrl/nf-commctrl-taskdialogindirect>.
 ///
-/// ```c
-/// HRESULT TaskDialogIndirect(
-///   const TASKDIALOGCONFIG *pTaskConfig,
-///   int                    *pnButton,
-///   int                    *pnRadioButton,
-///   BOOL                   *pfVerificationFlagChecked
-/// );
-/// ```
 /// {@category comctl32}
 int TaskDialogIndirect(
         Pointer<TASKDIALOGCONFIG> pTaskConfig,

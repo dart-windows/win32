@@ -20,14 +20,11 @@ import '../types.dart';
 final _api_ms_win_core_apiquery_l2_1_0 =
     DynamicLibrary.open('api-ms-win-core-apiquery-l2-1-0.dll');
 
-/// The IsApiSetImplemented function tests if a specified API set is present on
-/// the computer.
+/// Tests if a specified API set is present on the computer.
 ///
-/// ```c
-/// BOOL IsApiSetImplemented(
-///   PCSTR Contract
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/apiquery2/nf-apiquery2-isapisetimplemented>.
+///
 /// {@category onecore}
 int IsApiSetImplemented(Pointer<Utf8> contract) =>
     _IsApiSetImplemented(contract);

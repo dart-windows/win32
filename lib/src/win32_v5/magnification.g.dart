@@ -21,12 +21,9 @@ final _magnification = DynamicLibrary.open('magnification.dll');
 
 /// Gets the color transformation matrix for a magnifier control.
 ///
-/// ```c
-/// BOOL MagGetColorEffect(
-///   HWND            hwnd,
-///   PMAGCOLOREFFECT pEffect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetcoloreffect>.
+///
 /// {@category magnification}
 int MagGetColorEffect(int hwnd, Pointer<MAGCOLOREFFECT> pEffect) =>
     _MagGetColorEffect(hwnd, pEffect);
@@ -39,11 +36,9 @@ final _MagGetColorEffect = _magnification.lookupFunction<
 /// Retrieves the color transformation matrix associated with the full-screen
 /// magnifier.
 ///
-/// ```c
-/// BOOL MagGetFullscreenColorEffect(
-///   PMAGCOLOREFFECT pEffect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetfullscreencoloreffect>.
+///
 /// {@category magnification}
 int MagGetFullscreenColorEffect(Pointer<MAGCOLOREFFECT> pEffect) =>
     _MagGetFullscreenColorEffect(pEffect);
@@ -55,13 +50,9 @@ final _MagGetFullscreenColorEffect = _magnification.lookupFunction<
 
 /// Retrieves the magnification settings for the full-screen magnifier.
 ///
-/// ```c
-/// BOOL MagGetFullscreenTransform(
-///   float *pMagLevel,
-///   int   *pxOffset,
-///   int   *pyOffset
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetfullscreentransform>.
+///
 /// {@category magnification}
 int MagGetFullscreenTransform(Pointer<Float> pMagLevel, Pointer<Int32> pxOffset,
         Pointer<Int32> pyOffset) =>
@@ -76,11 +67,9 @@ final _MagGetFullscreenTransform = _magnification.lookupFunction<
 /// Retrieves the registered callback function that implements a custom
 /// transform for image scaling.
 ///
-/// ```c
-/// MagImageScalingCallback MagGetImageScalingCallback(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetimagescalingcallback>.
+///
 /// {@category magnification}
 Pointer<NativeFunction<MagImageScalingCallback>> MagGetImageScalingCallback(
         int hwnd) =>
@@ -94,13 +83,9 @@ final _MagGetImageScalingCallback = _magnification.lookupFunction<
 /// Retrieves the current input transformation for pen and touch input,
 /// represented as a source rectangle and a destination rectangle.
 ///
-/// ```c
-/// BOOL MagGetInputTransform(
-///   BOOL   *pfEnabled,
-///   LPRECT pRectSource,
-///   LPRECT pRectDest
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetinputtransform>.
+///
 /// {@category magnification}
 int MagGetInputTransform(Pointer<BOOL> pfEnabled, Pointer<RECT> pRectSource,
         Pointer<RECT> pRectDest) =>
@@ -115,14 +100,9 @@ final _MagGetInputTransform = _magnification.lookupFunction<
 /// Retrieves the list of windows that are magnified or excluded from
 /// magnification.
 ///
-/// ```c
-/// int MagGetWindowFilterList(
-///   HWND  hwnd,
-///   DWORD *pdwFilterMode,
-///   int   count,
-///   HWND  *pHWND
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetwindowfilterlist>.
+///
 /// {@category magnification}
 int MagGetWindowFilterList(int hwnd, Pointer<Uint32> pdwFilterMode, int count,
         Pointer<HWND> pHWND) =>
@@ -136,12 +116,9 @@ final _MagGetWindowFilterList = _magnification.lookupFunction<
 
 /// Gets the rectangle of the area that is being magnified.
 ///
-/// ```c
-/// BOOL MagGetWindowSource(
-///   HWND hwnd,
-///   RECT *pRect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetwindowsource>.
+///
 /// {@category magnification}
 int MagGetWindowSource(int hwnd, Pointer<RECT> pRect) =>
     _MagGetWindowSource(hwnd, pRect);
@@ -152,12 +129,9 @@ final _MagGetWindowSource = _magnification.lookupFunction<
 
 /// Retrieves the transformation matrix associated with a magnifier control.
 ///
-/// ```c
-/// BOOL MagGetWindowTransform(
-///   HWND          hwnd,
-///   PMAGTRANSFORM pTransform
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maggetwindowtransform>.
+///
 /// {@category magnification}
 int MagGetWindowTransform(int hwnd, Pointer<MAGTRANSFORM> pTransform) =>
     _MagGetWindowTransform(hwnd, pTransform);
@@ -169,9 +143,9 @@ final _MagGetWindowTransform = _magnification.lookupFunction<
 
 /// Creates and initializes the magnifier run-time objects.
 ///
-/// ```c
-/// BOOL MagInitialize();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maginitialize>.
+///
 /// {@category magnification}
 int MagInitialize() => _MagInitialize();
 
@@ -180,12 +154,9 @@ final _MagInitialize = _magnification
 
 /// Sets the color transformation matrix for a magnifier control.
 ///
-/// ```c
-/// BOOL MagSetColorEffect(
-///   HWND            hwnd,
-///   PMAGCOLOREFFECT pEffect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetcoloreffect>.
+///
 /// {@category magnification}
 int MagSetColorEffect(int hwnd, Pointer<MAGCOLOREFFECT> pEffect) =>
     _MagSetColorEffect(hwnd, pEffect);
@@ -198,11 +169,9 @@ final _MagSetColorEffect = _magnification.lookupFunction<
 /// Changes the color transformation matrix associated with the full-screen
 /// magnifier.
 ///
-/// ```c
-/// BOOL MagSetFullscreenColorEffect(
-///   PMAGCOLOREFFECT pEffect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetfullscreencoloreffect>.
+///
 /// {@category magnification}
 int MagSetFullscreenColorEffect(Pointer<MAGCOLOREFFECT> pEffect) =>
     _MagSetFullscreenColorEffect(pEffect);
@@ -214,13 +183,9 @@ final _MagSetFullscreenColorEffect = _magnification.lookupFunction<
 
 /// Changes the magnification settings for the full-screen magnifier.
 ///
-/// ```c
-/// BOOL MagSetFullscreenTransform(
-///   float magLevel,
-///   int   xOffset,
-///   int   yOffset
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetfullscreentransform>.
+///
 /// {@category magnification}
 int MagSetFullscreenTransform(double magLevel, int xOffset, int yOffset) =>
     _MagSetFullscreenTransform(magLevel, xOffset, yOffset);
@@ -232,12 +197,9 @@ final _MagSetFullscreenTransform = _magnification.lookupFunction<
 
 /// Sets the callback function for external image filtering and scaling.
 ///
-/// ```c
-/// BOOL MagSetImageScalingCallback(
-///   HWND                    hwnd,
-///   MagImageScalingCallback callback
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetimagescalingcallback>.
+///
 /// {@category magnification}
 int MagSetImageScalingCallback(
         int hwnd, Pointer<NativeFunction<MagImageScalingCallback>> callback) =>
@@ -254,13 +216,9 @@ final _MagSetImageScalingCallback = _magnification.lookupFunction<
 /// Sets the current active input transformation for pen and touch input,
 /// represented as a source rectangle and a destination rectangle.
 ///
-/// ```c
-/// BOOL MagSetInputTransform(
-///   BOOL         fEnabled,
-///   const LPRECT pRectSource,
-///   const LPRECT pRectDest
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetinputtransform>.
+///
 /// {@category magnification}
 int MagSetInputTransform(
         int fEnabled, Pointer<RECT> pRectSource, Pointer<RECT> pRectDest) =>
@@ -275,14 +233,9 @@ final _MagSetInputTransform = _magnification.lookupFunction<
 /// Sets the list of windows to be magnified or the list of windows to be
 /// excluded from magnification.
 ///
-/// ```c
-/// BOOL MagSetWindowFilterList(
-///   HWND  hwnd,
-///   DWORD dwFilterMode,
-///   int   count,
-///   HWND  *pHWND
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetwindowfilterlist>.
+///
 /// {@category magnification}
 int MagSetWindowFilterList(
         int hwnd, int dwFilterMode, int count, Pointer<HWND> pHWND) =>
@@ -296,12 +249,9 @@ final _MagSetWindowFilterList = _magnification.lookupFunction<
 
 /// Sets the source rectangle for the magnification window.
 ///
-/// ```c
-/// BOOL MagSetWindowSource(
-///   HWND hwnd,
-///   RECT rect
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetwindowsource>.
+///
 /// {@category magnification}
 int MagSetWindowSource(int hwnd, RECT rect) => _MagSetWindowSource(hwnd, rect);
 
@@ -311,12 +261,9 @@ final _MagSetWindowSource = _magnification.lookupFunction<
 
 /// Sets the transformation matrix for a magnifier control.
 ///
-/// ```c
-/// BOOL MagSetWindowTransform(
-///   HWND          hwnd,
-///   PMAGTRANSFORM pTransform
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magsetwindowtransform>.
+///
 /// {@category magnification}
 int MagSetWindowTransform(int hwnd, Pointer<MAGTRANSFORM> pTransform) =>
     _MagSetWindowTransform(hwnd, pTransform);
@@ -328,11 +275,9 @@ final _MagSetWindowTransform = _magnification.lookupFunction<
 
 /// Shows or hides the system cursor.
 ///
-/// ```c
-/// BOOL MagShowSystemCursor(
-///   BOOL fShowCursor
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-magshowsystemcursor>.
+///
 /// {@category magnification}
 int MagShowSystemCursor(int fShowCursor) => _MagShowSystemCursor(fShowCursor);
 
@@ -342,9 +287,9 @@ final _MagShowSystemCursor = _magnification.lookupFunction<
 
 /// Destroys the magnifier run-time objects.
 ///
-/// ```c
-/// BOOL MagUninitialize();
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/magnification/nf-magnification-maguninitialize>.
+///
 /// {@category magnification}
 int MagUninitialize() => _MagUninitialize();
 

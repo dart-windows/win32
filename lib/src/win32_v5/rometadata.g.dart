@@ -21,14 +21,10 @@ final _rometadata = DynamicLibrary.open('rometadata.dll');
 
 /// Creates a dispenser class.
 ///
-/// ```c
-/// HRESULT MetaDataGetDispenser(
-///   REFCLSID rclsid,
-///   REFIID   riid,
-///   LPVOID   *ppv
-/// );
-/// ```
-/// {@category winrt}
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadata/nf-rometadata-metadatagetdispenser>.
+///
+/// {@category rometadata}
 int MetaDataGetDispenser(
         Pointer<GUID> rclsid, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
     _MetaDataGetDispenser(rclsid, riid, ppv);

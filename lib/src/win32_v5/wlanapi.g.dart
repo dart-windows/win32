@@ -19,16 +19,11 @@ import '../types.dart';
 
 final _wlanapi = DynamicLibrary.open('wlanapi.dll');
 
-/// The WlanAllocateMemory function allocates memory.
+/// Allocates memory.
 ///
-/// Any memory passed to other Native Wifi functions must be allocated with this
-/// function.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanallocatememory>.
 ///
-/// ```c
-/// PVOID WlanAllocateMemory(
-///   DWORD dwMemorySize
-/// );
-/// ```
 /// {@category wlanapi}
 Pointer WlanAllocateMemory(int dwMemorySize) =>
     _WlanAllocateMemory(dwMemorySize);
@@ -37,14 +32,11 @@ final _WlanAllocateMemory = _wlanapi.lookupFunction<
     Pointer Function(Uint32 dwMemorySize),
     Pointer Function(int dwMemorySize)>('WlanAllocateMemory');
 
-/// The WlanCloseHandle function closes a connection to the server.
+/// Closes a connection to the server.
 ///
-/// ```c
-/// DWORD WlanCloseHandle(
-///   HANDLE hClientHandle,
-///   PVOID  pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanclosehandle>.
+///
 /// {@category wlanapi}
 int WlanCloseHandle(int hClientHandle) =>
     _WlanCloseHandle(hClientHandle, nullptr);
@@ -53,16 +45,11 @@ final _WlanCloseHandle = _wlanapi.lookupFunction<
     Uint32 Function(HANDLE hClientHandle, Pointer pReserved),
     int Function(int hClientHandle, Pointer pReserved)>('WlanCloseHandle');
 
-/// The WlanConnect function attempts to connect to a specific network.
+/// Attempts to connect to a specific network.
 ///
-/// ```c
-/// DWORD WlanConnect(
-///   HANDLE                            hClientHandle,
-///   const GUID                        *pInterfaceGuid,
-///   const PWLAN_CONNECTION_PARAMETERS pConnectionParameters,
-///   PVOID                             pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanconnect>.
+///
 /// {@category wlanapi}
 int WlanConnect(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<WLAN_CONNECTION_PARAMETERS> pConnectionParameters) =>
@@ -80,17 +67,11 @@ final _WlanConnect = _wlanapi.lookupFunction<
         Pointer<WLAN_CONNECTION_PARAMETERS> pConnectionParameters,
         Pointer pReserved)>('WlanConnect');
 
-/// The WlanDeleteProfile function deletes a wireless profile for a wireless
-/// interface on the local computer.
+/// Deletes a wireless profile for a wireless interface on the local computer.
 ///
-/// ```c
-/// DWORD WlanDeleteProfile(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strProfileName,
-///   PVOID      pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlandeleteprofile>.
+///
 /// {@category wlanapi}
 int WlanDeleteProfile(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<Utf16> strProfileName) =>
@@ -102,23 +83,12 @@ final _WlanDeleteProfile = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<Utf16> strProfileName, Pointer pReserved)>('WlanDeleteProfile');
 
-/// Allows an original equipment manufacturer (OEM) or independent hardware
-/// vendor (IHV) component to communicate with a device service on a particular
-/// wireless LAN interface.
+/// Allows an OEM or IHV component to communicate with a device service on a
+/// particular wireless LAN interface.
 ///
-/// ```c
-/// DWORD WlanDeviceServiceCommand(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPGUID     pDeviceServiceGuid,
-///   DWORD      dwOpCode,
-///   DWORD      dwInBufferSize,
-///   PVOID      pInBuffer,
-///   DWORD      dwOutBufferSize,
-///   PVOID      pOutBuffer,
-///   PDWORD     pdwBytesReturned
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlandeviceservicecommand>.
+///
 /// {@category wlanapi}
 int WlanDeviceServiceCommand(
         int hClientHandle,
@@ -163,16 +133,11 @@ final _WlanDeviceServiceCommand = _wlanapi.lookupFunction<
         Pointer pOutBuffer,
         Pointer<Uint32> pdwBytesReturned)>('WlanDeviceServiceCommand');
 
-/// The WlanDisconnect function disconnects an interface from its current
-/// network.
+/// Disconnects an interface from its current network.
 ///
-/// ```c
-/// DWORD WlanDisconnect(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   PVOID      pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlandisconnect>.
+///
 /// {@category wlanapi}
 int WlanDisconnect(int hClientHandle, Pointer<GUID> pInterfaceGuid) =>
     _WlanDisconnect(hClientHandle, pInterfaceGuid, nullptr);
@@ -183,16 +148,12 @@ final _WlanDisconnect = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer pReserved)>('WlanDisconnect');
 
-/// The WlanEnumInterfaces function enumerates all of the wireless LAN
-/// interfaces currently enabled on the local computer.
+/// Enumerates all of the wireless LAN interfaces currently enabled on the local
+/// computer.
 ///
-/// ```c
-/// DWORD WlanEnumInterfaces(
-///   HANDLE                    hClientHandle,
-///   PVOID                     pReserved,
-///   PWLAN_INTERFACE_INFO_LIST *ppInterfaceList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanenuminterfaces>.
+///
 /// {@category wlanapi}
 int WlanEnumInterfaces(int hClientHandle,
         Pointer<Pointer<WLAN_INTERFACE_INFO_LIST>> ppInterfaceList) =>
@@ -205,20 +166,12 @@ final _WlanEnumInterfaces = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_INTERFACE_INFO_LIST>> ppInterfaceList)>(
     'WlanEnumInterfaces');
 
-/// The WlanExtractPsdIEDataList function extracts the proximity service
-/// discovery (PSD) information element (IE) data list from raw IE data included
-/// in a beacon.
+/// Extracts the proximity service discovery (PSD) information element (IE) data
+/// list from raw IE data included in a beacon.
 ///
-/// ```c
-/// DWORD WlanExtractPsdIEDataList(
-///   HANDLE              hClientHandle,
-///   DWORD               dwIeDataSize,
-///   const PBYTE         pRawIeData,
-///   LPCWSTR             strFormat,
-///   PVOID               pReserved,
-///   PWLAN_RAW_DATA_LIST *ppPsdIEDataList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanextractpsdiedatalist>.
+///
 /// {@category wlanapi}
 int WlanExtractPsdIEDataList(
         int hClientHandle,
@@ -246,33 +199,22 @@ final _WlanExtractPsdIEDataList = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_RAW_DATA_LIST>> ppPsdIEDataList)>(
     'WlanExtractPsdIEDataList');
 
-/// The WlanFreeMemory function frees memory.
+/// Frees memory.
 ///
-/// Any memory returned from Native Wifi functions must be freed.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanfreememory>.
 ///
-/// ```c
-/// void WlanFreeMemory(
-///   PVOID pMemory
-/// );
-/// ```
 /// {@category wlanapi}
 void WlanFreeMemory(Pointer pMemory) => _WlanFreeMemory(pMemory);
 
 final _WlanFreeMemory = _wlanapi.lookupFunction<Void Function(Pointer pMemory),
     void Function(Pointer pMemory)>('WlanFreeMemory');
 
-/// The WlanGetAvailableNetworkList function retrieves the list of available
-/// networks on a wireless LAN interface.
+/// Retrieves the list of available networks on a wireless LAN interface.
 ///
-/// ```c
-/// DWORD WlanGetAvailableNetworkList(
-///   HANDLE                       hClientHandle,
-///   const GUID                   *pInterfaceGuid,
-///   DWORD                        dwFlags,
-///   PVOID                        pReserved,
-///   PWLAN_AVAILABLE_NETWORK_LIST *ppAvailableNetworkList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetavailablenetworklist>.
+///
 /// {@category wlanapi}
 int WlanGetAvailableNetworkList(
         int hClientHandle,
@@ -297,17 +239,11 @@ final _WlanGetAvailableNetworkList = _wlanapi.lookupFunction<
         Pointer<Pointer<WLAN_AVAILABLE_NETWORK_LIST>>
             ppAvailableNetworkList)>('WlanGetAvailableNetworkList');
 
-/// The WlanGetFilterList function retrieves a group policy or user permission
-/// list.
+/// Retrieves a group policy or user permission list.
 ///
-/// ```c
-/// DWORD WlanGetFilterList(
-///   HANDLE                hClientHandle,
-///   WLAN_FILTER_LIST_TYPE wlanFilterListType,
-///   PVOID                 pReserved,
-///   PDOT11_NETWORK_LIST   *ppNetworkList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetfilterlist>.
+///
 /// {@category wlanapi}
 int WlanGetFilterList(int hClientHandle, int wlanFilterListType,
         Pointer<Pointer<DOT11_NETWORK_LIST>> ppNetworkList) =>
@@ -324,17 +260,11 @@ final _WlanGetFilterList = _wlanapi.lookupFunction<
         Pointer<Pointer<DOT11_NETWORK_LIST>>
             ppNetworkList)>('WlanGetFilterList');
 
-/// The WlanGetInterfaceCapability function retrieves the capabilities of an
-/// interface.
+/// Retrieves the capabilities of an interface.
 ///
-/// ```c
-/// DWORD WlanGetInterfaceCapability(
-///   HANDLE                     hClientHandle,
-///   const GUID                 *pInterfaceGuid,
-///   PVOID                      pReserved,
-///   PWLAN_INTERFACE_CAPABILITY *ppCapability
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetinterfacecapability>.
+///
 /// {@category wlanapi}
 int WlanGetInterfaceCapability(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<Pointer<WLAN_INTERFACE_CAPABILITY>> ppCapability) =>
@@ -354,21 +284,12 @@ final _WlanGetInterfaceCapability = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_INTERFACE_CAPABILITY>> ppCapability)>(
     'WlanGetInterfaceCapability');
 
-/// The WlanGetNetworkBssList function retrieves a list of the basic service set
-/// (BSS) entries of the wireless network or networks on a given wireless LAN
-/// interface.
+/// Retrieves a list of the basic service set (BSS) entries of the wireless
+/// network or networks on a given wireless LAN interface.
 ///
-/// ```c
-/// DWORD WlanGetNetworkBssList(
-///   HANDLE            hClientHandle,
-///   const GUID        *pInterfaceGuid,
-///   const PDOT11_SSID pDot11Ssid,
-///   DOT11_BSS_TYPE    dot11BssType,
-///   BOOL              bSecurityEnabled,
-///   PVOID             pReserved,
-///   PWLAN_BSS_LIST    *ppWlanBssList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetnetworkbsslist>.
+///
 /// {@category wlanapi}
 int WlanGetNetworkBssList(
         int hClientHandle,
@@ -399,20 +320,11 @@ final _WlanGetNetworkBssList = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_BSS_LIST>> ppWlanBssList)>(
     'WlanGetNetworkBssList');
 
-/// The WlanGetProfile function retrieves all information about a specified
-/// wireless profile.
+/// Retrieves all information about a specified wireless profile.
 ///
-/// ```c
-/// DWORD WlanGetProfile(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strProfileName,
-///   PVOID      pReserved,
-///   LPWSTR     *pstrProfileXml,
-///   DWORD      *pdwFlags,
-///   DWORD      *pdwGrantedAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetprofile>.
+///
 /// {@category wlanapi}
 int WlanGetProfile(
         int hClientHandle,
@@ -442,19 +354,11 @@ final _WlanGetProfile = _wlanapi.lookupFunction<
         Pointer<Uint32> pdwFlags,
         Pointer<Uint32> pdwGrantedAccess)>('WlanGetProfile');
 
-/// The WlanGetProfileCustomUserData function gets the custom user data
-/// associated with a wireless profile.
+/// Gets the custom user data associated with a wireless profile.
 ///
-/// ```c
-/// DWORD WlanGetProfileCustomUserData(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strProfileName,
-///   PVOID      pReserved,
-///   DWORD      *pdwDataSize,
-///   PBYTE      *ppData
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetprofilecustomuserdata>.
+///
 /// {@category wlanapi}
 int WlanGetProfileCustomUserData(
         int hClientHandle,
@@ -481,17 +385,11 @@ final _WlanGetProfileCustomUserData = _wlanapi.lookupFunction<
         Pointer<Uint32> pdwDataSize,
         Pointer<Pointer<Uint8>> ppData)>('WlanGetProfileCustomUserData');
 
-/// The WlanGetProfileList function retrieves the list of profiles in preference
-/// order.
+/// Retrieves the list of profiles.
 ///
-/// ```c
-/// DWORD WlanGetProfileList(
-///   HANDLE                  hClientHandle,
-///   const GUID              *pInterfaceGuid,
-///   PVOID                   pReserved,
-///   PWLAN_PROFILE_INFO_LIST *ppProfileList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetprofilelist>.
+///
 /// {@category wlanapi}
 int WlanGetProfileList(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<Pointer<WLAN_PROFILE_INFO_LIST>> ppProfileList) =>
@@ -510,18 +408,11 @@ final _WlanGetProfileList = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_PROFILE_INFO_LIST>> ppProfileList)>(
     'WlanGetProfileList');
 
-/// The WlanGetSecuritySettings function gets the security settings associated
-/// with a configurable object.
+/// Gets the security settings associated with a configurable object.
 ///
-/// ```c
-/// DWORD WlanGetSecuritySettings(
-///   HANDLE                  hClientHandle,
-///   WLAN_SECURABLE_OBJECT   SecurableObject,
-///   PWLAN_OPCODE_VALUE_TYPE pValueType,
-///   LPWSTR                  *pstrCurrentSDDL,
-///   PDWORD                  pdwGrantedAccess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetsecuritysettings>.
+///
 /// {@category wlanapi}
 int WlanGetSecuritySettings(
         int hClientHandle,
@@ -549,13 +440,9 @@ final _WlanGetSecuritySettings = _wlanapi.lookupFunction<
 /// Retrieves a list of the supported device services on a given wireless LAN
 /// interface.
 ///
-/// ```c
-/// DWORD WlanGetSupportedDeviceServices(
-///   HANDLE                         hClientHandle,
-///   const GUID                     *pInterfaceGuid,
-///   PWLAN_DEVICE_SERVICE_GUID_LIST *ppDevSvcGuidList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlangetsupporteddeviceservices>.
+///
 /// {@category wlanapi}
 int WlanGetSupportedDeviceServices(
         int hClientHandle,
@@ -571,17 +458,12 @@ final _WlanGetSupportedDeviceServices = _wlanapi.lookupFunction<
             Pointer<Pointer<WLAN_DEVICE_SERVICE_GUID_LIST>> ppDevSvcGuidList)>(
     'WlanGetSupportedDeviceServices');
 
-/// The WlanHostedNetworkForceStart function transitions the wireless Hosted
-/// Network to the wlan_hosted_network_active state without associating the
-/// request with the application's calling handle.
+/// Transitions the wireless Hosted Network to the wlan_hosted_network_active
+/// state without associating the request with the application's calling handle.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkForceStart(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkforcestart>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkForceStart(
         int hClientHandle, Pointer<Int32>? pFailReason) =>
@@ -594,17 +476,12 @@ final _WlanHostedNetworkForceStart = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkForceStart');
 
-/// The WlanHostedNetworkForceStop function transitions the wireless Hosted
-/// Network to the wlan_hosted_network_idle without associating the request with
-/// the application's calling handle.
+/// Transitions the wireless Hosted Network to the wlan_hosted_network_idle
+/// without associating the request with the application's calling handle.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkForceStop(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkforcestop>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkForceStop(
         int hClientHandle, Pointer<Int32>? pFailReason) =>
@@ -616,18 +493,13 @@ final _WlanHostedNetworkForceStop = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkForceStop');
 
-/// The WlanHostedNetworkInitSettings function configures and persists to
-/// storage the network connection settings (SSID and maximum number of peers,
-/// for example) on the wireless Hosted Network if these settings are not
-/// already configured.
+/// Configures and persists to storage the network connection settings (SSID and
+/// maximum number of peers, for example) on the wireless Hosted Network if
+/// these settings are not already configured.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkInitSettings(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkinitsettings>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkInitSettings(
         int hClientHandle, Pointer<Int32>? pFailReason) =>
@@ -640,19 +512,11 @@ final _WlanHostedNetworkInitSettings = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkInitSettings');
 
-/// The WlanHostedNetworkQueryProperty function queries the current static
-/// properties of the wireless Hosted Network.
+/// Queries the current static properties of the wireless Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkQueryProperty(
-///   HANDLE                     hClientHandle,
-///   WLAN_HOSTED_NETWORK_OPCODE OpCode,
-///   PDWORD                     pdwDataSize,
-///   PVOID                      *ppvData,
-///   PWLAN_OPCODE_VALUE_TYPE    pWlanOpcodeValueType,
-///   PVOID                      pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkqueryproperty>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkQueryProperty(
         int hClientHandle,
@@ -679,20 +543,12 @@ final _WlanHostedNetworkQueryProperty = _wlanapi.lookupFunction<
         Pointer<Int32> pWlanOpcodeValueType,
         Pointer pvReserved)>('WlanHostedNetworkQueryProperty');
 
-/// The WlanHostedNetworkQuerySecondaryKey function queries the secondary
-/// security key that is configured to be used by the wireless Hosted Network.
+/// Queries the secondary security key that is configured to be used by the
+/// wireless Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkQuerySecondaryKey(
-///   HANDLE                      hClientHandle,
-///   PDWORD                      pdwKeyLength,
-///   PUCHAR                      *ppucKeyData,
-///   PBOOL                       pbIsPassPhrase,
-///   PBOOL                       pbPersistent,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkquerysecondarykey>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkQuerySecondaryKey(
         int hClientHandle,
@@ -728,16 +584,11 @@ final _WlanHostedNetworkQuerySecondaryKey = _wlanapi.lookupFunction<
         Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkQuerySecondaryKey');
 
-/// The WlanHostedNetworkQueryStatus function queries the current status of the
-/// wireless Hosted Network.
+/// Queries the current status of the wireless Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkQueryStatus(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_STATUS *ppWlanHostedNetworkStatus,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkquerystatus>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkQueryStatus(
         int hClientHandle,
@@ -756,17 +607,12 @@ final _WlanHostedNetworkQueryStatus = _wlanapi.lookupFunction<
         Pointer<Pointer<WLAN_HOSTED_NETWORK_STATUS>> ppWlanHostedNetworkStatus,
         Pointer pvReserved)>('WlanHostedNetworkQueryStatus');
 
-/// The WlanHostedNetworkRefreshSecuritySettings function refreshes the
-/// configurable and auto-generated parts of the wireless Hosted Network
-/// security settings.
+/// Refreshes the configurable and auto-generated parts of the wireless Hosted
+/// Network security settings.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkRefreshSecuritySettings(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkrefreshsecuritysettings>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkRefreshSecuritySettings(
         int hClientHandle, Pointer<Int32>? pFailReason) =>
@@ -779,19 +625,11 @@ final _WlanHostedNetworkRefreshSecuritySettings = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkRefreshSecuritySettings');
 
-/// The WlanHostedNetworkSetProperty function sets static properties of the
-/// wireless Hosted Network.
+/// Sets static properties of the wireless Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkSetProperty(
-///   HANDLE                      hClientHandle,
-///   WLAN_HOSTED_NETWORK_OPCODE  OpCode,
-///   DWORD                       dwDataSize,
-///   PVOID                       pvData,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworksetproperty>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkSetProperty(int hClientHandle, int opCode, int dwDataSize,
         Pointer pvData, Pointer<Int32>? pFailReason) =>
@@ -809,20 +647,12 @@ final _WlanHostedNetworkSetProperty = _wlanapi.lookupFunction<
         Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkSetProperty');
 
-/// The WlanHostedNetworkSetSecondaryKey function configures the secondary
-/// security key that will be used by the wireless Hosted Network.
+/// Configures the secondary security key that will be used by the wireless
+/// Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkSetSecondaryKey(
-///   HANDLE                      hClientHandle,
-///   DWORD                       dwKeyLength,
-///   PUCHAR                      pucKeyData,
-///   BOOL                        bIsPassPhrase,
-///   BOOL                        bPersistent,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworksetsecondarykey>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkSetSecondaryKey(
         int hClientHandle,
@@ -852,15 +682,11 @@ final _WlanHostedNetworkSetSecondaryKey = _wlanapi.lookupFunction<
         Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkSetSecondaryKey');
 
-/// The WlanHostedNetworkStartUsing function starts the wireless Hosted Network.
+/// Starts the wireless Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkStartUsing(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkstartusing>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkStartUsing(
         int hClientHandle, Pointer<Int32>? pFailReason) =>
@@ -873,15 +699,11 @@ final _WlanHostedNetworkStartUsing = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkStartUsing');
 
-/// The WlanHostedNetworkStopUsing function stops the wireless Hosted Network.
+/// Stops the wireless Hosted Network.
 ///
-/// ```c
-/// DWORD WlanHostedNetworkStopUsing(
-///   HANDLE                      hClientHandle,
-///   PWLAN_HOSTED_NETWORK_REASON pFailReason,
-///   PVOID                       pvReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanhostednetworkstopusing>.
+///
 /// {@category wlanapi}
 int WlanHostedNetworkStopUsing(
         int hClientHandle, Pointer<Int32>? pFailReason) =>
@@ -893,21 +715,12 @@ final _WlanHostedNetworkStopUsing = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<Int32> pFailReason,
         Pointer pvReserved)>('WlanHostedNetworkStopUsing');
 
-/// The WlanIhvControl function provides a mechanism for independent hardware
-/// vendor (IHV) control of WLAN drivers or services.
+/// Provides a mechanism for independent hardware vendor (IHV) control of WLAN
+/// drivers or services.
 ///
-/// ```c
-/// DWORD WlanIhvControl(
-///   HANDLE                hClientHandle,
-///   const GUID            *pInterfaceGuid,
-///   WLAN_IHV_CONTROL_TYPE Type,
-///   DWORD                 dwInBufferSize,
-///   PVOID                 pInBuffer,
-///   DWORD                 dwOutBufferSize,
-///   PVOID                 pOutBuffer,
-///   PDWORD                pdwBytesReturned
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanihvcontrol>.
+///
 /// {@category wlanapi}
 int WlanIhvControl(
         int hClientHandle,
@@ -941,16 +754,11 @@ final _WlanIhvControl = _wlanapi.lookupFunction<
         Pointer pOutBuffer,
         Pointer<Uint32> pdwBytesReturned)>('WlanIhvControl');
 
-/// The WlanOpenHandle function opens a connection to the server.
+/// Opens a connection to the server.
 ///
-/// ```c
-/// DWORD WlanOpenHandle(
-///   DWORD   dwClientVersion,
-///   PVOID   pReserved,
-///   PDWORD  pdwNegotiatedVersion,
-///   PHANDLE phClientHandle
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanopenhandle>.
+///
 /// {@category wlanapi}
 int WlanOpenHandle(int dwClientVersion, Pointer<Uint32> pdwNegotiatedVersion,
         Pointer<HANDLE> phClientHandle) =>
@@ -966,19 +774,11 @@ final _WlanOpenHandle = _wlanapi.lookupFunction<
         Pointer<Uint32> pdwNegotiatedVersion,
         Pointer<HANDLE> phClientHandle)>('WlanOpenHandle');
 
-/// The WlanQueryAutoConfigParameter function queries for the parameters of the
-/// auto configuration service.
+/// Queries for the parameters of the auto configuration service.
 ///
-/// ```c
-/// DWORD WlanQueryAutoConfigParameter(
-///   HANDLE                  hClientHandle,
-///   WLAN_AUTOCONF_OPCODE    OpCode,
-///   PVOID                   pReserved,
-///   PDWORD                  pdwDataSize,
-///   PVOID                   *ppData,
-///   PWLAN_OPCODE_VALUE_TYPE pWlanOpcodeValueType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanqueryautoconfigparameter>.
+///
 /// {@category wlanapi}
 int WlanQueryAutoConfigParameter(
         int hClientHandle,
@@ -1005,20 +805,11 @@ final _WlanQueryAutoConfigParameter = _wlanapi.lookupFunction<
         Pointer<Pointer> ppData,
         Pointer<Int32> pWlanOpcodeValueType)>('WlanQueryAutoConfigParameter');
 
-/// The WlanQueryInterface function queries various parameters of a specified
-/// interface.
+/// Queries various parameters of a specified interface.
 ///
-/// ```c
-/// DWORD WlanQueryInterface(
-///   HANDLE                  hClientHandle,
-///   const GUID              *pInterfaceGuid,
-///   WLAN_INTF_OPCODE        OpCode,
-///   PVOID                   pReserved,
-///   PDWORD                  pdwDataSize,
-///   PVOID                   *ppData,
-///   PWLAN_OPCODE_VALUE_TYPE pWlanOpcodeValueType
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanqueryinterface>.
+///
 /// {@category wlanapi}
 int WlanQueryInterface(
         int hClientHandle,
@@ -1048,17 +839,11 @@ final _WlanQueryInterface = _wlanapi.lookupFunction<
         Pointer<Pointer> ppData,
         Pointer<Int32> pWlanOpcodeValueType)>('WlanQueryInterface');
 
-/// The WlanReasonCodeToString function retrieves a string that describes a
-/// specified reason code.
+/// Retrieves a string that describes a specified reason code.
 ///
-/// ```c
-/// DWORD WlanReasonCodeToString(
-///   DWORD  dwReasonCode,
-///   DWORD  dwBufferSize,
-///   PWCHAR pStringBuffer,
-///   PVOID  pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanreasoncodetostring>.
+///
 /// {@category wlanapi}
 int WlanReasonCodeToString(
         int dwReasonCode, int dwBufferSize, Pointer<Utf16> pStringBuffer) =>
@@ -1077,12 +862,9 @@ final _WlanReasonCodeToString = _wlanapi.lookupFunction<
 /// Framework (UMDF) drivers, to register for unsolicited notifications
 /// corresponding to device services that they're interested in.
 ///
-/// ```c
-/// DWORD WlanRegisterDeviceServiceNotification(
-///   HANDLE                               hClientHandle,
-///   const PWLAN_DEVICE_SERVICE_GUID_LIST pDevSvcGuidList
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanregisterdeviceservicenotification>.
+///
 /// {@category wlanapi}
 int WlanRegisterDeviceServiceNotification(int hClientHandle,
         Pointer<WLAN_DEVICE_SERVICE_GUID_LIST>? pDevSvcGuidList) =>
@@ -1096,20 +878,11 @@ final _WlanRegisterDeviceServiceNotification = _wlanapi.lookupFunction<
             Pointer<WLAN_DEVICE_SERVICE_GUID_LIST> pDevSvcGuidList)>(
     'WlanRegisterDeviceServiceNotification');
 
-/// The WlanRegisterNotification function is used to register and unregister
-/// notifications on all wireless interfaces.
+/// Used to register and unregister notifications on all wireless interfaces.
 ///
-/// ```c
-/// DWORD WlanRegisterNotification(
-///   HANDLE                     hClientHandle,
-///   DWORD                      dwNotifSource,
-///   BOOL                       bIgnoreDuplicate,
-///   WLAN_NOTIFICATION_CALLBACK funcCallback,
-///   PVOID                      pCallbackContext,
-///   PVOID                      pReserved,
-///   PDWORD                     pdwPrevNotifSource
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanregisternotification>.
+///
 /// {@category wlanapi}
 int WlanRegisterNotification(
         int hClientHandle,
@@ -1145,16 +918,11 @@ final _WlanRegisterNotification = _wlanapi.lookupFunction<
         Pointer pReserved,
         Pointer<Uint32> pdwPrevNotifSource)>('WlanRegisterNotification');
 
-/// The WlanRegisterVirtualStationNotification function is used to register and
-/// unregister notifications on a virtual station.
+/// Used to register and unregister notifications on a virtual station.
 ///
-/// ```c
-/// DWORD WlanRegisterVirtualStationNotification(
-///   HANDLE hClientHandle,
-///   BOOL   bRegister,
-///   PVOID  pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanregistervirtualstationnotification>.
+///
 /// {@category wlanapi}
 int WlanRegisterVirtualStationNotification(int hClientHandle, int bRegister) =>
     _WlanRegisterVirtualStationNotification(hClientHandle, bRegister, nullptr);
@@ -1164,17 +932,11 @@ final _WlanRegisterVirtualStationNotification = _wlanapi.lookupFunction<
     int Function(int hClientHandle, int bRegister,
         Pointer pReserved)>('WlanRegisterVirtualStationNotification');
 
-/// The WlanRenameProfile function renames the specified profile.
+/// Renames the specified profile.
 ///
-/// ```c
-/// DWORD WlanRenameProfile(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strOldProfileName,
-///   LPCWSTR    strNewProfileName,
-///   PVOID      pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanrenameprofile>.
+///
 /// {@category wlanapi}
 int WlanRenameProfile(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<Utf16> strOldProfileName, Pointer<Utf16> strNewProfileName) =>
@@ -1195,20 +957,11 @@ final _WlanRenameProfile = _wlanapi.lookupFunction<
         Pointer<Utf16> strNewProfileName,
         Pointer pReserved)>('WlanRenameProfile');
 
-/// The WlanSaveTemporaryProfile function saves a temporary profile to the
-/// profile store.
+/// Saves a temporary profile to the profile store.
 ///
-/// ```c
-/// DWORD WlanSaveTemporaryProfile(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strProfileName,
-///   LPCWSTR    strAllUserProfileSecurity,
-///   DWORD      dwFlags,
-///   BOOL       bOverWrite,
-///   PVOID      pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansavetemporaryprofile>.
+///
 /// {@category wlanapi}
 int WlanSaveTemporaryProfile(
         int hClientHandle,
@@ -1238,18 +991,11 @@ final _WlanSaveTemporaryProfile = _wlanapi.lookupFunction<
         int bOverWrite,
         Pointer pReserved)>('WlanSaveTemporaryProfile');
 
-/// The WlanScan function requests a scan for available networks on the
-/// indicated interface.
+/// Requests a scan for available networks on the indicated interface.
 ///
-/// ```c
-/// DWORD WlanScan(
-///   HANDLE               hClientHandle,
-///   const GUID           *pInterfaceGuid,
-///   const PDOT11_SSID    pDot11Ssid,
-///   const PWLAN_RAW_DATA pIeData,
-///   PVOID                pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlanscan>.
+///
 /// {@category wlanapi}
 int WlanScan(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<DOT11_SSID>? pDot11Ssid, Pointer<WLAN_RAW_DATA>? pIeData) =>
@@ -1270,18 +1016,11 @@ final _WlanScan = _wlanapi.lookupFunction<
         Pointer<WLAN_RAW_DATA> pIeData,
         Pointer pReserved)>('WlanScan');
 
-/// The WlanSetAutoConfigParameter function sets parameters for the automatic
-/// configuration service.
+/// Sets parameters for the automatic configuration service.
 ///
-/// ```c
-/// DWORD WlanSetAutoConfigParameter(
-///   HANDLE               hClientHandle,
-///   WLAN_AUTOCONF_OPCODE OpCode,
-///   DWORD                dwDataSize,
-///   const PVOID          pData,
-///   PVOID                pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetautoconfigparameter>.
+///
 /// {@category wlanapi}
 int WlanSetAutoConfigParameter(
         int hClientHandle, int opCode, int dwDataSize, Pointer pData) =>
@@ -1294,16 +1033,11 @@ final _WlanSetAutoConfigParameter = _wlanapi.lookupFunction<
     int Function(int hClientHandle, int opCode, int dwDataSize, Pointer pData,
         Pointer pReserved)>('WlanSetAutoConfigParameter');
 
-/// The WlanSetFilterList function sets the permit/deny list.
+/// Sets the permit/deny list.
 ///
-/// ```c
-/// DWORD WlanSetFilterList(
-///   HANDLE                    hClientHandle,
-///   WLAN_FILTER_LIST_TYPE     wlanFilterListType,
-///   const PDOT11_NETWORK_LIST pNetworkList,
-///   PVOID                     pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetfilterlist>.
+///
 /// {@category wlanapi}
 int WlanSetFilterList(int hClientHandle, int wlanFilterListType,
         Pointer<DOT11_NETWORK_LIST>? pNetworkList) =>
@@ -1319,19 +1053,11 @@ final _WlanSetFilterList = _wlanapi.lookupFunction<
         Pointer<DOT11_NETWORK_LIST> pNetworkList,
         Pointer pReserved)>('WlanSetFilterList');
 
-/// The WlanSetInterface function sets user-configurable parameters for a
-/// specified interface.
+/// Sets user-configurable parameters.
 ///
-/// ```c
-/// DWORD WlanSetInterface(
-///   HANDLE           hClientHandle,
-///   const GUID       *pInterfaceGuid,
-///   WLAN_INTF_OPCODE OpCode,
-///   DWORD            dwDataSize,
-///   const PVOID      pData,
-///   PVOID            pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetinterface>.
+///
 /// {@category wlanapi}
 int WlanSetInterface(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         int opCode, int dwDataSize, Pointer pData) =>
@@ -1344,20 +1070,11 @@ final _WlanSetInterface = _wlanapi.lookupFunction<
     int Function(int hClientHandle, Pointer<GUID> pInterfaceGuid, int opCode,
         int dwDataSize, Pointer pData, Pointer pReserved)>('WlanSetInterface');
 
-/// The WlanSetProfile function sets the content of a specific profile.
+/// Sets the content of a specific profile.
 ///
-/// ```c
-/// DWORD WlanSetProfile(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   DWORD      dwFlags,
-///   LPCWSTR    strProfileXml,
-///   LPCWSTR    strAllUserProfileSecurity,
-///   BOOL       bOverwrite,
-///   PVOID      pReserved,
-///   DWORD      *pdwReasonCode
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetprofile>.
+///
 /// {@category wlanapi}
 int WlanSetProfile(
         int hClientHandle,
@@ -1397,19 +1114,11 @@ final _WlanSetProfile = _wlanapi.lookupFunction<
         Pointer pReserved,
         Pointer<Uint32> pdwReasonCode)>('WlanSetProfile');
 
-/// The WlanSetProfileCustomUserData function sets the custom user data
-/// associated with a profile.
+/// Sets the custom user data associated with a profile.
 ///
-/// ```c
-/// DWORD WlanSetProfileCustomUserData(
-///   HANDLE      hClientHandle,
-///   const GUID  *pInterfaceGuid,
-///   LPCWSTR     strProfileName,
-///   DWORD       dwDataSize,
-///   const PBYTE pData,
-///   PVOID       pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetprofilecustomuserdata>.
+///
 /// {@category wlanapi}
 int WlanSetProfileCustomUserData(
         int hClientHandle,
@@ -1436,23 +1145,12 @@ final _WlanSetProfileCustomUserData = _wlanapi.lookupFunction<
         Pointer<Uint8> pData,
         Pointer pReserved)>('WlanSetProfileCustomUserData');
 
-/// The WlanSetProfileEapUserData function sets the Extensible Authentication
-/// Protocol (EAP) user credentials as specified by raw EAP data.
+/// Sets the Extensible Authentication Protocol (EAP) user credentials as
+/// specified by raw EAP data.
 ///
-/// The user credentials apply to a profile on an interface.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetprofileeapuserdata>.
 ///
-/// ```c
-/// DWORD WlanSetProfileEapUserData(
-///   HANDLE          hClientHandle,
-///   const GUID      *pInterfaceGuid,
-///   LPCWSTR         strProfileName,
-///   EAP_METHOD_TYPE eapType,
-///   DWORD           dwFlags,
-///   DWORD           dwEapUserDataSize,
-///   const LPBYTE    pbEapUserData,
-///   PVOID           pReserved
-/// );
-/// ```
 /// {@category wlanapi}
 int WlanSetProfileEapUserData(
         int hClientHandle,
@@ -1485,22 +1183,12 @@ final _WlanSetProfileEapUserData = _wlanapi.lookupFunction<
         Pointer<Uint8> pbEapUserData,
         Pointer pReserved)>('WlanSetProfileEapUserData');
 
-/// The WlanSetProfileEapXmlUserData function sets the Extensible Authentication
-/// Protocol (EAP) user credentials as specified by an XML string.
+/// Sets the Extensible Authentication Protocol (EAP) user credentials as
+/// specified by an XML string.
 ///
-/// The user credentials apply to a profile on an adapter. These credentials can
-/// be used only by the caller.
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetprofileeapxmluserdata>.
 ///
-/// ```c
-/// DWORD WlanSetProfileEapXmlUserData(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strProfileName,
-///   DWORD      dwFlags,
-///   LPCWSTR    strEapXmlUserData,
-///   PVOID      pReserved
-/// );
-/// ```
 /// {@category wlanapi}
 int WlanSetProfileEapXmlUserData(
         int hClientHandle,
@@ -1527,18 +1215,11 @@ final _WlanSetProfileEapXmlUserData = _wlanapi.lookupFunction<
         Pointer<Utf16> strEapXmlUserData,
         Pointer pReserved)>('WlanSetProfileEapXmlUserData');
 
-/// The WlanSetProfileList function sets the preference order of profiles for a
-/// given interface.
+/// Sets the preference order of profiles.
 ///
-/// ```c
-/// DWORD WlanSetProfileList(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   DWORD      dwItems,
-///   LPCWSTR    *strProfileNames,
-///   PVOID      pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetprofilelist>.
+///
 /// {@category wlanapi}
 int WlanSetProfileList(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         int dwItems, Pointer<Pointer<Utf16>> strProfileNames) =>
@@ -1559,18 +1240,11 @@ final _WlanSetProfileList = _wlanapi.lookupFunction<
         Pointer<Pointer<Utf16>> strProfileNames,
         Pointer pReserved)>('WlanSetProfileList');
 
-/// The WlanSetProfilePosition function sets the position of a single, specified
-/// profile in the preference list.
+/// Sets the position of a single, specified profile in the preference list.
 ///
-/// ```c
-/// DWORD WlanSetProfilePosition(
-///   HANDLE     hClientHandle,
-///   const GUID *pInterfaceGuid,
-///   LPCWSTR    strProfileName,
-///   DWORD      dwPosition,
-///   PVOID      pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetprofileposition>.
+///
 /// {@category wlanapi}
 int WlanSetProfilePosition(int hClientHandle, Pointer<GUID> pInterfaceGuid,
         Pointer<Utf16> strProfileName, int dwPosition) =>
@@ -1587,17 +1261,12 @@ final _WlanSetProfilePosition = _wlanapi.lookupFunction<
         int dwPosition,
         Pointer pReserved)>('WlanSetProfilePosition');
 
-/// The WlanSetPsdIeDataList function sets the proximity service discovery (PSD)
-/// information element (IE) data list.
+/// Sets the proximity service discovery (PSD) information element (IE) data
+/// list.
 ///
-/// ```c
-/// DWORD WlanSetPsdIEDataList(
-///   HANDLE                    hClientHandle,
-///   LPCWSTR                   strFormat,
-///   const PWLAN_RAW_DATA_LIST pPsdIEDataList,
-///   PVOID                     pReserved
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetpsdiedatalist>.
+///
 /// {@category wlanapi}
 int WlanSetPsdIEDataList(int hClientHandle, Pointer<Utf16>? strFormat,
         Pointer<WLAN_RAW_DATA_LIST>? pPsdIEDataList) =>
@@ -1613,16 +1282,11 @@ final _WlanSetPsdIEDataList = _wlanapi.lookupFunction<
         Pointer<WLAN_RAW_DATA_LIST> pPsdIEDataList,
         Pointer pReserved)>('WlanSetPsdIEDataList');
 
-/// The WlanGetProfileList function sets the security settings for a
-/// configurable object.
+/// Sets the security settings for a configurable object.
 ///
-/// ```c
-/// DWORD WlanSetSecuritySettings(
-///   HANDLE                hClientHandle,
-///   WLAN_SECURABLE_OBJECT SecurableObject,
-///   LPCWSTR               strModifiedSDDL
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/wlanapi/nf-wlanapi-wlansetsecuritysettings>.
+///
 /// {@category wlanapi}
 int WlanSetSecuritySettings(int hClientHandle, int securableObject,
         Pointer<Utf16> strModifiedSDDL) =>

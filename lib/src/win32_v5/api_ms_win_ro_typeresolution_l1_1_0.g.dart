@@ -23,15 +23,9 @@ final _api_ms_win_ro_typeresolution_l1_1_0 =
 /// Locates and retrieves the metadata file that describes the Application
 /// Binary Interface (ABI) for the specified typename.
 ///
-/// ```c
-/// HRESULT RoGetMetaDataFile(
-///   [in]            const HSTRING        name,
-///   [in, optional]  IMetaDataDispenserEx *metaDataDispenser,
-///   [out, optional] HSTRING              *metaDataFilePath,
-///   [out, optional] IMetaDataImport2     **metaDataImport,
-///   [out, optional] mdTypeDef            *typeDefToken
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/rometadataresolution/nf-rometadataresolution-rogetmetadatafile>.
+///
 /// {@category winrt}
 int RoGetMetaDataFile(
         int name,

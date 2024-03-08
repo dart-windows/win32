@@ -1,4 +1,10 @@
 Windows.Wdk.Foundation.Apis.NtQueryObject|
+/// Retrieves various kinds of object information.
+///
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/winternl/nf-winternl-ntqueryobject>.
+///
+/// {@category ntdll}
 int NtQueryObject(
         int? handle,
         int objectInformationClass,

@@ -21,10 +21,9 @@ final _dbghelp = DynamicLibrary.open('dbghelp.dll');
 
 /// Deallocates all resources associated with the process handle.
 ///
-/// ```c
-/// BOOL SymCleanup(
-///   HANDLE hProcess);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symcleanup>.
+///
 /// {@category dbghelp}
 int SymCleanup(int hProcess) => _SymCleanup(hProcess);
 
@@ -33,15 +32,9 @@ final _SymCleanup = _dbghelp.lookupFunction<BOOL Function(HANDLE hProcess),
 
 /// Enumerates all symbols in a process.
 ///
-/// ```c
-/// BOOL SymEnumSymbolsW(
-///   HANDLE                          hProcess,
-///   ULONG64                         BaseOfDll,
-///   PCWSTR                          Mask,
-///   PSYM_ENUMERATESYMBOLS_CALLBACKW EnumSymbolsCallback,
-///   PVOID                           UserContext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symenumsymbolsw>.
+///
 /// {@category dbghelp}
 int SymEnumSymbols(
         int hProcess,
@@ -71,14 +64,9 @@ final _SymEnumSymbols = _dbghelp.lookupFunction<
 
 /// Retrieves symbol information for the specified address.
 ///
-/// ```c
-/// BOOL SymFromAddrW(
-///   HANDLE        hProcess,
-///   DWORD64       Address,
-///   PDWORD64      Displacement,
-///   PSYMBOL_INFOW Symbol
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symfromaddrw>.
+///
 /// {@category dbghelp}
 int SymFromAddr(int hProcess, int address, Pointer<Uint64>? displacement,
         Pointer<SYMBOL_INFO> symbol) =>
@@ -92,14 +80,9 @@ final _SymFromAddr = _dbghelp.lookupFunction<
 
 /// Retrieves symbol information for the specified managed code token.
 ///
-/// ```c
-/// BOOL SymFromTokenW(
-///   HANDLE        hProcess,
-///   DWORD64       Base,
-///   DWORD         Token,
-///   PSYMBOL_INFOW Symbol
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symfromtokenw>.
+///
 /// {@category dbghelp}
 int SymFromToken(
         int hProcess, int base, int token, Pointer<SYMBOL_INFO> symbol) =>
@@ -113,11 +96,9 @@ final _SymFromToken = _dbghelp.lookupFunction<
 
 /// Gets whether the specified extended symbol option on or off.
 ///
-/// ```c
-/// BOOL SymGetExtendedOption(
-///   IMAGEHLP_EXTENDED_OPTIONS option
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symgetextendedoption>.
+///
 /// {@category dbghelp}
 int SymGetExtendedOption(int option) => _SymGetExtendedOption(option);
 
@@ -127,13 +108,9 @@ final _SymGetExtendedOption = _dbghelp.lookupFunction<
 
 /// Initializes the symbol handler for a process.
 ///
-/// ```c
-/// BOOL SymInitializeW(
-///   HANDLE hProcess,
-///   PCWSTR UserSearchPath,
-///   BOOL   fInvadeProcess
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-syminitializew>.
+///
 /// {@category dbghelp}
 int SymInitialize(
         int hProcess, Pointer<Utf16>? userSearchPath, int fInvadeProcess) =>
@@ -147,17 +124,9 @@ final _SymInitialize = _dbghelp.lookupFunction<
 
 /// Loads the symbol table for the specified module.
 ///
-/// ```c
-/// DWORD64 SymLoadModuleExW(
-///   HANDLE        hProcess,
-///   HANDLE        hFile,
-///   PCWSTR        ImageName,
-///   PCWSTR        ModuleName,
-///   DWORD64       BaseOfDll,
-///   DWORD         DllSize,
-///   PMODLOAD_DATA Data,
-///   DWORD         Flags);
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symloadmoduleexw>.
+///
 /// {@category dbghelp}
 int SymLoadModuleEx(
         int hProcess,
@@ -193,12 +162,9 @@ final _SymLoadModuleEx = _dbghelp.lookupFunction<
 
 /// Turns the specified extended symbol option on or off.
 ///
-/// ```c
-/// BOOL SymSetExtendedOption(
-///   IMAGEHLP_EXTENDED_OPTIONS option,
-///   BOOL                      value
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetextendedoption>.
+///
 /// {@category dbghelp}
 int SymSetExtendedOption(int option, int value) =>
     _SymSetExtendedOption(option, value);
@@ -209,11 +175,9 @@ final _SymSetExtendedOption = _dbghelp.lookupFunction<
 
 /// Sets the options mask.
 ///
-/// ```c
-/// DWORD SymSetOptions(
-///   DWORD SymOptions
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetoptions>.
+///
 /// {@category dbghelp}
 int SymSetOptions(int symOptions) => _SymSetOptions(symOptions);
 
@@ -223,11 +187,9 @@ final _SymSetOptions = _dbghelp.lookupFunction<
 
 /// Sets the window that the caller will use to display a user interface.
 ///
-/// ```c
-/// BOOL SymSetParentWindow(
-///   HWND hwnd
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetparentwindow>.
+///
 /// {@category dbghelp}
 int SymSetParentWindow(int hwnd) => _SymSetParentWindow(hwnd);
 
@@ -237,12 +199,9 @@ final _SymSetParentWindow =
 
 /// Sets the local scope to the symbol that matches the specified address.
 ///
-/// ```c
-/// BOOL SymSetScopeFromAddr(
-///   HANDLE  hProcess,
-///   ULONG64 Address
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetscopefromaddr>.
+///
 /// {@category dbghelp}
 int SymSetScopeFromAddr(int hProcess, int address) =>
     _SymSetScopeFromAddr(hProcess, address);
@@ -253,13 +212,9 @@ final _SymSetScopeFromAddr = _dbghelp.lookupFunction<
 
 /// Sets the local scope to the symbol that matches the specified index.
 ///
-/// ```c
-/// BOOL SymSetScopeFromIndex(
-///   HANDLE  hProcess,
-///   ULONG64 BaseOfDll,
-///   DWORD   Index
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetscopefromindex>.
+///
 /// {@category dbghelp}
 int SymSetScopeFromIndex(int hProcess, int baseOfDll, int index) =>
     _SymSetScopeFromIndex(hProcess, baseOfDll, index);
@@ -272,13 +227,9 @@ final _SymSetScopeFromIndex = _dbghelp.lookupFunction<
 /// Sets the local scope to the symbol that matches the specified address and
 /// inline context.
 ///
-/// ```c
-/// BOOL SymSetScopeFromInlineContext(
-///   HANDLE  hProcess,
-///   ULONG64 Address,
-///   ULONG   InlineContext
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetscopefrominlinecontext>.
+///
 /// {@category dbghelp}
 int SymSetScopeFromInlineContext(
         int hProcess, int address, int inlineContext) =>
@@ -291,12 +242,9 @@ final _SymSetScopeFromInlineContext = _dbghelp.lookupFunction<
 
 /// Sets the search path for the specified process.
 ///
-/// ```c
-/// BOOL SymSetSearchPathW(
-///   HANDLE hProcess,
-///   PCWSTR SearchPath
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symsetsearchpathw>.
+///
 /// {@category dbghelp}
 int SymSetSearchPath(int hProcess, Pointer<Utf16>? searchPathA) =>
     _SymSetSearchPath(hProcess, searchPathA ?? nullptr);
@@ -308,12 +256,9 @@ final _SymSetSearchPath = _dbghelp.lookupFunction<
 
 /// Unloads the symbol table.
 ///
-/// ```c
-/// BOOL SymUnloadModule(
-///   HANDLE hProcess,
-///   DWORD  BaseOfDll
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symunloadmodule>.
+///
 /// {@category dbghelp}
 int SymUnloadModule(int hProcess, int baseOfDll) =>
     _SymUnloadModule(hProcess, baseOfDll);
@@ -324,12 +269,9 @@ final _SymUnloadModule = _dbghelp.lookupFunction<
 
 /// Unloads the symbol table.
 ///
-/// ```c
-/// BOOL SymUnloadModule64(
-///   HANDLE  hProcess,
-///   DWORD64 BaseOfDll
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-symunloadmodule64>.
+///
 /// {@category dbghelp}
 int SymUnloadModule64(int hProcess, int baseOfDll) =>
     _SymUnloadModule64(hProcess, baseOfDll);
@@ -340,14 +282,9 @@ final _SymUnloadModule64 = _dbghelp.lookupFunction<
 
 /// Undecorates the specified decorated C++ symbol name.
 ///
-/// ```c
-/// DWORD UnDecorateSymbolNameW(
-///   PCWSTR name,
-///   PWSTR  outputString,
-///   DWORD  maxStringLength,
-///   DWORD  flags
-/// );
-/// ```
+/// To learn more about this function, see
+/// <https://learn.microsoft.com/windows/win32/api/dbghelp/nf-dbghelp-undecoratesymbolnamew>.
+///
 /// {@category dbghelp}
 int UnDecorateSymbolName(Pointer<Utf16> name, Pointer<Utf16> outputString,
         int maxStringLength, int flags) =>
