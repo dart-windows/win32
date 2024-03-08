@@ -19,6 +19,7 @@ build/
 
 # This file varies from machine to machine
 .vscode/c_cpp_properties.json
+.vscode/settings.json
 
 # We don't need to publish the tools folder - it's only used for code generation
 tool/
