@@ -7,6 +7,7 @@
 final class ApiDetails {
   /// Creates an instance of `ApiDetails` with the specified parameters.
   const ApiDetails({
+    required this.apiName,
     required this.helpLink,
     required this.description,
     required this.remarks,
@@ -14,6 +15,9 @@ final class ApiDetails {
     this.parameters = const {},
     this.fields = const {},
   });
+
+  // The API name.
+  final String apiName;
 
   /// The URL that provides comprehensive documentation for this API.
   final Uri? helpLink;
@@ -33,11 +37,12 @@ final class ApiDetails {
   /// Documentation for the return value of the API, if applicable.
   final String? returnValue;
 
-  /// Creates an instance of `ApiDetails` from a [list] of dynamic values.
+  /// Creates an instance of `ApiDetails` from an [apiName] and [list] of
+  /// dynamic values.
   ///
-  /// This factory constructor is particularly useful when initializing
-  /// an [ApiDetails] object from an external data source, such as MessagePack.
-  factory ApiDetails.fromList(List<dynamic> list) {
+  /// This factory constructor is used to create an [ApiDetails] object from an
+  /// external data source, such as MessagePack.
+  factory ApiDetails.create(String apiName, List<dynamic> list) {
     if (list
         case [
           final String? helpLink,
@@ -48,6 +53,7 @@ final class ApiDetails {
           final String? returnValue
         ]) {
       return ApiDetails(
+        apiName: apiName,
         helpLink: helpLink != null ? Uri.parse(helpLink) : null,
         description: description?.sanitize(),
         remarks: remarks,

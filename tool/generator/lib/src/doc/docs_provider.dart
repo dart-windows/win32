@@ -100,7 +100,7 @@ abstract final class DocsProvider {
     final decoded = Deserializer(bytes).decode() as Map<dynamic, dynamic>;
     for (final MapEntry(:key, :value)
         in decoded.cast<String, List<dynamic>>().entries) {
-      _docs[key] = ApiDetails.fromList(value);
+      _docs[key] = ApiDetails.create(key, value);
     }
     _isLoaded = true;
     _loadedVersion = version;
