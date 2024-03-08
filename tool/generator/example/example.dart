@@ -16,11 +16,9 @@ void printCallback(
   }
 }
 
-void printEnum(
-    [String type =
-        'Windows.Win32.UI.Input.XboxController.XINPUT_CAPABILITIES_FLAGS']) {
+void printEnum([String type = 'Windows.Win32.System.Com.APTTYPE']) {
   final typeDef = MetadataStore.getMetadataForType(type);
-  if (typeDef != null && typeDef.isDelegate) {
+  if (typeDef != null && typeDef.isEnum) {
     final enumProjection = EnumProjection(typeDef);
     print(enumProjection.format());
   }
@@ -40,8 +38,7 @@ void printFunction([String name = 'BroadcastSystemMessageW']) {
 }
 
 void printStruct(
-    [String type =
-        'Windows.Win32.Devices.Usb.USB_NODE_CONNECTION_INFORMATION_EX']) {
+    [String type = 'Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER']) {
   final typeDef = MetadataStore.getMetadataForType(type);
   if (typeDef != null && typeDef.isStruct) {
     final structProjection = StructProjection(typeDef);
@@ -93,6 +90,7 @@ void main() async {
   await MetadataStore.loadWdkMetadata(version: wdkMetadataVersion);
   await MetadataStore.loadWin32Metadata(version: win32MetadataVersion);
   await MetadataStore.loadWinRTMetadata(version: winrtMetadataVersion);
-  printStruct();
+  await DocsProvider.load(version: win32DocsVersion);
+  printEnum();
   MetadataStore.close();
 }
