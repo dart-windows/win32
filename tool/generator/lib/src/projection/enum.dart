@@ -16,12 +16,17 @@ class EnumProjection {
   /// Creates an instance of this class for the given Win32 enum [typeDef].
   EnumProjection(this.typeDef)
       : bits = typeDef.fields.first.bits,
+        docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
+            DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent),
         fields = typeDef.fields,
         isBitwiseEnum = typeDef.isBitwiseEnum,
         name = typeDef.safeIdentifier;
 
   /// The number of bits for the base type of the enum (e.g., `8`, `16`).
   final int bits;
+
+  /// The documentation associated with the enum.
+  final ApiDetails? docs;
 
   /// The fields of the enum.
   final List<Field> fields;
@@ -42,10 +47,7 @@ class EnumProjection {
     if (enumDocs.containsKey(name)) {
       buffer.write(enumDocs[name]);
     } else {
-      final docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
-          DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
-      if (docs != null) {
-        final ApiDetails(:description, :helpLink) = docs;
+      if (docs case ApiDetails(:final description, :final helpLink)) {
         buffer.write(description);
         if (helpLink != null) {
           buffer.write(' \nTo learn more about this enum, see <$helpLink>.');
@@ -58,16 +60,20 @@ class EnumProjection {
     return buffer.toString().toDocComment();
   }
 
-  // The field projections of the enum.
+  /// The field projections of the enum.
   List<String> get fieldProjections {
     final projections = <String>[];
 
     // The first field is always the special field `_value`, describing the
     // underlying type of the enum (e.g. `Int32`, `Uint16`).
     for (final field in fields.skip(1)) {
+      final fieldComment = docs?.fields[field.name]?.sanitize().toDocComment();
       final identifier = field.name.safeIdentifier;
       final value = '$name(${field.value.toHexString(bits)});';
-      projections.add('static const $identifier = $value');
+      projections.add([
+        if (fieldComment != null) fieldComment,
+        'static const $identifier = $value'
+      ].join('\n'));
     }
 
     return projections;
@@ -92,4 +98,27 @@ extension on Field {
         _ => throw UnsupportedError('Unsupported enum underlying type: '
             '${typeIdentifier.baseType}'),
       };
+}
+
+extension on String {
+  // TODO(halildurmus): Refactor this method to use a more efficient approach.
+  String sanitize() =>
+      replaceAllMapped(RegExp(r'(\w)\.\)'), (match) => '${match.group(1)}).')
+          .split(RegExp(r'(?<=[.!?])\s'))
+          .first
+          .replaceAll(RegExp(r'\s+'), ' ')
+          .replaceAll(RegExp(r'<div class=".*">'), '')
+          .replaceFirst(RegExp(r'^Documentation varies per use.*'), '')
+          .replaceFirst(RegExp(r'^\*\*Introduced in Windows .*.\*\*\s?'), '')
+          .replaceFirst(RegExp(r'^(Not used|Unused).*'), '')
+          .replaceFirst(RegExp(r'^This value is obsolete.$'), 'Obsolete.')
+          .replaceFirst(RegExp(r'^This value is reserved.$'), 'Reserved.')
+          .replaceFirst(RegExp(r'^\s?(<i>)?p\w+.*'), '')
+          .replaceFirst(RegExp(r'^\s?(\(int\))?0x\w+\.'), '')
+          .replaceFirst(RegExp(r'^\s?(<b>)?Windows .* and later(</b>)?\.$'), '')
+          .replaceFirst(
+              RegExp(r'^\s?(<b>)?(Prior to )?Windows .*:\s?(</b>)?.*'), '')
+          .replaceFirst(RegExp(r', see Remarks for more info.'), '.')
+          .trim()
+          .capitalize();
 }

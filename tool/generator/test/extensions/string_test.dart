@@ -7,6 +7,13 @@ import 'package:test/test.dart';
 
 void main() {
   group('String', () {
+    test('capitalize', () {
+      expect('value'.capitalize(), equals('Value'));
+      expect('camelCase'.capitalize(), equals('CamelCase'));
+      expect('X'.capitalize(), equals('X'));
+      expect(''.capitalize(), isEmpty);
+    });
+
     test('lastComponent', () {
       expect(
         'Windows.Win32.System.Com.IUnknown'.lastComponent,

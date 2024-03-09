@@ -104,23 +104,54 @@ extension type const ANIMATE_WINDOW_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const APPX_CAPABILITIES(int _) implements int {
+  /// Your Internet connection for outgoing connections to the Internet.
   static const APPX_CAPABILITY_INTERNET_CLIENT = APPX_CAPABILITIES(0x00000001);
+
+  /// Your Internet connection, including incoming unsolicited connections from
+  /// the Internet – the app can send information to or from your computer through
+  /// a firewall.
   static const APPX_CAPABILITY_INTERNET_CLIENT_SERVER =
       APPX_CAPABILITIES(0x00000002);
+
+  /// A home or work network – the app can send information to or from your
+  /// computer and other computers on the same network.
   static const APPX_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER =
       APPX_CAPABILITIES(0x00000004);
+
+  /// Your documents library, including the capability to add, change, or delete
+  /// files.
   static const APPX_CAPABILITY_DOCUMENTS_LIBRARY =
       APPX_CAPABILITIES(0x00000008);
+
+  /// Your pictures library, including the capability to add, change, or delete
+  /// files.
   static const APPX_CAPABILITY_PICTURES_LIBRARY = APPX_CAPABILITIES(0x00000010);
+
+  /// Your videos library, including the capability to add, change, or delete
+  /// files.
   static const APPX_CAPABILITY_VIDEOS_LIBRARY = APPX_CAPABILITIES(0x00000020);
+
+  /// Your music library and playlists, including the capability to add, change,
+  /// or delete files.
   static const APPX_CAPABILITY_MUSIC_LIBRARY = APPX_CAPABILITIES(0x00000040);
+
+  /// Your Windows credentials, for access to a corporate intranet.
   static const APPX_CAPABILITY_ENTERPRISE_AUTHENTICATION =
       APPX_CAPABILITIES(0x00000080);
+
+  /// Software and hardware certificates or a smart card – used to identify you in
+  /// the app.
   static const APPX_CAPABILITY_SHARED_USER_CERTIFICATES =
       APPX_CAPABILITIES(0x00000100);
+
+  /// Removable storage, such as an external hard drive or USB flash drive, or MTP
+  /// portable device, including the capability to add, change, or delete specific
+  /// files.
   static const APPX_CAPABILITY_REMOVABLE_STORAGE =
       APPX_CAPABILITIES(0x00000200);
+
   static const APPX_CAPABILITY_APPOINTMENTS = APPX_CAPABILITIES(0x00000400);
+
   static const APPX_CAPABILITY_CONTACTS = APPX_CAPABILITIES(0x00000800);
 }
 
@@ -147,14 +178,23 @@ extension type const APPX_CAPABILITY_CLASS_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const APPX_COMPRESSION_OPTION(int _) implements int {
+  /// No compression.
   static const APPX_COMPRESSION_OPTION_NONE =
       APPX_COMPRESSION_OPTION(0x00000000);
+
+  /// Normal compression.
   static const APPX_COMPRESSION_OPTION_NORMAL =
       APPX_COMPRESSION_OPTION(0x00000001);
+
+  /// Maximum compression.
   static const APPX_COMPRESSION_OPTION_MAXIMUM =
       APPX_COMPRESSION_OPTION(0x00000002);
+
+  /// Fast compression.
   static const APPX_COMPRESSION_OPTION_FAST =
       APPX_COMPRESSION_OPTION(0x00000003);
+
+  /// Super-fast compression.
   static const APPX_COMPRESSION_OPTION_SUPERFAST =
       APPX_COMPRESSION_OPTION(0x00000004);
 }
@@ -166,14 +206,23 @@ extension type const APPX_COMPRESSION_OPTION(int _) implements int {
 ///
 /// {@category enum}
 extension type const APPX_FOOTPRINT_FILE_TYPE(int _) implements int {
+  /// The package manifest.
   static const APPX_FOOTPRINT_FILE_TYPE_MANIFEST =
       APPX_FOOTPRINT_FILE_TYPE(0x00000000);
+
+  /// The package block map.
   static const APPX_FOOTPRINT_FILE_TYPE_BLOCKMAP =
       APPX_FOOTPRINT_FILE_TYPE(0x00000001);
+
+  /// The package signature.
   static const APPX_FOOTPRINT_FILE_TYPE_SIGNATURE =
       APPX_FOOTPRINT_FILE_TYPE(0x00000002);
+
+  /// The code signing catalog file used for code integrity checks.
   static const APPX_FOOTPRINT_FILE_TYPE_CODEINTEGRITY =
       APPX_FOOTPRINT_FILE_TYPE(0x00000003);
+
+  /// The content group map used for streaming install.
   static const APPX_FOOTPRINT_FILE_TYPE_CONTENTGROUPMAP =
       APPX_FOOTPRINT_FILE_TYPE(0x00000004);
 }
@@ -185,14 +234,23 @@ extension type const APPX_FOOTPRINT_FILE_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const APPX_PACKAGE_ARCHITECTURE(int _) implements int {
+  /// The x86 processor architecture.
   static const APPX_PACKAGE_ARCHITECTURE_X86 =
       APPX_PACKAGE_ARCHITECTURE(0x00000000);
+
+  /// The ARM processor architecture.
   static const APPX_PACKAGE_ARCHITECTURE_ARM =
       APPX_PACKAGE_ARCHITECTURE(0x00000005);
+
+  /// The x64 processor architecture.
   static const APPX_PACKAGE_ARCHITECTURE_X64 =
       APPX_PACKAGE_ARCHITECTURE(0x00000009);
+
+  /// Any processor architecture.
   static const APPX_PACKAGE_ARCHITECTURE_NEUTRAL =
       APPX_PACKAGE_ARCHITECTURE(0x0000000b);
+
+  /// The 64-bit ARM processor architecture.
   static const APPX_PACKAGE_ARCHITECTURE_ARM64 =
       APPX_PACKAGE_ARCHITECTURE(0x0000000c);
 }
@@ -204,10 +262,19 @@ extension type const APPX_PACKAGE_ARCHITECTURE(int _) implements int {
 ///
 /// {@category enum}
 extension type const APTTYPE(int _) implements int {
+  /// The current thread.
   static const APTTYPE_CURRENT = APTTYPE(0xffffffff);
+
+  /// A single-threaded apartment.
   static const APTTYPE_STA = APTTYPE(0x00000000);
+
+  /// A multithreaded apartment.
   static const APTTYPE_MTA = APTTYPE(0x00000001);
+
+  /// A neutral apartment.
   static const APTTYPE_NA = APTTYPE(0x00000002);
+
+  /// The main single-threaded apartment.
   static const APTTYPE_MAINSTA = APTTYPE(0x00000003);
 }
 
@@ -218,14 +285,37 @@ extension type const APTTYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const APTTYPEQUALIFIER(int _) implements int {
+  /// No qualifier information for the current COM apartment type is available.
   static const APTTYPEQUALIFIER_NONE = APTTYPEQUALIFIER(0x00000000);
+
+  /// This qualifier is only valid when the <i>pAptType</i> parameter of the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cogetapartmenttype">CoGetApartmentType</a>
+  /// function specifies APTTYPE_MTA on return.
   static const APTTYPEQUALIFIER_IMPLICIT_MTA = APTTYPEQUALIFIER(0x00000001);
+
+  /// This qualifier is only valid when the <i>pAptType</i> parameter of the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cogetapartmenttype">CoGetApartmentType</a>
+  /// function contains APTTYPE_NA on return.
   static const APTTYPEQUALIFIER_NA_ON_MTA = APTTYPEQUALIFIER(0x00000002);
+
+  /// This qualifier is only valid when the <i>pAptType</i> parameter of the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cogetapartmenttype">CoGetApartmentType</a>
+  /// function contains APTTYPE_NA on return.
   static const APTTYPEQUALIFIER_NA_ON_STA = APTTYPEQUALIFIER(0x00000003);
+
+  /// This qualifier is only valid when the <i>pAptType</i> parameter of the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cogetapartmenttype">CoGetApartmentType</a>
+  /// function contains APTTYPE_NA on return.
   static const APTTYPEQUALIFIER_NA_ON_IMPLICIT_MTA =
       APTTYPEQUALIFIER(0x00000004);
+
+  /// This qualifier is only valid when the <i>pAptType</i> parameter of the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cogetapartmenttype">CoGetApartmentType</a>
+  /// function contains APTTYPE_NA on return.
   static const APTTYPEQUALIFIER_NA_ON_MAINSTA = APTTYPEQUALIFIER(0x00000005);
+
   static const APTTYPEQUALIFIER_APPLICATION_STA = APTTYPEQUALIFIER(0x00000006);
+
   static const APTTYPEQUALIFIER_RESERVED_1 = APTTYPEQUALIFIER(0x00000007);
 }
 
@@ -236,9 +326,17 @@ extension type const APTTYPEQUALIFIER(int _) implements int {
 ///
 /// {@category enum}
 extension type const AUDCLNT_BUFFERFLAGS(int _) implements int {
+  /// The data in the packet is not correlated with the previous packet's device
+  /// position; this is possibly due to a stream state transition or timing
+  /// glitch.
   static const AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY =
       AUDCLNT_BUFFERFLAGS(0x00000001);
+
+  /// Treat all of the data in the packet as silence and ignore the actual data
+  /// values.
   static const AUDCLNT_BUFFERFLAGS_SILENT = AUDCLNT_BUFFERFLAGS(0x00000002);
+
+  /// The time at which the device's stream position was recorded is uncertain.
   static const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR =
       AUDCLNT_BUFFERFLAGS(0x00000004);
 }
@@ -251,7 +349,10 @@ extension type const AUDCLNT_BUFFERFLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const AUDCLNT_SHAREMODE(int _) implements int {
+  /// The audio stream will run in shared mode.
   static const AUDCLNT_SHAREMODE_SHARED = AUDCLNT_SHAREMODE(0x00000000);
+
+  /// The audio stream will run in exclusive mode.
   static const AUDCLNT_SHAREMODE_EXCLUSIVE = AUDCLNT_SHAREMODE(0x00000001);
 }
 
@@ -262,10 +363,19 @@ extension type const AUDCLNT_SHAREMODE(int _) implements int {
 ///
 /// {@category enum}
 extension type const AUDCLNT_STREAMOPTIONS(int _) implements int {
+  /// No stream options.
   static const AUDCLNT_STREAMOPTIONS_NONE = AUDCLNT_STREAMOPTIONS(0x00000000);
+
+  /// The audio stream is a 'raw' stream that bypasses all signal processing
+  /// except for endpoint specific, always-on processing in the Audio Processing
+  /// Object (APO), driver, and hardware.
   static const AUDCLNT_STREAMOPTIONS_RAW = AUDCLNT_STREAMOPTIONS(0x00000001);
+
+  /// The audio client is requesting that the audio engine match the format
+  /// proposed by the client.
   static const AUDCLNT_STREAMOPTIONS_MATCH_FORMAT =
       AUDCLNT_STREAMOPTIONS(0x00000002);
+
   static const AUDCLNT_STREAMOPTIONS_AMBISONICS =
       AUDCLNT_STREAMOPTIONS(0x00000004);
 }
@@ -280,8 +390,11 @@ extension type const AUDCLNT_STREAMOPTIONS(int _) implements int {
 ///
 /// {@category enum}
 extension type const AUDIO_DUCKING_OPTIONS(int _) implements int {
+  /// The associated audio stream should use the default audio ducking behavior.
   static const AUDIO_DUCKING_OPTIONS_DEFAULT =
       AUDIO_DUCKING_OPTIONS(0x00000000);
+
+  /// The associated audio stream should not cause other streams to be ducked.
   static const AUDIO_DUCKING_OPTIONS_DO_NOT_DUCK_OTHER_STREAMS =
       AUDIO_DUCKING_OPTIONS(0x00000001);
 }
@@ -293,20 +406,50 @@ extension type const AUDIO_DUCKING_OPTIONS(int _) implements int {
 ///
 /// {@category enum}
 extension type const AUDIO_STREAM_CATEGORY(int _) implements int {
+  /// Other audio stream.
   static const AudioCategory_Other = AUDIO_STREAM_CATEGORY(0x00000000);
+
+  /// Media that will only stream when the app is in the foreground.
   static const AudioCategory_ForegroundOnlyMedia =
       AUDIO_STREAM_CATEGORY(0x00000001);
+
+  /// Real-time communications, such as VOIP or chat.
   static const AudioCategory_Communications = AUDIO_STREAM_CATEGORY(0x00000003);
+
+  /// Alert sounds.
   static const AudioCategory_Alerts = AUDIO_STREAM_CATEGORY(0x00000004);
+
+  /// Sound effects.
   static const AudioCategory_SoundEffects = AUDIO_STREAM_CATEGORY(0x00000005);
+
+  /// Game sound effects.
   static const AudioCategory_GameEffects = AUDIO_STREAM_CATEGORY(0x00000006);
+
+  /// Background audio for games.
   static const AudioCategory_GameMedia = AUDIO_STREAM_CATEGORY(0x00000007);
+
+  /// Game chat audio.
   static const AudioCategory_GameChat = AUDIO_STREAM_CATEGORY(0x00000008);
+
+  /// Speech.
   static const AudioCategory_Speech = AUDIO_STREAM_CATEGORY(0x00000009);
+
+  /// Stream that includes audio with dialog.
   static const AudioCategory_Movie = AUDIO_STREAM_CATEGORY(0x0000000a);
+
+  /// Stream that includes audio without dialog.
   static const AudioCategory_Media = AUDIO_STREAM_CATEGORY(0x0000000b);
+
+  /// Media is audio captured with the intent of capturing voice sources located
+  /// in the ‘far field’.
   static const AudioCategory_FarFieldSpeech = AUDIO_STREAM_CATEGORY(0x0000000c);
+
+  /// Media is captured audio that requires consistent speech processing for the
+  /// captured audio stream across all Windows devices.
   static const AudioCategory_UniformSpeech = AUDIO_STREAM_CATEGORY(0x0000000d);
+
+  /// Media is audio captured with the intent of enabling dictation or typing by
+  /// voice.
   static const AudioCategory_VoiceTyping = AUDIO_STREAM_CATEGORY(0x0000000e);
 }
 
@@ -334,8 +477,13 @@ extension type const AUTHENTICATION_REQUIREMENTS(int _) implements int {
 ///
 /// {@category enum}
 extension type const AudioSessionState(int _) implements int {
+  /// The audio session is inactive.
   static const AudioSessionStateInactive = AudioSessionState(0x00000000);
+
+  /// The audio session is active.
   static const AudioSessionStateActive = AudioSessionState(0x00000001);
+
+  /// The audio session has expired.
   static const AudioSessionStateExpired = AudioSessionState(0x00000002);
 }
 
@@ -347,7 +495,11 @@ extension type const AudioSessionState(int _) implements int {
 ///
 /// {@category enum}
 extension type const AutomationElementMode(int _) implements int {
+  /// Specifies that returned elements have no reference to the underlying UI and
+  /// contain only cached information.
   static const AutomationElementMode_None = AutomationElementMode(0x00000000);
+
+  /// Specifies that returned elements have a full reference to the underlying UI.
   static const AutomationElementMode_Full = AutomationElementMode(0x00000001);
 }
 
@@ -381,14 +533,23 @@ extension type const BATTERY_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const BLUETOOTH_AUTHENTICATION_METHOD(int _) implements int {
+  /// The Bluetooth device supports authentication via a PIN.
   static const BLUETOOTH_AUTHENTICATION_METHOD_LEGACY =
       BLUETOOTH_AUTHENTICATION_METHOD(0x00000001);
+
+  /// The Bluetooth device supports authentication via out-of-band data.
   static const BLUETOOTH_AUTHENTICATION_METHOD_OOB =
       BLUETOOTH_AUTHENTICATION_METHOD(0x00000002);
+
+  /// The Bluetooth device supports authentication via numeric comparison.
   static const BLUETOOTH_AUTHENTICATION_METHOD_NUMERIC_COMPARISON =
       BLUETOOTH_AUTHENTICATION_METHOD(0x00000003);
+
+  /// The Bluetooth device supports authentication via passkey notification.
   static const BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY_NOTIFICATION =
       BLUETOOTH_AUTHENTICATION_METHOD(0x00000004);
+
+  /// The Bluetooth device supports authentication via passkey.
   static const BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY =
       BLUETOOTH_AUTHENTICATION_METHOD(0x00000005);
 }
@@ -401,18 +562,35 @@ extension type const BLUETOOTH_AUTHENTICATION_METHOD(int _) implements int {
 /// {@category enum}
 extension type const BLUETOOTH_AUTHENTICATION_REQUIREMENTS(int _)
     implements int {
+  /// Protection against a "Man in the Middle" attack is not required for
+  /// authentication.
   static const BLUETOOTH_MITM_ProtectionNotRequired =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000000);
+
+  /// Protection against a "Man in the Middle" attack is required for
+  /// authentication.
   static const BLUETOOTH_MITM_ProtectionRequired =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000001);
+
+  /// Protection against a "Man in the Middle" attack is not required for bonding.
   static const BLUETOOTH_MITM_ProtectionNotRequiredBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000002);
+
+  /// Protection against a "Man in the Middle" attack is required for bonding.
   static const BLUETOOTH_MITM_ProtectionRequiredBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000003);
+
+  /// Protection against a "Man in the Middle" attack is not required for General
+  /// Bonding.
   static const BLUETOOTH_MITM_ProtectionNotRequiredGeneralBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000004);
+
+  /// Protection against a "Man in the Middle" attack is required for General
+  /// Bonding.
   static const BLUETOOTH_MITM_ProtectionRequiredGeneralBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000005);
+
+  /// Protection against "Man in the Middle" attack is not defined.
   static const BLUETOOTH_MITM_ProtectionNotDefined =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x000000ff);
 }
@@ -424,14 +602,24 @@ extension type const BLUETOOTH_AUTHENTICATION_REQUIREMENTS(int _)
 ///
 /// {@category enum}
 extension type const BLUETOOTH_IO_CAPABILITY(int _) implements int {
+  /// The Bluetooth device is capable of output via display only.
   static const BLUETOOTH_IO_CAPABILITY_DISPLAYONLY =
       BLUETOOTH_IO_CAPABILITY(0x00000000);
+
+  /// The Bluetooth device is capable of output via a display, and has the
+  /// additional capability to presenting a yes/no question to the user.
   static const BLUETOOTH_IO_CAPABILITY_DISPLAYYESNO =
       BLUETOOTH_IO_CAPABILITY(0x00000001);
+
+  /// The Bluetooth device is capable of input via keyboard.
   static const BLUETOOTH_IO_CAPABILITY_KEYBOARDONLY =
       BLUETOOTH_IO_CAPABILITY(0x00000002);
+
+  /// The Bluetooth device is not capable of input/output.
   static const BLUETOOTH_IO_CAPABILITY_NOINPUTNOOUTPUT =
       BLUETOOTH_IO_CAPABILITY(0x00000003);
+
+  /// The input/output capabilities for the Bluetooth device are undefined.
   static const BLUETOOTH_IO_CAPABILITY_UNDEFINED =
       BLUETOOTH_IO_CAPABILITY(0x000000ff);
 }
@@ -483,17 +671,32 @@ extension type const BRUSH_STYLE(int _) implements int {
 ///
 /// {@category enum}
 extension type const BTH_LE_GATT_DESCRIPTOR_TYPE(int _) implements int {
+  /// The characteristic value has additional properties that describe how it can
+  /// be used, or how it can be accessed.
   static const CharacteristicExtendedProperties =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000000);
+
+  /// The characteristic value contains a UTF-8 string of variable size that is a
+  /// user textual description.
   static const CharacteristicUserDescription =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000001);
+
+  /// The characteristic value may be configured by the client.
   static const ClientCharacteristicConfiguration =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000002);
+
+  /// The characteristic value may be configured for the server.
   static const ServerCharacteristicConfiguration =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000003);
+
+  /// The format of the characteristic value.
   static const CharacteristicFormat = BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000004);
+
+  /// The format of an aggregated characteristic value.
   static const CharacteristicAggregateFormat =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000005);
+
+  /// The characteristic value is customized.
   static const CustomDescriptor = BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000006);
 }
 
@@ -505,6 +708,7 @@ extension type const BTH_LE_GATT_DESCRIPTOR_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const BTH_LE_GATT_EVENT_TYPE(int _) implements int {
+  /// The characteristic value has changed.
   static const CharacteristicValueChangedEvent =
       BTH_LE_GATT_EVENT_TYPE(0x00000000);
 }
@@ -518,15 +722,25 @@ extension type const BTH_LE_GATT_EVENT_TYPE(int _) implements int {
 /// {@category enum}
 extension type const CALLCONV(int _) implements int {
   static const CC_FASTCALL = CALLCONV(0x00000000);
+
   static const CC_CDECL = CALLCONV(0x00000001);
+
   static const CC_MSCPASCAL = CALLCONV(0x00000002);
+
   static const CC_PASCAL = CALLCONV(0x00000002);
+
   static const CC_MACPASCAL = CALLCONV(0x00000003);
+
   static const CC_STDCALL = CALLCONV(0x00000004);
+
   static const CC_FPFASTCALL = CALLCONV(0x00000005);
+
   static const CC_SYSCALL = CALLCONV(0x00000006);
+
   static const CC_MPWCDECL = CALLCONV(0x00000007);
+
   static const CC_MPWPASCAL = CALLCONV(0x00000008);
+
   static const CC_MAX = CALLCONV(0x00000009);
 }
 
@@ -644,33 +858,92 @@ extension type const CLEAR_COMM_ERROR_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const CLSCTX(int _) implements int {
+  /// The code that creates and manages objects of this class is a DLL that runs
+  /// in the same process as the caller of the function specifying the class
+  /// context.
   static const CLSCTX_INPROC_SERVER = CLSCTX(0x00000001);
+
+  /// The code that manages objects of this class is an in-process handler.
   static const CLSCTX_INPROC_HANDLER = CLSCTX(0x00000002);
+
+  /// The EXE code that creates and manages objects of this class runs on same
+  /// machine but is loaded in a separate process space.
   static const CLSCTX_LOCAL_SERVER = CLSCTX(0x00000004);
+
+  /// Obsolete.
   static const CLSCTX_INPROC_SERVER16 = CLSCTX(0x00000008);
+
+  /// A remote context.
   static const CLSCTX_REMOTE_SERVER = CLSCTX(0x00000010);
+
+  /// Obsolete.
   static const CLSCTX_INPROC_HANDLER16 = CLSCTX(0x00000020);
+
+  /// Reserved.
   static const CLSCTX_RESERVED1 = CLSCTX(0x00000040);
+
+  /// Reserved.
   static const CLSCTX_RESERVED2 = CLSCTX(0x00000080);
+
+  /// Reserved.
   static const CLSCTX_RESERVED3 = CLSCTX(0x00000100);
+
+  /// Reserved.
   static const CLSCTX_RESERVED4 = CLSCTX(0x00000200);
+
+  /// Disables the downloading of code from the directory service or the Internet.
   static const CLSCTX_NO_CODE_DOWNLOAD = CLSCTX(0x00000400);
+
+  /// Reserved.
   static const CLSCTX_RESERVED5 = CLSCTX(0x00000800);
+
+  /// Specify if you want the activation to fail if it uses custom marshalling.
   static const CLSCTX_NO_CUSTOM_MARSHAL = CLSCTX(0x00001000);
+
+  /// Enables the downloading of code from the directory service or the Internet.
   static const CLSCTX_ENABLE_CODE_DOWNLOAD = CLSCTX(0x00002000);
+
+  /// The CLSCTX_NO_FAILURE_LOG can be used to override the logging of failures in
+  /// <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cocreateinstanceex">CoCreateInstanceEx</a>.
   static const CLSCTX_NO_FAILURE_LOG = CLSCTX(0x00004000);
+
+  /// Disables activate-as-activator (AAA) activations for this activation only.
   static const CLSCTX_DISABLE_AAA = CLSCTX(0x00008000);
+
+  /// Enables activate-as-activator (AAA) activations for this activation only.
   static const CLSCTX_ENABLE_AAA = CLSCTX(0x00010000);
+
+  /// Begin this activation from the default context of the current apartment.
   static const CLSCTX_FROM_DEFAULT_CONTEXT = CLSCTX(0x00020000);
+
   static const CLSCTX_ACTIVATE_X86_SERVER = CLSCTX(0x00040000);
+
+  /// Activate or connect to a 32-bit version of the server; fail if one is not
+  /// registered.
   static const CLSCTX_ACTIVATE_32_BIT_SERVER = CLSCTX(0x00040000);
+
+  /// Activate or connect to a 64 bit version of the server; fail if one is not
+  /// registered.
   static const CLSCTX_ACTIVATE_64_BIT_SERVER = CLSCTX(0x00080000);
+
+  /// When this flag is specified, COM uses the impersonation token of the thread,
+  /// if one is present, for the activation request made by the thread.
   static const CLSCTX_ENABLE_CLOAKING = CLSCTX(0x00100000);
+
+  /// Indicates activation is for an app container.
   static const CLSCTX_APPCONTAINER = CLSCTX(0x00400000);
+
+  /// Specify this flag for Interactive User activation behavior for As-Activator
+  /// servers.
   static const CLSCTX_ACTIVATE_AAA_AS_IU = CLSCTX(0x00800000);
+
   static const CLSCTX_RESERVED6 = CLSCTX(0x01000000);
+
   static const CLSCTX_ACTIVATE_ARM32_SERVER = CLSCTX(0x02000000);
   static const CLSCTX_ALLOW_LOWER_TRUST_REGISTRATION = CLSCTX(0x04000000);
+
+  /// Used for loading Proxy/Stub DLLs.
   static const CLSCTX_PS_DLL = CLSCTX(0x80000000);
   static const CLSCTX_ALL = CLSCTX(0x00000017);
   static const CLSCTX_SERVER = CLSCTX(0x00000015);
@@ -712,16 +985,36 @@ extension type const COMM_EVENT_MASK(int _) implements int {
 ///
 /// {@category enum}
 extension type const COMPUTER_NAME_FORMAT(int _) implements int {
+  /// The NetBIOS name of the local computer or the cluster associated with the
+  /// local computer.
   static const ComputerNameNetBIOS = COMPUTER_NAME_FORMAT(0x00000000);
+
+  /// The DNS name of the local computer or the cluster associated with the local
+  /// computer.
   static const ComputerNameDnsHostname = COMPUTER_NAME_FORMAT(0x00000001);
+
+  /// The name of the DNS domain assigned to the local computer or the cluster
+  /// associated with the local computer.
   static const ComputerNameDnsDomain = COMPUTER_NAME_FORMAT(0x00000002);
+
+  /// The fully qualified DNS name that uniquely identifies the local computer or
+  /// the cluster associated with the local computer.
   static const ComputerNameDnsFullyQualified = COMPUTER_NAME_FORMAT(0x00000003);
+
+  /// The NetBIOS name of the local computer.
   static const ComputerNamePhysicalNetBIOS = COMPUTER_NAME_FORMAT(0x00000004);
+
+  /// The DNS host name of the local computer.
   static const ComputerNamePhysicalDnsHostname =
       COMPUTER_NAME_FORMAT(0x00000005);
+
+  /// The name of the DNS domain assigned to the local computer.
   static const ComputerNamePhysicalDnsDomain = COMPUTER_NAME_FORMAT(0x00000006);
+
+  /// The fully qualified DNS name that uniquely identifies the computer.
   static const ComputerNamePhysicalDnsFullyQualified =
       COMPUTER_NAME_FORMAT(0x00000007);
+
   static const ComputerNameMax = COMPUTER_NAME_FORMAT(0x00000008);
 }
 
@@ -772,10 +1065,19 @@ extension type const CONSOLE_MODE(int _) implements int {
 ///
 /// {@category enum}
 extension type const CORRECTIVE_ACTION(int _) implements int {
+  /// There are no errors.
   static const CORRECTIVE_ACTION_NONE = CORRECTIVE_ACTION(0x00000000);
+
+  /// The user should be prompted with a list of suggestions as returned by <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/spellcheck/nf-spellcheck-ispellchecker-suggest">ISpellChecker::Suggest</a>.
   static const CORRECTIVE_ACTION_GET_SUGGESTIONS =
       CORRECTIVE_ACTION(0x00000001);
+
+  /// Replace the indicated erroneous text with the text provided in the
+  /// suggestion.
   static const CORRECTIVE_ACTION_REPLACE = CORRECTIVE_ACTION(0x00000002);
+
+  /// The user should be prompted to delete the indicated erroneous text.
   static const CORRECTIVE_ACTION_DELETE = CORRECTIVE_ACTION(0x00000003);
 }
 
@@ -842,8 +1144,11 @@ extension type const CWP_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const CoalesceEventsOptions(int _) implements int {
+  /// Event coalescing is disabled.
   static const CoalesceEventsOptions_Disabled =
       CoalesceEventsOptions(0x00000000);
+
+  /// Event coalescing is enabled.
   static const CoalesceEventsOptions_Enabled =
       CoalesceEventsOptions(0x00000001);
 }
@@ -857,8 +1162,11 @@ extension type const CoalesceEventsOptions(int _) implements int {
 ///
 /// {@category enum}
 extension type const ConnectionRecoveryBehaviorOptions(int _) implements int {
+  /// Connection recovery is disabled.
   static const ConnectionRecoveryBehaviorOptions_Disabled =
       ConnectionRecoveryBehaviorOptions(0x00000000);
+
+  /// Connection recovery is enabled.
   static const ConnectionRecoveryBehaviorOptions_Enabled =
       ConnectionRecoveryBehaviorOptions(0x00000001);
 }
@@ -1264,11 +1572,24 @@ extension type const DESKTOP_SLIDESHOW_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DESKTOP_WALLPAPER_POSITION(int _) implements int {
+  /// Center the image; do not stretch.
   static const DWPOS_CENTER = DESKTOP_WALLPAPER_POSITION(0x00000000);
+
+  /// Tile the image across all monitors.
   static const DWPOS_TILE = DESKTOP_WALLPAPER_POSITION(0x00000001);
+
+  /// Stretch the image to exactly fit on the monitor.
   static const DWPOS_STRETCH = DESKTOP_WALLPAPER_POSITION(0x00000002);
+
+  /// Stretch the image to exactly the height or width of the monitor without
+  /// changing its aspect ratio or cropping the image.
   static const DWPOS_FIT = DESKTOP_WALLPAPER_POSITION(0x00000003);
+
+  /// Stretch the image to fill the screen, cropping the image as necessary to
+  /// avoid letterbox bars.
   static const DWPOS_FILL = DESKTOP_WALLPAPER_POSITION(0x00000004);
+
+  /// Spans a single image across all monitors attached to the system.
   static const DWPOS_SPAN = DESKTOP_WALLPAPER_POSITION(0x00000005);
 }
 
@@ -1283,21 +1604,44 @@ extension type const DESKTOP_WALLPAPER_POSITION(int _) implements int {
 /// {@category enum}
 extension type const DEVICE_SCALE_FACTOR(int _) implements int {
   static const DEVICE_SCALE_FACTOR_INVALID = DEVICE_SCALE_FACTOR(0x00000000);
+
+  /// 100%.
   static const SCALE_100_PERCENT = DEVICE_SCALE_FACTOR(0x00000064);
+
+  /// 120%.
   static const SCALE_120_PERCENT = DEVICE_SCALE_FACTOR(0x00000078);
+
   static const SCALE_125_PERCENT = DEVICE_SCALE_FACTOR(0x0000007d);
+
+  /// 140%.
   static const SCALE_140_PERCENT = DEVICE_SCALE_FACTOR(0x0000008c);
+
+  /// 150%.
   static const SCALE_150_PERCENT = DEVICE_SCALE_FACTOR(0x00000096);
+
+  /// 160%.
   static const SCALE_160_PERCENT = DEVICE_SCALE_FACTOR(0x000000a0);
+
   static const SCALE_175_PERCENT = DEVICE_SCALE_FACTOR(0x000000af);
+
+  /// 180%.
   static const SCALE_180_PERCENT = DEVICE_SCALE_FACTOR(0x000000b4);
+
   static const SCALE_200_PERCENT = DEVICE_SCALE_FACTOR(0x000000c8);
+
+  /// 225%.
   static const SCALE_225_PERCENT = DEVICE_SCALE_FACTOR(0x000000e1);
+
   static const SCALE_250_PERCENT = DEVICE_SCALE_FACTOR(0x000000fa);
+
   static const SCALE_300_PERCENT = DEVICE_SCALE_FACTOR(0x0000012c);
+
   static const SCALE_350_PERCENT = DEVICE_SCALE_FACTOR(0x0000015e);
+
   static const SCALE_400_PERCENT = DEVICE_SCALE_FACTOR(0x00000190);
+
   static const SCALE_450_PERCENT = DEVICE_SCALE_FACTOR(0x000001c2);
+
   static const SCALE_500_PERCENT = DEVICE_SCALE_FACTOR(0x000001f4);
 }
 
@@ -1448,9 +1792,16 @@ extension type const DFC_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(int _) implements int {
+  /// The default behavior of the dialog manager.
   static const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000000);
+
+  /// Prevents the dialog manager from sending an updated font to the child window
+  /// via WM_SETFONT in response to a DPI change.
   static const DCDC_DISABLE_FONT_UPDATE =
       DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000001);
+
+  /// Prevents the dialog manager from resizing and repositioning the child window
+  /// in response to a DPI change.
   static const DCDC_DISABLE_RELAYOUT =
       DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000002);
 }
@@ -1464,9 +1815,22 @@ extension type const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(int _) implements int {
 ///
 /// {@category enum}
 extension type const DIALOG_DPI_CHANGE_BEHAVIORS(int _) implements int {
+  /// The default behavior of the dialog manager.
   static const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS(0x00000000);
+
+  /// Prevents the dialog manager from responding to <a
+  /// href="https://docs.microsoft.com/windows/desktop/hidpi/wm-getdpiscaledsize">WM_GETDPISCALEDSIZE</a>
+  /// and <a
+  /// href="https://docs.microsoft.com/windows/desktop/hidpi/wm-dpichanged">WM_DPICHANGED</a>,
+  /// disabling all default DPI scaling behavior.
   static const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS(0x00000001);
+
+  /// Prevents the dialog manager from resizing the dialog in response to a DPI
+  /// change.
   static const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS(0x00000002);
+
+  /// Prevents the dialog manager from re-layouting all of the dialogue's
+  /// immediate children HWNDs in response to a DPI change.
   static const DDC_DISABLE_CONTROL_RELAYOUT =
       DIALOG_DPI_CHANGE_BEHAVIORS(0x00000004);
 }
@@ -1493,26 +1857,45 @@ extension type const DISPATCH_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_DEVICE_INFO_TYPE(int _) implements int {
+  /// Specifies the source name of the display device.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000001);
+
+  /// Specifies information about the monitor.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000002);
+
+  /// Specifies information about the preferred mode of a monitor.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000003);
+
+  /// Specifies the graphics adapter name.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000004);
+
+  /// Specifies how to set the monitor.
   static const DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000005);
+
+  /// Specifies how to set the base output technology for a given target ID.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000006);
+
+  /// Specifies the state of virtual mode support.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000007);
+
+  /// Specifies how to set the state of virtual mode support.
   static const DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000008);
+
   static const DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x00000009);
+
   static const DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x0000000a);
+
+  /// Specifies the current SDR white level for an HDR monitor.
   static const DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL =
       DISPLAYCONFIG_DEVICE_INFO_TYPE(0x0000000b);
   static const DISPLAYCONFIG_DEVICE_INFO_GET_MONITOR_SPECIALIZATION =
@@ -1529,10 +1912,23 @@ extension type const DISPLAYCONFIG_DEVICE_INFO_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_MODE_INFO_TYPE(int _) implements int {
+  /// Indicates that the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/wingdi/ns-wingdi-displayconfig_mode_info">DISPLAYCONFIG_MODE_INFO</a>
+  /// structure contains source mode information.
   static const DISPLAYCONFIG_MODE_INFO_TYPE_SOURCE =
       DISPLAYCONFIG_MODE_INFO_TYPE(0x00000001);
+
+  /// Indicates that the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/wingdi/ns-wingdi-displayconfig_mode_info">DISPLAYCONFIG_MODE_INFO</a>
+  /// structure contains target mode information.
   static const DISPLAYCONFIG_MODE_INFO_TYPE_TARGET =
       DISPLAYCONFIG_MODE_INFO_TYPE(0x00000002);
+
+  /// Indicates that the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/wingdi/ns-wingdi-displayconfig_mode_info">DISPLAYCONFIG_MODE_INFO</a>
+  /// structure contains a valid <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/wingdi/ns-wingdi-displayconfig_desktop_image_info">DISPLAYCONFIG_DESKTOP_IMAGE_INFO</a>
+  /// structure.
   static const DISPLAYCONFIG_MODE_INFO_TYPE_DESKTOP_IMAGE =
       DISPLAYCONFIG_MODE_INFO_TYPE(0x00000003);
 }
@@ -1544,14 +1940,24 @@ extension type const DISPLAYCONFIG_MODE_INFO_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_PIXELFORMAT(int _) implements int {
+  /// Indicates 8 BPP format.
   static const DISPLAYCONFIG_PIXELFORMAT_8BPP =
       DISPLAYCONFIG_PIXELFORMAT(0x00000001);
+
+  /// Indicates 16 BPP format.
   static const DISPLAYCONFIG_PIXELFORMAT_16BPP =
       DISPLAYCONFIG_PIXELFORMAT(0x00000002);
+
+  /// Indicates 24 BPP format.
   static const DISPLAYCONFIG_PIXELFORMAT_24BPP =
       DISPLAYCONFIG_PIXELFORMAT(0x00000003);
+
+  /// Indicates 32 BPP format.
   static const DISPLAYCONFIG_PIXELFORMAT_32BPP =
       DISPLAYCONFIG_PIXELFORMAT(0x00000004);
+
+  /// Indicates that the current display is not an 8, 16, 24, or 32 BPP GDI
+  /// desktop mode.
   static const DISPLAYCONFIG_PIXELFORMAT_NONGDI =
       DISPLAYCONFIG_PIXELFORMAT(0x00000005);
 }
@@ -1563,12 +1969,19 @@ extension type const DISPLAYCONFIG_PIXELFORMAT(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_ROTATION(int _) implements int {
+  /// Indicates that rotation is 0 degrees—landscape mode.
   static const DISPLAYCONFIG_ROTATION_IDENTITY =
       DISPLAYCONFIG_ROTATION(0x00000001);
+
+  /// Indicates that rotation is 90 degrees clockwise—portrait mode.
   static const DISPLAYCONFIG_ROTATION_ROTATE90 =
       DISPLAYCONFIG_ROTATION(0x00000002);
+
+  /// Indicates that rotation is 180 degrees clockwise—inverted landscape mode.
   static const DISPLAYCONFIG_ROTATION_ROTATE180 =
       DISPLAYCONFIG_ROTATION(0x00000003);
+
+  /// Indicates that rotation is 270 degrees clockwise—inverted portrait mode.
   static const DISPLAYCONFIG_ROTATION_ROTATE270 =
       DISPLAYCONFIG_ROTATION(0x00000004);
 }
@@ -1581,15 +1994,30 @@ extension type const DISPLAYCONFIG_ROTATION(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_SCALING(int _) implements int {
+  /// Indicates the identity transformation; the source content is presented with
+  /// no change.
   static const DISPLAYCONFIG_SCALING_IDENTITY =
       DISPLAYCONFIG_SCALING(0x00000001);
+
+  /// Indicates the centering transformation; the source content is presented
+  /// unscaled, centered with respect to the spatial resolution of the target
+  /// mode.
   static const DISPLAYCONFIG_SCALING_CENTERED =
       DISPLAYCONFIG_SCALING(0x00000002);
+
+  /// Indicates the content is scaled to fit the path's target.
   static const DISPLAYCONFIG_SCALING_STRETCHED =
       DISPLAYCONFIG_SCALING(0x00000003);
+
+  /// Indicates the aspect-ratio centering transformation.
   static const DISPLAYCONFIG_SCALING_ASPECTRATIOCENTEREDMAX =
       DISPLAYCONFIG_SCALING(0x00000004);
+
+  /// Indicates that the caller requests a custom scaling that the caller cannot
+  /// describe with any of the other DISPLAYCONFIG_SCALING_XXX values.
   static const DISPLAYCONFIG_SCALING_CUSTOM = DISPLAYCONFIG_SCALING(0x00000005);
+
+  /// Indicates that the caller does not have any preference for the scaling.
   static const DISPLAYCONFIG_SCALING_PREFERRED =
       DISPLAYCONFIG_SCALING(0x00000080);
 }
@@ -1601,14 +2029,26 @@ extension type const DISPLAYCONFIG_SCALING(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_SCANLINE_ORDERING(int _) implements int {
+  /// Indicates that scan-line ordering of the output is unspecified.
   static const DISPLAYCONFIG_SCANLINE_ORDERING_UNSPECIFIED =
       DISPLAYCONFIG_SCANLINE_ORDERING(0x00000000);
+
+  /// Indicates that the output is a progressive image.
   static const DISPLAYCONFIG_SCANLINE_ORDERING_PROGRESSIVE =
       DISPLAYCONFIG_SCANLINE_ORDERING(0x00000001);
+
+  /// Indicates that the output is an interlaced image that is created beginning
+  /// with the upper field.
   static const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED =
       DISPLAYCONFIG_SCANLINE_ORDERING(0x00000002);
+
+  /// Indicates that the output is an interlaced image that is created beginning
+  /// with the upper field.
   static const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED_UPPERFIELDFIRST =
       DISPLAYCONFIG_SCANLINE_ORDERING(0x00000002);
+
+  /// Indicates that the output is an interlaced image that is created beginning
+  /// with the lower field.
   static const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED_LOWERFIELDFIRST =
       DISPLAYCONFIG_SCANLINE_ORDERING(0x00000003);
 }
@@ -1621,44 +2061,85 @@ extension type const DISPLAYCONFIG_SCANLINE_ORDERING(int _) implements int {
 /// {@category enum}
 extension type const DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(int _)
     implements int {
+  /// Indicates a connector that is not one of the types that is indicated by the
+  /// following enumerators in this enumeration.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0xffffffff);
+
+  /// Indicates an HD15 (VGA) connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15 =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000000);
+
+  /// Indicates an S-video connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000001);
+
+  /// Indicates a composite video connector group.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000002);
+
+  /// Indicates a component video connector group.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000003);
+
+  /// Indicates a Digital Video Interface (DVI) connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000004);
+
+  /// Indicates a High-Definition Multimedia Interface (HDMI) connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000005);
+
+  /// Indicates a Low Voltage Differential Swing (LVDS) connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000006);
+
+  /// Indicates a Japanese D connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000008);
+
+  /// Indicates an SDI connector.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000009);
+
+  /// Indicates an external display port, which is a display port that connects
+  /// externally to a display device.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x0000000a);
+
+  /// Indicates an embedded display port that connects internally to a display
+  /// device.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x0000000b);
+
+  /// Indicates an external Unified Display Interface (UDI), which is a UDI that
+  /// connects externally to a display device.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x0000000c);
+
+  /// Indicates an embedded UDI that connects internally to a display device.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x0000000d);
+
+  /// Indicates a dongle cable that supports standard definition television
+  /// (SDTV).
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x0000000e);
+
+  /// Indicates that the VidPN target is a Miracast wireless display device.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x0000000f);
+
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000010);
+
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000011);
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_USB_TUNNEL =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x00000012);
+
+  /// Indicates that the video output device connects internally to a display
+  /// device (for example, the internal connection in a laptop computer).
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0x80000000);
 }
@@ -1780,8 +2261,13 @@ extension type const DOT11_PHY_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DOT11_RADIO_STATE(int _) implements int {
+  /// The radio state is unknown.
   static const dot11_radio_state_unknown = DOT11_RADIO_STATE(0x00000000);
+
+  /// The radio is on.
   static const dot11_radio_state_on = DOT11_RADIO_STATE(0x00000001);
+
+  /// The radio is off.
   static const dot11_radio_state_off = DOT11_RADIO_STATE(0x00000002);
 }
 
@@ -1792,9 +2278,16 @@ extension type const DOT11_RADIO_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DPI_AWARENESS(int _) implements int {
+  /// Invalid DPI awareness.
   static const DPI_AWARENESS_INVALID = DPI_AWARENESS(0xffffffff);
+
+  /// DPI unaware.
   static const DPI_AWARENESS_UNAWARE = DPI_AWARENESS(0x00000000);
+
+  /// System DPI aware.
   static const DPI_AWARENESS_SYSTEM_AWARE = DPI_AWARENESS(0x00000001);
+
+  /// Per monitor DPI aware.
   static const DPI_AWARENESS_PER_MONITOR_AWARE = DPI_AWARENESS(0x00000002);
 }
 
@@ -1808,8 +2301,13 @@ extension type const DPI_AWARENESS(int _) implements int {
 ///
 /// {@category enum}
 extension type const DPI_HOSTING_BEHAVIOR(int _) implements int {
+  /// Invalid DPI hosting behavior.
   static const DPI_HOSTING_BEHAVIOR_INVALID = DPI_HOSTING_BEHAVIOR(0xffffffff);
+
+  /// Default DPI hosting behavior.
   static const DPI_HOSTING_BEHAVIOR_DEFAULT = DPI_HOSTING_BEHAVIOR(0x00000000);
+
+  /// Mixed DPI hosting behavior.
   static const DPI_HOSTING_BEHAVIOR_MIXED = DPI_HOSTING_BEHAVIOR(0x00000001);
 }
 
@@ -1924,8 +2422,14 @@ extension type const DRAW_THEME_PARENT_BACKGROUND_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const DSREG_JOIN_TYPE(int _) implements int {
+  /// The type of join is not known.
   static const DSREG_UNKNOWN_JOIN = DSREG_JOIN_TYPE(0x00000000);
+
+  /// The device is joined to Azure Active Directory (Azure AD).
   static const DSREG_DEVICE_JOIN = DSREG_JOIN_TYPE(0x00000001);
+
+  /// The device is registered to Azure Active Directory (Azure AD), meaning an
+  /// Azure AD work account is added on the device.
   static const DSREG_WORKPLACE_JOIN = DSREG_JOIN_TYPE(0x00000002);
 }
 
@@ -1965,32 +2469,103 @@ extension type const DUPLICATE_HANDLE_OPTIONS(int _) implements int {
 ///
 /// {@category enum}
 extension type const DWMWINDOWATTRIBUTE(int _) implements int {
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmgetwindowattribute">DwmGetWindowAttribute</a>.
   static const DWMWA_NCRENDERING_ENABLED = DWMWINDOWATTRIBUTE(0x00000001);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_NCRENDERING_POLICY = DWMWINDOWATTRIBUTE(0x00000002);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_TRANSITIONS_FORCEDISABLED = DWMWINDOWATTRIBUTE(0x00000003);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_ALLOW_NCPAINT = DWMWINDOWATTRIBUTE(0x00000004);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmgetwindowattribute">DwmGetWindowAttribute</a>.
   static const DWMWA_CAPTION_BUTTON_BOUNDS = DWMWINDOWATTRIBUTE(0x00000005);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_NONCLIENT_RTL_LAYOUT = DWMWINDOWATTRIBUTE(0x00000006);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_FORCE_ICONIC_REPRESENTATION =
       DWMWINDOWATTRIBUTE(0x00000007);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_FLIP3D_POLICY = DWMWINDOWATTRIBUTE(0x00000008);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmgetwindowattribute">DwmGetWindowAttribute</a>.
   static const DWMWA_EXTENDED_FRAME_BOUNDS = DWMWINDOWATTRIBUTE(0x00000009);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_HAS_ICONIC_BITMAP = DWMWINDOWATTRIBUTE(0x0000000a);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_DISALLOW_PEEK = DWMWINDOWATTRIBUTE(0x0000000b);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_EXCLUDED_FROM_PEEK = DWMWINDOWATTRIBUTE(0x0000000c);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_CLOAK = DWMWINDOWATTRIBUTE(0x0000000d);
+
   static const DWMWA_CLOAKED = DWMWINDOWATTRIBUTE(0x0000000e);
+
+  /// Use with <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute">DwmSetWindowAttribute</a>.
   static const DWMWA_FREEZE_REPRESENTATION = DWMWINDOWATTRIBUTE(0x0000000f);
   static const DWMWA_PASSIVE_UPDATE_MODE = DWMWINDOWATTRIBUTE(0x00000010);
+
+  /// Use with
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_USE_HOSTBACKDROPBRUSH = DWMWINDOWATTRIBUTE(0x00000011);
+
+  /// Use with
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_USE_IMMERSIVE_DARK_MODE = DWMWINDOWATTRIBUTE(0x00000014);
+
+  /// Use with
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_WINDOW_CORNER_PREFERENCE = DWMWINDOWATTRIBUTE(0x00000021);
+
+  /// Use with
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_BORDER_COLOR = DWMWINDOWATTRIBUTE(0x00000022);
+
+  /// Use with
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_CAPTION_COLOR = DWMWINDOWATTRIBUTE(0x00000023);
+
+  /// Use with
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_TEXT_COLOR = DWMWINDOWATTRIBUTE(0x00000024);
+
+  /// Use with
+  /// [DwmGetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmgetwindowattribute).
   static const DWMWA_VISIBLE_FRAME_BORDER_THICKNESS =
       DWMWINDOWATTRIBUTE(0x00000025);
+
+  /// Use with
+  /// [DwmGetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmgetwindowattribute)
+  /// or
+  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
   static const DWMWA_SYSTEMBACKDROP_TYPE = DWMWINDOWATTRIBUTE(0x00000026);
+
+  /// The maximum recognized <b>DWMWINDOWATTRIBUTE</b> value, used for validation
+  /// purposes.
   static const DWMWA_LAST = DWMWINDOWATTRIBUTE(0x00000027);
 }
 
@@ -2001,12 +2576,25 @@ extension type const DWMWINDOWATTRIBUTE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DWM_SHOWCONTACT(int _) implements int {
+  /// Down.
   static const DWMSC_DOWN = DWM_SHOWCONTACT(0x00000001);
+
+  /// Up.
   static const DWMSC_UP = DWM_SHOWCONTACT(0x00000002);
+
+  /// Drag.
   static const DWMSC_DRAG = DWM_SHOWCONTACT(0x00000004);
+
+  /// Hold.
   static const DWMSC_HOLD = DWM_SHOWCONTACT(0x00000008);
+
+  /// Pen barrel.
   static const DWMSC_PENBARREL = DWM_SHOWCONTACT(0x00000010);
+
+  /// None.
   static const DWMSC_NONE = DWM_SHOWCONTACT(0x00000000);
+
+  /// All.
   static const DWMSC_ALL = DWM_SHOWCONTACT(0xffffffff);
 }
 
@@ -2017,9 +2605,16 @@ extension type const DWM_SHOWCONTACT(int _) implements int {
 ///
 /// {@category enum}
 extension type const DWM_WINDOW_CORNER_PREFERENCE(int _) implements int {
+  /// Let the system decide when to round window corners.
   static const DWMWCP_DEFAULT = DWM_WINDOW_CORNER_PREFERENCE(0x00000000);
+
+  /// Never round window corners.
   static const DWMWCP_DONOTROUND = DWM_WINDOW_CORNER_PREFERENCE(0x00000001);
+
+  /// Round the corners, if appropriate.
   static const DWMWCP_ROUND = DWM_WINDOW_CORNER_PREFERENCE(0x00000002);
+
+  /// Round the corners if appropriate, with a small radius.
   static const DWMWCP_ROUNDSMALL = DWM_WINDOW_CORNER_PREFERENCE(0x00000003);
 }
 
@@ -2031,11 +2626,22 @@ extension type const DWM_WINDOW_CORNER_PREFERENCE(int _) implements int {
 ///
 /// {@category enum}
 extension type const DockPosition(int _) implements int {
+  /// The window is docked at the top.
   static const DockPosition_Top = DockPosition(0x00000000);
+
+  /// The window is docked at the left.
   static const DockPosition_Left = DockPosition(0x00000001);
+
+  /// The window is docked at the bottom.
   static const DockPosition_Bottom = DockPosition(0x00000002);
+
+  /// The window is docked at the right.
   static const DockPosition_Right = DockPosition(0x00000003);
+
+  /// The window is docked on all four sides.
   static const DockPosition_Fill = DockPosition(0x00000004);
+
+  /// The window is not docked.
   static const DockPosition_None = DockPosition(0x00000005);
 }
 
@@ -2047,9 +2653,18 @@ extension type const DockPosition(int _) implements int {
 ///
 /// {@category enum}
 extension type const EDataFlow(int _) implements int {
+  /// Audio rendering stream.
   static const eRender = EDataFlow(0x00000000);
+
+  /// Audio capture stream.
   static const eCapture = EDataFlow(0x00000001);
+
+  /// Audio rendering or capture stream.
   static const eAll = EDataFlow(0x00000002);
+
+  /// The number of members in the <a
+  /// href="https://docs.microsoft.com/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-edataflow">EDataFlow</a>
+  /// enumeration (not counting the EDataFlow_enum_count member).
   static const EDataFlow_enum_count = EDataFlow(0x00000003);
 }
 
@@ -2146,9 +2761,18 @@ extension type const EPrintXPSJobProgress(int _) implements int {
 ///
 /// {@category enum}
 extension type const ERole(int _) implements int {
+  /// Games, system notification sounds, and voice commands.
   static const eConsole = ERole(0x00000000);
+
+  /// Music, movies, narration, and live music recording.
   static const eMultimedia = ERole(0x00000001);
+
+  /// Voice communications (talking to another person).
   static const eCommunications = ERole(0x00000002);
+
+  /// The number of members in the <a
+  /// href="https://docs.microsoft.com/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-erole">ERole</a>
+  /// enumeration (not counting the ERole_enum_count member).
   static const ERole_enum_count = ERole(0x00000003);
 }
 
@@ -2194,10 +2818,17 @@ extension type const EXECUTION_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const ExpandCollapseState(int _) implements int {
+  /// No children are visible.
   static const ExpandCollapseState_Collapsed = ExpandCollapseState(0x00000000);
+
+  /// All children are visible.
   static const ExpandCollapseState_Expanded = ExpandCollapseState(0x00000001);
+
+  /// Some, but not all, children are visible.
   static const ExpandCollapseState_PartiallyExpanded =
       ExpandCollapseState(0x00000002);
+
+  /// The element does not expand or collapse.
   static const ExpandCollapseState_LeafNode = ExpandCollapseState(0x00000003);
 }
 
@@ -2208,7 +2839,10 @@ extension type const ExpandCollapseState(int _) implements int {
 ///
 /// {@category enum}
 extension type const FDAP(int _) implements int {
+  /// The place is added to the bottom of the default list.
   static const FDAP_BOTTOM = FDAP(0x00000000);
+
+  /// The place is added to the top of the default list.
   static const FDAP_TOP = FDAP(0x00000001);
 }
 
@@ -2221,7 +2855,10 @@ extension type const FDAP(int _) implements int {
 ///
 /// {@category enum}
 extension type const FFFP_MODE(int _) implements int {
+  /// Exact match.
   static const FFFP_EXACTMATCH = FFFP_MODE(0x00000000);
+
+  /// Nearest parent match.
   static const FFFP_NEARESTPARENTMATCH = FFFP_MODE(0x00000001);
 }
 
@@ -2334,34 +2971,82 @@ extension type const FILE_FLAGS_AND_ATTRIBUTES(int _) implements int {
 ///
 /// {@category enum}
 extension type const FILE_INFO_BY_HANDLE_CLASS(int _) implements int {
+  /// Minimal information for the file should be retrieved or set.
   static const FileBasicInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000000);
+
+  /// Extended information for the file should be retrieved.
   static const FileStandardInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000001);
+
+  /// The file name should be retrieved.
   static const FileNameInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000002);
+
+  /// The file name should be changed.
   static const FileRenameInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000003);
+
+  /// The file should be deleted.
   static const FileDispositionInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000004);
+
+  /// The file allocation information should be changed.
   static const FileAllocationInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000005);
+
+  /// The end of the file should be set.
   static const FileEndOfFileInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000006);
+
+  /// File stream information for the specified file should be retrieved.
   static const FileStreamInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000007);
+
+  /// File compression information should be retrieved.
   static const FileCompressionInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000008);
+
+  /// File attribute information should be retrieved.
   static const FileAttributeTagInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000009);
+
+  /// Files in the specified directory should be retrieved.
   static const FileIdBothDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS(0x0000000a);
+
+  /// Identical to <b>FileIdBothDirectoryInfo</b>, but forces the enumeration
+  /// operation to start again from the beginning.
   static const FileIdBothDirectoryRestartInfo =
       FILE_INFO_BY_HANDLE_CLASS(0x0000000b);
+
+  /// Priority hint information should be set.
   static const FileIoPriorityHintInfo = FILE_INFO_BY_HANDLE_CLASS(0x0000000c);
+
+  /// File remote protocol information should be retrieved.
   static const FileRemoteProtocolInfo = FILE_INFO_BY_HANDLE_CLASS(0x0000000d);
+
+  /// Files in the specified directory should be retrieved.
   static const FileFullDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS(0x0000000e);
+
+  /// Identical to <b>FileFullDirectoryInfo</b>, but forces the enumeration
+  /// operation to start again from the beginning.
   static const FileFullDirectoryRestartInfo =
       FILE_INFO_BY_HANDLE_CLASS(0x0000000f);
+
+  /// File storage information should be retrieved.
   static const FileStorageInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000010);
+
+  /// File alignment information should be retrieved.
   static const FileAlignmentInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000011);
+
+  /// File information should be retrieved.
   static const FileIdInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000012);
+
+  /// Files in the specified directory should be retrieved.
   static const FileIdExtdDirectoryInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000013);
+
+  /// Identical to <b>FileIdExtdDirectoryInfo</b>, but forces the enumeration
+  /// operation to start again from the beginning.
   static const FileIdExtdDirectoryRestartInfo =
       FILE_INFO_BY_HANDLE_CLASS(0x00000014);
+
   static const FileDispositionInfoEx = FILE_INFO_BY_HANDLE_CLASS(0x00000015);
+
   static const FileRenameInfoEx = FILE_INFO_BY_HANDLE_CLASS(0x00000016);
   static const FileCaseSensitiveInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000017);
   static const FileNormalizedNameInfo = FILE_INFO_BY_HANDLE_CLASS(0x00000018);
+
+  /// This value is used for validation.
   static const MaximumFileInfoByHandleClass =
       FILE_INFO_BY_HANDLE_CLASS(0x00000019);
 }
@@ -2403,8 +3088,14 @@ extension type const FILE_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const FILE_USAGE_TYPE(int _) implements int {
+  /// The file is being played by the process that has it open.
   static const FUT_PLAYING = FILE_USAGE_TYPE(0x00000000);
+
+  /// The file is being edited by the process that has it open.
   static const FUT_EDITING = FILE_USAGE_TYPE(0x00000001);
+
+  /// The file is open in the process for an unspecified action or an action that
+  /// does not readily fit into the other two categories.
   static const FUT_GENERIC = FILE_USAGE_TYPE(0x00000002);
 }
 
@@ -2416,8 +3107,18 @@ extension type const FILE_USAGE_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const FINDEX_INFO_LEVELS(int _) implements int {
+  /// The <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/fileapi/nf-fileapi-findfirstfileexa">FindFirstFileEx</a>
+  /// function retrieves a standard set of attribute information.
   static const FindExInfoStandard = FINDEX_INFO_LEVELS(0x00000000);
+
+  /// The <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/fileapi/nf-fileapi-findfirstfileexa">FindFirstFileEx</a>
+  /// function does not query the short file name, improving overall enumeration
+  /// speed.
   static const FindExInfoBasic = FINDEX_INFO_LEVELS(0x00000001);
+
+  /// This value is used for validation.
   static const FindExInfoMaxInfoLevel = FINDEX_INFO_LEVELS(0x00000002);
 }
 
@@ -2429,9 +3130,15 @@ extension type const FINDEX_INFO_LEVELS(int _) implements int {
 ///
 /// {@category enum}
 extension type const FINDEX_SEARCH_OPS(int _) implements int {
+  /// The search for a file that matches a specified file name.
   static const FindExSearchNameMatch = FINDEX_SEARCH_OPS(0x00000000);
+
+  /// This is an advisory flag.
   static const FindExSearchLimitToDirectories = FINDEX_SEARCH_OPS(0x00000001);
+
+  /// This filtering type is not available.
   static const FindExSearchLimitToDevices = FINDEX_SEARCH_OPS(0x00000002);
+
   static const FindExSearchMaxSearchOp = FINDEX_SEARCH_OPS(0x00000003);
 }
 
@@ -2572,18 +3279,47 @@ extension type const FORMAT_MESSAGE_OPTIONS(int _) implements int {
 ///
 /// {@category enum}
 extension type const FUNCFLAGS(int _) implements int {
+  /// The function should not be accessible from macro languages.
   static const FUNCFLAG_FRESTRICTED = FUNCFLAGS(0x0001);
+
+  /// The function returns an object that is a source of events.
   static const FUNCFLAG_FSOURCE = FUNCFLAGS(0x0002);
+
+  /// The function that supports data binding.
   static const FUNCFLAG_FBINDABLE = FUNCFLAGS(0x0004);
+
+  /// When set, any call to a method that sets the property results first in a
+  /// call to <b>IPropertyNotifySink::OnRequestEdit</b>.
   static const FUNCFLAG_FREQUESTEDIT = FUNCFLAGS(0x0008);
+
+  /// The function that is displayed to the user as bindable.
   static const FUNCFLAG_FDISPLAYBIND = FUNCFLAGS(0x0010);
+
+  /// The function that best represents the object.
   static const FUNCFLAG_FDEFAULTBIND = FUNCFLAGS(0x0020);
+
+  /// The function should not be displayed to the user, although it exists and is
+  /// bindable.
   static const FUNCFLAG_FHIDDEN = FUNCFLAGS(0x0040);
+
+  /// The function supports <b>GetLastError</b>.
   static const FUNCFLAG_FUSESGETLASTERROR = FUNCFLAGS(0x0080);
+
+  /// Permits an optimization in which the compiler looks for a member named xyz
+  /// on the type of abc.
   static const FUNCFLAG_FDEFAULTCOLLELEM = FUNCFLAGS(0x0100);
+
+  /// The type information member is the default member for display in the user
+  /// interface.
   static const FUNCFLAG_FUIDEFAULT = FUNCFLAGS(0x0200);
+
+  /// The property appears in an object browser, but not in a properties browser.
   static const FUNCFLAG_FNONBROWSABLE = FUNCFLAGS(0x0400);
+
+  /// Tags the interface as having default behaviors.
   static const FUNCFLAG_FREPLACEABLE = FUNCFLAGS(0x0800);
+
+  /// Mapped as individual bindable properties.
   static const FUNCFLAG_FIMMEDIATEBIND = FUNCFLAGS(0x1000);
 }
 
@@ -2594,10 +3330,24 @@ extension type const FUNCFLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const FUNCKIND(int _) implements int {
+  /// The function is accessed the same as PUREVIRTUAL, except the function has an
+  /// implementation.
   static const FUNC_VIRTUAL = FUNCKIND(0x00000000);
+
+  /// The function is accessed through the virtual function table (VTBL), and
+  /// takes an implicit this pointer.
   static const FUNC_PUREVIRTUAL = FUNCKIND(0x00000001);
+
+  /// The function is accessed by static address and takes an implicit this
+  /// pointer.
   static const FUNC_NONVIRTUAL = FUNCKIND(0x00000002);
+
+  /// The function is accessed by static address and does not take an implicit
+  /// this pointer.
   static const FUNC_STATIC = FUNCKIND(0x00000003);
+
+  /// The function can be accessed only through <a
+  /// href="https://docs.microsoft.com/previous-versions/windows/desktop/api/oaidl/nn-oaidl-idispatch">IDispatch</a>.
   static const FUNC_DISPATCH = FUNCKIND(0x00000004);
 }
 
@@ -2635,16 +3385,37 @@ extension type const GESTURECONFIG_ID(int _) implements int {
 ///
 /// {@category enum}
 extension type const GESTURE_TYPE(int _) implements int {
+  /// A pen tap.
   static const GT_PEN_TAP = GESTURE_TYPE(0x00000000);
+
+  /// A pen double tap.
   static const GT_PEN_DOUBLETAP = GESTURE_TYPE(0x00000001);
+
+  /// A pen right tap.
   static const GT_PEN_RIGHTTAP = GESTURE_TYPE(0x00000002);
+
+  /// A pen press and hold.
   static const GT_PEN_PRESSANDHOLD = GESTURE_TYPE(0x00000003);
+
+  /// An abort of the pen press and hold.
   static const GT_PEN_PRESSANDHOLDABORT = GESTURE_TYPE(0x00000004);
+
+  /// A touch tap.
   static const GT_TOUCH_TAP = GESTURE_TYPE(0x00000005);
+
+  /// A touch double tap.
   static const GT_TOUCH_DOUBLETAP = GESTURE_TYPE(0x00000006);
+
+  /// A touch right tap.
   static const GT_TOUCH_RIGHTTAP = GESTURE_TYPE(0x00000007);
+
+  /// A touch press and hold.
   static const GT_TOUCH_PRESSANDHOLD = GESTURE_TYPE(0x00000008);
+
+  /// An abort of the pen press and hold.
   static const GT_TOUCH_PRESSANDHOLDABORT = GESTURE_TYPE(0x00000009);
+
+  /// A touch press and tap.
   static const GT_TOUCH_PRESSANDTAP = GESTURE_TYPE(0x0000000a);
 }
 
@@ -2668,20 +3439,54 @@ extension type const GETFINALPATHNAMEBYHANDLE_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const GETPROPERTYSTOREFLAGS(int _) implements int {
+  /// Meaning to a calling process: Return a read-only property store that
+  /// contains all properties.
   static const GPS_DEFAULT = GETPROPERTYSTOREFLAGS(0x00000000);
+
+  /// Meaning to a calling process: Include only properties directly from the
+  /// property handler, which opens the file on the disk, network, or device.
   static const GPS_HANDLERPROPERTIESONLY = GETPROPERTYSTOREFLAGS(0x00000001);
+
+  /// Meaning to a calling process: Can write properties to the item.
   static const GPS_READWRITE = GETPROPERTYSTOREFLAGS(0x00000002);
+
+  /// Meaning to a calling process: Provides a writable store, with no initial
+  /// properties, that exists for the lifetime of the Shell item instance;
+  /// basically, a property bag attached to the item instance.
   static const GPS_TEMPORARY = GETPROPERTYSTOREFLAGS(0x00000004);
+
+  /// Meaning to a calling process: Provides a store that does not involve reading
+  /// from the disk or network.
   static const GPS_FASTPROPERTIESONLY = GETPROPERTYSTOREFLAGS(0x00000008);
+
+  /// Meaning to a calling process: Open a slow item (offline file) if necessary.
   static const GPS_OPENSLOWITEM = GETPROPERTYSTOREFLAGS(0x00000010);
+
+  /// Meaning to a calling process: Delay memory-intensive operations, such as
+  /// file access, until a property is requested that requires such access.
   static const GPS_DELAYCREATION = GETPROPERTYSTOREFLAGS(0x00000020);
+
+  /// Meaning to a calling process: Succeed at getting the store, even if some
+  /// properties are not returned.
   static const GPS_BESTEFFORT = GETPROPERTYSTOREFLAGS(0x00000040);
+
   static const GPS_NO_OPLOCK = GETPROPERTYSTOREFLAGS(0x00000080);
+
   static const GPS_PREFERQUERYPROPERTIES = GETPROPERTYSTOREFLAGS(0x00000100);
+
+  /// Include properties from the file's secondary stream.
   static const GPS_EXTRINSICPROPERTIES = GETPROPERTYSTOREFLAGS(0x00000200);
+
+  /// Include only properties from the file's secondary stream.
   static const GPS_EXTRINSICPROPERTIESONLY = GETPROPERTYSTOREFLAGS(0x00000400);
+
   static const GPS_VOLATILEPROPERTIES = GETPROPERTYSTOREFLAGS(0x00000800);
+
   static const GPS_VOLATILEPROPERTIESONLY = GETPROPERTYSTOREFLAGS(0x00001000);
+
+  /// Mask for valid <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/propsys/ne-propsys-getpropertystoreflags">GETPROPERTYSTOREFLAGS</a>
+  /// values.
   static const GPS_MASK_VALID = GETPROPERTYSTOREFLAGS(0x00001fff);
 }
 
@@ -2762,7 +3567,14 @@ extension type const GET_DCX_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const GET_FILEEX_INFO_LEVELS(int _) implements int {
+  /// The <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/fileapi/nf-fileapi-getfileattributesexa">GetFileAttributesEx</a>
+  /// or <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winbase/nf-winbase-getfileattributestransacteda">GetFileAttributesTransacted</a>
+  /// function retrieves a standard set of attribute information.
   static const GetFileExInfoStandard = GET_FILEEX_INFO_LEVELS(0x00000000);
+
+  /// One greater than the maximum value.
   static const GetFileExMaxInfoLevel = GET_FILEEX_INFO_LEVELS(0x00000001);
 }
 
@@ -2897,10 +3709,14 @@ extension type const HEAP_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const HEAP_INFORMATION_CLASS(int _) implements int {
+  /// The heap features that are enabled.
   static const HeapCompatibilityInformation =
       HEAP_INFORMATION_CLASS(0x00000000);
+
+  /// The terminate-on-corruption feature.
   static const HeapEnableTerminationOnCorruption =
       HEAP_INFORMATION_CLASS(0x00000001);
+
   static const HeapOptimizeResources = HEAP_INFORMATION_CLASS(0x00000003);
   static const HeapTag = HEAP_INFORMATION_CLASS(0x00000007);
 }
@@ -2930,12 +3746,27 @@ extension type const IDLFLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const IF_OPER_STATUS(int _) implements int {
+  /// The interface is up and operational.
   static const IfOperStatusUp = IF_OPER_STATUS(0x00000001);
+
+  /// The interface is not down and not operational.
   static const IfOperStatusDown = IF_OPER_STATUS(0x00000002);
+
+  /// The interface is being tested.
   static const IfOperStatusTesting = IF_OPER_STATUS(0x00000003);
+
+  /// The interface status is unknown.
   static const IfOperStatusUnknown = IF_OPER_STATUS(0x00000004);
+
+  /// The interface is not in a condition to pass packets.
   static const IfOperStatusDormant = IF_OPER_STATUS(0x00000005);
+
+  /// This state is a refinement on the down state which indicates that the
+  /// interface is down specifically because some component (for example, a
+  /// hardware component) is not present in the system.
   static const IfOperStatusNotPresent = IF_OPER_STATUS(0x00000006);
+
+  /// This state is a refinement on the down state.
   static const IfOperStatusLowerLayerDown = IF_OPER_STATUS(0x00000007);
 }
 
@@ -2947,6 +3778,8 @@ extension type const IF_OPER_STATUS(int _) implements int {
 ///
 /// {@category enum}
 extension type const IMAGEHLP_EXTENDED_OPTIONS(int _) implements int {
+  /// Turns off explicit updates to the last access time of a symbol that is
+  /// loaded.
   static const SYMOPT_EX_DISABLEACCESSTIMEUPDATE =
       IMAGEHLP_EXTENDED_OPTIONS(0x00000000);
   static const SYMOPT_EX_LASTVALIDDEBUGDIRECTORY =
@@ -2955,6 +3788,7 @@ extension type const IMAGEHLP_EXTENDED_OPTIONS(int _) implements int {
       IMAGEHLP_EXTENDED_OPTIONS(0x00000002);
   static const SYMOPT_EX_NEVERLOADSYMBOLS =
       IMAGEHLP_EXTENDED_OPTIONS(0x00000003);
+
   static const SYMOPT_EX_MAX = IMAGEHLP_EXTENDED_OPTIONS(0x00000004);
 }
 
@@ -3053,9 +3887,16 @@ extension type const INPUT_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const INVOKEKIND(int _) implements int {
+  /// The member is called using a normal function invocation syntax.
   static const INVOKE_FUNC = INVOKEKIND(0x00000001);
+
+  /// The function is invoked using a normal property-access syntax.
   static const INVOKE_PROPERTYGET = INVOKEKIND(0x00000002);
+
+  /// The function is invoked using a property value assignment syntax.
   static const INVOKE_PROPERTYPUT = INVOKEKIND(0x00000004);
+
+  /// The function is invoked using a property reference assignment syntax.
   static const INVOKE_PROPERTYPUTREF = INVOKEKIND(0x00000008);
 }
 
@@ -3150,9 +3991,20 @@ extension type const KEYBD_EVENT_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const KF_CATEGORY(int _) implements int {
+  /// Virtual folders are not part of the file system, which is to say that they
+  /// have no path.
   static const KF_CATEGORY_VIRTUAL = KF_CATEGORY(0x00000001);
+
+  /// Fixed file system folders are not managed by the Shell and are usually given
+  /// a permanent path when the system is installed.
   static const KF_CATEGORY_FIXED = KF_CATEGORY(0x00000002);
+
+  /// Common folders are those file system folders used for sharing data and
+  /// settings, accessible by all users of a system.
   static const KF_CATEGORY_COMMON = KF_CATEGORY(0x00000003);
+
+  /// Per-user folders are those stored under each user's profile and accessible
+  /// only by that user.
   static const KF_CATEGORY_PERUSER = KF_CATEGORY(0x00000004);
 }
 
@@ -3201,18 +4053,38 @@ extension type const LOCK_FILE_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const LOGICAL_PROCESSOR_RELATIONSHIP(int _) implements int {
+  /// The specified logical processors share a single processor core.
   static const RelationProcessorCore =
       LOGICAL_PROCESSOR_RELATIONSHIP(0x00000000);
+
+  /// The specified logical processors are part of the same NUMA node.
   static const RelationNumaNode = LOGICAL_PROCESSOR_RELATIONSHIP(0x00000001);
+
+  /// The specified logical processors share a cache.
   static const RelationCache = LOGICAL_PROCESSOR_RELATIONSHIP(0x00000002);
+
+  /// The specified logical processors share a physical package (a single package
+  /// socketed or soldered onto a motherboard may contain multiple processor cores
+  /// or threads, each of which is treated as a separate processor by the
+  /// operating system).
   static const RelationProcessorPackage =
       LOGICAL_PROCESSOR_RELATIONSHIP(0x00000003);
+
+  /// The specified logical processors share a single <a
+  /// href="https://docs.microsoft.com/windows/desktop/ProcThread/processor-groups">processor
+  /// group</a>.
   static const RelationGroup = LOGICAL_PROCESSOR_RELATIONSHIP(0x00000004);
+
+  /// The specified logical processors share a single processor die.
   static const RelationProcessorDie =
       LOGICAL_PROCESSOR_RELATIONSHIP(0x00000005);
+
+  /// Requests that the full affinity be returned.
   static const RelationNumaNodeEx = LOGICAL_PROCESSOR_RELATIONSHIP(0x00000006);
   static const RelationProcessorModule =
       LOGICAL_PROCESSOR_RELATIONSHIP(0x00000007);
+
+  /// On input, retrieves information about all possible relationship types.
   static const RelationAll = LOGICAL_PROCESSOR_RELATIONSHIP(0x0000ffff);
 }
 
@@ -3227,7 +4099,9 @@ extension type const LOGICAL_PROCESSOR_RELATIONSHIP(int _) implements int {
 /// {@category enum}
 extension type const LiveSetting(int _) implements int {
   static const Off = LiveSetting(0x00000000);
+
   static const Polite = LiveSetting(0x00000001);
+
   static const Assertive = LiveSetting(0x00000002);
 }
 
@@ -3241,8 +4115,15 @@ extension type const LiveSetting(int _) implements int {
 ///
 /// {@category enum}
 extension type const MACHINE_ATTRIBUTES(int _) implements int {
+  /// The specified architecture of code can run in user mode.
   static const UserEnabled = MACHINE_ATTRIBUTES(0x00000001);
+
+  /// The specified architecture of code can run in kernel mode.
   static const KernelEnabled = MACHINE_ATTRIBUTES(0x00000002);
+
+  /// The specified architecture of code runs by relying on WOW64's namespace
+  /// [File System Redirector](/windows/win32/winprog64/file-system-redirector)
+  /// and [Registry Redirector](/windows/win32/winprog64/registry-redirector).
   static const Wow64Container = MACHINE_ATTRIBUTES(0x00000004);
 }
 
@@ -3262,14 +4143,31 @@ extension type const MAP_VIRTUAL_KEY_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MC_COLOR_TEMPERATURE(int _) implements int {
+  /// Unknown temperature.
   static const MC_COLOR_TEMPERATURE_UNKNOWN = MC_COLOR_TEMPERATURE(0x00000000);
+
+  /// 4,000 kelvins (K).
   static const MC_COLOR_TEMPERATURE_4000K = MC_COLOR_TEMPERATURE(0x00000001);
+
+  /// 5,000 K.
   static const MC_COLOR_TEMPERATURE_5000K = MC_COLOR_TEMPERATURE(0x00000002);
+
+  /// 6,500 K.
   static const MC_COLOR_TEMPERATURE_6500K = MC_COLOR_TEMPERATURE(0x00000003);
+
+  /// 7,500 K.
   static const MC_COLOR_TEMPERATURE_7500K = MC_COLOR_TEMPERATURE(0x00000004);
+
+  /// 8,200 K.
   static const MC_COLOR_TEMPERATURE_8200K = MC_COLOR_TEMPERATURE(0x00000005);
+
+  /// 9,300 K
   static const MC_COLOR_TEMPERATURE_9300K = MC_COLOR_TEMPERATURE(0x00000006);
+
+  /// 10,000 K.
   static const MC_COLOR_TEMPERATURE_10000K = MC_COLOR_TEMPERATURE(0x00000007);
+
+  /// 11,500 K.
   static const MC_COLOR_TEMPERATURE_11500K = MC_COLOR_TEMPERATURE(0x00000008);
 }
 
@@ -3280,19 +4178,36 @@ extension type const MC_COLOR_TEMPERATURE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MC_DISPLAY_TECHNOLOGY_TYPE(int _) implements int {
+  /// Shadow-mask cathode ray tube (CRT).
   static const MC_SHADOW_MASK_CATHODE_RAY_TUBE =
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000000);
+
+  /// Aperture-grill CRT.
   static const MC_APERTURE_GRILL_CATHODE_RAY_TUBE =
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000001);
+
+  /// Thin-film transistor (TFT) display.
   static const MC_THIN_FILM_TRANSISTOR = MC_DISPLAY_TECHNOLOGY_TYPE(0x00000002);
+
+  /// Liquid crystal on silicon (LCOS) display.
   static const MC_LIQUID_CRYSTAL_ON_SILICON =
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000003);
+
+  /// Plasma display.
   static const MC_PLASMA = MC_DISPLAY_TECHNOLOGY_TYPE(0x00000004);
+
+  /// Organic light emitting diode (LED) display.
   static const MC_ORGANIC_LIGHT_EMITTING_DIODE =
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000005);
+
+  /// Electroluminescent display.
   static const MC_ELECTROLUMINESCENT = MC_DISPLAY_TECHNOLOGY_TYPE(0x00000006);
+
+  /// Microelectromechanical display.
   static const MC_MICROELECTROMECHANICAL =
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000007);
+
+  /// Field emission device (FED) display.
   static const MC_FIELD_EMISSION_DEVICE =
       MC_DISPLAY_TECHNOLOGY_TYPE(0x00000008);
 }
@@ -3304,8 +4219,13 @@ extension type const MC_DISPLAY_TECHNOLOGY_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MC_DRIVE_TYPE(int _) implements int {
+  /// Red drive.
   static const MC_RED_DRIVE = MC_DRIVE_TYPE(0x00000000);
+
+  /// Green drive.
   static const MC_GREEN_DRIVE = MC_DRIVE_TYPE(0x00000001);
+
+  /// Blue drive.
   static const MC_BLUE_DRIVE = MC_DRIVE_TYPE(0x00000002);
 }
 
@@ -3316,8 +4236,13 @@ extension type const MC_DRIVE_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MC_GAIN_TYPE(int _) implements int {
+  /// Red gain.
   static const MC_RED_GAIN = MC_GAIN_TYPE(0x00000000);
+
+  /// Green gain.
   static const MC_GREEN_GAIN = MC_GAIN_TYPE(0x00000001);
+
+  /// Blue gain.
   static const MC_BLUE_GAIN = MC_GAIN_TYPE(0x00000002);
 }
 
@@ -3329,7 +4254,10 @@ extension type const MC_GAIN_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MC_POSITION_TYPE(int _) implements int {
+  /// Horizontal position.
   static const MC_HORIZONTAL_POSITION = MC_POSITION_TYPE(0x00000000);
+
+  /// Vertical position.
   static const MC_VERTICAL_POSITION = MC_POSITION_TYPE(0x00000001);
 }
 
@@ -3341,7 +4269,10 @@ extension type const MC_POSITION_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MC_SIZE_TYPE(int _) implements int {
+  /// Width.
   static const MC_WIDTH = MC_SIZE_TYPE(0x00000000);
+
+  /// Height.
   static const MC_HEIGHT = MC_SIZE_TYPE(0x00000001);
 }
 
@@ -3352,31 +4283,82 @@ extension type const MC_SIZE_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MEDIA_TYPE(int _) implements int {
+  /// Format is unknown
   static const Unknown = MEDIA_TYPE(0x00000000);
+
+  /// A 5.25" floppy, with 1.2MB and 512 bytes/sector.
   static const F5_1Pt2_512 = MEDIA_TYPE(0x00000001);
+
+  /// A 3.5" floppy, with 1.44MB and 512 bytes/sector.
   static const F3_1Pt44_512 = MEDIA_TYPE(0x00000002);
+
+  /// A 3.5" floppy, with 2.88MB and 512 bytes/sector.
   static const F3_2Pt88_512 = MEDIA_TYPE(0x00000003);
+
+  /// A 3.5" floppy, with 20.8MB and 512 bytes/sector.
   static const F3_20Pt8_512 = MEDIA_TYPE(0x00000004);
+
+  /// A 3.5" floppy, with 720KB and 512 bytes/sector.
   static const F3_720_512 = MEDIA_TYPE(0x00000005);
+
+  /// A 5.25" floppy, with 360KB and 512 bytes/sector.
   static const F5_360_512 = MEDIA_TYPE(0x00000006);
+
+  /// A 5.25" floppy, with 320KB and 512 bytes/sector.
   static const F5_320_512 = MEDIA_TYPE(0x00000007);
+
+  /// A 5.25" floppy, with 320KB and 1024 bytes/sector.
   static const F5_320_1024 = MEDIA_TYPE(0x00000008);
+
+  /// A 5.25" floppy, with 180KB and 512 bytes/sector.
   static const F5_180_512 = MEDIA_TYPE(0x00000009);
+
+  /// A 5.25" floppy, with 160KB and 512 bytes/sector.
   static const F5_160_512 = MEDIA_TYPE(0x0000000a);
+
+  /// Removable media other than floppy.
   static const RemovableMedia = MEDIA_TYPE(0x0000000b);
+
+  /// Fixed hard disk media.
   static const FixedMedia = MEDIA_TYPE(0x0000000c);
+
+  /// A 3.5" floppy, with 120MB and 512 bytes/sector.
   static const F3_120M_512 = MEDIA_TYPE(0x0000000d);
+
+  /// A 3.5" floppy, with 640KB and 512 bytes/sector.
   static const F3_640_512 = MEDIA_TYPE(0x0000000e);
+
+  /// A 5.25" floppy, with 640KB and 512 bytes/sector.
   static const F5_640_512 = MEDIA_TYPE(0x0000000f);
+
+  /// A 5.25" floppy, with 720KB and 512 bytes/sector.
   static const F5_720_512 = MEDIA_TYPE(0x00000010);
+
+  /// A 3.5" floppy, with 1.2MB and 512 bytes/sector.
   static const F3_1Pt2_512 = MEDIA_TYPE(0x00000011);
+
+  /// A 3.5" floppy, with 1.23MB and 1024 bytes/sector.
   static const F3_1Pt23_1024 = MEDIA_TYPE(0x00000012);
+
+  /// A 5.25" floppy, with 1.23MB and 1024 bytes/sector.
   static const F5_1Pt23_1024 = MEDIA_TYPE(0x00000013);
+
+  /// A 3.5" floppy, with 128MB and 512 bytes/sector.
   static const F3_128Mb_512 = MEDIA_TYPE(0x00000014);
+
+  /// A 3.5" floppy, with 230MB and 512 bytes/sector.
   static const F3_230Mb_512 = MEDIA_TYPE(0x00000015);
+
+  /// An 8" floppy, with 256KB and 128 bytes/sector.
   static const F8_256_128 = MEDIA_TYPE(0x00000016);
+
+  /// A 3.5" floppy, with 200MB and 512 bytes/sector.
   static const F3_200Mb_512 = MEDIA_TYPE(0x00000017);
+
+  /// A 3.5" floppy, with 240MB and 512 bytes/sector.
   static const F3_240M_512 = MEDIA_TYPE(0x00000018);
+
+  /// A 3.5" floppy, with 32MB and 512 bytes/sector.
   static const F3_32M_512 = MEDIA_TYPE(0x00000019);
 }
 
@@ -3605,9 +4587,16 @@ extension type const MODLOAD_DATA_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const MONITOR_DPI_TYPE(int _) implements int {
+  /// The effective DPI.
   static const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE(0x00000000);
+
+  /// The angular DPI.
   static const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE(0x00000001);
+
+  /// The raw DPI.
   static const MDT_RAW_DPI = MONITOR_DPI_TYPE(0x00000002);
+
+  /// The default DPI setting for a monitor is MDT_EFFECTIVE_DPI.
   static const MDT_DEFAULT = MONITOR_DPI_TYPE(0x00000000);
 }
 
@@ -3693,9 +4682,16 @@ extension type const NAMED_PIPE_MODE(int _) implements int {
 ///
 /// {@category enum}
 extension type const NET_IF_CONNECTION_TYPE(int _) implements int {
+  /// Specifies the dedicated connection type.
   static const NET_IF_CONNECTION_DEDICATED = NET_IF_CONNECTION_TYPE(0x00000001);
+
+  /// Specifies the passive connection type.
   static const NET_IF_CONNECTION_PASSIVE = NET_IF_CONNECTION_TYPE(0x00000002);
+
+  /// Specifies the demand-dial connection type.
   static const NET_IF_CONNECTION_DEMAND = NET_IF_CONNECTION_TYPE(0x00000003);
+
+  /// A maximum value for testing purposes.
   static const NET_IF_CONNECTION_MAXIMUM = NET_IF_CONNECTION_TYPE(0x00000004);
 }
 
@@ -3707,15 +4703,34 @@ extension type const NET_IF_CONNECTION_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const NLM_CONNECTION_COST(int _) implements int {
+  /// The cost is unknown.
   static const NLM_CONNECTION_COST_UNKNOWN = NLM_CONNECTION_COST(0x00000000);
+
+  /// The connection is unlimited and is considered to be unrestricted of usage
+  /// charges and capacity constraints.
   static const NLM_CONNECTION_COST_UNRESTRICTED =
       NLM_CONNECTION_COST(0x00000001);
+
+  /// The use of this connection is unrestricted up to a specific data transfer
+  /// limit.
   static const NLM_CONNECTION_COST_FIXED = NLM_CONNECTION_COST(0x00000002);
+
+  /// This connection is regulated on a per byte basis.
   static const NLM_CONNECTION_COST_VARIABLE = NLM_CONNECTION_COST(0x00000004);
+
+  /// The connection is currently in an OverDataLimit state as it has exceeded the
+  /// carrier specified data transfer limit.
   static const NLM_CONNECTION_COST_OVERDATALIMIT =
       NLM_CONNECTION_COST(0x00010000);
+
+  /// The network is experiencing high traffic load and is congested.
   static const NLM_CONNECTION_COST_CONGESTED = NLM_CONNECTION_COST(0x00020000);
+
+  /// The connection is roaming outside the network and affiliates of the home
+  /// provider.
   static const NLM_CONNECTION_COST_ROAMING = NLM_CONNECTION_COST(0x00040000);
+
+  /// The connection is approaching the data limit specified by the carrier.
   static const NLM_CONNECTION_COST_APPROACHINGDATALIMIT =
       NLM_CONNECTION_COST(0x00080000);
 }
@@ -3728,16 +4743,35 @@ extension type const NLM_CONNECTION_COST(int _) implements int {
 ///
 /// {@category enum}
 extension type const NLM_CONNECTIVITY(int _) implements int {
+  /// The underlying network interfaces have no connectivity to any network.
   static const NLM_CONNECTIVITY_DISCONNECTED = NLM_CONNECTIVITY(0x00000000);
+
+  /// There is connectivity to a network, but the service cannot detect any IPv4
+  /// Network Traffic.
   static const NLM_CONNECTIVITY_IPV4_NOTRAFFIC = NLM_CONNECTIVITY(0x00000001);
+
+  /// There is connectivity to a network, but the service cannot detect any IPv6
+  /// Network Traffic.
   static const NLM_CONNECTIVITY_IPV6_NOTRAFFIC = NLM_CONNECTIVITY(0x00000002);
+
+  /// There is connectivity to the local subnet using the IPv4 protocol.
   static const NLM_CONNECTIVITY_IPV4_SUBNET = NLM_CONNECTIVITY(0x00000010);
+
+  /// There is connectivity to a routed network using the IPv4 protocol.
   static const NLM_CONNECTIVITY_IPV4_LOCALNETWORK =
       NLM_CONNECTIVITY(0x00000020);
+
+  /// There is connectivity to the Internet using the IPv4 protocol.
   static const NLM_CONNECTIVITY_IPV4_INTERNET = NLM_CONNECTIVITY(0x00000040);
+
+  /// There is connectivity to the local subnet using the IPv6 protocol.
   static const NLM_CONNECTIVITY_IPV6_SUBNET = NLM_CONNECTIVITY(0x00000100);
+
+  /// There is connectivity to a local network using the IPv6 protocol.
   static const NLM_CONNECTIVITY_IPV6_LOCALNETWORK =
       NLM_CONNECTIVITY(0x00000200);
+
+  /// There is connectivity to the Internet using the IPv6 protocol.
   static const NLM_CONNECTIVITY_IPV6_INTERNET = NLM_CONNECTIVITY(0x00000400);
 }
 
@@ -3748,8 +4782,15 @@ extension type const NLM_CONNECTIVITY(int _) implements int {
 ///
 /// {@category enum}
 extension type const NLM_DOMAIN_TYPE(int _) implements int {
+  /// The Network is not an Active Directory Network.
   static const NLM_DOMAIN_TYPE_NON_DOMAIN_NETWORK = NLM_DOMAIN_TYPE(0x00000000);
+
+  /// The Network is an Active Directory Network, but this machine is not
+  /// authenticated against it.
   static const NLM_DOMAIN_TYPE_DOMAIN_NETWORK = NLM_DOMAIN_TYPE(0x00000001);
+
+  /// The Network is an Active Directory Network, and this machine is
+  /// authenticated against it.
   static const NLM_DOMAIN_TYPE_DOMAIN_AUTHENTICATED =
       NLM_DOMAIN_TYPE(0x00000002);
 }
@@ -3761,8 +4802,13 @@ extension type const NLM_DOMAIN_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const NLM_ENUM_NETWORK(int _) implements int {
+  /// Returns connected networks
   static const NLM_ENUM_NETWORK_CONNECTED = NLM_ENUM_NETWORK(0x00000001);
+
+  /// Returns disconnected networks
   static const NLM_ENUM_NETWORK_DISCONNECTED = NLM_ENUM_NETWORK(0x00000002);
+
+  /// Returns connected and disconnected networks
   static const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK(0x00000003);
 }
 
@@ -3773,8 +4819,13 @@ extension type const NLM_ENUM_NETWORK(int _) implements int {
 ///
 /// {@category enum}
 extension type const NLM_NETWORK_CATEGORY(int _) implements int {
+  /// The network is a public (untrusted) network.
   static const NLM_NETWORK_CATEGORY_PUBLIC = NLM_NETWORK_CATEGORY(0x00000000);
+
+  /// The network is a private (trusted) network.
   static const NLM_NETWORK_CATEGORY_PRIVATE = NLM_NETWORK_CATEGORY(0x00000001);
+
+  /// The network is authenticated against an Active Directory domain.
   static const NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED =
       NLM_NETWORK_CATEGORY(0x00000002);
 }
@@ -3788,14 +4839,28 @@ extension type const NLM_NETWORK_CATEGORY(int _) implements int {
 /// {@category enum}
 extension type const NL_DAD_STATE(int _) implements int {
   static const NldsInvalid = NL_DAD_STATE(0x00000000);
+
   static const NldsTentative = NL_DAD_STATE(0x00000001);
+
   static const NldsDuplicate = NL_DAD_STATE(0x00000002);
+
   static const NldsDeprecated = NL_DAD_STATE(0x00000003);
+
   static const NldsPreferred = NL_DAD_STATE(0x00000004);
+
+  /// The DAD state is invalid.
   static const IpDadStateInvalid = NL_DAD_STATE(0x00000000);
+
+  /// The DAD state is tentative.
   static const IpDadStateTentative = NL_DAD_STATE(0x00000001);
+
+  /// A duplicate IP address has been detected.
   static const IpDadStateDuplicate = NL_DAD_STATE(0x00000002);
+
+  /// The IP address has been deprecated.
   static const IpDadStateDeprecated = NL_DAD_STATE(0x00000003);
+
+  /// The IP address is the preferred address.
   static const IpDadStatePreferred = NL_DAD_STATE(0x00000004);
 }
 
@@ -3807,11 +4872,23 @@ extension type const NL_DAD_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const NL_PREFIX_ORIGIN(int _) implements int {
+  /// The IP prefix was provided by a source other than those defined in this
+  /// enumeration.
   static const IpPrefixOriginOther = NL_PREFIX_ORIGIN(0x00000000);
+
+  /// The IP address prefix was manually specified.
   static const IpPrefixOriginManual = NL_PREFIX_ORIGIN(0x00000001);
+
+  /// The IP address prefix is from a well known source.
   static const IpPrefixOriginWellKnown = NL_PREFIX_ORIGIN(0x00000002);
+
+  /// The IP address prefix was provided by DHCP settings.
   static const IpPrefixOriginDhcp = NL_PREFIX_ORIGIN(0x00000003);
+
+  /// The IP address prefix was obtained through a router advertisement (RA).
   static const IpPrefixOriginRouterAdvertisement = NL_PREFIX_ORIGIN(0x00000004);
+
+  /// The IP address prefix should be unchanged.
   static const IpPrefixOriginUnchanged = NL_PREFIX_ORIGIN(0x00000010);
 }
 
@@ -3824,17 +4901,37 @@ extension type const NL_PREFIX_ORIGIN(int _) implements int {
 /// {@category enum}
 extension type const NL_SUFFIX_ORIGIN(int _) implements int {
   static const NlsoOther = NL_SUFFIX_ORIGIN(0x00000000);
+
   static const NlsoManual = NL_SUFFIX_ORIGIN(0x00000001);
+
   static const NlsoWellKnown = NL_SUFFIX_ORIGIN(0x00000002);
+
   static const NlsoDhcp = NL_SUFFIX_ORIGIN(0x00000003);
+
   static const NlsoLinkLayerAddress = NL_SUFFIX_ORIGIN(0x00000004);
+
   static const NlsoRandom = NL_SUFFIX_ORIGIN(0x00000005);
+
+  /// The IP address suffix was provided by a source other than those defined in
+  /// this enumeration.
   static const IpSuffixOriginOther = NL_SUFFIX_ORIGIN(0x00000000);
+
+  /// The IP address suffix was manually specified.
   static const IpSuffixOriginManual = NL_SUFFIX_ORIGIN(0x00000001);
+
+  /// The IP address suffix is from a well-known source.
   static const IpSuffixOriginWellKnown = NL_SUFFIX_ORIGIN(0x00000002);
+
+  /// The IP address suffix was provided by DHCP settings.
   static const IpSuffixOriginDhcp = NL_SUFFIX_ORIGIN(0x00000003);
+
+  /// The IP address suffix was obtained from the link-layer address.
   static const IpSuffixOriginLinkLayerAddress = NL_SUFFIX_ORIGIN(0x00000004);
+
+  /// The IP address suffix was obtained from a random source.
   static const IpSuffixOriginRandom = NL_SUFFIX_ORIGIN(0x00000005);
+
+  /// The IP address suffix should be unchanged.
   static const IpSuffixOriginUnchanged = NL_SUFFIX_ORIGIN(0x00000010);
 }
 
@@ -3886,11 +4983,20 @@ extension type const NOTIFY_ICON_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const NavigateDirection(int _) implements int {
+  /// The navigation direction is to the parent.
   static const NavigateDirection_Parent = NavigateDirection(0x00000000);
+
+  /// The navigation direction is to the next sibling.
   static const NavigateDirection_NextSibling = NavigateDirection(0x00000001);
+
+  /// The navigation direction is to the previous sibling.
   static const NavigateDirection_PreviousSibling =
       NavigateDirection(0x00000002);
+
+  /// The navigation direction is to the first child.
   static const NavigateDirection_FirstChild = NavigateDirection(0x00000003);
+
+  /// The navigation direction is to the last child.
   static const NavigateDirection_LastChild = NavigateDirection(0x00000004);
 }
 
@@ -3989,13 +5095,24 @@ extension type const OPEN_THEME_DATA_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const ORIENTATION_PREFERENCE(int _) implements int {
+  /// The process has no device orientation preferences.
   static const ORIENTATION_PREFERENCE_NONE = ORIENTATION_PREFERENCE(0x00000000);
+
+  /// The process represents a desktop app that can be used in landscape mode.
   static const ORIENTATION_PREFERENCE_LANDSCAPE =
       ORIENTATION_PREFERENCE(0x00000001);
+
+  /// The process represents a desktop app that can be used in portrait mode.
   static const ORIENTATION_PREFERENCE_PORTRAIT =
       ORIENTATION_PREFERENCE(0x00000002);
+
+  /// The process represents a desktop app that can be used in flipped landscape
+  /// mode.
   static const ORIENTATION_PREFERENCE_LANDSCAPE_FLIPPED =
       ORIENTATION_PREFERENCE(0x00000004);
+
+  /// The process represents a desktop app that can be used in flipped portrait
+  /// mode.
   static const ORIENTATION_PREFERENCE_PORTRAIT_FLIPPED =
       ORIENTATION_PREFERENCE(0x00000008);
 }
@@ -4124,8 +5241,13 @@ extension type const OS_PRODUCT_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const OrientationType(int _) implements int {
+  /// The control has no orientation.
   static const OrientationType_None = OrientationType(0x00000000);
+
+  /// The control has horizontal orientation.
   static const OrientationType_Horizontal = OrientationType(0x00000001);
+
+  /// The control has vertical orientation.
   static const OrientationType_Vertical = OrientationType(0x00000002);
 }
 
@@ -4235,25 +5357,66 @@ extension type const PEN_STYLE(int _) implements int {
 ///
 /// {@category enum}
 extension type const POINTER_BUTTON_CHANGE_TYPE(int _) implements int {
+  /// No change in button state.
   static const POINTER_CHANGE_NONE = POINTER_BUTTON_CHANGE_TYPE(0x00000000);
+
+  /// The first button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_FIRSTBUTTON</a>)
+  /// transitioned to a pressed state.
   static const POINTER_CHANGE_FIRSTBUTTON_DOWN =
       POINTER_BUTTON_CHANGE_TYPE(0x00000001);
+
+  /// The first button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_FIRSTBUTTON</a>)
+  /// transitioned to a released state.
   static const POINTER_CHANGE_FIRSTBUTTON_UP =
       POINTER_BUTTON_CHANGE_TYPE(0x00000002);
+
+  /// The second button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_SECONDBUTTON</a>)
+  /// transitioned to a pressed state.
   static const POINTER_CHANGE_SECONDBUTTON_DOWN =
       POINTER_BUTTON_CHANGE_TYPE(0x00000003);
+
+  /// The second button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_SECONDBUTTON</a>)
+  /// transitioned to a released state.
   static const POINTER_CHANGE_SECONDBUTTON_UP =
       POINTER_BUTTON_CHANGE_TYPE(0x00000004);
+
+  /// The third button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_THIRDBUTTON</a>)
+  /// transitioned to a pressed state.
   static const POINTER_CHANGE_THIRDBUTTON_DOWN =
       POINTER_BUTTON_CHANGE_TYPE(0x00000005);
+
+  /// The third button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_THIRDBUTTON</a>)
+  /// transitioned to a released state.
   static const POINTER_CHANGE_THIRDBUTTON_UP =
       POINTER_BUTTON_CHANGE_TYPE(0x00000006);
+
+  /// The fourth button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_FOURTHBUTTON</a>)
+  /// transitioned to a pressed state.
   static const POINTER_CHANGE_FOURTHBUTTON_DOWN =
       POINTER_BUTTON_CHANGE_TYPE(0x00000007);
+
+  /// The fourth button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_FOURTHBUTTON</a>)
+  /// transitioned to a released state.
   static const POINTER_CHANGE_FOURTHBUTTON_UP =
       POINTER_BUTTON_CHANGE_TYPE(0x00000008);
+
+  /// The fifth button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_FIFTHBUTTON</a>)
+  /// transitioned to a pressed state.
   static const POINTER_CHANGE_FIFTHBUTTON_DOWN =
       POINTER_BUTTON_CHANGE_TYPE(0x00000009);
+
+  /// The fifth button (see <a
+  /// href="https://docs.microsoft.com/windows/win32/inputmsg/pointer-flags-contants">POINTER_FLAG_FIFTHBUTTON</a>)
+  /// transitioned to a released state.
   static const POINTER_CHANGE_FIFTHBUTTON_UP =
       POINTER_BUTTON_CHANGE_TYPE(0x0000000a);
 }
@@ -4495,9 +5658,16 @@ extension type const PROCESSOR_ARCHITECTURE(int _) implements int {
 ///
 /// {@category enum}
 extension type const PROCESSOR_CACHE_TYPE(int _) implements int {
+  /// The cache is unified.
   static const CacheUnified = PROCESSOR_CACHE_TYPE(0x00000000);
+
+  /// The cache is for processor instructions.
   static const CacheInstruction = PROCESSOR_CACHE_TYPE(0x00000001);
+
+  /// The cache is for data.
   static const CacheData = PROCESSOR_CACHE_TYPE(0x00000002);
+
+  /// The cache is for traces.
   static const CacheTrace = PROCESSOR_CACHE_TYPE(0x00000003);
 }
 
@@ -4578,8 +5748,13 @@ extension type const PROCESS_CREATION_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const PROCESS_DPI_AWARENESS(int _) implements int {
+  /// DPI unaware.
   static const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS(0x00000000);
+
+  /// System DPI aware.
   static const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS(0x00000001);
+
+  /// Per monitor DPI aware.
   static const PROCESS_PER_MONITOR_DPI_AWARE =
       PROCESS_DPI_AWARENESS(0x00000002);
 }
@@ -4611,9 +5786,15 @@ extension type const PURGE_COMM_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const PropertyConditionFlags(int _) implements int {
+  /// No flags.
   static const PropertyConditionFlags_None = PropertyConditionFlags(0x00000000);
+
+  /// Comparison of string properties is not case-sensitive.
   static const PropertyConditionFlags_IgnoreCase =
       PropertyConditionFlags(0x00000001);
+
+  /// [Windows 10 October 2018 Update (version 1809) and newer] Comparison of
+  /// substring properties is enabled.
   static const PropertyConditionFlags_MatchSubstring =
       PropertyConditionFlags(0x00000002);
 }
@@ -4837,6 +6018,8 @@ extension type const ROT_FLAGS(int _) implements int {
 /// {@category enum}
 extension type const RO_INIT_TYPE(int _) implements int {
   static const RO_INIT_SINGLETHREADED = RO_INIT_TYPE(0x00000000);
+
+  /// Initializes the thread for multi-threaded concurrency.
   static const RO_INIT_MULTITHREADED = RO_INIT_TYPE(0x00000001);
 }
 
@@ -4868,8 +6051,13 @@ extension type const RPC_C_IMP_LEVEL(int _) implements int {
 ///
 /// {@category enum}
 extension type const RowOrColumnMajor(int _) implements int {
+  /// Data in the table should be read row by row.
   static const RowOrColumnMajor_RowMajor = RowOrColumnMajor(0x00000000);
+
+  /// Data in the table should be read column by column.
   static const RowOrColumnMajor_ColumnMajor = RowOrColumnMajor(0x00000001);
+
+  /// The best way to present the data is indeterminate.
   static const RowOrColumnMajor_Indeterminate = RowOrColumnMajor(0x00000002);
 }
 
@@ -5030,8 +6218,11 @@ extension type const SERVICE_CONFIG(int _) implements int {
 ///
 /// {@category enum}
 extension type const SERVICE_DIRECTORY_TYPE(int _) implements int {
+  /// Mutable, persistent service state.
   static const ServiceDirectoryPersistentState =
       SERVICE_DIRECTORY_TYPE(0x00000000);
+
+  /// Reserved.
   static const ServiceDirectoryTypeMax = SERVICE_DIRECTORY_TYPE(0x00000001);
 }
 
@@ -5064,10 +6255,15 @@ extension type const SERVICE_NOTIFY(int _) implements int {
 ///
 /// {@category enum}
 extension type const SERVICE_REGISTRY_STATE_TYPE(int _) implements int {
+  /// Immutable service state, populated by INF to the Parameters subkey.
   static const ServiceRegistryStateParameters =
       SERVICE_REGISTRY_STATE_TYPE(0x00000000);
+
+  /// Mutable, persistent service state.
   static const ServiceRegistryStatePersistent =
       SERVICE_REGISTRY_STATE_TYPE(0x00000001);
+
+  /// Reserved.
   static const MaxServiceRegistryStateType =
       SERVICE_REGISTRY_STATE_TYPE(0x00000002);
 }
@@ -5087,6 +6283,7 @@ extension type const SERVICE_RUNS_IN_PROCESS(int _) implements int {
 ///
 /// {@category enum}
 extension type const SERVICE_SHARED_DIRECTORY_TYPE(int _) implements int {
+  /// Mutable, persistent service state.
   static const ServiceSharedDirectoryPersistentState =
       SERVICE_SHARED_DIRECTORY_TYPE(0x00000000);
 }
@@ -5098,6 +6295,7 @@ extension type const SERVICE_SHARED_DIRECTORY_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const SERVICE_SHARED_REGISTRY_STATE_TYPE(int _) implements int {
+  /// Mutable, persistent service state.
   static const ServiceSharedRegistryPersistentState =
       SERVICE_SHARED_REGISTRY_STATE_TYPE(0x00000000);
 }
@@ -5472,14 +6670,23 @@ extension type const SIATTRIBFLAGS(int _) implements int {
 /// {@category enum}
 extension type const SIGDN(int _) implements int {
   static const SIGDN_NORMALDISPLAY = SIGDN(0x00000000);
+
   static const SIGDN_PARENTRELATIVEPARSING = SIGDN(0x80018001);
+
   static const SIGDN_DESKTOPABSOLUTEPARSING = SIGDN(0x80028000);
+
   static const SIGDN_PARENTRELATIVEEDITING = SIGDN(0x80031001);
+
   static const SIGDN_DESKTOPABSOLUTEEDITING = SIGDN(0x8004c000);
+
   static const SIGDN_FILESYSPATH = SIGDN(0x80058000);
+
   static const SIGDN_URL = SIGDN(0x80068000);
+
   static const SIGDN_PARENTRELATIVEFORADDRESSBAR = SIGDN(0x8007c001);
+
   static const SIGDN_PARENTRELATIVE = SIGDN(0x80080001);
+
   static const SIGDN_PARENTRELATIVEFORUI = SIGDN(0x80094001);
 }
 
@@ -5673,7 +6880,12 @@ extension type const STGM(int _) implements int {
 ///
 /// {@category enum}
 extension type const STREAM_INFO_LEVELS(int _) implements int {
+  /// The <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/fileapi/nf-fileapi-findfirststreamw">FindFirstStreamW</a>
+  /// function retrieves standard stream information.
   static const FindStreamInfoStandard = STREAM_INFO_LEVELS(0x00000000);
+
+  /// Used to determine valid enumeration values.
   static const FindStreamInfoMaxInfoLevel = STREAM_INFO_LEVELS(0x00000001);
 }
 
@@ -5684,8 +6896,14 @@ extension type const STREAM_INFO_LEVELS(int _) implements int {
 ///
 /// {@category enum}
 extension type const STREAM_SEEK(int _) implements int {
+  /// The new seek pointer is an offset relative to the beginning of the stream.
   static const STREAM_SEEK_SET = STREAM_SEEK(0x00000000);
+
+  /// The new seek pointer is an offset relative to the current seek pointer
+  /// location.
   static const STREAM_SEEK_CUR = STREAM_SEEK(0x00000001);
+
+  /// The new seek pointer is an offset relative to the end of the stream.
   static const STREAM_SEEK_END = STREAM_SEEK(0x00000002);
 }
 
@@ -6312,10 +7530,23 @@ extension type const SYS_COLOR_INDEX(int _) implements int {
 ///
 /// {@category enum}
 extension type const ScrollAmount(int _) implements int {
+  /// Scrolling is done in large decrements, equivalent to pressing the PAGE UP
+  /// key or clicking on a blank part of a scroll bar.
   static const ScrollAmount_LargeDecrement = ScrollAmount(0x00000000);
+
+  /// Scrolling is done in small decrements, equivalent to pressing an arrow key
+  /// or clicking the arrow button on a scroll bar.
   static const ScrollAmount_SmallDecrement = ScrollAmount(0x00000001);
+
+  /// No scrolling is done.
   static const ScrollAmount_NoAmount = ScrollAmount(0x00000002);
+
+  /// Scrolling is done in large increments, equivalent to pressing the PAGE DOWN
+  /// or PAGE UP key or clicking on a blank part of a scroll bar.
   static const ScrollAmount_LargeIncrement = ScrollAmount(0x00000003);
+
+  /// Scrolling is done in small increments, equivalent to pressing an arrow key
+  /// or clicking the arrow button on a scroll bar.
   static const ScrollAmount_SmallIncrement = ScrollAmount(0x00000004);
 }
 
@@ -6326,13 +7557,29 @@ extension type const ScrollAmount(int _) implements int {
 ///
 /// {@category enum}
 extension type const SensorState(int _) implements int {
+  /// Minimum enumerated sensor state.
   static const SENSOR_STATE_MIN = SensorState(0x00000000);
+
+  /// Ready to send sensor data.
   static const SENSOR_STATE_READY = SensorState(0x00000000);
+
+  /// The sensor is not available for use.
   static const SENSOR_STATE_NOT_AVAILABLE = SensorState(0x00000001);
+
+  /// The sensor is available but does not have data.
   static const SENSOR_STATE_NO_DATA = SensorState(0x00000002);
+
+  /// The sensor is available, but performing initialization.
   static const SENSOR_STATE_INITIALIZING = SensorState(0x00000003);
+
+  /// The sensor is available, but the user account does not have permission to
+  /// access the sensor data.
   static const SENSOR_STATE_ACCESS_DENIED = SensorState(0x00000004);
+
+  /// The sensor has raised an error.
   static const SENSOR_STATE_ERROR = SensorState(0x00000005);
+
+  /// Maximum enumerated sensor state.
   static const SENSOR_STATE_MAX = SensorState(0x00000005);
 }
 
@@ -6489,9 +7736,14 @@ extension type const SpeechVoiceSpeakFlags(int _) implements int {
 ///
 /// {@category enum}
 extension type const SupportedTextSelection(int _) implements int {
+  /// Does not support text selections.
   static const SupportedTextSelection_None = SupportedTextSelection(0x00000000);
+
+  /// Supports a single, continuous text selection.
   static const SupportedTextSelection_Single =
       SupportedTextSelection(0x00000001);
+
+  /// Supports multiple, disjoint text selections.
   static const SupportedTextSelection_Multiple =
       SupportedTextSelection(0x00000002);
 }
@@ -6503,15 +7755,26 @@ extension type const SupportedTextSelection(int _) implements int {
 ///
 /// {@category enum}
 extension type const SynchronizedInputType(int _) implements int {
+  /// A key has been released.
   static const SynchronizedInputType_KeyUp = SynchronizedInputType(0x00000001);
+
+  /// A key has been pressed.
   static const SynchronizedInputType_KeyDown =
       SynchronizedInputType(0x00000002);
+
+  /// The left mouse button has been released.
   static const SynchronizedInputType_LeftMouseUp =
       SynchronizedInputType(0x00000004);
+
+  /// The left mouse button has been pressed.
   static const SynchronizedInputType_LeftMouseDown =
       SynchronizedInputType(0x00000008);
+
+  /// The right mouse button has been released.
   static const SynchronizedInputType_RightMouseUp =
       SynchronizedInputType(0x00000010);
+
+  /// The right mouse button has been pressed.
   static const SynchronizedInputType_RightMouseDown =
       SynchronizedInputType(0x00000020);
 }
@@ -6562,8 +7825,14 @@ extension type const TASKDIALOG_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const THEMESIZE(int _) implements int {
+  /// Receives the minimum size of a visual style part.
   static const TS_MIN = THEMESIZE(0x00000000);
+
+  /// Receives the size of the visual style part that will best fit the available
+  /// space.
   static const TS_TRUE = THEMESIZE(0x00000001);
+
+  /// Receives the size that the theme manager uses to draw a part.
   static const TS_DRAW = THEMESIZE(0x00000002);
 }
 
@@ -6632,58 +7901,220 @@ extension type const TOKEN_ACCESS_MASK(int _) implements int {
 ///
 /// {@category enum}
 extension type const TOKEN_INFORMATION_CLASS(int _) implements int {
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_user">TOKEN_USER</a>
+  /// structure that contains the user account of the token.
   static const TokenUser = TOKEN_INFORMATION_CLASS(0x00000001);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups">TOKEN_GROUPS</a>
+  /// structure that contains the group accounts associated with the token.
   static const TokenGroups = TOKEN_INFORMATION_CLASS(0x00000002);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_privileges">TOKEN_PRIVILEGES</a>
+  /// structure that contains the privileges of the token.
   static const TokenPrivileges = TOKEN_INFORMATION_CLASS(0x00000003);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_owner">TOKEN_OWNER</a>
+  /// structure that contains the default owner <a
+  /// href="https://docs.microsoft.com/windows/desktop/SecGloss/s-gly">security
+  /// identifier</a> (SID) for newly created objects.
   static const TokenOwner = TOKEN_INFORMATION_CLASS(0x00000004);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_primary_group">TOKEN_PRIMARY_GROUP</a>
+  /// structure that contains the default primary group SID for newly created
+  /// objects.
   static const TokenPrimaryGroup = TOKEN_INFORMATION_CLASS(0x00000005);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_default_dacl">TOKEN_DEFAULT_DACL</a>
+  /// structure that contains the default DACL for newly created objects.
   static const TokenDefaultDacl = TOKEN_INFORMATION_CLASS(0x00000006);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_source">TOKEN_SOURCE</a>
+  /// structure that contains the source of the token.
   static const TokenSource = TOKEN_INFORMATION_CLASS(0x00000007);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ne-winnt-token_type">TOKEN_TYPE</a>
+  /// value that indicates whether the token is a <a
+  /// href="https://docs.microsoft.com/windows/desktop/SecGloss/p-gly">primary</a>
+  /// or <a
+  /// href="https://docs.microsoft.com/windows/desktop/SecGloss/i-gly">impersonation
+  /// token</a>.
   static const TokenType = TOKEN_INFORMATION_CLASS(0x00000008);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ne-winnt-security_impersonation_level">SECURITY_IMPERSONATION_LEVEL</a>
+  /// value that indicates the impersonation level of the token.
   static const TokenImpersonationLevel = TOKEN_INFORMATION_CLASS(0x00000009);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_statistics">TOKEN_STATISTICS</a>
+  /// structure that contains various token statistics.
   static const TokenStatistics = TOKEN_INFORMATION_CLASS(0x0000000a);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups">TOKEN_GROUPS</a>
+  /// structure that contains the list of restricting SIDs in a <a
+  /// href="https://docs.microsoft.com/windows/desktop/SecAuthZ/restricted-tokens">restricted
+  /// token</a>.
   static const TokenRestrictedSids = TOKEN_INFORMATION_CLASS(0x0000000b);
+
+  /// The buffer receives a <b>DWORD</b> value that indicates the Terminal
+  /// Services session identifier that is associated with the token.
   static const TokenSessionId = TOKEN_INFORMATION_CLASS(0x0000000c);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups_and_privileges">TOKEN_GROUPS_AND_PRIVILEGES</a>
+  /// structure that contains the user SID, the group accounts, the restricted
+  /// SIDs, and the authentication ID associated with the token.
   static const TokenGroupsAndPrivileges = TOKEN_INFORMATION_CLASS(0x0000000d);
+
+  /// Reserved.
   static const TokenSessionReference = TOKEN_INFORMATION_CLASS(0x0000000e);
+
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if the token
+  /// includes the <b>SANDBOX_INERT</b> flag.
   static const TokenSandBoxInert = TOKEN_INFORMATION_CLASS(0x0000000f);
+
+  /// Reserved.
   static const TokenAuditPolicy = TOKEN_INFORMATION_CLASS(0x00000010);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_origin">TOKEN_ORIGIN</a>
+  /// value.
   static const TokenOrigin = TOKEN_INFORMATION_CLASS(0x00000011);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ne-winnt-token_elevation_type">TOKEN_ELEVATION_TYPE</a>
+  /// value that specifies the elevation level of the token.
   static const TokenElevationType = TOKEN_INFORMATION_CLASS(0x00000012);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_linked_token">TOKEN_LINKED_TOKEN</a>
+  /// structure that contains a handle to another token that is linked to this
+  /// token.
   static const TokenLinkedToken = TOKEN_INFORMATION_CLASS(0x00000013);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_elevation">TOKEN_ELEVATION</a>
+  /// structure that specifies whether the token is elevated.
   static const TokenElevation = TOKEN_INFORMATION_CLASS(0x00000014);
+
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if the token has
+  /// ever been filtered.
   static const TokenHasRestrictions = TOKEN_INFORMATION_CLASS(0x00000015);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_access_information">TOKEN_ACCESS_INFORMATION</a>
+  /// structure that specifies security information contained in the token.
   static const TokenAccessInformation = TOKEN_INFORMATION_CLASS(0x00000016);
+
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if <a
+  /// href="https://docs.microsoft.com/windows/desktop/SecGloss/v-gly">virtualization</a>
+  /// is allowed for the token.
   static const TokenVirtualizationAllowed = TOKEN_INFORMATION_CLASS(0x00000017);
+
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if <a
+  /// href="https://docs.microsoft.com/windows/desktop/SecGloss/v-gly">virtualization</a>
+  /// is enabled for the token.
   static const TokenVirtualizationEnabled = TOKEN_INFORMATION_CLASS(0x00000018);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_mandatory_label">TOKEN_MANDATORY_LABEL</a>
+  /// structure that specifies the token's integrity level.
   static const TokenIntegrityLevel = TOKEN_INFORMATION_CLASS(0x00000019);
+
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if the token has
+  /// the UIAccess flag set.
   static const TokenUIAccess = TOKEN_INFORMATION_CLASS(0x0000001a);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_mandatory_policy">TOKEN_MANDATORY_POLICY</a>
+  /// structure that specifies the token's mandatory integrity policy.
   static const TokenMandatoryPolicy = TOKEN_INFORMATION_CLASS(0x0000001b);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups">TOKEN_GROUPS</a>
+  /// structure that specifies the token's logon SID.
   static const TokenLogonSid = TOKEN_INFORMATION_CLASS(0x0000001c);
+
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if the token is an
+  /// app container token.
   static const TokenIsAppContainer = TOKEN_INFORMATION_CLASS(0x0000001d);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups">TOKEN_GROUPS</a>
+  /// structure that contains the capabilities associated with the token.
   static const TokenCapabilities = TOKEN_INFORMATION_CLASS(0x0000001e);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_appcontainer_information">TOKEN_APPCONTAINER_INFORMATION</a>
+  /// structure that contains the AppContainerSid associated with the token.
   static const TokenAppContainerSid = TOKEN_INFORMATION_CLASS(0x0000001f);
+
+  /// The buffer receives a <b>DWORD</b> value that includes the app container
+  /// number for the token.
   static const TokenAppContainerNumber = TOKEN_INFORMATION_CLASS(0x00000020);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-claim_security_attributes_information">CLAIM_SECURITY_ATTRIBUTES_INFORMATION</a>
+  /// structure that contains the user claims associated with the token.
   static const TokenUserClaimAttributes = TOKEN_INFORMATION_CLASS(0x00000021);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-claim_security_attributes_information">CLAIM_SECURITY_ATTRIBUTES_INFORMATION</a>
+  /// structure that contains the device claims associated with the token.
   static const TokenDeviceClaimAttributes = TOKEN_INFORMATION_CLASS(0x00000022);
+
+  /// Reserved.
   static const TokenRestrictedUserClaimAttributes =
       TOKEN_INFORMATION_CLASS(0x00000023);
+
+  /// Reserved.
   static const TokenRestrictedDeviceClaimAttributes =
       TOKEN_INFORMATION_CLASS(0x00000024);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups">TOKEN_GROUPS</a>
+  /// structure that contains the device groups that are associated with the
+  /// token.
   static const TokenDeviceGroups = TOKEN_INFORMATION_CLASS(0x00000025);
+
+  /// The buffer receives a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winnt/ns-winnt-token_groups">TOKEN_GROUPS</a>
+  /// structure that contains the restricted device groups that are associated
+  /// with the token.
   static const TokenRestrictedDeviceGroups =
       TOKEN_INFORMATION_CLASS(0x00000026);
+
+  /// Reserved.
   static const TokenSecurityAttributes = TOKEN_INFORMATION_CLASS(0x00000027);
+
+  /// Reserved.
   static const TokenIsRestricted = TOKEN_INFORMATION_CLASS(0x00000028);
+
   static const TokenProcessTrustLevel = TOKEN_INFORMATION_CLASS(0x00000029);
+
   static const TokenPrivateNameSpace = TOKEN_INFORMATION_CLASS(0x0000002a);
+
   static const TokenSingletonAttributes = TOKEN_INFORMATION_CLASS(0x0000002b);
+
   static const TokenBnoIsolation = TOKEN_INFORMATION_CLASS(0x0000002c);
+
   static const TokenChildProcessFlags = TOKEN_INFORMATION_CLASS(0x0000002d);
+
   static const TokenIsLessPrivilegedAppContainer =
       TOKEN_INFORMATION_CLASS(0x0000002e);
   static const TokenIsSandboxed = TOKEN_INFORMATION_CLASS(0x0000002f);
   static const TokenIsAppSilo = TOKEN_INFORMATION_CLASS(0x00000030);
+
+  /// The maximum value for this enumeration.
   static const MaxTokenInfoClass = TOKEN_INFORMATION_CLASS(0x00000031);
 }
 
@@ -6739,12 +8170,32 @@ extension type const TRACK_POPUP_MENU_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const TUNNEL_TYPE(int _) implements int {
+  /// Indicates that a tunnel is not specified.
   static const TUNNEL_TYPE_NONE = TUNNEL_TYPE(0x00000000);
+
+  /// Indicates that none of the following tunnel types is specified.
   static const TUNNEL_TYPE_OTHER = TUNNEL_TYPE(0x00000001);
+
+  /// Specifies that a packet is encapsulated directly within a normal IP header,
+  /// with no intermediate header, and the packet is sent unicast to the remote
+  /// tunnel endpoint.
   static const TUNNEL_TYPE_DIRECT = TUNNEL_TYPE(0x00000002);
+
+  /// Specifies that an IPv6 packet is encapsulated directly within an IPv4
+  /// header, with no intermediate header, and the packet is sent unicast to the
+  /// destination determined by the 6to4 protocol.
   static const TUNNEL_TYPE_6TO4 = TUNNEL_TYPE(0x0000000b);
+
+  /// Specifies that an IPv6 packet is encapsulated directly within an IPv4
+  /// header, with no intermediate header, and the packet is sent unicast to the
+  /// destination determined by the ISATAP protocol.
   static const TUNNEL_TYPE_ISATAP = TUNNEL_TYPE(0x0000000d);
+
+  /// Specifies that the tunnel uses Teredo encapsulation.
   static const TUNNEL_TYPE_TEREDO = TUNNEL_TYPE(0x0000000e);
+
+  /// Specifies that the tunnel uses IP over Hypertext Transfer Protocol Secure
+  /// (HTTPS).
   static const TUNNEL_TYPE_IPHTTPS = TUNNEL_TYPE(0x0000000f);
 }
 
@@ -6755,14 +8206,32 @@ extension type const TUNNEL_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const TYPEKIND(int _) implements int {
+  /// A set of enumerators.
   static const TKIND_ENUM = TYPEKIND(0x00000000);
+
+  /// A structure with no methods.
   static const TKIND_RECORD = TYPEKIND(0x00000001);
+
+  /// A module that can only have static functions and data (for example, a DLL).
   static const TKIND_MODULE = TYPEKIND(0x00000002);
+
+  /// A type that has virtual and pure functions.
   static const TKIND_INTERFACE = TYPEKIND(0x00000003);
+
+  /// A set of methods and properties that are accessible through <a
+  /// href="https://docs.microsoft.com/previous-versions/windows/desktop/api/oaidl/nf-oaidl-idispatch-invoke">IDispatch::Invoke</a>.
   static const TKIND_DISPATCH = TYPEKIND(0x00000004);
+
+  /// A set of implemented component object interfaces.
   static const TKIND_COCLASS = TYPEKIND(0x00000005);
+
+  /// A type that is an alias for another type.
   static const TKIND_ALIAS = TYPEKIND(0x00000006);
+
+  /// A union, all of whose members have an offset of zero.
   static const TKIND_UNION = TYPEKIND(0x00000007);
+
+  /// End of enum marker.
   static const TKIND_MAX = TYPEKIND(0x00000008);
 }
 
@@ -6774,11 +8243,20 @@ extension type const TYPEKIND(int _) implements int {
 ///
 /// {@category enum}
 extension type const TextEditChangeType(int _) implements int {
+  /// Not related to a specific change type.
   static const TextEditChangeType_None = TextEditChangeType(0x00000000);
+
+  /// Change is from an auto-correct action performed by a control.
   static const TextEditChangeType_AutoCorrect = TextEditChangeType(0x00000001);
+
+  /// Change is from an IME active composition within a control.
   static const TextEditChangeType_Composition = TextEditChangeType(0x00000002);
+
+  /// Change is from an IME composition going from active to finalized state
+  /// within a control.
   static const TextEditChangeType_CompositionFinalized =
       TextEditChangeType(0x00000003);
+
   static const TextEditChangeType_AutoComplete = TextEditChangeType(0x00000004);
 }
 
@@ -6789,8 +8267,11 @@ extension type const TextEditChangeType(int _) implements int {
 ///
 /// {@category enum}
 extension type const TextPatternRangeEndpoint(int _) implements int {
+  /// The starting endpoint of the range.
   static const TextPatternRangeEndpoint_Start =
       TextPatternRangeEndpoint(0x00000000);
+
+  /// The ending endpoint of the range.
   static const TextPatternRangeEndpoint_End =
       TextPatternRangeEndpoint(0x00000001);
 }
@@ -6802,12 +8283,25 @@ extension type const TextPatternRangeEndpoint(int _) implements int {
 ///
 /// {@category enum}
 extension type const TextUnit(int _) implements int {
+  /// Character.
   static const TextUnit_Character = TextUnit(0x00000000);
+
+  /// Format.
   static const TextUnit_Format = TextUnit(0x00000001);
+
+  /// Word.
   static const TextUnit_Word = TextUnit(0x00000002);
+
+  /// Line.
   static const TextUnit_Line = TextUnit(0x00000003);
+
+  /// Paragraph.
   static const TextUnit_Paragraph = TextUnit(0x00000004);
+
+  /// Page.
   static const TextUnit_Page = TextUnit(0x00000005);
+
+  /// Document.
   static const TextUnit_Document = TextUnit(0x00000006);
 }
 
@@ -6819,8 +8313,15 @@ extension type const TextUnit(int _) implements int {
 ///
 /// {@category enum}
 extension type const ToggleState(int _) implements int {
+  /// The UI Automation element is not selected, checked, marked or otherwise
+  /// activated.
   static const ToggleState_Off = ToggleState(0x00000000);
+
+  /// The UI Automation element is selected, checked, marked or otherwise
+  /// activated.
   static const ToggleState_On = ToggleState(0x00000001);
+
+  /// The UI Automation element is in an indeterminate state.
   static const ToggleState_Indeterminate = ToggleState(0x00000002);
 }
 
@@ -6832,12 +8333,25 @@ extension type const ToggleState(int _) implements int {
 ///
 /// {@category enum}
 extension type const TreeScope(int _) implements int {
+  /// The scope excludes the subtree from the search.
   static const TreeScope_None = TreeScope(0x00000000);
+
+  /// The scope includes the element itself.
   static const TreeScope_Element = TreeScope(0x00000001);
+
+  /// The scope includes children of the element.
   static const TreeScope_Children = TreeScope(0x00000002);
+
+  /// The scope includes children and more distant descendants of the element.
   static const TreeScope_Descendants = TreeScope(0x00000004);
+
+  /// The scope includes the parent of the element.
   static const TreeScope_Parent = TreeScope(0x00000008);
+
+  /// The scope includes the parent and more distant ancestors of the element.
   static const TreeScope_Ancestors = TreeScope(0x00000010);
+
+  /// The scope includes the element and all its descendants.
   static const TreeScope_Subtree = TreeScope(0x00000007);
 }
 
@@ -6848,9 +8362,14 @@ extension type const TreeScope(int _) implements int {
 ///
 /// {@category enum}
 extension type const TreeTraversalOptions(int _) implements int {
+  /// Pre-order, visit children from first to last.
   static const TreeTraversalOptions_Default = TreeTraversalOptions(0x00000000);
+
+  /// Post-order.
   static const TreeTraversalOptions_PostOrder =
       TreeTraversalOptions(0x00000001);
+
+  /// Visit children from last to first.
   static const TreeTraversalOptions_LastToFirstOrder =
       TreeTraversalOptions(0x00000002);
 }
@@ -6862,8 +8381,14 @@ extension type const TreeTraversalOptions(int _) implements int {
 ///
 /// {@category enum}
 extension type const TrustLevel(int _) implements int {
+  /// The component has access to resources that are not protected.
   static const BaseTrust = TrustLevel(0x00000000);
+
+  /// The component has access to resources requested in the app manifest and
+  /// approved by the user.
   static const PartialTrust = TrustLevel(0x00000001);
+
+  /// The component requires the full privileges of the user.
   static const FullTrust = TrustLevel(0x00000002);
 }
 
@@ -7457,57 +8982,162 @@ extension type const Uri_PROPERTY(int _) implements int {
 ///
 /// {@category enum}
 extension type const VARENUM(int _) implements int {
+  /// Not specified.
   static const VT_EMPTY = VARENUM(0x0000);
+
+  /// Null.
   static const VT_NULL = VARENUM(0x0001);
+
+  /// A 2-byte integer.
   static const VT_I2 = VARENUM(0x0002);
+
+  /// A 4-byte integer.
   static const VT_I4 = VARENUM(0x0003);
+
+  /// A 4-byte real.
   static const VT_R4 = VARENUM(0x0004);
+
+  /// An 8-byte real.
   static const VT_R8 = VARENUM(0x0005);
+
+  /// Currency.
   static const VT_CY = VARENUM(0x0006);
+
+  /// A date.
   static const VT_DATE = VARENUM(0x0007);
+
+  /// A string.
   static const VT_BSTR = VARENUM(0x0008);
+
+  /// An <a
+  /// href="https://docs.microsoft.com/previous-versions/windows/desktop/api/oaidl/nn-oaidl-idispatch">IDispatch</a>
+  /// pointer.
   static const VT_DISPATCH = VARENUM(0x0009);
+
+  /// An SCODE value.
   static const VT_ERROR = VARENUM(0x000a);
+
+  /// A Boolean value.
   static const VT_BOOL = VARENUM(0x000b);
+
+  /// A variant pointer.
   static const VT_VARIANT = VARENUM(0x000c);
+
+  /// An <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/unknwn/nn-unknwn-iunknown">IUnknown</a>
+  /// pointer.
   static const VT_UNKNOWN = VARENUM(0x000d);
+
+  /// A 16-byte fixed-pointer value.
   static const VT_DECIMAL = VARENUM(0x000e);
+
+  /// A character.
   static const VT_I1 = VARENUM(0x0010);
+
+  /// An unsigned character.
   static const VT_UI1 = VARENUM(0x0011);
+
+  /// An unsigned short.
   static const VT_UI2 = VARENUM(0x0012);
+
+  /// An unsigned long.
   static const VT_UI4 = VARENUM(0x0013);
+
+  /// A 64-bit integer.
   static const VT_I8 = VARENUM(0x0014);
+
+  /// A 64-bit unsigned integer.
   static const VT_UI8 = VARENUM(0x0015);
+
+  /// An integer.
   static const VT_INT = VARENUM(0x0016);
+
+  /// An unsigned integer.
   static const VT_UINT = VARENUM(0x0017);
+
+  /// A C-style void.
   static const VT_VOID = VARENUM(0x0018);
+
+  /// An HRESULT value.
   static const VT_HRESULT = VARENUM(0x0019);
+
+  /// A pointer type.
   static const VT_PTR = VARENUM(0x001a);
+
+  /// A safe array.
   static const VT_SAFEARRAY = VARENUM(0x001b);
+
+  /// A C-style array.
   static const VT_CARRAY = VARENUM(0x001c);
+
+  /// A user-defined type.
   static const VT_USERDEFINED = VARENUM(0x001d);
+
+  /// A null-terminated string.
   static const VT_LPSTR = VARENUM(0x001e);
+
+  /// A wide null-terminated string.
   static const VT_LPWSTR = VARENUM(0x001f);
+
+  /// A user-defined type.
   static const VT_RECORD = VARENUM(0x0024);
+
+  /// A signed machine register size width.
   static const VT_INT_PTR = VARENUM(0x0025);
+
+  /// An unsigned machine register size width.
   static const VT_UINT_PTR = VARENUM(0x0026);
+
+  /// A <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/minwinbase/ns-minwinbase-filetime">FILETIME</a>
+  /// value.
   static const VT_FILETIME = VARENUM(0x0040);
+
+  /// Length-prefixed bytes.
   static const VT_BLOB = VARENUM(0x0041);
+
+  /// The name of the stream follows.
   static const VT_STREAM = VARENUM(0x0042);
+
+  /// The name of the storage follows.
   static const VT_STORAGE = VARENUM(0x0043);
+
+  /// The stream contains an object.
   static const VT_STREAMED_OBJECT = VARENUM(0x0044);
+
+  /// The storage contains an object.
   static const VT_STORED_OBJECT = VARENUM(0x0045);
+
+  /// The blob contains an object.
   static const VT_BLOB_OBJECT = VARENUM(0x0046);
+
+  /// A clipboard format.
   static const VT_CF = VARENUM(0x0047);
+
+  /// A class ID.
   static const VT_CLSID = VARENUM(0x0048);
+
+  /// A stream with a GUID version.
   static const VT_VERSIONED_STREAM = VARENUM(0x0049);
+
+  /// Reserved.
   static const VT_BSTR_BLOB = VARENUM(0x0fff);
+
+  /// A simple counted array.
   static const VT_VECTOR = VARENUM(0x1000);
+
+  /// A SAFEARRAY pointer.
   static const VT_ARRAY = VARENUM(0x2000);
+
+  /// A void pointer for local use.
   static const VT_BYREF = VARENUM(0x4000);
+
   static const VT_RESERVED = VARENUM(0x8000);
+
   static const VT_ILLEGAL = VARENUM(0xffff);
+
   static const VT_ILLEGALMASKED = VARENUM(0x0fff);
+
   static const VT_TYPEMASK = VARENUM(0x0fff);
 }
 
@@ -7518,18 +9148,46 @@ extension type const VARENUM(int _) implements int {
 ///
 /// {@category enum}
 extension type const VARFLAGS(int _) implements int {
+  /// Assignment to the variable should not be allowed.
   static const VARFLAG_FREADONLY = VARFLAGS(0x0001);
+
+  /// The variable returns an object that is a source of events.
   static const VARFLAG_FSOURCE = VARFLAGS(0x0002);
+
+  /// The variable supports data binding.
   static const VARFLAG_FBINDABLE = VARFLAGS(0x0004);
+
+  /// When set, any attempt to directly change the property results in a call to
+  /// <b>IPropertyNotifySink::OnRequestEdit</b>.
   static const VARFLAG_FREQUESTEDIT = VARFLAGS(0x0008);
+
+  /// The variable is displayed to the user as bindable.
   static const VARFLAG_FDISPLAYBIND = VARFLAGS(0x0010);
+
+  /// The variable is the single property that best represents the object.
   static const VARFLAG_FDEFAULTBIND = VARFLAGS(0x0020);
+
+  /// The variable should not be displayed to the user in a browser, although it
+  /// exists and is bindable.
   static const VARFLAG_FHIDDEN = VARFLAGS(0x0040);
+
+  /// The variable should not be accessible from macro languages.
   static const VARFLAG_FRESTRICTED = VARFLAGS(0x0080);
+
+  /// Permits an optimization in which the compiler looks for a member named "xyz"
+  /// on the type of abc.
   static const VARFLAG_FDEFAULTCOLLELEM = VARFLAGS(0x0100);
+
+  /// The variable is the default display in the user interface.
   static const VARFLAG_FUIDEFAULT = VARFLAGS(0x0200);
+
+  /// The variable appears in an object browser, but not in a properties browser.
   static const VARFLAG_FNONBROWSABLE = VARFLAGS(0x0400);
+
+  /// Tags the interface as having default behaviors.
   static const VARFLAG_FREPLACEABLE = VARFLAGS(0x0800);
+
+  /// The variable is mapped as individual bindable properties.
   static const VARFLAG_FIMMEDIATEBIND = VARFLAGS(0x1000);
 }
 
@@ -7540,9 +9198,17 @@ extension type const VARFLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const VARKIND(int _) implements int {
+  /// The variable is a field or member of the type.
   static const VAR_PERINSTANCE = VARKIND(0x00000000);
+
+  /// There is only one instance of the variable.
   static const VAR_STATIC = VARKIND(0x00000001);
+
+  /// The VARDESC describes a symbolic constant.
   static const VAR_CONST = VARKIND(0x00000002);
+
+  /// The variable can only be accessed through <a
+  /// href="https://docs.microsoft.com/previous-versions/windows/desktop/api/oaidl/nf-oaidl-idispatch-invoke">IDispatch::Invoke</a>.
   static const VAR_DISPATCH = VARKIND(0x00000003);
 }
 
@@ -7930,14 +9596,29 @@ extension type const WAIT_EVENT(int _) implements int {
 ///
 /// {@category enum}
 extension type const WBEM_COMPARISON_FLAG(int _) implements int {
+  /// Compare all features.
   static const WBEM_COMPARISON_INCLUDE_ALL = WBEM_COMPARISON_FLAG(0x00000000);
+
+  /// Ignore all qualifiers (including <b>Key</b> and <b>Dynamic</b>) in
+  /// comparison.
   static const WBEM_FLAG_IGNORE_QUALIFIERS = WBEM_COMPARISON_FLAG(0x00000001);
+
+  /// Ignore the source of the objects, namely the server and the namespace they
+  /// came from, in comparison to other objects.
   static const WBEM_FLAG_IGNORE_OBJECT_SOURCE =
       WBEM_COMPARISON_FLAG(0x00000002);
+
+  /// Ignore default values of properties.
   static const WBEM_FLAG_IGNORE_DEFAULT_VALUES =
       WBEM_COMPARISON_FLAG(0x00000004);
+
+  /// Assume that the objects being compared are instances of the same class.
   static const WBEM_FLAG_IGNORE_CLASS = WBEM_COMPARISON_FLAG(0x00000008);
+
+  /// Compare string values in a case-insensitive manner.
   static const WBEM_FLAG_IGNORE_CASE = WBEM_COMPARISON_FLAG(0x00000010);
+
+  /// Ignore qualifier flavors.
   static const WBEM_FLAG_IGNORE_FLAVOR = WBEM_COMPARISON_FLAG(0x00000020);
 }
 
@@ -7949,24 +9630,38 @@ extension type const WBEM_COMPARISON_FLAG(int _) implements int {
 /// {@category enum}
 extension type const WBEM_CONDITION_FLAG_TYPE(int _) implements int {
   static const WBEM_FLAG_ALWAYS = WBEM_CONDITION_FLAG_TYPE(0x00000000);
+
   static const WBEM_FLAG_ONLY_IF_TRUE = WBEM_CONDITION_FLAG_TYPE(0x00000001);
+
   static const WBEM_FLAG_ONLY_IF_FALSE = WBEM_CONDITION_FLAG_TYPE(0x00000002);
+
   static const WBEM_FLAG_ONLY_IF_IDENTICAL =
       WBEM_CONDITION_FLAG_TYPE(0x00000003);
+
   static const WBEM_MASK_PRIMARY_CONDITION =
       WBEM_CONDITION_FLAG_TYPE(0x00000003);
+
   static const WBEM_FLAG_KEYS_ONLY = WBEM_CONDITION_FLAG_TYPE(0x00000004);
+
   static const WBEM_FLAG_REFS_ONLY = WBEM_CONDITION_FLAG_TYPE(0x00000008);
+
   static const WBEM_FLAG_LOCAL_ONLY = WBEM_CONDITION_FLAG_TYPE(0x00000010);
+
   static const WBEM_FLAG_PROPAGATED_ONLY = WBEM_CONDITION_FLAG_TYPE(0x00000020);
+
   static const WBEM_FLAG_SYSTEM_ONLY = WBEM_CONDITION_FLAG_TYPE(0x00000030);
+
   static const WBEM_FLAG_NONSYSTEM_ONLY = WBEM_CONDITION_FLAG_TYPE(0x00000040);
+
   static const WBEM_MASK_CONDITION_ORIGIN =
       WBEM_CONDITION_FLAG_TYPE(0x00000070);
+
   static const WBEM_FLAG_CLASS_OVERRIDES_ONLY =
       WBEM_CONDITION_FLAG_TYPE(0x00000100);
+
   static const WBEM_FLAG_CLASS_LOCAL_AND_OVERRIDES =
       WBEM_CONDITION_FLAG_TYPE(0x00000200);
+
   static const WBEM_MASK_CLASS_CONDITION = WBEM_CONDITION_FLAG_TYPE(0x00000300);
 }
 
@@ -7979,24 +9674,39 @@ extension type const WBEM_CONDITION_FLAG_TYPE(int _) implements int {
 extension type const WBEM_GENERIC_FLAG_TYPE(int _) implements int {
   static const WBEM_FLAG_RETURN_IMMEDIATELY =
       WBEM_GENERIC_FLAG_TYPE(0x00000010);
+
   static const WBEM_FLAG_RETURN_WBEM_COMPLETE =
       WBEM_GENERIC_FLAG_TYPE(0x00000000);
+
   static const WBEM_FLAG_BIDIRECTIONAL = WBEM_GENERIC_FLAG_TYPE(0x00000000);
+
   static const WBEM_FLAG_FORWARD_ONLY = WBEM_GENERIC_FLAG_TYPE(0x00000020);
+
   static const WBEM_FLAG_NO_ERROR_OBJECT = WBEM_GENERIC_FLAG_TYPE(0x00000040);
+
   static const WBEM_FLAG_RETURN_ERROR_OBJECT =
       WBEM_GENERIC_FLAG_TYPE(0x00000000);
+
   static const WBEM_FLAG_SEND_STATUS = WBEM_GENERIC_FLAG_TYPE(0x00000080);
+
   static const WBEM_FLAG_DONT_SEND_STATUS = WBEM_GENERIC_FLAG_TYPE(0x00000000);
+
   static const WBEM_FLAG_ENSURE_LOCATABLE = WBEM_GENERIC_FLAG_TYPE(0x00000100);
+
   static const WBEM_FLAG_DIRECT_READ = WBEM_GENERIC_FLAG_TYPE(0x00000200);
+
   static const WBEM_FLAG_SEND_ONLY_SELECTED =
       WBEM_GENERIC_FLAG_TYPE(0x00000000);
+
   static const WBEM_RETURN_WHEN_COMPLETE = WBEM_GENERIC_FLAG_TYPE(0x00000000);
+
   static const WBEM_RETURN_IMMEDIATELY = WBEM_GENERIC_FLAG_TYPE(0x00000010);
+
   static const WBEM_MASK_RESERVED_FLAGS = WBEM_GENERIC_FLAG_TYPE(0x0001f000);
+
   static const WBEM_FLAG_USE_AMENDED_QUALIFIERS =
       WBEM_GENERIC_FLAG_TYPE(0x00020000);
+
   static const WBEM_FLAG_STRONG_VALIDATION = WBEM_GENERIC_FLAG_TYPE(0x00100000);
 }
 
@@ -11732,6 +13442,7 @@ extension type const WINDOWS_HOOK_ID(int _) implements int {
 ///
 /// {@category enum}
 extension type const WINDOWTHEMEATTRIBUTETYPE(int _) implements int {
+  /// Non-client area window attributes will be set.
   static const WTA_NONCLIENT = WINDOWTHEMEATTRIBUTETYPE(0x00000001);
 }
 
@@ -11852,18 +13563,37 @@ extension type const WINSOCK_SOCKET_TYPE(int _) implements int {
 /// {@category enum}
 extension type const WLAN_AUTOCONF_OPCODE(int _) implements int {
   static const wlan_autoconf_opcode_start = WLAN_AUTOCONF_OPCODE(0x00000000);
+
+  /// The opcode used to set or query the parameter specifying whether user and
+  /// group policy denied networks will be included in the available networks
+  /// list.
   static const wlan_autoconf_opcode_show_denied_networks =
       WLAN_AUTOCONF_OPCODE(0x00000001);
+
+  /// The opcode used to query the power settings.
   static const wlan_autoconf_opcode_power_setting =
       WLAN_AUTOCONF_OPCODE(0x00000002);
+
+  /// The opcode used to query whether profiles not created by group policy can be
+  /// used to connect to an allowed network with a matching group policy profile.
   static const wlan_autoconf_opcode_only_use_gp_profiles_for_allowed_networks =
       WLAN_AUTOCONF_OPCODE(0x00000003);
+
+  /// The opcode used to set or query whether the current wireless interface has
+  /// shared user credentials allowed.
   static const wlan_autoconf_opcode_allow_explicit_creds =
       WLAN_AUTOCONF_OPCODE(0x00000004);
+
+  /// The opcode used to set or query the blocked period setting for the current
+  /// wireless interface.
   static const wlan_autoconf_opcode_block_period =
       WLAN_AUTOCONF_OPCODE(0x00000005);
+
+  /// The opcode used to set or query whether extensibility on a virtual station
+  /// is allowed.
   static const wlan_autoconf_opcode_allow_virtual_station_extensibility =
       WLAN_AUTOCONF_OPCODE(0x00000006);
+
   static const wlan_autoconf_opcode_end = WLAN_AUTOCONF_OPCODE(0x00000007);
 }
 
@@ -11874,14 +13604,25 @@ extension type const WLAN_AUTOCONF_OPCODE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_CONNECTION_MODE(int _) implements int {
+  /// A profile will be used to make the connection.
   static const wlan_connection_mode_profile = WLAN_CONNECTION_MODE(0x00000000);
+
+  /// A temporary profile will be used to make the connection.
   static const wlan_connection_mode_temporary_profile =
       WLAN_CONNECTION_MODE(0x00000001);
+
+  /// Secure discovery will be used to make the connection.
   static const wlan_connection_mode_discovery_secure =
       WLAN_CONNECTION_MODE(0x00000002);
+
+  /// Unsecure discovery will be used to make the connection.
   static const wlan_connection_mode_discovery_unsecure =
       WLAN_CONNECTION_MODE(0x00000003);
+
+  /// The connection is initiated by the wireless service automatically using a
+  /// persistent profile.
   static const wlan_connection_mode_auto = WLAN_CONNECTION_MODE(0x00000004);
+
   static const wlan_connection_mode_invalid = WLAN_CONNECTION_MODE(0x00000005);
 }
 
@@ -11900,12 +13641,19 @@ extension type const WLAN_CONNECTION_NOTIFICATION_FLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_FILTER_LIST_TYPE(int _) implements int {
+  /// Group policy permit list.
   static const wlan_filter_list_type_gp_permit =
       WLAN_FILTER_LIST_TYPE(0x00000000);
+
+  /// Group policy deny list.
   static const wlan_filter_list_type_gp_deny =
       WLAN_FILTER_LIST_TYPE(0x00000001);
+
+  /// User permit list.
   static const wlan_filter_list_type_user_permit =
       WLAN_FILTER_LIST_TYPE(0x00000002);
+
+  /// User deny list.
   static const wlan_filter_list_type_user_deny =
       WLAN_FILTER_LIST_TYPE(0x00000003);
 }
@@ -11918,12 +13666,20 @@ extension type const WLAN_FILTER_LIST_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_OPCODE(int _) implements int {
+  /// The opcode used to query or set the wireless Hosted Network connection
+  /// settings.
   static const wlan_hosted_network_opcode_connection_settings =
       WLAN_HOSTED_NETWORK_OPCODE(0x00000000);
+
+  /// The opcode used to query the wireless Hosted Network security settings.
   static const wlan_hosted_network_opcode_security_settings =
       WLAN_HOSTED_NETWORK_OPCODE(0x00000001);
+
+  /// The opcode used to query the wireless Hosted Network station profile.
   static const wlan_hosted_network_opcode_station_profile =
       WLAN_HOSTED_NETWORK_OPCODE(0x00000002);
+
+  /// The opcode used to query or set the wireless Hosted Network enabled flag.
   static const wlan_hosted_network_opcode_enable =
       WLAN_HOSTED_NETWORK_OPCODE(0x00000003);
 }
@@ -11936,8 +13692,11 @@ extension type const WLAN_HOSTED_NETWORK_OPCODE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(int _) implements int {
+  /// An invalid peer state.
   static const wlan_hosted_network_peer_state_invalid =
       WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(0x00000000);
+
+  /// The peer is authenticated.
   static const wlan_hosted_network_peer_state_authenticated =
       WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(0x00000001);
 }
@@ -11950,62 +13709,119 @@ extension type const WLAN_HOSTED_NETWORK_PEER_AUTH_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_REASON(int _) implements int {
+  /// The operation was successful.
   static const wlan_hosted_network_reason_success =
       WLAN_HOSTED_NETWORK_REASON(0x00000000);
+
+  /// Unknown error.
   static const wlan_hosted_network_reason_unspecified =
       WLAN_HOSTED_NETWORK_REASON(0x00000001);
+
+  /// Bad parameters.
   static const wlan_hosted_network_reason_bad_parameters =
       WLAN_HOSTED_NETWORK_REASON(0x00000002);
+
+  /// Service is shutting down.
   static const wlan_hosted_network_reason_service_shutting_down =
       WLAN_HOSTED_NETWORK_REASON(0x00000003);
+
+  /// Service is out of resources.
   static const wlan_hosted_network_reason_insufficient_resources =
       WLAN_HOSTED_NETWORK_REASON(0x00000004);
+
+  /// This operation requires elevation.
   static const wlan_hosted_network_reason_elevation_required =
       WLAN_HOSTED_NETWORK_REASON(0x00000005);
+
+  /// An attempt was made to write read-only data.
   static const wlan_hosted_network_reason_read_only =
       WLAN_HOSTED_NETWORK_REASON(0x00000006);
+
+  /// Data persistence failed.
   static const wlan_hosted_network_reason_persistence_failed =
       WLAN_HOSTED_NETWORK_REASON(0x00000007);
+
+  /// A cryptographic error occurred.
   static const wlan_hosted_network_reason_crypt_error =
       WLAN_HOSTED_NETWORK_REASON(0x00000008);
+
+  /// User impersonation failed.
   static const wlan_hosted_network_reason_impersonation =
       WLAN_HOSTED_NETWORK_REASON(0x00000009);
+
+  /// An incorrect function call sequence was made.
   static const wlan_hosted_network_reason_stop_before_start =
       WLAN_HOSTED_NETWORK_REASON(0x0000000a);
+
+  /// A wireless interface has become available.
   static const wlan_hosted_network_reason_interface_available =
       WLAN_HOSTED_NETWORK_REASON(0x0000000b);
+
+  /// A wireless interface has become unavailable.
   static const wlan_hosted_network_reason_interface_unavailable =
       WLAN_HOSTED_NETWORK_REASON(0x0000000c);
+
+  /// The wireless miniport driver stopped the Hosted Network.
   static const wlan_hosted_network_reason_miniport_stopped =
       WLAN_HOSTED_NETWORK_REASON(0x0000000d);
+
+  /// The wireless miniport driver status changed.
   static const wlan_hosted_network_reason_miniport_started =
       WLAN_HOSTED_NETWORK_REASON(0x0000000e);
+
+  /// An incompatible connection started.
   static const wlan_hosted_network_reason_incompatible_connection_started =
       WLAN_HOSTED_NETWORK_REASON(0x0000000f);
+
+  /// An incompatible connection stopped.
   static const wlan_hosted_network_reason_incompatible_connection_stopped =
       WLAN_HOSTED_NETWORK_REASON(0x00000010);
+
+  /// A state change occurred that was caused by explicit user action.
   static const wlan_hosted_network_reason_user_action =
       WLAN_HOSTED_NETWORK_REASON(0x00000011);
+
+  /// A state change occurred that was caused by client abort.
   static const wlan_hosted_network_reason_client_abort =
       WLAN_HOSTED_NETWORK_REASON(0x00000012);
+
+  /// The driver for the wireless Hosted Network failed to start.
   static const wlan_hosted_network_reason_ap_start_failed =
       WLAN_HOSTED_NETWORK_REASON(0x00000013);
+
+  /// A peer connected to the wireless Hosted Network.
   static const wlan_hosted_network_reason_peer_arrived =
       WLAN_HOSTED_NETWORK_REASON(0x00000014);
+
+  /// A peer disconnected from the wireless Hosted Network.
   static const wlan_hosted_network_reason_peer_departed =
       WLAN_HOSTED_NETWORK_REASON(0x00000015);
+
+  /// A peer timed out.
   static const wlan_hosted_network_reason_peer_timeout =
       WLAN_HOSTED_NETWORK_REASON(0x00000016);
+
+  /// The operation was denied by group policy.
   static const wlan_hosted_network_reason_gp_denied =
       WLAN_HOSTED_NETWORK_REASON(0x00000017);
+
+  /// The Wireless LAN service is not running.
   static const wlan_hosted_network_reason_service_unavailable =
       WLAN_HOSTED_NETWORK_REASON(0x00000018);
+
+  /// The wireless adapter used by the wireless Hosted Network changed.
   static const wlan_hosted_network_reason_device_change =
       WLAN_HOSTED_NETWORK_REASON(0x00000019);
+
+  /// The properties of the wireless Hosted Network changed.
   static const wlan_hosted_network_reason_properties_change =
       WLAN_HOSTED_NETWORK_REASON(0x0000001a);
+
+  /// A virtual station is active and blocking operation.
   static const wlan_hosted_network_reason_virtual_station_blocking_use =
       WLAN_HOSTED_NETWORK_REASON(0x0000001b);
+
+  /// An identical service is available on a virtual station.
   static const wlan_hosted_network_reason_service_available_on_virtual_station =
       WLAN_HOSTED_NETWORK_REASON(0x0000001c);
 }
@@ -12018,9 +13834,14 @@ extension type const WLAN_HOSTED_NETWORK_REASON(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_HOSTED_NETWORK_STATE(int _) implements int {
+  /// The wireless Hosted Network is unavailable.
   static const wlan_hosted_network_unavailable =
       WLAN_HOSTED_NETWORK_STATE(0x00000000);
+
+  /// The wireless Hosted Network is idle.
   static const wlan_hosted_network_idle = WLAN_HOSTED_NETWORK_STATE(0x00000001);
+
+  /// The wireless Hosted Network is active.
   static const wlan_hosted_network_active =
       WLAN_HOSTED_NETWORK_STATE(0x00000002);
 }
@@ -12032,8 +13853,11 @@ extension type const WLAN_HOSTED_NETWORK_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_IHV_CONTROL_TYPE(int _) implements int {
+  /// Bypasses a WLAN service.
   static const wlan_ihv_control_type_service =
       WLAN_IHV_CONTROL_TYPE(0x00000000);
+
+  /// Bypasses a WLAN driver.
   static const wlan_ihv_control_type_driver = WLAN_IHV_CONTROL_TYPE(0x00000001);
 }
 
@@ -12044,20 +13868,35 @@ extension type const WLAN_IHV_CONTROL_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_INTERFACE_STATE(int _) implements int {
+  /// The interface is not ready to operate.
   static const wlan_interface_state_not_ready =
       WLAN_INTERFACE_STATE(0x00000000);
+
+  /// The interface is connected to a network.
   static const wlan_interface_state_connected =
       WLAN_INTERFACE_STATE(0x00000001);
+
+  /// The interface is the first node in an ad hoc network.
   static const wlan_interface_state_ad_hoc_network_formed =
       WLAN_INTERFACE_STATE(0x00000002);
+
+  /// The interface is disconnecting from the current network.
   static const wlan_interface_state_disconnecting =
       WLAN_INTERFACE_STATE(0x00000003);
+
+  /// The interface is not connected to any network.
   static const wlan_interface_state_disconnected =
       WLAN_INTERFACE_STATE(0x00000004);
+
+  /// The interface is attempting to associate with a network.
   static const wlan_interface_state_associating =
       WLAN_INTERFACE_STATE(0x00000005);
+
+  /// Auto configuration is discovering the settings for the network.
   static const wlan_interface_state_discovering =
       WLAN_INTERFACE_STATE(0x00000006);
+
+  /// The interface is in the process of authenticating.
   static const wlan_interface_state_authenticating =
       WLAN_INTERFACE_STATE(0x00000007);
 }
@@ -12069,10 +13908,15 @@ extension type const WLAN_INTERFACE_STATE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_INTERFACE_TYPE(int _) implements int {
+  /// Specifies an emulated 802.11 interface.
   static const wlan_interface_type_emulated_802_11 =
       WLAN_INTERFACE_TYPE(0x00000000);
+
+  /// Specifies a native 802.11 interface.
   static const wlan_interface_type_native_802_11 =
       WLAN_INTERFACE_TYPE(0x00000001);
+
+  /// The interface specified is invalid.
   static const wlan_interface_type_invalid = WLAN_INTERFACE_TYPE(0x00000002);
 }
 
@@ -12085,45 +13929,96 @@ extension type const WLAN_INTERFACE_TYPE(int _) implements int {
 /// {@category enum}
 extension type const WLAN_INTF_OPCODE(int _) implements int {
   static const wlan_intf_opcode_autoconf_start = WLAN_INTF_OPCODE(0x00000000);
+
+  /// The opcode used to set or query whether auto config is enabled.
   static const wlan_intf_opcode_autoconf_enabled = WLAN_INTF_OPCODE(0x00000001);
+
+  /// The opcode used to set or query whether background scan is enabled.
   static const wlan_intf_opcode_background_scan_enabled =
       WLAN_INTF_OPCODE(0x00000002);
+
+  /// The opcode used to set or query the media streaming mode of the driver.
   static const wlan_intf_opcode_media_streaming_mode =
       WLAN_INTF_OPCODE(0x00000003);
+
+  /// The opcode used to set or query the radio state.
   static const wlan_intf_opcode_radio_state = WLAN_INTF_OPCODE(0x00000004);
+
+  /// The opcode used to set or query the BSS type of the interface.
   static const wlan_intf_opcode_bss_type = WLAN_INTF_OPCODE(0x00000005);
+
+  /// The opcode used to query the state of the interface.
   static const wlan_intf_opcode_interface_state = WLAN_INTF_OPCODE(0x00000006);
+
+  /// The opcode used to query information about the current connection of the
+  /// interface.
   static const wlan_intf_opcode_current_connection =
       WLAN_INTF_OPCODE(0x00000007);
+
+  /// The opcode used to query the current channel on which the wireless interface
+  /// is operating.
   static const wlan_intf_opcode_channel_number = WLAN_INTF_OPCODE(0x00000008);
+
+  /// The opcode used to query the supported auth/cipher pairs for infrastructure
+  /// mode.
   static const wlan_intf_opcode_supported_infrastructure_auth_cipher_pairs =
       WLAN_INTF_OPCODE(0x00000009);
+
+  /// The opcode used to query the supported auth/cipher pairs for ad hoc mode.
   static const wlan_intf_opcode_supported_adhoc_auth_cipher_pairs =
       WLAN_INTF_OPCODE(0x0000000a);
+
+  /// The opcode used to query the list of supported country or region strings.
   static const wlan_intf_opcode_supported_country_or_region_string_list =
       WLAN_INTF_OPCODE(0x0000000b);
+
+  /// The opcode used to set or query the current operation mode of the wireless
+  /// interface.
   static const wlan_intf_opcode_current_operation_mode =
       WLAN_INTF_OPCODE(0x0000000c);
+
+  /// The opcode used to query whether the miniport/NIC combination supports
+  /// Federal Information Processing Standards (FIPS) mode.
   static const wlan_intf_opcode_supported_safe_mode =
       WLAN_INTF_OPCODE(0x0000000d);
+
+  /// The opcode used to query whether the miniport/NIC combination is FIPS
+  /// certified.
   static const wlan_intf_opcode_certified_safe_mode =
       WLAN_INTF_OPCODE(0x0000000e);
+
+  /// The opcode used to query for Hosted Network support in the device driver
+  /// associated with the Wireless interface.
   static const wlan_intf_opcode_hosted_network_capable =
       WLAN_INTF_OPCODE(0x0000000f);
+
+  /// The opcode used to query whether Management Frame Protection (MFP) is
+  /// supported in the device driver associated with the Wireless interface.
   static const wlan_intf_opcode_management_frame_protection_capable =
       WLAN_INTF_OPCODE(0x00000010);
   static const wlan_intf_opcode_secondary_sta_interfaces =
       WLAN_INTF_OPCODE(0x00000011);
   static const wlan_intf_opcode_secondary_sta_synchronized_connections =
       WLAN_INTF_OPCODE(0x00000012);
+
   static const wlan_intf_opcode_autoconf_end = WLAN_INTF_OPCODE(0x0fffffff);
+
   static const wlan_intf_opcode_msm_start = WLAN_INTF_OPCODE(0x10000100);
+
+  /// The opcode used to query driver statistics.
   static const wlan_intf_opcode_statistics = WLAN_INTF_OPCODE(0x10000101);
+
+  /// Opcode used to query the received signal strength.
   static const wlan_intf_opcode_rssi = WLAN_INTF_OPCODE(0x10000102);
+
   static const wlan_intf_opcode_msm_end = WLAN_INTF_OPCODE(0x1fffffff);
+
   static const wlan_intf_opcode_security_start = WLAN_INTF_OPCODE(0x20010000);
+
   static const wlan_intf_opcode_security_end = WLAN_INTF_OPCODE(0x2fffffff);
+
   static const wlan_intf_opcode_ihv_start = WLAN_INTF_OPCODE(0x30000000);
+
   static const wlan_intf_opcode_ihv_end = WLAN_INTF_OPCODE(0x3fffffff);
 }
 
@@ -12156,12 +14051,20 @@ extension type const WLAN_NOTIFICATION_SOURCES(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_OPCODE_VALUE_TYPE(int _) implements int {
+  /// The auto config settings were queried, but the origin of the settings was
+  /// not determined.
   static const wlan_opcode_value_type_query_only =
       WLAN_OPCODE_VALUE_TYPE(0x00000000);
+
+  /// The auto config settings were set by group policy.
   static const wlan_opcode_value_type_set_by_group_policy =
       WLAN_OPCODE_VALUE_TYPE(0x00000001);
+
+  /// The auto config settings were set by the user.
   static const wlan_opcode_value_type_set_by_user =
       WLAN_OPCODE_VALUE_TYPE(0x00000002);
+
+  /// The auto config settings are invalid.
   static const wlan_opcode_value_type_invalid =
       WLAN_OPCODE_VALUE_TYPE(0x00000003);
 }
@@ -12173,33 +14076,72 @@ extension type const WLAN_OPCODE_VALUE_TYPE(int _) implements int {
 ///
 /// {@category enum}
 extension type const WLAN_SECURABLE_OBJECT(int _) implements int {
+  /// The permissions for modifying the permit list for user profiles.
   static const wlan_secure_permit_list = WLAN_SECURABLE_OBJECT(0x00000000);
+
+  /// The permissions for modifying the deny list for user profiles.
   static const wlan_secure_deny_list = WLAN_SECURABLE_OBJECT(0x00000001);
+
+  /// The permissions for enabling the auto config service.
   static const wlan_secure_ac_enabled = WLAN_SECURABLE_OBJECT(0x00000002);
+
+  /// The permissions for enabling background scans.
   static const wlan_secure_bc_scan_enabled = WLAN_SECURABLE_OBJECT(0x00000003);
+
+  /// The permissions for altering the basic service set type.
   static const wlan_secure_bss_type = WLAN_SECURABLE_OBJECT(0x00000004);
+
+  /// The permissions for modifying whether networks on the deny list appear in
+  /// the available networks list.
   static const wlan_secure_show_denied = WLAN_SECURABLE_OBJECT(0x00000005);
+
+  /// The permissions for changing interface properties.
   static const wlan_secure_interface_properties =
       WLAN_SECURABLE_OBJECT(0x00000006);
+
+  /// The permissions for using the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/wlanapi/nf-wlanapi-wlanihvcontrol">WlanIhvControl</a>
+  /// function for independent hardware vendor (IHV) control of WLAN drivers or
+  /// services.
   static const wlan_secure_ihv_control = WLAN_SECURABLE_OBJECT(0x00000007);
+
+  /// The permissions for modifying the order of all-user profiles.
   static const wlan_secure_all_user_profiles_order =
       WLAN_SECURABLE_OBJECT(0x00000008);
+
+  /// The permissions for adding new all-user profiles.
   static const wlan_secure_add_new_all_user_profiles =
       WLAN_SECURABLE_OBJECT(0x00000009);
+
+  /// The permissions for adding new per-user profiles.
   static const wlan_secure_add_new_per_user_profiles =
       WLAN_SECURABLE_OBJECT(0x0000000a);
+
+  /// The permissions for setting or querying the media streaming mode.
   static const wlan_secure_media_streaming_mode_enabled =
       WLAN_SECURABLE_OBJECT(0x0000000b);
+
+  /// The permissions for setting or querying the operation mode of the wireless
+  /// interface.
   static const wlan_secure_current_operation_mode =
       WLAN_SECURABLE_OBJECT(0x0000000c);
+
+  /// The permissions for retrieving the plain text key from a wireless profile.
   static const wlan_secure_get_plaintext_key =
       WLAN_SECURABLE_OBJECT(0x0000000d);
+
+  /// The permissions that have elevated access to call the privileged Hosted
+  /// Network functions.
   static const wlan_secure_hosted_network_elevated_access =
       WLAN_SECURABLE_OBJECT(0x0000000e);
+
   static const wlan_secure_virtual_station_extensibility =
       WLAN_SECURABLE_OBJECT(0x0000000f);
+
+  /// This value is reserved for internal use by the Wi-Fi Direct service.
   static const wlan_secure_wfd_elevated_access =
       WLAN_SECURABLE_OBJECT(0x00000010);
+
   static const WLAN_SECURABLE_OBJECT_COUNT = WLAN_SECURABLE_OBJECT(0x00000011);
 }
 
@@ -12234,11 +14176,20 @@ extension type const WNDCLASS_STYLES(int _) implements int {
 ///
 /// {@category enum}
 extension type const WSL_DISTRIBUTION_FLAGS(int _) implements int {
+  /// No flags are being supplied.
   static const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS(0x00000000);
+
+  /// Allow the distribution to interoperate with Windows processes (for example,
+  /// the user can invoke "cmd.exe" or "notepad.exe" from within a WSL session).
   static const WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP =
       WSL_DISTRIBUTION_FLAGS(0x00000001);
+
+  /// Add the Windows %PATH% environment variable values to WSL sessions.
   static const WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH =
       WSL_DISTRIBUTION_FLAGS(0x00000002);
+
+  /// Automatically mount Windows drives inside of WSL sessions (for example,
+  /// "C:\" will be available under "/mnt/c").
   static const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING =
       WSL_DISTRIBUTION_FLAGS(0x00000004);
 }
@@ -12315,14 +14266,23 @@ extension type const WinHttpRequestOption(int _) implements int {
 ///
 /// {@category enum}
 extension type const WindowInteractionState(int _) implements int {
+  /// The window is running.
   static const WindowInteractionState_Running =
       WindowInteractionState(0x00000000);
+
+  /// The window is closing.
   static const WindowInteractionState_Closing =
       WindowInteractionState(0x00000001);
+
+  /// The window is ready for user interaction.
   static const WindowInteractionState_ReadyForUserInteraction =
       WindowInteractionState(0x00000002);
+
+  /// The window is blocked by a modal window.
   static const WindowInteractionState_BlockedByModalWindow =
       WindowInteractionState(0x00000003);
+
+  /// The window is not responding.
   static const WindowInteractionState_NotResponding =
       WindowInteractionState(0x00000004);
 }
@@ -12334,8 +14294,13 @@ extension type const WindowInteractionState(int _) implements int {
 ///
 /// {@category enum}
 extension type const WindowVisualState(int _) implements int {
+  /// The window is normal (restored).
   static const WindowVisualState_Normal = WindowVisualState(0x00000000);
+
+  /// The window is maximized.
   static const WindowVisualState_Maximized = WindowVisualState(0x00000001);
+
+  /// The window is minimized.
   static const WindowVisualState_Minimized = WindowVisualState(0x00000002);
 }
 
@@ -12451,9 +14416,18 @@ extension type const XINPUT_VIRTUAL_KEY(int _) implements int {
 ///
 /// {@category enum}
 extension type const ZoomUnit(int _) implements int {
+  /// No increase or decrease in zoom.
   static const ZoomUnit_NoAmount = ZoomUnit(0x00000000);
+
+  /// Decrease zoom by a large decrement.
   static const ZoomUnit_LargeDecrement = ZoomUnit(0x00000001);
+
+  /// Decrease zoom by a small decrement.
   static const ZoomUnit_SmallDecrement = ZoomUnit(0x00000002);
+
+  /// Increase zoom by a large increment.
   static const ZoomUnit_LargeIncrement = ZoomUnit(0x00000003);
+
+  /// Increase zoom by a small increment.
   static const ZoomUnit_SmallIncrement = ZoomUnit(0x00000004);
 }

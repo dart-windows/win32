@@ -38,11 +38,21 @@ void main() {
       expect(
         fieldProjections,
         equals([
-          'static const APTTYPE_CURRENT = APTTYPE(0xffffffff);',
-          'static const APTTYPE_STA = APTTYPE(0x00000000);',
-          'static const APTTYPE_MTA = APTTYPE(0x00000001);',
-          'static const APTTYPE_NA = APTTYPE(0x00000002);',
-          'static const APTTYPE_MAINSTA = APTTYPE(0x00000003);'
+          '''
+/// The current thread.
+static const APTTYPE_CURRENT = APTTYPE(0xffffffff);''',
+          '''
+/// A single-threaded apartment.
+static const APTTYPE_STA = APTTYPE(0x00000000);''',
+          '''
+/// A multithreaded apartment.
+static const APTTYPE_MTA = APTTYPE(0x00000001);''',
+          '''
+/// A neutral apartment.
+static const APTTYPE_NA = APTTYPE(0x00000002);''',
+          '''
+/// The main single-threaded apartment.
+static const APTTYPE_MAINSTA = APTTYPE(0x00000003);'''
         ]),
       );
       expect(

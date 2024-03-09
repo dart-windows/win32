@@ -2,6 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import '../extension/string.dart';
+
 /// Represents detailed documentation for an API, including its description,
 /// remarks, return value, parameters, fields, and help link.
 final class ApiDetails {
@@ -104,8 +106,7 @@ extension on String {
         .replaceFirstMapped(
             RegExp(
                 r'^[\w\_\s]+\s(enumeration|function|interface|structure|union)\s(creates|defines|indicates|specifies)'),
-            (match) =>
-                match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
+            (match) => match.group(2)!.capitalize())
         .replaceFirst(
             RegExp(r'^The\s[\w\s\_]+\sspecifies\sthe'), 'Specifies the')
         .replaceFirst(
@@ -119,16 +120,13 @@ extension on String {
         .replaceFirstMapped(
             RegExp(
                 r'^(The\s)?[\w\s]+\sstructure\s(begins|contains|describes|identifies|stores)'),
-            (match) =>
-                match.group(2)![0].toUpperCase() + match.group(2)!.substring(1))
+            (match) => match.group(2)!.capitalize())
         .replaceFirst(
             RegExp(
                 r'^See\sreference\sinformation\sabout\sthe\s[\w\s\_]+\s(function|structure),\swhich\s'),
             '')
-        .replaceFirst(RegExp(r'\sFor more information,\ssee\s[\w\s\_]+.'), '');
-    if (string.length > 1) {
-      string = string[0].toUpperCase() + string.substring(1);
-    }
+        .replaceFirst(RegExp(r'\sFor more information,\ssee\s[\w\s\_]+.'), '')
+        .capitalize();
     if (!string.endsWith('.')) {
       string = '$string.';
     }

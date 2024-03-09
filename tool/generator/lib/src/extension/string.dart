@@ -8,6 +8,13 @@ extension StringHelpers on String {
   /// Whether the string can be converted to an integer.
   bool get _characterIsNumeral => int.tryParse(this) != null;
 
+  /// Capitalizes the first character of this string.
+  String capitalize() {
+    if (isEmpty) return this;
+    if (length == 1) return toUpperCase();
+    return this[0].toUpperCase() + substring(1); // e.g., value -> Value
+  }
+
   /// Retrieves the final component of a fully qualified name.
   ///
   /// This method extracts the last component of a fully qualified name (e.g.,
