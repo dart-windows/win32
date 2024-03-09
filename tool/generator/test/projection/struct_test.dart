@@ -91,18 +91,29 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
           equals('base class BITMAPFILEHEADER extends Struct'));
       final [bfType, bfSize, bfReserved1, bfReserved2, bfOffBits] =
           projection.fieldProjections;
-      expect(bfType.toString(), equals('@Uint16()\nexternal int bfType;'));
-      expect(bfSize.toString(), equals('@Uint32()\nexternal int bfSize;'));
-      expect(
-          bfReserved1.toString(),
-          equals(
-              '@Uint16()\n  // ignore: unused_field\nexternal int _bfReserved1;'));
-      expect(
-          bfReserved2.toString(),
-          equals(
-              '@Uint16()\n  // ignore: unused_field\nexternal int _bfReserved2;'));
-      expect(
-          bfOffBits.toString(), equals('@Uint32()\nexternal int bfOffBits;'));
+      expect(bfType.toString(), equalsIgnoringWhitespace('''
+  /// The file type; must be BM.
+  @Uint16()
+  external int bfType;'''));
+      expect(bfSize.toString(), equalsIgnoringWhitespace('''
+  /// The size, in bytes, of the bitmap file.
+  @Uint32()
+  external int bfSize;'''));
+      expect(bfReserved1.toString(), equalsIgnoringWhitespace('''
+  /// Reserved; must be zero.
+  @Uint16()
+  // ignore: unused_field
+  external int _bfReserved1;'''));
+      expect(bfReserved2.toString(), equalsIgnoringWhitespace('''
+  /// Reserved; must be zero.
+  @Uint16()
+  // ignore: unused_field
+  external int _bfReserved2;'''));
+      expect(bfOffBits.toString(), equalsIgnoringWhitespace('''
+  /// The offset, in bytes, from the beginning of the <b>BITMAPFILEHEADER</b>
+  /// structure to the bitmap bits.
+  @Uint32()
+  external int bfOffBits;'''));
       expect(projection.propertyAccessors, isEmpty);
       expect(projection.nestedTypeProjections, isEmpty);
     });
@@ -124,13 +135,22 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
           equals('base class DHCP_ALL_OPTIONS extends Struct'));
       final [flags, nonVendorOptions, numVendorOptions, vendorOptions] =
           projection.fieldProjections;
-      expect(flags.toString(), equals('@Uint32()\nexternal int Flags;'));
-      expect(nonVendorOptions.toString(),
-          equals('external Pointer<DHCP_OPTION_ARRAY> NonVendorOptions;'));
-      expect(numVendorOptions.toString(),
-          equals('@Uint32()\nexternal int NumVendorOptions;'));
-      expect(vendorOptions.toString(),
-          equals('external Pointer<DHCP_ALL_OPTIONS_0> VendorOptions;'));
+      expect(flags.toString(), equalsIgnoringWhitespace('''
+  /// Reserved.
+  @Uint32()
+  external int Flags;'''));
+      expect(nonVendorOptions.toString(), equalsIgnoringWhitespace('''
+  /// <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/dhcpsapi/ns-dhcpsapi-dhcp_option_array">DHCP_OPTION_ARRAY</a>
+  /// structure that contains the set of non-vendor options.
+  external Pointer<DHCP_OPTION_ARRAY> NonVendorOptions;'''));
+      expect(numVendorOptions.toString(), equalsIgnoringWhitespace('''
+  /// Specifies the number of vendor options listed in <b>VendorOptions</b>.
+  @Uint32()
+  external int NumVendorOptions;'''));
+      expect(vendorOptions.toString(), equalsIgnoringWhitespace('''
+  /// Pointer to a list of structures that contain the following fields.
+  external Pointer<DHCP_ALL_OPTIONS_0> VendorOptions;'''));
       expect(projection.propertyAccessors, isEmpty);
       final [dhcpAllOptions0] = projection.nestedTypeProjections;
       expect(dhcpAllOptions0.name, equals('DHCP_ALL_OPTIONS_0'));
@@ -171,12 +191,19 @@ extension BLUETOOTH_ADDRESS_0_Extension on BLUETOOTH_ADDRESS {
           equals('base class WLAN_RAW_DATA_LIST extends Struct'));
       final [dwTotalSize, dwNumberOfItems, dataList] =
           projection.fieldProjections;
-      expect(dwTotalSize.toString(),
-          equals('@Uint32()\nexternal int dwTotalSize;'));
-      expect(dwNumberOfItems.toString(),
-          equals('@Uint32()\nexternal int dwNumberOfItems;'));
-      expect(dataList.toString(),
-          equals('@Array(1)\nexternal Array<WLAN_RAW_DATA_LIST_0> DataList;'));
+      expect(dwTotalSize.toString(), equalsIgnoringWhitespace('''
+  /// The total size, in bytes, of the <b>WLAN_RAW_DATA_LIST</b> structure.
+  @Uint32()
+  external int dwTotalSize;'''));
+      expect(dwNumberOfItems.toString(), equalsIgnoringWhitespace('''
+  /// The number of raw data entries or blobs in the <b>WLAN_RAW_DATA_LIST</b>
+  /// structure.
+  @Uint32()
+  external int dwNumberOfItems;'''));
+      expect(dataList.toString(), equalsIgnoringWhitespace('''
+  /// An array of raw data entries or blobs that make up the data list.
+  @Array(1)
+  external Array<WLAN_RAW_DATA_LIST_0> DataList;'''));
       expect(projection.propertyAccessors, isEmpty);
       final [wlanRawDataList0] = projection.nestedTypeProjections;
       expect(wlanRawDataList0.name, equals('WLAN_RAW_DATA_LIST_0'));

@@ -22,4 +22,5 @@ const overloadAttribute = '$_metadataNamespace.OverloadAttribute';
 const reservedAttribute = '$_metadataNamespace.ReservedAttribute';
 const retValAttribute = '$_metadataNamespace.RetValAttribute';
 const scopedEnumAttribute = '$_metadataNamespace.ScopedEnumAttribute';
+const structSizeAttribute = '$_metadataNamespace.StructSizeFieldAttribute';
 const unicodeAttribute = '$_metadataNamespace.UnicodeAttribute';

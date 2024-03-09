@@ -8627,7 +8627,6 @@ const SDC_VIRTUAL_MODE_AWARE = 0x00008000;
 /// in Windows 11.
 const SDC_VIRTUAL_REFRESH_RATE_AWARE = 0x00020000;
 
-
 // -----------------------------------------------------------------------------
 // UI Automation Control Pattern constants
 // -----------------------------------------------------------------------------

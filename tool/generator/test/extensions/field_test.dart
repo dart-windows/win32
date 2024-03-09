@@ -129,6 +129,19 @@ void main() {
       expect(vendorOptions, isNotNull);
       expect(vendorOptions!.isPointer, isTrue);
     });
+
+    test('representsStructSize', () {
+      final wndClassEx =
+          getTypeDef('Windows.Win32.UI.WindowsAndMessaging.WNDCLASSEXW');
+
+      final cbSize = wndClassEx.findField('cbSize');
+      expect(cbSize, isNotNull);
+      expect(cbSize!.representsStructSize, isTrue);
+
+      final style = wndClassEx.findField('style');
+      expect(style, isNotNull);
+      expect(style!.representsStructSize, isFalse);
+    });
   });
 
   tearDownAll(MetadataStore.close);

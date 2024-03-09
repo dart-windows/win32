@@ -25,7 +25,10 @@ void main() {
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Array<Uint8>'));
-      expect(toString(), equals('@Array(16)\nexternal $type C;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// A 128-bit cryptographic key used for two-way authentication.
+  @Array(16)
+  external $type C;'''));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_ADDRESS', 'Anonymous',
@@ -39,28 +42,40 @@ void main() {
         'hRadio', (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('int'));
-      expect(toString(), equals('@IntPtr()\nexternal $type hRadio;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// A handle for the radio on which to perform the inquiry.
+  @IntPtr()
+  external $type hRadio;'''));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BLUETOOTH_SELECT_DEVICE_PARAMS',
         'pszInfo', (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Pointer<Utf16>'));
-      expect(toString(), equals('external $type pszInfo;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// Sets the information text when not <b>NULL</b>.
+  external $type pszInfo;'''));
     });
 
     testField('Windows.Win32.Devices.Bluetooth.BTH_QUERY_SERVICE', 'uuids',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Array<SdpQueryUuid>'));
-      expect(toString(), equals('@Array(12)\nexternal $type uuids;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// UUIDs that a record must contain to match the search.
+  @Array(12)
+  external $type uuids;'''));
     });
 
     testField('Windows.Win32.Graphics.Dwm.DWM_BLURBEHIND', 'fEnable',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('int'));
-      expect(toString(), equals('@Int32()\nexternal $type fEnable;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// [TRUE] to register the window handle to DWM blur behind; [FALSE] to
+  /// unregister the window handle from DWM blur behind.
+  @Int32()
+  external $type fEnable;'''));
     });
 
     testField('Windows.Win32.Graphics.Gdi.BITMAPFILEHEADER', 'bfReserved1',
@@ -68,6 +83,7 @@ void main() {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('int'));
       expect(toString(), equalsIgnoringWhitespace('''
+  /// Reserved; must be zero.
   @Uint16()
   // ignore: unused_field
   external $type _bfReserved1;'''));
@@ -83,6 +99,8 @@ void main() {
   @Array(32)
   external $type _dmDeviceName;
 
+  /// For a display, specifies the name of the display driver's DLL; for
+  /// example, "perm3dd" for the 3Dlabs Permedia3 display driver.
   String get dmDeviceName {
     final charCodes = <int>[];
     for (var i = 0; i < 32; i++) {
@@ -119,7 +137,11 @@ void main() {
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Pointer<Utf8>'));
-      expect(toString(), equals('external $type pszObjId;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// <a href="https://docs.microsoft.com/windows/desktop/SecGloss/o-gly">Object
+  /// identifier</a> (OID) that specifies the structure of the extension data
+  /// contained in the <b>Value</b> member.
+  external $type pszObjId;'''));
     });
 
     testField('Windows.Win32.System.Com.StructuredStorage.CALPSTR', 'pElems',
@@ -154,7 +176,10 @@ void main() {
     testField('Windows.Win32.System.Ole.ARRAYDESC', 'rgbounds', (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Array<SAFEARRAYBOUND>'));
-      expect(toString(), equals('@Array(1)\nexternal $type rgbounds;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// A variable-length array containing one element for each dimension.
+  @Array(1)
+  external $type rgbounds;'''));
     });
 
     testField('Windows.Win32.System.Search.RMTPACK', 'rgBSTR', (projection) {
@@ -167,14 +192,22 @@ void main() {
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('int'));
-      expect(toString(), equals('@Uint32()\nexternal $type Flags;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// A set of bit flags that you can use to initialize the <b>Color</b> dialog
+  /// box.
+  @Uint32()
+  external $type Flags;'''));
     });
 
     testField('Windows.Win32.UI.Shell.KNOWNFOLDER_DEFINITION', 'fidParent',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('GUID'));
-      expect(toString(), equals('external $type fidParent;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// A <a
+  /// href="https://docs.microsoft.com/windows/desktop/shell/knownfolderid">KNOWNFOLDERID</a>
+  /// value that names another known folder to serve as the parent folder.
+  external $type fidParent;'''));
     });
 
     testField(
@@ -182,14 +215,19 @@ void main() {
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Array<Uint16>'));
-      expect(toString(), equals('@Array(1)\nexternal $type mtString;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// The menu item.
+  @Array(1)
+  external $type mtString;'''));
     });
 
     testField('Windows.Win32.UI.WindowsAndMessaging.WNDCLASSW', 'lpfnWndProc',
         (projection) {
       final FieldProjection(:type, :toString) = projection;
       expect(type, equals('Pointer<NativeFunction<WNDPROC>>'));
-      expect(toString(), equals('external $type lpfnWndProc;'));
+      expect(toString(), equalsIgnoringWhitespace('''
+  /// A pointer to the window procedure.
+  external $type lpfnWndProc;'''));
     });
   });
 

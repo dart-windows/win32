@@ -66,4 +66,8 @@ extension FieldHelpers on Field {
 
   /// Whether the field is a pointer.
   bool get isPointer => typeIdentifier.baseType == BaseType.pointerTypeModifier;
+
+  /// Whether the field represents the size of a struct.
+  bool get representsStructSize =>
+      parent.attributeAsString(structSizeAttribute) == name;
 }

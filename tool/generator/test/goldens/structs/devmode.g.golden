@@ -10,6 +10,8 @@ base class DEVMODE extends Struct {
   @Array(32)
   external Array<Uint16> _dmDeviceName;
 
+  /// For a display, specifies the name of the display driver's DLL; for
+  /// example, "perm3dd" for the 3Dlabs Permedia3 display driver.
   String get dmDeviceName {
     final charCodes = <int>[];
     for (var i = 0; i < 32; i++) {
@@ -26,32 +28,46 @@ base class DEVMODE extends Struct {
     }
   }
 
+  /// Specifies the version number of this DEVMODEW structure.
   @Uint16()
   external int dmSpecVersion;
 
+  /// For a printer, specifies the printer driver version number assigned by the
+  /// printer driver developer.
   @Uint16()
   external int dmDriverVersion;
 
+  /// Specifies the size in bytes of the public DEVMODEW structure, not
+  /// including any private, driver-specified members identified by the
+  /// <b>dmDriverExtra</b> member.
   @Uint16()
   external int dmSize;
 
+  /// Specifies the number of bytes of private driver data that follow the
+  /// public structure members.
   @Uint16()
   external int dmDriverExtra;
 
+  /// Specifies bit flags identifying which of the following DEVMODEW members
+  /// are in use.
   @Uint32()
   external int dmFields;
 
   external DEVMODE_0 Anonymous1;
 
+  /// For printers, specifies whether a color printer should print color or
+  /// monochrome.
   @Int16()
   external int dmColor;
 
   @Int16()
   external int dmDuplex;
 
+  /// For printers, specifies the <i>y</i> resolution of the printer, in DPI.
   @Int16()
   external int dmYResolution;
 
+  /// For printers, specifies how TrueType fonts should be printed.
   @Int16()
   external int dmTTOption;
 
@@ -61,6 +77,8 @@ base class DEVMODE extends Struct {
   @Array(32)
   external Array<Uint16> _dmFormName;
 
+  /// For printers, specifies the name of the form to use; such as "Letter" or
+  /// "Legal".
   String get dmFormName {
     final charCodes = <int>[];
     for (var i = 0; i < 32; i++) {
@@ -77,46 +95,69 @@ base class DEVMODE extends Struct {
     }
   }
 
+  /// For displays, specifies the number of logical pixels per inch of a display
+  /// device and should be equal to the <b>ulLogPixels</b> member of the <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/winddi/ns-winddi-gdiinfo">GDIINFO</a>
+  /// structure.
   @Uint16()
   external int dmLogPixels;
 
+  /// For displays, specifies the color resolution, in bits per pixel, of a
+  /// display device.
   @Uint32()
   external int dmBitsPerPel;
 
+  /// For displays, specifies the width, in pixels, of the visible device
+  /// surface.
   @Uint32()
   external int dmPelsWidth;
 
+  /// For displays, specifies the height, in pixels, of the visible device
+  /// surface.
   @Uint32()
   external int dmPelsHeight;
 
   external DEVMODE_1 Anonymous2;
 
+  /// For displays, specifies the frequency, in hertz, of a display device in
+  /// its current mode.
   @Uint32()
   external int dmDisplayFrequency;
 
+  /// Specifies one of the DMICMMETHOD-prefixed constants defined in
+  /// <i>wingdi.h</i>.
   @Uint32()
   external int dmICMMethod;
 
+  /// Specifies one of the DMICM-prefixed constants defined in <i>wingdi.h</i>.
   @Uint32()
   external int dmICMIntent;
 
+  /// Specifies one of the DMMEDIA-prefixed constants defined in
+  /// <i>wingdi.h</i>.
   @Uint32()
   external int dmMediaType;
 
+  /// Specifies one of the DMDITHER-prefixed constants defined in
+  /// <i>wingdi.h</i>.
   @Uint32()
   external int dmDitherType;
 
+  /// Is reserved for system use and should be ignored by the driver.
   @Uint32()
   // ignore: unused_field
   external int _dmReserved1;
 
+  /// Is reserved for system use and should be ignored by the driver.
   @Uint32()
   // ignore: unused_field
   external int _dmReserved2;
 
+  /// Is reserved for system use and should be ignored by the driver.
   @Uint32()
   external int dmPanningWidth;
 
+  /// Is reserved for system use and should be ignored by the driver.
   @Uint32()
   external int dmPanningHeight;
 }
