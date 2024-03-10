@@ -17,7 +17,9 @@ import 'type.dart';
 /// Represents a Dart projection for a struct defined by a [TypeDef].
 class StructProjection {
   /// Creates an instance of this class for a [typeDef].
-  StructProjection(this.typeDef) : name = typeDef.safeTypename;
+  StructProjection(this.typeDef)
+      : assert(typeDef.isStruct, '${typeDef.name} is not a struct.'),
+        name = typeDef.safeTypename;
 
   /// The name of the struct.
   final String name;

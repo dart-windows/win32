@@ -15,7 +15,8 @@ import '../extension/typedef.dart';
 class EnumProjection {
   /// Creates an instance of this class for the given Win32 enum [typeDef].
   EnumProjection(this.typeDef)
-      : bits = typeDef.fields.first.bits,
+      : assert(typeDef.isEnum, '${typeDef.name} is not an enum.'),
+        bits = typeDef.fields.first.bits,
         fields = typeDef.fields,
         isBitwiseEnum = typeDef.isBitwiseEnum,
         name = typeDef.safeIdentifier;

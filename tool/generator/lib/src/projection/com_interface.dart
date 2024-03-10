@@ -19,7 +19,8 @@ import 'com_property.dart';
 class ComInterfaceProjection {
   /// Creates an instance of this class for a [typeDef].
   ComInterfaceProjection(this.typeDef)
-      : classTypeDef = _findClassTypeDef(typeDef);
+      : assert(typeDef.isInterface, '${typeDef.name} is not an interface.'),
+        classTypeDef = _findClassTypeDef(typeDef);
 
   /// The metadata associated with the corresponding class for the interface,
   /// if available.
