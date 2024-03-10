@@ -4122,7 +4122,7 @@ final _IsMouseInPointerEnabled = _user32
 /// Determines whether the current process is dots per inch (dpi) aware such
 /// that it adjusts the sizes of UI elements to compensate for the dpi setting.
 ///
-/// **Note**: This function may be altered or unavailable in the newer versions
+/// **Note:** This function may be altered or unavailable in the newer versions
 /// of Windows. Use GetProcessDPIAwareness instead.
 ///
 /// To learn more about this function, see
@@ -5840,7 +5840,7 @@ final _SetPhysicalCursorPos = _user32.lookupFunction<
 
 /// Sets the process-default DPI awareness to system-DPI awareness.
 ///
-/// **Note**: This function may be altered or unavailable in the newer versions
+/// **Note:** This function may be altered or unavailable in the newer versions
 /// of Windows. Use SetProcessDpiAwareness instead.
 ///
 /// To learn more about this function, see

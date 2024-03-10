@@ -618,7 +618,7 @@ final _waveInGetNumDevs = _winmm
 /// Retrieves the current input position of the given waveform-audio input
 /// device.
 ///
-/// **Note**: This function is no longer supported for use as of Windows Vista.
+/// **Note:** This function is no longer supported for use as of Windows Vista.
 /// Instead, use IAudioClock.getPosition.
 ///
 /// To learn more about this function, see

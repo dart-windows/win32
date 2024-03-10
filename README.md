@@ -164,7 +164,7 @@ version of this package, and continue to move your minimum forward.
 
 The Tetris example listed above is a fuller worked example of a reasonably
 complete program that uses the Dart Win32 package. It is a port of a C version
-of the game by Chang-Hung Liang. [More information...](example/tetris/README.md)
+of the game by Chang-Hung Liang. [More information...][tetris_link]
 
 The [C implementation of Snake](https://github.com/davidejones/winsnake) is by
 David Jones, and is ported with his permission.
@@ -197,4 +197,5 @@ the [Creative Commons Attribution 4.0 International Public License][license].
 [package_link]: https://pub.dev/packages/win32
 [publisher_badge]: https://img.shields.io/pub/publisher/win32.svg
 [publisher_link]: https://pub.dev/publishers/win32.pub
+[tetris_link]: https://github.com/dart-windows/win32/tree/main/example/tetris
 [win32_pub_link]: https://win32.pub

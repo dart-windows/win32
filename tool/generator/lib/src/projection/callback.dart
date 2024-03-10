@@ -36,18 +36,13 @@ class CallbackProjection {
   String get comment {
     final buffer = StringBuffer();
 
-    if (callbackDocs.containsKey(name)) {
-      buffer.write(callbackDocs[name]);
-    } else {
-      final docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
-          DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
-      if (docs != null) {
-        final ApiDetails(:description, :helpLink) = docs;
-        buffer.write(description);
-        if (helpLink != null) {
-          buffer
-              .write(' \nTo learn more about this callback, see <$helpLink>.');
-        }
+    final docs = callbackDocs[name] ??
+        DocsProvider.getDocs(typeDef.name.lastComponent) ??
+        DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
+    if (docs case ApiDetails(:final description, :final helpLink)) {
+      buffer.write(description);
+      if (helpLink != null) {
+        buffer.write(' \nTo learn more about this callback, see <$helpLink>.');
       }
     }
 

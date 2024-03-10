@@ -58,7 +58,7 @@ TODO
 - Deprecate `WindowProc` typedef in favor of `WNDPROC` (#826)
 - Deprecate `WlanNotificationCallback` in favor of
   `WLAN_NOTIFICATION_CALLBACK` (#826)
-- **Note**: You can automatically migrate your code to use the new typedefs by
+- **Note:** You can automatically migrate your code to use the new typedefs by
   running `dart fix --apply` in your terminal.
 - Deprecate `convertFromHString` function (#829)
 - Deprecate `convertToHString` function (#829)

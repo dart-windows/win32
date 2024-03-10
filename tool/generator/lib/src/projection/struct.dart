@@ -17,13 +17,7 @@ import 'type.dart';
 /// Represents a Dart projection for a struct defined by a [TypeDef].
 class StructProjection {
   /// Creates an instance of this class for a [typeDef].
-  StructProjection(this.typeDef)
-      : docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
-            DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent),
-        name = typeDef.safeTypename;
-
-  /// The documentation associated with the struct.
-  final ApiDetails? docs;
+  StructProjection(this.typeDef) : name = typeDef.safeTypename;
 
   /// The name of the struct.
   final String name;
@@ -48,15 +42,14 @@ class StructProjection {
   String get comment {
     final buffer = StringBuffer();
 
-    if (structDocs.containsKey(name)) {
-      buffer.write(structDocs[name]);
-    } else {
-      if (docs case ApiDetails(:final description, :final helpLink)) {
-        buffer.write(description);
-        if (helpLink != null) {
-          buffer.write(' \nTo learn more about this '
-              '${baseType.toLowerCase()}, see <$helpLink>.');
-        }
+    final docs = structDocs[name] ??
+        DocsProvider.getDocs(typeDef.name.lastComponent) ??
+        DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
+    if (docs case ApiDetails(:final description, :final helpLink)) {
+      buffer.write(description);
+      if (helpLink != null) {
+        buffer.write(' \nTo learn more about this '
+            '${baseType.toLowerCase()}, see <$helpLink>.');
       }
     }
 

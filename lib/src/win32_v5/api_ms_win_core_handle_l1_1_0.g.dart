@@ -26,7 +26,7 @@ final _api_ms_win_core_handle_l1_1_0 =
 /// To learn more about this function, see
 /// <https://learn.microsoft.com/windows/win32/api/handleapi/nf-handleapi-compareobjecthandles>.
 ///
-/// {@category kernelbase}
+/// {@category kernel32}
 int CompareObjectHandles(int hFirstObjectHandle, int hSecondObjectHandle) =>
     _CompareObjectHandles(hFirstObjectHandle, hSecondObjectHandle);
 

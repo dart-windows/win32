@@ -36,10 +36,11 @@ class FunctionProjection {
 
   /// The category of the function.
   String get category => switch (lib) {
+        // TODO(halildurmus): Finalize the categories.
         'api_ms_win_core_apiquery_l2_1_0' => 'onecore',
         'api_ms_win_core_comm_l1_1_1' => 'onecore',
         'api_ms_win_core_comm_l1_1_2' => 'onecore',
-        'api_ms_win_core_handle_l1_1_0' => 'kernelbase',
+        'api_ms_win_core_handle_l1_1_0' => 'kernel32',
         'api_ms_win_core_sysinfo_l1_2_3' => 'onecore',
         'api_ms_win_core_winrt_error_l1_1_0' => 'winrt',
         'api_ms_win_core_winrt_l1_1_0' => 'winrt',
@@ -51,6 +52,7 @@ class FunctionProjection {
         'api_ms_win_service_core_l1_1_5' => 'onecore',
         'api_ms_win_shcore_scaling_l1_1_1' => 'shcore',
         'api_ms_win_wsl_api_l1_1_0' => 'wslapi',
+        'scarddlg' => 'winscard',
         'xinput1_4' => 'xinput',
         'ws2_32' => 'winsock',
         _ => lib,
@@ -60,18 +62,13 @@ class FunctionProjection {
   String get comment {
     final buffer = StringBuffer();
 
-    if (functionDocs.containsKey(name)) {
-      buffer.write(functionDocs[name]);
-    } else {
-      final docs = DocsProvider.getDocs(method.name) ??
-          DocsProvider.getDocs(method.nameWithoutEncoding);
-      if (docs != null) {
-        final ApiDetails(:description, :helpLink) = docs;
-        buffer.write(description);
-        if (helpLink != null) {
-          buffer
-              .write(' \nTo learn more about this function, see <$helpLink>.');
-        }
+    final docs = functionDocs[name] ??
+        DocsProvider.getDocs(method.name) ??
+        DocsProvider.getDocs(method.nameWithoutEncoding);
+    if (docs case ApiDetails(:final description, :final helpLink)) {
+      buffer.write(description);
+      if (helpLink != null) {
+        buffer.write(' \nTo learn more about this function, see <$helpLink>.');
       }
     }
 

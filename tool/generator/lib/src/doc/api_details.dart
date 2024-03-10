@@ -10,10 +10,10 @@ final class ApiDetails {
   /// Creates an instance of `ApiDetails` with the specified parameters.
   const ApiDetails({
     required this.apiName,
-    required this.helpLink,
     required this.description,
-    required this.remarks,
-    required this.returnValue,
+    this.helpLink,
+    this.remarks,
+    this.returnValue,
     this.parameters = const {},
     this.fields = const {},
   });
@@ -22,7 +22,7 @@ final class ApiDetails {
   final String apiName;
 
   /// The URL that provides comprehensive documentation for this API.
-  final Uri? helpLink;
+  final String? helpLink;
 
   /// A concise summary of the API's purpose and functionality.
   final String? description;
@@ -56,7 +56,7 @@ final class ApiDetails {
         ]) {
       return ApiDetails(
         apiName: apiName,
-        helpLink: helpLink != null ? Uri.parse(helpLink) : null,
+        helpLink: helpLink,
         description: description?.sanitize(),
         remarks: remarks,
         parameters: parameters.cast(),
@@ -84,7 +84,7 @@ extension on String {
         .replaceAllMapped(RegExp(r'(\w)\.([A-Z])'),
             (match) => '${match.group(1)}. ${match.group(2)}')
         .replaceFirst(RegExp(r'\.\s\(\w+\)$'), '.')
-        .replaceAll('Note\u{00a0}', '**Note**:')
+        .replaceAll('Note\u{00a0}', '**Note:**')
         .replaceAll('\u{00a0}', ' ')
         .replaceFirst(RegExp(r'^Deprecated. (IShellService )?'), '')
         .replaceFirst(RegExp(r'^The IpRenewAddressfunction'),
@@ -126,6 +126,10 @@ extension on String {
                 r'^See\sreference\sinformation\sabout\sthe\s[\w\s\_]+\s(function|structure),\swhich\s'),
             '')
         .replaceFirst(RegExp(r'\sFor more information,\ssee\s[\w\s\_]+.'), '')
+        .replaceAllMapped(
+            RegExp(
+                r'\[(\*\*)?([\w\s_\-\*\\]+)(\*\*)?\]\(([\w\s_\(\)=\.\-\*\/#]+)\)'),
+            (match) => '`${match.group(2)}`')
         .capitalize();
     if (!string.endsWith('.')) {
       string = '$string.';

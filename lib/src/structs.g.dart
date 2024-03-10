@@ -2411,7 +2411,7 @@ base class CONSOLE_READCONSOLE_CONTROL extends Struct {
   external int nLength;
 
   /// The number of characters to skip (and thus preserve) before writing newly
-  /// read input in the buffer passed to the `**` function.
+  /// read input in the buffer passed to the `ReadConsole` function.
   @Uint32()
   external int nInitialChars;
 
@@ -2432,27 +2432,28 @@ base class CONSOLE_READCONSOLE_CONTROL extends Struct {
 ///
 /// {@category struct}
 base class CONSOLE_SCREEN_BUFFER_INFO extends Struct {
-  /// A `**` structure that contains the size of the console screen buffer, in
-  /// character columns and rows.
+  /// A `COORD` structure that contains the size of the console screen buffer,
+  /// in character columns and rows.
   external COORD dwSize;
 
-  /// A `**` structure that contains the column and row coordinates of the
+  /// A `COORD` structure that contains the column and row coordinates of the
   /// cursor in the console screen buffer.
   external COORD dwCursorPosition;
 
-  /// The attributes of the characters written to a screen buffer by the `**`
-  /// and `**` functions, or echoed to a screen buffer by the `**` and `**`
-  /// functions.
+  /// The attributes of the characters written to a screen buffer by the
+  /// `WriteFile` and `WriteConsole` functions, or echoed to a screen buffer by
+  /// the `ReadFile` and `ReadConsole` functions.
   @Uint16()
   external int wAttributes;
 
-  /// A `**` structure that contains the console screen buffer coordinates of
-  /// the upper-left and lower-right corners of the display window.
+  /// A `SMALL_RECT` structure that contains the console screen buffer
+  /// coordinates of the upper-left and lower-right corners of the display
+  /// window.
   external SMALL_RECT srWindow;
 
-  /// A `**` structure that contains the maximum size of the console window, in
-  /// character columns and rows, given the current screen buffer size and font
-  /// and the screen size.
+  /// A `COORD` structure that contains the maximum size of the console window,
+  /// in character columns and rows, given the current screen buffer size and
+  /// font and the screen size.
   external COORD dwMaximumWindowSize;
 }
 
@@ -2467,10 +2468,10 @@ base class CONSOLE_SELECTION_INFO extends Struct {
   @Uint32()
   external int dwFlags;
 
-  /// A `**` structure that specifies the selection anchor, in characters.
+  /// A `COORD` structure that specifies the selection anchor, in characters.
   external COORD dwSelectionAnchor;
 
-  /// A `**` structure that specifies the selection rectangle.
+  /// A `SMALL_RECT` structure that specifies the selection rectangle.
   external SMALL_RECT srSelection;
 }
 
@@ -2510,7 +2511,7 @@ typedef CO_MTA_USAGE_COOKIE = IntPtr;
 /// {@category struct}
 base class CREATEFILE2_EXTENDED_PARAMETERS extends Struct {
   /// Contains the size of this structure,
-  /// `sizeof(CREATEFILE2_EXTENDED_PARAMETERS)`.
+  /// `sizeOf<CREATEFILE2_EXTENDED_PARAMETERS>()`.
   @Uint32()
   external int dwSize;
 
@@ -2529,11 +2530,10 @@ base class CREATEFILE2_EXTENDED_PARAMETERS extends Struct {
   @Uint32()
   external int dwSecurityQosFlags;
 
-  /// A pointer to a
-  /// [SECURITY_ATTRIBUTES](/previous-versions/windows/desktop/legacy/aa379560(v=vs.85))
-  /// structure that contains two separate but related data members: an optional
-  /// security descriptor, and a Boolean value that determines whether the
-  /// returned handle can be inherited by child processes.
+  /// A pointer to a `SECURITY_ATTRIBUTES` structure that contains two separate
+  /// but related data members: an optional security descriptor, and a Boolean
+  /// value that determines whether the returned handle can be inherited by
+  /// child processes.
   external Pointer<SECURITY_ATTRIBUTES> lpSecurityAttributes;
 
   /// A valid handle to a template file with the **GENERIC_READ** access right.
@@ -3447,7 +3447,7 @@ base class DISK_GEOMETRY extends Struct {
 ///
 /// {@category struct}
 base class DISK_GEOMETRY_EX extends Struct {
-  /// A `**` structure.
+  /// A `DISK_GEOMETRY` structure.
   external DISK_GEOMETRY Geometry;
 
   /// The disk size, in bytes.
@@ -4090,11 +4090,12 @@ base class DOC_INFO_1 extends Struct {
 ///
 /// {@category struct}
 base class DOT11_AUTH_CIPHER_PAIR extends Struct {
-  /// An authentication algorithm that uses a `**` enumerated type.
+  /// An authentication algorithm that uses a `DOT11_AUTH_ALGORITHM` enumerated
+  /// type.
   @Int32()
   external int AuthAlgoId;
 
-  /// A cipher algorithm that uses a `**` enumerated type.
+  /// A cipher algorithm that uses a `DOT11_CIPHER_ALGORITHM` enumerated type.
   @Int32()
   external int CipherAlgoId;
 }
@@ -4106,8 +4107,8 @@ base class DOT11_AUTH_CIPHER_PAIR extends Struct {
 ///
 /// {@category struct}
 base class DOT11_BSSID_LIST extends Struct {
-  /// An `**` structure that contains the type, version, and, size information
-  /// of an NDIS structure.
+  /// An `NDIS_OBJECT_HEADER` structure that contains the type, version, and,
+  /// size information of an NDIS structure.
   external NDIS_OBJECT_HEADER Header;
 
   /// The number of entries in this structure.
@@ -6493,7 +6494,8 @@ base class JOB_INFO_1 extends Struct {
   @Uint32()
   external int PagesPrinted;
 
-  /// A `**` structure that specifies the time that this document was spooled.
+  /// A `SYSTEMTIME` structure that specifies the time that this document was
+  /// spooled.
   external SYSTEMTIME Submitted;
 }
 
@@ -6574,7 +6576,8 @@ base class KEY_EVENT_RECORD extends Struct {
   @Uint16()
   external int wRepeatCount;
 
-  /// A `null` that identifies the given key in a device-independent manner.
+  /// A `virtual-key code` that identifies the given key in a device-independent
+  /// manner.
   @Uint16()
   external int wVirtualKeyCode;
 
@@ -8062,8 +8065,8 @@ base class MOUSEMOVEPOINT extends Struct {
 ///
 /// {@category struct}
 base class MOUSE_EVENT_RECORD extends Struct {
-  /// A `**` structure that contains the location of the cursor, in terms of the
-  /// console screen buffer's character-cell coordinates.
+  /// A `COORD` structure that contains the location of the cursor, in terms of
+  /// the console screen buffer's character-cell coordinates.
   external COORD dwMousePosition;
 
   /// The status of the mouse buttons.
@@ -9484,7 +9487,7 @@ base class POINTER_PEN_INFO extends Struct {
 ///
 /// {@category struct}
 base class POINTER_TOUCH_INFO extends Struct {
-  /// An embedded `null` header structure.
+  /// An embedded `POINTER_INFO` header structure.
   external POINTER_INFO pointerInfo;
 
   /// Currently none.
@@ -9656,8 +9659,8 @@ base class PRINTER_DEFAULTS extends Struct {
   /// for a printer.
   external Pointer<Utf16> pDatatype;
 
-  /// Pointer to a `**` structure that identifies the default environment and
-  /// initialization data for a printer.
+  /// Pointer to a `DEVMODE` structure that identifies the default environment
+  /// and initialization data for a printer.
   external Pointer<DEVMODE> pDevMode;
 
   /// Specifies desired access rights for a printer.
@@ -9724,8 +9727,8 @@ base class PRINTER_INFO_2 extends Struct {
   /// of the printer (for example, "Bldg.
   external Pointer<Utf16> pLocation;
 
-  /// A pointer to a `**` structure that defines default printer data such as
-  /// the paper orientation and the resolution.
+  /// A pointer to a `DEVMODE` structure that defines default printer data such
+  /// as the paper orientation and the resolution.
   external Pointer<DEVMODE> pDevMode;
 
   /// A pointer to a null-terminated string that specifies the name of the file
@@ -9744,7 +9747,7 @@ base class PRINTER_INFO_2 extends Struct {
   /// print-processor parameters.
   external Pointer<Utf16> pParameters;
 
-  /// A pointer to a `**` structure for the printer.
+  /// A pointer to a `SECURITY_DESCRIPTOR` structure for the printer.
   external PSECURITY_DESCRIPTOR pSecurityDescriptor;
 
   /// The printer attributes.
@@ -9788,8 +9791,8 @@ base class PRINTER_INFO_2 extends Struct {
 ///
 /// {@category struct}
 base class PRINTER_INFO_3 extends Struct {
-  /// Pointer to a `**` structure that specifies a printer's security
-  /// information.
+  /// Pointer to a `SECURITY_DESCRIPTOR` structure that specifies a printer's
+  /// security information.
   external PSECURITY_DESCRIPTOR pSecurityDescriptor;
 }
 
@@ -9874,11 +9877,11 @@ base class PRINTER_NOTIFY_INFO extends Struct {
   @Uint32()
   external int Flags;
 
-  /// The number of `**` elements in the **aData** array.
+  /// The number of `PRINTER_NOTIFY_INFO_DATA` elements in the **aData** array.
   @Uint32()
   external int Count;
 
-  /// An array of `**` structures.
+  /// An array of `PRINTER_NOTIFY_INFO_DATA` structures.
   @Array(1)
   external Array<PRINTER_NOTIFY_INFO_DATA> aData;
 }
@@ -9956,8 +9959,8 @@ base class PRINTER_OPTIONS extends Struct {
   @Uint32()
   external int cbSize;
 
-  /// A set of `**` that specifies how the handle to a printer returned by `**`
-  /// will be used by other functions.
+  /// A set of `PRINTER_OPTION_FLAGS` that specifies how the handle to a printer
+  /// returned by `OpenPrinter2` will be used by other functions.
   @Uint32()
   external int dwFlags;
 }
@@ -9970,8 +9973,8 @@ base class PRINTER_OPTIONS extends Struct {
 ///
 /// {@category struct}
 base class PRINT_EXECUTION_DATA extends Struct {
-  /// The `**` value that represents the current execution context of the
-  /// printer driver.
+  /// The `PRINT_EXECUTION_CONTEXT` value that represents the current execution
+  /// context of the printer driver.
   @Int32()
   external int context;
 
@@ -10784,11 +10787,11 @@ extension RAWINPUT_0_Extension on RAWINPUT {
 ///
 /// {@category struct}
 base class RAWINPUTDEVICE extends Struct {
-  /// `null` `null` for the raw input device.
+  /// `Top level collection` `Usage page` for the raw input device.
   @Uint16()
   external int usUsagePage;
 
-  /// `null` `null` for the raw input device.
+  /// `Top level collection` `Usage ID` for the raw input device.
   @Uint16()
   external int usUsage;
 
@@ -10833,7 +10836,7 @@ base class RAWINPUTHEADER extends Struct {
   @IntPtr()
   external int hDevice;
 
-  /// The value passed in the <i>wParam</i> parameter of the `null` message.
+  /// The value passed in the <i>wParam</i> parameter of the `WM_INPUT` message.
   @IntPtr()
   external int wParam;
 }
@@ -10858,11 +10861,12 @@ base class RAWKEYBOARD extends Struct {
   // ignore: unused_field
   external int _Reserved;
 
-  /// The corresponding `null`.
+  /// The corresponding `legacy virtual-key code`.
   @Uint16()
   external int VKey;
 
-  /// The corresponding `null`, for example `null`, `null`, and so forth.
+  /// The corresponding `legacy keyboard window message`, for example
+  /// `WM_KEYDOWN`, `WM_SYSKEYDOWN`, and so forth.
   @Uint32()
   external int Message;
 
@@ -11467,7 +11471,8 @@ base class SECURITY_ATTRIBUTES extends Struct {
   @Uint32()
   external int nLength;
 
-  /// A pointer to a `**` structure that controls access to the object.
+  /// A pointer to a `SECURITY_DESCRIPTOR` structure that controls access to the
+  /// object.
   external Pointer lpSecurityDescriptor;
 
   /// A Boolean value that specifies whether the returned handle is inherited
@@ -14963,8 +14968,8 @@ base class WINDOWPOS extends Struct {
 ///
 /// {@category struct}
 base class WINDOW_BUFFER_SIZE_RECORD extends Struct {
-  /// A `**` structure that contains the size of the console screen buffer, in
-  /// character cell columns and rows.
+  /// A `COORD` structure that contains the size of the console screen buffer,
+  /// in character cell columns and rows.
   external COORD dwSize;
 }
 

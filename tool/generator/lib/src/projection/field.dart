@@ -90,10 +90,10 @@ extension on String {
       .replaceAll('<b><b>', '<b>')
       .replaceAll('</b>*</b>', '*</b>')
       .replaceAllMapped(
-          RegExp(r'\[(\*\*)?([\w\s_\-\*\\]+)(\*\*)?\]\(([\w\s_\.\-\*\/#]+)\)'),
-          (match) => '`${match.group(1)}`')
+          RegExp(
+              r'\[(\*\*)?([\w\s_\-\*\\]+)(\*\*)?\]\(([\w\s_\(\)=\.\-\*\/#]+)\)'),
+          (match) => '`${match.group(2)}`')
       .replaceAll(RegExp(r'\\_'), '_')
-      .replaceAll('(`**|**`)', '`')
       .replaceFirst(RegExp(r'^(Not used|The following|Unused).*'), '')
       .replaceFirst(r'[out]', '')
       .replaceFirst(
@@ -112,6 +112,9 @@ extension on String {
               'A ${match.group(1) ?? ''}`${match.group(2)}` ${match.group(3)}${match.group(4)}')
       .replaceAllMapped(RegExp(r'(\*\*|<b>)(GUID|TRUE|FALSE)(\*\*|<\/b>)'),
           (match) => '[${match.group(2)}]')
+      .replaceFirstMapped(RegExp(r'`sizeof\((.*)\)`'),
+          (match) => '`sizeOf<${match.group(1)}>()`')
+      .replaceAll(RegExp(r'(`\*\*|\*\*`)'), '`')
       .trim()
       .capitalize();
 

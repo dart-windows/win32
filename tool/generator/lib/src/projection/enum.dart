@@ -16,17 +16,12 @@ class EnumProjection {
   /// Creates an instance of this class for the given Win32 enum [typeDef].
   EnumProjection(this.typeDef)
       : bits = typeDef.fields.first.bits,
-        docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
-            DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent),
         fields = typeDef.fields,
         isBitwiseEnum = typeDef.isBitwiseEnum,
         name = typeDef.safeIdentifier;
 
   /// The number of bits for the base type of the enum (e.g., `8`, `16`).
   final int bits;
-
-  /// The documentation associated with the enum.
-  final ApiDetails? docs;
 
   /// The fields of the enum.
   final List<Field> fields;
@@ -44,14 +39,13 @@ class EnumProjection {
   String get comment {
     final buffer = StringBuffer();
 
-    if (enumDocs.containsKey(name)) {
-      buffer.write(enumDocs[name]);
-    } else {
-      if (docs case ApiDetails(:final description, :final helpLink)) {
-        buffer.write(description);
-        if (helpLink != null) {
-          buffer.write(' \nTo learn more about this enum, see <$helpLink>.');
-        }
+    final docs = enumDocs[name] ??
+        DocsProvider.getDocs(typeDef.name.lastComponent) ??
+        DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
+    if (docs case ApiDetails(:final description, :final helpLink)) {
+      buffer.write(description);
+      if (helpLink != null) {
+        buffer.write(' \nTo learn more about this enum, see <$helpLink>.');
       }
     }
 
@@ -63,6 +57,10 @@ class EnumProjection {
   /// The field projections of the enum.
   List<String> get fieldProjections {
     final projections = <String>[];
+
+    final docs = enumDocs[name] ??
+        DocsProvider.getDocs(typeDef.name.lastComponent) ??
+        DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
 
     // The first field is always the special field `_value`, describing the
     // underlying type of the enum (e.g. `Int32`, `Uint16`).
@@ -102,23 +100,31 @@ extension on Field {
 
 extension on String {
   // TODO(halildurmus): Refactor this method to use a more efficient approach.
-  String sanitize() =>
-      replaceAllMapped(RegExp(r'(\w)\.\)'), (match) => '${match.group(1)}).')
-          .split(RegExp(r'(?<=[.!?])\s'))
-          .first
-          .replaceAll(RegExp(r'\s+'), ' ')
-          .replaceAll(RegExp(r'<div class=".*">'), '')
-          .replaceFirst(RegExp(r'^Documentation varies per use.*'), '')
-          .replaceFirst(RegExp(r'^\*\*Introduced in Windows .*.\*\*\s?'), '')
-          .replaceFirst(RegExp(r'^(Not used|Unused).*'), '')
-          .replaceFirst(RegExp(r'^This value is obsolete.$'), 'Obsolete.')
-          .replaceFirst(RegExp(r'^This value is reserved.$'), 'Reserved.')
-          .replaceFirst(RegExp(r'^\s?(<i>)?p\w+.*'), '')
-          .replaceFirst(RegExp(r'^\s?(\(int\))?0x\w+\.'), '')
-          .replaceFirst(RegExp(r'^\s?(<b>)?Windows .* and later(</b>)?\.$'), '')
-          .replaceFirst(
-              RegExp(r'^\s?(<b>)?(Prior to )?Windows .*:\s?(</b>)?.*'), '')
-          .replaceFirst(RegExp(r', see Remarks for more info.'), '.')
-          .trim()
-          .capitalize();
+  String sanitize() => replaceAllMapped(
+          RegExp(r'(\w)\.\)'), (match) => '${match.group(1)}).')
+      .split(RegExp(r'(?<=[.!?])\s'))
+      .first
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .replaceAll(RegExp(r'<div class=".*">'), '')
+      .replaceAllMapped(
+          RegExp(
+              r'\[(\*\*)?([\w\s_\-\*\\]+)(\*\*)?\]\(([\w\s_\(\)=\.\-\*\/#]+)\)'),
+          (match) => '`${match.group(2)}`')
+      .replaceFirst(RegExp(r'^Documentation varies per use.*'), '')
+      .replaceFirst(RegExp(r'^\*\*Introduced in Windows .*.\*\*\s?'), '')
+      .replaceFirst(RegExp(r'^(Not used|Unused).*'), '')
+      .replaceFirst(RegExp(r'^This value is obsolete.$'), 'Obsolete.')
+      .replaceFirst(RegExp(r'^This value is reserved.$'), 'Reserved.')
+      .replaceFirst(RegExp(r'^\s?(<i>)?p\w+.*'), '')
+      .replaceFirst(RegExp(r'^\s?(\(int\))?0x\w+\.'), '')
+      .replaceFirst(RegExp(r'^\s?(<b>)?Windows .* and later(</b>)?\.$'), '')
+      .replaceFirst(
+          RegExp(r'^\s?(<b>)?(Prior to )?Windows .*:\s?(</b>)?.*'), '')
+      .replaceFirst(RegExp(r', see Remarks for more info.'), '.')
+      .replaceFirst(
+          RegExp(
+              r'^\s?\[Windows 10 October 2018 Update \(version 1809\) and newer\]\s?'),
+          '')
+      .trim()
+      .capitalize();
 }

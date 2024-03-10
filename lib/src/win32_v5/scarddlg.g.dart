@@ -24,7 +24,7 @@ final _scarddlg = DynamicLibrary.open('scarddlg.dll');
 /// To learn more about this function, see
 /// <https://learn.microsoft.com/windows/win32/api/winscard/nf-winscard-scarduidlgselectcardw>.
 ///
-/// {@category scarddlg}
+/// {@category winscard}
 int SCardUIDlgSelectCard(Pointer<OPENCARDNAME_EX> param0) =>
     _SCardUIDlgSelectCard(param0);
 

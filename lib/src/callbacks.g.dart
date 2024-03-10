@@ -22,7 +22,7 @@ import 'types.dart';
 ///
 /// MIDIINPROC is a placeholder for the application-supplied function name. The
 /// address of this function can be specified in the callback-address parameter
-/// of the midiInOpen function.
+/// of the `midiInOpen` function.
 ///
 /// To learn more about this callback, see
 /// <https://learn.microsoft.com/previous-versions/dd798460(v=vs.85)>.
@@ -36,7 +36,7 @@ typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
 ///
 /// MIDIOUTPROC is a placeholder for the application-supplied function name. The
 /// address of the function can be specified in the callback-address parameter
-/// of the midiOutOpen function.
+/// of the `midiOutOpen` function.
 ///
 /// To learn more about this callback, see
 /// <https://learn.microsoft.com/previous-versions/dd798478(v=vs.85)>.

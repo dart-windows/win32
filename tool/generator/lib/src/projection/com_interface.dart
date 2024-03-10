@@ -204,18 +204,13 @@ factory $shortName.from(IUnknown interface) =>
   String get comment {
     final buffer = StringBuffer();
 
-    if (interfaceDocs.containsKey(shortName)) {
-      buffer.write(interfaceDocs[shortName]);
-    } else {
-      final docs = DocsProvider.getDocs(typeDef.name.lastComponent) ??
-          DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
-      if (docs != null) {
-        final ApiDetails(:description, :helpLink) = docs;
-        buffer.write(description);
-        if (helpLink != null) {
-          buffer
-              .write(' \nTo learn more about this interface, see <$helpLink>.');
-        }
+    final docs = interfaceDocs[shortName] ??
+        DocsProvider.getDocs(typeDef.name.lastComponent) ??
+        DocsProvider.getDocs(typeDef.nameWithoutEncoding.lastComponent);
+    if (docs case ApiDetails(:final description, :final helpLink)) {
+      buffer.write(description);
+      if (helpLink != null) {
+        buffer.write(' \nTo learn more about this interface, see <$helpLink>.');
       }
     }
 

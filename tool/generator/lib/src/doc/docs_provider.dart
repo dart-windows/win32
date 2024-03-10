@@ -84,7 +84,7 @@ abstract final class DocsProvider {
   /// Retrieves the help link for a specified API [path].
   ///
   /// Returns `null` if no documentation is available for the API path.
-  static Uri? getHelpLink(String path) => getDocs(path)?.helpLink;
+  static String? getHelpLink(String path) => getDocs(path)?.helpLink;
 
   /// Clears the loaded API documentation.
   ///

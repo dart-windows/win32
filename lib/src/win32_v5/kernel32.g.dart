@@ -2344,8 +2344,8 @@ final _GetLastError =
 
 /// Retrieves information about a locale specified by name.
 ///
-/// **Note**: The application should call this function in preference to
-/// GetLocaleInfo if designed to run only on Windows Vista and later. **Note**:
+/// **Note:** The application should call this function in preference to
+/// GetLocaleInfo if designed to run only on Windows Vista and later. **Note:**
 /// This function can retrieve data that changes between releases, for example,
 /// due to a custom locale. If your application must persist or transmit data,
 /// see Using Persistent Locale Data.
@@ -3024,7 +3024,7 @@ final _GetSystemDefaultLangID =
 
 /// Retrieves the system default locale name.
 ///
-/// **Note**: It is recommended that applications call GetUserDefaultLocaleName
+/// **Note:** It is recommended that applications call GetUserDefaultLocaleName
 /// in preference over this function.
 ///
 /// To learn more about this function, see
@@ -3201,7 +3201,7 @@ final _GetThreadId = _kernel32.lookupFunction<Uint32 Function(HANDLE thread),
 
 /// Returns the locale identifier of the current locale for the calling thread.
 ///
-/// **Note**: This function can retrieve data that changes between releases, for
+/// **Note:** This function can retrieve data that changes between releases, for
 /// example, due to a custom locale.
 ///
 /// To learn more about this function, see
@@ -3294,7 +3294,7 @@ final _GetUserDefaultLCID = _kernel32
 
 /// Retrieves the user default locale name.
 ///
-/// **Note**: The application should call this function in preference to
+/// **Note:** The application should call this function in preference to
 /// GetUserDefaultLCID if designed to run only on Windows Vista and later.
 ///
 /// To learn more about this function, see
@@ -3845,7 +3845,7 @@ final _IsSystemResumeAutomatic = _kernel32
 /// Determines if the specified locale name is valid for a locale that is
 /// installed or supported on the operating system.
 ///
-/// **Note**: An application running only on Windows Vista and later should call
+/// **Note:** An application running only on Windows Vista and later should call
 /// this function in preference to IsValidLocale to determine the validity of a
 /// supplemental locale.
 ///

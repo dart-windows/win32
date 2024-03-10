@@ -2458,10 +2458,7 @@ extension type const DUPLICATE_HANDLE_OPTIONS(int _) implements int {
   static const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS(0x00000002);
 }
 
-/// Flags used by the
-/// [DwmGetWindowAttribute](/windows/desktop/api/dwmapi/nf-dwmapi-dwmgetwindowattribute)
-/// and
-/// [DwmSetWindowAttribute](/windows/desktop/api/dwmapi/nf-dwmapi-dwmsetwindowattribute)
+/// Flags used by the `DwmGetWindowAttribute` and `DwmSetWindowAttribute`
 /// functions.
 ///
 /// To learn more about this enum, see
@@ -2529,39 +2526,29 @@ extension type const DWMWINDOWATTRIBUTE(int _) implements int {
   static const DWMWA_FREEZE_REPRESENTATION = DWMWINDOWATTRIBUTE(0x0000000f);
   static const DWMWA_PASSIVE_UPDATE_MODE = DWMWINDOWATTRIBUTE(0x00000010);
 
-  /// Use with
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmSetWindowAttribute`.
   static const DWMWA_USE_HOSTBACKDROPBRUSH = DWMWINDOWATTRIBUTE(0x00000011);
 
-  /// Use with
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmSetWindowAttribute`.
   static const DWMWA_USE_IMMERSIVE_DARK_MODE = DWMWINDOWATTRIBUTE(0x00000014);
 
-  /// Use with
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmSetWindowAttribute`.
   static const DWMWA_WINDOW_CORNER_PREFERENCE = DWMWINDOWATTRIBUTE(0x00000021);
 
-  /// Use with
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmSetWindowAttribute`.
   static const DWMWA_BORDER_COLOR = DWMWINDOWATTRIBUTE(0x00000022);
 
-  /// Use with
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmSetWindowAttribute`.
   static const DWMWA_CAPTION_COLOR = DWMWINDOWATTRIBUTE(0x00000023);
 
-  /// Use with
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmSetWindowAttribute`.
   static const DWMWA_TEXT_COLOR = DWMWINDOWATTRIBUTE(0x00000024);
 
-  /// Use with
-  /// [DwmGetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmgetwindowattribute).
+  /// Use with `DwmGetWindowAttribute`.
   static const DWMWA_VISIBLE_FRAME_BORDER_THICKNESS =
       DWMWINDOWATTRIBUTE(0x00000025);
 
-  /// Use with
-  /// [DwmGetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmgetwindowattribute)
-  /// or
-  /// [DwmSetWindowAttribute](/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute).
+  /// Use with `DwmGetWindowAttribute` or `DwmSetWindowAttribute`.
   static const DWMWA_SYSTEMBACKDROP_TYPE = DWMWINDOWATTRIBUTE(0x00000026);
 
   /// The maximum recognized <b>DWMWINDOWATTRIBUTE</b> value, used for validation
@@ -4122,8 +4109,7 @@ extension type const MACHINE_ATTRIBUTES(int _) implements int {
   static const KernelEnabled = MACHINE_ATTRIBUTES(0x00000002);
 
   /// The specified architecture of code runs by relying on WOW64's namespace
-  /// [File System Redirector](/windows/win32/winprog64/file-system-redirector)
-  /// and [Registry Redirector](/windows/win32/winprog64/registry-redirector).
+  /// `File System Redirector` and `Registry Redirector`.
   static const Wow64Container = MACHINE_ATTRIBUTES(0x00000004);
 }
 
@@ -5793,8 +5779,7 @@ extension type const PropertyConditionFlags(int _) implements int {
   static const PropertyConditionFlags_IgnoreCase =
       PropertyConditionFlags(0x00000001);
 
-  /// [Windows 10 October 2018 Update (version 1809) and newer] Comparison of
-  /// substring properties is enabled.
+  /// Comparison of substring properties is enabled.
   static const PropertyConditionFlags_MatchSubstring =
       PropertyConditionFlags(0x00000002);
 }
