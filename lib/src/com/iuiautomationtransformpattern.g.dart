@@ -34,6 +34,14 @@ class IUIAutomationTransformPattern extends IUnknown {
 
   final IUIAutomationTransformPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTransformPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTransformPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTransformPattern.from(IUnknown interface) =>
       IUIAutomationTransformPattern(
           interface.toInterface(IID_IUIAutomationTransformPattern));

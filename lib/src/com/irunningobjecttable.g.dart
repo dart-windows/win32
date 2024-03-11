@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,13 @@ class IRunningObjectTable extends IUnknown {
 
   final IRunningObjectTableVtbl _vtable;
 
+  /// Creates a new instance of `IRunningObjectTable` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IRunningObjectTable` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IRunningObjectTable.from(IUnknown interface) =>
       IRunningObjectTable(interface.toInterface(IID_IRunningObjectTable));
 

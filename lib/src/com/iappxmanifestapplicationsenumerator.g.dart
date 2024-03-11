@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,14 @@ class IAppxManifestApplicationsEnumerator extends IUnknown {
 
   final IAppxManifestApplicationsEnumeratorVtbl _vtable;
 
+  /// Creates a new instance of `IAppxManifestApplicationsEnumerator` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAppxManifestApplicationsEnumerator` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAppxManifestApplicationsEnumerator.from(IUnknown interface) =>
       IAppxManifestApplicationsEnumerator(
           interface.toInterface(IID_IAppxManifestApplicationsEnumerator));

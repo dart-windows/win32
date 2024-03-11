@@ -34,6 +34,13 @@ class IUIAutomationTreeWalker extends IUnknown {
 
   final IUIAutomationTreeWalkerVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTreeWalker` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTreeWalker` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTreeWalker.from(IUnknown interface) =>
       IUIAutomationTreeWalker(
           interface.toInterface(IID_IUIAutomationTreeWalker));

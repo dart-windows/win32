@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,12 @@ class IPersistStream extends IPersist {
 
   final IPersistStreamVtbl _vtable;
 
+  /// Creates a new instance of `IPersistStream` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IPersistStream` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IPersistStream.from(IUnknown interface) =>
       IPersistStream(interface.toInterface(IID_IPersistStream));
 

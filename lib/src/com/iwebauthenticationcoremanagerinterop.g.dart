@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -32,6 +33,14 @@ class IWebAuthenticationCoreManagerInterop extends IInspectable {
 
   final IWebAuthenticationCoreManagerInteropVtbl _vtable;
 
+  /// Creates a new instance of `IWebAuthenticationCoreManagerInterop` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IWebAuthenticationCoreManagerInterop` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IWebAuthenticationCoreManagerInterop.from(IUnknown interface) =>
       IWebAuthenticationCoreManagerInterop(
           interface.toInterface(IID_IWebAuthenticationCoreManagerInterop));

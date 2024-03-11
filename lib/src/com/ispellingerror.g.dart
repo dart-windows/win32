@@ -33,6 +33,12 @@ class ISpellingError extends IUnknown {
 
   final ISpellingErrorVtbl _vtable;
 
+  /// Creates a new instance of `ISpellingError` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpellingError` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpellingError.from(IUnknown interface) =>
       ISpellingError(interface.toInterface(IID_ISpellingError));
 

@@ -37,6 +37,12 @@ class INetwork extends IDispatch {
 
   final INetworkVtbl _vtable;
 
+  /// Creates a new instance of `INetwork` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `INetwork` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory INetwork.from(IUnknown interface) =>
       INetwork(interface.toInterface(IID_INetwork));
 

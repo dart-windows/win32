@@ -34,6 +34,13 @@ class IUIAutomationTogglePattern extends IUnknown {
 
   final IUIAutomationTogglePatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTogglePattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTogglePattern` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTogglePattern.from(IUnknown interface) =>
       IUIAutomationTogglePattern(
           interface.toInterface(IID_IUIAutomationTogglePattern));

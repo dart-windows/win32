@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -32,6 +33,12 @@ class IPersist extends IUnknown {
 
   final IPersistVtbl _vtable;
 
+  /// Creates a new instance of `IPersist` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IPersist` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IPersist.from(IUnknown interface) =>
       IPersist(interface.toInterface(IID_IPersist));
 

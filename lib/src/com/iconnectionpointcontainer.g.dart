@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -29,6 +30,13 @@ class IConnectionPointContainer extends IUnknown {
 
   final IConnectionPointContainerVtbl _vtable;
 
+  /// Creates a new instance of `IConnectionPointContainer` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IConnectionPointContainer` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IConnectionPointContainer.from(IUnknown interface) =>
       IConnectionPointContainer(
           interface.toInterface(IID_IConnectionPointContainer));

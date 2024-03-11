@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,13 @@ class IEnumWbemClassObject extends IUnknown {
 
   final IEnumWbemClassObjectVtbl _vtable;
 
+  /// Creates a new instance of `IEnumWbemClassObject` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IEnumWbemClassObject` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IEnumWbemClassObject.from(IUnknown interface) =>
       IEnumWbemClassObject(interface.toInterface(IID_IEnumWbemClassObject));
 

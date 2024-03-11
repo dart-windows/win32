@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,13 @@ class IAudioClientDuckingControl extends IUnknown {
 
   final IAudioClientDuckingControlVtbl _vtable;
 
+  /// Creates a new instance of `IAudioClientDuckingControl` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAudioClientDuckingControl` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAudioClientDuckingControl.from(IUnknown interface) =>
       IAudioClientDuckingControl(
           interface.toInterface(IID_IAudioClientDuckingControl));

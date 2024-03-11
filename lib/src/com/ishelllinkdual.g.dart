@@ -29,6 +29,12 @@ class IShellLinkDual extends IDispatch {
 
   final IShellLinkDualVtbl _vtable;
 
+  /// Creates a new instance of `IShellLinkDual` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IShellLinkDual` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IShellLinkDual.from(IUnknown interface) =>
       IShellLinkDual(interface.toInterface(IID_IShellLinkDual));
 

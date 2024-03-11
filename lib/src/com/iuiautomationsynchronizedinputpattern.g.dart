@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,14 @@ class IUIAutomationSynchronizedInputPattern extends IUnknown {
 
   final IUIAutomationSynchronizedInputPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationSynchronizedInputPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationSynchronizedInputPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationSynchronizedInputPattern.from(IUnknown interface) =>
       IUIAutomationSynchronizedInputPattern(
           interface.toInterface(IID_IUIAutomationSynchronizedInputPattern));

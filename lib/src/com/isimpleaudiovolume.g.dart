@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -29,6 +30,13 @@ class ISimpleAudioVolume extends IUnknown {
 
   final ISimpleAudioVolumeVtbl _vtable;
 
+  /// Creates a new instance of `ISimpleAudioVolume` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISimpleAudioVolume` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISimpleAudioVolume.from(IUnknown interface) =>
       ISimpleAudioVolume(interface.toInterface(IID_ISimpleAudioVolume));
 

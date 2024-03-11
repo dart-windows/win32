@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,13 @@ class IUIAutomationNotCondition extends IUIAutomationCondition {
 
   final IUIAutomationNotConditionVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationNotCondition` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationNotCondition` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationNotCondition.from(IUnknown interface) =>
       IUIAutomationNotCondition(
           interface.toInterface(IID_IUIAutomationNotCondition));

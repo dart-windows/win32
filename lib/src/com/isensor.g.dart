@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -30,6 +31,12 @@ class ISensor extends IUnknown {
 
   final ISensorVtbl _vtable;
 
+  /// Creates a new instance of `ISensor` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISensor` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISensor.from(IUnknown interface) =>
       ISensor(interface.toInterface(IID_ISensor));
 

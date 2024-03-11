@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,14 @@ class ISpellCheckerChangedEventHandler extends IUnknown {
 
   final ISpellCheckerChangedEventHandlerVtbl _vtable;
 
+  /// Creates a new instance of `ISpellCheckerChangedEventHandler` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpellCheckerChangedEventHandler` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpellCheckerChangedEventHandler.from(IUnknown interface) =>
       ISpellCheckerChangedEventHandler(
           interface.toInterface(IID_ISpellCheckerChangedEventHandler));

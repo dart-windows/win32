@@ -36,6 +36,12 @@ class IEnumNetworks extends IDispatch {
 
   final IEnumNetworksVtbl _vtable;
 
+  /// Creates a new instance of `IEnumNetworks` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IEnumNetworks` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IEnumNetworks.from(IUnknown interface) =>
       IEnumNetworks(interface.toInterface(IID_IEnumNetworks));
 

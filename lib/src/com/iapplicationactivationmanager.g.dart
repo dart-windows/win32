@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -34,6 +35,14 @@ class IApplicationActivationManager extends IUnknown {
 
   final IApplicationActivationManagerVtbl _vtable;
 
+  /// Creates a new instance of `IApplicationActivationManager` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IApplicationActivationManager` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IApplicationActivationManager.from(IUnknown interface) =>
       IApplicationActivationManager(
           interface.toInterface(IID_IApplicationActivationManager));

@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,13 @@ class IFileDialogCustomize extends IUnknown {
 
   final IFileDialogCustomizeVtbl _vtable;
 
+  /// Creates a new instance of `IFileDialogCustomize` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IFileDialogCustomize` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IFileDialogCustomize.from(IUnknown interface) =>
       IFileDialogCustomize(interface.toInterface(IID_IFileDialogCustomize));
 

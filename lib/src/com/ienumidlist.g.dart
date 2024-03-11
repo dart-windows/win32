@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -28,6 +29,12 @@ class IEnumIDList extends IUnknown {
 
   final IEnumIDListVtbl _vtable;
 
+  /// Creates a new instance of `IEnumIDList` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IEnumIDList` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IEnumIDList.from(IUnknown interface) =>
       IEnumIDList(interface.toInterface(IID_IEnumIDList));
 

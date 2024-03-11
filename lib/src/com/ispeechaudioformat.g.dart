@@ -29,6 +29,13 @@ class ISpeechAudioFormat extends IDispatch {
 
   final ISpeechAudioFormatVtbl _vtable;
 
+  /// Creates a new instance of `ISpeechAudioFormat` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpeechAudioFormat` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpeechAudioFormat.from(IUnknown interface) =>
       ISpeechAudioFormat(interface.toInterface(IID_ISpeechAudioFormat));
 

@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -31,6 +32,12 @@ class IDispatch extends IUnknown {
 
   final IDispatchVtbl _vtable;
 
+  /// Creates a new instance of `IDispatch` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IDispatch` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IDispatch.from(IUnknown interface) =>
       IDispatch(interface.toInterface(IID_IDispatch));
 

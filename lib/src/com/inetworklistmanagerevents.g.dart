@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -32,6 +33,13 @@ class INetworkListManagerEvents extends IUnknown {
 
   final INetworkListManagerEventsVtbl _vtable;
 
+  /// Creates a new instance of `INetworkListManagerEvents` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `INetworkListManagerEvents` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory INetworkListManagerEvents.from(IUnknown interface) =>
       INetworkListManagerEvents(
           interface.toInterface(IID_INetworkListManagerEvents));

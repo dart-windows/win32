@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -35,6 +36,12 @@ class IShellItem2 extends IShellItem {
 
   final IShellItem2Vtbl _vtable;
 
+  /// Creates a new instance of `IShellItem2` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IShellItem2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IShellItem2.from(IUnknown interface) =>
       IShellItem2(interface.toInterface(IID_IShellItem2));
 

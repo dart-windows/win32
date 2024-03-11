@@ -35,6 +35,13 @@ class IUIAutomationElement extends IUnknown {
 
   final IUIAutomationElementVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationElement` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationElement` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationElement.from(IUnknown interface) =>
       IUIAutomationElement(interface.toInterface(IID_IUIAutomationElement));
 

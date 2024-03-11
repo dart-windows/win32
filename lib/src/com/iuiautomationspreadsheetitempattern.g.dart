@@ -35,6 +35,14 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
 
   final IUIAutomationSpreadsheetItemPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationSpreadsheetItemPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationSpreadsheetItemPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationSpreadsheetItemPattern.from(IUnknown interface) =>
       IUIAutomationSpreadsheetItemPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetItemPattern));

@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,12 @@ class IUIAutomation5 extends IUIAutomation4 {
 
   final IUIAutomation5Vtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomation5` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomation5` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomation5.from(IUnknown interface) =>
       IUIAutomation5(interface.toInterface(IID_IUIAutomation5));
 

@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,13 @@ class IWbemObjectAccess extends IWbemClassObject {
 
   final IWbemObjectAccessVtbl _vtable;
 
+  /// Creates a new instance of `IWbemObjectAccess` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IWbemObjectAccess` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IWbemObjectAccess.from(IUnknown interface) =>
       IWbemObjectAccess(interface.toInterface(IID_IWbemObjectAccess));
 

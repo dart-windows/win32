@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -28,6 +29,12 @@ class IEnumMoniker extends IUnknown {
 
   final IEnumMonikerVtbl _vtable;
 
+  /// Creates a new instance of `IEnumMoniker` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IEnumMoniker` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IEnumMoniker.from(IUnknown interface) =>
       IEnumMoniker(interface.toInterface(IID_IEnumMoniker));
 

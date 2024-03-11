@@ -35,6 +35,13 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
 
   final IUIAutomationBoolConditionVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationBoolCondition` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationBoolCondition` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationBoolCondition.from(IUnknown interface) =>
       IUIAutomationBoolCondition(
           interface.toInterface(IID_IUIAutomationBoolCondition));

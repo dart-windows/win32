@@ -36,6 +36,14 @@ class IUIAutomationDropTargetPattern extends IUnknown {
 
   final IUIAutomationDropTargetPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationDropTargetPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationDropTargetPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationDropTargetPattern.from(IUnknown interface) =>
       IUIAutomationDropTargetPattern(
           interface.toInterface(IID_IUIAutomationDropTargetPattern));

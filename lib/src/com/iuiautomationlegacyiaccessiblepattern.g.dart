@@ -37,6 +37,14 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
 
   final IUIAutomationLegacyIAccessiblePatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationLegacyIAccessiblePattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationLegacyIAccessiblePattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationLegacyIAccessiblePattern.from(IUnknown interface) =>
       IUIAutomationLegacyIAccessiblePattern(
           interface.toInterface(IID_IUIAutomationLegacyIAccessiblePattern));

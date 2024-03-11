@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -23,6 +24,13 @@ class IAppxManifestReader7 extends IUnknown {
 
   final IAppxManifestReader7Vtbl _vtable;
 
+  /// Creates a new instance of `IAppxManifestReader7` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAppxManifestReader7` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAppxManifestReader7.from(IUnknown interface) =>
       IAppxManifestReader7(interface.toInterface(IID_IAppxManifestReader7));
 

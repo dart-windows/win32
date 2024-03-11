@@ -34,6 +34,13 @@ class IUIAutomationScrollPattern extends IUnknown {
 
   final IUIAutomationScrollPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationScrollPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationScrollPattern` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationScrollPattern.from(IUnknown interface) =>
       IUIAutomationScrollPattern(
           interface.toInterface(IID_IUIAutomationScrollPattern));

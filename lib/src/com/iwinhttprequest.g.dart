@@ -35,6 +35,12 @@ class IWinHttpRequest extends IDispatch {
 
   final IWinHttpRequestVtbl _vtable;
 
+  /// Creates a new instance of `IWinHttpRequest` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IWinHttpRequest` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IWinHttpRequest.from(IUnknown interface) =>
       IWinHttpRequest(interface.toInterface(IID_IWinHttpRequest));
 

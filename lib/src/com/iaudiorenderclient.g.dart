@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -28,6 +29,13 @@ class IAudioRenderClient extends IUnknown {
 
   final IAudioRenderClientVtbl _vtable;
 
+  /// Creates a new instance of `IAudioRenderClient` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAudioRenderClient` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAudioRenderClient.from(IUnknown interface) =>
       IAudioRenderClient(interface.toInterface(IID_IAudioRenderClient));
 

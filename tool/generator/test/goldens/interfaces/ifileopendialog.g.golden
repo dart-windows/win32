@@ -9,6 +9,7 @@ Windows.Win32.UI.Shell.IFileOpenDialog|
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,12 @@ class IFileOpenDialog extends IFileDialog {
 
   final IFileOpenDialogVtbl _vtable;
 
+  /// Creates a new instance of `IFileOpenDialog` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IFileOpenDialog` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IFileOpenDialog.from(IUnknown interface) =>
       IFileOpenDialog(interface.toInterface(IID_IFileOpenDialog));
 

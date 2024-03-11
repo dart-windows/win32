@@ -34,6 +34,14 @@ class IUIAutomationTextRangeArray extends IUnknown {
 
   final IUIAutomationTextRangeArrayVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTextRangeArray` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTextRangeArray` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTextRangeArray.from(IUnknown interface) =>
       IUIAutomationTextRangeArray(
           interface.toInterface(IID_IUIAutomationTextRangeArray));

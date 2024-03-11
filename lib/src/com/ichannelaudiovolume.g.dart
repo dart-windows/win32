@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -30,6 +31,13 @@ class IChannelAudioVolume extends IUnknown {
 
   final IChannelAudioVolumeVtbl _vtable;
 
+  /// Creates a new instance of `IChannelAudioVolume` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IChannelAudioVolume` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IChannelAudioVolume.from(IUnknown interface) =>
       IChannelAudioVolume(interface.toInterface(IID_IChannelAudioVolume));
 

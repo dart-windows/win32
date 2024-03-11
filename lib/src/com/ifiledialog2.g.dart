@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -33,6 +34,12 @@ class IFileDialog2 extends IFileDialog {
 
   final IFileDialog2Vtbl _vtable;
 
+  /// Creates a new instance of `IFileDialog2` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IFileDialog2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IFileDialog2.from(IUnknown interface) =>
       IFileDialog2(interface.toInterface(IID_IFileDialog2));
 

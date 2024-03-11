@@ -65,12 +65,18 @@ import 'iunknown.g.dart';'''));
       expect(projection.vtableField,
           equals('final IEnumNetworkConnectionsVtbl _vtable;'));
       expect(
-        projection.fromInterfaceConstructor,
-        equalsIgnoringWhitespace(
-          'factory IEnumNetworkConnections.from(IUnknown interface) =>\n'
-          'IEnumNetworkConnections('
-          'interface.toInterface(IID_IEnumNetworkConnections));',
-        ),
+        projection.fromFactoryConstructor,
+        equals('''
+/// Creates a new instance of `IEnumNetworkConnections` from an existing
+/// [interface].
+///
+/// This constructor invokes the [queryInterface] method to obtain a reference
+/// to the `IEnumNetworkConnections` interface with the provided interface.
+///
+/// Throws a [WindowsException] if the `queryInterface` call fails.
+factory IEnumNetworkConnections.from(IUnknown interface) =>
+    IEnumNetworkConnections(interface.toInterface(IID_IEnumNetworkConnections));
+'''),
       );
       final [newEnum, next, skip, reset, clone] = projection.methodProjections;
       expect(newEnum.camelCasedName, equals('newEnum'));
@@ -115,6 +121,7 @@ base class IEnumNetworkConnectionsVtbl extends Struct {
       expect(projection.importHeader, equalsIgnoringWhitespace('''
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -146,11 +153,17 @@ IUnknown(this.ptr)
       expect(projection.ptrField, equals('final VTablePointer ptr;'));
       expect(projection.vtableField, equals('final IUnknownVtbl _vtable;'));
       expect(
-        projection.fromInterfaceConstructor,
-        equalsIgnoringWhitespace(
-          'factory IUnknown.from(IUnknown interface) =>\n'
-          'IUnknown(interface.toInterface(IID_IUnknown));',
-        ),
+        projection.fromFactoryConstructor,
+        equals('''
+/// Creates a new instance of `IUnknown` from an existing [interface].
+///
+/// This constructor invokes the [queryInterface] method to obtain a reference
+/// to the `IUnknown` interface with the provided interface.
+///
+/// Throws a [WindowsException] if the `queryInterface` call fails.
+factory IUnknown.from(IUnknown interface) =>
+    IUnknown(interface.toInterface(IID_IUnknown));
+'''),
       );
       final [queryInterface, addRef, release] = projection.methodProjections;
       expect(queryInterface.camelCasedName, equals('queryInterface'));
@@ -186,6 +199,7 @@ base class IUnknownVtbl extends Struct {
       expect(projection.importHeader, equalsIgnoringWhitespace('''
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -219,11 +233,17 @@ import 'iunknown.g.dart';'''));
       expect(projection.ptrField, isEmpty);
       expect(projection.vtableField, equals('final IInspectableVtbl _vtable;'));
       expect(
-        projection.fromInterfaceConstructor,
-        equalsIgnoringWhitespace(
-          'factory IInspectable.from(IUnknown interface) =>\n'
-          'IInspectable(interface.toInterface(IID_IInspectable));',
-        ),
+        projection.fromFactoryConstructor,
+        equals('''
+/// Creates a new instance of `IInspectable` from an existing [interface].
+///
+/// This constructor invokes the [queryInterface] method to obtain a reference
+/// to the `IInspectable` interface with the provided interface.
+///
+/// Throws a [WindowsException] if the `queryInterface` call fails.
+factory IInspectable.from(IUnknown interface) =>
+    IInspectable(interface.toInterface(IID_IInspectable));
+'''),
       );
       final [getIids, getRuntimeClassName, getTrustLevel] =
           projection.methodProjections;

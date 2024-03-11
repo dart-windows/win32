@@ -36,6 +36,14 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
 
   final IUIAutomationProxyFactoryEntryVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationProxyFactoryEntry` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationProxyFactoryEntry` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationProxyFactoryEntry.from(IUnknown interface) =>
       IUIAutomationProxyFactoryEntry(
           interface.toInterface(IID_IUIAutomationProxyFactoryEntry));

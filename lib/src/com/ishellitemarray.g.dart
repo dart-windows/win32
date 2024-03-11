@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -29,6 +30,12 @@ class IShellItemArray extends IUnknown {
 
   final IShellItemArrayVtbl _vtable;
 
+  /// Creates a new instance of `IShellItemArray` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IShellItemArray` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IShellItemArray.from(IUnknown interface) =>
       IShellItemArray(interface.toInterface(IID_IShellItemArray));
 

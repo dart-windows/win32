@@ -28,6 +28,12 @@ class ISpeechVoice extends IDispatch {
 
   final ISpeechVoiceVtbl _vtable;
 
+  /// Creates a new instance of `ISpeechVoice` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpeechVoice` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpeechVoice.from(IUnknown interface) =>
       ISpeechVoice(interface.toInterface(IID_ISpeechVoice));
 

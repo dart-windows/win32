@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -32,6 +33,12 @@ class IKnownFolder extends IUnknown {
 
   final IKnownFolderVtbl _vtable;
 
+  /// Creates a new instance of `IKnownFolder` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IKnownFolder` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IKnownFolder.from(IUnknown interface) =>
       IKnownFolder(interface.toInterface(IID_IKnownFolder));
 

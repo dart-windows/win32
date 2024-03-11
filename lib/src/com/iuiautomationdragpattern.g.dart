@@ -34,6 +34,13 @@ class IUIAutomationDragPattern extends IUnknown {
 
   final IUIAutomationDragPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationDragPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationDragPattern` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationDragPattern.from(IUnknown interface) =>
       IUIAutomationDragPattern(
           interface.toInterface(IID_IUIAutomationDragPattern));

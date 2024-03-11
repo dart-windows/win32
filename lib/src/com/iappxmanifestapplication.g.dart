@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,13 @@ class IAppxManifestApplication extends IUnknown {
 
   final IAppxManifestApplicationVtbl _vtable;
 
+  /// Creates a new instance of `IAppxManifestApplication` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAppxManifestApplication` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAppxManifestApplication.from(IUnknown interface) =>
       IAppxManifestApplication(
           interface.toInterface(IID_IAppxManifestApplication));

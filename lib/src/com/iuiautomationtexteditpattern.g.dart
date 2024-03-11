@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -32,6 +33,14 @@ class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
 
   final IUIAutomationTextEditPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTextEditPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTextEditPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTextEditPattern.from(IUnknown interface) =>
       IUIAutomationTextEditPattern(
           interface.toInterface(IID_IUIAutomationTextEditPattern));

@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,12 @@ class IWbemHiPerfEnum extends IUnknown {
 
   final IWbemHiPerfEnumVtbl _vtable;
 
+  /// Creates a new instance of `IWbemHiPerfEnum` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IWbemHiPerfEnum` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IWbemHiPerfEnum.from(IUnknown interface) =>
       IWbemHiPerfEnum(interface.toInterface(IID_IWbemHiPerfEnum));
 

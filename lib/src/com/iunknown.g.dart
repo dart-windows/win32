@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -33,6 +34,12 @@ class IUnknown {
 
   final IUnknownVtbl _vtable;
 
+  /// Creates a new instance of `IUnknown` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUnknown` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUnknown.from(IUnknown interface) =>
       IUnknown(interface.toInterface(IID_IUnknown));
 

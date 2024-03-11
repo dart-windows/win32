@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -30,6 +31,13 @@ class IAudioSessionManager extends IUnknown {
 
   final IAudioSessionManagerVtbl _vtable;
 
+  /// Creates a new instance of `IAudioSessionManager` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAudioSessionManager` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAudioSessionManager.from(IUnknown interface) =>
       IAudioSessionManager(interface.toInterface(IID_IAudioSessionManager));
 

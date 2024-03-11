@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,12 @@ class IShellLink extends IUnknown {
 
   final IShellLinkVtbl _vtable;
 
+  /// Creates a new instance of `IShellLink` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IShellLink` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IShellLink.from(IUnknown interface) =>
       IShellLink(interface.toInterface(IID_IShellLink));
 

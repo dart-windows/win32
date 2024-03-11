@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -27,6 +28,12 @@ class IModalWindow extends IUnknown {
 
   final IModalWindowVtbl _vtable;
 
+  /// Creates a new instance of `IModalWindow` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IModalWindow` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IModalWindow.from(IUnknown interface) =>
       IModalWindow(interface.toInterface(IID_IModalWindow));
 

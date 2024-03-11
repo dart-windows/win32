@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,12 @@ class IFileSaveDialog extends IFileDialog {
 
   final IFileSaveDialogVtbl _vtable;
 
+  /// Creates a new instance of `IFileSaveDialog` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IFileSaveDialog` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IFileSaveDialog.from(IUnknown interface) =>
       IFileSaveDialog(interface.toInterface(IID_IFileSaveDialog));
 

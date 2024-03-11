@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,12 @@ class IPersistMemory extends IPersist {
 
   final IPersistMemoryVtbl _vtable;
 
+  /// Creates a new instance of `IPersistMemory` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IPersistMemory` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IPersistMemory.from(IUnknown interface) =>
       IPersistMemory(interface.toInterface(IID_IPersistMemory));
 

@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,12 @@ class ISpEventSource extends ISpNotifySource {
 
   final ISpEventSourceVtbl _vtable;
 
+  /// Creates a new instance of `ISpEventSource` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpEventSource` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpEventSource.from(IUnknown interface) =>
       ISpEventSource(interface.toInterface(IID_ISpEventSource));
 

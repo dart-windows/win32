@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -33,6 +34,13 @@ class ISupportErrorInfo extends IUnknown {
 
   final ISupportErrorInfoVtbl _vtable;
 
+  /// Creates a new instance of `ISupportErrorInfo` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISupportErrorInfo` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISupportErrorInfo.from(IUnknown interface) =>
       ISupportErrorInfo(interface.toInterface(IID_ISupportErrorInfo));
 

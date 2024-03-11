@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -28,6 +29,12 @@ class IClassFactory extends IUnknown {
 
   final IClassFactoryVtbl _vtable;
 
+  /// Creates a new instance of `IClassFactory` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IClassFactory` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IClassFactory.from(IUnknown interface) =>
       IClassFactory(interface.toInterface(IID_IClassFactory));
 

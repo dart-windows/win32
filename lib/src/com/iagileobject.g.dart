@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import 'iunknown.g.dart';
 
@@ -23,6 +24,12 @@ const IID_IAgileObject = '{94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90}';
 class IAgileObject extends IUnknown {
   IAgileObject(super.ptr);
 
+  /// Creates a new instance of `IAgileObject` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAgileObject` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAgileObject.from(IUnknown interface) =>
       IAgileObject(interface.toInterface(IID_IAgileObject));
 }

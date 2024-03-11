@@ -35,6 +35,13 @@ class INetworkListManager extends IDispatch {
 
   final INetworkListManagerVtbl _vtable;
 
+  /// Creates a new instance of `INetworkListManager` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `INetworkListManager` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory INetworkListManager.from(IUnknown interface) =>
       INetworkListManager(interface.toInterface(IID_INetworkListManager));
 

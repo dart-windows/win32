@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,13 @@ class IUIAutomationTextRange2 extends IUIAutomationTextRange {
 
   final IUIAutomationTextRange2Vtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTextRange2` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTextRange2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTextRange2.from(IUnknown interface) =>
       IUIAutomationTextRange2(
           interface.toInterface(IID_IUIAutomationTextRange2));

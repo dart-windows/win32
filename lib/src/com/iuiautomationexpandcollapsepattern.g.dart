@@ -35,6 +35,14 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
 
   final IUIAutomationExpandCollapsePatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationExpandCollapsePattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationExpandCollapsePattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationExpandCollapsePattern.from(IUnknown interface) =>
       IUIAutomationExpandCollapsePattern(
           interface.toInterface(IID_IUIAutomationExpandCollapsePattern));

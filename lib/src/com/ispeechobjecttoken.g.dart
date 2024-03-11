@@ -29,6 +29,13 @@ class ISpeechObjectToken extends IDispatch {
 
   final ISpeechObjectTokenVtbl _vtable;
 
+  /// Creates a new instance of `ISpeechObjectToken` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpeechObjectToken` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpeechObjectToken.from(IUnknown interface) =>
       ISpeechObjectToken(interface.toInterface(IID_ISpeechObjectToken));
 

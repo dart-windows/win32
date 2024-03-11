@@ -34,6 +34,13 @@ class ISpellCheckerFactory extends IUnknown {
 
   final ISpellCheckerFactoryVtbl _vtable;
 
+  /// Creates a new instance of `ISpellCheckerFactory` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpellCheckerFactory` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpellCheckerFactory.from(IUnknown interface) =>
       ISpellCheckerFactory(interface.toInterface(IID_ISpellCheckerFactory));
 

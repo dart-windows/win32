@@ -35,6 +35,14 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
 
   final IUIAutomationMultipleViewPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationMultipleViewPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationMultipleViewPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationMultipleViewPattern.from(IUnknown interface) =>
       IUIAutomationMultipleViewPattern(
           interface.toInterface(IID_IUIAutomationMultipleViewPattern));

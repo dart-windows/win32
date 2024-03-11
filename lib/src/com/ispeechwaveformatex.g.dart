@@ -29,6 +29,13 @@ class ISpeechWaveFormatEx extends IDispatch {
 
   final ISpeechWaveFormatExVtbl _vtable;
 
+  /// Creates a new instance of `ISpeechWaveFormatEx` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpeechWaveFormatEx` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpeechWaveFormatEx.from(IUnknown interface) =>
       ISpeechWaveFormatEx(interface.toInterface(IID_ISpeechWaveFormatEx));
 

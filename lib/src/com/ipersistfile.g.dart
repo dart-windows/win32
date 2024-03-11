@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,12 @@ class IPersistFile extends IPersist {
 
   final IPersistFileVtbl _vtable;
 
+  /// Creates a new instance of `IPersistFile` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IPersistFile` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IPersistFile.from(IUnknown interface) =>
       IPersistFile(interface.toInterface(IID_IPersistFile));
 

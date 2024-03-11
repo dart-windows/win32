@@ -35,6 +35,14 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
 
   final IUIAutomationSelectionItemPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationSelectionItemPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationSelectionItemPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationSelectionItemPattern.from(IUnknown interface) =>
       IUIAutomationSelectionItemPattern(
           interface.toInterface(IID_IUIAutomationSelectionItemPattern));

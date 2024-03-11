@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,12 @@ class IAppxFactory extends IUnknown {
 
   final IAppxFactoryVtbl _vtable;
 
+  /// Creates a new instance of `IAppxFactory` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAppxFactory` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAppxFactory.from(IUnknown interface) =>
       IAppxFactory(interface.toInterface(IID_IAppxFactory));
 

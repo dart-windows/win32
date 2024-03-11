@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,14 @@ class IUIAutomationItemContainerPattern extends IUnknown {
 
   final IUIAutomationItemContainerPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationItemContainerPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationItemContainerPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationItemContainerPattern.from(IUnknown interface) =>
       IUIAutomationItemContainerPattern(
           interface.toInterface(IID_IUIAutomationItemContainerPattern));

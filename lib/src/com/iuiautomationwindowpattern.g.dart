@@ -33,6 +33,13 @@ class IUIAutomationWindowPattern extends IUnknown {
 
   final IUIAutomationWindowPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationWindowPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationWindowPattern` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationWindowPattern.from(IUnknown interface) =>
       IUIAutomationWindowPattern(
           interface.toInterface(IID_IUIAutomationWindowPattern));

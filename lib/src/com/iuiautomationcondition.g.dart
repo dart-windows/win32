@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import 'iunknown.g.dart';
 
@@ -24,6 +25,13 @@ const IID_IUIAutomationCondition = '{352ffba8-0973-437c-a61f-f64cafd81df9}';
 class IUIAutomationCondition extends IUnknown {
   IUIAutomationCondition(super.ptr);
 
+  /// Creates a new instance of `IUIAutomationCondition` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationCondition` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationCondition.from(IUnknown interface) =>
       IUIAutomationCondition(interface.toInterface(IID_IUIAutomationCondition));
 }

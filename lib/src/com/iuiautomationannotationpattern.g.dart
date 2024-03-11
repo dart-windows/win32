@@ -34,6 +34,14 @@ class IUIAutomationAnnotationPattern extends IUnknown {
 
   final IUIAutomationAnnotationPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationAnnotationPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationAnnotationPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationAnnotationPattern.from(IUnknown interface) =>
       IUIAutomationAnnotationPattern(
           interface.toInterface(IID_IUIAutomationAnnotationPattern));

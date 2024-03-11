@@ -34,6 +34,14 @@ class IUIAutomationRangeValuePattern extends IUnknown {
 
   final IUIAutomationRangeValuePatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationRangeValuePattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationRangeValuePattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationRangeValuePattern.from(IUnknown interface) =>
       IUIAutomationRangeValuePattern(
           interface.toInterface(IID_IUIAutomationRangeValuePattern));

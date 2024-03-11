@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -33,6 +34,12 @@ class IWbemContext extends IUnknown {
 
   final IWbemContextVtbl _vtable;
 
+  /// Creates a new instance of `IWbemContext` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IWbemContext` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IWbemContext.from(IUnknown interface) =>
       IWbemContext(interface.toInterface(IID_IWbemContext));
 

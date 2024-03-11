@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,13 @@ class IAppxManifestReader4 extends IAppxManifestReader3 {
 
   final IAppxManifestReader4Vtbl _vtable;
 
+  /// Creates a new instance of `IAppxManifestReader4` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAppxManifestReader4` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAppxManifestReader4.from(IUnknown interface) =>
       IAppxManifestReader4(interface.toInterface(IID_IAppxManifestReader4));
 

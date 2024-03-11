@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,12 @@ class IMetaDataTables2 extends IMetaDataTables {
 
   final IMetaDataTables2Vtbl _vtable;
 
+  /// Creates a new instance of `IMetaDataTables2` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IMetaDataTables2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IMetaDataTables2.from(IUnknown interface) =>
       IMetaDataTables2(interface.toInterface(IID_IMetaDataTables2));
 

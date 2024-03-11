@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -36,6 +37,12 @@ class IAudioClient2 extends IAudioClient {
 
   final IAudioClient2Vtbl _vtable;
 
+  /// Creates a new instance of `IAudioClient2` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAudioClient2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAudioClient2.from(IUnknown interface) =>
       IAudioClient2(interface.toInterface(IID_IAudioClient2));
 

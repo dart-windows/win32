@@ -36,6 +36,13 @@ class IUIAutomationCacheRequest extends IUnknown {
 
   final IUIAutomationCacheRequestVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationCacheRequest` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationCacheRequest` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationCacheRequest.from(IUnknown interface) =>
       IUIAutomationCacheRequest(
           interface.toInterface(IID_IUIAutomationCacheRequest));

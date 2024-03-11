@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,13 @@ class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
 
   final IUIAutomationTextPattern2Vtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTextPattern2` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTextPattern2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTextPattern2.from(IUnknown interface) =>
       IUIAutomationTextPattern2(
           interface.toInterface(IID_IUIAutomationTextPattern2));

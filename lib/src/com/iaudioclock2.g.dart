@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -27,6 +28,12 @@ class IAudioClock2 extends IUnknown {
 
   final IAudioClock2Vtbl _vtable;
 
+  /// Creates a new instance of `IAudioClock2` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IAudioClock2` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IAudioClock2.from(IUnknown interface) =>
       IAudioClock2(interface.toInterface(IID_IAudioClock2));
 

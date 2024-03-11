@@ -35,6 +35,14 @@ class IUIAutomationGridItemPattern extends IUnknown {
 
   final IUIAutomationGridItemPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationGridItemPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationGridItemPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationGridItemPattern.from(IUnknown interface) =>
       IUIAutomationGridItemPattern(
           interface.toInterface(IID_IUIAutomationGridItemPattern));

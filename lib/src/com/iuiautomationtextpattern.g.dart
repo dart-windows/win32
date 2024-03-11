@@ -33,6 +33,13 @@ class IUIAutomationTextPattern extends IUnknown {
 
   final IUIAutomationTextPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationTextPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationTextPattern` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationTextPattern.from(IUnknown interface) =>
       IUIAutomationTextPattern(
           interface.toInterface(IID_IUIAutomationTextPattern));

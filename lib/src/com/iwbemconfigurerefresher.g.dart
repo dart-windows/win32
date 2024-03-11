@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,13 @@ class IWbemConfigureRefresher extends IUnknown {
 
   final IWbemConfigureRefresherVtbl _vtable;
 
+  /// Creates a new instance of `IWbemConfigureRefresher` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IWbemConfigureRefresher` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IWbemConfigureRefresher.from(IUnknown interface) =>
       IWbemConfigureRefresher(
           interface.toInterface(IID_IWbemConfigureRefresher));

@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -31,6 +32,13 @@ class ISensorDataReport extends IUnknown {
 
   final ISensorDataReportVtbl _vtable;
 
+  /// Creates a new instance of `ISensorDataReport` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISensorDataReport` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISensorDataReport.from(IUnknown interface) =>
       ISensorDataReport(interface.toInterface(IID_ISensorDataReport));
 

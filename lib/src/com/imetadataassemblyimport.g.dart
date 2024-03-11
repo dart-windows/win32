@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,13 @@ class IMetaDataAssemblyImport extends IUnknown {
 
   final IMetaDataAssemblyImportVtbl _vtable;
 
+  /// Creates a new instance of `IMetaDataAssemblyImport` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IMetaDataAssemblyImport` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IMetaDataAssemblyImport.from(IUnknown interface) =>
       IMetaDataAssemblyImport(
           interface.toInterface(IID_IMetaDataAssemblyImport));

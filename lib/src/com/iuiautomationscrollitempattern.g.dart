@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,14 @@ class IUIAutomationScrollItemPattern extends IUnknown {
 
   final IUIAutomationScrollItemPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationScrollItemPattern` from an
+  /// existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationScrollItemPattern` interface with the provided
+  /// interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationScrollItemPattern.from(IUnknown interface) =>
       IUIAutomationScrollItemPattern(
           interface.toInterface(IID_IUIAutomationScrollItemPattern));

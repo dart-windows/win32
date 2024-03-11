@@ -35,6 +35,13 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
 
   final IUIAutomationElement6Vtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationElement6` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationElement6` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationElement6.from(IUnknown interface) =>
       IUIAutomationElement6(interface.toInterface(IID_IUIAutomationElement6));
 

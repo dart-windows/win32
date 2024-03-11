@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -33,6 +34,13 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
 
   final IMetaDataDispenserExVtbl _vtable;
 
+  /// Creates a new instance of `IMetaDataDispenserEx` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IMetaDataDispenserEx` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IMetaDataDispenserEx.from(IUnknown interface) =>
       IMetaDataDispenserEx(interface.toInterface(IID_IMetaDataDispenserEx));
 

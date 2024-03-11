@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../guid.dart';
 import '../structs.g.dart';
@@ -30,6 +31,13 @@ class IVirtualDesktopManager extends IUnknown {
 
   final IVirtualDesktopManagerVtbl _vtable;
 
+  /// Creates a new instance of `IVirtualDesktopManager` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IVirtualDesktopManager` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IVirtualDesktopManager.from(IUnknown interface) =>
       IVirtualDesktopManager(interface.toInterface(IID_IVirtualDesktopManager));
 

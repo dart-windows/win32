@@ -9,6 +9,7 @@
 import 'dart:ffi';
 
 import '../callbacks.g.dart';
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,12 @@ class ISpNotifySource extends IUnknown {
 
   final ISpNotifySourceVtbl _vtable;
 
+  /// Creates a new instance of `ISpNotifySource` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpNotifySource` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpNotifySource.from(IUnknown interface) =>
       ISpNotifySource(interface.toInterface(IID_ISpNotifySource));
 

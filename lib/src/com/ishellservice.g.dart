@@ -8,6 +8,7 @@
 
 import 'dart:ffi';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -29,6 +30,12 @@ class IShellService extends IUnknown {
 
   final IShellServiceVtbl _vtable;
 
+  /// Creates a new instance of `IShellService` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IShellService` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IShellService.from(IUnknown interface) =>
       IShellService(interface.toInterface(IID_IShellService));
 

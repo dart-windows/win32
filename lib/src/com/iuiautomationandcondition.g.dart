@@ -36,6 +36,13 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
 
   final IUIAutomationAndConditionVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationAndCondition` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationAndCondition` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationAndCondition.from(IUnknown interface) =>
       IUIAutomationAndCondition(
           interface.toInterface(IID_IUIAutomationAndCondition));

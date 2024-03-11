@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,12 @@ class ISpVoice extends ISpEventSource {
 
   final ISpVoiceVtbl _vtable;
 
+  /// Creates a new instance of `ISpVoice` from an existing [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `ISpVoice` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory ISpVoice.from(IUnknown interface) =>
       ISpVoice(interface.toInterface(IID_ISpVoice));
 

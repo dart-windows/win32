@@ -93,6 +93,7 @@ class ComInterfaceProjection {
   Set<String> get coreImports => {
         'dart:ffi',
         '../extensions/iunknown.dart',
+        '../exceptions.dart',
         if (shortName != 'IUnknown') 'iunknown.g.dart',
       };
 
@@ -167,7 +168,6 @@ class ComInterfaceProjection {
         // check, and free memory.
         if (hasProperties) ...{
           'package:ffi/ffi.dart',
-          '../exceptions.dart',
           '../macros.dart',
           '../utils.dart',
         }
@@ -196,10 +196,19 @@ class ComInterfaceProjection {
 
   /// The `.from` constructor for the generated class that takes an `IUnknown`
   /// object and casts it to this interface.
-  String get fromInterfaceConstructor => '''
+  String get fromFactoryConstructor {
+    final docs = 'Creates a new instance of `$shortName` from an existing '
+            '[interface]. This constructor invokes the [queryInterface] method '
+            'to obtain a reference to the `$shortName` interface with the '
+            'provided interface. \nThrows a [WindowsException] if the '
+            '`queryInterface` call fails.'
+        .toDocComment(wrapLength: 78);
+    return '''
+$docs
 factory $shortName.from(IUnknown interface) =>
     $shortName(interface.toInterface(IID_$shortName));
 ''';
+  }
 
   /// The comment associated with the interface.
   String get comment {
@@ -292,7 +301,7 @@ $classHeader {
 
   $vtableField
 
-  $fromInterfaceConstructor
+  $fromFactoryConstructor
 
   ${methodProjections.join('\n\n')}
 }

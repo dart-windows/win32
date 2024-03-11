@@ -10,6 +10,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 
+import '../exceptions.dart';
 import '../extensions/iunknown.dart';
 import '../structs.g.dart';
 import '../types.dart';
@@ -30,6 +31,13 @@ class IDesktopWallpaper extends IUnknown {
 
   final IDesktopWallpaperVtbl _vtable;
 
+  /// Creates a new instance of `IDesktopWallpaper` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IDesktopWallpaper` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IDesktopWallpaper.from(IUnknown interface) =>
       IDesktopWallpaper(interface.toInterface(IID_IDesktopWallpaper));
 

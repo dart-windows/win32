@@ -34,6 +34,13 @@ class IUIAutomationDockPattern extends IUnknown {
 
   final IUIAutomationDockPatternVtbl _vtable;
 
+  /// Creates a new instance of `IUIAutomationDockPattern` from an existing
+  /// [interface].
+  ///
+  /// This constructor invokes the [queryInterface] method to obtain a reference
+  /// to the `IUIAutomationDockPattern` interface with the provided interface.
+  ///
+  /// Throws a [WindowsException] if the `queryInterface` call fails.
   factory IUIAutomationDockPattern.from(IUnknown interface) =>
       IUIAutomationDockPattern(
           interface.toInterface(IID_IUIAutomationDockPattern));
