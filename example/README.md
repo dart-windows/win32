@@ -7,9 +7,8 @@ demonstrate various aspects of invoking Windows APIs, including:
 - Invoking COM classes (both `IUnknown` and `IDispatch` interface types)
 - Integrating Windows code with Flutter
 
-Other examples of packages that use Win32 can be found on pub.dev, at the
-following location:
-[https://pub.dev/packages?q=dependency%3Awin32](https://pub.dev/packages?q=dependency%3Awin32).
+Other examples of packages that use `win32` can be found on
+[pub.dev](https://pub.dev/packages?q=dependency%3Awin32).
 
 ## Windows system APIs (kernel32)
 
@@ -80,17 +79,16 @@ following location:
 
 ## COM APIs
 
-| Example             | Description                                           |
-| ------------------- | ----------------------------------------------------- |
-| `com_context.dart`  | Shows interaction of Dart isolates and COM apartments |
-| `com_demo.dart`     | Demonstrates COM object reference counting            |
-| `dispatcher.dart`   | Demonstrates calling a method using `Dispatcher`      |
-| `guid.dart`         | Creates a globally unique identifier (GUID)           |
-| `uiautomation.dart` | Demonstrates calling Windows UI Automation APIs       |
-| `winhttp.dart`      | Demonstrates using WinHTTP APIs to make HTTP requests |
-| `winmd.dart`        | Interrogate Windows Runtime types                     |
-| `wmi_perf.dart`     | Uses WMI to retrieve performance counters             |
-| `wmi_wql.dart`      | Uses WMI to retrieve information using WQL            |
+| Example             | Description                                                     |
+| ------------------- | --------------------------------------------------------------- |
+| `com_context.dart`  | Shows interaction of Dart isolates and COM apartments           |
+| `com_demo.dart`     | Demonstrates COM object creation, casting, and calling methods. |
+| `dispatcher.dart`   | Demonstrates calling a method using `Dispatcher`                |
+| `guid.dart`         | Creates a globally unique identifier (GUID)                     |
+| `uiautomation.dart` | Demonstrates calling Windows UI Automation APIs                 |
+| `winhttp.dart`      | Demonstrates using WinHTTP APIs to make HTTP requests           |
+| `wmi_perf.dart`     | Uses WMI to retrieve performance counters                       |
+| `wmi_wql.dart`      | Uses WMI to retrieve information using WQL                      |
 
 ## Flutter
 
