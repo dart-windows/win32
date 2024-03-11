@@ -33,12 +33,22 @@ class IUIAutomationTextPattern2 extends IUIAutomationTextPattern {
       IUIAutomationTextPattern2(
           interface.toInterface(IID_IUIAutomationTextPattern2));
 
+  /// Retrieves a text range containing the text that is the target of the
+  /// annotation associated with the specified annotation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern2-rangefromannotation>.
   int rangeFromAnnotation(
           VTablePointer annotation, Pointer<VTablePointer> range) =>
       _vtable.RangeFromAnnotation.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer annotation,
               Pointer<VTablePointer> range)>()(ptr, annotation, range);
 
+  /// Retrieves a zero-length text range at the location of the caret that belongs
+  /// to the text-based control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern2-getcaretrange>.
   int getCaretRange(Pointer<BOOL> isActive, Pointer<VTablePointer> range) =>
       _vtable.GetCaretRange.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<BOOL> isActive,

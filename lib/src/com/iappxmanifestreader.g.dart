@@ -34,48 +34,88 @@ class IAppxManifestReader extends IUnknown {
   factory IAppxManifestReader.from(IUnknown interface) =>
       IAppxManifestReader(interface.toInterface(IID_IAppxManifestReader));
 
+  /// Gets the package identifier defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getpackageid>.
   int getPackageId(Pointer<VTablePointer> packageId) =>
       _vtable.GetPackageId.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> packageId)>()(ptr, packageId);
 
+  /// Gets the properties of the package as defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getproperties>.
   int getProperties(Pointer<VTablePointer> packageProperties) =>
       _vtable.GetProperties.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> packageProperties)>()(
           ptr, packageProperties);
 
+  /// Gets an enumerator that iterates through dependencies defined in the
+  /// manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getpackagedependencies>.
   int getPackageDependencies(Pointer<VTablePointer> dependencies) =>
       _vtable.GetPackageDependencies.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> dependencies)>()(ptr, dependencies);
 
+  /// Gets the list of capabilities requested by the package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getcapabilities>.
   int getCapabilities(Pointer<Int32> capabilities) =>
       _vtable.GetCapabilities.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> capabilities)>()(ptr, capabilities);
 
+  /// Gets an enumerator that iterates through the resources defined in the
+  /// manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getresources>.
   int getResources(Pointer<VTablePointer> resources) =>
       _vtable.GetResources.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> resources)>()(ptr, resources);
 
+  /// Gets an enumerator that iterates through the device capabilities defined in
+  /// the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getdevicecapabilities>.
   int getDeviceCapabilities(Pointer<VTablePointer> deviceCapabilities) =>
       _vtable.GetDeviceCapabilities.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> deviceCapabilities)>()(
           ptr, deviceCapabilities);
 
+  /// Gets the specified prerequisite as defined in the package manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getprerequisite>.
   int getPrerequisite(Pointer<Utf16> name, Pointer<Uint64> value) =>
       _vtable.GetPrerequisite.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Uint64> value)>()(ptr, name, value);
 
+  /// Gets an enumerator that iterates through the applications defined in the
+  /// manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getapplications>.
   int getApplications(Pointer<VTablePointer> applications) =>
       _vtable.GetApplications.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> applications)>()(ptr, applications);
 
+  /// Gets the raw XML parsed and read by the manifest reader.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader-getstream>.
   int getStream(Pointer<VTablePointer> manifestStream) =>
       _vtable.GetStream.asFunction<
           int Function(VTablePointer lpVtbl,

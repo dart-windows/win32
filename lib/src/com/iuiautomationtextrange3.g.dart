@@ -34,6 +34,14 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
       IUIAutomationTextRange3(
           interface.toInterface(IID_IUIAutomationTextRange3));
 
+  /// Gets the enclosing element and supplied properties and patterns for an
+  /// element in a text range in a single cross-process call.
+  ///
+  /// This is equivalent to calling GetEnclosingElement, but adds the standard
+  /// build cache pattern.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextrange3-getenclosingelementbuildcache>.
   int getEnclosingElementBuildCache(VTablePointer cacheRequest,
           Pointer<VTablePointer> enclosingElement) =>
       _vtable.GetEnclosingElementBuildCache.asFunction<
@@ -41,12 +49,28 @@ class IUIAutomationTextRange3 extends IUIAutomationTextRange2 {
                   Pointer<VTablePointer> enclosingElement)>()(
           ptr, cacheRequest, enclosingElement);
 
+  /// Returns the children and supplied properties and patterns for elements in a
+  /// text range in a single cross-process call.
+  ///
+  /// This is equivalent to calling GetChildren, but adds the standard build cache
+  /// pattern.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextrange3-getchildrenbuildcache>.
   int getChildrenBuildCache(
           VTablePointer cacheRequest, Pointer<VTablePointer> children) =>
       _vtable.GetChildrenBuildCache.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> children)>()(ptr, cacheRequest, children);
 
+  /// Returns all of the requested text attribute values for a text range in a
+  /// single cross-process call.
+  ///
+  /// This is equivalent to calling GetAttributeValue, except it can retrieve
+  /// multiple values instead of just one.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextrange3-getattributevalues>.
   int getAttributeValues(Pointer<Int32> attributeIds, int attributeIdCount,
           Pointer<Pointer<SAFEARRAY>> attributeValues) =>
       _vtable.GetAttributeValues.asFunction<

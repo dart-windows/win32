@@ -32,6 +32,10 @@ class IWbemHiPerfEnum extends IUnknown {
   factory IWbemHiPerfEnum.from(IUnknown interface) =>
       IWbemHiPerfEnum(interface.toInterface(IID_IWbemHiPerfEnum));
 
+  /// Adds the supplied instance objects to the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemhiperfenum-addobjects>.
   int addObjects(int lFlags, int uNumObjects, Pointer<Int32> apIds,
           Pointer<VTablePointer> apObj) =>
       _vtable.AddObjects.asFunction<
@@ -39,11 +43,20 @@ class IWbemHiPerfEnum extends IUnknown {
                   Pointer<Int32> apIds, Pointer<VTablePointer> apObj)>()(
           ptr, lFlags, uNumObjects, apIds, apObj);
 
+  /// Removes objects (identified by their refresher identifiers) from a
+  /// refresher.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemhiperfenum-removeobjects>.
   int removeObjects(int lFlags, int uNumObjects, Pointer<Int32> apIds) =>
       _vtable.RemoveObjects.asFunction<
           int Function(VTablePointer lpVtbl, int lFlags, int uNumObjects,
               Pointer<Int32> apIds)>()(ptr, lFlags, uNumObjects, apIds);
 
+  /// Retrieves objects currently residing in the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemhiperfenum-getobjects>.
   int getObjects(int lFlags, int uNumObjects, Pointer<VTablePointer> apObj,
           Pointer<Uint32> puReturned) =>
       _vtable.GetObjects.asFunction<
@@ -51,6 +64,10 @@ class IWbemHiPerfEnum extends IUnknown {
                   Pointer<VTablePointer> apObj, Pointer<Uint32> puReturned)>()(
           ptr, lFlags, uNumObjects, apObj, puReturned);
 
+  /// Empties all objects from the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemhiperfenum-removeall>.
   int removeAll(int lFlags) => _vtable.RemoveAll.asFunction<
       int Function(VTablePointer lpVtbl, int lFlags)>()(ptr, lFlags);
 }

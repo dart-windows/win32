@@ -31,12 +31,22 @@ class IAudioRenderClient extends IUnknown {
   factory IAudioRenderClient.from(IUnknown interface) =>
       IAudioRenderClient(interface.toInterface(IID_IAudioRenderClient));
 
+  /// Retrieves a pointer to the next available space in the rendering endpoint
+  /// buffer into which the caller can write a data packet.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudiorenderclient-getbuffer>.
   int getBuffer(int numFramesRequested, Pointer<Pointer<Uint8>> ppData) =>
       _vtable.GetBuffer.asFunction<
               int Function(VTablePointer lpVtbl, int numFramesRequested,
                   Pointer<Pointer<Uint8>> ppData)>()(
           ptr, numFramesRequested, ppData);
 
+  /// Releases the buffer space acquired in the previous call to the
+  /// `IAudioRenderClient.getBuffer` method.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudiorenderclient-releasebuffer>.
   int releaseBuffer(int numFramesWritten, int dwFlags) =>
       _vtable.ReleaseBuffer.asFunction<
           int Function(VTablePointer lpVtbl, int numFramesWritten,

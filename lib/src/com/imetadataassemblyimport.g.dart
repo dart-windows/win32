@@ -34,6 +34,11 @@ class IMetaDataAssemblyImport extends IUnknown {
       IMetaDataAssemblyImport(
           interface.toInterface(IID_IMetaDataAssemblyImport));
 
+  /// Gets the set of properties for the assembly with the specified metadata
+  /// signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-getassemblyprops>.
   int getAssemblyProps(
           int mda,
           Pointer<Pointer> ppbPublicKey,
@@ -67,6 +72,11 @@ class IMetaDataAssemblyImport extends IUnknown {
           pMetaData,
           pdwAssemblyFlags);
 
+  /// Gets the set of properties for the assembly reference with the specified
+  /// metadata signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-getassemblyrefprops>.
   int getAssemblyRefProps(
           int mdar,
           Pointer<Pointer> ppbPublicKeyOrToken,
@@ -103,6 +113,10 @@ class IMetaDataAssemblyImport extends IUnknown {
           pcbHashValue,
           pdwAssemblyRefFlags);
 
+  /// Gets the properties of the file with the specified metadata signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-getfileprops>.
   int getFileProps(
           int mdf,
           Pointer<Utf16>? szName,
@@ -123,6 +137,11 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pdwFileFlags)>()(ptr, mdf, szName ?? nullptr,
           cchName, pchName, ppbHashValue, pcbHashValue, pdwFileFlags);
 
+  /// Gets the set of properties of the exported type with the specified metadata
+  /// signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-getexportedtypeprops>.
   int getExportedTypeProps(
           int mdct,
           Pointer<Utf16>? szName,
@@ -150,6 +169,11 @@ class IMetaDataAssemblyImport extends IUnknown {
           ptkTypeDef,
           pdwExportedTypeFlags);
 
+  /// Gets the set of properties of the manifest resource with the specified
+  /// metadata signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-getmanifestresourceprops>.
   int getManifestResourceProps(
           int mdmr,
           Pointer<Utf16>? szName,
@@ -177,6 +201,11 @@ class IMetaDataAssemblyImport extends IUnknown {
           pdwOffset,
           pdwResourceFlags);
 
+  /// Enumerates the mdAssemblyRef instances that are defined in the assembly
+  /// manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-enumassemblyrefs>.
   int enumAssemblyRefs(Pointer<Pointer> phEnum, Pointer<Uint32> rAssemblyRefs,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumAssemblyRefs.asFunction<
@@ -188,6 +217,10 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pcTokens)>()(
           ptr, phEnum, rAssemblyRefs, cMax, pcTokens);
 
+  /// Enumerates the files referenced in the current assembly manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-enumfiles>.
   int enumFiles(Pointer<Pointer> phEnum, Pointer<Uint32> rFiles, int cMax,
           Pointer<Uint32> pcTokens) =>
       _vtable.EnumFiles.asFunction<
@@ -198,6 +231,11 @@ class IMetaDataAssemblyImport extends IUnknown {
               int cMax,
               Pointer<Uint32> pcTokens)>()(ptr, phEnum, rFiles, cMax, pcTokens);
 
+  /// Enumerates the exported types referenced in the assembly manifest in the
+  /// current metadata scope.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-enumexportedtypes>.
   int enumExportedTypes(Pointer<Pointer> phEnum, Pointer<Uint32> rExportedTypes,
           int cMax, Pointer<Uint32> pcTokens) =>
       _vtable.EnumExportedTypes.asFunction<
@@ -209,6 +247,11 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pcTokens)>()(
           ptr, phEnum, rExportedTypes, cMax, pcTokens);
 
+  /// Gets a pointer to an enumerator for the resources referenced in the current
+  /// assembly manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-enummanifestresources>.
   int enumManifestResources(
           Pointer<Pointer> phEnum,
           Pointer<Uint32> rManifestResources,
@@ -223,11 +266,19 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> pcTokens)>()(
           ptr, phEnum, rManifestResources, cMax, pcTokens);
 
+  /// Gets a pointer to the assembly in the current scope.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-getassemblyfromscope>.
   int getAssemblyFromScope(Pointer<Uint32> ptkAssembly) =>
       _vtable.GetAssemblyFromScope.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint32> ptkAssembly)>()(ptr, ptkAssembly);
 
+  /// Gets a pointer to an exported type, given its name and enclosing type.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-findexportedtypebyname>.
   int findExportedTypeByName(Pointer<Utf16> szName, int mdtExportedType,
           Pointer<Uint32> ptkExportedType) =>
       _vtable.FindExportedTypeByName.asFunction<
@@ -235,6 +286,10 @@ class IMetaDataAssemblyImport extends IUnknown {
                   int mdtExportedType, Pointer<Uint32> ptkExportedType)>()(
           ptr, szName, mdtExportedType, ptkExportedType);
 
+  /// Gets a pointer to the manifest resource with the specified name.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-findmanifestresourcebyname>.
   int findManifestResourceByName(
           Pointer<Utf16> szName, Pointer<Uint32> ptkManifestResource) =>
       _vtable.FindManifestResourceByName.asFunction<
@@ -242,9 +297,19 @@ class IMetaDataAssemblyImport extends IUnknown {
                   Pointer<Uint32> ptkManifestResource)>()(
           ptr, szName, ptkManifestResource);
 
+  /// Releases a reference to the specified enumeration instance.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-closeenum>.
   void closeEnum(Pointer hEnum) => _vtable.CloseEnum.asFunction<
       void Function(VTablePointer lpVtbl, Pointer hEnum)>()(ptr, hEnum);
 
+  /// Gets an array of assemblies with the specified name, using the standard
+  /// rules employed by the common language runtime (CLR) for resolving
+  /// references.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataassemblyimport-findassembliesbyname>.
   int findAssembliesByName(
           Pointer<Utf16> szAppBase,
           Pointer<Utf16> szPrivateBin,

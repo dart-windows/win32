@@ -36,6 +36,10 @@ class ISupportErrorInfo extends IUnknown {
   factory ISupportErrorInfo.from(IUnknown interface) =>
       ISupportErrorInfo(interface.toInterface(IID_ISupportErrorInfo));
 
+  /// Indicates whether an interface supports the IErrorInfo interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-isupporterrorinfo-interfacesupportserrorinfo>.
   int interfaceSupportsErrorInfo(Pointer<GUID> riid) =>
       _vtable.InterfaceSupportsErrorInfo.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> riid)>()(ptr, riid);

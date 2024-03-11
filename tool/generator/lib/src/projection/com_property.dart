@@ -96,7 +96,10 @@ class ComGetPropertyProjection extends ComPropertyProjection {
   }
 
   @override
-  String toString() => '$header {\n$methodBody\n}';
+  String toString() => [
+        if (comment.isNotEmpty) comment,
+        '$header {\n$methodBody\n}',
+      ].join('\n');
 }
 
 /// Represents a Dart projection for a COM set property defined by a [Method].

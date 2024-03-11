@@ -33,6 +33,13 @@ class IUIAutomation3 extends IUIAutomation2 {
   factory IUIAutomation3.from(IUnknown interface) =>
       IUIAutomation3(interface.toInterface(IID_IUIAutomation3));
 
+  /// Registers a method that handles programmatic text-edit events.
+  ///
+  /// **Note:** Before implementing an event handler, you should be familiar with
+  /// the threading issues described in Understanding Threading Issues.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation3-addtextedittextchangedeventhandler>.
   int addTextEditTextChangedEventHandler(
           VTablePointer element,
           int scope,
@@ -49,6 +56,10 @@ class IUIAutomation3 extends IUIAutomation2 {
                   VTablePointer handler)>()(
           ptr, element, scope, textEditChangeType, cacheRequest, handler);
 
+  /// Removes a programmatic text-edit event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation3-removetextedittextchangedeventhandler>.
   int removeTextEditTextChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveTextEditTextChangedEventHandler.asFunction<

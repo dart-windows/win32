@@ -34,22 +34,42 @@ class IShellLinkDataList extends IUnknown {
   factory IShellLinkDataList.from(IUnknown interface) =>
       IShellLinkDataList(interface.toInterface(IID_IShellLinkDataList));
 
+  /// Adds a data block to a link.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishelllinkdatalist-adddatablock>.
   int addDataBlock(Pointer pDataBlock) => _vtable.AddDataBlock.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer pDataBlock)>()(ptr, pDataBlock);
 
+  /// Retrieves a copy of a link's data block.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishelllinkdatalist-copydatablock>.
   int copyDataBlock(int dwSig, Pointer<Pointer> ppDataBlock) =>
       _vtable.CopyDataBlock.asFunction<
           int Function(VTablePointer lpVtbl, int dwSig,
               Pointer<Pointer> ppDataBlock)>()(ptr, dwSig, ppDataBlock);
 
+  /// Removes a data block from a link.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishelllinkdatalist-removedatablock>.
   int removeDataBlock(int dwSig) => _vtable.RemoveDataBlock.asFunction<
       int Function(VTablePointer lpVtbl, int dwSig)>()(ptr, dwSig);
 
+  /// Gets the current option settings.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishelllinkdatalist-getflags>.
   int getFlags(Pointer<Uint32> pdwFlags) => _vtable.GetFlags.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Uint32> pdwFlags)>()(ptr, pdwFlags);
 
+  /// Sets the current option settings.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishelllinkdatalist-setflags>.
   int setFlags(int dwFlags) => _vtable.SetFlags.asFunction<
       int Function(VTablePointer lpVtbl, int dwFlags)>()(ptr, dwFlags);
 }

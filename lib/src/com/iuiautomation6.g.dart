@@ -38,22 +38,40 @@ class IUIAutomation6 extends IUIAutomation5 {
   factory IUIAutomation6.from(IUnknown interface) =>
       IUIAutomation6(interface.toInterface(IID_IUIAutomation6));
 
+  /// Registers one or more event listeners in a single method call.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-createeventhandlergroup>.
   int createEventHandlerGroup(Pointer<VTablePointer> handlerGroup) =>
       _vtable.CreateEventHandlerGroup.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> handlerGroup)>()(ptr, handlerGroup);
 
+  /// Registers a collection of event handler methods specified with the
+  /// CreateEventHandlerGroup.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-addeventhandlergroup>.
   int addEventHandlerGroup(VTablePointer element, VTablePointer handlerGroup) =>
       _vtable.AddEventHandlerGroup.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
+  /// Asynchronously removes the specified UI Automation event handler group.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-removeeventhandlergroup>.
   int removeEventHandlerGroup(
           VTablePointer element, VTablePointer handlerGroup) =>
       _vtable.RemoveEventHandlerGroup.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handlerGroup)>()(ptr, element, handlerGroup);
 
+  /// Indicates whether an accessible technology client adjusts provider request
+  /// timeouts when the provider is non-responsive.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-get_connectionrecoverybehavior>.
   int get connectionRecoveryBehavior {
     final connectionRecoveryBehaviorOptions = calloc<Int32>();
     try {
@@ -77,6 +95,11 @@ class IUIAutomation6 extends IUIAutomation5 {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Gets or sets whether an accessible technology client receives all events, or
+  /// a subset where duplicate events are detected and filtered.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-get_coalesceevents>.
   int get coalesceEvents {
     final coalesceEventsOptions = calloc<Int32>();
     try {
@@ -99,6 +122,10 @@ class IUIAutomation6 extends IUIAutomation5 {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Registers a method that handles when the active text position changes.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-addactivetextpositionchangedeventhandler>.
   int addActiveTextPositionChangedEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddActiveTextPositionChangedEventHandler.asFunction<
@@ -110,6 +137,10 @@ class IUIAutomation6 extends IUIAutomation5 {
                   VTablePointer handler)>()(
           ptr, element, scope, cacheRequest, handler);
 
+  /// Removes an active text position changed event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation6-removeactivetextpositionchangedeventhandler>.
   int removeActiveTextPositionChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveActiveTextPositionChangedEventHandler.asFunction<

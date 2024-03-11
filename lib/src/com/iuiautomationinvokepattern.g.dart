@@ -33,6 +33,10 @@ class IUIAutomationInvokePattern extends IUnknown {
       IUIAutomationInvokePattern(
           interface.toInterface(IID_IUIAutomationInvokePattern));
 
+  /// Invokes the action of a control, such as a button click.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationinvokepattern-invoke>.
   int invoke() =>
       _vtable.Invoke.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

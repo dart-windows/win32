@@ -41,17 +41,34 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
       IUIAutomationLegacyIAccessiblePattern(
           interface.toInterface(IID_IUIAutomationLegacyIAccessiblePattern));
 
+  /// Performs a Microsoft Active Accessibility selection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-select>.
   int select(int flagsSelect) => _vtable.Select.asFunction<
       int Function(VTablePointer lpVtbl, int flagsSelect)>()(ptr, flagsSelect);
 
+  /// Performs the Microsoft Active Accessibility default action for the element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-dodefaultaction>.
   int doDefaultAction() =>
       _vtable.DoDefaultAction.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);
 
+  /// Sets the Microsoft Active Accessibility value property for the element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-setvalue>.
   int setValue(Pointer<Utf16> szValue) => _vtable.SetValue.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Utf16> szValue)>()(ptr, szValue);
 
+  /// Retrieves the Microsoft Active Accessibility child identifier for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentchildid>.
   int get currentChildId {
     final pRetVal = calloc<Int32>();
     try {
@@ -66,6 +83,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility name property of the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentname>.
   Pointer<Utf16> get currentName {
     final pszName = calloc<Pointer<Utf16>>();
     try {
@@ -80,6 +101,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility value property.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentvalue>.
   Pointer<Utf16> get currentValue {
     final pszValue = calloc<Pointer<Utf16>>();
     try {
@@ -94,6 +119,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility description of the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentdescription>.
   Pointer<Utf16> get currentDescription {
     final pszDescription = calloc<Pointer<Utf16>>();
     try {
@@ -108,6 +137,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility role identifier of the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentrole>.
   int get currentRole {
     final pdwRole = calloc<Uint32>();
     try {
@@ -122,6 +155,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility state identifier for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentstate>.
   int get currentState {
     final pdwState = calloc<Uint32>();
     try {
@@ -136,6 +174,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility help string for the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currenthelp>.
   Pointer<Utf16> get currentHelp {
     final pszHelp = calloc<Pointer<Utf16>>();
     try {
@@ -150,6 +192,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility keyboard shortcut property for
+  /// the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentkeyboardshortcut>.
   Pointer<Utf16> get currentKeyboardShortcut {
     final pszKeyboardShortcut = calloc<Pointer<Utf16>>();
     try {
@@ -165,12 +212,22 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the Microsoft Active Accessibility property that identifies the
+  /// selected children of this element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-getcurrentselection>.
   int getCurrentSelection(Pointer<VTablePointer> pvarSelectedChildren) =>
       _vtable.GetCurrentSelection.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> pvarSelectedChildren)>()(
           ptr, pvarSelectedChildren);
 
+  /// Retrieves the Microsoft Active Accessibility current default action for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_currentdefaultaction>.
   Pointer<Utf16> get currentDefaultAction {
     final pszDefaultAction = calloc<Pointer<Utf16>>();
     try {
@@ -186,6 +243,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility child identifier for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedchildid>.
   int get cachedChildId {
     final pRetVal = calloc<Int32>();
     try {
@@ -200,6 +262,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility name property of the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedname>.
   Pointer<Utf16> get cachedName {
     final pszName = calloc<Pointer<Utf16>>();
     try {
@@ -214,6 +281,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility value property.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedvalue>.
   Pointer<Utf16> get cachedValue {
     final pszValue = calloc<Pointer<Utf16>>();
     try {
@@ -228,6 +299,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility description of the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cacheddescription>.
   Pointer<Utf16> get cachedDescription {
     final pszDescription = calloc<Pointer<Utf16>>();
     try {
@@ -242,6 +318,10 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility role of the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedrole>.
   int get cachedRole {
     final pdwRole = calloc<Uint32>();
     try {
@@ -256,6 +336,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility state identifier for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedstate>.
   int get cachedState {
     final pdwState = calloc<Uint32>();
     try {
@@ -270,6 +355,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility help string for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedhelp>.
   Pointer<Utf16> get cachedHelp {
     final pszHelp = calloc<Pointer<Utf16>>();
     try {
@@ -284,6 +374,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility keyboard shortcut
+  /// property for the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cachedkeyboardshortcut>.
   Pointer<Utf16> get cachedKeyboardShortcut {
     final pszKeyboardShortcut = calloc<Pointer<Utf16>>();
     try {
@@ -299,12 +394,22 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached Microsoft Active Accessibility property that identifies
+  /// the selected children of this element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-getcachedselection>.
   int getCachedSelection(Pointer<VTablePointer> pvarSelectedChildren) =>
       _vtable.GetCachedSelection.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> pvarSelectedChildren)>()(
           ptr, pvarSelectedChildren);
 
+  /// Retrieves the Microsoft Active Accessibility cached default action for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-get_cacheddefaultaction>.
   Pointer<Utf16> get cachedDefaultAction {
     final pszDefaultAction = calloc<Pointer<Utf16>>();
     try {
@@ -320,6 +425,11 @@ class IUIAutomationLegacyIAccessiblePattern extends IUnknown {
     }
   }
 
+  /// Retrieves an IAccessible object that corresponds to the Microsoft UI
+  /// Automation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationlegacyiaccessiblepattern-getiaccessible>.
   int getIAccessible(Pointer<VTablePointer> ppAccessible) =>
       _vtable.GetIAccessible.asFunction<
           int Function(VTablePointer lpVtbl,

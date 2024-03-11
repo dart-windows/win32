@@ -34,6 +34,10 @@ class IUIAutomationTextRange2 extends IUIAutomationTextRange {
       IUIAutomationTextRange2(
           interface.toInterface(IID_IUIAutomationTextRange2));
 
+  /// Programmatically invokes a context menu on the target text range.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextrange2-showcontextmenu>.
   int showContextMenu() =>
       _vtable.ShowContextMenu.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);

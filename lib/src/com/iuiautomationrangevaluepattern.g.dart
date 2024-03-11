@@ -38,9 +38,17 @@ class IUIAutomationRangeValuePattern extends IUnknown {
       IUIAutomationRangeValuePattern(
           interface.toInterface(IID_IUIAutomationRangeValuePattern));
 
+  /// Sets the value of the control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-setvalue>.
   int setValue(double val) => _vtable.SetValue.asFunction<
       int Function(VTablePointer lpVtbl, double val)>()(ptr, val);
 
+  /// Retrieves the value of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentvalue>.
   double get currentValue {
     final retVal = calloc<Double>();
     try {
@@ -55,6 +63,10 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the value of the element can be changed.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentisreadonly>.
   int get currentIsReadOnly {
     final retVal = calloc<BOOL>();
     try {
@@ -69,6 +81,10 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the maximum value of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentmaximum>.
   double get currentMaximum {
     final retVal = calloc<Double>();
     try {
@@ -83,6 +99,10 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the minimum value of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentminimum>.
   double get currentMinimum {
     final retVal = calloc<Double>();
     try {
@@ -97,6 +117,12 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the value that is added to or subtracted from the value of the
+  /// control when a large change is made, such as when the PAGE DOWN key is
+  /// pressed.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentlargechange>.
   double get currentLargeChange {
     final retVal = calloc<Double>();
     try {
@@ -111,6 +137,11 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the value that is added to or subtracted from the value of the
+  /// control when a small change is made, such as when an arrow key is pressed.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentsmallchange>.
   double get currentSmallChange {
     final retVal = calloc<Double>();
     try {
@@ -125,6 +156,10 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached value of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_cachedvalue>.
   double get cachedValue {
     final retVal = calloc<Double>();
     try {
@@ -139,6 +174,11 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the value of the element can
+  /// be changed.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_cachedisreadonly>.
   int get cachedIsReadOnly {
     final retVal = calloc<BOOL>();
     try {
@@ -153,6 +193,10 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached maximum value of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_cachedmaximum>.
   double get cachedMaximum {
     final retVal = calloc<Double>();
     try {
@@ -167,6 +211,10 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached minimum value of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_cachedminimum>.
   double get cachedMinimum {
     final retVal = calloc<Double>();
     try {
@@ -181,6 +229,12 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves, from the cache, the value that is added to or subtracted from the
+  /// value of the control when a large change is made, such as when the PAGE DOWN
+  /// key is pressed.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_cachedlargechange>.
   double get cachedLargeChange {
     final retVal = calloc<Double>();
     try {
@@ -195,6 +249,12 @@ class IUIAutomationRangeValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves, from the cache, the value that is added to or subtracted from the
+  /// value of the control when a small change is made, such as when an arrow key
+  /// is pressed.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_cachedsmallchange>.
   double get cachedSmallChange {
     final retVal = calloc<Double>();
     try {

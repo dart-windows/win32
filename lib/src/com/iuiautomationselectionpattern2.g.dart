@@ -40,6 +40,11 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
       IUIAutomationSelectionPattern2(
           interface.toInterface(IID_IUIAutomationSelectionPattern2));
 
+  /// Gets an IUIAutomationElement object representing the first item in a group
+  /// of selected items.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_currentfirstselecteditem>.
   VTablePointer get currentFirstSelectedItem {
     final retVal = calloc<VTablePointer>();
     try {
@@ -54,6 +59,11 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets an IUIAutomationElement object representing the last item in a group of
+  /// selected items.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_currentlastselecteditem>.
   VTablePointer get currentLastSelectedItem {
     final retVal = calloc<VTablePointer>();
     try {
@@ -68,6 +78,11 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets an IUIAutomationElement object representing the currently selected
+  /// item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_currentcurrentselecteditem>.
   VTablePointer get currentCurrentSelectedItem {
     final retVal = calloc<VTablePointer>();
     try {
@@ -82,6 +97,10 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets an integer value indicating the number of selected items.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_currentitemcount>.
   int get currentItemCount {
     final retVal = calloc<Int32>();
     try {
@@ -96,6 +115,11 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets a cached IUIAutomationElement object representing the first item in a
+  /// group of selected items.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_cachedfirstselecteditem>.
   VTablePointer get cachedFirstSelectedItem {
     final retVal = calloc<VTablePointer>();
     try {
@@ -110,6 +134,11 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets a cached IUIAutomationElement object representing the last item in a
+  /// group of selected items.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_cachedlastselecteditem>.
   VTablePointer get cachedLastSelectedItem {
     final retVal = calloc<VTablePointer>();
     try {
@@ -124,6 +153,11 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets a cached IUIAutomationElement object representing the currently
+  /// selected item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_cachedcurrentselecteditem>.
   VTablePointer get cachedCurrentSelectedItem {
     final retVal = calloc<VTablePointer>();
     try {
@@ -138,6 +172,10 @@ class IUIAutomationSelectionPattern2 extends IUIAutomationSelectionPattern {
     }
   }
 
+  /// Gets a cached integer value indicating the number of selected items.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern2-get_cacheditemcount>.
   int get cachedItemCount {
     final retVal = calloc<Int32>();
     try {

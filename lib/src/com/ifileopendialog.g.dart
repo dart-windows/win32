@@ -33,11 +33,22 @@ class IFileOpenDialog extends IFileDialog {
   factory IFileOpenDialog.from(IUnknown interface) =>
       IFileOpenDialog(interface.toInterface(IID_IFileOpenDialog));
 
+  /// Gets the user's choices in a dialog that allows multiple selection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileopendialog-getresults>.
   int getResults(Pointer<VTablePointer> ppenum) =>
       _vtable.GetResults.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppenum)>()(ptr, ppenum);
 
+  /// Gets the currently selected items in the dialog.
+  ///
+  /// These items may be items selected in the view, or text selected in the file
+  /// name edit box.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileopendialog-getselecteditems>.
   int getSelectedItems(Pointer<VTablePointer> ppsai) =>
       _vtable.GetSelectedItems.asFunction<
           int Function(VTablePointer lpVtbl,

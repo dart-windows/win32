@@ -4,9 +4,13 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../doc/api_details.dart';
+import '../doc/docs_provider.dart';
+import '../docs.dart';
 import '../extension/collection.dart';
 import '../extension/method.dart';
 import '../extension/string.dart';
+import '../extension/typedef.dart';
 import 'parameter.dart';
 import 'type.dart';
 
@@ -30,6 +34,29 @@ class ComMethodProjection {
 
   /// The type projection for the return type of the method.
   final TypeProjection returnTypeProjection;
+
+  /// The comment associated with the method.
+  String get comment {
+    final buffer = StringBuffer();
+
+    final docs = methodDocs[camelCasedName] ??
+        DocsProvider.getDocs(
+            '${method.parent.name.lastComponent}.${method.name}') ??
+        DocsProvider.getDocs(
+            '${method.parent.nameWithoutEncoding.lastComponent}.${method.name}');
+    if (docs case ApiDetails(:final description, :final helpLink)) {
+      buffer.write(description?.sanitize());
+      if (helpLink != null) {
+        buffer.write(
+          ' \nTo learn more about this '
+          '${method.canBeProjectedAsGetter ? 'property' : 'method'}, see '
+          '<$helpLink>.',
+        );
+      }
+    }
+
+    return buffer.toString().toDocComment();
+  }
 
   /// The method name in camel case format.
   ///
@@ -82,7 +109,10 @@ class ComMethodProjection {
   @override
   String toString() {
     try {
-      return '$header => $methodBody';
+      return [
+        if (comment.isNotEmpty) comment,
+        '$header => $methodBody',
+      ].join('\n');
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.
@@ -90,4 +120,12 @@ class ComMethodProjection {
       return '';
     }
   }
+}
+
+extension on String {
+  String sanitize() => replaceAllMapped(
+        RegExp(r'\s(\w+)::(\w+)(\.|,|\s)'),
+        (match) =>
+            ' `${match.group(1)}.${match.group(2)?.toCamelCase()}`${match.group(3)}',
+      );
 }

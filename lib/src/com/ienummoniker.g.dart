@@ -31,6 +31,10 @@ class IEnumMoniker extends IUnknown {
   factory IEnumMoniker.from(IUnknown interface) =>
       IEnumMoniker(interface.toInterface(IID_IEnumMoniker));
 
+  /// Retrieves the specified number of items in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ienummoniker-next>.
   int next(int celt, Pointer<VTablePointer> rgelt,
           Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
@@ -41,13 +45,26 @@ class IEnumMoniker extends IUnknown {
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
+  /// Skips over the specified number of items in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ienummoniker-skip>.
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
+  /// Resets the enumeration sequence to the beginning.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ienummoniker-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Creates a new enumerator that contains the same enumeration state as the
+  /// current one.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ienummoniker-clone>.
   int clone(Pointer<VTablePointer> ppenum) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);

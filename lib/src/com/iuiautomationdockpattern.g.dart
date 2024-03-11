@@ -38,9 +38,17 @@ class IUIAutomationDockPattern extends IUnknown {
       IUIAutomationDockPattern(
           interface.toInterface(IID_IUIAutomationDockPattern));
 
+  /// Sets the dock position of this element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdockpattern-setdockposition>.
   int setDockPosition(int dockPos) => _vtable.SetDockPosition.asFunction<
       int Function(VTablePointer lpVtbl, int dockPos)>()(ptr, dockPos);
 
+  /// Retrieves the dock position of this element within its docking container.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdockpattern-get_currentdockposition>.
   int get currentDockPosition {
     final retVal = calloc<Int32>();
     try {
@@ -55,6 +63,11 @@ class IUIAutomationDockPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached dock position of this element within its docking
+  /// container.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdockpattern-get_cacheddockposition>.
   int get cachedDockPosition {
     final retVal = calloc<Int32>();
     try {

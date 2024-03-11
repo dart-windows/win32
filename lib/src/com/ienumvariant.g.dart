@@ -31,18 +31,34 @@ class IEnumVARIANT extends IUnknown {
   factory IEnumVARIANT.from(IUnknown interface) =>
       IEnumVARIANT(interface.toInterface(IID_IEnumVARIANT));
 
+  /// Retrieves the specified items in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ienumvariant-next>.
   int next(int celt, Pointer<VARIANT> rgVar, Pointer<Uint32> pCeltFetched) =>
       _vtable.Next.asFunction<
           int Function(VTablePointer lpVtbl, int celt, Pointer<VARIANT> rgVar,
               Pointer<Uint32> pCeltFetched)>()(ptr, celt, rgVar, pCeltFetched);
 
+  /// Attempts to skip over the next celt elements in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ienumvariant-skip>.
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
+  /// Resets the enumeration sequence to the beginning.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ienumvariant-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Creates a copy of the current state of enumeration.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ienumvariant-clone>.
   int clone(Pointer<VTablePointer> ppEnum) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);

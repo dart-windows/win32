@@ -34,6 +34,10 @@ class IMetaDataDispenser extends IUnknown {
   factory IMetaDataDispenser.from(IUnknown interface) =>
       IMetaDataDispenser(interface.toInterface(IID_IMetaDataDispenser));
 
+  /// Creates a new area in memory in which you can create new metadata.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenser-definescope>.
   int defineScope(Pointer<GUID> rclsid, int dwCreateFlags, Pointer<GUID> riid,
           Pointer<VTablePointer> ppIUnk) =>
       _vtable.DefineScope.asFunction<
@@ -45,6 +49,11 @@ class IMetaDataDispenser extends IUnknown {
                   Pointer<VTablePointer> ppIUnk)>()(
           ptr, rclsid, dwCreateFlags, riid, ppIUnk);
 
+  /// Opens an existing file from disk, and maps its metadata into memory for
+  /// reading.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenser-openscope>.
   int openScope(Pointer<Utf16> szScope, int dwOpenFlags, Pointer<GUID> riid,
           Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScope.asFunction<
@@ -56,6 +65,13 @@ class IMetaDataDispenser extends IUnknown {
                   Pointer<VTablePointer> ppIUnk)>()(
           ptr, szScope, dwOpenFlags, riid, ppIUnk);
 
+  /// Opens an area of memory that contains existing metadata.
+  ///
+  /// That is, this method opens a specified area of memory in which the existing
+  /// data is treated as metadata.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenser-openscopeonmemory>.
   int openScopeOnMemory(Pointer pData, int cbData, int dwOpenFlags,
           Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScopeOnMemory.asFunction<

@@ -36,6 +36,10 @@ class ISpellingError extends IUnknown {
   factory ISpellingError.from(IUnknown interface) =>
       ISpellingError(interface.toInterface(IID_ISpellingError));
 
+  /// Gets the position in the checked text where the error begins.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellingerror-get_startindex>.
   int get startIndex {
     final value = calloc<Uint32>();
     try {
@@ -50,6 +54,10 @@ class ISpellingError extends IUnknown {
     }
   }
 
+  /// Gets the length of the erroneous text.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellingerror-get_length>.
   int get length {
     final value = calloc<Uint32>();
     try {
@@ -64,6 +72,10 @@ class ISpellingError extends IUnknown {
     }
   }
 
+  /// Indicates which corrective action should be taken for the spelling error.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellingerror-get_correctiveaction>.
   int get correctiveAction {
     final value = calloc<Int32>();
     try {
@@ -78,6 +90,11 @@ class ISpellingError extends IUnknown {
     }
   }
 
+  /// Gets the text to use as replacement text when the corrective action is
+  /// replace.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellingerror-get_replacement>.
   Pointer<Utf16> get replacement {
     final value = calloc<Pointer<Utf16>>();
     try {

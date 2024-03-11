@@ -33,6 +33,13 @@ class IUIAutomation5 extends IUIAutomation4 {
   factory IUIAutomation5.from(IUnknown interface) =>
       IUIAutomation5(interface.toInterface(IID_IUIAutomation5));
 
+  /// Registers a method that handles notification events.
+  ///
+  /// **Note:** Before implementing an event handler, you should be familiar with
+  /// the threading issues described in Understanding Threading Issues.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation5-addnotificationeventhandler>.
   int addNotificationEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddNotificationEventHandler.asFunction<
@@ -44,6 +51,10 @@ class IUIAutomation5 extends IUIAutomation4 {
                   VTablePointer handler)>()(
           ptr, element, scope, cacheRequest, handler);
 
+  /// Removes a notification event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation5-removenotificationeventhandler>.
   int removeNotificationEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveNotificationEventHandler.asFunction<

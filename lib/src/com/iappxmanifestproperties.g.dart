@@ -34,11 +34,19 @@ class IAppxManifestProperties extends IUnknown {
       IAppxManifestProperties(
           interface.toInterface(IID_IAppxManifestProperties));
 
+  /// Gets the value of the specified Boolean element in the properties section.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestproperties-getboolvalue>.
   int getBoolValue(Pointer<Utf16> name, Pointer<BOOL> value) =>
       _vtable.GetBoolValue.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<BOOL> value)>()(ptr, name, value);
 
+  /// Gets the value of the specified string element in the properties section.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestproperties-getstringvalue>.
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> name,

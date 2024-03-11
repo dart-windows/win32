@@ -33,6 +33,11 @@ class ISensorManager extends IUnknown {
   factory ISensorManager.from(IUnknown interface) =>
       ISensorManager(interface.toInterface(IID_ISensorManager));
 
+  /// Retrieves a collection containing all sensors associated with the specified
+  /// category.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensormanager-getsensorsbycategory>.
   int getSensorsByCategory(Pointer<GUID> sensorCategory,
           Pointer<VTablePointer> ppSensorsFound) =>
       _vtable.GetSensorsByCategory.asFunction<
@@ -40,6 +45,11 @@ class ISensorManager extends IUnknown {
                   Pointer<VTablePointer> ppSensorsFound)>()(
           ptr, sensorCategory, ppSensorsFound);
 
+  /// Retrieves a collection containing all sensors associated with the specified
+  /// type.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensormanager-getsensorsbytype>.
   int getSensorsByType(
           Pointer<GUID> sensorType, Pointer<VTablePointer> ppSensorsFound) =>
       _vtable.GetSensorsByType.asFunction<
@@ -47,15 +57,28 @@ class ISensorManager extends IUnknown {
                   Pointer<VTablePointer> ppSensorsFound)>()(
           ptr, sensorType, ppSensorsFound);
 
+  /// Retrieves a pointer to the specified sensor.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensormanager-getsensorbyid>.
   int getSensorByID(Pointer<GUID> sensorID, Pointer<VTablePointer> ppSensor) =>
       _vtable.GetSensorByID.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> sensorID,
               Pointer<VTablePointer> ppSensor)>()(ptr, sensorID, ppSensor);
 
+  /// Specifies the interface through which to receive sensor manager event
+  /// notifications.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensormanager-seteventsink>.
   int setEventSink(VTablePointer? pEvents) => _vtable.SetEventSink.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pEvents)>()(
       ptr, pEvents ?? nullptr);
 
+  /// Opens a system dialog box to request user permission to access sensor data.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensormanager-requestpermissions>.
   int requestPermissions(int hParent, VTablePointer? pSensors, int fModal) =>
       _vtable.RequestPermissions.asFunction<
           int Function(

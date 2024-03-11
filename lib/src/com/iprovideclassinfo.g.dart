@@ -32,6 +32,14 @@ class IProvideClassInfo extends IUnknown {
   factory IProvideClassInfo.from(IUnknown interface) =>
       IProvideClassInfo(interface.toInterface(IID_IProvideClassInfo));
 
+  /// Retrieves a pointer to the ITypeInfo interface for the object's type
+  /// information.
+  ///
+  /// The type information for an object corresponds to the object's coclass entry
+  /// in a type library.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iprovideclassinfo-getclassinfo>.
   int getClassInfo(Pointer<VTablePointer> ppTI) =>
       _vtable.GetClassInfo.asFunction<
           int Function(

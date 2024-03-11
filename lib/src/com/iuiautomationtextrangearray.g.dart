@@ -38,6 +38,10 @@ class IUIAutomationTextRangeArray extends IUnknown {
       IUIAutomationTextRangeArray(
           interface.toInterface(IID_IUIAutomationTextRangeArray));
 
+  /// Retrieves the number of text ranges in the collection.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextrangearray-get_length>.
   int get length {
     final length = calloc<Int32>();
     try {
@@ -52,6 +56,10 @@ class IUIAutomationTextRangeArray extends IUnknown {
     }
   }
 
+  /// Retrieves a text range from the collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextrangearray-getelement>.
   int getElement(int index, Pointer<VTablePointer> element) =>
       _vtable.GetElement.asFunction<
           int Function(VTablePointer lpVtbl, int index,

@@ -32,6 +32,11 @@ class IRunningObjectTable extends IUnknown {
   factory IRunningObjectTable.from(IUnknown interface) =>
       IRunningObjectTable(interface.toInterface(IID_IRunningObjectTable));
 
+  /// Registers an object and its identifying moniker in the running object table
+  /// (ROT).
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-register>.
   int register(int grfFlags, VTablePointer punkObject,
           VTablePointer pmkObjectName, Pointer<Uint32> pdwRegister) =>
       _vtable.Register.asFunction<
@@ -43,13 +48,28 @@ class IRunningObjectTable extends IUnknown {
                   Pointer<Uint32> pdwRegister)>()(
           ptr, grfFlags, punkObject, pmkObjectName, pdwRegister);
 
+  /// Removes an entry from the running object table (ROT) that was previously
+  /// registered by a call to `IRunningObjectTable.register`.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-revoke>.
   int revoke(int dwRegister) => _vtable.Revoke.asFunction<
       int Function(VTablePointer lpVtbl, int dwRegister)>()(ptr, dwRegister);
 
+  /// Determines whether the object identified by the specified moniker is
+  /// currently running.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-isrunning>.
   int isRunning(VTablePointer pmkObjectName) => _vtable.IsRunning.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pmkObjectName)>()(
       ptr, pmkObjectName);
 
+  /// Determines whether the object identified by the specified moniker is
+  /// running, and if it is, retrieves a pointer to that object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-getobject>.
   int getObject(
           VTablePointer pmkObjectName, Pointer<VTablePointer> ppunkObject) =>
       _vtable.GetObject.asFunction<
@@ -57,17 +77,33 @@ class IRunningObjectTable extends IUnknown {
                   Pointer<VTablePointer> ppunkObject)>()(
           ptr, pmkObjectName, ppunkObject);
 
+  /// Records the time that a running object was last modified.
+  ///
+  /// The object must have previously been registered with the running object
+  /// table (ROT). This method stores the time of last change in the ROT.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-notechangetime>.
   int noteChangeTime(int dwRegister, Pointer<FILETIME> pfiletime) =>
       _vtable.NoteChangeTime.asFunction<
           int Function(VTablePointer lpVtbl, int dwRegister,
               Pointer<FILETIME> pfiletime)>()(ptr, dwRegister, pfiletime);
 
+  /// Retrieves the time that an object was last modified.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-gettimeoflastchange>.
   int getTimeOfLastChange(
           VTablePointer pmkObjectName, Pointer<FILETIME> pfiletime) =>
       _vtable.GetTimeOfLastChange.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pmkObjectName,
               Pointer<FILETIME> pfiletime)>()(ptr, pmkObjectName, pfiletime);
 
+  /// Creates and returns a pointer to an enumerator that can list the monikers of
+  /// all the objects currently registered in the running object table (ROT).
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-irunningobjecttable-enumrunning>.
   int enumRunning(Pointer<VTablePointer> ppenumMoniker) =>
       _vtable.EnumRunning.asFunction<
           int Function(VTablePointer lpVtbl,

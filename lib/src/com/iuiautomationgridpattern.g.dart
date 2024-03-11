@@ -39,11 +39,19 @@ class IUIAutomationGridPattern extends IUnknown {
       IUIAutomationGridPattern(
           interface.toInterface(IID_IUIAutomationGridPattern));
 
+  /// Retrieves a UI Automation element representing an item in the grid.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgridpattern-getitem>.
   int getItem(int row, int column, Pointer<VTablePointer> element) =>
       _vtable.GetItem.asFunction<
           int Function(VTablePointer lpVtbl, int row, int column,
               Pointer<VTablePointer> element)>()(ptr, row, column, element);
 
+  /// Retrieves the number of rows in the grid.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgridpattern-get_currentrowcount>.
   int get currentRowCount {
     final retVal = calloc<Int32>();
     try {
@@ -58,6 +66,10 @@ class IUIAutomationGridPattern extends IUnknown {
     }
   }
 
+  /// The number of columns in the grid.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgridpattern-get_currentcolumncount>.
   int get currentColumnCount {
     final retVal = calloc<Int32>();
     try {
@@ -72,6 +84,10 @@ class IUIAutomationGridPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached number of rows in the grid.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgridpattern-get_cachedrowcount>.
   int get cachedRowCount {
     final retVal = calloc<Int32>();
     try {
@@ -86,6 +102,10 @@ class IUIAutomationGridPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached number of columns in the grid.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgridpattern-get_cachedcolumncount>.
   int get cachedColumnCount {
     final retVal = calloc<Int32>();
     try {

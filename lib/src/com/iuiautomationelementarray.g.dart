@@ -37,6 +37,10 @@ class IUIAutomationElementArray extends IUnknown {
       IUIAutomationElementArray(
           interface.toInterface(IID_IUIAutomationElementArray));
 
+  /// Retrieves the number of elements in the collection.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelementarray-get_length>.
   int get length {
     final length = calloc<Int32>();
     try {
@@ -51,6 +55,10 @@ class IUIAutomationElementArray extends IUnknown {
     }
   }
 
+  /// Retrieves a Microsoft UI Automation element from the collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelementarray-getelement>.
   int getElement(int index, Pointer<VTablePointer> element) =>
       _vtable.GetElement.asFunction<
           int Function(VTablePointer lpVtbl, int index,

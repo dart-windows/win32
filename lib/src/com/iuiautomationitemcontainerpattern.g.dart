@@ -34,6 +34,11 @@ class IUIAutomationItemContainerPattern extends IUnknown {
       IUIAutomationItemContainerPattern(
           interface.toInterface(IID_IUIAutomationItemContainerPattern));
 
+  /// Retrieves an element within a containing element, based on a specified
+  /// property value.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationitemcontainerpattern-finditembyproperty>.
   int findItemByProperty(VTablePointer pStartAfter, int propertyId,
           VARIANT value, Pointer<VTablePointer> pFound) =>
       _vtable.FindItemByProperty.asFunction<

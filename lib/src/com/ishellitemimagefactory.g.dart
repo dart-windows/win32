@@ -34,6 +34,10 @@ class IShellItemImageFactory extends IUnknown {
   factory IShellItemImageFactory.from(IUnknown interface) =>
       IShellItemImageFactory(interface.toInterface(IID_IShellItemImageFactory));
 
+  /// Gets an HBITMAP that represents an IShellItem.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemimagefactory-getimage>.
   int getImage(SIZE size, int flags, Pointer<HBITMAP> phbm) =>
       _vtable.GetImage.asFunction<
           int Function(VTablePointer lpVtbl, SIZE size, int flags,

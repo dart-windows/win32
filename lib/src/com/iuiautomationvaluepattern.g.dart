@@ -38,9 +38,17 @@ class IUIAutomationValuePattern extends IUnknown {
       IUIAutomationValuePattern(
           interface.toInterface(IID_IUIAutomationValuePattern));
 
+  /// Sets the value of the element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationvaluepattern-setvalue>.
   int setValue(Pointer<Utf16> val) => _vtable.SetValue.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Utf16> val)>()(ptr, val);
 
+  /// Retrieves the value of the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationvaluepattern-get_currentvalue>.
   Pointer<Utf16> get currentValue {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -55,6 +63,10 @@ class IUIAutomationValuePattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the value of the element is read-only.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationvaluepattern-get_currentisreadonly>.
   int get currentIsReadOnly {
     final retVal = calloc<BOOL>();
     try {
@@ -69,6 +81,10 @@ class IUIAutomationValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached value of the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationvaluepattern-get_cachedvalue>.
   Pointer<Utf16> get cachedValue {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -83,6 +99,11 @@ class IUIAutomationValuePattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the value of the element is
+  /// read-only.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationvaluepattern-get_cachedisreadonly>.
   int get cachedIsReadOnly {
     final retVal = calloc<BOOL>();
     try {

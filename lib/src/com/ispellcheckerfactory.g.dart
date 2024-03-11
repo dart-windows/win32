@@ -37,6 +37,11 @@ class ISpellCheckerFactory extends IUnknown {
   factory ISpellCheckerFactory.from(IUnknown interface) =>
       ISpellCheckerFactory(interface.toInterface(IID_ISpellCheckerFactory));
 
+  /// Gets the set of languages/dialects supported by any of the registered spell
+  /// checkers.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellcheckerfactory-get_supportedlanguages>.
   VTablePointer get supportedLanguages {
     final value = calloc<VTablePointer>();
     try {
@@ -51,11 +56,20 @@ class ISpellCheckerFactory extends IUnknown {
     }
   }
 
+  /// Determines if the specified language is supported by a registered spell
+  /// checker.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellcheckerfactory-issupported>.
   int isSupported(Pointer<Utf16> languageTag, Pointer<BOOL> value) =>
       _vtable.IsSupported.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> languageTag,
               Pointer<BOOL> value)>()(ptr, languageTag, value);
 
+  /// Creates a spell checker that supports the specified language.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellcheckerfactory-createspellchecker>.
   int createSpellChecker(
           Pointer<Utf16> languageTag, Pointer<VTablePointer> value) =>
       _vtable.CreateSpellChecker.asFunction<

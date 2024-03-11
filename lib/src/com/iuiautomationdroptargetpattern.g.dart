@@ -40,6 +40,11 @@ class IUIAutomationDropTargetPattern extends IUnknown {
       IUIAutomationDropTargetPattern(
           interface.toInterface(IID_IUIAutomationDropTargetPattern));
 
+  /// Retrieves a localized string that describes what happens when the user drops
+  /// the grabbed element on this drop target.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdroptargetpattern-get_currentdroptargeteffect>.
   Pointer<Utf16> get currentDropTargetEffect {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -54,6 +59,11 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached localized string that describes what happens when the
+  /// user drops the grabbed element on this drop target.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdroptargetpattern-get_cacheddroptargeteffect>.
   Pointer<Utf16> get cachedDropTargetEffect {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -68,6 +78,12 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     }
   }
 
+  /// Retrieves an array of localized strings that enumerate the full set of
+  /// effects that can happen when the user drops a grabbed element on this drop
+  /// target as part of a drag-and-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdroptargetpattern-get_currentdroptargeteffects>.
   Pointer<SAFEARRAY> get currentDropTargetEffects {
     final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
@@ -82,6 +98,12 @@ class IUIAutomationDropTargetPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached array of localized strings that enumerate the full set of
+  /// effects that can happen when the user drops a grabbed element on this drop
+  /// target as part of a drag-and-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdroptargetpattern-get_cacheddroptargeteffects>.
   Pointer<SAFEARRAY> get cachedDropTargetEffects {
     final retVal = calloc<Pointer<SAFEARRAY>>();
     try {

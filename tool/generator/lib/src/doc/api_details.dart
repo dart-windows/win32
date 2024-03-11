@@ -81,12 +81,15 @@ extension on String {
     var string = replaceAll(r'\_', ' ')
         .replaceAll(r'B�zier', 'Bézier')
         .replaceAll(r'�', '—')
-        .replaceAllMapped(RegExp(r'(\w)\.([A-Z])'),
-            (match) => '${match.group(1)}. ${match.group(2)}')
-        .replaceFirst(RegExp(r'\.\s\(\w+\)$'), '.')
+        .replaceAllMapped(
+            RegExp(r'&quot;(\w+)&quot;'), (match) => '`${match.group(1)}`')
+        .replaceAllMapped(RegExp(r'\s(?!\()([a-z]+)\.([A-Z]\w+)(?!\))'),
+            (match) => ' ${match.group(1)}. ${match.group(2)}')
         .replaceAll('Note\u{00a0}', '**Note:**')
         .replaceAll('\u{00a0}', ' ')
-        .replaceFirst(RegExp(r'^Deprecated. (IShellService )?'), '')
+        .replaceFirst(RegExp(r'\s.$'), '.')
+        .replaceFirst(RegExp(r'\.\s\([\w:\._\s]+\)$'), '.')
+        .replaceFirst(RegExp(r'^Deprecated. (I[A-Z][a-z]\w+\s)?'), '')
         .replaceFirst(RegExp(r'^The IpRenewAddressfunction'),
             'The IpRenewAddress function')
         .replaceFirst(
@@ -114,7 +117,7 @@ extension on String {
             '')
         .replaceFirst(
             RegExp(
-              r'^(A|An|The)\s\w+\s(\(\w+(\.h)?\)\s)?(macro\s)?(enumeration|function|interface|structure|union)\s(\(\w+(\.h)?\)\s)?(is\s)?(optionally\s)?(type\s)?(values\s)?',
+              r'^(A|An|The)\s[\w:]+\s(\(\w+(\.h)?\)\s)?(macro\s)?(enumeration|function|interface|method|property|structure|union)\s(\(\w+(\.h)?\)\s)?(is\s)?(optionally\s)?(type\s)?(values\s)?',
             ),
             '')
         .replaceFirstMapped(

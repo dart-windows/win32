@@ -32,24 +32,45 @@ class IPropertyStore extends IUnknown {
   factory IPropertyStore.from(IUnknown interface) =>
       IPropertyStore(interface.toInterface(IID_IPropertyStore));
 
+  /// This method returns a count of the number of properties that are attached to
+  /// the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/propsys/nf-propsys-ipropertystore-getcount>.
   int getCount(Pointer<Uint32> cProps) => _vtable.GetCount.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Uint32> cProps)>()(ptr, cProps);
 
+  /// Gets a property key from the property array of an item.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/propsys/nf-propsys-ipropertystore-getat>.
   int getAt(int iProp, Pointer<PROPERTYKEY> pkey) => _vtable.GetAt.asFunction<
       int Function(VTablePointer lpVtbl, int iProp,
           Pointer<PROPERTYKEY> pkey)>()(ptr, iProp, pkey);
 
+  /// This method retrieves the data for a specific property.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/propsys/nf-propsys-ipropertystore-getvalue>.
   int getValue(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> pv) =>
       _vtable.GetValue.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> pv)>()(ptr, key, pv);
 
+  /// This method sets a property value or replaces or removes an existing value.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/propsys/nf-propsys-ipropertystore-setvalue>.
   int setValue(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> propvar) =>
       _vtable.SetValue.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> propvar)>()(ptr, key, propvar);
 
+  /// After a change has been made, this method saves the changes.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/propsys/nf-propsys-ipropertystore-commit>.
   int commit() =>
       _vtable.Commit.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

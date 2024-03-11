@@ -33,6 +33,11 @@ class IAppxManifestReader2 extends IAppxManifestReader {
   factory IAppxManifestReader2.from(IUnknown interface) =>
       IAppxManifestReader2(interface.toInterface(IID_IAppxManifestReader2));
 
+  /// Gets an enumerator that iterates through the qualified resources that are
+  /// defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader2-getqualifiedresources>.
   int getQualifiedResources(Pointer<VTablePointer> resources) =>
       _vtable.GetQualifiedResources.asFunction<
           int Function(VTablePointer lpVtbl,

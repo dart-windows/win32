@@ -40,16 +40,32 @@ class IUIAutomationCacheRequest extends IUnknown {
       IUIAutomationCacheRequest(
           interface.toInterface(IID_IUIAutomationCacheRequest));
 
+  /// Adds a property to the cache request.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-addproperty>.
   int addProperty(int propertyId) => _vtable.AddProperty.asFunction<
       int Function(VTablePointer lpVtbl, int propertyId)>()(ptr, propertyId);
 
+  /// Adds a control pattern to the cache request.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-addpattern>.
   int addPattern(int patternId) => _vtable.AddPattern.asFunction<
       int Function(VTablePointer lpVtbl, int patternId)>()(ptr, patternId);
 
+  /// Creates a copy of the cache request.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-clone>.
   int clone(Pointer<VTablePointer> clonedRequest) => _vtable.Clone.asFunction<
       int Function(VTablePointer lpVtbl,
           Pointer<VTablePointer> clonedRequest)>()(ptr, clonedRequest);
 
+  /// Specifies the scope of caching.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-get_treescope>.
   int get treeScope {
     final scope = calloc<Int32>();
     try {
@@ -71,6 +87,11 @@ class IUIAutomationCacheRequest extends IUnknown {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Specifies the view of the UI Automation element tree that is used when
+  /// caching.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-get_treefilter>.
   VTablePointer get treeFilter {
     final filter = calloc<VTablePointer>();
     try {
@@ -92,6 +113,11 @@ class IUIAutomationCacheRequest extends IUnknown {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Indicates whether returned elements contain full references to the
+  /// underlying UI, or only cached information.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-get_automationelementmode>.
   int get automationElementMode {
     final mode = calloc<Int32>();
     try {

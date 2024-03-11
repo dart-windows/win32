@@ -33,6 +33,10 @@ class IAudioSessionManager extends IUnknown {
   factory IAudioSessionManager.from(IUnknown interface) =>
       IAudioSessionManager(interface.toInterface(IID_IAudioSessionManager));
 
+  /// Retrieves an audio session control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audiopolicy/nf-audiopolicy-iaudiosessionmanager-getaudiosessioncontrol>.
   int getAudioSessionControl(Pointer<GUID>? audioSessionGuid, int streamFlags,
           Pointer<VTablePointer> sessionControl) =>
       _vtable.GetAudioSessionControl.asFunction<
@@ -40,6 +44,10 @@ class IAudioSessionManager extends IUnknown {
                   int streamFlags, Pointer<VTablePointer> sessionControl)>()(
           ptr, audioSessionGuid ?? nullptr, streamFlags, sessionControl);
 
+  /// Retrieves a simple audio volume control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audiopolicy/nf-audiopolicy-iaudiosessionmanager-getsimpleaudiovolume>.
   int getSimpleAudioVolume(Pointer<GUID>? audioSessionGuid, int streamFlags,
           Pointer<VTablePointer> audioVolume) =>
       _vtable.GetSimpleAudioVolume.asFunction<

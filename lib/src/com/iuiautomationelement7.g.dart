@@ -32,6 +32,10 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
   factory IUIAutomationElement7.from(IUnknown interface) =>
       IUIAutomationElement7(interface.toInterface(IID_IUIAutomationElement7));
 
+  /// Finds the first matching element in the specified order.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement7-findfirstwithoptions>.
   int findFirstWithOptions(
           int scope,
           VTablePointer condition,
@@ -48,6 +52,10 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
                   Pointer<VTablePointer> found)>()(
           ptr, scope, condition, traversalOptions, root, found);
 
+  /// Find all matching elements in the specified order.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement7-findallwithoptions>.
   int findAllWithOptions(
           int scope,
           VTablePointer condition,
@@ -64,6 +72,11 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
                   Pointer<VTablePointer> found)>()(
           ptr, scope, condition, traversalOptions, root, found);
 
+  /// Finds the first matching element in the specified order, but also caches its
+  /// properties and pattern.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement7-findfirstwithoptionsbuildcache>.
   int findFirstWithOptionsBuildCache(
           int scope,
           VTablePointer condition,
@@ -82,6 +95,11 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
                   Pointer<VTablePointer> found)>()(
           ptr, scope, condition, cacheRequest, traversalOptions, root, found);
 
+  /// Finds all matching elements in the specified order, but also caches their
+  /// properties and patterns.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement7-findallwithoptionsbuildcache>.
   int findAllWithOptionsBuildCache(
           int scope,
           VTablePointer condition,
@@ -100,6 +118,11 @@ class IUIAutomationElement7 extends IUIAutomationElement6 {
                   Pointer<VTablePointer> found)>()(
           ptr, scope, condition, cacheRequest, traversalOptions, root, found);
 
+  /// Gets metadata from the UI Automation element that indicates how the
+  /// information should be interpreted.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement7-getcurrentmetadatavalue>.
   int getCurrentMetadataValue(
           int targetId, int metadataId, Pointer<VARIANT> returnVal) =>
       _vtable.GetCurrentMetadataValue.asFunction<

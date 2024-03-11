@@ -34,21 +34,37 @@ class IUIAutomationTableItemPattern extends IUnknown {
       IUIAutomationTableItemPattern(
           interface.toInterface(IID_IUIAutomationTableItemPattern));
 
+  /// Retrieves the row headers associated with a table item or cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtableitempattern-getcurrentrowheaderitems>.
   int getCurrentRowHeaderItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentRowHeaderItems.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves the column headers associated with a table item or cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtableitempattern-getcurrentcolumnheaderitems>.
   int getCurrentColumnHeaderItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentColumnHeaderItems.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves the cached row headers associated with a table item or cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtableitempattern-getcachedrowheaderitems>.
   int getCachedRowHeaderItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedRowHeaderItems.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves the cached column headers associated with a table item or cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtableitempattern-getcachedcolumnheaderitems>.
   int getCachedColumnHeaderItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedColumnHeaderItems.asFunction<
           int Function(VTablePointer lpVtbl,

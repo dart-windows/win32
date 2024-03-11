@@ -32,6 +32,10 @@ class IAppxManifestReader6 extends IUnknown {
   factory IAppxManifestReader6.from(IUnknown interface) =>
       IAppxManifestReader6(interface.toInterface(IID_IAppxManifestReader6));
 
+  /// Queries whether an app package is a non-qualified resource package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader6-getisnonqualifiedresourcepackage>.
   int getIsNonQualifiedResourcePackage(
           Pointer<BOOL> isNonQualifiedResourcePackage) =>
       _vtable.GetIsNonQualifiedResourcePackage.asFunction<

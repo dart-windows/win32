@@ -34,24 +34,48 @@ class IPersistFile extends IPersist {
   factory IPersistFile.from(IUnknown interface) =>
       IPersistFile(interface.toInterface(IID_IPersistFile));
 
+  /// Determines whether an object has changed since it was last saved to its
+  /// current file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ipersistfile-isdirty>.
   int isDirty() =>
       _vtable.IsDirty.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Opens the specified file and initializes an object from the file contents.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ipersistfile-load>.
   int load(Pointer<Utf16> pszFileName, int dwMode) => _vtable.Load.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName,
           int dwMode)>()(ptr, pszFileName, dwMode);
 
+  /// Saves a copy of the object to the specified file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ipersistfile-save>.
   int save(Pointer<Utf16> pszFileName, int fRemember) =>
       _vtable.Save.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName,
               int fRemember)>()(ptr, pszFileName, fRemember);
 
+  /// Notifies the object that it can write to its file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ipersistfile-savecompleted>.
   int saveCompleted(
           Pointer<Utf16> pszFileName) =>
       _vtable.SaveCompleted.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Utf16> pszFileName)>()(
           ptr, pszFileName);
 
+  /// Retrieves the current name of the file associated with the object.
+  ///
+  /// If there is no current working file, this method retrieves the default save
+  /// prompt for the object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ipersistfile-getcurfile>.
   int getCurFile(Pointer<Pointer<Utf16>> ppszFileName) =>
       _vtable.GetCurFile.asFunction<
           int Function(VTablePointer lpVtbl,

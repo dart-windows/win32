@@ -35,16 +35,29 @@ class IAppxManifestPackageDependenciesEnumerator extends IUnknown {
       IAppxManifestPackageDependenciesEnumerator(interface
           .toInterface(IID_IAppxManifestPackageDependenciesEnumerator));
 
+  /// Gets the dependency package at the current position of the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackagedependenciesenumerator-getcurrent>.
   int getCurrent(Pointer<VTablePointer> dependency) =>
       _vtable.GetCurrent.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> dependency)>()(ptr, dependency);
 
+  /// Determines whether there is a package dependency at the current position of
+  /// the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackagedependenciesenumerator-gethascurrent>.
   int getHasCurrent(Pointer<BOOL> hasCurrent) =>
       _vtable.GetHasCurrent.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<BOOL> hasCurrent)>()(
           ptr, hasCurrent);
 
+  /// Advances the position of the enumerator to the next package dependency.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackagedependenciesenumerator-movenext>.
   int moveNext(Pointer<BOOL> hasNext) => _vtable.MoveNext.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<BOOL> hasNext)>()(ptr, hasNext);

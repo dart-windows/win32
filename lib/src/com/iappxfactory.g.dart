@@ -32,6 +32,10 @@ class IAppxFactory extends IUnknown {
   factory IAppxFactory.from(IUnknown interface) =>
       IAppxFactory(interface.toInterface(IID_IAppxFactory));
 
+  /// Creates a write-only package object to which files can be added.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfactory-createpackagewriter>.
   int createPackageWriter(
           VTablePointer outputStream,
           Pointer<APPX_PACKAGE_SETTINGS> settings,
@@ -44,6 +48,12 @@ class IAppxFactory extends IUnknown {
                   Pointer<VTablePointer> packageWriter)>()(
           ptr, outputStream, settings, packageWriter);
 
+  /// Creates a read-only package reader from the contents provided by an IStream.
+  ///
+  /// This method does not validate the digital signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfactory-createpackagereader>.
   int createPackageReader(
           VTablePointer inputStream, Pointer<VTablePointer> packageReader) =>
       _vtable.CreatePackageReader.asFunction<
@@ -51,6 +61,11 @@ class IAppxFactory extends IUnknown {
                   Pointer<VTablePointer> packageReader)>()(
           ptr, inputStream, packageReader);
 
+  /// Creates a read-only manifest object model from contents provided by an
+  /// IStream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfactory-createmanifestreader>.
   int createManifestReader(
           VTablePointer inputStream, Pointer<VTablePointer> manifestReader) =>
       _vtable.CreateManifestReader.asFunction<
@@ -58,6 +73,11 @@ class IAppxFactory extends IUnknown {
                   Pointer<VTablePointer> manifestReader)>()(
           ptr, inputStream, manifestReader);
 
+  /// Creates a read-only block map object model from contents provided by an
+  /// IStream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfactory-createblockmapreader>.
   int createBlockMapReader(
           VTablePointer inputStream, Pointer<VTablePointer> blockMapReader) =>
       _vtable.CreateBlockMapReader.asFunction<
@@ -65,6 +85,11 @@ class IAppxFactory extends IUnknown {
                   Pointer<VTablePointer> blockMapReader)>()(
           ptr, inputStream, blockMapReader);
 
+  /// Creates a read-only block map object model from contents provided by an
+  /// IStream and a digital signature.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfactory-createvalidatedblockmapreader>.
   int createValidatedBlockMapReader(
           VTablePointer blockMapStream,
           Pointer<Utf16> signatureFileName,

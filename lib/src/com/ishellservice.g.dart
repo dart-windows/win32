@@ -32,6 +32,10 @@ class IShellService extends IUnknown {
   factory IShellService.from(IUnknown interface) =>
       IShellService(interface.toInterface(IID_IShellService));
 
+  /// Declares an owner reference to the service object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shdeprecated/nf-shdeprecated-ishellservice-setowner>.
   int setOwner(VTablePointer? punkOwner) => _vtable.SetOwner.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer punkOwner)>()(
       ptr, punkOwner ?? nullptr);

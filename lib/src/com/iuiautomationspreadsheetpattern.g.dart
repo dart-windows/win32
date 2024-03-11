@@ -35,6 +35,11 @@ class IUIAutomationSpreadsheetPattern extends IUnknown {
       IUIAutomationSpreadsheetPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetPattern));
 
+  /// Retrieves a UI Automation element that represents the spreadsheet cell that
+  /// has the specified name.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetpattern-getitembyname>.
   int getItemByName(Pointer<Utf16> name, Pointer<VTablePointer> element) =>
       _vtable.GetItemByName.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> name,

@@ -31,6 +31,10 @@ class IClassFactory extends IUnknown {
   factory IClassFactory.from(IUnknown interface) =>
       IClassFactory(interface.toInterface(IID_IClassFactory));
 
+  /// Creates an uninitialized object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/unknwn/nf-unknwn-iclassfactory-createinstance>.
   int createInstance(VTablePointer? pUnkOuter, Pointer<GUID> riid,
           Pointer<Pointer> ppvObject) =>
       _vtable.CreateInstance.asFunction<
@@ -38,6 +42,12 @@ class IClassFactory extends IUnknown {
                   Pointer<GUID> riid, Pointer<Pointer> ppvObject)>()(
           ptr, pUnkOuter ?? nullptr, riid, ppvObject);
 
+  /// Locks an object application open in memory.
+  ///
+  /// This enables instances to be created more quickly.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/unknwn/nf-unknwn-iclassfactory-lockserver>.
   int lockServer(int fLock) => _vtable.LockServer.asFunction<
       int Function(VTablePointer lpVtbl, int fLock)>()(ptr, fLock);
 }

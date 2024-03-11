@@ -36,14 +36,29 @@ class IUnknown {
   factory IUnknown.from(IUnknown interface) =>
       IUnknown(interface.toInterface(IID_IUnknown));
 
+  /// Retrieves pointers to the supported interfaces on an object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/unknwn/nf-unknwn-iunknown-queryinterface(refiid_void)>.
   int queryInterface(Pointer<GUID> riid, Pointer<Pointer> ppvObject) =>
       _vtable.QueryInterface.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> riid,
               Pointer<Pointer> ppvObject)>()(ptr, riid, ppvObject);
 
+  /// Increments the reference count for an interface pointer to a COM object.
+  ///
+  /// You should call this method whenever you make a copy of an interface
+  /// pointer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/unknwn/nf-unknwn-iunknown-addref>.
   int addRef() =>
       _vtable.AddRef.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Decrements the reference count for an interface on a COM object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/unknwn/nf-unknwn-iunknown-release>.
   int release() =>
       _vtable.Release.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

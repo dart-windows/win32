@@ -21,12 +21,18 @@ void main() {
       final ComGetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('get_LanguageTag'));
       expect(camelCasedName, equals('languageTag'));
+      expect(comment, equals('''
+/// Gets the BCP47 language tag this instance of the spell checker supports.
+///
+/// To learn more about this property, see
+/// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellchecker-get_languagetag>.'''));
       expect(
         nativePrototype,
         equals(
@@ -65,12 +71,19 @@ void main() {
       final ComGetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('get__NewEnum'));
       expect(camelCasedName, equals('newEnum'));
+      expect(comment, equals('''
+/// Returns an automation enumerator object that you can use to iterate through
+/// the IEnumNetworks collection.
+///
+/// To learn more about this property, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-ienumnetworks-get__newenum>.'''));
       expect(
         nativePrototype,
         equals(
@@ -112,12 +125,18 @@ void main() {
       final ComGetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('get_IsConnected'));
       expect(camelCasedName, equals('isConnected'));
+      expect(comment, equals('''
+/// Specifies if the network has any network connectivity.
+///
+/// To learn more about this property, see
+/// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-get_isconnected>.'''));
       expect(
         nativePrototype,
         equals(
@@ -157,12 +176,18 @@ void main() {
       final ComGetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('get_ResponseBody'));
       expect(camelCasedName, equals('responseBody'));
+      expect(comment, equals('''
+/// Retrieves the response entity body as an array of unsigned bytes.
+///
+/// To learn more about this property, see
+/// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-responsebody>.'''));
       expect(
         nativePrototype,
         equals(
@@ -195,12 +220,18 @@ void main() {
       final ComGetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('get_CurrentValue'));
       expect(camelCasedName, equals('currentValue'));
+      expect(comment, equals('''
+/// Retrieves the value of the control.
+///
+/// To learn more about this property, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationrangevaluepattern-get_currentvalue>.'''));
       expect(
         nativePrototype,
         equals(
@@ -239,12 +270,14 @@ void main() {
       final ComSetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('put_Volume'));
       expect(camelCasedName, equals('volume'));
+      expect(comment, isEmpty);
       expect(
         nativePrototype,
         equals('HRESULT Function(VTablePointer lpVtbl, Int32 volume)'),
@@ -273,12 +306,14 @@ void main() {
       final ComSetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('put_Description'));
       expect(camelCasedName, equals('description'));
+      expect(comment, isEmpty);
       expect(
         nativePrototype,
         equals(
@@ -311,12 +346,19 @@ if (FAILED(hr)) throw WindowsException(hr);
       final ComSetPropertyProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('put_TreeFilter'));
       expect(camelCasedName, equals('treeFilter'));
+      expect(comment, equals('''
+/// Specifies the view of the UI Automation element tree that is used when
+/// caching.
+///
+/// To learn more about this method, see
+/// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcacherequest-put_treefilter>.'''));
       expect(
         nativePrototype,
         equals('HRESULT Function(VTablePointer lpVtbl, VTablePointer filter)'),

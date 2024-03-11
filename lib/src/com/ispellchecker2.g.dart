@@ -36,6 +36,11 @@ class ISpellChecker2 extends ISpellChecker {
   factory ISpellChecker2.from(IUnknown interface) =>
       ISpellChecker2(interface.toInterface(IID_ISpellChecker2));
 
+  /// Removes a word that was previously added by ISpellChecker.Add, or set by
+  /// ISpellChecker.Ignore to be ignored.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellchecker2-remove>.
   int remove(Pointer<Utf16> word) => _vtable.Remove.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Utf16> word)>()(ptr, word);
 }

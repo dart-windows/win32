@@ -37,6 +37,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
   factory IUIAutomationElement4.from(IUnknown interface) =>
       IUIAutomationElement4(interface.toInterface(IID_IUIAutomationElement4));
 
+  /// Returns the current 1-based integer for the ordinal position in the set for
+  /// the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_currentpositioninset>.
   int get currentPositionInSet {
     final retVal = calloc<Int32>();
     try {
@@ -51,6 +56,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the current 1-based integer for the size of the set where the
+  /// element is located.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_currentsizeofset>.
   int get currentSizeOfSet {
     final retVal = calloc<Int32>();
     try {
@@ -65,6 +75,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the current 1-based integer for the level (hierarchy) for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_currentlevel>.
   int get currentLevel {
     final retVal = calloc<Int32>();
     try {
@@ -79,6 +94,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the current list of annotation types associated with this element,
+  /// such as comment, header, footer, and so on.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_currentannotationtypes>.
   Pointer<SAFEARRAY> get currentAnnotationTypes {
     final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
@@ -93,6 +113,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the current list of annotation objects associated with this element,
+  /// such as comment, header, footer, and so on.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_currentannotationobjects>.
   VTablePointer get currentAnnotationObjects {
     final retVal = calloc<VTablePointer>();
     try {
@@ -107,6 +132,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the cached 1-based integer for the ordinal position in the set for
+  /// the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_cachedpositioninset>.
   int get cachedPositionInSet {
     final retVal = calloc<Int32>();
     try {
@@ -121,6 +151,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the cached 1-based integer for the size of the set where the element
+  /// is located.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_cachedsizeofset>.
   int get cachedSizeOfSet {
     final retVal = calloc<Int32>();
     try {
@@ -135,6 +170,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the cached 1-based integer for the level (hierarchy) for the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_cachedlevel>.
   int get cachedLevel {
     final retVal = calloc<Int32>();
     try {
@@ -149,6 +189,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the cached list of annotation types associated with this element,
+  /// such as comment, header, footer, and so on.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_cachedannotationtypes>.
   Pointer<SAFEARRAY> get cachedAnnotationTypes {
     final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
@@ -163,6 +208,11 @@ class IUIAutomationElement4 extends IUIAutomationElement3 {
     }
   }
 
+  /// Returns the cached list of annotation objects associated with this element,
+  /// such as comment, header, footer, and so on.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement4-get_cachedannotationobjects>.
   VTablePointer get cachedAnnotationObjects {
     final retVal = calloc<VTablePointer>();
     try {

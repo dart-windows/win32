@@ -36,6 +36,12 @@ class IWebAuthenticationCoreManagerInterop extends IInspectable {
       IWebAuthenticationCoreManagerInterop(
           interface.toInterface(IID_IWebAuthenticationCoreManagerInterop));
 
+  /// Asynchronously requests a token from a web account provider.
+  ///
+  /// If necessary, the user is prompted to enter their credentials.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/webauthenticationcoremanagerinterop/nf-webauthenticationcoremanagerinterop-iwebauthenticationcoremanagerinterop-requesttokenforwindowasync>.
   int requestTokenForWindowAsync(int appWindow, VTablePointer request,
           Pointer<GUID> riid, Pointer<Pointer> asyncInfo) =>
       _vtable.RequestTokenForWindowAsync.asFunction<
@@ -47,6 +53,12 @@ class IWebAuthenticationCoreManagerInterop extends IInspectable {
                   Pointer<Pointer> asyncInfo)>()(
           ptr, appWindow, request, riid, asyncInfo);
 
+  /// Asynchronously requests a token from a web account provider.
+  ///
+  /// If necessary, the user is prompted to enter their credentials.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/webauthenticationcoremanagerinterop/nf-webauthenticationcoremanagerinterop-iwebauthenticationcoremanagerinterop-requesttokenwithwebaccountforwindowasync>.
   int requestTokenWithWebAccountForWindowAsync(
           int appWindow,
           VTablePointer request,

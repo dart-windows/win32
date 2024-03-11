@@ -39,6 +39,11 @@ class IUIAutomationTextChildPattern extends IUnknown {
       IUIAutomationTextChildPattern(
           interface.toInterface(IID_IUIAutomationTextChildPattern));
 
+  /// Retrieves this element's nearest ancestor element that supports the Text
+  /// control pattern.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextchildpattern-get_textcontainer>.
   VTablePointer get textContainer {
     final container = calloc<VTablePointer>();
     try {
@@ -53,6 +58,10 @@ class IUIAutomationTextChildPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a text range that encloses this child element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextchildpattern-get_textrange>.
   VTablePointer get textRange {
     final range = calloc<VTablePointer>();
     try {

@@ -32,23 +32,45 @@ class IAppxFile extends IUnknown {
   factory IAppxFile.from(IUnknown interface) =>
       IAppxFile(interface.toInterface(IID_IAppxFile));
 
+  /// Retrieves the compression option that is used to store the file in the
+  /// package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfile-getcompressionoption>.
   int getCompressionOption(Pointer<Int32> compressionOption) =>
       _vtable.GetCompressionOption.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> compressionOption)>()(ptr, compressionOption);
 
+  /// Retrieves the content type of the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfile-getcontenttype>.
   int getContentType(Pointer<Pointer<Utf16>> contentType) =>
       _vtable.GetContentType.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> contentType)>()(ptr, contentType);
 
+  /// Retrieves the name of the file, including its path relative to the package
+  /// root directory.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfile-getname>.
   int getName(Pointer<Pointer<Utf16>> fileName) => _vtable.GetName.asFunction<
       int Function(VTablePointer lpVtbl,
           Pointer<Pointer<Utf16>> fileName)>()(ptr, fileName);
 
+  /// Retrieves the uncompressed size of the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfile-getsize>.
   int getSize(Pointer<Uint64> size) => _vtable.GetSize.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Uint64> size)>()(ptr, size);
 
+  /// Gets a read-only stream that contains the uncompressed content of the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfile-getstream>.
   int getStream(Pointer<VTablePointer> stream) => _vtable.GetStream.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> stream)>()(ptr, stream);

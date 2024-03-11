@@ -37,17 +37,34 @@ class IUIAutomationWindowPattern extends IUnknown {
       IUIAutomationWindowPattern(
           interface.toInterface(IID_IUIAutomationWindowPattern));
 
+  /// Closes the window.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-close>.
   int close() =>
       _vtable.Close.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Causes the calling code to block for the specified time or until the
+  /// associated process enters an idle state, whichever completes first.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-waitforinputidle>.
   int waitForInputIdle(int milliseconds, Pointer<BOOL> success) =>
       _vtable.WaitForInputIdle.asFunction<
           int Function(VTablePointer lpVtbl, int milliseconds,
               Pointer<BOOL> success)>()(ptr, milliseconds, success);
 
+  /// Minimizes, maximizes, or restores the window.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-setwindowvisualstate>.
   int setWindowVisualState(int state) => _vtable.SetWindowVisualState
       .asFunction<int Function(VTablePointer lpVtbl, int state)>()(ptr, state);
 
+  /// Indicates whether the window can be maximized.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_currentcanmaximize>.
   int get currentCanMaximize {
     final retVal = calloc<BOOL>();
     try {
@@ -62,6 +79,10 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the window can be minimized.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_currentcanminimize>.
   int get currentCanMinimize {
     final retVal = calloc<BOOL>();
     try {
@@ -76,6 +97,10 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the window is modal.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_currentismodal>.
   int get currentIsModal {
     final retVal = calloc<BOOL>();
     try {
@@ -90,6 +115,10 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the window is the topmost element in the z-order.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_currentistopmost>.
   int get currentIsTopmost {
     final retVal = calloc<BOOL>();
     try {
@@ -104,6 +133,11 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the visual state of the window; that is, whether it is in the
+  /// normal, maximized, or minimized state.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_currentwindowvisualstate>.
   int get currentWindowVisualState {
     final retVal = calloc<Int32>();
     try {
@@ -118,6 +152,11 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the current state of the window for the purposes of user
+  /// interaction.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_currentwindowinteractionstate>.
   int get currentWindowInteractionState {
     final retVal = calloc<Int32>();
     try {
@@ -132,6 +171,10 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the window can be maximized.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_cachedcanmaximize>.
   int get cachedCanMaximize {
     final retVal = calloc<BOOL>();
     try {
@@ -146,6 +189,10 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the window can be minimized.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_cachedcanminimize>.
   int get cachedCanMinimize {
     final retVal = calloc<BOOL>();
     try {
@@ -160,6 +207,10 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the window is modal.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_cachedismodal>.
   int get cachedIsModal {
     final retVal = calloc<BOOL>();
     try {
@@ -174,6 +225,11 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the window is the topmost
+  /// element in the z-order.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_cachedistopmost>.
   int get cachedIsTopmost {
     final retVal = calloc<BOOL>();
     try {
@@ -188,6 +244,11 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates the visual state of the window; that
+  /// is, whether it is in the normal, maximized, or minimized state.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_cachedwindowvisualstate>.
   int get cachedWindowVisualState {
     final retVal = calloc<Int32>();
     try {
@@ -202,6 +263,11 @@ class IUIAutomationWindowPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates the current state of the window for
+  /// the purposes of user interaction.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationwindowpattern-get_cachedwindowinteractionstate>.
   int get cachedWindowInteractionState {
     final retVal = calloc<Int32>();
     try {

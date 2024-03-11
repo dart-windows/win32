@@ -30,6 +30,10 @@ class IModalWindow extends IUnknown {
   factory IModalWindow.from(IUnknown interface) =>
       IModalWindow(interface.toInterface(IID_IModalWindow));
 
+  /// Launches the modal window.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-imodalwindow-show>.
   int show(int? hwndOwner) => _vtable.Show.asFunction<
       int Function(VTablePointer lpVtbl, int hwndOwner)>()(ptr, hwndOwner ?? 0);
 }

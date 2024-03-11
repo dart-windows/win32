@@ -36,6 +36,10 @@ class INetworkListManagerEvents extends IUnknown {
       INetworkListManagerEvents(
           interface.toInterface(IID_INetworkListManagerEvents));
 
+  /// Called when network connectivity related changes occur.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanagerevents-connectivitychanged>.
   int connectivityChanged(int newConnectivity) =>
       _vtable.ConnectivityChanged.asFunction<
               int Function(VTablePointer lpVtbl, int newConnectivity)>()(

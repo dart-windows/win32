@@ -40,6 +40,10 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
       IUIAutomationPropertyCondition(
           interface.toInterface(IID_IUIAutomationPropertyCondition));
 
+  /// Retrieves the identifier of the property on which this condition is based.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationpropertycondition-get_propertyid>.
   int get propertyId {
     final propertyId = calloc<Int32>();
     try {
@@ -54,6 +58,11 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     }
   }
 
+  /// Retrieves the property value that must be matched for the condition to be
+  /// true.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationpropertycondition-get_propertyvalue>.
   Pointer<VARIANT> get propertyValue {
     final propertyValue = calloc<VARIANT>();
     final hr = _vtable.get_PropertyValue.asFunction<
@@ -66,6 +75,10 @@ class IUIAutomationPropertyCondition extends IUIAutomationCondition {
     return propertyValue;
   }
 
+  /// Retrieves a set of flags that specify how the condition is applied.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationpropertycondition-get_propertyconditionflags>.
   int get propertyConditionFlags {
     final flags = calloc<Int32>();
     try {

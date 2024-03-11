@@ -19,12 +19,14 @@ void main() {
       final ComMethodProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('Speak'));
       expect(camelCasedName, equals('speak'));
+      expect(comment, isEmpty);
       expect(
         nativePrototype,
         equals(
@@ -63,12 +65,18 @@ void main() {
       final ComMethodProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('Show'));
       expect(camelCasedName, equals('show'));
+      expect(comment, equals('''
+/// Launches the modal window.
+///
+/// To learn more about this method, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-imodalwindow-show>.'''));
       expect(
         nativePrototype,
         equals(
@@ -105,12 +113,19 @@ void main() {
       final ComMethodProjection(
         :name,
         :camelCasedName,
+        :comment,
         :nativePrototype,
         :dartPrototype,
         :methodArguments
       ) = projection;
       expect(name, equals('ParseDisplayName'));
       expect(camelCasedName, equals('parseDisplayName'));
+      expect(comment, equals('''
+/// Translates the display name of a file object or a folder into an item
+/// identifier list.
+///
+/// To learn more about this method, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-parsedisplayname>.'''));
       expect(
         nativePrototype,
         equals(

@@ -35,6 +35,10 @@ class IUIAutomationCustomNavigationPattern extends IUnknown {
       IUIAutomationCustomNavigationPattern(
           interface.toInterface(IID_IUIAutomationCustomNavigationPattern));
 
+  /// Gets the next element in the specified direction within the logical UI tree.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationcustomnavigationpattern-navigate>.
   int navigate(int direction, Pointer<VTablePointer> pRetVal) =>
       _vtable.Navigate.asFunction<
           int Function(VTablePointer lpVtbl, int direction,

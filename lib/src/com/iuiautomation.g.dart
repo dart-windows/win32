@@ -36,6 +36,11 @@ class IUIAutomation extends IUnknown {
   factory IUIAutomation.from(IUnknown interface) =>
       IUIAutomation(interface.toInterface(IID_IUIAutomation));
 
+  /// Compares two UI Automation elements to determine whether they represent the
+  /// same underlying UI element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-compareelements>.
   int compareElements(
           VTablePointer el1, VTablePointer el2, Pointer<BOOL> areSame) =>
       _vtable.CompareElements.asFunction<
@@ -45,6 +50,12 @@ class IUIAutomation extends IUnknown {
               VTablePointer el2,
               Pointer<BOOL> areSame)>()(ptr, el1, el2, areSame);
 
+  /// Compares two integer arrays containing run-time identifiers (IDs) to
+  /// determine whether their content is the same and they belong to the same UI
+  /// element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-compareruntimeids>.
   int compareRuntimeIds(Pointer<SAFEARRAY> runtimeId1,
           Pointer<SAFEARRAY> runtimeId2, Pointer<BOOL> areSame) =>
       _vtable.CompareRuntimeIds.asFunction<
@@ -54,32 +65,60 @@ class IUIAutomation extends IUnknown {
               Pointer<SAFEARRAY> runtimeId2,
               Pointer<BOOL> areSame)>()(ptr, runtimeId1, runtimeId2, areSame);
 
+  /// Retrieves the UI Automation element that represents the desktop.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-getrootelement>.
   int getRootElement(Pointer<VTablePointer> root) =>
       _vtable.GetRootElement.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<VTablePointer> root)>()(ptr, root);
 
+  /// Retrieves a UI Automation element for the specified window.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfromhandle>.
   int elementFromHandle(int hwnd, Pointer<VTablePointer> element) =>
       _vtable.ElementFromHandle.asFunction<
           int Function(VTablePointer lpVtbl, int hwnd,
               Pointer<VTablePointer> element)>()(ptr, hwnd, element);
 
+  /// Retrieves the UI Automation element at the specified point on the desktop.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfrompoint>.
   int elementFromPoint(POINT pt, Pointer<VTablePointer> element) =>
       _vtable.ElementFromPoint.asFunction<
           int Function(VTablePointer lpVtbl, POINT pt,
               Pointer<VTablePointer> element)>()(ptr, pt, element);
 
+  /// Retrieves the UI Automation element that has the input focus.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-getfocusedelement>.
   int getFocusedElement(Pointer<VTablePointer> element) =>
       _vtable.GetFocusedElement.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> element)>()(ptr, element);
 
+  /// Retrieves the UI Automation element that represents the desktop, prefetches
+  /// the requested properties and control patterns, and stores the prefetched
+  /// items in the cache.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-getrootelementbuildcache>.
   int getRootElementBuildCache(
           VTablePointer cacheRequest, Pointer<VTablePointer> root) =>
       _vtable.GetRootElementBuildCache.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> root)>()(ptr, cacheRequest, root);
 
+  /// Retrieves a UI Automation element for the specified window, prefetches the
+  /// requested properties and control patterns, and stores the prefetched items
+  /// in the cache.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfromhandlebuildcache>.
   int elementFromHandleBuildCache(int hwnd, VTablePointer cacheRequest,
           Pointer<VTablePointer> element) =>
       _vtable.ElementFromHandleBuildCache.asFunction<
@@ -90,6 +129,12 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> element)>()(
           ptr, hwnd, cacheRequest, element);
 
+  /// Retrieves the UI Automation element at the specified point on the desktop,
+  /// prefetches the requested properties and control patterns, and stores the
+  /// prefetched items in the cache.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfrompointbuildcache>.
   int elementFromPointBuildCache(POINT pt, VTablePointer cacheRequest,
           Pointer<VTablePointer> element) =>
       _vtable.ElementFromPointBuildCache.asFunction<
@@ -100,18 +145,34 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> element)>()(
           ptr, pt, cacheRequest, element);
 
+  /// Retrieves the UI Automation element that has the input focus, prefetches the
+  /// requested properties and control patterns, and stores the prefetched items
+  /// in the cache.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-getfocusedelementbuildcache>.
   int getFocusedElementBuildCache(
           VTablePointer cacheRequest, Pointer<VTablePointer> element) =>
       _vtable.GetFocusedElementBuildCache.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               Pointer<VTablePointer> element)>()(ptr, cacheRequest, element);
 
+  /// Retrieves a tree walker object that can be used to traverse the Microsoft UI
+  /// Automation tree.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createtreewalker>.
   int createTreeWalker(
           VTablePointer pCondition, Pointer<VTablePointer> walker) =>
       _vtable.CreateTreeWalker.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pCondition,
               Pointer<VTablePointer> walker)>()(ptr, pCondition, walker);
 
+  /// Retrieves an IUIAutomationTreeWalker interface used to discover control
+  /// elements.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_controlviewwalker>.
   VTablePointer get controlViewWalker {
     final walker = calloc<VTablePointer>();
     try {
@@ -126,6 +187,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves an IUIAutomationTreeWalker interface used to discover content
+  /// elements.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_contentviewwalker>.
   VTablePointer get contentViewWalker {
     final walker = calloc<VTablePointer>();
     try {
@@ -140,6 +206,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves a tree walker object used to traverse an unfiltered view of the
+  /// Microsoft UI Automation tree.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_rawviewwalker>.
   VTablePointer get rawViewWalker {
     final walker = calloc<VTablePointer>();
     try {
@@ -154,6 +225,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves a predefined IUIAutomationCondition interface that selects all UI
+  /// elements in an unfiltered view.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_rawviewcondition>.
   VTablePointer get rawViewCondition {
     final condition = calloc<VTablePointer>();
     try {
@@ -168,6 +244,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves a predefined IUIAutomationCondition interface that selects control
+  /// elements.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_controlviewcondition>.
   VTablePointer get controlViewCondition {
     final condition = calloc<VTablePointer>();
     try {
@@ -182,6 +263,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves a predefined IUIAutomationCondition interface that selects content
+  /// elements.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_contentviewcondition>.
   VTablePointer get contentViewCondition {
     final condition = calloc<VTablePointer>();
     try {
@@ -196,21 +282,38 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Creates a cache request.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createcacherequest>.
   int createCacheRequest(Pointer<VTablePointer> cacheRequest) =>
       _vtable.CreateCacheRequest.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> cacheRequest)>()(ptr, cacheRequest);
 
+  /// Retrieves a predefined condition that selects all elements.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createtruecondition>.
   int createTrueCondition(Pointer<VTablePointer> newCondition) =>
       _vtable.CreateTrueCondition.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> newCondition)>()(ptr, newCondition);
 
+  /// Creates a condition that is always false.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createfalsecondition>.
   int createFalseCondition(Pointer<VTablePointer> newCondition) =>
       _vtable.CreateFalseCondition.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> newCondition)>()(ptr, newCondition);
 
+  /// Creates a condition that selects elements that have a property with the
+  /// specified value.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createpropertycondition>.
   int createPropertyCondition(
           int propertyId, VARIANT value, Pointer<VTablePointer> newCondition) =>
       _vtable.CreatePropertyCondition.asFunction<
@@ -218,6 +321,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, propertyId, value, newCondition);
 
+  /// Creates a condition that selects elements that have a property with the
+  /// specified value, using optional flags.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createpropertyconditionex>.
   int createPropertyConditionEx(int propertyId, VARIANT value, int flags,
           Pointer<VTablePointer> newCondition) =>
       _vtable.CreatePropertyConditionEx.asFunction<
@@ -225,6 +333,10 @@ class IUIAutomation extends IUnknown {
                   int flags, Pointer<VTablePointer> newCondition)>()(
           ptr, propertyId, value, flags, newCondition);
 
+  /// Creates a condition that selects elements that match both of two conditions.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createandcondition>.
   int createAndCondition(VTablePointer condition1, VTablePointer condition2,
           Pointer<VTablePointer> newCondition) =>
       _vtable.CreateAndCondition.asFunction<
@@ -235,6 +347,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, condition1, condition2, newCondition);
 
+  /// Creates a condition that selects elements based on multiple conditions, all
+  /// of which must be true.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createandconditionfromarray>.
   int createAndConditionFromArray(
           Pointer<SAFEARRAY> conditions, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateAndConditionFromArray.asFunction<
@@ -242,6 +359,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, newCondition);
 
+  /// Creates a condition that selects elements from a native array, based on
+  /// multiple conditions that must all be true.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createandconditionfromnativearray>.
   int createAndConditionFromNativeArray(Pointer<VTablePointer> conditions,
           int conditionCount, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateAndConditionFromNativeArray.asFunction<
@@ -252,6 +374,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, conditionCount, newCondition);
 
+  /// Creates a combination of two conditions where a match exists if either of
+  /// the conditions is true.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createorcondition>.
   int createOrCondition(VTablePointer condition1, VTablePointer condition2,
           Pointer<VTablePointer> newCondition) =>
       _vtable.CreateOrCondition.asFunction<
@@ -262,6 +389,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, condition1, condition2, newCondition);
 
+  /// Creates a combination of two or more conditions where a match exists if any
+  /// of the conditions is true.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createorconditionfromarray>.
   int createOrConditionFromArray(
           Pointer<SAFEARRAY> conditions, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateOrConditionFromArray.asFunction<
@@ -269,6 +401,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, newCondition);
 
+  /// Creates a combination of two or more conditions where a match exists if any
+  /// one of the conditions is true.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createorconditionfromnativearray>.
   int createOrConditionFromNativeArray(Pointer<VTablePointer> conditions,
           int conditionCount, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateOrConditionFromNativeArray.asFunction<
@@ -279,6 +416,10 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, conditions, conditionCount, newCondition);
 
+  /// Creates a condition that is the negative of a specified condition.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createnotcondition>.
   int createNotCondition(
           VTablePointer condition, Pointer<VTablePointer> newCondition) =>
       _vtable.CreateNotCondition.asFunction<
@@ -286,6 +427,13 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> newCondition)>()(
           ptr, condition, newCondition);
 
+  /// Registers a method that handles Microsoft UI Automation events.
+  ///
+  /// **Note:** Before implementing an event handler, you should be familiar with
+  /// the threading issues described in Understanding Threading Issues.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-addautomationeventhandler>.
   int addAutomationEventHandler(int eventId, VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddAutomationEventHandler.asFunction<
@@ -298,12 +446,20 @@ class IUIAutomation extends IUnknown {
                   VTablePointer handler)>()(
           ptr, eventId, element, scope, cacheRequest, handler);
 
+  /// Removes the specified UI Automation event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-removeautomationeventhandler>.
   int removeAutomationEventHandler(
           int eventId, VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveAutomationEventHandler.asFunction<
           int Function(VTablePointer lpVtbl, int eventId, VTablePointer element,
               VTablePointer handler)>()(ptr, eventId, element, handler);
 
+  /// Registers a method that handles a native array of property-changed events.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-addpropertychangedeventhandlernativearray>.
   int addPropertyChangedEventHandlerNativeArray(
           VTablePointer element,
           int scope,
@@ -322,6 +478,10 @@ class IUIAutomation extends IUnknown {
                   int propertyCount)>()(ptr, element, scope, cacheRequest,
           handler, propertyArray, propertyCount);
 
+  /// Registers a method that handles and array of property-changed events.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-addpropertychangedeventhandler>.
   int addPropertyChangedEventHandler(
           VTablePointer element,
           int scope,
@@ -338,12 +498,23 @@ class IUIAutomation extends IUnknown {
                   Pointer<SAFEARRAY> propertyArray)>()(
           ptr, element, scope, cacheRequest, handler, propertyArray);
 
+  /// Removes a property-changed event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-removepropertychangedeventhandler>.
   int removePropertyChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemovePropertyChangedEventHandler.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 
+  /// Registers a method that handles structure-changed events.
+  ///
+  /// **Note:** Before implementing an event handler, you should be familiar with
+  /// the threading issues described in Understanding Threading Issues.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-addstructurechangedeventhandler>.
   int addStructureChangedEventHandler(VTablePointer element, int scope,
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddStructureChangedEventHandler.asFunction<
@@ -355,26 +526,49 @@ class IUIAutomation extends IUnknown {
                   VTablePointer handler)>()(
           ptr, element, scope, cacheRequest, handler);
 
+  /// Removes a structure-changed event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-removestructurechangedeventhandler>.
   int removeStructureChangedEventHandler(
           VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveStructureChangedEventHandler.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer element,
               VTablePointer handler)>()(ptr, element, handler);
 
+  /// Registers a method that handles focus-changed events.
+  ///
+  /// **Note:** Before implementing an event handler, you should be familiar with
+  /// the threading issues described in Understanding Threading Issues.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-addfocuschangedeventhandler>.
   int addFocusChangedEventHandler(
           VTablePointer cacheRequest, VTablePointer handler) =>
       _vtable.AddFocusChangedEventHandler.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer cacheRequest,
               VTablePointer handler)>()(ptr, cacheRequest, handler);
 
+  /// Removes a focus-changed event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-removefocuschangedeventhandler>.
   int removeFocusChangedEventHandler(VTablePointer handler) =>
       _vtable.RemoveFocusChangedEventHandler.asFunction<
           int Function(
               VTablePointer lpVtbl, VTablePointer handler)>()(ptr, handler);
 
+  /// Removes all registered Microsoft UI Automation event handlers.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-removealleventhandlers>.
   int removeAllEventHandlers() => _vtable.RemoveAllEventHandlers.asFunction<
       int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Converts an array of integers to a SAFEARRAY.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-intnativearraytosafearray>.
   int intNativeArrayToSafeArray(Pointer<Int32> array, int arrayCount,
           Pointer<Pointer<SAFEARRAY>> safeArray) =>
       _vtable.IntNativeArrayToSafeArray.asFunction<
@@ -382,6 +576,10 @@ class IUIAutomation extends IUnknown {
                   int arrayCount, Pointer<Pointer<SAFEARRAY>> safeArray)>()(
           ptr, array, arrayCount, safeArray);
 
+  /// Converts a SAFEARRAY of integers to an array.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-intsafearraytonativearray>.
   int intSafeArrayToNativeArray(Pointer<SAFEARRAY> intArray,
           Pointer<Pointer<Int32>> array, Pointer<Int32> arrayCount) =>
       _vtable.IntSafeArrayToNativeArray.asFunction<
@@ -391,16 +589,29 @@ class IUIAutomation extends IUnknown {
               Pointer<Pointer<Int32>> array,
               Pointer<Int32> arrayCount)>()(ptr, intArray, array, arrayCount);
 
+  /// Creates a VARIANT that contains the coordinates of a rectangle.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-recttovariant>.
   int rectToVariant(RECT rc, Pointer<VARIANT> var_) =>
       _vtable.RectToVariant.asFunction<
           int Function(VTablePointer lpVtbl, RECT rc,
               Pointer<VARIANT> var_)>()(ptr, rc, var_);
 
+  /// Converts a VARIANT containing rectangle coordinates to a RECT.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-varianttorect>.
   int variantToRect(VARIANT var_, Pointer<RECT> rc) =>
       _vtable.VariantToRect.asFunction<
           int Function(VTablePointer lpVtbl, VARIANT var_,
               Pointer<RECT> rc)>()(ptr, var_, rc);
 
+  /// Converts a SAFEARRAY containing rectangle coordinates to an array of type
+  /// RECT.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-safearraytorectnativearray>.
   int safeArrayToRectNativeArray(Pointer<SAFEARRAY> rects,
           Pointer<Pointer<RECT>> rectArray, Pointer<Int32> rectArrayCount) =>
       _vtable.SafeArrayToRectNativeArray.asFunction<
@@ -411,6 +622,10 @@ class IUIAutomation extends IUnknown {
                   Pointer<Int32> rectArrayCount)>()(
           ptr, rects, rectArray, rectArrayCount);
 
+  /// Creates a new instance of a proxy factory object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-createproxyfactoryentry>.
   int createProxyFactoryEntry(
           VTablePointer factory, Pointer<VTablePointer> factoryEntry) =>
       _vtable.CreateProxyFactoryEntry.asFunction<
@@ -418,6 +633,11 @@ class IUIAutomation extends IUnknown {
                   Pointer<VTablePointer> factoryEntry)>()(
           ptr, factory, factoryEntry);
 
+  /// Retrieves an object that represents the mapping of Window classnames and
+  /// associated data to individual proxy factories.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_proxyfactorymapping>.
   VTablePointer get proxyFactoryMapping {
     final factoryMapping = calloc<VTablePointer>();
     try {
@@ -432,16 +652,29 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves the registered programmatic name of a property.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-getpropertyprogrammaticname>.
   int getPropertyProgrammaticName(int property, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetPropertyProgrammaticName.asFunction<
           int Function(VTablePointer lpVtbl, int property,
               Pointer<Pointer<Utf16>> name)>()(ptr, property, name);
 
+  /// Retrieves the registered programmatic name of a control pattern.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-getpatternprogrammaticname>.
   int getPatternProgrammaticName(int pattern, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetPatternProgrammaticName.asFunction<
           int Function(VTablePointer lpVtbl, int pattern,
               Pointer<Pointer<Utf16>> name)>()(ptr, pattern, name);
 
+  /// Retrieves the control patterns that might be supported on a UI Automation
+  /// element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-pollforpotentialsupportedpatterns>.
   int pollForPotentialSupportedPatterns(
           VTablePointer pElement,
           Pointer<Pointer<SAFEARRAY>> patternIds,
@@ -454,6 +687,10 @@ class IUIAutomation extends IUnknown {
                   Pointer<Pointer<SAFEARRAY>> patternNames)>()(
           ptr, pElement, patternIds, patternNames);
 
+  /// Retrieves the properties that might be supported on a UI Automation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-pollforpotentialsupportedproperties>.
   int pollForPotentialSupportedProperties(
           VTablePointer pElement,
           Pointer<Pointer<SAFEARRAY>> propertyIds,
@@ -466,11 +703,21 @@ class IUIAutomation extends IUnknown {
                   Pointer<Pointer<SAFEARRAY>> propertyNames)>()(
           ptr, pElement, propertyIds, propertyNames);
 
+  /// Checks a provided VARIANT to see if it contains the Not Supported
+  /// identifier.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-checknotsupported>.
   int checkNotSupported(VARIANT value, Pointer<BOOL> isNotSupported) =>
       _vtable.CheckNotSupported.asFunction<
           int Function(VTablePointer lpVtbl, VARIANT value,
               Pointer<BOOL> isNotSupported)>()(ptr, value, isNotSupported);
 
+  /// Retrieves a static token object representing a property or text attribute
+  /// that is not supported.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_reservednotsupportedvalue>.
   VTablePointer get reservedNotSupportedValue {
     final notSupportedValue = calloc<VTablePointer>();
     try {
@@ -486,6 +733,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves a static token object representing a text attribute that is a
+  /// mixed attribute.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-get_reservedmixedattributevalue>.
   VTablePointer get reservedMixedAttributeValue {
     final mixedAttributeValue = calloc<VTablePointer>();
     try {
@@ -501,6 +753,11 @@ class IUIAutomation extends IUnknown {
     }
   }
 
+  /// Retrieves a UI Automation element for the specified accessible object from a
+  /// Microsoft Active Accessibility server.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfromiaccessible>.
   int elementFromIAccessible(VTablePointer accessible, int childId,
           Pointer<VTablePointer> element) =>
       _vtable.ElementFromIAccessible.asFunction<
@@ -508,6 +765,12 @@ class IUIAutomation extends IUnknown {
                   int childId, Pointer<VTablePointer> element)>()(
           ptr, accessible, childId, element);
 
+  /// Retrieves a UI Automation element for the specified accessible object from a
+  /// Microsoft Active Accessibility server, prefetches the requested properties
+  /// and control patterns, and stores the prefetched items in the cache.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfromiaccessiblebuildcache>.
   int elementFromIAccessibleBuildCache(VTablePointer accessible, int childId,
           VTablePointer cacheRequest, Pointer<VTablePointer> element) =>
       _vtable.ElementFromIAccessibleBuildCache.asFunction<

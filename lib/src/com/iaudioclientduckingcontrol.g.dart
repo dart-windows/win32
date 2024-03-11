@@ -34,6 +34,10 @@ class IAudioClientDuckingControl extends IUnknown {
       IAudioClientDuckingControl(
           interface.toInterface(IID_IAudioClientDuckingControl));
 
+  /// Sets the audio ducking options for an audio render stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclientduckingcontrol-setduckingoptionsforcurrentstream>.
   int setDuckingOptionsForCurrentStream(int options) =>
       _vtable.SetDuckingOptionsForCurrentStream.asFunction<
           int Function(VTablePointer lpVtbl, int options)>()(ptr, options);

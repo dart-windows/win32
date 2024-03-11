@@ -34,6 +34,11 @@ class IUIAutomationObjectModelPattern extends IUnknown {
       IUIAutomationObjectModelPattern(
           interface.toInterface(IID_IUIAutomationObjectModelPattern));
 
+  /// Retrieves an interface used to access the underlying object model of the
+  /// provider.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationobjectmodelpattern-getunderlyingobjectmodel>.
   int getUnderlyingObjectModel(Pointer<VTablePointer> retVal) =>
       _vtable.GetUnderlyingObjectModel.asFunction<
           int Function(VTablePointer lpVtbl,

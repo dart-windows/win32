@@ -38,16 +38,30 @@ class IUIAutomationTablePattern extends IUnknown {
       IUIAutomationTablePattern(
           interface.toInterface(IID_IUIAutomationTablePattern));
 
+  /// Retrieves a collection of UI Automation elements representing all the row
+  /// headers in a table.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtablepattern-getcurrentrowheaders>.
   int getCurrentRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentRowHeaders.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves a collection of UI Automation elements representing all the column
+  /// headers in a table.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtablepattern-getcurrentcolumnheaders>.
   int getCurrentColumnHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentColumnHeaders.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves the primary direction of traversal for the table.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtablepattern-get_currentroworcolumnmajor>.
   int get currentRowOrColumnMajor {
     final retVal = calloc<Int32>();
     try {
@@ -62,16 +76,30 @@ class IUIAutomationTablePattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached collection of UI Automation elements representing all the
+  /// row headers in a table.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtablepattern-getcachedrowheaders>.
   int getCachedRowHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedRowHeaders.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves a cached collection of UI Automation elements representing all the
+  /// column headers in a table.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtablepattern-getcachedcolumnheaders>.
   int getCachedColumnHeaders(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedColumnHeaders.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves the cached primary direction of traversal for the table.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtablepattern-get_cachedroworcolumnmajor>.
   int get cachedRowOrColumnMajor {
     final retVal = calloc<Int32>();
     try {

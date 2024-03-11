@@ -41,6 +41,11 @@ class IUIAutomationProxyFactory extends IUnknown {
       IUIAutomationProxyFactory(
           interface.toInterface(IID_IUIAutomationProxyFactory));
 
+  /// Creates a proxy object that provides Microsoft UI Automation support for a
+  /// UI element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactory-createprovider>.
   int createProvider(int hwnd, int idObject, int idChild,
           Pointer<VTablePointer> provider) =>
       _vtable.CreateProvider.asFunction<
@@ -48,6 +53,10 @@ class IUIAutomationProxyFactory extends IUnknown {
                   int idChild, Pointer<VTablePointer> provider)>()(
           ptr, hwnd, idObject, idChild, provider);
 
+  /// Retrieves the identifier of the proxy factory.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactory-get_proxyfactoryid>.
   Pointer<Utf16> get proxyFactoryId {
     final factoryId = calloc<Pointer<Utf16>>();
     try {

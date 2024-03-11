@@ -30,6 +30,10 @@ class IAudioClock2 extends IUnknown {
   factory IAudioClock2.from(IUnknown interface) =>
       IAudioClock2(interface.toInterface(IID_IAudioClock2));
 
+  /// Gets the current device position, in frames, directly from the hardware.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclock2-getdeviceposition>.
   int getDevicePosition(
           Pointer<Uint64> devicePosition, Pointer<Uint64>? qPCPosition) =>
       _vtable.GetDevicePosition.asFunction<

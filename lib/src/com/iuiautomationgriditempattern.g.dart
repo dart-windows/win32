@@ -39,6 +39,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
       IUIAutomationGridItemPattern(
           interface.toInterface(IID_IUIAutomationGridItemPattern));
 
+  /// Retrieves the element that contains the grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_currentcontaininggrid>.
   VTablePointer get currentContainingGrid {
     final retVal = calloc<VTablePointer>();
     try {
@@ -53,6 +57,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the zero-based index of the row that contains the grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_currentrow>.
   int get currentRow {
     final retVal = calloc<Int32>();
     try {
@@ -67,6 +75,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the zero-based index of the column that contains the item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_currentcolumn>.
   int get currentColumn {
     final retVal = calloc<Int32>();
     try {
@@ -81,6 +93,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the number of rows spanned by the grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_currentrowspan>.
   int get currentRowSpan {
     final retVal = calloc<Int32>();
     try {
@@ -95,6 +111,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the number of columns spanned by the grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_currentcolumnspan>.
   int get currentColumnSpan {
     final retVal = calloc<Int32>();
     try {
@@ -109,6 +129,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached element that contains the grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_cachedcontaininggrid>.
   VTablePointer get cachedContainingGrid {
     final retVal = calloc<VTablePointer>();
     try {
@@ -123,6 +147,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached zero-based index of the row that contains the item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_cachedrow>.
   int get cachedRow {
     final retVal = calloc<Int32>();
     try {
@@ -137,6 +165,11 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached zero-based index of the column that contains the grid
+  /// item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_cachedcolumn>.
   int get cachedColumn {
     final retVal = calloc<Int32>();
     try {
@@ -151,6 +184,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached number of rows spanned by a grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_cachedrowspan>.
   int get cachedRowSpan {
     final retVal = calloc<Int32>();
     try {
@@ -165,6 +202,10 @@ class IUIAutomationGridItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached number of columns spanned by the grid item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationgriditempattern-get_cachedcolumnspan>.
   int get cachedColumnSpan {
     final retVal = calloc<Int32>();
     try {

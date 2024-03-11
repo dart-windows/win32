@@ -33,28 +33,52 @@ class ISensor extends IUnknown {
   factory ISensor.from(IUnknown interface) =>
       ISensor(interface.toInterface(IID_ISensor));
 
+  /// Retrieves the unique identifier of the sensor.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getid>.
   int getID(Pointer<GUID> pID) => _vtable.GetID.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<GUID> pID)>()(ptr, pID);
 
+  /// Retrieves the identifier of the sensor category.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getcategory>.
   int getCategory(Pointer<GUID> pSensorCategory) =>
       _vtable.GetCategory.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<GUID> pSensorCategory)>()(ptr, pSensorCategory);
 
+  /// Retrieves the sensor type ID.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-gettype>.
   int getType(Pointer<GUID> pSensorType) => _vtable.GetType.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<GUID> pSensorType)>()(ptr, pSensorType);
 
+  /// Retrieves the sensor name that is intended to be seen by the user.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getfriendlyname>.
   int getFriendlyName(Pointer<Pointer<Utf16>> pFriendlyName) =>
       _vtable.GetFriendlyName.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pFriendlyName)>()(ptr, pFriendlyName);
 
+  /// Retrieves a property value.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getproperty>.
   int getProperty(Pointer<PROPERTYKEY> key, Pointer<PROPVARIANT> pProperty) =>
       _vtable.GetProperty.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<PROPVARIANT> pProperty)>()(ptr, key, pProperty);
 
+  /// Retrieves multiple sensor properties.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getproperties>.
   int getProperties(
           VTablePointer? pKeys, Pointer<VTablePointer> ppProperties) =>
       _vtable.GetProperties.asFunction<
@@ -62,11 +86,20 @@ class ISensor extends IUnknown {
                   Pointer<VTablePointer> ppProperties)>()(
           ptr, pKeys ?? nullptr, ppProperties);
 
+  /// Retrieves a set of PROPERTYKEYs that represent the data fields the sensor
+  /// can provide.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getsupporteddatafields>.
   int getSupportedDataFields(Pointer<VTablePointer> ppDataFields) =>
       _vtable.GetSupportedDataFields.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppDataFields)>()(ptr, ppDataFields);
 
+  /// Specifies sensor properties.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-setproperties>.
   int setProperties(
           VTablePointer? pProperties, Pointer<VTablePointer> ppResults) =>
       _vtable.SetProperties.asFunction<
@@ -74,20 +107,36 @@ class ISensor extends IUnknown {
                   Pointer<VTablePointer> ppResults)>()(
           ptr, pProperties ?? nullptr, ppResults);
 
+  /// Indicates whether the sensor supports the specified data field.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-supportsdatafield>.
   int supportsDataField(
           Pointer<PROPERTYKEY> key, Pointer<VARIANT_BOOL> pIsSupported) =>
       _vtable.SupportsDataField.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> key,
               Pointer<VARIANT_BOOL> pIsSupported)>()(ptr, key, pIsSupported);
 
+  /// Retrieves the current operational state of the sensor.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getstate>.
   int getState(Pointer<Int32> pState) => _vtable.GetState.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Int32> pState)>()(ptr, pState);
 
+  /// Retrieves the most recent sensor data report.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-getdata>.
   int getData(Pointer<VTablePointer> ppDataReport) =>
       _vtable.GetData.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppDataReport)>()(ptr, ppDataReport);
 
+  /// Indicates whether the sensor supports the specified event.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-supportsevent>.
   int supportsEvent(
           Pointer<GUID> eventGuid, Pointer<VARIANT_BOOL> pIsSupported) =>
       _vtable.SupportsEvent.asFunction<
@@ -95,17 +144,29 @@ class ISensor extends IUnknown {
                   Pointer<VARIANT_BOOL> pIsSupported)>()(
           ptr, eventGuid, pIsSupported);
 
+  /// Retrieves the current event interest settings.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-geteventinterest>.
   int getEventInterest(
           Pointer<Pointer<GUID>> ppValues, Pointer<Uint32> pCount) =>
       _vtable.GetEventInterest.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Pointer<GUID>> ppValues,
               Pointer<Uint32> pCount)>()(ptr, ppValues, pCount);
 
+  /// Specifies the list of sensor events to receive.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-seteventinterest>.
   int setEventInterest(Pointer<GUID>? pValues, int count) =>
       _vtable.SetEventInterest.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> pValues,
               int count)>()(ptr, pValues ?? nullptr, count);
 
+  /// Specifies the interface through which to receive sensor event notifications.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensor-seteventsink>.
   int setEventSink(VTablePointer? pEvents) => _vtable.SetEventSink.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pEvents)>()(
       ptr, pEvents ?? nullptr);

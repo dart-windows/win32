@@ -34,11 +34,20 @@ class IAppxManifestApplication extends IUnknown {
       IAppxManifestApplication(
           interface.toInterface(IID_IAppxManifestApplication));
 
+  /// Gets the value of a string element in the application metadata section of
+  /// the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestapplication-getstringvalue>.
   int getStringValue(Pointer<Utf16> name, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetStringValue.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> name,
               Pointer<Pointer<Utf16>> value)>()(ptr, name, value);
 
+  /// Gets the application user model identifier.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestapplication-getappusermodelid>.
   int getAppUserModelId(Pointer<Pointer<Utf16>> appUserModelId) =>
       _vtable.GetAppUserModelId.asFunction<
           int Function(VTablePointer lpVtbl,

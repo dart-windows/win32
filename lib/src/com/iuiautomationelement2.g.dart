@@ -37,6 +37,10 @@ class IUIAutomationElement2 extends IUIAutomationElement {
   factory IUIAutomationElement2.from(IUnknown interface) =>
       IUIAutomationElement2(interface.toInterface(IID_IUIAutomationElement2));
 
+  /// Indicates whether the provider exposes only elements that are visible.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement2-get_currentoptimizeforvisualcontent>.
   int get currentOptimizeForVisualContent {
     final retVal = calloc<BOOL>();
     try {
@@ -51,6 +55,11 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the provider exposes only
+  /// elements that are visible.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement2-get_cachedoptimizeforvisualcontent>.
   int get cachedOptimizeForVisualContent {
     final retVal = calloc<BOOL>();
     try {
@@ -65,6 +74,11 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     }
   }
 
+  /// Indicates the type of notifications, if any, that the element sends when the
+  /// content of the element changes.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement2-get_currentlivesetting>.
   int get currentLiveSetting {
     final retVal = calloc<Int32>();
     try {
@@ -79,6 +93,11 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     }
   }
 
+  /// Retrieves a cached value that indicates the type of notifications, if any,
+  /// that the element sends when the content of the element changes.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement2-get_cachedlivesetting>.
   int get cachedLiveSetting {
     final retVal = calloc<Int32>();
     try {
@@ -93,6 +112,11 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     }
   }
 
+  /// Retrieves an array of elements that indicates the reading order before the
+  /// current element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement2-get_currentflowsfrom>.
   VTablePointer get currentFlowsFrom {
     final retVal = calloc<VTablePointer>();
     try {
@@ -107,6 +131,11 @@ class IUIAutomationElement2 extends IUIAutomationElement {
     }
   }
 
+  /// Retrieves a cached array of elements that indicate the reading order before
+  /// the current element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement2-get_cachedflowsfrom>.
   VTablePointer get cachedFlowsFrom {
     final retVal = calloc<VTablePointer>();
     try {

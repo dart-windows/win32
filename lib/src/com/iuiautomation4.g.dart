@@ -33,6 +33,13 @@ class IUIAutomation4 extends IUIAutomation3 {
   factory IUIAutomation4.from(IUnknown interface) =>
       IUIAutomation4(interface.toInterface(IID_IUIAutomation4));
 
+  /// Registers a method that handles change events.
+  ///
+  /// **Note:** Before implementing an event handler, you should be familiar with
+  /// the threading issues described in Understanding Threading Issues.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation4-addchangeseventhandler>.
   int addChangesEventHandler(
           VTablePointer element,
           int scope,
@@ -51,6 +58,10 @@ class IUIAutomation4 extends IUIAutomation3 {
                   VTablePointer handler)>()(ptr, element, scope, changeTypes,
           changesCount, pCacheRequest, handler);
 
+  /// Removes a changes event handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation4-removechangeseventhandler>.
   int removeChangesEventHandler(VTablePointer element, VTablePointer handler) =>
       _vtable.RemoveChangesEventHandler.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer element,

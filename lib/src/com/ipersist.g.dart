@@ -35,6 +35,10 @@ class IPersist extends IUnknown {
   factory IPersist.from(IUnknown interface) =>
       IPersist(interface.toInterface(IID_IPersist));
 
+  /// Retrieves the class identifier (CLSID) of the object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-ipersist-getclassid>.
   int getClassID(Pointer<GUID> pClassID) => _vtable.GetClassID.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<GUID> pClassID)>()(ptr, pClassID);

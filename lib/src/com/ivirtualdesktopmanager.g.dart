@@ -33,6 +33,11 @@ class IVirtualDesktopManager extends IUnknown {
   factory IVirtualDesktopManager.from(IUnknown interface) =>
       IVirtualDesktopManager(interface.toInterface(IID_IVirtualDesktopManager));
 
+  /// Indicates whether the provided window is on the currently active virtual
+  /// desktop.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ivirtualdesktopmanager-iswindowoncurrentvirtualdesktop>.
   int isWindowOnCurrentVirtualDesktop(
           int topLevelWindow, Pointer<BOOL> onCurrentDesktop) =>
       _vtable.IsWindowOnCurrentVirtualDesktop.asFunction<
@@ -40,11 +45,20 @@ class IVirtualDesktopManager extends IUnknown {
                   Pointer<BOOL> onCurrentDesktop)>()(
           ptr, topLevelWindow, onCurrentDesktop);
 
+  /// Gets the identifier for the virtual desktop hosting the provided top-level
+  /// window.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ivirtualdesktopmanager-getwindowdesktopid>.
   int getWindowDesktopId(int topLevelWindow, Pointer<GUID> desktopId) =>
       _vtable.GetWindowDesktopId.asFunction<
           int Function(VTablePointer lpVtbl, int topLevelWindow,
               Pointer<GUID> desktopId)>()(ptr, topLevelWindow, desktopId);
 
+  /// Moves a window to the specified virtual desktop.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ivirtualdesktopmanager-movewindowtodesktop>.
   int moveWindowToDesktop(int topLevelWindow, Pointer<GUID> desktopId) =>
       _vtable.MoveWindowToDesktop.asFunction<
           int Function(VTablePointer lpVtbl, int topLevelWindow,

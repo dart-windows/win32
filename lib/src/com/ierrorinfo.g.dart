@@ -33,25 +33,47 @@ class IErrorInfo extends IUnknown {
   factory IErrorInfo.from(IUnknown interface) =>
       IErrorInfo(interface.toInterface(IID_IErrorInfo));
 
+  /// Returns the globally unique identifier (GUID) of the interface that defined
+  /// the error.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ierrorinfo-getguid>.
   int getGUID(Pointer<GUID> pGUID) => _vtable.GetGUID.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<GUID> pGUID)>()(ptr, pGUID);
 
+  /// Returns the language-dependent programmatic ID (ProgID) for the class or
+  /// application that raised the error.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ierrorinfo-getsource>.
   int getSource(Pointer<Pointer<Utf16>> pBstrSource) =>
       _vtable.GetSource.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pBstrSource)>()(ptr, pBstrSource);
 
+  /// Returns a textual description of the error.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ierrorinfo-getdescription>.
   int getDescription(Pointer<Pointer<Utf16>> pBstrDescription) =>
       _vtable.GetDescription.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<Pointer<Utf16>> pBstrDescription)>()(
           ptr, pBstrDescription);
 
+  /// Returns the path of the Help file that describes the error.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ierrorinfo-gethelpfile>.
   int getHelpFile(Pointer<Pointer<Utf16>> pBstrHelpFile) =>
       _vtable.GetHelpFile.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pBstrHelpFile)>()(ptr, pBstrHelpFile);
 
+  /// Returns the Help context identifier (ID) for the error.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-ierrorinfo-gethelpcontext>.
   int getHelpContext(Pointer<Uint32> pdwHelpContext) =>
       _vtable.GetHelpContext.asFunction<
           int Function(VTablePointer lpVtbl,

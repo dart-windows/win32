@@ -30,6 +30,11 @@ class IMMEndpoint extends IUnknown {
   factory IMMEndpoint.from(IUnknown interface) =>
       IMMEndpoint(interface.toInterface(IID_IMMEndpoint));
 
+  /// Indicates whether the audio endpoint device is a rendering device or a
+  /// capture device.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immendpoint-getdataflow>.
   int getDataFlow(Pointer<Int32> pDataFlow) => _vtable.GetDataFlow.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Int32> pDataFlow)>()(ptr, pDataFlow);

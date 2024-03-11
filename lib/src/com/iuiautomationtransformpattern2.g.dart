@@ -41,12 +41,24 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
       IUIAutomationTransformPattern2(
           interface.toInterface(IID_IUIAutomationTransformPattern2));
 
+  /// Zooms the viewport of the control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-zoom>.
   int zoom(double zoomValue) => _vtable.Zoom.asFunction<
       int Function(VTablePointer lpVtbl, double zoomValue)>()(ptr, zoomValue);
 
+  /// Zooms the viewport of the control by the specified unit.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-zoombyunit>.
   int zoomByUnit(int zoomUnit) => _vtable.ZoomByUnit.asFunction<
       int Function(VTablePointer lpVtbl, int zoomUnit)>()(ptr, zoomUnit);
 
+  /// Indicates whether the control supports zooming of its viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_currentcanzoom>.
   int get currentCanZoom {
     final retVal = calloc<BOOL>();
     try {
@@ -61,6 +73,11 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the control supports zooming
+  /// of its viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_cachedcanzoom>.
   int get cachedCanZoom {
     final retVal = calloc<BOOL>();
     try {
@@ -75,6 +92,10 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves the zoom level of the control's viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_currentzoomlevel>.
   double get currentZoomLevel {
     final retVal = calloc<Double>();
     try {
@@ -89,6 +110,10 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves the cached zoom level of the control's viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_cachedzoomlevel>.
   double get cachedZoomLevel {
     final retVal = calloc<Double>();
     try {
@@ -103,6 +128,10 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves the minimum zoom level of the control's viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_currentzoomminimum>.
   double get currentZoomMinimum {
     final retVal = calloc<Double>();
     try {
@@ -117,6 +146,10 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves the cached minimum zoom level of the control's viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_cachedzoomminimum>.
   double get cachedZoomMinimum {
     final retVal = calloc<Double>();
     try {
@@ -131,6 +164,10 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves the maximum zoom level of the control's viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_currentzoommaximum>.
   double get currentZoomMaximum {
     final retVal = calloc<Double>();
     try {
@@ -145,6 +182,10 @@ class IUIAutomationTransformPattern2 extends IUIAutomationTransformPattern {
     }
   }
 
+  /// Retrieves the cached maximum zoom level of the control's viewport.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern2-get_cachedzoommaximum>.
   double get cachedZoomMaximum {
     final retVal = calloc<Double>();
     try {

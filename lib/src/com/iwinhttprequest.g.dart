@@ -38,12 +38,21 @@ class IWinHttpRequest extends IDispatch {
   factory IWinHttpRequest.from(IUnknown interface) =>
       IWinHttpRequest(interface.toInterface(IID_IWinHttpRequest));
 
+  /// Sets proxy server information.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-setproxy>.
   int setProxy(int proxySetting, VARIANT proxyServer, VARIANT bypassList) =>
       _vtable.SetProxy.asFunction<
               int Function(VTablePointer lpVtbl, int proxySetting,
                   VARIANT proxyServer, VARIANT bypassList)>()(
           ptr, proxySetting, proxyServer, bypassList);
 
+  /// Sets credentials to be used with an HTTP server, whether it is a proxy
+  /// server or an originating server.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-setcredentials>.
   int setCredentials(
           Pointer<Utf16> userName, Pointer<Utf16> password, int flags) =>
       _vtable.SetCredentials.asFunction<
@@ -53,29 +62,53 @@ class IWinHttpRequest extends IDispatch {
               Pointer<Utf16> password,
               int flags)>()(ptr, userName, password, flags);
 
+  /// Opens an HTTP connection to an HTTP resource.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-open>.
   int open(Pointer<Utf16> method, Pointer<Utf16> url, VARIANT async) =>
       _vtable.Open.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> method,
               Pointer<Utf16> url, VARIANT async)>()(ptr, method, url, async);
 
+  /// Adds, changes, or deletes an HTTP request header.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-setrequestheader>.
   int setRequestHeader(Pointer<Utf16> header, Pointer<Utf16> value) =>
       _vtable.SetRequestHeader.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> header,
               Pointer<Utf16> value)>()(ptr, header, value);
 
+  /// Retrieves the HTTP response headers.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-getresponseheader>.
   int getResponseHeader(Pointer<Utf16> header, Pointer<Pointer<Utf16>> value) =>
       _vtable.GetResponseHeader.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> header,
               Pointer<Pointer<Utf16>> value)>()(ptr, header, value);
 
+  /// Retrieves all HTTP response headers.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-getallresponseheaders>.
   int getAllResponseHeaders(Pointer<Pointer<Utf16>> headers) =>
       _vtable.GetAllResponseHeaders.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> headers)>()(ptr, headers);
 
+  /// Sends an HTTP request to an HTTP server.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-send>.
   int send(VARIANT body) => _vtable.Send.asFunction<
       int Function(VTablePointer lpVtbl, VARIANT body)>()(ptr, body);
 
+  /// Retrieves the HTTP status code from the last response.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-status>.
   int get status {
     final status = calloc<Int32>();
     try {
@@ -90,6 +123,10 @@ class IWinHttpRequest extends IDispatch {
     }
   }
 
+  /// Retrieves the HTTP status text.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-statustext>.
   Pointer<Utf16> get statusText {
     final status = calloc<Pointer<Utf16>>();
     try {
@@ -104,6 +141,10 @@ class IWinHttpRequest extends IDispatch {
     }
   }
 
+  /// Retrieves the response entity body as text.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-responsetext>.
   Pointer<Utf16> get responseText {
     final body = calloc<Pointer<Utf16>>();
     try {
@@ -118,6 +159,10 @@ class IWinHttpRequest extends IDispatch {
     }
   }
 
+  /// Retrieves the response entity body as an array of unsigned bytes.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-responsebody>.
   Pointer<VARIANT> get responseBody {
     final body = calloc<VARIANT>();
     final hr = _vtable.get_ResponseBody.asFunction<
@@ -129,6 +174,10 @@ class IWinHttpRequest extends IDispatch {
     return body;
   }
 
+  /// Retrieves the response entity body as an IStream.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-responsestream>.
   Pointer<VARIANT> get responseStream {
     final body = calloc<VARIANT>();
     final hr = _vtable.get_ResponseStream.asFunction<
@@ -140,23 +189,45 @@ class IWinHttpRequest extends IDispatch {
     return body;
   }
 
+  /// Sets or retrieves a Microsoft Windows HTTP Services (WinHTTP) option value.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-option>.
   int get_Option(int option, Pointer<VARIANT> value) =>
       _vtable.get_Option.asFunction<
           int Function(VTablePointer lpVtbl, int option,
               Pointer<VARIANT> value)>()(ptr, option, value);
 
+  /// Sets or retrieves a Microsoft Windows HTTP Services (WinHTTP) option value.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-option>.
   int put_Option(int option, VARIANT value) => _vtable.put_Option.asFunction<
           int Function(VTablePointer lpVtbl, int option, VARIANT value)>()(
       ptr, option, value);
 
+  /// Waits for an asynchronous Send method to complete, with optional time-out
+  /// value, in seconds.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-waitforresponse>.
   int waitForResponse(VARIANT timeout, Pointer<VARIANT_BOOL> succeeded) =>
       _vtable.WaitForResponse.asFunction<
           int Function(VTablePointer lpVtbl, VARIANT timeout,
               Pointer<VARIANT_BOOL> succeeded)>()(ptr, timeout, succeeded);
 
+  /// Aborts a WinHTTP Send method.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-abort>.
   int abort() =>
       _vtable.Abort.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Specifies the individual time-out components of a send/receive operation, in
+  /// milliseconds.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-settimeouts>.
   int setTimeouts(int resolveTimeout, int connectTimeout, int sendTimeout,
           int receiveTimeout) =>
       _vtable.SetTimeouts.asFunction<
@@ -164,11 +235,20 @@ class IWinHttpRequest extends IDispatch {
                   int connectTimeout, int sendTimeout, int receiveTimeout)>()(
           ptr, resolveTimeout, connectTimeout, sendTimeout, receiveTimeout);
 
+  /// Selects a client certificate to send to a Secure Hypertext Transfer Protocol
+  /// (HTTPS) server.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-setclientcertificate>.
   int setClientCertificate(Pointer<Utf16> clientCertificate) =>
       _vtable.SetClientCertificate.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Utf16> clientCertificate)>()(ptr, clientCertificate);
 
+  /// Sets the current Automatic Logon Policy.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/WinHttp/iwinhttprequest-setautologonpolicy>.
   int setAutoLogonPolicy(int autoLogonPolicy) =>
       _vtable.SetAutoLogonPolicy.asFunction<
               int Function(VTablePointer lpVtbl, int autoLogonPolicy)>()(

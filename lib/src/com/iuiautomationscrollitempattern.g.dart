@@ -34,6 +34,11 @@ class IUIAutomationScrollItemPattern extends IUnknown {
       IUIAutomationScrollItemPattern(
           interface.toInterface(IID_IUIAutomationScrollItemPattern));
 
+  /// Scrolls the content area of a container object to display the UI Automation
+  /// element within the visible region (viewport) of the container.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollitempattern-scrollintoview>.
   int scrollIntoView() =>
       _vtable.ScrollIntoView.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);

@@ -33,6 +33,11 @@ class IMMDeviceEnumerator extends IUnknown {
   factory IMMDeviceEnumerator.from(IUnknown interface) =>
       IMMDeviceEnumerator(interface.toInterface(IID_IMMDeviceEnumerator));
 
+  /// Generates a collection of audio endpoint devices that meet the specified
+  /// criteria.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdeviceenumerator-enumaudioendpoints>.
   int enumAudioEndpoints(
           int dataFlow, int dwStateMask, Pointer<VTablePointer> ppDevices) =>
       _vtable.EnumAudioEndpoints.asFunction<
@@ -40,6 +45,11 @@ class IMMDeviceEnumerator extends IUnknown {
                   Pointer<VTablePointer> ppDevices)>()(
           ptr, dataFlow, dwStateMask, ppDevices);
 
+  /// Retrieves the default audio endpoint for the specified data-flow direction
+  /// and role.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdeviceenumerator-getdefaultaudioendpoint>.
   int getDefaultAudioEndpoint(
           int dataFlow, int role, Pointer<VTablePointer> ppEndpoint) =>
       _vtable.GetDefaultAudioEndpoint.asFunction<
@@ -47,16 +57,31 @@ class IMMDeviceEnumerator extends IUnknown {
                   Pointer<VTablePointer> ppEndpoint)>()(
           ptr, dataFlow, role, ppEndpoint);
 
+  /// Retrieves an audio endpoint device that is identified by an endpoint ID
+  /// string.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdeviceenumerator-getdevice>.
   int getDevice(Pointer<Utf16> pwstrId, Pointer<VTablePointer> ppDevice) =>
       _vtable.GetDevice.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrId,
               Pointer<VTablePointer> ppDevice)>()(ptr, pwstrId, ppDevice);
 
+  /// Registers a client's notification callback interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdeviceenumerator-registerendpointnotificationcallback>.
   int registerEndpointNotificationCallback(VTablePointer pClient) =>
       _vtable.RegisterEndpointNotificationCallback.asFunction<
           int Function(
               VTablePointer lpVtbl, VTablePointer pClient)>()(ptr, pClient);
 
+  /// Deletes the registration of a notification interface that the client
+  /// registered in a previous call to the
+  /// `IMMDeviceEnumerator.registerEndpointNotificationCallback` method.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdeviceenumerator-unregisterendpointnotificationcallback>.
   int unregisterEndpointNotificationCallback(VTablePointer pClient) =>
       _vtable.UnregisterEndpointNotificationCallback.asFunction<
           int Function(

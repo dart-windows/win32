@@ -39,17 +39,32 @@ class IAudioClient2 extends IAudioClient {
   factory IAudioClient2.from(IUnknown interface) =>
       IAudioClient2(interface.toInterface(IID_IAudioClient2));
 
+  /// Retrieves information about whether or not the endpoint on which a stream is
+  /// created is capable of supporting an offloaded audio stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient2-isoffloadcapable>.
   int isOffloadCapable(int category, Pointer<BOOL> pbOffloadCapable) =>
       _vtable.IsOffloadCapable.asFunction<
               int Function(VTablePointer lpVtbl, int category,
                   Pointer<BOOL> pbOffloadCapable)>()(
           ptr, category, pbOffloadCapable);
 
+  /// Sets the properties of the audio stream by populating an
+  /// AudioClientProperties structure.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient2-setclientproperties>.
   int setClientProperties(Pointer<AudioClientProperties> pProperties) =>
       _vtable.SetClientProperties.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<AudioClientProperties> pProperties)>()(ptr, pProperties);
 
+  /// Returns the buffer size limits of the hardware audio engine in
+  /// 100-nanosecond units.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient2-getbuffersizelimits>.
   int getBufferSizeLimits(
           Pointer<WAVEFORMATEX> pFormat,
           int bEventDriven,

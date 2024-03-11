@@ -31,6 +31,10 @@ class IEnumSpellingError extends IUnknown {
   factory IEnumSpellingError.from(IUnknown interface) =>
       IEnumSpellingError(interface.toInterface(IID_IEnumSpellingError));
 
+  /// Gets the next spelling error.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ienumspellingerror-next>.
   int next(Pointer<VTablePointer> value) => _vtable.Next.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> value)>()(ptr, value);

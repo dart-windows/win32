@@ -34,6 +34,10 @@ class ISpellCheckerChangedEventHandler extends IUnknown {
       ISpellCheckerChangedEventHandler(
           interface.toInterface(IID_ISpellCheckerChangedEventHandler));
 
+  /// Receives the SpellCheckerChanged event.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/spellcheck/nf-spellcheck-ispellcheckerchangedeventhandler-invoke>.
   int invoke(VTablePointer sender) => _vtable.Invoke.asFunction<
       int Function(VTablePointer lpVtbl, VTablePointer sender)>()(ptr, sender);
 }

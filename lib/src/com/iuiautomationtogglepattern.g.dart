@@ -38,9 +38,17 @@ class IUIAutomationTogglePattern extends IUnknown {
       IUIAutomationTogglePattern(
           interface.toInterface(IID_IUIAutomationTogglePattern));
 
+  /// Cycles through the toggle states of the control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtogglepattern-toggle>.
   int toggle() =>
       _vtable.Toggle.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Retrieves the state of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtogglepattern-get_currenttogglestate>.
   int get currentToggleState {
     final retVal = calloc<Int32>();
     try {
@@ -55,6 +63,10 @@ class IUIAutomationTogglePattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached state of the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtogglepattern-get_cachedtogglestate>.
   int get cachedToggleState {
     final retVal = calloc<Int32>();
     try {

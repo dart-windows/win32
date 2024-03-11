@@ -38,6 +38,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
       IUIAutomationAnnotationPattern(
           interface.toInterface(IID_IUIAutomationAnnotationPattern));
 
+  /// Retrieves a value that identifies the annotation's type.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_currentannotationtypeid>.
   int get currentAnnotationTypeId {
     final retVal = calloc<Int32>();
     try {
@@ -52,6 +56,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the localized name of this annotation's type.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_currentannotationtypename>.
   Pointer<Utf16> get currentAnnotationTypeName {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -66,6 +74,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the name of the annotation author.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_currentauthor>.
   Pointer<Utf16> get currentAuthor {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -80,6 +92,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the date and time that this annotation was created.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_currentdatetime>.
   Pointer<Utf16> get currentDateTime {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -94,6 +110,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the element that is being annotated.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_currenttarget>.
   VTablePointer get currentTarget {
     final retVal = calloc<VTablePointer>();
     try {
@@ -108,6 +128,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that identifies this annotation's type.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_cachedannotationtypeid>.
   int get cachedAnnotationTypeId {
     final retVal = calloc<Int32>();
     try {
@@ -122,6 +146,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached localized name of this annotation's type.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_cachedannotationtypename>.
   Pointer<Utf16> get cachedAnnotationTypeName {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -136,6 +164,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached name of the annotation author.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_cachedauthor>.
   Pointer<Utf16> get cachedAuthor {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -150,6 +182,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached date and time that this annotation was created.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_cacheddatetime>.
   Pointer<Utf16> get cachedDateTime {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -164,6 +200,10 @@ class IUIAutomationAnnotationPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached element that is being annotated.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationannotationpattern-get_cachedtarget>.
   VTablePointer get cachedTarget {
     final retVal = calloc<VTablePointer>();
     try {

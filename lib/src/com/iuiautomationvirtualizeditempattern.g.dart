@@ -34,6 +34,10 @@ class IUIAutomationVirtualizedItemPattern extends IUnknown {
       IUIAutomationVirtualizedItemPattern(
           interface.toInterface(IID_IUIAutomationVirtualizedItemPattern));
 
+  /// Creates a full UI Automation element for a virtualized item.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationvirtualizeditempattern-realize>.
   int realize() =>
       _vtable.Realize.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

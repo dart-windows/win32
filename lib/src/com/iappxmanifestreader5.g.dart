@@ -32,6 +32,10 @@ class IAppxManifestReader5 extends IUnknown {
   factory IAppxManifestReader5.from(IUnknown interface) =>
       IAppxManifestReader5(interface.toInterface(IID_IAppxManifestReader5));
 
+  /// Gets a main package dependencies enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestreader5-getmainpackagedependencies>.
   int getMainPackageDependencies(
           Pointer<VTablePointer> mainPackageDependencies) =>
       _vtable.GetMainPackageDependencies.asFunction<

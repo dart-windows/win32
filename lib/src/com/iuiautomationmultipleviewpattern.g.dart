@@ -39,14 +39,27 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
       IUIAutomationMultipleViewPattern(
           interface.toInterface(IID_IUIAutomationMultipleViewPattern));
 
+  /// Retrieves the name of a control-specific view.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationmultipleviewpattern-getviewname>.
   int getViewName(int view, Pointer<Pointer<Utf16>> name) =>
       _vtable.GetViewName.asFunction<
           int Function(VTablePointer lpVtbl, int view,
               Pointer<Pointer<Utf16>> name)>()(ptr, view, name);
 
+  /// Sets the view of the control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationmultipleviewpattern-setcurrentview>.
   int setCurrentView(int view) => _vtable.SetCurrentView.asFunction<
       int Function(VTablePointer lpVtbl, int view)>()(ptr, view);
 
+  /// Retrieves the control-specific identifier of the current view of the
+  /// control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationmultipleviewpattern-get_currentcurrentview>.
   int get currentCurrentView {
     final retVal = calloc<Int32>();
     try {
@@ -61,11 +74,20 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a collection of control-specific view identifiers.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationmultipleviewpattern-getcurrentsupportedviews>.
   int getCurrentSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCurrentSupportedViews.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
+  /// Retrieves the cached control-specific identifier of the current view of the
+  /// control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationmultipleviewpattern-get_cachedcurrentview>.
   int get cachedCurrentView {
     final retVal = calloc<Int32>();
     try {
@@ -80,6 +102,10 @@ class IUIAutomationMultipleViewPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a collection of control-specific view identifiers from the cache.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationmultipleviewpattern-getcachedsupportedviews>.
   int getCachedSupportedViews(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCachedSupportedViews.asFunction<
           int Function(VTablePointer lpVtbl,

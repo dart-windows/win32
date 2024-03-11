@@ -33,6 +33,10 @@ class IAudioClient extends IUnknown {
   factory IAudioClient.from(IUnknown interface) =>
       IAudioClient(interface.toInterface(IID_IAudioClient));
 
+  /// Initializes the audio stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-initialize>.
   int initialize(
           int shareMode,
           int streamFlags,
@@ -57,21 +61,39 @@ class IAudioClient extends IUnknown {
           pFormat,
           audioSessionGuid ?? nullptr);
 
+  /// Retrieves the size (maximum capacity) of the endpoint buffer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-getbuffersize>.
   int getBufferSize(Pointer<Uint32> pNumBufferFrames) =>
       _vtable.GetBufferSize.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint32> pNumBufferFrames)>()(ptr, pNumBufferFrames);
 
+  /// Retrieves the maximum latency for the current stream and can be called any
+  /// time after the stream has been initialized.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-getstreamlatency>.
   int getStreamLatency(Pointer<Int64> phnsLatency) =>
       _vtable.GetStreamLatency.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int64> phnsLatency)>()(
           ptr, phnsLatency);
 
+  /// Retrieves the number of frames of padding in the endpoint buffer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-getcurrentpadding>.
   int getCurrentPadding(Pointer<Uint32> pNumPaddingFrames) =>
       _vtable.GetCurrentPadding.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint32> pNumPaddingFrames)>()(ptr, pNumPaddingFrames);
 
+  /// Indicates whether the audio endpoint device supports a particular stream
+  /// format.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-isformatsupported>.
   int isFormatSupported(int shareMode, Pointer<WAVEFORMATEX> pFormat,
           Pointer<Pointer<WAVEFORMATEX>>? ppClosestMatch) =>
       _vtable.IsFormatSupported.asFunction<
@@ -82,12 +104,22 @@ class IAudioClient extends IUnknown {
                   Pointer<Pointer<WAVEFORMATEX>> ppClosestMatch)>()(
           ptr, shareMode, pFormat, ppClosestMatch ?? nullptr);
 
+  /// Retrieves the stream format that the audio engine uses for its internal
+  /// processing of shared-mode streams.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-getmixformat>.
   int getMixFormat(Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat) =>
       _vtable.GetMixFormat.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<Pointer<WAVEFORMATEX>> ppDeviceFormat)>()(
           ptr, ppDeviceFormat);
 
+  /// Retrieves the length of the periodic interval separating successive
+  /// processing passes by the audio engine on the data in the endpoint buffer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-getdeviceperiod>.
   int getDevicePeriod(Pointer<Int64>? phnsDefaultDevicePeriod,
           Pointer<Int64>? phnsMinimumDevicePeriod) =>
       _vtable.GetDevicePeriod.asFunction<
@@ -99,18 +131,39 @@ class IAudioClient extends IUnknown {
           phnsDefaultDevicePeriod ?? nullptr,
           phnsMinimumDevicePeriod ?? nullptr);
 
+  /// Starts the audio stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-start>.
   int start() =>
       _vtable.Start.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Stops the audio stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-stop>.
   int stop() =>
       _vtable.Stop.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Resets the audio stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Sets the event handle that the system signals when an audio buffer is ready
+  /// to be processed by the client.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-seteventhandle>.
   int setEventHandle(int eventHandle) => _vtable.SetEventHandle.asFunction<
       int Function(VTablePointer lpVtbl, int eventHandle)>()(ptr, eventHandle);
 
+  /// Accesses additional services from the audio client object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient-getservice>.
   int getService(Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetService.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> riid,

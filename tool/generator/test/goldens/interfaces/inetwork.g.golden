@@ -41,42 +41,77 @@ class INetwork extends IDispatch {
   factory INetwork.from(IUnknown interface) =>
       INetwork(interface.toInterface(IID_INetwork));
 
+  /// Returns the name of a network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getname>.
   int getName(
           Pointer<Pointer<Utf16>> pszNetworkName) =>
       _vtable.GetName.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszNetworkName)>()(ptr, pszNetworkName);
 
+  /// Sets or renames a network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-setname>.
   int setName(Pointer<Utf16> szNetworkNewName) => _vtable.SetName.asFunction<
       int Function(VTablePointer lpVtbl,
           Pointer<Utf16> szNetworkNewName)>()(ptr, szNetworkNewName);
 
+  /// Returns a description string for the network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getdescription>.
   int getDescription(Pointer<Pointer<Utf16>> pszDescription) =>
       _vtable.GetDescription.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> pszDescription)>()(ptr, pszDescription);
 
+  /// Sets or replaces the description for a network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-setdescription>.
   int setDescription(Pointer<Utf16> szDescription) =>
       _vtable.SetDescription.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Utf16> szDescription)>()(ptr, szDescription);
 
+  /// Returns the unique identifier of a network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getnetworkid>.
   int getNetworkId(Pointer<GUID> pgdGuidNetworkId) =>
       _vtable.GetNetworkId.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<GUID> pgdGuidNetworkId)>()(ptr, pgdGuidNetworkId);
 
+  /// Returns the domain type of a network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getdomaintype>.
   int getDomainType(Pointer<Int32> pNetworkType) =>
       _vtable.GetDomainType.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> pNetworkType)>()(ptr, pNetworkType);
 
+  /// Returns an enumeration of all network connections for a network.
+  ///
+  /// A network can have multiple connections to it from different interfaces or
+  /// different links from the same interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getnetworkconnections>.
   int getNetworkConnections(Pointer<VTablePointer> ppEnumNetworkConnection) =>
       _vtable.GetNetworkConnections.asFunction<
               int Function(VTablePointer lpVtbl,
                   Pointer<VTablePointer> ppEnumNetworkConnection)>()(
           ptr, ppEnumNetworkConnection);
 
+  /// Returns the local date and time when the network was created and connected.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-gettimecreatedandconnected>.
   int getTimeCreatedAndConnected(
           Pointer<Uint32> pdwLowDateTimeCreated,
           Pointer<Uint32> pdwHighDateTimeCreated,
@@ -95,6 +130,10 @@ class INetwork extends IDispatch {
           pdwLowDateTimeConnected,
           pdwHighDateTimeConnected);
 
+  /// Specifies if the network has internet connectivity.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-get_isconnectedtointernet>.
   int get isConnectedToInternet {
     final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
@@ -109,6 +148,10 @@ class INetwork extends IDispatch {
     }
   }
 
+  /// Specifies if the network has any network connectivity.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-get_isconnected>.
   int get isConnected {
     final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
@@ -123,15 +166,30 @@ class INetwork extends IDispatch {
     }
   }
 
+  /// Returns the connectivity state of the network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getconnectivity>.
   int getConnectivity(Pointer<Int32> pConnectivity) =>
       _vtable.GetConnectivity.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> pConnectivity)>()(ptr, pConnectivity);
 
+  /// Returns the category of a network.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-getcategory>.
   int getCategory(Pointer<Int32> pCategory) => _vtable.GetCategory.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Int32> pCategory)>()(ptr, pCategory);
 
+  /// Sets the category of a network.
+  ///
+  /// Changes made take effect immediately. Callers of this API must be members of
+  /// the Administrators group.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetwork-setcategory>.
   int setCategory(int newCategory) => _vtable.SetCategory.asFunction<
       int Function(VTablePointer lpVtbl, int newCategory)>()(ptr, newCategory);
 }

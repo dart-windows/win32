@@ -33,16 +33,29 @@ class IAppxManifestApplicationsEnumerator extends IUnknown {
       IAppxManifestApplicationsEnumerator(
           interface.toInterface(IID_IAppxManifestApplicationsEnumerator));
 
+  /// Gets the application at the current position of the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestapplicationsenumerator-getcurrent>.
   int getCurrent(Pointer<VTablePointer> application) =>
       _vtable.GetCurrent.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> application)>()(ptr, application);
 
+  /// Determines whether there is an application at the current position of the
+  /// enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestapplicationsenumerator-gethascurrent>.
   int getHasCurrent(Pointer<BOOL> hasCurrent) =>
       _vtable.GetHasCurrent.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<BOOL> hasCurrent)>()(
           ptr, hasCurrent);
 
+  /// Advances the position of the enumerator to the next application.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestapplicationsenumerator-movenext>.
   int moveNext(Pointer<BOOL> hasNext) => _vtable.MoveNext.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<BOOL> hasNext)>()(ptr, hasNext);

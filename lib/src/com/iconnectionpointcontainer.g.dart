@@ -33,11 +33,21 @@ class IConnectionPointContainer extends IUnknown {
       IConnectionPointContainer(
           interface.toInterface(IID_IConnectionPointContainer));
 
+  /// Creates an enumerator object to iterate through all the connection points
+  /// supported in the connectable object, one connection point per outgoing IID.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpointcontainer-enumconnectionpoints>.
   int enumConnectionPoints(Pointer<VTablePointer> ppEnum) =>
       _vtable.EnumConnectionPoints.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 
+  /// Returns a pointer to the IConnectionPoint interface of a connection point
+  /// for a specified IID, if that IID describes a supported outgoing interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpointcontainer-findconnectionpoint>.
   int findConnectionPoint(Pointer<GUID> riid, Pointer<VTablePointer> ppCP) =>
       _vtable.FindConnectionPoint.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> riid,

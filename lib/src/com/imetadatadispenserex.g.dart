@@ -36,16 +36,32 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
   factory IMetaDataDispenserEx.from(IUnknown interface) =>
       IMetaDataDispenserEx(interface.toInterface(IID_IMetaDataDispenserEx));
 
+  /// Sets the specified option to a given value for the current metadata scope.
+  ///
+  /// The option controls how calls to the current metadata scope are handled.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenserex-setoption>.
   int setOption(Pointer<GUID> optionid, Pointer<VARIANT> value) =>
       _vtable.SetOption.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> value)>()(ptr, optionid, value);
 
+  /// Gets the value of the specified option for the current metadata scope.
+  ///
+  /// The option controls how calls to the current metadata scope are handled.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenserex-getoption>.
   int getOption(Pointer<GUID> optionid, Pointer<VARIANT> pvalue) =>
       _vtable.GetOption.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> optionid,
               Pointer<VARIANT> pvalue)>()(ptr, optionid, pvalue);
 
+  /// Opens the specified scope type.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenserex-openscopeonitypeinfo>.
   int openScopeOnITypeInfo(VTablePointer pITI, int dwOpenFlags,
           Pointer<GUID> riid, Pointer<VTablePointer> ppIUnk) =>
       _vtable.OpenScopeOnITypeInfo.asFunction<
@@ -57,6 +73,13 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
                   Pointer<VTablePointer> ppIUnk)>()(
           ptr, pITI, dwOpenFlags, riid, ppIUnk);
 
+  /// Gets the directory that holds the current common language runtime (CLR).
+  ///
+  /// This method is supported only for use by out-of-process debuggers. If called
+  /// from another component, it will return E_NOTIMPL.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenserex-getcorsystemdirectory>.
   int getCORSystemDirectory(
           Pointer<Utf16>? szBuffer, int cchBuffer, Pointer<Uint32> pchBuffer) =>
       _vtable.GetCORSystemDirectory.asFunction<
@@ -64,6 +87,10 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
                   int cchBuffer, Pointer<Uint32> pchBuffer)>()(
           ptr, szBuffer ?? nullptr, cchBuffer, pchBuffer);
 
+  /// Gets the name of the assembly.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenserex-findassembly>.
   int findAssembly(
           Pointer<Utf16> szAppBase,
           Pointer<Utf16> szPrivateBin,
@@ -84,6 +111,10 @@ class IMetaDataDispenserEx extends IMetaDataDispenser {
                   Pointer<Uint32> pcName)>()(ptr, szAppBase, szPrivateBin,
           szGlobalBin, szAssemblyName, szName, cchName, pcName);
 
+  /// Finds the name of the assembly module.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatadispenserex-findassemblymodule>.
   int findAssemblyModule(
           Pointer<Utf16> szAppBase,
           Pointer<Utf16> szPrivateBin,

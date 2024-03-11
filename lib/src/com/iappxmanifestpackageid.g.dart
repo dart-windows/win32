@@ -33,40 +33,72 @@ class IAppxManifestPackageId extends IUnknown {
   factory IAppxManifestPackageId.from(IUnknown interface) =>
       IAppxManifestPackageId(interface.toInterface(IID_IAppxManifestPackageId));
 
+  /// Gets the name of the package as defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getname>.
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
 
+  /// Gets the processor architecture as defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getarchitecture>.
   int getArchitecture(Pointer<Int32> architecture) =>
       _vtable.GetArchitecture.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> architecture)>()(ptr, architecture);
 
+  /// Gets the name of the package publisher as defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getpublisher>.
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> publisher)>()(ptr, publisher);
 
+  /// Gets the version of the package as defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getversion>.
   int getVersion(Pointer<Uint64> packageVersion) =>
       _vtable.GetVersion.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint64> packageVersion)>()(ptr, packageVersion);
 
+  /// Gets the package resource identifier as defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getresourceid>.
   int getResourceId(Pointer<Pointer<Utf16>> resourceId) =>
       _vtable.GetResourceId.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> resourceId)>()(ptr, resourceId);
 
+  /// Compares the specified publisher with the publisher defined in the manifest.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-comparepublisher>.
   int comparePublisher(Pointer<Utf16> other, Pointer<BOOL> isSame) =>
       _vtable.ComparePublisher.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> other,
               Pointer<BOOL> isSame)>()(ptr, other, isSame);
 
+  /// Gets the package full name.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getpackagefullname>.
   int getPackageFullName(Pointer<Pointer<Utf16>> packageFullName) =>
       _vtable.GetPackageFullName.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> packageFullName)>()(ptr, packageFullName);
 
+  /// Gets the package family name.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackageid-getpackagefamilyname>.
   int getPackageFamilyName(Pointer<Pointer<Utf16>> packageFamilyName) =>
       _vtable.GetPackageFamilyName.asFunction<
               int Function(VTablePointer lpVtbl,

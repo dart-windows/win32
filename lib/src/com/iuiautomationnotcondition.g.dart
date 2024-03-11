@@ -33,6 +33,10 @@ class IUIAutomationNotCondition extends IUIAutomationCondition {
       IUIAutomationNotCondition(
           interface.toInterface(IID_IUIAutomationNotCondition));
 
+  /// Retrieves the condition of which this condition is the negative.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationnotcondition-getchild>.
   int getChild(Pointer<VTablePointer> condition) => _vtable.GetChild.asFunction<
       int Function(VTablePointer lpVtbl,
           Pointer<VTablePointer> condition)>()(ptr, condition);

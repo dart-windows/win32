@@ -35,15 +35,29 @@ class IAppxManifestPackageDependency extends IUnknown {
       IAppxManifestPackageDependency(
           interface.toInterface(IID_IAppxManifestPackageDependency));
 
+  /// Gets the name of the package on which the current package has a dependency.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackagedependency-getname>.
   int getName(Pointer<Pointer<Utf16>> name) => _vtable.GetName.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Pointer<Utf16>> name)>()(ptr, name);
 
+  /// Gets the name of the publisher that produced the package on which the
+  /// current package depends.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackagedependency-getpublisher>.
   int getPublisher(Pointer<Pointer<Utf16>> publisher) =>
       _vtable.GetPublisher.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> publisher)>()(ptr, publisher);
 
+  /// Gets the minimum version of the package on which the current package has a
+  /// dependency.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxmanifestpackagedependency-getminversion>.
   int getMinVersion(
           Pointer<Uint64> minVersion) =>
       _vtable.GetMinVersion.asFunction<

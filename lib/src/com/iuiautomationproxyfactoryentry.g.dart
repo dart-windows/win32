@@ -40,6 +40,10 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
       IUIAutomationProxyFactoryEntry(
           interface.toInterface(IID_IUIAutomationProxyFactoryEntry));
 
+  /// Retrieves the proxy factory associated with this entry.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-get_proxyfactory>.
   VTablePointer get proxyFactory {
     final factory = calloc<VTablePointer>();
     try {
@@ -54,6 +58,10 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
+  /// Sets or retrieves the name of the window class served by the proxy factory.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-get_classname>.
   Pointer<Utf16> get className {
     final className = calloc<Pointer<Utf16>>();
     try {
@@ -68,6 +76,10 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
+  /// Sets or retrieves the name of the image of the proxy factory.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-get_imagename>.
   Pointer<Utf16> get imageName {
     final imageName = calloc<Pointer<Utf16>>();
     try {
@@ -82,6 +94,11 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
+  /// Sets or retrieves a value that specifies whether the proxy allows substring
+  /// matching.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-get_allowsubstringmatch>.
   int get allowSubstringMatch {
     final allowSubstringMatch = calloc<BOOL>();
     try {
@@ -96,6 +113,11 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
+  /// Sets or retrieves a value that specifies whether the base class can be
+  /// checked when searching for a proxy factory.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-get_cancheckbaseclass>.
   int get canCheckBaseClass {
     final canCheckBaseClass = calloc<BOOL>();
     try {
@@ -110,6 +132,11 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     }
   }
 
+  /// Sets or retrieves a value that specifies whether the proxy must be notified
+  /// when an application has registered for events.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-get_needsadviseevents>.
   int get needsAdviseEvents {
     final adviseEvents = calloc<BOOL>();
     try {
@@ -159,6 +186,10 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Maps Microsoft UI Automation events to WinEvents.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-setwineventsforautomationevent>.
   int setWinEventsForAutomationEvent(
           int eventId, int propertyId, Pointer<SAFEARRAY> winEvents) =>
       _vtable.SetWinEventsForAutomationEvent.asFunction<
@@ -166,6 +197,14 @@ class IUIAutomationProxyFactoryEntry extends IUnknown {
                   Pointer<SAFEARRAY> winEvents)>()(
           ptr, eventId, propertyId, winEvents);
 
+  /// Retrieves the list of WinEvents that are mapped to a specific Microsoft UI
+  /// Automation event.
+  ///
+  /// If an element represented by this proxy raises one the listed WinEvents, the
+  /// proxy handles it.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationproxyfactoryentry-getwineventsforautomationevent>.
   int getWinEventsForAutomationEvent(
           int eventId, int propertyId, Pointer<Pointer<SAFEARRAY>> winEvents) =>
       _vtable.GetWinEventsForAutomationEvent.asFunction<

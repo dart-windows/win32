@@ -38,6 +38,10 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
   factory IUIAutomationElement5.from(IUnknown interface) =>
       IUIAutomationElement5(interface.toInterface(IID_IUIAutomationElement5));
 
+  /// Gets the current landmark type ID for the automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement5-get_currentlandmarktype>.
   int get currentLandmarkType {
     final retVal = calloc<Int32>();
     try {
@@ -52,6 +56,11 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
+  /// Gets a string containing the current localized landmark type for the
+  /// automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement5-get_currentlocalizedlandmarktype>.
   Pointer<Utf16> get currentLocalizedLandmarkType {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -66,6 +75,10 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
+  /// Gets the cached landmark type ID for the automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement5-get_cachedlandmarktype>.
   int get cachedLandmarkType {
     final retVal = calloc<Int32>();
     try {
@@ -80,6 +93,11 @@ class IUIAutomationElement5 extends IUIAutomationElement4 {
     }
   }
 
+  /// Gets a string containing the cached localized landmark type for the
+  /// automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement5-get_cachedlocalizedlandmarktype>.
   Pointer<Utf16> get cachedLocalizedLandmarkType {
     final retVal = calloc<Pointer<Utf16>>();
     try {

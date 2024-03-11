@@ -40,6 +40,10 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
       IUIAutomationAndCondition(
           interface.toInterface(IID_IUIAutomationAndCondition));
 
+  /// Retrieves the number of conditions that make up this `and` condition.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationandcondition-get_childcount>.
   int get childCount {
     final childCount = calloc<Int32>();
     try {
@@ -54,6 +58,11 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
     }
   }
 
+  /// Retrieves the conditions that make up this `and` condition, as an ordinary
+  /// array.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationandcondition-getchildrenasnativearray>.
   int getChildrenAsNativeArray(Pointer<Pointer<VTablePointer>> childArray,
           Pointer<Int32> childArrayCount) =>
       _vtable.GetChildrenAsNativeArray.asFunction<
@@ -63,6 +72,10 @@ class IUIAutomationAndCondition extends IUIAutomationCondition {
                   Pointer<Int32> childArrayCount)>()(
           ptr, childArray, childArrayCount);
 
+  /// Retrieves the conditions that make up this `and` condition.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationandcondition-getchildren>.
   int getChildren(Pointer<Pointer<SAFEARRAY>> childArray) =>
       _vtable.GetChildren.asFunction<
           int Function(VTablePointer lpVtbl,

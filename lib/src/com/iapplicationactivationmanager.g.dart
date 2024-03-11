@@ -38,6 +38,11 @@ class IApplicationActivationManager extends IUnknown {
       IApplicationActivationManager(
           interface.toInterface(IID_IApplicationActivationManager));
 
+  /// Activates the specified Windows Store app for the generic launch contract
+  /// (Windows.Launch) in the current session.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-iapplicationactivationmanager-activateapplication>.
   int activateApplication(Pointer<Utf16> appUserModelId,
           Pointer<Utf16> arguments, int options, Pointer<Uint32> processId) =>
       _vtable.ActivateApplication.asFunction<
@@ -49,6 +54,11 @@ class IApplicationActivationManager extends IUnknown {
                   Pointer<Uint32> processId)>()(
           ptr, appUserModelId, arguments, options, processId);
 
+  /// Activates the specified Windows Store app for the file contract
+  /// (Windows.File).
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-iapplicationactivationmanager-activateforfile>.
   int activateForFile(Pointer<Utf16> appUserModelId, VTablePointer itemArray,
           Pointer<Utf16> verb, Pointer<Uint32> processId) =>
       _vtable.ActivateForFile.asFunction<
@@ -60,6 +70,11 @@ class IApplicationActivationManager extends IUnknown {
                   Pointer<Uint32> processId)>()(
           ptr, appUserModelId, itemArray, verb, processId);
 
+  /// Activates the specified Windows Store app for the protocol contract
+  /// (Windows.Protocol).
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-iapplicationactivationmanager-activateforprotocol>.
   int activateForProtocol(Pointer<Utf16> appUserModelId,
           VTablePointer itemArray, Pointer<Uint32> processId) =>
       _vtable.ActivateForProtocol.asFunction<

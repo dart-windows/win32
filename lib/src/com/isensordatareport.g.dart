@@ -34,16 +34,28 @@ class ISensorDataReport extends IUnknown {
   factory ISensorDataReport.from(IUnknown interface) =>
       ISensorDataReport(interface.toInterface(IID_ISensorDataReport));
 
+  /// Retrieves the time at which the data report was created.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensordatareport-gettimestamp>.
   int getTimestamp(Pointer<SYSTEMTIME> pTimeStamp) =>
       _vtable.GetTimestamp.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<SYSTEMTIME> pTimeStamp)>()(ptr, pTimeStamp);
 
+  /// Retrieves a single data field value from the data report.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensordatareport-getsensorvalue>.
   int getSensorValue(Pointer<PROPERTYKEY> pKey, Pointer<PROPVARIANT> pValue) =>
       _vtable.GetSensorValue.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<PROPERTYKEY> pKey,
               Pointer<PROPVARIANT> pValue)>()(ptr, pKey, pValue);
 
+  /// Retrieves a collection of data field values.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensordatareport-getsensorvalues>.
   int getSensorValues(VTablePointer? pKeys, Pointer<VTablePointer> ppValues) =>
       _vtable.GetSensorValues.asFunction<
               int Function(VTablePointer lpVtbl, VTablePointer pKeys,

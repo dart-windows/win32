@@ -33,26 +33,47 @@ class IAppxPackageReader extends IUnknown {
   factory IAppxPackageReader.from(IUnknown interface) =>
       IAppxPackageReader(interface.toInterface(IID_IAppxPackageReader));
 
+  /// Retrieves the block map object model of the package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxpackagereader-getblockmap>.
   int getBlockMap(Pointer<VTablePointer> blockMapReader) =>
       _vtable.GetBlockMap.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> blockMapReader)>()(ptr, blockMapReader);
 
+  /// Retrieves a footprint file from the package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxpackagereader-getfootprintfile>.
   int getFootprintFile(int type, Pointer<VTablePointer> file) =>
       _vtable.GetFootprintFile.asFunction<
           int Function(VTablePointer lpVtbl, int type,
               Pointer<VTablePointer> file)>()(ptr, type, file);
 
+  /// Retrieves a payload file from the package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxpackagereader-getpayloadfile>.
   int getPayloadFile(Pointer<Utf16> fileName, Pointer<VTablePointer> file) =>
       _vtable.GetPayloadFile.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> fileName,
               Pointer<VTablePointer> file)>()(ptr, fileName, file);
 
+  /// Retrieves an enumerator that iterates through the payload files in the
+  /// package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxpackagereader-getpayloadfiles>.
   int getPayloadFiles(Pointer<VTablePointer> filesEnumerator) =>
       _vtable.GetPayloadFiles.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> filesEnumerator)>()(ptr, filesEnumerator);
 
+  /// Retrieves the object model of the app manifest of the package.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxpackagereader-getmanifest>.
   int getManifest(Pointer<VTablePointer> manifestReader) =>
       _vtable.GetManifest.asFunction<
           int Function(VTablePointer lpVtbl,

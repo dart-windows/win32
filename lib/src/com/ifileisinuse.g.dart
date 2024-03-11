@@ -33,26 +33,48 @@ class IFileIsInUse extends IUnknown {
   factory IFileIsInUse.from(IUnknown interface) =>
       IFileIsInUse(interface.toInterface(IID_IFileIsInUse));
 
+  /// Retrieves the name of the application that is using the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileisinuse-getappname>.
   int getAppName(
           Pointer<Pointer<Utf16>> ppszName) =>
       _vtable.GetAppName.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<Utf16>> ppszName)>()(ptr, ppszName);
 
+  /// Gets a value that indicates how the file in use is being used.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileisinuse-getusage>.
   int getUsage(Pointer<Int32> pfut) => _vtable.GetUsage.asFunction<
       int Function(VTablePointer lpVtbl, Pointer<Int32> pfut)>()(ptr, pfut);
 
+  /// Determines whether the file can be closed and whether the UI is capable of
+  /// switching to the window of the application that is using the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileisinuse-getcapabilities>.
   int getCapabilities(Pointer<Uint32> pdwCapFlags) =>
       _vtable.GetCapabilities.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint32> pdwCapFlags)>()(ptr, pdwCapFlags);
 
+  /// Retrieves the handle of the top-level window of the application that is
+  /// using the file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileisinuse-getswitchtohwnd>.
   int getSwitchToHWND(
           Pointer<HWND> phwnd) =>
       _vtable.GetSwitchToHWND.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<HWND> phwnd)>()(ptr, phwnd);
 
+  /// Closes the file currently in use.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifileisinuse-closefile>.
   int closeFile() =>
       _vtable.CloseFile.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

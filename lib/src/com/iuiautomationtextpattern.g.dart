@@ -37,26 +37,50 @@ class IUIAutomationTextPattern extends IUnknown {
       IUIAutomationTextPattern(
           interface.toInterface(IID_IUIAutomationTextPattern));
 
+  /// Retrieves the degenerate (empty) text range nearest to the specified screen
+  /// coordinates.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern-rangefrompoint>.
   int rangeFromPoint(POINT pt, Pointer<VTablePointer> range) =>
       _vtable.RangeFromPoint.asFunction<
           int Function(VTablePointer lpVtbl, POINT pt,
               Pointer<VTablePointer> range)>()(ptr, pt, range);
 
+  /// Retrieves a text range enclosing a child element such as an image,
+  /// hyperlink, Microsoft Excel spreadsheet, or other embedded object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern-rangefromchild>.
   int rangeFromChild(VTablePointer child, Pointer<VTablePointer> range) =>
       _vtable.RangeFromChild.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer child,
               Pointer<VTablePointer> range)>()(ptr, child, range);
 
+  /// Retrieves a collection of text ranges that represents the currently selected
+  /// text in a text-based control.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern-getselection>.
   int getSelection(Pointer<VTablePointer> ranges) =>
       _vtable.GetSelection.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
+  /// Retrieves an array of disjoint text ranges from a text-based control where
+  /// each text range represents a contiguous span of visible text.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern-getvisibleranges>.
   int getVisibleRanges(Pointer<VTablePointer> ranges) =>
       _vtable.GetVisibleRanges.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ranges)>()(ptr, ranges);
 
+  /// Retrieves a text range that encloses the main text of a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern-get_documentrange>.
   VTablePointer get documentRange {
     final range = calloc<VTablePointer>();
     try {
@@ -71,6 +95,11 @@ class IUIAutomationTextPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a value that specifies the type of text selection that is
+  /// supported by the control.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtextpattern-get_supportedtextselection>.
   int get supportedTextSelection {
     final supportedTextSelection = calloc<Int32>();
     try {

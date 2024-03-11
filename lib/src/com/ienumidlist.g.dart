@@ -31,6 +31,11 @@ class IEnumIDList extends IUnknown {
   factory IEnumIDList.from(IUnknown interface) =>
       IEnumIDList(interface.toInterface(IID_IEnumIDList));
 
+  /// Retrieves the specified number of item identifiers in the enumeration
+  /// sequence and advances the current position by the number of items retrieved.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumidlist-next>.
   int next(int celt, Pointer<Pointer<ITEMIDLIST>> rgelt,
           Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
@@ -41,13 +46,26 @@ class IEnumIDList extends IUnknown {
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
+  /// Skips the specified number of elements in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumidlist-skip>.
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
+  /// Returns to the beginning of the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumidlist-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Creates a new item enumeration object with the same contents and state as
+  /// the current one.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumidlist-clone>.
   int clone(Pointer<VTablePointer> ppenum) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);

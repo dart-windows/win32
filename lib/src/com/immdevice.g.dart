@@ -33,6 +33,10 @@ class IMMDevice extends IUnknown {
   factory IMMDevice.from(IUnknown interface) =>
       IMMDevice(interface.toInterface(IID_IMMDevice));
 
+  /// Creates a COM object with the specified interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdevice-activate>.
   int activate(
           Pointer<GUID> iid,
           int dwClsCtx,
@@ -47,16 +51,28 @@ class IMMDevice extends IUnknown {
                   Pointer<Pointer> ppInterface)>()(
           ptr, iid, dwClsCtx, pActivationParams ?? nullptr, ppInterface);
 
+  /// Retrieves an interface to the device's property store.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdevice-openpropertystore>.
   int openPropertyStore(int stgmAccess, Pointer<VTablePointer> ppProperties) =>
       _vtable.OpenPropertyStore.asFunction<
               int Function(VTablePointer lpVtbl, int stgmAccess,
                   Pointer<VTablePointer> ppProperties)>()(
           ptr, stgmAccess, ppProperties);
 
+  /// Retrieves an endpoint ID string that identifies the audio endpoint device.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdevice-getid>.
   int getId(Pointer<Pointer<Utf16>> ppstrId) => _vtable.GetId.asFunction<
       int Function(VTablePointer lpVtbl,
           Pointer<Pointer<Utf16>> ppstrId)>()(ptr, ppstrId);
 
+  /// Retrieves the current device state.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdevice-getstate>.
   int getState(Pointer<Uint32> pdwState) => _vtable.GetState.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Uint32> pdwState)>()(ptr, pdwState);

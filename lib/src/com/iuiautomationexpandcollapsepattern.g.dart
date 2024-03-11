@@ -39,12 +39,25 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
       IUIAutomationExpandCollapsePattern(
           interface.toInterface(IID_IUIAutomationExpandCollapsePattern));
 
+  /// Displays all child nodes, controls, or content of the element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationexpandcollapsepattern-expand>.
   int expand() =>
       _vtable.Expand.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Hides all child nodes, controls, or content of the element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationexpandcollapsepattern-collapse>.
   int collapse() =>
       _vtable.Collapse.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Retrieves a value that indicates the state, expanded or collapsed, of the
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationexpandcollapsepattern-get_currentexpandcollapsestate>.
   int get currentExpandCollapseState {
     final retVal = calloc<Int32>();
     try {
@@ -59,6 +72,11 @@ class IUIAutomationExpandCollapsePattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates the state, expanded or collapsed, of
+  /// the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationexpandcollapsepattern-get_cachedexpandcollapsestate>.
   int get cachedExpandCollapseState {
     final retVal = calloc<Int32>();
     try {

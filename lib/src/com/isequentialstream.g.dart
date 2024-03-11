@@ -34,12 +34,22 @@ class ISequentialStream extends IUnknown {
   factory ISequentialStream.from(IUnknown interface) =>
       ISequentialStream(interface.toInterface(IID_ISequentialStream));
 
+  /// Reads a specified number of bytes from the stream object into memory,
+  /// starting at the current seek pointer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-isequentialstream-read>.
   int read(
           Pointer pv, int cb, Pointer<Uint32>? pcbRead) =>
       _vtable.Read.asFunction<
           int Function(VTablePointer lpVtbl, Pointer pv, int cb,
               Pointer<Uint32> pcbRead)>()(ptr, pv, cb, pcbRead ?? nullptr);
 
+  /// Writes a specified number of bytes into the stream object starting at the
+  /// current seek pointer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-isequentialstream-write>.
   int write(Pointer pv, int cb, Pointer<Uint32>? pcbWritten) =>
       _vtable.Write.asFunction<
               int Function(VTablePointer lpVtbl, Pointer pv, int cb,

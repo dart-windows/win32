@@ -34,22 +34,44 @@ class IFileSaveDialog extends IFileDialog {
   factory IFileSaveDialog.from(IUnknown interface) =>
       IFileSaveDialog(interface.toInterface(IID_IFileSaveDialog));
 
+  /// Sets an item to be used as the initial entry in a Save As dialog.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifilesavedialog-setsaveasitem>.
   int setSaveAsItem(VTablePointer psi) => _vtable.SetSaveAsItem.asFunction<
       int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 
+  /// Provides a property store that defines the default values to be used for the
+  /// item being saved.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifilesavedialog-setproperties>.
   int setProperties(VTablePointer pStore) => _vtable.SetProperties.asFunction<
       int Function(VTablePointer lpVtbl, VTablePointer pStore)>()(ptr, pStore);
 
+  /// Specifies which properties will be collected in the save dialog.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifilesavedialog-setcollectedproperties>.
   int setCollectedProperties(VTablePointer pList, int fAppendDefault) =>
       _vtable.SetCollectedProperties.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pList,
               int fAppendDefault)>()(ptr, pList, fAppendDefault);
 
+  /// Retrieves the set of property values for a saved item or an item in the
+  /// process of being saved.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifilesavedialog-getproperties>.
   int getProperties(Pointer<VTablePointer> ppStore) =>
       _vtable.GetProperties.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppStore)>()(ptr, ppStore);
 
+  /// Applies a set of properties to an item using the Shell's copy engine.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ifilesavedialog-applyproperties>.
   int applyProperties(VTablePointer psi, VTablePointer pStore, int hwnd,
           VTablePointer pSink) =>
       _vtable.ApplyProperties.asFunction<

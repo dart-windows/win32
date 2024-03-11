@@ -31,6 +31,10 @@ class IEnumResources extends IUnknown {
   factory IEnumResources.from(IUnknown interface) =>
       IEnumResources(interface.toInterface(IID_IEnumResources));
 
+  /// Gets the next SHELL_ITEM_RESOURCE structure.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumresources-next>.
   int next(int celt, Pointer<SHELL_ITEM_RESOURCE> psir,
           Pointer<Uint32> pceltFetched) =>
       _vtable.Next.asFunction<
@@ -40,13 +44,25 @@ class IEnumResources extends IUnknown {
               Pointer<SHELL_ITEM_RESOURCE> psir,
               Pointer<Uint32> pceltFetched)>()(ptr, celt, psir, pceltFetched);
 
+  /// Skips a specified number of resources.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumresources-skip>.
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
+  /// Resets the enumeration index to 0.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumresources-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Clones a resource enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ienumresources-clone>.
   int clone(Pointer<VTablePointer> ppenumr) => _vtable.Clone.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<VTablePointer> ppenumr)>()(
       ptr, ppenumr);

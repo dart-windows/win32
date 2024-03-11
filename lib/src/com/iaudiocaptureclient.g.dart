@@ -31,6 +31,11 @@ class IAudioCaptureClient extends IUnknown {
   factory IAudioCaptureClient.from(IUnknown interface) =>
       IAudioCaptureClient(interface.toInterface(IID_IAudioCaptureClient));
 
+  /// Retrieves a pointer to the next available packet of data in the capture
+  /// endpoint buffer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudiocaptureclient-getbuffer>.
   int getBuffer(
           Pointer<Pointer<Uint8>> ppData,
           Pointer<Uint32> pNumFramesToRead,
@@ -52,10 +57,19 @@ class IAudioCaptureClient extends IUnknown {
           pu64DevicePosition ?? nullptr,
           pu64QPCPosition ?? nullptr);
 
+  /// Releases the buffer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudiocaptureclient-releasebuffer>.
   int releaseBuffer(int numFramesRead) => _vtable.ReleaseBuffer.asFunction<
       int Function(
           VTablePointer lpVtbl, int numFramesRead)>()(ptr, numFramesRead);
 
+  /// Retrieves the number of frames in the next data packet in the capture
+  /// endpoint buffer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudiocaptureclient-getnextpacketsize>.
   int getNextPacketSize(Pointer<Uint32> pNumFramesInNextPacket) =>
       _vtable.GetNextPacketSize.asFunction<
               int Function(VTablePointer lpVtbl,

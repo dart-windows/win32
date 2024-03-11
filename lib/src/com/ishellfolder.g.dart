@@ -34,6 +34,11 @@ class IShellFolder extends IUnknown {
   factory IShellFolder.from(IUnknown interface) =>
       IShellFolder(interface.toInterface(IID_IShellFolder));
 
+  /// Translates the display name of a file object or a folder into an item
+  /// identifier list.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-parsedisplayname>.
   int parseDisplayName(
           int hwnd,
           VTablePointer pbc,
@@ -51,6 +56,14 @@ class IShellFolder extends IUnknown {
                   Pointer<Uint32> pdwAttributes)>()(
           ptr, hwnd, pbc, pszDisplayName, nullptr, ppidl, pdwAttributes);
 
+  /// Enables a client to determine the contents of a folder by creating an item
+  /// identifier enumeration object and returning its IEnumIDList interface.
+  ///
+  /// The methods supported by that interface can then be used to enumerate the
+  /// folder's contents.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-enumobjects>.
   int enumObjects(
           int hwnd, int grfFlags, Pointer<VTablePointer> ppenumIDList) =>
       _vtable.EnumObjects.asFunction<
@@ -58,6 +71,14 @@ class IShellFolder extends IUnknown {
                   Pointer<VTablePointer> ppenumIDList)>()(
           ptr, hwnd, grfFlags, ppenumIDList);
 
+  /// Retrieves a handler, typically the Shell folder object that implements
+  /// IShellFolder for a particular item.
+  ///
+  /// Optional parameters that control the construction of the handler are passed
+  /// in the bind context.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-bindtoobject>.
   int bindToObject(Pointer<ITEMIDLIST> pidl, VTablePointer pbc,
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.BindToObject.asFunction<
@@ -68,6 +89,10 @@ class IShellFolder extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, pidl, pbc, riid, ppv);
 
+  /// Requests a pointer to an object's storage interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-bindtostorage>.
   int bindToStorage(Pointer<ITEMIDLIST> pidl, VTablePointer pbc,
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.BindToStorage.asFunction<
@@ -78,6 +103,11 @@ class IShellFolder extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, pidl, pbc, riid, ppv);
 
+  /// Determines the relative order of two file objects or folders, given their
+  /// item identifier lists.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-compareids>.
   int compareIDs(
           int lParam, Pointer<ITEMIDLIST> pidl1, Pointer<ITEMIDLIST> pidl2) =>
       _vtable.CompareIDs.asFunction<
@@ -87,12 +117,22 @@ class IShellFolder extends IUnknown {
               Pointer<ITEMIDLIST> pidl1,
               Pointer<ITEMIDLIST> pidl2)>()(ptr, lParam, pidl1, pidl2);
 
+  /// Requests an object that can be used to obtain information from or interact
+  /// with a folder object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-createviewobject>.
   int createViewObject(
           int hwndOwner, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.CreateViewObject.asFunction<
           int Function(VTablePointer lpVtbl, int hwndOwner, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, hwndOwner, riid, ppv);
 
+  /// Gets the attributes of one or more file or folder objects contained in the
+  /// object represented by IShellFolder.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-getattributesof>.
   int getAttributesOf(int cidl, Pointer<Pointer<ITEMIDLIST>> apidl,
           Pointer<Uint32> rgfInOut) =>
       _vtable.GetAttributesOf.asFunction<
@@ -102,6 +142,11 @@ class IShellFolder extends IUnknown {
               Pointer<Pointer<ITEMIDLIST>> apidl,
               Pointer<Uint32> rgfInOut)>()(ptr, cidl, apidl, rgfInOut);
 
+  /// Gets an object that can be used to carry out actions on the specified file
+  /// objects or folders.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-getuiobjectof>.
   int getUIObjectOf(int hwndOwner, int cidl, Pointer<Pointer<ITEMIDLIST>> apidl,
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetUIObjectOf.asFunction<
@@ -115,12 +160,21 @@ class IShellFolder extends IUnknown {
                   Pointer<Pointer> ppv)>()(
           ptr, hwndOwner, cidl, apidl, riid, nullptr, ppv);
 
+  /// Retrieves the display name for the specified file object or subfolder.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-getdisplaynameof>.
   int getDisplayNameOf(
           Pointer<ITEMIDLIST> pidl, int uFlags, Pointer<STRRET> pName) =>
       _vtable.GetDisplayNameOf.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<ITEMIDLIST> pidl,
               int uFlags, Pointer<STRRET> pName)>()(ptr, pidl, uFlags, pName);
 
+  /// Sets the display name of a file object or subfolder, changing the item
+  /// identifier in the process.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellfolder-setnameof>.
   int setNameOf(int? hwnd, Pointer<ITEMIDLIST> pidl, Pointer<Utf16> pszName,
           int uFlags, Pointer<Pointer<ITEMIDLIST>>? ppidlOut) =>
       _vtable.SetNameOf.asFunction<

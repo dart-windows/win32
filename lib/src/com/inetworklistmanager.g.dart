@@ -38,22 +38,38 @@ class INetworkListManager extends IDispatch {
   factory INetworkListManager.from(IUnknown interface) =>
       INetworkListManager(interface.toInterface(IID_INetworkListManager));
 
+  /// Retrieves the list of networks available on the local machine.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-getnetworks>.
   int getNetworks(int flags, Pointer<VTablePointer> ppEnumNetwork) =>
       _vtable.GetNetworks.asFunction<
               int Function(VTablePointer lpVtbl, int flags,
                   Pointer<VTablePointer> ppEnumNetwork)>()(
           ptr, flags, ppEnumNetwork);
 
+  /// Retrieves a network based on a supplied network ID.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-getnetwork>.
   int getNetwork(GUID gdNetworkId, Pointer<VTablePointer> ppNetwork) =>
       _vtable.GetNetwork.asFunction<
           int Function(VTablePointer lpVtbl, GUID gdNetworkId,
               Pointer<VTablePointer> ppNetwork)>()(ptr, gdNetworkId, ppNetwork);
 
+  /// Enumerates a complete list of the network connections that have been made.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-getnetworkconnections>.
   int getNetworkConnections(Pointer<VTablePointer> ppEnum) =>
       _vtable.GetNetworkConnections.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 
+  /// Retrieves a network based on a supplied Network Connection ID.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-getnetworkconnection>.
   int getNetworkConnection(GUID gdNetworkConnectionId,
           Pointer<VTablePointer> ppNetworkConnection) =>
       _vtable.GetNetworkConnection.asFunction<
@@ -61,6 +77,10 @@ class INetworkListManager extends IDispatch {
                   Pointer<VTablePointer> ppNetworkConnection)>()(
           ptr, gdNetworkConnectionId, ppNetworkConnection);
 
+  /// Specifies if the local machine has internet connectivity.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-get_isconnectedtointernet>.
   int get isConnectedToInternet {
     final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
@@ -75,6 +95,10 @@ class INetworkListManager extends IDispatch {
     }
   }
 
+  /// Specifies if the local machine has network connectivity.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-get_isconnected>.
   int get isConnected {
     final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
@@ -89,11 +113,21 @@ class INetworkListManager extends IDispatch {
     }
   }
 
+  /// Returns the overall connectivity state of the machine.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-getconnectivity>.
   int getConnectivity(Pointer<Int32> pConnectivity) =>
       _vtable.GetConnectivity.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> pConnectivity)>()(ptr, pConnectivity);
 
+  /// Applies a specific set of connection profile values to the internet
+  /// connection profile in support of the simulation of specific metered internet
+  /// connection conditions.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-setsimulatedprofileinfo>.
   int setSimulatedProfileInfo(
           Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo) =>
       _vtable.SetSimulatedProfileInfo.asFunction<
@@ -101,6 +135,14 @@ class INetworkListManager extends IDispatch {
                   Pointer<NLM_SIMULATED_PROFILE_INFO> pSimulatedInfo)>()(
           ptr, pSimulatedInfo);
 
+  /// Clears the connection profile values previously applied to the internet
+  /// connection profile by SetSimulatedProfileInfo.
+  ///
+  /// The next internet connection query, via GetInternetConnectionProfile, will
+  /// use system information.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworklistmanager-clearsimulatedprofileinfo>.
   int clearSimulatedProfileInfo() => _vtable.ClearSimulatedProfileInfo
       .asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

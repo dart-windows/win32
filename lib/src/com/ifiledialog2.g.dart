@@ -36,11 +36,23 @@ class IFileDialog2 extends IFileDialog {
   factory IFileDialog2.from(IUnknown interface) =>
       IFileDialog2(interface.toInterface(IID_IFileDialog2));
 
+  /// Replaces the default text `Cancel` on the common file dialog's Cancel
+  /// button.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl/nf-shobjidl-ifiledialog2-setcancelbuttonlabel>.
   int setCancelButtonLabel(Pointer<Utf16> pszLabel) =>
       _vtable.SetCancelButtonLabel.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<Utf16> pszLabel)>()(ptr, pszLabel);
 
+  /// Specifies a top-level location from which to begin browsing a namespace, for
+  /// instance in the Save dialog's Browse folder option.
+  ///
+  /// Users cannot navigate above this location.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl/nf-shobjidl-ifiledialog2-setnavigationroot>.
   int setNavigationRoot(VTablePointer psi) =>
       _vtable.SetNavigationRoot.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);

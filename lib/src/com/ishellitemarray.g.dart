@@ -32,6 +32,10 @@ class IShellItemArray extends IUnknown {
   factory IShellItemArray.from(IUnknown interface) =>
       IShellItemArray(interface.toInterface(IID_IShellItemArray));
 
+  /// Binds to an object by means of the specified handler.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-bindtohandler>.
   int bindToHandler(VTablePointer pbc, Pointer<GUID> bhid, Pointer<GUID> riid,
           Pointer<Pointer> ppvOut) =>
       _vtable.BindToHandler.asFunction<
@@ -42,11 +46,19 @@ class IShellItemArray extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppvOut)>()(ptr, pbc, bhid, riid, ppvOut);
 
+  /// Gets a property store.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-getpropertystore>.
   int getPropertyStore(int flags, Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetPropertyStore.asFunction<
           int Function(VTablePointer lpVtbl, int flags, Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, flags, riid, ppv);
 
+  /// Gets a property description list for the items in the shell item array.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-getpropertydescriptionlist>.
   int getPropertyDescriptionList(Pointer<PROPERTYKEY> keyType,
           Pointer<GUID> riid, Pointer<Pointer> ppv) =>
       _vtable.GetPropertyDescriptionList.asFunction<
@@ -56,6 +68,10 @@ class IShellItemArray extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, keyType, riid, ppv);
 
+  /// Gets the attributes of the set of items contained in an IShellItemArray.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-getattributes>.
   int getAttributes(
           int attribFlags, int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
@@ -63,15 +79,27 @@ class IShellItemArray extends IUnknown {
                   Pointer<Uint32> psfgaoAttribs)>()(
           ptr, attribFlags, sfgaoMask, psfgaoAttribs);
 
+  /// Gets the number of items in the given IShellItem array.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-getcount>.
   int getCount(Pointer<Uint32> pdwNumItems) => _vtable.GetCount.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwNumItems)>()(
       ptr, pdwNumItems);
 
+  /// Gets the item at the given index in the IShellItemArray.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-getitemat>.
   int getItemAt(int dwIndex, Pointer<VTablePointer> ppsi) =>
       _vtable.GetItemAt.asFunction<
           int Function(VTablePointer lpVtbl, int dwIndex,
               Pointer<VTablePointer> ppsi)>()(ptr, dwIndex, ppsi);
 
+  /// Gets an enumerator of the items in the array.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemarray-enumitems>.
   int enumItems(Pointer<VTablePointer> ppenumShellItems) =>
       _vtable.EnumItems.asFunction<
               int Function(VTablePointer lpVtbl,

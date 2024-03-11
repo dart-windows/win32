@@ -36,6 +36,10 @@ class IShellItem extends IUnknown {
   factory IShellItem.from(IUnknown interface) =>
       IShellItem(interface.toInterface(IID_IShellItem));
 
+  /// Binds to a handler for an item as specified by the handler ID value (BHID).
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitem-bindtohandler>.
   int bindToHandler(VTablePointer pbc, Pointer<GUID> bhid, Pointer<GUID> riid,
           Pointer<Pointer> ppv) =>
       _vtable.BindToHandler.asFunction<
@@ -46,20 +50,36 @@ class IShellItem extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, pbc, bhid, riid, ppv);
 
+  /// Gets the parent of an IShellItem object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitem-getparent>.
   int getParent(Pointer<VTablePointer> ppsi) => _vtable.GetParent.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppsi)>()(ptr, ppsi);
 
+  /// Gets the display name of the IShellItem object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitem-getdisplayname>.
   int getDisplayName(int sigdnName, Pointer<Pointer<Utf16>> ppszName) =>
       _vtable.GetDisplayName.asFunction<
           int Function(VTablePointer lpVtbl, int sigdnName,
               Pointer<Pointer<Utf16>> ppszName)>()(ptr, sigdnName, ppszName);
 
+  /// Gets a requested set of attributes of the IShellItem object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitem-getattributes>.
   int getAttributes(int sfgaoMask, Pointer<Uint32> psfgaoAttribs) =>
       _vtable.GetAttributes.asFunction<
           int Function(VTablePointer lpVtbl, int sfgaoMask,
               Pointer<Uint32> psfgaoAttribs)>()(ptr, sfgaoMask, psfgaoAttribs);
 
+  /// Compares two IShellItem objects.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitem-compare>.
   int compare(VTablePointer psi, int hint, Pointer<Int32> piOrder) =>
       _vtable.Compare.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer psi, int hint,

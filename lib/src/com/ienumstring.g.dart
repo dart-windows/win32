@@ -35,6 +35,10 @@ class IEnumString extends IUnknown {
   factory IEnumString.from(IUnknown interface) =>
       IEnumString(interface.toInterface(IID_IEnumString));
 
+  /// Retrieves the specified number of items in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidlbase/nf-objidlbase-ienumstring-next>.
   int next(int celt, Pointer<Pointer<Utf16>> rgelt,
           Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
@@ -45,13 +49,26 @@ class IEnumString extends IUnknown {
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
+  /// Skips over the specified number of items in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidlbase/nf-objidlbase-ienumstring-skip>.
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
+  /// Resets the enumeration sequence to the beginning.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidlbase/nf-objidlbase-ienumstring-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Creates a new enumerator that contains the same enumeration state as the
+  /// current one.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidlbase/nf-objidlbase-ienumstring-clone>.
   int clone(Pointer<VTablePointer> ppenum) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppenum)>()(ptr, ppenum);

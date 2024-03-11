@@ -31,16 +31,29 @@ class IInspectable extends IUnknown {
   factory IInspectable.from(IUnknown interface) =>
       IInspectable(interface.toInterface(IID_IInspectable));
 
+  /// Gets the interfaces that are implemented by the current Windows Runtime
+  /// class.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/inspectable/nf-inspectable-iinspectable-getiids>.
   int getIids(Pointer<Uint32> iidCount, Pointer<Pointer<GUID>> iids) =>
       _vtable.GetIids.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Uint32> iidCount,
               Pointer<Pointer<GUID>> iids)>()(ptr, iidCount, iids);
 
+  /// Gets the fully qualified name of the current Windows Runtime object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/inspectable/nf-inspectable-iinspectable-getruntimeclassname>.
   int getRuntimeClassName(Pointer<HSTRING> className) =>
       _vtable.GetRuntimeClassName.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<HSTRING> className)>()(
           ptr, className);
 
+  /// Gets the trust level of the current Windows Runtime object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/inspectable/nf-inspectable-iinspectable-gettrustlevel>.
   int getTrustLevel(Pointer<Int32> trustLevel) =>
       _vtable.GetTrustLevel.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<Int32> trustLevel)>()(

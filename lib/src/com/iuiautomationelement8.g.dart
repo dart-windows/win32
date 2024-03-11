@@ -37,6 +37,10 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
   factory IUIAutomationElement8.from(IUnknown interface) =>
       IUIAutomationElement8(interface.toInterface(IID_IUIAutomationElement8));
 
+  /// Gets the current heading level of the automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement8-get_currentheadinglevel>.
   int get currentHeadingLevel {
     final retVal = calloc<Int32>();
     try {
@@ -51,6 +55,10 @@ class IUIAutomationElement8 extends IUIAutomationElement7 {
     }
   }
 
+  /// Gets the cached heading level of the automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement8-get_cachedheadinglevel>.
   int get cachedHeadingLevel {
     final retVal = calloc<Int32>();
     try {

@@ -39,6 +39,10 @@ class IUIAutomationBoolCondition extends IUIAutomationCondition {
       IUIAutomationBoolCondition(
           interface.toInterface(IID_IUIAutomationBoolCondition));
 
+  /// Retrieves the value of the condition: either TRUE or FALSE.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationboolcondition-get_booleanvalue>.
   int get booleanValue {
     final boolVal = calloc<BOOL>();
     try {

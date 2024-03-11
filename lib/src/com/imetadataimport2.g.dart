@@ -35,6 +35,11 @@ class IMetaDataImport2 extends IMetaDataImport {
   factory IMetaDataImport2.from(IUnknown interface) =>
       IMetaDataImport2(interface.toInterface(IID_IMetaDataImport2));
 
+  /// Gets an enumerator for an array of generic parameter tokens associated with
+  /// the specified TypeDef or MethodDef token.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-enumgenericparams>.
   int enumGenericParams(
           Pointer<Pointer> phEnum,
           int tk,
@@ -51,6 +56,11 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> pcGenericParams)>()(
           ptr, phEnum, tk, rGenericParams, cMax, pcGenericParams);
 
+  /// Gets the metadata associated with the generic parameter represented by the
+  /// specified token.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-getgenericparamprops>.
   int getGenericParamProps(
           int gp,
           Pointer<Uint32> pulParamSeq,
@@ -81,6 +91,11 @@ class IMetaDataImport2 extends IMetaDataImport {
           cchName,
           pchName);
 
+  /// Gets the metadata signature of the method referenced by the specified
+  /// MethodSpec token.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-getmethodspecprops>.
   int getMethodSpecProps(int mi, Pointer<Uint32> tkParent,
           Pointer<Pointer<Uint8>> ppvSigBlob, Pointer<Uint32> pcbSigBlob) =>
       _vtable.GetMethodSpecProps.asFunction<
@@ -92,6 +107,11 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> pcbSigBlob)>()(
           ptr, mi, tkParent, ppvSigBlob, pcbSigBlob);
 
+  /// Gets an enumerator for an array of generic parameter constraints associated
+  /// with the generic parameter represented by the specified token.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-enumgenericparamconstraints>.
   int enumGenericParamConstraints(
           Pointer<Pointer> phEnum,
           int tk,
@@ -108,6 +128,11 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> pcGenericParamConstraints)>()(ptr, phEnum, tk,
           rGenericParamConstraints, cMax, pcGenericParamConstraints);
 
+  /// Gets the metadata associated with the generic parameter constraint
+  /// represented by the specified constraint token.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-getgenericparamconstraintprops>.
   int getGenericParamConstraintProps(int gpc, Pointer<Uint32> ptGenericParam,
           Pointer<Uint32> ptkConstraintType) =>
       _vtable.GetGenericParamConstraintProps.asFunction<
@@ -118,11 +143,21 @@ class IMetaDataImport2 extends IMetaDataImport {
                   Pointer<Uint32> ptkConstraintType)>()(
           ptr, gpc, ptGenericParam, ptkConstraintType);
 
+  /// Gets a value identifying the nature of the code in the portable executable
+  /// (PE) file, typically a DLL or EXE file, that is defined in the current
+  /// metadata scope.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-getpekind>.
   int getPEKind(Pointer<Uint32> pdwPEKind, Pointer<Uint32> pdwMAchine) =>
       _vtable.GetPEKind.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Uint32> pdwPEKind,
               Pointer<Uint32> pdwMAchine)>()(ptr, pdwPEKind, pdwMAchine);
 
+  /// Gets the version number of the runtime that was used to build the assembly.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-getversionstring>.
   int getVersionString(
           Pointer<Utf16>? pwzBuf, int ccBufSize, Pointer<Uint32> pccBufSize) =>
       _vtable.GetVersionString.asFunction<
@@ -130,6 +165,11 @@ class IMetaDataImport2 extends IMetaDataImport {
                   int ccBufSize, Pointer<Uint32> pccBufSize)>()(
           ptr, pwzBuf ?? nullptr, ccBufSize, pccBufSize);
 
+  /// Gets an enumerator for an array of MethodSpec tokens associated with the
+  /// specified MethodDef or MemberRef token.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadataimport2-enummethodspecs>.
   int enumMethodSpecs(
           Pointer<Pointer> phEnum,
           int tk,

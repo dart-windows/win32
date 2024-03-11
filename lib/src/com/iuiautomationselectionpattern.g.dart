@@ -40,11 +40,20 @@ class IUIAutomationSelectionPattern extends IUnknown {
       IUIAutomationSelectionPattern(
           interface.toInterface(IID_IUIAutomationSelectionPattern));
 
+  /// Retrieves the selected elements in the container.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern-getcurrentselection>.
   int getCurrentSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentSelection.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Indicates whether more than one item in the container can be selected at one
+  /// time.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern-get_currentcanselectmultiple>.
   int get currentCanSelectMultiple {
     final retVal = calloc<BOOL>();
     try {
@@ -59,6 +68,10 @@ class IUIAutomationSelectionPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether at least one item must be selected at all times.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern-get_currentisselectionrequired>.
   int get currentIsSelectionRequired {
     final retVal = calloc<BOOL>();
     try {
@@ -73,11 +86,20 @@ class IUIAutomationSelectionPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached selected elements in the container.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern-getcachedselection>.
   int getCachedSelection(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedSelection.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves a cached value that indicates whether more than one item in the
+  /// container can be selected at one time.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern-get_cachedcanselectmultiple>.
   int get cachedCanSelectMultiple {
     final retVal = calloc<BOOL>();
     try {
@@ -92,6 +114,11 @@ class IUIAutomationSelectionPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether at least one item must be
+  /// selected at all times.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionpattern-get_cachedisselectionrequired>.
   int get cachedIsSelectionRequired {
     final retVal = calloc<BOOL>();
     try {

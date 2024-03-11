@@ -34,9 +34,19 @@ class IUIAutomationSynchronizedInputPattern extends IUnknown {
       IUIAutomationSynchronizedInputPattern(
           interface.toInterface(IID_IUIAutomationSynchronizedInputPattern));
 
+  /// Causes the Microsoft UI Automation provider to start listening for mouse or
+  /// keyboard input.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationsynchronizedinputpattern-startlistening>.
   int startListening(int inputType) => _vtable.StartListening.asFunction<
       int Function(VTablePointer lpVtbl, int inputType)>()(ptr, inputType);
 
+  /// Causes the Microsoft UI Automation provider to stop listening for mouse or
+  /// keyboard input.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationsynchronizedinputpattern-cancel>.
   int cancel() =>
       _vtable.Cancel.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

@@ -36,11 +36,19 @@ class IUIAutomationTextEditPattern extends IUIAutomationTextPattern {
       IUIAutomationTextEditPattern(
           interface.toInterface(IID_IUIAutomationTextEditPattern));
 
+  /// Returns the active composition.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtexteditpattern-getactivecomposition>.
   int getActiveComposition(Pointer<VTablePointer> range) =>
       _vtable.GetActiveComposition.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> range)>()(ptr, range);
 
+  /// Returns the current conversion target range.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtexteditpattern-getconversiontarget>.
   int getConversionTarget(Pointer<VTablePointer> range) =>
       _vtable.GetConversionTarget.asFunction<
           int Function(VTablePointer lpVtbl,

@@ -38,6 +38,11 @@ class IUIAutomationStylesPattern extends IUnknown {
       IUIAutomationStylesPattern(
           interface.toInterface(IID_IUIAutomationStylesPattern));
 
+  /// Retrieves the identifier of the visual style associated with an element in a
+  /// document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_currentstyleid>.
   int get currentStyleId {
     final retVal = calloc<Int32>();
     try {
@@ -52,6 +57,11 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the name of the visual style associated with an element in a
+  /// document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_currentstylename>.
   Pointer<Utf16> get currentStyleName {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -66,6 +76,10 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the fill color of an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_currentfillcolor>.
   int get currentFillColor {
     final retVal = calloc<Int32>();
     try {
@@ -94,6 +108,10 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the shape of an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_currentshape>.
   Pointer<Utf16> get currentShape {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -108,6 +126,10 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the color of the pattern used to fill an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_currentfillpatterncolor>.
   int get currentFillPatternColor {
     final retVal = calloc<Int32>();
     try {
@@ -122,6 +144,11 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a localized string that contains the list of extended properties
+  /// for an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_currentextendedproperties>.
   Pointer<Utf16> get currentExtendedProperties {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -146,6 +173,11 @@ class IUIAutomationStylesPattern extends IUnknown {
                   Pointer<Int32> propertyCount)>()(
           ptr, propertyArray, propertyCount);
 
+  /// Retrieves the cached identifier of the visual style associated with an
+  /// element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_cachedstyleid>.
   int get cachedStyleId {
     final retVal = calloc<Int32>();
     try {
@@ -160,6 +192,11 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached name of the visual style associated with an element in
+  /// a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_cachedstylename>.
   Pointer<Utf16> get cachedStyleName {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -174,6 +211,10 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached fill color of an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_cachedfillcolor>.
   int get cachedFillColor {
     final retVal = calloc<Int32>();
     try {
@@ -202,6 +243,10 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached shape of an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_cachedshape>.
   Pointer<Utf16> get cachedShape {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -216,6 +261,11 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached color of the pattern used to fill an element in a
+  /// document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_cachedfillpatterncolor>.
   int get cachedFillPatternColor {
     final retVal = calloc<Int32>();
     try {
@@ -230,6 +280,11 @@ class IUIAutomationStylesPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached localized string that contains the list of extended
+  /// properties for an element in a document.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationstylespattern-get_cachedextendedproperties>.
   Pointer<Utf16> get cachedExtendedProperties {
     final retVal = calloc<Pointer<Utf16>>();
     try {

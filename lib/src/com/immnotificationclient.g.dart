@@ -35,21 +35,38 @@ class IMMNotificationClient extends IUnknown {
   factory IMMNotificationClient.from(IUnknown interface) =>
       IMMNotificationClient(interface.toInterface(IID_IMMNotificationClient));
 
+  /// Indicates that the state of an audio endpoint device has changed.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immnotificationclient-ondevicestatechanged>.
   int onDeviceStateChanged(Pointer<Utf16> pwstrDeviceId, int dwNewState) =>
       _vtable.OnDeviceStateChanged.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId,
               int dwNewState)>()(ptr, pwstrDeviceId, dwNewState);
 
+  /// Indicates that a new audio endpoint device has been added.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immnotificationclient-ondeviceadded>.
   int onDeviceAdded(Pointer<Utf16> pwstrDeviceId) =>
       _vtable.OnDeviceAdded.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Utf16> pwstrDeviceId)>()(ptr, pwstrDeviceId);
 
+  /// Indicates that an audio endpoint device has been removed.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immnotificationclient-ondeviceremoved>.
   int onDeviceRemoved(Pointer<Utf16> pwstrDeviceId) =>
       _vtable.OnDeviceRemoved.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Utf16> pwstrDeviceId)>()(ptr, pwstrDeviceId);
 
+  /// Notifies the client that the default audio endpoint device for a particular
+  /// device role has changed.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immnotificationclient-ondefaultdevicechanged>.
   int onDefaultDeviceChanged(
           int flow, int role, Pointer<Utf16>? pwstrDefaultDeviceId) =>
       _vtable.OnDefaultDeviceChanged.asFunction<
@@ -57,6 +74,11 @@ class IMMNotificationClient extends IUnknown {
                   Pointer<Utf16> pwstrDefaultDeviceId)>()(
           ptr, flow, role, pwstrDefaultDeviceId ?? nullptr);
 
+  /// Indicates that the value of a property belonging to an audio endpoint device
+  /// has changed.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immnotificationclient-onpropertyvaluechanged>.
   int onPropertyValueChanged(Pointer<Utf16> pwstrDeviceId, PROPERTYKEY key) =>
       _vtable.OnPropertyValueChanged.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Utf16> pwstrDeviceId,

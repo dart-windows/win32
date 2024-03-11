@@ -38,6 +38,11 @@ class IUIAutomation2 extends IUIAutomation {
   factory IUIAutomation2.from(IUnknown interface) =>
       IUIAutomation2(interface.toInterface(IID_IUIAutomation2));
 
+  /// Specifies whether calls to UI Automation control pattern methods
+  /// automatically set focus to the target element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation2-get_autosetfocus>.
   int get autoSetFocus {
     final autoSetFocus = calloc<BOOL>();
     try {
@@ -59,6 +64,11 @@ class IUIAutomation2 extends IUIAutomation {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Specifies the length of time that UI Automation will wait for a provider to
+  /// respond to a client request for an automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation2-get_connectiontimeout>.
   int get connectionTimeout {
     final timeout = calloc<Uint32>();
     try {
@@ -80,6 +90,11 @@ class IUIAutomation2 extends IUIAutomation {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
+  /// Specifies the length of time that UI Automation will wait for a provider to
+  /// respond to a client request for information about an automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation2-get_transactiontimeout>.
   int get transactionTimeout {
     final timeout = calloc<Uint32>();
     try {

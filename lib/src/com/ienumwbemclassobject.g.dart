@@ -32,9 +32,21 @@ class IEnumWbemClassObject extends IUnknown {
   factory IEnumWbemClassObject.from(IUnknown interface) =>
       IEnumWbemClassObject(interface.toInterface(IID_IEnumWbemClassObject));
 
+  /// Resets an enumeration sequence back to the beginning.
+  ///
+  /// Because CIM objects are dynamic, calling this method does not necessarily
+  /// return the same list of objects that you obtained previously.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Use the `IEnumWbemClassObject.next` method to get one or more objects
+  /// starting at the current position in an enumeration.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-next>.
   int next(int lTimeout, int uCount, Pointer<VTablePointer> apObjects,
           Pointer<Uint32> puReturned) =>
       _vtable.Next.asFunction<
@@ -46,15 +58,33 @@ class IEnumWbemClassObject extends IUnknown {
                   Pointer<Uint32> puReturned)>()(
           ptr, lTimeout, uCount, apObjects, puReturned);
 
+  /// Use the NextAsync method when a controlled asynchronous retrieval of objects
+  /// to a sink is required.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-nextasync>.
   int nextAsync(int uCount, VTablePointer pSink) =>
       _vtable.NextAsync.asFunction<
           int Function(VTablePointer lpVtbl, int uCount,
               VTablePointer pSink)>()(ptr, uCount, pSink);
 
+  /// Makes a logical copy of the entire enumerator, retaining its current
+  /// position in an enumeration.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-clone>.
   int clone(Pointer<VTablePointer> ppEnum) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppEnum)>()(ptr, ppEnum);
 
+  /// You can use the `IEnumWbemClassObject.skip` method to move the current
+  /// position in an enumeration ahead by a specified number of objects.
+  ///
+  /// Also, this affects subsequent calls to NextAsync, but it does not affect
+  /// pending deliveries begun with NextAsync.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-ienumwbemclassobject-skip>.
   int skip(int lTimeout, int nCount) => _vtable.Skip.asFunction<
           int Function(VTablePointer lpVtbl, int lTimeout, int nCount)>()(
       ptr, lTimeout, nCount);

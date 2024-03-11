@@ -204,6 +204,8 @@ const interfaceDocs = <String, ApiDetails>{
   ),
 };
 
+const methodDocs = <String, ApiDetails>{};
+
 const structDocs = <String, ApiDetails>{
   'BLOB': ApiDetails(
     apiName: 'BLOB',

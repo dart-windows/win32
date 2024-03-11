@@ -39,16 +39,32 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
       IUIAutomationSelectionItemPattern(
           interface.toInterface(IID_IUIAutomationSelectionItemPattern));
 
+  /// Clears any selected items and then selects the current element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-select>.
   int select() =>
       _vtable.Select.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Adds the current element to the collection of selected items.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-addtoselection>.
   int addToSelection() =>
       _vtable.AddToSelection.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);
 
+  /// Removes this element from the selection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-removefromselection>.
   int removeFromSelection() => _vtable.RemoveFromSelection.asFunction<
       int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Indicates whether this item is selected.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-get_currentisselected>.
   int get currentIsSelected {
     final retVal = calloc<BOOL>();
     try {
@@ -63,6 +79,11 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the element that supports IUIAutomationSelectionPattern and acts
+  /// as the container for this item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-get_currentselectioncontainer>.
   VTablePointer get currentSelectionContainer {
     final retVal = calloc<VTablePointer>();
     try {
@@ -77,6 +98,10 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     }
   }
 
+  /// A cached value that indicates whether this item is selected.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-get_cachedisselected>.
   int get cachedIsSelected {
     final retVal = calloc<BOOL>();
     try {
@@ -91,6 +116,11 @@ class IUIAutomationSelectionItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached element that supports IUIAutomationSelectionPattern and
+  /// acts as the container for this item.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationselectionitempattern-get_cachedselectioncontainer>.
   VTablePointer get cachedSelectionContainer {
     final retVal = calloc<VTablePointer>();
     try {

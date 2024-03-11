@@ -32,6 +32,13 @@ class IWbemRefresher extends IUnknown {
   factory IWbemRefresher.from(IUnknown interface) =>
       IWbemRefresher(interface.toInterface(IID_IWbemRefresher));
 
+  /// Updates all refreshable objects, enumerators, and nested refreshers.
+  ///
+  /// The WMI Refresher calls this function in response to a client request to
+  /// Refresh.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemrefresher-refresh>.
   int refresh(int lFlags) => _vtable.Refresh.asFunction<
       int Function(VTablePointer lpVtbl, int lFlags)>()(ptr, lFlags);
 }

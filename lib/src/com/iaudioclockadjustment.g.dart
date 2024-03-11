@@ -31,6 +31,10 @@ class IAudioClockAdjustment extends IUnknown {
   factory IAudioClockAdjustment.from(IUnknown interface) =>
       IAudioClockAdjustment(interface.toInterface(IID_IAudioClockAdjustment));
 
+  /// Sets the sample rate of a stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclockadjustment-setsamplerate>.
   int setSampleRate(double flSampleRate) => _vtable.SetSampleRate.asFunction<
       int Function(
           VTablePointer lpVtbl, double flSampleRate)>()(ptr, flSampleRate);

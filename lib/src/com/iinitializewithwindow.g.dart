@@ -32,6 +32,11 @@ class IInitializeWithWindow extends IUnknown {
   factory IInitializeWithWindow.from(IUnknown interface) =>
       IInitializeWithWindow(interface.toInterface(IID_IInitializeWithWindow));
 
+  /// Specifies an owner window to be used by a Windows Runtime object that is
+  /// used in a desktop app.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-iinitializewithwindow-initialize>.
   int initialize(int hwnd) => _vtable.Initialize.asFunction<
       int Function(VTablePointer lpVtbl, int hwnd)>()(ptr, hwnd);
 }

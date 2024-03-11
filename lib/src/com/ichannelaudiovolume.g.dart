@@ -33,11 +33,19 @@ class IChannelAudioVolume extends IUnknown {
   factory IChannelAudioVolume.from(IUnknown interface) =>
       IChannelAudioVolume(interface.toInterface(IID_IChannelAudioVolume));
 
+  /// Retrieves the number of channels in the stream format for the audio session.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-ichannelaudiovolume-getchannelcount>.
   int getChannelCount(Pointer<Uint32> pdwCount) =>
       _vtable.GetChannelCount.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<Uint32> pdwCount)>()(ptr, pdwCount);
 
+  /// Sets the volume level for the specified channel in the audio session.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-ichannelaudiovolume-setchannelvolume>.
   int setChannelVolume(
           int dwIndex, double fLevel, Pointer<GUID> eventContext) =>
       _vtable.SetChannelVolume.asFunction<
@@ -45,11 +53,19 @@ class IChannelAudioVolume extends IUnknown {
                   Pointer<GUID> eventContext)>()(
           ptr, dwIndex, fLevel, eventContext);
 
+  /// Retrieves the volume level for the specified channel in the audio session.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-ichannelaudiovolume-getchannelvolume>.
   int getChannelVolume(int dwIndex, Pointer<Float> pfLevel) =>
       _vtable.GetChannelVolume.asFunction<
           int Function(VTablePointer lpVtbl, int dwIndex,
               Pointer<Float> pfLevel)>()(ptr, dwIndex, pfLevel);
 
+  /// Sets the individual volume levels for all the channels in the audio session.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-ichannelaudiovolume-setallvolumes>.
   int setAllVolumes(
           int dwCount, Pointer<Float> pfVolumes, Pointer<GUID> eventContext) =>
       _vtable.SetAllVolumes.asFunction<
@@ -57,6 +73,10 @@ class IChannelAudioVolume extends IUnknown {
                   Pointer<Float> pfVolumes, Pointer<GUID> eventContext)>()(
           ptr, dwCount, pfVolumes, eventContext);
 
+  /// Retrieves the volume levels for all the channels in the audio session.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-ichannelaudiovolume-getallvolumes>.
   int getAllVolumes(int dwCount, Pointer<Float> pfVolumes) =>
       _vtable.GetAllVolumes.asFunction<
           int Function(VTablePointer lpVtbl, int dwCount,

@@ -39,6 +39,10 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
       IUIAutomationSpreadsheetItemPattern(
           interface.toInterface(IID_IUIAutomationSpreadsheetItemPattern));
 
+  /// Retrieves the formula for this cell.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetitempattern-get_currentformula>.
   Pointer<Utf16> get currentFormula {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -53,16 +57,30 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves an array of elements representing the annotations associated with
+  /// this spreadsheet cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetitempattern-getcurrentannotationobjects>.
   int getCurrentAnnotationObjects(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentAnnotationObjects.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves an array of annotation type identifiers indicating the types of
+  /// annotations that are associated with this spreadsheet cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetitempattern-getcurrentannotationtypes>.
   int getCurrentAnnotationTypes(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCurrentAnnotationTypes.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Pointer<SAFEARRAY>> retVal)>()(ptr, retVal);
 
+  /// Retrieves the cached formula for this cell.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetitempattern-get_cachedformula>.
   Pointer<Utf16> get cachedFormula {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -77,11 +95,21 @@ class IUIAutomationSpreadsheetItemPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached array of elements representing the annotations associated
+  /// with this spreadsheet cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetitempattern-getcachedannotationobjects>.
   int getCachedAnnotationObjects(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedAnnotationObjects.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves a cached array of annotation type identifiers indicating the types
+  /// of annotations that are associated with this spreadsheet cell.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationspreadsheetitempattern-getcachedannotationtypes>.
   int getCachedAnnotationTypes(Pointer<Pointer<SAFEARRAY>> retVal) =>
       _vtable.GetCachedAnnotationTypes.asFunction<
           int Function(VTablePointer lpVtbl,

@@ -12577,8 +12577,6 @@ base class STARTUPINFOEX extends Struct {
 
 /// Contains information about a property set.
 ///
-/// (STATPROPSETSTG structure).
-///
 /// To learn more about this struct, see
 /// <https://learn.microsoft.com/windows/win32/api/propidlbase/ns-propidlbase-statpropsetstg>.
 ///

@@ -41,6 +41,11 @@ class IEnumNetworkConnections extends IDispatch {
       IEnumNetworkConnections(
           interface.toInterface(IID_IEnumNetworkConnections));
 
+  /// Returns an automation enumerator object that you can use to iterate through
+  /// the IEnumNetworkConnections collection.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-ienumnetworkconnections-get__newenum>.
   VTablePointer get newEnum {
     final ppEnumVar = calloc<VTablePointer>();
     try {
@@ -55,6 +60,10 @@ class IEnumNetworkConnections extends IDispatch {
     }
   }
 
+  /// Gets the next specified number of elements in the enumeration sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-ienumnetworkconnections-next>.
   int next(int celt, Pointer<VTablePointer> rgelt,
           Pointer<Uint32>? pceltFetched) =>
       _vtable.Next.asFunction<
@@ -65,13 +74,27 @@ class IEnumNetworkConnections extends IDispatch {
                   Pointer<Uint32> pceltFetched)>()(
           ptr, celt, rgelt, pceltFetched ?? nullptr);
 
+  /// Skips over the next specified number of elements in the enumeration
+  /// sequence.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-ienumnetworkconnections-skip>.
   int skip(int celt) =>
       _vtable.Skip.asFunction<int Function(VTablePointer lpVtbl, int celt)>()(
           ptr, celt);
 
+  /// Resets the enumeration sequence to the beginning.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-ienumnetworkconnections-reset>.
   int reset() =>
       _vtable.Reset.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Creates an enumerator that contains the same enumeration state as the
+  /// enumerator currently in use.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-ienumnetworkconnections-clone>.
   int clone(Pointer<VTablePointer> ppEnumNetwork) => _vtable.Clone.asFunction<
       int Function(VTablePointer lpVtbl,
           Pointer<VTablePointer> ppEnumNetwork)>()(ptr, ppEnumNetwork);

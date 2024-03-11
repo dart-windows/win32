@@ -38,6 +38,11 @@ class IUIAutomationDragPattern extends IUnknown {
       IUIAutomationDragPattern(
           interface.toInterface(IID_IUIAutomationDragPattern));
 
+  /// Indicates whether the user has grabbed this element as part of a
+  /// drag-and-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-get_currentisgrabbed>.
   int get currentIsGrabbed {
     final retVal = calloc<BOOL>();
     try {
@@ -52,6 +57,11 @@ class IUIAutomationDragPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether this element has been
+  /// grabbed as part of a drag-and-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-get_cachedisgrabbed>.
   int get cachedIsGrabbed {
     final retVal = calloc<BOOL>();
     try {
@@ -66,6 +76,11 @@ class IUIAutomationDragPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a localized string that indicates what happens when the user drops
+  /// this element as part of a drag-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-get_currentdropeffect>.
   Pointer<Utf16> get currentDropEffect {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -80,6 +95,11 @@ class IUIAutomationDragPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached localized string that indicates what happens when the
+  /// user drops this element as part of a drag-and-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-get_cacheddropeffect>.
   Pointer<Utf16> get cachedDropEffect {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -94,6 +114,12 @@ class IUIAutomationDragPattern extends IUnknown {
     }
   }
 
+  /// Retrieves an array of localized strings that enumerate the full set of
+  /// effects that can happen when this element as part of a drag-and-drop
+  /// operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-get_currentdropeffects>.
   Pointer<SAFEARRAY> get currentDropEffects {
     final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
@@ -108,6 +134,12 @@ class IUIAutomationDragPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached array of localized strings that enumerate the full set of
+  /// effects that can happen when the user drops this element as part of a
+  /// drag-and-drop operation.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-get_cacheddropeffects>.
   Pointer<SAFEARRAY> get cachedDropEffects {
     final retVal = calloc<Pointer<SAFEARRAY>>();
     try {
@@ -122,11 +154,21 @@ class IUIAutomationDragPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a collection of elements that represent the full set of items that
+  /// the user is dragging as part of a drag operation.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-getcurrentgrabbeditems>.
   int getCurrentGrabbedItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCurrentGrabbedItems.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> retVal)>()(ptr, retVal);
 
+  /// Retrieves a cached collection of elements that represent the full set of
+  /// items that the user is dragging as part of a drag operation.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationdragpattern-getcachedgrabbeditems>.
   int getCachedGrabbedItems(Pointer<VTablePointer> retVal) =>
       _vtable.GetCachedGrabbedItems.asFunction<
           int Function(VTablePointer lpVtbl,

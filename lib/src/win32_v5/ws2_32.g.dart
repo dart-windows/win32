@@ -312,7 +312,7 @@ final _inet_ntoa = _ws2_32.lookupFunction<Pointer<Utf8> Function(IN_ADDR in_),
 /// Converts an IPv4 or IPv6 Internet network address into a string in Internet
 /// standard format.
 ///
-/// The ANSI version of this function is inet_ntop. (InetNtopA or inet_ntop).
+/// The ANSI version of this function is inet_ntop.
 ///
 /// To learn more about this function, see
 /// <https://learn.microsoft.com/windows/win32/api/ws2tcpip/nf-ws2tcpip-inet_ntop>.

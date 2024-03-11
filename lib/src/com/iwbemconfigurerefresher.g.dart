@@ -35,6 +35,10 @@ class IWbemConfigureRefresher extends IUnknown {
       IWbemConfigureRefresher(
           interface.toInterface(IID_IWbemConfigureRefresher));
 
+  /// Adds an object to a refresher by specifying an object path.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemconfigurerefresher-addobjectbypath>.
   int addObjectByPath(
           VTablePointer pNamespace,
           Pointer<Utf16> wszPath,
@@ -53,6 +57,12 @@ class IWbemConfigureRefresher extends IUnknown {
                   Pointer<Int32> plId)>()(
           ptr, pNamespace, wszPath, lFlags, pContext, ppRefreshable, plId);
 
+  /// With the `IWbemConfigureRefresher.addObjectByTemplate` method, you can add
+  /// an object you want refreshed to a refresher by specifying an
+  /// IWbemClassObject instance template.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemconfigurerefresher-addobjectbytemplate>.
   int addObjectByTemplate(
           VTablePointer pNamespace,
           VTablePointer pTemplate,
@@ -71,6 +81,10 @@ class IWbemConfigureRefresher extends IUnknown {
                   Pointer<Int32> plId)>()(
           ptr, pNamespace, pTemplate, lFlags, pContext, ppRefreshable, plId);
 
+  /// Adds a refresher to a refresher.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemconfigurerefresher-addrefresher>.
   int addRefresher(VTablePointer pRefresher, int lFlags, Pointer<Int32> plId) =>
       _vtable.AddRefresher.asFunction<
           int Function(
@@ -79,10 +93,18 @@ class IWbemConfigureRefresher extends IUnknown {
               int lFlags,
               Pointer<Int32> plId)>()(ptr, pRefresher, lFlags, plId);
 
+  /// Used to remove an object, enumerator, or nested refresher from a refresher.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemconfigurerefresher-remove>.
   int remove(int lId, int lFlags) => _vtable.Remove.asFunction<
       int Function(
           VTablePointer lpVtbl, int lId, int lFlags)>()(ptr, lId, lFlags);
 
+  /// Adds an enumerator to the requested refresher.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemconfigurerefresher-addenum>.
   int addEnum(
           VTablePointer pNamespace,
           Pointer<Utf16> wszClassName,

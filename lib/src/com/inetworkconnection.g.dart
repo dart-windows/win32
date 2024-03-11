@@ -38,12 +38,20 @@ class INetworkConnection extends IDispatch {
   factory INetworkConnection.from(IUnknown interface) =>
       INetworkConnection(interface.toInterface(IID_INetworkConnection));
 
+  /// Returns the network associated with the connection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-getnetwork>.
   int getNetwork(
           Pointer<VTablePointer> ppNetwork) =>
       _vtable.GetNetwork.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppNetwork)>()(ptr, ppNetwork);
 
+  /// Specifies if the associated network connection has internet connectivity.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-get_isconnectedtointernet>.
   int get isConnectedToInternet {
     final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
@@ -58,6 +66,10 @@ class INetworkConnection extends IDispatch {
     }
   }
 
+  /// Specifies if the associated network connection has network connectivity.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-get_isconnected>.
   int get isConnected {
     final pbIsConnected = calloc<VARIANT_BOOL>();
     try {
@@ -72,21 +84,37 @@ class INetworkConnection extends IDispatch {
     }
   }
 
+  /// Returns the connectivity state of the network connection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-getconnectivity>.
   int getConnectivity(Pointer<Int32> pConnectivity) =>
       _vtable.GetConnectivity.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Int32> pConnectivity)>()(ptr, pConnectivity);
 
+  /// Returns the Connection ID associated with this network connection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-getconnectionid>.
   int getConnectionId(Pointer<GUID> pgdConnectionId) =>
       _vtable.GetConnectionId.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<GUID> pgdConnectionId)>()(ptr, pgdConnectionId);
 
+  /// Returns the ID of the network adapter used by this connection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-getadapterid>.
   int getAdapterId(Pointer<GUID> pgdAdapterId) =>
       _vtable.GetAdapterId.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<GUID> pgdAdapterId)>()(
           ptr, pgdAdapterId);
 
+  /// Returns the domain type of the network connection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/netlistmgr/nf-netlistmgr-inetworkconnection-getdomaintype>.
   int getDomainType(
           Pointer<Int32> pDomainType) =>
       _vtable.GetDomainType.asFunction<

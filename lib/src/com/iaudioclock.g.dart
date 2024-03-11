@@ -31,11 +31,19 @@ class IAudioClock extends IUnknown {
   factory IAudioClock.from(IUnknown interface) =>
       IAudioClock(interface.toInterface(IID_IAudioClock));
 
+  /// Gets the device frequency.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclock-getfrequency>.
   int getFrequency(Pointer<Uint64> pu64Frequency) =>
       _vtable.GetFrequency.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint64> pu64Frequency)>()(ptr, pu64Frequency);
 
+  /// Gets the current device position.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclock-getposition>.
   int getPosition(
           Pointer<Uint64> pu64Position, Pointer<Uint64>? pu64QPCPosition) =>
       _vtable.GetPosition.asFunction<
@@ -43,6 +51,10 @@ class IAudioClock extends IUnknown {
                   Pointer<Uint64> pu64QPCPosition)>()(
           ptr, pu64Position, pu64QPCPosition ?? nullptr);
 
+  /// Reserved for future use.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclock-getcharacteristics>.
   int getCharacteristics(Pointer<Uint32> pdwCharacteristics) =>
       _vtable.GetCharacteristics.asFunction<
           int Function(VTablePointer lpVtbl,

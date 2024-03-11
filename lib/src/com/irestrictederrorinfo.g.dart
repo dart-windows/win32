@@ -33,6 +33,11 @@ class IRestrictedErrorInfo extends IUnknown {
   factory IRestrictedErrorInfo.from(IUnknown interface) =>
       IRestrictedErrorInfo(interface.toInterface(IID_IRestrictedErrorInfo));
 
+  /// Returns information about an error, including the restricted error
+  /// description.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/restrictederrorinfo/nf-restrictederrorinfo-irestrictederrorinfo-geterrordetails>.
   int getErrorDetails(
           Pointer<Pointer<Utf16>> description,
           Pointer<HRESULT> error,
@@ -47,6 +52,10 @@ class IRestrictedErrorInfo extends IUnknown {
                   Pointer<Pointer<Utf16>> capabilitySid)>()(
           ptr, description, error, restrictedDescription, capabilitySid);
 
+  /// Returns a reference to restricted error information.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/restrictederrorinfo/nf-restrictederrorinfo-irestrictederrorinfo-getreference>.
   int getReference(Pointer<Pointer<Utf16>> reference) =>
       _vtable.GetReference.asFunction<
           int Function(VTablePointer lpVtbl,

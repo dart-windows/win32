@@ -31,10 +31,18 @@ class IMMDeviceCollection extends IUnknown {
   factory IMMDeviceCollection.from(IUnknown interface) =>
       IMMDeviceCollection(interface.toInterface(IID_IMMDeviceCollection));
 
+  /// Retrieves a count of the devices in the device collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdevicecollection-getcount>.
   int getCount(Pointer<Uint32> pcDevices) => _vtable.GetCount.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Uint32> pcDevices)>()(ptr, pcDevices);
 
+  /// Retrieves a pointer to the specified item in the device collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/mmdeviceapi/nf-mmdeviceapi-immdevicecollection-item>.
   int item(
           int nDevice, Pointer<VTablePointer> ppDevice) =>
       _vtable.Item.asFunction<

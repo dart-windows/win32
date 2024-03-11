@@ -33,27 +33,55 @@ class ISensorCollection extends IUnknown {
   factory ISensorCollection.from(IUnknown interface) =>
       ISensorCollection(interface.toInterface(IID_ISensorCollection));
 
+  /// Retrieves the sensor at the specified index in the collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensorcollection-getat>.
   int getAt(int ulIndex, Pointer<VTablePointer> ppSensor) =>
       _vtable.GetAt.asFunction<
           int Function(VTablePointer lpVtbl, int ulIndex,
               Pointer<VTablePointer> ppSensor)>()(ptr, ulIndex, ppSensor);
 
+  /// Retrieves the count of sensors in the collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensorcollection-getcount>.
   int getCount(Pointer<Uint32> pCount) => _vtable.GetCount.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Uint32> pCount)>()(ptr, pCount);
 
+  /// Adds a sensor to the collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensorcollection-add>.
   int add(VTablePointer? pSensor) => _vtable.Add.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pSensor)>()(
       ptr, pSensor ?? nullptr);
 
+  /// Removes a sensor from the collection.
+  ///
+  /// The sensor is specified by a pointer to the ISensor interface to be removed.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensorcollection-remove>.
   int remove(VTablePointer? pSensor) => _vtable.Remove.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pSensor)>()(
       ptr, pSensor ?? nullptr);
 
+  /// Removes a sensor from the collection.
+  ///
+  /// The sensor to be removed is specified by its ID.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensorcollection-removebyid>.
   int removeByID(Pointer<GUID> sensorID) => _vtable.RemoveByID.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<GUID> sensorID)>()(ptr, sensorID);
 
+  /// Empties the sensor collection.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/sensorsapi/nf-sensorsapi-isensorcollection-clear>.
   int clear() =>
       _vtable.Clear.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 }

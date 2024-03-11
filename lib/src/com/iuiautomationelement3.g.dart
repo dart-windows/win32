@@ -37,10 +37,18 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
   factory IUIAutomationElement3.from(IUnknown interface) =>
       IUIAutomationElement3(interface.toInterface(IID_IUIAutomationElement3));
 
+  /// Programmatically invokes a context menu on the target element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement3-showcontextmenu>.
   int showContextMenu() =>
       _vtable.ShowContextMenu.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);
 
+  /// Retrieves the current peripheral UI indicator for the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement3-get_currentisperipheral>.
   int get currentIsPeripheral {
     final retVal = calloc<BOOL>();
     try {
@@ -55,6 +63,10 @@ class IUIAutomationElement3 extends IUIAutomationElement2 {
     }
   }
 
+  /// Retrieves the cached peripheral UI indicator for the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement3-get_cachedisperipheral>.
   int get cachedIsPeripheral {
     final retVal = calloc<BOOL>();
     try {

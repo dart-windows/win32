@@ -34,15 +34,27 @@ class IShellItemResources extends IUnknown {
   factory IShellItemResources.from(IUnknown interface) =>
       IShellItemResources(interface.toInterface(IID_IShellItemResources));
 
+  /// Gets resource attributes.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-getattributes>.
   int getAttributes(Pointer<Uint32> pdwAttributes) =>
       _vtable.GetAttributes.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<Uint32> pdwAttributes)>()(ptr, pdwAttributes);
 
+  /// Gets the source size.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-getsize>.
   int getSize(Pointer<Uint64> pullSize) => _vtable.GetSize.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<Uint64> pullSize)>()(ptr, pullSize);
 
+  /// Gets file times.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-gettimes>.
   int getTimes(Pointer<FILETIME> pftCreation, Pointer<FILETIME> pftWrite,
           Pointer<FILETIME> pftAccess) =>
       _vtable.GetTimes.asFunction<
@@ -50,6 +62,10 @@ class IShellItemResources extends IUnknown {
                   Pointer<FILETIME> pftWrite, Pointer<FILETIME> pftAccess)>()(
           ptr, pftCreation, pftWrite, pftAccess);
 
+  /// Sets file times.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-settimes>.
   int setTimes(Pointer<FILETIME> pftCreation, Pointer<FILETIME> pftWrite,
           Pointer<FILETIME> pftAccess) =>
       _vtable.SetTimes.asFunction<
@@ -57,6 +73,10 @@ class IShellItemResources extends IUnknown {
                   Pointer<FILETIME> pftWrite, Pointer<FILETIME> pftAccess)>()(
           ptr, pftCreation, pftWrite, pftAccess);
 
+  /// Gets a resource description.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-getresourcedescription>.
   int getResourceDescription(Pointer<SHELL_ITEM_RESOURCE> pcsir,
           Pointer<Pointer<Utf16>> ppszDescription) =>
       _vtable.GetResourceDescription.asFunction<
@@ -66,16 +86,28 @@ class IShellItemResources extends IUnknown {
                   Pointer<Pointer<Utf16>> ppszDescription)>()(
           ptr, pcsir, ppszDescription);
 
+  /// Gets a resource enumerator object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-enumresources>.
   int enumResources(Pointer<VTablePointer> ppenumr) =>
       _vtable.EnumResources.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppenumr)>()(ptr, ppenumr);
 
+  /// Retrieves whether an item supports a specified resource.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-supportsresource>.
   int supportsResource(Pointer<SHELL_ITEM_RESOURCE> pcsir) =>
       _vtable.SupportsResource.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<SHELL_ITEM_RESOURCE> pcsir)>()(ptr, pcsir);
 
+  /// Opens a specified resource.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-openresource>.
   int openResource(Pointer<SHELL_ITEM_RESOURCE> pcsir, Pointer<GUID> riid,
           Pointer<Pointer> ppv) =>
       _vtable.OpenResource.asFunction<
@@ -85,6 +117,10 @@ class IShellItemResources extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, pcsir, riid, ppv);
 
+  /// Creates a specified resource.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-createresource>.
   int createResource(Pointer<SHELL_ITEM_RESOURCE> pcsir, Pointer<GUID> riid,
           Pointer<Pointer> ppv) =>
       _vtable.CreateResource.asFunction<
@@ -94,6 +130,10 @@ class IShellItemResources extends IUnknown {
               Pointer<GUID> riid,
               Pointer<Pointer> ppv)>()(ptr, pcsir, riid, ppv);
 
+  /// Marks for delete.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemresources-markfordelete>.
   int markForDelete() =>
       _vtable.MarkForDelete.asFunction<int Function(VTablePointer lpVtbl)>()(
           ptr);

@@ -36,6 +36,11 @@ class IAudioClient3 extends IAudioClient2 {
   factory IAudioClient3.from(IUnknown interface) =>
       IAudioClient3(interface.toInterface(IID_IAudioClient3));
 
+  /// Returns the range of periodicities supported by the engine for the specified
+  /// stream format.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient3-getsharedmodeengineperiod>.
   int getSharedModeEnginePeriod(
           Pointer<WAVEFORMATEX> pFormat,
           Pointer<Uint32> pDefaultPeriodInFrames,
@@ -57,6 +62,10 @@ class IAudioClient3 extends IAudioClient2 {
           pMinPeriodInFrames,
           pMaxPeriodInFrames);
 
+  /// Returns the current format and periodicity of the audio engine.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient3-getcurrentsharedmodeengineperiod>.
   int getCurrentSharedModeEnginePeriod(Pointer<Pointer<WAVEFORMATEX>> ppFormat,
           Pointer<Uint32> pCurrentPeriodInFrames) =>
       _vtable.GetCurrentSharedModeEnginePeriod.asFunction<
@@ -66,6 +75,10 @@ class IAudioClient3 extends IAudioClient2 {
                   Pointer<Uint32> pCurrentPeriodInFrames)>()(
           ptr, ppFormat, pCurrentPeriodInFrames);
 
+  /// Initializes a shared stream with the specified periodicity.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/audioclient/nf-audioclient-iaudioclient3-initializesharedaudiostream>.
   int initializeSharedAudioStream(int streamFlags, int periodInFrames,
           Pointer<WAVEFORMATEX> pFormat, Pointer<GUID>? audioSessionGuid) =>
       _vtable.InitializeSharedAudioStream.asFunction<

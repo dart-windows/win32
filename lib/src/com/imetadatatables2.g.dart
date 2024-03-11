@@ -33,11 +33,20 @@ class IMetaDataTables2 extends IMetaDataTables {
   factory IMetaDataTables2.from(IUnknown interface) =>
       IMetaDataTables2(interface.toInterface(IID_IMetaDataTables2));
 
+  /// Gets the size and contents of the metadata stored in the specified section.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatatables2-getmetadatastorage>.
   int getMetaDataStorage(Pointer<Pointer> ppvMd, Pointer<Uint32> pcbMd) =>
       _vtable.GetMetaDataStorage.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<Pointer> ppvMd,
               Pointer<Uint32> pcbMd)>()(ptr, ppvMd, pcbMd);
 
+  /// Gets the name, size, and contents of the metadata stream at the specified
+  /// index.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/rometadataapi/nf-rometadataapi-imetadatatables2-getmetadatastreaminfo>.
   int getMetaDataStreamInfo(int ix, Pointer<Pointer<Int8>> ppchName,
           Pointer<Pointer> ppv, Pointer<Uint32> pcb) =>
       _vtable.GetMetaDataStreamInfo.asFunction<

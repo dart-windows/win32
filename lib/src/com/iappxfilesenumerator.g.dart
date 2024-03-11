@@ -31,15 +31,28 @@ class IAppxFilesEnumerator extends IUnknown {
   factory IAppxFilesEnumerator.from(IUnknown interface) =>
       IAppxFilesEnumerator(interface.toInterface(IID_IAppxFilesEnumerator));
 
+  /// Gets the payload file at the current position of the enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfilesenumerator-getcurrent>.
   int getCurrent(Pointer<VTablePointer> file) => _vtable.GetCurrent.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> file)>()(ptr, file);
 
+  /// Determines whether there is a payload file at the current position of the
+  /// enumerator.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfilesenumerator-gethascurrent>.
   int getHasCurrent(Pointer<BOOL> hasCurrent) =>
       _vtable.GetHasCurrent.asFunction<
               int Function(VTablePointer lpVtbl, Pointer<BOOL> hasCurrent)>()(
           ptr, hasCurrent);
 
+  /// Advances the position of the enumerator to the next payload file.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/appxpackaging/nf-appxpackaging-iappxfilesenumerator-movenext>.
   int moveNext(Pointer<BOOL> hasNext) => _vtable.MoveNext.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<BOOL> hasNext)>()(ptr, hasNext);

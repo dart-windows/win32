@@ -38,18 +38,31 @@ class IUIAutomationScrollPattern extends IUnknown {
       IUIAutomationScrollPattern(
           interface.toInterface(IID_IUIAutomationScrollPattern));
 
+  /// Scrolls the visible region of the content area horizontally and vertically.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-scroll>.
   int scroll(
           int horizontalAmount, int verticalAmount) =>
       _vtable.Scroll.asFunction<
           int Function(VTablePointer lpVtbl, int horizontalAmount,
               int verticalAmount)>()(ptr, horizontalAmount, verticalAmount);
 
+  /// Sets the horizontal and vertical scroll positions as a percentage of the
+  /// total content area within the UI Automation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-setscrollpercent>.
   int setScrollPercent(double horizontalPercent, double verticalPercent) =>
       _vtable.SetScrollPercent.asFunction<
               int Function(VTablePointer lpVtbl, double horizontalPercent,
                   double verticalPercent)>()(
           ptr, horizontalPercent, verticalPercent);
 
+  /// Retrieves the horizontal scroll position.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_currenthorizontalscrollpercent>.
   double get currentHorizontalScrollPercent {
     final retVal = calloc<Double>();
     try {
@@ -64,6 +77,10 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the vertical scroll position.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_currentverticalscrollpercent>.
   double get currentVerticalScrollPercent {
     final retVal = calloc<Double>();
     try {
@@ -78,6 +95,11 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the horizontal size of the viewable region of a scrollable
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_currenthorizontalviewsize>.
   double get currentHorizontalViewSize {
     final retVal = calloc<Double>();
     try {
@@ -92,6 +114,10 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the vertical size of the viewable region of a scrollable element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_currentverticalviewsize>.
   double get currentVerticalViewSize {
     final retVal = calloc<Double>();
     try {
@@ -106,6 +132,10 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the element can scroll horizontally.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_currenthorizontallyscrollable>.
   int get currentHorizontallyScrollable {
     final retVal = calloc<BOOL>();
     try {
@@ -120,6 +150,10 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the element can scroll vertically.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_currentverticallyscrollable>.
   int get currentVerticallyScrollable {
     final retVal = calloc<BOOL>();
     try {
@@ -134,6 +168,10 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached horizontal scroll position.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_cachedhorizontalscrollpercent>.
   double get cachedHorizontalScrollPercent {
     final retVal = calloc<Double>();
     try {
@@ -148,6 +186,10 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached vertical scroll position.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_cachedverticalscrollpercent>.
   double get cachedVerticalScrollPercent {
     final retVal = calloc<Double>();
     try {
@@ -162,6 +204,11 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached horizontal size of the viewable region of a scrollable
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_cachedhorizontalviewsize>.
   double get cachedHorizontalViewSize {
     final retVal = calloc<Double>();
     try {
@@ -176,6 +223,11 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves the cached vertical size of the viewable region of a scrollable
+  /// element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_cachedverticalviewsize>.
   double get cachedVerticalViewSize {
     final retVal = calloc<Double>();
     try {
@@ -190,6 +242,11 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the element can scroll
+  /// horizontally.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_cachedhorizontallyscrollable>.
   int get cachedHorizontallyScrollable {
     final retVal = calloc<BOOL>();
     try {
@@ -204,6 +261,11 @@ class IUIAutomationScrollPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the element can scroll
+  /// vertically.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationscrollpattern-get_cachedverticallyscrollable>.
   int get cachedVerticallyScrollable {
     final retVal = calloc<BOOL>();
     try {

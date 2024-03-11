@@ -37,6 +37,10 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
   factory IUIAutomationElement9.from(IUnknown interface) =>
       IUIAutomationElement9(interface.toInterface(IID_IUIAutomationElement9));
 
+  /// Retrieves the current is dialog window indicator for the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement9-get_currentisdialog>.
   int get currentIsDialog {
     final retVal = calloc<BOOL>();
     try {
@@ -51,6 +55,10 @@ class IUIAutomationElement9 extends IUIAutomationElement8 {
     }
   }
 
+  /// Retrieves the cached is dialog window indicator for the element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement9-get_cachedisdialog>.
   int get cachedIsDialog {
     final retVal = calloc<BOOL>();
     try {

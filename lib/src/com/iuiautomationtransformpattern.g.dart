@@ -38,16 +38,32 @@ class IUIAutomationTransformPattern extends IUnknown {
       IUIAutomationTransformPattern(
           interface.toInterface(IID_IUIAutomationTransformPattern));
 
+  /// Moves the UI Automation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-move>.
   int move(double x, double y) => _vtable.Move.asFunction<
       int Function(VTablePointer lpVtbl, double x, double y)>()(ptr, x, y);
 
+  /// Resizes the UI Automation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-resize>.
   int resize(double width, double height) => _vtable.Resize.asFunction<
           int Function(VTablePointer lpVtbl, double width, double height)>()(
       ptr, width, height);
 
+  /// Rotates the UI Automation element.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-rotate>.
   int rotate(double degrees) => _vtable.Rotate.asFunction<
       int Function(VTablePointer lpVtbl, double degrees)>()(ptr, degrees);
 
+  /// Indicates whether the element can be moved.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-get_currentcanmove>.
   int get currentCanMove {
     final retVal = calloc<BOOL>();
     try {
@@ -62,6 +78,10 @@ class IUIAutomationTransformPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the element can be resized.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-get_currentcanresize>.
   int get currentCanResize {
     final retVal = calloc<BOOL>();
     try {
@@ -76,6 +96,10 @@ class IUIAutomationTransformPattern extends IUnknown {
     }
   }
 
+  /// Indicates whether the element can be rotated.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-get_currentcanrotate>.
   int get currentCanRotate {
     final retVal = calloc<BOOL>();
     try {
@@ -90,6 +114,10 @@ class IUIAutomationTransformPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the element can be moved.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-get_cachedcanmove>.
   int get cachedCanMove {
     final retVal = calloc<BOOL>();
     try {
@@ -104,6 +132,10 @@ class IUIAutomationTransformPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the element can be resized.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-get_cachedcanresize>.
   int get cachedCanResize {
     final retVal = calloc<BOOL>();
     try {
@@ -118,6 +150,10 @@ class IUIAutomationTransformPattern extends IUnknown {
     }
   }
 
+  /// Retrieves a cached value that indicates whether the element can be rotated.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationtransformpattern-get_cachedcanrotate>.
   int get cachedCanRotate {
     final retVal = calloc<BOOL>();
     try {

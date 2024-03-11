@@ -31,15 +31,31 @@ class IStream extends ISequentialStream {
   factory IStream.from(IUnknown interface) =>
       IStream(interface.toInterface(IID_IStream));
 
+  /// Changes the seek pointer to a new location.
+  ///
+  /// The new location is relative to either the beginning of the stream, the end
+  /// of the stream, or the current seek pointer.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-seek>.
   int seek(int dlibMove, int dwOrigin, Pointer<Uint64>? plibNewPosition) =>
       _vtable.Seek.asFunction<
               int Function(VTablePointer lpVtbl, int dlibMove, int dwOrigin,
                   Pointer<Uint64> plibNewPosition)>()(
           ptr, dlibMove, dwOrigin, plibNewPosition ?? nullptr);
 
+  /// Changes the size of the stream object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-setsize>.
   int setSize(int libNewSize) => _vtable.SetSize.asFunction<
       int Function(VTablePointer lpVtbl, int libNewSize)>()(ptr, libNewSize);
 
+  /// Copies a specified number of bytes from the current seek pointer in the
+  /// stream to the current seek pointer in another stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-copyto>.
   int copyTo(VTablePointer pstm, int cb, Pointer<Uint64>? pcbRead,
           Pointer<Uint64>? pcbWritten) =>
       _vtable.CopyTo.asFunction<
@@ -47,28 +63,59 @@ class IStream extends ISequentialStream {
                   Pointer<Uint64> pcbRead, Pointer<Uint64> pcbWritten)>()(
           ptr, pstm, cb, pcbRead ?? nullptr, pcbWritten ?? nullptr);
 
+  /// Ensures that any changes made to a stream object open in transacted mode are
+  /// reflected in the parent storage.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-commit>.
   int commit(int grfCommitFlags) => _vtable.Commit.asFunction<
       int Function(
           VTablePointer lpVtbl, int grfCommitFlags)>()(ptr, grfCommitFlags);
 
+  /// Discards all changes that have been made to a transacted stream since the
+  /// last `IStream.commit` call.
+  ///
+  /// On streams open in direct mode and streams using the COM compound file
+  /// implementation of `IStream.revert`, this method has no effect.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-revert>.
   int revert() =>
       _vtable.Revert.asFunction<int Function(VTablePointer lpVtbl)>()(ptr);
 
+  /// Restricts access to a specified range of bytes in the stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-lockregion>.
   int lockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.LockRegion.asFunction<
           int Function(VTablePointer lpVtbl, int libOffset, int cb,
               int dwLockType)>()(ptr, libOffset, cb, dwLockType);
 
+  /// Removes the access restriction on a range of bytes previously restricted
+  /// with `IStream.lockRegion`.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-unlockregion>.
   int unlockRegion(int libOffset, int cb, int dwLockType) =>
       _vtable.UnlockRegion.asFunction<
           int Function(VTablePointer lpVtbl, int libOffset, int cb,
               int dwLockType)>()(ptr, libOffset, cb, dwLockType);
 
+  /// Retrieves the STATSTG structure for this stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-stat>.
   int stat(Pointer<STATSTG> pstatstg, int grfStatFlag) =>
       _vtable.Stat.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<STATSTG> pstatstg,
               int grfStatFlag)>()(ptr, pstatstg, grfStatFlag);
 
+  /// Creates a new stream object with its own seek pointer that references the
+  /// same bytes as the original stream.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/objidl/nf-objidl-istream-clone>.
   int clone(Pointer<VTablePointer> ppstm) => _vtable.Clone.asFunction<
       int Function(
           VTablePointer lpVtbl, Pointer<VTablePointer> ppstm)>()(ptr, ppstm);

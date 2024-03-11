@@ -32,9 +32,18 @@ class IShellItemFilter extends IUnknown {
   factory IShellItemFilter.from(IUnknown interface) =>
       IShellItemFilter(interface.toInterface(IID_IShellItemFilter));
 
+  /// Sets a given Shell item status to inclusion in the view.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemfilter-includeitem>.
   int includeItem(VTablePointer psi) => _vtable.IncludeItem.asFunction<
       int Function(VTablePointer lpVtbl, VTablePointer psi)>()(ptr, psi);
 
+  /// Allows a client to specify which classes of objects in a Shell item should
+  /// be enumerated for inclusion in the view.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/nf-shobjidl_core-ishellitemfilter-getenumflagsforitem>.
   int getEnumFlagsForItem(VTablePointer psi, Pointer<Uint32> pgrfFlags) =>
       _vtable.GetEnumFlagsForItem.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer psi,

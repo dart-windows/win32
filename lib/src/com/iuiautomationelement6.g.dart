@@ -38,6 +38,10 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
   factory IUIAutomationElement6.from(IUnknown interface) =>
       IUIAutomationElement6(interface.toInterface(IID_IUIAutomationElement6));
 
+  /// Gets the current full description of the automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement6-get_currentfulldescription>.
   Pointer<Utf16> get currentFullDescription {
     final retVal = calloc<Pointer<Utf16>>();
     try {
@@ -52,6 +56,10 @@ class IUIAutomationElement6 extends IUIAutomationElement5 {
     }
   }
 
+  /// Gets the cached full description of the automation element.
+  ///
+  /// To learn more about this property, see
+  /// <https://learn.microsoft.com/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement6-get_cachedfulldescription>.
   Pointer<Utf16> get cachedFullDescription {
     final retVal = calloc<Pointer<Utf16>>();
     try {

@@ -33,6 +33,11 @@ class IWbemLocator extends IUnknown {
   factory IWbemLocator.from(IUnknown interface) =>
       IWbemLocator(interface.toInterface(IID_IWbemLocator));
 
+  /// Creates a connection through DCOM to a WMI namespace on the computer
+  /// specified in the strNetworkResource parameter.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/wbemcli/nf-wbemcli-iwbemlocator-connectserver>.
   int connectServer(
           Pointer<Utf16> strNetworkResource,
           Pointer<Utf16> strUser,

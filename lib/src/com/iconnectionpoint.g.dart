@@ -32,23 +32,48 @@ class IConnectionPoint extends IUnknown {
   factory IConnectionPoint.from(IUnknown interface) =>
       IConnectionPoint(interface.toInterface(IID_IConnectionPoint));
 
+  /// Retrieves the IID of the outgoing interface managed by this connection
+  /// point.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpoint-getconnectioninterface>.
   int getConnectionInterface(Pointer<GUID> pIID) =>
       _vtable.GetConnectionInterface.asFunction<
           int Function(VTablePointer lpVtbl, Pointer<GUID> pIID)>()(ptr, pIID);
 
+  /// Retrieves the IConnectionPointContainer interface pointer for the parent
+  /// connectable object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpoint-getconnectionpointcontainer>.
   int getConnectionPointContainer(Pointer<VTablePointer> ppCPC) =>
       _vtable.GetConnectionPointContainer.asFunction<
           int Function(VTablePointer lpVtbl,
               Pointer<VTablePointer> ppCPC)>()(ptr, ppCPC);
 
+  /// Establishes a connection between a connection point object and the client's
+  /// sink.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpoint-advise>.
   int advise(VTablePointer pUnkSink, Pointer<Uint32> pdwCookie) =>
       _vtable.Advise.asFunction<
           int Function(VTablePointer lpVtbl, VTablePointer pUnkSink,
               Pointer<Uint32> pdwCookie)>()(ptr, pUnkSink, pdwCookie);
 
+  /// Terminates an advisory connection previously established between a
+  /// connection point object and a client's sink.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpoint-unadvise>.
   int unadvise(int dwCookie) => _vtable.Unadvise.asFunction<
       int Function(VTablePointer lpVtbl, int dwCookie)>()(ptr, dwCookie);
 
+  /// Creates an enumerator object to iterate through the current connections for
+  /// this connection point.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/ocidl/nf-ocidl-iconnectionpoint-enumconnections>.
   int enumConnections(Pointer<VTablePointer> ppEnum) =>
       _vtable.EnumConnections.asFunction<
           int Function(VTablePointer lpVtbl,

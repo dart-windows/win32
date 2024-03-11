@@ -34,16 +34,32 @@ class IDispatch extends IUnknown {
   factory IDispatch.from(IUnknown interface) =>
       IDispatch(interface.toInterface(IID_IDispatch));
 
+  /// Retrieves the number of type information interfaces that an object provides
+  /// (either 0 or 1).
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-idispatch-gettypeinfocount>.
   int getTypeInfoCount(Pointer<Uint32> pctinfo) =>
       _vtable.GetTypeInfoCount.asFunction<
           int Function(
               VTablePointer lpVtbl, Pointer<Uint32> pctinfo)>()(ptr, pctinfo);
 
+  /// Retrieves the type information for an object, which can then be used to get
+  /// the type information for an interface.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-idispatch-gettypeinfo>.
   int getTypeInfo(int iTInfo, int lcid, Pointer<VTablePointer> ppTInfo) =>
       _vtable.GetTypeInfo.asFunction<
           int Function(VTablePointer lpVtbl, int iTInfo, int lcid,
               Pointer<VTablePointer> ppTInfo)>()(ptr, iTInfo, lcid, ppTInfo);
 
+  /// Maps a single member and an optional set of argument names to a
+  /// corresponding set of integer DISPIDs, which can be used on subsequent calls
+  /// to Invoke.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-idispatch-getidsofnames>.
   int getIDsOfNames(Pointer<GUID> riid, Pointer<Pointer<Utf16>> rgszNames,
           int cNames, int lcid, Pointer<Int32> rgDispId) =>
       _vtable.GetIDsOfNames.asFunction<
@@ -56,6 +72,10 @@ class IDispatch extends IUnknown {
                   Pointer<Int32> rgDispId)>()(
           ptr, riid, rgszNames, cNames, lcid, rgDispId);
 
+  /// Provides access to properties and methods exposed by an object.
+  ///
+  /// To learn more about this method, see
+  /// <https://learn.microsoft.com/windows/win32/api/oaidl/nf-oaidl-idispatch-invoke>.
   int invoke(
           int dispIdMember,
           Pointer<GUID> riid,
