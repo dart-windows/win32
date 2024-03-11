@@ -8,56 +8,47 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
-import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
-
-enum ApartmentType {
-  current(-1),
-  singleThreaded(0),
-  multiThreaded(1),
-  neutral(2),
-  mainSingleThreaded(3);
-
-  final int value;
-  const ApartmentType(this.value);
-
-  factory ApartmentType.fromValue(int value) =>
-      ApartmentType.values.firstWhere((elem) => elem.value == value);
-}
-
-enum ApartmentTypeQualifier {
-  none(0),
-  implicitMTA(1),
-  neutralOnMTA(2),
-  neutralOnSTA(3),
-  neutralOnImplicitMTA(4),
-  neutralOnMainSTA(5),
-  applicationSTA(6);
-
-  final int value;
-  const ApartmentTypeQualifier(this.value);
-
-  factory ApartmentTypeQualifier.fromValue(int value) =>
-      ApartmentTypeQualifier.values.firstWhere((elem) => elem.value == value);
-}
 
 class ThreadContext {
   const ThreadContext(this.id, this.type, this.qualifier);
 
   final int id;
-  final ApartmentType type;
-  final ApartmentTypeQualifier qualifier;
+  final APTTYPE type;
+  final APTTYPEQUALIFIER qualifier;
+
+  String get typeName => switch (type) {
+        APTTYPE.APTTYPE_CURRENT => 'current',
+        APTTYPE.APTTYPE_STA => 'singleThreaded',
+        APTTYPE.APTTYPE_MTA => 'multiThreaded',
+        APTTYPE.APTTYPE_NA => 'neutral',
+        APTTYPE.APTTYPE_MAINSTA => 'mainSingleThreaded',
+        _ => throw 'Unrecognized APTTYPE value: $type'
+      };
+
+  String get qualifierName => switch (qualifier) {
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_NONE => 'none',
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_IMPLICIT_MTA => 'implicitMTA',
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_NA_ON_MTA => 'neutralOnMTA',
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_NA_ON_STA => 'neutralOnSTA',
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_NA_ON_IMPLICIT_MTA =>
+          'neutralOnImplicitMTA',
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_NA_ON_MAINSTA => 'neutralOnMainSTA',
+        APTTYPEQUALIFIER.APTTYPEQUALIFIER_APPLICATION_STA => 'applicationSTA',
+        _ => throw 'Unrecognized APTTYPEQUALIFIER value: $qualifier'
+      };
 
   @override
-  String toString() => '#$id: [${type.name}, ${qualifier.name}]';
+  String toString() => '#$id: [$typeName, $qualifierName]';
 }
 
 void initializeMTA() {
   final pCookie = calloc<CO_MTA_USAGE_COOKIE>();
   try {
-    // Ensure an multi-threaded apartment is created.
+    // Ensure a multi-threaded apartment is created.
     final hr = CoIncrementMTAUsage(pCookie);
     if (FAILED(hr)) throw WindowsException(hr);
   } finally {
@@ -66,35 +57,30 @@ void initializeMTA() {
 }
 
 ThreadContext getThreadContext() {
-  final pAptType = calloc<Int32>();
-  final pAptQualifier = calloc<Int32>();
-
-  try {
+  return using((arena) {
     final threadID = GetCurrentThreadId();
 
-    // Get the current thread's COM model
+    // Get the current thread's COM model.
+    final pAptType = arena<Int32>();
+    final pAptQualifier = arena<Int32>();
     var hr = CoGetApartmentType(pAptType, pAptQualifier);
-
     if (hr == CO_E_NOTINITIALIZED) {
       // This thread hasn't been initialized for COM. Initialize and try again.
       initializeMTA();
       hr = CoGetApartmentType(pAptType, pAptQualifier);
     }
-    // Some other error occurred
+    // Some other error occurred.
     if (hr != S_OK) throw WindowsException(hr);
 
     return ThreadContext(
       threadID,
-      ApartmentType.fromValue(pAptType.value),
-      ApartmentTypeQualifier.fromValue(pAptQualifier.value),
+      APTTYPE(pAptType.value),
+      APTTYPEQUALIFIER(pAptQualifier.value),
     );
-  } finally {
-    free(pAptType);
-    free(pAptQualifier);
-  }
+  });
 }
 
-Future<void> doSomething(SendPort port) {
+Future<ThreadContext> doSomething() {
   // We are now in a spawned isolate. Get some information about the COM context
   // that the current _thread_ has (which may or may not be the original thread
   // where we ran CoInitializeEx(), depending on whether Dart is reusing the
@@ -103,10 +89,10 @@ Future<void> doSomething(SendPort port) {
 
   // Sleep for a period of time to increase the chances that Dart creates
   // another thread.
-  sleep(Duration(milliseconds: Random().nextInt(10)));
+  sleep(Duration(milliseconds: math.Random().nextInt(10)));
 
   // Pass the context information back to the spawning isolate.
-  Isolate.exit(port, context);
+  return Future.value(context);
 }
 
 Future<void> createIsolates() async {
@@ -115,12 +101,8 @@ Future<void> createIsolates() async {
   // implementation detail, but it matters for the purposes of this example
   // because only the initial thread has been initialized for COM.
   for (var i = 0; i < 100; i++) {
-    final p = ReceivePort();
-
-    await Isolate.spawn(doSomething, p.sendPort);
-    final context = await p.first as ThreadContext;
-
-    print(context.toString());
+    final context = await Isolate.run(doSomething);
+    print(context);
   }
 }
 
@@ -146,10 +128,10 @@ void main() async {
   // The main thread is initialized for the COM apartment threading model.
   CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
-  // Should be mainSingleThreaded
-  print(getThreadContext().toString());
+  // Should be `mainSingleThreaded`.
+  print(getThreadContext());
 
-  // Now spin up a number of threads
+  // Now spin up a number of threads.
   await createIsolates();
 
   CoUninitialize();
