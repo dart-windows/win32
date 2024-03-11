@@ -66,7 +66,8 @@ class EnumProjection {
     // The first field is always the special field `_value`, describing the
     // underlying type of the enum (e.g. `Int32`, `Uint16`).
     for (final field in fields.skip(1)) {
-      final fieldComment = docs?.fields[field.name]?.sanitize().toDocComment();
+      final fieldComment =
+          docs?.fields[field.name]?.sanitize().toDocComment(wrapLength: 78);
       final identifier = field.name.safeIdentifier;
       final value = '$name(${field.value.toHexString(bits)});';
       projections.add([

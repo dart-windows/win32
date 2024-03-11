@@ -108,8 +108,8 @@ extension type const APPX_CAPABILITIES(int _) implements int {
   static const APPX_CAPABILITY_INTERNET_CLIENT = APPX_CAPABILITIES(0x00000001);
 
   /// Your Internet connection, including incoming unsolicited connections from
-  /// the Internet – the app can send information to or from your computer through
-  /// a firewall.
+  /// the Internet – the app can send information to or from your computer
+  /// through a firewall.
   static const APPX_CAPABILITY_INTERNET_CLIENT_SERVER =
       APPX_CAPABILITIES(0x00000002);
 
@@ -139,14 +139,14 @@ extension type const APPX_CAPABILITIES(int _) implements int {
   static const APPX_CAPABILITY_ENTERPRISE_AUTHENTICATION =
       APPX_CAPABILITIES(0x00000080);
 
-  /// Software and hardware certificates or a smart card – used to identify you in
-  /// the app.
+  /// Software and hardware certificates or a smart card – used to identify you
+  /// in the app.
   static const APPX_CAPABILITY_SHARED_USER_CERTIFICATES =
       APPX_CAPABILITIES(0x00000100);
 
-  /// Removable storage, such as an external hard drive or USB flash drive, or MTP
-  /// portable device, including the capability to add, change, or delete specific
-  /// files.
+  /// Removable storage, such as an external hard drive or USB flash drive, or
+  /// MTP portable device, including the capability to add, change, or delete
+  /// specific files.
   static const APPX_CAPABILITY_REMOVABLE_STORAGE =
       APPX_CAPABILITIES(0x00000200);
 
@@ -495,11 +495,12 @@ extension type const AudioSessionState(int _) implements int {
 ///
 /// {@category enum}
 extension type const AutomationElementMode(int _) implements int {
-  /// Specifies that returned elements have no reference to the underlying UI and
-  /// contain only cached information.
+  /// Specifies that returned elements have no reference to the underlying UI
+  /// and contain only cached information.
   static const AutomationElementMode_None = AutomationElementMode(0x00000000);
 
-  /// Specifies that returned elements have a full reference to the underlying UI.
+  /// Specifies that returned elements have a full reference to the underlying
+  /// UI.
   static const AutomationElementMode_Full = AutomationElementMode(0x00000001);
 }
 
@@ -572,7 +573,8 @@ extension type const BLUETOOTH_AUTHENTICATION_REQUIREMENTS(int _)
   static const BLUETOOTH_MITM_ProtectionRequired =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000001);
 
-  /// Protection against a "Man in the Middle" attack is not required for bonding.
+  /// Protection against a "Man in the Middle" attack is not required for
+  /// bonding.
   static const BLUETOOTH_MITM_ProtectionNotRequiredBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000002);
 
@@ -580,8 +582,8 @@ extension type const BLUETOOTH_AUTHENTICATION_REQUIREMENTS(int _)
   static const BLUETOOTH_MITM_ProtectionRequiredBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000003);
 
-  /// Protection against a "Man in the Middle" attack is not required for General
-  /// Bonding.
+  /// Protection against a "Man in the Middle" attack is not required for
+  /// General Bonding.
   static const BLUETOOTH_MITM_ProtectionNotRequiredGeneralBonding =
       BLUETOOTH_AUTHENTICATION_REQUIREMENTS(0x00000004);
 
@@ -671,13 +673,13 @@ extension type const BRUSH_STYLE(int _) implements int {
 ///
 /// {@category enum}
 extension type const BTH_LE_GATT_DESCRIPTOR_TYPE(int _) implements int {
-  /// The characteristic value has additional properties that describe how it can
-  /// be used, or how it can be accessed.
+  /// The characteristic value has additional properties that describe how it
+  /// can be used, or how it can be accessed.
   static const CharacteristicExtendedProperties =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000000);
 
-  /// The characteristic value contains a UTF-8 string of variable size that is a
-  /// user textual description.
+  /// The characteristic value contains a UTF-8 string of variable size that is
+  /// a user textual description.
   static const CharacteristicUserDescription =
       BTH_LE_GATT_DESCRIPTOR_TYPE(0x00000001);
 
@@ -891,7 +893,8 @@ extension type const CLSCTX(int _) implements int {
   /// Reserved.
   static const CLSCTX_RESERVED4 = CLSCTX(0x00000200);
 
-  /// Disables the downloading of code from the directory service or the Internet.
+  /// Disables the downloading of code from the directory service or the
+  /// Internet.
   static const CLSCTX_NO_CODE_DOWNLOAD = CLSCTX(0x00000400);
 
   /// Reserved.
@@ -900,11 +903,12 @@ extension type const CLSCTX(int _) implements int {
   /// Specify if you want the activation to fail if it uses custom marshalling.
   static const CLSCTX_NO_CUSTOM_MARSHAL = CLSCTX(0x00001000);
 
-  /// Enables the downloading of code from the directory service or the Internet.
+  /// Enables the downloading of code from the directory service or the
+  /// Internet.
   static const CLSCTX_ENABLE_CODE_DOWNLOAD = CLSCTX(0x00002000);
 
-  /// The CLSCTX_NO_FAILURE_LOG can be used to override the logging of failures in
-  /// <a
+  /// The CLSCTX_NO_FAILURE_LOG can be used to override the logging of failures
+  /// in <a
   /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cocreateinstanceex">CoCreateInstanceEx</a>.
   static const CLSCTX_NO_FAILURE_LOG = CLSCTX(0x00004000);
 
@@ -927,15 +931,15 @@ extension type const CLSCTX(int _) implements int {
   /// registered.
   static const CLSCTX_ACTIVATE_64_BIT_SERVER = CLSCTX(0x00080000);
 
-  /// When this flag is specified, COM uses the impersonation token of the thread,
-  /// if one is present, for the activation request made by the thread.
+  /// When this flag is specified, COM uses the impersonation token of the
+  /// thread, if one is present, for the activation request made by the thread.
   static const CLSCTX_ENABLE_CLOAKING = CLSCTX(0x00100000);
 
   /// Indicates activation is for an app container.
   static const CLSCTX_APPCONTAINER = CLSCTX(0x00400000);
 
-  /// Specify this flag for Interactive User activation behavior for As-Activator
-  /// servers.
+  /// Specify this flag for Interactive User activation behavior for
+  /// As-Activator servers.
   static const CLSCTX_ACTIVATE_AAA_AS_IU = CLSCTX(0x00800000);
 
   static const CLSCTX_RESERVED6 = CLSCTX(0x01000000);
@@ -989,16 +993,16 @@ extension type const COMPUTER_NAME_FORMAT(int _) implements int {
   /// local computer.
   static const ComputerNameNetBIOS = COMPUTER_NAME_FORMAT(0x00000000);
 
-  /// The DNS name of the local computer or the cluster associated with the local
-  /// computer.
+  /// The DNS name of the local computer or the cluster associated with the
+  /// local computer.
   static const ComputerNameDnsHostname = COMPUTER_NAME_FORMAT(0x00000001);
 
   /// The name of the DNS domain assigned to the local computer or the cluster
   /// associated with the local computer.
   static const ComputerNameDnsDomain = COMPUTER_NAME_FORMAT(0x00000002);
 
-  /// The fully qualified DNS name that uniquely identifies the local computer or
-  /// the cluster associated with the local computer.
+  /// The fully qualified DNS name that uniquely identifies the local computer
+  /// or the cluster associated with the local computer.
   static const ComputerNameDnsFullyQualified = COMPUTER_NAME_FORMAT(0x00000003);
 
   /// The NetBIOS name of the local computer.
@@ -1795,13 +1799,13 @@ extension type const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(int _) implements int {
   /// The default behavior of the dialog manager.
   static const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000000);
 
-  /// Prevents the dialog manager from sending an updated font to the child window
-  /// via WM_SETFONT in response to a DPI change.
+  /// Prevents the dialog manager from sending an updated font to the child
+  /// window via WM_SETFONT in response to a DPI change.
   static const DCDC_DISABLE_FONT_UPDATE =
       DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000001);
 
-  /// Prevents the dialog manager from resizing and repositioning the child window
-  /// in response to a DPI change.
+  /// Prevents the dialog manager from resizing and repositioning the child
+  /// window in response to a DPI change.
   static const DCDC_DISABLE_RELAYOUT =
       DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS(0x00000002);
 }
@@ -1994,8 +1998,8 @@ extension type const DISPLAYCONFIG_ROTATION(int _) implements int {
 ///
 /// {@category enum}
 extension type const DISPLAYCONFIG_SCALING(int _) implements int {
-  /// Indicates the identity transformation; the source content is presented with
-  /// no change.
+  /// Indicates the identity transformation; the source content is presented
+  /// with no change.
   static const DISPLAYCONFIG_SCALING_IDENTITY =
       DISPLAYCONFIG_SCALING(0x00000001);
 
@@ -2061,8 +2065,8 @@ extension type const DISPLAYCONFIG_SCANLINE_ORDERING(int _) implements int {
 /// {@category enum}
 extension type const DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(int _)
     implements int {
-  /// Indicates a connector that is not one of the types that is indicated by the
-  /// following enumerators in this enumeration.
+  /// Indicates a connector that is not one of the types that is indicated by
+  /// the following enumerators in this enumeration.
   static const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER =
       DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY(0xffffffff);
 
@@ -2551,8 +2555,8 @@ extension type const DWMWINDOWATTRIBUTE(int _) implements int {
   /// Use with `DwmGetWindowAttribute` or `DwmSetWindowAttribute`.
   static const DWMWA_SYSTEMBACKDROP_TYPE = DWMWINDOWATTRIBUTE(0x00000026);
 
-  /// The maximum recognized <b>DWMWINDOWATTRIBUTE</b> value, used for validation
-  /// purposes.
+  /// The maximum recognized <b>DWMWINDOWATTRIBUTE</b> value, used for
+  /// validation purposes.
   static const DWMWA_LAST = DWMWINDOWATTRIBUTE(0x00000027);
 }
 
@@ -3081,8 +3085,8 @@ extension type const FILE_USAGE_TYPE(int _) implements int {
   /// The file is being edited by the process that has it open.
   static const FUT_EDITING = FILE_USAGE_TYPE(0x00000001);
 
-  /// The file is open in the process for an unspecified action or an action that
-  /// does not readily fit into the other two categories.
+  /// The file is open in the process for an unspecified action or an action
+  /// that does not readily fit into the other two categories.
   static const FUT_GENERIC = FILE_USAGE_TYPE(0x00000002);
 }
 
@@ -3285,8 +3289,8 @@ extension type const FUNCFLAGS(int _) implements int {
   /// The function that best represents the object.
   static const FUNCFLAG_FDEFAULTBIND = FUNCFLAGS(0x0020);
 
-  /// The function should not be displayed to the user, although it exists and is
-  /// bindable.
+  /// The function should not be displayed to the user, although it exists and
+  /// is bindable.
   static const FUNCFLAG_FHIDDEN = FUNCFLAGS(0x0040);
 
   /// The function supports <b>GetLastError</b>.
@@ -3300,7 +3304,8 @@ extension type const FUNCFLAGS(int _) implements int {
   /// interface.
   static const FUNCFLAG_FUIDEFAULT = FUNCFLAGS(0x0200);
 
-  /// The property appears in an object browser, but not in a properties browser.
+  /// The property appears in an object browser, but not in a properties
+  /// browser.
   static const FUNCFLAG_FNONBROWSABLE = FUNCFLAGS(0x0400);
 
   /// Tags the interface as having default behaviors.
@@ -3317,8 +3322,8 @@ extension type const FUNCFLAGS(int _) implements int {
 ///
 /// {@category enum}
 extension type const FUNCKIND(int _) implements int {
-  /// The function is accessed the same as PUREVIRTUAL, except the function has an
-  /// implementation.
+  /// The function is accessed the same as PUREVIRTUAL, except the function has
+  /// an implementation.
   static const FUNC_VIRTUAL = FUNCKIND(0x00000000);
 
   /// The function is accessed through the virtual function table (VTBL), and
@@ -3442,11 +3447,12 @@ extension type const GETPROPERTYSTOREFLAGS(int _) implements int {
   /// basically, a property bag attached to the item instance.
   static const GPS_TEMPORARY = GETPROPERTYSTOREFLAGS(0x00000004);
 
-  /// Meaning to a calling process: Provides a store that does not involve reading
-  /// from the disk or network.
+  /// Meaning to a calling process: Provides a store that does not involve
+  /// reading from the disk or network.
   static const GPS_FASTPROPERTIESONLY = GETPROPERTYSTOREFLAGS(0x00000008);
 
-  /// Meaning to a calling process: Open a slow item (offline file) if necessary.
+  /// Meaning to a calling process: Open a slow item (offline file) if
+  /// necessary.
   static const GPS_OPENSLOWITEM = GETPROPERTYSTOREFLAGS(0x00000010);
 
   /// Meaning to a calling process: Delay memory-intensive operations, such as
@@ -3982,8 +3988,8 @@ extension type const KF_CATEGORY(int _) implements int {
   /// have no path.
   static const KF_CATEGORY_VIRTUAL = KF_CATEGORY(0x00000001);
 
-  /// Fixed file system folders are not managed by the Shell and are usually given
-  /// a permanent path when the system is installed.
+  /// Fixed file system folders are not managed by the Shell and are usually
+  /// given a permanent path when the system is installed.
   static const KF_CATEGORY_FIXED = KF_CATEGORY(0x00000002);
 
   /// Common folders are those file system folders used for sharing data and
@@ -4050,10 +4056,10 @@ extension type const LOGICAL_PROCESSOR_RELATIONSHIP(int _) implements int {
   /// The specified logical processors share a cache.
   static const RelationCache = LOGICAL_PROCESSOR_RELATIONSHIP(0x00000002);
 
-  /// The specified logical processors share a physical package (a single package
-  /// socketed or soldered onto a motherboard may contain multiple processor cores
-  /// or threads, each of which is treated as a separate processor by the
-  /// operating system).
+  /// The specified logical processors share a physical package (a single
+  /// package socketed or soldered onto a motherboard may contain multiple
+  /// processor cores or threads, each of which is treated as a separate
+  /// processor by the operating system).
   static const RelationProcessorPackage =
       LOGICAL_PROCESSOR_RELATIONSHIP(0x00000003);
 
@@ -4704,8 +4710,8 @@ extension type const NLM_CONNECTION_COST(int _) implements int {
   /// This connection is regulated on a per byte basis.
   static const NLM_CONNECTION_COST_VARIABLE = NLM_CONNECTION_COST(0x00000004);
 
-  /// The connection is currently in an OverDataLimit state as it has exceeded the
-  /// carrier specified data transfer limit.
+  /// The connection is currently in an OverDataLimit state as it has exceeded
+  /// the carrier specified data transfer limit.
   static const NLM_CONNECTION_COST_OVERDATALIMIT =
       NLM_CONNECTION_COST(0x00010000);
 
@@ -7526,8 +7532,8 @@ extension type const ScrollAmount(int _) implements int {
   /// No scrolling is done.
   static const ScrollAmount_NoAmount = ScrollAmount(0x00000002);
 
-  /// Scrolling is done in large increments, equivalent to pressing the PAGE DOWN
-  /// or PAGE UP key or clicking on a blank part of a scroll bar.
+  /// Scrolling is done in large increments, equivalent to pressing the PAGE
+  /// DOWN or PAGE UP key or clicking on a blank part of a scroll bar.
   static const ScrollAmount_LargeIncrement = ScrollAmount(0x00000003);
 
   /// Scrolling is done in small increments, equivalent to pressing an arrow key
@@ -7813,8 +7819,8 @@ extension type const THEMESIZE(int _) implements int {
   /// Receives the minimum size of a visual style part.
   static const TS_MIN = THEMESIZE(0x00000000);
 
-  /// Receives the size of the visual style part that will best fit the available
-  /// space.
+  /// Receives the size of the visual style part that will best fit the
+  /// available space.
   static const TS_TRUE = THEMESIZE(0x00000001);
 
   /// Receives the size that the theme manager uses to draw a part.
@@ -8029,8 +8035,8 @@ extension type const TOKEN_INFORMATION_CLASS(int _) implements int {
   /// structure that specifies the token's logon SID.
   static const TokenLogonSid = TOKEN_INFORMATION_CLASS(0x0000001c);
 
-  /// The buffer receives a <b>DWORD</b> value that is nonzero if the token is an
-  /// app container token.
+  /// The buffer receives a <b>DWORD</b> value that is nonzero if the token is
+  /// an app container token.
   static const TokenIsAppContainer = TOKEN_INFORMATION_CLASS(0x0000001d);
 
   /// The buffer receives a <a
@@ -8161,9 +8167,9 @@ extension type const TUNNEL_TYPE(int _) implements int {
   /// Indicates that none of the following tunnel types is specified.
   static const TUNNEL_TYPE_OTHER = TUNNEL_TYPE(0x00000001);
 
-  /// Specifies that a packet is encapsulated directly within a normal IP header,
-  /// with no intermediate header, and the packet is sent unicast to the remote
-  /// tunnel endpoint.
+  /// Specifies that a packet is encapsulated directly within a normal IP
+  /// header, with no intermediate header, and the packet is sent unicast to the
+  /// remote tunnel endpoint.
   static const TUNNEL_TYPE_DIRECT = TUNNEL_TYPE(0x00000002);
 
   /// Specifies that an IPv6 packet is encapsulated directly within an IPv4
@@ -8197,7 +8203,8 @@ extension type const TYPEKIND(int _) implements int {
   /// A structure with no methods.
   static const TKIND_RECORD = TYPEKIND(0x00000001);
 
-  /// A module that can only have static functions and data (for example, a DLL).
+  /// A module that can only have static functions and data (for example, a
+  /// DLL).
   static const TKIND_MODULE = TYPEKIND(0x00000002);
 
   /// A type that has virtual and pure functions.
@@ -9159,14 +9166,15 @@ extension type const VARFLAGS(int _) implements int {
   /// The variable should not be accessible from macro languages.
   static const VARFLAG_FRESTRICTED = VARFLAGS(0x0080);
 
-  /// Permits an optimization in which the compiler looks for a member named "xyz"
-  /// on the type of abc.
+  /// Permits an optimization in which the compiler looks for a member named
+  /// "xyz" on the type of abc.
   static const VARFLAG_FDEFAULTCOLLELEM = VARFLAGS(0x0100);
 
   /// The variable is the default display in the user interface.
   static const VARFLAG_FUIDEFAULT = VARFLAGS(0x0200);
 
-  /// The variable appears in an object browser, but not in a properties browser.
+  /// The variable appears in an object browser, but not in a properties
+  /// browser.
   static const VARFLAG_FNONBROWSABLE = VARFLAGS(0x0400);
 
   /// Tags the interface as having default behaviors.
@@ -13559,8 +13567,9 @@ extension type const WLAN_AUTOCONF_OPCODE(int _) implements int {
   static const wlan_autoconf_opcode_power_setting =
       WLAN_AUTOCONF_OPCODE(0x00000002);
 
-  /// The opcode used to query whether profiles not created by group policy can be
-  /// used to connect to an allowed network with a matching group policy profile.
+  /// The opcode used to query whether profiles not created by group policy can
+  /// be used to connect to an allowed network with a matching group policy
+  /// profile.
   static const wlan_autoconf_opcode_only_use_gp_profiles_for_allowed_networks =
       WLAN_AUTOCONF_OPCODE(0x00000003);
 
@@ -13940,12 +13949,12 @@ extension type const WLAN_INTF_OPCODE(int _) implements int {
   static const wlan_intf_opcode_current_connection =
       WLAN_INTF_OPCODE(0x00000007);
 
-  /// The opcode used to query the current channel on which the wireless interface
-  /// is operating.
+  /// The opcode used to query the current channel on which the wireless
+  /// interface is operating.
   static const wlan_intf_opcode_channel_number = WLAN_INTF_OPCODE(0x00000008);
 
-  /// The opcode used to query the supported auth/cipher pairs for infrastructure
-  /// mode.
+  /// The opcode used to query the supported auth/cipher pairs for
+  /// infrastructure mode.
   static const wlan_intf_opcode_supported_infrastructure_auth_cipher_pairs =
       WLAN_INTF_OPCODE(0x00000009);
 
@@ -14164,8 +14173,9 @@ extension type const WSL_DISTRIBUTION_FLAGS(int _) implements int {
   /// No flags are being supplied.
   static const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS(0x00000000);
 
-  /// Allow the distribution to interoperate with Windows processes (for example,
-  /// the user can invoke "cmd.exe" or "notepad.exe" from within a WSL session).
+  /// Allow the distribution to interoperate with Windows processes (for
+  /// example, the user can invoke "cmd.exe" or "notepad.exe" from within a WSL
+  /// session).
   static const WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP =
       WSL_DISTRIBUTION_FLAGS(0x00000001);
 
