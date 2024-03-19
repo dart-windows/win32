@@ -2,7 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
 import '../doc/api_details.dart';
@@ -69,11 +68,17 @@ class EnumProjection {
       final fieldComment =
           docs?.fields[field.name]?.sanitize().toDocComment(wrapLength: 78);
       final identifier = field.name.safeIdentifier;
-      final value = '$name(${field.value.toHexString(bits)});';
-      projections.add([
-        if (fieldComment != null) fieldComment,
-        'static const $identifier = $value'
-      ].join('\n'));
+      if (field.value case final int fieldValue) {
+        final value = '$name($fieldValue);';
+        projections.add([
+          if (fieldComment != null) fieldComment,
+          'static const $identifier = $value'
+        ].join('\n'));
+      } else {
+        throw StateError(
+          'Field $field value is not an integer: ${field.value}',
+        );
+      }
     }
 
     return projections;

@@ -40,19 +40,19 @@ void main() {
         equals([
           '''
 /// The current thread.
-static const APTTYPE_CURRENT = APTTYPE(0xffffffff);''',
+static const APTTYPE_CURRENT = APTTYPE(-1);''',
           '''
 /// A single-threaded apartment.
-static const APTTYPE_STA = APTTYPE(0x00000000);''',
+static const APTTYPE_STA = APTTYPE(0);''',
           '''
 /// A multithreaded apartment.
-static const APTTYPE_MTA = APTTYPE(0x00000001);''',
+static const APTTYPE_MTA = APTTYPE(1);''',
           '''
 /// A neutral apartment.
-static const APTTYPE_NA = APTTYPE(0x00000002);''',
+static const APTTYPE_NA = APTTYPE(2);''',
           '''
 /// The main single-threaded apartment.
-static const APTTYPE_MAINSTA = APTTYPE(0x00000003);'''
+static const APTTYPE_MAINSTA = APTTYPE(3);'''
         ]),
       );
       expect(
@@ -85,11 +85,11 @@ ${fieldProjections.map((p) => '  $p').join('\n\n')}
       expect(
         fieldProjections,
         equals([
-          'static const XINPUT_CAPS_VOICE_SUPPORTED = XINPUT_CAPABILITIES_FLAGS(0x0004);',
-          'static const XINPUT_CAPS_FFB_SUPPORTED = XINPUT_CAPABILITIES_FLAGS(0x0001);',
-          'static const XINPUT_CAPS_WIRELESS = XINPUT_CAPABILITIES_FLAGS(0x0002);',
-          'static const XINPUT_CAPS_PMD_SUPPORTED = XINPUT_CAPABILITIES_FLAGS(0x0008);',
-          'static const XINPUT_CAPS_NO_NAVIGATION = XINPUT_CAPABILITIES_FLAGS(0x0010);'
+          'static const XINPUT_CAPS_VOICE_SUPPORTED = XINPUT_CAPABILITIES_FLAGS(4);',
+          'static const XINPUT_CAPS_FFB_SUPPORTED = XINPUT_CAPABILITIES_FLAGS(1);',
+          'static const XINPUT_CAPS_WIRELESS = XINPUT_CAPABILITIES_FLAGS(2);',
+          'static const XINPUT_CAPS_PMD_SUPPORTED = XINPUT_CAPABILITIES_FLAGS(8);',
+          'static const XINPUT_CAPS_NO_NAVIGATION = XINPUT_CAPABILITIES_FLAGS(16);'
         ]),
       );
       expect(
