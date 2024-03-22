@@ -54,8 +54,8 @@ String getDesktopPath2() {
   final ppszPath = calloc<Pointer<Utf16>>();
 
   try {
-    final hr =
-        SHGetKnownFolderPath(appsFolder, KF_FLAG_DEFAULT, null, ppszPath);
+    final hr = SHGetKnownFolderPath(
+        appsFolder, KNOWN_FOLDER_FLAG.KF_FLAG_DEFAULT, null, ppszPath);
     if (FAILED(hr)) throw WindowsException(hr);
     final path = ppszPath.value.toDartString();
     return path;
@@ -71,7 +71,8 @@ String getDesktopPath3() {
   final ppkf = calloc<VTablePointer>();
   final ppszPath = calloc<Pointer<Utf16>>();
 
-  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   try {
     final knownFolderManager = IKnownFolderManager(
         createComObject(KnownFolderManager, IID_IKnownFolderManager));

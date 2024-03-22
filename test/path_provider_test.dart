@@ -364,7 +364,7 @@ class PathProviderWindows {
     try {
       final hr = SHGetKnownFolderPath(
         knownFolderID,
-        KF_FLAG_DEFAULT,
+        KNOWN_FOLDER_FLAG.KF_FLAG_DEFAULT,
         NULL,
         pathPtrPtr,
       );

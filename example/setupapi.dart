@@ -14,7 +14,8 @@ void main() {
   using((Arena arena) {
     final deviceGuid = GUIDFromString(GUID_DEVCLASS_NET, allocator: arena);
 
-    final hDevInfo = SetupDiGetClassDevs(deviceGuid, null, null, DIGCF_PRESENT);
+    final hDevInfo = SetupDiGetClassDevs(
+        deviceGuid, null, null, SETUP_DI_GET_CLASS_DEVS_FLAGS.DIGCF_PRESENT);
     try {
       final deviceHandles = deviceInstancesByClass(hDevInfo, deviceGuid);
       for (final instance in deviceHandles) {
@@ -31,7 +32,11 @@ void main() {
         GUIDFromString(GUID_DEVINTERFACE_HID, allocator: arena);
 
     final hDevInfo = SetupDiGetClassDevs(
-        interfaceGuid, null, null, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
+        interfaceGuid,
+        null,
+        null,
+        SETUP_DI_GET_CLASS_DEVS_FLAGS.DIGCF_PRESENT |
+            SETUP_DI_GET_CLASS_DEVS_FLAGS.DIGCF_DEVICEINTERFACE);
     try {
       final devicePaths = devicePathsByInterface(hDevInfo, interfaceGuid);
       for (final path in devicePaths) {
@@ -54,7 +59,7 @@ Iterable<int> deviceInstancesByClass(
       yield devInfoDataPtr.ref.DevInst;
     }
     final error = GetLastError();
-    if (error != S_OK && error != ERROR_NO_MORE_ITEMS) {
+    if (error != S_OK && error != WIN32_ERROR.ERROR_NO_MORE_ITEMS) {
       throw WindowsException(error);
     }
   } finally {
@@ -113,7 +118,7 @@ Iterable<String> devicePathsByInterface(
     }
 
     final error = GetLastError();
-    if (error != S_OK && error != ERROR_NO_MORE_ITEMS) {
+    if (error != S_OK && error != WIN32_ERROR.ERROR_NO_MORE_ITEMS) {
       throw WindowsException(error);
     }
   } finally {

@@ -12,7 +12,8 @@ import 'package:win32/win32.dart';
 
 void initializeCom() {
   // Initialize COM
-  var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  var hr = CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   // Initialize security model
@@ -20,8 +21,8 @@ void initializeCom() {
     nullptr,
     -1, // COM negotiates service
     null, // Authentication services
-    RPC_C_AUTHN_LEVEL_DEFAULT, // authentication
-    RPC_C_IMP_LEVEL_IMPERSONATE, // Impersonation
+    RPC_C_AUTHN_LEVEL.RPC_C_AUTHN_LEVEL_DEFAULT, // authentication
+    RPC_C_IMP_LEVEL.RPC_C_IMP_LEVEL_IMPERSONATE, // Impersonation
     null, // Authentication info
     EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // Additional capabilities
   );
@@ -49,8 +50,8 @@ int connectWMI(IWbemLocator pLoc, Pointer<VTablePointer> ppNamespace) {
     RPC_C_AUTHN_WINNT, // authentication service
     RPC_C_AUTHZ_NONE, // authorization service
     null, // Server principal name
-    RPC_C_AUTHN_LEVEL_CALL, // authentication level
-    RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
+    RPC_C_AUTHN_LEVEL.RPC_C_AUTHN_LEVEL_CALL, // authentication level
+    RPC_C_IMP_LEVEL.RPC_C_IMP_LEVEL_IMPERSONATE, // impersonation level
     null, // client identity
     EOLE_AUTHENTICATION_CAPABILITIES.EOAC_NONE, // proxy capabilities
   );

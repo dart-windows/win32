@@ -105,12 +105,14 @@ int GetCurrentThreadEffectiveToken() => -6.toUnsigned(32);
 int IsWindowsVersionOrGreater(
     int wMajorVersion, int wMinorVersion, int wServicePackMajor) {
   final dwlConditionMask = VerSetConditionMask(
-      VerSetConditionMask(
-          VerSetConditionMask(0, VER_MAJORVERSION, VER_GREATER_EQUAL),
-          VER_MINORVERSION,
-          VER_GREATER_EQUAL),
-      VER_SERVICEPACKMAJOR,
-      VER_GREATER_EQUAL);
+    VerSetConditionMask(
+      VerSetConditionMask(0, VER_FLAGS.VER_MAJORVERSION, VER_GREATER_EQUAL),
+      VER_FLAGS.VER_MINORVERSION,
+      VER_GREATER_EQUAL,
+    ),
+    VER_FLAGS.VER_SERVICEPACKMAJOR,
+    VER_GREATER_EQUAL,
+  );
 
   final osvi = calloc<OSVERSIONINFOEX>();
   osvi.ref
@@ -120,9 +122,12 @@ int IsWindowsVersionOrGreater(
 
   try {
     return VerifyVersionInfo(
-        osvi,
-        VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR,
-        dwlConditionMask);
+      osvi,
+      VER_FLAGS.VER_MAJORVERSION |
+          VER_FLAGS.VER_MINORVERSION |
+          VER_FLAGS.VER_SERVICEPACKMAJOR,
+      dwlConditionMask,
+    );
   } finally {
     free(osvi);
   }
@@ -144,10 +149,15 @@ int IsWindows10OrGreater() => IsWindowsVersionOrGreater(
 /// {@category version}
 int IsWindowsServer() {
   final osvi = calloc<OSVERSIONINFOEX>()..ref.wProductType = VER_NT_SERVER;
-  final dwlConditionMask = VerSetConditionMask(0, VER_PRODUCT_TYPE, VER_EQUAL);
+  final dwlConditionMask =
+      VerSetConditionMask(0, VER_FLAGS.VER_PRODUCT_TYPE, VER_EQUAL);
 
   try {
-    return VerifyVersionInfo(osvi, VER_PRODUCT_TYPE, dwlConditionMask);
+    return VerifyVersionInfo(
+      osvi,
+      VER_FLAGS.VER_PRODUCT_TYPE,
+      dwlConditionMask,
+    );
   } finally {
     free(osvi);
   }
@@ -163,8 +173,12 @@ int SetWindowThemeNonClientAttributes(int hwnd, int dwMask, int dwAttributes) {
     ..dwFlags = dwAttributes
     ..dwMask = dwMask;
   try {
-    return SetWindowThemeAttribute(hwnd, WINDOWTHEMEATTRIBUTETYPE.WTA_NONCLIENT,
-        wta, sizeOf<WTA_OPTIONS>());
+    return SetWindowThemeAttribute(
+      hwnd,
+      WINDOWTHEMEATTRIBUTETYPE.WTA_NONCLIENT,
+      wta,
+      sizeOf<WTA_OPTIONS>(),
+    );
   } finally {
     free(wta);
   }

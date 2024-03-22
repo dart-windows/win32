@@ -11,7 +11,8 @@ import 'package:win32/win32.dart';
 
 void main() {
   // Initialize COM.
-  var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  var hr = CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   using((arena) {
@@ -60,7 +61,7 @@ void main() {
       print('Selected file: ${pszFilePath.value.toDartString()}\n');
       free(pszFilePath.value);
     } else {
-      if (hr == HRESULT_FROM_WIN32(ERROR_CANCELLED)) {
+      if (hr == HRESULT_FROM_WIN32(WIN32_ERROR.ERROR_CANCELLED)) {
         print('Dialog cancelled.');
       } else {
         throw WindowsException(hr);

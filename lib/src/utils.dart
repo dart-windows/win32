@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import 'com/iunknown.g.dart';
 import 'constants.dart';
+import 'enums.g.dart';
 import 'exceptions.dart';
 import 'extensions/int_to_hex.dart';
 import 'guid.dart';
@@ -94,7 +95,8 @@ VTablePointer createComObject(String clsid, String iid) {
   final ppv = calloc<VTablePointer>();
 
   try {
-    final hr = CoCreateInstance(rclsid, null, CLSCTX_ALL, riid, ppv.cast());
+    final hr =
+        CoCreateInstance(rclsid, null, CLSCTX.CLSCTX_ALL, riid, ppv.cast());
     if (FAILED(hr)) throw WindowsException(hr);
     return ppv.value;
   } finally {
@@ -142,9 +144,10 @@ void initApp(
     winMain(
       hInstance,
       args,
-      lpStartupInfo.ref.dwFlags & STARTF_USESHOWWINDOW == STARTF_USESHOWWINDOW
+      lpStartupInfo.ref.dwFlags & STARTUPINFOW_FLAGS.STARTF_USESHOWWINDOW ==
+              STARTUPINFOW_FLAGS.STARTF_USESHOWWINDOW
           ? lpStartupInfo.ref.wShowWindow
-          : SW_SHOWDEFAULT,
+          : SHOW_WINDOW_CMD.SW_SHOWDEFAULT,
     );
   } finally {
     free(nArgs);

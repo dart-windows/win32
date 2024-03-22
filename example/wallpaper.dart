@@ -54,7 +54,8 @@ void printBackgroundColor() {
 }
 
 void main() {
-  final hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  final hr = CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   wallpaper = IDesktopWallpaper(

@@ -49,7 +49,7 @@ class MainPageState extends State<MainPage> {
     final pMessage = PWSTR.fromString('Path: ${appDocDir.path}');
     final pTitle = PWSTR.fromString('Application Documents');
 
-    MessageBox(hwnd, pMessage, pTitle, MB_OK);
+    MessageBox(hwnd, pMessage, pTitle, MESSAGEBOX_STYLE.MB_OK);
 
     pMessage.free();
     pTitle.free();

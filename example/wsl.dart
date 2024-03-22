@@ -97,9 +97,9 @@ int runCommand(String distributionName, String command) {
       pDistributionName,
       pCommand,
       FALSE,
-      GetStdHandle(STD_INPUT_HANDLE), // redirect as appropriate
-      GetStdHandle(STD_OUTPUT_HANDLE), // redirect as appropriate
-      GetStdHandle(STD_ERROR_HANDLE), // redirect as appropriate
+      GetStdHandle(STD_HANDLE.STD_INPUT_HANDLE), // redirect as appropriate
+      GetStdHandle(STD_HANDLE.STD_OUTPUT_HANDLE), // redirect as appropriate
+      GetStdHandle(STD_HANDLE.STD_ERROR_HANDLE), // redirect as appropriate
       processHandle,
     );
     if (FAILED(hr)) throw WindowsException(hr);

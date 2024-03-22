@@ -25,8 +25,15 @@ void main() {
   final dcb = calloc<DCB>();
 
   try {
-    final hCom = CreateFile(pcCommPort, GENERIC_READ | GENERIC_WRITE, 0, null,
-        OPEN_EXISTING, 0, NULL);
+    final hCom = CreateFile(
+        pcCommPort,
+        GENERIC_ACCESS_RIGHTS.GENERIC_READ |
+            GENERIC_ACCESS_RIGHTS.GENERIC_WRITE,
+        0,
+        null,
+        FILE_CREATION_DISPOSITION.OPEN_EXISTING,
+        0,
+        NULL);
 
     if (hCom == INVALID_HANDLE_VALUE) {
       print('Invalid handle.');
@@ -45,8 +52,8 @@ void main() {
     dcb.ref
       ..BaudRate = CBR_57600
       ..ByteSize = 8
-      ..Parity = NOPARITY
-      ..StopBits = ONESTOPBIT;
+      ..Parity = DCB_PARITY.NOPARITY
+      ..StopBits = DCB_STOP_BITS.ONESTOPBIT;
 
     fSuccess = SetCommState(hCom, dcb);
     if (fSuccess == 0) {

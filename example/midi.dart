@@ -59,7 +59,8 @@ void main() {
     final warningMessage =
         PWSTR.fromString('The MIDI mapper is not available. Continue?');
     try {
-      if (MessageBox(null, warningMessage, null, MB_YESNO) == IDNO) {
+      if (MessageBox(null, warningMessage, null, MESSAGEBOX_STYLE.MB_YESNO) ==
+          MESSAGEBOX_RESULT.IDNO) {
         // User does not want to continue. Not an error;
         // just close the device and return.
         mciSendCommand(deviceID, MCI_CLOSE, 0, NULL);
@@ -85,7 +86,7 @@ void main() {
 
   final message = PWSTR.fromString('Press OK to stop');
   final caption = PWSTR.fromString('Midi Sample');
-  MessageBox(null, message, caption, MB_OK);
+  MessageBox(null, message, caption, MESSAGEBOX_STYLE.MB_OK);
 
   // Clear up
   free(message);

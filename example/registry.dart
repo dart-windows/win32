@@ -28,7 +28,8 @@ int getRegistryKeyHandle(int hive, String key) {
   final lpKeyPath = PWSTR.fromString(key);
 
   try {
-    if (RegOpenKeyEx(hive, lpKeyPath, 0, KEY_READ, phKey) != ERROR_SUCCESS) {
+    if (RegOpenKeyEx(hive, lpKeyPath, 0, REG_SAM_FLAGS.KEY_READ, phKey) !=
+        WIN32_ERROR.ERROR_SUCCESS) {
       throw StateError("Can't open registry key");
     }
 
@@ -51,17 +52,19 @@ RegistryKeyValuePair? enumerateKey(int hKey, int index) {
         hKey, index, lpValueName, lpcchValueName, lpType, lpData, lpcbData);
 
     switch (status) {
-      case ERROR_SUCCESS:
-        if (lpType.value != REG_SZ) throw StateError('Non-string content.');
+      case WIN32_ERROR.ERROR_SUCCESS:
+        if (lpType.value != REG_VALUE_TYPE.REG_SZ) {
+          throw StateError('Non-string content.');
+        }
         return RegistryKeyValuePair(
           lpValueName.toDartString(),
           lpData.cast<Utf16>().toDartString(),
         );
 
-      case ERROR_MORE_DATA:
+      case WIN32_ERROR.ERROR_MORE_DATA:
         throw StateError('An item required more than $MAX_ITEMLENGTH bytes.');
 
-      case ERROR_NO_MORE_ITEMS:
+      case WIN32_ERROR.ERROR_NO_MORE_ITEMS:
         return null;
 
       default:

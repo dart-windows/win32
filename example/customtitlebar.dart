@@ -124,7 +124,7 @@ bool isWindowMaximized(int hwnd) {
 
   try {
     if (GetWindowPlacement(hwnd, windowPlacement) != FALSE) {
-      return windowPlacement.ref.showCmd == SW_SHOWMAXIMIZED;
+      return windowPlacement.ref.showCmd == SHOW_WINDOW_CMD.SW_SHOWMAXIMIZED;
     }
     return false;
   } finally {
@@ -158,8 +158,9 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
   final titleBarHoverBrush = CreateSolidBrush(titleBarHoverColor);
   final closeButtonColor = RGB(0xCC, 0x00, 0x00);
   final buttonIconBrush = CreateSolidBrush(titleBarItemColor);
-  final buttonIconPen = CreatePen(PS_SOLID, 1, titleBarItemColor);
-  final hoveredButton = GetWindowLongPtr(hwnd, GWLP_USERDATA);
+  final buttonIconPen = CreatePen(PEN_STYLE.PS_SOLID, 1, titleBarItemColor);
+  final hoveredButton =
+      GetWindowLongPtr(hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA);
 
   final dpi = GetDpiForWindow(hwnd);
   final iconDimension = dpiScale(10, dpi);
@@ -197,7 +198,7 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
 
     centerRectInParent(maximizeIconRect, maximizeButtonRect);
     SelectObject(hdc, buttonIconPen);
-    SelectObject(hdc, GetStockObject(HOLLOW_BRUSH));
+    SelectObject(hdc, GetStockObject(GET_STOCK_OBJECT_FLAGS.HOLLOW_BRUSH));
     Rectangle(hdc, maximizeIconRect.ref.left, maximizeIconRect.ref.top,
         maximizeIconRect.ref.right, maximizeIconRect.ref.bottom);
   } finally {
@@ -217,7 +218,7 @@ int paintButtons(int hwnd, int hdc, Pointer<PAINTSTRUCT> ps,
       final fillBrush = CreateSolidBrush(closeButtonColor);
       FillRect(hdc, closeButtonRect, fillBrush);
       DeleteObject(fillBrush);
-      customPen = CreatePen(PS_SOLID, 1, RGB(0xFF, 0xFF, 0xFF));
+      customPen = CreatePen(PEN_STYLE.PS_SOLID, 1, RGB(0xFF, 0xFF, 0xFF));
       SelectObject(hdc, customPen);
     }
 
@@ -247,14 +248,15 @@ void drawWindowCaption(
   final drawThemeOptions = calloc<DTTOPTS>();
   drawThemeOptions.ref
     ..dwSize = sizeOf<DTTOPTS>()
-    ..dwFlags = DTT_TEXTCOLOR
+    ..dwFlags = DTTOPTS_FLAGS.DTT_TEXTCOLOR
     ..crText = titleBarItemColor;
 
   try {
     int? savedFont;
 
     final hTheme = getWindowThemeHandle(hwnd);
-    if (SUCCEEDED(GetThemeSysFont(hTheme, TMT_CAPTIONFONT, logicalFont))) {
+    if (SUCCEEDED(GetThemeSysFont(
+        hTheme, THEME_PROPERTY_SYMBOL_ID.TMT_CAPTIONFONT, logicalFont))) {
       final themeFont = CreateFontIndirect(logicalFont);
       savedFont = SelectObject(hdc, themeFont);
     }
@@ -268,7 +270,9 @@ void drawWindowCaption(
       0,
       titleText,
       -1,
-      DT_VCENTER | DT_SINGLELINE | DT_WORD_ELLIPSIS,
+      DRAW_TEXT_FORMAT.DT_VCENTER |
+          DRAW_TEXT_FORMAT.DT_SINGLELINE |
+          DRAW_TEXT_FORMAT.DT_WORD_ELLIPSIS,
       titleBarTextRect,
       drawThemeOptions,
     );
@@ -356,9 +360,12 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
 
       final dpi = GetDpiForWindow(hwnd);
 
-      final frameX = GetSystemMetricsForDpi(SM_CXFRAME, dpi);
-      final frameY = GetSystemMetricsForDpi(SM_CYFRAME, dpi);
-      final padding = GetSystemMetricsForDpi(SM_CXPADDEDBORDER, dpi);
+      final frameX =
+          GetSystemMetricsForDpi(SYSTEM_METRICS_INDEX.SM_CXFRAME, dpi);
+      final frameY =
+          GetSystemMetricsForDpi(SYSTEM_METRICS_INDEX.SM_CYFRAME, dpi);
+      final padding =
+          GetSystemMetricsForDpi(SYSTEM_METRICS_INDEX.SM_CXPADDEDBORDER, dpi);
 
       final params = Pointer<NCCALCSIZE_PARAMS>.fromAddress(lParam);
       final requestedClientRect = params.ref.rgrc[0]
@@ -385,7 +392,9 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
         sizeRect.ref.top,
         sizeRect.ref.right - sizeRect.ref.left,
         sizeRect.ref.bottom - sizeRect.ref.top,
-        SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE,
+        SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED |
+            SET_WINDOW_POS_FLAGS.SWP_NOMOVE |
+            SET_WINDOW_POS_FLAGS.SWP_NOSIZE,
       );
 
       free(sizeRect);
@@ -413,8 +422,10 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       // Looks like adjustment happening in NCCALCSIZE is messing with the detection
       // of the top hit area so manually fixing that.
       final dpi = GetDpiForWindow(hwnd);
-      final frameY = GetSystemMetricsForDpi(SM_CYFRAME, dpi);
-      final padding = GetSystemMetricsForDpi(SM_CXPADDEDBORDER, dpi);
+      final frameY =
+          GetSystemMetricsForDpi(SYSTEM_METRICS_INDEX.SM_CYFRAME, dpi);
+      final padding =
+          GetSystemMetricsForDpi(SYSTEM_METRICS_INDEX.SM_CXPADDEDBORDER, dpi);
       final cursorPoint = calloc<POINT>();
       cursorPoint.ref
         ..x = LOWORD(lParam)
@@ -443,7 +454,8 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       paintWindow(hwnd);
 
     case WM_NCMOUSEMOVE:
-      final hoveredButton = GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      final hoveredButton =
+          GetWindowLongPtr(hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA);
 
       final cursorPoint = calloc<POINT>();
       GetCursorPos(cursorPoint);
@@ -467,7 +479,8 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
           InvalidateRect(hwnd, closeRect, FALSE);
           InvalidateRect(hwnd, maximizeRect, FALSE);
           InvalidateRect(hwnd, minimizeRect, FALSE);
-          SetWindowLongPtr(hwnd, GWLP_USERDATA, newHoveredButton);
+          SetWindowLongPtr(
+              hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA, newHoveredButton);
         }
       } finally {
         free(minimizeRect);
@@ -478,13 +491,15 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       }
 
     case WM_MOUSEMOVE:
-      final hoveredButton = GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      final hoveredButton =
+          GetWindowLongPtr(hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA);
 
       if (hoveredButton != HoveredButton.none) {
         final titleBarRect = getTitlebarRect(hwnd);
         InvalidateRect(hwnd, titleBarRect, FALSE);
         free(titleBarRect);
-        SetWindowLongPtr(hwnd, GWLP_USERDATA, HoveredButton.none);
+        SetWindowLongPtr(
+            hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA, HoveredButton.none);
       }
 
     case WM_NCLBUTTONDOWN:
@@ -493,11 +508,13 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
       //
       // Ideally you also want to check that the mouse hasn't moved out or too much
       // between DOWN and UP messages.
-      final hoveredButton = GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      final hoveredButton =
+          GetWindowLongPtr(hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA);
       if (hoveredButton != HoveredButton.none) return 0;
 
     case WM_NCLBUTTONUP:
-      final hoveredButton = GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      final hoveredButton =
+          GetWindowLongPtr(hwnd, WINDOW_LONG_PTR_INDEX.GWLP_USERDATA);
 
       // Map button clicks to the right messages for the window
       switch (hoveredButton) {
@@ -505,10 +522,12 @@ int mainWindowProc(int hwnd, int msg, int wParam, int lParam) {
           PostMessage(hwnd, WM_CLOSE, 0, 0);
           return 0;
         case HoveredButton.minimize:
-          ShowWindow(hwnd, SW_MINIMIZE);
+          ShowWindow(hwnd, SHOW_WINDOW_CMD.SW_MINIMIZE);
           return 0;
         case HoveredButton.maximize:
-          final mode = isWindowMaximized(hwnd) ? SW_NORMAL : SW_MAXIMIZE;
+          final mode = isWindowMaximized(hwnd)
+              ? SHOW_WINDOW_CMD.SW_NORMAL
+              : SHOW_WINDOW_CMD.SW_MAXIMIZE;
           ShowWindow(hwnd, mode);
           return 0;
       }
@@ -535,23 +554,26 @@ void main() {
   windowClass.ref
     ..cbSize = sizeOf<WNDCLASSEX>()
     ..lpszClassName = windowClassName
-    ..style = CS_HREDRAW | CS_VREDRAW
+    ..style = WNDCLASS_STYLES.CS_HREDRAW | WNDCLASS_STYLES.CS_VREDRAW
     ..hCursor = LoadCursor(null, IDC_ARROW)
     ..lpfnWndProc = lpfnWndProc.nativeFunction;
 
   RegisterClassEx(windowClass);
 
   // Create the window.
-  const windowStyle = WS_THICKFRAME | // Standard resizeable window
-      WS_SYSMENU | // Explicitly ask for the titlebar to support snapping
-      WS_MAXIMIZEBOX | // Support maximizing via mouse dragging to screen top
-      WS_MINIMIZEBOX | // Support minimizing via clicking taskbar icon
-      WS_VISIBLE; // Make window visible after creation.
+  const windowStyle = WINDOW_STYLE.WS_THICKFRAME | // Standard resizeable window
+      WINDOW_STYLE
+          .WS_SYSMENU | // Explicitly ask for the titlebar to support snapping
+      WINDOW_STYLE
+          .WS_MAXIMIZEBOX | // Support maximizing via mouse dragging to screen top
+      WINDOW_STYLE
+          .WS_MINIMIZEBOX | // Support minimizing via clicking taskbar icon
+      WINDOW_STYLE.WS_VISIBLE; // Make window visible after creation.
 
   final windowCaption = PWSTR.fromString('Win32 Custom Title Bar Example');
 
   CreateWindowEx(
-    WS_EX_APPWINDOW,
+    WINDOW_EX_STYLE.WS_EX_APPWINDOW,
     windowClassName,
     windowCaption,
     windowStyle,

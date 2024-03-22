@@ -87,19 +87,19 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
       final si = calloc<SCROLLINFO>();
       si.ref
         ..cbSize = sizeOf<SCROLLINFO>()
-        ..fMask = SIF_RANGE | SIF_PAGE
+        ..fMask = SCROLLINFO_MASK.SIF_RANGE | SCROLLINFO_MASK.SIF_PAGE
         ..nMin = 0
         ..nMax = abc.length - 1
         ..nPage = yClient ~/ yChar;
-      SetScrollInfo(hwnd, SB_VERT, si, TRUE);
+      SetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_VERT, si, TRUE);
 
       // Set the horizontal scrolling range and page size.
       si.ref.cbSize = sizeOf<SCROLLINFO>();
-      si.ref.fMask = SIF_RANGE | SIF_PAGE;
+      si.ref.fMask = SCROLLINFO_MASK.SIF_RANGE | SCROLLINFO_MASK.SIF_PAGE;
       si.ref.nMin = 0;
       si.ref.nMax = 2 + xClientMax ~/ xChar;
       si.ref.nPage = xClient ~/ xChar;
-      SetScrollInfo(hwnd, SB_HORZ, si, TRUE);
+      SetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_HORZ, si, TRUE);
 
       free(si);
 
@@ -110,30 +110,30 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // Get all the vertial scroll bar information.
       si.ref.cbSize = sizeOf<SCROLLINFO>();
-      si.ref.fMask = SIF_ALL;
+      si.ref.fMask = SCROLLINFO_MASK.SIF_ALL;
 
       // Save the position for comparison later on.
-      GetScrollInfo(hwnd, SB_HORZ, si);
+      GetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_HORZ, si);
       xPos = si.ref.nPos;
       switch (LOWORD(wParam)) {
         // User clicked the left arrow.
-        case SB_LINELEFT:
+        case SCROLLBAR_COMMAND.SB_LINELEFT:
           si.ref.nPos -= 1;
 
         // User clicked the right arrow.
-        case SB_LINERIGHT:
+        case SCROLLBAR_COMMAND.SB_LINERIGHT:
           si.ref.nPos += 1;
 
         // User clicked the scroll bar shaft left of the scroll box.
-        case SB_PAGELEFT:
+        case SCROLLBAR_COMMAND.SB_PAGELEFT:
           si.ref.nPos -= si.ref.nPage;
 
         // User clicked the scroll bar shaft right of the scroll box.
-        case SB_PAGERIGHT:
+        case SCROLLBAR_COMMAND.SB_PAGERIGHT:
           si.ref.nPos += si.ref.nPage;
 
         // User dragged the scroll box.
-        case SB_THUMBTRACK:
+        case SCROLLBAR_COMMAND.SB_THUMBTRACK:
           si.ref.nPos = si.ref.nTrackPos;
 
         default:
@@ -142,9 +142,9 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // Set the position and then retrieve it.  Due to adjustments
       // by Windows it may not be the same as the value set.
-      si.ref.fMask = SIF_POS;
-      SetScrollInfo(hwnd, SB_HORZ, si, TRUE);
-      GetScrollInfo(hwnd, SB_HORZ, si);
+      si.ref.fMask = SCROLLINFO_MASK.SIF_POS;
+      SetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_HORZ, si, TRUE);
+      GetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_HORZ, si);
 
       // If the position has changed, scroll the window.
       if (si.ref.nPos != xPos) {
@@ -159,38 +159,38 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // Get all the vertial scroll bar information.
       si.ref.cbSize = sizeOf<SCROLLINFO>();
-      si.ref.fMask = SIF_ALL;
-      GetScrollInfo(hwnd, SB_VERT, si);
+      si.ref.fMask = SCROLLINFO_MASK.SIF_ALL;
+      GetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_VERT, si);
 
       // Save the position for comparison later on.
       yPos = si.ref.nPos;
       switch (LOWORD(wParam)) {
         // User clicked the HOME keyboard key.
-        case SB_TOP:
+        case SCROLLBAR_COMMAND.SB_TOP:
           si.ref.nPos = si.ref.nMin;
 
         // User clicked the END keyboard key.
-        case SB_BOTTOM:
+        case SCROLLBAR_COMMAND.SB_BOTTOM:
           si.ref.nPos = si.ref.nMax;
 
         // User clicked the top arrow.
-        case SB_LINEUP:
+        case SCROLLBAR_COMMAND.SB_LINEUP:
           si.ref.nPos -= 1;
 
         // User clicked the bottom arrow.
-        case SB_LINEDOWN:
+        case SCROLLBAR_COMMAND.SB_LINEDOWN:
           si.ref.nPos += 1;
 
         // User clicked the scroll bar shaft above the scroll box.
-        case SB_PAGEUP:
+        case SCROLLBAR_COMMAND.SB_PAGEUP:
           si.ref.nPos -= si.ref.nPage;
 
         // User clicked the scroll bar shaft below the scroll box.
-        case SB_PAGEDOWN:
+        case SCROLLBAR_COMMAND.SB_PAGEDOWN:
           si.ref.nPos += si.ref.nPage;
 
         // User dragged the scroll box.
-        case SB_THUMBTRACK:
+        case SCROLLBAR_COMMAND.SB_THUMBTRACK:
           si.ref.nPos = si.ref.nTrackPos;
 
         default:
@@ -199,9 +199,9 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // Set the position and then retrieve it. Due to adjustments
       // by Windows it may not be the same as the value set.
-      si.ref.fMask = SIF_POS;
-      SetScrollInfo(hwnd, SB_VERT, si, TRUE);
-      GetScrollInfo(hwnd, SB_VERT, si);
+      si.ref.fMask = SCROLLINFO_MASK.SIF_POS;
+      SetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_VERT, si, TRUE);
+      GetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_VERT, si);
 
       // If the position has changed, scroll window and update it.
       if (si.ref.nPos != yPos) {
@@ -221,12 +221,12 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
 
       // Get vertical scroll bar position.
       si.ref.cbSize = sizeOf<SCROLLINFO>();
-      si.ref.fMask = SIF_POS;
-      GetScrollInfo(hwnd, SB_VERT, si);
+      si.ref.fMask = SCROLLINFO_MASK.SIF_POS;
+      GetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_VERT, si);
       yPos = si.ref.nPos;
 
       // Get horizontal scroll bar position.
-      GetScrollInfo(hwnd, SB_HORZ, si);
+      GetScrollInfo(hwnd, SCROLLBAR_CONSTANTS.SB_HORZ, si);
       xPos = si.ref.nPos;
 
       // Find painting limits.
@@ -269,12 +269,12 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
 
   final wc = calloc<WNDCLASS>();
   wc.ref
-    ..style = CS_HREDRAW | CS_VREDRAW
+    ..style = WNDCLASS_STYLES.CS_HREDRAW | WNDCLASS_STYLES.CS_VREDRAW
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..lpszClassName = className
     ..hCursor = LoadCursor(null, IDC_ARROW)
-    ..hbrBackground = GetStockObject(WHITE_BRUSH);
+    ..hbrBackground = GetStockObject(GET_STOCK_OBJECT_FLAGS.WHITE_BRUSH);
   RegisterClass(wc);
 
   // Create the window.
@@ -283,7 +283,9 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     0, // Optional window styles.
     className, // Window class
     className, // Window caption
-    WS_OVERLAPPEDWINDOW | WS_VSCROLL | WS_HSCROLL, // Window style
+    WINDOW_STYLE.WS_OVERLAPPEDWINDOW |
+        WINDOW_STYLE.WS_VSCROLL |
+        WINDOW_STYLE.WS_HSCROLL, // Window style
 
     // Size and position
     CW_USEDEFAULT,

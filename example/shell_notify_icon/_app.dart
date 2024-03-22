@@ -41,10 +41,12 @@ int loadDartIcon() {
   return LoadImage(
     0,
     PWSTR.fromString(dartIconPath),
-    IMAGE_ICON,
+    GDI_IMAGE_TYPE.IMAGE_ICON,
     0,
     0,
-    LR_LOADFROMFILE | LR_DEFAULTSIZE | LR_SHARED,
+    IMAGE_FLAGS.LR_LOADFROMFILE |
+        IMAGE_FLAGS.LR_DEFAULTSIZE |
+        IMAGE_FLAGS.LR_SHARED,
   );
 }
 
@@ -64,7 +66,7 @@ int _appWndProc(int hWnd, int uMsg, int wParam, int lParam) {
 
   switch (uMsg) {
     case WM_CLOSE:
-      ShowWindow(hWnd, SW_HIDE);
+      ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_HIDE);
       return TRUE;
   }
   return DefWindowProc(hWnd, uMsg, wParam, lParam);

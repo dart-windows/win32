@@ -81,7 +81,8 @@ void check(int hr) {
 
 void main() {
   // Initialize COM
-  check(CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE));
+  check(CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE));
 
   // Retrieve the list of available audio output devices.
   final pDeviceEnumerator = IMMDeviceEnumerator(
@@ -159,7 +160,8 @@ void main() {
   free(ppDevice);
   final iidAudioClient = convertToIID(IID_IAudioClient3);
   final ppAudioClient = calloc<VTablePointer>();
-  check(pDevice.activate(iidAudioClient, CLSCTX_ALL, null, ppAudioClient));
+  check(
+      pDevice.activate(iidAudioClient, CLSCTX.CLSCTX_ALL, null, ppAudioClient));
   free(iidAudioClient);
   final pAudioClient = IAudioClient3(ppAudioClient.value);
   free(ppAudioClient);

@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 
 import 'com/idispatch.g.dart';
 import 'constants.dart';
+import 'enums.g.dart';
 import 'exceptions.dart';
 import 'guid.dart';
 import 'macros.dart';
@@ -50,7 +51,8 @@ class Dispatcher {
       var hr = CLSIDFromProgID(lpszProgID, lpclsid);
       if (FAILED(hr)) throw WindowsException(hr);
 
-      hr = CoCreateInstance(lpclsid, null, CLSCTX_INPROC_SERVER, riid, ppv);
+      hr = CoCreateInstance(
+          lpclsid, null, CLSCTX.CLSCTX_INPROC_SERVER, riid, ppv);
       if (FAILED(hr)) throw WindowsException(hr);
 
       return Dispatcher._(IDispatch(ppv.value));
@@ -89,7 +91,7 @@ class Dispatcher {
       dispid,
       _IID_NULL,
       LOCALE_SYSTEM_DEFAULT,
-      DISPATCH_METHOD,
+      DISPATCH_FLAGS.DISPATCH_METHOD,
       args,
       null,
       null,

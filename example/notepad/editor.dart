@@ -61,7 +61,7 @@ class NotepadEditor {
   }
 
   void openFile() {
-    if (isFileDirty && offerSave() == IDCANCEL) {
+    if (isFileDirty && offerSave() == MESSAGEBOX_RESULT.IDCANCEL) {
       return;
     }
 
@@ -112,7 +112,7 @@ class NotepadEditor {
       _hwnd,
       PWSTR.fromString(szMessage),
       PWSTR.fromString(APP_NAME),
-      MB_OK | MB_ICONEXCLAMATION,
+      MESSAGEBOX_STYLE.MB_OK | MESSAGEBOX_STYLE.MB_ICONEXCLAMATION,
     );
   }
 
@@ -121,11 +121,11 @@ class NotepadEditor {
         ? 'Save current changes in ${file.title}?'
         : 'Save changes to file?');
     final res = MessageBox(_hwnd, buffer, PWSTR.fromString(APP_NAME),
-        MB_YESNOCANCEL | MB_ICONQUESTION);
+        MESSAGEBOX_STYLE.MB_YESNOCANCEL | MESSAGEBOX_STYLE.MB_ICONQUESTION);
 
-    if (res == IDYES) {
+    if (res == MESSAGEBOX_RESULT.IDYES) {
       if (SendMessage(_hwnd, WM_COMMAND, IDM_FILE_SAVE, 0) == FALSE) {
-        return IDCANCEL;
+        return MESSAGEBOX_RESULT.IDCANCEL;
       }
     }
 

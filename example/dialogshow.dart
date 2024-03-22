@@ -10,7 +10,8 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 void main() {
-  var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  var hr = CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   final fileDialog =
@@ -59,7 +60,7 @@ void main() {
 
   hr = fileDialog.show(null);
   if (FAILED(hr)) {
-    if (hr == HRESULT_FROM_WIN32(ERROR_CANCELLED)) {
+    if (hr == HRESULT_FROM_WIN32(WIN32_ERROR.ERROR_CANCELLED)) {
       print('Dialog cancelled.');
     } else {
       throw WindowsException(hr);

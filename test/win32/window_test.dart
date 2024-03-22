@@ -31,12 +31,12 @@ void main() {
 
     final wc = calloc<WNDCLASS>();
     wc.ref
-      ..style = CS_HREDRAW | CS_VREDRAW
+      ..style = WNDCLASS_STYLES.CS_HREDRAW | WNDCLASS_STYLES.CS_VREDRAW
       ..lpfnWndProc = lpfnWndProc.nativeFunction
       ..hInstance = hInstance
       ..lpszClassName = pClassName
       ..hCursor = LoadCursor(null, IDC_ARROW)
-      ..hbrBackground = GetStockObject(WHITE_BRUSH);
+      ..hbrBackground = GetStockObject(GET_STOCK_OBJECT_FLAGS.WHITE_BRUSH);
 
     try {
       final result = RegisterClass(wc);

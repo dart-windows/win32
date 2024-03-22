@@ -42,11 +42,11 @@ class ClientCommand extends Command<void> {
       stdout.writeln('Connecting to pipe...');
       final pipe = CreateFile(
         lpPipeName,
-        GENERIC_READ,
-        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        GENERIC_ACCESS_RIGHTS.GENERIC_READ,
+        FILE_SHARE_MODE.FILE_SHARE_READ | FILE_SHARE_MODE.FILE_SHARE_WRITE,
         nullptr,
-        OPEN_EXISTING,
-        FILE_ATTRIBUTE_NORMAL,
+        FILE_CREATION_DISPOSITION.OPEN_EXISTING,
+        FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL,
         null,
       );
       if (pipe == INVALID_HANDLE_VALUE) {
@@ -89,8 +89,15 @@ class ServerCommand extends Command<void> {
     final lpPipeMessage = PWSTR.fromString(pipeMessage);
     final lpNumBytesWritten = calloc<DWORD>();
     try {
-      final pipe = CreateNamedPipe(lpPipeName, PIPE_ACCESS_OUTBOUND,
-          PIPE_TYPE_BYTE, 1, 0, 0, 0, nullptr);
+      final pipe = CreateNamedPipe(
+          lpPipeName,
+          FILE_FLAGS_AND_ATTRIBUTES.PIPE_ACCESS_OUTBOUND,
+          NAMED_PIPE_MODE.PIPE_TYPE_BYTE,
+          1,
+          0,
+          0,
+          0,
+          nullptr);
       if (pipe == NULL || pipe == INVALID_HANDLE_VALUE) {
         stderr.writeln('Failed to create outbound pipe instance.');
         exit(1);

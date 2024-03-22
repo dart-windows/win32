@@ -45,7 +45,8 @@ void main(List<String> args) {
 
   try {
     final results = parser.parse(args);
-    CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    CoInitializeEx(
+        COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
     createShortcut(
       results['path'] as String,
       results['shortcut'] as String,

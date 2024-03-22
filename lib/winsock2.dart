@@ -38,6 +38,7 @@ export 'src/structs.g.dart'
         HOSTENT,
         PROTOENT,
         SERVENT;
+export 'src/enums.g.dart' show ADDRESS_FAMILY, WINSOCK_SOCKET_TYPE;
 
 // Traditional C-style Windows APIs
 export 'src/win32_v5/ws2_32.g.dart';

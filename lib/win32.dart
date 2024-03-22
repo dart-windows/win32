@@ -241,7 +241,7 @@ export 'src/extensions/unpack_utf16.dart';
 export 'src/bstr.dart';
 export 'src/callbacks.g.dart';
 export 'src/dispatcher.dart';
-export 'src/enums.g.dart';
+export 'src/enums.g.dart' hide ADDRESS_FAMILY, WINSOCK_SOCKET_TYPE;
 export 'src/exceptions.dart';
 export 'src/guid.dart';
 export 'src/inline.dart';

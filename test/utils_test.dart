@@ -34,8 +34,8 @@ void main() {
   });
 
   test('createComObject', () {
-    final hr =
-        CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    final hr = CoInitializeEx(
+        COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
     expect(hr, equals(S_OK));
     final ptr = createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory);
     expect(ptr.address, isNonZero);
@@ -48,8 +48,8 @@ void main() {
 
   test('isComInitialized', () {
     expect(isComInitialized, isFalse);
-    final hr =
-        CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    final hr = CoInitializeEx(
+        COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
     expect(hr, equals(S_OK));
     expect(isComInitialized, isTrue);
     CoUninitialize();
@@ -60,8 +60,8 @@ void main() {
   });
 
   test('refCount', () {
-    final hr =
-        CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    final hr = CoInitializeEx(
+        COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
     expect(hr, equals(S_OK));
     final ptr = createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory);
     final unknown = IUnknown(ptr);

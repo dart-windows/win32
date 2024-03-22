@@ -17,7 +17,13 @@ void show({required int hWndParent}) {
 
   SetForegroundWindow(hWndParent);
   TrackPopupMenuEx(
-      hMenu, _contextMenuFlags, mousePos.x, mousePos.y, hWndParent, nullptr);
+    hMenu,
+    _contextMenuFlags,
+    mousePos.x,
+    mousePos.y,
+    hWndParent,
+    null,
+  );
 
   DestroyMenu(hMenu);
 }
@@ -31,17 +37,30 @@ bool wndProc(int hWnd, int uMsg, int wParam, int lParam) {
           tray.removeIcon();
           PostQuitMessage(0);
           return true;
+        default:
+          return false;
       }
+    default:
+      return false;
   }
-  return false;
 }
 
 int _buildMenu() {
   final hMenu = CreateMenu();
-  AppendMenu(hMenu, MF_STRING, app.EVENT_QUIT, PWSTR.fromString('&Quit'));
+  AppendMenu(
+    hMenu,
+    MENU_ITEM_FLAGS.MF_STRING,
+    app.EVENT_QUIT,
+    PWSTR.fromString('&Quit'),
+  );
 
   final hMenubar = CreateMenu();
-  AppendMenu(hMenubar, MF_POPUP, hMenu, PWSTR.fromString('_Parent'));
+  AppendMenu(
+    hMenubar,
+    MENU_ITEM_FLAGS.MF_POPUP,
+    hMenu,
+    PWSTR.fromString('_Parent'),
+  );
 
   return GetSubMenu(hMenubar, 0);
 }
@@ -55,11 +74,15 @@ Point<int> _currentMousePos() {
 }
 
 int get _contextMenuFlags {
-  var uFlags = TPM_RIGHTBUTTON;
-  if (GetSystemMetrics(SM_MENUDROPALIGNMENT) != 0) {
-    uFlags |= TPM_RIGHTALIGN;
+  var uFlags = TRACK_POPUP_MENU_FLAGS.TPM_RIGHTBUTTON;
+  if (GetSystemMetrics(SYSTEM_METRICS_INDEX.SM_MENUDROPALIGNMENT) != 0) {
+    uFlags =
+        TRACK_POPUP_MENU_FLAGS(uFlags | TRACK_POPUP_MENU_FLAGS.TPM_RIGHTALIGN);
+    uFlags =
+        TRACK_POPUP_MENU_FLAGS(uFlags & TRACK_POPUP_MENU_FLAGS.TPM_LEFTALIGN);
   } else {
-    uFlags |= TPM_LEFTALIGN;
+    uFlags =
+        TRACK_POPUP_MENU_FLAGS(uFlags | TRACK_POPUP_MENU_FLAGS.TPM_LEFTALIGN);
   }
   return uFlags;
 }

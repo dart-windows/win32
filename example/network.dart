@@ -11,7 +11,8 @@ import 'package:win32/win32.dart';
 
 void main() {
   // Initialize COM
-  var hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  var hr = CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 
   final netManager = INetworkListManager(

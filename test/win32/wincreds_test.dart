@@ -23,9 +23,9 @@ void writeCredential({
 
   final credential = calloc<CREDENTIAL>();
   credential.ref
-    ..Type = CRED_TYPE_GENERIC
+    ..Type = CRED_TYPE.CRED_TYPE_GENERIC
     ..TargetName = targetName
-    ..Persist = CRED_PERSIST_LOCAL_MACHINE
+    ..Persist = CRED_PERSIST.CRED_PERSIST_LOCAL_MACHINE
     ..UserName = userName
     ..CredentialBlob = blob
     ..CredentialBlobSize = examplePassword.length;
@@ -47,7 +47,8 @@ String readCredential(String credentialName) {
   final targetName = PWSTR.fromString(credentialName);
 
   try {
-    if (CredRead(targetName, CRED_TYPE_GENERIC, credPointer) != TRUE) {
+    if (CredRead(targetName, CRED_TYPE.CRED_TYPE_GENERIC, credPointer) !=
+        TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
 
@@ -65,7 +66,7 @@ String readCredential(String credentialName) {
 void deleteCredential(String credentialName) {
   final targetName = PWSTR.fromString(credentialName);
   try {
-    if (CredDelete(targetName, CRED_TYPE_GENERIC) != TRUE) {
+    if (CredDelete(targetName, CRED_TYPE.CRED_TYPE_GENERIC) != TRUE) {
       throw WindowsException(HRESULT_FROM_WIN32(GetLastError()));
     }
   } finally {

@@ -24,7 +24,8 @@ void main(List<String> args) {
 
   final text = args.first;
 
-  CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
 
   final spellCheckerFactory = ISpellCheckerFactory(
       createComObject(SpellCheckerFactory, IID_ISpellCheckerFactory));

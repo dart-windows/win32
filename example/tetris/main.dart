@@ -34,12 +34,14 @@ void main() {
 
   final wc = calloc<WNDCLASS>();
   wc.ref
-    ..style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC
+    ..style = WNDCLASS_STYLES.CS_HREDRAW |
+        WNDCLASS_STYLES.CS_VREDRAW |
+        WNDCLASS_STYLES.CS_OWNDC
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..hIcon = LoadIcon(null, IDI_APPLICATION)
     ..hCursor = LoadCursor(null, IDC_ARROW)
-    ..hbrBackground = GetStockObject(BLACK_BRUSH)
+    ..hbrBackground = GetStockObject(GET_STOCK_OBJECT_FLAGS.BLACK_BRUSH)
     ..lpszClassName = szAppName;
   RegisterClass(wc);
 
@@ -47,7 +49,7 @@ void main() {
     0, // Optional window styles.
     szAppName, // Window class
     szAppName, // Window text
-    WS_MINIMIZEBOX | WS_SYSMENU, // Window style
+    WINDOW_STYLE.WS_MINIMIZEBOX | WINDOW_STYLE.WS_SYSMENU, // Window style
 
     // Size and position
     CW_USEDEFAULT,
@@ -65,7 +67,7 @@ void main() {
     exit(-1);
   }
 
-  ShowWindow(hWnd, SW_SHOWNORMAL);
+  ShowWindow(hWnd, SHOW_WINDOW_CMD.SW_SHOWNORMAL);
   UpdateWindow(hWnd);
 
   // Run the message loop.

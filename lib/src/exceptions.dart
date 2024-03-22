@@ -5,6 +5,7 @@
 // Exceptions that may be caught or thrown by the win32 library.
 
 import 'constants.dart';
+import 'enums.g.dart';
 import 'extensions/int_to_hex.dart';
 import 'pwstr.dart';
 import 'utils.dart';
@@ -36,7 +37,8 @@ class WindowsException extends COMException {
     try {
       String errorMessage;
       final result = FormatMessage(
-        FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+        FORMAT_MESSAGE_OPTIONS.FORMAT_MESSAGE_FROM_SYSTEM |
+            FORMAT_MESSAGE_OPTIONS.FORMAT_MESSAGE_IGNORE_INSERTS,
         null,
         windowsError,
         NULL, // default language

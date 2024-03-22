@@ -24,9 +24,9 @@ void write({
 
   final credential = calloc<CREDENTIAL>();
   credential.ref
-    ..Type = CRED_TYPE_GENERIC
+    ..Type = CRED_TYPE.CRED_TYPE_GENERIC
     ..TargetName = targetName
-    ..Persist = CRED_PERSIST_LOCAL_MACHINE
+    ..Persist = CRED_PERSIST.CRED_PERSIST_LOCAL_MACHINE
     ..UserName = userName
     ..CredentialBlob = blob
     ..CredentialBlobSize = examplePassword.length;
@@ -49,12 +49,12 @@ void read(String credentialName) {
   print('Reading $credentialName...');
   final targetName = PWSTR.fromString(credentialName);
   final credPointer = calloc<Pointer<CREDENTIAL>>();
-  final result = CredRead(targetName, CRED_TYPE_GENERIC, credPointer);
+  final result = CredRead(targetName, CRED_TYPE.CRED_TYPE_GENERIC, credPointer);
   targetName.free();
   if (result != TRUE) {
     final errorCode = GetLastError();
     var errorText = '$errorCode';
-    if (errorCode == ERROR_NOT_FOUND) {
+    if (errorCode == WIN32_ERROR.ERROR_NOT_FOUND) {
       errorText += ' Not found.';
     }
     print('Error ($result): $errorText');
@@ -74,7 +74,7 @@ void read(String credentialName) {
 void delete(String credentialName) {
   print('Deleting $credentialName...');
   final targetName = PWSTR.fromString(credentialName);
-  final result = CredDelete(targetName, CRED_TYPE_GENERIC);
+  final result = CredDelete(targetName, CRED_TYPE.CRED_TYPE_GENERIC);
   if (result != TRUE) {
     final errorCode = GetLastError();
     print('Error ($result): $errorCode');

@@ -375,7 +375,7 @@ void init(int width, int height) {
   // this can be called on resize too but for now stick to fixed window
 
   if (bitmapMemory != nullptr) {
-    VirtualFree(bitmapMemory, 0, MEM_RELEASE);
+    VirtualFree(bitmapMemory, 0, VIRTUAL_FREE_TYPE.MEM_RELEASE);
   }
 
   bitmapWidth = width;
@@ -386,11 +386,11 @@ void init(int width, int height) {
   bitmapInfo.ref.bmiHeader.biHeight = height;
   bitmapInfo.ref.bmiHeader.biPlanes = 1;
   bitmapInfo.ref.bmiHeader.biBitCount = 32;
-  bitmapInfo.ref.bmiHeader.biCompression = BI_RGB;
+  bitmapInfo.ref.bmiHeader.biCompression = BI_COMPRESSION.BI_RGB;
 
   final bitmapMemorySize = (width * height) * bytesPerPixel;
-  bitmapMemory =
-      VirtualAlloc(null, bitmapMemorySize, MEM_COMMIT, PAGE_READWRITE);
+  bitmapMemory = VirtualAlloc(null, bitmapMemorySize,
+      VIRTUAL_ALLOCATION_TYPE.MEM_COMMIT, PAGE_PROTECTION_FLAGS.PAGE_READWRITE);
 
   // init other variables here
   blocksPerWidth = (width / 10).ceil();
@@ -419,8 +419,8 @@ void draw(int hdc, RECT rect, int x, int y, int width, int height) {
     -windowHeight, // source height in pixels
     bitmapMemory, // pointer to the image bits
     bitmapInfo, // pointer to DIB
-    DIB_RGB_COLORS, // color table is literal RGB values
-    SRCCOPY, // copy directly to dest rectangle
+    DIB_USAGE.DIB_RGB_COLORS, // color table is literal RGB values
+    ROP_CODE.SRCCOPY, // copy directly to dest rectangle
   );
 }
 
@@ -491,27 +491,27 @@ int mainWindowProc(int hwnd, int uMsg, int wParam, int lParam) {
     case WM_KEYDOWN:
       {
         switch (wParam) {
-          case VK_LEFT:
+          case VIRTUAL_KEY.VK_LEFT:
             if (direction.x != 1) {
               direction.x = -1;
               direction.y = 0;
             }
-          case VK_RIGHT:
+          case VIRTUAL_KEY.VK_RIGHT:
             if (direction.x != -1) {
               direction.x = 1;
               direction.y = 0;
             }
-          case VK_UP:
+          case VIRTUAL_KEY.VK_UP:
             if (direction.y != 1) {
               direction.x = 0;
               direction.y = -1;
             }
-          case VK_DOWN:
+          case VIRTUAL_KEY.VK_DOWN:
             if (direction.y != -1) {
               direction.x = 0;
               direction.y = 1;
             }
-          case VK_ESCAPE:
+          case VIRTUAL_KEY.VK_ESCAPE:
             isRunning = false;
         }
       }
@@ -558,7 +558,11 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
       0, // Optional window styles.
       className, // Window class
       PWSTR.fromString('Dart WinSnake'), // Window caption
-      WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE,
+      WINDOW_STYLE.WS_OVERLAPPED |
+          WINDOW_STYLE.WS_CAPTION |
+          WINDOW_STYLE.WS_SYSMENU |
+          WINDOW_STYLE.WS_MINIMIZEBOX |
+          WINDOW_STYLE.WS_VISIBLE,
 
       // Size and position
       CW_USEDEFAULT,
@@ -579,7 +583,8 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
         // Run the message loop.
 
         final msg = calloc<MSG>();
-        while (PeekMessage(msg, 0, 0, 0, PM_REMOVE) == TRUE) {
+        while (PeekMessage(msg, 0, 0, 0, PEEK_MESSAGE_REMOVE_TYPE.PM_REMOVE) ==
+            TRUE) {
           if (msg.ref.message == WM_QUIT) {
             isRunning = false;
           }
@@ -604,11 +609,17 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
 
       lpfnWndProc.close();
     } else {
-      MessageBox(0, PWSTR.fromString('Failed to create window'),
-          PWSTR.fromString('Error'), MB_ICONEXCLAMATION | MB_OK);
+      MessageBox(
+          0,
+          PWSTR.fromString('Failed to create window'),
+          PWSTR.fromString('Error'),
+          MESSAGEBOX_STYLE.MB_ICONEXCLAMATION | MESSAGEBOX_STYLE.MB_OK);
     }
   } else {
-    MessageBox(0, PWSTR.fromString('Failed to create window'),
-        PWSTR.fromString('Error'), MB_ICONEXCLAMATION | MB_OK);
+    MessageBox(
+        0,
+        PWSTR.fromString('Failed to create window'),
+        PWSTR.fromString('Error'),
+        MESSAGEBOX_STYLE.MB_ICONEXCLAMATION | MESSAGEBOX_STYLE.MB_OK);
   }
 }

@@ -62,12 +62,12 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
 
   final wc = calloc<WNDCLASS>();
   wc.ref
-    ..style = CS_HREDRAW | CS_VREDRAW
+    ..style = WNDCLASS_STYLES.CS_HREDRAW | WNDCLASS_STYLES.CS_VREDRAW
     ..lpfnWndProc = lpfnWndProc.nativeFunction
     ..hInstance = hInstance
     ..lpszClassName = className
     ..hCursor = LoadCursor(null, IDC_ARROW)
-    ..hbrBackground = GetStockObject(WHITE_BRUSH);
+    ..hbrBackground = GetStockObject(GET_STOCK_OBJECT_FLAGS.WHITE_BRUSH);
   RegisterClass(wc);
 
   // Create the window.
@@ -76,7 +76,7 @@ void winMain(int hInstance, List<String> args, int nShowCmd) {
     0, // Optional window styles.
     className, // Window class
     className, // Window caption
-    WS_OVERLAPPEDWINDOW, // Window style
+    WINDOW_STYLE.WS_OVERLAPPEDWINDOW, // Window style
 
     // Size and position
     CW_USEDEFAULT,

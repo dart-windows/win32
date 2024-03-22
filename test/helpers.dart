@@ -31,15 +31,16 @@ Object getRegistryValue(int key, String subKey, String valueName) {
   final dataSize = calloc<DWORD>()..value = 256;
 
   try {
-    var result = RegOpenKeyEx(key, subKeyPtr, 0, KEY_READ, openKeyPtr);
-    if (result == ERROR_SUCCESS) {
+    var result =
+        RegOpenKeyEx(key, subKeyPtr, 0, REG_SAM_FLAGS.KEY_READ, openKeyPtr);
+    if (result == WIN32_ERROR.ERROR_SUCCESS) {
       result = RegQueryValueEx(
           openKeyPtr.value, valueNamePtr, dataType, data, dataSize);
 
-      if (result == ERROR_SUCCESS) {
-        if (dataType.value == REG_DWORD) {
+      if (result == WIN32_ERROR.ERROR_SUCCESS) {
+        if (dataType.value == REG_VALUE_TYPE.REG_DWORD) {
           dataValue = data.value;
-        } else if (dataType.value == REG_SZ) {
+        } else if (dataType.value == REG_VALUE_TYPE.REG_SZ) {
           dataValue = data.cast<Utf16>().toDartString();
         } else {
           // other data types are available, but this is a sample
@@ -63,6 +64,7 @@ Object getRegistryValue(int key, String subKey, String valueName) {
 }
 
 void initializeCom() {
-  final hr = CoInitializeEx(COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+  final hr = CoInitializeEx(
+      COINIT.COINIT_APARTMENTTHREADED | COINIT.COINIT_DISABLE_OLE1DDE);
   if (FAILED(hr)) throw WindowsException(hr);
 }
