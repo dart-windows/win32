@@ -12,7 +12,6 @@ import '../extension/field.dart';
 import '../extension/string.dart';
 import '../extension/typedef.dart';
 import 'field.dart';
-import 'type.dart';
 
 /// Represents a Dart projection for a struct defined by a [TypeDef].
 class StructProjection {
@@ -148,10 +147,9 @@ extension NestedStructExtension on TypeDef {
   /// This is particularly useful for anonymous nested structs, commonly found
   /// in more complex Win32 structs.
   String get propertyAccessors {
-    final rootType = this.rootType;
-    final extensionName = '${safeTypename}_Extension';
     final buffer = StringBuffer()
-      ..writeln('extension $extensionName on ${rootType.safeTypename} {');
+      ..writeln(
+          'extension ${safeTypename}_Extension on ${rootType.safeTypename} {');
 
     // Iterate through the fields of the nested struct and generate property
     // accessors.
@@ -163,16 +161,10 @@ extension NestedStructExtension on TypeDef {
       }
 
       final instanceName = field.instanceName;
-      final fieldName = field.name.safeIdentifier;
-      final typeProjection = TypeProjection(field.typeIdentifier);
-      final fieldType = field.isCharArray && !field.isFlexibleArray
-          ? 'String'
-          : typeProjection.dartType.safeTypename;
-
+      final FieldProjection(:name, :type) = FieldProjection(field);
       buffer
-        ..writeln('$fieldType get $fieldName => this.$instanceName;')
-        ..writeln(
-            'set $fieldName($fieldType value) => this.$instanceName = value;')
+        ..writeln('$type get $name => this.$instanceName;')
+        ..writeln('set $name($type value) => this.$instanceName = value;')
         ..writeln();
     }
 

@@ -37,6 +37,12 @@ class FieldProjection {
   /// The Dart type of the field.
   String get type => typeProjection.dartType.safeTypename;
 
+  /// The Dart type of the field exposed to the user.
+  String get exposedType {
+    if (field.isCharArray && !field.isFlexibleArray) return 'String';
+    return type;
+  }
+
   @override
   String toString() => [
         if (field.representsStructSize)
@@ -58,7 +64,7 @@ class FieldProjection {
           '''
 external $type _$name;
 ${docs != null ? '\n${docs!.sanitizeCharArray().toDocComment(wrapLength: 78)}' : ''}
-String get $name {
+$exposedType get $name {
   final charCodes = <int>[];
   for (var i = 0; i < ${field.arrayUpperBound}; i++) {
     if (_$name[i] == 0x00) break;
@@ -67,7 +73,7 @@ String get $name {
   return String.fromCharCodes(charCodes);
 }
 
-set $name(String value) {
+set $name($exposedType value) {
   final stringToStore = value.padRight(${field.arrayUpperBound}, '\\x00');
   for (var i = 0; i < ${field.arrayUpperBound}; i++) {
     _$name[i] = stringToStore.codeUnitAt(i);

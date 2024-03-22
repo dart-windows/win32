@@ -91,8 +91,9 @@ void main() {
 
     testField('Windows.Win32.Graphics.Gdi.DEVMODEW', 'dmDeviceName',
         (projection) {
-      final FieldProjection(:type, :toString) = projection;
+      final FieldProjection(:type, :exposedType, :toString) = projection;
       expect(type, equals('Array<Uint16>'));
+      expect(exposedType, equals('String'));
       expect(
         toString(),
         equalsIgnoringWhitespace('''
@@ -101,7 +102,7 @@ void main() {
 
   /// For a display, specifies the name of the display driver's DLL; for
   /// example, "perm3dd" for the 3Dlabs Permedia3 display driver.
-  String get dmDeviceName {
+  $exposedType get dmDeviceName {
     final charCodes = <int>[];
     for (var i = 0; i < 32; i++) {
       if (_dmDeviceName[i] == 0x00) break;
@@ -110,7 +111,7 @@ void main() {
     return String.fromCharCodes(charCodes);
   }
 
-  set dmDeviceName(String value) {
+  set dmDeviceName($exposedType value) {
     final stringToStore = value.padRight(32, '\\x00');
     for (var i = 0; i < 32; i++) {
       _dmDeviceName[i] = stringToStore.codeUnitAt(i);
