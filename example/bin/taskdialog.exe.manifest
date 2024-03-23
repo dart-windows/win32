@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
     <assemblyIdentity
         type="win32"
-        name="win32.taskdialog"
-        processorArchitecture="amd64" 
+        name="win32.TaskDialog"
+        processorArchitecture="amd64"
         version="1.0.0.0"
     />
-    <description>taskdialog</description>
+    <description>TaskDialog</description>
     <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
         <application>
             <!-- Windows 10 and Windows 11 -->
@@ -18,7 +18,7 @@
             <!-- Windows 7 -->
             <supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>
             <!-- Windows Vista -->
-            <supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}"/> 
+            <supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}"/>
         </application>
     </compatibility>
     <dependency>
@@ -45,7 +45,7 @@
                 <requestedExecutionLevel
                     level="asInvoker"
                     uiAccess="false"
-                />   
+                />
             </requestedPrivileges>
         </security>
     </trustInfo>
