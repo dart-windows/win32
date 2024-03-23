@@ -12,9 +12,10 @@ void main() {
     ..ref.dwOSVersionInfoSize = sizeOf<OSVERSIONINFO>();
 
   final result = GetVersionEx(osVersionInfo);
-  if (result != 0) {
-    final OSVERSIONINFO(:dwMajorVersion, :dwMinorVersion) = osVersionInfo.ref;
-    print('Windows $dwMajorVersion.$dwMinorVersion');
+  if (result == TRUE) {
+    final OSVERSIONINFO(:dwMajorVersion, :dwMinorVersion, :dwBuildNumber) =
+        osVersionInfo.ref;
+    print('Windows $dwMajorVersion.$dwMinorVersion Build $dwBuildNumber');
   }
 
   final isWindows10OrGreater = IsWindows10OrGreater();
@@ -22,4 +23,6 @@ void main() {
 
   final isWindowsServer = IsWindowsServer();
   print('IsWindowsServer() reports ${isWindowsServer == TRUE}');
+
+  free(osVersionInfo);
 }

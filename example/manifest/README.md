@@ -8,9 +8,8 @@ point of modeling older behavior on newer systems. For example, if you call the
 same version information, regardless of whether you are running Windows 8,
 Windows 8.1, or Windows 10.
 
-You can tell Windows that your app is aware of later versions with an [app
-manifest](https://learn.microsoft.com/windows/win32/sysinfo/targeting-your-application-at-windows-8-1),
-which opts your app into new behavior.
+You can tell Windows that your app is aware of later versions with an
+[app manifest], which opts your app into new behavior.
 
 You can see this behavior in action by running `version.dart` (which calls
 `GetVersionEx()`) in a few different configurations. The documented behavior
@@ -54,3 +53,5 @@ version2.exe
 
 You'll see that the same executable, in the absence of a matching app manifest,
 reports `Windows 6.2` as before.
+
+[app manifest]: https://learn.microsoft.com/windows/win32/sysinfo/targeting-your-application-at-windows-8-1
