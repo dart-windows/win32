@@ -13,39 +13,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import 'structs.g.dart';
-import 'types.dart';
-
-// --- MANUALLY PROJECTED CALLBACKS START ---
-
-/// An application-defined callback function for handling incoming MIDI
-/// messages.
-///
-/// MIDIINPROC is a placeholder for the application-supplied function name. The
-/// address of this function can be specified in the callback-address parameter
-/// of the `midiInOpen` function.
-///
-/// To learn more about this callback, see
-/// <https://learn.microsoft.com/previous-versions/dd798460(v=vs.85)>.
-///
-/// {@category callback}
-typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
-    DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
-
-/// An application-defined callback function for handling outgoing MIDI
-/// messages.
-///
-/// MIDIOUTPROC is a placeholder for the application-supplied function name. The
-/// address of the function can be specified in the callback-address parameter
-/// of the `midiOutOpen` function.
-///
-/// To learn more about this callback, see
-/// <https://learn.microsoft.com/previous-versions/dd798478(v=vs.85)>.
-///
-/// {@category callback}
-typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
-    DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
-
-// --- MANUALLY PROJECTED CALLBACKS END ---
 
 /// An application-defined callback function used with the CreateDialog and
 /// DialogBox families of functions.

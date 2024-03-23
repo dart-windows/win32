@@ -12,53 +12,13 @@ void generateCallbacks(List<Scope> scopes, Map<String, String> callbacks) {
   final file = File(Platform.script
       .resolve('../../../lib/src/callbacks.g.dart')
       .toFilePath());
-
-  // These are the manually projected callbacks that are not in the metadata.
-  final manuallyProjectedCallbacks = '''
-// --- MANUALLY PROJECTED CALLBACKS START ---
-
-/// An application-defined callback function for handling incoming MIDI
-/// messages.
-///
-/// MIDIINPROC is a placeholder for the application-supplied function name. The
-/// address of this function can be specified in the callback-address parameter
-/// of the `midiInOpen` function.
-///
-/// To learn more about this callback, see
-/// <https://learn.microsoft.com/previous-versions/dd798460(v=vs.85)>.
-///
-/// {@category callback}
-typedef MIDIINPROC = Void Function(HMIDIIN hMidiIn, UINT wMsg,
-    DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
-
-/// An application-defined callback function for handling outgoing MIDI
-/// messages.
-///
-/// MIDIOUTPROC is a placeholder for the application-supplied function name. The
-/// address of the function can be specified in the callback-address parameter
-/// of the `midiOutOpen` function.
-///
-/// To learn more about this callback, see
-/// <https://learn.microsoft.com/previous-versions/dd798478(v=vs.85)>.
-///
-/// {@category callback}
-typedef MIDIOUTPROC = Void Function(HMIDIOUT hmo, UINT wMsg,
-    DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
-
-// --- MANUALLY PROJECTED CALLBACKS END ---
-''';
-
   final typeDefs = scopes.expand((scope) => scope.delegates
       .where((typeDef) => callbacks.keys.contains(typeDef.name))
       .where((typeDef) => typeDef.supportedArchitectures.x64)
       .toFixedList()
     ..sort((a, b) => a.safeTypename.compareTo(b.safeTypename)));
   final callbackProjections = typeDefs.map(CallbackProjection.new);
-  final callbacksFile = [
-    callbackFileHeader,
-    manuallyProjectedCallbacks,
-    ...callbackProjections
-  ].join('\n');
+  final callbacksFile = [callbackFileHeader, ...callbackProjections].join('\n');
   file.writeAsStringSync(DartFormatter().format(callbacksFile));
 }
 

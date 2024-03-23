@@ -239,6 +239,7 @@ export 'src/extensions/unpack_utf16.dart';
 
 // Core Win32 APIs, constants and macros
 export 'src/bstr.dart';
+export 'src/callbacks.dart';
 export 'src/callbacks.g.dart';
 export 'src/dispatcher.dart';
 export 'src/enums.g.dart' hide ADDRESS_FAMILY, WINSOCK_SOCKET_TYPE;
