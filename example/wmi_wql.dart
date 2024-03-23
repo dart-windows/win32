@@ -141,9 +141,7 @@ void main() {
     var idx = 0;
     while (enumerator.ptr.address > 0) {
       final pClsObj = calloc<VTablePointer>();
-
-      hr =
-          enumerator.next(WBEM_TIMEOUT_TYPE.WBEM_INFINITE, 1, pClsObj, uReturn);
+      hr = enumerator.next(WBEM_INFINITE, 1, pClsObj, uReturn);
 
       // Break out of the while loop if we've run out of processes to inspect
       if (uReturn.value == 0) break;

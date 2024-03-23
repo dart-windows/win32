@@ -717,6 +717,13 @@ extension type const CALLCONV(int _) implements int {
 }
 
 /// {@category enum}
+extension type const CAPTIONSTATES(int _) implements int {
+  static const CS_ACTIVE = CAPTIONSTATES(1);
+  static const CS_INACTIVE = CAPTIONSTATES(2);
+  static const CS_DISABLED = CAPTIONSTATES(3);
+}
+
+/// {@category enum}
 extension type const CASCADE_WINDOWS_HOW(int _) implements int {
   static const MDITILE_SKIPDISABLED = CASCADE_WINDOWS_HOW(2);
   static const MDITILE_ZORDER = CASCADE_WINDOWS_HOW(4);
@@ -851,6 +858,14 @@ extension type const CLIPBOARD_FORMAT(int _) implements int {
   static const CF_PRIVATELAST = CLIPBOARD_FORMAT(767);
   static const CF_GDIOBJFIRST = CLIPBOARD_FORMAT(768);
   static const CF_GDIOBJLAST = CLIPBOARD_FORMAT(1023);
+}
+
+/// {@category enum}
+extension type const CLOSEBUTTONSTATES(int _) implements int {
+  static const CBS_NORMAL = CLOSEBUTTONSTATES(1);
+  static const CBS_HOT = CLOSEBUTTONSTATES(2);
+  static const CBS_PUSHED = CLOSEBUTTONSTATES(3);
+  static const CBS_DISABLED = CLOSEBUTTONSTATES(4);
 }
 
 /// Values that are used in activation calls to indicate the execution contexts
@@ -2705,6 +2720,76 @@ extension type const ENUM_SERVICE_TYPE(int _) implements int {
   static const SERVICE_USER_SHARE_PROCESS = ENUM_SERVICE_TYPE(96);
 }
 
+/// Specifies various capabilities in CoInitializeSecurity and
+/// IClientSecurity::SetBlanket.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/objidlbase/ne-objidlbase-eole_authentication_capabilities>.
+///
+/// {@category enum}
+extension type const EOLE_AUTHENTICATION_CAPABILITIES(int _) implements int {
+  /// Indicates that no capability flags are set.
+  static const EOAC_NONE = EOLE_AUTHENTICATION_CAPABILITIES(0);
+
+  /// If this flag is specified, it will be ignored.
+  static const EOAC_MUTUAL_AUTH = EOLE_AUTHENTICATION_CAPABILITIES(1);
+
+  /// Sets static cloaking.
+  static const EOAC_STATIC_CLOAKING = EOLE_AUTHENTICATION_CAPABILITIES(32);
+
+  /// Sets dynamic cloaking.
+  static const EOAC_DYNAMIC_CLOAKING = EOLE_AUTHENTICATION_CAPABILITIES(64);
+
+  /// This flag is obsolete.
+  static const EOAC_ANY_AUTHORITY = EOLE_AUTHENTICATION_CAPABILITIES(128);
+
+  /// Causes DCOM to send Schannel server principal names in fullsic format to
+  /// clients as part of the default security negotiation.
+  static const EOAC_MAKE_FULLSIC = EOLE_AUTHENTICATION_CAPABILITIES(256);
+
+  /// Tells DCOM to use the valid capabilities from the call to <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-coinitializesecurity">CoInitializeSecurity</a>.
+  static const EOAC_DEFAULT = EOLE_AUTHENTICATION_CAPABILITIES(2048);
+
+  /// Authenticates distributed reference count calls to prevent malicious users
+  /// from releasing objects that are still being used.
+  static const EOAC_SECURE_REFS = EOLE_AUTHENTICATION_CAPABILITIES(2);
+
+  /// Indicates that the <i>pSecDesc</i> parameter to <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-coinitializesecurity">CoInitializeSecurity</a>
+  /// is a pointer to an <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/iaccess/nn-iaccess-iaccesscontrol">IAccessControl</a>
+  /// interface on an access control object.
+  static const EOAC_ACCESS_CONTROL = EOLE_AUTHENTICATION_CAPABILITIES(4);
+
+  /// Indicates that the <i>pSecDesc</i> parameter to <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-coinitializesecurity">CoInitializeSecurity</a>
+  /// is a pointer to a GUID that is an AppID.
+  static const EOAC_APPID = EOLE_AUTHENTICATION_CAPABILITIES(8);
+
+  /// Reserved.
+  static const EOAC_DYNAMIC = EOLE_AUTHENTICATION_CAPABILITIES(16);
+
+  /// Causes DCOM to fail <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/combaseapi/nf-combaseapi-cosetproxyblanket">CoSetProxyBlanket</a>
+  /// calls where an Schannel principal name is specified in any format other
+  /// than fullsic.
+  static const EOAC_REQUIRE_FULLSIC = EOLE_AUTHENTICATION_CAPABILITIES(512);
+
+  /// Reserved.
+  static const EOAC_AUTO_IMPERSONATE = EOLE_AUTHENTICATION_CAPABILITIES(1024);
+
+  /// Causes any activation where a server process would be launched under the
+  /// caller's identity (activate-as-activator) to fail with E_ACCESSDENIED.
+  static const EOAC_DISABLE_AAA = EOLE_AUTHENTICATION_CAPABILITIES(4096);
+
+  /// Specifying this flag helps protect server security when using DCOM or
+  /// COM+.
+  static const EOAC_NO_CUSTOM_MARSHAL = EOLE_AUTHENTICATION_CAPABILITIES(8192);
+
+  static const EOAC_RESERVED1 = EOLE_AUTHENTICATION_CAPABILITIES(16384);
+}
+
 /// Specifies whether an XPS print job is in the spooling or the rendering
 /// phase.
 ///
@@ -3469,6 +3554,30 @@ extension type const FORMAT_MESSAGE_OPTIONS(int _) implements int {
   static const FORMAT_MESSAGE_IGNORE_INSERTS = FORMAT_MESSAGE_OPTIONS(512);
 }
 
+/// {@category enum}
+extension type const FRAMEBOTTOMSTATES(int _) implements int {
+  static const FRB_ACTIVE = FRAMEBOTTOMSTATES(1);
+  static const FRB_INACTIVE = FRAMEBOTTOMSTATES(2);
+}
+
+/// {@category enum}
+extension type const FRAMELEFTSTATES(int _) implements int {
+  static const FRL_ACTIVE = FRAMELEFTSTATES(1);
+  static const FRL_INACTIVE = FRAMELEFTSTATES(2);
+}
+
+/// {@category enum}
+extension type const FRAMERIGHTSTATES(int _) implements int {
+  static const FRR_ACTIVE = FRAMERIGHTSTATES(1);
+  static const FRR_INACTIVE = FRAMERIGHTSTATES(2);
+}
+
+/// {@category enum}
+extension type const FRAMESTATES(int _) implements int {
+  static const FS_ACTIVE = FRAMESTATES(1);
+  static const FS_INACTIVE = FRAMESTATES(2);
+}
+
 /// Specifies function flags.
 ///
 /// To learn more about this enum, see
@@ -3962,6 +4071,30 @@ extension type const HEAP_INFORMATION_CLASS(int _) implements int {
 }
 
 /// {@category enum}
+extension type const HELPBUTTONSTATES(int _) implements int {
+  static const HBS_NORMAL = HELPBUTTONSTATES(1);
+  static const HBS_HOT = HELPBUTTONSTATES(2);
+  static const HBS_PUSHED = HELPBUTTONSTATES(3);
+  static const HBS_DISABLED = HELPBUTTONSTATES(4);
+}
+
+/// {@category enum}
+extension type const HORZSCROLLSTATES(int _) implements int {
+  static const HSS_NORMAL = HORZSCROLLSTATES(1);
+  static const HSS_HOT = HORZSCROLLSTATES(2);
+  static const HSS_PUSHED = HORZSCROLLSTATES(3);
+  static const HSS_DISABLED = HORZSCROLLSTATES(4);
+}
+
+/// {@category enum}
+extension type const HORZTHUMBSTATES(int _) implements int {
+  static const HTS_NORMAL = HORZTHUMBSTATES(1);
+  static const HTS_HOT = HORZTHUMBSTATES(2);
+  static const HTS_PUSHED = HORZTHUMBSTATES(3);
+  static const HTS_DISABLED = HORZTHUMBSTATES(4);
+}
+
+/// {@category enum}
 extension type const HOT_KEY_MODIFIERS(int _) implements int {
   static const MOD_ALT = HOT_KEY_MODIFIERS(1);
   static const MOD_CONTROL = HOT_KEY_MODIFIERS(2);
@@ -4233,6 +4366,124 @@ extension type const KF_CATEGORY(int _) implements int {
   static const KF_CATEGORY_PERUSER = KF_CATEGORY(4);
 }
 
+/// Flags that specify certain known folder behaviors.
+///
+/// Used with the KNOWNFOLDER_DEFINITION structure.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-_kf_definition_flags>.
+///
+/// {@category enum}
+extension type const KF_DEFINITION_FLAGS(int _) implements int {
+  /// Prevent a <a
+  /// href="https://docs.microsoft.com/windows/desktop/api/shobjidl_core/ne-shobjidl_core-kf_category">per-user</a>
+  /// known folder from being redirected to a network location.
+  static const KFDF_LOCAL_REDIRECT_ONLY = KF_DEFINITION_FLAGS(2);
+
+  /// Can be roamed through a PC-to-PC synchronization.
+  static const KFDF_ROAMABLE = KF_DEFINITION_FLAGS(4);
+
+  /// Create the folder when the user first logs on.
+  static const KFDF_PRECREATE = KF_DEFINITION_FLAGS(8);
+
+  /// <b>Introduced in Windows 7</b>.
+  static const KFDF_STREAM = KF_DEFINITION_FLAGS(16);
+
+  /// <b>Introduced in Windows 7</b>.
+  static const KFDF_PUBLISHEXPANDEDPATH = KF_DEFINITION_FLAGS(32);
+
+  /// <b>Introduced in Windows 8.1</b>.
+  static const KFDF_NO_REDIRECT_UI = KF_DEFINITION_FLAGS(64);
+}
+
+/// Flags that specify the current redirection capabilities of a known folder.
+///
+/// Used by IKnownFolder::GetRedirectionCapabilities.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-_kf_redirection_capabilities>.
+///
+/// {@category enum}
+extension type const KF_REDIRECTION_CAPABILITIES(int _) implements int {
+  /// The folder can be redirected if any of the bits in the lower byte of the
+  /// value are set but no DENY flag is set.
+  static const KF_REDIRECTION_CAPABILITIES_ALLOW_ALL =
+      KF_REDIRECTION_CAPABILITIES(255);
+
+  /// The folder can be redirected.
+  static const KF_REDIRECTION_CAPABILITIES_REDIRECTABLE =
+      KF_REDIRECTION_CAPABILITIES(1);
+
+  /// Redirection is not allowed.
+  static const KF_REDIRECTION_CAPABILITIES_DENY_ALL =
+      KF_REDIRECTION_CAPABILITIES(1048320);
+
+  /// The folder cannot be redirected because it is already redirected by group
+  /// policy.
+  static const KF_REDIRECTION_CAPABILITIES_DENY_POLICY_REDIRECTED =
+      KF_REDIRECTION_CAPABILITIES(256);
+
+  /// The folder cannot be redirected because the policy prohibits redirecting
+  /// this folder.
+  static const KF_REDIRECTION_CAPABILITIES_DENY_POLICY =
+      KF_REDIRECTION_CAPABILITIES(512);
+
+  /// The folder cannot be redirected because the calling application does not
+  /// have sufficient permissions.
+  static const KF_REDIRECTION_CAPABILITIES_DENY_PERMISSIONS =
+      KF_REDIRECTION_CAPABILITIES(1024);
+}
+
+/// Flags used by IKnownFolderManager::Redirect to specify details of a known
+/// folder redirection such as permissions and ownership for the redirected
+/// folder.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/shobjidl_core/ne-shobjidl_core-_kf_redirect_flags>.
+///
+/// {@category enum}
+extension type const KF_REDIRECT_FLAGS(int _) implements int {
+  /// Ensure that only the user has permission to access the redirected folder.
+  static const KF_REDIRECT_USER_EXCLUSIVE = KF_REDIRECT_FLAGS(1);
+
+  /// Copy the DACL of the source folder to the target to maintain current
+  /// access permissions.
+  static const KF_REDIRECT_COPY_SOURCE_DACL = KF_REDIRECT_FLAGS(2);
+
+  /// Sets the user as the owner of a newly created target folder unless the
+  /// user is a member of the Administrator group, in which case Administrator
+  /// is set as the owner.
+  static const KF_REDIRECT_OWNER_USER = KF_REDIRECT_FLAGS(4);
+
+  /// Set the owner of a newly created target folder.
+  static const KF_REDIRECT_SET_OWNER_EXPLICIT = KF_REDIRECT_FLAGS(8);
+
+  /// Do not perform a redirection, simply check whether redirection has
+  /// occurred.
+  static const KF_REDIRECT_CHECK_ONLY = KF_REDIRECT_FLAGS(16);
+
+  /// Display UI during the redirection.
+  static const KF_REDIRECT_WITH_UI = KF_REDIRECT_FLAGS(32);
+
+  /// Unpin the source folder.
+  static const KF_REDIRECT_UNPIN = KF_REDIRECT_FLAGS(64);
+
+  /// Pin the target folder.
+  static const KF_REDIRECT_PIN = KF_REDIRECT_FLAGS(128);
+
+  /// Copy the existing contents—both files and subfolders—of the known folder
+  /// to the redirected folder.
+  static const KF_REDIRECT_COPY_CONTENTS = KF_REDIRECT_FLAGS(512);
+
+  /// Delete the contents of the source folder after they have been copied to
+  /// the redirected folder.
+  static const KF_REDIRECT_DEL_SOURCE_CONTENTS = KF_REDIRECT_FLAGS(1024);
+
+  /// Reserved.
+  static const KF_REDIRECT_EXCLUDE_ALL_KNOWN_SUBFOLDERS =
+      KF_REDIRECT_FLAGS(2048);
+}
+
 /// Defines constants that specify special retrieval options for known folders.
 ///
 /// These values supersede CSIDL values, which have parallel meanings.
@@ -4418,6 +4669,21 @@ extension type const MAP_VIRTUAL_KEY_TYPE(int _) implements int {
   static const MAPVK_VK_TO_VSC_EX = MAP_VIRTUAL_KEY_TYPE(4);
 }
 
+/// {@category enum}
+extension type const MAXBUTTONSTATES(int _) implements int {
+  static const MAXBS_NORMAL = MAXBUTTONSTATES(1);
+  static const MAXBS_HOT = MAXBUTTONSTATES(2);
+  static const MAXBS_PUSHED = MAXBUTTONSTATES(3);
+  static const MAXBS_DISABLED = MAXBUTTONSTATES(4);
+}
+
+/// {@category enum}
+extension type const MAXCAPTIONSTATES(int _) implements int {
+  static const MXCS_ACTIVE = MAXCAPTIONSTATES(1);
+  static const MXCS_INACTIVE = MAXCAPTIONSTATES(2);
+  static const MXCS_DISABLED = MAXCAPTIONSTATES(3);
+}
+
 /// Describes a monitor's color temperature.
 ///
 /// To learn more about this enum, see
@@ -4551,6 +4817,30 @@ extension type const MC_SIZE_TYPE(int _) implements int {
 
   /// Height.
   static const MC_HEIGHT = MC_SIZE_TYPE(1);
+}
+
+/// {@category enum}
+extension type const MDICLOSEBUTTONSTATES(int _) implements int {
+  static const MDCL_NORMAL = MDICLOSEBUTTONSTATES(1);
+  static const MDCL_HOT = MDICLOSEBUTTONSTATES(2);
+  static const MDCL_PUSHED = MDICLOSEBUTTONSTATES(3);
+  static const MDCL_DISABLED = MDICLOSEBUTTONSTATES(4);
+}
+
+/// {@category enum}
+extension type const MDIMINBUTTONSTATES(int _) implements int {
+  static const MDMI_NORMAL = MDIMINBUTTONSTATES(1);
+  static const MDMI_HOT = MDIMINBUTTONSTATES(2);
+  static const MDMI_PUSHED = MDIMINBUTTONSTATES(3);
+  static const MDMI_DISABLED = MDIMINBUTTONSTATES(4);
+}
+
+/// {@category enum}
+extension type const MDIRESTOREBUTTONSTATES(int _) implements int {
+  static const MDRE_NORMAL = MDIRESTOREBUTTONSTATES(1);
+  static const MDRE_HOT = MDIRESTOREBUTTONSTATES(2);
+  static const MDRE_PUSHED = MDIRESTOREBUTTONSTATES(3);
+  static const MDRE_DISABLED = MDIRESTOREBUTTONSTATES(4);
 }
 
 /// Represents the various forms of device media.
@@ -4804,6 +5094,21 @@ extension type const MIDI_WAVE_OPEN_TYPE(int _) implements int {
   static const WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE =
       MIDI_WAVE_OPEN_TYPE(16);
   static const MIDI_IO_STATUS = MIDI_WAVE_OPEN_TYPE(32);
+}
+
+/// {@category enum}
+extension type const MINBUTTONSTATES(int _) implements int {
+  static const MINBS_NORMAL = MINBUTTONSTATES(1);
+  static const MINBS_HOT = MINBUTTONSTATES(2);
+  static const MINBS_PUSHED = MINBUTTONSTATES(3);
+  static const MINBS_DISABLED = MINBUTTONSTATES(4);
+}
+
+/// {@category enum}
+extension type const MINCAPTIONSTATES(int _) implements int {
+  static const MNCS_ACTIVE = MINCAPTIONSTATES(1);
+  static const MNCS_INACTIVE = MINCAPTIONSTATES(2);
+  static const MNCS_DISABLED = MINCAPTIONSTATES(3);
 }
 
 /// {@category enum}
@@ -5967,6 +6272,41 @@ extension type const PROCESS_NAME_FORMAT(int _) implements int {
 }
 
 /// {@category enum}
+extension type const PROC_THREAD_ATTRIBUTE_NUM(int _) implements int {
+  static const ProcThreadAttributeParentProcess = PROC_THREAD_ATTRIBUTE_NUM(0);
+  static const ProcThreadAttributeHandleList = PROC_THREAD_ATTRIBUTE_NUM(2);
+  static const ProcThreadAttributeGroupAffinity = PROC_THREAD_ATTRIBUTE_NUM(3);
+  static const ProcThreadAttributePreferredNode = PROC_THREAD_ATTRIBUTE_NUM(4);
+  static const ProcThreadAttributeIdealProcessor = PROC_THREAD_ATTRIBUTE_NUM(5);
+  static const ProcThreadAttributeUmsThread = PROC_THREAD_ATTRIBUTE_NUM(6);
+  static const ProcThreadAttributeMitigationPolicy =
+      PROC_THREAD_ATTRIBUTE_NUM(7);
+  static const ProcThreadAttributeSecurityCapabilities =
+      PROC_THREAD_ATTRIBUTE_NUM(9);
+  static const ProcThreadAttributeProtectionLevel =
+      PROC_THREAD_ATTRIBUTE_NUM(11);
+  static const ProcThreadAttributeJobList = PROC_THREAD_ATTRIBUTE_NUM(13);
+  static const ProcThreadAttributeChildProcessPolicy =
+      PROC_THREAD_ATTRIBUTE_NUM(14);
+  static const ProcThreadAttributeAllApplicationPackagesPolicy =
+      PROC_THREAD_ATTRIBUTE_NUM(15);
+  static const ProcThreadAttributeWin32kFilter = PROC_THREAD_ATTRIBUTE_NUM(16);
+  static const ProcThreadAttributeSafeOpenPromptOriginClaim =
+      PROC_THREAD_ATTRIBUTE_NUM(17);
+  static const ProcThreadAttributeDesktopAppPolicy =
+      PROC_THREAD_ATTRIBUTE_NUM(18);
+  static const ProcThreadAttributePseudoConsole = PROC_THREAD_ATTRIBUTE_NUM(22);
+  static const ProcThreadAttributeMitigationAuditPolicy =
+      PROC_THREAD_ATTRIBUTE_NUM(24);
+  static const ProcThreadAttributeMachineType = PROC_THREAD_ATTRIBUTE_NUM(25);
+  static const ProcThreadAttributeComponentFilter =
+      PROC_THREAD_ATTRIBUTE_NUM(26);
+  static const ProcThreadAttributeEnableOptionalXStateFeatures =
+      PROC_THREAD_ATTRIBUTE_NUM(27);
+  static const ProcThreadAttributeTrustedApp = PROC_THREAD_ATTRIBUTE_NUM(29);
+}
+
+/// {@category enum}
 extension type const PROPSPEC_KIND(int _) implements int {
   static const PRSPEC_LPWSTR = PROPSPEC_KIND(0);
   static const PRSPEC_PROPID = PROPSPEC_KIND(1);
@@ -6159,6 +6499,14 @@ extension type const REG_VALUE_TYPE(int _) implements int {
   static const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE(10);
   static const REG_QWORD = REG_VALUE_TYPE(11);
   static const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE(11);
+}
+
+/// {@category enum}
+extension type const RESTOREBUTTONSTATES(int _) implements int {
+  static const RBS_NORMAL = RESTOREBUTTONSTATES(1);
+  static const RBS_HOT = RESTOREBUTTONSTATES(2);
+  static const RBS_PUSHED = RESTOREBUTTONSTATES(3);
+  static const RBS_DISABLED = RESTOREBUTTONSTATES(4);
 }
 
 /// {@category enum}
@@ -6901,6 +7249,39 @@ extension type const SIIGBF(int _) implements int {
 }
 
 /// {@category enum}
+extension type const SMALLCAPTIONSTATES(int _) implements int {
+  static const SCS_ACTIVE = SMALLCAPTIONSTATES(1);
+  static const SCS_INACTIVE = SMALLCAPTIONSTATES(2);
+  static const SCS_DISABLED = SMALLCAPTIONSTATES(3);
+}
+
+/// {@category enum}
+extension type const SMALLCLOSEBUTTONSTATES(int _) implements int {
+  static const SCBS_NORMAL = SMALLCLOSEBUTTONSTATES(1);
+  static const SCBS_HOT = SMALLCLOSEBUTTONSTATES(2);
+  static const SCBS_PUSHED = SMALLCLOSEBUTTONSTATES(3);
+  static const SCBS_DISABLED = SMALLCLOSEBUTTONSTATES(4);
+}
+
+/// {@category enum}
+extension type const SMALLFRAMEBOTTOMSTATES(int _) implements int {
+  static const SFRB_ACTIVE = SMALLFRAMEBOTTOMSTATES(1);
+  static const SFRB_INACTIVE = SMALLFRAMEBOTTOMSTATES(2);
+}
+
+/// {@category enum}
+extension type const SMALLFRAMELEFTSTATES(int _) implements int {
+  static const SFRL_ACTIVE = SMALLFRAMELEFTSTATES(1);
+  static const SFRL_INACTIVE = SMALLFRAMELEFTSTATES(2);
+}
+
+/// {@category enum}
+extension type const SMALLFRAMERIGHTSTATES(int _) implements int {
+  static const SFRR_ACTIVE = SMALLFRAMERIGHTSTATES(1);
+  static const SFRR_INACTIVE = SMALLFRAMERIGHTSTATES(2);
+}
+
+/// {@category enum}
 extension type const SND_FLAGS(int _) implements int {
   static const SND_APPLICATION = SND_FLAGS(128);
   static const SND_ALIAS = SND_FLAGS(65536);
@@ -7200,6 +7581,14 @@ extension type const SYNCHRONIZATION_ACCESS_RIGHTS(int _) implements int {
       SYNCHRONIZATION_ACCESS_RIGHTS(524288);
   static const SYNCHRONIZATION_SYNCHRONIZE =
       SYNCHRONIZATION_ACCESS_RIGHTS(1048576);
+}
+
+/// {@category enum}
+extension type const SYSBUTTONSTATES(int _) implements int {
+  static const SBS_NORMAL = SYSBUTTONSTATES(1);
+  static const SBS_HOT = SYSBUTTONSTATES(2);
+  static const SBS_PUSHED = SYSBUTTONSTATES(3);
+  static const SBS_DISABLED = SYSBUTTONSTATES(4);
 }
 
 /// {@category enum}
@@ -9532,6 +9921,22 @@ extension type const VAR_CHANGE_FLAGS(int _) implements int {
 }
 
 /// {@category enum}
+extension type const VERTSCROLLSTATES(int _) implements int {
+  static const VSS_NORMAL = VERTSCROLLSTATES(1);
+  static const VSS_HOT = VERTSCROLLSTATES(2);
+  static const VSS_PUSHED = VERTSCROLLSTATES(3);
+  static const VSS_DISABLED = VERTSCROLLSTATES(4);
+}
+
+/// {@category enum}
+extension type const VERTTHUMBSTATES(int _) implements int {
+  static const VTS_NORMAL = VERTTHUMBSTATES(1);
+  static const VTS_HOT = VERTTHUMBSTATES(2);
+  static const VTS_PUSHED = VERTTHUMBSTATES(3);
+  static const VTS_DISABLED = VERTTHUMBSTATES(4);
+}
+
+/// {@category enum}
 extension type const VER_FIND_FILE_FLAGS(int _) implements int {
   static const VFFF_ISSHAREDFILE = VER_FIND_FILE_FLAGS(1);
 }
@@ -10005,6 +10410,22 @@ extension type const WBEM_GENERIC_FLAG_TYPE(int _) implements int {
       WBEM_GENERIC_FLAG_TYPE(131072);
 
   static const WBEM_FLAG_STRONG_VALIDATION = WBEM_GENERIC_FLAG_TYPE(1048576);
+}
+
+/// Contains flags that modify the behavior of refresher methods.
+///
+/// To learn more about this enum, see
+/// <https://learn.microsoft.com/windows/win32/api/wbemcli/ne-wbemcli-wbem_refresher_flags>.
+///
+/// {@category enum}
+extension type const WBEM_REFRESHER_FLAGS(int _) implements int {
+  /// If the connection is broken, the refresher attempts to reconnect to the
+  /// provider automatically.
+  static const WBEM_FLAG_REFRESH_AUTO_RECONNECT = WBEM_REFRESHER_FLAGS(0);
+
+  /// If the connection is broken, the refresher does not attempt to reconnect
+  /// to the provider automatically.
+  static const WBEM_FLAG_REFRESH_NO_AUTO_RECONNECT = WBEM_REFRESHER_FLAGS(1);
 }
 
 /// {@category enum}
@@ -13522,6 +13943,49 @@ extension type const WIN32_ERROR(int _) implements int {
       WIN32_ERROR(3225026608);
   static const ERROR_VHD_UNEXPECTED_ID = WIN32_ERROR(3225026612);
   static const ERROR_QUERY_STORAGE_ERROR = WIN32_ERROR(2151284737);
+}
+
+/// {@category enum}
+extension type const WINDOWPARTS(int _) implements int {
+  static const WP_CAPTION = WINDOWPARTS(1);
+  static const WP_SMALLCAPTION = WINDOWPARTS(2);
+  static const WP_MINCAPTION = WINDOWPARTS(3);
+  static const WP_SMALLMINCAPTION = WINDOWPARTS(4);
+  static const WP_MAXCAPTION = WINDOWPARTS(5);
+  static const WP_SMALLMAXCAPTION = WINDOWPARTS(6);
+  static const WP_FRAMELEFT = WINDOWPARTS(7);
+  static const WP_FRAMERIGHT = WINDOWPARTS(8);
+  static const WP_FRAMEBOTTOM = WINDOWPARTS(9);
+  static const WP_SMALLFRAMELEFT = WINDOWPARTS(10);
+  static const WP_SMALLFRAMERIGHT = WINDOWPARTS(11);
+  static const WP_SMALLFRAMEBOTTOM = WINDOWPARTS(12);
+  static const WP_SYSBUTTON = WINDOWPARTS(13);
+  static const WP_MDISYSBUTTON = WINDOWPARTS(14);
+  static const WP_MINBUTTON = WINDOWPARTS(15);
+  static const WP_MDIMINBUTTON = WINDOWPARTS(16);
+  static const WP_MAXBUTTON = WINDOWPARTS(17);
+  static const WP_CLOSEBUTTON = WINDOWPARTS(18);
+  static const WP_SMALLCLOSEBUTTON = WINDOWPARTS(19);
+  static const WP_MDICLOSEBUTTON = WINDOWPARTS(20);
+  static const WP_RESTOREBUTTON = WINDOWPARTS(21);
+  static const WP_MDIRESTOREBUTTON = WINDOWPARTS(22);
+  static const WP_HELPBUTTON = WINDOWPARTS(23);
+  static const WP_MDIHELPBUTTON = WINDOWPARTS(24);
+  static const WP_HORZSCROLL = WINDOWPARTS(25);
+  static const WP_HORZTHUMB = WINDOWPARTS(26);
+  static const WP_VERTSCROLL = WINDOWPARTS(27);
+  static const WP_VERTTHUMB = WINDOWPARTS(28);
+  static const WP_DIALOG = WINDOWPARTS(29);
+  static const WP_CAPTIONSIZINGTEMPLATE = WINDOWPARTS(30);
+  static const WP_SMALLCAPTIONSIZINGTEMPLATE = WINDOWPARTS(31);
+  static const WP_FRAMELEFTSIZINGTEMPLATE = WINDOWPARTS(32);
+  static const WP_SMALLFRAMELEFTSIZINGTEMPLATE = WINDOWPARTS(33);
+  static const WP_FRAMERIGHTSIZINGTEMPLATE = WINDOWPARTS(34);
+  static const WP_SMALLFRAMERIGHTSIZINGTEMPLATE = WINDOWPARTS(35);
+  static const WP_FRAMEBOTTOMSIZINGTEMPLATE = WINDOWPARTS(36);
+  static const WP_SMALLFRAMEBOTTOMSIZINGTEMPLATE = WINDOWPARTS(37);
+  static const WP_FRAME = WINDOWPARTS(38);
+  static const WP_BORDER = WINDOWPARTS(39);
 }
 
 /// {@category enum}
