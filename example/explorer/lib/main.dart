@@ -39,18 +39,15 @@ class MainPageState extends State<MainPage> {
   @override
   void initState() {
     showRoundedCornerSwitch = isWindows11();
-
     super.initState();
   }
 
   void showDocumentsPath() async {
     final appDocDir = await getApplicationDocumentsDirectory();
-    final hwnd = GetForegroundWindow();
+    final hwnd = GetShellWindow();
     final pMessage = PWSTR.fromString('Path: ${appDocDir.path}');
     final pTitle = PWSTR.fromString('Application Documents');
-
     MessageBox(hwnd, pMessage, pTitle, MESSAGEBOX_STYLE.MB_OK);
-
     pMessage.free();
     pTitle.free();
   }

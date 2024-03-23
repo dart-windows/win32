@@ -30,9 +30,7 @@ class WindowRoundingSelectorState extends State<WindowRoundingSelector> {
 
       DwmSetWindowAttribute(hwnd, attr, pref, sizeOf<DWORD>());
 
-      setState(() {
-        _isWindowRounded = isRounded;
-      });
+      setState(() => _isWindowRounded = isRounded);
     } finally {
       free(pref);
     }

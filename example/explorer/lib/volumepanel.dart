@@ -18,7 +18,6 @@ class VolumePanelState extends State<VolumePanel> {
   @override
   void initState() {
     super.initState();
-
     _volumes.addAll(Volumes().getVolumes());
   }
 
