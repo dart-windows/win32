@@ -2,7 +2,7 @@
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
     <assemblyIdentity
         type="win32"
-        name="win32.TaskDialog"
+        name="win32.taskdialog"
         processorArchitecture="amd64"
         version="1.0.0.0"
     />

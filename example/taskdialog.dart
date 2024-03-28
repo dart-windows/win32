@@ -13,6 +13,11 @@
 // taskdialog.exe.manifest. Place the compiled taskdialog.exe in the same folder
 // as the manifest and then when you run this it should display two task dialog
 // samples.
+//
+// If that doesn't work, make sure that external manifests are enabled in the
+// registry. This can be done by running the following command in an elevated
+// command prompt:
+//   REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide" /v PreferExternalManifest /t REG_DWORD /d 1 /f
 
 import 'dart:ffi';
 
@@ -28,9 +33,10 @@ void showSimpleTaskDialog() {
     final content = PWSTR.fromString(
       'Task dialogs are great for sharing a longer string of '
       'explanatory content, where you need a user to read an instruction '
-      'before making a decision. Of course, you cannot guarantee that the '
-      "user will actually read the text, so it's important that you also "
-      'provide an undo function for when the wrong choice is selected.',
+      'before making a decision. Of course, you cannot guarantee that '
+      'the user will actually read the text, so it\'s important that you '
+      'also provide an undo function for when the wrong choice is '
+      'selected.',
       allocator: arena,
     );
     final buttonSelected = arena<Int32>();
@@ -58,7 +64,7 @@ void showSimpleTaskDialog() {
     } on ArgumentError {
       print(
         'If you see an error "Failed to lookup symbol", it\'s likely because '
-        'the app manifest\ndeclaring a dependency on comctl32.dll v6 is '
+        'the app manifest declaring a dependency on comctl32.dll v6 is '
         'missing.\n\nSee the comment at the top of the sample source code.\n',
       );
       rethrow;
@@ -68,12 +74,10 @@ void showSimpleTaskDialog() {
 
 void showCustomTaskDialog() {
   using((arena) {
-    // Note that this example does not explicitly free allocated memory, since it
-    // returns quickly to the command prompt. As part of a real app, you'd
-    // certainly want to free each string here.
     final buttonSelected = arena<Int32>();
 
-    final buttons = arena<TASKDIALOG_BUTTON>(2);
+    const numberOfButtons = 2;
+    final buttons = arena<TASKDIALOG_BUTTON>(numberOfButtons);
     buttons[0]
       ..nButtonID = 100
       ..pszButtonText = PWSTR.fromString(
@@ -90,14 +94,15 @@ void showCustomTaskDialog() {
       );
 
     const matrixDescription =
-        'In The Matrix, the main character Neo is offered the choice between '
-        'a red pill and a blue pill by rebel leader Morpheus. The red pill '
+        'In The Matrix, the main character Neo is offered the choice between a '
+        'red pill and a blue pill by rebel leader Morpheus. The red pill '
         'represents an uncertain future: it would free him from the enslaving '
         'control of the machine-generated dream world and allow him to escape '
         'into the real world, but living the "truth of reality" is harsher and '
-        'more difficult. On the other hand, the blue pill represents a beautiful '
-        'prison: it would lead him back to ignorance, living in confined comfort '
-        'without want or fear within the simulated reality of the Matrix.';
+        'more difficult. On the other hand, the blue pill represents a '
+        'beautiful prison: it would lead him back to ignorance, living in '
+        'confined comfort without want or fear within the simulated reality of '
+        'the Matrix.';
 
     final config = arena<TASKDIALOGCONFIG>();
     config.ref
@@ -111,24 +116,20 @@ void showCustomTaskDialog() {
         allocator: arena,
       )
       ..hMainIcon = TD_WARNING_ICON.address
-      ..pszCollapsedControlText =
-          PWSTR.fromString('See more details.', allocator: arena)
-      ..pszExpandedControlText =
+      ..pszExpandedInformation =
           PWSTR.fromString(matrixDescription, allocator: arena)
-      ..dwFlags = TASKDIALOG_FLAGS.TDF_USE_COMMAND_LINKS
-      ..cButtons = 2
+      ..dwFlags = TASKDIALOG_FLAGS.TDF_USE_COMMAND_LINKS |
+          TASKDIALOG_FLAGS.TDF_EXPAND_FOOTER_AREA
+      ..cButtons = numberOfButtons
       ..pButtons = buttons;
 
     final hr = TaskDialogIndirect(config, buttonSelected, null, null);
-
     if (SUCCEEDED(hr)) {
       if (buttonSelected.value == 100) {
         print('Ignorance is bliss.');
       } else {
-        print("I've been expecting you, Mr Anderson.");
+        print("I've been expecting you, Mr. Anderson.");
       }
-    } else {
-      print('that failed.');
     }
   });
 }

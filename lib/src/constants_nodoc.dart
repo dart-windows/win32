@@ -30,7 +30,7 @@ import 'macros.dart';
 import 'structs.g.dart';
 
 const WBEM_NO_WAIT = 0;
-const WBEM_INFINITE = -1;
+const WBEM_INFINITE = 0xffffffff;
 
 // -----------------------------------------------------------------------------
 // HID constants
