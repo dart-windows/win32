@@ -13,7 +13,7 @@ topics:
   - ffi
 
 environment:
-  sdk: ^3.4.0-0
+  sdk: ^3.5.0-0
 
 # Declare that this package only works on Windows.
 platforms:
