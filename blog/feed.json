@@ -1,6 +1,6 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "Blog",
+    "title": "win32 Blog",
     "home_page_url": "https://win32.pub/blog",
     "description": "A resource for win32, Flutter and Dart ecosystem, and Windows development.",
     "items": [

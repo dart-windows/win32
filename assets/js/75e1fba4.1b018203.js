@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[3146],{8777:e=>{e.exports=JSON.parse('{"blogBasePath":"/blog","blogTitle":"Blog","blogDescription":"A resource for win32, Flutter and Dart ecosystem, and Windows development.","totalPosts":3,"totalFeaturedPosts":1,"totalRecentPosts":2}')}}]);

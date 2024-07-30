@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Blog</title>
+        <title>win32 Blog</title>
         <link>https://win32.pub/blog</link>
         <description>A resource for win32, Flutter and Dart ecosystem, and Windows development.</description>
         <lastBuildDate>Tue, 16 Jul 2024 00:00:00 GMT</lastBuildDate>
